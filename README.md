@@ -37,7 +37,7 @@ Style guides:
 Development
 -----------
 
--	Clone the repo: `git clone git@github.com:Adslot/alexandria.git`
+-	Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
 
 -	Install [yeoman](http://yeoman.io) globally: `npm install -g yo`
 
