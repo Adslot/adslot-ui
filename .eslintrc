@@ -1,0 +1,19 @@
+{
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "id-length": [2, {"min": 2, "max": 25, "properties": "never", "exceptions": ["_"]}],
+    "max-len": [1, 120, 2],
+    "no-cond-assign": [2, "except-parens"]
+  }
+}
