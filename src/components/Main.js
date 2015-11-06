@@ -1,22 +1,52 @@
-require('normalize.css');
-require('styles/App.css');
+require('expose?$!expose?jQuery!jquery');
+require('bootstrap-sass!../../bootstrap-sass.config.js');
 
 import React from 'react';
-
-let yeomanImage = require('../images/yeoman.png');
-
+import {Button} from 'react-bootstrap';
 class AppComponent extends React.Component {
   render() {
     return (
       <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+        <h1>Buttons</h1>
+        <div className="btn-panel">
+          <Button className="btn-inverse">
+            Default
+          </Button>
+          <Button className="btn-inverse" bsStyle="primary">
+            Primary
+          </Button>
+          <Button className="btn-inverse" bsStyle="success">
+            Success
+          </Button>
+          <Button bsStyle="link">
+            Link
+          </Button>
+        </div>
+        <div className="btn-panel">
+          <Button>
+            Default
+          </Button>
+          <Button bsStyle="primary">
+            Primary
+          </Button>
+          <Button bsStyle="success">
+            Success
+          </Button>
+        </div>
+        <div className="btn-panel">
+          <Button bsSize="xsmall">
+            Default
+          </Button>
+          <Button bsSize="xsmall" bsStyle="primary">
+            Primary
+          </Button>
+          <Button bsSize="xsmall" bsStyle="success">
+            Success
+          </Button>
+        </div>
       </div>
     );
   }
 }
-
-AppComponent.defaultProps = {
-};
 
 export default AppComponent;

@@ -14,8 +14,6 @@ Technology:
 
 -	ES2015 (using [Babel](http://babeljs.io)\)
 
--	[Flow](http://flowtype.org)
-
 -	[Webpack](https://github.com/webpack/webpack)
 
 -	[SCSS](http://sass-lang.com)
@@ -59,10 +57,6 @@ npm run serve:dist
 
 npm run dist
 
-# Run unit tests
-
-npm test
-
 # Lint all files in src (also automatically run after tests)
 
 npm run lint
@@ -74,6 +68,8 @@ npm run clean
 # Just copy the static assets
 
 npm run copy
+
+# TODO: Work out how we want to test components to then be able to run `npm test`
 ```
 
 Generating New Components
