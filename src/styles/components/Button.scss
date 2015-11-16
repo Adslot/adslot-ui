@@ -1,6 +1,6 @@
 @import '../variable.scss';
 
-//
+// Mixins
 @mixin buttonDisabled() {
   background-color: $color-disabled;
   border-color: $color-disabled;
@@ -17,6 +17,7 @@
   }
 }
 
+// Style
 .btn {
   -webkit-font-smoothing: subpixel-antialiased;
   margin-right: 5px;
