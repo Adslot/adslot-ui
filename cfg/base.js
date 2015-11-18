@@ -48,6 +48,12 @@ module.exports = {
       },
     ],
     loaders: [
+      // **IMPORTANT** This is needed so that each bootstrap js file required by
+      // bootstrap-webpack has access to the jQuery object
+      {
+        test: /bootstrap\/js\//,
+        loader: 'imports?jQuery=jquery'
+      },
       {
         test: /\.css$/,
         loader: 'style!css',
@@ -57,7 +63,7 @@ module.exports = {
         loader: `style-loader!css-loader!${autoprefixerConfig}!sass-loader?outputStyle=expanded`,
       },
       {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
+        test: /\.(png|jpg|gif|woff|woff2|ttf|eot|svg)$/,
         loader: 'url-loader?limit=8192',
       },
     ],

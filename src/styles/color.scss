@@ -1,0 +1,87 @@
+
+// Global colours.
+// --------------------------------------------------
+
+
+/* Hues (Primary Palette) */
+
+$color-blue: #006dcc;
+$color-blue-dark: #1950a3;
+
+$color-green: #5bb75b;
+$color-green-dark: #31a549;
+
+$color-red: #da4f49;
+$color-red-dark: #d5382e;
+
+$color-orange: #faa732;
+$color-orange-dark: #f8951d;
+
+$color-cyan: #49afcd;
+$color-cyan-dark: #0492ba;
+
+// For Create / Ad Previews:
+$color-pink: #f2009d;
+$color-purple: #6c217f;
+
+/* Tones (Secondary Palette ) */
+
+$color-white: #fff;
+$color-gray-white: #f9f9f9; // 2% Black
+$color-gray-lightest: #f3f3f3; // 5% Black
+$color-gray-lighter: #e8e8e8; // 10% Black
+$color-gray-light: #d3d3d3;// 20% Black
+$color-gray: #ababab;// 40% Black
+$color-gray-dark: #838383;// 60% Black
+$color-gray-darker: #5a5a5a;// 80% Black
+$color-gray-darkest: #333;// 90% Black
+$color-black: #000;
+
+/* Usage: Use these values, not the colours directly */
+
+/* Informative  */
+$color-primary: $color-blue;
+$color-primary-selected: $color-blue-dark;
+
+$color-positive: $color-green;
+$color-positive-selected: $color-green-dark;
+
+$color-negative: $color-red;
+$color-negative-selected: $color-red-dark;
+
+$color-pending: $color-orange;
+$color-pending-selected: $color-orange-dark;
+$color-warning: $color-orange;
+$color-warning-selected: $color-orange-dark;
+
+$color-info: $color-cyan;
+$color-info-selected: $color-cyan-dark;
+
+$color-disabled: $color-gray-lighter;
+$color-disabled-selected: $color-gray-light;
+
+$color-inverse: $color-white;
+
+$color-publisher: #96c83f;
+$color-media: $color-cyan;
+
+/* Layout */
+$color-well: $color-white;
+$color-background: $color-gray-lightest;
+$color-panel: $color-gray-light;
+
+/* Typography */
+$color-link: $color-cyan;
+$color-link-hover: $color-cyan-dark;
+$color-text-placeholder: $color-gray;
+$color-text: $color-gray-darkest;
+$color-text-light: $color-gray-dark;
+$color-text-dark: $color-black;
+$color-text-inverse: $color-white;
+
+/* Borders */
+$color-border-lightest: $color-gray-lightest;
+$color-border-lighter: $color-gray-lighter; // Preferred Border for wells;
+$color-border-light: $color-gray-light;
+$color-border: $color-gray;
+$color-border-darker: $color-gray-darker;

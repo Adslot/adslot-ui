@@ -1,0 +1,88 @@
+@import '../variable.scss';
+
+// Mixins
+@mixin buttonDisabled() {
+  background-color: $color-disabled;
+  border-color: $color-disabled;
+  color: $color-text;
+}
+
+@mixin buttonInverse($color, $color-selected) {
+  @include button-variant($color-selected, $color-well, $color);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: hsl(hue($color), saturation($color), 90%);
+  }
+}
+
+// Style
+.btn {
+  -webkit-font-smoothing: subpixel-antialiased;
+  margin-right: 5px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+  &:active,
+  &.active {
+    box-shadow: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    @include buttonDisabled();
+
+    &:hover {
+      @include buttonDisabled();
+    }
+  }
+}
+
+.btn-link {
+  font-weight: $font-weight-medium; // Overrides 'normal'
+  cursor: pointer;
+}
+
+.btn-xs,
+.btn-group-xs > .btn,
+.btn-sm,
+.btn-group-sm > .btn {
+  font-size: $font-size-tiny;
+}
+
+.btn-inverse,
+.btn-default { // Bootstrap calls their inverse button .btn-default, please don't use this one.
+  @include button-variant($color-text-light, $color-well, $color-border);
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    @include buttonDisabled();
+
+    &:hover {
+      @include buttonDisabled();
+    }
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $color-background;
+  }
+  &.btn-primary {
+    @include buttonInverse($color-primary, $color-primary-selected);
+  }
+  &.btn-success {
+    @include buttonInverse($color-positive, $color-positive-selected);
+  }
+  &.btn-info {
+    @include buttonInverse($color-info, $color-info-selected);
+  }
+  &.btn-warning {
+    @include buttonInverse($color-warning, $color-warning-selected);
+  }
+  &.btn-danger {
+    @include buttonInverse($color-negative, $color-negative-selected);
+  }
+}
