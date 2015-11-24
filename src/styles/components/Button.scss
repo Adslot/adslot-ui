@@ -7,12 +7,13 @@
   color: $color-text;
 }
 
-@mixin buttonInverse($color, $color-selected) {
-  @include button-variant($color-selected, $color-well, $color);
+@mixin buttonInverse($color) {
+  @include button-variant($color, $color-well, $color);
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus,
+  &:active:focus {
     background-color: hsl(hue($color), saturation($color), 90%);
   }
 }
@@ -21,14 +22,30 @@
 .btn {
   -webkit-font-smoothing: subpixel-antialiased;
   margin-right: 5px;
+  box-shadow: 0 1px 0 0 $color-border-light;
 
   &:last-child {
     margin-right: 0;
   }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 2px 0 0 $color-border-light;
+    transform: translateY(-1px);
+  }
+
   &:active,
   &.active {
     box-shadow: none;
+    transform: translateY(0);
   }
+
+  &:focus,
+  &:active,
+  &:focus:active {
+    outline: 0;
+  };
+
   &.disabled,
   &[disabled],
   fieldset[disabled] & {
@@ -71,18 +88,18 @@
     background-color: $color-background;
   }
   &.btn-primary {
-    @include buttonInverse($color-primary, $color-primary-selected);
+    @include buttonInverse($color-primary);
   }
   &.btn-success {
-    @include buttonInverse($color-positive, $color-positive-selected);
+    @include buttonInverse($color-positive);
   }
   &.btn-info {
-    @include buttonInverse($color-info, $color-info-selected);
+    @include buttonInverse($color-info);
   }
   &.btn-warning {
-    @include buttonInverse($color-warning, $color-warning-selected);
+    @include buttonInverse($color-warning);
   }
   &.btn-danger {
-    @include buttonInverse($color-negative, $color-negative-selected);
+    @include buttonInverse($color-negative);
   }
 }

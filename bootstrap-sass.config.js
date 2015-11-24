@@ -40,7 +40,7 @@ module.exports = {
     //'tooltip': true,
     //'popover': true,
     //'scrollspy': true,
-    //'tab': true,
+    'tab': true,
     //'affix': true
   },
   styles: {
@@ -61,7 +61,7 @@ module.exports = {
     //'dropdowns': true,
     //'button-groups': true,
     //'input-groups': true,
-    //'navs': true,
+    'navs': true,
     //'navbar': true,
     //'breadcrumbs': true,
     //'pagination': true,

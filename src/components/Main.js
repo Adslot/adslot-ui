@@ -1,8 +1,8 @@
-require('expose?$!expose?jQuery!jquery');
 require('bootstrap-sass!../../bootstrap-sass.config.js');
 
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Nav, NavItem} from 'react-bootstrap';
+
 class AppComponent extends React.Component {
   render() {
     return (
@@ -18,9 +18,7 @@ class AppComponent extends React.Component {
           <Button className="btn-inverse" bsStyle="success">
             Success
           </Button>
-          <Button bsStyle="link">
-            Link
-          </Button>
+
         </div>
         <div className="btn-panel">
           <Button>
@@ -44,9 +42,17 @@ class AppComponent extends React.Component {
             Success
           </Button>
         </div>
+        <h1>Tabs</h1>
+        <div className="btn-panel">
+          <Nav bsStyle="tabs">
+            <NavItem active={true}>Targeting</NavItem>
+            <NavItem>Audience</NavItem>
+            <NavItem>Billing</NavItem>
+          </Nav>
+        </div>
       </div>
     );
   }
 }
 
-export default AppComponent;
+module.exports = AppComponent;

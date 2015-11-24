@@ -13,6 +13,9 @@ const config = _.merge({
   cache: true,
   devtool: 'eval',
   plugins: [
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
