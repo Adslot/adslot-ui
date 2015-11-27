@@ -1,5 +1,6 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src/');
+const webpack = require("webpack");
 
 module.exports = {
   devtool: 'eval',
@@ -34,4 +35,9 @@ module.exports = {
       styles: srcPath + 'styles/',
     },
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+    }),
+  ],
 };
