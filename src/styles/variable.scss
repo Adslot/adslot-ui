@@ -69,3 +69,13 @@ $btn-warning-bg: $color-warning;
 $btn-danger-bg: $color-negative;
 
 $btn-font-weight: $font-weight-bold;
+
+// == Modal
+$modal-sm: 525px;
+$modal-md: 700px;
+$modal-lg: 940px;
+
+$modal-inner-padding: 30px;
+
+$modal-header-border-color: $color-border-lighter;
+$modal-content-border-color: $modal-header-border-color;

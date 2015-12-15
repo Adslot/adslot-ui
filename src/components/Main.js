@@ -1,9 +1,29 @@
 require('bootstrap-sass!../../bootstrap-sass.config.js');
 
 import React from 'react';
-import {Button, Nav, NavItem} from 'react-bootstrap';
+import {
+  Button,
+  Modal,
+  Nav,
+  NavItem,
+} from 'react-bootstrap';
+
 
 class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showSimpleModal: false,
+    };
+  }
+
+
+  toggleSimpleModal() {
+    this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  }
+
+
   render() {
     return (
       <div className="index">
@@ -42,17 +62,48 @@ class AppComponent extends React.Component {
             Success
           </Button>
         </div>
+
+
         <h1>Tabs</h1>
         <div className="btn-panel">
           <Nav bsStyle="tabs">
-            <NavItem active={true}>Targeting</NavItem>
+            <NavItem active>Targeting</NavItem>
             <NavItem>Audience</NavItem>
             <NavItem>Billing</NavItem>
           </Nav>
         </div>
+
+
+        <h1>Modal</h1>
+        <div className="btn-panel">
+          <Button onClick={this.toggleSimpleModal.bind(this)}>
+            Open Modal
+          </Button>
+        </div>
+
+        <Modal show={this.state.showSimpleModal} bsSize="small" keyboard={false}>
+          <Modal.Header>
+            <Modal.Title>Modal Label</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div>
+              All selected line items can not be <strong>Signed Off </strong>
+              without targeting requirements configured. Please review your plan.
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.toggleSimpleModal.bind(this)}>
+              Standard
+            </Button>
+            <Button onClick={this.toggleSimpleModal.bind(this)} bsStyle="primary">
+              Primary
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
 }
+
 
 module.exports = AppComponent;
