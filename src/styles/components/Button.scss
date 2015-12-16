@@ -1,28 +1,30 @@
-@import '../variable.scss';
+@import '../variable';
 
-// Mixins
-@mixin buttonDisabled() {
+@mixin button-disabled {
   background-color: $color-disabled;
   border-color: $color-disabled;
   color: $color-text;
 }
 
-@mixin buttonInverse($color) {
+@mixin button-inverse($color) {
+  $transformed-color: hsl(hue($color), saturation($color), 90%);
+
   @include button-variant($color, $color-well, $color);
 
-  &:hover,
   &:active,
   &:focus,
-  &:active:focus {
-    background-color: hsl(hue($color), saturation($color), 90%);
+  &:hover {
+    &,
+    &:active {
+      background-color: $transformed-color;
+    }
   }
 }
 
-// Style
+
 .btn {
-  -webkit-font-smoothing: subpixel-antialiased;
-  margin-right: 5px;
   box-shadow: 0 1px 0 0 $color-border-light;
+  margin-right: 5px;
 
   &:last-child {
     margin-right: 0;
@@ -40,26 +42,28 @@
     transform: translateY(0);
   }
 
-  &:focus,
   &:active,
-  &:focus:active {
-    outline: 0;
-  };
+  &:focus {
+    &,
+    &:active {
+      outline: 0;
+    }
+  }
 
   &.disabled,
   &[disabled],
-  fieldset[disabled] & {
-    @include buttonDisabled();
+  [disabled] & {
+    @include button-disabled;
 
     &:hover {
-      @include buttonDisabled();
+      @include button-disabled;
     }
   }
 }
 
 .btn-link {
-  font-weight: $font-weight-medium; // Overrides 'normal'
   cursor: pointer;
+  font-weight: $font-weight-medium; // Overrides 'normal'
 }
 
 .btn-xs,
@@ -69,37 +73,43 @@
   font-size: $font-size-tiny;
 }
 
-.btn-inverse,
-.btn-default { // Bootstrap calls their inverse button .btn-default, please don't use this one.
+// Bootstrap calls their inverse button `.btn-default`, we use `.btn-inverse` instead.
+.btn-inverse {
   @include button-variant($color-text-light, $color-well, $color-border);
 
   &.disabled,
   &[disabled],
-  fieldset[disabled] & {
-    @include buttonDisabled();
+  [disabled] & {
+    @include button-disabled;
 
     &:hover {
-      @include buttonDisabled();
+      @include button-disabled;
     }
   }
+
   &:hover,
   &:active,
   &:focus {
     background-color: $color-background;
   }
+
   &.btn-primary {
-    @include buttonInverse($color-primary);
+    @include button-inverse($color-primary);
   }
+
   &.btn-success {
-    @include buttonInverse($color-positive);
+    @include button-inverse($color-positive);
   }
+
   &.btn-info {
-    @include buttonInverse($color-info);
+    @include button-inverse($color-info);
   }
+
   &.btn-warning {
-    @include buttonInverse($color-warning);
+    @include button-inverse($color-warning);
   }
+
   &.btn-danger {
-    @include buttonInverse($color-negative);
+    @include button-inverse($color-negative);
   }
 }

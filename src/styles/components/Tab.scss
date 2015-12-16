@@ -1,29 +1,36 @@
-@import '../variable.scss';
+@import '../variable';
 
 .nav-tabs {
   $border: 1px solid $color-border-lighter;
+
   margin-bottom: 0;
 
   > li {
-    border-top: $border;
-    border-left: $border;
-    margin-right: 0;
-    text-align: center;
-    margin-bottom: -1px;
     background-color: $color-gray-white;
-    padding: 0;
-    font-size: $font-size-body;
+    border-left: $border;
+    border-top: $border;
     display: inline-block;
+    font-size: $font-size-body;
+    margin-bottom: -1px;
+    margin-right: 0;
+    padding: 0;
+    text-align: center;
 
     > a {
-      display: inline-block;
-      padding: 8px 15px 7px;
       color: $color-text-light;
+      cursor: pointer;
+      display: inline-block;
       font-weight: $font-weight-medium;
+      margin-right: 0;
+      padding: 8px 15px 7px;
       text-shadow: none;
       white-space: nowrap;
-      margin-right: 0;
-      cursor: pointer;
+
+      &,
+      &:hover,
+      &:focus {
+        border: 0;
+      }
 
       .icon {
         float: left;
@@ -31,26 +38,26 @@
       }
     }
 
-    > a,
-    > a:hover,
-    > a:focus {
-      border: 0;
-    }
+    &.active {
 
-    &.active,
-    &.active:hover,
-    &.active:focus {
-      border: 0;
-      background-color: $color-well;
+      &,
+      &:hover,
+      &:focus {
+        background-color: $color-well;
+        border: 0;
+      }
 
-    &.active
-      > a,
-      > a:hover,
-      > a:focus {
-        cursor: default;
-        border-right: 0;
+      > a {
+
+        &,
+        &:hover,
+        &:focus {
+          border-right: 0;
+          cursor: default;
+        }
       }
     }
+
 
     &:last-child {
       border-right: $border;

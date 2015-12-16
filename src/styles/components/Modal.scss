@@ -1,6 +1,7 @@
-@import '../variable.scss';
+@import '../variable';
 
 .modal {
+  $modal-shadow: 0 3px 0 0 rgba(0, 0, 0, .25);
   $modal-header-footer-height: 40px;
   $modal-header-footer-left-padding: 15px;
   $modal-footer-padding: 6px;
@@ -8,21 +9,19 @@
   font-weight: $font-weight-medium;
 
   &-content {
-    box-shadow: 0 3px 0 0 rgba(0, 0, 0, .25);
     border-radius: 0;
+    box-shadow: $modal-shadow;
   }
 
-
-  &-header, &-footer {
+  &-header,
+  &-footer {
     height: $modal-header-footer-height;
   }
 
-
   &-header {
-    padding: 10px $modal-header-footer-left-padding;
     background-color: $color-background;
+    padding: 10px $modal-header-footer-left-padding;
   }
-
 
   &-footer {
     padding: $modal-footer-padding;
@@ -32,12 +31,14 @@
       float: left;
     }
 
-    > label.pull-left {
-      line-height: $modal-header-footer-height - ($modal-footer-padding * 2);
-      padding: 0 ($modal-header-footer-left-padding - $modal-footer-padding);
+    > label {
+      &.pull-left {
+        line-height: $modal-header-footer-height - ($modal-footer-padding * 2);
+        padding: 0 ($modal-header-footer-left-padding - $modal-footer-padding);
 
-      > input {
-        margin-right: $modal-footer-padding;
+        > input {
+          margin-right: $modal-footer-padding;
+        }
       }
     }
   }
