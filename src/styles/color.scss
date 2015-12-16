@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 
-/* Hues (Primary Palette) */
+// Hues (Primary Palette)
 
 $color-blue: #006dcc;
 $color-blue-dark: #1950a3;
@@ -24,7 +24,7 @@ $color-cyan-dark: #0492ba;
 $color-pink: #f2009d;
 $color-purple: #6c217f;
 
-/* Tones (Secondary Palette ) */
+// Tones (Secondary Palette )
 
 $color-white: #fff;
 $color-gray-white: #f9f9f9; // 2% Black
@@ -37,9 +37,9 @@ $color-gray-darker: #5a5a5a;// 80% Black
 $color-gray-darkest: #333;// 90% Black
 $color-black: #000;
 
-/* Usage: Use these values, not the colours directly */
+// Usage: Use these values, not the colours directly
 
-/* Informative  */
+// Informative
 $color-primary: $color-blue;
 $color-primary-selected: $color-blue-dark;
 
@@ -65,12 +65,12 @@ $color-inverse: $color-white;
 $color-publisher: #96c83f;
 $color-media: $color-cyan;
 
-/* Layout */
+// Layout
 $color-well: $color-white;
 $color-background: $color-gray-lightest;
 $color-panel: $color-gray-light;
 
-/* Typography */
+// Typography
 $color-link: $color-cyan;
 $color-link-hover: $color-cyan-dark;
 $color-text-placeholder: $color-gray;
@@ -79,7 +79,7 @@ $color-text-light: $color-gray-dark;
 $color-text-dark: $color-black;
 $color-text-inverse: $color-white;
 
-/* Borders */
+// Borders
 $color-border-lightest: $color-gray-lightest;
 $color-border-lighter: $color-gray-lighter; // Preferred Border for wells;
 $color-border-light: $color-gray-light;
