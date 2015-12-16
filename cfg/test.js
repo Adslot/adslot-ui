@@ -35,9 +35,4 @@ module.exports = {
       styles: srcPath + 'styles/',
     },
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-    }),
-  ],
 };

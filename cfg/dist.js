@@ -3,8 +3,9 @@ const baseConfig = require('./base');
 const path = require('path');
 const webpack = require('webpack');
 
+const componentsPath = path.resolve(__dirname, '../src/components/');
+
 const config = _.merge(baseConfig, {
-  entry: path.join(__dirname, '../src/components/run'),
   cache: false,
   devtool: 'sourcemap',
   externals: {
@@ -20,6 +21,15 @@ const config = _.merge(baseConfig, {
       commonjs: 'react',
       amd: 'react',
     },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
+  },
+  entry: {
+    main: path.join(componentsPath, '/distributionEntry.js'),
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -28,14 +38,12 @@ const config = _.merge(baseConfig, {
     library: 'AdslotUI',
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
       },
+      sourceMap: false,
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),

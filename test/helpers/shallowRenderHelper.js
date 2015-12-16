@@ -3,8 +3,9 @@
  * As we are using phantom.js, we also need to include the fn.proto.bind shim!
  *
  * @see http://simonsmith.io/unit-testing-react-components-without-a-dom/
- * @author somonsmith
+ * @author simonsmith
  */
+
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 

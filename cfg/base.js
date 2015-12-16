@@ -5,7 +5,7 @@ const publicPath = '/assets/';
 const supportedBrowsers = [
   'last 2 versions',
   '> 5%',
-  'ie >= 8',
+  'ie >= 10',
   'not and_chr > 0',
   'not and_uc > 0',
   'not android > 0',
@@ -16,19 +16,19 @@ const supportedBrowsers = [
 const autoprefixerConfig = `autoprefixer-loader?{browsers:["${supportedBrowsers}"]}`;
 
 module.exports = {
-  port: port,
+  port,
   debug: true,
   output: {
     path: path.join(__dirname, '/../dist/assets'),
     filename: 'app.js',
-    publicPath: publicPath,
+    publicPath,
   },
   devServer: {
     contentBase: './src/',
     historyApiFallback: true,
     hot: true,
-    port: port,
-    publicPath: publicPath,
+    port,
+    publicPath,
     noInfo: false,
   },
   resolve: {
@@ -36,10 +36,6 @@ module.exports = {
     alias: {
       components: srcPath + '/components/',
       styles: srcPath + '/styles/',
-
-      // TODO: See if we can get it so only need to include jquery src instead of dist so that webpack can include only
-      // what it needs. The below line doesn't work for some reason - work out why.
-      //jquery: 'jquery/src/jquery',
     },
   },
   module: {
