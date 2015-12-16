@@ -1,7 +1,7 @@
 {
   "preset": "airbnb",
   "esnext": true,
-  "validateQuoteMarks": false,
   "verbose": true,
-  "disallowSpacesInsideObjectBrackets": "all"
+  "requireSpacesInsideObjectBrackets": "all",
+  "validateQuoteMarks": false
 }

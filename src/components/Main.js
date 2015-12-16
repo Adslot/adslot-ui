@@ -8,7 +8,6 @@ import {
   NavItem,
 } from 'react-bootstrap';
 
-
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -18,11 +17,9 @@ class AppComponent extends React.Component {
     };
   }
 
-
   toggleSimpleModal() {
     this.setState({ showSimpleModal: !this.state.showSimpleModal });
   }
-
 
   render() {
     return (
@@ -104,6 +101,5 @@ class AppComponent extends React.Component {
     );
   }
 }
-
 
 module.exports = AppComponent;
