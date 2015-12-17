@@ -1,19 +1,12 @@
-// 2014 Color Palette
+// AdslotUI variables
+@import 'border';
 @import 'color';
-@import 'font-size';
+@import 'fontSize';
+@import 'fontWeight';
 
-// Font-weights
-$font-weight-light: 100;
-$font-weight-medium: 300;
-$font-weight-bold: 500;
 
-// == Borders
-$border-lighter: 1px solid $color-border-lighter; // most common
+// Bootstrap 3 variables
 
-// == Page
-$page-width: 940px;
-
-// Bootstrap 3 Overrides, order as per bootstrap/stylus/variables.styl
 // == Colors
 $gray-base: $color-black;
 $gray-darker: $color-gray-darkest;
@@ -38,7 +31,7 @@ $font-family-sans-serif: Roboto, Helvetica, sans-serif;
 $font-family-serif: Georgia, serif;
 $font-family-monospace: Monaco, Consolas, 'Courier New', monospace;
 
-$font-size-base: 12px;
+$font-size-base: $font-size-body;
 
 $line-height-base: 1.5; //: to 18px
 

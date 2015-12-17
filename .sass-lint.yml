@@ -42,6 +42,7 @@ rules:
   force-pseudo-nesting: 2
 
   # Name Formats
+  class-name-format: 2
   function-name-format: 2
   mixin-name-format: 2
   placeholder-name-format: 2
@@ -58,6 +59,7 @@ rules:
   leading-zero: 2
   nesting-depth: [2, max-depth: 4]
   property-sort-order: 2
+  property-units: [2, global: ['px']]
   quotes: 2
   shorthand-values: 2
   url-quotes: 2
@@ -72,6 +74,7 @@ rules:
   space-before-bang: 2
   space-after-bang: 2
   space-between-parens: 2
+  space-around-operator: 2
 
   # Final Items
   trailing-semicolon: 2
