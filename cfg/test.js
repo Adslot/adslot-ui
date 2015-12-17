@@ -1,6 +1,5 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src/');
-const webpack = require("webpack");
 
 module.exports = {
   devtool: 'eval',
@@ -14,16 +13,15 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         include: [
-          path.join(__dirname, '/../src'),
           path.join(__dirname, '/../test'),
         ],
       },
-    ],
-    postLoaders: [
       {
         test: /\.js?$/,
-        exclude: /(test|node_modules)\//,
-        loader: 'istanbul-instrumenter',
+        include: [
+          path.join(__dirname, '/../src'),
+        ],
+        loader: 'isparta',
       },
     ],
   },
