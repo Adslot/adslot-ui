@@ -1,8 +1,3 @@
-
-// Global colours.
-// --------------------------------------------------
-
-
 // Hues (Primary Palette)
 
 $color-blue: #006dcc;
@@ -20,22 +15,22 @@ $color-orange-dark: #f8951d;
 $color-cyan: #49afcd;
 $color-cyan-dark: #0492ba;
 
-// For Create / Ad Previews:
-$color-pink: #f2009d;
-$color-purple: #6c217f;
-
-// Tones (Secondary Palette )
+// Tones (Secondary Palette)
 
 $color-white: #fff;
-$color-gray-white: #f9f9f9; // 2% Black
-$color-gray-lightest: #f3f3f3; // 5% Black
-$color-gray-lighter: #e8e8e8; // 10% Black
-$color-gray-light: #d3d3d3;// 20% Black
-$color-gray: #ababab;// 40% Black
-$color-gray-dark: #838383;// 60% Black
-$color-gray-darker: #5a5a5a;// 80% Black
-$color-gray-darkest: #333;// 90% Black
+
+$color-gray-white: #f9f9f9;
+$color-gray-lightest: #f3f3f3;
+$color-gray-lighter: #e8e8e8;
+$color-gray-light: #d3d3d3;
+
+$color-gray: #ababab;
+$color-gray-dark: #838383;
+$color-gray-darker: #5a5a5a;
+$color-gray-darkest: #333;
+
 $color-black: #000;
+
 
 // Usage: Use these values, not the colours directly
 
@@ -60,15 +55,18 @@ $color-info-selected: $color-cyan-dark;
 $color-disabled: $color-gray-lighter;
 $color-disabled-selected: $color-gray-light;
 
-$color-inverse: $color-white;
+$color-completed: $color-gray-dark;
+$color-remaining: $color-gray-lighter;
 
-$color-publisher: #96c83f;
-$color-media: $color-cyan;
+$color-ended: $color-gray-darkest;
+$color-ended-selected: $color-black;
+$color-rejected: $color-black;
+
+$color-inverse: $color-white;
 
 // Layout
 $color-well: $color-white;
 $color-background: $color-gray-lightest;
-$color-panel: $color-gray-light;
 
 // Typography
 $color-link: $color-cyan;
@@ -81,7 +79,9 @@ $color-text-inverse: $color-white;
 
 // Borders
 $color-border-lightest: $color-gray-lightest;
-$color-border-lighter: $color-gray-lighter; // Preferred Border for wells;
+$color-border-lighter: $color-gray-lighter; // Preferred Border
 $color-border-light: $color-gray-light;
 $color-border: $color-gray;
 $color-border-darker: $color-gray-darker;
+$color-border-error: $color-red-dark;
+$color-shadow: $color-black;

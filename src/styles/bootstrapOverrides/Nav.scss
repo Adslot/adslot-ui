@@ -30,6 +30,7 @@
       &:hover,
       &:focus {
         border: 0;
+        outline: 0;
       }
 
       .icon {
@@ -57,7 +58,6 @@
         }
       }
     }
-
 
     &:last-child {
       border-right: $border;

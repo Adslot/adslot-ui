@@ -1,12 +1,13 @@
-require('bootstrap-sass!../../bootstrap-sass.config.js');
-
 import React from 'react';
+
 import {
   Button,
   Modal,
   Nav,
   NavItem,
-} from 'react-bootstrap';
+} from './distributionEntry';
+
+require('styles/App.scss');
 
 class AppComponent extends React.Component {
   constructor(props) {

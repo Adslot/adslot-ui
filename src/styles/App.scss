@@ -1,16 +1,25 @@
-@import 'components/Button';
-@import 'components/Modal';
-@import 'components/Tab';
+// For display of components during development.
+// This is not distributed.
 
-// Overall UI Library Styles
 body {
   font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
 
-  h1 {
-    margin: 40px 40px 0;
-  }
+.index {
+  $etalon-spacing: 40px;
 
-  .btn-panel {
-    margin: 40px;
+  margin: 0 auto;
+  max-width: 600px;
+  min-width: 300px;
+  padding: 0 $etalon-spacing $etalon-spacing;
+
+  > h1 {
+    margin-bottom: $etalon-spacing;
+    margin-top: ($etalon-spacing * 2);
+   }
+
+  > .btn-panel + .btn-panel {
+    margin-top: $etalon-spacing;
   }
 }

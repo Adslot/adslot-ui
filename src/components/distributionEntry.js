@@ -1,5 +1,6 @@
 // Export all the components that are consumable.
-require('bootstrap-sass!../../bootstrap-sass.config.js');
+
+require('styles/_bootstrap-custom.scss');
 
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
