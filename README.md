@@ -1,5 +1,5 @@
 Adslot UI
-==========
+=========
 
 Core component library. By Adslot
 ---------------------------------
@@ -84,3 +84,10 @@ Most of the time you will want to add:
 `--stateless`
 
 That makes a stateless component (pure function, no internal state).
+
+Build Profiling
+---------------
+
+To generate a profile: `npm run profile`
+
+Upload the new `stats.json` file to [Webpack Analyse Tool](http://webpack.github.io/analyse).
