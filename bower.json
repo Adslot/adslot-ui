@@ -1,0 +1,33 @@
+{
+  "name": "adslot-ui",
+  "description": "Core component library. By Adslot",
+  "main": "dist/adslot-ui-main.js",
+  "dependencies": {
+    "lodash": "^3.0.0",
+    "react": "^0.14.0"
+  },
+  "authors": [
+    {
+      "name": "Adslot",
+      "email": "npm@adslot.com",
+      "homepage": "https://adslot.com"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "UI",
+    "Library",
+    "components"
+  ],
+  "homepage": "https://github.com/Adslot/adslot-ui",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "src"
+  ]
+}
