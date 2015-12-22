@@ -1,0 +1,62 @@
+@import './variable';
+@import '../../node_modules/react-toggle/style.css';
+
+.react-toggle {
+  $toggle-color: $gray-light;
+  $icon-height: 14px;
+
+  &,
+  &:hover {
+    .react-toggle-track {
+      background-color: $toggle-color;
+    }
+
+    .react-toggle-thumb {
+      border-color: $toggle-color;
+    }
+  }
+
+  &--checked,
+  &:active {
+    box-shadow: none;
+  }
+
+  svg {
+    display: none;
+  }
+
+  &-track {
+    background-color: $toggle-color;
+    border-radius: $icon-height;
+    height: $icon-height;
+    width: $icon-height * 2;
+  }
+
+  &-thumb {
+    $thumb-diameter: $icon-height - 2px;
+    height: $thumb-diameter;
+    width: $thumb-diameter;
+  }
+
+  &--checked {
+    .react-toggle-thumb {
+      left: 16px;
+    }
+  }
+
+  &--focus {
+    .react-toggle-thumb {
+      box-shadow: 0 0 1px 2px $color-primary;
+    }
+  }
+
+  // Keeping this separate as it is overriding some gross over-specificity within react-toggle
+  // https://github.com/instructure-react/react-toggle/pull/36
+  &.react-toggle--checked {
+    &:hover {
+      .react-toggle-track {
+        background-color: $toggle-color;
+      }
+    }
+  }
+}
