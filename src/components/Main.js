@@ -1,11 +1,12 @@
 import {
   Button,
+  Checkbox,
   Modal,
   Nav,
   NavItem,
-  Checkbox,
   Radio,
   RadioGroup,
+  Toggle,
 } from './distributionEntry';
 
 import React from 'react';
@@ -142,6 +143,11 @@ class AppComponent extends React.Component {
               checked
             />
           </RadioGroup>
+        </div>
+
+        <h1>Toggle</h1>
+        <div className="example-component-panel">
+          <Toggle />
         </div>
       </div>
     );

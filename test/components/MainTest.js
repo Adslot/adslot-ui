@@ -8,6 +8,7 @@ import {
   Checkbox,
   Radio,
   RadioGroup,
+  Toggle,
 } from '../../src/components/distributionEntry';
 
 describe('MainComponent', () => {
@@ -43,5 +44,11 @@ describe('MainComponent', () => {
     const radioComponent = radioGroupComponent.props.children[0];
     expect(isElementOfType(radioComponent, Radio)).to.equal(true);
     expect(radioComponent.props.label).to.equal('Unchecked');
+  });
+
+  it('should have a toggle component', () => {
+    const toggleExampleContainer = MainComponent.props.children[18];
+    const toggleComponent = toggleExampleContainer.props.children;
+    expect(isElementOfType(toggleComponent, Toggle)).to.equal(true);
   });
 });
