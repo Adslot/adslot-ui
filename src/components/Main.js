@@ -1,11 +1,14 @@
-import React from 'react';
-
 import {
   Button,
   Modal,
   Nav,
   NavItem,
+  Checkbox,
+  Radio,
+  RadioGroup,
 } from './distributionEntry';
+
+import React from 'react';
 
 require('styles/App.scss');
 
@@ -98,6 +101,48 @@ class AppComponent extends React.Component {
             </Button>
           </Modal.Footer>
         </Modal>
+
+        <h1>Checkboxes</h1>
+        <div className="example-component-panel">
+          <Checkbox label="Unchecked" />
+        </div>
+        <div className="example-component-panel">
+          <Checkbox label="Checked" checked />
+        </div>
+        <div className="example-component-panel">
+          <Checkbox label="Disabled" disabled />
+        </div>
+        <div className="example-component-panel">
+          <Checkbox label="Checked and Disabled" checked disabled />
+        </div>
+        <h1>Radio Buttons</h1>
+        <div className="example-component-panel">
+          <RadioGroup name="testRadio" value="2">
+            <Radio
+              label="Unchecked"
+              value="1"
+            />
+            <Radio
+              label="Checked"
+              value="2"
+            />
+          </RadioGroup>
+        </div>
+        <div className="example-component-panel">
+          <RadioGroup name="testRadio" value="2">
+            <Radio
+              label="Disabled"
+              value="1"
+              disabled
+            />
+            <Radio
+              label="Checked and Disabled"
+              value="2"
+              disabled
+              checked
+            />
+          </RadioGroup>
+        </div>
       </div>
     );
   }
