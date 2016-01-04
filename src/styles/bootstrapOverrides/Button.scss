@@ -4,7 +4,12 @@
 @mixin button-disabled {
   background-color: $color-disabled;
   border-color: $color-disabled;
-  color: $color-text;
+  color: $color-text-light;
+}
+
+@mixin reset-shadow-and-transform {
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 @mixin button-inverse($color) {
@@ -39,8 +44,7 @@
 
   &:active,
   &.active {
-    box-shadow: none;
-    transform: translateY(0);
+    @include reset-shadow-and-transform;
   }
 
   &:active,
@@ -59,12 +63,24 @@
     &:hover {
       @include button-disabled;
     }
+
+    &:active,
+    &:focus,
+    &:hover {
+      @include reset-shadow-and-transform;
+    }
   }
 }
 
 .btn-link {
   cursor: pointer;
   font-weight: $font-weight-medium; // Overrides 'normal'
+
+  &:active,
+  &:focus,
+  &:hover {
+    @include reset-shadow-and-transform;
+  }
 }
 
 .btn-xs,

@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "Core component library. By Adslot",
   "main": "dist/adslot-ui-main.js",
+  "license": "MIT",
   "scripts": {
     "start": "node server.js --env=dev",
     "test": "karma start",
@@ -49,6 +50,7 @@
     "eslint-config-airbnb": "^2.1.1",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.3",
+    "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
     "generator-react-webpack": "^3.1.1",
     "isparta-loader": "^2.0.0",

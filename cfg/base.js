@@ -14,6 +14,7 @@ const supportedBrowsers = [
   'not op_mini > 0',
 ].join('", "');
 const autoprefixerConfig = `autoprefixer-loader?{browsers:["${supportedBrowsers}"]}`;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   port,
@@ -48,12 +49,9 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.css$/,
-        loader: 'style!css',
-      },
-      {
         test: /\.scss/,
-        loader: `style-loader!css-loader!${autoprefixerConfig}!sass-loader?outputStyle=expanded`,
+        loader: ExtractTextPlugin.extract(
+          `css-loader!${autoprefixerConfig}!sass-loader?outputStyle=expanded`),
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|ttf|eot|svg)$/,

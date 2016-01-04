@@ -1,7 +1,7 @@
 {
   "name": "adslot-ui",
   "description": "Core component library. By Adslot",
-  "main": "dist/adslot-ui-main.js",
+  "main": ["dist/adslot-ui-main.js", "dist/adslot-ui.css"],
   "dependencies": {
     "lodash": "^3.0.0",
     "react": "^0.14.0"

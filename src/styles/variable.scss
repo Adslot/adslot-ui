@@ -72,3 +72,62 @@ $modal-inner-padding: 30px;
 
 $modal-header-border-color: $color-border-lighter;
 $modal-content-border-color: $modal-header-border-color;
+
+$modal-backdrop-bg: $color-gray-darker;
+$modal-backdrop-opacity: .8;
+$modal-content-border-color: transparent;
+
+// == Tables
+$table-bg-accent: $color-gray-white; // for striping;
+$table-bg-hover: $color-gray-white; // for hover;
+$table-border-color: $color-gray-light; // table and cell border;
+
+// == Forms
+$input-border: $color-border-light;
+$input-bg-disabled: $color-gray-lighter;
+
+// == Dropdowns
+$dropdown-border: $color-border-light;
+$dropdown-link-color: $color-text;
+$dropdown-link-hover-color: $color-text-inverse;
+$dropdown-link-active-color: $dropdown-link-color;
+$dropdown-link-active-bg: $color-gray-white;
+
+// == Grid system
+$grid-gutter-width: 20px;
+
+// == Navbar
+$navbar-height: 35px;
+
+// == Pagination
+$pagination-bg: $color-well;
+$pagination-border: $color-border-lighter;
+
+$pagination-hover-border: $color-border-lighter;
+$pagination-hover-bg: $color-gray-white;
+
+$pagination-active-color: $color-text-light;
+$pagination-active-bg: $color-gray-white;
+$pagination-active-border: $color-border-lighter;
+
+$pagination-disabled-border: $color-border-lighter;
+
+// == Form states and alerts
+$state-success-text: $color-text-inverse;
+$state-success-bg: $color-positive;
+$state-success-border: $color-positive-selected;
+
+$state-info-text: $color-text-inverse;
+$state-info-bg: $color-info;
+$state-info-border: $color-info-selected;
+
+$state-warning-text: $color-text-inverse;
+$state-warning-bg: $color-warning;
+$state-warning-border: $color-warning-selected;
+
+$state-danger-text: $color-text-inverse;
+$state-danger-bg: $color-negative;
+$state-danger-border: $color-negative-selected;
+
+// == Nav
+$grid-float-breakpoint: 0; // Stops the navigation responding to breakpoints.
