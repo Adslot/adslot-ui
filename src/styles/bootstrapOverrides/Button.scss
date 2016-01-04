@@ -67,7 +67,7 @@
 }
 
 .btn {
-  box-shadow: 0 1px 0 $color-border-light;
+  box-shadow: 0 1px $color-border-light;
   margin-right: 5px;
 
   // Make border the same colour as the fill.
@@ -86,7 +86,7 @@
 
   &:hover,
   &:focus {
-    box-shadow: 0 2px 0 $color-border-light;
+    box-shadow: 0 2px $color-border-light;
     transform: translateY(-1px);
   }
 

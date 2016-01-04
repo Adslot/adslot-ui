@@ -2,6 +2,7 @@
 
 require('styles/_bootstrap-custom.scss');
 require('styles/_icheck-custom.scss');
+require('styles/_react-select-custom.scss');
 require('styles/_react-toggle-custom.scss');
 
 import Button from 'react-bootstrap/lib/Button';
@@ -24,6 +25,8 @@ import {
   Totals,
 } from 'alexandria-adslot';
 
+import Select from 'react-select';
+
 module.exports = {
   Alert,
   Breadcrumb,
@@ -37,6 +40,7 @@ module.exports = {
   Radio,
   RadioGroup,
   Search,
+  Select,
   Slicey,
   Tab,
   Tabs,
