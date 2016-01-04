@@ -2,12 +2,12 @@ const _ = require('lodash');
 const baseConfig = require('./base');
 const path = require('path');
 const webpack = require('webpack');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const componentsPath = path.resolve(__dirname, '../src/components/');
 
 const config = _.merge(baseConfig, {
   cache: false,
-  devtool: 'sourcemap',
+  devtool: 'inline',
   externals: {
     lodash: {
       root: '_',
@@ -38,6 +38,7 @@ const config = _.merge(baseConfig, {
     library: 'AdslotUI',
   },
   plugins: [
+    new ExtractTextPlugin('adslot-ui.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

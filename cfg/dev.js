@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const _ = require('lodash');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const baseConfig = require('./base');
 
@@ -13,6 +14,7 @@ const config = _.merge({
   cache: true,
   devtool: 'eval',
   plugins: [
+    new ExtractTextPlugin('adslot-ui.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
