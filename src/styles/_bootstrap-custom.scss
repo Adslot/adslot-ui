@@ -58,6 +58,7 @@
 @import './bootstrapOverrides/Nav';
 
 b,
-strong {
+strong,
+label {
   font-weight: $font-weight-bold;
 }

@@ -2,8 +2,8 @@ import {
   Button,
   Checkbox,
   Modal,
-  Nav,
-  NavItem,
+  Tabs,
+  Tab,
   Radio,
   RadioGroup,
   Toggle,
@@ -68,13 +68,12 @@ class AppComponent extends React.Component {
 
         <h1>Tabs</h1>
         <div className="btn-panel">
-          <Nav bsStyle="tabs">
-            <NavItem active>Targeting</NavItem>
-            <NavItem>Audience</NavItem>
-            <NavItem>Billing</NavItem>
-          </Nav>
+          <Tabs defaultActiveKey="Audience" animation={false}>
+            <Tab eventKey="Targeting" title="Targeting" active>Targeting content</Tab>
+            <Tab eventKey="Audience" title="Audience">Audience content</Tab>
+            <Tab eventKey="Billing" title="Billing" disabled>Billing content</Tab>
+          </Tabs>
         </div>
-
 
         <h1>Modal</h1>
         <div className="btn-panel">
