@@ -28,81 +28,9 @@
 }
 
 
-.btn {
-  box-shadow: 0 1px 0 $color-border-light;
-  margin-right: 5px;
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  &:hover,
-  &:focus {
-    box-shadow: 0 2px 0 $color-border-light;
-    transform: translateY(-1px);
-  }
-
-  &:active,
-  &.active {
-    @include reset-shadow-and-transform;
-  }
-
-  &:active,
-  &:focus {
-    &,
-    &:active {
-      outline: 0;
-    }
-  }
-
-  &.disabled,
-  &[disabled],
-  [disabled] & {
-    @include button-disabled;
-
-    &:hover {
-      @include button-disabled;
-    }
-
-    &:active,
-    &:focus,
-    &:hover {
-      @include reset-shadow-and-transform;
-    }
-  }
-}
-
-.btn-link {
-  cursor: pointer;
-  font-weight: $font-weight-medium; // Overrides 'normal'
-
-  &:active,
-  &:focus,
-  &:hover {
-    @include reset-shadow-and-transform;
-  }
-}
-
-.btn-xs,
-.btn-group-xs > .btn,
-.btn-sm,
-.btn-group-sm > .btn {
-  font-size: $font-size-tiny;
-}
-
-// Bootstrap calls their inverse button `.btn-default`, we use `.btn-inverse` instead.
+// Use `.btn-inverse` and add a normal style like `info` to add colours.
 .btn-inverse {
   @include button-variant($color-text-light, $color-well, $color-border);
-
-  &.disabled,
-  &[disabled],
-  [disabled] & {
-    @include button-disabled;
-
-    &:hover {
-      @include button-disabled;
-    }
-  }
 
   &:hover,
   &:active,
@@ -129,4 +57,75 @@
   &.btn-danger {
     @include button-inverse($color-negative);
   }
+}
+
+// Don't use btn-default (use .btn-inverse instead).
+.btn-default {
+  &:not(.btn-inverse) {
+    font-size: 100px;
+  }
+}
+
+.btn {
+  box-shadow: 0 1px 0 $color-border-light;
+  margin-right: 5px;
+
+  // Make border the same colour as the fill.
+  &:not(.btn-inverse) {
+
+    &,
+    &:active,
+    &:hover {
+      border-color: transparent;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 2px 0 $color-border-light;
+    transform: translateY(-1px);
+  }
+
+  &:active,
+  &.active {
+    @include reset-shadow-and-transform;
+  }
+
+  &.disabled,
+  &[disabled],
+  [disabled] & {
+    @include button-disabled;
+
+    &:hover {
+      @include button-disabled;
+    }
+
+    &,
+    &:active,
+    &:focus,
+    &:hover {
+      @include reset-shadow-and-transform;
+    }
+  }
+}
+
+.btn-link {
+  cursor: pointer;
+  font-weight: $font-weight-medium; // Overrides 'normal'
+
+  &,
+  &:active,
+  &:focus,
+  &:hover {
+    @include reset-shadow-and-transform;
+  }
+}
+
+.btn-xs,
+.btn-group-xs > .btn {
+  font-size: $font-size-tiny;
 }

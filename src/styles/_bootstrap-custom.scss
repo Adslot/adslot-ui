@@ -5,6 +5,12 @@
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
+// Remove dashed and blue outlines on active states.
+//TODO: Assure that all scenarios have obvious active states.
+@mixin tab-focus {
+  outline: none;
+}
+
 // Reset and dependencies
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize';
 // @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print';
