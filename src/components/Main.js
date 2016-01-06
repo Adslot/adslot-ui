@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Button,
   Checkbox,
@@ -9,13 +11,12 @@ import {
   Toggle,
 } from './distributionEntry';
 
-import React from 'react';
-
 require('styles/App.scss');
 
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.toggleSimpleModal = this.toggleSimpleModal.bind(this);
 
     this.state = {
       showSimpleModal: false,
@@ -32,36 +33,40 @@ class AppComponent extends React.Component {
         <h1>Buttons</h1>
         <div className="btn-panel">
           <Button className="btn-inverse">
-            Default
+            Inverse
           </Button>
           <Button className="btn-inverse" bsStyle="primary">
-            Primary
+            Inverse Primary
           </Button>
           <Button className="btn-inverse" bsStyle="success">
-            Success
+            Inverse Success
           </Button>
-
+          <Button className="btn-inverse" disabled>
+            Inverse Disabled
+          </Button>
         </div>
+
         <div className="btn-panel">
-          <Button>
-            Default
-          </Button>
           <Button bsStyle="primary">
             Primary
           </Button>
-          <Button bsStyle="success">
-            Success
+          <Button bsStyle="info">
+            Info
+          </Button>
+          <Button bsStyle="primary" disabled>
+            Disabled
           </Button>
         </div>
+
         <div className="btn-panel">
-          <Button bsSize="xsmall">
-            Default
+          <Button bsSize="xsmall" bsStyle="warning">
+            Warning
           </Button>
-          <Button bsSize="xsmall" bsStyle="primary">
-            Primary
+          <Button bsSize="xsmall" bsStyle="danger">
+            Danger
           </Button>
-          <Button bsSize="xsmall" bsStyle="success">
-            Success
+          <Button bsSize="xsmall" bsStyle="primary" disabled>
+            Disabled
           </Button>
         </div>
 
@@ -77,7 +82,7 @@ class AppComponent extends React.Component {
 
         <h1>Modal</h1>
         <div className="btn-panel">
-          <Button onClick={this.toggleSimpleModal.bind(this)}>
+          <Button className="btn-inverse" onClick={this.toggleSimpleModal}>
             Open Modal
           </Button>
         </div>
@@ -93,10 +98,10 @@ class AppComponent extends React.Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.toggleSimpleModal.bind(this)}>
+            <Button className="btn-inverse" onClick={this.toggleSimpleModal}>
               Standard
             </Button>
-            <Button onClick={this.toggleSimpleModal.bind(this)} bsStyle="primary">
+            <Button onClick={this.toggleSimpleModal} bsStyle="primary">
               Primary
             </Button>
           </Modal.Footer>
