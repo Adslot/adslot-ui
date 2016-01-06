@@ -9,7 +9,7 @@
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "codecov": "cat coverage/lcov.info | codecov",
-    "posttest": "npm run lint && npm run sass-lint && npm run jscs-lint",
+    "posttest": "npm run lint && npm run sass-lint && npm run jscs-lint && npm run check-commit",
     "serve": "node server.js --env=dev",
     "serve:dist": "node server.js --env=dist",
     "dist": "webpack --env=dist",
@@ -19,6 +19,7 @@
     "jscs-lint": "jscs ./src ./test",
     "jscs-fix": "jscs ./src ./test --fix",
     "clean": "rimraf dist/*",
+    "check-commit": "./scripts/commit-msg",
     "release:major": "npm version major && npm publish && git push --follow-tags",
     "release:minor": "npm version minor && npm publish && git push --follow-tags",
     "release:patch": "npm version patch && npm publish && git push --follow-tags"
