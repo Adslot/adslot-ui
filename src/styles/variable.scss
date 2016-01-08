@@ -4,6 +4,7 @@
 @import 'fontSize';
 @import 'fontWeight';
 
+$spacing-etalon: 30px;
 
 // Bootstrap 3 variables
 
@@ -68,7 +69,7 @@ $modal-sm: 525px;
 $modal-md: 700px;
 $modal-lg: 940px;
 
-$modal-inner-padding: 30px;
+$modal-inner-padding: $spacing-etalon;
 
 $modal-header-border-color: $color-border-lighter;
 $modal-content-border-color: $modal-header-border-color;
