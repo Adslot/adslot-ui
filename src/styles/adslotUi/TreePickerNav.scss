@@ -1,0 +1,15 @@
+@import '../border';
+
+.treepickernav-component {
+  border-left: $border-lighter;
+  border-right: $border-lighter;
+  padding: 10px;
+
+  > div + div {
+    margin-top: 10px;
+  }
+
+  > .breadcrumb-component {
+    padding-left: 2px;
+  }
+}

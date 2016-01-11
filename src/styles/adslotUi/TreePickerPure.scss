@@ -1,0 +1,7 @@
+@import '../border';
+
+.treepickerpure-component {
+  border: $border-lighter;
+  display: flex;
+  height: 600px;
+}

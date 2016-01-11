@@ -12,7 +12,6 @@ import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
-
 import {
   Alert,
   Breadcrumb,
@@ -22,6 +21,7 @@ import {
   GridRow,
   Search,
   Slicey,
+  Totals,
 } from 'alexandria-adslot';
 
 module.exports = {
@@ -41,4 +41,5 @@ module.exports = {
   Tab,
   Tabs,
   Toggle,
+  Totals,
 };

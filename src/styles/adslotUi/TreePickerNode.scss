@@ -1,0 +1,14 @@
+@import '../color';
+
+.treepickernode-component {
+
+  &-metadata {
+    color: $color-text-light;
+  }
+
+  .grid-component-cell-button {
+    min-width: 65px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+  }
+}

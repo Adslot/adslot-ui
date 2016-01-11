@@ -1,0 +1,17 @@
+@import '../fontSize';
+@import '../border';
+
+.treepickerselected-component {
+
+  &-header {
+    font-size: $font-size-subheader;
+    line-height: 26px;
+    margin: 0;
+  }
+
+  .empty-component {
+    border-bottom: $border-lighter;
+    border-left: $border-lighter;
+    border-right: $border-lighter;
+  }
+}

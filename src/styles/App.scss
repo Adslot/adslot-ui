@@ -1,5 +1,7 @@
 // For display of components during development.
 // This is not distributed.
+@import 'variable';
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -7,19 +9,18 @@ body {
 }
 
 .index {
-  $etalon-spacing: 40px;
 
   margin: 0 auto;
   max-width: 600px;
   min-width: 300px;
-  padding: 0 $etalon-spacing $etalon-spacing;
+  padding: 0 $spacing-etalon $spacing-etalon;
 
   > h1 {
-    margin-bottom: $etalon-spacing;
-    margin-top: ($etalon-spacing * 2);
+    margin-bottom: $spacing-etalon;
+    margin-top: ($spacing-etalon * 2);
    }
 
   > .btn-panel + .btn-panel {
-    margin-top: $etalon-spacing;
+    margin-top: $spacing-etalon;
   }
 }
