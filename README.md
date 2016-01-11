@@ -26,14 +26,10 @@ Technology:
 
 -	[Autoprefixer](https://github.com/postcss/autoprefixer)
 
-Style guides:
-
--	[Airbnb ES2015](https://github.com/airbnb/javascript)
-
--	[Airbnb React](https://github.com/airbnb/javascript/tree/master/react)
-
 Development
 -----------
+
+-	Take a look at our [Contributing](CONTRIBUTING.md) guidelines
 
 -	Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
 
