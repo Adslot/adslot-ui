@@ -8,19 +8,48 @@ import {
   Tab,
   Radio,
   RadioGroup,
+  Select,
   Toggle,
 } from './distributionEntry';
 
 require('styles/App.scss');
 
+const selectCountriesOptions = [
+  { value: 'au', label: 'Australia' },
+  { value: 'ca', label: 'Canada' },
+  { value: 'uk', label: 'United Kingdom' },
+  { value: 'jp', label: 'Japan', disabled: true },
+];
+
+const selectFlavoursOptions = [
+  { label: 'Chocolate', value: 'chocolate' },
+  { label: 'Vanilla', value: 'vanilla' },
+  { label: 'Strawberry', value: 'strawberry' },
+  { label: 'Caramel', value: 'caramel' },
+  { label: 'Cookies and Cream', value: 'cookiescream' },
+  { label: 'Peppermint', value: 'peppermint' },
+];
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.setSelectedCountry = this.setSelectedCountry.bind(this);
+    this.setSelectedFlavours = this.setSelectedFlavours.bind(this);
     this.toggleSimpleModal = this.toggleSimpleModal.bind(this);
 
     this.state = {
+      selectedCountry: 'au',
+      selectedFlavours: 'vanilla',
       showSimpleModal: false,
     };
+  }
+
+  setSelectedCountry(newValue) {
+    this.setState({ selectedCountry: newValue.value });
+  }
+
+  setSelectedFlavours(newValue) {
+    this.setState({ selectedFlavours: newValue });
   }
 
   toggleSimpleModal() {
@@ -107,52 +136,73 @@ class AppComponent extends React.Component {
           </Modal.Footer>
         </Modal>
 
+
         <h1>Checkboxes</h1>
-        <div className="example-component-panel">
-          <Checkbox label="Unchecked" />
-        </div>
-        <div className="example-component-panel">
-          <Checkbox label="Checked" checked />
-        </div>
-        <div className="example-component-panel">
-          <Checkbox label="Disabled" disabled />
-        </div>
-        <div className="example-component-panel">
-          <Checkbox label="Checked and Disabled" checked disabled />
-        </div>
+        <Checkbox label="Unchecked" />
+        <br />
+        <Checkbox label="Checked" checked />
+        <br />
+        <Checkbox label="Disabled" disabled />
+        <br />
+        <Checkbox label="Checked and Disabled" checked disabled />
+
+
         <h1>Radio Buttons</h1>
-        <div className="example-component-panel">
-          <RadioGroup name="testRadio" value="2">
-            <Radio
-              label="Unchecked"
-              value="1"
-            />
-            <Radio
-              label="Checked"
-              value="2"
-            />
-          </RadioGroup>
-        </div>
-        <div className="example-component-panel">
-          <RadioGroup name="testRadio" value="2">
-            <Radio
-              label="Disabled"
-              value="1"
-              disabled
-            />
-            <Radio
-              label="Checked and Disabled"
-              value="2"
-              disabled
-              checked
-            />
-          </RadioGroup>
-        </div>
+        <RadioGroup name="testRadio" value="2">
+          <Radio
+            label="Unchecked"
+            value="1"
+          />
+          <Radio
+            label="Checked"
+            value="2"
+          />
+        </RadioGroup>
+        <br />
+        <RadioGroup name="testRadio" value="2">
+          <Radio
+            label="Disabled"
+            value="1"
+            disabled
+          />
+          <Radio
+            label="Checked and Disabled"
+            value="2"
+            disabled
+            checked
+          />
+        </RadioGroup>
+
 
         <h1>Toggle</h1>
-        <div className="example-component-panel">
-          <Toggle />
-        </div>
+        <span>Left</span> <Toggle /> <span>Right</span>
+
+
+        <h1>Select</h1>
+        <Select
+          clearable={false}
+          name="countriesSelect"
+          noResultsText="Sorry, couldn't find that country."
+          onChange={this.setSelectedCountry}
+          options={selectCountriesOptions}
+          placeholder="Countries"
+          value={this.state.selectedCountry}
+        />
+
+        <br />
+
+        <Select
+          addLabelText="Add '{label}' flavour?"
+          allowCreate // Not implemented by react-select v1.0.0-beta8 TODO: When supported, check it works.
+          multi
+          name="flavoursSelect"
+          noResultsText="Noooo, no flavours :("
+          onChange={this.setSelectedFlavours}
+          options={selectFlavoursOptions}
+          placeholder="Select your favs."
+          simpleValue
+          value={this.state.selectedFlavours}
+        />
       </div>
     );
   }

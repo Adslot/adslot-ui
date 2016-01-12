@@ -23,4 +23,8 @@ body {
   > .btn-panel + .btn-panel {
     margin-top: $spacing-etalon;
   }
+
+  > br {
+    line-height: $spacing-etalon;
+  }
 }
