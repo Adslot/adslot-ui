@@ -84,15 +84,9 @@
     margin-right: 0;
   }
 
-  &:hover,
-  &:focus {
-    box-shadow: 0 2px $color-border-light;
-    transform: translateY(-1px);
-  }
-
-  &:active,
-  &.active {
-    @include reset-shadow-and-transform;
+  &:active {
+    box-shadow: none;
+    transform: translateY(1px);
   }
 
   &.disabled,
@@ -105,9 +99,7 @@
     }
 
     &,
-    &:active,
-    &:focus,
-    &:hover {
+    &:active {
       @include reset-shadow-and-transform;
     }
   }
@@ -118,9 +110,7 @@
   font-weight: $font-weight-medium; // Overrides 'normal'
 
   &,
-  &:active,
-  &:focus,
-  &:hover {
+  &:active {
     @include reset-shadow-and-transform;
   }
 }
@@ -128,4 +118,8 @@
 .btn-xs,
 .btn-group-xs > .btn {
   font-size: $font-size-tiny;
+
+  &:active {
+    transform: translateY(0);
+  }
 }
