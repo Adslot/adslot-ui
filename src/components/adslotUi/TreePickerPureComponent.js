@@ -7,14 +7,14 @@ import { Grid } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerPure.scss');
 
-// TODO: add tab switching.
-
 const TreePickerPureComponent = ({
   activeRootTypeId,
   baseItem,
   breadcrumbNodes,
   breadcrumbOnClick,
+  changeRootType,
   emptyIcon,
+  expandNode,
   includeNode,
   removeNode,
   rootTypes,
@@ -23,60 +23,71 @@ const TreePickerPureComponent = ({
   subtree,
   valueFormatter,
   warnOnRequired,
-}) => (
-  <div className="treepickerpure-component">
+}) => {
+  const changeRootTypeBound = (rootType) => {
+    if (rootType.id !== activeRootTypeId) {
+      return changeRootType.bind(null, rootType.id);
+    }
 
-    <TreePickerPane>
+    return () => null;
+  };
 
-      <ul className="nav nav-tabs">
-        {rootTypes.length ? rootTypes.map((rootType) =>
-          <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
-            <a>
-              <img className="icon" src={rootType.icon} />
-              {rootType.label}
-            </a>
-          </li>)
-        : <li><a>Loading</a></li>}
-      </ul>
+  return (
+    <div className="treepickerpure-component">
 
-      <TreePickerNav
-        breadcrumbNodes={breadcrumbNodes}
-        breadcrumbOnClick={breadcrumbOnClick}
-        searchOnQuery={searchOnQuery}
-      />
+      <TreePickerPane>
 
-      <Grid>
-        {subtree.map((node) =>
-          <TreePickerNode
-            valueFormatter={valueFormatter}
-            includeNode={includeNode}
-            key={node.id}
-            node={node}
-            removeNode={removeNode}
-            selectedNodes={selectedNodesByRootType[activeRootTypeId]}
-          />
-        )}
-      </Grid>
+        <ul className="nav nav-tabs">
+          {rootTypes.length ? rootTypes.map((rootType) =>
+            <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
+              <a onClick={changeRootTypeBound(rootType)}>
+                <img className="icon" src={rootType.icon} />
+                {rootType.label}
+              </a>
+            </li>)
+          : <li><a>Loading</a></li>}
+        </ul>
 
-    </TreePickerPane>
+        <TreePickerNav
+          breadcrumbNodes={breadcrumbNodes}
+          breadcrumbOnClick={breadcrumbOnClick}
+          searchOnQuery={searchOnQuery}
+        />
 
-    <TreePickerPane>
+        <Grid>
+          {subtree.map((node) =>
+            <TreePickerNode
+              expandNode={expandNode}
+              includeNode={includeNode}
+              key={node.id}
+              node={node}
+              removeNode={removeNode}
+              selectedNodes={selectedNodesByRootType[activeRootTypeId]}
+              valueFormatter={valueFormatter}
+            />
+          )}
+        </Grid>
 
-      <TreePickerSelected
-        baseItem={baseItem}
-        valueFormatter={valueFormatter}
-        includeNode={includeNode}
-        emptyIcon={emptyIcon}
-        removeNode={removeNode}
-        rootTypes={rootTypes}
-        selectedNodesByRootType={selectedNodesByRootType}
-        warnOnRequired={warnOnRequired}
-      />
+      </TreePickerPane>
 
-    </TreePickerPane>
+      <TreePickerPane>
 
-  </div>
-);
+        <TreePickerSelected
+          baseItem={baseItem}
+          valueFormatter={valueFormatter}
+          includeNode={includeNode}
+          emptyIcon={emptyIcon}
+          removeNode={removeNode}
+          rootTypes={rootTypes}
+          selectedNodesByRootType={selectedNodesByRootType}
+          warnOnRequired={warnOnRequired}
+        />
+
+      </TreePickerPane>
+
+    </div>
+  );
+};
 
 TreePickerPureComponent.displayName = 'AdslotUiTreePickerPureComponent';
 
@@ -91,27 +102,30 @@ const breadCrumbNode = PropTypes.shape({
 });
 
 const nodePropType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
   path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  rootTypeId: PropTypes.string.isRequired,
 });
 
 const rootType = PropTypes.shape({
   emptyIcon: PropTypes.string,
   icon: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   isRequired: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
 });
 
 TreePickerPureComponent.propTypes = {
-  activeRootTypeId: PropTypes.number,
+  activeRootTypeId: PropTypes.string,
   baseItem: baseItemPropType,
   breadcrumbNodes: PropTypes.arrayOf(breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
+  changeRootType: PropTypes.func.isRequired,
   emptyIcon: PropTypes.string,
+  expandNode: PropTypes.func,
   includeNode: PropTypes.func,
   removeNode: PropTypes.func,
   rootTypes: PropTypes.arrayOf(rootType).isRequired,

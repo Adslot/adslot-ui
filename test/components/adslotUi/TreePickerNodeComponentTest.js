@@ -10,11 +10,12 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 
 describe('TreePickerNodeComponent', () => {
   const newYorkNode = {
-    id: 1,
+    id: '1',
     label: 'New York',
     type: 'City',
     value: 200,
     path: ['USA', 'NY'],
+    isExpandable: true,
   };
 
   it('should render a node with defaults', () => {
@@ -30,7 +31,7 @@ describe('TreePickerNodeComponent', () => {
     expect(buttonFirstCellElement).to.be.a('null');
 
     const labelWrapperCellElement = rowElement.props.children[1];
-    expect(labelWrapperCellElement.props.children).to.have.length(2);
+    expect(labelWrapperCellElement.props.children).to.have.length(3);
 
     const labelElement = labelWrapperCellElement.props.children[0];
     expect(labelElement.props.children).to.equal('New York');
@@ -45,6 +46,9 @@ describe('TreePickerNodeComponent', () => {
     expect(pathElement.props.className).to.equal('treepickernode-component-path');
     expect(pathElement.props.children).to.equal('NY, USA');
     expect(metaDataElement.props.children[4]).to.equal(')');
+
+    const expanderElement = labelWrapperCellElement.props.children[2];
+    expect(expanderElement).to.be.an('undefined');
 
     const valueCellElement = rowElement.props.children[2];
 
@@ -92,6 +96,33 @@ describe('TreePickerNodeComponent', () => {
     expect(valueCellElement.props.children).to.equal('€2');
   });
 
+  it('should fire expandNode when clicking on the `expand` button', () => {
+    const nodes = [];
+    const expandNode = (node) => nodes.push(node);
+    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, expandNode });
+
+    const rowElement = component.props.children;
+    const labelWrapperCellElement = rowElement.props.children[1];
+    const expanderElement = labelWrapperCellElement.props.children[2];
+
+    expect(expanderElement.props.className).to.equal('treepickernode-component-expander');
+    expanderElement.props.onClick();
+    expect(nodes).to.deep.equal([newYorkNode]);
+  });
+
+  it('should not show the expander element when the node is not expandable', () => {
+    const nonExpandableNode = _.extend({}, newYorkNode, { isExpandable: false });
+    const nodes = [];
+    const expandNode = (node) => nodes.push(node);
+    const component = createComponent(TreePickerNodeComponent, { node: nonExpandableNode, expandNode });
+
+    const rowElement = component.props.children;
+    const labelWrapperCellElement = rowElement.props.children[1];
+    const expanderElement = labelWrapperCellElement.props.children[2];
+
+    expect(expanderElement).to.be.an('undefined');
+  });
+
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
     const includeNode = (node) => nodes.push(node);
@@ -117,7 +148,7 @@ describe('TreePickerNodeComponent', () => {
 
   it('should render a provided node with an empty breadcrumb array', () => {
     const node = {
-      id: 3,
+      id: '3',
       label: 'Cameroon',
       type: 'Country',
       value: 400,
@@ -127,7 +158,7 @@ describe('TreePickerNodeComponent', () => {
     const rowElement = component.props.children;
 
     const labelWrapperCellElement = rowElement.props.children[1];
-    expect(labelWrapperCellElement.props.children).to.have.length(2);
+    expect(labelWrapperCellElement.props.children).to.have.length(3);
 
     const labelElement = labelWrapperCellElement.props.children[0];
     expect(labelElement.props.children).to.equal('Cameroon');

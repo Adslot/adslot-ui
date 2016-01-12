@@ -8,7 +8,7 @@ import { Grid } from 'alexandria-adslot';
 
 describe('TreePickerPureComponent', () => {
   it('should render with defaults', () => {
-    const component = createComponent(TreePickerPureComponent);
+    const component = createComponent(TreePickerPureComponent, { changeRootType: () => null });
     expect(component.props.className).to.equal('treepickerpure-component');
 
     const leftPaneElement = component.props.children[0];
@@ -43,21 +43,25 @@ describe('TreePickerPureComponent', () => {
     const rootTypes = [
       {
         label: 'Geography',
-        id: 0,
+        id: '0',
         icon: 'http://placehold.it/16x16',
         emptyIcon: 'http://placehold.it/70x70',
         isRequired: true,
       },
+      { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
     ];
 
+    const rootTypeChanges = [];
+
     const component = createComponent(TreePickerPureComponent, {
-      activeRootTypeId: 0,
+      activeRootTypeId: '0',
       baseItem: {
         label: 'foo',
         value: 100,
       },
       breadcrumbNodes: [],
       breadcrumbOnClick: testFunction,
+      changeRootType: (rootType) => rootTypeChanges.push(rootType),
       emptyIcon: 'url',
       includeNode: testFunction,
       removeNode: testFunction,
@@ -65,7 +69,7 @@ describe('TreePickerPureComponent', () => {
       searchOnQuery: testFunction,
       selectedNodesByRootType: {},
       subtree: [
-        { id: 0, label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: 0 },
+        { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' },
       ],
       valueFormatter: testFunction,
       warnOnRequired: true,
@@ -84,11 +88,24 @@ describe('TreePickerPureComponent', () => {
     const firstTabAnchor = tabElements[0].props.children;
     expect(firstTabAnchor.type).to.equal('a');
 
+    expect(rootTypeChanges).to.deep.equal([]);
+    firstTabAnchor.props.onClick();
+    expect(rootTypeChanges).to.deep.equal([]); // Shouldn't add since its already active.
+
     const firstTabIcon = firstTabAnchor.props.children[0];
     expect(firstTabIcon.type).to.equal('img');
     expect(firstTabIcon.props.className).to.equal('icon');
     expect(firstTabIcon.props.src).to.equal(rootTypes[0].icon);
     expect(firstTabAnchor.props.children[1]).to.equal(rootTypes[0].label);
+
+    expect(tabElements[1].type).to.equal('li');
+    expect(tabElements[1].props.className).to.equal('');
+    const secondTabAnchor = tabElements[1].props.children;
+    expect(secondTabAnchor.type).to.equal('a');
+
+    expect(rootTypeChanges).to.deep.equal([]);
+    secondTabAnchor.props.onClick();
+    expect(rootTypeChanges).to.deep.equal(['1']);
 
     const navElement = leftPaneElement.props.children[1];
     expect(navElement.type.name).to.equal('TreePickerNavComponent');

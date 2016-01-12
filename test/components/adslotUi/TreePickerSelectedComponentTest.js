@@ -11,20 +11,20 @@ describe('TreePickerSelectedComponent', () => {
   const rootTypes = [
     {
       label: 'Geography',
-      id: 0,
+      id: '0',
       icon: 'http://placehold.it/16x16',
       emptyIcon: 'http://placehold.it/70x70',
       isRequired: true,
     },
-    { label: 'Audiences', id: 1, icon: 'http://placehold.it/16x16', isRequired: false },
-    { label: 'Segments', id: 2, icon: 'http://placehold.it/16x16', isRequired: true },
+    { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
+    { label: 'Segments', id: '2', icon: 'http://placehold.it/16x16', isRequired: true },
   ];
 
   const actNode =
-    { id: 0, label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: 0 };
+    { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' };
 
   const ntNode =
-  { id: 1, label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: 0 };
+  { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
 
   const selectedNodesByRootType = _.groupBy([actNode, ntNode], 'rootTypeId');
 
@@ -50,8 +50,11 @@ describe('TreePickerSelectedComponent', () => {
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
-    const gridElements = component.props.children[2];
-    expect((gridElements)).to.have.length(0);
+    const scrollableElement = component.props.children[2];
+    expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable');
+
+    const gridElements = scrollableElement.props.children;
+    expect(gridElements).to.have.length(0);
 
     const emptyElement = component.props.children[3];
 
@@ -84,7 +87,10 @@ describe('TreePickerSelectedComponent', () => {
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
-    const gridElements = component.props.children[2];
+    const scrollableElement = component.props.children[2];
+    expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable is-short');
+
+    const gridElements = scrollableElement.props.children;
     expect(gridElements).to.have.length(1);
 
     const gridElement = gridElements[0];
