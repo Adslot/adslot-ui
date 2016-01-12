@@ -13,6 +13,7 @@ import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
+import TreePicker from 'components/adslotUi/TreePickerComponent';
 import {
   Alert,
   Breadcrumb,
@@ -46,4 +47,5 @@ module.exports = {
   Tabs,
   Toggle,
   Totals,
+  TreePicker,
 };

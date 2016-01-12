@@ -10,6 +10,7 @@ import {
   RadioGroup,
   Select,
   Toggle,
+  TreePicker,
 } from './distributionEntry';
 
 require('styles/App.scss');
@@ -57,6 +58,61 @@ class AppComponent extends React.Component {
   }
 
   render() {
+    const baseItem = {
+      label: 'Awesome Product',
+      value: 10000,
+    };
+
+    const valueFormatter = (value) => `$${Math.round(value) / 100}`;
+
+    const rootTypes = [
+      {
+        label: 'Geography',
+        id: '0',
+        icon: 'http://placehold.it/16x16',
+        emptyIcon: 'http://placehold.it/70x70',
+        isRequired: true,
+      },
+      { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
+      { label: 'Segments', id: '2', icon: 'http://placehold.it/16x16', isRequired: true },
+    ];
+
+    const actNode =
+      { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' };
+
+    const ntNode = {
+      id: '1',
+      label: 'Northern Territory',
+      type: 'State',
+      path: ['AU'],
+      value: 500,
+      rootTypeId: '0',
+      isExpandable: true,
+    };
+
+    const qldNode =
+      { id: '2', label: 'Queensland', type: 'State', path: ['AU'], value: 500, rootTypeId: '0', isExpandable: true };
+
+    const getSelected = () => {
+      return [
+        actNode,
+        ntNode,
+      ];
+    };
+
+    const getSubtree = (rootTypeId, query) => {
+      if (rootTypeId === '0' && query === '') {
+        return [
+          actNode,
+          ntNode,
+          qldNode,
+          { id: '3', label: 'South Australia', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' },
+        ];
+      }
+
+      return [];
+    };
+
     return (
       <div className="index">
         <h1>Buttons</h1>
@@ -202,6 +258,16 @@ class AppComponent extends React.Component {
           placeholder="Select your favs."
           simpleValue
           value={this.state.selectedFlavours}
+        />
+
+
+        <h1>TreePicker</h1>
+        <TreePicker
+          baseItem={baseItem}
+          getSelected={getSelected}
+          getSubtree={getSubtree}
+          rootTypes={rootTypes}
+          valueFormatter={valueFormatter}
         />
       </div>
     );

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import classNames from 'classnames';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import React, { PropTypes } from 'react';
 import { Alert, Empty, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
@@ -34,11 +35,13 @@ const TreePickerSelectedComponent = ({
     .join(', ');
 
   const getRootTypeLabel = (rootTypeId) => {
-    const rootTypeMatchingId = _.find(rootTypes, { id: +rootTypeId });
+    const rootTypeMatchingId = _.find(rootTypes, { id: rootTypeId });
     if (rootTypeMatchingId) return rootTypeMatchingId.label;
 
     throw new Error(`TreePickerSelectedComponent requires a rootType for id ${rootTypeId}`);
   };
+
+  const scrollableClass = classNames('treepickerselected-component-scrollable', { 'is-short': unresolvedRootTypes });
 
   return (
     <div className="treepickerselected-component">
@@ -50,35 +53,36 @@ const TreePickerSelectedComponent = ({
         ]}
         valueFormatter={valueFormatter}
       />
+      <div className={scrollableClass}>
+        {_.keys(selectedNodesByRootType).map((rootTypeId) =>
+          <Grid key={rootTypeId}>
 
-      {_.keys(selectedNodesByRootType).map((rootTypeId) =>
-        <Grid key={rootTypeId}>
+            <GridRow type="header">
+              <GridCell stretch>{getRootTypeLabel(rootTypeId)}</GridCell>
+              <GridCell>{valueLabel}</GridCell>
+            </GridRow>
 
-          <GridRow type="header">
-            <GridCell stretch>{getRootTypeLabel(rootTypeId)}</GridCell>
-            <GridCell>{valueLabel}</GridCell>
-          </GridRow>
+            {selectedNodesByRootType[rootTypeId].map((node) =>
+              <TreePickerNode
+                buttonFirst
+                valueFormatter={valueFormatter}
+                includeNode={includeNode}
+                key={node.id}
+                node={node}
+                removeNode={removeNode}
+                selectedNodes={selectedNodesByRootType[rootTypeId]}
+              />
+            )}
 
-          {selectedNodesByRootType[rootTypeId].map((node) =>
-            <TreePickerNode
-              buttonFirst
-              valueFormatter={valueFormatter}
-              includeNode={includeNode}
-              key={node.id}
-              node={node}
-              removeNode={removeNode}
-              selectedNodes={selectedNodesByRootType[rootTypeId]}
-            />
-          )}
+            <GridRow type="subfooter">
+              <GridCell stretch />
+              <GridCell>Average</GridCell>
+              <GridCell>{valueFormatter(averagesByRootType[rootTypeId])}</GridCell>
+            </GridRow>
 
-          <GridRow type="subfooter">
-            <GridCell stretch />
-            <GridCell>Average</GridCell>
-            <GridCell>{valueFormatter(averagesByRootType[rootTypeId])}</GridCell>
-          </GridRow>
-
-        </Grid>
-      )}
+          </Grid>
+        )}
+      </div>
       <Empty collection={_.values(selectedNodesByRootType)} icon={emptyIcon} text="Nothing Selected" />
 
       {(unresolvedRootTypes) ?
@@ -94,7 +98,7 @@ TreePickerSelectedComponent.displayName = 'AdslotUiTreePickerSelectedComponent';
 const rootType = PropTypes.shape({
   emptyIcon: PropTypes.string,
   icon: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   isRequired: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
 });

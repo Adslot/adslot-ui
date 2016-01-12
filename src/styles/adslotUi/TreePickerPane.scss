@@ -9,4 +9,8 @@
   + & {
     margin-left: 0;
   }
+
+  > .grid-component {
+    overflow: auto;
+  }
 }

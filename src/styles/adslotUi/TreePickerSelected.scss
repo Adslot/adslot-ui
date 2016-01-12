@@ -1,12 +1,30 @@
-@import '../fontSize';
-@import '../border';
+@import '../variable';
 
 .treepickerselected-component {
+  $header-height: 26px;
 
   &-header {
     font-size: $font-size-subheader;
-    line-height: 26px;
+    line-height: $header-height;
     margin: 0;
+  }
+
+  &-scrollable {
+    $scrollable-max-height: 410px + $header-height;
+    max-height: $scrollable-max-height;
+    overflow: auto;
+
+    &.is-short {
+      $alert-height: 40px;
+
+      max-height: $scrollable-max-height - $alert-height;
+    }
+
+    .grid-component {
+      &:first-child {
+        border-top: 0;
+      }
+    }
   }
 
   .empty-component {

@@ -1,6 +1,21 @@
 @import '../color';
+@import '../icon';
 
 .treepickernode-component {
+
+  &:hover {
+    background-color: $color-gray-white;
+
+    .treepickernode-component-expander {
+      background-image: $icon-expand;
+      cursor: pointer;
+      display: inline-block;
+      height: 16px;
+      margin-bottom: -3px;
+      margin-left: 5px;
+      width: 16px;
+    }
+  }
 
   &-metadata {
     color: $color-text-light;
