@@ -4,10 +4,9 @@
   display: flex;
   flex-basis: 50%;
   flex-flow: column nowrap;
-  margin: $spacing-etalon;
 
-  + & {
-    margin-left: 0;
+  & + & {
+    margin-left: $spacing-etalon;
   }
 
   > .grid-component {

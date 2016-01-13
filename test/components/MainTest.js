@@ -25,7 +25,8 @@ describe('MainComponent', () => {
     toggle: 24,
     select: 28,
     selectMulti: 30,
-    treePicker: 32,
+    treePickerButton: 32,
+    treePicker: 33,
   };
 
   beforeEach(() => {
@@ -115,6 +116,19 @@ describe('MainComponent', () => {
       renderer,
       expectedValue: 'vanilla,chocolate',
     });
+  });
+
+  it('should toggle `showTreePickerModal` on `Open Treepicker` click', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const treePickerButtonElement = componentRenderOutput.props.children[componentsHash.treePickerButton];
+    treePickerButtonElement.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    const treePickerElement = componentRenderOutput.props.children[componentsHash.treePicker];
+    expect(treePickerElement.props.show).to.equal(true);
   });
 
   it('should pass a custom valueFormatter into the TreePicker', () => {
