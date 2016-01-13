@@ -24,6 +24,7 @@
       margin-right: 0;
       padding: 8px 15px 7px;
       text-shadow: none;
+      user-select: none;
       white-space: nowrap;
 
       &,
@@ -34,8 +35,12 @@
       }
 
       .icon {
+        $icon-size: 16px;
+
         float: left;
+        height: $icon-size; // Prevent size pop while loading.
         margin-right: 5px;
+        width: $icon-size;
       }
     }
 
@@ -60,7 +65,11 @@
     }
 
     &:last-child {
-      border-right: $border;
+      &,
+      &:hover,
+      &:focus {
+        border-right: $border;
+      }
     }
   }
 }
