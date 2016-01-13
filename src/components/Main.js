@@ -34,9 +34,12 @@ const selectFlavoursOptions = [
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.setSelectedCountry = this.setSelectedCountry.bind(this);
-    this.setSelectedFlavours = this.setSelectedFlavours.bind(this);
-    this.toggleSimpleModal = this.toggleSimpleModal.bind(this);
+    for (const methodName of [
+      'setSelectedCountry',
+      'setSelectedFlavours',
+      'toggleSimpleModal',
+      'toggleTreePickerModal',
+    ]) {this[methodName] = this[methodName].bind(this);}
 
     this.state = {
       selectedCountry: 'au',
@@ -55,6 +58,10 @@ class AppComponent extends React.Component {
 
   toggleSimpleModal() {
     this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  }
+
+  toggleTreePickerModal() {
+    this.setState({ showTreePickerModal: !this.state.showTreePickerModal });
   }
 
   render() {
@@ -166,13 +173,11 @@ class AppComponent extends React.Component {
         </div>
 
         <h1>Modal</h1>
-        <div className="btn-panel">
-          <Button className="btn-inverse" onClick={this.toggleSimpleModal}>
-            Open Modal
-          </Button>
-        </div>
+        <Button className="btn-inverse" onClick={this.toggleSimpleModal}>
+          Open Modal
+        </Button>
 
-        <Modal show={this.state.showSimpleModal} bsSize="small" keyboard={false}>
+        <Modal show={false} bsSize="small" keyboard={false}>
           <Modal.Header>
             <Modal.Title>Modal Label</Modal.Title>
           </Modal.Header>
@@ -252,21 +257,29 @@ class AppComponent extends React.Component {
           allowCreate // Not implemented by react-select v1.0.0-beta8 TODO: When supported, check it works.
           multi
           name="flavoursSelect"
-          noResultsText="Noooo, no flavours :("
+          noResultsText="No flavours :("
           onChange={this.setSelectedFlavours}
           options={selectFlavoursOptions}
-          placeholder="Select your favs."
+          placeholder="Select your favourites."
           simpleValue
           value={this.state.selectedFlavours}
         />
 
 
         <h1>TreePicker</h1>
+
+        <Button bsStyle="primary" onClick={this.toggleTreePickerModal}>
+          Open TreePicker
+        </Button>
+
         <TreePicker
           baseItem={baseItem}
+          modalClose={this.toggleTreePickerModal}
           getSelected={getSelected}
           getSubtree={getSubtree}
+          modalTitle="Edit Targeting"
           rootTypes={rootTypes}
+          show={this.state.showTreePickerModal}
           valueFormatter={valueFormatter}
         />
       </div>

@@ -1,18 +1,29 @@
 import _ from 'lodash';
+import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
 import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
 import React, { PropTypes } from 'react';
 
 class TreePickerComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.breadcrumbOnClick = this.breadcrumbOnClick.bind(this);
-    this.changeRootType = this.changeRootType.bind(this);
-    this.expandNode = this.expandNode.bind(this);
-    this.includeNode = this.includeNode.bind(this);
-    this.removeNode = this.removeNode.bind(this);
-    this.searchOnQuery = this.searchOnQuery.bind(this);
+    for (const methodName of [
+      'applyAction',
+      'breadcrumbOnClick',
+      'cancelAction',
+      'changeRootType',
+      'expandNode',
+      'includeNode',
+      'removeNode',
+      'loadData',
+      'searchOnQuery',
+    ]) {this[methodName] = this[methodName].bind(this);}
 
-    const rootType = _.first(props.rootTypes);
+    this.loadData();
+  }
+
+  loadData() {
+    const rootType = _.first(this.props.rootTypes);
     this.state = {
       breadcrumbNodes: [],
       rootType,
@@ -78,30 +89,57 @@ class TreePickerComponent extends React.Component {
     this.setState({ selectedNodesByRootType: newSelected });
   }
 
+  cancelAction() {
+    this.props.modalClose();
+    this.loadData();
+  }
+
+  applyAction() {
+    const { selectedNodesByRootType } = this.state;
+    let selectedNodeIds = [];
+    _.forEach(selectedNodesByRootType, (nodes) => {
+      selectedNodeIds = selectedNodeIds.concat(_.pluck(nodes, 'id'));
+    });
+    this.props.modalApply(selectedNodeIds);
+    this.props.modalClose();
+  }
+
   render() {
     const { state, props } = this;
 
     return (
-      <div className="treepicker-component">
-        <TreePickerPure
-          activeRootTypeId={_.get(state, 'rootType.id')}
-          baseItem={props.baseItem}
-          breadcrumbNodes={state.breadcrumbNodes}
-          breadcrumbOnClick={this.breadcrumbOnClick}
-          changeRootType={this.changeRootType}
-          emptyIcon={_.get(state, 'rootType.emptyIcon')}
-          expandNode={this.expandNode}
-          includeNode={this.includeNode}
-          removeNode={this.removeNode}
-          rootTypes={props.rootTypes}
-          searchOnQuery={this.searchOnQuery}
-          selectedNodesByRootType={state.selectedNodesByRootType}
-          subtree={state.subtree}
-          valueFormatter={props.valueFormatter}
-          warnOnRequired={props.warnOnRequired}
-        />
-
-      </div>
+      <Modal className="treepicker-component" show={props.show} bsSize="large" keyboard={false}>
+        <Modal.Header>
+          <Modal.Title>{props.modalTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <TreePickerPure
+            activeRootTypeId={_.get(state, 'rootType.id')}
+            baseItem={props.baseItem}
+            breadcrumbNodes={state.breadcrumbNodes}
+            breadcrumbOnClick={this.breadcrumbOnClick}
+            changeRootType={this.changeRootType}
+            emptyIcon={_.get(state, 'rootType.emptyIcon')}
+            expandNode={this.expandNode}
+            includeNode={this.includeNode}
+            removeNode={this.removeNode}
+            rootTypes={props.rootTypes}
+            searchOnQuery={this.searchOnQuery}
+            selectedNodesByRootType={state.selectedNodesByRootType}
+            subtree={state.subtree}
+            valueFormatter={props.valueFormatter}
+            warnOnRequired={props.warnOnRequired}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="btn-inverse" onClick={this.cancelAction}>
+            Cancel
+          </Button>
+          <Button bsStyle="primary" onClick={this.applyAction}>
+            Apply
+          </Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }
@@ -110,9 +148,11 @@ TreePickerComponent.displayName = 'AdslotUiTreePickerComponent';
 
 TreePickerComponent.propTypes = {
   baseItem: PropTypes.shape(),
-  valueFormatter: PropTypes.func,
   getSelected: PropTypes.func,
   getSubtree: PropTypes.func,
+  modalApply: PropTypes.func.isRequired,
+  modalClose: PropTypes.func.isRequired,
+  modalTitle: PropTypes.string.isRequired,
   rootTypes: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -122,14 +162,20 @@ TreePickerComponent.propTypes = {
       isRequired: PropTypes.bool.isRequired,
     })
   ),
+  show: PropTypes.bool.isRequired,
+  valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool.isRequired,
 };
 TreePickerComponent.defaultProps = {
-  rootTypes: [],
   getSelected: () => null,
-
   getSubtree: () => [],
+  modalApply: (selected) => {throw new Error(`AdslotUi TreePicker needs a modalApply handler for ${selected}`);},
 
+  modalClose: () => {throw new Error('AdslotUi TreePicker needs a modalClose handler');},
+
+  modalTitle: 'Edit Tree',
+  rootTypes: [],
+  show: false,
   warnOnRequired: false,
 };
 
