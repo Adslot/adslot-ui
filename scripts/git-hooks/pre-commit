@@ -1,0 +1,32 @@
+#!/bin/bash
+PATH="node_modules/.bin:$PATH"
+
+# If we've only made a change to the package.json's version, it's a release and we should bypass the pre-commit check.
+isPackageJsonChange=$(git diff --cached --stat | grep "package.json | 2 +-")
+if [[ -n "${isPackageJsonChange[@]}" ]]
+then
+  isVersionChange=$(git diff --cached | grep "+  \"version\"")
+  if [[ -n "${isVersionChange[@]}" ]]
+  then
+    exit 0
+  fi
+fi
+
+echo "Running git pre-commit hook…"
+
+
+# Protect master from accidental commits.
+echo "  - checking branch isn't 'master';"
+branchName=$(git branch | grep '*' | sed 's/* //')
+if [ $branchName == 'master' ]
+then
+  echo "Failed, attempting to commit to master. Please create a branch for your work." && exit 1
+fi
+
+
+# Compile the distribution from source.
+echo "  - compiling distribution files;"
+npm run -s dist && git add dist/*
+
+
+echo "…done."

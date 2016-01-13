@@ -10,32 +10,29 @@ vendor components eg Bootstrap, Select2.
 
 Technology:
 
--	[React](http://facebook.github.io/react/)
-
--	ES2015 (using [Babel](http://babeljs.io)\)
-
--	[Webpack](https://github.com/webpack/webpack)
-
--	[SCSS](http://sass-lang.com)
-
--	[Yeoman](http://yeoman.io)
-
--	[ESLint](http://eslint.org)
-
--	[JSCS](http://jscs.info)
-
--	[Autoprefixer](https://github.com/postcss/autoprefixer)
+- [React](http://facebook.github.io/react/)
+- ES2015 (using [Babel](http://babeljs.io)\)
+- [Webpack](https://github.com/webpack/webpack)
+- [SCSS](http://sass-lang.com)
+- [Yeoman](http://yeoman.io)
+- [ESLint](http://eslint.org)
+- [JSCS](http://jscs.info)
+- [Autoprefixer](https://github.com/postcss/autoprefixer)
 
 Development
 -----------
 
--	Take a look at our [Contributing](CONTRIBUTING.md) guidelines
+- Take a look at our [Contributing](CONTRIBUTING.md) guidelines
 
--	Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
+- Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
 
--	Install [yeoman](http://yeoman.io) globally: `npm install -g yo`
+- Install [yeoman](http://yeoman.io) globally: `npm install -g yo`
 
--	Install NPM dependencies: `npm i`
+- Install NPM dependencies: `npm i`
+
+- Set-up git hooks
+
+  `rm -rf .git/hooks && cd .git/ && ln -s ../scripts/git-hooks hooks && chmod +x hooks/* && cd -`
 
 Commands
 --------
