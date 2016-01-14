@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerPane from 'components/adslotUi/TreePickerPaneComponent';
@@ -32,6 +33,9 @@ const TreePickerPureComponent = ({
     return () => null;
   };
 
+  const selectedIds = _.pluck(selectedNodesByRootType[activeRootTypeId], 'id');
+  const filteredSubtree = subtree.filter(({ id }) => !_.contains(selectedIds, id));
+
   return (
     <div className="treepickerpure-component">
 
@@ -55,14 +59,12 @@ const TreePickerPureComponent = ({
         />
 
         <Grid>
-          {subtree.map((node) =>
+          {filteredSubtree.map((node) =>
             <TreePickerNode
               expandNode={expandNode}
               includeNode={includeNode}
               key={node.id}
               node={node}
-              removeNode={removeNode}
-              selectedNodes={selectedNodesByRootType[activeRootTypeId]}
               valueFormatter={valueFormatter}
             />
           )}
@@ -74,12 +76,11 @@ const TreePickerPureComponent = ({
 
         <TreePickerSelected
           baseItem={baseItem}
-          valueFormatter={valueFormatter}
-          includeNode={includeNode}
           emptyIcon={emptyIcon}
           removeNode={removeNode}
           rootTypes={rootTypes}
           selectedNodesByRootType={selectedNodesByRootType}
+          valueFormatter={valueFormatter}
           warnOnRequired={warnOnRequired}
         />
 

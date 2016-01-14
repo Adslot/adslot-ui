@@ -64,13 +64,12 @@ const TreePickerSelectedComponent = ({
 
             {selectedNodesByRootType[rootTypeId].map((node) =>
               <TreePickerNode
-                buttonFirst
-                valueFormatter={valueFormatter}
                 includeNode={includeNode}
                 key={node.id}
                 node={node}
                 removeNode={removeNode}
-                selectedNodes={selectedNodesByRootType[rootTypeId]}
+                selected
+                valueFormatter={valueFormatter}
               />
             )}
 
