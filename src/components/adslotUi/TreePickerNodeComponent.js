@@ -13,7 +13,7 @@ const TreePickerNodeComponent = ({
   selected,
   valueFormatter,
 }) => {
-  const pathElement = (!_.isEmpty(node.path)) ?
+  const pathElement = !_.isEmpty(node.path) ?
     <span className="treepickernode-component-path">
       {node.path.reverse().join(', ')}
     </span> :
@@ -31,7 +31,7 @@ const TreePickerNodeComponent = ({
   return (
     <div className="treepickernode-component">
       <GridRow>
-        {(selected) ?
+        {selected ?
           <GridCell classSuffixes={['button']}>
             <Button block bsSize="xsmall" bsStyle="danger" className="btn-inverse" onClick={removeNodeBound}>
               Remove
@@ -46,7 +46,7 @@ const TreePickerNodeComponent = ({
         <GridCell>
           {valueFormatter(node.value)}
         </GridCell>
-        {(!selected) ?
+        {!selected ?
           <GridCell classSuffixes={['button']}>
             <Button block bsSize="xsmall" bsStyle="primary" className="btn-inverse" onClick={includeNodeBound}>
               Include
