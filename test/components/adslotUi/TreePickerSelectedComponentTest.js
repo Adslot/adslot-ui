@@ -116,14 +116,13 @@ describe('TreePickerSelectedComponent', () => {
     const nodeElements = gridElement.props.children[1];
     expect(nodeElements).to.have.length(2);
 
-    expect(nodeElements[0].props.buttonFirst).to.equal(true);
+    expect(nodeElements[0].props.selected).to.equal(true);
     expect(nodeElements[0].props.valueFormatter).to.be.a('function');
     expect(nodeElements[0].props.includeNode).to.be.a('function');
     expect(nodeElements[0].props.includeNode()).to.be.a('null');
     expect(nodeElements[0].props.node).to.deep.equal(actNode);
     expect(nodeElements[0].props.removeNode).to.be.a('function');
     expect(nodeElements[0].props.removeNode()).to.be.a('null');
-    expect(nodeElements[0].props.selectedNodes).to.deep.equal(selectedNodesByRootType[0]);
 
     expect(nodeElements[1].props.node).to.deep.equal(ntNode);
 

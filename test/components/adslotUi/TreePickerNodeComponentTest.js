@@ -67,8 +67,8 @@ describe('TreePickerNodeComponent', () => {
     expect(buttonElement.props.children).to.equal('Include');
   });
 
-  it('should render the button first when buttonFirst is true', () => {
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, buttonFirst: true });
+  it('should render the button first when selected is true', () => {
+    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selected: true });
     const rowElement = component.props.children;
 
     const buttonFirstCellElement = rowElement.props.children[0];
@@ -79,7 +79,7 @@ describe('TreePickerNodeComponent', () => {
 
     expect(buttonElement.type).to.equal((<Button />).type);
     expect(buttonElement.props.onClick).to.be.a('function');
-    expect(buttonElement.props.children).to.equal('Include');
+    expect(buttonElement.props.children).to.equal('Remove');
 
     const buttonLastCellElement = rowElement.props.children[3];
     expect(buttonLastCellElement).to.be.a('null');
@@ -184,12 +184,12 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, {
       node: newYorkNode,
       removeNode,
-      selectedNodes: [newYorkNode],
+      selected: true,
     });
     const rowElement = component.props.children;
 
-    const buttonLastCellElement = rowElement.props.children[3];
-    const buttonElement = buttonLastCellElement.props.children;
+    const buttonFirstCellElement = rowElement.props.children[0];
+    const buttonElement = buttonFirstCellElement.props.children;
     expect(buttonElement.props.children).to.equal('Remove');
 
     expect(nodes).to.deep.equal([newYorkNode]);
@@ -198,11 +198,11 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should error on click of `remove` button without removeNode handler', () => {
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selectedNodes: [newYorkNode] });
+    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selected: true });
     const rowElement = component.props.children;
 
-    const buttonLastCellElement = rowElement.props.children[3];
-    const buttonElement = buttonLastCellElement.props.children;
+    const buttonFirstCellElement = rowElement.props.children[0];
+    const buttonElement = buttonFirstCellElement.props.children;
     expect(buttonElement.props.children).to.equal('Remove');
     expect(() => {
       buttonElement.props.onClick();
