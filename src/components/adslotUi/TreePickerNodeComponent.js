@@ -36,7 +36,7 @@ const TreePickerNodeComponent = ({
           <Button block bsSize="xsmall" bsStyle="danger" className="btn-inverse" onClick={removeNodeBound}>
             Remove
           </Button> :
-          <Button block bsSize="xsmall" bsStyle="success" className="btn-inverse" onClick={includeNodeBound}>
+          <Button block bsSize="xsmall" bsStyle="primary" className="btn-inverse" onClick={includeNodeBound}>
             Include
           </Button>
       }
