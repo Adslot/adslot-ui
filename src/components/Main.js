@@ -177,7 +177,7 @@ class AppComponent extends React.Component {
           Open Modal
         </Button>
 
-        <Modal show={false} bsSize="small" keyboard={false}>
+        <Modal show={this.state.showSimpleModal} bsSize="small" keyboard={false}>
           <Modal.Header>
             <Modal.Title>Modal Label</Modal.Title>
           </Modal.Header>
