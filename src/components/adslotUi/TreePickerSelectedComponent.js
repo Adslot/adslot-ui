@@ -53,6 +53,12 @@ const TreePickerSelectedComponent = ({
         ]}
         valueFormatter={valueFormatter}
       />
+
+      {unresolvedRootTypes ?
+        <Alert type={warnOnRequired ? 'warning' : 'danger'}>{unresolvedRootTypes} are required.</Alert> :
+        null
+      }
+
       <div className={scrollableClass}>
         {_.keys(selectedNodesByRootType).map((rootTypeId) =>
           <Grid key={rootTypeId}>
@@ -83,11 +89,6 @@ const TreePickerSelectedComponent = ({
         )}
       </div>
       <Empty collection={_.values(selectedNodesByRootType)} icon={emptyIcon} text="Nothing Selected" />
-
-      {(unresolvedRootTypes) ?
-        <Alert type={warnOnRequired ? 'warning' : 'danger'}>{unresolvedRootTypes} are required.</Alert> :
-        null
-      }
     </div>
   );
 };

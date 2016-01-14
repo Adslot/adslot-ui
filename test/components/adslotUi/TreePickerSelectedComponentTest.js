@@ -50,21 +50,21 @@ describe('TreePickerSelectedComponent', () => {
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
-    const scrollableElement = component.props.children[2];
+    const alertElement = component.props.children[2];
+    expect(alertElement).to.be.a('null');
+
+    const scrollableElement = component.props.children[3];
     expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable');
 
     const gridElements = scrollableElement.props.children;
     expect(gridElements).to.have.length(0);
 
-    const emptyElement = component.props.children[3];
+    const emptyElement = component.props.children[4];
 
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.have.length(0);
     expect(emptyElement.props.icon).to.equal('//placehold.it/70x70');
     expect(emptyElement.props.text).to.equal('Nothing Selected');
-
-    const alertElement = component.props.children[4];
-    expect(alertElement).to.be.a('null');
   });
 
   it('should render with props', () => {
@@ -87,7 +87,13 @@ describe('TreePickerSelectedComponent', () => {
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
-    const scrollableElement = component.props.children[2];
+    const alertElement = component.props.children[2];
+
+    expect(alertElement.type).to.equal((<Alert />).type);
+    expect(alertElement.props.type).to.equal('danger');
+    expect(alertElement.props.children).to.deep.equal(['Segments', ' are required.']);
+
+    const scrollableElement = component.props.children[3];
     expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable is-short');
 
     const gridElements = scrollableElement.props.children;
@@ -147,18 +153,12 @@ describe('TreePickerSelectedComponent', () => {
     expect(subFooterThirdCell.type).to.equal((<GridCell />).type);
     expect(subFooterThirdCell.props.children).to.equal(750);
 
-    const emptyElement = component.props.children[3];
+    const emptyElement = component.props.children[4];
 
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.deep.equal([[actNode, ntNode]]);
     expect(emptyElement.props.icon).to.equal('awesome-url');
     expect(emptyElement.props.text).to.equal('Nothing Selected');
-
-    const alertElement = component.props.children[4];
-
-    expect(alertElement.type).to.equal((<Alert />).type);
-    expect(alertElement.props.type).to.equal('danger');
-    expect(alertElement.props.children).to.deep.equal(['Segments', ' are required.']);
   });
 
   it('should render alert as warning when warnOnRequired is true', () => {
@@ -169,7 +169,7 @@ describe('TreePickerSelectedComponent', () => {
     });
     expect(component.props.className).to.equal('treepickerselected-component');
 
-    const alertElement = component.props.children[4];
+    const alertElement = component.props.children[2];
 
     expect(alertElement.type).to.equal((<Alert />).type);
     expect(alertElement.props.type).to.equal('warning');
