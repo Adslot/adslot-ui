@@ -19,6 +19,7 @@ import {
 describe('MainComponent', () => {
   let MainComponent;
   const componentsHash = {
+    modalButton: 7,
     modal: 8,
     checkbox: 10,
     radio: 18,
@@ -43,6 +44,22 @@ describe('MainComponent', () => {
     expect(modalComponent.props.bsSize).to.equal('small');
     expect(modalComponent.props.keyboard).to.equal(false);
     expect(modalComponent.props.backdrop).to.equal(true);
+  });
+
+  it('should open the modal when the button is clicked', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const modalButtonComponent = componentRenderOutput.props.children[componentsHash.modalButton];
+    let modalComponent = componentRenderOutput.props.children[componentsHash.modal];
+    expect(modalComponent.props.show).to.equal(false);
+
+    modalButtonComponent.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    modalComponent = componentRenderOutput.props.children[componentsHash.modal];
+    expect(modalComponent.props.show).to.equal(true);
   });
 
   it('should have a checkbox component', () => {
