@@ -1,4 +1,5 @@
 const path = require('path');
+const host = '0.0.0.0';
 const port = 8000;
 const srcPath = path.join(__dirname, '/../src');
 const publicPath = '/assets/';
@@ -17,7 +18,6 @@ const autoprefixerConfig = `autoprefixer-loader?{browsers:["${supportedBrowsers}
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  port,
   debug: true,
   output: {
     path: path.join(__dirname, '/../dist/assets'),
@@ -27,6 +27,7 @@ module.exports = {
   devServer: {
     contentBase: './src/',
     historyApiFallback: true,
+    host,
     hot: true,
     port,
     publicPath,
