@@ -8,6 +8,7 @@ require('styles/_react-toggle-custom.scss');
 import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Modal from 'react-bootstrap/lib/Modal';
+import MultiPicker from 'components/adslotUi/MultiPickerComponent';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Tab from 'react-bootstrap/lib/Tab';
@@ -38,6 +39,7 @@ module.exports = {
   GridCell,
   GridRow,
   Modal,
+  MultiPicker,
   Radio,
   RadioGroup,
   Search,

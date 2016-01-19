@@ -9,6 +9,7 @@ import { isElementOfType, createRenderer } from 'react-addons-test-utils';
 import {
   Checkbox,
   Modal,
+  MultiPicker,
   Radio,
   RadioGroup,
   Select,
@@ -28,6 +29,8 @@ describe('MainComponent', () => {
     selectMulti: 30,
     treePickerButton: 32,
     treePicker: 33,
+    multiPickerButton: 35,
+    multiPicker: 36,
   };
 
   beforeEach(() => {
@@ -165,5 +168,30 @@ describe('MainComponent', () => {
     expect(isElementOfType(treePickerElement, TreePicker)).to.equal(true);
     expect(treePickerElement.props.getSubtree()).to.have.length(0);
     expect(treePickerElement.props.getSubtree('0', '')).to.have.length(4);
+  });
+
+  it('should toggle `showMultiPickerModal` on `Open MultiPicker` click', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const multiPickerButtonElement = componentRenderOutput.props.children[componentsHash.multiPickerButton];
+    multiPickerButtonElement.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    const multiPickerElement = componentRenderOutput.props.children[componentsHash.multiPicker];
+    expect(multiPickerElement.props.show).to.equal(true);
+  });
+
+  it('should pass a custom labelFormatter into the MultiPicker', () => {
+    const multiPickerElement = MainComponent.props.children[componentsHash.multiPicker];
+    expect(isElementOfType(multiPickerElement, MultiPicker)).to.equal(true);
+    expect(multiPickerElement.props.labelFormatter({ givenName: 'John', surname: 'Doe' })).to.equal('John Doe');
+  });
+
+  it('should pass a custom initialSelection into the MultiPicker', () => {
+    const multiPickerElement = MainComponent.props.children[componentsHash.multiPicker];
+    expect(isElementOfType(multiPickerElement, MultiPicker)).to.equal(true);
+    expect(multiPickerElement.props.initialSelection).to.have.length(1);
   });
 });

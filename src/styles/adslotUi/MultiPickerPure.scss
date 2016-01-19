@@ -1,0 +1,9 @@
+.multipickerpure-component {
+  display: flex;
+  max-height: 600px;
+
+  .grid-component-cell-header-right,
+  .grid-component-cell-checkbox {
+    text-align: right;
+  }
+}
