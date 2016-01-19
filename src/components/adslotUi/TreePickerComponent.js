@@ -24,25 +24,31 @@ class TreePickerComponent extends React.Component {
 
   loadData() {
     const rootType = _.first(this.props.rootTypes);
-    this.state = {
-      breadcrumbNodes: [],
-      rootType,
-      selectedNodesByRootType: _.groupBy(this.props.getSelected(), 'rootTypeId'),
-      subtree: this.props.getSubtree(_.get(rootType, 'id'), ''),
-    };
+    this.props.getSubtree({ rootTypeId: _.get(rootType, 'id') }, (subtree) => {
+      this.state = {
+        breadcrumbNodes: [],
+        rootType,
+        selectedNodesByRootType: _.groupBy(this.props.initialSelection, 'rootTypeId'),
+        subtree,
+      };
+    });
   }
 
-  changeRootType(newRootTypeId) {
-    this.setState({
-      rootType: _.find(this.props.rootTypes, { id: newRootTypeId }),
-      subtree: this.props.getSubtree(newRootTypeId, ''),
+  changeRootType(rootTypeId) {
+    this.props.getSubtree({ rootTypeId }, (subtree) => {
+      this.setState({
+        rootType: _.find(this.props.rootTypes, { id: rootTypeId }),
+        subtree,
+      });
     });
   }
 
   searchOnQuery(query) {
-    this.setState({
-      breadcrumbNodes: [],
-      subtree: this.props.getSubtree(this.state.rootType.id, query),
+    this.props.getSubtree({ rootTypeId: this.state.rootType.id, query }, (subtree) => {
+      this.setState({
+        breadcrumbNodes: [],
+        subtree,
+      });
     });
   }
 
@@ -50,24 +56,29 @@ class TreePickerComponent extends React.Component {
     const { breadcrumbNodes, rootType } = this.state;
     const { getSubtree } = this.props;
     if (newActiveId === 'all') {
-      this.setState({
-        breadcrumbNodes: [],
-        subtree: getSubtree(rootType.id, ''),
+      getSubtree({ rootTypeId: rootType.id }, (subtree) => {
+        this.setState({
+          breadcrumbNodes: [],
+          subtree,
+        });
       });
     } else {
-      this.setState({
-        breadcrumbNodes: breadcrumbNodes.slice(0, 1 + _.findIndex(breadcrumbNodes, { id: newActiveId })),
-        subtree: getSubtree(rootType.id, newActiveId),
+      getSubtree({ rootTypeId: rootType.id, nodeId: newActiveId }, (subtree) => {
+        this.setState({
+          breadcrumbNodes: breadcrumbNodes.slice(0, 1 + _.findIndex(breadcrumbNodes, { id: newActiveId })),
+          subtree,
+        });
       });
     }
   }
 
   expandNode(node) {
     const { breadcrumbNodes, rootType } = this.state;
-
-    this.setState({
-      breadcrumbNodes: breadcrumbNodes.concat([node]),
-      subtree: this.props.getSubtree(rootType.id, node.id),
+    this.props.getSubtree({ rootTypeId: rootType.id, nodeId: node.id }, (subtree) => {
+      this.setState({
+        breadcrumbNodes: breadcrumbNodes.concat([node]),
+        subtree,
+      });
     });
   }
 
@@ -146,10 +157,19 @@ class TreePickerComponent extends React.Component {
 
 TreePickerComponent.displayName = 'AdslotUiTreePickerComponent';
 
+const nodePropType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  isExpandable: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+});
+
 TreePickerComponent.propTypes = {
   baseItem: PropTypes.shape(),
-  getSelected: PropTypes.func,
   getSubtree: PropTypes.func,
+  initialSelection: PropTypes.arrayOf(nodePropType).isRequired,
   modalApply: PropTypes.func.isRequired,
   modalClose: PropTypes.func.isRequired,
   modalTitle: PropTypes.string.isRequired,
@@ -167,8 +187,8 @@ TreePickerComponent.propTypes = {
   warnOnRequired: PropTypes.bool.isRequired,
 };
 TreePickerComponent.defaultProps = {
-  getSelected: () => null,
-  getSubtree: () => [],
+  getSubtree: ({ rootTypeId, query, nodeId }, cb) => cb([]),
+  initialSelection: [],
   modalApply: (selected) => {throw new Error(`AdslotUi TreePicker needs a modalApply handler for ${selected}`);},
 
   modalClose: () => {throw new Error('AdslotUi TreePicker needs a modalClose handler');},

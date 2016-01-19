@@ -40,7 +40,10 @@ const TreePickerNodeComponent = ({
         : null}
         <GridCell stretch>
           <span>{node.label}</span>
-          <span className="treepickernode-component-metadata"> ({node.type} in {pathElement})</span>
+          {!_.isEmpty(node.type) && !_.isEmpty(pathElement) ?
+            <span className="treepickernode-component-metadata"> ({node.type} in {pathElement})</span> :
+            null
+          }
           {expanderElement}
         </GridCell>
         <GridCell>
@@ -62,27 +65,27 @@ TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 
 const nodePropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
+  isExpandable: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  isExpandable: PropTypes.bool,
 });
 
 TreePickerNodeComponent.propTypes = {
-  selected: PropTypes.bool.isRequired,
   includeNode: PropTypes.func.isRequired,
   node: nodePropType.isRequired,
   removeNode: PropTypes.func.isRequired,
+  selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func.isRequired,
 };
 
 TreePickerNodeComponent.defaultProps = {
-  selected: false,
   includeNode: (node) => {throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);},
 
   removeNode: (node) => {throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);},
 
+  selected: false,
   valueFormatter: (value) => value,
 };
 

@@ -164,13 +164,33 @@ describe('TreePickerNodeComponent', () => {
     expect(labelElement.props.children).to.equal('Cameroon');
 
     const metaDataElement = labelWrapperCellElement.props.children[1];
-    expect(metaDataElement.props.className).to.equal('treepickernode-component-metadata');
-    expect(metaDataElement.props.children).to.have.length(5);
-    expect(metaDataElement.props.children[0]).to.equal(' (');
-    expect(metaDataElement.props.children[1]).to.equal('Country');
-    expect(metaDataElement.props.children[2]).to.equal(' in ');
-    const pathElement = metaDataElement.props.children[3];
-    expect(pathElement).to.be.a('null');
+    expect(metaDataElement).to.be.a('null');
+
+    const valueCellElement = rowElement.props.children[2];
+
+    expect(valueCellElement.type).to.equal((<GridCell/>).type);
+    expect(valueCellElement.props.children).to.equal(400);
+  });
+
+  it('should render a provided node with an empty type', () => {
+    const node = {
+      id: '3',
+      label: 'Toyota',
+      type: '',
+      value: 400,
+      path: ['Cars'],
+    };
+    const component = createComponent(TreePickerNodeComponent, { node });
+    const rowElement = component.props.children;
+
+    const labelWrapperCellElement = rowElement.props.children[1];
+    expect(labelWrapperCellElement.props.children).to.have.length(3);
+
+    const labelElement = labelWrapperCellElement.props.children[0];
+    expect(labelElement.props.children).to.equal('Toyota');
+
+    const metaDataElement = labelWrapperCellElement.props.children[1];
+    expect(metaDataElement).to.be.a('null');
 
     const valueCellElement = rowElement.props.children[2];
 
