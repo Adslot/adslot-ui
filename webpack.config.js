@@ -4,7 +4,7 @@ const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 
 // List of allowed environments
-const allowedEnvs = ['dev', 'dist', 'test'];
+const allowedEnvs = ['dev', 'dev-cold', 'dist', 'test'];
 
 // Set the correct environment
 let env;
@@ -20,6 +20,7 @@ if (args._.length > 0 && args._.indexOf('start') !== -1) {
 const configs = {
   base: require(path.join(__dirname, 'cfg/base')),
   dev: require(path.join(__dirname, 'cfg/dev')),
+  'dev-cold': require(path.join(__dirname, 'cfg/devCold')),
   dist: require(path.join(__dirname, 'cfg/dist')),
   test: require(path.join(__dirname, 'cfg/test')),
 };
