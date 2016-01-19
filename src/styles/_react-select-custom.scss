@@ -45,6 +45,11 @@ $select-item-padding-horizontal: 5px;
     border-color: $select-input-border-active;
   }
 
+  &-value {
+    // Line height inherited from example page's body, we need to set for external use
+    line-height: $select-input-height - ($select-item-gutter * 2) - 4px; // # an extra 4px for all the borders
+  }
+
   &:not(.is-disabled) {
     > .Select-control {
       box-shadow: 0 1px $color-border-light;
