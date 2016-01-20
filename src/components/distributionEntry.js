@@ -15,8 +15,10 @@ import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
 import TreePicker from 'components/adslotUi/TreePickerComponent';
+import UserMultiPicker from 'components/adslotUi/UserMultiPickerComponent';
 import {
   Alert,
+  Avatar,
   Breadcrumb,
   Empty,
   Grid,
@@ -31,6 +33,7 @@ import Select from 'react-select';
 
 module.exports = {
   Alert,
+  Avatar,
   Breadcrumb,
   Button,
   Checkbox,
@@ -50,4 +53,5 @@ module.exports = {
   Toggle,
   Totals,
   TreePicker,
+  UserMultiPicker,
 };

@@ -48,7 +48,7 @@ class MultiPickerComponent extends React.Component {
     const { state, props } = this;
 
     return (
-      <Modal className="multipicker-component" show={props.show} bsSize="large" keyboard={false}>
+      <Modal className={props.modalClassName} show={props.show} bsSize="large" keyboard={false}>
         <Modal.Header>
           <Modal.Title>{props.modalTitle}</Modal.Title>
         </Modal.Header>
@@ -92,6 +92,7 @@ MultiPickerComponent.propTypes = {
   labelFormatter: PropTypes.func,
   modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string,
+  modalClassName: PropTypes.string,
   modalClose: PropTypes.func.isRequired,
   modalTitle: PropTypes.string.isRequired,
   show: PropTypes.bool.isRequired,
@@ -102,6 +103,7 @@ MultiPickerComponent.defaultProps = {
   items: [],
   modalApply: () => {throw new Error('AdslotUi MultiPicker needs a modalApply handler');},
 
+  modalClassName: 'multipicker-component',
   modalClose: () => {throw new Error('AdslotUi MultiPicker needs a modalClose handler');},
 
   modalDescription: 'Select items.',

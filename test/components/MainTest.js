@@ -15,6 +15,7 @@ import {
   Select,
   Toggle,
   TreePicker,
+  UserMultiPicker,
 } from '../../src/components/distributionEntry';
 
 describe('MainComponent', () => {
@@ -31,6 +32,8 @@ describe('MainComponent', () => {
     treePicker: 33,
     multiPickerButton: 35,
     multiPicker: 36,
+    userMultiPickerButton: 38,
+    userMultiPicker: 39,
   };
 
   beforeEach(() => {
@@ -193,5 +196,30 @@ describe('MainComponent', () => {
     const multiPickerElement = MainComponent.props.children[componentsHash.multiPicker];
     expect(isElementOfType(multiPickerElement, MultiPicker)).to.equal(true);
     expect(multiPickerElement.props.initialSelection).to.have.length(1);
+  });
+
+  it('should toggle `showUserMultiPickerModal` on `Open UserMultiPicker` click', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const userMultiPickerButtonElement = componentRenderOutput.props.children[componentsHash.userMultiPickerButton];
+    userMultiPickerButtonElement.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    const userMultiPickerElement = componentRenderOutput.props.children[componentsHash.userMultiPicker];
+    expect(userMultiPickerElement.props.show).to.equal(true);
+  });
+
+  it('should pass a custom avatarColor into the UserMultiPicker', () => {
+    const userMultiPickerElement = MainComponent.props.children[componentsHash.userMultiPicker];
+    expect(isElementOfType(userMultiPickerElement, UserMultiPicker)).to.equal(true);
+    expect(userMultiPickerElement.props.avatarColor()).to.equal('cyan');
+  });
+
+  it('should pass a custom initialSelection into the UserMultiPicker', () => {
+    const userMultiPickerElement = MainComponent.props.children[componentsHash.userMultiPicker];
+    expect(isElementOfType(userMultiPickerElement, UserMultiPicker)).to.equal(true);
+    expect(userMultiPickerElement.props.initialSelection).to.have.length(1);
   });
 });

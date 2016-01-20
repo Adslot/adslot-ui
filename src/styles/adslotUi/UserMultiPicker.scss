@@ -1,0 +1,13 @@
+.usermultipicker-component {
+  $avatar-diameter: 35px;
+
+  &-user-label {
+    .avatar-component {
+      margin-right: 10px;
+    }
+  }
+
+  .grid-component-cell-checkbox {
+    line-height: $avatar-diameter;
+  }
+}
