@@ -123,24 +123,22 @@ class AppComponent extends React.Component {
     const qldNode =
       { id: '2', label: 'Queensland', type: 'State', path: ['AU'], value: 500, rootTypeId: '0', isExpandable: true };
 
-    const getSelected = () => {
-      return [
-        actNode,
-        ntNode,
-      ];
-    };
+    const initialSelection = [
+      actNode,
+      ntNode,
+    ];
 
-    const getSubtree = (rootTypeId, query) => {
-      if (rootTypeId === '0' && query === '') {
-        return [
+    const getSubtree = ({ rootTypeId, query, nodeId }, cb) => {
+      if (rootTypeId === '0' && !query && !nodeId) {
+        return cb([
           actNode,
           ntNode,
           qldNode,
           { id: '3', label: 'South Australia', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' },
-        ];
+        ]);
       }
 
-      return [];
+      return cb([]);
     };
 
     return (
@@ -298,7 +296,7 @@ class AppComponent extends React.Component {
         <TreePicker
           baseItem={baseItem}
           modalClose={this.toggleTreePickerModal}
-          getSelected={getSelected}
+          initialSelection={initialSelection}
           getSubtree={getSubtree}
           modalTitle="Edit Targeting"
           rootTypes={rootTypes}
