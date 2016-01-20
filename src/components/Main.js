@@ -4,6 +4,7 @@ import {
   Button,
   Checkbox,
   Modal,
+  MultiPicker,
   Tabs,
   Tab,
   Radio,
@@ -37,6 +38,7 @@ class AppComponent extends React.Component {
     for (const methodName of [
       'setSelectedCountry',
       'setSelectedFlavours',
+      'toggleMultiPickerModal',
       'toggleSimpleModal',
       'toggleTreePickerModal',
     ]) {this[methodName] = this[methodName].bind(this);}
@@ -56,6 +58,10 @@ class AppComponent extends React.Component {
     this.setState({ selectedFlavours: newValue });
   }
 
+  toggleMultiPickerModal() {
+    this.setState({ showMultiPickerModal: !this.state.showMultiPickerModal });
+  }
+
   toggleSimpleModal() {
     this.setState({ showSimpleModal: !this.state.showSimpleModal });
   }
@@ -71,6 +77,23 @@ class AppComponent extends React.Component {
     };
 
     const valueFormatter = (value) => `$${Math.round(value) / 100}`;
+
+    const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
+
+    const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
+
+    const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
+
+    const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
+
+    const multiPickerItems = [teamMember1, teamMember2, teamMember3];
+
+    const multiPickerInitialSelection = [teamMember2];
+
+    const multiPickerItemHeaders = {
+      left: 'Team',
+      right: 'Member',
+    };
 
     const rootTypes = [
       {
@@ -282,6 +305,25 @@ class AppComponent extends React.Component {
           show={this.state.showTreePickerModal}
           valueFormatter={valueFormatter}
         />
+
+
+        <h1>MultiPicker</h1>
+
+        <Button bsStyle="primary" onClick={this.toggleMultiPickerModal}>
+          Open MultiPicker
+        </Button>
+
+        <MultiPicker
+          initialSelection={multiPickerInitialSelection}
+          itemHeaders={multiPickerItemHeaders}
+          items={multiPickerItems}
+          labelFormatter={labelFormatter}
+          modalClose={this.toggleMultiPickerModal}
+          modalDescription="Please select the users that you want."
+          modalTitle="Select Users"
+          show={this.state.showMultiPickerModal}
+        />
+
       </div>
     );
   }
