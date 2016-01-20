@@ -157,17 +157,17 @@ describe('MainComponent', () => {
     expect(treePickerElement.props.valueFormatter(155)).to.equal('$1.55');
   });
 
-  it('should pass a custom getSelected into the TreePicker', () => {
+  it('should pass a custom initialSelection into the TreePicker', () => {
     const treePickerElement = MainComponent.props.children[componentsHash.treePicker];
     expect(isElementOfType(treePickerElement, TreePicker)).to.equal(true);
-    expect(treePickerElement.props.getSelected()).to.have.length(2);
+    expect(treePickerElement.props.initialSelection).to.have.length(2);
   });
 
   it('should pass a custom getSubtree into the TreePicker', () => {
     const treePickerElement = MainComponent.props.children[componentsHash.treePicker];
     expect(isElementOfType(treePickerElement, TreePicker)).to.equal(true);
-    expect(treePickerElement.props.getSubtree()).to.have.length(0);
-    expect(treePickerElement.props.getSubtree('0', '')).to.have.length(4);
+    treePickerElement.props.getSubtree({}, (subtree) => expect(subtree).to.have.length(0));
+    treePickerElement.props.getSubtree({ rootTypeId: '0' }, (subtree) => expect(subtree).to.have.length(4));
   });
 
   it('should toggle `showMultiPickerModal` on `Open MultiPicker` click', () => {
