@@ -12,6 +12,7 @@ import {
   Select,
   Toggle,
   TreePicker,
+  UserMultiPicker,
 } from './distributionEntry';
 
 require('styles/App.scss');
@@ -41,6 +42,7 @@ class AppComponent extends React.Component {
       'toggleMultiPickerModal',
       'toggleSimpleModal',
       'toggleTreePickerModal',
+      'toggleUserMultiPickerModal',
     ]) {this[methodName] = this[methodName].bind(this);}
 
     this.state = {
@@ -62,6 +64,10 @@ class AppComponent extends React.Component {
     this.setState({ showMultiPickerModal: !this.state.showMultiPickerModal });
   }
 
+  toggleUserMultiPickerModal() {
+    this.setState({ showUserMultiPickerModal: !this.state.showUserMultiPickerModal });
+  }
+
   toggleSimpleModal() {
     this.setState({ showSimpleModal: !this.state.showSimpleModal });
   }
@@ -80,7 +86,9 @@ class AppComponent extends React.Component {
 
     const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 
-    const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
+    const avatarColor = () => 'cyan';
+
+    const teamMember1 = { avatar: '//lorempixel.com/35/35/people/7', givenName: 'John', id: 1, surname: 'Smith' };
 
     const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
 
@@ -320,6 +328,24 @@ class AppComponent extends React.Component {
           modalDescription="Please select the users that you want."
           modalTitle="Select Users"
           show={this.state.showMultiPickerModal}
+        />
+
+
+        <h1>UserMultiPicker</h1>
+
+        <Button bsStyle="primary" onClick={this.toggleUserMultiPickerModal}>
+          Open UserMultiPicker
+        </Button>
+
+        <UserMultiPicker
+          avatarColor={avatarColor}
+          initialSelection={multiPickerInitialSelection}
+          modalClose={this.toggleUserMultiPickerModal}
+          modalDescription="Please select the users that you want."
+          modalTitle="Select Users"
+          show={this.state.showUserMultiPickerModal}
+          userHeaders={multiPickerItemHeaders}
+          users={multiPickerItems}
         />
 
       </div>
