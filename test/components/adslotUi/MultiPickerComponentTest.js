@@ -20,7 +20,7 @@ describe('MultiPickerComponent', () => {
 
   const items = [teamMember1, teamMember2, teamMember3];
 
-  const initialSelection = () => [teamMember2];
+  const getInitialSelection = () => [teamMember2];
 
   const getMultiPickerPureElement = (rootComponent) => {
     const modalBodyElement = rootComponent.props.children[1];
@@ -77,8 +77,9 @@ describe('MultiPickerComponent', () => {
   });
 
   it('should render with props', () => {
+    const initialSelection = getInitialSelection();
     const component = createComponent(MultiPickerComponent, {
-      initialSelection: initialSelection(),
+      initialSelection,
       itemHeaders,
       items,
       labelFormatter,
@@ -99,6 +100,8 @@ describe('MultiPickerComponent', () => {
 
     const multiPickerPureElement = getMultiPickerPureElement(component);
     expect(multiPickerPureElement.type.name).to.equal('MultiPickerPureComponent');
+    expect(multiPickerPureElement.props.selectedItems).to.not.equal(initialSelection);
+    expect(multiPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
 
     expect(multiPickerPureElement.props.deselectItem).to.be.a('function');
     expect(multiPickerPureElement.props.labelFormatter).to.be.a('function');
@@ -110,7 +113,7 @@ describe('MultiPickerComponent', () => {
 
   it('should change `selectedItems` state after a `selectItem` action', () => {
     const component = createComponent(MultiPickerComponent, {
-      initialSelection: initialSelection(),
+      initialSelection: getInitialSelection(),
       items,
     });
     const multiPickerPureElement = getMultiPickerPureElement(component);
@@ -121,7 +124,7 @@ describe('MultiPickerComponent', () => {
 
   it('should change `selectedItems` state after a `deselectItem` action', () => {
     const component = createComponent(MultiPickerComponent, {
-      initialSelection: initialSelection(),
+      initialSelection: getInitialSelection(),
       items,
     });
     const multiPickerPureElement = getMultiPickerPureElement(component);
@@ -146,7 +149,7 @@ describe('MultiPickerComponent', () => {
     const applyMock = (selectedItems) => applyCalls = selectedItems;
     const closeMock = () => closeCalls += 1;
     const component = createComponent(MultiPickerComponent, {
-      initialSelection: initialSelection(),
+      initialSelection: getInitialSelection(),
       modalApply: applyMock,
       modalClose: closeMock,
     });
@@ -160,7 +163,7 @@ describe('MultiPickerComponent', () => {
   });
 
   it('should throw when we click Apply without a handler', () => {
-    const component = createComponent(MultiPickerComponent, { initialSelection });
+    const component = createComponent(MultiPickerComponent);
 
     const modalFooterElement = component.props.children[2];
     const applyButtonElement = modalFooterElement.props.children[1];
