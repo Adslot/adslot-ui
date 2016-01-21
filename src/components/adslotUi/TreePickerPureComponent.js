@@ -34,7 +34,10 @@ const TreePickerPureComponent = ({
   };
 
   const selectedIds = _.pluck(selectedNodesByRootType[activeRootTypeId], 'id');
-  const filteredSubtree = subtree.filter(({ id }) => !_.contains(selectedIds, id));
+  const filteredSubtree = _(subtree)
+    .filter(({ id }) => !_.contains(selectedIds, id))
+    .sortBy('label')
+    .value();
 
   return (
     <div className="treepickerpure-component">

@@ -8,6 +8,10 @@
 
   font-weight: $font-weight-medium;
 
+  &-title {
+    font-weight: $font-weight-bold;
+  }
+
   &-content {
     border-radius: 0;
     box-shadow: $modal-shadow;

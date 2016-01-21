@@ -5,12 +5,14 @@
 
   &-header {
     font-size: $font-size-subheader;
+    font-weight: $font-weight-bold;
     line-height: $header-height;
     margin: 0;
   }
 
   &-scrollable {
-    $scrollable-max-height: 410px + $header-height;
+    $scrollable-max-height: 472px + $header-height;
+
     max-height: $scrollable-max-height;
     overflow: auto;
 

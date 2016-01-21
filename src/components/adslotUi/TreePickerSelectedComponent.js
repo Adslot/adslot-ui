@@ -55,7 +55,7 @@ const TreePickerSelectedComponent = ({
       />
 
       {unresolvedRootTypes ?
-        <Alert type={warnOnRequired ? 'warning' : 'danger'}>{unresolvedRootTypes} are required.</Alert> :
+        <Alert type={warnOnRequired ? 'warning' : 'danger'}>Required: {unresolvedRootTypes}.</Alert> :
         null
       }
 

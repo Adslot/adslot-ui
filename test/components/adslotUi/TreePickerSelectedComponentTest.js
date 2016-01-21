@@ -91,7 +91,7 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(alertElement.type).to.equal((<Alert />).type);
     expect(alertElement.props.type).to.equal('danger');
-    expect(alertElement.props.children).to.deep.equal(['Segments', ' are required.']);
+    expect(alertElement.props.children).to.deep.equal(['Required: ', 'Segments', '.']);
 
     const scrollableElement = component.props.children[3];
     expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable is-short');
@@ -173,7 +173,7 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(alertElement.type).to.equal((<Alert />).type);
     expect(alertElement.props.type).to.equal('warning');
-    expect(alertElement.props.children).to.deep.equal(['Segments', ' are required.']);
+    expect(alertElement.props.children).to.deep.equal(['Required: ', 'Segments', '.']);
   });
 
   it('should error when there is a selectedNode with no corresponding rootType', () => {
