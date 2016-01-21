@@ -19,7 +19,7 @@ class MultiPickerComponent extends React.Component {
   }
 
   loadData() {
-    this.state = { selectedItems: this.props.initialSelection };
+    this.state = { selectedItems: _.clone(this.props.initialSelection) };
   }
 
   selectItem(item) {
