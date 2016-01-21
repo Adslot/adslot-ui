@@ -28,7 +28,10 @@ class TreePickerComponent extends React.Component {
       this.state = {
         breadcrumbNodes: [],
         rootType,
-        selectedNodesByRootType: _.groupBy(this.props.initialSelection, 'rootTypeId'),
+        selectedNodesByRootType: _(this.props.initialSelection)
+          .sortBy('label')
+          .groupBy('rootTypeId')
+          .value(),
         subtree,
       };
     });
@@ -106,17 +109,13 @@ class TreePickerComponent extends React.Component {
   }
 
   applyAction() {
-    const { selectedNodesByRootType } = this.state;
-    let selectedNodeIds = [];
-    _.forEach(selectedNodesByRootType, (nodes) => {
-      selectedNodeIds = selectedNodeIds.concat(_.pluck(nodes, 'id'));
-    });
-    this.props.modalApply(selectedNodeIds);
+    this.props.modalApply(_.mapValues(this.state.selectedNodesByRootType, (nodes) => _.pluck(nodes, 'id')));
     this.props.modalClose();
   }
 
   render() {
     const { state, props } = this;
+    if (!state) {return null;}
 
     return (
       <Modal className="treepicker-component" show={props.show} bsSize="large" keyboard={false}>
@@ -189,7 +188,9 @@ TreePickerComponent.propTypes = {
 TreePickerComponent.defaultProps = {
   getSubtree: ({ rootTypeId, query, nodeId }, cb) => cb([]),
   initialSelection: [],
-  modalApply: (selected) => {throw new Error(`AdslotUi TreePicker needs a modalApply handler for ${selected}`);},
+  modalApply: (selected) => {
+    throw new Error(`AdslotUi TreePicker needs a modalApply handler for ${JSON.stringify(selected)}`);
+  },
 
   modalClose: () => {throw new Error('AdslotUi TreePicker needs a modalClose handler');},
 

@@ -2,8 +2,9 @@
 
 .treepickerpane-component {
   display: flex;
-  flex-basis: 50%;
   flex-flow: column nowrap;
+  overflow: hidden;
+  width: 50%;
 
   & + & {
     margin-left: $spacing-etalon;

@@ -15,7 +15,7 @@ const TreePickerNodeComponent = ({
 }) => {
   const pathElement = !_.isEmpty(node.path) ?
     <span className="treepickernode-component-path">
-      {node.path.reverse().join(', ')}
+      {_(node.path).clone().reverse().join(', ')}
     </span> :
     null;
 

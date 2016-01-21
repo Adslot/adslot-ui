@@ -18,24 +18,24 @@ describe('TreePickerComponent', () => {
   const rootTypes = [
     {
       label: 'Geography',
-      id: '0',
+      id: 'a',
       icon: 'http://placehold.it/16x16',
       emptyIcon: 'http://placehold.it/70x70',
       isRequired: true,
     },
-    { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
-    { label: 'Segments', id: '2', icon: 'http://placehold.it/16x16', isRequired: true },
+    { label: 'Audiences', id: 'b', icon: 'http://placehold.it/16x16', isRequired: false },
+    { label: 'Segments', id: 'c', icon: 'http://placehold.it/16x16', isRequired: true },
   ];
 
   const actNode =
-    { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' };
-  const ntNode = { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
-  const qldNode = { id: '2', label: 'Queensland', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
-  const saNode = { id: '3', label: 'South Australia', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
+    { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: 'a' };
+  const ntNode = { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: 'a' };
+  const qldNode = { id: '2', label: 'Queensland', type: 'State', path: ['AU'], value: 500, rootTypeId: 'a' };
+  const saNode = { id: '3', label: 'South Australia', type: 'State', path: ['AU'], value: 500, rootTypeId: 'a' };
 
-  const cbrNode = { id: '0a', label: 'Canberra', type: 'City', path: ['AU', 'ACT'], value: 2000, rootTypeId: '0' };
+  const cbrNode = { id: '0a', label: 'Canberra', type: 'City', path: ['AU', 'ACT'], value: 2000, rootTypeId: 'a' };
 
-  const maleNode = { id: '4', label: 'Males', type: '', path: [], value: 500, rootTypeId: '1' };
+  const maleNode = { id: '4', label: 'Males', type: '', path: [], value: 500, rootTypeId: 'b' };
 
   const getTreePickerPureElement = (rootComponent) => {
     const modalBodyElement = rootComponent.props.children[1];
@@ -43,7 +43,7 @@ describe('TreePickerComponent', () => {
   };
 
   const getSubtree = ({ rootTypeId, query, nodeId }, cb) => {
-    if (rootTypeId === '0') {
+    if (rootTypeId === 'a') {
       if (!query && !nodeId) {
         return cb([
           actNode,
@@ -60,7 +60,7 @@ describe('TreePickerComponent', () => {
       return cb([]);
     }
 
-    expect(rootTypeId).to.equal('1');
+    expect(rootTypeId).to.equal('b');
     return cb([maleNode]);
   };
 
@@ -146,7 +146,7 @@ describe('TreePickerComponent', () => {
     const treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.type.name).to.equal('TreePickerPureComponent');
 
-    expect(treePickerPureElement.props.activeRootTypeId).to.equal('0');
+    expect(treePickerPureElement.props.activeRootTypeId).to.equal('a');
     expect(treePickerPureElement.props.baseItem).to.equal(baseItem);
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
     expect(treePickerPureElement.props.breadcrumbOnClick).to.be.a('function');
@@ -159,7 +159,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(
       _.groupBy(initialSelection, 'rootTypeId')
     );
-    getSubtree({ rootTypeId: '0' }, (subtree) => {
+    getSubtree({ rootTypeId: 'a' }, (subtree) => {
       expect(treePickerPureElement.props.subtree).to.deep.equal(subtree);
     });
     expect(treePickerPureElement.props.valueFormatter).to.equal(valueFormatter);
@@ -176,12 +176,12 @@ describe('TreePickerComponent', () => {
     let component = renderer.getRenderOutput();
 
     let treePickerPureElement = getTreePickerPureElement(component);
-    treePickerPureElement.props.changeRootType('1');
+    treePickerPureElement.props.changeRootType('b');
 
     component = renderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
-    expect(treePickerPureElement.props.activeRootTypeId).to.equal('1');
+    expect(treePickerPureElement.props.activeRootTypeId).to.equal('b');
     expect(treePickerPureElement.props.subtree).to.deep.equal([maleNode]);
   });
 
@@ -228,7 +228,7 @@ describe('TreePickerComponent', () => {
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
-    getSubtree({ rootTypeId: '0' }, (subtree) => {
+    getSubtree({ rootTypeId: 'a' }, (subtree) => {
       expect(treePickerPureElement.props.subtree).to.deep.equal(subtree);
     });
   });
@@ -365,7 +365,7 @@ describe('TreePickerComponent', () => {
     const applyButtonElement = modalFooterElement.props.children[1];
     applyButtonElement.props.onClick();
 
-    expect(applyCalls).to.deep.equal(['0', '1']);
+    expect(applyCalls).to.deep.equal({ a: ['0', '1'] });
     expect(closeCalls).to.equal(1);
   });
 
@@ -374,7 +374,9 @@ describe('TreePickerComponent', () => {
 
     const modalFooterElement = component.props.children[2];
     const applyButtonElement = modalFooterElement.props.children[1];
-    expect(applyButtonElement.props.onClick).to.throw('AdslotUi TreePicker needs a modalApply handler for 0,1');
+    expect(applyButtonElement.props.onClick).to.throw(
+      'AdslotUi TreePicker needs a modalApply handler for {"a":["0","1"]}'
+    );
   });
 
   it('should call `modalClose` and re-fetch data when we click Cancel', () => {
