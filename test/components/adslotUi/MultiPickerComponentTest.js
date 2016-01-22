@@ -74,6 +74,7 @@ describe('MultiPickerComponent', () => {
     expect(applyButtonElement.props.bsStyle).to.equal('primary');
     expect(applyButtonElement.props.onClick).to.be.a('function');
     expect(applyButtonElement.props.children).to.equal('Apply');
+    expect(applyButtonElement.props.disabled).to.equal(false);
   });
 
   it('should render with props', () => {
@@ -109,6 +110,18 @@ describe('MultiPickerComponent', () => {
     expect(multiPickerPureElement.props.items).to.deep.equal(items);
     expect(multiPickerPureElement.props.selectItem).to.be.a('function');
     expect(multiPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
+  });
+
+  it('should disable apply button for empty selection if `allowEmptySelection` is set to false', () => {
+    const component = createComponent(MultiPickerComponent, {
+      allowEmptySelection: false,
+      items,
+    });
+
+    const modalFooterElement = component.props.children[2];
+    const applyButtonElement = modalFooterElement.props.children[1];
+
+    expect(applyButtonElement.props.disabled).to.equal(true);
   });
 
   it('should change `selectedItems` state after a `selectItem` action', () => {

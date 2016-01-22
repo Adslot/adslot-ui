@@ -31,6 +31,7 @@ class UserMultiPickerComponent extends React.Component {
 
     return (
       <MultiPicker
+        allowEmptySelection={props.allowEmptySelection}
         initialSelection={props.initialSelection}
         itemHeaders={props.userHeaders}
         items={props.users}
@@ -56,6 +57,7 @@ const userType = PropTypes.shape({
 });
 
 UserMultiPickerComponent.propTypes = {
+  allowEmptySelection: PropTypes.bool.isRequired,
   avatarColor: PropTypes.func.isRequired,
   initialSelection: PropTypes.arrayOf(userType).isRequired,
   modalApply: PropTypes.func.isRequired,
@@ -71,6 +73,7 @@ UserMultiPickerComponent.propTypes = {
 };
 
 UserMultiPickerComponent.defaultProps = {
+  allowEmptySelection: false,
   avatarColor: () => null,
   initialSelection: [],
   modalApply: () => {throw new Error('AdslotUi UserMultiPicker needs a modalApply handler');},

@@ -29,10 +29,12 @@ describe('UserMultiPickerComponent', () => {
     expect(component.props.modalDescription).to.equal('Select users.');
     expect(component.props.modalTitle).to.equal('Select Users');
     expect(component.props.show).to.equal(false);
+    expect(component.props.allowEmptySelection).to.equal(false);
   });
 
   it('should render with props', () => {
     const component = createComponent(UserMultiPickerComponent, {
+      allowEmptySelection: true,
       initialSelection: initialSelection(),
       userHeaders,
       users,
@@ -48,6 +50,7 @@ describe('UserMultiPickerComponent', () => {
     expect(component.props.modalDescription).to.equal('Select team members that you want.');
     expect(component.props.modalTitle).to.equal('Select Team Members');
     expect(component.props.show).to.equal(false);
+    expect(component.props.allowEmptySelection).to.equal(true);
   });
 
   it('should format user labels with avatar', () => {
