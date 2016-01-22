@@ -11,6 +11,7 @@ class MultiPickerComponent extends React.Component {
       'applyAction',
       'cancelAction',
       'deselectItem',
+      'getApplyButtonState',
       'loadData',
       'selectItem',
     ]) {this[methodName] = this[methodName].bind(this);}
@@ -18,20 +19,36 @@ class MultiPickerComponent extends React.Component {
     this.loadData();
   }
 
+  getApplyButtonState(selectedItems) {
+    if (this.props.allowEmptySelection) {return false;}
+
+    return _.isEmpty(selectedItems);
+  }
+
   loadData() {
-    this.state = { selectedItems: _.clone(this.props.initialSelection) };
+    const selectedItems = _.clone(this.props.initialSelection);
+    this.state = {
+      selectedItems,
+      disableApplyButton: this.getApplyButtonState(selectedItems),
+    };
   }
 
   selectItem(item) {
     const { selectedItems } = this.state;
     selectedItems.push(item);
-    this.setState({ selectedItems });
+    this.setState({
+      selectedItems,
+      disableApplyButton: this.getApplyButtonState(selectedItems),
+    });
   }
 
   deselectItem(item) {
     const { selectedItems } = this.state;
     _.remove(selectedItems, { id: item.id });
-    this.setState({ selectedItems });
+    this.setState({
+      selectedItems,
+      disableApplyButton: this.getApplyButtonState(selectedItems),
+    });
   }
 
   cancelAction() {
@@ -67,7 +84,7 @@ class MultiPickerComponent extends React.Component {
           <Button className="btn-inverse" onClick={this.cancelAction}>
             Cancel
           </Button>
-          <Button bsStyle="primary" onClick={this.applyAction}>
+          <Button bsStyle="primary" onClick={this.applyAction} disabled={state.disableApplyButton}>
             Apply
           </Button>
         </Modal.Footer>
@@ -83,6 +100,7 @@ const itemType = PropTypes.shape({
 });
 
 MultiPickerComponent.propTypes = {
+  allowEmptySelection: PropTypes.bool.isRequired,
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
@@ -99,6 +117,7 @@ MultiPickerComponent.propTypes = {
 };
 
 MultiPickerComponent.defaultProps = {
+  allowEmptySelection: true,
   initialSelection: [],
   items: [],
   modalApply: () => {throw new Error('AdslotUi MultiPicker needs a modalApply handler');},
