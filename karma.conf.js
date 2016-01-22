@@ -22,6 +22,7 @@ module.exports = function configureKarma(config) {
       dir: 'coverage/',
       reporters: [
         { type: 'lcov', subdir: '.' },
+        { type: 'json', subdir: '.' },
       ],
     },
     webpack: webpackCfg,

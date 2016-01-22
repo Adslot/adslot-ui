@@ -9,7 +9,7 @@
     "start:cold": "node server.js --env=dev-cold",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
-    "codecov": "cat coverage/lcov.info | codecov",
+    "codecov": "cat coverage/coverage-final.json | codecov",
     "posttest": "npm run lint && npm run sass-lint && npm run jscs-lint && npm run check-commit",
     "dist": "webpack --env=dist",
     "profile": "webpack --env=dist --profile --json > stats.json",
