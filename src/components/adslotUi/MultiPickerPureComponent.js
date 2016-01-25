@@ -29,12 +29,10 @@ const MultiPickerPureComponent = ({
 
   const isItemSelected = (item) => _.some(selectedItems, { id: item.id });
 
-  const handleChange = (item) => {
-    return (event, checked) => {
-      if (checked) {return selectItem(item);}
+  const handleChange = (item) => (event, checked) => {
+    if (checked) {return selectItem(item);}
 
-      deselectItem(item);
-    };
+    deselectItem(item);
   };
 
   return (
