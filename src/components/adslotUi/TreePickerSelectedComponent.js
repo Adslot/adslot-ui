@@ -7,6 +7,7 @@ import { Alert, Empty, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot
 require('styles/adslotUi/TreePickerSelected.scss');
 
 const TreePickerSelectedComponent = ({
+  averageWithinRootType,
   baseItem,
   emptyIcon,
   includeNode,
@@ -17,17 +18,16 @@ const TreePickerSelectedComponent = ({
   valueLabel,
   warnOnRequired,
 }) => {
-  const averagesByRootType = _(rootTypes)
+  const valueByRootType = _(rootTypes)
     .indexBy('id')
     .mapValues(({ id }) => {
       const selectedInRootType = _.get(selectedNodesByRootType, id);
       if (_.isEmpty(selectedInRootType)) return 0;
-
-      return _.sum(selectedInRootType, 'value') / selectedInRootType.length;
+      return _.sum(selectedInRootType, 'value') / (averageWithinRootType ? selectedInRootType.length : 1);
     })
     .value();
 
-  const totalOfAverages = _.sum(averagesByRootType);
+  const totalOfRootTypeValues = _.sum(valueByRootType);
 
   const unresolvedRootTypes = _(rootTypes)
     .filter(({ id, isRequired }) => isRequired && _.isEmpty(selectedNodesByRootType[id]))
@@ -49,7 +49,7 @@ const TreePickerSelectedComponent = ({
       <Totals
         toSum={[
           { label: baseItem.label, value: baseItem.value },
-          { label: 'Selected', value: totalOfAverages },
+          { label: 'Selected', value: totalOfRootTypeValues },
         ]}
         valueFormatter={valueFormatter}
       />
@@ -81,8 +81,8 @@ const TreePickerSelectedComponent = ({
 
             <GridRow type="subfooter">
               <GridCell stretch />
-              <GridCell>Average</GridCell>
-              <GridCell>{valueFormatter(averagesByRootType[rootTypeId])}</GridCell>
+              <GridCell>{averageWithinRootType ? 'Average' : 'Subtotal'}</GridCell>
+              <GridCell>{valueFormatter(valueByRootType[rootTypeId])}</GridCell>
             </GridRow>
 
           </Grid>
@@ -104,6 +104,7 @@ const rootType = PropTypes.shape({
 });
 
 TreePickerSelectedComponent.propTypes = {
+  averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
@@ -119,6 +120,7 @@ TreePickerSelectedComponent.propTypes = {
 };
 
 TreePickerSelectedComponent.defaultProps = {
+  averageWithinRootType: false,
   baseItem: {
     label: 'Base',
     value: 0,

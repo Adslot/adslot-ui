@@ -35,6 +35,7 @@ describe('TreePickerPureComponent', () => {
 
     const treePickerSelectedElement = rightPaneElement.props.children;
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
+    expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(false);
   });
 
   it('should render with props', () => {
@@ -55,6 +56,7 @@ describe('TreePickerPureComponent', () => {
 
     const component = createComponent(TreePickerPureComponent, {
       activeRootTypeId: '0',
+      averageWithinRootType: true,
       baseItem: {
         label: 'foo',
         value: 100,
@@ -120,5 +122,6 @@ describe('TreePickerPureComponent', () => {
 
     const treePickerSelectedElement = rightPaneElement.props.children;
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
+    expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(true);
   });
 });
