@@ -96,6 +96,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.type.name).to.equal('TreePickerPureComponent');
 
     expect(treePickerPureElement.props.activeRootTypeId).to.be.an('undefined');
+    expect(treePickerPureElement.props.averageWithinRootType).to.equal(false);
     expect(treePickerPureElement.props.baseItem).to.be.an('undefined');
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
     expect(treePickerPureElement.props.breadcrumbOnClick).to.be.a('function');
@@ -128,6 +129,7 @@ describe('TreePickerComponent', () => {
 
   it('should render with props', () => {
     const component = createComponent(TreePickerComponent, {
+      averageWithinRootType: true,
       baseItem,
       initialSelection,
       getSubtree,
@@ -147,6 +149,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.type.name).to.equal('TreePickerPureComponent');
 
     expect(treePickerPureElement.props.activeRootTypeId).to.equal('a');
+    expect(treePickerPureElement.props.averageWithinRootType).to.equal(true);
     expect(treePickerPureElement.props.baseItem).to.equal(baseItem);
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
     expect(treePickerPureElement.props.breadcrumbOnClick).to.be.a('function');

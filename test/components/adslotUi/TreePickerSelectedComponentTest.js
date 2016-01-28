@@ -69,6 +69,7 @@ describe('TreePickerSelectedComponent', () => {
 
   it('should render with props', () => {
     const component = createComponent(TreePickerSelected, {
+      averageWithinRootType: true,
       rootTypes,
       selectedNodesByRootType,
       emptyIcon: 'awesome-url',
@@ -159,6 +160,34 @@ describe('TreePickerSelectedComponent', () => {
     expect(emptyElement.props.collection).to.deep.equal([[actNode, ntNode]]);
     expect(emptyElement.props.icon).to.equal('awesome-url');
     expect(emptyElement.props.text).to.equal('Nothing Selected');
+  });
+
+  it('should render with averageWithinRootType false', () => {
+    const component = createComponent(TreePickerSelected, {
+      averageWithinRootType: false,
+      rootTypes,
+      selectedNodesByRootType,
+    });
+    const totalsElement = component.props.children[1];
+
+    expect(totalsElement.type).to.equal((<Totals />).type);
+    expect(totalsElement.props.toSum).to.deep.equal([
+      { label: 'Base', value: 0 },
+      { label: 'Selected', value: 1500 },
+    ]);
+
+    const scrollableElement = component.props.children[3];
+
+    const gridElements = scrollableElement.props.children;
+
+    const gridElement = gridElements[0];
+
+    const subFooterRowElement = gridElement.props.children[2];
+
+    const subFooterSecondCell = subFooterRowElement.props.children[1];
+
+    expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
+    expect(subFooterSecondCell.props.children).to.equal('Subtotal');
   });
 
   it('should render alert as warning when warnOnRequired is true', () => {

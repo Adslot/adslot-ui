@@ -10,6 +10,7 @@ require('styles/adslotUi/TreePickerPure.scss');
 
 const TreePickerPureComponent = ({
   activeRootTypeId,
+  averageWithinRootType,
   baseItem,
   breadcrumbNodes,
   breadcrumbOnClick,
@@ -78,6 +79,7 @@ const TreePickerPureComponent = ({
       <TreePickerPane>
 
         <TreePickerSelected
+          averageWithinRootType={averageWithinRootType}
           baseItem={baseItem}
           emptyIcon={emptyIcon}
           removeNode={removeNode}
@@ -124,6 +126,7 @@ const rootType = PropTypes.shape({
 
 TreePickerPureComponent.propTypes = {
   activeRootTypeId: PropTypes.string,
+  averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: baseItemPropType,
   breadcrumbNodes: PropTypes.arrayOf(breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
@@ -141,6 +144,7 @@ TreePickerPureComponent.propTypes = {
 };
 
 TreePickerPureComponent.defaultProps = {
+  averageWithinRootType: false,
   rootTypes: [],
   selectedNodesByRootType: {},
   subtree: [],

@@ -125,6 +125,7 @@ class TreePickerComponent extends React.Component {
         <Modal.Body>
           <TreePickerPure
             activeRootTypeId={_.get(state, 'rootType.id')}
+            averageWithinRootType={props.averageWithinRootType}
             baseItem={props.baseItem}
             breadcrumbNodes={state.breadcrumbNodes}
             breadcrumbOnClick={this.breadcrumbOnClick}
@@ -166,6 +167,7 @@ const nodePropType = PropTypes.shape({
 });
 
 TreePickerComponent.propTypes = {
+  averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: PropTypes.shape(),
   getSubtree: PropTypes.func,
   initialSelection: PropTypes.arrayOf(nodePropType).isRequired,
@@ -186,6 +188,7 @@ TreePickerComponent.propTypes = {
   warnOnRequired: PropTypes.bool.isRequired,
 };
 TreePickerComponent.defaultProps = {
+  averageWithinRootType: false,
   getSubtree: ({ rootTypeId, query, nodeId }, cb) => cb([]),
   initialSelection: [],
   modalApply: (selected) => {
