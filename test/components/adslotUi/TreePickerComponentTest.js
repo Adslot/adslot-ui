@@ -2,7 +2,6 @@
 /* global expect */
 
 import _ from 'lodash';
-import createComponent from 'helpers/shallowRenderHelper';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
@@ -10,6 +9,19 @@ import TestUtils from 'react-addons-test-utils';
 import TreePickerComponent from 'components/adslotUi/TreePickerComponent';
 
 describe('TreePickerComponent', () => {
+  const runComponentDidMount = ({ shallowRenderer }) =>
+    shallowRenderer._instance._instance.componentDidMount();
+
+  const runComponentWillUnmount = ({ shallowRenderer }) =>
+    shallowRenderer._instance._instance.componentWillUnmount();
+
+  const createAndMountComponent = (component, props = {}) => {
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(React.createElement(component, props));
+    runComponentDidMount({ shallowRenderer });
+    return shallowRenderer.getRenderOutput();
+  };
+
   const baseItem = {
     label: 'Awesome Product',
     value: 10000,
@@ -75,7 +87,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should render with defaults', () => {
-    const component = createComponent(TreePickerComponent);
+    const component = createAndMountComponent(TreePickerComponent);
     expect(component.props.className).to.equal('treepicker-component');
     expect(component.type).to.equal((<Modal />).type);
     expect(component.props.show).to.equal(false);
@@ -128,7 +140,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should render with props', () => {
-    const component = createComponent(TreePickerComponent, {
+    const component = createAndMountComponent(TreePickerComponent, {
       averageWithinRootType: true,
       baseItem,
       initialSelection,
@@ -170,18 +182,19 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `activeRootTypeId` and `subtree` after a changeRootType action', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<TreePickerComponent
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
       getSubtree={getSubtree}
       rootTypes={rootTypes}
     />);
-    let component = renderer.getRenderOutput();
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
 
     let treePickerPureElement = getTreePickerPureElement(component);
     treePickerPureElement.props.changeRootType('b');
 
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.activeRootTypeId).to.equal('b');
@@ -189,18 +202,19 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `breadcrumbNodes` and `subtree` state after a search action', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<TreePickerComponent
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
       getSubtree={getSubtree}
       rootTypes={rootTypes}
     />);
-    let component = renderer.getRenderOutput();
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
 
     let treePickerPureElement = getTreePickerPureElement(component);
     treePickerPureElement.props.searchOnQuery('myQuery');
 
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
@@ -208,18 +222,19 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `breadcrumbNodes` and `subtree` state after a breadcrumbOnClick action of `all`', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<TreePickerComponent
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
       getSubtree={getSubtree}
       rootTypes={rootTypes}
     />);
-    let component = renderer.getRenderOutput();
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
 
     let treePickerPureElement = getTreePickerPureElement(component);
     treePickerPureElement.props.expandNode(actNode);
 
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([actNode]);
@@ -227,7 +242,7 @@ describe('TreePickerComponent', () => {
 
     treePickerPureElement.props.breadcrumbOnClick('all');
 
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
@@ -237,47 +252,49 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `breadcrumbNodes` and `subtree` state after a breadcrumbOnClick action', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<TreePickerComponent
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
       getSubtree={getSubtree}
       rootTypes={rootTypes}
     />);
-    let component = renderer.getRenderOutput();
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
     let treePickerPureElement = getTreePickerPureElement(component);
 
     treePickerPureElement.props.expandNode(actNode);
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([actNode]);
     expect(treePickerPureElement.props.subtree).to.deep.equal([cbrNode]);
 
     treePickerPureElement.props.expandNode(cbrNode);
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([actNode, cbrNode]);
     expect(treePickerPureElement.props.subtree).to.deep.equal([]);
 
     treePickerPureElement.props.breadcrumbOnClick(actNode.id);
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([actNode]);
     expect(treePickerPureElement.props.subtree).to.deep.equal([cbrNode]);
   });
 
   it('should change `breadcrumbNodes` and `subtree` state after an expandNode action', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<TreePickerComponent
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
       getSubtree={getSubtree}
       rootTypes={rootTypes}
     />);
-    let component = renderer.getRenderOutput();
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
 
     let treePickerPureElement = getTreePickerPureElement(component);
     treePickerPureElement.props.expandNode(actNode);
 
-    component = renderer.getRenderOutput();
+    component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([actNode]);
@@ -285,7 +302,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `selected` state after an includeNode action', () => {
-    const component = createComponent(TreePickerComponent, {
+    const component = createAndMountComponent(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
@@ -302,7 +319,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `selected` state after an includeNode action for a new rootType', () => {
-    const component = createComponent(TreePickerComponent, {
+    const component = createAndMountComponent(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
@@ -319,7 +336,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `selected` state after a removeNode action', () => {
-    const component = createComponent(TreePickerComponent, {
+    const component = createAndMountComponent(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
@@ -331,7 +348,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `selected` state to an empty object after a removeNode action on all nodes', () => {
-    const component = createComponent(TreePickerComponent, {
+    const component = createAndMountComponent(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
@@ -344,12 +361,12 @@ describe('TreePickerComponent', () => {
   });
 
   it('should show modal when `show` is true', () => {
-    const component = createComponent(TreePickerComponent, { show: true });
+    const component = createAndMountComponent(TreePickerComponent, { show: true });
     expect(component.props.show).to.equal(true);
   });
 
   it('should hide modal when `show` is false', () => {
-    const component = createComponent(TreePickerComponent, { show: false });
+    const component = createAndMountComponent(TreePickerComponent, { show: false });
     expect(component.props.show).to.equal(false);
   });
 
@@ -358,7 +375,7 @@ describe('TreePickerComponent', () => {
     let closeCalls = 0;
     const applyMock = (selectedIds) => applyCalls = selectedIds;
     const closeMock = () => closeCalls += 1;
-    const component = createComponent(TreePickerComponent, {
+    const component = createAndMountComponent(TreePickerComponent, {
       modalApply: applyMock,
       modalClose: closeMock,
       initialSelection,
@@ -373,7 +390,7 @@ describe('TreePickerComponent', () => {
   });
 
   it('should throw when we click Apply without a handler', () => {
-    const component = createComponent(TreePickerComponent, { initialSelection });
+    const component = createAndMountComponent(TreePickerComponent, { initialSelection });
 
     const modalFooterElement = component.props.children[2];
     const applyButtonElement = modalFooterElement.props.children[1];
@@ -388,26 +405,79 @@ describe('TreePickerComponent', () => {
     const closeMock = () => closeCalls += 1;
     const getSubtreeMock = ({ rootTypeId, query, nodeId }, cb) => {
       getSubtreeCalls += 1;
+      if (getSubtreeCalls === 2) { return cb([maleNode]); }
+
       return cb([]);
     };
 
-    const component = createComponent(TreePickerComponent, {
-      modalClose: closeMock,
-      getSubtree: getSubtreeMock,
-    });
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
+      modalClose={closeMock}
+      getSubtree={getSubtreeMock}
+    />);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
 
     const modalFooterElement = component.props.children[2];
     const cancelButtonElement = modalFooterElement.props.children[0];
     expect(getSubtreeCalls).to.equal(1);
 
+    let modalBodyElement = component.props.children[1];
+    let treePickerPureElement = modalBodyElement.props.children;
+    expect(treePickerPureElement.props.subtree).to.deep.equal([]);
+
     cancelButtonElement.props.onClick();
+    component = shallowRenderer.getRenderOutput();
+
+    modalBodyElement = component.props.children[1];
+    treePickerPureElement = modalBodyElement.props.children;
+    expect(treePickerPureElement.props.subtree).to.deep.equal([maleNode]);
+
+    expect(closeCalls).to.equal(1);
+    expect(getSubtreeCalls).to.equal(2);
+  });
+
+  it('should not set the state to the new subtree if we unmount the component before the data returns', () => {
+    let closeCalls = 0;
+    let getSubtreeCalls = 0;
+    const closeMock = () => closeCalls += 1;
+    const getSubtreeMock = ({ rootTypeId, query, nodeId }, cb) => {
+      getSubtreeCalls += 1;
+      if (getSubtreeCalls === 2) {return cb([maleNode]);}
+
+      return cb([]);
+    };
+
+    const shallowRenderer = TestUtils.createRenderer();
+    shallowRenderer.render(<TreePickerComponent
+      modalClose={closeMock}
+      getSubtree={getSubtreeMock}
+    />);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+
+    const modalFooterElement = component.props.children[2];
+    const cancelButtonElement = modalFooterElement.props.children[0];
+    expect(getSubtreeCalls).to.equal(1);
+
+    let modalBodyElement = component.props.children[1];
+    let treePickerPureElement = modalBodyElement.props.children;
+    expect(treePickerPureElement.props.subtree).to.deep.equal([]);
+
+    runComponentWillUnmount({ shallowRenderer });
+    cancelButtonElement.props.onClick();
+    component = shallowRenderer.getRenderOutput();
+
+    modalBodyElement = component.props.children[1];
+    treePickerPureElement = modalBodyElement.props.children;
+    expect(treePickerPureElement.props.subtree).to.deep.equal([]);
 
     expect(closeCalls).to.equal(1);
     expect(getSubtreeCalls).to.equal(2);
   });
 
   it('should throw when we click Close without a handler', () => {
-    const component = createComponent(TreePickerComponent);
+    const component = createAndMountComponent(TreePickerComponent);
 
     const modalFooterElement = component.props.children[2];
     const cancelButtonElement = modalFooterElement.props.children[0];

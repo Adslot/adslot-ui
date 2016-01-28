@@ -19,21 +19,32 @@ class TreePickerComponent extends React.Component {
       'searchOnQuery',
     ]) {this[methodName] = this[methodName].bind(this);}
 
+    this.state = {};
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
     this.loadData();
   }
 
+  componentWillUnmount() { this._isMounted = false; }
+
   loadData() {
     const rootType = _.first(this.props.rootTypes);
+    const selectedNodesByRootType = _(this.props.initialSelection)
+      .sortBy('label')
+      .groupBy('rootTypeId')
+      .value();
+
     this.props.getSubtree({ rootTypeId: _.get(rootType, 'id') }, (subtree) => {
-      this.state = {
-        breadcrumbNodes: [],
-        rootType,
-        selectedNodesByRootType: _(this.props.initialSelection)
-          .sortBy('label')
-          .groupBy('rootTypeId')
-          .value(),
-        subtree,
-      };
+      if (this._isMounted) {
+        this.setState({
+          breadcrumbNodes: [],
+          rootType,
+          selectedNodesByRootType,
+          subtree,
+        });
+      }
     });
   }
 
@@ -115,8 +126,6 @@ class TreePickerComponent extends React.Component {
 
   render() {
     const { state, props } = this;
-    if (!state) {return null;}
-
     return (
       <Modal className="treepicker-component" show={props.show} bsSize="large" keyboard={false}>
         <Modal.Header>
