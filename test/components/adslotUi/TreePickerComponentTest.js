@@ -117,7 +117,9 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.includeNode).to.be.a('function');
     expect(treePickerPureElement.props.removeNode).to.be.a('function');
     expect(treePickerPureElement.props.rootTypes).to.deep.equal([]);
-    expect(treePickerPureElement.props.searchOnQuery).to.be.a('function');
+    expect(treePickerPureElement.props.searchOnChange).to.be.a('function');
+    expect(treePickerPureElement.props.searchOnClear).to.be.a('function');
+    expect(treePickerPureElement.props.searchValue).to.be.a('string');
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal({});
     expect(treePickerPureElement.props.subtree).to.deep.equal([]);
     expect(treePickerPureElement.props.valueFormatter).to.be.an('undefined');
@@ -170,7 +172,9 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.includeNode).to.be.a('function');
     expect(treePickerPureElement.props.removeNode).to.be.a('function');
     expect(treePickerPureElement.props.rootTypes).to.equal(rootTypes);
-    expect(treePickerPureElement.props.searchOnQuery).to.be.a('function');
+    expect(treePickerPureElement.props.searchOnChange).to.be.a('function');
+    expect(treePickerPureElement.props.searchOnClear).to.be.a('function');
+    expect(treePickerPureElement.props.searchValue).to.be.a('string');
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(
       _.groupBy(initialSelection, 'rootTypeId')
     );
@@ -181,7 +185,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.warnOnRequired).to.equal(true);
   });
 
-  it('should change `activeRootTypeId` and `subtree` after a changeRootType action', () => {
+  it('should change `activeRootTypeId`, `searchValue` and `subtree` after a changeRootType action', () => {
     const shallowRenderer = TestUtils.createRenderer();
     shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
@@ -192,33 +196,53 @@ describe('TreePickerComponent', () => {
     runComponentDidMount({ shallowRenderer });
 
     let treePickerPureElement = getTreePickerPureElement(component);
+
+    // So we know if the searchValue has reset to blank.
+    treePickerPureElement.props.searchOnChange('needle');
+
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
+
+    expect(treePickerPureElement.props.searchValue).to.equal('needle');
     treePickerPureElement.props.changeRootType('b');
 
     component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
+    expect(treePickerPureElement.props.searchValue).to.equal('');
     expect(treePickerPureElement.props.activeRootTypeId).to.equal('b');
     expect(treePickerPureElement.props.subtree).to.deep.equal([maleNode]);
   });
 
-  it('should change `breadcrumbNodes` and `subtree` state after a search action', () => {
+  it('should change `breadcrumbNodes` and `subtree` state after a search action, then again on search clear', () => {
     const shallowRenderer = TestUtils.createRenderer();
     shallowRenderer.render(<TreePickerComponent
       initialSelection={initialSelection}
       getSubtree={getSubtree}
       rootTypes={rootTypes}
+      throttleTime={0}
     />);
     let component = shallowRenderer.getRenderOutput();
     runComponentDidMount({ shallowRenderer });
 
     let treePickerPureElement = getTreePickerPureElement(component);
-    treePickerPureElement.props.searchOnQuery('myQuery');
+    treePickerPureElement.props.searchOnChange('myQuery');
 
     component = shallowRenderer.getRenderOutput();
     treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
     expect(treePickerPureElement.props.subtree).to.deep.equal([ntNode, saNode]);
+
+    treePickerPureElement.props.searchOnClear();
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
+    expect(treePickerPureElement.props.subtree).to.deep.equal([
+      actNode,
+      ntNode,
+      qldNode,
+      saNode,
+    ]);
   });
 
   it('should change `breadcrumbNodes` and `subtree` state after a breadcrumbOnClick action of `all`', () => {

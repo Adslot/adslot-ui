@@ -31,7 +31,7 @@ const TreePickerSelectedComponent = ({
 
   const unresolvedRootTypes = _(rootTypes)
     .filter(({ id, isRequired }) => isRequired && _.isEmpty(selectedNodesByRootType[id]))
-    .pluck('label')
+    .map('label')
     .join(', ');
 
   const getRootTypeLabel = (rootTypeId) => {

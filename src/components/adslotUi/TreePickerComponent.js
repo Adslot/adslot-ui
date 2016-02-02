@@ -16,10 +16,13 @@ class TreePickerComponent extends React.Component {
       'includeNode',
       'removeNode',
       'loadData',
+      'searchOnChange',
+      'searchOnClear',
       'searchOnQuery',
     ]) {this[methodName] = this[methodName].bind(this);}
 
     this.state = {};
+    this.throttledSearchOnQuery = _.throttle(() => this.searchOnQuery(this.state.searchValue), props.throttleTime);
   }
 
   componentDidMount() {
@@ -41,6 +44,7 @@ class TreePickerComponent extends React.Component {
         this.setState({
           breadcrumbNodes: [],
           rootType,
+          searchValue: '',
           selectedNodesByRootType,
           subtree,
         });
@@ -52,10 +56,15 @@ class TreePickerComponent extends React.Component {
     this.props.getSubtree({ rootTypeId }, (subtree) => {
       this.setState({
         rootType: _.find(this.props.rootTypes, { id: rootTypeId }),
+        searchValue: '',
         subtree,
       });
     });
   }
+
+  searchOnChange(value) { this.setState({ searchValue: value }, this.throttledSearchOnQuery); }
+
+  searchOnClear() { this.searchOnChange(''); }
 
   searchOnQuery(query) {
     this.props.getSubtree({ rootTypeId: this.state.rootType.id, query }, (subtree) => {
@@ -91,6 +100,7 @@ class TreePickerComponent extends React.Component {
     this.props.getSubtree({ rootTypeId: rootType.id, nodeId: node.id }, (subtree) => {
       this.setState({
         breadcrumbNodes: breadcrumbNodes.concat([node]),
+        searchValue: '',
         subtree,
       });
     });
@@ -120,7 +130,7 @@ class TreePickerComponent extends React.Component {
   }
 
   applyAction() {
-    this.props.modalApply(_.mapValues(this.state.selectedNodesByRootType, (nodes) => _.pluck(nodes, 'id')));
+    this.props.modalApply(_.mapValues(this.state.selectedNodesByRootType, (nodes) => _.map(nodes, 'id')));
     this.props.modalClose();
   }
 
@@ -144,7 +154,9 @@ class TreePickerComponent extends React.Component {
             includeNode={this.includeNode}
             removeNode={this.removeNode}
             rootTypes={props.rootTypes}
-            searchOnQuery={this.searchOnQuery}
+            searchOnChange={this.searchOnChange}
+            searchOnClear={this.searchOnClear}
+            searchValue={state.searchValue}
             selectedNodesByRootType={state.selectedNodesByRootType}
             subtree={state.subtree}
             valueFormatter={props.valueFormatter}
@@ -193,6 +205,7 @@ TreePickerComponent.propTypes = {
     })
   ),
   show: PropTypes.bool.isRequired,
+  throttleTime: PropTypes.number.isRequired,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool.isRequired,
 };
@@ -209,6 +222,7 @@ TreePickerComponent.defaultProps = {
   modalTitle: 'Edit Tree',
   rootTypes: [],
   show: false,
+  throttleTime: 300,
   warnOnRequired: false,
 };
 
