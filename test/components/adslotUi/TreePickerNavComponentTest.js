@@ -28,14 +28,18 @@ describe('TreePickerNavComponent', () => {
     const component = createComponent(TreePickerNavComponent, {
       breadcrumbNodes,
       breadcrumbOnClick: testFunction,
-      searchOnQuery: testFunction,
+      searchOnChange: testFunction,
+      searchOnClear: testFunction,
+      searchValue: 'needle',
     });
     expect(component.props.className).to.equal('treepickernav-component');
     expect(component.props.children).to.have.length(2);
 
     const searchElement = component.props.children[0];
     expect(searchElement.type).to.equal((<Search />).type);
-    expect(searchElement.props.onQuery).to.equal(testFunction);
+    expect(searchElement.props.onChange).to.equal(testFunction);
+    expect(searchElement.props.onClear).to.equal(testFunction);
+    expect(searchElement.props.value).to.equal('needle');
 
     const breadcrumbElement = component.props.children[1];
     expect(breadcrumbElement.type).to.equal((<Breadcrumb />).type);

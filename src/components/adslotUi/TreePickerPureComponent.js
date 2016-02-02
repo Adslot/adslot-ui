@@ -20,7 +20,10 @@ const TreePickerPureComponent = ({
   includeNode,
   removeNode,
   rootTypes,
-  searchOnQuery,
+  searchOnChange,
+  searchOnClear,
+  searchPlaceholder,
+  searchValue,
   selectedNodesByRootType,
   subtree,
   valueFormatter,
@@ -34,7 +37,7 @@ const TreePickerPureComponent = ({
     return () => null;
   };
 
-  const selectedIds = _.pluck(selectedNodesByRootType[activeRootTypeId], 'id');
+  const selectedIds = _.map(selectedNodesByRootType[activeRootTypeId], 'id');
   const filteredSubtree = _(subtree)
     .filter(({ id }) => !_.contains(selectedIds, id))
     .sortBy('label')
@@ -59,7 +62,10 @@ const TreePickerPureComponent = ({
         <TreePickerNav
           breadcrumbNodes={breadcrumbNodes}
           breadcrumbOnClick={breadcrumbOnClick}
-          searchOnQuery={searchOnQuery}
+          searchOnChange={searchOnChange}
+          searchOnClear={searchOnClear}
+          searchPlaceholder={searchPlaceholder}
+          searchValue={searchValue}
         />
 
         <Grid>
@@ -136,7 +142,9 @@ TreePickerPureComponent.propTypes = {
   includeNode: PropTypes.func,
   removeNode: PropTypes.func,
   rootTypes: PropTypes.arrayOf(rootType).isRequired,
-  searchOnQuery: PropTypes.func,
+  searchOnChange: PropTypes.func,
+  searchOnClear: PropTypes.func,
+  searchValue: PropTypes.string,
   selectedNodesByRootType: PropTypes.shape(),
   subtree: PropTypes.arrayOf(nodePropType).isRequired,
   valueFormatter: PropTypes.func,

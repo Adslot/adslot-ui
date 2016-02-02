@@ -3,9 +3,19 @@ import { Breadcrumb, Search } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerNav.scss');
 
-const TreePickerNavComponent = ({ breadcrumbNodes, breadcrumbOnClick, searchOnQuery }) => (
+const TreePickerNavComponent = ({
+  breadcrumbNodes,
+  breadcrumbOnClick,
+  searchOnChange,
+  searchOnClear,
+  searchValue,
+}) => (
   <div className="treepickernav-component">
-    <Search onQuery={searchOnQuery} throttleTime={300} />
+    <Search
+      onChange={searchOnChange}
+      onClear={searchOnClear}
+      value={searchValue}
+    />
     <Breadcrumb nodes={breadcrumbNodes} onClick={breadcrumbOnClick}/>
   </div>
 );
