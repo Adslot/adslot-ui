@@ -1,6 +1,6 @@
-@import '../border';
+@import '../variable';
 
 .treepickerpure-component {
   display: flex;
-  height: 600px;
+  height: $treepicker-height;
 }
