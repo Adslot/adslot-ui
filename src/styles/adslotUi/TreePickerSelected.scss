@@ -11,15 +11,15 @@
   }
 
   &-scrollable {
-    $scrollable-max-height: 472px + $header-height;
+    $scrollable-height: $treepicker-height + $header-height - 128px;
 
-    max-height: $scrollable-max-height;
+    height: $scrollable-height;
     overflow: auto;
 
     &.is-short {
       $alert-height: 40px;
 
-      max-height: $scrollable-max-height - $alert-height;
+      height: $scrollable-height - $alert-height;
     }
 
     .grid-component {
