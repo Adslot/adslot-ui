@@ -3,7 +3,7 @@
 
 import createComponent from 'helpers/shallowRenderHelper';
 import React from 'react';
-import TreePickerPaneComponent from 'components/adslotUi/TreePickerPaneComponent.js';
+import TreePickerPaneComponent from 'components/adslotUi/TreePickerPaneComponent';
 
 describe('TreePickerPaneComponent', () => {
   it('should have its component name as default className', () => {

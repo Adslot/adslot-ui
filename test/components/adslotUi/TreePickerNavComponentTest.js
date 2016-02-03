@@ -3,7 +3,7 @@
 
 import createComponent from 'helpers/shallowRenderHelper';
 import React from 'react';
-import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent.js';
+import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import { Breadcrumb, Search } from 'alexandria-adslot';
 
 describe('TreePickerNavComponent', () => {

@@ -4,7 +4,7 @@ import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerPane from 'components/adslotUi/TreePickerPaneComponent';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
-import { Grid } from 'alexandria-adslot';
+import { Empty, Grid } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerPure.scss');
 
@@ -78,6 +78,7 @@ const TreePickerPureComponent = ({
               valueFormatter={valueFormatter}
             />
           )}
+          <Empty collection={filteredSubtree} icon={emptyIcon} text="No items to select." />
         </Grid>
 
       </TreePickerPane>

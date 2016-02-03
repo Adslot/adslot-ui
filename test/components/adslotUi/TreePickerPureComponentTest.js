@@ -3,18 +3,36 @@
 
 import createComponent from 'helpers/shallowRenderHelper';
 import React from 'react';
-import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent.js';
-import { Grid } from 'alexandria-adslot';
+import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
+import { Empty, Grid } from 'alexandria-adslot';
 
 describe('TreePickerPureComponent', () => {
+  const indices = {
+    leftPane: 0,
+    rightPane: 1,
+  };
+
+  const leftPaneIndices = {
+    tabs: 0,
+    nav: 1,
+    nodesGrid: 2,
+  };
+
+  const nodesGridIndices = {
+    nodes: 0,
+    empty: 1,
+  };
+
+  for (const obj of [indices, leftPaneIndices, nodesGridIndices]) {Object.freeze(obj);}
+
   it('should render with defaults', () => {
     const component = createComponent(TreePickerPureComponent, { changeRootType: () => null });
     expect(component.props.className).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.props.children[0];
+    const leftPaneElement = component.props.children[indices.leftPane];
     expect(leftPaneElement.type.name).to.equal('TreePickerPaneComponent');
 
-    const tabsElement = leftPaneElement.props.children[0];
+    const tabsElement = leftPaneElement.props.children[leftPaneIndices.tabs];
     expect(tabsElement.type).to.equal('ul');
     expect(tabsElement.props.className).to.equal('nav nav-tabs');
     const tabElement = tabsElement.props.children;
@@ -23,14 +41,25 @@ describe('TreePickerPureComponent', () => {
     expect(tabElement.props.children.type).to.equal('a');
     expect(tabElement.props.children.props.children).to.equal('Loading');
 
-    const navElement = leftPaneElement.props.children[1];
+    const navElement = leftPaneElement.props.children[leftPaneIndices.nav];
     expect(navElement.type.name).to.equal('TreePickerNavComponent');
 
-    const nodesGridElement = leftPaneElement.props.children[2];
+    const nodesGridElement = leftPaneElement.props.children[leftPaneIndices.nodesGrid];
     expect(nodesGridElement.type).to.equal((<Grid />).type);
-    expect(nodesGridElement.props.children).to.have.length(0);
 
-    const rightPaneElement = component.props.children[1];
+    expect(nodesGridElement.props.children).to.have.length(2);
+    const nodesElements = nodesGridElement.props.children[nodesGridIndices.nodes];
+    expect(nodesElements).to.have.length(0);
+
+    const emptyElement = nodesGridElement.props.children[nodesGridIndices.empty];
+    expect(emptyElement.type).to.equal((<Empty />).type);
+
+    expect(emptyElement.props.collection).to.deep.equal([]);
+
+    expect(emptyElement.props.icon).to.equal('//placehold.it/70x70');
+    expect(emptyElement.props.text).to.equal('No items to select.');
+
+    const rightPaneElement = component.props.children[indices.rightPane];
     expect(rightPaneElement.type.name).to.equal('TreePickerPaneComponent');
 
     const treePickerSelectedElement = rightPaneElement.props.children;
@@ -78,10 +107,10 @@ describe('TreePickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.props.children[0];
+    const leftPaneElement = component.props.children[indices.leftPane];
     expect(leftPaneElement.type.name).to.equal('TreePickerPaneComponent');
 
-    const tabsElement = leftPaneElement.props.children[0];
+    const tabsElement = leftPaneElement.props.children[leftPaneIndices.tabs];
     expect(tabsElement.type).to.equal('ul');
     expect(tabsElement.props.className).to.equal('nav nav-tabs');
     const tabElements = tabsElement.props.children;
@@ -109,15 +138,26 @@ describe('TreePickerPureComponent', () => {
     secondTabAnchor.props.onClick();
     expect(rootTypeChanges).to.deep.equal(['1']);
 
-    const navElement = leftPaneElement.props.children[1];
+    const navElement = leftPaneElement.props.children[leftPaneIndices.nav];
     expect(navElement.type.name).to.equal('TreePickerNavComponent');
 
-    const nodesGridElement = leftPaneElement.props.children[2];
+    const nodesGridElement = leftPaneElement.props.children[leftPaneIndices.nodesGrid];
     expect(nodesGridElement.type).to.equal((<Grid />).type);
 
-    expect(nodesGridElement.props.children).to.have.length(1);
+    expect(nodesGridElement.props.children).to.have.length(2);
+    const nodesElements = nodesGridElement.props.children[nodesGridIndices.nodes];
+    expect(nodesElements).to.have.length(1);
+    expect(nodesElements[0].props.node.label).to.equal('Australian Capital Territory');
 
-    const rightPaneElement = component.props.children[1];
+    const emptyElement = nodesGridElement.props.children[nodesGridIndices.empty];
+    expect(emptyElement.type).to.equal((<Empty />).type);
+
+    expect(emptyElement.props.collection).to.have.length(1);
+
+    expect(emptyElement.props.icon).to.equal('url');
+    expect(emptyElement.props.text).to.equal('No items to select.');
+
+    const rightPaneElement = component.props.children[indices.rightPane];
     expect(rightPaneElement.type.name).to.equal('TreePickerPaneComponent');
 
     const treePickerSelectedElement = rightPaneElement.props.children;
