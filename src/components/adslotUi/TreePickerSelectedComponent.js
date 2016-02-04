@@ -2,7 +2,7 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import React, { PropTypes } from 'react';
-import { Alert, Empty, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
+import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerSelected.scss');
 
@@ -46,21 +46,15 @@ const TreePickerSelectedComponent = ({
   return (
     <div className="treepickerselected-component">
       <h1 className="treepickerselected-component-header">Selected</h1>
-      <Totals
-        toSum={[
-          { label: baseItem.label, value: baseItem.value },
-          { label: 'Selected', value: totalOfRootTypeValues },
-        ]}
-        valueFormatter={valueFormatter}
-      />
-
-      {unresolvedRootTypes ?
-        <Alert type={warnOnRequired ? 'warning' : 'danger'}>Required: {unresolvedRootTypes}.</Alert> :
-        null
-      }
+      <Grid>
+        <GridRow>
+          <GridCell stretch>{baseItem.label}</GridCell>
+          <GridCell>{valueFormatter(baseItem.value)}</GridCell>
+        </GridRow>
+      </Grid>
 
       <div className={scrollableClass}>
-        {_.keys(selectedNodesByRootType).map((rootTypeId) =>
+        {_.map(selectedNodesByRootType, (val, rootTypeId) =>
           <Grid key={rootTypeId}>
 
             <GridRow type="header">
@@ -87,8 +81,22 @@ const TreePickerSelectedComponent = ({
 
           </Grid>
         )}
+        <Empty collection={_.values(selectedNodesByRootType)} icon={emptyIcon} text="Nothing Selected" />
+        <FlexSpacer />
       </div>
-      <Empty collection={_.values(selectedNodesByRootType)} icon={emptyIcon} text="Nothing Selected" />
+
+      {unresolvedRootTypes ?
+        <Alert type={warnOnRequired ? 'warning' : 'danger'}>Required: {unresolvedRootTypes}.</Alert> :
+        null
+      }
+
+      <Totals
+        toSum={[
+          { value: baseItem.value, isHidden: true },
+          { label: 'Selected', value: totalOfRootTypeValues },
+        ]}
+        valueFormatter={valueFormatter}
+      />
     </div>
   );
 };

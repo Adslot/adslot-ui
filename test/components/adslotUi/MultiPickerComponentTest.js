@@ -4,8 +4,9 @@
 import createComponent from 'helpers/shallowRenderHelper';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
-import React from 'react';
 import MultiPickerComponent from 'components/adslotUi/MultiPickerComponent';
+import React from 'react';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('MultiPickerComponent', () => {
   const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
@@ -19,6 +20,8 @@ describe('MultiPickerComponent', () => {
   const itemHeaders = { left: 'Team', right: 'Member' };
 
   const items = [teamMember1, teamMember2, teamMember3];
+
+  deepFreeze([teamMember1, teamMember2, teamMember3, itemHeaders, items]);
 
   const getInitialSelection = () => [teamMember2];
 
@@ -112,7 +115,7 @@ describe('MultiPickerComponent', () => {
     expect(multiPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
   });
 
-  it('should disable apply button for empty selection if `allowEmptySelection` is set to false', () => {
+  it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
     const component = createComponent(MultiPickerComponent, {
       allowEmptySelection: false,
       items,

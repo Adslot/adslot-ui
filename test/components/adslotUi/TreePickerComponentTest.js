@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import TreePickerComponent from 'components/adslotUi/TreePickerComponent';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('TreePickerComponent', () => {
   const runComponentDidMount = ({ shallowRenderer }) =>
@@ -78,7 +79,10 @@ describe('TreePickerComponent', () => {
 
   const valueFormatter = (value) => value;
 
+  deepFreeze([baseItem, rootTypes, actNode, ntNode, qldNode, saNode, cbrNode, maleNode]);
+
   let initialSelection;
+
   beforeEach(() => {
     initialSelection = [
       actNode,

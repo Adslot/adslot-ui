@@ -2,9 +2,10 @@
 /* global expect */
 
 import createComponent from 'helpers/shallowRenderHelper';
-import { Avatar } from 'alexandria-adslot';
 import React from 'react';
 import UserMultiPickerComponent from 'components/adslotUi/UserMultiPickerComponent';
+import { Avatar } from 'alexandria-adslot';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('UserMultiPickerComponent', () => {
   const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
@@ -18,6 +19,8 @@ describe('UserMultiPickerComponent', () => {
   const users = [teamMember1, teamMember2, teamMember3];
 
   const initialSelection = () => [teamMember2];
+
+  deepFreeze([teamMember1, teamMember2, teamMember3, userHeaders, users]);
 
   it('should render with defaults', () => {
     const component = createComponent(UserMultiPickerComponent);

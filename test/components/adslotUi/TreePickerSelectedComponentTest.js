@@ -5,9 +5,30 @@ import _ from 'lodash';
 import createComponent from 'helpers/shallowRenderHelper';
 import React from 'react';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
-import { Alert, Empty, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
+import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('TreePickerSelectedComponent', () => {
+  const indices = {
+    header: 0,
+    baseItemGrid: 1,
+    scrollable: 2,
+    alert: 3,
+    totals: 4,
+  };
+
+  const gridIndices = {
+    headerRow: 0,
+    nodes: 1,
+    subFooterRow: 2,
+  };
+
+  const scrollableIndices = {
+    grids: 0,
+    empty: 1,
+    flexSpacer: 2,
+  };
+
   const rootTypes = [
     {
       label: 'Geography',
@@ -24,16 +45,33 @@ describe('TreePickerSelectedComponent', () => {
     { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' };
 
   const ntNode =
-  { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
+    { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
 
   const selectedNodesByRootType = _.groupBy([actNode, ntNode], 'rootTypeId');
 
   const checkHeader = (component) => {
-    const headerElement = component.props.children[0];
+    const headerElement = component.props.children[indices.header];
     expect(headerElement.type).to.equal('h1');
     expect(headerElement.props.className).to.equal('treepickerselected-component-header');
     expect(headerElement.props.children).to.equal('Selected');
+
+    const baseItemGridElement = component.props.children[indices.baseItemGrid];
+    expect(baseItemGridElement.type).to.equal((<Grid />).type);
+
+    const gridRowElement = baseItemGridElement.props.children;
+    expect(gridRowElement.type).to.equal((<GridRow />).type);
+
+    const firstGridCellElement = gridRowElement.props.children[0];
+    expect(firstGridCellElement.type).to.equal((<GridCell />).type);
+    expect(firstGridCellElement.props.stretch).to.equal(true);
+    expect(firstGridCellElement.props.children).to.equal('Base');
+
+    const secondGridCellElement = gridRowElement.props.children[1];
+    expect(secondGridCellElement.type).to.equal((<GridCell />).type);
+    expect(secondGridCellElement.props.children).to.equal(0);
   };
+
+  deepFreeze([indices, gridIndices, scrollableIndices, rootTypes, actNode, ntNode, selectedNodesByRootType]);
 
   it('should render with defaults', () => {
     const component = createComponent(TreePickerSelected);
@@ -41,30 +79,31 @@ describe('TreePickerSelectedComponent', () => {
 
     checkHeader(component);
 
-    const totalsElement = component.props.children[1];
-
-    expect(totalsElement.type).to.equal((<Totals />).type);
-    expect(totalsElement.props.toSum).to.deep.equal([
-      { label: 'Base', value: 0 },
-      { label: 'Selected', value: 0 },
-    ]);
-    expect(totalsElement.props.valueFormatter).to.be.a('function');
-
-    const alertElement = component.props.children[2];
-    expect(alertElement).to.be.a('null');
-
-    const scrollableElement = component.props.children[3];
+    const scrollableElement = component.props.children[indices.scrollable];
     expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable');
 
-    const gridElements = scrollableElement.props.children;
+    const gridElements = scrollableElement.props.children[scrollableIndices.grids];
     expect(gridElements).to.have.length(0);
 
-    const emptyElement = component.props.children[4];
+    const emptyElement = scrollableElement.props.children[scrollableIndices.empty];
 
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.have.length(0);
     expect(emptyElement.props.icon).to.equal('//placehold.it/70x70');
     expect(emptyElement.props.text).to.equal('Nothing Selected');
+    const flexSpacerElement = scrollableElement.props.children[scrollableIndices.flexSpacer];
+    expect(flexSpacerElement.type).to.equal((<FlexSpacer />).type);
+
+    const alertElement = component.props.children[indices.alert];
+    expect(alertElement).to.be.a('null');
+
+    const totalsElement = component.props.children[indices.totals];
+    expect(totalsElement.type).to.equal((<Totals />).type);
+    expect(totalsElement.props.toSum).to.deep.equal([
+      { value: 0, isHidden: true },
+      { label: 'Selected', value: 0 },
+    ]);
+    expect(totalsElement.props.valueFormatter).to.be.a('function');
   });
 
   it('should render with props', () => {
@@ -79,32 +118,32 @@ describe('TreePickerSelectedComponent', () => {
 
     checkHeader(component);
 
-    const totalsElement = component.props.children[1];
+    const totalsElement = component.props.children[indices.totals];
 
     expect(totalsElement.type).to.equal((<Totals />).type);
     expect(totalsElement.props.toSum).to.deep.equal([
-      { label: 'Base', value: 0 },
+      { value: 0, isHidden: true },
       { label: 'Selected', value: 750 },
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
-    const alertElement = component.props.children[2];
+    const alertElement = component.props.children[indices.alert];
 
     expect(alertElement.type).to.equal((<Alert />).type);
     expect(alertElement.props.type).to.equal('danger');
     expect(alertElement.props.children).to.deep.equal(['Required: ', 'Segments', '.']);
 
-    const scrollableElement = component.props.children[3];
+    const scrollableElement = component.props.children[indices.scrollable];
     expect(scrollableElement.props.className).to.equal('treepickerselected-component-scrollable is-short');
 
-    const gridElements = scrollableElement.props.children;
+    const gridElements = scrollableElement.props.children[scrollableIndices.grids];
     expect(gridElements).to.have.length(1);
 
     const gridElement = gridElements[0];
 
     expect(gridElement.type).to.equal((<Grid />).type);
 
-    const headerRowElement = gridElement.props.children[0];
+    const headerRowElement = gridElement.props.children[gridIndices.headerRow];
 
     expect(headerRowElement.type).to.equal((<GridRow />).type);
     expect(headerRowElement.props.type).to.equal('header');
@@ -120,7 +159,7 @@ describe('TreePickerSelectedComponent', () => {
     expect(headerSecondCell.type).to.equal((<GridCell />).type);
     expect(headerSecondCell.props.children).to.equal('Galactic Credits');
 
-    const nodeElements = gridElement.props.children[1];
+    const nodeElements = gridElement.props.children[gridIndices.nodes];
     expect(nodeElements).to.have.length(2);
 
     expect(nodeElements[0].props.selected).to.equal(true);
@@ -133,7 +172,7 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(nodeElements[1].props.node).to.deep.equal(ntNode);
 
-    const subFooterRowElement = gridElement.props.children[2];
+    const subFooterRowElement = gridElement.props.children[gridIndices.subFooterRow];
 
     expect(subFooterRowElement.type).to.equal((<GridRow />).type);
     expect(subFooterRowElement.props.type).to.equal('subfooter');
@@ -154,7 +193,7 @@ describe('TreePickerSelectedComponent', () => {
     expect(subFooterThirdCell.type).to.equal((<GridCell />).type);
     expect(subFooterThirdCell.props.children).to.equal(750);
 
-    const emptyElement = component.props.children[4];
+    const emptyElement = scrollableElement.props.children[scrollableIndices.empty];
 
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.deep.equal([[actNode, ntNode]]);
@@ -168,21 +207,21 @@ describe('TreePickerSelectedComponent', () => {
       rootTypes,
       selectedNodesByRootType,
     });
-    const totalsElement = component.props.children[1];
+    const totalsElement = component.props.children[indices.totals];
 
     expect(totalsElement.type).to.equal((<Totals />).type);
     expect(totalsElement.props.toSum).to.deep.equal([
-      { label: 'Base', value: 0 },
+      { value: 0, isHidden: true },
       { label: 'Selected', value: 1500 },
     ]);
 
-    const scrollableElement = component.props.children[3];
+    const scrollableElement = component.props.children[indices.scrollable];
 
-    const gridElements = scrollableElement.props.children;
+    const gridElements = scrollableElement.props.children[scrollableIndices.grids];
 
     const gridElement = gridElements[0];
 
-    const subFooterRowElement = gridElement.props.children[2];
+    const subFooterRowElement = gridElement.props.children[gridIndices.subFooterRow];
 
     const subFooterSecondCell = subFooterRowElement.props.children[1];
 
@@ -198,7 +237,7 @@ describe('TreePickerSelectedComponent', () => {
     });
     expect(component.props.className).to.equal('treepickerselected-component');
 
-    const alertElement = component.props.children[2];
+    const alertElement = component.props.children[indices.alert];
 
     expect(alertElement.type).to.equal((<Alert />).type);
     expect(alertElement.props.type).to.equal('warning');

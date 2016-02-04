@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import TreePickerNodeComponent from 'components/adslotUi/TreePickerNodeComponent';
 import { GridCell, GridRow } from 'alexandria-adslot';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('TreePickerNodeComponent', () => {
   const newYorkNode = {
@@ -17,6 +18,7 @@ describe('TreePickerNodeComponent', () => {
     path: ['USA', 'NY'],
     isExpandable: true,
   };
+  deepFreeze(newYorkNode);
 
   it('should render a node with defaults', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode });

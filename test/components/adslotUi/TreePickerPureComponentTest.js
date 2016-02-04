@@ -4,7 +4,8 @@
 import createComponent from 'helpers/shallowRenderHelper';
 import React from 'react';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
-import { Empty, Grid } from 'alexandria-adslot';
+import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('TreePickerPureComponent', () => {
   const indices = {
@@ -16,6 +17,7 @@ describe('TreePickerPureComponent', () => {
     tabs: 0,
     nav: 1,
     nodesGrid: 2,
+    flexSpacer: 3,
   };
 
   const nodesGridIndices = {
@@ -23,7 +25,7 @@ describe('TreePickerPureComponent', () => {
     empty: 1,
   };
 
-  for (const obj of [indices, leftPaneIndices, nodesGridIndices]) {Object.freeze(obj);}
+  deepFreeze([indices, leftPaneIndices, nodesGridIndices]);
 
   it('should render with defaults', () => {
     const component = createComponent(TreePickerPureComponent, { changeRootType: () => null });
@@ -53,11 +55,12 @@ describe('TreePickerPureComponent', () => {
 
     const emptyElement = nodesGridElement.props.children[nodesGridIndices.empty];
     expect(emptyElement.type).to.equal((<Empty />).type);
-
     expect(emptyElement.props.collection).to.deep.equal([]);
-
     expect(emptyElement.props.icon).to.equal('//placehold.it/70x70');
     expect(emptyElement.props.text).to.equal('No items to select.');
+
+    const flexSpacerElement = leftPaneElement.props.children[leftPaneIndices.flexSpacer];
+    expect(flexSpacerElement.type).to.equal((<FlexSpacer />).type);
 
     const rightPaneElement = component.props.children[indices.rightPane];
     expect(rightPaneElement.type.name).to.equal('TreePickerPaneComponent');
