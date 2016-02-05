@@ -308,6 +308,7 @@ class AppComponent extends React.Component {
           getSubtree={getSubtree}
           modalTitle="Edit Targeting"
           rootTypes={rootTypes}
+          selectedLabel="Selected Targeting"
           show={this.state.showTreePickerModal}
           valueFormatter={valueFormatter}
         />

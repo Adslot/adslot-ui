@@ -24,6 +24,7 @@ const TreePickerPureComponent = ({
   searchOnClear,
   searchPlaceholder,
   searchValue,
+  selectedLabel,
   selectedNodesByRootType,
   subtree,
   valueFormatter,
@@ -92,6 +93,7 @@ const TreePickerPureComponent = ({
           emptyIcon={emptyIcon}
           removeNode={removeNode}
           rootTypes={rootTypes}
+          selectedLabel={selectedLabel}
           selectedNodesByRootType={selectedNodesByRootType}
           valueFormatter={valueFormatter}
           warnOnRequired={warnOnRequired}
@@ -147,6 +149,7 @@ TreePickerPureComponent.propTypes = {
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
   searchValue: PropTypes.string,
+  selectedLabel: PropTypes.string,
   selectedNodesByRootType: PropTypes.shape(),
   subtree: PropTypes.arrayOf(nodePropType).isRequired,
   valueFormatter: PropTypes.func,

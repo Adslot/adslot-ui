@@ -13,6 +13,7 @@ const TreePickerSelectedComponent = ({
   includeNode,
   removeNode,
   rootTypes,
+  selectedLabel,
   selectedNodesByRootType,
   valueFormatter,
   valueLabel,
@@ -45,7 +46,7 @@ const TreePickerSelectedComponent = ({
 
   return (
     <div className="treepickerselected-component">
-      <h1 className="treepickerselected-component-header">Selected</h1>
+      <h1 className="treepickerselected-component-header">{selectedLabel}</h1>
       <Grid>
         <GridRow>
           <GridCell stretch>{baseItem.label}</GridCell>
@@ -93,7 +94,7 @@ const TreePickerSelectedComponent = ({
       <Totals
         toSum={[
           { value: baseItem.value, isHidden: true },
-          { label: 'Selected', value: totalOfRootTypeValues },
+          { label: selectedLabel, value: totalOfRootTypeValues },
         ]}
         valueFormatter={valueFormatter}
       />
@@ -121,6 +122,7 @@ TreePickerSelectedComponent.propTypes = {
   includeNode: PropTypes.func.isRequired,
   removeNode: PropTypes.func.isRequired,
   rootTypes: PropTypes.arrayOf(rootType).isRequired,
+  selectedLabel: PropTypes.string.isRequired,
   selectedNodesByRootType: PropTypes.shape().isRequired,
   valueFormatter: PropTypes.func.isRequired,
   valueLabel: PropTypes.string.isRequired,
@@ -136,6 +138,7 @@ TreePickerSelectedComponent.defaultProps = {
   includeNode: () => null,
   removeNode: () => null,
   rootTypes: [],
+  selectedLabel: 'Selected',
   selectedNodesByRootType: {},
   valueFormatter: (value) => value,
   valueLabel: 'Cost',

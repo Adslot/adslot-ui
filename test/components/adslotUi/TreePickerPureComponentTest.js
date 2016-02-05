@@ -101,6 +101,7 @@ describe('TreePickerPureComponent', () => {
       removeNode: testFunction,
       rootTypes,
       searchOnQuery: testFunction,
+      selectedLabel: 'Selected Targeting',
       selectedNodesByRootType: {},
       subtree: [
         { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' },
@@ -166,5 +167,6 @@ describe('TreePickerPureComponent', () => {
     const treePickerSelectedElement = rightPaneElement.props.children;
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
     expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(true);
+    expect(treePickerSelectedElement.props.selectedLabel).to.equal('Selected Targeting');
   });
 });

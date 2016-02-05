@@ -123,7 +123,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.rootTypes).to.deep.equal([]);
     expect(treePickerPureElement.props.searchOnChange).to.be.a('function');
     expect(treePickerPureElement.props.searchOnClear).to.be.a('function');
-    expect(treePickerPureElement.props.searchValue).to.be.a('string');
+    expect(treePickerPureElement.props.searchValue).to.equal('');
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal({});
     expect(treePickerPureElement.props.subtree).to.deep.equal([]);
     expect(treePickerPureElement.props.valueFormatter).to.be.an('undefined');
@@ -149,10 +149,11 @@ describe('TreePickerComponent', () => {
     const component = createAndMountComponent(TreePickerComponent, {
       averageWithinRootType: true,
       baseItem,
-      initialSelection,
       getSubtree,
+      initialSelection,
       modalTitle: 'Edit Targeting',
       rootTypes,
+      selectedLabel: 'Selected Targeting',
       valueFormatter,
       warnOnRequired: true,
     });
@@ -178,7 +179,8 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.rootTypes).to.equal(rootTypes);
     expect(treePickerPureElement.props.searchOnChange).to.be.a('function');
     expect(treePickerPureElement.props.searchOnClear).to.be.a('function');
-    expect(treePickerPureElement.props.searchValue).to.be.a('string');
+    expect(treePickerPureElement.props.searchValue).to.equal('');
+    expect(treePickerPureElement.props.selectedLabel).to.equal('Selected Targeting');
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(
       _.groupBy(initialSelection, 'rootTypeId')
     );
