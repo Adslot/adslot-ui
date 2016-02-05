@@ -11,7 +11,7 @@
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "codecov": "cat coverage/coverage-final.json | codecov",
     "posttest": "npm run lint && npm run sass-lint && npm run jscs-lint && npm run check-commit",
-    "dist": "webpack --env=dist",
+    "dist": "webpack --bail --env=dist",
     "profile": "webpack --env=dist --profile --json > stats.json",
     "lint": "eslint ./src ./test",
     "sass-lint": "sass-lint './src/**/*.scss' -v",

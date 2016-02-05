@@ -157,6 +157,7 @@ class TreePickerComponent extends React.Component {
             searchOnChange={this.searchOnChange}
             searchOnClear={this.searchOnClear}
             searchValue={state.searchValue}
+            selectedLabel={props.selectedLabel}
             selectedNodesByRootType={state.selectedNodesByRootType}
             subtree={state.subtree}
             valueFormatter={props.valueFormatter}
@@ -204,6 +205,7 @@ TreePickerComponent.propTypes = {
       isRequired: PropTypes.bool.isRequired,
     })
   ),
+  selectedLabel: PropTypes.string,
   show: PropTypes.bool.isRequired,
   throttleTime: PropTypes.number.isRequired,
   valueFormatter: PropTypes.func,

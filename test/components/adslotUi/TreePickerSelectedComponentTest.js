@@ -49,11 +49,11 @@ describe('TreePickerSelectedComponent', () => {
 
   const selectedNodesByRootType = _.groupBy([actNode, ntNode], 'rootTypeId');
 
-  const checkHeader = (component) => {
+  const checkHeader = (component, props = {}) => {
     const headerElement = component.props.children[indices.header];
     expect(headerElement.type).to.equal('h1');
     expect(headerElement.props.className).to.equal('treepickerselected-component-header');
-    expect(headerElement.props.children).to.equal('Selected');
+    expect(headerElement.props.children).to.equal(props.selectedLabel || 'Selected');
 
     const baseItemGridElement = component.props.children[indices.baseItemGrid];
     expect(baseItemGridElement.type).to.equal((<Grid />).type);
@@ -109,21 +109,22 @@ describe('TreePickerSelectedComponent', () => {
   it('should render with props', () => {
     const component = createComponent(TreePickerSelected, {
       averageWithinRootType: true,
+      emptyIcon: 'awesome-url',
+      selectedLabel: 'Selected Targeting',
       rootTypes,
       selectedNodesByRootType,
-      emptyIcon: 'awesome-url',
       valueLabel: 'Galactic Credits',
     });
     expect(component.props.className).to.equal('treepickerselected-component');
 
-    checkHeader(component);
+    checkHeader(component, { selectedLabel: 'Selected Targeting' });
 
     const totalsElement = component.props.children[indices.totals];
 
     expect(totalsElement.type).to.equal((<Totals />).type);
     expect(totalsElement.props.toSum).to.deep.equal([
       { value: 0, isHidden: true },
-      { label: 'Selected', value: 750 },
+      { label: 'Selected Targeting', value: 750 },
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
