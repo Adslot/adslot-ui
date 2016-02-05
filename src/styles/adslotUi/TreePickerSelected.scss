@@ -1,7 +1,7 @@
 @import '../variable';
 
 .treepickerselected-component {
-  $header-height: 26px;
+  $header-height: 31px;
 
   &-header {
     font-size: $font-size-subheader;
@@ -11,8 +11,12 @@
   }
 
   &-scrollable {
-    $scrollable-height: $treepicker-height + $header-height - 128px;
+    $base-item-grid-height: 36px;
+    $totals-component-height: 50px;
+    $scrollable-height: $treepicker-height - $header-height - $base-item-grid-height - $totals-component-height;
 
+    display: flex;
+    flex-direction: column;
     height: $scrollable-height;
     overflow: auto;
 
@@ -22,16 +26,22 @@
       height: $scrollable-height - $alert-height;
     }
 
+    // First rootType Grid
     .grid-component {
       &:first-child {
         border-top: 0;
       }
     }
+
+    // Totals Grid
+    + .grid-component {
+      border-top: 0;
+    }
   }
 
   .empty-component {
-    border-bottom: $border-lighter;
     border-left: $border-lighter;
     border-right: $border-lighter;
+    width: 100%;
   }
 }

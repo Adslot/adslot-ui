@@ -2,11 +2,12 @@
 /* global expect */
 
 import _ from 'lodash';
-import Checkbox from 'react-icheck/lib/Checkbox';
 import createComponent from 'helpers/shallowRenderHelper';
-import React from 'react';
+import Checkbox from 'react-icheck/lib/Checkbox';
 import MultiPickerPureComponent from 'components/adslotUi/MultiPickerPureComponent';
+import React from 'react';
 import { Grid, GridCell, GridRow } from 'alexandria-adslot';
+import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('MultiPickerPureComponent', () => {
   const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
@@ -22,6 +23,8 @@ describe('MultiPickerPureComponent', () => {
   const items = [teamMember1, teamMember2, teamMember3];
 
   const selectedItems = [teamMember2];
+
+  deepFreeze([teamMember1, teamMember2, teamMember3, itemHeaders, items, selectedItems]);
 
   it('should render with defaults', () => {
     const component = createComponent(MultiPickerPureComponent);
@@ -65,7 +68,7 @@ describe('MultiPickerPureComponent', () => {
         const gridRowCellCheckboxElement = gridRowCellElements[1].props.children;
         expect(gridRowCellCheckboxElement.type).to.equal((<Checkbox />).type);
 
-        expect(gridRowCellCheckboxElement.props.checked).to.equal(_.contains(selectedItems, items[index]));
+        expect(gridRowCellCheckboxElement.props.checked).to.equal(_.includes(selectedItems, items[index]));
       }
     }
   });

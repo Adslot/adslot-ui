@@ -3,4 +3,8 @@
 .treepickerpure-component {
   display: flex;
   height: $treepicker-height;
+
+  .flexspacer-component {
+    border-top: 0;
+  }
 }

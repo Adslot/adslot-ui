@@ -11,6 +11,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import MultiPicker from 'components/adslotUi/MultiPickerComponent';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
+import Select from 'react-select';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
@@ -21,6 +22,7 @@ import {
   Avatar,
   Breadcrumb,
   Empty,
+  FlexSpacer,
   Grid,
   GridCell,
   GridRow,
@@ -29,8 +31,6 @@ import {
   Totals,
 } from 'alexandria-adslot';
 
-import Select from 'react-select';
-
 module.exports = {
   Alert,
   Avatar,
@@ -38,6 +38,7 @@ module.exports = {
   Button,
   Checkbox,
   Empty,
+  FlexSpacer,
   Grid,
   GridCell,
   GridRow,

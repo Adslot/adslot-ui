@@ -4,7 +4,7 @@ import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerPane from 'components/adslotUi/TreePickerPaneComponent';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
-import { Empty, Grid } from 'alexandria-adslot';
+import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerPure.scss');
 
@@ -39,7 +39,7 @@ const TreePickerPureComponent = ({
 
   const selectedIds = _.map(selectedNodesByRootType[activeRootTypeId], 'id');
   const filteredSubtree = _(subtree)
-    .filter(({ id }) => !_.contains(selectedIds, id))
+    .filter(({ id }) => !_.includes(selectedIds, id))
     .sortBy('label')
     .value();
 
@@ -81,6 +81,7 @@ const TreePickerPureComponent = ({
           <Empty collection={filteredSubtree} icon={emptyIcon} text="No items to select." />
         </Grid>
 
+        <FlexSpacer />
       </TreePickerPane>
 
       <TreePickerPane>

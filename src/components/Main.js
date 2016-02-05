@@ -111,8 +111,8 @@ class AppComponent extends React.Component {
         emptyIcon: 'http://placehold.it/70x70',
         isRequired: true,
       },
-      { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
-      { label: 'Segments', id: '2', icon: 'http://placehold.it/16x16', isRequired: true },
+      { label: 'Gender', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
+      { label: 'Age', id: '2', icon: 'http://placehold.it/16x16', isRequired: false },
     ];
 
     const actNode =
