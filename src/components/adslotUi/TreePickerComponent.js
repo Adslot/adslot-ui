@@ -151,6 +151,7 @@ class TreePickerComponent extends React.Component {
             changeRootType={this.changeRootType}
             emptyIcon={_.get(state, 'rootType.emptyIcon')}
             expandNode={this.expandNode}
+            helpText={props.helpText}
             includeNode={this.includeNode}
             removeNode={this.removeNode}
             rootTypes={props.rootTypes}
@@ -192,6 +193,10 @@ TreePickerComponent.propTypes = {
   averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: PropTypes.shape(),
   getSubtree: PropTypes.func,
+  helpText: PropTypes.shape({
+    average: PropTypes.string,
+    sum: PropTypes.string,
+  }),
   initialSelection: PropTypes.arrayOf(nodePropType).isRequired,
   modalApply: PropTypes.func.isRequired,
   modalClose: PropTypes.func.isRequired,

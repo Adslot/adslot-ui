@@ -305,6 +305,12 @@ class AppComponent extends React.Component {
           baseItem={baseItem}
           modalClose={this.toggleTreePickerModal}
           initialSelection={initialSelection}
+          helpText={{
+            average: `CPM line items use the average method.
+              Targeting adjusts which people, but not the number of people who see your ad.`,
+            sum: `CPD (Sponsorship) line items use the sum method.
+              Targeting adjusts which people, and the number of people who see your ad.`,
+          }}
           getSubtree={getSubtree}
           modalTitle="Edit Targeting"
           rootTypes={rootTypes}

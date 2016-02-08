@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import classNames from 'classnames';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Popover from 'react-bootstrap/lib/Popover';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import React, { PropTypes } from 'react';
 import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
@@ -10,6 +12,7 @@ const TreePickerSelectedComponent = ({
   averageWithinRootType,
   baseItem,
   emptyIcon,
+  helpText,
   includeNode,
   removeNode,
   rootTypes,
@@ -76,7 +79,18 @@ const TreePickerSelectedComponent = ({
 
             <GridRow type="subfooter">
               <GridCell stretch />
-              <GridCell>{averageWithinRootType ? 'Average' : 'Subtotal'}</GridCell>
+              <GridCell>
+                <OverlayTrigger
+                  placement="left"
+                  overlay={
+                    <Popover id={`subtotal-${rootTypeId}`}>
+                      {averageWithinRootType ? helpText.average : helpText.sum}
+                    </Popover>
+                  }
+                >
+                  <span>{averageWithinRootType ? 'Average' : 'Subtotal'}</span>
+                </OverlayTrigger>
+              </GridCell>
               <GridCell>{valueFormatter(valueByRootType[rootTypeId])}</GridCell>
             </GridRow>
 
@@ -119,6 +133,10 @@ TreePickerSelectedComponent.propTypes = {
     value: PropTypes.number.isRequired,
   }).isRequired,
   emptyIcon: PropTypes.string,
+  helpText: PropTypes.shape({
+    average: PropTypes.string.isRequired,
+    sum: PropTypes.string.isRequired,
+  }).isRequired,
   includeNode: PropTypes.func.isRequired,
   removeNode: PropTypes.func.isRequired,
   rootTypes: PropTypes.arrayOf(rootType).isRequired,
@@ -134,6 +152,10 @@ TreePickerSelectedComponent.defaultProps = {
   baseItem: {
     label: 'Base',
     value: 0,
+  },
+  helpText: {
+    average: 'Selecting adjusts the set distribution, but not the set size.',
+    sum: 'Selecting adjusts the set distribution and size.',
   },
   includeNode: () => null,
   removeNode: () => null,

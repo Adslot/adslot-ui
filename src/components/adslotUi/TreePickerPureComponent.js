@@ -17,6 +17,7 @@ const TreePickerPureComponent = ({
   changeRootType,
   emptyIcon,
   expandNode,
+  helpText,
   includeNode,
   removeNode,
   rootTypes,
@@ -91,6 +92,7 @@ const TreePickerPureComponent = ({
           averageWithinRootType={averageWithinRootType}
           baseItem={baseItem}
           emptyIcon={emptyIcon}
+          helpText={helpText}
           removeNode={removeNode}
           rootTypes={rootTypes}
           selectedLabel={selectedLabel}
@@ -143,6 +145,10 @@ TreePickerPureComponent.propTypes = {
   changeRootType: PropTypes.func.isRequired,
   emptyIcon: PropTypes.string,
   expandNode: PropTypes.func,
+  helpText: PropTypes.shape({
+    average: PropTypes.string,
+    sum: PropTypes.string,
+  }),
   includeNode: PropTypes.func,
   removeNode: PropTypes.func,
   rootTypes: PropTypes.arrayOf(rootType).isRequired,
