@@ -10,6 +10,14 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('TreePickerNodeComponent', () => {
+  const indices = {
+    buttonFirstCell: 0,
+    labelWrapperCell: 1,
+    expanderCell: 2,
+    valueCell: 3,
+    buttonLastCell: 4,
+  };
+
   const newYorkNode = {
     id: '1',
     label: 'New York',
@@ -18,7 +26,8 @@ describe('TreePickerNodeComponent', () => {
     path: ['USA', 'NY'],
     isExpandable: true,
   };
-  deepFreeze(newYorkNode);
+
+  deepFreeze([indices, newYorkNode]);
 
   it('should render a node with defaults', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode });
@@ -29,11 +38,11 @@ describe('TreePickerNodeComponent', () => {
 
     expect(rowElement.type).to.equal((<GridRow />).type);
 
-    const buttonFirstCellElement = rowElement.props.children[0];
+    const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
     expect(buttonFirstCellElement).to.be.a('null');
 
-    const labelWrapperCellElement = rowElement.props.children[1];
-    expect(labelWrapperCellElement.props.children).to.have.length(3);
+    const labelWrapperCellElement = rowElement.props.children[indices.labelWrapperCell];
+    expect(labelWrapperCellElement.props.children).to.have.length(2);
 
     const labelElement = labelWrapperCellElement.props.children[0];
     expect(labelElement.props.children).to.equal('New York');
@@ -49,15 +58,15 @@ describe('TreePickerNodeComponent', () => {
     expect(pathElement.props.children).to.equal('NY, USA');
     expect(metaDataElement.props.children[4]).to.equal(')');
 
-    const expanderElement = labelWrapperCellElement.props.children[2];
-    expect(expanderElement).to.be.an('undefined');
+    const expanderElementCell = rowElement.props.children[indices.expanderCell];
+    expect(expanderElementCell).to.be.an('undefined');
 
-    const valueCellElement = rowElement.props.children[2];
+    const valueCellElement = rowElement.props.children[indices.valueCell];
 
     expect(valueCellElement.type).to.equal((<GridCell/>).type);
     expect(valueCellElement.props.children).to.equal(200);
 
-    const buttonLastCellElement = rowElement.props.children[3];
+    const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
 
     expect(buttonLastCellElement.type).to.equal((<GridCell/>).type);
     expect(buttonLastCellElement.props.classSuffixes).to.deep.equal(['button']);
@@ -73,7 +82,7 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selected: true });
     const rowElement = component.props.children;
 
-    const buttonFirstCellElement = rowElement.props.children[0];
+    const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
 
     expect(buttonFirstCellElement.type).to.equal((<GridCell/>).type);
     expect(buttonFirstCellElement.props.classSuffixes).to.deep.equal(['button']);
@@ -83,7 +92,7 @@ describe('TreePickerNodeComponent', () => {
     expect(buttonElement.props.onClick).to.be.a('function');
     expect(buttonElement.props.children).to.equal('Remove');
 
-    const buttonLastCellElement = rowElement.props.children[3];
+    const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
     expect(buttonLastCellElement).to.be.a('null');
   });
 
@@ -92,7 +101,7 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, valueFormatter });
     const rowElement = component.props.children;
 
-    const valueCellElement = rowElement.props.children[2];
+    const valueCellElement = rowElement.props.children[indices.valueCell];
 
     expect(valueCellElement.type).to.equal((<GridCell/>).type);
     expect(valueCellElement.props.children).to.equal('€2');
@@ -104,8 +113,9 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, expandNode });
 
     const rowElement = component.props.children;
-    const labelWrapperCellElement = rowElement.props.children[1];
-    const expanderElement = labelWrapperCellElement.props.children[2];
+    const expanderCellElement = rowElement.props.children[indices.expanderCell];
+    expect(expanderCellElement.type).to.equal((<GridCell />).type);
+    const expanderElement = expanderCellElement.props.children;
 
     expect(expanderElement.props.className).to.equal('treepickernode-component-expander');
     expanderElement.props.onClick();
@@ -119,10 +129,9 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: nonExpandableNode, expandNode });
 
     const rowElement = component.props.children;
-    const labelWrapperCellElement = rowElement.props.children[1];
-    const expanderElement = labelWrapperCellElement.props.children[2];
+    const expanderElementCell = rowElement.props.children[indices.expanderCell];
 
-    expect(expanderElement).to.be.an('undefined');
+    expect(expanderElementCell).to.be.an('undefined');
   });
 
   it('should fire includeNode when clicking on the `include` button', () => {
@@ -131,7 +140,7 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, includeNode });
     const rowElement = component.props.children;
 
-    const buttonLastCellElement = rowElement.props.children[3];
+    const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
     const buttonElement = buttonLastCellElement.props.children;
     buttonElement.props.onClick();
     expect(nodes).to.deep.equal([newYorkNode]);
@@ -141,7 +150,7 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode });
     const rowElement = component.props.children;
 
-    const buttonLastCellElement = rowElement.props.children[3];
+    const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
     const buttonElement = buttonLastCellElement.props.children;
     expect(() => {
       buttonElement.props.onClick();
@@ -159,8 +168,8 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node });
     const rowElement = component.props.children;
 
-    const labelWrapperCellElement = rowElement.props.children[1];
-    expect(labelWrapperCellElement.props.children).to.have.length(3);
+    const labelWrapperCellElement = rowElement.props.children[indices.labelWrapperCell];
+    expect(labelWrapperCellElement.props.children).to.have.length(2);
 
     const labelElement = labelWrapperCellElement.props.children[0];
     expect(labelElement.props.children).to.equal('Cameroon');
@@ -168,7 +177,7 @@ describe('TreePickerNodeComponent', () => {
     const metaDataElement = labelWrapperCellElement.props.children[1];
     expect(metaDataElement).to.be.a('null');
 
-    const valueCellElement = rowElement.props.children[2];
+    const valueCellElement = rowElement.props.children[indices.valueCell];
 
     expect(valueCellElement.type).to.equal((<GridCell/>).type);
     expect(valueCellElement.props.children).to.equal(400);
@@ -185,8 +194,8 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node });
     const rowElement = component.props.children;
 
-    const labelWrapperCellElement = rowElement.props.children[1];
-    expect(labelWrapperCellElement.props.children).to.have.length(3);
+    const labelWrapperCellElement = rowElement.props.children[indices.labelWrapperCell];
+    expect(labelWrapperCellElement.props.children).to.have.length(2);
 
     const labelElement = labelWrapperCellElement.props.children[0];
     expect(labelElement.props.children).to.equal('Toyota');
@@ -194,7 +203,7 @@ describe('TreePickerNodeComponent', () => {
     const metaDataElement = labelWrapperCellElement.props.children[1];
     expect(metaDataElement).to.be.a('null');
 
-    const valueCellElement = rowElement.props.children[2];
+    const valueCellElement = rowElement.props.children[indices.valueCell];
 
     expect(valueCellElement.type).to.equal((<GridCell/>).type);
     expect(valueCellElement.props.children).to.equal(400);
@@ -210,7 +219,7 @@ describe('TreePickerNodeComponent', () => {
     });
     const rowElement = component.props.children;
 
-    const buttonFirstCellElement = rowElement.props.children[0];
+    const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
     const buttonElement = buttonFirstCellElement.props.children;
     expect(buttonElement.props.children).to.equal('Remove');
 
@@ -223,7 +232,7 @@ describe('TreePickerNodeComponent', () => {
     const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selected: true });
     const rowElement = component.props.children;
 
-    const buttonFirstCellElement = rowElement.props.children[0];
+    const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
     const buttonElement = buttonFirstCellElement.props.children;
     expect(buttonElement.props.children).to.equal('Remove');
     expect(() => {

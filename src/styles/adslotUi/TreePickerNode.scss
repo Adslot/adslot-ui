@@ -7,14 +7,16 @@
     background-color: $color-gray-white;
 
     .treepickernode-component-expander {
-      background-image: $icon-expand;
-      cursor: pointer;
-      display: inline-block;
-      height: 16px;
-      margin-bottom: -3px;
-      margin-left: 5px;
-      width: 16px;
+      background-image: $icon-folder-open;
     }
+  }
+
+  .treepickernode-component-expander {
+    background-image: $icon-folder-closed;
+    cursor: pointer;
+    height: $icon-size;
+    margin-bottom: -3px;
+    width: $icon-size;
   }
 
   &-metadata {
