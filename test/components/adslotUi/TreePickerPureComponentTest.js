@@ -97,6 +97,10 @@ describe('TreePickerPureComponent', () => {
       breadcrumbOnClick: testFunction,
       changeRootType: (rootType) => rootTypeChanges.push(rootType),
       emptyIcon: 'url',
+      helpText: {
+        average: 'An average explanation.',
+        sum: 'The sum of all fears.',
+      },
       includeNode: testFunction,
       removeNode: testFunction,
       rootTypes,
@@ -168,5 +172,9 @@ describe('TreePickerPureComponent', () => {
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
     expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(true);
     expect(treePickerSelectedElement.props.selectedLabel).to.equal('Selected Targeting');
+    expect(treePickerSelectedElement.props.helpText).to.deep.equal({
+      average: 'An average explanation.',
+      sum: 'The sum of all fears.',
+    });
   });
 });

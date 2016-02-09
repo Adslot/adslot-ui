@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Modal from 'react-bootstrap/lib/Modal';
 import MultiPicker from 'components/adslotUi/MultiPickerComponent';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Popover from 'react-bootstrap/lib/Popover';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
@@ -44,6 +46,8 @@ module.exports = {
   GridRow,
   Modal,
   MultiPicker,
+  OverlayTrigger,
+  Popover,
   Radio,
   RadioGroup,
   Search,

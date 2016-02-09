@@ -150,6 +150,10 @@ describe('TreePickerComponent', () => {
       averageWithinRootType: true,
       baseItem,
       getSubtree,
+      helpText: {
+        average: 'An average explanation.',
+        sum: 'The sum of all fears.',
+      },
       initialSelection,
       modalTitle: 'Edit Targeting',
       rootTypes,
@@ -174,6 +178,10 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.breadcrumbOnClick).to.be.a('function');
     expect(treePickerPureElement.props.emptyIcon).to.equal('http://placehold.it/70x70');
     expect(treePickerPureElement.props.expandNode).to.be.a('function');
+    expect(treePickerPureElement.props.helpText).to.deep.equal({
+      average: 'An average explanation.',
+      sum: 'The sum of all fears.',
+    });
     expect(treePickerPureElement.props.includeNode).to.be.a('function');
     expect(treePickerPureElement.props.removeNode).to.be.a('function');
     expect(treePickerPureElement.props.rootTypes).to.equal(rootTypes);

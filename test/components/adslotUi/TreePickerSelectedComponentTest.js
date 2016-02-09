@@ -3,6 +3,8 @@
 
 import _ from 'lodash';
 import createComponent from 'helpers/shallowRenderHelper';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Popover from 'react-bootstrap/lib/Popover';
 import React from 'react';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
@@ -187,7 +189,16 @@ describe('TreePickerSelectedComponent', () => {
     const subFooterSecondCell = subFooterRowElement.props.children[1];
 
     expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
-    expect(subFooterSecondCell.props.children).to.equal('Average');
+    const overlayTriggerElement = subFooterSecondCell.props.children;
+    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />}/>).type);
+    expect(overlayTriggerElement.props.placement).to.equal('left');
+    const popoverElement = overlayTriggerElement.props.overlay;
+    expect(popoverElement.type).to.equal((<Popover id=""/>).type);
+    expect(popoverElement.props.id).to.equal('subtotal-0');
+    expect(popoverElement.props.children).to.equal('Selecting adjusts the set distribution, but not the set size.');
+
+    const subtotalTextElement = overlayTriggerElement.props.children;
+    expect(subtotalTextElement.props.children).to.equal('Average');
 
     const subFooterThirdCell = subFooterRowElement.props.children[2];
 
@@ -225,9 +236,16 @@ describe('TreePickerSelectedComponent', () => {
     const subFooterRowElement = gridElement.props.children[gridIndices.subFooterRow];
 
     const subFooterSecondCell = subFooterRowElement.props.children[1];
-
     expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
-    expect(subFooterSecondCell.props.children).to.equal('Subtotal');
+    const overlayTriggerElement = subFooterSecondCell.props.children;
+    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />}/>).type);
+    expect(overlayTriggerElement.props.placement).to.equal('left');
+    const popoverElement = overlayTriggerElement.props.overlay;
+    expect(popoverElement.props.id).to.equal('subtotal-0');
+    expect(popoverElement.props.children).to.equal('Selecting adjusts the set distribution and size.');
+
+    const subtotalTextElement = overlayTriggerElement.props.children;
+    expect(subtotalTextElement.props.children).to.equal('Subtotal');
   });
 
   it('should render alert as warning when warnOnRequired is true', () => {
