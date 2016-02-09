@@ -25,7 +25,11 @@ const TreePickerNodeComponent = ({
   let expanderElement;
   if (expandNode && node.isExpandable) {
     const expandNodeBound = expandNode.bind(null, node);
-    expanderElement = <span className="treepickernode-component-expander" onClick={expandNodeBound} />;
+    expanderElement = (
+      <GridCell>
+        <div className="treepickernode-component-expander" onClick={expandNodeBound} />
+      </GridCell>
+    );
   }
 
   return (
@@ -44,8 +48,8 @@ const TreePickerNodeComponent = ({
             <span className="treepickernode-component-metadata"> ({node.type} in {pathElement})</span> :
             null
           }
-          {expanderElement}
         </GridCell>
+        {expanderElement}
         <GridCell>
           {valueFormatter(node.value)}
         </GridCell>
