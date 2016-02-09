@@ -19,11 +19,11 @@ describe('TreePickerNodeComponent', () => {
   };
 
   const newYorkNode = {
-    id: '1',
+    id: '2',
     label: 'New York',
     type: 'City',
     value: 200,
-    path: ['USA', 'NY'],
+    path: [{ id: '0', label: 'USA' }, { id: '1', label: 'NY' }],
     isExpandable: true,
   };
 
@@ -189,7 +189,7 @@ describe('TreePickerNodeComponent', () => {
       label: 'Toyota',
       type: '',
       value: 400,
-      path: ['Cars'],
+      path: [{ id: '30', label: 'Cars' }],
     };
     const component = createComponent(TreePickerNodeComponent, { node });
     const rowElement = component.props.children;

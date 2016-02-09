@@ -40,13 +40,16 @@ describe('TreePickerComponent', () => {
     { label: 'Segments', id: 'c', icon: 'http://placehold.it/16x16', isRequired: true },
   ];
 
-  const actNode =
-    { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: 'a' };
-  const ntNode = { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: 'a' };
-  const qldNode = { id: '2', label: 'Queensland', type: 'State', path: ['AU'], value: 500, rootTypeId: 'a' };
-  const saNode = { id: '3', label: 'South Australia', type: 'State', path: ['AU'], value: 500, rootTypeId: 'a' };
+  const auPath = { id: '10', label: 'AU' };
+  const actPath = { id: '0', label: 'ACT' };
 
-  const cbrNode = { id: '0a', label: 'Canberra', type: 'City', path: ['AU', 'ACT'], value: 2000, rootTypeId: 'a' };
+  const actNode =
+    { id: '0', label: 'Australian Capital Territory', type: 'State', path: [auPath], value: 1000, rootTypeId: 'a' };
+  const ntNode = { id: '1', label: 'Northern Territory', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
+  const qldNode = { id: '2', label: 'Queensland', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
+  const saNode = { id: '3', label: 'South Australia', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
+
+  const cbrNode = { id: '0a', label: 'Canberra', type: 'City', path: [auPath, actPath], value: 2000, rootTypeId: 'a' };
 
   const maleNode = { id: '4', label: 'Males', type: '', path: [], value: 500, rootTypeId: 'b' };
 
@@ -354,6 +357,18 @@ describe('TreePickerComponent', () => {
         .groupBy('rootTypeId')
         .value()
     );
+  });
+
+  it('should change `selected` state after an includeNode action, removing subnodes of the added node', () => {
+    const component = createAndMountComponent(TreePickerComponent, {
+      initialSelection: [cbrNode],
+      getSubtree,
+      rootTypes,
+    });
+    const treePickerPureElement = getTreePickerPureElement(component);
+    treePickerPureElement.props.includeNode(actNode);
+
+    expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([actNode], 'rootTypeId'));
   });
 
   it('should change `selected` state after an includeNode action for a new rootType', () => {

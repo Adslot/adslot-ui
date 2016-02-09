@@ -15,7 +15,7 @@ const TreePickerNodeComponent = ({
 }) => {
   const pathElement = !_.isEmpty(node.path) ?
     <span className="treepickernode-component-path">
-      {_(node.path).clone().reverse().join(', ')}
+      {_(node.path).map('label').clone().reverse().join(', ')}
     </span> :
     null;
 
@@ -71,7 +71,12 @@ const nodePropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   isExpandable: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  path: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
 });
