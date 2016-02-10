@@ -2,25 +2,17 @@
 /* global expect */
 
 import createComponent from 'testHelpers/shallowRenderHelper';
+import MultiPickerMocks from 'mocks/MultiPickerMocks';
 import React from 'react';
 import UserMultiPickerComponent from 'components/adslotUi/UserMultiPickerComponent';
 import { Avatar } from 'alexandria-adslot';
-import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
 
 describe('UserMultiPickerComponent', () => {
-  const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
-
-  const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
-
-  const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
-
-  const userHeaders = { left: 'Team', right: 'Member' };
-
-  const users = [teamMember1, teamMember2, teamMember3];
-
-  const initialSelection = () => [teamMember2];
-
-  deepFreeze([teamMember1, teamMember2, teamMember3, userHeaders, users]);
+  const {
+    getInitialSelection,
+    userHeaders,
+    users,
+  } = MultiPickerMocks;
 
   it('should render with defaults', () => {
     const component = createComponent(UserMultiPickerComponent);
@@ -38,7 +30,7 @@ describe('UserMultiPickerComponent', () => {
   it('should render with props', () => {
     const component = createComponent(UserMultiPickerComponent, {
       allowEmptySelection: true,
-      initialSelection: initialSelection(),
+      initialSelection: getInitialSelection(),
       userHeaders,
       users,
       modalDescription: 'Select team members that you want.',
@@ -46,7 +38,7 @@ describe('UserMultiPickerComponent', () => {
     });
     expect(component.type.name).to.equal('MultiPickerComponent');
 
-    expect(component.props.initialSelection).to.deep.equal(initialSelection());
+    expect(component.props.initialSelection).to.deep.equal(getInitialSelection());
     expect(component.props.itemHeaders).to.deep.equal(userHeaders);
     expect(component.props.items).to.deep.equal(users);
     expect(component.props.modalClassName).to.equal('usermultipicker-component');

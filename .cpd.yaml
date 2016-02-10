@@ -1,0 +1,13 @@
+exclude:
+  - "**/node_modules/**"
+files:
+  - "cfg/**/*"
+  - "src/**/*"
+  - "test/**/*"
+languages:
+  - javascript
+  - jsx
+  - css
+  - htmlmixed
+'min-tokens': 50
+'min-lines': 1
