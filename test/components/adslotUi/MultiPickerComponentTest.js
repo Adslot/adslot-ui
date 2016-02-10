@@ -10,13 +10,13 @@ import React from 'react';
 
 describe('MultiPickerComponent', () => {
   const {
-    itemHeaders,
-    items,
+    getInitialSelection,
+    userHeaders,
+    users,
     labelFormatter,
     teamMember1,
     teamMember2,
   } = MultiPickerMocks;
-  const getInitialSelection = () => [teamMember2];
 
   const getMultiPickerPureElement = (rootComponent) => {
     const modalBodyElement = rootComponent.props.children[1];
@@ -77,8 +77,8 @@ describe('MultiPickerComponent', () => {
     const initialSelection = getInitialSelection();
     const component = createComponent(MultiPickerComponent, {
       initialSelection,
-      itemHeaders,
-      items,
+      itemHeaders: userHeaders,
+      items: users,
       labelFormatter,
       modalDescription: 'Select users.',
       modalTitle: 'Select Users',
@@ -102,8 +102,8 @@ describe('MultiPickerComponent', () => {
 
     expect(multiPickerPureElement.props.deselectItem).to.be.a('function');
     expect(multiPickerPureElement.props.labelFormatter).to.be.a('function');
-    expect(multiPickerPureElement.props.itemHeaders).to.deep.equal(itemHeaders);
-    expect(multiPickerPureElement.props.items).to.deep.equal(items);
+    expect(multiPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);
+    expect(multiPickerPureElement.props.items).to.deep.equal(users);
     expect(multiPickerPureElement.props.selectItem).to.be.a('function');
     expect(multiPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
   });
@@ -111,7 +111,7 @@ describe('MultiPickerComponent', () => {
   it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
     const component = createComponent(MultiPickerComponent, {
       allowEmptySelection: false,
-      items,
+      items: users,
     });
 
     const modalFooterElement = component.props.children[2];
@@ -123,7 +123,7 @@ describe('MultiPickerComponent', () => {
   it('should change `selectedItems` state after a `selectItem` action', () => {
     const component = createComponent(MultiPickerComponent, {
       initialSelection: getInitialSelection(),
-      items,
+      items: users,
     });
     const multiPickerPureElement = getMultiPickerPureElement(component);
     multiPickerPureElement.props.selectItem(teamMember1);
@@ -134,7 +134,7 @@ describe('MultiPickerComponent', () => {
   it('should change `selectedItems` state after a `deselectItem` action', () => {
     const component = createComponent(MultiPickerComponent, {
       initialSelection: getInitialSelection(),
-      items,
+      items: users,
     });
     const multiPickerPureElement = getMultiPickerPureElement(component);
     multiPickerPureElement.props.deselectItem(teamMember2);

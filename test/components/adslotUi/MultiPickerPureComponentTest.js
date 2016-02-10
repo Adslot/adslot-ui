@@ -11,13 +11,13 @@ import { Grid, GridCell, GridRow } from 'alexandria-adslot';
 
 describe('MultiPickerPureComponent', () => {
   const {
+    getInitialSelection,
     labelFormatter,
-    teamMember2,
-    itemHeaders,
-    items,
+    userHeaders,
+    users,
   } = MultiPickerMocks;
 
-  const selectedItems = [teamMember2];
+  const selectedItems = getInitialSelection();
 
   Object.freeze(selectedItems);
 
@@ -31,8 +31,8 @@ describe('MultiPickerPureComponent', () => {
 
   it('should render with props', () => {
     const component = createComponent(MultiPickerPureComponent, {
-      itemHeaders,
-      items,
+      itemHeaders: userHeaders,
+      items: users,
       labelFormatter,
       selectedItems,
     });
@@ -58,19 +58,19 @@ describe('MultiPickerPureComponent', () => {
         expect(gridRowCellElements[0].type).to.equal((<GridCell />).type);
 
         const gridRowCellLeftText = gridRowCellElements[0].props.children;
-        expect(gridRowCellLeftText).to.equal(labelFormatter(items[index]));
+        expect(gridRowCellLeftText).to.equal(labelFormatter(users[index]));
 
         const gridRowCellCheckboxElement = gridRowCellElements[1].props.children;
         expect(gridRowCellCheckboxElement.type).to.equal((<Checkbox />).type);
 
-        expect(gridRowCellCheckboxElement.props.checked).to.equal(_.includes(selectedItems, items[index]));
+        expect(gridRowCellCheckboxElement.props.checked).to.equal(_.includes(selectedItems, users[index]));
       }
     }
   });
 
   it('should throw when we select without a `selectItem` handler', () => {
     const component = createComponent(MultiPickerPureComponent, {
-      items,
+      items: users,
       selectedItems,
     });
     expect(component.props.className).to.equal('multipickerpure-component');
@@ -87,7 +87,7 @@ describe('MultiPickerPureComponent', () => {
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
     const component = createComponent(MultiPickerPureComponent, {
-      items,
+      items: users,
       selectedItems,
     });
     expect(component.props.className).to.equal('multipickerpure-component');
@@ -105,7 +105,7 @@ describe('MultiPickerPureComponent', () => {
   it('should call `selectItem` handler when we select', () => {
     let handlerCalled = 0;
     const component = createComponent(MultiPickerPureComponent, {
-      items,
+      items: users,
       selectedItems,
       selectItem: () => handlerCalled++,
     });
@@ -124,7 +124,7 @@ describe('MultiPickerPureComponent', () => {
     let handlerCalled = 0;
     const component = createComponent(MultiPickerPureComponent, {
       deselectItem: () => handlerCalled++,
-      items,
+      items: users,
       selectedItems,
     });
     expect(component.props.className).to.equal('multipickerpure-component');
