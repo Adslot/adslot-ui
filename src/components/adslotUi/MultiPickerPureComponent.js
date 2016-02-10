@@ -66,14 +66,14 @@ const itemType = PropTypes.shape({
 });
 
 MultiPickerPureComponent.propTypes = {
-  deselectItem: PropTypes.func,
-  labelFormatter: PropTypes.func,
+  deselectItem: PropTypes.func.isRequired,
+  labelFormatter: PropTypes.func.isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
     right: PropTypes.string,
   }),
   items: PropTypes.arrayOf(itemType).isRequired,
-  selectItem: PropTypes.func,
+  selectItem: PropTypes.func.isRequired,
   selectedItems: PropTypes.arrayOf(itemType).isRequired,
 };
 

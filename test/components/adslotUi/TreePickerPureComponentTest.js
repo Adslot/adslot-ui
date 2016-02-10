@@ -1,13 +1,20 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'helpers/shallowRenderHelper';
+import createComponent from 'testHelpers/shallowRenderHelper';
 import React from 'react';
+import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
 import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
-import { deepFreeze } from 'helpers/deepSetObjectMutability';
+import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
 
 describe('TreePickerPureComponent', () => {
+  const {
+    actNode,
+    baseItem,
+    rootTypes,
+  } = TreePickerMocks;
+
   const indices = {
     leftPane: 0,
     rightPane: 1,
@@ -73,26 +80,12 @@ describe('TreePickerPureComponent', () => {
   it('should render with props', () => {
     const testFunction = () => null;
 
-    const rootTypes = [
-      {
-        label: 'Geography',
-        id: '0',
-        icon: 'http://placehold.it/16x16',
-        emptyIcon: 'http://placehold.it/70x70',
-        isRequired: true,
-      },
-      { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
-    ];
-
     const rootTypeChanges = [];
 
     const component = createComponent(TreePickerPureComponent, {
-      activeRootTypeId: '0',
+      activeRootTypeId: 'a',
       averageWithinRootType: true,
-      baseItem: {
-        label: 'foo',
-        value: 100,
-      },
+      baseItem,
       breadcrumbNodes: [],
       breadcrumbOnClick: testFunction,
       changeRootType: (rootType) => rootTypeChanges.push(rootType),
@@ -107,16 +100,7 @@ describe('TreePickerPureComponent', () => {
       searchOnQuery: testFunction,
       selectedLabel: 'Selected Targeting',
       selectedNodesByRootType: {},
-      subtree: [
-        {
-          id: '0',
-          label: 'Australian Capital Territory',
-          type: 'State',
-          path: [{ id: '10', label: 'AU' }],
-          value: 1000,
-          rootTypeId: '0',
-        },
-      ],
+      subtree: [actNode],
       valueFormatter: testFunction,
       warnOnRequired: true,
     });
@@ -151,7 +135,7 @@ describe('TreePickerPureComponent', () => {
 
     expect(rootTypeChanges).to.deep.equal([]);
     secondTabAnchor.props.onClick();
-    expect(rootTypeChanges).to.deep.equal(['1']);
+    expect(rootTypeChanges).to.deep.equal(['b']);
 
     const navElement = leftPaneElement.props.children[leftPaneIndices.nav];
     expect(navElement.type.name).to.equal('TreePickerNavComponent');

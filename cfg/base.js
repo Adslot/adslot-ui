@@ -36,8 +36,9 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      components: srcPath + '/components/',
-      styles: srcPath + '/styles/',
+      components: `${srcPath}/components/`,
+      helpers: `${srcPath}/helpers/`,
+      styles: `${srcPath}/styles/`,
     },
   },
   module: {

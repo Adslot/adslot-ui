@@ -1,11 +1,11 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'helpers/shallowRenderHelper';
+import createComponent from 'testHelpers/shallowRenderHelper';
 import React from 'react';
 import UserMultiPickerComponent from 'components/adslotUi/UserMultiPickerComponent';
 import { Avatar } from 'alexandria-adslot';
-import { deepFreeze } from 'helpers/deepSetObjectMutability';
+import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
 
 describe('UserMultiPickerComponent', () => {
   const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
