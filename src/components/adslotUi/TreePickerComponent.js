@@ -5,6 +5,8 @@ import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
 import React, { PropTypes } from 'react';
 
+const pathIncludesId = ({ id, path }) => _(path).map('id').includes(id);
+
 class TreePickerComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +17,8 @@ class TreePickerComponent extends React.Component {
       'changeRootType',
       'expandNode',
       'includeNode',
-      'removeNode',
       'loadData',
+      'removeNode',
       'searchOnChange',
       'searchOnClear',
       'searchOnQuery',
@@ -113,7 +115,9 @@ class TreePickerComponent extends React.Component {
     if (_.isEmpty(newSelected[rootTypeId])) {newSelected[rootTypeId] = [];}
 
     newSelected[rootTypeId].push(node);
-    _.remove(newSelected[rootTypeId], ({ path }) => _(path).map('id').contains(node.id));
+    _.remove(newSelected[rootTypeId], ({ id, path }) =>
+      pathIncludesId({ id: node.id, path }) || pathIncludesId({ id, path: node.path })
+    );
 
     this.setState({ selectedNodesByRootType: newSelected });
   }

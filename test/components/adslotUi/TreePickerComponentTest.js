@@ -330,6 +330,18 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([actNode], 'rootTypeId'));
   });
 
+  it('should change `selected` state after an includeNode action, removing parents of the added node', () => {
+    const component = createAndMountComponent(TreePickerComponent, {
+      initialSelection: [actNode],
+      getSubtree,
+      rootTypes,
+    });
+    const treePickerPureElement = getTreePickerPureElement(component);
+    treePickerPureElement.props.includeNode(cbrNode);
+
+    expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([cbrNode], 'rootTypeId'));
+  });
+
   it('should change `selected` state after an includeNode action for a new rootType', () => {
     const component = createAndMountComponent(TreePickerComponent, {
       initialSelection,

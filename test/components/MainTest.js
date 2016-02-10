@@ -52,7 +52,7 @@ describe('MainComponent', () => {
     expect(modalComponent.props.backdrop).to.equal(true);
   });
 
-  it('should open the modal when the button is clicked', () => {
+  it('should open the modal when clicking the button', () => {
     const renderer = createRenderer();
     renderer.render(<Main />);
     let componentRenderOutput = renderer.getRenderOutput();
