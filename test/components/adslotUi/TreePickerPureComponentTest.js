@@ -108,7 +108,14 @@ describe('TreePickerPureComponent', () => {
       selectedLabel: 'Selected Targeting',
       selectedNodesByRootType: {},
       subtree: [
-        { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' },
+        {
+          id: '0',
+          label: 'Australian Capital Territory',
+          type: 'State',
+          path: [{ id: '10', label: 'AU' }],
+          value: 1000,
+          rootTypeId: '0',
+        },
       ],
       valueFormatter: testFunction,
       warnOnRequired: true,

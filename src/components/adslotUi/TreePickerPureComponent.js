@@ -122,7 +122,12 @@ const breadCrumbNode = PropTypes.shape({
 const nodePropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  path: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
   rootTypeId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,

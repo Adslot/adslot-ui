@@ -43,11 +43,13 @@ describe('TreePickerSelectedComponent', () => {
     { label: 'Segments', id: '2', icon: 'http://placehold.it/16x16', isRequired: true },
   ];
 
+  const auPath = { id: '10', label: 'AU' };
+
   const actNode =
-    { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' };
+    { id: '0', label: 'Australian Capital Territory', type: 'State', path: [auPath], value: 1000, rootTypeId: '0' };
 
   const ntNode =
-    { id: '1', label: 'Northern Territory', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' };
+    { id: '1', label: 'Northern Territory', type: 'State', path: [auPath], value: 500, rootTypeId: '0' };
 
   const selectedNodesByRootType = _.groupBy([actNode, ntNode], 'rootTypeId');
 

@@ -112,6 +112,8 @@ class TreePickerComponent extends React.Component {
     if (_.isEmpty(newSelected[rootTypeId])) {newSelected[rootTypeId] = [];}
 
     newSelected[rootTypeId].push(node);
+    _.remove(newSelected[rootTypeId], ({ path }) => _(path).map('id').contains(node.id));
+
     this.setState({ selectedNodesByRootType: newSelected });
   }
 
@@ -184,7 +186,12 @@ const nodePropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   isExpandable: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  path: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
 });

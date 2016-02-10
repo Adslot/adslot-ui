@@ -115,21 +115,23 @@ class AppComponent extends React.Component {
       { label: 'Age', id: '2', icon: 'http://placehold.it/16x16', isRequired: false },
     ];
 
+    const auPath = [{ id: '10', label: 'AU' }];
+
     const actNode =
-      { id: '0', label: 'Australian Capital Territory', type: 'State', path: ['AU'], value: 1000, rootTypeId: '0' };
+      { id: '0', label: 'Australian Capital Territory', type: 'State', path: auPath, value: 1000, rootTypeId: '0' };
 
     const ntNode = {
       id: '1',
       label: 'Northern Territory',
       type: 'State',
-      path: ['AU'],
+      path: auPath,
       value: 500,
       rootTypeId: '0',
       isExpandable: true,
     };
 
     const qldNode =
-      { id: '2', label: 'Queensland', type: 'State', path: ['AU'], value: 500, rootTypeId: '0', isExpandable: true };
+      { id: '2', label: 'Queensland', type: 'State', path: auPath, value: 500, rootTypeId: '0', isExpandable: true };
 
     const initialSelection = [
       actNode,
@@ -142,7 +144,7 @@ class AppComponent extends React.Component {
           actNode,
           ntNode,
           qldNode,
-          { id: '3', label: 'South Australia', type: 'State', path: ['AU'], value: 500, rootTypeId: '0' },
+          { id: '3', label: 'South Australia', type: 'State', path: auPath, value: 500, rootTypeId: '0' },
         ]);
       }
 
