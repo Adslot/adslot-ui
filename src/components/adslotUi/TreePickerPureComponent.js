@@ -2,6 +2,7 @@ import _ from 'lodash';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerPane from 'components/adslotUi/TreePickerPaneComponent';
+import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
 import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
@@ -119,20 +120,6 @@ const breadCrumbNode = PropTypes.shape({
   label: PropTypes.string.isRequired,
 });
 
-const nodePropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  path: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  rootTypeId: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-});
-
 const rootType = PropTypes.shape({
   emptyIcon: PropTypes.string,
   icon: PropTypes.string.isRequired,
@@ -162,7 +149,7 @@ TreePickerPureComponent.propTypes = {
   searchValue: PropTypes.string,
   selectedLabel: PropTypes.string,
   selectedNodesByRootType: PropTypes.shape(),
-  subtree: PropTypes.arrayOf(nodePropType).isRequired,
+  subtree: PropTypes.arrayOf(TreePickerPropTypes.node).isRequired,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool,
 };

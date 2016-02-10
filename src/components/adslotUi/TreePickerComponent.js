@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
 import React, { PropTypes } from 'react';
 
@@ -182,20 +183,6 @@ class TreePickerComponent extends React.Component {
 
 TreePickerComponent.displayName = 'AdslotUiTreePickerComponent';
 
-const nodePropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  isExpandable: PropTypes.bool,
-  label: PropTypes.string.isRequired,
-  path: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-});
-
 TreePickerComponent.propTypes = {
   averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: PropTypes.shape(),
@@ -204,7 +191,7 @@ TreePickerComponent.propTypes = {
     average: PropTypes.string,
     sum: PropTypes.string,
   }),
-  initialSelection: PropTypes.arrayOf(nodePropType).isRequired,
+  initialSelection: PropTypes.arrayOf(TreePickerPropTypes.node).isRequired,
   modalApply: PropTypes.func.isRequired,
   modalClose: PropTypes.func.isRequired,
   modalTitle: PropTypes.string.isRequired,

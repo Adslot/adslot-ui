@@ -2,13 +2,14 @@
 /* global expect */
 
 import _ from 'lodash';
-import createComponent from 'helpers/shallowRenderHelper';
+import createComponent from 'testHelpers/shallowRenderHelper';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import React from 'react';
+import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
-import { deepFreeze } from 'helpers/deepSetObjectMutability';
+import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
 
 describe('TreePickerSelectedComponent', () => {
   const indices = {
@@ -31,25 +32,11 @@ describe('TreePickerSelectedComponent', () => {
     flexSpacer: 2,
   };
 
-  const rootTypes = [
-    {
-      label: 'Geography',
-      id: '0',
-      icon: 'http://placehold.it/16x16',
-      emptyIcon: 'http://placehold.it/70x70',
-      isRequired: true,
-    },
-    { label: 'Audiences', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
-    { label: 'Segments', id: '2', icon: 'http://placehold.it/16x16', isRequired: true },
-  ];
-
-  const auPath = { id: '10', label: 'AU' };
-
-  const actNode =
-    { id: '0', label: 'Australian Capital Territory', type: 'State', path: [auPath], value: 1000, rootTypeId: '0' };
-
-  const ntNode =
-    { id: '1', label: 'Northern Territory', type: 'State', path: [auPath], value: 500, rootTypeId: '0' };
+  const {
+    actNode,
+    ntNode,
+    rootTypes,
+  } = TreePickerMocks;
 
   const selectedNodesByRootType = _.groupBy([actNode, ntNode], 'rootTypeId');
 
@@ -75,7 +62,42 @@ describe('TreePickerSelectedComponent', () => {
     expect(secondGridCellElement.props.children).to.equal(0);
   };
 
-  deepFreeze([indices, gridIndices, scrollableIndices, rootTypes, actNode, ntNode, selectedNodesByRootType]);
+  const checkSubFooter = ({ gridElement, mode, value }) => {
+    const subFooterRowElement = gridElement.props.children[gridIndices.subFooterRow];
+
+    expect(subFooterRowElement.type).to.equal((<GridRow />).type);
+    expect(subFooterRowElement.props.type).to.equal('subfooter');
+
+    const subFooterFirstCell = subFooterRowElement.props.children[0];
+
+    expect(subFooterFirstCell.type).to.equal((<GridCell />).type);
+    expect(subFooterFirstCell.props.stretch).to.equal(true);
+    expect(subFooterFirstCell.props.children).to.be.an('undefined');
+
+    const subFooterSecondCell = subFooterRowElement.props.children[1];
+
+    expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
+    const overlayTriggerElement = subFooterSecondCell.props.children;
+    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />}/>).type);
+    expect(overlayTriggerElement.props.placement).to.equal('left');
+    const popoverElement = overlayTriggerElement.props.overlay;
+    expect(popoverElement.type).to.equal((<Popover id=""/>).type);
+    expect(popoverElement.props.id).to.equal('subtotal-a');
+    const modeText = (mode === 'Average') ?
+      'Selecting adjusts the set distribution, but not the set size.' :
+      'Selecting adjusts the set distribution and size.';
+    expect(popoverElement.props.children).to.equal(modeText);
+
+    const subtotalTextElement = overlayTriggerElement.props.children;
+    expect(subtotalTextElement.props.children).to.equal(mode);
+
+    const subFooterThirdCell = subFooterRowElement.props.children[2];
+
+    expect(subFooterThirdCell.type).to.equal((<GridCell />).type);
+    expect(subFooterThirdCell.props.children).to.equal(value);
+  };
+
+  deepFreeze([indices, gridIndices, scrollableIndices, selectedNodesByRootType]);
 
   it('should render with defaults', () => {
     const component = createComponent(TreePickerSelected);
@@ -177,35 +199,7 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(nodeElements[1].props.node).to.deep.equal(ntNode);
 
-    const subFooterRowElement = gridElement.props.children[gridIndices.subFooterRow];
-
-    expect(subFooterRowElement.type).to.equal((<GridRow />).type);
-    expect(subFooterRowElement.props.type).to.equal('subfooter');
-
-    const subFooterFirstCell = subFooterRowElement.props.children[0];
-
-    expect(subFooterFirstCell.type).to.equal((<GridCell />).type);
-    expect(subFooterFirstCell.props.stretch).to.equal(true);
-    expect(subFooterFirstCell.props.children).to.be.an('undefined');
-
-    const subFooterSecondCell = subFooterRowElement.props.children[1];
-
-    expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
-    const overlayTriggerElement = subFooterSecondCell.props.children;
-    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />}/>).type);
-    expect(overlayTriggerElement.props.placement).to.equal('left');
-    const popoverElement = overlayTriggerElement.props.overlay;
-    expect(popoverElement.type).to.equal((<Popover id=""/>).type);
-    expect(popoverElement.props.id).to.equal('subtotal-0');
-    expect(popoverElement.props.children).to.equal('Selecting adjusts the set distribution, but not the set size.');
-
-    const subtotalTextElement = overlayTriggerElement.props.children;
-    expect(subtotalTextElement.props.children).to.equal('Average');
-
-    const subFooterThirdCell = subFooterRowElement.props.children[2];
-
-    expect(subFooterThirdCell.type).to.equal((<GridCell />).type);
-    expect(subFooterThirdCell.props.children).to.equal(750);
+    checkSubFooter({ gridElement, mode: 'Average', value: 750 });
 
     const emptyElement = scrollableElement.props.children[scrollableIndices.empty];
 
@@ -235,19 +229,7 @@ describe('TreePickerSelectedComponent', () => {
 
     const gridElement = gridElements[0];
 
-    const subFooterRowElement = gridElement.props.children[gridIndices.subFooterRow];
-
-    const subFooterSecondCell = subFooterRowElement.props.children[1];
-    expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
-    const overlayTriggerElement = subFooterSecondCell.props.children;
-    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />}/>).type);
-    expect(overlayTriggerElement.props.placement).to.equal('left');
-    const popoverElement = overlayTriggerElement.props.overlay;
-    expect(popoverElement.props.id).to.equal('subtotal-0');
-    expect(popoverElement.props.children).to.equal('Selecting adjusts the set distribution and size.');
-
-    const subtotalTextElement = overlayTriggerElement.props.children;
-    expect(subtotalTextElement.props.children).to.equal('Subtotal');
+    checkSubFooter({ gridElement, mode: 'Subtotal', value: 1500 });
   });
 
   it('should render alert as warning when warnOnRequired is true', () => {
@@ -268,6 +250,6 @@ describe('TreePickerSelectedComponent', () => {
   it('should error when there is a selectedNode with no corresponding rootType', () => {
     expect(() => {
       createComponent(TreePickerSelected, { selectedNodesByRootType });
-    }).to.throw('TreePickerSelectedComponent requires a rootType for id 0');
+    }).to.throw('TreePickerSelectedComponent requires a rootType for id a');
   });
 });

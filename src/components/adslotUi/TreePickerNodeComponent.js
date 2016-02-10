@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
+import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import React, { PropTypes } from 'react';
 import { GridCell, GridRow } from 'alexandria-adslot';
 
@@ -67,23 +68,9 @@ const TreePickerNodeComponent = ({
 
 TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 
-const nodePropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  isExpandable: PropTypes.bool,
-  label: PropTypes.string.isRequired,
-  path: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-});
-
 TreePickerNodeComponent.propTypes = {
   includeNode: PropTypes.func.isRequired,
-  node: nodePropType.isRequired,
+  node: TreePickerPropTypes.node.isRequired,
   removeNode: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func.isRequired,

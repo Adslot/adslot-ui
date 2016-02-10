@@ -2,12 +2,12 @@
 /* global expect */
 
 import _ from 'lodash';
-import createComponent from 'helpers/shallowRenderHelper';
+import createComponent from 'testHelpers/shallowRenderHelper';
 import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
+import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNodeComponent from 'components/adslotUi/TreePickerNodeComponent';
 import { GridCell, GridRow } from 'alexandria-adslot';
-import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('TreePickerNodeComponent', () => {
   const indices = {
@@ -17,20 +17,12 @@ describe('TreePickerNodeComponent', () => {
     valueCell: 3,
     buttonLastCell: 4,
   };
+  Object.freeze(indices);
 
-  const newYorkNode = {
-    id: '2',
-    label: 'New York',
-    type: 'City',
-    value: 200,
-    path: [{ id: '0', label: 'USA' }, { id: '1', label: 'NY' }],
-    isExpandable: true,
-  };
-
-  deepFreeze([indices, newYorkNode]);
+  const { cbrNode } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode });
     expect(component.props.className).to.equal('treepickernode-component');
     expect(component.type).to.equal('div');
 
@@ -45,7 +37,7 @@ describe('TreePickerNodeComponent', () => {
     expect(labelWrapperCellElement.props.children).to.have.length(2);
 
     const labelElement = labelWrapperCellElement.props.children[0];
-    expect(labelElement.props.children).to.equal('New York');
+    expect(labelElement.props.children).to.equal('Canberra');
 
     const metaDataElement = labelWrapperCellElement.props.children[1];
     expect(metaDataElement.props.className).to.equal('treepickernode-component-metadata');
@@ -55,7 +47,7 @@ describe('TreePickerNodeComponent', () => {
     expect(metaDataElement.props.children[2]).to.equal(' in ');
     const pathElement = metaDataElement.props.children[3];
     expect(pathElement.props.className).to.equal('treepickernode-component-path');
-    expect(pathElement.props.children).to.equal('NY, USA');
+    expect(pathElement.props.children).to.equal('ACT, AU');
     expect(metaDataElement.props.children[4]).to.equal(')');
 
     const expanderElementCell = rowElement.props.children[indices.expanderCell];
@@ -64,7 +56,7 @@ describe('TreePickerNodeComponent', () => {
     const valueCellElement = rowElement.props.children[indices.valueCell];
 
     expect(valueCellElement.type).to.equal((<GridCell/>).type);
-    expect(valueCellElement.props.children).to.equal(200);
+    expect(valueCellElement.props.children).to.equal(2000);
 
     const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
 
@@ -79,7 +71,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render the button first when selected is true', () => {
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selected: true });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode, selected: true });
     const rowElement = component.props.children;
 
     const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
@@ -98,19 +90,19 @@ describe('TreePickerNodeComponent', () => {
 
   it('should filter value when provided', () => {
     const valueFormatter = (value) => `€${value / 100}`;
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, valueFormatter });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode, valueFormatter });
     const rowElement = component.props.children;
 
     const valueCellElement = rowElement.props.children[indices.valueCell];
 
     expect(valueCellElement.type).to.equal((<GridCell/>).type);
-    expect(valueCellElement.props.children).to.equal('€2');
+    expect(valueCellElement.props.children).to.equal('€20');
   });
 
   it('should fire expandNode when clicking on the `expand` button', () => {
     const nodes = [];
     const expandNode = (node) => nodes.push(node);
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, expandNode });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode, expandNode });
 
     const rowElement = component.props.children;
     const expanderCellElement = rowElement.props.children[indices.expanderCell];
@@ -119,11 +111,11 @@ describe('TreePickerNodeComponent', () => {
 
     expect(expanderElement.props.className).to.equal('treepickernode-component-expander');
     expanderElement.props.onClick();
-    expect(nodes).to.deep.equal([newYorkNode]);
+    expect(nodes).to.deep.equal([cbrNode]);
   });
 
   it('should not show the expander element when the node is not expandable', () => {
-    const nonExpandableNode = _.extend({}, newYorkNode, { isExpandable: false });
+    const nonExpandableNode = _.extend({}, cbrNode, { isExpandable: false });
     const nodes = [];
     const expandNode = (node) => nodes.push(node);
     const component = createComponent(TreePickerNodeComponent, { node: nonExpandableNode, expandNode });
@@ -137,17 +129,17 @@ describe('TreePickerNodeComponent', () => {
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
     const includeNode = (node) => nodes.push(node);
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, includeNode });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode, includeNode });
     const rowElement = component.props.children;
 
     const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
     const buttonElement = buttonLastCellElement.props.children;
     buttonElement.props.onClick();
-    expect(nodes).to.deep.equal([newYorkNode]);
+    expect(nodes).to.deep.equal([cbrNode]);
   });
 
   it('should error on click of `include` button without includeNode handler', () => {
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode });
     const rowElement = component.props.children;
 
     const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
@@ -210,10 +202,10 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should fire removeNode when clicking on the `remove` button', () => {
-    const nodes = [newYorkNode];
+    const nodes = [cbrNode];
     const removeNode = (node) => _.remove(nodes, { id: node.id });
     const component = createComponent(TreePickerNodeComponent, {
-      node: newYorkNode,
+      node: cbrNode,
       removeNode,
       selected: true,
     });
@@ -223,13 +215,13 @@ describe('TreePickerNodeComponent', () => {
     const buttonElement = buttonFirstCellElement.props.children;
     expect(buttonElement.props.children).to.equal('Remove');
 
-    expect(nodes).to.deep.equal([newYorkNode]);
+    expect(nodes).to.deep.equal([cbrNode]);
     buttonElement.props.onClick();
     expect(nodes).to.deep.equal([]);
   });
 
   it('should error on click of `remove` button without removeNode handler', () => {
-    const component = createComponent(TreePickerNodeComponent, { node: newYorkNode, selected: true });
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode, selected: true });
     const rowElement = component.props.children;
 
     const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];

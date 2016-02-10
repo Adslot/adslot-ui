@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'helpers/shallowRenderHelper';
+import createComponent from 'testHelpers/shallowRenderHelper';
 import Main from 'components/Main';
 import React from 'react';
 import { isElementOfType, createRenderer } from 'react-addons-test-utils';

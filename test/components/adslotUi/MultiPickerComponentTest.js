@@ -1,28 +1,21 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'helpers/shallowRenderHelper';
+import createComponent from 'testHelpers/shallowRenderHelper';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import MultiPickerComponent from 'components/adslotUi/MultiPickerComponent';
+import MultiPickerMocks from 'mocks/MultiPickerMocks';
 import React from 'react';
-import { deepFreeze } from 'helpers/deepSetObjectMutability';
 
 describe('MultiPickerComponent', () => {
-  const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
-
-  const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
-
-  const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
-
-  const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
-
-  const itemHeaders = { left: 'Team', right: 'Member' };
-
-  const items = [teamMember1, teamMember2, teamMember3];
-
-  deepFreeze([teamMember1, teamMember2, teamMember3, itemHeaders, items]);
-
+  const {
+    itemHeaders,
+    items,
+    labelFormatter,
+    teamMember1,
+    teamMember2,
+  } = MultiPickerMocks;
   const getInitialSelection = () => [teamMember2];
 
   const getMultiPickerPureElement = (rootComponent) => {

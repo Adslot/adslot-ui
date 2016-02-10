@@ -28,9 +28,11 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      helpers: path.join(__dirname, '/../test/helpers'),
-      components: srcPath + 'components/',
-      styles: srcPath + 'styles/',
+      components: `${srcPath}components/`,
+      helpers: `${srcPath}helpers/`,
+      styles: `${srcPath}styles/`,
+      testHelpers: path.join(__dirname, '/../test/helpers'),
+      mocks: path.join(__dirname, '/../test/mocks'),
     },
   },
 };
