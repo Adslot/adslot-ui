@@ -85,8 +85,14 @@ $table-bg-hover: $color-gray-white; // for hover;
 $table-border-color: $color-gray-light; // table and cell border;
 
 // == Forms
-$input-border: $color-border-light;
 $input-bg-disabled: $color-gray-lighter;
+$input-color: $color-text-form;
+$input-border: $color-border-lighter;
+$input-border-focus: $color-border-light;
+$input-color-placeholder: $color-text-placeholder;
+$form-group-margin-bottom: $spacing-etalon;
+$input-group-addon-bg: $color-well;
+$input-group-addon-border-color: $color-well;
 
 // == Dropdowns
 $dropdown-border: $color-border-light;
@@ -115,19 +121,19 @@ $pagination-active-border: $color-border-lighter;
 $pagination-disabled-border: $color-border-lighter;
 
 // == Form states and alerts
-$state-success-text: $color-text-inverse;
+$state-success-text: $color-positive;
 $state-success-bg: $color-positive;
 $state-success-border: $color-positive-selected;
 
-$state-info-text: $color-text-inverse;
+$state-info-text: $color-info;
 $state-info-bg: $color-info;
 $state-info-border: $color-info-selected;
 
-$state-warning-text: $color-text-inverse;
+$state-warning-text: $color-warning;
 $state-warning-bg: $color-warning;
 $state-warning-border: $color-warning-selected;
 
-$state-danger-text: $color-text-inverse;
+$state-danger-text: $color-negative;
 $state-danger-bg: $color-negative;
 $state-danger-border: $color-negative-selected;
 

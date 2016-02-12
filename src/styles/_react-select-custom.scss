@@ -7,12 +7,13 @@ $select-input-border-focus: $select-input-border-color;
 $select-input-height: 26px;
 $select-padding-vertical: 4px;
 $select-padding-horizontal: 7px;
-$select-text-color: $color-text;
+$select-text-color: $color-text-form;
 
 // menu options
-$select-option-color: $color-text-light;
+$select-option-color: $color-text-form;
 $select-option-focused-color: $select-option-color;
 $select-option-focused-bg: $color-gray-white;
+$select-option-disabled-color: $color-disabled;
 
 // clear "x" button
 $select-clear-color: $color-text-light;
@@ -27,7 +28,7 @@ $select-arrow-color-hover: $color-text;
 $select-item-gutter: 2px;
 $select-item-color: $color-text-inverse;
 $select-item-hover-color: $color-text-light;
-$select-item-bg: $color-gray-darker;
+$select-item-bg: $color-text-form;
 $select-item-hover-bg: $select-item-bg;
 $select-item-font-size: $font-size-base;
 $select-item-padding-vertical: 2px;
@@ -102,4 +103,34 @@ $select-item-padding-horizontal: 5px;
       }
     }
   }
+}
+
+.has {
+  @mixin has-status($color) {
+    .Select {
+      &-control,
+      &-menu-outer {
+        border-color: $color;
+      }
+
+      &:not(.is-disabled) {
+        > .Select-control {
+          &:hover,
+          &:focus {
+            border-color: $color;
+          }
+        }
+      }
+
+      &.is-open,
+      &.is-focused {
+        > .Select-control {
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  &-error { @include has-status($color-negative); }
+  &-warning { @include has-status($color-warning); }
 }

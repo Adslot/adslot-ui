@@ -1,0 +1,32 @@
+@import '../variable';
+
+input {
+  &[type=checkbox],
+  &[type=radio] {
+    cursor: pointer;
+    margin: 2px 0 0;
+  }
+}
+
+.radio + .radio,
+.checkbox + .checkbox {
+  margin-top: 5px;
+}
+
+.checkbox,
+.radio {
+  $input-container-height: 18px;
+
+  line-height: $input-container-height;
+  margin-bottom: 0;
+  margin-top: 0;
+  min-height: $input-container-height;
+
+  label {
+    font-weight: $font-weight-medium;
+
+    .icheckbox {
+      margin-left: -20px; // align with bootstrap, which expects the checkbox element to be -20px
+    }
+  }
+}

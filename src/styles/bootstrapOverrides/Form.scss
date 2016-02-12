@@ -1,0 +1,79 @@
+@import '../variable';
+
+.form {
+
+  &-horizontal {
+    .control-label {
+      text-align: left;
+    }
+
+    .checkbox {
+      padding-top: 0;
+    }
+  }
+
+  &-group {
+
+    .help-block {
+      margin-bottom: 0;
+    }
+
+    label {
+      font-weight: $font-weight-bold;
+    }
+
+    .checkbox {
+      label {
+        font-weight: $font-weight-medium;
+      }
+    }
+  }
+
+  &-control {
+    &,
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &,
+    &-static {
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &-btn-footer {
+    text-align: right;
+  }
+}
+
+fieldset {
+  border-bottom: 1px solid $color-border-lightest;
+  margin-bottom: $spacing-etalon;
+}
+
+label {
+  color: $color-text-form;
+}
+
+.input-group-addon {
+  font-weight: $font-weight-medium;
+  padding: 4px 5px;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.help-block {
+  color: $color-text-placeholder;
+  font-weight: $font-weight-medium;
+  margin-top: 8px;
+}

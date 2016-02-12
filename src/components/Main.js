@@ -357,6 +357,75 @@ class AppComponent extends React.Component {
           users={multiPickerItems}
         />
 
+
+        <h1>Forms</h1>
+        <form className="form-horizontal">
+          <div className="col-xs-6">
+            <fieldset className="row">
+              <div className="form-group">
+                <label htmlFor="exampleTextInput" className="control-label col-xs-4">Text input</label>
+                <div className="col-xs-8">
+                  <input type="text" className="form-control" id="exampleTextInput" placeholder="Text input" />
+
+                  <br />
+
+                  <div className="form-control-static">Instruction or grouped placeholder</div>
+                  <div className="input-group col-xs-5">
+                    <div className="input-group-addon">$</div>
+                    <input type="text" className="form-control" id="exampleTextInputAddon" placeholder="w. addon" />
+                    <div className="input-group-addon">value</div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset className="row">
+              <div className="form-group">
+                <label htmlFor="exampleTextarea" className="control-label col-xs-4">Text area (optional)</label>
+                <div className="col-xs-8">
+                  <textarea className="form-control" id="exampleTextarea" placeholder="Text area"></textarea>
+                  <p className="help-block">Help text or example.</p>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="countriesSelect" className="control-label col-xs-4">Select box</label>
+                <div className="col-xs-8">
+                  <Select
+                    clearable={false}
+                    name="countriesSelect"
+                    noResultsText="Sorry, couldn't find that country."
+                    onChange={this.setSelectedCountry}
+                    options={selectCountriesOptions}
+                    placeholder="Countries"
+                    value={this.state.selectedCountry}
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="exampleInputFile" className="control-label col-xs-4">File input</label>
+                <div className="col-xs-8">
+                  <input type="file" id="exampleInputFile" className="form-control"/>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <div className="col-xs-8 col-xs-offset-4">
+                  <div className="checkbox">
+                    <Checkbox
+                      label={<span>Checkbox.</span>}
+                    />
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div className="row form-btn-footer">
+              <Button className="btn-inverse">Cancel</Button>
+              <Button bsStyle="primary">Save</Button>
+            </div>
+          </div>
+        </form>
       </div>
     );
   }

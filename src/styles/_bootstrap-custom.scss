@@ -60,13 +60,14 @@
 
 // AdslotUI overrides
 @import './bootstrapOverrides/Button';
+@import './bootstrapOverrides/Checkbox';
+@import './bootstrapOverrides/Form';
 @import './bootstrapOverrides/Modal';
 @import './bootstrapOverrides/Nav';
 @import './bootstrapOverrides/Popover';
 @import './bootstrapOverrides/OverlayTrigger';
 
 b,
-strong,
-label {
+strong {
   font-weight: $font-weight-bold;
 }
