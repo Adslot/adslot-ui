@@ -21,7 +21,7 @@
     overflow: auto;
 
     &.is-short {
-      $alert-height: 40px;
+      $alert-height: 41px;
 
       height: $scrollable-height - $alert-height;
     }
