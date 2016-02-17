@@ -4,6 +4,7 @@
   $border: 1px solid $color-border-lighter;
 
   margin-bottom: 0;
+  min-height: 35px; // Prevents collapse in Safari in flex container.
 
   > li {
     background-color: $color-gray-white;
