@@ -7,8 +7,8 @@ require('styles/_react-toggle-custom.scss');
 
 import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
+import ListPicker from 'components/adslotUi/ListPickerComponent';
 import Modal from 'react-bootstrap/lib/Modal';
-import MultiPicker from 'components/adslotUi/MultiPickerComponent';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import Radio from 'react-icheck/lib/Radio';
@@ -18,7 +18,7 @@ import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
 import TreePicker from 'components/adslotUi/TreePickerComponent';
-import UserMultiPicker from 'components/adslotUi/UserMultiPickerComponent';
+import UserListPicker from 'components/adslotUi/UserListPickerComponent';
 import {
   Alert,
   Avatar,
@@ -44,8 +44,8 @@ module.exports = {
   Grid,
   GridCell,
   GridRow,
+  ListPicker,
   Modal,
-  MultiPicker,
   OverlayTrigger,
   Popover,
   Radio,
@@ -58,5 +58,5 @@ module.exports = {
   Toggle,
   Totals,
   TreePicker,
-  UserMultiPicker,
+  UserListPicker,
 };

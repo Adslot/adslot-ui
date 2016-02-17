@@ -14,7 +14,7 @@ const users = [teamMember1, teamMember2, teamMember3];
 
 const getInitialSelection = () => [teamMember2];
 
-const MultiPickerMocks = {
+const ListPickerMocks = {
   getInitialSelection,
   labelFormatter,
   teamMember1,
@@ -23,5 +23,5 @@ const MultiPickerMocks = {
   users,
 };
 
-deepFreeze(MultiPickerMocks);
-export default MultiPickerMocks;
+deepFreeze(ListPickerMocks);
+export default ListPickerMocks;

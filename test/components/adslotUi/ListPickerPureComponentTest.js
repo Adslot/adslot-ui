@@ -4,39 +4,39 @@
 import _ from 'lodash';
 import createComponent from 'testHelpers/shallowRenderHelper';
 import Checkbox from 'react-icheck/lib/Checkbox';
-import MultiPickerMocks from 'mocks/MultiPickerMocks';
-import MultiPickerPureComponent from 'components/adslotUi/MultiPickerPureComponent';
+import ListPickerMocks from 'mocks/ListPickerMocks';
+import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import React from 'react';
 import { Grid, GridCell, GridRow } from 'alexandria-adslot';
 
-describe('MultiPickerPureComponent', () => {
+describe('ListPickerPureComponent', () => {
   const {
     getInitialSelection,
     labelFormatter,
     userHeaders,
     users,
-  } = MultiPickerMocks;
+  } = ListPickerMocks;
 
   const selectedItems = getInitialSelection();
 
   Object.freeze(selectedItems);
 
   it('should render with defaults', () => {
-    const component = createComponent(MultiPickerPureComponent);
-    expect(component.props.className).to.equal('multipickerpure-component');
+    const component = createComponent(ListPickerPureComponent);
+    expect(component.props.className).to.equal('listpickerpure-component');
 
     const gridElement = component.props.children;
     expect(gridElement.type).to.equal((<Grid />).type);
   });
 
   it('should render with props', () => {
-    const component = createComponent(MultiPickerPureComponent, {
+    const component = createComponent(ListPickerPureComponent, {
       itemHeaders: userHeaders,
       items: users,
       labelFormatter,
       selectedItems,
     });
-    expect(component.props.className).to.equal('multipickerpure-component');
+    expect(component.props.className).to.equal('listpickerpure-component');
 
     const gridElement = component.props.children;
     expect(gridElement.type).to.equal((<Grid />).type);
@@ -69,11 +69,11 @@ describe('MultiPickerPureComponent', () => {
   });
 
   it('should throw when we select without a `selectItem` handler', () => {
-    const component = createComponent(MultiPickerPureComponent, {
+    const component = createComponent(ListPickerPureComponent, {
       items: users,
       selectedItems,
     });
-    expect(component.props.className).to.equal('multipickerpure-component');
+    expect(component.props.className).to.equal('listpickerpure-component');
 
     const gridElement = component.props.children;
     const gridRowElements = gridElement.props.children[1];
@@ -81,16 +81,16 @@ describe('MultiPickerPureComponent', () => {
     expect(unselectedCheckboxElement.props.checked).to.equal(false);
 
     expect(() => unselectedCheckboxElement.props.onChange(null, true)).to.throw(
-      'AdslotUi MultiPickerPure needs a selectItem handler'
+      'AdslotUi ListPickerPure needs a selectItem handler'
     );
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
-    const component = createComponent(MultiPickerPureComponent, {
+    const component = createComponent(ListPickerPureComponent, {
       items: users,
       selectedItems,
     });
-    expect(component.props.className).to.equal('multipickerpure-component');
+    expect(component.props.className).to.equal('listpickerpure-component');
 
     const gridElement = component.props.children;
     const gridRowElements = gridElement.props.children[1];
@@ -98,18 +98,18 @@ describe('MultiPickerPureComponent', () => {
     expect(selectedCheckboxElement.props.checked).to.equal(true);
 
     expect(() => selectedCheckboxElement.props.onChange(null, false)).to.throw(
-      'AdslotUi MultiPickerPure needs a deselectItem handler'
+      'AdslotUi ListPickerPure needs a deselectItem handler'
     );
   });
 
   it('should call `selectItem` handler when we select', () => {
     let handlerCalled = 0;
-    const component = createComponent(MultiPickerPureComponent, {
+    const component = createComponent(ListPickerPureComponent, {
       items: users,
       selectedItems,
       selectItem: () => handlerCalled++,
     });
-    expect(component.props.className).to.equal('multipickerpure-component');
+    expect(component.props.className).to.equal('listpickerpure-component');
 
     const gridElement = component.props.children;
     const gridRowElements = gridElement.props.children[1];
@@ -122,12 +122,12 @@ describe('MultiPickerPureComponent', () => {
 
   it('should call `deselectItem` handler when we deselect', () => {
     let handlerCalled = 0;
-    const component = createComponent(MultiPickerPureComponent, {
+    const component = createComponent(ListPickerPureComponent, {
       deselectItem: () => handlerCalled++,
       items: users,
       selectedItems,
     });
-    expect(component.props.className).to.equal('multipickerpure-component');
+    expect(component.props.className).to.equal('listpickerpure-component');
 
     const gridElement = component.props.children;
     const gridRowElements = gridElement.props.children[1];

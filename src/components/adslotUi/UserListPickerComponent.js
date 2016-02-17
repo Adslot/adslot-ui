@@ -1,10 +1,10 @@
-import MultiPicker from 'components/adslotUi/MultiPickerComponent';
+import ListPicker from 'components/adslotUi/ListPickerComponent';
 import { Avatar } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
 
-require('styles/adslotUi/UserMultiPicker.scss');
+require('styles/adslotUi/UserListPicker.scss');
 
-class UserMultiPickerComponent extends React.Component {
+class UserListPickerComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
@@ -14,7 +14,7 @@ class UserMultiPickerComponent extends React.Component {
 
   labelFormatter(user) {
     return (
-      <div className="usermultipicker-component-user-label">
+      <div className="userlistpicker-component-user-label">
         <Avatar
           image={user.avatar}
           color={this.props.avatarColor(user)}
@@ -30,14 +30,14 @@ class UserMultiPickerComponent extends React.Component {
     const { props, labelFormatter } = this;
 
     return (
-      <MultiPicker
+      <ListPicker
         allowEmptySelection={props.allowEmptySelection}
         initialSelection={props.initialSelection}
         itemHeaders={props.userHeaders}
         items={props.users}
         labelFormatter={labelFormatter}
         modalApply={props.modalApply}
-        modalClassName="usermultipicker-component"
+        modalClassName="userlistpicker-component"
         modalClose={props.modalClose}
         modalDescription={props.modalDescription}
         modalTitle={props.modalTitle}
@@ -47,7 +47,7 @@ class UserMultiPickerComponent extends React.Component {
   }
 }
 
-UserMultiPickerComponent.displayName = 'AdslotUiMultiPickerComponent';
+UserListPickerComponent.displayName = 'AdslotUiListPickerComponent';
 
 const userType = PropTypes.shape({
   avatar: PropTypes.string,
@@ -56,7 +56,7 @@ const userType = PropTypes.shape({
   surname: PropTypes.string,
 });
 
-UserMultiPickerComponent.propTypes = {
+UserListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool.isRequired,
   avatarColor: PropTypes.func.isRequired,
   initialSelection: PropTypes.arrayOf(userType).isRequired,
@@ -72,13 +72,13 @@ UserMultiPickerComponent.propTypes = {
   users: PropTypes.arrayOf(userType).isRequired,
 };
 
-UserMultiPickerComponent.defaultProps = {
+UserListPickerComponent.defaultProps = {
   allowEmptySelection: false,
   avatarColor: () => null,
   initialSelection: [],
-  modalApply: () => {throw new Error('AdslotUi UserMultiPicker needs a modalApply handler');},
+  modalApply: () => {throw new Error('AdslotUi UserListPicker needs a modalApply handler');},
 
-  modalClose: () => {throw new Error('AdslotUi UserMultiPicker needs a modalClose handler');},
+  modalClose: () => {throw new Error('AdslotUi UserListPicker needs a modalClose handler');},
 
   modalDescription: 'Select users.',
   modalTitle: 'Select Users',
@@ -87,4 +87,4 @@ UserMultiPickerComponent.defaultProps = {
   users: [],
 };
 
-export default UserMultiPickerComponent;
+export default UserListPickerComponent;
