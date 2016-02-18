@@ -2,7 +2,7 @@
 /* global expect */
 
 import _ from 'lodash';
-import createComponent from 'testHelpers/shallowRenderHelper';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import React from 'react';

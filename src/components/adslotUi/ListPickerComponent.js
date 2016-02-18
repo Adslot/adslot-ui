@@ -16,8 +16,10 @@ class ListPickerComponent extends React.Component {
       'selectItem',
     ]) {this[methodName] = this[methodName].bind(this);}
 
-    this.loadData();
+    this.state = {};
   }
+
+  componentDidMount() {this.loadData();}
 
   getApplyButtonState(selectedItems) {
     if (this.props.allowEmptySelection) {return false;}
@@ -27,10 +29,10 @@ class ListPickerComponent extends React.Component {
 
   loadData() {
     const selectedItems = _.clone(this.props.initialSelection);
-    this.state = {
+    this.setState({
       selectedItems,
       disableApplyButton: this.getApplyButtonState(selectedItems),
-    };
+    });
   }
 
   selectItem(item) {

@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'testHelpers/shallowRenderHelper';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import React from 'react';
 import UserListPickerComponent from 'components/adslotUi/UserListPickerComponent';

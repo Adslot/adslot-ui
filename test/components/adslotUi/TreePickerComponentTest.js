@@ -5,7 +5,12 @@ import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import {
+  createAndMountComponent,
+  createShallowRenderer,
+  runComponentDidMount,
+  runComponentWillUnmount,
+} from 'testHelpers/shallowRenderHelpers';
 import TreePickerComponent from 'components/adslotUi/TreePickerComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 
@@ -22,19 +27,6 @@ describe('TreePickerComponent', () => {
     saNode,
     valueFormatter,
   } = TreePickerMocks;
-
-  const runComponentDidMount = ({ shallowRenderer }) =>
-    shallowRenderer._instance._instance.componentDidMount();
-
-  const runComponentWillUnmount = ({ shallowRenderer }) =>
-    shallowRenderer._instance._instance.componentWillUnmount();
-
-  const createAndMountComponent = (component, props = {}) => {
-    const shallowRenderer = TestUtils.createRenderer();
-    shallowRenderer.render(React.createElement(component, props));
-    runComponentDidMount({ shallowRenderer });
-    return shallowRenderer.getRenderOutput();
-  };
 
   const getTreePickerPureElement = (rootComponent) => {
     const modalBodyElement = rootComponent.props.children[1];
@@ -64,13 +56,12 @@ describe('TreePickerComponent', () => {
   };
 
   const getShallowTreePickerPure = () => {
-    const shallowRenderer = TestUtils.createRenderer();
-    shallowRenderer.render(<TreePickerComponent
-      initialSelection={initialSelection}
-      getSubtree={getSubtree}
-      rootTypes={rootTypes}
-      throttleTime={0}
-    />);
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
+      initialSelection,
+      getSubtree,
+      rootTypes,
+      throttleTime: 0,
+    });
     const component = shallowRenderer.getRenderOutput();
     runComponentDidMount({ shallowRenderer });
 
@@ -210,13 +201,12 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `breadcrumbNodes` and `subtree` state after a search action, then again on search clear', () => {
-    const shallowRenderer = TestUtils.createRenderer();
-    shallowRenderer.render(<TreePickerComponent
-      initialSelection={initialSelection}
-      getSubtree={getSubtree}
-      rootTypes={rootTypes}
-      throttleTime={0}
-    />);
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
+      initialSelection,
+      getSubtree,
+      rootTypes,
+      throttleTime: 0,
+    });
     let component = shallowRenderer.getRenderOutput();
     runComponentDidMount({ shallowRenderer });
 
@@ -431,11 +421,10 @@ describe('TreePickerComponent', () => {
       return cb([]);
     };
 
-    const shallowRenderer = TestUtils.createRenderer();
-    shallowRenderer.render(<TreePickerComponent
-      modalClose={closeMock}
-      getSubtree={getSubtreeMock}
-    />);
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
+      getSubtree: getSubtreeMock,
+      modalClose: closeMock,
+    });
     let component = shallowRenderer.getRenderOutput();
     runComponentDidMount({ shallowRenderer });
 
@@ -469,11 +458,10 @@ describe('TreePickerComponent', () => {
       return cb([]);
     };
 
-    const shallowRenderer = TestUtils.createRenderer();
-    shallowRenderer.render(<TreePickerComponent
-      modalClose={closeMock}
-      getSubtree={getSubtreeMock}
-    />);
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
+      getSubtree: getSubtreeMock,
+      modalClose: closeMock,
+    });
     let component = shallowRenderer.getRenderOutput();
     runComponentDidMount({ shallowRenderer });
 

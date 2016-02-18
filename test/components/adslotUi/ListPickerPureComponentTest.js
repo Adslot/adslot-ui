@@ -2,7 +2,7 @@
 /* global expect */
 
 import _ from 'lodash';
-import createComponent from 'testHelpers/shallowRenderHelper';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
