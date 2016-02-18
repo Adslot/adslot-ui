@@ -329,6 +329,7 @@ class AppComponent extends React.Component {
         </Button>
 
         <ListPicker
+          allowMultiSelection={false}
           initialSelection={listPickerInitialSelection}
           itemHeaders={listPickerItemHeaders}
           items={listPickerItems}

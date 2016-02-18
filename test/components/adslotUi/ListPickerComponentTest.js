@@ -131,6 +131,20 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2, teamMember1]);
   });
 
+  it('should only allow one selection if `allowMultiSelection` is false', () => {
+    const component = createAndMountComponent(ListPickerComponent, {
+      allowMultiSelection: false,
+      initialSelection: getInitialSelection(),
+      items: users,
+    });
+    const listPickerPureElement = getListPickerPureElement(component);
+    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
+
+    listPickerPureElement.props.selectItem(teamMember1);
+
+    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember1]);
+  });
+
   it('should change `selectedItems` state after a `deselectItem` action', () => {
     const component = createAndMountComponent(ListPickerComponent, {
       initialSelection: getInitialSelection(),
