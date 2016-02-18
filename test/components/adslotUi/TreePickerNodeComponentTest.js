@@ -2,7 +2,7 @@
 /* global expect */
 
 import _ from 'lodash';
-import createComponent from 'testHelpers/shallowRenderHelper';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';

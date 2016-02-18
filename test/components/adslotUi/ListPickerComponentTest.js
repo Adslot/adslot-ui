@@ -1,8 +1,8 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'testHelpers/shallowRenderHelper';
 import Button from 'react-bootstrap/lib/Button';
+import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
 import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerMocks from 'mocks/ListPickerMocks';
@@ -24,7 +24,7 @@ describe('ListPickerComponent', () => {
   };
 
   it('should render with defaults', () => {
-    const component = createComponent(ListPickerComponent);
+    const component = createAndMountComponent(ListPickerComponent);
     expect(component.props.className).to.equal('listpicker-component');
     expect(component.type).to.equal((<Modal />).type);
     expect(component.props.show).to.equal(false);
@@ -75,7 +75,7 @@ describe('ListPickerComponent', () => {
 
   it('should render with props', () => {
     const initialSelection = getInitialSelection();
-    const component = createComponent(ListPickerComponent, {
+    const component = createAndMountComponent(ListPickerComponent, {
       initialSelection,
       itemHeaders: userHeaders,
       items: users,
@@ -109,7 +109,7 @@ describe('ListPickerComponent', () => {
   });
 
   it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
-    const component = createComponent(ListPickerComponent, {
+    const component = createAndMountComponent(ListPickerComponent, {
       allowEmptySelection: false,
       items: users,
     });
@@ -121,7 +121,7 @@ describe('ListPickerComponent', () => {
   });
 
   it('should change `selectedItems` state after a `selectItem` action', () => {
-    const component = createComponent(ListPickerComponent, {
+    const component = createAndMountComponent(ListPickerComponent, {
       initialSelection: getInitialSelection(),
       items: users,
     });
@@ -132,7 +132,7 @@ describe('ListPickerComponent', () => {
   });
 
   it('should change `selectedItems` state after a `deselectItem` action', () => {
-    const component = createComponent(ListPickerComponent, {
+    const component = createAndMountComponent(ListPickerComponent, {
       initialSelection: getInitialSelection(),
       items: users,
     });
@@ -143,12 +143,12 @@ describe('ListPickerComponent', () => {
   });
 
   it('should show modal when `show` is true', () => {
-    const component = createComponent(ListPickerComponent, { show: true });
+    const component = createAndMountComponent(ListPickerComponent, { show: true });
     expect(component.props.show).to.equal(true);
   });
 
   it('should hide modal when `show` is false', () => {
-    const component = createComponent(ListPickerComponent, { show: false });
+    const component = createAndMountComponent(ListPickerComponent, { show: false });
     expect(component.props.show).to.equal(false);
   });
 
@@ -157,7 +157,7 @@ describe('ListPickerComponent', () => {
     let closeCalls = 0;
     const applyMock = (selectedItems) => applyCalls = selectedItems;
     const closeMock = () => closeCalls += 1;
-    const component = createComponent(ListPickerComponent, {
+    const component = createAndMountComponent(ListPickerComponent, {
       initialSelection: getInitialSelection(),
       modalApply: applyMock,
       modalClose: closeMock,
@@ -172,7 +172,7 @@ describe('ListPickerComponent', () => {
   });
 
   it('should throw when we click Apply without a handler', () => {
-    const component = createComponent(ListPickerComponent);
+    const component = createAndMountComponent(ListPickerComponent);
 
     const modalFooterElement = component.props.children[2];
     const applyButtonElement = modalFooterElement.props.children[1];
@@ -183,7 +183,7 @@ describe('ListPickerComponent', () => {
     let closeCalls = 0;
     const closeMock = () => closeCalls += 1;
 
-    const component = createComponent(ListPickerComponent, {
+    const component = createAndMountComponent(ListPickerComponent, {
       modalClose: closeMock,
     });
 
@@ -196,7 +196,7 @@ describe('ListPickerComponent', () => {
   });
 
   it('should throw when we click Close without a handler', () => {
-    const component = createComponent(ListPickerComponent);
+    const component = createAndMountComponent(ListPickerComponent);
 
     const modalFooterElement = component.props.children[2];
     const cancelButtonElement = modalFooterElement.props.children[0];

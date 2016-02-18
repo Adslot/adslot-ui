@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import createComponent from 'testHelpers/shallowRenderHelper';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import React from 'react';
 import TreePickerPaneComponent from 'components/adslotUi/TreePickerPaneComponent';
 
