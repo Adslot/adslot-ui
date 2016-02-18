@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
-import MultiPickerPure from 'components/adslotUi/MultiPickerPureComponent';
+import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import React, { PropTypes } from 'react';
 
-class MultiPickerComponent extends React.Component {
+class ListPickerComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
@@ -71,7 +71,7 @@ class MultiPickerComponent extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <p>{props.modalDescription}</p>
-          <MultiPickerPure
+          <ListPickerPure
             deselectItem={this.deselectItem}
             labelFormatter={props.labelFormatter}
             itemHeaders={props.itemHeaders}
@@ -93,13 +93,13 @@ class MultiPickerComponent extends React.Component {
   }
 }
 
-MultiPickerComponent.displayName = 'AdslotUiMultiPickerComponent';
+ListPickerComponent.displayName = 'AdslotUiListPickerComponent';
 
 const itemType = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });
 
-MultiPickerComponent.propTypes = {
+ListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool.isRequired,
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
@@ -116,18 +116,18 @@ MultiPickerComponent.propTypes = {
   show: PropTypes.bool.isRequired,
 };
 
-MultiPickerComponent.defaultProps = {
+ListPickerComponent.defaultProps = {
   allowEmptySelection: true,
   initialSelection: [],
   items: [],
-  modalApply: () => {throw new Error('AdslotUi MultiPicker needs a modalApply handler');},
+  modalApply: () => {throw new Error('AdslotUi ListPicker needs a modalApply handler');},
 
-  modalClassName: 'multipicker-component',
-  modalClose: () => {throw new Error('AdslotUi MultiPicker needs a modalClose handler');},
+  modalClassName: 'listpicker-component',
+  modalClose: () => {throw new Error('AdslotUi ListPicker needs a modalClose handler');},
 
   modalDescription: 'Select items.',
   modalTitle: 'Select Items',
   show: false,
 };
 
-export default MultiPickerComponent;
+export default ListPickerComponent;

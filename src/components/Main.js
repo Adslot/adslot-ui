@@ -3,8 +3,8 @@ import React from 'react';
 import {
   Button,
   Checkbox,
+  ListPicker,
   Modal,
-  MultiPicker,
   Tabs,
   Tab,
   Radio,
@@ -12,7 +12,7 @@ import {
   Select,
   Toggle,
   TreePicker,
-  UserMultiPicker,
+  UserListPicker,
 } from './distributionEntry';
 
 require('styles/App.scss');
@@ -39,10 +39,10 @@ class AppComponent extends React.Component {
     for (const methodName of [
       'setSelectedCountry',
       'setSelectedFlavours',
-      'toggleMultiPickerModal',
+      'toggleListPickerModal',
       'toggleSimpleModal',
       'toggleTreePickerModal',
-      'toggleUserMultiPickerModal',
+      'toggleUserListPickerModal',
     ]) {this[methodName] = this[methodName].bind(this);}
 
     this.state = {
@@ -60,12 +60,12 @@ class AppComponent extends React.Component {
     this.setState({ selectedFlavours: newValue });
   }
 
-  toggleMultiPickerModal() {
-    this.setState({ showMultiPickerModal: !this.state.showMultiPickerModal });
+  toggleListPickerModal() {
+    this.setState({ showListPickerModal: !this.state.showListPickerModal });
   }
 
-  toggleUserMultiPickerModal() {
-    this.setState({ showUserMultiPickerModal: !this.state.showUserMultiPickerModal });
+  toggleUserListPickerModal() {
+    this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
   }
 
   toggleSimpleModal() {
@@ -94,11 +94,11 @@ class AppComponent extends React.Component {
 
     const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
 
-    const multiPickerItems = [teamMember1, teamMember2, teamMember3];
+    const listPickerItems = [teamMember1, teamMember2, teamMember3];
 
-    const multiPickerInitialSelection = [teamMember2];
+    const listPickerInitialSelection = [teamMember2];
 
-    const multiPickerItemHeaders = {
+    const listPickerItemHeaders = {
       left: 'Team',
       right: 'Member',
     };
@@ -286,7 +286,7 @@ class AppComponent extends React.Component {
         <Select
           addLabelText="Add '{label}' flavour?"
           allowCreate // Not implemented by react-select v1.0.0-beta8 TODO: When supported, check it works.
-          multi
+          list
           name="flavoursSelect"
           noResultsText="No flavours :("
           onChange={this.setSelectedFlavours}
@@ -322,39 +322,39 @@ class AppComponent extends React.Component {
         />
 
 
-        <h1>MultiPicker</h1>
+        <h1>ListPicker</h1>
 
-        <Button bsStyle="primary" onClick={this.toggleMultiPickerModal}>
-          Open MultiPicker
+        <Button bsStyle="primary" onClick={this.toggleListPickerModal}>
+          Open ListPicker
         </Button>
 
-        <MultiPicker
-          initialSelection={multiPickerInitialSelection}
-          itemHeaders={multiPickerItemHeaders}
-          items={multiPickerItems}
+        <ListPicker
+          initialSelection={listPickerInitialSelection}
+          itemHeaders={listPickerItemHeaders}
+          items={listPickerItems}
           labelFormatter={labelFormatter}
-          modalClose={this.toggleMultiPickerModal}
+          modalClose={this.toggleListPickerModal}
           modalDescription="Please select the users that you want."
           modalTitle="Select Users"
-          show={this.state.showMultiPickerModal}
+          show={this.state.showListPickerModal}
         />
 
 
-        <h1>UserMultiPicker</h1>
+        <h1>UserListPicker</h1>
 
-        <Button bsStyle="primary" onClick={this.toggleUserMultiPickerModal}>
-          Open UserMultiPicker
+        <Button bsStyle="primary" onClick={this.toggleUserListPickerModal}>
+          Open UserListPicker
         </Button>
 
-        <UserMultiPicker
+        <UserListPicker
           avatarColor={avatarColor}
-          initialSelection={multiPickerInitialSelection}
-          modalClose={this.toggleUserMultiPickerModal}
+          initialSelection={listPickerInitialSelection}
+          modalClose={this.toggleUserListPickerModal}
           modalDescription="Please select the users that you want."
           modalTitle="Select Users"
-          show={this.state.showUserMultiPickerModal}
-          userHeaders={multiPickerItemHeaders}
-          users={multiPickerItems}
+          show={this.state.showUserListPickerModal}
+          userHeaders={listPickerItemHeaders}
+          users={listPickerItems}
         />
 
 

@@ -3,9 +3,9 @@ import Checkbox from 'react-icheck/lib/Checkbox';
 import React, { PropTypes } from 'react';
 import { Grid, GridRow, GridCell } from 'alexandria-adslot';
 
-require('styles/adslotUi/MultiPickerPure.scss');
+require('styles/adslotUi/ListPickerPure.scss');
 
-const MultiPickerPureComponent = ({
+const ListPickerPureComponent = ({
   deselectItem,
   items,
   labelFormatter,
@@ -36,7 +36,7 @@ const MultiPickerPureComponent = ({
   };
 
   return (
-    <div className="multipickerpure-component">
+    <div className="listpickerpure-component">
 
       <Grid>
         {headerEl}
@@ -59,13 +59,13 @@ const MultiPickerPureComponent = ({
   );
 };
 
-MultiPickerPureComponent.displayName = 'AdslotUiMultiPickerPureComponent';
+ListPickerPureComponent.displayName = 'AdslotUiListPickerPureComponent';
 
 const itemType = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });
 
-MultiPickerPureComponent.propTypes = {
+ListPickerPureComponent.propTypes = {
   deselectItem: PropTypes.func.isRequired,
   labelFormatter: PropTypes.func.isRequired,
   itemHeaders: PropTypes.shape({
@@ -77,14 +77,14 @@ MultiPickerPureComponent.propTypes = {
   selectedItems: PropTypes.arrayOf(itemType).isRequired,
 };
 
-MultiPickerPureComponent.defaultProps = {
-  deselectItem: () => {throw new Error('AdslotUi MultiPickerPure needs a deselectItem handler');},
+ListPickerPureComponent.defaultProps = {
+  deselectItem: () => {throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');},
 
   labelFormatter: (item) => item.label,
   items: [],
-  selectItem: () => {throw new Error('AdslotUi MultiPickerPure needs a selectItem handler');},
+  selectItem: () => {throw new Error('AdslotUi ListPickerPure needs a selectItem handler');},
 
   selectedItems: [],
 };
 
-export default MultiPickerPureComponent;
+export default ListPickerPureComponent;

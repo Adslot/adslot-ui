@@ -38,7 +38,6 @@ const config = _.merge(baseConfig, {
     library: 'AdslotUI',
   },
   plugins: [
-    new webpack.PrefetchPlugin(path.resolve(__dirname, '../node_modules/'), 'core-js/library/fn/object/assign.js'),
     new ExtractTextPlugin('adslot-ui.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({

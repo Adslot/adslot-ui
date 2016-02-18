@@ -8,14 +8,14 @@ import { isElementOfType, createRenderer } from 'react-addons-test-utils';
 
 import {
   Checkbox,
+  ListPicker,
   Modal,
-  MultiPicker,
   Radio,
   RadioGroup,
   Select,
   Toggle,
   TreePicker,
-  UserMultiPicker,
+  UserListPicker,
 } from '../../src/components/distributionEntry';
 
 describe('MainComponent', () => {
@@ -27,13 +27,13 @@ describe('MainComponent', () => {
     radio: 18,
     toggle: 24,
     select: 28,
-    selectMulti: 30,
+    selectList: 30,
     treePickerButton: 32,
     treePicker: 33,
-    multiPickerButton: 35,
-    multiPicker: 36,
-    userMultiPickerButton: 38,
-    userMultiPicker: 39,
+    listPickerButton: 35,
+    listPicker: 36,
+    userListPickerButton: 38,
+    userListPicker: 39,
   };
 
   beforeEach(() => {
@@ -114,11 +114,11 @@ describe('MainComponent', () => {
     });
   });
 
-  it('should set and change values for multi select', () => {
+  it('should set and change values for list select', () => {
     const getRenderOutputAndCheck = ({ renderer, expectedValue }) => {
       const componentRenderOutput = renderer.getRenderOutput();
 
-      const selectComponent = componentRenderOutput.props.children[componentsHash.selectMulti];
+      const selectComponent = componentRenderOutput.props.children[componentsHash.selectList];
       expect(isElementOfType(selectComponent, Select)).to.equal(true);
       expect(selectComponent.props.value).to.eql(expectedValue);
 
@@ -173,53 +173,53 @@ describe('MainComponent', () => {
     treePickerElement.props.getSubtree({ rootTypeId: '0' }, (subtree) => expect(subtree).to.have.length(4));
   });
 
-  it('should toggle `showMultiPickerModal` on `Open MultiPicker` click', () => {
+  it('should toggle `showListPickerModal` on `Open ListPicker` click', () => {
     const renderer = createRenderer();
     renderer.render(<Main />);
     let componentRenderOutput = renderer.getRenderOutput();
 
-    const multiPickerButtonElement = componentRenderOutput.props.children[componentsHash.multiPickerButton];
-    multiPickerButtonElement.props.onClick();
+    const listPickerButtonElement = componentRenderOutput.props.children[componentsHash.listPickerButton];
+    listPickerButtonElement.props.onClick();
 
     componentRenderOutput = renderer.getRenderOutput();
-    const multiPickerElement = componentRenderOutput.props.children[componentsHash.multiPicker];
-    expect(multiPickerElement.props.show).to.equal(true);
+    const listPickerElement = componentRenderOutput.props.children[componentsHash.listPicker];
+    expect(listPickerElement.props.show).to.equal(true);
   });
 
-  it('should pass a custom labelFormatter into the MultiPicker', () => {
-    const multiPickerElement = MainComponent.props.children[componentsHash.multiPicker];
-    expect(isElementOfType(multiPickerElement, MultiPicker)).to.equal(true);
-    expect(multiPickerElement.props.labelFormatter({ givenName: 'John', surname: 'Doe' })).to.equal('John Doe');
+  it('should pass a custom labelFormatter into the ListPicker', () => {
+    const listPickerElement = MainComponent.props.children[componentsHash.listPicker];
+    expect(isElementOfType(listPickerElement, ListPicker)).to.equal(true);
+    expect(listPickerElement.props.labelFormatter({ givenName: 'John', surname: 'Doe' })).to.equal('John Doe');
   });
 
-  it('should pass a custom initialSelection into the MultiPicker', () => {
-    const multiPickerElement = MainComponent.props.children[componentsHash.multiPicker];
-    expect(isElementOfType(multiPickerElement, MultiPicker)).to.equal(true);
-    expect(multiPickerElement.props.initialSelection).to.have.length(1);
+  it('should pass a custom initialSelection into the ListPicker', () => {
+    const listPickerElement = MainComponent.props.children[componentsHash.listPicker];
+    expect(isElementOfType(listPickerElement, ListPicker)).to.equal(true);
+    expect(listPickerElement.props.initialSelection).to.have.length(1);
   });
 
-  it('should toggle `showUserMultiPickerModal` on `Open UserMultiPicker` click', () => {
+  it('should toggle `showUserListPickerModal` on `Open UserListPicker` click', () => {
     const renderer = createRenderer();
     renderer.render(<Main />);
     let componentRenderOutput = renderer.getRenderOutput();
 
-    const userMultiPickerButtonElement = componentRenderOutput.props.children[componentsHash.userMultiPickerButton];
-    userMultiPickerButtonElement.props.onClick();
+    const userListPickerButtonElement = componentRenderOutput.props.children[componentsHash.userListPickerButton];
+    userListPickerButtonElement.props.onClick();
 
     componentRenderOutput = renderer.getRenderOutput();
-    const userMultiPickerElement = componentRenderOutput.props.children[componentsHash.userMultiPicker];
-    expect(userMultiPickerElement.props.show).to.equal(true);
+    const userListPickerElement = componentRenderOutput.props.children[componentsHash.userListPicker];
+    expect(userListPickerElement.props.show).to.equal(true);
   });
 
-  it('should pass a custom avatarColor into the UserMultiPicker', () => {
-    const userMultiPickerElement = MainComponent.props.children[componentsHash.userMultiPicker];
-    expect(isElementOfType(userMultiPickerElement, UserMultiPicker)).to.equal(true);
-    expect(userMultiPickerElement.props.avatarColor()).to.equal('cyan');
+  it('should pass a custom avatarColor into the UserListPicker', () => {
+    const userListPickerElement = MainComponent.props.children[componentsHash.userListPicker];
+    expect(isElementOfType(userListPickerElement, UserListPicker)).to.equal(true);
+    expect(userListPickerElement.props.avatarColor()).to.equal('cyan');
   });
 
-  it('should pass a custom initialSelection into the UserMultiPicker', () => {
-    const userMultiPickerElement = MainComponent.props.children[componentsHash.userMultiPicker];
-    expect(isElementOfType(userMultiPickerElement, UserMultiPicker)).to.equal(true);
-    expect(userMultiPickerElement.props.initialSelection).to.have.length(1);
+  it('should pass a custom initialSelection into the UserListPicker', () => {
+    const userListPickerElement = MainComponent.props.children[componentsHash.userListPicker];
+    expect(isElementOfType(userListPickerElement, UserListPicker)).to.equal(true);
+    expect(userListPickerElement.props.initialSelection).to.have.length(1);
   });
 });
