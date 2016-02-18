@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 
 const FormGroupComponent = ({
   addon,
+  disabled,
   helpText,
   label,
   onChange,
@@ -18,12 +19,13 @@ const FormGroupComponent = ({
         <div className="input-group col-xs-6">
           {addonElement}
           <input
-            type="text"
             className="form-control"
+            disabled={disabled}
             id={inputId}
-            placeholder={placeholder}
-            value={value}
             onChange={onChange}
+            placeholder={placeholder}
+            type="text"
+            value={value}
           />
         </div>
         <p className="help-block">{helpText}</p>
@@ -36,6 +38,7 @@ FormGroupComponent.displayName = 'AdslotUiFormGroupComponent';
 
 FormGroupComponent.propTypes = {
   addon: PropTypes.string,
+  disabled: PropTypes.bool,
   helpText: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
@@ -44,6 +47,7 @@ FormGroupComponent.propTypes = {
 };
 
 FormGroupComponent.defaultProps = {
+  disabled: false,
   value: '',
 };
 

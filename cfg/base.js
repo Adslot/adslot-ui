@@ -1,11 +1,10 @@
 const path = require('path');
-
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const host = '0.0.0.0';
 const port = 8000;
-const srcPath = path.join(__dirname, '/../src');
 const publicPath = '/assets/';
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
+const srcPath = path.join(__dirname, '/../src');
 
 module.exports = {
   debug: true,
