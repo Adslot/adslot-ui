@@ -126,7 +126,7 @@ class TreePickerComponent extends React.Component {
     const newSelected = this.state.selectedNodesByRootType;
     const { rootTypeId } = node;
     newSelected[rootTypeId] = _.reject(newSelected[rootTypeId], { id: node.id });
-    if (_.isEmpty(newSelected[rootTypeId])) {delete newSelected[this.state.rootType.id];}
+    if (_.isEmpty(newSelected[rootTypeId])) {delete newSelected[rootTypeId];}
 
     this.setState({ selectedNodesByRootType: newSelected });
   }
