@@ -6,6 +6,7 @@ import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
+import Radio from 'react-icheck/lib/Radio';
 import React from 'react';
 import { Grid, GridCell, GridRow } from 'alexandria-adslot';
 
@@ -60,10 +61,36 @@ describe('ListPickerPureComponent', () => {
         const gridRowCellLeftText = gridRowCellElements[0].props.children;
         expect(gridRowCellLeftText).to.equal(labelFormatter(users[index]));
 
-        const gridRowCellCheckboxElement = gridRowCellElements[1].props.children;
-        expect(gridRowCellCheckboxElement.type).to.equal((<Checkbox />).type);
+        const gridRowCellToggleElement = gridRowCellElements[1].props.children;
+        expect(gridRowCellToggleElement.type).to.equal((<Checkbox />).type);
 
-        expect(gridRowCellCheckboxElement.props.checked).to.equal(_.includes(selectedItems, users[index]));
+        expect(gridRowCellToggleElement.props.checked).to.equal(_.includes(selectedItems, users[index]));
+      }
+    }
+  });
+
+  it('should render radio buttons with `allowMultiSelection` as false', () => {
+    const component = createComponent(ListPickerPureComponent, {
+      allowMultiSelection: false,
+      items: users,
+      selectedItems,
+    });
+    expect(component.props.className).to.equal('listpickerpure-component');
+
+    const gridElement = component.props.children;
+    expect(gridElement.type).to.equal((<Grid />).type);
+
+    const gridRowElements = gridElement.props.children[1];
+    for (const index in gridRowElements) {
+      if (gridRowElements[index]) {
+        const gridRowElement = gridRowElements[index];
+        const gridRowCellElements = gridRowElement.props.children;
+        expect(gridRowCellElements[0].type).to.equal((<GridCell />).type);
+
+        const gridRowCellToggleElement = gridRowCellElements[1].props.children;
+        expect(gridRowCellToggleElement.type).to.equal((<Radio />).type);
+
+        expect(gridRowCellToggleElement.props.checked).to.equal(_.includes(selectedItems, users[index]));
       }
     }
   });

@@ -37,6 +37,8 @@ class ListPickerComponent extends React.Component {
 
   selectItem(item) {
     const { selectedItems } = this.state;
+    if (!this.props.allowMultiSelection) {selectedItems.length = 0;}
+
     selectedItems.push(item);
     this.setState({
       selectedItems,
@@ -74,6 +76,7 @@ class ListPickerComponent extends React.Component {
         <Modal.Body>
           <p>{props.modalDescription}</p>
           <ListPickerPure
+            allowMultiSelection={props.allowMultiSelection}
             deselectItem={this.deselectItem}
             labelFormatter={props.labelFormatter}
             itemHeaders={props.itemHeaders}
@@ -103,6 +106,7 @@ const itemType = PropTypes.shape({
 
 ListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool.isRequired,
+  allowMultiSelection: PropTypes.bool.isRequired,
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
@@ -120,6 +124,7 @@ ListPickerComponent.propTypes = {
 
 ListPickerComponent.defaultProps = {
   allowEmptySelection: true,
+  allowMultiSelection: true,
   initialSelection: [],
   items: [],
   modalApply: () => {throw new Error('AdslotUi ListPicker needs a modalApply handler');},

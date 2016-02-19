@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import Checkbox from 'react-icheck/lib/Checkbox';
+import Radio from 'react-icheck/lib/Radio';
 import React, { PropTypes } from 'react';
 import { Grid, GridRow, GridCell } from 'alexandria-adslot';
 
 require('styles/adslotUi/ListPickerPure.scss');
 
 const ListPickerPureComponent = ({
+  allowMultiSelection,
   deselectItem,
   items,
   labelFormatter,
@@ -35,6 +37,8 @@ const ListPickerPureComponent = ({
     deselectItem(item);
   };
 
+  const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
+
   return (
     <div className="listpickerpure-component">
 
@@ -45,8 +49,8 @@ const ListPickerPureComponent = ({
             <GridCell>
               {labelFormatter(item)}
             </GridCell>
-            <GridCell classSuffixes={['checkbox']}>
-              <Checkbox
+            <GridCell classSuffixes={['toggle']}>
+              <ToggleComponent
                 checked={isItemSelected(item)}
                 onChange={handleChange(item)}
               />
@@ -66,6 +70,7 @@ const itemType = PropTypes.shape({
 });
 
 ListPickerPureComponent.propTypes = {
+  allowMultiSelection: PropTypes.bool.isRequired,
   deselectItem: PropTypes.func.isRequired,
   labelFormatter: PropTypes.func.isRequired,
   itemHeaders: PropTypes.shape({
@@ -78,6 +83,7 @@ ListPickerPureComponent.propTypes = {
 };
 
 ListPickerPureComponent.defaultProps = {
+  allowMultiSelection: true,
   deselectItem: () => {throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');},
 
   labelFormatter: (item) => item.label,
