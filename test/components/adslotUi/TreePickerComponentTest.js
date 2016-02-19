@@ -5,14 +5,14 @@ import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
+import TreePickerComponent from 'components/adslotUi/TreePickerComponent';
+import TreePickerMocks from 'mocks/TreePickerMocks';
 import {
   createAndMountComponent,
   createShallowRenderer,
   runComponentDidMount,
   runComponentWillUnmount,
 } from 'testHelpers/shallowRenderHelpers';
-import TreePickerComponent from 'components/adslotUi/TreePickerComponent';
-import TreePickerMocks from 'mocks/TreePickerMocks';
 
 describe('TreePickerComponent', () => {
   const {
@@ -358,17 +358,19 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([ntNode], 'rootTypeId'));
   });
 
-  it('should change `selected` state to an empty object after a removeNode action on all nodes', () => {
+  it('should change `selected` state to an empty object after a removeNode action on all nodes per rootType', () => {
     const component = createAndMountComponent(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
     });
     const treePickerPureElement = getTreePickerPureElement(component);
+    treePickerPureElement.props.changeRootType('b');
+    treePickerPureElement.props.includeNode(maleNode);
     treePickerPureElement.props.removeNode(actNode);
     treePickerPureElement.props.removeNode(ntNode);
 
-    expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal({});
+    expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([maleNode], 'rootTypeId'));
   });
 
   it('should show modal when `show` is true', () => {
