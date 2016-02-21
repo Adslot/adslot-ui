@@ -2,12 +2,12 @@
 /* global expect */
 
 import _ from 'lodash';
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNodeComponent from 'components/adslotUi/TreePickerNodeComponent';
 import { GridCell, GridRow } from 'alexandria-adslot';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerNodeComponent', () => {
   const indices = {
@@ -55,12 +55,12 @@ describe('TreePickerNodeComponent', () => {
 
     const valueCellElement = rowElement.props.children[indices.valueCell];
 
-    expect(valueCellElement.type).to.equal((<GridCell/>).type);
+    expect(valueCellElement.type).to.equal((<GridCell />).type);
     expect(valueCellElement.props.children).to.equal(2000);
 
     const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
 
-    expect(buttonLastCellElement.type).to.equal((<GridCell/>).type);
+    expect(buttonLastCellElement.type).to.equal((<GridCell />).type);
     expect(buttonLastCellElement.props.classSuffixes).to.deep.equal(['button']);
 
     const buttonElement = buttonLastCellElement.props.children;
@@ -76,7 +76,7 @@ describe('TreePickerNodeComponent', () => {
 
     const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
 
-    expect(buttonFirstCellElement.type).to.equal((<GridCell/>).type);
+    expect(buttonFirstCellElement.type).to.equal((<GridCell />).type);
     expect(buttonFirstCellElement.props.classSuffixes).to.deep.equal(['button']);
     const buttonElement = buttonFirstCellElement.props.children;
 
@@ -95,7 +95,7 @@ describe('TreePickerNodeComponent', () => {
 
     const valueCellElement = rowElement.props.children[indices.valueCell];
 
-    expect(valueCellElement.type).to.equal((<GridCell/>).type);
+    expect(valueCellElement.type).to.equal((<GridCell />).type);
     expect(valueCellElement.props.children).to.equal('€20');
   });
 
@@ -171,7 +171,7 @@ describe('TreePickerNodeComponent', () => {
 
     const valueCellElement = rowElement.props.children[indices.valueCell];
 
-    expect(valueCellElement.type).to.equal((<GridCell/>).type);
+    expect(valueCellElement.type).to.equal((<GridCell />).type);
     expect(valueCellElement.props.children).to.equal(400);
   });
 
@@ -197,7 +197,7 @@ describe('TreePickerNodeComponent', () => {
 
     const valueCellElement = rowElement.props.children[indices.valueCell];
 
-    expect(valueCellElement.type).to.equal((<GridCell/>).type);
+    expect(valueCellElement.type).to.equal((<GridCell />).type);
     expect(valueCellElement.props.children).to.equal(400);
   });
 

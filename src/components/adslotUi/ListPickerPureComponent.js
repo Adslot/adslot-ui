@@ -32,9 +32,11 @@ const ListPickerPureComponent = ({
   const isItemSelected = (item) => _.some(selectedItems, { id: item.id });
 
   const handleChange = (item) => (event, checked) => {
-    if (checked) {return selectItem(item);}
-
-    deselectItem(item);
+    if (checked) {
+      selectItem(item);
+    } else {
+      deselectItem(item);
+    }
   };
 
   const ToggleComponent = allowMultiSelection ? Checkbox : Radio;

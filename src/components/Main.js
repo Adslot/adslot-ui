@@ -407,7 +407,7 @@ class AppComponent extends React.Component {
               <div className="form-group">
                 <label htmlFor="exampleInputFile" className="control-label col-xs-4">File input</label>
                 <div className="col-xs-8">
-                  <input type="file" id="exampleInputFile" className="form-control"/>
+                  <input type="file" id="exampleInputFile" className="form-control" />
                 </div>
               </div>
 
