@@ -2,7 +2,6 @@
 /* global expect */
 
 import _ from 'lodash';
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import React from 'react';
@@ -10,6 +9,7 @@ import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
 import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerSelectedComponent', () => {
   const indices = {
@@ -78,10 +78,10 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(subFooterSecondCell.type).to.equal((<GridCell />).type);
     const overlayTriggerElement = subFooterSecondCell.props.children;
-    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />}/>).type);
+    expect(overlayTriggerElement.type).to.equal((<OverlayTrigger overlay={<span />} />).type);
     expect(overlayTriggerElement.props.placement).to.equal('left');
     const popoverElement = overlayTriggerElement.props.overlay;
-    expect(popoverElement.type).to.equal((<Popover id=""/>).type);
+    expect(popoverElement.type).to.equal((<Popover id="" />).type);
     expect(popoverElement.props.id).to.equal('subtotal-a');
     const modeText = (mode === 'Average') ?
       'Selecting adjusts the set distribution, but not the set size.' :

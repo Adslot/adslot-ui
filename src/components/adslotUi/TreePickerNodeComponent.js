@@ -70,6 +70,7 @@ TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 
 TreePickerNodeComponent.propTypes = {
   includeNode: PropTypes.func.isRequired,
+  expandNode: PropTypes.func,
   node: TreePickerPropTypes.node.isRequired,
   removeNode: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,

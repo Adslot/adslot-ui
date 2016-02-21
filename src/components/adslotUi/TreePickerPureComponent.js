@@ -147,6 +147,7 @@ TreePickerPureComponent.propTypes = {
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
   searchValue: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
   selectedLabel: PropTypes.string,
   selectedNodesByRootType: PropTypes.shape(),
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node).isRequired,

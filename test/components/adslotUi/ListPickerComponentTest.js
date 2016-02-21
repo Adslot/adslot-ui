@@ -2,11 +2,11 @@
 /* global expect */
 
 import Button from 'react-bootstrap/lib/Button';
-import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
-import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerMocks from 'mocks/ListPickerMocks';
+import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
+import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('ListPickerComponent', () => {
   const {
@@ -169,8 +169,10 @@ describe('ListPickerComponent', () => {
   it('should call `modalApply` and `modalClose` when we click Apply', () => {
     let applyCalls = null;
     let closeCalls = 0;
-    const applyMock = (selectedItems) => applyCalls = selectedItems;
-    const closeMock = () => closeCalls += 1;
+    const applyMock = (selectedItems) => {applyCalls = selectedItems;};
+
+    const closeMock = () => {closeCalls += 1;};
+
     const component = createAndMountComponent(ListPickerComponent, {
       initialSelection: getInitialSelection(),
       modalApply: applyMock,
@@ -195,7 +197,7 @@ describe('ListPickerComponent', () => {
 
   it('should call `modalClose` when we click Cancel', () => {
     let closeCalls = 0;
-    const closeMock = () => closeCalls += 1;
+    const closeMock = () => {closeCalls += 1;};
 
     const component = createAndMountComponent(ListPickerComponent, {
       modalClose: closeMock,

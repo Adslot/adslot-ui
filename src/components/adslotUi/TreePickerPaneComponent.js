@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 require('styles/adslotUi/TreePickerPane.scss');
 
@@ -9,5 +9,7 @@ const TreePickerPaneComponent = ({ children }) => (
 );
 
 TreePickerPaneComponent.displayName = 'AdslotUiTreePickerPaneComponent';
-
+TreePickerPaneComponent.propTypes = {
+  children: PropTypes.node,
+};
 export default TreePickerPaneComponent;
