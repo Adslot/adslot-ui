@@ -82,6 +82,7 @@ describe('ListPickerComponent', () => {
       items: users,
       labelFormatter,
       modalDescription: 'Select users.',
+      modalFootnote: 'You can select multiple users.',
       modalTitle: 'Select Users',
     });
     expect(component.props.className).to.equal('listpicker-component');
@@ -95,6 +96,10 @@ describe('ListPickerComponent', () => {
     const modalDescriptionElement = modalBodyElement.props.children[0];
     const modalDescriptionText = modalDescriptionElement.props.children;
     expect(modalDescriptionText).to.equal('Select users.');
+
+    const modalFootnoteElement = modalBodyElement.props.children[2];
+    const modalFootnoteText = modalFootnoteElement.props.children;
+    expect(modalFootnoteText).to.equal('You can select multiple users.');
 
     const listPickerPureElement = getListPickerPureElement(component);
     expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
