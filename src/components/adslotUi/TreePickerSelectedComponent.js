@@ -66,7 +66,7 @@ const TreePickerSelectedComponent = ({
               <GridCell>{valueLabel}</GridCell>
             </GridRow>
 
-            {selectedNodesByRootType[rootTypeId].map((node) =>
+            {_.map(selectedNodesByRootType[rootTypeId], (node) =>
               <TreePickerNode
                 includeNode={includeNode}
                 key={node.id}
