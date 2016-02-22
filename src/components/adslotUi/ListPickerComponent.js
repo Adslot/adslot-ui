@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import React, { PropTypes } from 'react';
 
+require('styles/adslotUi/ListPicker.scss');
+
 class ListPickerComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -86,6 +88,7 @@ class ListPickerComponent extends React.Component {
             selectItem={this.selectItem}
             selectedItems={state.selectedItems}
           />
+          {props.modalFootnote ? <div className="listpicker-component-footnote">{props.modalFootnote}</div> : null}
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-inverse" onClick={this.cancelAction}>
@@ -122,6 +125,7 @@ ListPickerComponent.propTypes = {
   modalDescription: PropTypes.string,
   modalClassName: PropTypes.string,
   modalClose: PropTypes.func.isRequired,
+  modalFootnote: PropTypes.string,
   modalTitle: PropTypes.string.isRequired,
   show: PropTypes.bool.isRequired,
 };

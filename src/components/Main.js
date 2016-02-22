@@ -336,6 +336,7 @@ class AppComponent extends React.Component {
           labelFormatter={labelFormatter}
           modalClose={this.toggleListPickerModal}
           modalDescription="Please select the users that you want."
+          modalFootnote="You can select multiple users."
           modalTitle="Select Users"
           show={this.state.showListPickerModal}
         />
