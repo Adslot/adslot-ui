@@ -52,6 +52,7 @@
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.1",
     "eslint-loader": "^1.2.1",
+    "eslint-plugin-lodash": "^1.1.0",
     "eslint-plugin-react": "^4.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",

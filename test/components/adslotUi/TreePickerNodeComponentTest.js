@@ -115,7 +115,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should not show the expander element when the node is not expandable', () => {
-    const nonExpandableNode = _.extend({}, cbrNode, { isExpandable: false });
+    const nonExpandableNode = _.defaults({ isExpandable: false }, cbrNode);
     const nodes = [];
     const expandNode = (node) => nodes.push(node);
     const component = createComponent(TreePickerNodeComponent, { node: nonExpandableNode, expandNode });

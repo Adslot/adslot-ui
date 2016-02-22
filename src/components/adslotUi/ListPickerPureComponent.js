@@ -48,7 +48,7 @@ const ListPickerPureComponent = ({
 
       <Grid>
         {headerEl}
-        {items.map((item) =>
+        {_.map(items, (item) =>
           <GridRow key={item.id}>
             <GridCell>
               {labelFormatter(item)}

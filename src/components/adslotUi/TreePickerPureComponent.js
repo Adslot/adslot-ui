@@ -52,7 +52,7 @@ const TreePickerPureComponent = ({
       <TreePickerPane>
 
         <ul className="nav nav-tabs">
-          {rootTypes.length ? rootTypes.map((rootType) =>
+          {rootTypes.length ? _.map(rootTypes, (rootType) =>
             <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
               <a onClick={changeRootTypeBound(rootType)}>
                 <img className="icon" src={rootType.icon} />
@@ -72,7 +72,7 @@ const TreePickerPureComponent = ({
         />
 
         <Grid>
-          {filteredSubtree.map((node) =>
+          {_.map(filteredSubtree, (node) =>
             <TreePickerNode
               expandNode={expandNode}
               includeNode={includeNode}
