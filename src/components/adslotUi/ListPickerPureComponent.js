@@ -2,13 +2,15 @@ import _ from 'lodash';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import React, { PropTypes } from 'react';
-import { Grid, GridRow, GridCell } from 'alexandria-adslot';
+import { Empty, Grid, GridRow, GridCell } from 'alexandria-adslot';
 
 require('styles/adslotUi/ListPickerPure.scss');
 
 const ListPickerPureComponent = ({
   allowMultiSelection,
   deselectItem,
+  emptyIcon,
+  emptyMessage,
   items,
   labelFormatter,
   itemHeaders,
@@ -59,6 +61,7 @@ const ListPickerPureComponent = ({
             </GridCell>
           </GridRow>
         )}
+        <Empty collection={items} icon={emptyIcon} text={emptyMessage} />
       </Grid>
 
     </div>
@@ -74,6 +77,8 @@ const itemType = PropTypes.shape({
 ListPickerPureComponent.propTypes = {
   allowMultiSelection: PropTypes.bool.isRequired,
   deselectItem: PropTypes.func.isRequired,
+  emptyIcon: PropTypes.string,
+  emptyMessage: PropTypes.string.isRequired,
   labelFormatter: PropTypes.func.isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
@@ -88,6 +93,7 @@ ListPickerPureComponent.defaultProps = {
   allowMultiSelection: true,
   deselectItem: () => {throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');},
 
+  emptyMessage: 'No items to select.',
   labelFormatter: (item) => item.label,
   items: [],
   selectItem: () => {throw new Error('AdslotUi ListPickerPure needs a selectItem handler');},

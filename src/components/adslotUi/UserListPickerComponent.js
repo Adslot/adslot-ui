@@ -32,6 +32,8 @@ class UserListPickerComponent extends React.Component {
     return (
       <ListPicker
         allowEmptySelection={props.allowEmptySelection}
+        emptyIcon={props.emptyIcon}
+        emptyMessage={props.emptyMessage}
         initialSelection={props.initialSelection}
         itemHeaders={props.userHeaders}
         items={props.users}
@@ -59,6 +61,8 @@ const userType = PropTypes.shape({
 UserListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool.isRequired,
   avatarColor: PropTypes.func.isRequired,
+  emptyIcon: PropTypes.string,
+  emptyMessage: PropTypes.string.isRequired,
   initialSelection: PropTypes.arrayOf(userType).isRequired,
   modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string.isRequired,
@@ -75,6 +79,7 @@ UserListPickerComponent.propTypes = {
 UserListPickerComponent.defaultProps = {
   allowEmptySelection: false,
   avatarColor: () => null,
+  emptyMessage: 'No users.',
   initialSelection: [],
   modalApply: () => {throw new Error('AdslotUi UserListPicker needs a modalApply handler');},
 
