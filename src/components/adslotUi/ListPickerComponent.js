@@ -77,6 +77,8 @@ class ListPickerComponent extends React.Component {
           <p>{props.modalDescription}</p>
           <ListPickerPure
             allowMultiSelection={props.allowMultiSelection}
+            emptyIcon={props.emptyIcon}
+            emptyMessage={props.emptyMessage}
             deselectItem={this.deselectItem}
             labelFormatter={props.labelFormatter}
             itemHeaders={props.itemHeaders}
@@ -107,6 +109,8 @@ const itemType = PropTypes.shape({
 ListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool.isRequired,
   allowMultiSelection: PropTypes.bool.isRequired,
+  emptyIcon: PropTypes.string,
+  emptyMessage: PropTypes.string,
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,

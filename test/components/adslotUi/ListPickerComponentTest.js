@@ -76,6 +76,7 @@ describe('ListPickerComponent', () => {
   it('should render with props', () => {
     const initialSelection = getInitialSelection();
     const component = createAndMountComponent(ListPickerComponent, {
+      emptyMessage: 'No users.',
       initialSelection,
       itemHeaders: userHeaders,
       items: users,
@@ -101,6 +102,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
 
     expect(listPickerPureElement.props.deselectItem).to.be.a('function');
+    expect(listPickerPureElement.props.emptyMessage).to.equal('No users.');
     expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
     expect(listPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);
     expect(listPickerPureElement.props.items).to.deep.equal(users);

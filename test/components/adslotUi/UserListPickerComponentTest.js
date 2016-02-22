@@ -17,6 +17,7 @@ describe('UserListPickerComponent', () => {
   it('should render with defaults', () => {
     const component = createComponent(UserListPickerComponent);
     expect(component.type.name).to.equal('ListPickerComponent');
+    expect(component.props.emptyMessage).to.equal('No users.');
     expect(component.props.initialSelection).to.deep.equal([]);
     expect(component.props.itemHeaders).to.deep.equal(userHeaders);
     expect(component.props.items).to.deep.equal([]);

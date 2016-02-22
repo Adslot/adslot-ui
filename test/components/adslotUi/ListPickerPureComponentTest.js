@@ -8,7 +8,7 @@ import ListPickerMocks from 'mocks/ListPickerMocks';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import Radio from 'react-icheck/lib/Radio';
 import React from 'react';
-import { Grid, GridCell, GridRow } from 'alexandria-adslot';
+import { Empty, Grid, GridCell, GridRow } from 'alexandria-adslot';
 
 describe('ListPickerPureComponent', () => {
   const {
@@ -28,6 +28,11 @@ describe('ListPickerPureComponent', () => {
 
     const gridElement = component.props.children;
     expect(gridElement.type).to.equal((<Grid />).type);
+
+    const emptyElement = gridElement.props.children[2];
+    expect(emptyElement.type).to.equal((<Empty />).type);
+    expect(emptyElement.props.collection).to.have.length(0);
+    expect(emptyElement.props.text).to.equal('No items to select.');
   });
 
   it('should render with props', () => {

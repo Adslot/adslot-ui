@@ -1,3 +1,5 @@
+@import '../border';
+
 .listpickerpure-component {
   display: flex;
   max-height: 600px;
@@ -5,5 +7,9 @@
   .grid-component-cell-header-right,
   .grid-component-cell-toggle {
     text-align: right;
+  }
+
+  .empty-component {
+    border-bottom: $border-lighter;
   }
 }
