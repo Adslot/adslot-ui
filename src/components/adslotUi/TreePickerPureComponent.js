@@ -1,7 +1,7 @@
 import _ from 'lodash';
+import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
-import TreePickerPane from 'components/adslotUi/TreePickerPaneComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
@@ -49,7 +49,7 @@ const TreePickerPureComponent = ({
   return (
     <div className="treepickerpure-component">
 
-      <TreePickerPane>
+      <SplitPane>
 
         <ul className="nav nav-tabs">
           {rootTypes.length ? _.map(rootTypes, (rootType) =>
@@ -85,9 +85,9 @@ const TreePickerPureComponent = ({
         </Grid>
 
         <FlexSpacer />
-      </TreePickerPane>
+      </SplitPane>
 
-      <TreePickerPane>
+      <SplitPane>
 
         <TreePickerSelected
           averageWithinRootType={averageWithinRootType}
@@ -102,7 +102,7 @@ const TreePickerPureComponent = ({
           warnOnRequired={warnOnRequired}
         />
 
-      </TreePickerPane>
+      </SplitPane>
 
     </div>
   );

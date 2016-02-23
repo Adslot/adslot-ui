@@ -39,7 +39,7 @@ describe('TreePickerPureComponent', () => {
     expect(component.props.className).to.equal('treepickerpure-component');
 
     const leftPaneElement = component.props.children[indices.leftPane];
-    expect(leftPaneElement.type.name).to.equal('TreePickerPaneComponent');
+    expect(leftPaneElement.type.name).to.equal('SplitPaneComponent');
 
     const tabsElement = leftPaneElement.props.children[leftPaneIndices.tabs];
     expect(tabsElement.type).to.equal('ul');
@@ -70,7 +70,7 @@ describe('TreePickerPureComponent', () => {
     expect(flexSpacerElement.type).to.equal((<FlexSpacer />).type);
 
     const rightPaneElement = component.props.children[indices.rightPane];
-    expect(rightPaneElement.type.name).to.equal('TreePickerPaneComponent');
+    expect(rightPaneElement.type.name).to.equal('SplitPaneComponent');
 
     const treePickerSelectedElement = rightPaneElement.props.children;
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
@@ -107,7 +107,7 @@ describe('TreePickerPureComponent', () => {
     expect(component.props.className).to.equal('treepickerpure-component');
 
     const leftPaneElement = component.props.children[indices.leftPane];
-    expect(leftPaneElement.type.name).to.equal('TreePickerPaneComponent');
+    expect(leftPaneElement.type.name).to.equal('SplitPaneComponent');
 
     const tabsElement = leftPaneElement.props.children[leftPaneIndices.tabs];
     expect(tabsElement.type).to.equal('ul');
@@ -157,7 +157,7 @@ describe('TreePickerPureComponent', () => {
     expect(emptyElement.props.text).to.equal('No items to select.');
 
     const rightPaneElement = component.props.children[indices.rightPane];
-    expect(rightPaneElement.type.name).to.equal('TreePickerPaneComponent');
+    expect(rightPaneElement.type.name).to.equal('SplitPaneComponent');
 
     const treePickerSelectedElement = rightPaneElement.props.children;
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
