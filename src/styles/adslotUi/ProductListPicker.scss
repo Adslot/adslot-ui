@@ -1,0 +1,25 @@
+@import '../color';
+@import '../fontWeight';
+
+.productlistpicker-component {
+  &-body {
+    display: flex;
+  }
+
+  &-footnote {
+    margin-top: 10px;
+  }
+
+  &-product-label {
+    color: $color-gray;
+  }
+
+  &-product-label,
+  &-product-value {
+    line-height: 30px;
+  }
+
+  .grid-component-row-header {
+    font-weight: $font-weight-bold;
+  }
+}

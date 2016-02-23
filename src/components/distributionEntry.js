@@ -11,6 +11,7 @@ import ListPicker from 'components/adslotUi/ListPickerComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
+import ProductListPicker from 'components/adslotUi/ProductListPickerComponent';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
@@ -48,6 +49,7 @@ module.exports = {
   Modal,
   OverlayTrigger,
   Popover,
+  ProductListPicker,
   Radio,
   RadioGroup,
   Search,
