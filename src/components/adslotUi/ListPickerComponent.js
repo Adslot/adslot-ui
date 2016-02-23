@@ -2,6 +2,8 @@ import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
+import SplitPane from 'components/adslotUi/SplitPaneComponent';
+import { FlexSpacer, Grid, GridRow, GridCell } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
 
 require('styles/adslotUi/ListPicker.scss');
@@ -70,24 +72,50 @@ class ListPickerComponent extends React.Component {
   render() {
     const { state, props } = this;
 
+    const listPickerPureElement = (
+      <ListPickerPure
+        allowMultiSelection={props.allowMultiSelection}
+        emptyIcon={props.emptyIcon}
+        emptyMessage={props.emptyMessage}
+        deselectItem={this.deselectItem}
+        labelFormatter={props.labelFormatter}
+        itemHeaders={props.itemHeaders}
+        items={props.items}
+        selectItem={this.selectItem}
+        selectedItems={state.selectedItems}
+      />
+    );
+
     return (
       <Modal className={props.modalClassName} show={props.show} bsSize="large" keyboard={false}>
         <Modal.Header>
           <Modal.Title>{props.modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{props.modalDescription}</p>
-          <ListPickerPure
-            allowMultiSelection={props.allowMultiSelection}
-            emptyIcon={props.emptyIcon}
-            emptyMessage={props.emptyMessage}
-            deselectItem={this.deselectItem}
-            labelFormatter={props.labelFormatter}
-            itemHeaders={props.itemHeaders}
-            items={props.items}
-            selectItem={this.selectItem}
-            selectedItems={state.selectedItems}
-          />
+          {props.modalDescription ? <p>{props.modalDescription}</p> : null}
+          {_.isEmpty(props.itemInfo) ?
+            <div className="listpicker-component-body">{listPickerPureElement}</div> :
+            <div className="listpicker-component-body-split">
+              <SplitPane>
+                <Grid>
+                  <GridRow type="header">
+                    <GridCell>{props.itemInfo.label}</GridCell>
+                  </GridRow>
+                  {_.map(props.itemInfo.properties, (property) =>
+                    <GridRow key={property.label} horizontalBorder={false}>
+                      <GridCell classSuffixes={['label']}>{property.label}</GridCell>
+                      <GridCell stretch classSuffixes={['value']}>{property.value}</GridCell>
+                    </GridRow>
+                  )}
+                </Grid>
+                <FlexSpacer />
+              </SplitPane>
+              <SplitPane>
+                {listPickerPureElement}
+                <FlexSpacer />
+              </SplitPane>
+            </div>
+          }
           {props.modalFootnote ? <div className="listpicker-component-footnote">{props.modalFootnote}</div> : null}
         </Modal.Body>
         <Modal.Footer>
@@ -119,6 +147,15 @@ ListPickerComponent.propTypes = {
     left: PropTypes.string,
     right: PropTypes.string,
   }),
+  itemInfo: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    properties: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string,
+      })
+    ).isRequired,
+  }),
   items: PropTypes.arrayOf(itemType).isRequired,
   labelFormatter: PropTypes.func,
   modalApply: PropTypes.func.isRequired,
@@ -140,7 +177,6 @@ ListPickerComponent.defaultProps = {
   modalClassName: 'listpicker-component',
   modalClose: () => {throw new Error('AdslotUi ListPicker needs a modalClose handler');},
 
-  modalDescription: 'Select items.',
   modalTitle: 'Select Items',
   show: false,
 };

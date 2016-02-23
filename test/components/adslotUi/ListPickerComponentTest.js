@@ -6,6 +6,7 @@ import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
+import { Grid } from 'alexandria-adslot';
 import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('ListPickerComponent', () => {
@@ -20,7 +21,7 @@ describe('ListPickerComponent', () => {
 
   const getListPickerPureElement = (rootComponent) => {
     const modalBodyElement = rootComponent.props.children[1];
-    return modalBodyElement.props.children[1];
+    return modalBodyElement.props.children[1].props.children;
   };
 
   it('should render with defaults', () => {
@@ -41,12 +42,7 @@ describe('ListPickerComponent', () => {
     const modalBodyElement = component.props.children[1];
     expect(modalBodyElement.type).to.equal((<Modal.Body />).type);
 
-    const modalDescriptionElement = modalBodyElement.props.children[0];
-    expect(modalDescriptionElement.type).to.equal('p');
-    const modalDescriptionText = modalDescriptionElement.props.children;
-    expect(modalDescriptionText).to.equal('Select items.');
-
-    const listPickerPureElement = modalBodyElement.props.children[1];
+    const listPickerPureElement = getListPickerPureElement(component);
     expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
 
     expect(listPickerPureElement.props.deselectItem).to.be.a('function');
@@ -102,6 +98,70 @@ describe('ListPickerComponent', () => {
     expect(modalFootnoteText).to.equal('You can select multiple users.');
 
     const listPickerPureElement = getListPickerPureElement(component);
+    expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
+    expect(listPickerPureElement.props.selectedItems).to.not.equal(initialSelection);
+    expect(listPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
+
+    expect(listPickerPureElement.props.deselectItem).to.be.a('function');
+    expect(listPickerPureElement.props.emptyMessage).to.equal('No users.');
+    expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
+    expect(listPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);
+    expect(listPickerPureElement.props.items).to.deep.equal(users);
+    expect(listPickerPureElement.props.selectItem).to.be.a('function');
+    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
+  });
+
+  it('should render with props for split pane', () => {
+    const itemInfo = {
+      label: 'User Details',
+      properties: [
+        { label: 'Name', value: 'Jill Smith' },
+        { label: 'Age', value: '21' },
+      ],
+    };
+    const initialSelection = getInitialSelection();
+    const component = createAndMountComponent(ListPickerComponent, {
+      emptyMessage: 'No users.',
+      initialSelection,
+      itemHeaders: userHeaders,
+      itemInfo,
+      items: users,
+      labelFormatter,
+      modalDescription: 'Select users.',
+      modalFootnote: 'You can select multiple users.',
+      modalTitle: 'Select Users',
+    });
+    expect(component.props.className).to.equal('listpicker-component');
+
+    const modalHeaderElement = component.props.children[0];
+    const modalTitleElement = modalHeaderElement.props.children;
+    const modalTitleText = modalTitleElement.props.children;
+    expect(modalTitleText).to.equal('Select Users');
+
+    const modalBodyElement = component.props.children[1];
+    const modalDescriptionElement = modalBodyElement.props.children[0];
+    const modalDescriptionText = modalDescriptionElement.props.children;
+    expect(modalDescriptionText).to.equal('Select users.');
+
+    const modalFootnoteElement = modalBodyElement.props.children[2];
+    const modalFootnoteText = modalFootnoteElement.props.children;
+    expect(modalFootnoteText).to.equal('You can select multiple users.');
+
+    const splitPaneElements = modalBodyElement.props.children[1].props.children;
+
+    const itemInfoGridElement = splitPaneElements[0].props.children[0];
+    expect(itemInfoGridElement.type).to.equal((<Grid />).type);
+
+    const itemInfoLabelElement = itemInfoGridElement.props.children[0].props.children;
+    expect(itemInfoLabelElement.props.children).to.equal('User Details');
+
+    const itemInfoPropertyElements = itemInfoGridElement.props.children[1];
+    expect(itemInfoPropertyElements[0].props.children[0].props.children).to.equal('Name');
+    expect(itemInfoPropertyElements[0].props.children[1].props.children).to.equal('Jill Smith');
+    expect(itemInfoPropertyElements[1].props.children[0].props.children).to.equal('Age');
+    expect(itemInfoPropertyElements[1].props.children[1].props.children).to.equal('21');
+
+    const listPickerPureElement = splitPaneElements[1].props.children[0];
     expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
     expect(listPickerPureElement.props.selectedItems).to.not.equal(initialSelection);
     expect(listPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
