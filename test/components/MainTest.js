@@ -34,6 +34,8 @@ describe('MainComponent', () => {
     listPicker: 36,
     userListPickerButton: 38,
     userListPicker: 39,
+    productListPickerButton: 41,
+    productListPicker: 42,
   };
 
   beforeEach(() => {
@@ -221,5 +223,18 @@ describe('MainComponent', () => {
     const userListPickerElement = MainComponent.props.children[componentsHash.userListPicker];
     expect(isElementOfType(userListPickerElement, UserListPicker)).to.equal(true);
     expect(userListPickerElement.props.initialSelection).to.have.length(1);
+  });
+
+  it('should toggle `showProductListPickerModal` on `Open ProductListPicker` click', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const productListPickerButtonElement = componentRenderOutput.props.children[componentsHash.productListPickerButton];
+    productListPickerButtonElement.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    const productListPickerElement = componentRenderOutput.props.children[componentsHash.productListPicker];
+    expect(productListPickerElement.props.show).to.equal(true);
   });
 });

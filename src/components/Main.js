@@ -7,6 +7,7 @@ import {
   Modal,
   Tabs,
   Tab,
+  ProductListPicker,
   Radio,
   RadioGroup,
   Select,
@@ -43,6 +44,7 @@ class AppComponent extends React.Component {
       'toggleSimpleModal',
       'toggleTreePickerModal',
       'toggleUserListPickerModal',
+      'toggleProductListPickerModal',
     ]) {this[methodName] = this[methodName].bind(this);}
 
     this.state = {
@@ -66,6 +68,10 @@ class AppComponent extends React.Component {
 
   toggleUserListPickerModal() {
     this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
+  }
+
+  toggleProductListPickerModal() {
+    this.setState({ showProductListPickerModal: !this.state.showProductListPickerModal });
   }
 
   toggleSimpleModal() {
@@ -101,6 +107,18 @@ class AppComponent extends React.Component {
     const listPickerItemHeaders = {
       left: 'Team',
       right: 'Member',
+    };
+
+    const product1 = { id: 1, name: 'Run of Site' };
+
+    const product2 = { id: 2, name: 'Homepage' };
+
+    const productInfo = {
+      name: 'Ad Hoc Product',
+      siteName: 'Publisher Website',
+      type: 'CPM',
+      device: 'Desktop',
+      geometry: ['300 × 250', '728 × 90'],
     };
 
     const rootTypes = [
@@ -357,6 +375,22 @@ class AppComponent extends React.Component {
           show={this.state.showUserListPickerModal}
           userHeaders={listPickerItemHeaders}
           users={listPickerItems}
+        />
+
+
+        <h1>ProductListPicker</h1>
+
+        <Button bsStyle="primary" onClick={this.toggleProductListPickerModal}>
+          Open ProductListPicker
+        </Button>
+
+        <ProductListPicker
+          initialSelection={product2}
+          modalClose={this.toggleProductListPickerModal}
+          modalTitle="Select Product"
+          show={this.state.showProductListPickerModal}
+          productInfo={productInfo}
+          products={[product1, product2]}
         />
 
 
