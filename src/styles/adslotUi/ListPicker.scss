@@ -1,3 +1,4 @@
+@import '../border';
 @import '../color';
 @import '../fontWeight';
 
@@ -5,6 +6,23 @@
   &-body-split {
     display: flex;
     height: 400px;
+
+    .listpickerpure-component {
+      .grid-component {
+        .grid-component-row-header {
+          border-bottom: $border-lighter;
+        }
+      }
+
+      &-items {
+        overflow: auto;
+        overflow-x: hidden;
+
+        .grid-component {
+          border-top: 0;
+        }
+      }
+    }
   }
 
   &-footnote {

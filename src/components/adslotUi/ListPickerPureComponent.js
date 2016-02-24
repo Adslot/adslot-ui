@@ -20,14 +20,16 @@ const ListPickerPureComponent = ({
   let headerEl;
   if (itemHeaders !== undefined) {
     headerEl = (
-      <GridRow type="header">
-        <GridCell classSuffixes={['header-left']}>
-          {itemHeaders.left}
-        </GridCell>
-        <GridCell classSuffixes={['header-right']}>
-          {itemHeaders.right}
-        </GridCell>
-      </GridRow>
+      <Grid>
+        <GridRow type="header">
+          <GridCell classSuffixes={['header-left']}>
+            {itemHeaders.left}
+          </GridCell>
+          <GridCell classSuffixes={['header-right']}>
+            {itemHeaders.right}
+          </GridCell>
+        </GridRow>
+      </Grid>
     );
   }
 
@@ -45,25 +47,25 @@ const ListPickerPureComponent = ({
 
   return (
     <div className="listpickerpure-component">
-
-      <Grid>
-        {headerEl}
-        {_.map(items, (item) =>
-          <GridRow key={item.id}>
-            <GridCell>
-              {labelFormatter(item)}
-            </GridCell>
-            <GridCell classSuffixes={['toggle']}>
-              <ToggleComponent
-                checked={isItemSelected(item)}
-                onChange={handleChange(item)}
-              />
-            </GridCell>
-          </GridRow>
-        )}
-        <Empty collection={items} icon={emptyIcon} text={emptyMessage} />
-      </Grid>
-
+      {headerEl}
+      <div className="listpickerpure-component-items">
+        <Grid>
+          {_.map(items, (item) =>
+            <GridRow key={item.id}>
+              <GridCell>
+                {labelFormatter(item)}
+              </GridCell>
+              <GridCell classSuffixes={['toggle']}>
+                <ToggleComponent
+                  checked={isItemSelected(item)}
+                  onChange={handleChange(item)}
+                />
+              </GridCell>
+            </GridRow>
+          )}
+          <Empty collection={items} icon={emptyIcon} text={emptyMessage} />
+        </Grid>
+      </div>
     </div>
   );
 };

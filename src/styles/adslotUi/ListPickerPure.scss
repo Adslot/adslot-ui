@@ -2,6 +2,7 @@
 
 .listpickerpure-component {
   display: flex;
+  flex-direction: column;
   max-height: 600px;
 
   .grid-component-cell-header-right,
@@ -11,5 +12,11 @@
 
   .empty-component {
     border-bottom: $border-lighter;
+  }
+
+  .grid-component-row {
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 }
