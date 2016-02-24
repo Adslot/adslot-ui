@@ -41,6 +41,7 @@ class AppComponent extends React.Component {
       'setSelectedFlavours',
       'toggleListPickerModal',
       'toggleSimpleModal',
+      'toggleSplitListPickerModal',
       'toggleTreePickerModal',
       'toggleUserListPickerModal',
     ]) {this[methodName] = this[methodName].bind(this);}
@@ -62,6 +63,10 @@ class AppComponent extends React.Component {
 
   toggleListPickerModal() {
     this.setState({ showListPickerModal: !this.state.showListPickerModal });
+  }
+
+  toggleSplitListPickerModal() {
+    this.setState({ showSplitListPickerModal: !this.state.showSplitListPickerModal });
   }
 
   toggleUserListPickerModal() {
@@ -93,6 +98,14 @@ class AppComponent extends React.Component {
     const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
 
     const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
+
+    const listPickerItemInfo = {
+      label: 'User Details',
+      properties: [
+        { label: 'Name', value: 'Jill Smith' },
+        { label: 'Age', value: '21' },
+      ],
+    };
 
     const listPickerItems = [teamMember1, teamMember2, teamMember3];
 
@@ -335,12 +348,29 @@ class AppComponent extends React.Component {
           items={listPickerItems}
           labelFormatter={labelFormatter}
           modalClose={this.toggleListPickerModal}
-          modalDescription="Please select the users that you want."
-          modalFootnote="You can select multiple users."
-          modalTitle="Select Users"
+          modalDescription="Please select the user that you want."
+          modalFootnote="You can only select one user."
+          modalTitle="Select User"
           show={this.state.showListPickerModal}
         />
 
+        <Button bsStyle="primary" onClick={this.toggleSplitListPickerModal}>
+          Open Split ListPicker
+        </Button>
+
+        <ListPicker
+          allowMultiSelection={false}
+          initialSelection={listPickerInitialSelection}
+          itemHeaders={listPickerItemHeaders}
+          itemInfo={listPickerItemInfo}
+          items={listPickerItems}
+          labelFormatter={labelFormatter}
+          modalClose={this.toggleSplitListPickerModal}
+          modalDescription="Please select the user that you want."
+          modalFootnote="You can only select one user."
+          modalTitle="Select User"
+          show={this.state.showSplitListPickerModal}
+        />
 
         <h1>UserListPicker</h1>
 

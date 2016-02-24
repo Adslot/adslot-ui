@@ -32,8 +32,10 @@ describe('MainComponent', () => {
     treePicker: 33,
     listPickerButton: 35,
     listPicker: 36,
-    userListPickerButton: 38,
-    userListPicker: 39,
+    splitListPickerButton: 37,
+    splitListPicker: 38,
+    userListPickerButton: 40,
+    userListPicker: 41,
   };
 
   beforeEach(() => {
@@ -196,6 +198,19 @@ describe('MainComponent', () => {
     const listPickerElement = MainComponent.props.children[componentsHash.listPicker];
     expect(isElementOfType(listPickerElement, ListPicker)).to.equal(true);
     expect(listPickerElement.props.initialSelection).to.have.length(1);
+  });
+
+  it('should toggle `showSplitListPickerModal` on `Open Split ListPicker` click', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const splitListPickerButtonElement = componentRenderOutput.props.children[componentsHash.splitListPickerButton];
+    splitListPickerButtonElement.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    const splitListPickerElement = componentRenderOutput.props.children[componentsHash.splitListPicker];
+    expect(splitListPickerElement.props.show).to.equal(true);
   });
 
   it('should toggle `showUserListPickerModal` on `Open UserListPicker` click', () => {

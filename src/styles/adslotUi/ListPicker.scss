@@ -1,5 +1,34 @@
+@import '../color';
+@import '../fontWeight';
+
 .listpicker-component {
+  &-body-split {
+    display: flex;
+    height: 400px;
+  }
+
   &-footnote {
     margin-top: 10px;
+  }
+
+  .grid-component {
+    &-row {
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    &-cell-label {
+      color: $color-gray;
+      width: 120px;
+    }
+  }
+
+  .flexspacer-component {
+    border-top: 0;
+  }
+
+  .empty-component {
+    border-bottom: 0;
   }
 }
