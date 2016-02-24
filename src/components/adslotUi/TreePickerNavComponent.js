@@ -28,10 +28,10 @@ TreePickerNavComponent.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ),
-  breadcrumbOnClick: PropTypes.func.isRequired,
-  searchOnChange: PropTypes.func.isRequired,
-  searchOnClear: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired,
+  breadcrumbOnClick: PropTypes.func,
+  searchOnChange: PropTypes.func,
+  searchOnClear: PropTypes.func,
+  searchValue: PropTypes.string,
 };
 
 export default TreePickerNavComponent;

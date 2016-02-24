@@ -6,6 +6,7 @@ import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
 import React, { PropTypes } from 'react';
 
 const pathIncludesId = ({ id, path }) => _(path).map('id').includes(id);
+const getIds = (nodes) => _.map(nodes, 'id');
 
 class TreePickerComponent extends React.Component {
   constructor(props) {
@@ -33,11 +34,19 @@ class TreePickerComponent extends React.Component {
     this.loadData();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!_(nextProps.initialSelection)
+      .thru(getIds)
+      .xor(getIds(this.props.initialSelection))
+      .isEmpty()
+    ) {this.loadData(nextProps.initialSelection);}
+  }
+
   componentWillUnmount() { this._isMounted = false; }
 
-  loadData() {
+  loadData(initialSelection = this.props.initialSelection) {
     const rootType = _.first(this.props.rootTypes);
-    const selectedNodesByRootType = _(this.props.initialSelection)
+    const selectedNodesByRootType = _(initialSelection)
       .sortBy('label')
       .groupBy('rootTypeId')
       .value();
@@ -137,7 +146,7 @@ class TreePickerComponent extends React.Component {
   }
 
   applyAction() {
-    this.props.modalApply(_.mapValues(this.state.selectedNodesByRootType, (nodes) => _.map(nodes, 'id')));
+    this.props.modalApply(_.mapValues(this.state.selectedNodesByRootType, getIds));
     this.props.modalClose();
   }
 
