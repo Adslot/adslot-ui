@@ -26,10 +26,10 @@ describe('ListPickerPureComponent', () => {
     const component = createComponent(ListPickerPureComponent);
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
+    const gridElement = component.props.children[1].props.children;
     expect(gridElement.type).to.equal((<Grid />).type);
 
-    const emptyElement = gridElement.props.children[2];
+    const emptyElement = gridElement.props.children[1];
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.have.length(0);
     expect(emptyElement.props.text).to.equal('No items to select.');
@@ -44,19 +44,23 @@ describe('ListPickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
-    expect(gridElement.type).to.equal((<Grid />).type);
+    const headerGridElement = component.props.children[0];
+    expect(headerGridElement.type).to.equal((<Grid />).type);
 
-    const gridHeaderElement = gridElement.props.children[0];
+    const gridHeaderElement = headerGridElement.props.children;
     expect(gridHeaderElement.type).to.equal((<GridRow />).type);
     expect(gridHeaderElement.props.type).to.equal('header');
+
     const gridHeaderCellElements = gridHeaderElement.props.children;
     expect(gridHeaderCellElements[0].type).to.equal((<GridCell />).type);
     expect(gridHeaderCellElements[0].props.children).to.equal('Team');
     expect(gridHeaderCellElements[1].type).to.equal((<GridCell />).type);
     expect(gridHeaderCellElements[1].props.children).to.equal('Member');
 
-    const gridRowElements = gridElement.props.children[1];
+    const gridElement = component.props.children[1].props.children;
+    expect(gridElement.type).to.equal((<Grid />).type);
+
+    const gridRowElements = gridElement.props.children[0];
     for (const index in gridRowElements) {
       if (gridRowElements[index]) {
         const gridRowElement = gridRowElements[index];
@@ -82,10 +86,10 @@ describe('ListPickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
+    const gridElement = component.props.children[1].props.children;
     expect(gridElement.type).to.equal((<Grid />).type);
 
-    const gridRowElements = gridElement.props.children[1];
+    const gridRowElements = gridElement.props.children[0];
     for (const index in gridRowElements) {
       if (gridRowElements[index]) {
         const gridRowElement = gridRowElements[index];
@@ -107,8 +111,8 @@ describe('ListPickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
-    const gridRowElements = gridElement.props.children[1];
+    const gridElement = component.props.children[1].props.children;
+    const gridRowElements = gridElement.props.children[0];
     const unselectedCheckboxElement = gridRowElements[0].props.children[1].props.children;
     expect(unselectedCheckboxElement.props.checked).to.equal(false);
 
@@ -124,8 +128,8 @@ describe('ListPickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
-    const gridRowElements = gridElement.props.children[1];
+    const gridElement = component.props.children[1].props.children;
+    const gridRowElements = gridElement.props.children[0];
     const selectedCheckboxElement = gridRowElements[1].props.children[1].props.children;
     expect(selectedCheckboxElement.props.checked).to.equal(true);
 
@@ -143,8 +147,8 @@ describe('ListPickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
-    const gridRowElements = gridElement.props.children[1];
+    const gridElement = component.props.children[1].props.children;
+    const gridRowElements = gridElement.props.children[0];
     const unselectedCheckboxElement = gridRowElements[0].props.children[1].props.children;
     expect(unselectedCheckboxElement.props.checked).to.equal(false);
 
@@ -161,8 +165,8 @@ describe('ListPickerPureComponent', () => {
     });
     expect(component.props.className).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children;
-    const gridRowElements = gridElement.props.children[1];
+    const gridElement = component.props.children[1].props.children;
+    const gridRowElements = gridElement.props.children[0];
     const selectedCheckboxElement = gridRowElements[1].props.children[1].props.children;
     expect(selectedCheckboxElement.props.checked).to.equal(true);
 
