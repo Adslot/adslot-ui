@@ -25,6 +25,9 @@ exports.createComponent = (component, props = {}, ...children) => {
 exports.runComponentDidMount = ({ shallowRenderer }) =>
   shallowRenderer._instance._instance.componentDidMount();
 
+exports.runComponentWillReceiveProps = ({ shallowRenderer, nextProps }) =>
+  shallowRenderer._instance._instance.componentWillReceiveProps(nextProps);
+
 exports.runComponentWillUnmount = ({ shallowRenderer }) =>
   shallowRenderer._instance._instance.componentWillUnmount();
 

@@ -12,6 +12,7 @@ import {
   createShallowRenderer,
   runComponentDidMount,
   runComponentWillUnmount,
+  runComponentWillReceiveProps,
 } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerComponent', () => {
@@ -67,6 +68,20 @@ describe('TreePickerComponent', () => {
 
     const treePickerPureElement = getTreePickerPureElement(component);
     return { shallowRenderer, treePickerPureElement };
+  };
+
+  const checkLoadingData = ({
+    expectedCount,
+    expectedSelection,
+    getSubtreeCount,
+    shallowRenderer,
+  }) => {
+    const component = shallowRenderer.getRenderOutput();
+    expect(getSubtreeCount).to.equal(expectedCount);
+    const treePickerPureElement = getTreePickerPureElement(component);
+    expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(
+      _.groupBy(expectedSelection, 'rootTypeId')
+    );
   };
 
   it('should render with defaults', () => {
@@ -497,5 +512,49 @@ describe('TreePickerComponent', () => {
     const modalFooterElement = component.props.children[2];
     const cancelButtonElement = modalFooterElement.props.children[0];
     expect(cancelButtonElement.props.onClick).to.throw('AdslotUi TreePicker needs a modalClose handler');
+  });
+
+  it('should load data again if the initialSelection changes with new ids', () => {
+    let getSubtreeCount = 0;
+    const initialProps = {
+      initialSelection,
+      getSubtree: (options, cb) => {
+        getSubtreeCount += 1;
+        cb();
+      },
+    };
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, initialProps);
+    runComponentDidMount({ shallowRenderer });
+
+    checkLoadingData({ expectedCount: 1, expectedSelection: initialSelection, getSubtreeCount, shallowRenderer });
+
+    const nextProps = _.defaults({
+      initialSelection: [maleNode],
+    }, initialProps);
+    runComponentWillReceiveProps({ shallowRenderer, nextProps });
+
+    checkLoadingData({ expectedCount: 2, expectedSelection: [maleNode], getSubtreeCount, shallowRenderer });
+  });
+
+  it('should not load data again if the initialSelection changes with the same ids', () => {
+    let getSubtreeCount = 0;
+    const initialProps = {
+      initialSelection,
+      getSubtree: (options, cb) => {
+        getSubtreeCount += 1;
+        cb();
+      },
+    };
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, initialProps);
+    runComponentDidMount({ shallowRenderer });
+
+    checkLoadingData({ expectedCount: 1, expectedSelection: initialSelection, getSubtreeCount, shallowRenderer });
+
+    const nextProps = _.defaults({
+      initialSelection: _.clone(initialSelection).reverse(),
+    }, initialProps);
+    runComponentWillReceiveProps({ shallowRenderer, nextProps });
+
+    checkLoadingData({ expectedCount: 1, expectedSelection: initialSelection, getSubtreeCount, shallowRenderer });
   });
 });
