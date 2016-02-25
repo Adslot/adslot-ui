@@ -1,4 +1,4 @@
-import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
+import immutable from 'seamless-immutable';
 
 const baseItem = {
   label: 'Awesome Product',
@@ -46,7 +46,7 @@ const initialSelection = [
   ntNode,
 ];
 
-const TreePickerMocks = {
+const TreePickerMocks = immutable({
   actNode,
   ntNode,
   rootTypes,
@@ -57,7 +57,6 @@ const TreePickerMocks = {
   qldNode,
   saNode,
   valueFormatter,
-};
+});
 
-deepFreeze(TreePickerMocks);
 export default TreePickerMocks;

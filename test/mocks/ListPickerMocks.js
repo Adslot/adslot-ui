@@ -1,4 +1,4 @@
-import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
+import immutable from 'seamless-immutable';
 
 const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 
@@ -14,14 +14,13 @@ const users = [teamMember1, teamMember2, teamMember3];
 
 const getInitialSelection = () => [teamMember2];
 
-const ListPickerMocks = {
+const ListPickerMocks = immutable({
   getInitialSelection,
   labelFormatter,
   teamMember1,
   teamMember2,
   userHeaders,
   users,
-};
+});
 
-deepFreeze(ListPickerMocks);
 export default ListPickerMocks;

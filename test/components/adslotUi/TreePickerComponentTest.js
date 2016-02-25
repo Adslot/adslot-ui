@@ -217,6 +217,28 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.subtree).to.deep.equal([maleNode]);
   });
 
+  it('should change `activeRootTypeId`, `breadcrumbNodes` and `subtree` after a changeRootType action', () => {
+    const componentRender = getShallowTreePickerPure();
+    const { shallowRenderer } = componentRender;
+    let { treePickerPureElement } = componentRender;
+
+    // So we know if the breadcrumbs reset to blank.
+    treePickerPureElement.props.expandNode(actNode);
+
+    let component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
+
+    expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([actNode]);
+
+    treePickerPureElement.props.changeRootType('b');
+
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
+    expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
+    expect(treePickerPureElement.props.activeRootTypeId).to.equal('b');
+    expect(treePickerPureElement.props.subtree).to.deep.equal([maleNode]);
+  });
+
   it('should change `breadcrumbNodes` and `subtree` state after a search action, then again on search clear', () => {
     const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection,
@@ -312,81 +334,112 @@ describe('TreePickerComponent', () => {
   });
 
   it('should change `selected` state after an includeNode action', () => {
-    const component = createAndMountComponent(TreePickerComponent, {
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
     });
-    const treePickerPureElement = getTreePickerPureElement(component);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+    let treePickerPureElement = getTreePickerPureElement(component);
+
     treePickerPureElement.props.includeNode(qldNode);
 
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(
       _.groupBy([actNode, ntNode, qldNode], 'rootTypeId')
     );
   });
 
   it('should change `selected` state after an includeNode action, removing subnodes of the added node', () => {
-    const component = createAndMountComponent(TreePickerComponent, {
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection: [cbrNode],
       getSubtree,
       rootTypes,
     });
-    const treePickerPureElement = getTreePickerPureElement(component);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+    let treePickerPureElement = getTreePickerPureElement(component);
+
     treePickerPureElement.props.includeNode(actNode);
 
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([actNode], 'rootTypeId'));
   });
 
   it('should change `selected` state after an includeNode action, removing parents of the added node', () => {
-    const component = createAndMountComponent(TreePickerComponent, {
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection: [actNode],
       getSubtree,
       rootTypes,
     });
-    const treePickerPureElement = getTreePickerPureElement(component);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+    let treePickerPureElement = getTreePickerPureElement(component);
+
     treePickerPureElement.props.includeNode(cbrNode);
+
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
 
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([cbrNode], 'rootTypeId'));
   });
 
   it('should change `selected` state after an includeNode action for a new rootType', () => {
-    const component = createAndMountComponent(TreePickerComponent, {
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
     });
-    const treePickerPureElement = getTreePickerPureElement(component);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+    let treePickerPureElement = getTreePickerPureElement(component);
+
     treePickerPureElement.props.includeNode(maleNode);
 
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(
       _.groupBy([actNode, ntNode, maleNode], 'rootTypeId')
     );
   });
 
   it('should change `selected` state after a removeNode action', () => {
-    const component = createAndMountComponent(TreePickerComponent, {
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
     });
-    const treePickerPureElement = getTreePickerPureElement(component);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+    let treePickerPureElement = getTreePickerPureElement(component);
+
     treePickerPureElement.props.removeNode(actNode);
 
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([ntNode], 'rootTypeId'));
   });
 
   it('should change `selected` state to an empty object after a removeNode action on all nodes per rootType', () => {
-    const component = createAndMountComponent(TreePickerComponent, {
+    const shallowRenderer = createShallowRenderer(TreePickerComponent, {
       initialSelection,
       getSubtree,
       rootTypes,
     });
-    const treePickerPureElement = getTreePickerPureElement(component);
+    let component = shallowRenderer.getRenderOutput();
+    runComponentDidMount({ shallowRenderer });
+    let treePickerPureElement = getTreePickerPureElement(component);
+
     treePickerPureElement.props.changeRootType('b');
     treePickerPureElement.props.includeNode(maleNode);
     treePickerPureElement.props.removeNode(actNode);
     treePickerPureElement.props.removeNode(ntNode);
 
+    component = shallowRenderer.getRenderOutput();
+    treePickerPureElement = getTreePickerPureElement(component);
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal(_.groupBy([maleNode], 'rootTypeId'));
   });
 
