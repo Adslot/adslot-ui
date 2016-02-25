@@ -119,6 +119,15 @@ class ListPickerComponent extends React.Component {
           {props.modalFootnote ? <div className="listpicker-component-footnote">{props.modalFootnote}</div> : null}
         </Modal.Body>
         <Modal.Footer>
+          {_.isEmpty(props.linkButtons) ? null :
+            <div className="pull-left">
+              {_.map(props.linkButtons, (linkButton) =>
+                <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
+                  {linkButton.label}
+                </Button>
+              )}
+            </div>
+          }
           <Button className="btn-inverse" onClick={this.cancelAction}>
             Cancel
           </Button>
@@ -158,6 +167,12 @@ ListPickerComponent.propTypes = {
   }),
   items: PropTypes.arrayOf(itemType).isRequired,
   labelFormatter: PropTypes.func,
+  linkButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+    })
+  ),
   modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string,
   modalClassName: PropTypes.string,

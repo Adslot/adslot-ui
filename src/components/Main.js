@@ -363,8 +363,9 @@ class AppComponent extends React.Component {
           initialSelection={listPickerInitialSelection}
           itemHeaders={listPickerItemHeaders}
           itemInfo={listPickerItemInfo}
-          items={listPickerItems}
+          it1ems={listPickerItems}
           labelFormatter={labelFormatter}
+          linkButtons={[{ label: 'Create User', href: '#' }]}
           modalClose={this.toggleSplitListPickerModal}
           modalDescription="Please select the user that you want."
           modalFootnote="You can only select one user."
