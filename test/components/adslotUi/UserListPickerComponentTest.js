@@ -31,6 +31,7 @@ describe('UserListPickerComponent', () => {
   it('should render with props', () => {
     const component = createComponent(UserListPickerComponent, {
       allowEmptySelection: true,
+      emptySvgSymbol: { href: '/some.svg#id' },
       initialSelection: getInitialSelection(),
       userHeaders,
       users,
@@ -39,6 +40,7 @@ describe('UserListPickerComponent', () => {
     });
     expect(component.type.name).to.equal('ListPickerComponent');
 
+    expect(component.props.emptySvgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(component.props.initialSelection).to.deep.equal(getInitialSelection());
     expect(component.props.itemHeaders).to.deep.equal(userHeaders);
     expect(component.props.items).to.deep.equal(users);

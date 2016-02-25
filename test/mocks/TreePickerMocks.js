@@ -11,6 +11,7 @@ const rootTypes = [
     id: 'a',
     icon: 'http://placehold.it/16x16',
     emptyIcon: 'http://placehold.it/70x70',
+    emptySvgSymbol: { href: '/some.svg#id' },
     isRequired: true,
   },
   { label: 'Audiences', id: 'b', icon: 'http://placehold.it/16x16', isRequired: false },

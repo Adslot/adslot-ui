@@ -1,5 +1,5 @@
 import ListPicker from 'components/adslotUi/ListPickerComponent';
-import { Avatar } from 'alexandria-adslot';
+import { Avatar, SvgSymbol } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
 
 require('styles/adslotUi/UserListPicker.scss');
@@ -34,6 +34,7 @@ class UserListPickerComponent extends React.Component {
         allowEmptySelection={props.allowEmptySelection}
         emptyIcon={props.emptyIcon}
         emptyMessage={props.emptyMessage}
+        emptySvgSymbol={props.emptySvgSymbol}
         initialSelection={props.initialSelection}
         itemHeaders={props.userHeaders}
         items={props.users}
@@ -63,6 +64,7 @@ UserListPickerComponent.propTypes = {
   avatarColor: PropTypes.func.isRequired,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string.isRequired,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   initialSelection: PropTypes.arrayOf(userType).isRequired,
   modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string.isRequired,

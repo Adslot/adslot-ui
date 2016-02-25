@@ -5,7 +5,7 @@ import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
-import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
+import { Empty, FlexSpacer, Grid, SvgSymbol } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerPure.scss');
 
@@ -17,6 +17,7 @@ const TreePickerPureComponent = ({
   breadcrumbOnClick,
   changeRootType,
   emptyIcon,
+  emptySvgSymbol,
   expandNode,
   helpText,
   includeNode,
@@ -81,7 +82,7 @@ const TreePickerPureComponent = ({
               valueFormatter={valueFormatter}
             />
           )}
-          <Empty collection={filteredSubtree} icon={emptyIcon} text="No items to select." />
+          <Empty collection={filteredSubtree} icon={emptyIcon} svgSymbol={emptySvgSymbol} text="No items to select." />
         </Grid>
 
         <FlexSpacer />
@@ -93,6 +94,7 @@ const TreePickerPureComponent = ({
           averageWithinRootType={averageWithinRootType}
           baseItem={baseItem}
           emptyIcon={emptyIcon}
+          emptySvgSymbol={emptySvgSymbol}
           helpText={helpText}
           removeNode={removeNode}
           rootTypes={rootTypes}
@@ -122,6 +124,7 @@ const breadCrumbNode = PropTypes.shape({
 
 const rootType = PropTypes.shape({
   emptyIcon: PropTypes.string,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   icon: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   isRequired: PropTypes.bool.isRequired,
@@ -136,6 +139,7 @@ TreePickerPureComponent.propTypes = {
   breadcrumbOnClick: PropTypes.func,
   changeRootType: PropTypes.func.isRequired,
   emptyIcon: PropTypes.string,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   expandNode: PropTypes.func,
   helpText: PropTypes.shape({
     average: PropTypes.string,
