@@ -2,35 +2,35 @@
 /* global expect */
 
 import _ from 'lodash';
+import immutable from 'seamless-immutable';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
-import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
 import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerSelectedComponent', () => {
-  const indices = {
+  const indices = immutable({
     header: 0,
     baseItemGrid: 1,
     scrollable: 2,
     alert: 3,
     totals: 4,
-  };
+  });
 
-  const gridIndices = {
+  const gridIndices = immutable({
     headerRow: 0,
     nodes: 1,
     subFooterRow: 2,
-  };
+  });
 
-  const scrollableIndices = {
+  const scrollableIndices = immutable({
     grids: 0,
     empty: 1,
     flexSpacer: 2,
-  };
+  });
 
   const {
     actNode,
@@ -38,7 +38,7 @@ describe('TreePickerSelectedComponent', () => {
     rootTypes,
   } = TreePickerMocks;
 
-  const selectedNodesByRootType = _.groupBy([actNode, ntNode], 'rootTypeId');
+  const selectedNodesByRootType = immutable(_.groupBy([actNode, ntNode], 'rootTypeId'));
 
   const checkHeader = (component, props = {}) => {
     const headerElement = component.props.children[indices.header];
@@ -96,8 +96,6 @@ describe('TreePickerSelectedComponent', () => {
     expect(subFooterThirdCell.type).to.equal((<GridCell />).type);
     expect(subFooterThirdCell.props.children).to.equal(value);
   };
-
-  deepFreeze([indices, gridIndices, scrollableIndices, selectedNodesByRootType]);
 
   it('should render with defaults', () => {
     const component = createComponent(TreePickerSelected);

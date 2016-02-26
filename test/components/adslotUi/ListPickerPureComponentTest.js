@@ -2,13 +2,13 @@
 /* global expect */
 
 import _ from 'lodash';
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import Radio from 'react-icheck/lib/Radio';
 import React from 'react';
 import { Empty, Grid, GridCell, GridRow } from 'alexandria-adslot';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('ListPickerPureComponent', () => {
   const {
@@ -73,7 +73,7 @@ describe('ListPickerPureComponent', () => {
         const gridRowCellToggleElement = gridRowCellElements[1].props.children;
         expect(gridRowCellToggleElement.type).to.equal((<Checkbox />).type);
 
-        expect(gridRowCellToggleElement.props.checked).to.equal(_.includes(selectedItems, users[index]));
+        expect(gridRowCellToggleElement.props.checked).to.equal(_.some(selectedItems, { id: users[index].id }));
       }
     }
   });
@@ -90,6 +90,7 @@ describe('ListPickerPureComponent', () => {
     expect(gridElement.type).to.equal((<Grid />).type);
 
     const gridRowElements = gridElement.props.children[0];
+
     for (const index in gridRowElements) {
       if (gridRowElements[index]) {
         const gridRowElement = gridRowElements[index];
@@ -99,7 +100,7 @@ describe('ListPickerPureComponent', () => {
         const gridRowCellToggleElement = gridRowCellElements[1].props.children;
         expect(gridRowCellToggleElement.type).to.equal((<Radio />).type);
 
-        expect(gridRowCellToggleElement.props.checked).to.equal(_.includes(selectedItems, users[index]));
+        expect(gridRowCellToggleElement.props.checked).to.equal(_.some(selectedItems, { id: users[index].id }));
       }
     }
   });

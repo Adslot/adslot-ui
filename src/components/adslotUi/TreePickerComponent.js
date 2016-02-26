@@ -1,6 +1,8 @@
 import _ from 'lodash';
+import immutable from 'seamless-immutable';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
 import { SvgSymbol } from 'alexandria-adslot';
@@ -26,6 +28,7 @@ class TreePickerComponent extends React.Component {
       'searchOnQuery',
     ]) {this[methodName] = this[methodName].bind(this);}
 
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {};
     this.throttledSearchOnQuery = _.throttle(() => this.searchOnQuery(this.state.searchValue), props.throttleTime);
   }
@@ -46,11 +49,13 @@ class TreePickerComponent extends React.Component {
   componentWillUnmount() { this._isMounted = false; }
 
   loadData(initialSelection = this.props.initialSelection) {
-    const rootType = _.first(this.props.rootTypes);
-    const selectedNodesByRootType = _(initialSelection)
-      .sortBy('label')
-      .groupBy('rootTypeId')
-      .value();
+    const rootType = immutable(_.first(this.props.rootTypes));
+    const selectedNodesByRootType = immutable(
+      _(initialSelection)
+        .sortBy('label')
+        .groupBy('rootTypeId')
+        .value()
+    );
 
     this.props.getSubtree({ rootTypeId: _.get(rootType, 'id') }, (subtree) => {
       if (this._isMounted) {
@@ -68,7 +73,8 @@ class TreePickerComponent extends React.Component {
   changeRootType(rootTypeId) {
     this.props.getSubtree({ rootTypeId }, (subtree) => {
       this.setState({
-        rootType: _.find(this.props.rootTypes, { id: rootTypeId }),
+        breadcrumbNodes: [],
+        rootType: immutable(_.find(this.props.rootTypes, { id: rootTypeId })),
         searchValue: '',
         subtree,
       });
@@ -101,7 +107,7 @@ class TreePickerComponent extends React.Component {
     } else {
       getSubtree({ rootTypeId: rootType.id, nodeId: newActiveId }, (subtree) => {
         this.setState({
-          breadcrumbNodes: breadcrumbNodes.slice(0, 1 + _.findIndex(breadcrumbNodes, { id: newActiveId })),
+          breadcrumbNodes: immutable(breadcrumbNodes.slice(0, 1 + _.findIndex(breadcrumbNodes, { id: newActiveId }))),
           subtree,
         });
       });
@@ -112,7 +118,7 @@ class TreePickerComponent extends React.Component {
     const { breadcrumbNodes, rootType } = this.state;
     this.props.getSubtree({ rootTypeId: rootType.id, nodeId: node.id }, (subtree) => {
       this.setState({
-        breadcrumbNodes: breadcrumbNodes.concat([node]),
+        breadcrumbNodes: breadcrumbNodes.concat([immutable(node)]),
         searchValue: '',
         subtree,
       });
@@ -120,25 +126,28 @@ class TreePickerComponent extends React.Component {
   }
 
   includeNode(node) {
-    const newSelected = this.state.selectedNodesByRootType;
     const { rootTypeId } = node;
-    if (_.isEmpty(newSelected[rootTypeId])) {newSelected[rootTypeId] = [];}
+    const { selectedNodesByRootType } = this.state;
+    const newSelected = selectedNodesByRootType
+      .set(rootTypeId, (selectedNodesByRootType[rootTypeId] || []).concat([node]));
 
-    newSelected[rootTypeId].push(node);
-    _.remove(newSelected[rootTypeId], ({ id, path }) =>
-      pathIncludesId({ id: node.id, path }) || pathIncludesId({ id, path: node.path })
-    );
+    const newSelectedAfterRemovals = newSelected.set(rootTypeId, _.reject(
+      newSelected[rootTypeId], ({ id, path }) =>
+        pathIncludesId({ id: node.id, path }) || pathIncludesId({ id, path: node.path })
+    ));
 
-    this.setState({ selectedNodesByRootType: newSelected });
+    this.setState({ selectedNodesByRootType: newSelectedAfterRemovals });
   }
 
   removeNode(node) {
-    const newSelected = this.state.selectedNodesByRootType;
     const { rootTypeId } = node;
-    newSelected[rootTypeId] = _.reject(newSelected[rootTypeId], { id: node.id });
-    if (_.isEmpty(newSelected[rootTypeId])) {delete newSelected[rootTypeId];}
+    const { selectedNodesByRootType } = this.state;
+    const newSelected = selectedNodesByRootType
+      .set(rootTypeId, _.reject(selectedNodesByRootType[rootTypeId], { id: node.id }));
 
-    this.setState({ selectedNodesByRootType: newSelected });
+    const newSelectedAfterRemovals = _.isEmpty(newSelected[rootTypeId]) ? newSelected.without(rootTypeId) : newSelected;
+
+    this.setState({ selectedNodesByRootType: newSelectedAfterRemovals });
   }
 
   cancelAction() {

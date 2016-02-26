@@ -1,12 +1,12 @@
 /* eslint-env node, mocha */
 /* global expect */
 
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
+import immutable from 'seamless-immutable';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
 import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
-import { deepFreeze } from 'testHelpers/deepSetObjectMutability';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerPureComponent', () => {
   const {
@@ -15,24 +15,22 @@ describe('TreePickerPureComponent', () => {
     rootTypes,
   } = TreePickerMocks;
 
-  const indices = {
+  const indices = immutable({
     leftPane: 0,
     rightPane: 1,
-  };
+  });
 
-  const leftPaneIndices = {
+  const leftPaneIndices = immutable({
     tabs: 0,
     nav: 1,
     nodesGrid: 2,
     flexSpacer: 3,
-  };
+  });
 
-  const nodesGridIndices = {
+  const nodesGridIndices = immutable({
     nodes: 0,
     empty: 1,
-  };
-
-  deepFreeze([indices, leftPaneIndices, nodesGridIndices]);
+  });
 
   it('should render with defaults', () => {
     const component = createComponent(TreePickerPureComponent, { changeRootType: () => null });
