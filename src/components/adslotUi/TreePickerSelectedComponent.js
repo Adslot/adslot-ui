@@ -19,6 +19,7 @@ const TreePickerSelectedComponent = ({
   rootTypes,
   selectedLabel,
   selectedNodesByRootType,
+  totalsSuffix,
   valueFormatter,
   valueLabel,
   warnOnRequired,
@@ -47,6 +48,8 @@ const TreePickerSelectedComponent = ({
   };
 
   const scrollableClass = classNames('treepickerselected-component-scrollable', { 'is-short': unresolvedRootTypes });
+
+  const totalsValueFormatter = totalsSuffix ? (value) => `${valueFormatter(value)} ${totalsSuffix}` : valueFormatter;
 
   return (
     <div className="treepickerselected-component">
@@ -85,7 +88,7 @@ const TreePickerSelectedComponent = ({
                   <span>{averageWithinRootType ? 'Average' : 'Subtotal'}</span>
                 </OverlayTrigger>
               </GridCell>
-              <GridCell>{valueFormatter(valueByRootType[rootTypeId])}</GridCell>
+              <GridCell>{totalsValueFormatter(valueByRootType[rootTypeId])}</GridCell>
             </GridRow>
 
           </Grid>
@@ -109,7 +112,7 @@ const TreePickerSelectedComponent = ({
           { label: baseItem.label, value: baseItem.value },
           { label: selectedLabel, value: totalOfRootTypeValues },
         ]}
-        valueFormatter={valueFormatter}
+        valueFormatter={totalsValueFormatter}
       />
     </div>
   );
@@ -141,6 +144,7 @@ TreePickerSelectedComponent.propTypes = {
   includeNode: PropTypes.func.isRequired,
   removeNode: PropTypes.func.isRequired,
   rootTypes: PropTypes.arrayOf(rootType).isRequired,
+  totalsSuffix: PropTypes.string.isRequired,
   selectedLabel: PropTypes.string.isRequired,
   selectedNodesByRootType: PropTypes.shape().isRequired,
   valueFormatter: PropTypes.func.isRequired,
@@ -163,6 +167,7 @@ TreePickerSelectedComponent.defaultProps = {
   rootTypes: [],
   selectedLabel: 'Selected',
   selectedNodesByRootType: {},
+  totalsSuffix: '',
   valueFormatter: (value) => value,
   valueLabel: 'Cost',
   warnOnRequired: false,

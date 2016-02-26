@@ -30,6 +30,7 @@ const TreePickerPureComponent = ({
   selectedLabel,
   selectedNodesByRootType,
   subtree,
+  totalsSuffix,
   valueFormatter,
   warnOnRequired,
 }) => {
@@ -100,6 +101,7 @@ const TreePickerPureComponent = ({
           rootTypes={rootTypes}
           selectedLabel={selectedLabel}
           selectedNodesByRootType={selectedNodesByRootType}
+          totalsSuffix={totalsSuffix}
           valueFormatter={valueFormatter}
           warnOnRequired={warnOnRequired}
         />
@@ -155,6 +157,7 @@ TreePickerPureComponent.propTypes = {
   selectedLabel: PropTypes.string,
   selectedNodesByRootType: PropTypes.shape(),
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node).isRequired,
+  totalsSuffix: PropTypes.string,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool,
 };

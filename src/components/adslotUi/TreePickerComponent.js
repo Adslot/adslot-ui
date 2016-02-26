@@ -5,8 +5,8 @@ import Modal from 'react-bootstrap/lib/Modal';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
-import { SvgSymbol } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
+import { SvgSymbol } from 'alexandria-adslot';
 
 const pathIncludesId = ({ id, path }) => _(path).map('id').includes(id);
 const getIds = (nodes) => _.map(nodes, 'id');
@@ -188,6 +188,7 @@ class TreePickerComponent extends React.Component {
             selectedLabel={props.selectedLabel}
             selectedNodesByRootType={state.selectedNodesByRootType}
             subtree={state.subtree}
+            totalsSuffix={props.totalsSuffix}
             valueFormatter={props.valueFormatter}
             warnOnRequired={props.warnOnRequired}
           />
@@ -232,6 +233,7 @@ TreePickerComponent.propTypes = {
   selectedLabel: PropTypes.string,
   show: PropTypes.bool.isRequired,
   throttleTime: PropTypes.number.isRequired,
+  totalsSuffix: PropTypes.string,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool.isRequired,
 };
