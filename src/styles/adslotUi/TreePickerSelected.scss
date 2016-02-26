@@ -11,9 +11,8 @@
   }
 
   &-scrollable {
-    $base-item-grid-height: 36px;
-    $totals-component-height: 50px;
-    $scrollable-height: $treepicker-height - $header-height - $base-item-grid-height - $totals-component-height;
+    $totals-component-height: 76px;
+    $scrollable-height: $treepicker-height - $header-height - $totals-component-height;
 
     display: flex;
     flex-direction: column;
@@ -21,27 +20,20 @@
     overflow: auto;
 
     &.is-short {
-      $alert-height: 41px;
+      $alert-height: 40px;
 
       height: $scrollable-height - $alert-height;
-    }
-
-    // First rootType Grid
-    .grid-component {
-      &:first-child {
-        border-top: 0;
-      }
-    }
-
-    // Totals Grid
-    + .grid-component {
-      border-top: 0;
     }
   }
 
   .empty-component {
     border-left: $border-lighter;
     border-right: $border-lighter;
+    border-top: $border-lighter;
     width: 100%;
+  }
+
+  .flexspacer-component {
+    border-bottom: 0;
   }
 }

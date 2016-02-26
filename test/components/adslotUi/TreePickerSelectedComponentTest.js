@@ -14,10 +14,9 @@ import { createComponent } from 'testHelpers/shallowRenderHelpers';
 describe('TreePickerSelectedComponent', () => {
   const indices = immutable({
     header: 0,
-    baseItemGrid: 1,
-    scrollable: 2,
-    alert: 3,
-    totals: 4,
+    scrollable: 1,
+    alert: 2,
+    totals: 3,
   });
 
   const gridIndices = immutable({
@@ -45,21 +44,6 @@ describe('TreePickerSelectedComponent', () => {
     expect(headerElement.type).to.equal('h1');
     expect(headerElement.props.className).to.equal('treepickerselected-component-header');
     expect(headerElement.props.children).to.equal(props.selectedLabel || 'Selected');
-
-    const baseItemGridElement = component.props.children[indices.baseItemGrid];
-    expect(baseItemGridElement.type).to.equal((<Grid />).type);
-
-    const gridRowElement = baseItemGridElement.props.children;
-    expect(gridRowElement.type).to.equal((<GridRow />).type);
-
-    const firstGridCellElement = gridRowElement.props.children[0];
-    expect(firstGridCellElement.type).to.equal((<GridCell />).type);
-    expect(firstGridCellElement.props.stretch).to.equal(true);
-    expect(firstGridCellElement.props.children).to.equal('Base');
-
-    const secondGridCellElement = gridRowElement.props.children[1];
-    expect(secondGridCellElement.type).to.equal((<GridCell />).type);
-    expect(secondGridCellElement.props.children).to.equal(0);
   };
 
   const checkSubFooter = ({ gridElement, mode, value }) => {
@@ -124,7 +108,7 @@ describe('TreePickerSelectedComponent', () => {
     const totalsElement = component.props.children[indices.totals];
     expect(totalsElement.type).to.equal((<Totals />).type);
     expect(totalsElement.props.toSum).to.deep.equal([
-      { value: 0, isHidden: true },
+      { label: 'Base', value: 0 },
       { label: 'Selected', value: 0 },
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
@@ -148,14 +132,14 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(totalsElement.type).to.equal((<Totals />).type);
     expect(totalsElement.props.toSum).to.deep.equal([
-      { value: 0, isHidden: true },
+      { label: 'Base', value: 0 },
       { label: 'Selected Targeting', value: 750 },
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
 
     const alertElement = component.props.children[indices.alert];
 
-    expect(alertElement.type).to.equal((<Alert />).type);
+    expect(alertElement.type).to.equal((<Alert>text</Alert>).type);
     expect(alertElement.props.type).to.equal('danger');
     expect(alertElement.props.children).to.deep.equal(['Required: ', 'Segments', '.']);
 
@@ -219,7 +203,7 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(totalsElement.type).to.equal((<Totals />).type);
     expect(totalsElement.props.toSum).to.deep.equal([
-      { value: 0, isHidden: true },
+      { label: 'Base', value: 0 },
       { label: 'Selected', value: 1500 },
     ]);
 
@@ -242,7 +226,7 @@ describe('TreePickerSelectedComponent', () => {
 
     const alertElement = component.props.children[indices.alert];
 
-    expect(alertElement.type).to.equal((<Alert />).type);
+    expect(alertElement.type).to.equal((<Alert>text</Alert>).type);
     expect(alertElement.props.type).to.equal('warning');
     expect(alertElement.props.children).to.deep.equal(['Required: ', 'Segments', '.']);
   });
