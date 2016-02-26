@@ -51,13 +51,6 @@ const TreePickerSelectedComponent = ({
   return (
     <div className="treepickerselected-component">
       <h1 className="treepickerselected-component-header">{selectedLabel}</h1>
-      <Grid>
-        <GridRow>
-          <GridCell stretch>{baseItem.label}</GridCell>
-          <GridCell>{valueFormatter(baseItem.value)}</GridCell>
-        </GridRow>
-      </Grid>
-
       <div className={scrollableClass}>
         {_.map(selectedNodesByRootType, (val, rootTypeId) =>
           <Grid key={rootTypeId}>
@@ -113,7 +106,7 @@ const TreePickerSelectedComponent = ({
 
       <Totals
         toSum={[
-          { value: baseItem.value, isHidden: true },
+          { label: baseItem.label, value: baseItem.value },
           { label: selectedLabel, value: totalOfRootTypeValues },
         ]}
         valueFormatter={valueFormatter}
