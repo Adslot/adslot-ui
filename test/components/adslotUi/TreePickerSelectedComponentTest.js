@@ -112,6 +112,7 @@ describe('TreePickerSelectedComponent', () => {
       { label: 'Selected', value: 0 },
     ]);
     expect(totalsElement.props.valueFormatter).to.be.a('function');
+    expect(totalsElement.props.valueFormatter(500)).to.equal(500);
   });
 
   it('should render with props', () => {
@@ -122,20 +123,12 @@ describe('TreePickerSelectedComponent', () => {
       selectedLabel: 'Selected Targeting',
       rootTypes,
       selectedNodesByRootType,
+      totalsSuffix: 'CPM',
       valueLabel: 'Galactic Credits',
     });
     expect(component.props.className).to.equal('treepickerselected-component');
 
     checkHeader(component, { selectedLabel: 'Selected Targeting' });
-
-    const totalsElement = component.props.children[indices.totals];
-
-    expect(totalsElement.type).to.equal((<Totals />).type);
-    expect(totalsElement.props.toSum).to.deep.equal([
-      { label: 'Base', value: 0 },
-      { label: 'Selected Targeting', value: 750 },
-    ]);
-    expect(totalsElement.props.valueFormatter).to.be.a('function');
 
     const alertElement = component.props.children[indices.alert];
 
@@ -182,7 +175,7 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(nodeElements[1].props.node).to.deep.equal(ntNode);
 
-    checkSubFooter({ gridElement, mode: 'Average', value: 750 });
+    checkSubFooter({ gridElement, mode: 'Average', value: '750 CPM' });
 
     const emptyElement = scrollableElement.props.children[scrollableIndices.empty];
 
@@ -191,6 +184,15 @@ describe('TreePickerSelectedComponent', () => {
     expect(emptyElement.props.icon).to.equal('awesome-url');
     expect(emptyElement.props.svgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(emptyElement.props.text).to.equal('Nothing Selected');
+
+    const totalsElement = component.props.children[indices.totals];
+    expect(totalsElement.type).to.equal((<Totals />).type);
+    expect(totalsElement.props.toSum).to.deep.equal([
+      { label: 'Base', value: 0 },
+      { label: 'Selected Targeting', value: 750 },
+    ]);
+    expect(totalsElement.props.valueFormatter).to.be.a('function');
+    expect(totalsElement.props.valueFormatter(500)).to.equal('500 CPM');
   });
 
   it('should render with averageWithinRootType false', () => {

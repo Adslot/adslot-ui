@@ -334,6 +334,7 @@ class AppComponent extends React.Component {
           rootTypes={rootTypes}
           selectedLabel="Selected Targeting"
           show={this.state.showTreePickerModal}
+          totalsSuffix="CPD"
           valueFormatter={valueFormatter}
         />
 

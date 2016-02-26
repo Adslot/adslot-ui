@@ -100,6 +100,7 @@ describe('TreePickerPureComponent', () => {
       selectedLabel: 'Selected Targeting',
       selectedNodesByRootType: {},
       subtree: [actNode],
+      totalsSuffix: 'CPD',
       valueFormatter: testFunction,
       warnOnRequired: true,
     });
@@ -162,6 +163,7 @@ describe('TreePickerPureComponent', () => {
     expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
     expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(true);
     expect(treePickerSelectedElement.props.selectedLabel).to.equal('Selected Targeting');
+    expect(treePickerSelectedElement.props.totalsSuffix).to.equal('CPD');
     expect(treePickerSelectedElement.props.helpText).to.deep.equal({
       average: 'An average explanation.',
       sum: 'The sum of all fears.',

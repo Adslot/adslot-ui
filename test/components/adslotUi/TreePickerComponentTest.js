@@ -121,6 +121,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.searchValue).to.equal('');
     expect(treePickerPureElement.props.selectedNodesByRootType).to.deep.equal({});
     expect(treePickerPureElement.props.subtree).to.deep.equal([]);
+    expect(treePickerPureElement.props.totalsSuffix).to.be.an('undefined');
     expect(treePickerPureElement.props.valueFormatter).to.be.an('undefined');
     expect(treePickerPureElement.props.warnOnRequired).to.equal(false);
 
@@ -153,6 +154,7 @@ describe('TreePickerComponent', () => {
       modalTitle: 'Edit Targeting',
       rootTypes,
       selectedLabel: 'Selected Targeting',
+      totalsSuffix: 'CPD',
       valueFormatter,
       warnOnRequired: true,
     });
@@ -191,6 +193,7 @@ describe('TreePickerComponent', () => {
     getSubtree({ rootTypeId: 'a' }, (subtree) => {
       expect(treePickerPureElement.props.subtree).to.deep.equal(subtree);
     });
+    expect(treePickerPureElement.props.totalsSuffix).to.equal('CPD');
     expect(treePickerPureElement.props.valueFormatter).to.equal(valueFormatter);
     expect(treePickerPureElement.props.warnOnRequired).to.equal(true);
   });
