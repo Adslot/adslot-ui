@@ -111,6 +111,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
     expect(treePickerPureElement.props.breadcrumbOnClick).to.be.a('function');
     expect(treePickerPureElement.props.emptyIcon).to.be.an('undefined');
+    expect(treePickerPureElement.props.emptySvgSymbol).to.be.an('undefined');
     expect(treePickerPureElement.props.expandNode).to.be.a('function');
     expect(treePickerPureElement.props.includeNode).to.be.a('function');
     expect(treePickerPureElement.props.removeNode).to.be.a('function');
@@ -171,6 +172,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.props.breadcrumbNodes).to.deep.equal([]);
     expect(treePickerPureElement.props.breadcrumbOnClick).to.be.a('function');
     expect(treePickerPureElement.props.emptyIcon).to.equal('http://placehold.it/70x70');
+    expect(treePickerPureElement.props.emptySvgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(treePickerPureElement.props.expandNode).to.be.a('function');
     expect(treePickerPureElement.props.helpText).to.deep.equal({
       average: 'An average explanation.',

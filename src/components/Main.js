@@ -116,12 +116,15 @@ class AppComponent extends React.Component {
       right: 'Member',
     };
 
+    const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
+
     const rootTypes = [
       {
         label: 'Geography',
         id: '0',
         icon: 'http://placehold.it/16x16',
         emptyIcon: 'http://placehold.it/70x70',
+        emptySvgSymbol,
         isRequired: true,
       },
       { label: 'Gender', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
@@ -360,10 +363,11 @@ class AppComponent extends React.Component {
 
         <ListPicker
           allowMultiSelection={false}
+          emptySvgSymbol={emptySvgSymbol}
           initialSelection={listPickerInitialSelection}
           itemHeaders={listPickerItemHeaders}
           itemInfo={listPickerItemInfo}
-          it1ems={listPickerItems}
+          items={listPickerItems}
           labelFormatter={labelFormatter}
           linkButtons={[{ label: 'Create User', href: '#' }]}
           modalClose={this.toggleSplitListPickerModal}
@@ -381,6 +385,7 @@ class AppComponent extends React.Component {
 
         <UserListPicker
           avatarColor={avatarColor}
+          emptySvgSymbol={emptySvgSymbol}
           initialSelection={listPickerInitialSelection}
           modalClose={this.toggleUserListPickerModal}
           modalDescription="Please select the users that you want."

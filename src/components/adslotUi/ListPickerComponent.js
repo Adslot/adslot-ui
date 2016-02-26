@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
-import { FlexSpacer, Grid, GridRow, GridCell } from 'alexandria-adslot';
+import { FlexSpacer, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
 
 require('styles/adslotUi/ListPicker.scss');
@@ -77,6 +77,7 @@ class ListPickerComponent extends React.Component {
         allowMultiSelection={props.allowMultiSelection}
         emptyIcon={props.emptyIcon}
         emptyMessage={props.emptyMessage}
+        emptySvgSymbol={props.emptySvgSymbol}
         deselectItem={this.deselectItem}
         labelFormatter={props.labelFormatter}
         itemHeaders={props.itemHeaders}
@@ -151,6 +152,7 @@ ListPickerComponent.propTypes = {
   allowMultiSelection: PropTypes.bool.isRequired,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,

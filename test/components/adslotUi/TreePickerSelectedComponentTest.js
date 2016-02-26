@@ -136,6 +136,7 @@ describe('TreePickerSelectedComponent', () => {
     const component = createComponent(TreePickerSelected, {
       averageWithinRootType: true,
       emptyIcon: 'awesome-url',
+      emptySvgSymbol: { href: '/some.svg#id' },
       selectedLabel: 'Selected Targeting',
       rootTypes,
       selectedNodesByRootType,
@@ -206,6 +207,7 @@ describe('TreePickerSelectedComponent', () => {
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.deep.equal([[actNode, ntNode]]);
     expect(emptyElement.props.icon).to.equal('awesome-url');
+    expect(emptyElement.props.svgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(emptyElement.props.text).to.equal('Nothing Selected');
   });
 

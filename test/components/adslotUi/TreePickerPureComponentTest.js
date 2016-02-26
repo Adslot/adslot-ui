@@ -90,6 +90,7 @@ describe('TreePickerPureComponent', () => {
       breadcrumbOnClick: testFunction,
       changeRootType: (rootType) => rootTypeChanges.push(rootType),
       emptyIcon: 'url',
+      emptySvgSymbol: { href: '/some.svg#id' },
       helpText: {
         average: 'An average explanation.',
         sum: 'The sum of all fears.',
@@ -152,8 +153,8 @@ describe('TreePickerPureComponent', () => {
     expect(emptyElement.type).to.equal((<Empty />).type);
 
     expect(emptyElement.props.collection).to.have.length(1);
-
     expect(emptyElement.props.icon).to.equal('url');
+    expect(emptyElement.props.svgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(emptyElement.props.text).to.equal('No items to select.');
 
     const rightPaneElement = component.props.children[indices.rightPane];

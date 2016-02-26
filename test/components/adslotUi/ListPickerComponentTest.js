@@ -64,6 +64,9 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
 
     expect(listPickerPureElement.props.deselectItem).to.be.a('function');
+    expect(listPickerPureElement.props.emptyIcon).to.be.an('undefined');
+    expect(listPickerPureElement.props.emptyMessage).to.equal('No items to select.');
+    expect(listPickerPureElement.props.emptySvgSymbol).to.be.an('undefined');
     expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
     expect(listPickerPureElement.props.itemHeaders).to.be.an('undefined');
     expect(listPickerPureElement.props.items).to.deep.equal([]);
@@ -91,6 +94,7 @@ describe('ListPickerComponent', () => {
     const initialSelection = getInitialSelection();
     const component = createAndMountComponent(ListPickerComponent, {
       emptyMessage: 'No users.',
+      emptySvgSymbol: { href: '/some.svg#id' },
       initialSelection,
       itemHeaders: userHeaders,
       items: users,
@@ -123,6 +127,7 @@ describe('ListPickerComponent', () => {
 
     expect(listPickerPureElement.props.deselectItem).to.be.a('function');
     expect(listPickerPureElement.props.emptyMessage).to.equal('No users.');
+    expect(listPickerPureElement.props.emptySvgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
     expect(listPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);
     expect(listPickerPureElement.props.items).to.deep.equal(users);
@@ -149,6 +154,7 @@ describe('ListPickerComponent', () => {
     };
     const initialSelection = getInitialSelection();
     const component = createAndMountComponent(ListPickerComponent, {
+      emptyIcon: '/some.png',
       emptyMessage: 'No users.',
       initialSelection,
       itemHeaders: userHeaders,
@@ -195,6 +201,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
 
     expect(listPickerPureElement.props.deselectItem).to.be.a('function');
+    expect(listPickerPureElement.props.emptyIcon).to.equal('/some.png');
     expect(listPickerPureElement.props.emptyMessage).to.equal('No users.');
     expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
     expect(listPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);

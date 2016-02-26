@@ -4,7 +4,7 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import React, { PropTypes } from 'react';
-import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
+import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, SvgSymbol, Totals } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerSelected.scss');
 
@@ -12,6 +12,7 @@ const TreePickerSelectedComponent = ({
   averageWithinRootType,
   baseItem,
   emptyIcon,
+  emptySvgSymbol,
   helpText,
   includeNode,
   removeNode,
@@ -96,7 +97,12 @@ const TreePickerSelectedComponent = ({
 
           </Grid>
         )}
-        <Empty collection={_.values(selectedNodesByRootType)} icon={emptyIcon} text="Nothing Selected" />
+        <Empty
+          collection={_.values(selectedNodesByRootType)}
+          icon={emptyIcon}
+          svgSymbol={emptySvgSymbol}
+          text="Nothing Selected"
+        />
         <FlexSpacer />
       </div>
 
@@ -120,6 +126,7 @@ TreePickerSelectedComponent.displayName = 'AdslotUiTreePickerSelectedComponent';
 
 const rootType = PropTypes.shape({
   emptyIcon: PropTypes.string,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   icon: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   isRequired: PropTypes.bool.isRequired,
@@ -133,6 +140,7 @@ TreePickerSelectedComponent.propTypes = {
     value: PropTypes.number.isRequired,
   }).isRequired,
   emptyIcon: PropTypes.string,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   helpText: PropTypes.shape({
     average: PropTypes.string.isRequired,
     sum: PropTypes.string.isRequired,

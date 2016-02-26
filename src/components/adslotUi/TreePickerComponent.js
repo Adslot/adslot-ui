@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerPure from 'components/adslotUi/TreePickerPureComponent';
+import { SvgSymbol } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
 
 const pathIncludesId = ({ id, path }) => _(path).map('id').includes(id);
@@ -166,6 +167,7 @@ class TreePickerComponent extends React.Component {
             breadcrumbOnClick={this.breadcrumbOnClick}
             changeRootType={this.changeRootType}
             emptyIcon={_.get(state, 'rootType.emptyIcon')}
+            emptySvgSymbol={_.get(state, 'rootType.emptySvgSymbol')}
             expandNode={this.expandNode}
             helpText={props.helpText}
             includeNode={this.includeNode}
@@ -214,6 +216,7 @@ TreePickerComponent.propTypes = {
       id: PropTypes.string.isRequired,
       icon: PropTypes.string,
       emptyIcon: PropTypes.string,
+      emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
       isRequired: PropTypes.bool.isRequired,
     })
   ),

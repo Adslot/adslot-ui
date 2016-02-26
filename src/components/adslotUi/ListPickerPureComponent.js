@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import React, { PropTypes } from 'react';
-import { Empty, Grid, GridRow, GridCell } from 'alexandria-adslot';
+import { Empty, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
 
 require('styles/adslotUi/ListPickerPure.scss');
 
@@ -11,6 +11,7 @@ const ListPickerPureComponent = ({
   deselectItem,
   emptyIcon,
   emptyMessage,
+  emptySvgSymbol,
   items,
   labelFormatter,
   itemHeaders,
@@ -63,7 +64,7 @@ const ListPickerPureComponent = ({
               </GridCell>
             </GridRow>
           )}
-          <Empty collection={items} icon={emptyIcon} text={emptyMessage} />
+          <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
         </Grid>
       </div>
     </div>
@@ -81,6 +82,7 @@ ListPickerPureComponent.propTypes = {
   deselectItem: PropTypes.func.isRequired,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string.isRequired,
+  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   labelFormatter: PropTypes.func.isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
