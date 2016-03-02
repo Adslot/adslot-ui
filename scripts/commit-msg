@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 // Based on https://github.com/eslint/eslint/blob/master/Makefile.js
 require("shelljs/make");
 
@@ -15,7 +16,7 @@ var TAG_REGEX = /^(?:Fix|Update|Breaking|Docs|Build|New|Upgrade|chore\(package\)
  * @returns {string} The result of the executed command.
  */
 function execSilent(cmd) {
-    return exec(cmd, { silent: true }).output;
+  return exec(cmd, { silent: true }).output;
 }
 
 /**
@@ -24,7 +25,7 @@ function execSilent(cmd) {
  * @returns {array} The separated lines.
  */
 function splitCommandResultToLines(result) {
-    return result.trim().split("\n");
+  return result.trim().split("\n");
 }
 
 function checkGitCommit() {
@@ -45,8 +46,9 @@ function checkGitCommit() {
     failed = true;
   }
 
-  // Only check non-release messages
-  if (!semver.valid(commitMsgs[0]) && !/^Revert /.test(commitMsgs[0])) {
+  // Only check non-release messages.
+  // Ignore long greenkeeper update messages (chore).
+  if (!semver.valid(commitMsgs[0]) && !/^chore/.test(commitMsgs[0]) && !/^Revert /.test(commitMsgs[0])) {
     if (commitMsgs[0].slice(0, commitMsgs[0].indexOf("\n")).length > 72) {
       echo(" - First line of commit message must not exceed 72 characters");
       failed = true;
@@ -62,7 +64,8 @@ function checkGitCommit() {
         "    'Build:'",
         "    'New:'",
         "    'Upgrade:'",
-        "   Please refer to the contribution guidelines for more details."].join("\n"));
+        "   Please refer to the contribution guidelines for more details.",
+      ].join("\n"));
       failed = true;
     }
   }

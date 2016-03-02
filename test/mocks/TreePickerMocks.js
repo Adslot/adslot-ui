@@ -5,17 +5,18 @@ const baseItem = {
   value: 10000,
 };
 
+const svgSymbol = { href: '/assets/svg-symbols#search' };
+
 const rootTypes = [
   {
     label: 'Geography',
     id: 'a',
-    icon: 'http://placehold.it/16x16',
-    emptyIcon: 'http://placehold.it/70x70',
+    svgSymbol,
     emptySvgSymbol: { href: '/some.svg#id' },
     isRequired: true,
   },
-  { label: 'Audiences', id: 'b', icon: 'http://placehold.it/16x16', isRequired: false },
-  { label: 'Segments', id: 'c', icon: 'http://placehold.it/16x16', isRequired: true },
+  { label: 'Audiences', id: 'b', svgSymbol, isRequired: false },
+  { label: 'Segments', id: 'c', svgSymbol, isRequired: true },
 ];
 
 const auPath = { id: 'au', label: 'AU' };

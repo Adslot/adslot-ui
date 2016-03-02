@@ -11,7 +11,6 @@ require('styles/adslotUi/TreePickerSelected.scss');
 const TreePickerSelectedComponent = ({
   averageWithinRootType,
   baseItem,
-  emptyIcon,
   emptySvgSymbol,
   helpText,
   includeNode,
@@ -95,7 +94,6 @@ const TreePickerSelectedComponent = ({
         )}
         <Empty
           collection={_.values(selectedNodesByRootType)}
-          icon={emptyIcon}
           svgSymbol={emptySvgSymbol}
           text="Nothing Selected"
         />
@@ -121,9 +119,7 @@ const TreePickerSelectedComponent = ({
 TreePickerSelectedComponent.displayName = 'AdslotUiTreePickerSelectedComponent';
 
 const rootType = PropTypes.shape({
-  emptyIcon: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  icon: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   isRequired: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
@@ -135,7 +131,6 @@ TreePickerSelectedComponent.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
   }).isRequired,
-  emptyIcon: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   helpText: PropTypes.shape({
     average: PropTypes.string.isRequired,

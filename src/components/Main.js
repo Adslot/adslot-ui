@@ -117,18 +117,18 @@ class AppComponent extends React.Component {
     };
 
     const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
+    const svgSymbol = { href: '/assets/svg-symbols.svg#list' };
 
     const rootTypes = [
       {
         label: 'Geography',
         id: '0',
-        icon: 'http://placehold.it/16x16',
-        emptyIcon: 'http://placehold.it/70x70',
+        svgSymbol,
         emptySvgSymbol,
         isRequired: true,
       },
-      { label: 'Gender', id: '1', icon: 'http://placehold.it/16x16', isRequired: false },
-      { label: 'Age', id: '2', icon: 'http://placehold.it/16x16', isRequired: false },
+      { label: 'Gender', id: '1', svgSymbol, isRequired: false },
+      { label: 'Age', id: '2', svgSymbol, isRequired: false },
     ];
 
     const auPath = [{ id: '10', label: 'AU' }];

@@ -97,7 +97,8 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.have.length(0);
-    expect(emptyElement.props.icon).to.equal('//placehold.it/70x70');
+    expect(emptyElement.props.svgSymbol.href).to.equal('/assets/svg-symbols.svg#checklist-incomplete');
+    expect(emptyElement.props.svgSymbol.classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
     expect(emptyElement.props.text).to.equal('Nothing Selected');
     const flexSpacerElement = scrollableElement.props.children[scrollableIndices.flexSpacer];
     expect(flexSpacerElement.type).to.equal((<FlexSpacer />).type);
@@ -181,7 +182,8 @@ describe('TreePickerSelectedComponent', () => {
 
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.deep.equal([[actNode, ntNode]]);
-    expect(emptyElement.props.icon).to.equal('awesome-url');
+    expect(emptyElement.props.svgSymbol.href).to.equal('/some.svg#id');
+    expect(emptyElement.props.svgSymbol.classSuffixes).to.be.an('undefined');
     expect(emptyElement.props.svgSymbol).to.deep.equal({ href: '/some.svg#id' });
     expect(emptyElement.props.text).to.equal('Nothing Selected');
 

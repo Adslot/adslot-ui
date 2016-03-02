@@ -5,7 +5,7 @@ import immutable from 'seamless-immutable';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
-import { Empty, FlexSpacer, Grid } from 'alexandria-adslot';
+import { Empty, FlexSpacer, Grid, SvgSymbol } from 'alexandria-adslot';
 import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerPureComponent', () => {
@@ -61,7 +61,8 @@ describe('TreePickerPureComponent', () => {
     const emptyElement = nodesGridElement.props.children[nodesGridIndices.empty];
     expect(emptyElement.type).to.equal((<Empty />).type);
     expect(emptyElement.props.collection).to.deep.equal([]);
-    expect(emptyElement.props.icon).to.equal('//placehold.it/70x70');
+    expect(emptyElement.props.svgSymbol.href).to.equal('/assets/svg-symbols.svg#checklist-incomplete');
+    expect(emptyElement.props.svgSymbol.classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
     expect(emptyElement.props.text).to.equal('No items to select.');
 
     const flexSpacerElement = leftPaneElement.props.children[leftPaneIndices.flexSpacer];
@@ -87,8 +88,7 @@ describe('TreePickerPureComponent', () => {
       breadcrumbNodes: [],
       breadcrumbOnClick: testFunction,
       changeRootType: (rootType) => rootTypeChanges.push(rootType),
-      emptyIcon: 'url',
-      emptySvgSymbol: { href: '/some.svg#id' },
+      emptySvgSymbol: { href: '/some.svg#id', classSuffixes: ['gray-light'] },
       helpText: {
         average: 'An average explanation.',
         sum: 'The sum of all fears.',
@@ -123,9 +123,9 @@ describe('TreePickerPureComponent', () => {
     expect(rootTypeChanges).to.deep.equal([]); // Shouldn't add since its already active.
 
     const firstTabIcon = firstTabAnchor.props.children[0];
-    expect(firstTabIcon.type).to.equal('img');
-    expect(firstTabIcon.props.className).to.equal('icon');
-    expect(firstTabIcon.props.src).to.equal(rootTypes[0].icon);
+    expect(firstTabIcon.type).to.equal((<SvgSymbol />).type);
+    expect(firstTabIcon.props.href).to.equal(rootTypes[0].svgSymbol.href);
+    expect(firstTabIcon.props.classSuffixes).to.deep.equal(['gray-darker']);
     expect(firstTabAnchor.props.children[1]).to.equal(rootTypes[0].label);
 
     expect(tabElements[1].type).to.equal('li');
@@ -152,8 +152,8 @@ describe('TreePickerPureComponent', () => {
     expect(emptyElement.type).to.equal((<Empty />).type);
 
     expect(emptyElement.props.collection).to.have.length(1);
-    expect(emptyElement.props.icon).to.equal('url');
-    expect(emptyElement.props.svgSymbol).to.deep.equal({ href: '/some.svg#id' });
+    expect(emptyElement.props.svgSymbol.href).to.equal('/some.svg#id');
+    expect(emptyElement.props.svgSymbol.classSuffixes).to.deep.equal(['gray-light']);
     expect(emptyElement.props.text).to.equal('No items to select.');
 
     const rightPaneElement = component.props.children[indices.rightPane];
