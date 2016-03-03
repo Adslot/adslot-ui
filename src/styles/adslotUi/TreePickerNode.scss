@@ -1,5 +1,6 @@
 @import '../color';
 @import '../icon';
+@import '../fontSize';
 
 .treepickernode-component {
 
@@ -24,8 +25,13 @@
   }
 
   .grid-component-cell-button {
-    min-width: 65px;
+    min-width: 40px;
     padding-bottom: 7px;
     padding-top: 7px;
+
+    .btn-xs {
+      font-size: 15px;
+      line-height: 14px; // Inner Cell Height
+    }
   }
 }
