@@ -38,8 +38,8 @@ const TreePickerNodeComponent = ({
       <GridRow>
         {selected ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" bsStyle="danger" className="btn-inverse" onClick={removeNodeBound}>
-              Remove
+            <Button block bsSize="xsmall" className="btn-inverse" onClick={removeNodeBound}>
+              −
             </Button>
           </GridCell>
         : null}
@@ -56,8 +56,8 @@ const TreePickerNodeComponent = ({
         </GridCell>
         {!selected ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" bsStyle="primary" className="btn-inverse" onClick={includeNodeBound}>
-              Include
+            <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound}>
+              +
             </Button>
           </GridCell>
         : null}

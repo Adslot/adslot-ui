@@ -67,7 +67,7 @@ describe('TreePickerNodeComponent', () => {
 
     expect(buttonElement.type).to.equal((<Button />).type);
     expect(buttonElement.props.onClick).to.be.a('function');
-    expect(buttonElement.props.children).to.equal('Include');
+    expect(buttonElement.props.children).to.equal('+');
   });
 
   it('should render the button first when selected is true', () => {
@@ -82,7 +82,7 @@ describe('TreePickerNodeComponent', () => {
 
     expect(buttonElement.type).to.equal((<Button />).type);
     expect(buttonElement.props.onClick).to.be.a('function');
-    expect(buttonElement.props.children).to.equal('Remove');
+    expect(buttonElement.props.children).to.equal('−');
 
     const buttonLastCellElement = rowElement.props.children[indices.buttonLastCell];
     expect(buttonLastCellElement).to.be.a('null');
@@ -213,7 +213,7 @@ describe('TreePickerNodeComponent', () => {
 
     const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
     const buttonElement = buttonFirstCellElement.props.children;
-    expect(buttonElement.props.children).to.equal('Remove');
+    expect(buttonElement.props.children).to.equal('−');
 
     expect(nodes).to.deep.equal([cbrNode]);
     buttonElement.props.onClick();
@@ -226,7 +226,7 @@ describe('TreePickerNodeComponent', () => {
 
     const buttonFirstCellElement = rowElement.props.children[indices.buttonFirstCell];
     const buttonElement = buttonFirstCellElement.props.children;
-    expect(buttonElement.props.children).to.equal('Remove');
+    expect(buttonElement.props.children).to.equal('−');
     expect(() => {
       buttonElement.props.onClick();
     }).to.throw('AdslotUi TreePickerNode needs a removeNode handler');
