@@ -16,7 +16,6 @@ const TreePickerPureComponent = ({
   breadcrumbNodes,
   breadcrumbOnClick,
   changeRootType,
-  emptyIcon,
   emptySvgSymbol,
   expandNode,
   helpText,
@@ -30,6 +29,8 @@ const TreePickerPureComponent = ({
   selectedLabel,
   selectedNodesByRootType,
   subtree,
+  svgSymbolCancel,
+  svgSymbolSearch,
   totalsSuffix,
   valueFormatter,
   warnOnRequired,
@@ -57,7 +58,10 @@ const TreePickerPureComponent = ({
           {rootTypes.length ? _.map(rootTypes, (rootType) =>
             <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
               <a onClick={changeRootTypeBound(rootType)}>
-                <img className="icon" src={rootType.icon} />
+                <SvgSymbol
+                  href={_.get(rootType, 'svgSymbol.href')}
+                  classSuffixes={_.get(rootType, 'svgSymbol.classSuffixes', ['gray-darker'])}
+                />
                 {rootType.label}
               </a>
             </li>)
@@ -71,6 +75,8 @@ const TreePickerPureComponent = ({
           searchOnClear={searchOnClear}
           searchPlaceholder={searchPlaceholder}
           searchValue={searchValue}
+          svgSymbolCancel={svgSymbolCancel}
+          svgSymbolSearch={svgSymbolSearch}
         />
 
         <Grid>
@@ -83,7 +89,7 @@ const TreePickerPureComponent = ({
               valueFormatter={valueFormatter}
             />
           )}
-          <Empty collection={filteredSubtree} icon={emptyIcon} svgSymbol={emptySvgSymbol} text="No items to select." />
+          <Empty collection={filteredSubtree} svgSymbol={emptySvgSymbol} text="No items to select." />
         </Grid>
 
         <FlexSpacer />
@@ -94,7 +100,6 @@ const TreePickerPureComponent = ({
         <TreePickerSelected
           averageWithinRootType={averageWithinRootType}
           baseItem={baseItem}
-          emptyIcon={emptyIcon}
           emptySvgSymbol={emptySvgSymbol}
           helpText={helpText}
           removeNode={removeNode}
@@ -125,9 +130,8 @@ const breadCrumbNode = PropTypes.shape({
 });
 
 const rootType = PropTypes.shape({
-  emptyIcon: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  icon: PropTypes.string.isRequired,
+  svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   id: PropTypes.string.isRequired,
   isRequired: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
@@ -140,7 +144,6 @@ TreePickerPureComponent.propTypes = {
   breadcrumbNodes: PropTypes.arrayOf(breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   changeRootType: PropTypes.func.isRequired,
-  emptyIcon: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   expandNode: PropTypes.func,
   helpText: PropTypes.shape({
@@ -152,11 +155,13 @@ TreePickerPureComponent.propTypes = {
   rootTypes: PropTypes.arrayOf(rootType).isRequired,
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
-  searchValue: PropTypes.string,
   searchPlaceholder: PropTypes.string,
+  searchValue: PropTypes.string,
   selectedLabel: PropTypes.string,
   selectedNodesByRootType: PropTypes.shape(),
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node).isRequired,
+  svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
+  svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
   totalsSuffix: PropTypes.string,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool,

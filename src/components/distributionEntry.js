@@ -30,6 +30,8 @@ import {
   GridRow,
   Search,
   Slicey,
+  SvgSymbol,
+  SvgSymbolCircle,
   Totals,
 } from 'alexandria-adslot';
 
@@ -53,6 +55,8 @@ module.exports = {
   Search,
   Select,
   Slicey,
+  SvgSymbol,
+  SvgSymbolCircle,
   Tab,
   Tabs,
   Toggle,

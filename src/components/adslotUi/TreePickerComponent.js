@@ -175,7 +175,6 @@ class TreePickerComponent extends React.Component {
             breadcrumbNodes={state.breadcrumbNodes}
             breadcrumbOnClick={this.breadcrumbOnClick}
             changeRootType={this.changeRootType}
-            emptyIcon={_.get(state, 'rootType.emptyIcon')}
             emptySvgSymbol={_.get(state, 'rootType.emptySvgSymbol')}
             expandNode={this.expandNode}
             helpText={props.helpText}
@@ -188,6 +187,8 @@ class TreePickerComponent extends React.Component {
             selectedLabel={props.selectedLabel}
             selectedNodesByRootType={state.selectedNodesByRootType}
             subtree={state.subtree}
+            svgSymbolCancel={props.svgSymbolCancel}
+            svgSymbolSearch={props.svgSymbolSearch}
             totalsSuffix={props.totalsSuffix}
             valueFormatter={props.valueFormatter}
             warnOnRequired={props.warnOnRequired}
@@ -224,14 +225,15 @@ TreePickerComponent.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
-      icon: PropTypes.string,
-      emptyIcon: PropTypes.string,
+      svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
       emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
       isRequired: PropTypes.bool.isRequired,
     })
   ),
   selectedLabel: PropTypes.string,
   show: PropTypes.bool.isRequired,
+  svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
+  svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
   throttleTime: PropTypes.number.isRequired,
   totalsSuffix: PropTypes.string,
   valueFormatter: PropTypes.func,
