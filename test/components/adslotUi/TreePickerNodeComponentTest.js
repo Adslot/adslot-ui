@@ -99,7 +99,7 @@ describe('TreePickerNodeComponent', () => {
     expect(valueCellElement.props.children).to.equal('€20');
   });
 
-  it('should fire expandNode when clicking on the `expand` button', () => {
+  it('should fire expandNode when clicking on the `expand` cell', () => {
     const nodes = [];
     const expandNode = (node) => nodes.push(node);
     const component = createComponent(TreePickerNodeComponent, { node: cbrNode, expandNode });
@@ -110,7 +110,21 @@ describe('TreePickerNodeComponent', () => {
     const expanderElement = expanderCellElement.props.children;
 
     expect(expanderElement.props.className).to.equal('treepickernode-component-expander');
-    expanderElement.props.onClick();
+    expanderCellElement.props.onClick();
+    expect(nodes).to.deep.equal([cbrNode]);
+  });
+
+  it('should fire expandNode when clicking on the label cell', () => {
+    const nodes = [];
+    const expandNode = (node) => nodes.push(node);
+    const component = createComponent(TreePickerNodeComponent, { node: cbrNode, expandNode });
+
+    const rowElement = component.props.children;
+    const labelWrapperCellElement = rowElement.props.children[indices.labelWrapperCell];
+    expect(labelWrapperCellElement.type).to.equal((<GridCell />).type);
+    expect(labelWrapperCellElement.props.stretch).to.equal(true);
+
+    labelWrapperCellElement.props.onClick();
     expect(nodes).to.deep.equal([cbrNode]);
   });
 

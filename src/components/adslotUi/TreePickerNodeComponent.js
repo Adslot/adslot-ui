@@ -14,8 +14,9 @@ const TreePickerNodeComponent = ({
   selected,
   valueFormatter,
 }) => {
+  const baseClass = 'treepickernode-component';
   const pathElement = !_.isEmpty(node.path) ?
-    <span className="treepickernode-component-path">
+    <span className={`${baseClass}-path`}>
       {_(node.path).map('label').clone().reverse().join(', ')}
     </span> :
     null;
@@ -24,17 +25,22 @@ const TreePickerNodeComponent = ({
   const removeNodeBound = removeNode.bind(null, node);
 
   let expanderElement;
+  let expandNodeBound;
   if (expandNode && node.isExpandable) {
-    const expandNodeBound = expandNode.bind(null, node);
+    expandNodeBound = expandNode.bind(null, node);
     expanderElement = (
-      <GridCell>
-        <div className="treepickernode-component-expander" onClick={expandNodeBound} />
+      <GridCell onClick={expandNodeBound}>
+        <div className={`${baseClass}-expander`} />
       </GridCell>
     );
   }
 
+  const labelCellProps = expanderElement ?
+    { onClick: expandNodeBound } :
+    {};
+
   return (
-    <div className="treepickernode-component">
+    <div className={`${baseClass}`}>
       <GridRow>
         {selected ?
           <GridCell classSuffixes={['button']}>
@@ -43,10 +49,10 @@ const TreePickerNodeComponent = ({
             </Button>
           </GridCell>
         : null}
-        <GridCell stretch>
+        <GridCell stretch {...labelCellProps}>
           <span>{node.label}</span>
           {!_.isEmpty(node.type) && !_.isEmpty(pathElement) ?
-            <span className="treepickernode-component-metadata"> ({node.type} in {pathElement})</span> :
+            <span className={`${baseClass}-metadata`}> ({node.type} in {pathElement})</span> :
             null
           }
         </GridCell>
