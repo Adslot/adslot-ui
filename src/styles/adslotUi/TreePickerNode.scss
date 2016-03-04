@@ -3,7 +3,6 @@
 @import '../fontSize';
 
 .treepickernode-component {
-
   &:hover {
     background-color: $color-gray-white;
 
@@ -12,11 +11,9 @@
     }
   }
 
-  .treepickernode-component-expander {
+  &-expander {
     background-image: $icon-folder-closed;
-    cursor: pointer;
     height: $icon-size;
-    margin-bottom: -3px;
     width: $icon-size;
   }
 
