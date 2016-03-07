@@ -4,9 +4,9 @@ Adslot UI
 Core component library. By Adslot
 ---------------------------------
 
-A library of core components used to develop our Adslot and Symphony products. 
-This will draw apon custom in-house components from adslot/alexandria as well as restyled 
-vendor components eg Bootstrap, Select2. 
+A library of core components used to develop our Adslot and Symphony products.
+This will draw on custom in-house components from adslot/alexandria as well as restyled
+vendor components eg Bootstrap, Select2.
 
 Technology:
 
@@ -37,10 +37,10 @@ Development
 Commands
 --------
 
-```
+```sh
 # Start for development
 
-npm start # or npm run serve
+npm start
 
 # Start the dev-server without automatic refresh
 
@@ -54,15 +54,13 @@ npm run dist
 
 npm run lint
 
-# Clean up the dist directory
+# Run tests and posttest linting
 
-npm run clean
+npm run test
 
-# Just copy the static assets
+# Run tests and rebuild on file changes.
 
-npm run copy
-
-# TODO: Work out how we want to test components to then be able to run `npm test`
+npm run test:watch
 ```
 
 Generating New Components
@@ -84,3 +82,21 @@ Build Profiling
 To generate a profile: `npm run profile`
 
 Upload the new `stats.json` file to [Webpack Analyse Tool](http://webpack.github.io/analyse).
+
+Optimizing Performance of Stateless Components
+---------------
+
+Add the following to Main.js:
+
+```js
+import Perf from 'react-addons-perf';
+
+window.Perf = Perf;
+```
+
+- In the browser, run `Perf.start()` to start recording.
+- Interact the component in the way that feels slow.
+- Run `Perf.stop()` to stop recording.
+- Run `Perf.printWasted()` to see the nodes that are re–rendering but do not change the DOM.
+- Use fastStatelessWrapper to wrap this component, passing in the properties to check.
+- Re-test to make sure you're improving performance.

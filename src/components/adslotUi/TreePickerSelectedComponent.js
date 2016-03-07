@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import classNames from 'classnames';
+import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
@@ -23,6 +24,8 @@ const TreePickerSelectedComponent = ({
   valueLabel,
   warnOnRequired,
 }) => {
+  const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
+
   const valueByRootType = _(rootTypes)
     .indexBy('id')
     .mapValues(({ id }) => {
@@ -63,7 +66,7 @@ const TreePickerSelectedComponent = ({
             </GridRow>
 
             {_.map(selectedNodesByRootType[rootTypeId], (node) =>
-              <TreePickerNode
+              <TreePickerNodeFast
                 includeNode={includeNode}
                 key={node.id}
                 node={node}
