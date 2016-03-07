@@ -4,51 +4,52 @@ import React, { PropTypes } from 'react';
 
 require('styles/adslotUi/UserListPicker.scss');
 
-class UserListPickerComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    for (const methodName of [
-      'labelFormatter',
-    ]) {this[methodName] = this[methodName].bind(this);}
-  }
-
-  labelFormatter(user) {
-    return (
-      <div className="userlistpicker-component-user-label">
-        <Avatar
-          image={user.avatar}
-          color={this.props.avatarColor(user)}
-          givenName={user.givenName}
-          surname={user.surname}
-        />
-        <span>{`${user.givenName} ${user.surname}`}</span>
-      </div>
-    );
-  }
-
-  render() {
-    const { props, labelFormatter } = this;
-
-    return (
-      <ListPicker
-        allowEmptySelection={props.allowEmptySelection}
-        emptyIcon={props.emptyIcon}
-        emptyMessage={props.emptyMessage}
-        emptySvgSymbol={props.emptySvgSymbol}
-        initialSelection={props.initialSelection}
-        itemHeaders={props.userHeaders}
-        items={props.users}
-        labelFormatter={labelFormatter}
-        modalApply={props.modalApply}
-        modalClassName="userlistpicker-component"
-        modalClose={props.modalClose}
-        modalDescription={props.modalDescription}
-        modalTitle={props.modalTitle}
-        show={props.show}
+const UserListPickerComponent = ({
+  allowEmptySelection,
+  avatarColor,
+  emptyIcon,
+  emptyMessage,
+  emptySvgSymbol,
+  initialSelection,
+  modalApply,
+  modalClose,
+  modalDescription,
+  modalTitle,
+  show,
+  userHeaders,
+  users,
+}) => {
+  const labelFormatter = (user) => (
+    <div className="userlistpicker-component-user-label">
+      <Avatar
+        image={user.avatar}
+        color={avatarColor(user)}
+        givenName={user.givenName}
+        surname={user.surname}
       />
-    );
-  }
-}
+      <span>{`${user.givenName} ${user.surname}`}</span>
+    </div>
+  );
+
+  return (
+    <ListPicker
+      allowEmptySelection={allowEmptySelection}
+      emptyIcon={emptyIcon}
+      emptyMessage={emptyMessage}
+      emptySvgSymbol={emptySvgSymbol}
+      initialSelection={initialSelection}
+      itemHeaders={userHeaders}
+      items={users}
+      labelFormatter={labelFormatter}
+      modalApply={modalApply}
+      modalClassName="userlistpicker-component"
+      modalClose={modalClose}
+      modalDescription={modalDescription}
+      modalTitle={modalTitle}
+      show={show}
+    />
+  );
+};
 
 UserListPickerComponent.displayName = 'AdslotUiListPickerComponent';
 

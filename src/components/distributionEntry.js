@@ -7,6 +7,7 @@ require('styles/_react-toggle-custom.scss');
 
 import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
+import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
@@ -41,6 +42,7 @@ module.exports = {
   Breadcrumb,
   Button,
   Checkbox,
+  ConfirmModal,
   Empty,
   FlexSpacer,
   Grid,
