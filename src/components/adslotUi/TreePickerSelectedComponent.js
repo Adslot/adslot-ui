@@ -21,7 +21,6 @@ const TreePickerSelectedComponent = ({
   selectedNodesByRootType,
   totalsSuffix,
   valueFormatter,
-  valueLabel,
   warnOnRequired,
 }) => {
   const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
@@ -56,13 +55,18 @@ const TreePickerSelectedComponent = ({
   return (
     <div className="treepickerselected-component">
       <h1 className="treepickerselected-component-header">{selectedLabel}</h1>
+
+      {unresolvedRootTypes ?
+        <Alert type={warnOnRequired ? 'warning' : 'danger'}>Required: {unresolvedRootTypes}.</Alert> :
+        null
+      }
+
       <div className={scrollableClass}>
         {_.map(selectedNodesByRootType, (val, rootTypeId) =>
           <Grid key={rootTypeId}>
 
             <GridRow type="header">
               <GridCell stretch>{getRootTypeLabel(rootTypeId)}</GridCell>
-              <GridCell>{valueLabel}</GridCell>
             </GridRow>
 
             {_.map(selectedNodesByRootType[rootTypeId], (node) =>
@@ -103,11 +107,6 @@ const TreePickerSelectedComponent = ({
         <FlexSpacer />
       </div>
 
-      {unresolvedRootTypes ?
-        <Alert type={warnOnRequired ? 'warning' : 'danger'}>Required: {unresolvedRootTypes}.</Alert> :
-        null
-      }
-
       <Totals
         toSum={[
           { label: baseItem.label, value: baseItem.value },
@@ -146,7 +145,6 @@ TreePickerSelectedComponent.propTypes = {
   selectedLabel: PropTypes.string.isRequired,
   selectedNodesByRootType: PropTypes.shape().isRequired,
   valueFormatter: PropTypes.func.isRequired,
-  valueLabel: PropTypes.string.isRequired,
   warnOnRequired: PropTypes.bool.isRequired,
 };
 
@@ -167,7 +165,6 @@ TreePickerSelectedComponent.defaultProps = {
   selectedNodesByRootType: {},
   totalsSuffix: '',
   valueFormatter: (value) => value,
-  valueLabel: 'Cost',
   warnOnRequired: false,
 };
 

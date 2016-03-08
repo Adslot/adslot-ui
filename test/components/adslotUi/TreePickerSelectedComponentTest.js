@@ -14,8 +14,8 @@ import { createComponent } from 'testHelpers/shallowRenderHelpers';
 describe('TreePickerSelectedComponent', () => {
   const indices = immutable({
     header: 0,
-    scrollable: 1,
-    alert: 2,
+    alert: 1,
+    scrollable: 2,
     totals: 3,
   });
 
@@ -125,7 +125,6 @@ describe('TreePickerSelectedComponent', () => {
       rootTypes,
       selectedNodesByRootType,
       totalsSuffix: 'CPM',
-      valueLabel: 'Galactic Credits',
     });
     expect(component.props.className).to.equal('treepickerselected-component');
 
@@ -152,16 +151,11 @@ describe('TreePickerSelectedComponent', () => {
     expect(headerRowElement.type).to.equal((<GridRow />).type);
     expect(headerRowElement.props.type).to.equal('header');
 
-    const headerFirstCell = headerRowElement.props.children[0];
+    const headerFirstCell = headerRowElement.props.children;
 
     expect(headerFirstCell.type).to.equal((<GridCell />).type);
     expect(headerFirstCell.props.stretch).to.equal(true);
     expect(headerFirstCell.props.children).to.equal('Geography');
-
-    const headerSecondCell = headerRowElement.props.children[1];
-
-    expect(headerSecondCell.type).to.equal((<GridCell />).type);
-    expect(headerSecondCell.props.children).to.equal('Galactic Credits');
 
     const nodeElements = gridElement.props.children[gridIndices.nodes];
     expect(nodeElements).to.have.length(2);
