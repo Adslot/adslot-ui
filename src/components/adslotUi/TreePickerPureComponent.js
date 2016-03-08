@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
@@ -35,6 +36,8 @@ const TreePickerPureComponent = ({
   valueFormatter,
   warnOnRequired,
 }) => {
+  const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
+
   const changeRootTypeBound = (rootType) => {
     if (rootType.id !== activeRootTypeId) {
       return changeRootType.bind(null, rootType.id);
@@ -81,7 +84,7 @@ const TreePickerPureComponent = ({
 
         <Grid>
           {_.map(filteredSubtree, (node) =>
-            <TreePickerNode
+            <TreePickerNodeFast
               expandNode={expandNode}
               includeNode={includeNode}
               key={node.id}
