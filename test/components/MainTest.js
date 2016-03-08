@@ -23,19 +23,21 @@ describe('MainComponent', () => {
   const componentsHash = {
     modalButton: 7,
     modal: 8,
-    checkbox: 10,
-    radio: 18,
-    toggle: 24,
-    select: 28,
-    selectList: 30,
-    treePickerButton: 32,
-    treePicker: 33,
-    listPickerButton: 35,
-    listPicker: 36,
-    splitListPickerButton: 37,
-    splitListPicker: 38,
-    userListPickerButton: 40,
-    userListPicker: 41,
+    confirmModalButton: 9,
+    confirmModal: 10,
+    checkbox: 12,
+    radio: 20,
+    toggle: 26,
+    select: 30,
+    selectList: 32,
+    treePickerButton: 34,
+    treePicker: 35,
+    listPickerButton: 37,
+    listPicker: 38,
+    splitListPickerButton: 39,
+    splitListPicker: 40,
+    userListPickerButton: 42,
+    userListPicker: 43,
   };
 
   beforeEach(() => {
@@ -67,6 +69,22 @@ describe('MainComponent', () => {
 
     componentRenderOutput = renderer.getRenderOutput();
     modalComponent = componentRenderOutput.props.children[componentsHash.modal];
+    expect(modalComponent.props.show).to.equal(true);
+  });
+
+  it('should open the confirm modal when clicking the button', () => {
+    const renderer = createRenderer();
+    renderer.render(<Main />);
+    let componentRenderOutput = renderer.getRenderOutput();
+
+    const modalButtonComponent = componentRenderOutput.props.children[componentsHash.confirmModalButton];
+    let modalComponent = componentRenderOutput.props.children[componentsHash.confirmModal];
+    expect(modalComponent.props.show).to.equal(false);
+
+    modalButtonComponent.props.onClick();
+
+    componentRenderOutput = renderer.getRenderOutput();
+    modalComponent = componentRenderOutput.props.children[componentsHash.confirmModal];
     expect(modalComponent.props.show).to.equal(true);
   });
 

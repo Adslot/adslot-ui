@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Button,
   Checkbox,
+  ConfirmModal,
   ListPicker,
   Modal,
   Tabs,
@@ -39,6 +40,7 @@ class AppComponent extends React.Component {
     for (const methodName of [
       'setSelectedCountry',
       'setSelectedFlavours',
+      'toggleConfirmModal',
       'toggleListPickerModal',
       'toggleSimpleModal',
       'toggleSplitListPickerModal',
@@ -75,6 +77,10 @@ class AppComponent extends React.Component {
 
   toggleSimpleModal() {
     this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  }
+
+  toggleConfirmModal() {
+    this.setState({ showConfirmModal: !this.state.showConfirmModal });
   }
 
   toggleTreePickerModal() {
@@ -243,6 +249,16 @@ class AppComponent extends React.Component {
             </Button>
           </Modal.Footer>
         </Modal>
+
+        <Button className="btn-inverse" onClick={this.toggleConfirmModal}>
+          Open Confirm Modal
+        </Button>
+
+        <ConfirmModal
+          modalApply={this.toggleConfirmModal}
+          modalClose={this.toggleConfirmModal}
+          show={this.state.showConfirmModal}
+        />
 
 
         <h1>Checkboxes</h1>
