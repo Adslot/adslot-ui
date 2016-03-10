@@ -1,10 +1,7 @@
-/* eslint-env node, mocha */
-/* global expect */
-
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import React from 'react';
 import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import { Breadcrumb, Search } from 'alexandria-adslot';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('TreePickerNavComponent', () => {
   it('should render with defaults', () => {

@@ -6,6 +6,23 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerNode.scss');
 
+const baseClass = 'treepickernode-component';
+
+const getExpander = ({ expandNode, node }) => {
+  if (expandNode && node.isExpandable) {
+    const expandNodeBound = expandNode.bind(null, node);
+    return {
+      expandNodeBound,
+      expanderElement:
+        <GridCell onClick={expandNodeBound}>
+          <div className={`${baseClass}-expander`} />
+        </GridCell>,
+    };
+  }
+
+  return {};
+};
+
 const TreePickerNodeComponent = ({
   expandNode,
   includeNode,
@@ -14,7 +31,6 @@ const TreePickerNodeComponent = ({
   selected,
   valueFormatter,
 }) => {
-  const baseClass = 'treepickernode-component';
   const pathElement = !_.isEmpty(node.path) ?
     <span className={`${baseClass}-path`}>
       {_(node.path).map('label').clone().reverse().join(', ')}
@@ -24,16 +40,7 @@ const TreePickerNodeComponent = ({
   const includeNodeBound = includeNode.bind(null, node);
   const removeNodeBound = removeNode.bind(null, node);
 
-  let expanderElement;
-  let expandNodeBound;
-  if (expandNode && node.isExpandable) {
-    expandNodeBound = expandNode.bind(null, node);
-    expanderElement = (
-      <GridCell onClick={expandNodeBound}>
-        <div className={`${baseClass}-expander`} />
-      </GridCell>
-    );
-  }
+  const { expandNodeBound, expanderElement } = getExpander({ expandNode, node });
 
   const labelCellProps = expanderElement ?
     { onClick: expandNodeBound } :

@@ -1,6 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
-
 import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';

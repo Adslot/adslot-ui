@@ -1,11 +1,8 @@
-/* eslint-env node, mocha */
-/* global expect */
-
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import React from 'react';
 import UserListPickerComponent from 'components/adslotUi/UserListPickerComponent';
 import { Avatar } from 'alexandria-adslot';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('UserListPickerComponent', () => {
   const {

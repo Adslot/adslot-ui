@@ -1,6 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
-
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import { Grid } from 'alexandria-adslot';
 import { createShallowRenderer, runShouldComponentUpdate } from 'testHelpers/shallowRenderHelpers';

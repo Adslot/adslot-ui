@@ -1,10 +1,7 @@
-/* eslint-env node, mocha */
-/* global expect */
-
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import Main from 'components/Main';
 import React from 'react';
 import { isElementOfType, createRenderer } from 'react-addons-test-utils';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 import {
   Checkbox,

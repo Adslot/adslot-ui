@@ -9,6 +9,25 @@ import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, SvgSymbol, Totals } 
 
 require('styles/adslotUi/TreePickerSelected.scss');
 
+const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
+
+const getValueByRootType = ({ averageWithinRootType, rootTypes, selectedNodesByRootType }) =>
+  _(rootTypes)
+    .indexBy('id')
+    .mapValues(({ id }) => {
+      const selectedInRootType = _.get(selectedNodesByRootType, id);
+      if (_.isEmpty(selectedInRootType)) return 0;
+      return _.sum(selectedInRootType, 'value') / (averageWithinRootType ? selectedInRootType.length : 1);
+    })
+    .value();
+
+const getRootTypeLabel = ({ rootTypes, rootTypeId }) => {
+  const rootTypeMatchingId = _.find(rootTypes, { id: rootTypeId });
+  if (rootTypeMatchingId) return rootTypeMatchingId.label;
+
+  throw new Error(`TreePickerSelectedComponent requires a rootType for id ${rootTypeId}`);
+};
+
 const TreePickerSelectedComponent = ({
   averageWithinRootType,
   baseItem,
@@ -23,30 +42,12 @@ const TreePickerSelectedComponent = ({
   valueFormatter,
   warnOnRequired,
 }) => {
-  const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
-
-  const valueByRootType = _(rootTypes)
-    .indexBy('id')
-    .mapValues(({ id }) => {
-      const selectedInRootType = _.get(selectedNodesByRootType, id);
-      if (_.isEmpty(selectedInRootType)) return 0;
-      return _.sum(selectedInRootType, 'value') / (averageWithinRootType ? selectedInRootType.length : 1);
-    })
-    .value();
-
-  const totalOfRootTypeValues = _.sum(valueByRootType);
+  const valueByRootType = getValueByRootType({ averageWithinRootType, rootTypes, selectedNodesByRootType });
 
   const unresolvedRootTypes = _(rootTypes)
     .filter(({ id, isRequired }) => isRequired && _.isEmpty(selectedNodesByRootType[id]))
     .map('label')
     .join(', ');
-
-  const getRootTypeLabel = (rootTypeId) => {
-    const rootTypeMatchingId = _.find(rootTypes, { id: rootTypeId });
-    if (rootTypeMatchingId) return rootTypeMatchingId.label;
-
-    throw new Error(`TreePickerSelectedComponent requires a rootType for id ${rootTypeId}`);
-  };
 
   const scrollableClass = classNames('treepickerselected-component-scrollable', { 'is-short': unresolvedRootTypes });
 
@@ -66,7 +67,7 @@ const TreePickerSelectedComponent = ({
           <Grid key={rootTypeId}>
 
             <GridRow type="header">
-              <GridCell stretch>{getRootTypeLabel(rootTypeId)}</GridCell>
+              <GridCell stretch>{getRootTypeLabel({ rootTypes, rootTypeId })}</GridCell>
             </GridRow>
 
             {_.map(selectedNodesByRootType[rootTypeId], (node) =>
@@ -110,7 +111,7 @@ const TreePickerSelectedComponent = ({
       <Totals
         toSum={[
           { label: baseItem.label, value: baseItem.value },
-          { label: selectedLabel, value: totalOfRootTypeValues },
+          { label: selectedLabel, value: _.sum(valueByRootType) },
         ]}
         valueFormatter={totalsValueFormatter}
       />

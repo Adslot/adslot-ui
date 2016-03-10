@@ -1,6 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
-
 import immutable from 'seamless-immutable';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';

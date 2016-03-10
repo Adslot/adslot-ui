@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+
 import React from 'react';
 
 import {
