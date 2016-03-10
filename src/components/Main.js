@@ -228,7 +228,7 @@ class AppComponent extends React.Component {
         </div>
 
         <h1>Modal</h1>
-        <Button className="btn-inverse" onClick={this.toggleSimpleModal}>
+        <Button data-test-selector="button-modal" className="btn-inverse" onClick={this.toggleSimpleModal}>
           Open Modal
         </Button>
 
@@ -252,7 +252,7 @@ class AppComponent extends React.Component {
           </Modal.Footer>
         </Modal>
 
-        <Button className="btn-inverse" onClick={this.toggleConfirmModal}>
+        <Button id="button-confirm-modal" className="btn-inverse" onClick={this.toggleConfirmModal}>
           Open Confirm Modal
         </Button>
 
@@ -333,7 +333,7 @@ class AppComponent extends React.Component {
 
         <h1>TreePicker</h1>
 
-        <Button bsStyle="primary" onClick={this.toggleTreePickerModal}>
+        <Button data-test-selector="button-tree-picker" bsStyle="primary" onClick={this.toggleTreePickerModal}>
           Open TreePicker
         </Button>
 
@@ -359,7 +359,7 @@ class AppComponent extends React.Component {
 
         <h1>ListPicker</h1>
 
-        <Button bsStyle="primary" onClick={this.toggleListPickerModal}>
+        <Button data-test-selector="button-list-picker" bsStyle="primary" onClick={this.toggleListPickerModal}>
           Open ListPicker
         </Button>
 
@@ -376,7 +376,11 @@ class AppComponent extends React.Component {
           show={this.state.showListPickerModal}
         />
 
-        <Button bsStyle="primary" onClick={this.toggleSplitListPickerModal}>
+        <Button
+          data-test-selector="button-split-list-picker"
+          bsStyle="primary"
+          onClick={this.toggleSplitListPickerModal}
+        >
           Open Split ListPicker
         </Button>
 
@@ -398,7 +402,11 @@ class AppComponent extends React.Component {
 
         <h1>UserListPicker</h1>
 
-        <Button bsStyle="primary" onClick={this.toggleUserListPickerModal}>
+        <Button
+          data-test-selector="button-user-list-picker"
+          bsStyle="primary"
+          onClick={this.toggleUserListPickerModal}
+        >
           Open UserListPicker
         </Button>
 

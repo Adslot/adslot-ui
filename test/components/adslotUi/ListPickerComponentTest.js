@@ -1,9 +1,11 @@
 import Button from 'react-bootstrap/lib/Button';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
+import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 import Modal from 'react-bootstrap/lib/Modal';
 import React from 'react';
-import { Grid } from 'alexandria-adslot';
+import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
+import { Grid, GridCell, GridRow } from 'alexandria-adslot';
 import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('ListPickerComponent', () => {
@@ -16,80 +18,51 @@ describe('ListPickerComponent', () => {
     teamMember2,
   } = ListPickerMocks;
 
-  const indices = {
-    modal: {
-      header: 0,
-      body: 1,
-      footer: 2,
-    },
-    modalBody: {
-      description: 0,
-      container: 1,
-      footnote: 2,
-    },
-    modalFooter: {
-      linkButtons: 0,
-      cancelButton: 1,
-      applyButton: 2,
-    },
-  };
-
   const getListPickerPureElement = (rootComponent) => {
-    const modalBodyElement = rootComponent.props.children[indices.modal.body];
-    return modalBodyElement.props.children[indices.modalBody.container].props.children;
+    const modalBodyElement = rootComponent.find(Modal.Body);
+    return modalBodyElement.find(ListPickerPureComponent);
   };
 
   it('should render with defaults', () => {
-    const component = createAndMountComponent(ListPickerComponent);
-    expect(component.props.className).to.equal('listpicker-component');
-    expect(component.type).to.equal((<Modal />).type);
-    expect(component.props.show).to.equal(false);
-    expect(component.props.bsSize).to.equal('large');
-    expect(component.props.keyboard).to.equal(false);
+    const component = createAndMountComponent(<ListPickerComponent />);
+    expect(component.prop('className')).to.equal('listpicker-component');
+    expect(component.type()).to.equal(Modal);
+    expect(component.prop('show')).to.equal(false);
+    expect(component.prop('bsSize')).to.equal('large');
+    expect(component.prop('keyboard')).to.equal(false);
 
-    const modalHeaderElement = component.props.children[indices.modal.header];
-    expect(modalHeaderElement.type).to.equal((<Modal.Header />).type);
-    const modalTitleElement = modalHeaderElement.props.children;
-    expect(modalTitleElement.type).to.equal((<Modal.Title />).type);
-    const modalTitleText = modalTitleElement.props.children;
+    const modalHeaderElement = component.find(Modal.Header);
+    const modalTitleElement = modalHeaderElement.find(Modal.Title);
+    const modalTitleText = modalTitleElement.children().text();
     expect(modalTitleText).to.equal('Select Items');
 
-    const modalBodyElement = component.props.children[indices.modal.body];
-    expect(modalBodyElement.type).to.equal((<Modal.Body />).type);
-
     const listPickerPureElement = getListPickerPureElement(component);
-    expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
+    expect(listPickerPureElement.prop('deselectItem')).to.be.a('function');
+    expect(listPickerPureElement.prop('emptyIcon')).to.be.an('undefined');
+    expect(listPickerPureElement.prop('emptyMessage')).to.equal('No items to select.');
+    expect(listPickerPureElement.prop('emptySvgSymbol')).to.be.an('undefined');
+    expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
+    expect(listPickerPureElement.prop('itemHeaders')).to.be.an('undefined');
+    expect(listPickerPureElement.prop('items')).to.deep.equal([]);
+    expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([]);
 
-    expect(listPickerPureElement.props.deselectItem).to.be.a('function');
-    expect(listPickerPureElement.props.emptyIcon).to.be.an('undefined');
-    expect(listPickerPureElement.props.emptyMessage).to.equal('No items to select.');
-    expect(listPickerPureElement.props.emptySvgSymbol).to.be.an('undefined');
-    expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
-    expect(listPickerPureElement.props.itemHeaders).to.be.an('undefined');
-    expect(listPickerPureElement.props.items).to.deep.equal([]);
-    expect(listPickerPureElement.props.selectItem).to.be.a('function');
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([]);
+    const modalFooterElement = component.find(Modal.Footer);
+    const cancelButtonElement = modalFooterElement.find(Button).first();
+    expect(cancelButtonElement.prop('className')).to.equal('btn-inverse');
+    expect(cancelButtonElement.prop('onClick')).to.be.a('function');
+    expect(cancelButtonElement.children().text()).to.equal('Cancel');
 
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    expect(modalFooterElement.type).to.equal((<Modal.Footer />).type);
-
-    const cancelButtonElement = modalFooterElement.props.children[indices.modalFooter.cancelButton];
-    expect(cancelButtonElement.type).to.equal((<Button />).type);
-    expect(cancelButtonElement.props.className).to.equal('btn-inverse');
-    expect(cancelButtonElement.props.onClick).to.be.a('function');
-    expect(cancelButtonElement.props.children).to.equal('Cancel');
-
-    const applyButtonElement = modalFooterElement.props.children[indices.modalFooter.applyButton];
-    expect(applyButtonElement.type).to.equal((<Button />).type);
-    expect(applyButtonElement.props.bsStyle).to.equal('primary');
-    expect(applyButtonElement.props.onClick).to.be.a('function');
-    expect(applyButtonElement.props.children).to.equal('Apply');
-    expect(applyButtonElement.props.disabled).to.equal(false);
+    const applyButtonElement = modalFooterElement.find(Button).last();
+    expect(applyButtonElement.prop('bsStyle')).to.equal('primary');
+    expect(applyButtonElement.prop('onClick')).to.be.a('function');
+    expect(applyButtonElement.children().text()).to.equal('Apply');
+    expect(applyButtonElement.prop('disabled')).to.equal(false);
   });
 
   it('should render with props', () => {
     const initialSelection = getInitialSelection();
-    const component = createAndMountComponent(ListPickerComponent, {
+    const props = {
       emptyMessage: 'No users.',
       emptySvgSymbol: { href: '/some.svg#id' },
       initialSelection,
@@ -100,45 +73,41 @@ describe('ListPickerComponent', () => {
       modalDescription: 'Select users.',
       modalFootnote: 'You can select multiple users.',
       modalTitle: 'Select Users',
-    });
-    expect(component.props.className).to.equal('listpicker-component');
+    };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpicker-component');
 
-    const modalHeaderElement = component.props.children[indices.modal.header];
-    const modalTitleElement = modalHeaderElement.props.children;
-    const modalTitleText = modalTitleElement.props.children;
+    const modalHeaderElement = component.find(Modal.Header);
+    const modalTitleElement = modalHeaderElement.find(Modal.Title);
+    const modalTitleText = modalTitleElement.children().text();
     expect(modalTitleText).to.equal('Select Users');
 
-    const modalBodyElement = component.props.children[indices.modal.body];
-    const modalDescriptionElement = modalBodyElement.props.children[indices.modalBody.description];
-    const modalDescriptionText = modalDescriptionElement.props.children;
+    const modalBodyElement = component.find(Modal.Body);
+    const modalDescriptionElement = modalBodyElement.find('p');
+    const modalDescriptionText = modalDescriptionElement.text();
     expect(modalDescriptionText).to.equal('Select users.');
 
-    const modalFootnoteElement = modalBodyElement.props.children[indices.modalBody.footnote];
-    const modalFootnoteText = modalFootnoteElement.props.children;
+    const modalFootnoteElement = modalBodyElement.find('.listpicker-component-footnote');
+    const modalFootnoteText = modalFootnoteElement.text();
     expect(modalFootnoteText).to.equal('You can select multiple users.');
 
     const listPickerPureElement = getListPickerPureElement(component);
-    expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
-    expect(listPickerPureElement.props.selectedItems).to.not.equal(initialSelection);
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
+    expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal(initialSelection);
+    expect(listPickerPureElement.prop('deselectItem')).to.be.a('function');
+    expect(listPickerPureElement.prop('emptySvgSymbol')).to.deep.equal({ href: '/some.svg#id' });
+    expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
+    expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
+    expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
+    expect(listPickerPureElement.prop('items')).to.deep.equal(users);
+    expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember2]);
 
-    expect(listPickerPureElement.props.deselectItem).to.be.a('function');
-    expect(listPickerPureElement.props.emptyMessage).to.equal('No users.');
-    expect(listPickerPureElement.props.emptySvgSymbol).to.deep.equal({ href: '/some.svg#id' });
-    expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
-    expect(listPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);
-    expect(listPickerPureElement.props.items).to.deep.equal(users);
-    expect(listPickerPureElement.props.selectItem).to.be.a('function');
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
-
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    expect(modalFooterElement.type).to.equal((<Modal.Footer />).type);
-
-    const linkButtonElement = modalFooterElement.props.children[indices.modalFooter.linkButtons].props.children[0];
-    expect(linkButtonElement.type).to.equal((<Button />).type);
-    expect(linkButtonElement.props.className).to.equal('btn-inverse');
-    expect(linkButtonElement.props.href).to.equal('#');
-    expect(linkButtonElement.props.children).to.equal('Create User');
+    const modalFooterElement = component.find(Modal.Footer);
+    const linkButtonElement = modalFooterElement.find(Button).first();
+    expect(linkButtonElement.prop('className')).to.equal('btn-inverse');
+    expect(linkButtonElement.prop('href')).to.equal('#');
+    expect(linkButtonElement.prop('children')).to.equal('Create User');
   });
 
   it('should render with props for split pane', () => {
@@ -150,7 +119,7 @@ describe('ListPickerComponent', () => {
       ],
     };
     const initialSelection = getInitialSelection();
-    const component = createAndMountComponent(ListPickerComponent, {
+    const props = {
       emptyIcon: '/some.png',
       emptyMessage: 'No users.',
       initialSelection,
@@ -161,108 +130,94 @@ describe('ListPickerComponent', () => {
       modalDescription: 'Select users.',
       modalFootnote: 'You can select multiple users.',
       modalTitle: 'Select Users',
-    });
-    expect(component.props.className).to.equal('listpicker-component');
+    };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpicker-component');
 
-    const modalHeaderElement = component.props.children[indices.modal.header];
-    const modalTitleElement = modalHeaderElement.props.children;
-    const modalTitleText = modalTitleElement.props.children;
+    const modalHeaderElement = component.find(Modal.Header);
+    const modalTitleElement = modalHeaderElement.find(Modal.Title);
+    const modalTitleText = modalTitleElement.children().text();
     expect(modalTitleText).to.equal('Select Users');
 
-    const modalBodyElement = component.props.children[indices.modal.body];
-    const modalDescriptionElement = modalBodyElement.props.children[indices.modalBody.description];
-    const modalDescriptionText = modalDescriptionElement.props.children;
+    const modalBodyElement = component.find(Modal.Body);
+    const modalDescriptionElement = modalBodyElement.find('p');
+    const modalDescriptionText = modalDescriptionElement.text();
     expect(modalDescriptionText).to.equal('Select users.');
 
-    const modalFootnoteElement = modalBodyElement.props.children[indices.modalBody.footnote];
-    const modalFootnoteText = modalFootnoteElement.props.children;
+    const modalFootnoteElement = modalBodyElement.find('.listpicker-component-footnote');
+    const modalFootnoteText = modalFootnoteElement.text();
     expect(modalFootnoteText).to.equal('You can select multiple users.');
 
-    const splitPaneElements = modalBodyElement.props.children[indices.modalBody.container].props.children;
+    const splitPaneElements = modalBodyElement.find(SplitPaneComponent);
+    const itemInfoGridElement = splitPaneElements.first().find(Grid);
+    const itemInfoLabelElement = itemInfoGridElement.find(GridRow).first().find(GridCell);
+    expect(itemInfoLabelElement.children().text()).to.equal('User Details');
 
-    const itemInfoGridElement = splitPaneElements[0].props.children[0];
-    expect(itemInfoGridElement.type).to.equal((<Grid />).type);
+    const itemInfoPropertyElements = itemInfoGridElement.find(GridRow);
+    expect(itemInfoPropertyElements.at(1).find(GridCell).first().children().text()).to.equal('Name');
+    expect(itemInfoPropertyElements.at(1).find(GridCell).last().children().text()).to.equal('Jill Smith');
+    expect(itemInfoPropertyElements.at(2).find(GridCell).first().children().text()).to.equal('Age');
+    expect(itemInfoPropertyElements.at(2).find(GridCell).last().children().text()).to.equal('21');
 
-    const itemInfoLabelElement = itemInfoGridElement.props.children[0].props.children;
-    expect(itemInfoLabelElement.props.children).to.equal('User Details');
-
-    const itemInfoPropertyElements = itemInfoGridElement.props.children[1];
-    expect(itemInfoPropertyElements[0].props.children[0].props.children).to.equal('Name');
-    expect(itemInfoPropertyElements[0].props.children[1].props.children).to.equal('Jill Smith');
-    expect(itemInfoPropertyElements[1].props.children[0].props.children).to.equal('Age');
-    expect(itemInfoPropertyElements[1].props.children[1].props.children).to.equal('21');
-
-    const listPickerPureElement = splitPaneElements[1].props.children[0];
-    expect(listPickerPureElement.type.name).to.equal('ListPickerPureComponent');
-    expect(listPickerPureElement.props.selectedItems).to.not.equal(initialSelection);
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal(initialSelection);
-
-    expect(listPickerPureElement.props.deselectItem).to.be.a('function');
-    expect(listPickerPureElement.props.emptyIcon).to.equal('/some.png');
-    expect(listPickerPureElement.props.emptyMessage).to.equal('No users.');
-    expect(listPickerPureElement.props.labelFormatter).to.be.a('function');
-    expect(listPickerPureElement.props.itemHeaders).to.deep.equal(userHeaders);
-    expect(listPickerPureElement.props.items).to.deep.equal(users);
-    expect(listPickerPureElement.props.selectItem).to.be.a('function');
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
+    const listPickerPureElement = splitPaneElements.find(ListPickerPureComponent);
+    expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal(initialSelection);
+    expect(listPickerPureElement.prop('deselectItem')).to.be.a('function');
+    expect(listPickerPureElement.prop('emptyIcon')).to.equal('/some.png');
+    expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
+    expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
+    expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
+    expect(listPickerPureElement.prop('items')).to.deep.equal(users);
+    expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember2]);
   });
 
   it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
-    const component = createAndMountComponent(ListPickerComponent, {
-      allowEmptySelection: false,
-      items: users,
-    });
-
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    const applyButtonElement = modalFooterElement.props.children[indices.modalFooter.applyButton];
-
-    expect(applyButtonElement.props.disabled).to.equal(true);
+    const props = { allowEmptySelection: false, items: users };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
+    const modalFooterElement = component.find(Modal.Footer);
+    const applyButtonElement = modalFooterElement.find(Button).last();
+    expect(applyButtonElement.prop('disabled')).to.equal(true);
   });
 
   it('should change `selectedItems` state after a `selectItem` action', () => {
-    const component = createAndMountComponent(ListPickerComponent, {
-      initialSelection: getInitialSelection(),
-      items: users,
-    });
+    const props = { initialSelection: getInitialSelection(), items: users };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
     const listPickerPureElement = getListPickerPureElement(component);
-    listPickerPureElement.props.selectItem(teamMember1);
-
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2, teamMember1]);
+    listPickerPureElement.props().selectItem(teamMember1);
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember2, teamMember1]);
   });
 
   it('should only allow one selection if `allowMultiSelection` is false', () => {
-    const component = createAndMountComponent(ListPickerComponent, {
+    const props = {
       allowMultiSelection: false,
       initialSelection: getInitialSelection(),
       items: users,
-    });
+    };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
     const listPickerPureElement = getListPickerPureElement(component);
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember2]);
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember2]);
 
-    listPickerPureElement.props.selectItem(teamMember1);
-
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([teamMember1]);
+    listPickerPureElement.props().selectItem(teamMember1);
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember1]);
   });
 
   it('should change `selectedItems` state after a `deselectItem` action', () => {
-    const component = createAndMountComponent(ListPickerComponent, {
-      initialSelection: getInitialSelection(),
-      items: users,
-    });
+    const props = { initialSelection: getInitialSelection(), items: users };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
     const listPickerPureElement = getListPickerPureElement(component);
-    listPickerPureElement.props.deselectItem(teamMember2);
-
-    expect(listPickerPureElement.props.selectedItems).to.deep.equal([]);
+    listPickerPureElement.props().deselectItem(teamMember2);
+    expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([]);
   });
 
   it('should show modal when `show` is true', () => {
-    const component = createAndMountComponent(ListPickerComponent, { show: true });
-    expect(component.props.show).to.equal(true);
+    const component = createAndMountComponent(<ListPickerComponent show />);
+    expect(component.prop('show')).to.equal(true);
   });
 
   it('should hide modal when `show` is false', () => {
-    const component = createAndMountComponent(ListPickerComponent, { show: false });
-    expect(component.props.show).to.equal(false);
+    const component = createAndMountComponent(<ListPickerComponent show={false} />);
+    expect(component.prop('show')).to.equal(false);
   });
 
   it('should call `modalApply` and `modalClose` when we click Apply', () => {
@@ -272,49 +227,41 @@ describe('ListPickerComponent', () => {
 
     const closeMock = () => {closeCalls += 1;};
 
-    const component = createAndMountComponent(ListPickerComponent, {
+    const props = {
       initialSelection: getInitialSelection(),
       modalApply: applyMock,
       modalClose: closeMock,
-    });
-
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    const applyButtonElement = modalFooterElement.props.children[indices.modalFooter.applyButton];
-    applyButtonElement.props.onClick();
-
+    };
+    const component = createAndMountComponent(<ListPickerComponent {...props} />);
+    const modalFooterElement = component.find(Modal.Footer);
+    const applyButtonElement = modalFooterElement.find(Button).last();
+    applyButtonElement.simulate('click');
     expect(applyCalls).to.deep.equal([teamMember2]);
     expect(closeCalls).to.equal(1);
   });
 
   it('should throw when we click Apply without a handler', () => {
-    const component = createAndMountComponent(ListPickerComponent);
-
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    const applyButtonElement = modalFooterElement.props.children[indices.modalFooter.applyButton];
-    expect(applyButtonElement.props.onClick).to.throw('AdslotUi ListPicker needs a modalApply handler');
+    const component = createAndMountComponent(<ListPickerComponent />);
+    const modalFooterElement = component.find(Modal.Footer);
+    const applyButtonElement = modalFooterElement.find(Button).last();
+    expect(applyButtonElement.prop('onClick')).to.throw('AdslotUi ListPicker needs a modalApply handler');
   });
 
   it('should call `modalClose` when we click Cancel', () => {
     let closeCalls = 0;
     const closeMock = () => {closeCalls += 1;};
 
-    const component = createAndMountComponent(ListPickerComponent, {
-      modalClose: closeMock,
-    });
-
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    const cancelButtonElement = modalFooterElement.props.children[indices.modalFooter.cancelButton];
-
-    cancelButtonElement.props.onClick();
-
+    const component = createAndMountComponent(<ListPickerComponent modalClose={closeMock} />);
+    const modalFooterElement = component.find(Modal.Footer);
+    const cancelButtonElement = modalFooterElement.find(Button).first();
+    cancelButtonElement.simulate('click');
     expect(closeCalls).to.equal(1);
   });
 
   it('should throw when we click Close without a handler', () => {
-    const component = createAndMountComponent(ListPickerComponent);
-
-    const modalFooterElement = component.props.children[indices.modal.footer];
-    const cancelButtonElement = modalFooterElement.props.children[indices.modalFooter.cancelButton];
-    expect(cancelButtonElement.props.onClick).to.throw('AdslotUi ListPicker needs a modalClose handler');
+    const component = createAndMountComponent(<ListPickerComponent />);
+    const modalFooterElement = component.find(Modal.Footer);
+    const cancelButtonElement = modalFooterElement.find(Button).first();
+    expect(cancelButtonElement.prop('onClick')).to.throw('AdslotUi ListPicker needs a modalClose handler');
   });
 });

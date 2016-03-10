@@ -3,6 +3,11 @@ const srcPath = path.join(__dirname, '/../src/');
 
 module.exports = {
   devtool: 'eval',
+  externals: {
+    cheerio: 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
   module: {
     loaders: [
       {

@@ -5,7 +5,7 @@ import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent
 import Radio from 'react-icheck/lib/Radio';
 import React from 'react';
 import { Empty, Grid, GridCell, GridRow } from 'alexandria-adslot';
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
+import { shallow } from 'enzyme';
 
 describe('ListPickerPureComponent', () => {
   const {
@@ -20,155 +20,122 @@ describe('ListPickerPureComponent', () => {
   Object.freeze(selectedItems);
 
   it('should render with defaults', () => {
-    const component = createComponent(ListPickerPureComponent);
-    expect(component.props.className).to.equal('listpickerpure-component');
+    const component = shallow(<ListPickerPureComponent />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children[1].props.children;
-    expect(gridElement.type).to.equal((<Grid />).type);
+    const gridElements = component.find(Grid);
+    expect(gridElements).to.have.length(1);
 
-    const emptyElement = gridElement.props.children[1];
-    expect(emptyElement.type).to.equal((<Empty />).type);
-    expect(emptyElement.props.collection).to.have.length(0);
-    expect(emptyElement.props.text).to.equal('No items to select.');
+    const emptyElement = gridElements.find(Empty);
+    expect(emptyElement.prop('collection')).to.have.length(0);
+    expect(emptyElement.prop('text')).to.equal('No items to select.');
   });
 
   it('should render with props', () => {
-    const component = createComponent(ListPickerPureComponent, {
-      itemHeaders: userHeaders,
-      items: users,
-      labelFormatter,
-      selectedItems,
+    const props = { itemHeaders: userHeaders, items: users, labelFormatter, selectedItems };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
+
+    const headerGridElement = component.find(Grid).first();
+    const gridHeaderElement = headerGridElement.find(GridRow);
+    expect(gridHeaderElement.prop('type')).to.equal('header');
+
+    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
+    expect(gridHeaderCellElements.first().children().text()).to.equal('Team');
+    expect(gridHeaderCellElements.last().children().text()).to.equal('Member');
+
+    const gridElement = component.find(Grid).last();
+    const gridRowElements = gridElement.find(GridRow);
+    gridRowElements.forEach((gridRowElement, index) => {
+      const gridRowCellElements = gridRowElement.find(GridCell);
+      const gridRowCellLeftText = gridRowCellElements.first().children().text();
+      expect(gridRowCellLeftText).to.equal(labelFormatter(users[index]));
+
+      const gridRowCellToggleElement = gridRowCellElements.last().find(Checkbox);
+      expect(gridRowCellToggleElement.prop('checked')).to.equal(_.some(selectedItems, { id: users[index].id }));
     });
-    expect(component.props.className).to.equal('listpickerpure-component');
-
-    const headerGridElement = component.props.children[0];
-    expect(headerGridElement.type).to.equal((<Grid />).type);
-
-    const gridHeaderElement = headerGridElement.props.children;
-    expect(gridHeaderElement.type).to.equal((<GridRow />).type);
-    expect(gridHeaderElement.props.type).to.equal('header');
-
-    const gridHeaderCellElements = gridHeaderElement.props.children;
-    expect(gridHeaderCellElements[0].type).to.equal((<GridCell />).type);
-    expect(gridHeaderCellElements[0].props.children).to.equal('Team');
-    expect(gridHeaderCellElements[1].type).to.equal((<GridCell />).type);
-    expect(gridHeaderCellElements[1].props.children).to.equal('Member');
-
-    const gridElement = component.props.children[1].props.children;
-    expect(gridElement.type).to.equal((<Grid />).type);
-
-    const gridRowElements = gridElement.props.children[0];
-    for (const index in gridRowElements) {
-      if (gridRowElements[index]) {
-        const gridRowElement = gridRowElements[index];
-        const gridRowCellElements = gridRowElement.props.children;
-        expect(gridRowCellElements[0].type).to.equal((<GridCell />).type);
-
-        const gridRowCellLeftText = gridRowCellElements[0].props.children;
-        expect(gridRowCellLeftText).to.equal(labelFormatter(users[index]));
-
-        const gridRowCellToggleElement = gridRowCellElements[1].props.children;
-        expect(gridRowCellToggleElement.type).to.equal((<Checkbox />).type);
-
-        expect(gridRowCellToggleElement.props.checked).to.equal(_.some(selectedItems, { id: users[index].id }));
-      }
-    }
   });
 
   it('should render radio buttons with `allowMultiSelection` as false', () => {
-    const component = createComponent(ListPickerPureComponent, {
-      allowMultiSelection: false,
-      items: users,
-      selectedItems,
+    const props = { allowMultiSelection: false, items: users, selectedItems };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
+
+    const gridElement = component.find(Grid);
+    const gridRowElements = gridElement.find(GridRow);
+    gridRowElements.forEach((gridRowElement, index) => {
+      const gridRowCellElements = gridRowElement.find(GridCell);
+      const gridRowCellToggleElement = gridRowCellElements.last().find(Radio);
+      expect(gridRowCellToggleElement).to.have.length(1);
+      expect(gridRowCellToggleElement.prop('checked')).to.equal(_.some(selectedItems, { id: users[index].id }));
     });
-    expect(component.props.className).to.equal('listpickerpure-component');
-
-    const gridElement = component.props.children[1].props.children;
-    expect(gridElement.type).to.equal((<Grid />).type);
-
-    const gridRowElements = gridElement.props.children[0];
-
-    for (const index in gridRowElements) {
-      if (gridRowElements[index]) {
-        const gridRowElement = gridRowElements[index];
-        const gridRowCellElements = gridRowElement.props.children;
-        expect(gridRowCellElements[0].type).to.equal((<GridCell />).type);
-
-        const gridRowCellToggleElement = gridRowCellElements[1].props.children;
-        expect(gridRowCellToggleElement.type).to.equal((<Radio />).type);
-
-        expect(gridRowCellToggleElement.props.checked).to.equal(_.some(selectedItems, { id: users[index].id }));
-      }
-    }
   });
 
   it('should throw when we select without a `selectItem` handler', () => {
-    const component = createComponent(ListPickerPureComponent, {
-      items: users,
-      selectedItems,
-    });
-    expect(component.props.className).to.equal('listpickerpure-component');
+    const props = { items: users, selectedItems };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children[1].props.children;
-    const gridRowElements = gridElement.props.children[0];
-    const unselectedCheckboxElement = gridRowElements[0].props.children[1].props.children;
-    expect(unselectedCheckboxElement.props.checked).to.equal(false);
+    const gridElement = component.find(Grid);
+    const gridRowElements = gridElement.find(GridRow);
+    const unselectedCheckboxElement = gridRowElements.at(0).find(Checkbox);
+    expect(unselectedCheckboxElement.prop('checked')).to.equal(false);
 
-    expect(() => unselectedCheckboxElement.props.onChange(null, true)).to.throw(
+    expect(() => unselectedCheckboxElement.simulate('change', null, true)).to.throw(
       'AdslotUi ListPickerPure needs a selectItem handler'
     );
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
-    const component = createComponent(ListPickerPureComponent, {
-      items: users,
-      selectedItems,
-    });
-    expect(component.props.className).to.equal('listpickerpure-component');
+    const props = { items: users, selectedItems };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children[1].props.children;
-    const gridRowElements = gridElement.props.children[0];
-    const selectedCheckboxElement = gridRowElements[1].props.children[1].props.children;
-    expect(selectedCheckboxElement.props.checked).to.equal(true);
+    const gridElement = component.find(Grid);
+    const gridRowElements = gridElement.find(GridRow);
+    const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
+    expect(selectedCheckboxElement.prop('checked')).to.equal(true);
 
-    expect(() => selectedCheckboxElement.props.onChange(null, false)).to.throw(
+    expect(() => selectedCheckboxElement.simulate('change', null, false)).to.throw(
       'AdslotUi ListPickerPure needs a deselectItem handler'
     );
   });
 
   it('should call `selectItem` handler when we select', () => {
     let handlerCalled = 0;
-    const component = createComponent(ListPickerPureComponent, {
+    const props = {
       items: users,
       selectedItems,
       selectItem: () => handlerCalled++,
-    });
-    expect(component.props.className).to.equal('listpickerpure-component');
+    };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children[1].props.children;
-    const gridRowElements = gridElement.props.children[0];
-    const unselectedCheckboxElement = gridRowElements[0].props.children[1].props.children;
-    expect(unselectedCheckboxElement.props.checked).to.equal(false);
+    const gridElement = component.find(Grid);
+    const gridRowElements = gridElement.find(GridRow);
+    const unselectedCheckboxElement = gridRowElements.at(0).find(Checkbox);
+    expect(unselectedCheckboxElement.prop('checked')).to.equal(false);
 
-    unselectedCheckboxElement.props.onChange(null, true);
+    unselectedCheckboxElement.simulate('change', null, true);
     expect(handlerCalled).to.equal(1);
   });
 
   it('should call `deselectItem` handler when we deselect', () => {
     let handlerCalled = 0;
-    const component = createComponent(ListPickerPureComponent, {
+    const props = {
       deselectItem: () => handlerCalled++,
       items: users,
       selectedItems,
-    });
-    expect(component.props.className).to.equal('listpickerpure-component');
+    };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
 
-    const gridElement = component.props.children[1].props.children;
-    const gridRowElements = gridElement.props.children[0];
-    const selectedCheckboxElement = gridRowElements[1].props.children[1].props.children;
-    expect(selectedCheckboxElement.props.checked).to.equal(true);
+    const gridElement = component.find(Grid);
+    const gridRowElements = gridElement.find(GridRow);
+    const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
+    expect(selectedCheckboxElement.prop('checked')).to.equal(true);
 
-    selectedCheckboxElement.props.onChange(null, false);
+    selectedCheckboxElement.simulate('change', null, false);
     expect(handlerCalled).to.equal(1);
   });
 });
