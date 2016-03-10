@@ -1,9 +1,6 @@
-/* eslint-env node, mocha */
-/* global expect */
-
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
 import React from 'react';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
+import { createComponent } from 'testHelpers/shallowRenderHelpers';
 
 describe('SplitPaneComponent', () => {
   it('should have its component name as default className', () => {

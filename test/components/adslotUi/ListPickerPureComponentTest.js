@@ -1,6 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
-
 import _ from 'lodash';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ListPickerMocks from 'mocks/ListPickerMocks';

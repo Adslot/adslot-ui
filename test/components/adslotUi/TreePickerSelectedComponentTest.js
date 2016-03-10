@@ -1,6 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
-
 import _ from 'lodash';
 import immutable from 'seamless-immutable';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';

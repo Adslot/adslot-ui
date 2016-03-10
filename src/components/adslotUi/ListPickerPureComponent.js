@@ -6,6 +6,8 @@ import { Empty, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
 
 require('styles/adslotUi/ListPickerPure.scss');
 
+const isItemSelected = ({ item, selectedItems }) => _.some(selectedItems, { id: item.id });
+
 const ListPickerPureComponent = ({
   allowMultiSelection,
   deselectItem,
@@ -18,24 +20,6 @@ const ListPickerPureComponent = ({
   selectItem,
   selectedItems,
 }) => {
-  let headerEl;
-  if (itemHeaders !== undefined) {
-    headerEl = (
-      <Grid>
-        <GridRow type="header">
-          <GridCell classSuffixes={['header-left']}>
-            {itemHeaders.left}
-          </GridCell>
-          <GridCell classSuffixes={['header-right']}>
-            {itemHeaders.right}
-          </GridCell>
-        </GridRow>
-      </Grid>
-    );
-  }
-
-  const isItemSelected = (item) => _.some(selectedItems, { id: item.id });
-
   const handleChange = (item) => (event, checked) => {
     if (checked) {
       selectItem(item);
@@ -48,7 +32,19 @@ const ListPickerPureComponent = ({
 
   return (
     <div className="listpickerpure-component">
-      {headerEl}
+      {itemHeaders ?
+        <Grid>
+          <GridRow type="header">
+            <GridCell classSuffixes={['header-left']}>
+              {itemHeaders.left}
+            </GridCell>
+            <GridCell classSuffixes={['header-right']}>
+              {itemHeaders.right}
+            </GridCell>
+          </GridRow>
+        </Grid> :
+        null
+      }
       <div className="listpickerpure-component-items">
         <Grid>
           {_.map(items, (item) =>
@@ -58,7 +54,7 @@ const ListPickerPureComponent = ({
               </GridCell>
               <GridCell classSuffixes={['toggle']}>
                 <ToggleComponent
-                  checked={isItemSelected(item)}
+                  checked={isItemSelected({ item, selectedItems })}
                   onChange={handleChange(item)}
                 />
               </GridCell>

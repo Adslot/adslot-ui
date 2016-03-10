@@ -9,6 +9,7 @@ import React, { PropTypes } from 'react';
 import { SvgSymbol } from 'alexandria-adslot';
 
 const pathIncludesId = ({ id, path }) => _(path).map('id').includes(id);
+
 const getIds = (nodes) => _.map(nodes, 'id');
 
 class TreePickerComponent extends React.Component {
@@ -28,9 +29,11 @@ class TreePickerComponent extends React.Component {
       'searchOnQuery',
     ]) {this[methodName] = this[methodName].bind(this);}
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {};
-    this.throttledSearchOnQuery = _.throttle(() => this.searchOnQuery(this.state.searchValue), props.throttleTime);
+    _.assign(this, {
+      shouldComponentUpdate: PureRenderMixin.shouldComponentUpdate.bind(this),
+      state: {},
+      throttledSearchOnQuery: _.throttle(() => this.searchOnQuery(this.state.searchValue), props.throttleTime),
+    });
   }
 
   componentDidMount() {
@@ -162,37 +165,51 @@ class TreePickerComponent extends React.Component {
 
   render() {
     const { state, props } = this;
+    const treePickerPureProps = _.assign(
+
+      {
+        activeRootTypeId: _.get(state, 'rootType.id'),
+        emptySvgSymbol: _.get(state, 'rootType.emptySvgSymbol'),
+      },
+
+      _.pick(props, [
+        'averageWithinRootType',
+        'baseItem',
+        'helpText',
+        'rootTypes',
+        'selectedLabel',
+        'svgSymbolCancel',
+        'svgSymbolSearch',
+        'totalsSuffix',
+        'valueFormatter',
+        'warnOnRequired',
+      ]),
+
+      _.pick(this, [
+        'breadcrumbOnClick',
+        'changeRootType',
+        'expandNode',
+        'includeNode',
+        'removeNode',
+        'searchOnChange',
+        'searchOnClear',
+      ]),
+
+      _.pick(state, [
+        'breadcrumbNodes',
+        'searchValue',
+        'selectedNodesByRootType',
+        'subtree',
+      ])
+    );
+
     return (
       <Modal className="treepicker-component" show={props.show} bsSize="large" keyboard={false}>
         <Modal.Header>
           <Modal.Title>{props.modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TreePickerPure
-            activeRootTypeId={_.get(state, 'rootType.id')}
-            averageWithinRootType={props.averageWithinRootType}
-            baseItem={props.baseItem}
-            breadcrumbNodes={state.breadcrumbNodes}
-            breadcrumbOnClick={this.breadcrumbOnClick}
-            changeRootType={this.changeRootType}
-            emptySvgSymbol={_.get(state, 'rootType.emptySvgSymbol')}
-            expandNode={this.expandNode}
-            helpText={props.helpText}
-            includeNode={this.includeNode}
-            removeNode={this.removeNode}
-            rootTypes={props.rootTypes}
-            searchOnChange={this.searchOnChange}
-            searchOnClear={this.searchOnClear}
-            searchValue={state.searchValue}
-            selectedLabel={props.selectedLabel}
-            selectedNodesByRootType={state.selectedNodesByRootType}
-            subtree={state.subtree}
-            svgSymbolCancel={props.svgSymbolCancel}
-            svgSymbolSearch={props.svgSymbolSearch}
-            totalsSuffix={props.totalsSuffix}
-            valueFormatter={props.valueFormatter}
-            warnOnRequired={props.warnOnRequired}
-          />
+          <TreePickerPure {...treePickerPureProps} />
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-inverse" onClick={this.cancelAction}>

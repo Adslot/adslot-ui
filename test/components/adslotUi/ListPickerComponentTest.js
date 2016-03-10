@@ -1,6 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
-
 import Button from 'react-bootstrap/lib/Button';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerMocks from 'mocks/ListPickerMocks';
