@@ -1,19 +1,19 @@
 import React from 'react';
 import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import { Breadcrumb, Search } from 'alexandria-adslot';
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
+import { shallow } from 'enzyme';
 
 describe('TreePickerNavComponent', () => {
   it('should render with defaults', () => {
-    const component = createComponent(TreePickerNavComponent);
-    expect(component.props.className).to.equal('treepickernav-component');
-    expect(component.props.children).to.have.length(2);
+    const component = shallow(<TreePickerNavComponent />);
+    expect(component.prop('className')).to.equal('treepickernav-component');
+    expect(component.children()).to.have.length(2);
 
-    const searchElement = component.props.children[0];
-    expect(searchElement.type).to.equal((<Search />).type);
+    const searchElement = component.find(Search);
+    expect(searchElement).to.have.length(1);
 
-    const breadcrumbElement = component.props.children[1];
-    expect(breadcrumbElement.type).to.equal((<Breadcrumb />).type);
+    const breadcrumbElement = component.find(Breadcrumb);
+    expect(breadcrumbElement).to.have.length(1);
   });
 
   it('should render with props', () => {
@@ -22,25 +22,24 @@ describe('TreePickerNavComponent', () => {
       { id: 'a', label: 'UK' },
       { id: 'b', label: 'London' },
     ];
-    const component = createComponent(TreePickerNavComponent, {
+    const props = {
       breadcrumbNodes,
       breadcrumbOnClick: testFunction,
       searchOnChange: testFunction,
       searchOnClear: testFunction,
       searchValue: 'needle',
-    });
-    expect(component.props.className).to.equal('treepickernav-component');
-    expect(component.props.children).to.have.length(2);
+    };
+    const component = shallow(<TreePickerNavComponent {...props} />);
+    expect(component.prop('className')).to.equal('treepickernav-component');
+    expect(component.children()).to.have.length(2);
 
-    const searchElement = component.props.children[0];
-    expect(searchElement.type).to.equal((<Search />).type);
-    expect(searchElement.props.onChange).to.equal(testFunction);
-    expect(searchElement.props.onClear).to.equal(testFunction);
-    expect(searchElement.props.value).to.equal('needle');
+    const searchElement = component.find(Search);
+    expect(searchElement.prop('onChange')).to.equal(testFunction);
+    expect(searchElement.prop('onClear')).to.equal(testFunction);
+    expect(searchElement.prop('value')).to.equal('needle');
 
-    const breadcrumbElement = component.props.children[1];
-    expect(breadcrumbElement.type).to.equal((<Breadcrumb />).type);
-    expect(breadcrumbElement.props.nodes).to.equal(breadcrumbNodes);
-    expect(breadcrumbElement.props.onClick).to.equal(testFunction);
+    const breadcrumbElement = component.find(Breadcrumb);
+    expect(breadcrumbElement.prop('nodes')).to.equal(breadcrumbNodes);
+    expect(breadcrumbElement.prop('onClick')).to.equal(testFunction);
   });
 });

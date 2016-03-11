@@ -5,5 +5,8 @@
   },
   "globals": {
     "expect": false
+  },
+  "rules": {
+    "lodash/prefer-lodash-method": 0
   }
 }

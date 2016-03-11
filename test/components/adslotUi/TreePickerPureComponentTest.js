@@ -1,9 +1,12 @@
-import immutable from 'seamless-immutable';
+import _ from 'lodash';
 import React from 'react';
+import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
+import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
+import TreePickerSelectedComponent from 'components/adslotUi/TreePickerSelectedComponent';
 import { Empty, FlexSpacer, Grid, SvgSymbol } from 'alexandria-adslot';
-import { createComponent } from 'testHelpers/shallowRenderHelpers';
+import { shallow } from 'enzyme';
 
 describe('TreePickerPureComponent', () => {
   const {
@@ -12,65 +15,39 @@ describe('TreePickerPureComponent', () => {
     rootTypes,
   } = TreePickerMocks;
 
-  const indices = immutable({
-    leftPane: 0,
-    rightPane: 1,
-  });
-
-  const leftPaneIndices = immutable({
-    tabs: 0,
-    nav: 1,
-    nodesGrid: 2,
-    flexSpacer: 3,
-  });
-
-  const nodesGridIndices = immutable({
-    nodes: 0,
-    empty: 1,
-  });
-
   it('should render with defaults', () => {
-    const component = createComponent(TreePickerPureComponent, { changeRootType: () => null });
-    expect(component.props.className).to.equal('treepickerpure-component');
+    const component = shallow(<TreePickerPureComponent changeRootType={_.noop} />);
+    expect(component.prop('className')).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.props.children[indices.leftPane];
-    expect(leftPaneElement.type.name).to.equal('SplitPaneComponent');
+    const leftPaneElement = component.find(SplitPaneComponent).first();
+    const tabsElement = leftPaneElement.find('ul');
+    expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
 
-    const tabsElement = leftPaneElement.props.children[leftPaneIndices.tabs];
-    expect(tabsElement.type).to.equal('ul');
-    expect(tabsElement.props.className).to.equal('nav nav-tabs');
-    const tabElement = tabsElement.props.children;
-    expect(tabElement.type).to.equal('li');
-    expect(tabElement.props.className).to.be.an('undefined');
-    expect(tabElement.props.children.type).to.equal('a');
-    expect(tabElement.props.children.props.children).to.equal('Loading');
+    const tabElement = tabsElement.find('li');
+    expect(tabElement.prop('className')).to.be.an('undefined');
+    expect(tabElement.children().type()).to.equal('a');
+    expect(tabElement.children().text()).to.equal('Loading');
 
-    const navElement = leftPaneElement.props.children[leftPaneIndices.nav];
-    expect(navElement.type.name).to.equal('TreePickerNavComponent');
+    const navElement = leftPaneElement.find(TreePickerNavComponent);
+    expect(navElement).to.have.length(1);
 
-    const nodesGridElement = leftPaneElement.props.children[leftPaneIndices.nodesGrid];
-    expect(nodesGridElement.type).to.equal((<Grid />).type);
+    const nodesGridElement = leftPaneElement.find(Grid);
 
-    expect(nodesGridElement.props.children).to.have.length(2);
-    const nodesElements = nodesGridElement.props.children[nodesGridIndices.nodes];
-    expect(nodesElements).to.have.length(0);
+    // No treepicker nodes and one empty component
+    expect(nodesGridElement.children()).to.have.length(1);
 
-    const emptyElement = nodesGridElement.props.children[nodesGridIndices.empty];
-    expect(emptyElement.type).to.equal((<Empty />).type);
-    expect(emptyElement.props.collection).to.deep.equal([]);
-    expect(emptyElement.props.svgSymbol.href).to.equal('/assets/svg-symbols.svg#checklist-incomplete');
-    expect(emptyElement.props.svgSymbol.classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
-    expect(emptyElement.props.text).to.equal('No items to select.');
+    const emptyElement = nodesGridElement.find(Empty);
+    expect(emptyElement.prop('collection')).to.deep.equal([]);
+    expect(emptyElement.prop('svgSymbol').href).to.equal('/assets/svg-symbols.svg#checklist-incomplete');
+    expect(emptyElement.prop('svgSymbol').classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
+    expect(emptyElement.prop('text')).to.equal('No items to select.');
 
-    const flexSpacerElement = leftPaneElement.props.children[leftPaneIndices.flexSpacer];
-    expect(flexSpacerElement.type).to.equal((<FlexSpacer />).type);
+    const flexSpacerElement = leftPaneElement.find(FlexSpacer);
+    expect(flexSpacerElement).to.have.length(1);
 
-    const rightPaneElement = component.props.children[indices.rightPane];
-    expect(rightPaneElement.type.name).to.equal('SplitPaneComponent');
-
-    const treePickerSelectedElement = rightPaneElement.props.children;
-    expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
-    expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(false);
+    const rightPaneElement = component.find(SplitPaneComponent).last();
+    const treePickerSelectedElement = rightPaneElement.find(TreePickerSelectedComponent);
+    expect(treePickerSelectedElement.prop('averageWithinRootType')).to.equal(false);
   });
 
   it('should render with props', () => {
@@ -78,7 +55,7 @@ describe('TreePickerPureComponent', () => {
 
     const rootTypeChanges = [];
 
-    const component = createComponent(TreePickerPureComponent, {
+    const props = {
       activeRootTypeId: 'a',
       averageWithinRootType: true,
       baseItem,
@@ -100,68 +77,59 @@ describe('TreePickerPureComponent', () => {
       totalsSuffix: 'CPD',
       valueFormatter: testFunction,
       warnOnRequired: true,
-    });
-    expect(component.props.className).to.equal('treepickerpure-component');
+    };
+    const component = shallow(<TreePickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.props.children[indices.leftPane];
-    expect(leftPaneElement.type.name).to.equal('SplitPaneComponent');
+    const leftPaneElement = component.find(SplitPaneComponent).first();
+    const tabsElement = leftPaneElement.find('ul');
+    expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
 
-    const tabsElement = leftPaneElement.props.children[leftPaneIndices.tabs];
-    expect(tabsElement.type).to.equal('ul');
-    expect(tabsElement.props.className).to.equal('nav nav-tabs');
-    const tabElements = tabsElement.props.children;
-    expect(tabElements[0].type).to.equal('li');
-    expect(tabElements[0].props.className).to.equal('active');
-    const firstTabAnchor = tabElements[0].props.children;
-    expect(firstTabAnchor.type).to.equal('a');
+    const firstTabElement = tabsElement.find('li').first();
+    expect(firstTabElement.prop('className')).to.equal('active');
+
+    const firstTabAnchor = firstTabElement.find('a');
+    expect(firstTabAnchor.children().last().text()).to.equal(rootTypes[0].label);
 
     expect(rootTypeChanges).to.deep.equal([]);
-    firstTabAnchor.props.onClick();
+    firstTabAnchor.simulate('click');
     expect(rootTypeChanges).to.deep.equal([]); // Shouldn't add since its already active.
 
-    const firstTabIcon = firstTabAnchor.props.children[0];
-    expect(firstTabIcon.type).to.equal((<SvgSymbol />).type);
-    expect(firstTabIcon.props.href).to.equal(rootTypes[0].svgSymbol.href);
-    expect(firstTabIcon.props.classSuffixes).to.deep.equal(['gray-darker']);
-    expect(firstTabAnchor.props.children[1]).to.equal(rootTypes[0].label);
+    const firstTabIcon = firstTabAnchor.find(SvgSymbol);
+    expect(firstTabIcon.prop('href')).to.equal(rootTypes[0].svgSymbol.href);
+    expect(firstTabIcon.prop('classSuffixes')).to.deep.equal(['gray-darker']);
 
-    expect(tabElements[1].type).to.equal('li');
-    expect(tabElements[1].props.className).to.equal('');
-    const secondTabAnchor = tabElements[1].props.children;
-    expect(secondTabAnchor.type).to.equal('a');
+    const secondTabElement = tabsElement.find('li').at(1);
+    expect(secondTabElement.prop('className')).to.equal('');
 
+    const secondTabAnchor = secondTabElement.find('a');
     expect(rootTypeChanges).to.deep.equal([]);
-    secondTabAnchor.props.onClick();
+    secondTabAnchor.simulate('click');
     expect(rootTypeChanges).to.deep.equal(['b']);
 
-    const navElement = leftPaneElement.props.children[leftPaneIndices.nav];
-    expect(navElement.type.name).to.equal('TreePickerNavComponent');
+    const navElement = leftPaneElement.find(TreePickerNavComponent);
+    expect(navElement).to.have.length(1);
 
-    const nodesGridElement = leftPaneElement.props.children[leftPaneIndices.nodesGrid];
-    expect(nodesGridElement.type).to.equal((<Grid />).type);
+    const nodesGridElement = leftPaneElement.find(Grid);
 
-    expect(nodesGridElement.props.children).to.have.length(2);
-    const nodesElements = nodesGridElement.props.children[nodesGridIndices.nodes];
-    expect(nodesElements).to.have.length(1);
-    expect(nodesElements[0].props.node.label).to.equal('Australian Capital Territory');
+    // One treepicker node and one empty component
+    expect(nodesGridElement.children()).to.have.length(2);
 
-    const emptyElement = nodesGridElement.props.children[nodesGridIndices.empty];
-    expect(emptyElement.type).to.equal((<Empty />).type);
+    const nodeElement = nodesGridElement.children().first();
+    expect(nodeElement.prop('node').label).to.equal('Australian Capital Territory');
 
-    expect(emptyElement.props.collection).to.have.length(1);
-    expect(emptyElement.props.svgSymbol.href).to.equal('/some.svg#id');
-    expect(emptyElement.props.svgSymbol.classSuffixes).to.deep.equal(['gray-light']);
-    expect(emptyElement.props.text).to.equal('No items to select.');
+    const emptyElement = nodesGridElement.find(Empty);
+    expect(emptyElement.prop('collection')).to.have.length(1);
+    expect(emptyElement.prop('svgSymbol').href).to.equal('/some.svg#id');
+    expect(emptyElement.prop('svgSymbol').classSuffixes).to.deep.equal(['gray-light']);
+    expect(emptyElement.prop('text')).to.equal('No items to select.');
 
-    const rightPaneElement = component.props.children[indices.rightPane];
-    expect(rightPaneElement.type.name).to.equal('SplitPaneComponent');
-
-    const treePickerSelectedElement = rightPaneElement.props.children;
-    expect(treePickerSelectedElement.type.name).to.equal('TreePickerSelectedComponent');
-    expect(treePickerSelectedElement.props.averageWithinRootType).to.equal(true);
-    expect(treePickerSelectedElement.props.selectedLabel).to.equal('Selected Targeting');
-    expect(treePickerSelectedElement.props.totalsSuffix).to.equal('CPD');
-    expect(treePickerSelectedElement.props.helpText).to.deep.equal({
+    const rightPaneElement = component.find(SplitPaneComponent).last();
+    const treePickerSelectedElement = rightPaneElement.find(TreePickerSelectedComponent);
+    expect(treePickerSelectedElement.prop('averageWithinRootType')).to.equal(true);
+    expect(treePickerSelectedElement.prop('selectedLabel')).to.equal('Selected Targeting');
+    expect(treePickerSelectedElement.prop('totalsSuffix')).to.equal('CPD');
+    expect(treePickerSelectedElement.prop('helpText')).to.deep.equal({
       average: 'An average explanation.',
       sum: 'The sum of all fears.',
     });
