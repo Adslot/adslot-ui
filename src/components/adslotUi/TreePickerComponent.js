@@ -212,10 +212,10 @@ class TreePickerComponent extends React.Component {
           <TreePickerPure {...treePickerPureProps} />
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn-inverse" onClick={this.cancelAction}>
+          <Button className="btn-inverse" onClick={this.cancelAction} data-test-selector="treepicker-cancel-button">
             Cancel
           </Button>
-          <Button bsStyle="primary" onClick={this.applyAction}>
+          <Button bsStyle="primary" onClick={this.applyAction} data-test-selector="treepicker-apply-button">
             Apply
           </Button>
         </Modal.Footer>
