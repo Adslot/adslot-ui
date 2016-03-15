@@ -103,7 +103,7 @@ const TreePickerSelectedComponent = ({
         <Empty
           collection={_.values(selectedNodesByRootType)}
           svgSymbol={emptySvgSymbol}
-          text="Nothing Selected"
+          text="Nothing selected."
         />
         <FlexSpacer />
       </div>

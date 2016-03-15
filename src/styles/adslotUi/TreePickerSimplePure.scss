@@ -1,0 +1,16 @@
+@import '../variable';
+@import '../border';
+
+.treepickersimplepure-component {
+  display: flex;
+  height: $treepicker-height;
+
+  .flexspacer-component {
+    border-top: 0;
+  }
+
+  .treepickernav-component {
+    border-top: $border-lighter;
+    min-height: 71px; // Align the rows after this item with the other pane's rows.
+  }
+}

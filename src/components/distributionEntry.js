@@ -1,4 +1,4 @@
-// Export all the components that are consumable.
+// Export the consumable components.
 
 require('styles/_bootstrap-custom.scss');
 require('styles/_icheck-custom.scss');
@@ -19,16 +19,19 @@ import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
 import TreePicker from 'components/adslotUi/TreePickerComponent';
+import TreePickerSimplePure from 'components/adslotUi/TreePickerSimplePureComponent';
 import UserListPicker from 'components/adslotUi/UserListPickerComponent';
 import {
   Alert,
   Avatar,
+  BorderedWell,
   Breadcrumb,
   Empty,
   FlexSpacer,
   Grid,
   GridCell,
   GridRow,
+  PageTitle,
   Search,
   Slicey,
   SvgSymbol,
@@ -39,6 +42,7 @@ import {
 module.exports = {
   Alert,
   Avatar,
+  BorderedWell,
   Breadcrumb,
   Button,
   Checkbox,
@@ -51,6 +55,7 @@ module.exports = {
   ListPicker,
   Modal,
   OverlayTrigger,
+  PageTitle,
   Popover,
   Radio,
   RadioGroup,
@@ -64,5 +69,6 @@ module.exports = {
   Toggle,
   Totals,
   TreePicker,
+  TreePickerSimplePure,
   UserListPicker,
 };

@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
+import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
-import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
-import { Empty, FlexSpacer, Grid, SvgSymbol } from 'alexandria-adslot';
+import { FlexSpacer, SvgSymbol } from 'alexandria-adslot';
+import { removeSelected } from 'helpers/TreePickerHelpers';
 
 require('styles/adslotUi/TreePickerPure.scss');
 
@@ -36,8 +36,6 @@ const TreePickerPureComponent = ({
   valueFormatter,
   warnOnRequired,
 }) => {
-  const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
-
   const changeRootTypeBound = (rootType) => {
     if (rootType.id !== activeRootTypeId) {
       return changeRootType.bind(null, rootType.id);
@@ -46,11 +44,7 @@ const TreePickerPureComponent = ({
     return () => null;
   };
 
-  const selectedIds = _.map(selectedNodesByRootType[activeRootTypeId], 'id');
-  const filteredSubtree = _(subtree)
-    .filter(({ id }) => !_.includes(selectedIds, id))
-    .sortBy('label')
-    .value();
+  const selectableNodes = removeSelected({ subtree, selectedNodes: selectedNodesByRootType[activeRootTypeId] });
 
   return (
     <div className="treepickerpure-component">
@@ -72,46 +66,47 @@ const TreePickerPureComponent = ({
         </ul>
 
         <TreePickerNav
-          breadcrumbNodes={breadcrumbNodes}
-          breadcrumbOnClick={breadcrumbOnClick}
-          searchOnChange={searchOnChange}
-          searchOnClear={searchOnClear}
-          searchPlaceholder={searchPlaceholder}
-          searchValue={searchValue}
-          svgSymbolCancel={svgSymbolCancel}
-          svgSymbolSearch={svgSymbolSearch}
+          {...{
+            breadcrumbNodes,
+            breadcrumbOnClick,
+            searchOnChange,
+            searchOnClear,
+            searchPlaceholder,
+            searchValue,
+            svgSymbolCancel,
+            svgSymbolSearch,
+          }}
         />
 
-        <Grid>
-          {_.map(filteredSubtree, (node) =>
-            <TreePickerNodeFast
-              expandNode={expandNode}
-              includeNode={includeNode}
-              key={node.id}
-              node={node}
-              valueFormatter={valueFormatter}
-            />
-          )}
-          <Empty collection={filteredSubtree} svgSymbol={emptySvgSymbol} text="No items to select." />
-        </Grid>
-
+        <TreePickerGrid
+          {...{
+            emptySvgSymbol,
+            emptyText: 'No items to select.',
+            expandNode,
+            includeNode,
+            nodes: selectableNodes,
+            selected: false,
+          }}
+        />
         <FlexSpacer />
       </SplitPane>
 
       <SplitPane>
 
         <TreePickerSelected
-          averageWithinRootType={averageWithinRootType}
-          baseItem={baseItem}
-          emptySvgSymbol={emptySvgSymbol}
-          helpText={helpText}
-          removeNode={removeNode}
-          rootTypes={rootTypes}
-          selectedLabel={selectedLabel}
-          selectedNodesByRootType={selectedNodesByRootType}
-          totalsSuffix={totalsSuffix}
-          valueFormatter={valueFormatter}
-          warnOnRequired={warnOnRequired}
+          {...{
+            averageWithinRootType,
+            baseItem,
+            emptySvgSymbol,
+            helpText,
+            removeNode,
+            rootTypes,
+            selectedLabel,
+            selectedNodesByRootType,
+            totalsSuffix,
+            valueFormatter,
+            warnOnRequired,
+          }}
         />
 
       </SplitPane>
@@ -127,11 +122,6 @@ const baseItemPropType = PropTypes.shape({
   value: PropTypes.number.isRequired,
 });
 
-const breadCrumbNode = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-});
-
 const rootType = PropTypes.shape({
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
@@ -144,7 +134,7 @@ TreePickerPureComponent.propTypes = {
   activeRootTypeId: PropTypes.string,
   averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: baseItemPropType,
-  breadcrumbNodes: PropTypes.arrayOf(breadCrumbNode),
+  breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   changeRootType: PropTypes.func.isRequired,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),

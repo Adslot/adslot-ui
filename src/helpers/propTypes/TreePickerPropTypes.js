@@ -12,6 +12,10 @@ export default {
       }).isRequired
     ).isRequired,
     type: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.number,
+  }),
+  breadCrumbNode: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
   }),
 };

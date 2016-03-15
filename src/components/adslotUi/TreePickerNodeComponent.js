@@ -64,9 +64,12 @@ const TreePickerNodeComponent = ({
           }
         </GridCell>
         {expanderElement}
-        <GridCell>
-          {valueFormatter(node.value)}
-        </GridCell>
+        {_.isNumber(node.value) ?
+          <GridCell>
+            {valueFormatter(node.value)}
+          </GridCell> :
+          null
+        }
         {!selected ?
           <GridCell classSuffixes={['button']}>
             <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound}>

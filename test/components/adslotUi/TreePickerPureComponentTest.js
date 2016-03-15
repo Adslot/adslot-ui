@@ -1,11 +1,12 @@
 import _ from 'lodash';
 import React from 'react';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
+import TreePickerGridComponent from 'components/adslotUi/TreePickerGridComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
 import TreePickerSelectedComponent from 'components/adslotUi/TreePickerSelectedComponent';
-import { Empty, FlexSpacer, Grid, SvgSymbol } from 'alexandria-adslot';
+import { FlexSpacer, SvgSymbol } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 
 describe('TreePickerPureComponent', () => {
@@ -31,16 +32,12 @@ describe('TreePickerPureComponent', () => {
     const navElement = leftPaneElement.find(TreePickerNavComponent);
     expect(navElement).to.have.length(1);
 
-    const nodesGridElement = leftPaneElement.find(Grid);
+    const treePickerGridElement = leftPaneElement.find(TreePickerGridComponent);
 
-    // No treepicker nodes and one empty component
-    expect(nodesGridElement.children()).to.have.length(1);
+    expect(treePickerGridElement.prop('nodes')).to.have.length(0);
 
-    const emptyElement = nodesGridElement.find(Empty);
-    expect(emptyElement.prop('collection')).to.deep.equal([]);
-    expect(emptyElement.prop('svgSymbol').href).to.equal('/assets/svg-symbols.svg#checklist-incomplete');
-    expect(emptyElement.prop('svgSymbol').classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
-    expect(emptyElement.prop('text')).to.equal('No items to select.');
+    expect(treePickerGridElement.prop('emptySvgSymbol')).to.be.an('undefined');
+    expect(treePickerGridElement.prop('emptyText')).to.equal('No items to select.');
 
     const flexSpacerElement = leftPaneElement.find(FlexSpacer);
     expect(flexSpacerElement).to.have.length(1);
@@ -51,7 +48,7 @@ describe('TreePickerPureComponent', () => {
   });
 
   it('should render with props', () => {
-    const testFunction = () => null;
+    const testFunction = _.noop;
 
     const rootTypeChanges = [];
 
@@ -65,7 +62,7 @@ describe('TreePickerPureComponent', () => {
       emptySvgSymbol: { href: '/some.svg#id', classSuffixes: ['gray-light'] },
       helpText: {
         average: 'An average explanation.',
-        sum: 'The sum of all fears.',
+        sum: 'The sum of fears.',
       },
       includeNode: testFunction,
       removeNode: testFunction,
@@ -93,7 +90,7 @@ describe('TreePickerPureComponent', () => {
 
     expect(rootTypeChanges).to.deep.equal([]);
     firstTabAnchor.simulate('click');
-    expect(rootTypeChanges).to.deep.equal([]); // Shouldn't add since its already active.
+    expect(rootTypeChanges).to.deep.equal([]); // Shouldn't add since its active.
 
     const firstTabIcon = firstTabAnchor.find(SvgSymbol);
     expect(firstTabIcon.prop('href')).to.equal(rootTypes[0].svgSymbol.href);
@@ -110,19 +107,13 @@ describe('TreePickerPureComponent', () => {
     const navElement = leftPaneElement.find(TreePickerNavComponent);
     expect(navElement).to.have.length(1);
 
-    const nodesGridElement = leftPaneElement.find(Grid);
+    const treePickerGridElement = leftPaneElement.find(TreePickerGridComponent);
 
-    // One treepicker node and one empty component
-    expect(nodesGridElement.children()).to.have.length(2);
+    expect(treePickerGridElement.prop('nodes')).to.have.length(1);
 
-    const nodeElement = nodesGridElement.children().first();
-    expect(nodeElement.prop('node').label).to.equal('Australian Capital Territory');
-
-    const emptyElement = nodesGridElement.find(Empty);
-    expect(emptyElement.prop('collection')).to.have.length(1);
-    expect(emptyElement.prop('svgSymbol').href).to.equal('/some.svg#id');
-    expect(emptyElement.prop('svgSymbol').classSuffixes).to.deep.equal(['gray-light']);
-    expect(emptyElement.prop('text')).to.equal('No items to select.');
+    expect(treePickerGridElement.prop('emptySvgSymbol').href).to.equal('/some.svg#id');
+    expect(treePickerGridElement.prop('emptySvgSymbol').classSuffixes).to.deep.equal(['gray-light']);
+    expect(treePickerGridElement.prop('emptyText')).to.equal('No items to select.');
 
     const rightPaneElement = component.find(SplitPaneComponent).last();
     const treePickerSelectedElement = rightPaneElement.find(TreePickerSelectedComponent);
@@ -131,7 +122,7 @@ describe('TreePickerPureComponent', () => {
     expect(treePickerSelectedElement.prop('totalsSuffix')).to.equal('CPD');
     expect(treePickerSelectedElement.prop('helpText')).to.deep.equal({
       average: 'An average explanation.',
-      sum: 'The sum of all fears.',
+      sum: 'The sum of fears.',
     });
   });
 });

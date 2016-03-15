@@ -12,6 +12,7 @@ import {
   Select,
   Toggle,
   TreePicker,
+  TreePickerSimplePure,
   UserListPicker,
 } from '../../src/components/distributionEntry';
 
@@ -116,6 +117,12 @@ describe('MainComponent', () => {
     const treePickerElement = MainComponent.find(TreePicker);
     treePickerElement.prop('getSubtree')({}, (subtree) => expect(subtree).to.have.length(0));
     treePickerElement.prop('getSubtree')({ rootTypeId: '0' }, (subtree) => expect(subtree).to.have.length(4));
+  });
+
+  it('should render a TreePickerSimplePure', () => {
+    const treePickerSimplePureElement = MainComponent.find(TreePickerSimplePure);
+    expect(treePickerSimplePureElement.prop('selectedNodes')).to.have.length(2);
+    expect(treePickerSimplePureElement.prop('subtree')).to.have.length(4);
   });
 
   it('should toggle `showListPickerModal` on `Open ListPicker` click', () => {
