@@ -57,6 +57,7 @@ const TreePickerMocks = immutable({
   maleNode,
   qldNode,
   saNode,
+  svgSymbol,
   valueFormatter,
 });
 

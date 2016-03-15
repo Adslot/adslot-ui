@@ -15,6 +15,7 @@ import {
   Select,
   Toggle,
   TreePicker,
+  TreePickerSimplePure,
   UserListPicker,
 } from './distributionEntry';
 
@@ -142,7 +143,7 @@ class AppComponent extends React.Component {
     const auPath = [{ id: '10', label: 'AU' }];
 
     const actNode =
-      { id: '0', label: 'Australian Capital Territory', type: 'State', path: auPath, value: 1000, rootTypeId: '0' };
+      { id: '0', label: 'Australian Capital Territory', type: 'State', path: auPath, rootTypeId: '0' };
 
     const ntNode = {
       id: '1',
@@ -174,6 +175,9 @@ class AppComponent extends React.Component {
 
       return cb([]);
     };
+
+    let simpleSubtree = [];
+    getSubtree({ rootTypeId: '0' }, (data) => {simpleSubtree = data;});
 
     return (
       <div className="index">
@@ -308,7 +312,7 @@ class AppComponent extends React.Component {
         <Select
           clearable={false}
           name="countriesSelect"
-          noResultsText="Sorry, couldn't find that country."
+          noResultsText="No matching countries."
           onChange={this.setSelectedCountry}
           options={selectCountriesOptions}
           placeholder="Countries"
@@ -356,6 +360,12 @@ class AppComponent extends React.Component {
           valueFormatter={valueFormatter}
         />
 
+        <h1>TreePickerSimplePure</h1>
+
+        <TreePickerSimplePure
+          selectedNodes={initialSelection}
+          subtree={simpleSubtree}
+        />
 
         <h1>ListPicker</h1>
 
@@ -371,7 +381,7 @@ class AppComponent extends React.Component {
           labelFormatter={labelFormatter}
           modalClose={this.toggleListPickerModal}
           modalDescription="Please select the user that you want."
-          modalFootnote="You can only select one user."
+          modalFootnote="You can select one user."
           modalTitle="Select User"
           show={this.state.showListPickerModal}
         />
@@ -395,7 +405,7 @@ class AppComponent extends React.Component {
           linkButtons={[{ label: 'Create User', href: '#' }]}
           modalClose={this.toggleSplitListPickerModal}
           modalDescription="Please select the user that you want."
-          modalFootnote="You can only select one user."
+          modalFootnote="You can select one user."
           modalTitle="Select User"
           show={this.state.showSplitListPickerModal}
         />
@@ -415,7 +425,7 @@ class AppComponent extends React.Component {
           emptySvgSymbol={emptySvgSymbol}
           initialSelection={listPickerInitialSelection}
           modalClose={this.toggleUserListPickerModal}
-          modalDescription="Please select the users that you want."
+          modalDescription="Please select the users you want."
           modalTitle="Select Users"
           show={this.state.showUserListPickerModal}
           userHeaders={listPickerItemHeaders}
@@ -459,7 +469,7 @@ class AppComponent extends React.Component {
                   <Select
                     clearable={false}
                     name="countriesSelect"
-                    noResultsText="Sorry, couldn't find that country."
+                    noResultsText="No matching countries."
                     onChange={this.setSelectedCountry}
                     options={selectCountriesOptions}
                     placeholder="Countries"

@@ -69,9 +69,19 @@ describe('TreePickerNodeComponent', () => {
     const component = shallow(<TreePickerNodeComponent node={cbrNode} valueFormatter={valueFormatter} />);
 
     const rowElement = component.find(GridRow);
-    const cellElements = rowElement.find(GridCell);
-    const valueCellElement = cellElements.at(1);
-    expect(valueCellElement.children().text()).to.equal('€20');
+    const valueCellElement = rowElement.prop('children')[3];
+    expect(valueCellElement.props.children).to.equal('€20');
+  });
+
+  it('should hide value when no value Number', () => {
+    const node = _.clone(cbrNode);
+    delete node.value;
+    const component = shallow(<TreePickerNodeComponent {...{ node }} />);
+
+    const rowElement = component.find(GridRow);
+    expect(rowElement.prop('children')).to.have.length(5);
+    const valueCellElement = rowElement.prop('children')[3];
+    expect(valueCellElement).to.be.a('null');
   });
 
   it('should fire expandNode when clicking on the `expand` cell', () => {

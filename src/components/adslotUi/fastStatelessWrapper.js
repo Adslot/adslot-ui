@@ -2,11 +2,12 @@ import _ from 'lodash';
 import React from 'react';
 
 /**
-* fastStatelessWrapper - Limit re-render of a component to certain changeable props.
-*                        Use when you have found a performance problem, do not prematurely optimize.
+* fastStatelessWrapper - Limit re-render of a component to changeable props.
+*                        Use when you have a performance problem, do not prematurely optimise.
 *
-* @param  {React Component} ComposedComponent The component to render.
-* @return {Array}           propsToCheck      An Array of properties that can cause re-render eg. `['foo.bar', 'baz']`.
+* @param  {Node}  ComposedComponent The React component to render.
+* @param  {Array} propsToCheck     An Array of properties causing re-render eg. `['foo.bar', 'baz']`.
+* @return {Node}  A Component that wraps the provided React Component.
 */
 
 const fastStatelessWrapper = (ComposedComponent, propsToCheck) =>

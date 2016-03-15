@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
-import { Avatar, SvgSymbol } from 'alexandria-adslot';
 import React, { PropTypes } from 'react';
+import { Avatar, SvgSymbol } from 'alexandria-adslot';
 
 require('styles/adslotUi/UserListPicker.scss');
 
@@ -81,7 +82,7 @@ UserListPickerComponent.propTypes = {
 
 UserListPickerComponent.defaultProps = {
   allowEmptySelection: false,
-  avatarColor: () => null,
+  avatarColor: _.noop,
   emptyMessage: 'No users.',
   initialSelection: [],
   modalApply: () => {throw new Error('AdslotUi UserListPicker needs a modalApply handler');},

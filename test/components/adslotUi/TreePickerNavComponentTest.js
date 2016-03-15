@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import { Breadcrumb, Search } from 'alexandria-adslot';
@@ -17,7 +18,7 @@ describe('TreePickerNavComponent', () => {
   });
 
   it('should render with props', () => {
-    const testFunction = () => null;
+    const testFunction = _.noop;
     const breadcrumbNodes = [
       { id: 'a', label: 'UK' },
       { id: 'b', label: 'London' },
