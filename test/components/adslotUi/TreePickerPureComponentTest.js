@@ -20,7 +20,7 @@ describe('TreePickerPureComponent', () => {
     const component = shallow(<TreePickerPureComponent changeRootType={_.noop} />);
     expect(component.prop('className')).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.find(SplitPaneComponent).first();
+    const leftPaneElement = component.find('[dts="treepicker-splitpane-available"]');
     const tabsElement = leftPaneElement.find('ul');
     expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
 
@@ -78,14 +78,14 @@ describe('TreePickerPureComponent', () => {
     const component = shallow(<TreePickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.find(SplitPaneComponent).first();
+    const leftPaneElement = component.find('[dts="treepicker-splitpane-available"]');
     const tabsElement = leftPaneElement.find('ul');
     expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
 
     const firstTabElement = tabsElement.find('li').first();
     expect(firstTabElement.prop('className')).to.equal('active');
 
-    const firstTabAnchor = firstTabElement.find('a');
+    const firstTabAnchor = firstTabElement.find('[data-test-selector="treepicker-nav-tab"]').first();
     expect(firstTabAnchor.children().last().text()).to.equal(rootTypes[0].label);
 
     expect(rootTypeChanges).to.deep.equal([]);
@@ -115,7 +115,7 @@ describe('TreePickerPureComponent', () => {
     expect(treePickerGridElement.prop('emptySvgSymbol').classSuffixes).to.deep.equal(['gray-light']);
     expect(treePickerGridElement.prop('emptyText')).to.equal('No items to select.');
 
-    const rightPaneElement = component.find(SplitPaneComponent).last();
+    const rightPaneElement = component.find('[dts="treepicker-splitpane-selected"]');
     const treePickerSelectedElement = rightPaneElement.find(TreePickerSelectedComponent);
     expect(treePickerSelectedElement.prop('averageWithinRootType')).to.equal(true);
     expect(treePickerSelectedElement.prop('selectedLabel')).to.equal('Selected Targeting');

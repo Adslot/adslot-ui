@@ -15,6 +15,7 @@ describe('TreePickerNodeComponent', () => {
     expect(component.type()).to.equal('div');
 
     const rowElement = component.find(GridRow);
+    expect(rowElement.parent().prop('data-test-selector')).to.equal('treepicker-grid-row');
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
     expect(component.find(Button)).to.have.length(1);
@@ -51,7 +52,7 @@ describe('TreePickerNodeComponent', () => {
   it('should render the button first when selected is true', () => {
     const component = shallow(<TreePickerNodeComponent node={cbrNode} selected />);
 
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
     expect(component.find(Button)).to.have.length(1);
@@ -68,7 +69,7 @@ describe('TreePickerNodeComponent', () => {
     const valueFormatter = (value) => `€${value / 100}`;
     const component = shallow(<TreePickerNodeComponent node={cbrNode} valueFormatter={valueFormatter} />);
 
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const valueCellElement = rowElement.prop('children')[3];
     expect(valueCellElement.props.children).to.equal('€20');
   });
@@ -78,7 +79,7 @@ describe('TreePickerNodeComponent', () => {
     delete node.value;
     const component = shallow(<TreePickerNodeComponent {...{ node }} />);
 
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     expect(rowElement.prop('children')).to.have.length(5);
     const valueCellElement = rowElement.prop('children')[3];
     expect(valueCellElement).to.be.a('null');
@@ -89,7 +90,7 @@ describe('TreePickerNodeComponent', () => {
     const expandNode = (node) => nodes.push(node);
     const component = shallow(<TreePickerNodeComponent node={cbrNode} expandNode={expandNode} />);
 
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(4); // meta data cell, expander cell, value cell and include button cell
 
@@ -105,7 +106,7 @@ describe('TreePickerNodeComponent', () => {
     const expandNode = (node) => nodes.push(node);
     const component = shallow(<TreePickerNodeComponent node={cbrNode} expandNode={expandNode} />);
 
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(4); // meta data cell, expander cell, value cell and include button cell
 
@@ -120,7 +121,7 @@ describe('TreePickerNodeComponent', () => {
     const nodes = [];
     const expandNode = (node) => nodes.push(node);
     const component = shallow(<TreePickerNodeComponent node={nonExpandableNode} expandNode={expandNode} />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
   });
@@ -129,7 +130,7 @@ describe('TreePickerNodeComponent', () => {
     const nodes = [];
     const includeNode = (node) => nodes.push(node);
     const component = shallow(<TreePickerNodeComponent node={cbrNode} includeNode={includeNode} />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -141,7 +142,7 @@ describe('TreePickerNodeComponent', () => {
 
   it('should error on click of `include` button without includeNode handler', () => {
     const component = shallow(<TreePickerNodeComponent node={cbrNode} />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -161,7 +162,7 @@ describe('TreePickerNodeComponent', () => {
       path: [],
     };
     const component = shallow(<TreePickerNodeComponent node={node} />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -187,7 +188,7 @@ describe('TreePickerNodeComponent', () => {
       path: [{ id: '30', label: 'Cars' }],
     };
     const component = shallow(<TreePickerNodeComponent node={node} />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -209,7 +210,7 @@ describe('TreePickerNodeComponent', () => {
     const removeNode = (node) => _.remove(nodes, { id: node.id });
     const props = { node: cbrNode, removeNode, selected: true };
     const component = shallow(<TreePickerNodeComponent {...props} />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
 
@@ -223,7 +224,7 @@ describe('TreePickerNodeComponent', () => {
 
   it('should error on click of `remove` button without removeNode handler', () => {
     const component = shallow(<TreePickerNodeComponent node={cbrNode} selected />);
-    const rowElement = component.find(GridRow);
+    const rowElement = component.find('[data-test-selector="treepicker-grid-row"]').childAt(0);
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
 

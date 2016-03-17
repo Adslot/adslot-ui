@@ -106,11 +106,13 @@ describe('TreePickerComponent', () => {
 
     const modalFooterElement = component.find(Modal.Footer);
     const cancelButtonElement = modalFooterElement.find(Button).first();
+    expect(cancelButtonElement.prop('data-test-selector')).to.equal('treepicker-cancel-button');
     expect(cancelButtonElement.prop('className')).to.equal('btn-inverse');
     expect(cancelButtonElement.prop('onClick')).to.be.a('function');
     expect(cancelButtonElement.children().text()).to.equal('Cancel');
 
     const applyButtonElement = modalFooterElement.find(Button).last();
+    expect(applyButtonElement.prop('data-test-selector')).to.equal('treepicker-apply-button');
     expect(applyButtonElement.prop('bsStyle')).to.equal('primary');
     expect(applyButtonElement.prop('onClick')).to.be.a('function');
     expect(applyButtonElement.children().text()).to.equal('Apply');
@@ -332,7 +334,7 @@ describe('TreePickerComponent', () => {
     };
     const component = createAndMountComponent(<TreePickerComponent {...props} />);
     const modalFooterElement = component.find(Modal.Footer);
-    const applyButtonElement = modalFooterElement.find(Button).last();
+    const applyButtonElement = modalFooterElement.find('[data-test-selector="treepicker-apply-button"]');
     applyButtonElement.simulate('click');
     expect(applyCalls).to.deep.equal({ a: ['au-act', 'au-nt'] });
     expect(closeCalls).to.equal(1);
@@ -341,7 +343,7 @@ describe('TreePickerComponent', () => {
   it('should throw when we click Apply without a handler', () => {
     const component = createAndMountComponent(<TreePickerComponent initialSelection={initialSelection} />);
     const modalFooterElement = component.find(Modal.Footer);
-    const applyButtonElement = modalFooterElement.find(Button).last();
+    const applyButtonElement = modalFooterElement.find('[data-test-selector="treepicker-apply-button"]');
     expect(() => applyButtonElement.simulate('click')).to.throw(
       'AdslotUi TreePicker needs a modalApply handler for {"a":["au-act","au-nt"]}'
     );
@@ -362,7 +364,7 @@ describe('TreePickerComponent', () => {
     const props = { getSubtree: getSubtreeMock, modalClose: closeMock };
     const component = createAndMountComponent(<TreePickerComponent {...props} />);
     const modalFooterElement = component.find(Modal.Footer);
-    const cancelButtonElement = modalFooterElement.find(Button).first();
+    const cancelButtonElement = modalFooterElement.find('[data-test-selector="treepicker-cancel-button"]');
     expect(getSubtreeCalls).to.equal(1);
 
     const treePickerPureElement = getTreePickerPureElement(component);
@@ -388,7 +390,7 @@ describe('TreePickerComponent', () => {
     const props = { getSubtree: getSubtreeMock, modalClose: closeMock };
     const component = createAndMountComponent(<TreePickerComponent {...props} />);
     const modalFooterElement = component.find(Modal.Footer);
-    const cancelButtonElement = modalFooterElement.find(Button).first();
+    const cancelButtonElement = modalFooterElement.find('[data-test-selector="treepicker-cancel-button"]');
     expect(getSubtreeCalls).to.equal(1);
 
     const treePickerPureElement = getTreePickerPureElement(component);
@@ -405,7 +407,7 @@ describe('TreePickerComponent', () => {
   it('should throw when we click Close without a handler', () => {
     const component = shallow(<TreePickerComponent />);
     const modalFooterElement = component.find(Modal.Footer);
-    const cancelButtonElement = modalFooterElement.find(Button).first();
+    const cancelButtonElement = modalFooterElement.find('[data-test-selector="treepicker-cancel-button"]');
     expect(() => cancelButtonElement.simulate('click')).to.throw('AdslotUi TreePicker needs a modalClose handler');
   });
 

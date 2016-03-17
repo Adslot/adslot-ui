@@ -49,12 +49,12 @@ const TreePickerPureComponent = ({
   return (
     <div className="treepickerpure-component">
 
-      <SplitPane>
+      <SplitPane dts="treepicker-splitpane-available">
 
         <ul className="nav nav-tabs">
           {rootTypes.length ? _.map(rootTypes, (rootType) =>
             <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
-              <a onClick={changeRootTypeBound(rootType)}>
+              <a onClick={changeRootTypeBound(rootType)} data-test-selector="treepicker-nav-tab">
                 <SvgSymbol
                   href={_.get(rootType, 'svgSymbol.href')}
                   classSuffixes={_.get(rootType, 'svgSymbol.classSuffixes', ['gray-darker'])}
@@ -91,7 +91,7 @@ const TreePickerPureComponent = ({
         <FlexSpacer />
       </SplitPane>
 
-      <SplitPane>
+      <SplitPane dts="treepicker-splitpane-selected">
 
         <TreePickerSelected
           {...{

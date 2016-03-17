@@ -47,7 +47,7 @@ const TreePickerNodeComponent = ({
     {};
 
   return (
-    <div className={`${baseClass}`}>
+    <div className={`${baseClass}`} data-test-selector="treepicker-grid-row">
       <GridRow>
         {selected ?
           <GridCell classSuffixes={['button']}>
