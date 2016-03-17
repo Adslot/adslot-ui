@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
+import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
@@ -53,6 +54,7 @@ module.exports = {
   GridCell,
   GridRow,
   ListPicker,
+  ListPickerPure,
   Modal,
   OverlayTrigger,
   PageTitle,
