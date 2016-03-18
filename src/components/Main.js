@@ -4,15 +4,18 @@ import React from 'react';
 
 import {
   Button,
+  BorderedWell,
   Checkbox,
   ConfirmModal,
+  FormGroup,
   ListPicker,
   Modal,
-  Tabs,
-  Tab,
+  PageTitle,
   Radio,
   RadioGroup,
   Select,
+  Tab,
+  Tabs,
   Toggle,
   TreePicker,
   TreePickerSimplePure,
@@ -181,6 +184,7 @@ class AppComponent extends React.Component {
 
     return (
       <div className="index">
+
         <h1>Buttons</h1>
         <div className="btn-panel">
           <Button className="btn-inverse">
@@ -300,6 +304,24 @@ class AppComponent extends React.Component {
             value="2"
             disabled
             checked
+          />
+        </RadioGroup>
+
+        <br />
+        <p>RadioGroup Stacked: </p>
+
+        <RadioGroup className="radiogroup-stacked" value="geography">
+          <Radio
+            label="Geography"
+            value="geography"
+          />
+          <Radio
+            label="Contextual"
+            value="contextual"
+          />
+          <Radio
+            label="Audience"
+            value="audience"
           />
         </RadioGroup>
 
@@ -434,18 +456,31 @@ class AppComponent extends React.Component {
 
 
         <h1>Forms</h1>
-        <form className="form-horizontal">
-          <div className="col-xs-6">
-            <fieldset className="row">
-              <div className="form-group">
-                <label htmlFor="exampleTextInput" className="control-label col-xs-4">Text input</label>
-                <div className="col-xs-8">
-                  <input type="text" className="form-control" id="exampleTextInput" placeholder="Text input" />
+        <BorderedWell>
+          <PageTitle title="Form Example">
+            <Button className="btn-inverse">Cancel</Button>
+            <Button bsStyle="primary">Save</Button>
+          </PageTitle>
+          <form className="form-horizontal">
+            <fieldset>
 
+              <FormGroup
+                addon="$"
+                helpText="Helpful text."
+                label="Form Group"
+                placeholder="5.00"
+              />
+
+              <div className="form-group">
+                <label htmlFor="exampleTextInput" className="control-label col-xs-3">Text input</label>
+                <div className="col-xs-9">
+                  <div className="input-group col-xs-6">
+                    <input type="text" className="form-control" id="exampleTextInput" placeholder="Text input" />
+                  </div>
                   <br />
 
                   <div className="form-control-static">Instruction or grouped placeholder</div>
-                  <div className="input-group col-xs-5">
+                  <div className="input-group col-xs-6">
                     <div className="input-group-addon">$</div>
                     <input type="text" className="form-control" id="exampleTextInputAddon" placeholder="w. addon" />
                     <div className="input-group-addon">value</div>
@@ -454,18 +489,18 @@ class AppComponent extends React.Component {
               </div>
             </fieldset>
 
-            <fieldset className="row">
+            <fieldset className="borderless">
               <div className="form-group">
-                <label htmlFor="exampleTextarea" className="control-label col-xs-4">Text area (optional)</label>
-                <div className="col-xs-8">
+                <label htmlFor="exampleTextarea" className="control-label col-xs-3">Text area (optional)</label>
+                <div className="col-xs-9">
                   <textarea className="form-control" id="exampleTextarea" placeholder="Text area"></textarea>
                   <p className="help-block">Help text or example.</p>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="countriesSelect" className="control-label col-xs-4">Select box</label>
-                <div className="col-xs-8">
+                <label htmlFor="countriesSelect" className="control-label col-xs-3">Select box</label>
+                <div className="col-xs-9">
                   <Select
                     clearable={false}
                     name="countriesSelect"
@@ -479,14 +514,14 @@ class AppComponent extends React.Component {
               </div>
 
               <div className="form-group">
-                <label htmlFor="exampleInputFile" className="control-label col-xs-4">File input</label>
-                <div className="col-xs-8">
-                  <input type="file" id="exampleInputFile" className="form-control" />
+                <label htmlFor="exampleInputFile" className="control-label col-xs-3">File input</label>
+                <div className="col-xs-9">
+                  <input type="file" id="exampleInputFile" />
                 </div>
               </div>
 
               <div className="form-group">
-                <div className="col-xs-8 col-xs-offset-4">
+                <div className="col-xs-9 col-xs-offset-3">
                   <div className="checkbox">
                     <Checkbox
                       label={<span>Checkbox.</span>}
@@ -494,13 +529,15 @@ class AppComponent extends React.Component {
                   </div>
                 </div>
               </div>
+
             </fieldset>
-            <div className="row form-btn-footer">
-              <Button className="btn-inverse">Cancel</Button>
-              <Button bsStyle="primary">Save</Button>
-            </div>
-          </div>
-        </form>
+          </form>
+          <PageTitle isFooter>
+            <Button className="btn-inverse">Cancel</Button>
+            <Button bsStyle="primary">Save</Button>
+          </PageTitle>
+        </BorderedWell>
+
       </div>
     );
   }
