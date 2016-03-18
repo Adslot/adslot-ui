@@ -124,5 +124,6 @@ describe('TreePickerPureComponent', () => {
       average: 'An average explanation.',
       sum: 'The sum of fears.',
     });
+    expect(treePickerSelectedElement.prop('valueFormatter')).to.equal(props.valueFormatter);
   });
 });
