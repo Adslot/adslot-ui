@@ -86,6 +86,7 @@ const TreePickerPureComponent = ({
             includeNode,
             nodes: selectableNodes,
             selected: false,
+            valueFormatter,
           }}
         />
         <FlexSpacer />
