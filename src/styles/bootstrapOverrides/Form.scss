@@ -53,6 +53,11 @@
 fieldset {
   border-bottom: 1px solid $color-border-lightest;
   margin-bottom: $spacing-etalon;
+
+  &.borderless {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
 }
 
 label {
@@ -76,4 +81,10 @@ label {
   color: $color-text-placeholder;
   font-weight: $font-weight-medium;
   margin-top: 8px;
+}
+
+.borderedwell-component {
+  .form-horizontal {
+    padding: $spacing-etalon $spacing-etalon 0;
+  }
 }

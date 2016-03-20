@@ -8,6 +8,7 @@ require('styles/_react-toggle-custom.scss');
 import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
+import FormGroup from 'components/adslotUi/FormGroupComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -50,6 +51,7 @@ module.exports = {
   ConfirmModal,
   Empty,
   FlexSpacer,
+  FormGroup,
   Grid,
   GridCell,
   GridRow,

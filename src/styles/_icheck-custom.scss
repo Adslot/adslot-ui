@@ -1,5 +1,13 @@
 @import './mixins/dataUriEncoder';
 
+// <RadioGroup className="radiogroup-stacked">
+// Makes the radioGroup vertical insteaed of horizontal.
+.radiogroup-stacked {
+  > label {
+    display: block;
+  }
+}
+
 .icheckbox,
 .iradio {
   background-repeat: no-repeat;
@@ -65,4 +73,3 @@
     }
   }
 }
-
