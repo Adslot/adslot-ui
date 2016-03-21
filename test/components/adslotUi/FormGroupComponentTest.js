@@ -41,10 +41,12 @@ describe('FormGroupComponent', () => {
   });
 
   it('should render with an addon and a value', () => {
+    const onChangeMock = () => null;
     const component = shallow(<FormGroupComponent
       addon="$"
       helpText={helpText}
       label={label}
+      onChange={onChangeMock}
       placeholder="5.00"
       value="10.00"
     />);
@@ -57,6 +59,7 @@ describe('FormGroupComponent', () => {
     expect(inputElement.prop('type')).to.equal('text');
     expect(inputElement.prop('className')).to.equal('form-control');
     expect(inputElement.prop('id')).to.equal('sweet-caroline');
+    expect(inputElement.prop('onChange')).to.equal(onChangeMock);
     expect(inputElement.prop('placeholder')).to.equal('5.00');
     expect(inputElement.prop('value')).to.equal('10.00');
   });

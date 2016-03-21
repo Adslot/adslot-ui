@@ -310,7 +310,7 @@ class AppComponent extends React.Component {
         <br />
         <p>RadioGroup Stacked: </p>
 
-        <RadioGroup className="radiogroup-stacked" value="geography">
+        <RadioGroup className="radiogroup-stacked" name="testRadioGroup">
           <Radio
             label="Geography"
             value="geography"
