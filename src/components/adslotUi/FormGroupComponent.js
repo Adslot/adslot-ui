@@ -5,6 +5,7 @@ const FormGroupComponent = ({
   addon,
   helpText,
   label,
+  onChange,
   placeholder,
   value,
 }) => {
@@ -22,6 +23,7 @@ const FormGroupComponent = ({
             id={inputId}
             placeholder={placeholder}
             value={value}
+            onChange={onChange}
           />
         </div>
         <p className="help-block">{helpText}</p>
@@ -36,6 +38,7 @@ FormGroupComponent.propTypes = {
   addon: PropTypes.string,
   helpText: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
