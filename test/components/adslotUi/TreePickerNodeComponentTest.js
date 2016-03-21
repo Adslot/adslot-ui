@@ -26,8 +26,8 @@ describe('TreePickerNodeComponent', () => {
     const labelElement = labelWrapperCellElement.children().first();
     expect(labelElement.text()).to.equal('Canberra');
 
-    const metaDataElement = labelWrapperCellElement.children().last();
-    expect(metaDataElement.prop('className')).to.equal('treepickernode-component-metadata');
+    const metaDataElement = component.find('.treepickernode-component-metadata');
+    expect(metaDataElement).to.have.length(1);
     expect(metaDataElement.children()).to.have.length(5);
     expect(metaDataElement.children().at(0).text()).to.equal(' (');
     expect(metaDataElement.children().at(1).text()).to.equal('City');
@@ -167,13 +167,13 @@ describe('TreePickerNodeComponent', () => {
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
     const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.children()).to.have.length(2);
+    expect(labelWrapperCellElement.children()).to.have.length(1);
 
     const labelElement = labelWrapperCellElement.children().first();
     expect(labelElement.text()).to.equal('Cameroon');
 
-    const metaDataElement = labelWrapperCellElement.children().last();
-    expect(metaDataElement.children()).to.have.length(0);
+    const metaDataElement = component.find('.treepickernode-component-metadata');
+    expect(metaDataElement).to.have.length(0);
 
     const valueCellElement = cellElements.at(1);
     expect(valueCellElement.children().text()).to.equal('400');
@@ -193,13 +193,13 @@ describe('TreePickerNodeComponent', () => {
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
     const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.children()).to.have.length(2);
+    expect(labelWrapperCellElement.children()).to.have.length(1);
 
     const labelElement = labelWrapperCellElement.children().first();
     expect(labelElement.text()).to.equal('Toyota');
 
-    const metaDataElement = labelWrapperCellElement.children().last();
-    expect(metaDataElement.children()).to.have.length(0);
+    const metaDataElement = component.find('.treepickernode-component-metadata');
+    expect(metaDataElement).to.have.length(0);
 
     const valueCellElement = cellElements.at(1);
     expect(valueCellElement.children().text()).to.equal('400');
