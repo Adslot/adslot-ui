@@ -66,7 +66,9 @@ npm run test:watch
 Generating New Components
 -------------------------
 
-`yo react-webpack:component adslot-ui/component/name`
+`yo react-webpack:component adslot-ui/ComponentName` 
+or
+`yo react-webpack:component adslot-ui/component-name`
 
 This creates a new component, its stylesheet and a basic test case.
 
