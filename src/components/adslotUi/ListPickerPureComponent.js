@@ -49,7 +49,7 @@ const ListPickerPureComponent = ({
         <Grid>
           {_.map(items, (item) =>
             <GridRow key={item.id}>
-              <GridCell>
+              <GridCell stretch>
                 {labelFormatter(item)}
               </GridCell>
               <GridCell classSuffixes={['toggle']}>

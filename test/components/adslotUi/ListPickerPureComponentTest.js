@@ -48,7 +48,10 @@ describe('ListPickerPureComponent', () => {
     const gridRowElements = gridElement.find(GridRow);
     gridRowElements.forEach((gridRowElement, index) => {
       const gridRowCellElements = gridRowElement.find(GridCell);
-      const gridRowCellLeftText = gridRowCellElements.first().children().text();
+      const gridRowCellLeftElement = gridRowCellElements.first();
+      expect(gridRowCellLeftElement.prop('stretch')).to.equal(true);
+
+      const gridRowCellLeftText = gridRowCellLeftElement.children().text();
       expect(gridRowCellLeftText).to.equal(labelFormatter(users[index]));
 
       const gridRowCellToggleElement = gridRowCellElements.last().find(Checkbox);
