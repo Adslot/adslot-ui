@@ -70,7 +70,7 @@ const TreePickerNodeComponent = ({
           </GridCell> :
           null
         }
-        {!selected ?
+        {(!selected && (node.isSelectable !== false)) ?
           <GridCell classSuffixes={['button']}>
             <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound}>
               +

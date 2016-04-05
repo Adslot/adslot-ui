@@ -7,7 +7,7 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
-  const { cbrNode } = TreePickerMocks;
+  const { cbrNode, actNode } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
     const component = shallow(<TreePickerNodeComponent node={cbrNode} />);
@@ -47,6 +47,15 @@ describe('TreePickerNodeComponent', () => {
     const buttonElement = buttonLastCellElement.find(Button);
     expect(buttonElement.prop('onClick')).to.be.a('function');
     expect(buttonElement.children().text()).to.equal('+');
+  });
+
+  it('should render unselectable nodes without an include button', () => {
+    const component = shallow(<TreePickerNodeComponent node={actNode} />);
+
+    const rowElement = component.find(GridRow);
+    const cellElements = rowElement.find(GridCell);
+    expect(cellElements).to.have.length(2); // meta data cell and value cell
+    expect(component.find(Button)).to.have.length(0);
   });
 
   it('should render the button first when selected is true', () => {
