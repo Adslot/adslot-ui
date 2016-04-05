@@ -22,8 +22,16 @@ const rootTypes = [
 const auPath = { id: 'au', label: 'AU' };
 const actPath = { id: 'au-act', label: 'ACT' };
 
-const actNode =
-  { id: 'au-act', label: 'Australian Capital Territory', type: 'State', path: [auPath], value: 1000, rootTypeId: 'a' };
+const actNode = {
+  id: 'au-act',
+  label: 'Australian Capital Territory',
+  type: 'State',
+  path: [auPath],
+  value: 1000,
+  rootTypeId: 'a',
+  isSelectable: false,
+};
+
 const ntNode = { id: 'au-nt', label: 'Northern Territory', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
 const qldNode = { id: 'au-qld', label: 'Queensland', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
 const saNode = { id: 'au-sa', label: 'South Australia', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
