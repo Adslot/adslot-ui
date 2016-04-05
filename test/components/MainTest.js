@@ -9,12 +9,11 @@ import {
   Modal,
   Radio,
   RadioGroup,
-  Select,
   Toggle,
   TreePicker,
   TreePickerSimplePure,
   UserListPicker,
-} from '../../src/components/distributionEntry';
+} from 'components/distributionEntry';
 
 describe('MainComponent', () => {
   let MainComponent;
@@ -68,32 +67,6 @@ describe('MainComponent', () => {
   it('should have a toggle component', () => {
     const toggleComponent = MainComponent.find(Toggle);
     expect(toggleComponent).to.have.length(1);
-  });
-
-  it('should set and change values for single select', () => {
-    const getRenderOutputAndCheck = ({ expectedValue }) => {
-      const selectComponent = MainComponent.find(Select).first();
-      expect(selectComponent.prop('value')).to.equal(expectedValue);
-      return { selectComponent };
-    };
-
-    const { selectComponent } = getRenderOutputAndCheck({ expectedValue: 'au' });
-
-    selectComponent.simulate('change', { value: 'uk' });
-    getRenderOutputAndCheck({ expectedValue: 'uk' });
-  });
-
-  it('should set and change values for list select', () => {
-    const getRenderOutputAndCheck = ({ expectedValue }) => {
-      const selectComponent = MainComponent.find(Select).at(1);
-      expect(selectComponent.prop('value')).to.equal(expectedValue);
-      return { selectComponent };
-    };
-
-    const { selectComponent } = getRenderOutputAndCheck({ expectedValue: 'vanilla' });
-
-    selectComponent.simulate('change', 'vanilla,chocolate');
-    getRenderOutputAndCheck({ expectedValue: 'vanilla,chocolate' });
   });
 
   it('should toggle `showTreePickerModal` on `Open Treepicker` click', () => {

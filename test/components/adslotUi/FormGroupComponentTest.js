@@ -63,4 +63,22 @@ describe('FormGroupComponent', () => {
     expect(inputElement.prop('placeholder')).to.equal('5.00');
     expect(inputElement.prop('value')).to.equal('10.00');
   });
+
+  it('should render as disabled', () => {
+    const onChangeMock = () => null;
+    const component = shallow(<FormGroupComponent
+      disabled
+      helpText={helpText}
+      label={label}
+      onChange={onChangeMock}
+      placeholder="I should be disabled"
+      value="10.00"
+    />);
+
+    const inputGroupElement = component.find('.input-group');
+
+    const inputElement = inputGroupElement.find('input');
+    expect(inputElement).to.have.length(1);
+    expect(inputElement.prop('disabled')).to.equal(true);
+  });
 });

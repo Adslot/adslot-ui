@@ -1,19 +1,17 @@
 /* eslint-disable max-statements */
 
 import React from 'react';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
 import {
   Button,
-  BorderedWell,
   Checkbox,
   ConfirmModal,
-  FormGroup,
   ListPicker,
   Modal,
-  PageTitle,
   Radio,
   RadioGroup,
-  Select,
   Tab,
   Tabs,
   Toggle,
@@ -22,30 +20,29 @@ import {
   UserListPicker,
 } from './distributionEntry';
 
+import {
+  ExampleForm,
+  ExampleSelect,
+} from '../examples/exampleEntry';
+
+import {
+  formReducer,
+  visibilityReducer,
+} from '../examples/redux/reducers';
+
 require('styles/App.scss');
 
-const selectCountriesOptions = [
-  { value: 'au', label: 'Australia' },
-  { value: 'ca', label: 'Canada' },
-  { value: 'uk', label: 'United Kingdom' },
-  { value: 'jp', label: 'Japan', disabled: true },
-];
+const reducer = combineReducers({
+  form: formReducer,
+  visibility: visibilityReducer,
+});
 
-const selectFlavoursOptions = [
-  { label: 'Chocolate', value: 'chocolate' },
-  { label: 'Vanilla', value: 'vanilla' },
-  { label: 'Strawberry', value: 'strawberry' },
-  { label: 'Caramel', value: 'caramel' },
-  { label: 'Cookies and Cream', value: 'cookiescream' },
-  { label: 'Peppermint', value: 'peppermint' },
-];
+const store = createStore(reducer); // One store per app.
 
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
-      'setSelectedCountry',
-      'setSelectedFlavours',
       'toggleConfirmModal',
       'toggleListPickerModal',
       'toggleSimpleModal',
@@ -55,18 +52,8 @@ class AppComponent extends React.Component {
     ]) {this[methodName] = this[methodName].bind(this);}
 
     this.state = {
-      selectedCountry: 'au',
-      selectedFlavours: 'vanilla',
       showSimpleModal: false,
     };
-  }
-
-  setSelectedCountry(newValue) {
-    this.setState({ selectedCountry: newValue.value });
-  }
-
-  setSelectedFlavours(newValue) {
-    this.setState({ selectedFlavours: newValue });
   }
 
   toggleListPickerModal() {
@@ -150,12 +137,12 @@ class AppComponent extends React.Component {
 
     const ntNode = {
       id: '1',
-      label: 'Northern Territory',
-      type: 'State',
-      path: auPath,
-      value: 500,
-      rootTypeId: '0',
       isExpandable: true,
+      label: 'Northern Territory',
+      path: auPath,
+      rootTypeId: '0',
+      type: 'State',
+      value: 500,
     };
 
     const qldNode =
@@ -331,31 +318,9 @@ class AppComponent extends React.Component {
 
 
         <h1>Select</h1>
-        <Select
-          clearable={false}
-          name="countriesSelect"
-          noResultsText="No matching countries."
-          onChange={this.setSelectedCountry}
-          options={selectCountriesOptions}
-          placeholder="Countries"
-          value={this.state.selectedCountry}
-        />
-
-        <br />
-
-        <Select
-          addLabelText="Add '{label}' flavour?"
-          allowCreate // Not implemented by react-select v1.0.0-beta8 TODO: When supported, check it works.
-          list
-          name="flavoursSelect"
-          noResultsText="No flavours :("
-          onChange={this.setSelectedFlavours}
-          options={selectFlavoursOptions}
-          placeholder="Select your favourites."
-          simpleValue
-          value={this.state.selectedFlavours}
-        />
-
+        <Provider store={store}>
+          <ExampleSelect />
+        </Provider>
 
         <h1>TreePicker</h1>
 
@@ -409,8 +374,8 @@ class AppComponent extends React.Component {
         />
 
         <Button
-          data-test-selector="button-split-list-picker"
           bsStyle="primary"
+          data-test-selector="button-split-list-picker"
           onClick={this.toggleSplitListPickerModal}
         >
           Open Split ListPicker
@@ -435,8 +400,8 @@ class AppComponent extends React.Component {
         <h1>UserListPicker</h1>
 
         <Button
-          data-test-selector="button-user-list-picker"
           bsStyle="primary"
+          data-test-selector="button-user-list-picker"
           onClick={this.toggleUserListPickerModal}
         >
           Open UserListPicker
@@ -456,88 +421,9 @@ class AppComponent extends React.Component {
 
 
         <h1>Forms</h1>
-        <BorderedWell>
-          <PageTitle title="Form Example">
-            <Button className="btn-inverse">Cancel</Button>
-            <Button bsStyle="primary">Save</Button>
-          </PageTitle>
-          <form className="form-horizontal">
-            <fieldset>
-
-              <FormGroup
-                addon="$"
-                helpText="Helpful text."
-                label="Form Group"
-                placeholder="5.00"
-              />
-
-              <div className="form-group">
-                <label htmlFor="exampleTextInput" className="control-label col-xs-3">Text input</label>
-                <div className="col-xs-9">
-                  <div className="input-group col-xs-6">
-                    <input type="text" className="form-control" id="exampleTextInput" placeholder="Text input" />
-                  </div>
-                  <br />
-
-                  <div className="form-control-static">Instruction or grouped placeholder</div>
-                  <div className="input-group col-xs-6">
-                    <div className="input-group-addon">$</div>
-                    <input type="text" className="form-control" id="exampleTextInputAddon" placeholder="w. addon" />
-                    <div className="input-group-addon">value</div>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset className="borderless">
-              <div className="form-group">
-                <label htmlFor="exampleTextarea" className="control-label col-xs-3">Text area (optional)</label>
-                <div className="col-xs-9">
-                  <textarea className="form-control" id="exampleTextarea" placeholder="Text area"></textarea>
-                  <p className="help-block">Help text or example.</p>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="countriesSelect" className="control-label col-xs-3">Select box</label>
-                <div className="col-xs-9">
-                  <Select
-                    clearable={false}
-                    name="countriesSelect"
-                    noResultsText="No matching countries."
-                    onChange={this.setSelectedCountry}
-                    options={selectCountriesOptions}
-                    placeholder="Countries"
-                    value={this.state.selectedCountry}
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="exampleInputFile" className="control-label col-xs-3">File input</label>
-                <div className="col-xs-9">
-                  <input type="file" id="exampleInputFile" />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <div className="col-xs-9 col-xs-offset-3">
-                  <div className="checkbox">
-                    <Checkbox
-                      label={<span>Checkbox.</span>}
-                    />
-                  </div>
-                </div>
-              </div>
-
-            </fieldset>
-          </form>
-          <PageTitle isFooter>
-            <Button className="btn-inverse">Cancel</Button>
-            <Button bsStyle="primary">Save</Button>
-          </PageTitle>
-        </BorderedWell>
-
+        <Provider store={store}>
+          <ExampleForm />
+        </Provider>
       </div>
     );
   }
