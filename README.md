@@ -1,6 +1,8 @@
 Adslot UI
 =========
 
+[![npm version](https://badge.fury.io/js/adslot-ui.svg)](https://badge.fury.io/js/adslot-ui)
+
 Core component library. By Adslot
 ---------------------------------
 
