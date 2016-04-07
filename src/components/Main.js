@@ -3,11 +3,12 @@
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-
+import moment from 'moment';
 import {
   Button,
   Checkbox,
   ConfirmModal,
+  DatePicker,
   ListPicker,
   Modal,
   Radio,
@@ -43,6 +44,7 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
+      'setSelectedDate',
       'toggleConfirmModal',
       'toggleListPickerModal',
       'toggleSimpleModal',
@@ -53,7 +55,12 @@ class AppComponent extends React.Component {
 
     this.state = {
       showSimpleModal: false,
+      startDate: moment(),
     };
+  }
+
+  setSelectedDate(newValue) {
+    this.setState({ startDate: newValue });
   }
 
   toggleListPickerModal() {
@@ -419,6 +426,12 @@ class AppComponent extends React.Component {
           users={listPickerItems}
         />
 
+        <h1>Date Picker</h1>
+        <DatePicker
+          dateFormat="DD/MM/YYYY"
+          selected={this.state.startDate}
+          onChange={this.setSelectedDate}
+        />
 
         <h1>Forms</h1>
         <Provider store={store}>

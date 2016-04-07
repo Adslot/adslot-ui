@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import {
   Checkbox,
   ConfirmModal,
+  DatePicker,
   ListPicker,
   Modal,
   Radio,
@@ -137,5 +138,10 @@ describe('MainComponent', () => {
   it('should pass a custom initialSelection into the UserListPicker', () => {
     const userListPickerElement = MainComponent.find(UserListPicker);
     expect(userListPickerElement.prop('initialSelection')).to.have.length(1);
+  });
+
+  it('should have a datepicker component', () => {
+    const datePickerComponent = MainComponent.find(DatePicker);
+    expect(datePickerComponent.prop('dateFormat')).to.equal('DD/MM/YYYY');
   });
 });
