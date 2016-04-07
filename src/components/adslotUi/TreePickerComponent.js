@@ -109,8 +109,9 @@ class TreePickerComponent extends React.Component {
       });
     } else {
       getSubtree({ rootTypeId: rootType.id, nodeId: newActiveId }, (subtree) => {
+        const activeBreadCrumbNodeIndex = 1 + _.findIndex(breadcrumbNodes, { id: newActiveId });
         this.setState({
-          breadcrumbNodes: immutable(breadcrumbNodes.slice(0, 1 + _.findIndex(breadcrumbNodes, { id: newActiveId }))),
+          breadcrumbNodes: immutable(_.slice(breadcrumbNodes, 0, activeBreadCrumbNodeIndex)),
           subtree,
         });
       });
