@@ -2,15 +2,17 @@
 
 .splitpane-component {
   display: flex;
+  flex-basis: 50%;
   flex-flow: column nowrap;
   overflow: hidden;
-  width: 50%;
 
   & + & {
     margin-left: $spacing-etalon;
   }
 
   > .grid-component {
+    flex-grow: 0;
+    flex-shrink: 1;
     overflow: auto;
   }
 }
