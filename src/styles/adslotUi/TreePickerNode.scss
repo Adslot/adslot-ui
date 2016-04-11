@@ -22,13 +22,15 @@
   }
 
   .grid-component-cell-button {
-    min-width: 40px;
     padding-bottom: 7px;
     padding-top: 7px;
 
     .btn-xs {
+      $button-size: 20px;
       font-size: 15px;
+      height: $button-size;
       line-height: 14px; // Inner Cell Height
+      width: $button-size;
     }
   }
 }
