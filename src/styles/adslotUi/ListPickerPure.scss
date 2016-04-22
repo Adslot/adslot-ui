@@ -4,9 +4,13 @@
   display: flex;
   flex-direction: column;
 
-  .grid-component-cell-header-right,
-  .grid-component-cell-toggle {
+  .grid-component-cell-header-right {
     text-align: right;
+  }
+
+  .grid-component-cell-toggle {
+    align-items: center;
+    display: flex;
   }
 
   .empty-component {
