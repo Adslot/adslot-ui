@@ -19,8 +19,7 @@ $listpicker-header-height: 37px;
 
       &-items {
         max-height: $listpicker-split-height - $listpicker-header-height;
-        overflow: auto;
-        overflow-x: hidden;
+        overflow: hidden;
 
         .grid-component {
           border-top: 0;
