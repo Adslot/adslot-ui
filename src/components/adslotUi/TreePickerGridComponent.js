@@ -31,11 +31,13 @@ const TreePickerGridComponent = ({
         }}
       />
     )}
-    <Empty
-      collection={nodes}
-      svgSymbol={emptySvgSymbol}
-      text={emptyText}
-    />
+    {nodes ?
+      <Empty
+        collection={nodes}
+        svgSymbol={emptySvgSymbol}
+        text={emptyText}
+      /> :
+      null}
   </Grid>
 );
 
@@ -46,7 +48,7 @@ TreePickerGridComponent.propTypes = {
   emptyText: PropTypes.string.isRequired,
   expandNode: PropTypes.func,
   includeNode: PropTypes.func,
-  nodes: PropTypes.arrayOf(TreePickerPropTypes.node).isRequired,
+  nodes: PropTypes.arrayOf(TreePickerPropTypes.node),
   removeNode: PropTypes.func,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func,
