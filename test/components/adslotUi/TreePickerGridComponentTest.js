@@ -36,4 +36,22 @@ describe('TreePickerGridComponent', () => {
     expect(emptyElement.prop('svgSymbol')).to.equal(props.emptySvgSymbol);
     expect(emptyElement.prop('text')).to.equal(props.emptyText);
   });
+
+  it('should not display empty with an undefined nodes list', () => {
+    const props = {
+      emptySvgSymbol: TreePickerMocks.svgSymbol,
+      emptyText: 'Empty!',
+      expandNode: _.noop,
+      includeNode: _.noop,
+      nodes: undefined,
+      removeNode: _.noop,
+      selected: false,
+      valueFormatter: TreePickerMocks.valueFormatter,
+    };
+    const component = shallow(<TreePickerGrid {...props} />);
+    const gridElement = component.find(Grid);
+    const emptyElement = gridElement.find(Empty);
+
+    expect(emptyElement).to.have.length(0);
+  });
 });
