@@ -19,7 +19,7 @@ const fastStatelessWrapper = (ComposedComponent, propsToCheck) =>
         return getFromProps(nextProps) === getFromProps(this.props);
       };
 
-      return !_.some(propsToCheck, isEqualProps);
+      return !_.every(propsToCheck, isEqualProps);
     }
 
     render() {

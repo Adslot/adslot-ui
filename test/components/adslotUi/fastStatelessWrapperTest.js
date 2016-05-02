@@ -12,6 +12,14 @@ describe('fastStatelessWrapper', () => {
     expect(shouldUpdate).to.equal(true);
   });
 
+  it('should re-render on partial attribute matches', () => {
+    const GridFast = fastStatelessWrapper(Grid, ['mutable1', 'mutable2']);
+    const shallowRenderer = shallow(<GridFast mutable1="foo" mutable2="foo" fixed="bar" />);
+    const nextProps = { mutable1: 'foo', mutable2: 'quux', fixed: 'bar' };
+    const shouldUpdate = shallowRenderer.instance().shouldComponentUpdate(nextProps);
+    expect(shouldUpdate).to.equal(true);
+  });
+
   it('should re-render on specified attribute change one level deep', () => {
     const GridFast = fastStatelessWrapper(Grid, ['mutable']);
     const props = {
