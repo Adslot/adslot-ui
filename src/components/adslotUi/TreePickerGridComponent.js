@@ -5,7 +5,7 @@ import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import React, { PropTypes } from 'react';
 import { Empty, Grid, SvgSymbol } from 'alexandria-adslot';
 
-const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected']);
+const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'selected', 'disableInclude']);
 
 const TreePickerGridComponent = ({
   emptySvgSymbol,
@@ -16,6 +16,7 @@ const TreePickerGridComponent = ({
   selected,
   valueFormatter,
   emptyText,
+  disableInclude,
 }) => (
   <Grid>
     {_.map(nodes, (node) =>
@@ -28,6 +29,7 @@ const TreePickerGridComponent = ({
           removeNode,
           selected,
           valueFormatter,
+          disableInclude,
         }}
       />
     )}
@@ -52,6 +54,7 @@ TreePickerGridComponent.propTypes = {
   removeNode: PropTypes.func,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func,
+  disableInclude: PropTypes.bool,
 };
 
 export default TreePickerGridComponent;

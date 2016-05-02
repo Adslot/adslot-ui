@@ -30,6 +30,7 @@ const TreePickerNodeComponent = ({
   removeNode,
   selected,
   valueFormatter,
+  disableInclude,
 }) => {
   const pathElement = !_.isEmpty(node.path) ?
     <span className={`${baseClass}-path`}>
@@ -72,7 +73,7 @@ const TreePickerNodeComponent = ({
         }
         {(!selected && (node.isSelectable !== false)) ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound}>
+            <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound} disabled={disableInclude}>
               +
             </Button>
           </GridCell>
@@ -91,6 +92,7 @@ TreePickerNodeComponent.propTypes = {
   removeNode: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func.isRequired,
+  disableInclude: PropTypes.bool,
 };
 
 TreePickerNodeComponent.defaultProps = {

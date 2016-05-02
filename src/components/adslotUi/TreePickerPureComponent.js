@@ -35,6 +35,7 @@ const TreePickerPureComponent = ({
   totalsSuffix,
   valueFormatter,
   warnOnRequired,
+  disableInclude,
 }) => {
   const changeRootTypeBound = (rootType) => {
     if (rootType.id !== activeRootTypeId) {
@@ -87,6 +88,7 @@ const TreePickerPureComponent = ({
             nodes: selectableNodes,
             selected: false,
             valueFormatter,
+            disableInclude,
           }}
         />
         <FlexSpacer />
@@ -159,6 +161,7 @@ TreePickerPureComponent.propTypes = {
   totalsSuffix: PropTypes.string,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool,
+  disableInclude: PropTypes.bool,
 };
 
 TreePickerPureComponent.defaultProps = {

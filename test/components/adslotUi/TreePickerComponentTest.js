@@ -449,4 +449,24 @@ describe('TreePickerComponent', () => {
     runComponentWillReceiveProps({ shallowRenderer: component, nextProps });
     checkLoadingData({ component, expectedCount: 1, expectedSelection: initialSelection, getSubtreeCount });
   });
+
+  it('should not disable the include button when a root is below the maximum selections', () => {
+    const maximumSelectionsByRootType = { a: 5 };
+
+    const props = { initialSelection, getSubtree, rootTypes, throttleTime: 0, maximumSelectionsByRootType };
+    const component = createAndMountComponent(<TreePickerComponent {...props} />);
+    const treePickerPureElement = getTreePickerPureElement(component);
+
+    expect(treePickerPureElement.prop('disableInclude')).to.equal(false);
+  });
+
+  it('should disable the include button when a root is above the maximum selections', () => {
+    const maximumSelectionsByRootType = { a: 2 };
+
+    const props = { initialSelection, getSubtree, rootTypes, throttleTime: 0, maximumSelectionsByRootType };
+    const component = createAndMountComponent(<TreePickerComponent {...props} />);
+    const treePickerPureElement = getTreePickerPureElement(component);
+
+    expect(treePickerPureElement.prop('disableInclude')).to.equal(true);
+  });
 });
