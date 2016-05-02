@@ -23,6 +23,7 @@ const TreePickerSimplePureComponent = ({
   selectedNodes,
   svgSymbolCancel,
   svgSymbolSearch,
+  disableInclude,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   return (
@@ -49,6 +50,7 @@ const TreePickerSimplePureComponent = ({
             includeNode,
             nodes: selectableNodes,
             selected: false,
+            disableInclude,
           }}
         />
         <FlexSpacer />
@@ -87,6 +89,7 @@ TreePickerSimplePureComponent.propTypes = {
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
+  disableInclude: PropTypes.bool,
 };
 
 export default TreePickerSimplePureComponent;

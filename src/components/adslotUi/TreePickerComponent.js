@@ -164,6 +164,15 @@ class TreePickerComponent extends React.Component {
     this.props.modalClose();
   }
 
+  shouldDisableIncludeNode() {
+    const { state, props } = this;
+    const rootTypeId = _.get(state, 'rootType.id');
+
+    const maximumSelections = _.get(props, `maximumSelectionsByRootType[${rootTypeId}]`);
+    const selectedNodes = _.get(state, `selectedNodesByRootType[${rootTypeId}]`);
+    return maximumSelections && selectedNodes && (selectedNodes.length >= maximumSelections);
+  }
+
   render() {
     const { state, props } = this;
     const treePickerPureProps = _.assign(
@@ -171,6 +180,7 @@ class TreePickerComponent extends React.Component {
       {
         activeRootTypeId: _.get(state, 'rootType.id'),
         emptySvgSymbol: _.get(state, 'rootType.emptySvgSymbol'),
+        disableInclude: this.shouldDisableIncludeNode(),
       },
 
       _.pick(props, [
@@ -256,6 +266,7 @@ TreePickerComponent.propTypes = {
   totalsSuffix: PropTypes.string,
   valueFormatter: PropTypes.func,
   warnOnRequired: PropTypes.bool.isRequired,
+  maximumSelectionsByRootType: PropTypes.object,
 };
 TreePickerComponent.defaultProps = {
   averageWithinRootType: false,
