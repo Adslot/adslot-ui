@@ -15,6 +15,11 @@
   "settings": {
     "lodash": {
       "version": 3
+    },
+    "import/resolver": {
+      "webpack": {
+        "config": "cfg/dev.js"
+      }
     }
   },
   "rules": {

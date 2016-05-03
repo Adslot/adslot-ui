@@ -11,7 +11,7 @@ const ConfirmModalComponent = ({
   modalTitle,
   show,
 }) => {
-  const cancelAction = () => {modalClose();};
+  const cancelAction = () => { modalClose(); };
 
   const applyAction = () => {
     modalApply();
@@ -47,7 +47,7 @@ ConfirmModalComponent.propTypes = {
 ConfirmModalComponent.defaultProps = {
   buttonCancelLabel: 'Cancel',
   buttonConfirmLabel: 'Confirm',
-  modalApply: () => {throw new Error('AdslotUi ConfirmModal needs a modalApply handler');},
+  modalApply: () => { throw new Error('AdslotUi ConfirmModal needs a modalApply handler'); },
 
   modalDescription: 'Are you sure?',
   show: false,

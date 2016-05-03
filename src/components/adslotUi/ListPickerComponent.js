@@ -18,15 +18,15 @@ class ListPickerComponent extends React.Component {
       'getApplyButtonState',
       'loadData',
       'selectItem',
-    ]) {this[methodName] = this[methodName].bind(this);}
+    ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {};
   }
 
-  componentDidMount() {this.loadData();}
+  componentDidMount() { this.loadData(); }
 
   getApplyButtonState(selectedItems) {
-    if (this.props.allowEmptySelection) {return false;}
+    if (this.props.allowEmptySelection) return false;
 
     return _.isEmpty(selectedItems);
   }
@@ -41,7 +41,7 @@ class ListPickerComponent extends React.Component {
 
   selectItem(item) {
     const { selectedItems } = this.state;
-    if (!this.props.allowMultiSelection) {selectedItems.length = 0;}
+    if (!this.props.allowMultiSelection) selectedItems.length = 0;
 
     selectedItems.push(item);
     this.setState({
@@ -189,10 +189,10 @@ ListPickerComponent.defaultProps = {
   allowMultiSelection: true,
   initialSelection: [],
   items: [],
-  modalApply: () => {throw new Error('AdslotUi ListPicker needs a modalApply handler');},
+  modalApply: () => { throw new Error('AdslotUi ListPicker needs a modalApply handler'); },
 
   modalClassName: 'listpicker-component',
-  modalClose: () => {throw new Error('AdslotUi ListPicker needs a modalClose handler');},
+  modalClose: () => { throw new Error('AdslotUi ListPicker needs a modalClose handler'); },
 
   modalTitle: 'Select Items',
   show: false,

@@ -49,7 +49,7 @@ class AppComponent extends React.Component {
       'toggleSplitListPickerModal',
       'toggleTreePickerModal',
       'toggleUserListPickerModal',
-    ]) {this[methodName] = this[methodName].bind(this);}
+    ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {
       showSimpleModal: false,
@@ -167,7 +167,7 @@ class AppComponent extends React.Component {
     };
 
     let simpleSubtree = [];
-    getSubtree({ rootTypeId: '0' }, (data) => {simpleSubtree = data;});
+    getSubtree({ rootTypeId: '0' }, (data) => { simpleSubtree = data; });
 
     return (
       <div className="index">

@@ -96,9 +96,9 @@ TreePickerNodeComponent.propTypes = {
 };
 
 TreePickerNodeComponent.defaultProps = {
-  includeNode: (node) => {throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);},
+  includeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`); },
 
-  removeNode: (node) => {throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);},
+  removeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`); },
 
   selected: false,
   valueFormatter: (value) => value,

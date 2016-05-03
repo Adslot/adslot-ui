@@ -27,7 +27,7 @@ class TreePickerComponent extends React.Component {
       'searchOnChange',
       'searchOnClear',
       'searchOnQuery',
-    ]) {this[methodName] = this[methodName].bind(this);}
+    ]) { this[methodName] = this[methodName].bind(this); }
 
     _.assign(this, {
       shouldComponentUpdate: PureRenderMixin.shouldComponentUpdate.bind(this),
@@ -37,7 +37,7 @@ class TreePickerComponent extends React.Component {
   }
 
   componentDidMount() {
-    this._isMounted = true;
+    this.currentlyMounted = true;
     this.loadData();
   }
 
@@ -46,10 +46,10 @@ class TreePickerComponent extends React.Component {
       .thru(getIds)
       .xor(getIds(this.props.initialSelection))
       .isEmpty()
-    ) {this.loadData(nextProps.initialSelection);}
+    ) { this.loadData(nextProps.initialSelection); }
   }
 
-  componentWillUnmount() { this._isMounted = false; }
+  componentWillUnmount() { this.currentlyMounted = false; }
 
   loadData(initialSelection = this.props.initialSelection) {
     const rootType = immutable(_.first(this.props.rootTypes));
@@ -61,7 +61,7 @@ class TreePickerComponent extends React.Component {
     );
 
     this.props.getSubtree({ rootTypeId: _.get(rootType, 'id') }, (subtree) => {
-      if (this._isMounted) {
+      if (this.currentlyMounted) {
         this.setState({
           breadcrumbNodes: [],
           rootType,
@@ -276,7 +276,7 @@ TreePickerComponent.defaultProps = {
     throw new Error(`AdslotUi TreePicker needs a modalApply handler for ${JSON.stringify(selected)}`);
   },
 
-  modalClose: () => {throw new Error('AdslotUi TreePicker needs a modalClose handler');},
+  modalClose: () => { throw new Error('AdslotUi TreePicker needs a modalClose handler'); },
 
   modalTitle: 'Edit Tree',
   rootTypes: [],
