@@ -4,7 +4,6 @@ exports.formReducer = (state = {}, action) => {
   const immutableState = immutable(state);
   switch (action.type) {
     case 'save':
-      alert(JSON.stringify(action.formValues));
       return immutableState.merge(action.formValues);
     case 'update':
       return immutableState.merge(action.values);

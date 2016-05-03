@@ -85,9 +85,9 @@ UserListPickerComponent.defaultProps = {
   avatarColor: _.noop,
   emptyMessage: 'No users.',
   initialSelection: [],
-  modalApply: () => {throw new Error('AdslotUi UserListPicker needs a modalApply handler');},
+  modalApply: () => { throw new Error('AdslotUi UserListPicker needs a modalApply handler'); },
 
-  modalClose: () => {throw new Error('AdslotUi UserListPicker needs a modalClose handler');},
+  modalClose: () => { throw new Error('AdslotUi UserListPicker needs a modalClose handler'); },
 
   modalDescription: 'Select users.',
   modalTitle: 'Select Users',

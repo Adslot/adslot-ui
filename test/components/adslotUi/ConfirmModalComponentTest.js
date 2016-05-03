@@ -75,9 +75,9 @@ describe('ConfirmModalComponent', () => {
   it('should call `modalApply` and `modalClose` when we click Apply', () => {
     let applyCalls = 0;
     let closeCalls = 0;
-    const applyMock = () => {applyCalls++;};
+    const applyMock = () => { applyCalls++; };
 
-    const closeMock = () => {closeCalls++;};
+    const closeMock = () => { closeCalls++; };
 
     const component = shallow(<ConfirmModalComponent modalApply={applyMock} modalClose={closeMock} />);
     const modalFooterElement = component.find(Modal.Footer);
@@ -96,7 +96,7 @@ describe('ConfirmModalComponent', () => {
 
   it('should call `modalClose` when we click Cancel', () => {
     let closeCalls = 0;
-    const closeMock = () => {closeCalls += 1;};
+    const closeMock = () => { closeCalls += 1; };
 
     const component = shallow(<ConfirmModalComponent modalClose={closeMock} />);
     const modalFooterElement = component.find(Modal.Footer);

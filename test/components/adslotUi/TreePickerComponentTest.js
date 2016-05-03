@@ -323,9 +323,9 @@ describe('TreePickerComponent', () => {
   it('should call `modalApply` and `modalClose` when we click Apply', () => {
     let applyCalls = null;
     let closeCalls = 0;
-    const applyMock = (selectedIds) => {applyCalls = selectedIds;};
+    const applyMock = (selectedIds) => { applyCalls = selectedIds; };
 
-    const closeMock = () => {closeCalls += 1;};
+    const closeMock = () => { closeCalls += 1; };
 
     const props = {
       modalApply: applyMock,
@@ -352,7 +352,7 @@ describe('TreePickerComponent', () => {
   it('should call `modalClose` and re-fetch data when we click Cancel', () => {
     let closeCalls = 0;
     let getSubtreeCalls = 0;
-    const closeMock = () => {closeCalls += 1;};
+    const closeMock = () => { closeCalls += 1; };
 
     const getSubtreeMock = ({ rootTypeId, query, nodeId }, cb) => {
       getSubtreeCalls += 1;
@@ -378,11 +378,11 @@ describe('TreePickerComponent', () => {
   it('should not set the state to the new subtree if we unmount the component before the data returns', () => {
     let closeCalls = 0;
     let getSubtreeCalls = 0;
-    const closeMock = () => {closeCalls += 1;};
+    const closeMock = () => { closeCalls += 1; };
 
     const getSubtreeMock = ({ rootTypeId, query, nodeId }, cb) => {
       getSubtreeCalls += 1;
-      if (getSubtreeCalls === 2) {return cb([maleNode]);}
+      if (getSubtreeCalls === 2) { return cb([maleNode]); }
 
       return cb([]);
     };

@@ -223,9 +223,9 @@ describe('ListPickerComponent', () => {
   it('should call `modalApply` and `modalClose` when we click Apply', () => {
     let applyCalls = null;
     let closeCalls = 0;
-    const applyMock = (selectedItems) => {applyCalls = selectedItems;};
+    const applyMock = (selectedItems) => { applyCalls = selectedItems; };
 
-    const closeMock = () => {closeCalls += 1;};
+    const closeMock = () => { closeCalls += 1; };
 
     const props = {
       initialSelection: getInitialSelection(),
@@ -249,7 +249,7 @@ describe('ListPickerComponent', () => {
 
   it('should call `modalClose` when we click Cancel', () => {
     let closeCalls = 0;
-    const closeMock = () => {closeCalls += 1;};
+    const closeMock = () => { closeCalls += 1; };
 
     const component = createAndMountComponent(<ListPickerComponent modalClose={closeMock} />);
     const modalFooterElement = component.find(Modal.Footer);

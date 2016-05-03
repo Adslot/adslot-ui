@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch) => ({
       setTimeout(() => {
         dispatch({ type: 'submitting', isSubmitting: false });
         if (isNaN(Number(values.group))) {
-          alert('Input must be a dollar amount.'); // alerting, however in reality would dispatch to an error state
+          // alerting, however in reality would dispatch to an error state
+          alert('Input must be a dollar amount.');  // eslint-disable-line no-alert
           reject('Input must be a dollar amount.');
         } else {
           dispatch(showResults(values));

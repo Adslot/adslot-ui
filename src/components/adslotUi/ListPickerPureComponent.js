@@ -91,12 +91,12 @@ ListPickerPureComponent.propTypes = {
 
 ListPickerPureComponent.defaultProps = {
   allowMultiSelection: true,
-  deselectItem: () => {throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');},
+  deselectItem: () => { throw new Error('AdslotUi ListPickerPure needs a deselectItem handler'); },
 
   emptyMessage: 'No items to select.',
   labelFormatter: (item) => item.label,
   items: [],
-  selectItem: () => {throw new Error('AdslotUi ListPickerPure needs a selectItem handler');},
+  selectItem: () => { throw new Error('AdslotUi ListPickerPure needs a selectItem handler'); },
 
   selectedItems: [],
 };

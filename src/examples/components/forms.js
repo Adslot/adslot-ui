@@ -111,7 +111,8 @@ const ExampleForm = ({
           <div className="form-group">
             <label htmlFor="exampleInputFile" className="control-label col-xs-3">File input</label>
             <div className="col-xs-9">
-              <input type="file"
+              <input
+                type="file"
                 disabled={isSubmitting}
                 id="exampleInputFile"
                 onChange={onChange('file')}
