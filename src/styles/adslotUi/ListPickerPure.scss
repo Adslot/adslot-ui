@@ -5,12 +5,16 @@
   flex-direction: column;
 
   .grid-component-cell-header-right {
-    text-align: right;
+    flex-basis: 10%;
+    justify-content: center;
+    text-align: center;
   }
 
   .grid-component-cell-toggle {
     align-items: center;
     display: flex;
+    flex-basis: 10%;
+    justify-content: center;
   }
 
   .empty-component {

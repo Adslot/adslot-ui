@@ -90,6 +90,8 @@ class AppComponent extends React.Component {
 
     const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 
+    const controllerFormatter = () => (<Checkbox />);
+
     const avatarColor = () => 'cyan';
 
     const teamMember1 = { avatar: '//lorempixel.com/35/35/people/7', givenName: 'John', id: 1, surname: 'Smith' };
@@ -113,6 +115,7 @@ class AppComponent extends React.Component {
     const listPickerItemHeaders = {
       left: 'Team',
       right: 'Member',
+      optional: 'Required',
     };
 
     const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
@@ -366,6 +369,7 @@ class AppComponent extends React.Component {
           itemHeaders={listPickerItemHeaders}
           items={listPickerItems}
           labelFormatter={labelFormatter}
+          controllerFormatter={controllerFormatter}
           modalClose={this.toggleListPickerModal}
           modalDescription="Please select the user that you want."
           modalFootnote="You can select one user."

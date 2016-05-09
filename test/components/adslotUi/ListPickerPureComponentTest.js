@@ -59,6 +59,24 @@ describe('ListPickerPureComponent', () => {
     });
   });
 
+  it('should render with props including controllerFormatter', () => {
+    const controllerFormatter = () => (<Empty />);
+    const itemHeaders = _.assign({}, ListPickerMocks.userHeaders, { optional: 'Required' });
+    const props = { itemHeaders, items: users, labelFormatter, selectedItems, controllerFormatter };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+
+    const headerGridElement = component.find(Grid).first();
+    const gridHeaderElement = headerGridElement.find(GridRow);
+    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
+    expect(gridHeaderCellElements.last().children().text()).to.equal('Required');
+
+    const gridElement = component.find(Grid).last();
+    const gridRowElements = gridElement.find(GridRow);
+    gridRowElements.forEach((gridRowElement) => {
+      expect(gridRowElement.find(GridCell).last().find(Empty).length).to.equal(1);
+    });
+  });
+
   it('should render radio buttons with `allowMultiSelection` as false', () => {
     const props = { allowMultiSelection: false, items: users, selectedItems };
     const component = shallow(<ListPickerPureComponent {...props} />);
