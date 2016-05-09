@@ -80,6 +80,7 @@ class ListPickerComponent extends React.Component {
         emptySvgSymbol={props.emptySvgSymbol}
         deselectItem={this.deselectItem}
         labelFormatter={props.labelFormatter}
+        controllerFormatter={props.controllerFormatter}
         itemHeaders={props.itemHeaders}
         items={props.items}
         selectItem={this.selectItem}
@@ -169,6 +170,7 @@ ListPickerComponent.propTypes = {
   }),
   items: PropTypes.arrayOf(itemType).isRequired,
   labelFormatter: PropTypes.func,
+  controllerFormatter: PropTypes.func,
   linkButtons: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

@@ -16,6 +16,7 @@ const ListPickerPureComponent = ({
   emptySvgSymbol,
   items,
   labelFormatter,
+  controllerFormatter,
   itemHeaders,
   selectItem,
   selectedItems,
@@ -35,12 +36,17 @@ const ListPickerPureComponent = ({
       {itemHeaders ?
         <Grid>
           <GridRow type="header">
-            <GridCell classSuffixes={['header-left']}>
+            <GridCell stretch>
               {itemHeaders.left}
             </GridCell>
             <GridCell classSuffixes={['header-right']}>
               {itemHeaders.right}
             </GridCell>
+            {controllerFormatter ?
+              <GridCell classSuffixes={['header-right']}>
+                {itemHeaders.optional}
+              </GridCell>
+            : null}
           </GridRow>
         </Grid> :
         null
@@ -58,6 +64,11 @@ const ListPickerPureComponent = ({
                   onChange={handleChange(item)}
                 />
               </GridCell>
+              {controllerFormatter ?
+                <GridCell classSuffixes={['toggle']}>
+                  {controllerFormatter(item)}
+                </GridCell>
+              : null}
             </GridRow>
           )}
           <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
@@ -80,6 +91,7 @@ ListPickerPureComponent.propTypes = {
   emptyMessage: PropTypes.string.isRequired,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   labelFormatter: PropTypes.func.isRequired,
+  controllerFormatter: PropTypes.func,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
     right: PropTypes.string,
