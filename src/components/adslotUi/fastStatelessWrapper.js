@@ -1,3 +1,6 @@
+// jscs:disable validateIndentation
+// https://github.com/jscs-dev/node-jscs/issues/1497
+
 import _ from 'lodash';
 import React from 'react';
 
