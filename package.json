@@ -62,7 +62,7 @@
     "file-loader": "^0.8.5",
     "generator-react-webpack": "^3.2.4",
     "isparta-loader": "^2.0.0",
-    "jscs": "^2.11.0",
+    "jscs": "^3.0.2",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^0.5.5",
