@@ -44,7 +44,7 @@ const ListPickerPureComponent = ({
             </GridCell>
             {controllerFormatter ?
               <GridCell classSuffixes={['header-right']}>
-                {itemHeaders.optional}
+                {itemHeaders.addon}
               </GridCell>
             : null}
           </GridRow>
