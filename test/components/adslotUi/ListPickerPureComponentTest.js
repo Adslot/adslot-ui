@@ -61,7 +61,7 @@ describe('ListPickerPureComponent', () => {
 
   it('should render with props including controllerFormatter', () => {
     const controllerFormatter = () => (<Empty />);
-    const itemHeaders = _.assign({}, ListPickerMocks.userHeaders, { optional: 'Required' });
+    const itemHeaders = _.assign({}, ListPickerMocks.userHeaders, { addon: 'Required' });
     const props = { itemHeaders, items: users, labelFormatter, selectedItems, controllerFormatter };
     const component = shallow(<ListPickerPureComponent {...props} />);
 

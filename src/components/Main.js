@@ -115,7 +115,7 @@ class AppComponent extends React.Component {
     const listPickerItemHeaders = {
       left: 'Team',
       right: 'Member',
-      optional: 'Required',
+      addon: 'Required',
     };
 
     const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
