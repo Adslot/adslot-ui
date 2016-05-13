@@ -1,10 +1,11 @@
 import Main from 'components/Main';
 import React from 'react';
+import moment from 'moment';
 import { shallow } from 'enzyme';
-
 import {
   Checkbox,
   ConfirmModal,
+  DatePicker,
   ListPicker,
   Modal,
   Radio,
@@ -137,5 +138,18 @@ describe('MainComponent', () => {
   it('should pass a custom initialSelection into the UserListPicker', () => {
     const userListPickerElement = MainComponent.find(UserListPicker);
     expect(userListPickerElement.prop('initialSelection')).to.have.length(1);
+  });
+
+  it('should toggle `onChange` on `Open DatePicker` change', () => {
+    MainComponent.setState({ startDate: moment() });
+    const datePickerComponent = MainComponent.find(DatePicker);
+    const datePickerInput = datePickerComponent.find('.form-control');
+    datePickerInput.find('.form-control').simulate('change');
+    expect(datePickerInput.hasClass('react-datepicker-ignore-onclickoutside'));
+  });
+
+  it('should pass a custom dateFormat into the DatePicker', () => {
+    const datePickerComponent = MainComponent.find(DatePicker);
+    expect(datePickerComponent.prop('dateFormat')).to.equal('DD MMM YYYY');
   });
 });

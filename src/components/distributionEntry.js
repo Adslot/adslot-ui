@@ -4,10 +4,12 @@ require('styles/_bootstrap-custom.scss');
 require('styles/_icheck-custom.scss');
 require('styles/_react-select-custom.scss');
 require('styles/_react-toggle-custom.scss');
+require('styles/_react-datepicker-custom.scss');
 
 import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
+import DatePicker from 'react-datepicker/dist/react-datepicker';
 import FormGroup from 'components/adslotUi/FormGroupComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
@@ -49,6 +51,7 @@ module.exports = {
   Button,
   Checkbox,
   ConfirmModal,
+  DatePicker,
   Empty,
   FlexSpacer,
   FormGroup,
