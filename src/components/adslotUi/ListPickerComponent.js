@@ -105,7 +105,7 @@ class ListPickerComponent extends React.Component {
                   </GridRow>
                   {_.map(props.itemInfo.properties, (property) =>
                     <GridRow key={property.label} horizontalBorder={false}>
-                      <GridCell classSuffixes={['label']}>{property.label}</GridCell>
+                      <GridCell classSuffixes={['label']} dts={_.kebabCase(property.label)}>{property.label}</GridCell>
                       <GridCell stretch classSuffixes={['value']}>{property.value}</GridCell>
                     </GridRow>
                   )}
@@ -130,10 +130,13 @@ class ListPickerComponent extends React.Component {
               )}
             </div>
           }
-          <Button className="btn-inverse" onClick={this.cancelAction}>
+          <Button className="btn-inverse" onClick={this.cancelAction} data-test-selector="listpicker-cancel-button">
             Cancel
           </Button>
-          <Button bsStyle="primary" onClick={this.applyAction} disabled={state.disableApplyButton}>
+          <Button
+            bsStyle="primary" onClick={this.applyAction} disabled={state.disableApplyButton}
+            data-test-selector="listpicker-apply-button"
+          >
             Apply
           </Button>
         </Modal.Footer>

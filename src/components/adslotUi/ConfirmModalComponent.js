@@ -25,8 +25,10 @@ const ConfirmModalComponent = ({
         <p>{modalDescription}</p>
       </Modal.Body>
       <Modal.Footer>
-        {modalClose ? <Button className="btn-inverse" onClick={cancelAction}>{buttonCancelLabel}</Button> : null}
-        <Button bsStyle="primary" onClick={applyAction}>{buttonConfirmLabel}</Button>
+        {modalClose ? <Button className="btn-inverse" onClick={cancelAction} data-test-selector="confirm-modal-cancel">
+          {buttonCancelLabel}</Button> : null}
+        <Button bsStyle="primary" onClick={applyAction} data-test-selector="confirm-modal-confirm">
+          {buttonConfirmLabel}</Button>
       </Modal.Footer>
     </Modal>
   );
