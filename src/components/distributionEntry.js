@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import DatePicker from 'react-datepicker/dist/react-datepicker';
+import FileUpload from 'components/adslotUi/FileUploadComponent';
 import FormGroup from 'components/adslotUi/FormGroupComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
@@ -58,6 +59,7 @@ module.exports = {
   DatePicker,
   Empty,
   FlexSpacer,
+  FileUpload,
   FormGroup,
   Grid,
   GridCell,

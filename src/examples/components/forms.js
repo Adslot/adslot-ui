@@ -1,6 +1,6 @@
 import mapDispatchToProps from '../redux/actions';
 import React, { PropTypes } from 'react';
-import { Button, BorderedWell, PageTitle, FormGroup, Select, Checkbox } from 'components/distributionEntry';
+import { Button, BorderedWell, PageTitle, FileUpload, FormGroup, Select, Checkbox } from 'components/distributionEntry';
 import { connect } from 'react-redux';
 
 const selectFruit = [
@@ -18,6 +18,7 @@ const ExampleForm = ({
   const onChange = (attribute) => ({ target: { value } }) => updateValues({ [attribute]: value });
   const onChangeCheckbox = (attribute) => ({ target: { checked } }) => updateValues({ [attribute]: checked });
   const onChangeSelect = (attribute) => ({ value }) => updateValues({ [attribute]: value });
+  const onChangeUploadFile = (fileData) => updateValues({ [fileData]: fileData });
 
   const submitForm = () => validateAndSave(formValues);
 
@@ -119,6 +120,19 @@ const ExampleForm = ({
                 disabled={isSubmitting}
                 id="exampleInputFile"
                 onChange={onChange('file')}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="exampleInputFile" className="control-label col-xs-3">FileUpload Component</label>
+            <div className="col-xs-9">
+              <FileUpload
+                filter=".*"
+                disabledUploadBtn={isSubmitting}
+                placeholder="No file uploaded"
+                btnUploadText="Add file"
+                setFileData={onChangeUploadFile}
               />
             </div>
           </div>
