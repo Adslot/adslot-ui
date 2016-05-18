@@ -23,9 +23,9 @@ const ListPickerPureComponent = ({
 }) => {
   const handleChange = (item) => (event, checked) => {
     if (checked) {
-      selectItem(item);
+      selectItem(item, allowMultiSelection);
     } else {
-      deselectItem(item);
+      deselectItem(item, allowMultiSelection);
     }
   };
 
