@@ -124,29 +124,39 @@ describe('ListPickerPureComponent', () => {
 
   it('should call `selectItem` handler when we select', () => {
     let handlerCalled = 0;
+    let isAllowMultiSelection;
     const props = {
+      allowMultiSelection: false,
       items: users,
       selectedItems,
-      selectItem: () => handlerCalled++,
+      selectItem: (item, allowMultiSelection) => {
+        handlerCalled++;
+        isAllowMultiSelection = allowMultiSelection;
+      },
     };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
 
     const gridElement = component.find(Grid);
     const gridRowElements = gridElement.find(GridRow);
-    const unselectedCheckboxElement = gridRowElements.at(0).find(Checkbox);
-    expect(unselectedCheckboxElement.prop('checked')).to.equal(false);
+    const unselectedRadioButtonElement = gridRowElements.at(0).find(Radio);
+    expect(unselectedRadioButtonElement.prop('checked')).to.equal(false);
 
-    unselectedCheckboxElement.simulate('change', null, true);
+    unselectedRadioButtonElement.simulate('change', null, true);
     expect(handlerCalled).to.equal(1);
+    expect(isAllowMultiSelection).to.equal(false);
   });
 
   it('should call `deselectItem` handler when we deselect', () => {
     let handlerCalled = 0;
+    let isAllowMultiSelection;
     const props = {
-      deselectItem: () => handlerCalled++,
       items: users,
       selectedItems,
+      deselectItem: (item, allowMultiSelection) => {
+        handlerCalled++;
+        isAllowMultiSelection = allowMultiSelection;
+      },
     };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
@@ -158,5 +168,6 @@ describe('ListPickerPureComponent', () => {
 
     selectedCheckboxElement.simulate('change', null, false);
     expect(handlerCalled).to.equal(1);
+    expect(isAllowMultiSelection).to.equal(true);
   });
 });
