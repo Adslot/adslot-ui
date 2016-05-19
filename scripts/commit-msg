@@ -16,7 +16,7 @@ var TAG_REGEX = /^(?:Fix|Update|Breaking|Docs|Build|New|Upgrade|chore\(package\)
  * @returns {string} The result of the executed command.
  */
 function execSilent(cmd) {
-  return exec(cmd, { silent: true }).output;
+  return exec(cmd, { silent: true }).stdout;
 }
 
 /**
