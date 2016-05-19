@@ -24,6 +24,11 @@ then
 fi
 
 
+# Run linting and commit check.
+echo "  - linting"
+npm run posttest
+
+
 # Compile the distribution from source.
 echo "  - compiling distribution files;"
 npm run -s dist && git add dist/*
