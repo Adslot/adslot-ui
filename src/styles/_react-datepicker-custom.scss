@@ -125,11 +125,14 @@
   }
 
   &__input-container {
+    display: block;
+
     input {
       background-image: $icon-calendar;
       background-origin: content-box;
       background-position: center right;
       background-repeat: no-repeat;
+      cursor: pointer;
       padding-right: 4px;
 
       &::-ms-clear {

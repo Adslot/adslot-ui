@@ -431,12 +431,17 @@ class AppComponent extends React.Component {
         />
 
         <h1>Date Picker</h1>
-        <DatePicker
-          className="form-control"
-          dateFormat="DD MMM YYYY"
-          selected={this.state.startDate}
-          onChange={this.setSelectedDate}
-        />
+        <div className="row">
+          <div className="col-xs-3">
+            <DatePicker
+              className="form-control"
+              dateFormat="DD MMM YYYY"
+              selected={this.state.startDate}
+              onChange={this.setSelectedDate}
+              placeholderText="Date e.g. 03 Sep 2016"
+            />
+          </div>
+        </div>
 
         <h1>Forms</h1>
         <Provider store={store}>
