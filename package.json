@@ -80,7 +80,7 @@
     "open": "^0.0.5",
     "phantomjs-prebuilt": "^2.1.5",
     "postcss-loader": "^0.9.1",
-    "react-addons-pure-render-mixin": "^15.0.2",
+    "react-addons-pure-render-mixin": "^15.1.0",
     "react-addons-test-utils": "^15.0.2",
     "react-bootstrap": "^0.29.3",
     "react-datepicker": "^0.27.0",
