@@ -90,7 +90,7 @@
     "react-select": "^1.0.0-beta13",
     "react-toggle": "^2.0.1",
     "redux": "^3.3.1",
-    "sass-lint": "1.5.1",
+    "sass-lint": "1.7.0",
     "sass-loader": "^3.2.0",
     "seamless-immutable": "^6.0.0",
     "semver": "^5.1.0",
