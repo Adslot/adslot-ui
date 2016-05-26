@@ -81,7 +81,7 @@ const ListPickerPureComponent = ({
 ListPickerPureComponent.displayName = 'AdslotUiListPickerPureComponent';
 
 const itemType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  id: PropTypes.any.isRequired, // id can be numeric or uuid string
 });
 
 ListPickerPureComponent.propTypes = {
