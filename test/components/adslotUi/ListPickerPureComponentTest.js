@@ -11,8 +11,10 @@ describe('ListPickerPureComponent', () => {
   const {
     getInitialSelection,
     labelFormatter,
+    teamMember4,
     userHeaders,
     users,
+    usersWithUuid,
   } = ListPickerMocks;
 
   const selectedItems = getInitialSelection();
@@ -56,6 +58,41 @@ describe('ListPickerPureComponent', () => {
 
       const gridRowCellToggleElement = gridRowCellElements.last().find(Checkbox);
       expect(gridRowCellToggleElement.prop('checked')).to.equal(_.some(selectedItems, { id: users[index].id }));
+    });
+  });
+
+  it('should render with props including items and selectItems with uuids', () => {
+    const selectedItemsWithUuid = [teamMember4];
+    const props = {
+      itemHeaders: userHeaders,
+      items: usersWithUuid,
+      labelFormatter,
+      selectedItems: selectedItemsWithUuid,
+    };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
+
+    const headerGridElement = component.find(Grid).first();
+    const gridHeaderElement = headerGridElement.find(GridRow);
+    expect(gridHeaderElement.prop('type')).to.equal('header');
+
+    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
+    expect(gridHeaderCellElements.first().children().text()).to.equal('Team');
+    expect(gridHeaderCellElements.last().children().text()).to.equal('Member');
+
+    const gridElement = component.find(Grid).last();
+    const gridRowElements = gridElement.find(GridRow);
+    gridRowElements.forEach((gridRowElement, index) => {
+      const gridRowCellElements = gridRowElement.find(GridCell);
+      const gridRowCellLeftElement = gridRowCellElements.first();
+      expect(gridRowCellLeftElement.prop('stretch')).to.equal(true);
+
+      const gridRowCellLeftText = gridRowCellLeftElement.children().text();
+      expect(gridRowCellLeftText).to.equal(labelFormatter(usersWithUuid[index]));
+
+      const gridRowCellToggleElement = gridRowCellElements.last().find(Checkbox);
+      const isUserChecked = _.some(selectedItemsWithUuid, { id: usersWithUuid[index].id });
+      expect(gridRowCellToggleElement.prop('checked')).to.equal(isUserChecked);
     });
   });
 
