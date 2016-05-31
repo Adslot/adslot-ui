@@ -83,6 +83,14 @@ label {
   margin-top: 8px;
 }
 
+.form-horizontal {
+  .control-label {
+    .help-block {
+      margin-top: 1px;
+    }
+  }
+}
+
 .borderedwell-component {
   .form-horizontal {
     padding: $spacing-etalon $spacing-etalon 0;
