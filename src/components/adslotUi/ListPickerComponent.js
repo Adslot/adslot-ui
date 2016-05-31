@@ -105,8 +105,14 @@ class ListPickerComponent extends React.Component {
                   </GridRow>
                   {_.map(props.itemInfo.properties, (property) =>
                     <GridRow key={property.label} horizontalBorder={false}>
-                      <GridCell classSuffixes={['label']} dts={_.kebabCase(property.label)}>{property.label}</GridCell>
-                      <GridCell stretch classSuffixes={['value']}>{property.value}</GridCell>
+                      <GridCell classSuffixes={['label']}>{property.label}</GridCell>
+                      <GridCell
+                        classSuffixes={['value']}
+                        dts={_.kebabCase(property.label)}
+                        stretch
+                      >
+                        {property.value}
+                      </GridCell>
                     </GridRow>
                   )}
                 </Grid>

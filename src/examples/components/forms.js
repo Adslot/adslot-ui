@@ -77,7 +77,10 @@ const ExampleForm = ({
 
         <fieldset className="borderless">
           <div className="form-group">
-            <label htmlFor="exampleTextarea" className="control-label col-xs-3">Text area (optional)</label>
+            <label htmlFor="exampleTextarea" className="control-label col-xs-3">
+              Text area
+              <div className="help-block">(recommended)</div>
+            </label>
             <div className="col-xs-9">
               <textarea
                 className="form-control"
