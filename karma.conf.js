@@ -23,6 +23,7 @@ module.exports = function configureKarma(config) {
       reporters: [
         { type: 'lcov', subdir: '.' },
         { type: 'json', subdir: '.' },
+        { type: 'text-summary', subdir: '.' },
       ],
     },
     webpack: webpackCfg,

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import sinon from 'sinon';
 import { Button, PageTitle, Select, Checkbox } from 'components/distributionEntry';
-import { ExampleFormPure } from 'examples/components/forms';
+import { ExampleFormPure, mapStateToProps } from 'examples/components/forms';
 import { shallow } from 'enzyme';
 
 describe('ExampleForm', () => {
@@ -95,5 +95,16 @@ describe('ExampleForm', () => {
     ).first().simulate('click');
 
     expect(mockValidateAndSave.calledOnce).to.equal(true);
+  });
+
+  it('should map state to props', () => {
+    const state = {
+      form: { foo: 'bar' },
+      visibility: { isSubmitting: true },
+    };
+    expect(mapStateToProps(state)).to.deep.equal({
+      formValues: { foo: 'bar' },
+      isSubmitting: true,
+    });
   });
 });
