@@ -162,7 +162,7 @@ ExampleForm.propTypes = {
   validateAndSave: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   formValues: state.form,
   isSubmitting: state.visibility.isSubmitting,
 });

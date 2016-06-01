@@ -111,6 +111,11 @@ describe('MainComponent', () => {
     expect(listPickerElement.prop('labelFormatter')({ givenName: 'John', surname: 'Doe' })).to.equal('John Doe');
   });
 
+  it('should pass a custom controllerFormatter into the ListPicker', () => {
+    const listPickerElement = MainComponent.find(ListPicker).first();
+    expect(listPickerElement.prop('controllerFormatter')().type).to.equal(Checkbox);
+  });
+
   it('should pass a custom initialSelection into the ListPicker', () => {
     const listPickerElement = MainComponent.find(ListPicker).first();
     expect(listPickerElement.prop('initialSelection')).to.have.length(1);
