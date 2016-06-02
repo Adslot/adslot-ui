@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import sinon from 'sinon';
-import { Button, PageTitle, Select, Checkbox } from 'components/distributionEntry';
+import { Button, FilePicker, PageTitle, Select, Checkbox } from 'components/distributionEntry';
 import { ExampleFormPure, mapStateToProps } from 'examples/components/forms';
 import { shallow } from 'enzyme';
 
@@ -78,6 +78,26 @@ describe('ExampleForm', () => {
       expect(mockValidateAndSave.called).to.equal(false);
     });
     expect(expectedSelectCallCount).to.equal(component.find(Select).length);
+  });
+
+  it('should trigger change event on file change', () => {
+    const mockUpdateValues = sinon.spy();
+    const mockValidateAndSave = sinon.spy();
+    const component = shallow(<ExampleFormPure
+      formValues={{}}
+      isSubmitting={false}
+      updateValues={mockUpdateValues}
+      validateAndSave={mockValidateAndSave}
+    />);
+
+    let expectedFilePickerCallCount = 0;
+    component.find(FilePicker).forEach((node) => {
+      node.simulate('select', 'some file');
+
+      expect(mockUpdateValues.callCount).to.equal(++expectedFilePickerCallCount);
+      expect(mockValidateAndSave.called).to.equal(false);
+    });
+    expect(expectedFilePickerCallCount).to.equal(component.find(FilePicker).length);
   });
 
   it('should validate and save form on submit', () => {
