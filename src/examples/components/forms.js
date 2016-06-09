@@ -1,6 +1,6 @@
 import mapDispatchToProps from '../redux/actions';
 import React, { PropTypes } from 'react';
-import { Button, BorderedWell, PageTitle, FormGroup, Select, Checkbox } from 'components/distributionEntry';
+import { Button, BorderedWell, PageTitle, FilePicker, FormGroup, Select, Checkbox } from 'components/distributionEntry';
 import { connect } from 'react-redux';
 
 const selectFruit = [
@@ -18,6 +18,7 @@ const ExampleForm = ({
   const onChange = (attribute) => ({ target: { value } }) => updateValues({ [attribute]: value });
   const onChangeCheckbox = (attribute) => ({ target: { checked } }) => updateValues({ [attribute]: checked });
   const onChangeSelect = (attribute) => ({ value }) => updateValues({ [attribute]: value });
+  const onChangeFile = (fileData) => updateValues({ file: fileData });
 
   const submitForm = () => validateAndSave(formValues);
 
@@ -119,6 +120,19 @@ const ExampleForm = ({
                 disabled={isSubmitting}
                 id="exampleInputFile"
                 onChange={onChange('file')}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="exampleFilePicker" className="control-label col-xs-3">FilePicker Component</label>
+            <div className="col-xs-9">
+              <FilePicker
+                filter=".*"
+                disabled={isSubmitting}
+                placeholder="No file selected"
+                label="Add file"
+                onSelect={onChangeFile}
               />
             </div>
           </div>
