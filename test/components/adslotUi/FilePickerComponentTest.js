@@ -1,7 +1,9 @@
 import _ from 'lodash';
+import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
+import sinon from 'sinon';
 import FilePickerComponent from 'components/adslotUi/FilePickerComponent.js';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 describe('FilePickerComponent', () => {
   it('should render with defaults', () => {
@@ -12,6 +14,9 @@ describe('FilePickerComponent', () => {
     expect(fileElement.prop('placeholder')).to.equal('No file selected');
     expect(fileElement.prop('title')).to.equal('');
 
+    const selectButtonElement = component.find(Button);
+    expect(selectButtonElement.children().find('span').text()).to.equal('Select');
+
     const fileInputElement = component.find('.file-input');
     expect(fileInputElement.prop('type')).to.equal('file');
   });
@@ -20,9 +25,17 @@ describe('FilePickerComponent', () => {
     let onSelectCalls = 0;
     const onSelect = () => { onSelectCalls++; };
 
-    const component = shallow(<FilePickerComponent onSelect={onSelect} />);
+    // mount is needed for refs
+    const component = mount(<FilePickerComponent onSelect={onSelect} />);
     let fileElement = component.find('.form-control');
     expect(fileElement.prop('title')).to.equal('');
+
+    const selectButtonElement = component.find(Button);
+    const fileInput = component.instance().refs.fileInput;
+    sinon.spy(fileInput, 'click');
+    selectButtonElement.simulate('click');
+    expect(fileInput.click.calledOnce).to.equal(true);
+    fileInput.click.restore();
 
     const fileInputElement = component.find('.file-input');
     fileInputElement.simulate('change', { target: { files: [{ name: 'selected file' }] } });
