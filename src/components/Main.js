@@ -97,7 +97,7 @@ class AppComponent extends React.Component {
 
     const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 
-    const controllerFormatter = () => (<Checkbox />);
+    const addonFormatter = () => (<Checkbox />);
 
     const avatarColor = () => 'cyan';
 
@@ -375,8 +375,9 @@ class AppComponent extends React.Component {
           initialSelection={listPickerInitialSelection}
           itemHeaders={listPickerItemHeaders}
           items={listPickerItems}
+          itemType="list"
           labelFormatter={labelFormatter}
-          controllerFormatter={controllerFormatter}
+          addonFormatter={addonFormatter}
           modalClose={this.toggleListPickerModal}
           modalDescription="Please select the user that you want."
           modalFootnote="You can select one user."
@@ -399,6 +400,7 @@ class AppComponent extends React.Component {
           itemHeaders={listPickerItemHeaders}
           itemInfo={listPickerItemInfo}
           items={listPickerItems}
+          itemType="split-user"
           labelFormatter={labelFormatter}
           linkButtons={[{ label: 'Create User', href: '#' }]}
           modalClose={this.toggleSplitListPickerModal}

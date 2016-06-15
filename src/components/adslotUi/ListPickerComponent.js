@@ -80,9 +80,10 @@ class ListPickerComponent extends React.Component {
         emptySvgSymbol={props.emptySvgSymbol}
         deselectItem={this.deselectItem}
         labelFormatter={props.labelFormatter}
-        controllerFormatter={props.controllerFormatter}
+        addonFormatter={props.addonFormatter}
         itemHeaders={props.itemHeaders}
         items={props.items}
+        itemType={props.itemType}
         selectItem={this.selectItem}
         selectedItems={state.selectedItems}
       />
@@ -98,7 +99,7 @@ class ListPickerComponent extends React.Component {
           {_.isEmpty(props.itemInfo) ?
             <div className="listpicker-component-body">{listPickerPureElement}</div> :
             <div className="listpicker-component-body-split">
-              <SplitPane>
+              <SplitPane dts={_.kebabCase(props.itemInfo.label)}>
                 <Grid>
                   <GridRow type="header">
                     <GridCell>{props.itemInfo.label}</GridCell>
@@ -178,8 +179,9 @@ ListPickerComponent.propTypes = {
     ).isRequired,
   }),
   items: PropTypes.arrayOf(itemType).isRequired,
+  itemType: PropTypes.string.isRequired,
   labelFormatter: PropTypes.func,
-  controllerFormatter: PropTypes.func,
+  addonFormatter: PropTypes.func,
   linkButtons: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

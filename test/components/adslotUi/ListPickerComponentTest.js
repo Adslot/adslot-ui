@@ -43,6 +43,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('emptySvgSymbol')).to.be.an('undefined');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.be.an('undefined');
+    expect(listPickerPureElement.prop('itemType')).to.be.an('undefined');
     expect(listPickerPureElement.prop('items')).to.deep.equal([]);
     expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([]);
@@ -66,8 +67,9 @@ describe('ListPickerComponent', () => {
       emptyMessage: 'No users.',
       emptySvgSymbol: { href: '/some.svg#id' },
       initialSelection,
-      itemHeaders: userHeaders,
       items: users,
+      itemHeaders: userHeaders,
+      itemType: 'user',
       labelFormatter,
       linkButtons: [{ label: 'Create User', href: '#' }],
       modalDescription: 'Select users.',
@@ -99,6 +101,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
+    expect(listPickerPureElement.prop('itemType')).to.equal('user');
     expect(listPickerPureElement.prop('items')).to.deep.equal(users);
     expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember2]);
@@ -123,9 +126,10 @@ describe('ListPickerComponent', () => {
       emptyIcon: '/some.png',
       emptyMessage: 'No users.',
       initialSelection,
+      items: users,
       itemHeaders: userHeaders,
       itemInfo,
-      items: users,
+      itemType: 'user',
       labelFormatter,
       modalDescription: 'Select users.',
       modalFootnote: 'You can select multiple users.',
@@ -149,6 +153,7 @@ describe('ListPickerComponent', () => {
     expect(modalFootnoteText).to.equal('You can select multiple users.');
 
     const splitPaneElements = modalBodyElement.find(SplitPaneComponent);
+    expect(splitPaneElements.first().prop('dts')).to.equal('user-details');
     const itemInfoGridElement = splitPaneElements.first().find(Grid);
     const itemInfoLabelElement = itemInfoGridElement.find(GridRow).first().find(GridCell);
     expect(itemInfoLabelElement.children().text()).to.equal('User Details');
@@ -156,8 +161,10 @@ describe('ListPickerComponent', () => {
     const itemInfoPropertyElements = itemInfoGridElement.find(GridRow);
     expect(itemInfoPropertyElements.at(1).find(GridCell).first().children().text()).to.equal('Name');
     expect(itemInfoPropertyElements.at(1).find(GridCell).last().children().text()).to.equal('Jill Smith');
+    expect(itemInfoPropertyElements.at(1).find(GridCell).last().prop('dts')).to.equal('name');
     expect(itemInfoPropertyElements.at(2).find(GridCell).first().children().text()).to.equal('Age');
     expect(itemInfoPropertyElements.at(2).find(GridCell).last().children().text()).to.equal('21');
+    expect(itemInfoPropertyElements.at(2).find(GridCell).last().prop('dts')).to.equal('age');
 
     const listPickerPureElement = splitPaneElements.find(ListPickerPureComponent);
     expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);
@@ -167,6 +174,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
+    expect(listPickerPureElement.prop('itemType')).to.equal('user');
     expect(listPickerPureElement.prop('items')).to.deep.equal(users);
     expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([teamMember2]);

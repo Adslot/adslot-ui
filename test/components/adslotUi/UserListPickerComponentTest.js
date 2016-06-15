@@ -18,6 +18,7 @@ describe('UserListPickerComponent', () => {
     expect(component.prop('emptyMessage')).to.equal('No users.');
     expect(component.prop('initialSelection')).to.deep.equal([]);
     expect(component.prop('itemHeaders')).to.deep.equal(userHeaders);
+    expect(component.prop('itemType')).to.equal('user');
     expect(component.prop('items')).to.deep.equal([]);
     expect(component.prop('modalClassName')).to.equal('userlistpicker-component');
     expect(component.prop('modalDescription')).to.equal('Select users.');
@@ -42,6 +43,7 @@ describe('UserListPickerComponent', () => {
     expect(component.prop('emptySvgSymbol')).to.deep.equal({ href: '/some.svg#id' });
     expect(component.prop('initialSelection')).to.deep.equal(getInitialSelection());
     expect(component.prop('itemHeaders')).to.deep.equal(userHeaders);
+    expect(component.prop('itemType')).to.equal('user');
     expect(component.prop('items')).to.deep.equal(users);
     expect(component.prop('modalClassName')).to.equal('userlistpicker-component');
     expect(component.prop('modalDescription')).to.equal('Select team members that you want.');

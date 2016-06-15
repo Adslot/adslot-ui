@@ -41,6 +41,7 @@ const UserListPickerComponent = ({
       initialSelection={initialSelection}
       itemHeaders={userHeaders}
       items={users}
+      itemType="user"
       labelFormatter={labelFormatter}
       modalApply={modalApply}
       modalClassName="userlistpicker-component"
