@@ -35,11 +35,6 @@
         outline: 0;
       }
 
-      .svg-symbol-component,
-      .icon {
-        margin-right: 5px;
-      }
-
       .svg-symbol-component {
         vertical-align: top;
       }
@@ -79,6 +74,12 @@
       &:focus {
         border-right: $border;
       }
+    }
+  }
+
+  .flexible-wrapper-inline {
+    > .flexible-spacer-component {
+      min-width: $padding-base-horizontal;
     }
   }
 }

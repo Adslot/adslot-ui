@@ -2,7 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const host = '0.0.0.0';
-const port = 8000;
+const port = 8001;
 const publicPath = '/assets/';
 const srcPath = path.join(__dirname, '/../src');
 

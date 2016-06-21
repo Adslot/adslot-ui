@@ -6,7 +6,7 @@ import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNavComponent from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerPureComponent from 'components/adslotUi/TreePickerPureComponent';
 import TreePickerSelectedComponent from 'components/adslotUi/TreePickerSelectedComponent';
-import { FlexSpacer, SvgSymbol } from 'alexandria-adslot';
+import { FlexibleSpacer, SvgSymbol } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 
 describe('TreePickerPureComponent', () => {
@@ -39,8 +39,8 @@ describe('TreePickerPureComponent', () => {
     expect(treePickerGridElement.prop('emptySvgSymbol')).to.be.an('undefined');
     expect(treePickerGridElement.prop('emptyText')).to.equal('No items to select.');
 
-    const flexSpacerElement = leftPaneElement.find(FlexSpacer);
-    expect(flexSpacerElement).to.have.length(1);
+    const flexibleSpacerElement = leftPaneElement.find(FlexibleSpacer);
+    expect(flexibleSpacerElement).to.have.length(1);
 
     const rightPaneElement = component.find(SplitPaneComponent).last();
     const treePickerSelectedElement = rightPaneElement.find(TreePickerSelectedComponent);
