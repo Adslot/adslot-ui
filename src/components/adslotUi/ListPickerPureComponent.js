@@ -16,8 +16,9 @@ const ListPickerPureComponent = ({
   emptySvgSymbol,
   items,
   labelFormatter,
-  controllerFormatter,
+  addonFormatter,
   itemHeaders,
+  itemType,
   selectItem,
   selectedItems,
 }) => {
@@ -32,7 +33,7 @@ const ListPickerPureComponent = ({
   const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
 
   return (
-    <div className="listpickerpure-component">
+    <div className="listpickerpure-component" data-test-selector={`listpickerpure-component-${itemType}`}>
       {itemHeaders ?
         <Grid>
           <GridRow type="header">
@@ -42,8 +43,8 @@ const ListPickerPureComponent = ({
             <GridCell classSuffixes={['header-right']}>
               {itemHeaders.right}
             </GridCell>
-            {controllerFormatter ?
-              <GridCell classSuffixes={['header-right']}>
+            {addonFormatter ?
+              <GridCell classSuffixes={['header-addon']}>
                 {itemHeaders.addon}
               </GridCell>
             : null}
@@ -54,19 +55,19 @@ const ListPickerPureComponent = ({
       <div className="listpickerpure-component-items">
         <Grid>
           {_.map(items, (item) =>
-            <GridRow key={item.id}>
-              <GridCell stretch>
+            <GridRow key={item.id} dts={`${itemType}-${item.id}`}>
+              <GridCell stretch dts="label">
                 {labelFormatter(item)}
               </GridCell>
-              <GridCell classSuffixes={['toggle']}>
+              <GridCell classSuffixes={['toggle']} dts="toggle">
                 <ToggleComponent
                   checked={isItemSelected({ item, selectedItems })}
                   onChange={handleChange(item)}
                 />
               </GridCell>
-              {controllerFormatter ?
-                <GridCell classSuffixes={['toggle']}>
-                  {controllerFormatter(item)}
+              {addonFormatter ?
+                <GridCell classSuffixes={['addon']} dts="addon">
+                  {addonFormatter(item)}
                 </GridCell>
               : null}
             </GridRow>
@@ -80,7 +81,7 @@ const ListPickerPureComponent = ({
 
 ListPickerPureComponent.displayName = 'AdslotUiListPickerPureComponent';
 
-const itemType = PropTypes.shape({
+const itemProps = PropTypes.shape({
   id: PropTypes.any.isRequired, // id can be numeric or uuid string
 });
 
@@ -91,14 +92,15 @@ ListPickerPureComponent.propTypes = {
   emptyMessage: PropTypes.string.isRequired,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   labelFormatter: PropTypes.func.isRequired,
-  controllerFormatter: PropTypes.func,
+  addonFormatter: PropTypes.func,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
     right: PropTypes.string,
   }),
-  items: PropTypes.arrayOf(itemType).isRequired,
+  items: PropTypes.arrayOf(itemProps).isRequired,
+  itemType: PropTypes.string.isRequired,
   selectItem: PropTypes.func.isRequired,
-  selectedItems: PropTypes.arrayOf(itemType).isRequired,
+  selectedItems: PropTypes.arrayOf(itemProps).isRequired,
 };
 
 ListPickerPureComponent.defaultProps = {
