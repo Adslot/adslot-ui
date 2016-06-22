@@ -167,7 +167,8 @@ ListPickerComponent.propTypes = {
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
     left: PropTypes.string,
-    right: PropTypes.string,
+    toggle: PropTypes.string,
+    addon: PropTypes.string,
   }),
   itemInfo: PropTypes.shape({
     label: PropTypes.string.isRequired,

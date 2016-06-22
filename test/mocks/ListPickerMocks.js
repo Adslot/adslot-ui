@@ -12,7 +12,7 @@ const teamMember4 = { givenName: 'Jones', id: 'bdf9e9a6-22df-11e6-b67b-9e71128ca
 
 const teamMember5 = { givenName: 'Joe', id: 'bdf9e9a6-22df-11e6-b67b-9e71128cae88', surname: 'Huang' };
 
-const userHeaders = { left: 'Team', right: 'Member' };
+const userHeaders = { label: 'Team', toggle: 'Member' };
 
 const users = [teamMember1, teamMember2, teamMember3];
 

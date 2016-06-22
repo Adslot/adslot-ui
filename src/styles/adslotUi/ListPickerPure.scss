@@ -4,17 +4,25 @@
   display: flex;
   flex-direction: column;
 
-  .grid-component-cell-header-right {
-    flex-basis: 10%;
-    justify-content: center;
-    text-align: center;
-  }
+  .grid-component-cell {
+    &-toggle,
+    &-addon,
+    &-header-toggle,
+    &-header-addon {
+      flex-basis: 10%;
+      justify-content: center;
+    }
 
-  .grid-component-cell-toggle {
-    align-items: center;
-    display: flex;
-    flex-basis: 10%;
-    justify-content: center;
+    &-toggle,
+    &-addon {
+      align-items: center;
+      display: flex;
+    }
+
+    &-header-toggle,
+    &-header-addon {
+      text-align: center;
+    }
   }
 
   .empty-component {

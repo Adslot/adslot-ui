@@ -38,10 +38,10 @@ const ListPickerPureComponent = ({
         <Grid>
           <GridRow type="header">
             <GridCell stretch>
-              {itemHeaders.left}
+              {itemHeaders.label}
             </GridCell>
-            <GridCell classSuffixes={['header-right']}>
-              {itemHeaders.right}
+            <GridCell classSuffixes={['header-toggle']}>
+              {itemHeaders.toggle}
             </GridCell>
             {addonFormatter ?
               <GridCell classSuffixes={['header-addon']}>
@@ -94,8 +94,8 @@ ListPickerPureComponent.propTypes = {
   labelFormatter: PropTypes.func.isRequired,
   addonFormatter: PropTypes.func,
   itemHeaders: PropTypes.shape({
-    left: PropTypes.string,
-    right: PropTypes.string,
+    label: PropTypes.string,
+    toggle: PropTypes.string,
   }),
   items: PropTypes.arrayOf(itemProps).isRequired,
   itemType: PropTypes.string.isRequired,
