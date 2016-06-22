@@ -5,7 +5,7 @@ import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
 import React, { PropTypes } from 'react';
-import { FlexSpacer, SvgSymbol } from 'alexandria-adslot';
+import { FlexibleSpacer, SvgSymbol } from 'alexandria-adslot';
 import { removeSelected } from 'helpers/TreePickerHelpers';
 
 require('styles/adslotUi/TreePickerPure.scss');
@@ -91,7 +91,7 @@ const TreePickerPureComponent = ({
             disableInclude,
           }}
         />
-        <FlexSpacer />
+        <FlexibleSpacer />
       </SplitPane>
 
       <SplitPane dts="treepicker-splitpane-selected">

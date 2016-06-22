@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import React, { PropTypes } from 'react';
-import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, SvgSymbol, Totals } from 'alexandria-adslot';
+import { Alert, Empty, FlexibleSpacer, Grid, GridCell, GridRow, SvgSymbol, Totals } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerSelected.scss');
 
@@ -105,7 +105,7 @@ const TreePickerSelectedComponent = ({
           svgSymbol={emptySvgSymbol}
           text="Nothing selected."
         />
-        <FlexSpacer />
+        <FlexibleSpacer />
       </div>
 
       <Totals

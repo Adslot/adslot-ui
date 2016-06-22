@@ -4,7 +4,7 @@ import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import React, { PropTypes } from 'react';
-import { FlexSpacer, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
+import { FlexibleSpacer, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
 
 require('styles/adslotUi/ListPicker.scss');
 
@@ -117,11 +117,11 @@ class ListPickerComponent extends React.Component {
                     </GridRow>
                   )}
                 </Grid>
-                <FlexSpacer />
+                <FlexibleSpacer />
               </SplitPane>
               <SplitPane>
                 {listPickerPureElement}
-                <FlexSpacer />
+                <FlexibleSpacer />
               </SplitPane>
             </div>
           }

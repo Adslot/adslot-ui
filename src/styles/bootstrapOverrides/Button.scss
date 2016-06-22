@@ -103,6 +103,12 @@
       @include reset-shadow-and-transform;
     }
   }
+
+  > .flexible-wrapper-inline {
+    > .flexible-spacer-component {
+      min-width: $padding-base-horizontal;
+    }
+  }
 }
 
 .btn-link {
@@ -121,5 +127,11 @@
 
   &:active {
     transform: translateY(0);
+  }
+
+  > .flexible-wrapper-inline {
+    > .flexible-spacer-component {
+      min-width: $padding-xs-horizontal;
+    }
   }
 }

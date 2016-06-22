@@ -9,10 +9,12 @@ import {
   Checkbox,
   ConfirmModal,
   DatePicker,
+  FlexibleSpacer,
   ListPicker,
   Modal,
   Radio,
   RadioGroup,
+  SvgSymbol,
   Tab,
   Tabs,
   Toggle,
@@ -208,6 +210,16 @@ class AppComponent extends React.Component {
           <Button bsStyle="primary" disabled>
             Disabled
           </Button>
+          <Button bsStyle="primary">
+            <span className="flexible-wrapper-inline">
+              Trailing Character<FlexibleSpacer />+
+            </span>
+          </Button>
+          <Button bsStyle="primary">
+            <span className="flexible-wrapper-inline">
+              <FlexibleSpacer />+<FlexibleSpacer />
+            </span>
+          </Button>
         </div>
 
         <div className="btn-panel">
@@ -220,6 +232,16 @@ class AppComponent extends React.Component {
           <Button bsSize="xsmall" bsStyle="primary" disabled>
             Disabled
           </Button>
+          <Button bsSize="xsmall" bsStyle="primary">
+            <span className="flexible-wrapper-inline">
+              Trailing Character<FlexibleSpacer />+
+            </span>
+          </Button>
+          <Button bsSize="xsmall" bsStyle="primary">
+            <span className="flexible-wrapper-inline">
+              <FlexibleSpacer />+<FlexibleSpacer />
+            </span>
+          </Button>
         </div>
 
 
@@ -227,8 +249,19 @@ class AppComponent extends React.Component {
         <div className="btn-panel">
           <Tabs defaultActiveKey="Audience" animation={false}>
             <Tab eventKey="Targeting" title="Targeting" active>Targeting content</Tab>
-            <Tab eventKey="Audience" title="Audience">Audience content</Tab>
-            <Tab eventKey="Billing" title="Billing" disabled>Billing content</Tab>
+            <Tab
+              eventKey="Audience"
+              title={<span className="flexible-wrapper-inline"><SvgSymbol /><FlexibleSpacer />Audience</span>}
+            >
+              Audience content
+            </Tab>
+            <Tab
+              eventKey="Billing"
+              title={<span className="flexible-wrapper-inline">+<FlexibleSpacer />Billing</span>}
+              disabled
+            >
+              Billing content
+            </Tab>
           </Tabs>
         </div>
 

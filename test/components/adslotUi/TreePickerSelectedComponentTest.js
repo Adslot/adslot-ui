@@ -5,7 +5,7 @@ import Popover from 'react-bootstrap/lib/Popover';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerSelected from 'components/adslotUi/TreePickerSelectedComponent';
-import { Alert, Empty, FlexSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
+import { Alert, Empty, FlexibleSpacer, Grid, GridCell, GridRow, Totals } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 
 describe('TreePickerSelectedComponent', () => {
@@ -71,8 +71,8 @@ describe('TreePickerSelectedComponent', () => {
     expect(emptyElement.prop('svgSymbol').classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
     expect(emptyElement.prop('text')).to.equal('Nothing selected.');
 
-    const flexSpacerElement = scrollableElement.find(FlexSpacer);
-    expect(flexSpacerElement).to.have.length(1);
+    const flexibleSpacerElement = scrollableElement.find(FlexibleSpacer);
+    expect(flexibleSpacerElement).to.have.length(1);
 
     const alertElement = component.find(Alert);
     expect(alertElement).to.have.length(0);

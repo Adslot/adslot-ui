@@ -4,7 +4,7 @@ import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerSimplePure from 'components/adslotUi/TreePickerSimplePureComponent';
-import { FlexSpacer } from 'alexandria-adslot';
+import { FlexibleSpacer } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 
 const checkElement = (expectedProps) =>
@@ -52,9 +52,9 @@ describe('TreePickerSimplePureComponent', () => {
     ]);
 
     const leftPaneElement = component.find(SplitPaneComponent).at(0);
-    expect(leftPaneElement.find(FlexSpacer)).to.have.length(1);
+    expect(leftPaneElement.find(FlexibleSpacer)).to.have.length(1);
 
     const rightPaneElement = component.find(SplitPaneComponent).at(1);
-    expect(rightPaneElement.find(FlexSpacer)).to.have.length(1);
+    expect(rightPaneElement.find(FlexibleSpacer)).to.have.length(1);
   });
 });
