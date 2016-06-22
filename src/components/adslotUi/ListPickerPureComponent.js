@@ -40,7 +40,7 @@ const ListPickerPureComponent = ({
             <GridCell stretch>
               {itemHeaders.left}
             </GridCell>
-            <GridCell classSuffixes={['header-right']}>
+            <GridCell classSuffixes={['header-toggle']}>
               {itemHeaders.right}
             </GridCell>
             {addonFormatter ?
