@@ -166,8 +166,9 @@ ListPickerComponent.propTypes = {
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   initialSelection: PropTypes.arrayOf(itemType).isRequired,
   itemHeaders: PropTypes.shape({
-    left: PropTypes.string,
-    right: PropTypes.string,
+    label: PropTypes.string,
+    toggle: PropTypes.string,
+    addon: PropTypes.string,
   }),
   itemInfo: PropTypes.shape({
     label: PropTypes.string.isRequired,

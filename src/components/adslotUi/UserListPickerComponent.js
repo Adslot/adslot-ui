@@ -75,8 +75,8 @@ UserListPickerComponent.propTypes = {
   modalTitle: PropTypes.string.isRequired,
   show: PropTypes.bool.isRequired,
   userHeaders: PropTypes.shape({
-    left: PropTypes.string,
-    right: PropTypes.string,
+    label: PropTypes.string,
+    toggle: PropTypes.string,
   }).isRequired,
   users: PropTypes.arrayOf(userType).isRequired,
 };
@@ -93,7 +93,7 @@ UserListPickerComponent.defaultProps = {
   modalDescription: 'Select users.',
   modalTitle: 'Select Users',
   show: false,
-  userHeaders: { left: 'Team', right: 'Member' },
+  userHeaders: { label: 'Team', toggle: 'Member' },
   users: [],
 };
 

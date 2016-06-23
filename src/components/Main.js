@@ -122,8 +122,8 @@ class AppComponent extends React.Component {
     const listPickerInitialSelection = [teamMember2];
 
     const listPickerItemHeaders = {
-      left: 'Team',
-      right: 'Member',
+      label: 'Team',
+      toggle: 'Member',
       addon: 'Required',
     };
 
