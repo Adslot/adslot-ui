@@ -43,4 +43,10 @@ describe('TreePickerNavComponent', () => {
     expect(breadcrumbElement.prop('nodes')).to.equal(breadcrumbNodes);
     expect(breadcrumbElement.prop('onClick')).to.equal(testFunction);
   });
+
+  it('should not render breadcrumbs if disabled', () => {
+    const component = shallow(<TreePickerNavComponent disabled />);
+    const breadcrumbElement = component.find(Breadcrumb);
+    expect(breadcrumbElement).to.have.length(0);
+  });
 });

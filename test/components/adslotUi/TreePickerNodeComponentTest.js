@@ -4,7 +4,7 @@ import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNodeComponent from 'components/adslotUi/TreePickerNodeComponent';
 import { GridCell, GridRow } from 'alexandria-adslot';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
   const { cbrNode, actNode } = TreePickerMocks;
@@ -46,6 +46,7 @@ describe('TreePickerNodeComponent', () => {
 
     const buttonElement = buttonLastCellElement.find(Button);
     expect(buttonElement.prop('onClick')).to.be.a('function');
+    expect(buttonElement.prop('disabled')).to.equal(false);
     expect(buttonElement.children().text()).to.equal('+');
   });
 
@@ -72,6 +73,17 @@ describe('TreePickerNodeComponent', () => {
     const buttonElement = buttonFirstCellElement.find(Button);
     expect(buttonElement.prop('onClick')).to.be.a('function');
     expect(buttonElement.children().text()).to.equal('−');
+  });
+
+  it('should render button as disabled when disabled is true', () => {
+    let fireCount = 0;
+    const testFunction = () => { fireCount += 1; };
+
+    const component = mount(<TreePickerNodeComponent node={cbrNode} removeNode={testFunction} selected disabled />);
+    const buttonElement = component.find(Button);
+    expect(buttonElement.prop('disabled')).to.equal(true);
+    buttonElement.simulate('click');
+    expect(fireCount).to.equal(0);
   });
 
   it('should filter value when provided', () => {
