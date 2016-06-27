@@ -24,13 +24,13 @@ const getExpander = ({ expandNode, node }) => {
 };
 
 const TreePickerNodeComponent = ({
+  disabled,
   expandNode,
   includeNode,
   node,
   removeNode,
   selected,
   valueFormatter,
-  disableInclude,
 }) => {
   const pathElement = !_.isEmpty(node.path) ?
     <span className={`${baseClass}-path`}>
@@ -52,7 +52,7 @@ const TreePickerNodeComponent = ({
       <GridRow>
         {selected ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" className="btn-inverse" onClick={removeNodeBound}>
+            <Button block bsSize="xsmall" className="btn-inverse" onClick={removeNodeBound} disabled={disabled}>
               −
             </Button>
           </GridCell>
@@ -73,7 +73,7 @@ const TreePickerNodeComponent = ({
         }
         {(!selected && (node.isSelectable !== false)) ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound} disabled={disableInclude}>
+            <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound} disabled={disabled}>
               +
             </Button>
           </GridCell>
@@ -86,16 +86,18 @@ const TreePickerNodeComponent = ({
 TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 
 TreePickerNodeComponent.propTypes = {
-  includeNode: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
   expandNode: PropTypes.func,
+  includeNode: PropTypes.func.isRequired,
   node: TreePickerPropTypes.node.isRequired,
   removeNode: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func.isRequired,
-  disableInclude: PropTypes.bool,
 };
 
 TreePickerNodeComponent.defaultProps = {
+  disabled: false,
+
   includeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`); },
 
   removeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`); },

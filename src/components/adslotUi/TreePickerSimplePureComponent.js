@@ -11,6 +11,8 @@ require('styles/adslotUi/TreePickerSimplePure.scss');
 const TreePickerSimplePureComponent = ({
   breadcrumbNodes,
   breadcrumbOnClick,
+  disabled,
+  disableInclude,
   emptySvgSymbol,
   expandNode,
   subtree,
@@ -23,7 +25,6 @@ const TreePickerSimplePureComponent = ({
   selectedNodes,
   svgSymbolCancel,
   svgSymbolSearch,
-  disableInclude,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   return (
@@ -33,6 +34,7 @@ const TreePickerSimplePureComponent = ({
           {...{
             breadcrumbNodes,
             breadcrumbOnClick,
+            disabled,
             searchOnChange,
             searchOnClear,
             searchPlaceholder,
@@ -44,13 +46,13 @@ const TreePickerSimplePureComponent = ({
 
         <TreePickerGrid
           {...{
+            disabled: disabled || disableInclude,
             emptySvgSymbol,
             emptyText: 'No items to select.',
             expandNode,
             includeNode,
             nodes: selectableNodes,
             selected: false,
-            disableInclude,
           }}
         />
         <FlexibleSpacer />
@@ -59,6 +61,7 @@ const TreePickerSimplePureComponent = ({
       <SplitPane>
         <TreePickerGrid
           {...{
+            disabled,
             emptySvgSymbol,
             emptyText: 'Nothing selected.',
             nodes: selectedNodes,
@@ -77,6 +80,8 @@ TreePickerSimplePureComponent.displayName = 'AdslotUiTreePickerSimplePureCompone
 TreePickerSimplePureComponent.propTypes = {
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode.isRequired),
   breadcrumbOnClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  disableInclude: PropTypes.bool,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   expandNode: PropTypes.func,
   includeNode: PropTypes.func,
@@ -89,7 +94,10 @@ TreePickerSimplePureComponent.propTypes = {
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
-  disableInclude: PropTypes.bool,
+};
+
+TreePickerSimplePureComponent.defaultProps = {
+  disabled: false,
 };
 
 export default TreePickerSimplePureComponent;

@@ -6,6 +6,7 @@ require('styles/adslotUi/TreePickerNav.scss');
 const TreePickerNavComponent = ({
   breadcrumbNodes,
   breadcrumbOnClick,
+  disabled,
   searchOnChange,
   searchOnClear,
   searchValue,
@@ -14,13 +15,14 @@ const TreePickerNavComponent = ({
 }) => (
   <div className="treepickernav-component">
     <Search
+      disabled={disabled}
       onChange={searchOnChange}
       onClear={searchOnClear}
       svgSymbolCancel={svgSymbolCancel}
       svgSymbolSearch={svgSymbolSearch}
       value={searchValue}
     />
-    <Breadcrumb nodes={breadcrumbNodes} onClick={breadcrumbOnClick} />
+    {!disabled ? <Breadcrumb nodes={breadcrumbNodes} onClick={breadcrumbOnClick} /> : null}
   </div>
 );
 
@@ -33,11 +35,16 @@ TreePickerNavComponent.propTypes = {
     })
   ),
   breadcrumbOnClick: PropTypes.func,
+  disabled: PropTypes.bool,
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
   searchValue: PropTypes.string,
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
+};
+
+TreePickerNavComponent.defaultProps = {
+  disabled: false,
 };
 
 export default TreePickerNavComponent;
