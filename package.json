@@ -35,7 +35,7 @@
   ],
   "author": "Adslot",
   "devDependencies": {
-    "alexandria-adslot": "^3.0.0",
+    "alexandria-adslot": "^3.1.0",
     "autoprefixer": "^6.3.4",
     "babel-core": "^6.7.2",
     "babel-eslint": "^6.0.0",
@@ -90,7 +90,7 @@
     "react-select": "^1.0.0-beta13",
     "react-toggle": "^2.0.1",
     "redux": "^3.3.1",
-    "sass-lint": "1.8.0",
+    "sass-lint": "^1.8.2",
     "sass-loader": "^3.2.0",
     "seamless-immutable": "^6.0.0",
     "semver": "^5.1.0",
