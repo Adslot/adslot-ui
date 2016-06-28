@@ -12,6 +12,7 @@ import {
   FlexibleSpacer,
   ListPicker,
   Modal,
+  PagedGrid,
   Radio,
   RadioGroup,
   SvgSymbol,
@@ -108,6 +109,12 @@ class AppComponent extends React.Component {
     const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
 
     const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
+
+    const pagedGridColumns = [
+      { key: 'id', label: 'ID' },
+      { key: 'givenName', label: 'Given Name', stretch: true },
+      { key: 'surname', label: 'Surname', stretch: true },
+    ];
 
     const listPickerItemInfo = {
       label: 'User Details',
@@ -464,6 +471,22 @@ class AppComponent extends React.Component {
           userHeaders={listPickerItemHeaders}
           users={listPickerItems}
         />
+
+
+        <h1>PagedGrid</h1>
+
+        <PagedGrid
+          columns={pagedGridColumns}
+          items={listPickerItems}
+          perPage={2}
+        />
+        <br />
+        <PagedGrid
+          columns={pagedGridColumns}
+          items={[]}
+          perPage={1}
+        />
+
 
         <h1>Date Picker</h1>
         <div className="row">

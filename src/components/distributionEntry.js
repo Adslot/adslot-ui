@@ -16,6 +16,8 @@ import ListPicker from 'components/adslotUi/ListPickerComponent';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import PagedGrid from 'components/adslotUi/PagedGridComponent';
+import Pagination from 'react-bootstrap/lib/Pagination';
 import Popover from 'react-bootstrap/lib/Popover';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
@@ -68,7 +70,9 @@ module.exports = {
   ListPickerPure,
   Modal,
   OverlayTrigger,
+  PagedGrid,
   PageTitle,
+  Pagination,
   Popover,
   PrettyDiff,
   Radio,
