@@ -10,7 +10,18 @@
   }
 
   .treepickernav-component {
+    background-color: $color-background;
     border-top: $border-lighter;
     min-height: 71px; // Align the rows after this item with the other pane's rows.
+  }
+}
+
+.background-highlighted {
+  background-color: $color-background-highlighted;
+}
+
+.splitpane-component + .splitpane-component {
+  .empty-component {
+    margin-top: 71px;
   }
 }

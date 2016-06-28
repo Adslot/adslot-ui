@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
@@ -9,6 +10,7 @@ import { removeSelected } from 'helpers/TreePickerHelpers';
 require('styles/adslotUi/TreePickerSimplePure.scss');
 
 const TreePickerSimplePureComponent = ({
+  additionalClassNames,
   breadcrumbNodes,
   breadcrumbOnClick,
   disabled,
@@ -17,6 +19,8 @@ const TreePickerSimplePureComponent = ({
   expandNode,
   subtree,
   includeNode,
+  initialStateNode,
+  initialStateSymbol,
   removeNode,
   searchOnChange,
   searchOnClear,
@@ -27,9 +31,12 @@ const TreePickerSimplePureComponent = ({
   svgSymbolSearch,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
+  const emptyText = initialStateNode && _.isEmpty(searchValue) ? initialStateNode : 'No items to select.';
+  const emptySymbol = initialStateNode && _.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
+
   return (
     <div className="treepickersimplepure-component">
-      <SplitPane>
+      <SplitPane additionalClassNames={[additionalClassNames]}>
         <TreePickerNav
           {...{
             breadcrumbNodes,
@@ -47,8 +54,8 @@ const TreePickerSimplePureComponent = ({
         <TreePickerGrid
           {...{
             disabled: disabled || disableInclude,
-            emptySvgSymbol,
-            emptyText: 'No items to select.',
+            emptySvgSymbol: emptySymbol,
+            emptyText,
             expandNode,
             includeNode,
             nodes: selectableNodes,
@@ -78,6 +85,7 @@ const TreePickerSimplePureComponent = ({
 TreePickerSimplePureComponent.displayName = 'AdslotUiTreePickerSimplePureComponent';
 
 TreePickerSimplePureComponent.propTypes = {
+  additionalClassNames: PropTypes.string,
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode.isRequired),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,
@@ -85,6 +93,8 @@ TreePickerSimplePureComponent.propTypes = {
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   expandNode: PropTypes.func,
   includeNode: PropTypes.func,
+  initialStateNode: PropTypes.any,
+  initialStateSymbol: PropTypes.shape(SvgSymbol.propTypes),
   removeNode: PropTypes.func,
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,

@@ -15,7 +15,7 @@
 @mixin button-inverse($color) {
   $transformed-color: hsl(hue($color), saturation($color), 90%);
 
-  @include button-variant($color, $color-well, $color);
+  @include button-variant($color, $color-inverse, $color);
 
   &:active,
   &:focus,
@@ -30,12 +30,12 @@
 
 // Use `.btn-inverse` and add a normal style like `info` to add colours.
 .btn-inverse {
-  @include button-variant($color-text-light, $color-well, $color-border);
+  @include button-variant($color-text-light, $color-inverse, $color-border);
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $color-background;
+    background-color: $color-background-highlighted;
   }
 
   &.btn-primary {
