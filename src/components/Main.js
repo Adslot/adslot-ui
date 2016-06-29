@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-
+import _ from 'lodash';
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -47,7 +47,9 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
+      'setSearchValue',
       'setSelectedDate',
+      'setSearchTreePickerPure',
       'toggleConfirmModal',
       'toggleListPickerModal',
       'toggleSimpleModal',
@@ -58,8 +60,47 @@ class AppComponent extends React.Component {
 
     this.state = {
       showSimpleModal: false,
+      searchValue: '',
+      searchValueTreePickerPure: '',
       startDate: moment(), // React datepicker expects a moment date, rather than JS date.
+      subTree: [
+        { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
+        { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
+      ],
+      simpleSubtree: [
+        { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
+        { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
+      ],
+      treePickerPureSubtree: [],
     };
+  }
+
+  setSearchValue(newValue) {
+    this.setState({ searchValue: newValue });
+    this.setState({
+      treePickerPureSubtree:
+        _.filter(this.state.subTree, ({ label }) => {
+          if (newValue) {
+            return _.includes(label.toLowerCase(), newValue.toLowerCase());
+          }
+
+          return false;
+        }),
+    });
+  }
+
+  setSearchTreePickerPure(newValue) {
+    this.setState({ searchValueTreePickerPure: newValue });
+    this.setState({
+      simpleSubtree:
+        _.filter(this.state.subTree, ({ label }) => {
+          if (newValue) {
+            return _.includes(label.toLowerCase(), newValue.toLowerCase());
+          }
+
+          return true;
+        }),
+    });
   }
 
   setSelectedDate(newValue) {
@@ -184,9 +225,6 @@ class AppComponent extends React.Component {
 
       return cb([]);
     };
-
-    let simpleSubtree = [];
-    getSubtree({ rootTypeId: '0' }, (data) => { simpleSubtree = data; });
 
     return (
       <div className="index">
@@ -397,11 +435,25 @@ class AppComponent extends React.Component {
           valueFormatter={valueFormatter}
         />
 
-        <h1>TreePickerSimplePure</h1>
+        <h1>TreePickerSimplePure with initial state</h1>
 
         <TreePickerSimplePure
-          selectedNodes={initialSelection}
-          subtree={simpleSubtree}
+          selectedNodes={[]}
+          subtree={this.state.treePickerPureSubtree}
+          initialStateNode={<div><h><b>Start by searching for items</b></h></div>}
+          searchValue={this.state.searchValue}
+          searchOnChange={this.setSearchValue}
+          searchOnClear={this.searchOnClear}
+          additionalClassNames={this.state.searchValue ? undefined : ['background-highlighted', 'test-class']}
+        />
+
+        <h1>TreePickerSimplePure without initial state</h1>
+
+        <TreePickerSimplePure
+          selectedNodes={[]}
+          subtree={this.state.simpleSubtree}
+          searchValue={this.state.searchValueTreePickerPure}
+          searchOnChange={this.setSearchTreePickerPure}
         />
 
         <h1>ListPicker</h1>
