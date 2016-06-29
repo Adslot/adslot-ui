@@ -6,6 +6,7 @@ require('styles/_react-select-custom.scss');
 require('styles/_react-toggle-custom.scss');
 require('styles/_react-datepicker-custom.scss');
 
+import Accordion from 'components/adslotUi/AccordionComponent';
 import Button from 'react-bootstrap/lib/Button';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
@@ -18,6 +19,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import PagedGrid from 'components/adslotUi/PagedGridComponent';
 import Pagination from 'react-bootstrap/lib/Pagination';
+import Panel from 'components/adslotUi/PanelComponent';
 import Popover from 'react-bootstrap/lib/Popover';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
@@ -50,6 +52,7 @@ import {
 } from 'alexandria-adslot';
 
 module.exports = {
+  Accordion,
   Alert,
   Avatar,
   BorderedWell,
@@ -73,6 +76,7 @@ module.exports = {
   PagedGrid,
   PageTitle,
   Pagination,
+  Panel,
   Popover,
   PrettyDiff,
   Radio,
