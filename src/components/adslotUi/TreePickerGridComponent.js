@@ -48,7 +48,7 @@ TreePickerGridComponent.displayName = 'AdslotUiTreePickerGridComponent';
 TreePickerGridComponent.propTypes = {
   disabled: PropTypes.bool,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  emptyText: PropTypes.string.isRequired,
+  emptyText: PropTypes.any.isRequired,
   expandNode: PropTypes.func,
   includeNode: PropTypes.func,
   nodes: PropTypes.arrayOf(TreePickerPropTypes.node),
