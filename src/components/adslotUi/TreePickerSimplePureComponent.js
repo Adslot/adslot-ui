@@ -36,7 +36,7 @@ const TreePickerSimplePureComponent = ({
 
   return (
     <div className="treepickersimplepure-component">
-      <SplitPane additionalClassNames={[additionalClassNames]}>
+      <SplitPane additionalClassNames={additionalClassNames}>
         <TreePickerNav
           {...{
             breadcrumbNodes,
@@ -85,7 +85,7 @@ const TreePickerSimplePureComponent = ({
 TreePickerSimplePureComponent.displayName = 'AdslotUiTreePickerSimplePureComponent';
 
 TreePickerSimplePureComponent.propTypes = {
-  additionalClassNames: PropTypes.string,
+  additionalClassNames: PropTypes.arrayOf(PropTypes.string),
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode.isRequired),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,
