@@ -1,6 +1,16 @@
 import mapDispatchToProps from '../redux/actions';
 import React, { PropTypes } from 'react';
-import { Button, BorderedWell, PageTitle, FilePicker, FormGroup, Select, Checkbox } from 'components/distributionEntry';
+import {
+  Button,
+  Checkbox,
+  BorderedWell,
+  FilePicker,
+  FormGroup,
+  PageTitle,
+  Radio,
+  RadioGroup,
+  Select,
+} from 'components/distributionEntry';
 import { connect } from 'react-redux';
 
 const selectFruit = [
@@ -147,6 +157,26 @@ const ExampleForm = ({
                   value={formValues.checkbox}
                 />
               </div>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="exampleRadioGroup" className="control-label col-xs-3">RadioGroup Stacked</label>
+            <div className="col-xs-9">
+              <RadioGroup className="radiogroup-stacked" name="testRadioGroup">
+                <Radio
+                  label="Geography"
+                  value="geography"
+                />
+                <Radio
+                  label="Contextual"
+                  value="contextual"
+                />
+                <Radio
+                  label="Audience"
+                  value="audience"
+                />
+              </RadioGroup>
             </div>
           </div>
 
