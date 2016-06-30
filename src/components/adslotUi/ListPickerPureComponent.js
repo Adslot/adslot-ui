@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import Checkbox from 'react-icheck/lib/Checkbox';
-import Radio from 'react-icheck/lib/Radio';
+import Checkbox from 'components/adslotUi/Checkbox';
+import Radio from 'components/adslotUi/Radio';
 import React, { PropTypes } from 'react';
 import { Empty, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
 
