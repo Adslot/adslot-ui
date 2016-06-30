@@ -32,7 +32,7 @@ const TreePickerSimplePureComponent = ({
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   const emptyText = initialStateNode && _.isEmpty(searchValue) ? initialStateNode : 'No items to select.';
-  const emptySymbol = initialStateNode && _.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
+  const emptySymbol = initialStateSymbol && _.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
 
   return (
     <div className="treepickersimplepure-component">
