@@ -27,9 +27,10 @@ class FilePickerComponent extends React.Component {
   render() {
     const mainClass = classNames({ [`${baseClass}-highlight`]: this.props.isHighlighted }, baseClass, 'input-group');
     const { fileName } = this.state;
+    const dts = this.props.dts
 
     return (
-      <div className={mainClass}>
+      <div className={mainClass} if dts data-test-selector={dts}>
         <input
           className="form-control"
           type="text"
@@ -67,6 +68,7 @@ FilePickerComponent.propTypes = {
   onRemove: PropTypes.func,
   onSelect: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  dts: PropTypes.string,
 };
 
 FilePickerComponent.defaultProps = {

@@ -9,6 +9,7 @@ describe('FilePickerComponent', () => {
   it('should render with defaults', () => {
     const component = shallow(<FilePickerComponent onSelect={_.noop} />);
     expect(component.prop('className')).to.equal('filepicker-component input-group');
+    expect(component.prop('data-test-selector').to.be.an('undefined');
 
     const fileElement = component.find('.form-control');
     expect(fileElement.prop('placeholder')).to.equal('No file selected');
@@ -19,6 +20,12 @@ describe('FilePickerComponent', () => {
 
     const fileInputElement = component.find('.file-input');
     expect(fileInputElement.prop('type')).to.equal('file');
+  });
+
+  it('should render with data-test-selector', () => {
+    const component = shallow(<FilePickerComponent onSelect={_.noop} dts="file-picker"/>);
+    expect(component.prop('className')).to.equal('filepicker-component input-group');
+    expect(component.prop('data-test-selector').to.equal('file-picker'));
   });
 
   it('should show remove button and call `onSelect` when file selected', () => {
