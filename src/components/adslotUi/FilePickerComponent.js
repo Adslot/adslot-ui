@@ -50,6 +50,7 @@ class FilePickerComponent extends React.Component {
                 type="file"
                 onChange={this.onChange}
                 accept={this.props.filter}
+                data-test-selector={this.props.dts}
               />
             </Button> :
             <Button bsStyle="primary" disabled>{this.props.label}</Button>}
@@ -61,6 +62,7 @@ class FilePickerComponent extends React.Component {
 
 FilePickerComponent.propTypes = {
   disabled: PropTypes.bool,
+  dts: PropTypes.string,
   filter: PropTypes.string,
   isHighlighted: PropTypes.bool,
   label: PropTypes.string,
