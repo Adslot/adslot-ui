@@ -30,32 +30,34 @@
 
 // Use `.btn-inverse` and add a normal style like `info` to add colours.
 .btn-inverse {
-  @include button-variant($color-text-light, $color-inverse, $color-border);
+  &:enabled {
+    @include button-variant($color-text-light, $color-inverse, $color-border);
 
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $color-background-highlighted;
-  }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-background-highlighted;
+    }
 
-  &.btn-primary {
-    @include button-inverse($color-primary);
-  }
+    &.btn-primary {
+      @include button-inverse($color-primary);
+    }
 
-  &.btn-success {
-    @include button-inverse($color-positive);
-  }
+    &.btn-success {
+      @include button-inverse($color-positive);
+    }
 
-  &.btn-info {
-    @include button-inverse($color-info);
-  }
+    &.btn-info {
+      @include button-inverse($color-info);
+    }
 
-  &.btn-warning {
-    @include button-inverse($color-warning);
-  }
+    &.btn-warning {
+      @include button-inverse($color-warning);
+    }
 
-  &.btn-danger {
-    @include button-inverse($color-negative);
+    &.btn-danger {
+      @include button-inverse($color-negative);
+    }
   }
 }
 

@@ -240,7 +240,7 @@ class AppComponent extends React.Component {
           <Button className="btn-inverse" bsStyle="success">
             Inverse Success
           </Button>
-          <Button className="btn-inverse" disabled>
+          <Button className="btn-inverse" bsStyle="primary" disabled>
             Inverse Disabled
           </Button>
         </div>
