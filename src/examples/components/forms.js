@@ -138,11 +138,12 @@ const ExampleForm = ({
             <label htmlFor="exampleFilePicker" className="control-label col-xs-3">FilePicker Component</label>
             <div className="col-xs-9">
               <FilePicker
-                filter=".*"
+                filter="*.*"
                 disabled={isSubmitting}
                 placeholder="No file selected"
                 label="Add file"
                 onSelect={onChangeFile}
+                dts="file-picker-example"
               />
             </div>
           </div>
