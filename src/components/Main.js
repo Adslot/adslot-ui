@@ -537,6 +537,7 @@ class AppComponent extends React.Component {
           columns={pagedGridColumns}
           items={[]}
           perPage={1}
+          verticalCellBorder
         />
 
 

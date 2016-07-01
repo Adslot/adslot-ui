@@ -27,6 +27,7 @@ describe('PagedGridComponent', () => {
     const component = shallow(<PagedGridComponent {...props} />);
     const gridRowElements = component.find(GridRow);
     expect(gridRowElements).to.have.length(2);
+    gridRowElements.forEach((gridRowElement) => expect(gridRowElement.prop('verticalCellBorder')).to.equal(false));
 
     const paginationElement = component.find(Pagination);
     expect(paginationElement).to.have.length(1);
@@ -37,10 +38,12 @@ describe('PagedGridComponent', () => {
       columns: [{ key: 'name' }],
       items: [{ name: 'item1' }, { name: 'item2' }, { name: 'item3' }],
       perPage: 1,
+      verticalCellBorder: true,
     };
     const component = shallow(<PagedGridComponent {...props} />);
     const gridRowElements = component.find(GridRow);
     expect(gridRowElements).to.have.length(2);
+    gridRowElements.forEach((gridRowElement) => expect(gridRowElement.prop('verticalCellBorder')).to.equal(true));
 
     let paginationInfoElement = component.find('.pagedgrid-component-pagination-info');
     expect(paginationInfoElement.text()).to.equal('1–1 of 3');

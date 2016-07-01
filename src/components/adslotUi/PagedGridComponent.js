@@ -18,14 +18,14 @@ class PagedGridComponent extends React.Component {
 
   render() {
     const { activePage } = this.state;
-    const { columns, emptyIcon, emptyMessage, emptySvgSymbol, items, perPage } = this.props;
+    const { columns, emptyIcon, emptyMessage, emptySvgSymbol, items, perPage, verticalCellBorder } = this.props;
     const pageItems = _(items).clone().splice((this.state.activePage - 1) * perPage, perPage);
     const totalPages = Math.ceil(items.length / perPage);
 
     return (
       <div className="pagedgrid-component" >
         <Grid>
-          <GridRow type="header" verticalCellBorder>
+          <GridRow type="header" verticalCellBorder={verticalCellBorder}>
             {_.map(columns, (column) =>
               <GridCell key={column.key} classSuffixes={[_.kebabCase(column.key)]} stretch={column.stretch}>
                 {column.label}
@@ -33,7 +33,7 @@ class PagedGridComponent extends React.Component {
             )}
           </GridRow>
           {_.map(pageItems, (item) =>
-            <GridRow key={item.id} verticalCellBorder>
+            <GridRow key={item.id} verticalCellBorder={verticalCellBorder}>
               {_.map(columns, (column) =>
                 <GridCell
                   key={`${item.id}-${column.key}`}
@@ -82,6 +82,7 @@ PagedGridComponent.propTypes = {
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   items: PropTypes.arrayOf(itemProps).isRequired,
   perPage: PropTypes.number.isRequired,
+  verticalCellBorder: PropTypes.bool,
 };
 
 export default PagedGridComponent;
