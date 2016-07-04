@@ -3,11 +3,13 @@ import React from 'react';
 import moment from 'moment';
 import { shallow } from 'enzyme';
 import {
+  Accordion,
   Checkbox,
   ConfirmModal,
   DatePicker,
   ListPicker,
   Modal,
+  Panel,
   Radio,
   RadioGroup,
   Toggle,
@@ -75,6 +77,20 @@ describe('MainComponent', () => {
     treePickerButtonElement.simulate('click');
     const treePickerElement = MainComponent.find(TreePicker);
     expect(treePickerElement.prop('show')).to.equal(true);
+  });
+
+  it('should toggle `panel.isCollapsed` on `Toggle Panel` click', () => {
+    const panelElement = MainComponent.find(Panel);
+    expect(MainComponent.state().panel.isCollapsed).to.equal(false);
+    panelElement.prop('onClick')();
+    expect(MainComponent.state().panel.isCollapsed).to.equal(true);
+  });
+
+  it('should toggle `accordionPanels[0].isCollapsed` on `Toggle Accordion Panel` click', () => {
+    const accordionElement = MainComponent.find(Accordion);
+    expect(MainComponent.state().accordionPanels[0].isCollapsed).to.equal(false);
+    accordionElement.prop('onPanelClick')('1');
+    expect(MainComponent.state().accordionPanels[0].isCollapsed).to.equal(true);
   });
 
   it('should pass a custom valueFormatter into the TreePicker', () => {

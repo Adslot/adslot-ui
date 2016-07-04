@@ -1,0 +1,56 @@
+@import '../border';
+@import '../color';
+@import '../icon';
+
+.panel-component {
+  $transition-duration: 250ms;
+  $transition-timing-function: ease-out;
+
+  background-color: $color-panel-expanded;
+  transition: background-color $transition-duration $transition-timing-function;
+
+  ~ .panel-component {
+    border-top: $border-lighter;
+  }
+
+  &-header {
+    cursor: pointer;
+
+    &:before {
+      background: $icon-chevron no-repeat;
+      content: ' ';
+      float: right;
+      height: $icon-size;
+      transition: transform $transition-duration $transition-timing-function;
+      width: $icon-size;
+    }
+
+    .svg-symbol-component {
+      float: left;
+      height: $icon-size-large;
+      margin-right: 15px;
+      position: relative;
+      top: -3px;
+      width: $icon-size-large;
+    }
+  }
+
+  &-header,
+  &-content {
+    padding: 20px;
+  }
+
+  &.collapsed {
+    background-color: $color-panel-collapsed;
+
+    .panel-component-header {
+      &:before {
+        transform: rotate(180deg);
+      }
+    }
+
+    .panel-component-content {
+      display: none;
+    }
+  }
+}

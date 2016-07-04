@@ -1,10 +1,13 @@
 /* eslint-disable max-statements */
+
 import _ from 'lodash';
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import Immutable from 'seamless-immutable';
 import moment from 'moment';
 import {
+  Accordion,
   Button,
   Checkbox,
   ConfirmModal,
@@ -13,6 +16,7 @@ import {
   ListPicker,
   Modal,
   PagedGrid,
+  Panel,
   Radio,
   RadioGroup,
   SvgSymbol,
@@ -56,12 +60,59 @@ class AppComponent extends React.Component {
       'toggleSplitListPickerModal',
       'toggleTreePickerModal',
       'toggleUserListPickerModal',
+      'togglePanel',
+      'toggleAccordionPanel',
     ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {
       showSimpleModal: false,
       searchValue: '',
       searchValueTreePickerPure: '',
+      panel: {
+        id: '0',
+        title: 'Panel',
+        isCollapsed: false,
+        content: 'This is some panel content...',
+      },
+      accordionPanels: [
+        {
+          id: '1',
+          icon: { href: '/assets/svg-symbols.svg#list' },
+          title: 'Panel 1',
+          isCollapsed: false,
+          content: 'Panel 1 content. This panel is expanded by default.',
+        },
+        {
+          id: '2',
+          icon: { href: '/assets/svg-symbols.svg#list' },
+          title: 'Panel 2',
+          isCollapsed: true,
+          content: (<Button className="btn-inverse" bsStyle="success">Button</Button>),
+        },
+        {
+          id: '3',
+          icon: { href: '/assets/svg-symbols.svg#list' },
+          title: 'Panel 3',
+          isCollapsed: true,
+          content: (<ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+            <li>List item 5</li>
+            <li>List item 6</li>
+            <li>List item 7</li>
+            <li>List item 8</li>
+          </ul>),
+        },
+        {
+          id: '4',
+          icon: { href: '/assets/svg-symbols.svg#list' },
+          title: 'Panel 4',
+          isCollapsed: true,
+          content: 'Panel 4 content',
+        },
+      ],
       startDate: moment(), // React datepicker expects a moment date, rather than JS date.
       subTree: [
         { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
@@ -129,6 +180,19 @@ class AppComponent extends React.Component {
 
   toggleTreePickerModal() {
     this.setState({ showTreePickerModal: !this.state.showTreePickerModal });
+  }
+
+  togglePanel() {
+    const nextPanel = Immutable.from(this.state.panel).asMutable();
+    nextPanel.isCollapsed = !nextPanel.isCollapsed;
+    this.setState({ panel: nextPanel });
+  }
+
+  toggleAccordionPanel(panelId) {
+    const nextPanels = Immutable.from(this.state.accordionPanels).asMutable({ deep: true });
+    const panelToToggle = _.find(nextPanels, { id: panelId });
+    panelToToggle.isCollapsed = !panelToToggle.isCollapsed;
+    this.setState({ accordionPanels: nextPanels });
   }
 
   render() {
@@ -558,6 +622,19 @@ class AppComponent extends React.Component {
         <Provider store={store}>
           <ExampleForm />
         </Provider>
+
+        <h1>Panel</h1>
+        <Panel
+          id={this.state.panel.id}
+          title={this.state.panel.title}
+          isCollapsed={this.state.panel.isCollapsed}
+          onClick={this.togglePanel}
+        >
+          <p>{this.state.panel.content}</p>
+        </Panel>
+
+        <h1>Accordion</h1>
+        <Accordion panels={this.state.accordionPanels} onPanelClick={this.toggleAccordionPanel} />
       </div>
     );
   }
