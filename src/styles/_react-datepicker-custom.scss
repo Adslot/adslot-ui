@@ -7,12 +7,14 @@
   $datepicker-font-weight: $font-weight-medium;
   $datepicker-font-size: $font-size-base;
   $datepicker-icon-size: 24px;
+  $datepicker-border-color: $color-border-light;
   $datepicker-border-radius: $border-radius-base;
   $datepicker-header-bg-color: $popover-bg;
   $datepicker-selected-bg-color: $color-primary;
   $datepicker-hover-bg-color: $color-gray-lighter;
   $datepicker-color-disabled: $color-disabled;
 
+  border-color: $datepicker-border-color;
   box-shadow: 0 2px 0 $color-modal-shadow;
   font-family: $datepicker-font-family;
   font-size: $datepicker-font-size;
@@ -33,7 +35,8 @@
       border-radius: $datepicker-border-radius;
     }
 
-    &--outside-month {
+    &--outside-month,
+    &--disabled {
       color: $datepicker-color-disabled;
     }
 
