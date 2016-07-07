@@ -411,14 +411,17 @@ class AppComponent extends React.Component {
 
 
         <h1>Checkboxes</h1>
-        <Checkbox label="Unchecked" />
-        <br />
-        <Checkbox label="Checked" checked />
-        <br />
-        <Checkbox label="Disabled" disabled />
-        <br />
-        <Checkbox label="Checked and Disabled" checked disabled />
-
+        <div className="checkbox-example">
+          <Checkbox label="Unchecked" />
+          <br />
+          <Checkbox label="Checked" checked />
+          <br />
+          <Checkbox label="Disabled" disabled />
+          <br />
+          <Checkbox label="Checked and Disabled" checked disabled />
+          <br />
+          <Checkbox label="A very long label that wraps around nicely" />
+        </div>
 
         <h1>Radio Buttons</h1>
         <RadioGroup name="testRadio" value="2">

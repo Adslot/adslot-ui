@@ -29,3 +29,15 @@ body {
     line-height: $spacing-etalon;
   }
 }
+
+.checkbox-example {
+  width: 200px;
+
+  label {
+    padding-left: 21px;
+
+    > .icheckbox {
+      margin-left: -21px;
+    }
+  }
+}
