@@ -1,5 +1,6 @@
 @import '../border';
 @import '../color';
+@import '../font-weight';
 @import '../icon';
 
 .panel-component {
@@ -15,6 +16,7 @@
 
   &-header {
     cursor: pointer;
+    font-weight: $font-weight-bold;
 
     &:before {
       background: $icon-chevron no-repeat;
@@ -33,6 +35,10 @@
       top: -3px;
       width: $icon-size-large;
     }
+  }
+
+  &-content {
+    font-weight: $font-weight-medium;
   }
 
   &-header,
