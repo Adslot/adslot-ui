@@ -1,5 +1,6 @@
 @import '../border';
 @import '../color';
+@import '../font-weight';
 @import '../icon';
 
 .panel-component {
@@ -15,6 +16,7 @@
 
   &-header {
     cursor: pointer;
+    font-weight: $font-weight-bold;
 
     &:before {
       background: $icon-chevron no-repeat;
@@ -35,6 +37,10 @@
     }
   }
 
+  &-content {
+    font-weight: $font-weight-medium;
+  }
+
   &-header,
   &-content {
     padding: 20px;
@@ -51,6 +57,22 @@
 
     .panel-component-content {
       display: none;
+    }
+  }
+}
+
+.card-component-content {
+  $border-radius: 5px;
+
+  .panel-component {
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
     }
   }
 }
