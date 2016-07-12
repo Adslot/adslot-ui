@@ -81,6 +81,7 @@ describe('TreePickerPureComponent', () => {
     const leftPaneElement = component.find('[dts="treepicker-splitpane-available"]');
     const tabsElement = leftPaneElement.find('ul');
     expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
+    expect(tabsElement.find('li')).to.have.length(3);
 
     const firstTabElement = tabsElement.find('li').first();
     expect(firstTabElement.prop('className')).to.equal('active');

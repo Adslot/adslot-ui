@@ -4,6 +4,7 @@ import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Popover from 'react-bootstrap/lib/Popover';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
+import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import React, { PropTypes } from 'react';
 import { Alert, Empty, FlexibleSpacer, Grid, GridCell, GridRow, SvgSymbol, Totals } from 'alexandria-adslot';
 
@@ -121,13 +122,6 @@ const TreePickerSelectedComponent = ({
 
 TreePickerSelectedComponent.displayName = 'AdslotUiTreePickerSelectedComponent';
 
-const rootType = PropTypes.shape({
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  id: PropTypes.string.isRequired,
-  isRequired: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
-});
-
 TreePickerSelectedComponent.propTypes = {
   averageWithinRootType: PropTypes.bool.isRequired,
   baseItem: PropTypes.shape({
@@ -141,7 +135,7 @@ TreePickerSelectedComponent.propTypes = {
   }).isRequired,
   includeNode: PropTypes.func.isRequired,
   removeNode: PropTypes.func.isRequired,
-  rootTypes: PropTypes.arrayOf(rootType).isRequired,
+  rootTypes: PropTypes.arrayOf(TreePickerPropTypes.rootType).isRequired,
   totalsSuffix: PropTypes.string.isRequired,
   selectedLabel: PropTypes.string.isRequired,
   selectedNodesByRootType: PropTypes.shape().isRequired,
