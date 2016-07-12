@@ -30,7 +30,9 @@
 
 // Use `.btn-inverse` and add a normal style like `info` to add colours.
 .btn-inverse {
-  &:enabled {
+  // :not(:disabled) is used instead of :enabled as various elements (a, div, span)
+  // are styled as buttons but do not have an :enabled state
+  &:not(:disabled) {
     @include button-variant($color-text-light, $color-inverse, $color-border);
 
     &:hover,

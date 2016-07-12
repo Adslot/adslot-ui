@@ -353,6 +353,12 @@ class AppComponent extends React.Component {
           </Button>
         </div>
 
+        <div className="btn-panel">
+          <a className="btn btn-inverse" href="#">Anchor</a>
+          <span className="btn btn-inverse btn-primary">Span</span>
+          <div className="btn btn-inverse btn-success">Div</div>
+        </div>
+
 
         <h1>Tabs</h1>
         <div className="btn-panel">
