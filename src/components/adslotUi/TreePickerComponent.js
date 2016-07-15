@@ -249,15 +249,7 @@ TreePickerComponent.propTypes = {
   modalApply: PropTypes.func.isRequired,
   modalClose: PropTypes.func.isRequired,
   modalTitle: PropTypes.string.isRequired,
-  rootTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-      emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-      isRequired: PropTypes.bool.isRequired,
-    })
-  ),
+  rootTypes: PropTypes.arrayOf(TreePickerPropTypes.rootType),
   selectedLabel: PropTypes.string,
   show: PropTypes.bool.isRequired,
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),

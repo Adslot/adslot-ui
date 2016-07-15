@@ -17,6 +17,7 @@ const rootTypes = [
   },
   { label: 'Audiences', id: 'b', svgSymbol, isRequired: false },
   { label: 'Segments', id: 'c', svgSymbol, isRequired: true },
+  { label: 'Hidden Segments', id: 'd', svgSymbol, isRequired: false, hidden: true },
 ];
 
 const auPath = { id: 'au', label: 'AU' };

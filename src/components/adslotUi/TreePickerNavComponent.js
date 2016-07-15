@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Breadcrumb, Search, SvgSymbol } from 'alexandria-adslot';
+import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 
 require('styles/adslotUi/TreePickerNav.scss');
 
@@ -28,12 +29,7 @@ const TreePickerNavComponent = ({
 
 TreePickerNavComponent.displayName = 'AdslotUiTreePickerNavComponent';
 TreePickerNavComponent.propTypes = {
-  breadcrumbNodes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ),
+  breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,
   searchOnChange: PropTypes.func,

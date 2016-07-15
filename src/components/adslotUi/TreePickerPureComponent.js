@@ -46,6 +46,7 @@ const TreePickerPureComponent = ({
   };
 
   const selectableNodes = removeSelected({ subtree, selectedNodes: selectedNodesByRootType[activeRootTypeId] });
+  const visibleRootTypes = _.filter(rootTypes, ({ hidden }) => !hidden);
 
   return (
     <div className="treepickerpure-component">
@@ -53,7 +54,7 @@ const TreePickerPureComponent = ({
       <SplitPane dts="treepicker-splitpane-available">
 
         <ul className="nav nav-tabs">
-          {rootTypes.length ? _.map(rootTypes, (rootType) =>
+          {visibleRootTypes.length ? _.map(visibleRootTypes, (rootType) =>
             <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
               <a onClick={changeRootTypeBound(rootType)} data-test-selector="treepicker-nav-tab">
                 <SvgSymbol
@@ -125,14 +126,6 @@ const baseItemPropType = PropTypes.shape({
   value: PropTypes.number.isRequired,
 });
 
-const rootType = PropTypes.shape({
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  id: PropTypes.string.isRequired,
-  isRequired: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
-});
-
 TreePickerPureComponent.propTypes = {
   activeRootTypeId: PropTypes.string,
   averageWithinRootType: PropTypes.bool.isRequired,
@@ -148,7 +141,7 @@ TreePickerPureComponent.propTypes = {
   }),
   includeNode: PropTypes.func,
   removeNode: PropTypes.func,
-  rootTypes: PropTypes.arrayOf(rootType).isRequired,
+  rootTypes: PropTypes.arrayOf(TreePickerPropTypes.rootType).isRequired,
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
   searchPlaceholder: PropTypes.string,
