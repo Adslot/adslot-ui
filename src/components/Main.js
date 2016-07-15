@@ -123,6 +123,10 @@ class AppComponent extends React.Component {
         { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
       ],
       treePickerPureSubtree: [],
+      selectedNodes: [
+        { id: '2', label: 'Norfolk Island', path: [{ id: '11', label: 'AU' }], type: '', isSelectable: false },
+        { id: '3', label: 'Queensland', path: [{ id: '12', label: 'AU' }], type: '' },
+      ],
     };
   }
 
@@ -283,7 +287,15 @@ class AppComponent extends React.Component {
           actNode,
           ntNode,
           qldNode,
-          { id: '3', label: 'South Australia', type: 'State', path: auPath, value: 500, rootTypeId: '0' },
+          {
+            id: '3',
+            label: 'South Australia',
+            isSelectable: false,
+            type: 'State',
+            path: auPath,
+            value: 500,
+            rootTypeId: '0',
+          },
         ]);
       }
 
@@ -523,7 +535,7 @@ class AppComponent extends React.Component {
         <h1>TreePickerSimplePure without initial state</h1>
 
         <TreePickerSimplePure
-          selectedNodes={[]}
+          selectedNodes={this.state.selectedNodes}
           subtree={this.state.simpleSubtree}
           searchValue={this.state.searchValueTreePickerPure}
           searchOnChange={this.setSearchTreePickerPure}

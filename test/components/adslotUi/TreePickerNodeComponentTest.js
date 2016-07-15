@@ -50,13 +50,13 @@ describe('TreePickerNodeComponent', () => {
     expect(buttonElement.children().text()).to.equal('+');
   });
 
-  it('should render unselectable nodes without an include button', () => {
+  it('should render unselectable nodes with an include button', () => {
     const component = shallow(<TreePickerNodeComponent node={actNode} />);
 
     const rowElement = component.find(GridRow);
     const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(2); // meta data cell and value cell
-    expect(component.find(Button)).to.have.length(0);
+    expect(cellElements).to.have.length(3); // meta data cell and value cell
+    expect(component.find(Button)).to.have.length(1);
   });
 
   it('should render the button first when selected is true', () => {
