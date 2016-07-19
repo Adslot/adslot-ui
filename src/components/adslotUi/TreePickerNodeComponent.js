@@ -52,7 +52,12 @@ const TreePickerNodeComponent = ({
       <GridRow>
         {selected ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" className="btn-inverse" onClick={removeNodeBound} disabled={disabled}>
+            <Button
+              block bsSize="xsmall"
+              className="btn-inverse"
+              onClick={removeNodeBound}
+              disabled={disabled || node.isSelectable === false}
+            >
               −
             </Button>
           </GridCell>
@@ -71,9 +76,14 @@ const TreePickerNodeComponent = ({
           </GridCell> :
           null
         }
-        {(!selected && (node.isSelectable !== false)) ?
+        {!selected ?
           <GridCell classSuffixes={['button']}>
-            <Button block bsSize="xsmall" className="btn-inverse" onClick={includeNodeBound} disabled={disabled}>
+            <Button
+              block bsSize="xsmall"
+              className="btn-inverse"
+              onClick={includeNodeBound}
+              disabled={disabled || node.isSelectable === false}
+            >
               +
             </Button>
           </GridCell>
