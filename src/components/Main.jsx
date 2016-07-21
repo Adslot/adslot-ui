@@ -69,6 +69,7 @@ class AppComponent extends React.Component {
     ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {
+      itemType: 'segment value',
       showSimpleModal: false,
       searchValue: '',
       searchValueTreePickerPure: '',
@@ -550,6 +551,7 @@ class AppComponent extends React.Component {
           baseItem={baseItem}
           modalClose={this.toggleTreePickerModal}
           initialSelection={initialSelection}
+          itemType="segment value"
           helpText={{
             average: `CPM line items use the average method.
               Targeting adjusts which people, but not the number of people who see your ad.`,
@@ -568,6 +570,7 @@ class AppComponent extends React.Component {
         <h1>TreePickerSimplePure with initial state</h1>
 
         <TreePickerSimplePure
+          itemType={this.state.itemType}
           selectedNodes={[]}
           subtree={this.state.treePickerPureSubtree}
           initialStateNode={<div><h><b>Start by searching for items</b></h></div>}
@@ -580,6 +583,7 @@ class AppComponent extends React.Component {
         <h1>TreePickerSimplePure without initial state</h1>
 
         <TreePickerSimplePure
+          itemType={this.state.itemType}
           selectedNodes={this.state.selectedNodes}
           subtree={this.state.simpleSubtree}
           searchValue={this.state.searchValueTreePickerPure}

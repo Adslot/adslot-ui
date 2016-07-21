@@ -14,24 +14,35 @@ const checkElement = (expectedProps) =>
       expect(element.prop(propName)).to.equal(expectedProps[propName]));
 
 describe('TreePickerSimplePureComponent', () => {
+  const {
+    actNode,
+    initialSelection,
+    itemType,
+    ntNode,
+    qldNode,
+    saNode,
+    svgSymbol,
+  } = TreePickerMocks;
+
   const props = {
-    breadcrumbNodes: [TreePickerMocks.saNode],
+    breadcrumbNodes: [saNode],
     breadcrumbOnClick: _.noop,
     emptyText: 'Nothing to see here.',
-    emptySvgSymbol: TreePickerMocks.svgSymbol,
+    emptySvgSymbol: svgSymbol,
     initialStateNode: 'Begin searching.',
     initialStateSymbol: TreePickerMocks.svgSymbol,
     expandNode: _.noop,
     includeNode: _.noop,
+    itemType,
     removeNode: _.noop,
     searchOnChange: _.noop,
     searchOnClear: _.noop,
     searchPlaceholder: 'Search Geometry',
     searchValue: '',
-    selectedNodes: TreePickerMocks.initialSelection,
-    subtree: [TreePickerMocks.qldNode, TreePickerMocks.saNode, TreePickerMocks.actNode, TreePickerMocks.ntNode],
-    svgSymbolCancel: TreePickerMocks.svgSymbol,
-    svgSymbolSearch: TreePickerMocks.svgSymbol,
+    selectedNodes: initialSelection,
+    subtree: [qldNode, saNode, actNode, ntNode],
+    svgSymbolCancel: svgSymbol,
+    svgSymbolSearch: svgSymbol,
   };
 
   it('should render with props', () => {
@@ -57,10 +68,10 @@ describe('TreePickerSimplePureComponent', () => {
       'svgSymbolSearch',
     ]);
 
-    const leftPaneElement = component.find(SplitPaneComponent).at(0);
+    const leftPaneElement = component.find({ dts: `treepicker-splitpane-available-${_.kebabCase(itemType)}` });
     expect(leftPaneElement.find(FlexibleSpacer)).to.have.length(1);
 
-    const rightPaneElement = component.find(SplitPaneComponent).at(1);
+    const rightPaneElement = component.find({ dts: `treepicker-splitpane-selected-${_.kebabCase(itemType)}` });
     expect(rightPaneElement.find(FlexibleSpacer)).to.have.length(1);
   });
 

@@ -35,6 +35,7 @@ const TreePickerSelectedComponent = ({
   emptySvgSymbol,
   helpText,
   includeNode,
+  itemType,
   removeNode,
   rootTypes,
   selectedLabel,
@@ -64,43 +65,49 @@ const TreePickerSelectedComponent = ({
       }
 
       <div className={scrollableClass}>
-        {_.map(selectedNodesByRootType, (val, rootTypeId) =>
-          <Grid key={rootTypeId}>
+        {_.map(selectedNodesByRootType, (val, rootTypeId) => {
+          const rootTypeLabel = getRootTypeLabel({ rootTypes, rootTypeId });
 
-            <GridRow type="header">
-              <GridCell stretch>{getRootTypeLabel({ rootTypes, rootTypeId })}</GridCell>
-            </GridRow>
+          return (
+            <Grid key={rootTypeId}>
+              <GridRow type="header">
+                <GridCell stretch>{rootTypeLabel}</GridCell>
+              </GridRow>
 
-            {_.map(selectedNodesByRootType[rootTypeId], (node) =>
-              <TreePickerNodeFast
-                includeNode={includeNode}
-                key={node.id}
-                node={node}
-                removeNode={removeNode}
-                selected
-                valueFormatter={valueFormatter}
-              />
-            )}
+              {_.map(selectedNodesByRootType[rootTypeId], (node) =>
+                <TreePickerNodeFast
+                  includeNode={includeNode}
+                  itemType={itemType}
+                  key={node.id}
+                  node={node}
+                  removeNode={removeNode}
+                  selected
+                  valueFormatter={valueFormatter}
+                />
+              )}
 
-            <GridRow type="subfooter">
-              <GridCell stretch />
-              <GridCell>
-                <OverlayTrigger
-                  placement="left"
-                  overlay={
-                    <Popover id={`subtotal-${rootTypeId}`}>
-                      {averageWithinRootType ? helpText.average : helpText.sum}
-                    </Popover>
-                  }
-                >
-                  <span>{averageWithinRootType ? 'Average' : 'Subtotal'}</span>
-                </OverlayTrigger>
-              </GridCell>
-              <GridCell>{totalsValueFormatter(valueByRootType[rootTypeId])}</GridCell>
-            </GridRow>
+              <GridRow type="subfooter">
+                <GridCell stretch />
+                <GridCell>
+                  <OverlayTrigger
+                    placement="left"
+                    overlay={
+                      <Popover id={`subtotal-${rootTypeId}`}>
+                        {averageWithinRootType ? helpText.average : helpText.sum}
+                      </Popover>
+                    }
+                  >
+                    <span>{averageWithinRootType ? 'Average' : 'Subtotal'}</span>
+                  </OverlayTrigger>
+                </GridCell>
+                <GridCell dts={`${_.kebabCase(rootTypeLabel)}-total-or-average`}>
+                  {totalsValueFormatter(valueByRootType[rootTypeId])}
+                </GridCell>
+              </GridRow>
 
-          </Grid>
-        )}
+            </Grid>
+          );
+        })}
         <Empty
           collection={_.values(selectedNodesByRootType)}
           svgSymbol={emptySvgSymbol}
@@ -134,6 +141,7 @@ TreePickerSelectedComponent.propTypes = {
     sum: PropTypes.string.isRequired,
   }).isRequired,
   includeNode: PropTypes.func.isRequired,
+  itemType: PropTypes.string.isRequired,
   removeNode: PropTypes.func.isRequired,
   rootTypes: PropTypes.arrayOf(TreePickerPropTypes.rootType).isRequired,
   totalsSuffix: PropTypes.string.isRequired,

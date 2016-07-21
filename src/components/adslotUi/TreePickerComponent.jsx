@@ -187,6 +187,7 @@ class TreePickerComponent extends React.Component {
         'averageWithinRootType',
         'baseItem',
         'helpText',
+        'itemType',
         'rootTypes',
         'selectedLabel',
         'svgSymbolCancel',

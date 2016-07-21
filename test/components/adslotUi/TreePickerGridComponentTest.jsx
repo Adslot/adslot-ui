@@ -6,16 +6,25 @@ import { Empty, Grid } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 
 describe('TreePickerGridComponent', () => {
+  const {
+    itemType,
+    qldNode,
+    saNode,
+    svgSymbol,
+    valueFormatter,
+  } = TreePickerMocks;
+
   it('should render with props', () => {
     const props = {
-      emptySvgSymbol: TreePickerMocks.svgSymbol,
+      emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
       expandNode: _.noop,
       includeNode: _.noop,
-      nodes: [TreePickerMocks.qldNode, TreePickerMocks.saNode],
+      itemType,
+      nodes: [qldNode, saNode],
       removeNode: _.noop,
       selected: false,
-      valueFormatter: TreePickerMocks.valueFormatter,
+      valueFormatter,
     };
     const component = shallow(<TreePickerGrid {...props} />);
     const gridElement = component.find(Grid);
@@ -39,14 +48,15 @@ describe('TreePickerGridComponent', () => {
 
   it('should not display empty with an undefined nodes list', () => {
     const props = {
-      emptySvgSymbol: TreePickerMocks.svgSymbol,
+      emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
       expandNode: _.noop,
       includeNode: _.noop,
+      itemType,
       nodes: undefined,
       removeNode: _.noop,
       selected: false,
-      valueFormatter: TreePickerMocks.valueFormatter,
+      valueFormatter,
     };
     const component = shallow(<TreePickerGrid {...props} />);
     const gridElement = component.find(Grid);

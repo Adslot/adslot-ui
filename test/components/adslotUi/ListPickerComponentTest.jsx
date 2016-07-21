@@ -43,7 +43,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('emptySvgSymbol')).to.be.an('undefined');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.be.an('undefined');
-    expect(listPickerPureElement.prop('itemType')).to.be.an('undefined');
+    expect(listPickerPureElement.prop('itemType')).to.equal('item');
     expect(listPickerPureElement.prop('items')).to.deep.equal([]);
     expect(listPickerPureElement.prop('selectItem')).to.be.a('function');
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal([]);

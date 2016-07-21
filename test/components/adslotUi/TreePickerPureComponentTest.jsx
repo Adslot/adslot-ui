@@ -13,6 +13,7 @@ describe('TreePickerPureComponent', () => {
   const {
     actNode,
     baseItem,
+    itemType,
     rootTypes,
   } = TreePickerMocks;
 
@@ -20,7 +21,7 @@ describe('TreePickerPureComponent', () => {
     const component = shallow(<TreePickerPureComponent changeRootType={_.noop} />);
     expect(component.prop('className')).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.find('[dts="treepicker-splitpane-available"]');
+    const leftPaneElement = component.find('[dts="treepicker-splitpane-available-node"]');
     const tabsElement = leftPaneElement.find('ul');
     expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
 
@@ -65,6 +66,7 @@ describe('TreePickerPureComponent', () => {
         sum: 'The sum of fears.',
       },
       includeNode: testFunction,
+      itemType,
       removeNode: testFunction,
       rootTypes,
       searchOnQuery: testFunction,
@@ -78,7 +80,7 @@ describe('TreePickerPureComponent', () => {
     const component = shallow(<TreePickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('treepickerpure-component');
 
-    const leftPaneElement = component.find('[dts="treepicker-splitpane-available"]');
+    const leftPaneElement = component.find({ dts: `treepicker-splitpane-available-${_.kebabCase(itemType)}` });
     const tabsElement = leftPaneElement.find('ul');
     expect(tabsElement.prop('className')).to.equal('nav nav-tabs');
     expect(tabsElement.find('li')).to.have.length(3);
@@ -86,7 +88,9 @@ describe('TreePickerPureComponent', () => {
     const firstTabElement = tabsElement.find('li').first();
     expect(firstTabElement.prop('className')).to.equal('active');
 
-    const firstTabAnchor = firstTabElement.find('[data-test-selector="treepicker-nav-tab"]').first();
+    const firstTabAnchor = firstTabElement.find({
+      'data-test-selector': `treepicker-nav-tab-${_.kebabCase(rootTypes[0].label)}`,
+    });
     expect(firstTabAnchor.children().last().text()).to.equal(rootTypes[0].label);
 
     expect(rootTypeChanges).to.deep.equal([]);
@@ -116,7 +120,7 @@ describe('TreePickerPureComponent', () => {
     expect(treePickerGridElement.prop('emptySvgSymbol').classSuffixes).to.deep.equal(['gray-light']);
     expect(treePickerGridElement.prop('emptyText')).to.equal('No items to select.');
 
-    const rightPaneElement = component.find('[dts="treepicker-splitpane-selected"]');
+    const rightPaneElement = component.find({ dts: `treepicker-splitpane-selected-${_.kebabCase(itemType)}` });
     const treePickerSelectedElement = rightPaneElement.find(TreePickerSelectedComponent);
     expect(treePickerSelectedElement.prop('averageWithinRootType')).to.equal(true);
     expect(treePickerSelectedElement.prop('selectedLabel')).to.equal('Selected Targeting');

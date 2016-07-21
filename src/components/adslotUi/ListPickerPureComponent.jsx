@@ -33,7 +33,7 @@ const ListPickerPureComponent = ({
   const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
 
   return (
-    <div className="listpickerpure-component" data-test-selector={`listpickerpure-component-${itemType}`}>
+    <div className="listpickerpure-component" data-test-selector={`listpickerpure-component-${_.kebabCase(itemType)}`}>
       {itemHeaders ?
         <Grid>
           <GridRow type="header">
@@ -55,7 +55,7 @@ const ListPickerPureComponent = ({
       <div className="listpickerpure-component-items">
         <Grid>
           {_.map(items, (item) =>
-            <GridRow key={item.id} dts={`${itemType}-${item.id}`}>
+            <GridRow key={item.id} dts={`${_.kebabCase(itemType)}-${item.id}`}>
               <GridCell stretch dts="label">
                 {labelFormatter(item)}
               </GridCell>
@@ -110,6 +110,7 @@ ListPickerPureComponent.defaultProps = {
   emptyMessage: 'No items to select.',
   labelFormatter: (item) => item.label,
   items: [],
+  itemType: 'item',
   selectItem: () => { throw new Error('AdslotUi ListPickerPure needs a selectItem handler'); },
 
   selectedItems: [],
