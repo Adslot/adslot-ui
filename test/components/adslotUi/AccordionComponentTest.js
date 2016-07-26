@@ -23,7 +23,8 @@ describe('AccordionComponent', () => {
 
   it('should render with props', () => {
     const panels = [panel1, panel2, panel3];
-    const component = shallow(<Accordion panels={panels} onPanelClick={_.noop} />);
+    const component = shallow(<Accordion panels={panels} onPanelClick={_.noop} dts="my-accordian" />);
+
     const cardElement = component.find(Card.Content);
     expect(cardElement).to.have.length(1);
 
@@ -41,6 +42,7 @@ describe('AccordionComponent', () => {
     const panelElement3 = panelElements.at(2);
     expect(panelElement3.prop('id')).to.equal('3');
     expect(panelElement3.prop('onClick')).to.be.a('function');
+    expect(panelElement3.prop('dts')).to.equal('panel-3'); // should generate a dts from panel id
   });
 
   it('should pass onPanelClick down to panels', () => {

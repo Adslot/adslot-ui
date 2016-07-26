@@ -33,7 +33,7 @@
   // :not(:disabled) is used instead of :enabled as various elements (a, div, span)
   // are styled as buttons but do not have an :enabled state
   &:not(:disabled) {
-    @include button-variant($color-text-light, $color-inverse, $color-border);
+    @include button-variant($color-text-light, $color-inverse, $color-border-light);
 
     &:hover,
     &:active,
