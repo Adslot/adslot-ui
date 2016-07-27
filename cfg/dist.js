@@ -41,6 +41,7 @@ const config = _.merge(baseConfig, {
     },
   },
   entry: {
+    "main-ugly": path.join(componentsPath, '/distributionEntry.js'),
     main: path.join(componentsPath, '/distributionEntry.js'),
   },
   output: {
@@ -57,6 +58,7 @@ const config = _.merge(baseConfig, {
         warnings: false,
       },
       sourceMap: false,
+      include: /main\.js$/,
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
