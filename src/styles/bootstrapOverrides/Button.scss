@@ -63,9 +63,9 @@
   }
 }
 
-// Don't use btn-default (use .btn-inverse instead).
+// Don't use btn-default (use .btn-inverse instead) but don't break for .remove-file.
 .btn-default {
-  &:not(.btn-inverse) {
+  &:not(.btn-inverse, .remove-file) {
     font-size: 100px;
   }
 }
