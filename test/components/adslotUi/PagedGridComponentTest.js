@@ -23,7 +23,11 @@ describe('PagedGridComponent', () => {
   });
 
   it('should render with items', () => {
-    const props = { columns: [{ key: 'name' }], items: [{ name: 'item1' }, { name: 'item2' }], perPage: 1 };
+    const props = {
+      columns: [{ key: 'name' }],
+      items: [{ name: 'item1', id: 1 }, { name: 'item2', id: 2 }],
+      perPage: 1,
+    };
     const component = shallow(<PagedGridComponent {...props} />);
     const gridRowElements = component.find(GridRow);
     expect(gridRowElements).to.have.length(2);
@@ -36,7 +40,7 @@ describe('PagedGridComponent', () => {
   it('should update grid when new page selected or items updated', () => {
     const props = {
       columns: [{ key: 'name' }],
-      items: [{ name: 'item1' }, { name: 'item2' }, { name: 'item3' }],
+      items: [{ name: 'item1', id: 1 }, { name: 'item2', id: 2 }, { name: 'item3', id: 3 }],
       perPage: 1,
       verticalCellBorder: true,
     };

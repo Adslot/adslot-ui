@@ -29,6 +29,7 @@ describe('PanelComponent', () => {
   it('should render with props', () => {
     const component = shallow(<Panel {...panel2}>{panel2.content}</Panel>);
     expect(component.prop('className')).to.equal('panel-component collapsed');
+    expect(component.prop('data-test-selector')).to.equal('panel-two');
 
     const headerElement = component.find('.panel-component-header');
     const icon = headerElement.find(SvgSymbol);

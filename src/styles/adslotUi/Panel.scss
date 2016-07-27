@@ -18,7 +18,7 @@
     cursor: pointer;
     font-weight: $font-weight-bold;
 
-    &:before {
+    &::before {
       background: $icon-chevron no-repeat;
       content: ' ';
       float: right;
@@ -50,7 +50,7 @@
     background-color: $color-panel-collapsed;
 
     .panel-component-header {
-      &:before {
+      &::before {
         transform: rotate(180deg);
       }
     }

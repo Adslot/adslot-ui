@@ -67,7 +67,6 @@ describe('TreePickerSelectedComponent', () => {
 
     const emptyElement = scrollableElement.find(Empty);
     expect(emptyElement.prop('collection')).to.have.length(0);
-    expect(emptyElement.prop('svgSymbol').href).to.equal('/assets/svg-symbols.svg#checklist-incomplete');
     expect(emptyElement.prop('svgSymbol').classSuffixes).to.deep.equal(['gray-darker', '70', 'circle']);
     expect(emptyElement.prop('text')).to.equal('Nothing selected.');
 

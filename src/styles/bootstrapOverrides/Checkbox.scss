@@ -1,8 +1,8 @@
 @import '../variable';
 
 input {
-  &[type=checkbox],
-  &[type=radio] {
+  &[type='checkbox'],
+  &[type='radio'] {
     cursor: pointer;
     margin: 2px 0 0;
   }

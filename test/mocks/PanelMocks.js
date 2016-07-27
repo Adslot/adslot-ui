@@ -14,6 +14,7 @@ const panel2 = {
   isCollapsed: true,
   onClick: _.noop,
   content: 'Panel 2 content',
+  dts: 'panel-two',
 };
 
 const panel3 = {

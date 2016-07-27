@@ -25,6 +25,17 @@ module.exports = function configureKarma(config) {
         { type: 'json', subdir: '.' },
         { type: 'text-summary', subdir: '.' },
       ],
+      check: {
+        each: {
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100,
+          excludes: [
+            'src/components/Main.js',
+          ],
+        },
+      },
     },
     webpack: webpackCfg,
     webpackServer: {
