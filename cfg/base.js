@@ -50,7 +50,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: path.join(__dirname, 'src'),
-        loader: 'eslint-loader',
+        loader: 'eslint',
       },
     ],
     loaders: [
@@ -60,11 +60,11 @@ module.exports = {
       },
       {
         test: /\.scss/,
-        loader: ExtractTextPlugin.extract('css-loader!postcss-loader!sass-loader?outputStyle=expanded'),
+        loader: ExtractTextPlugin.extract('css!postcss!sass?outputStyle=expanded'),
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|ttf|eot|svg)$/,
-        loader: 'url-loader?limit=8192',
+        loader: 'url?limit=8192',
       },
     ],
   },

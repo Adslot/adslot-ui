@@ -48,6 +48,7 @@ import {
   Statistic,
   SvgSymbol,
   SvgSymbolCircle,
+  Tag,
   Totals,
 } from 'alexandria-adslot';
 
@@ -89,6 +90,7 @@ module.exports = {
   SvgSymbolCircle,
   Tab,
   Tabs,
+  Tag,
   Toggle,
   Totals,
   TreePicker,
