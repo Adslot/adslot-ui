@@ -21223,7 +21223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          { className: 'input-group-btn' },
 	          fileName ? _react2.default.createElement(
 	            _Button2.default,
-	            { className: 'remove-file btn-inverse', onClick: this.removeFile },
+	            { className: 'remove-file', onClick: this.removeFile },
 	            '×'
 	          ) : null,
 	          !fileName && !this.props.disabled ? _react2.default.createElement(

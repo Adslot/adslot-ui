@@ -40,7 +40,7 @@ class FilePickerComponent extends React.Component {
           title={fileName}
         />
         <div className="input-group-btn">
-          {fileName ? <Button className="remove-file btn-inverse" onClick={this.removeFile}>×</Button> : null}
+          {fileName ? <Button className="remove-file" onClick={this.removeFile}>×</Button> : null}
           {!fileName && !this.props.disabled ?
             <Button className="btn-inverse" onClick={() => this.refs.fileInput.click()}>
               <span>{this.props.label}</span>
