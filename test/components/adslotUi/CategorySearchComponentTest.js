@@ -10,21 +10,33 @@ import { shallow } from 'enzyme';
 
 const defaultProps = {
   category: '0',
-  categoryOptions: [
-    { value: '0', label: 'All Fruit' },
-    { value: '1', label: 'Banana' },
-    { value: '2', label: 'Apple' },
-    { value: '3', label: 'Orange' },
-  ],
+  categoryOptions: [],
   onCategorySelect: _.noop,
   searchString: '',
   onSearchStringChange: _.noop,
   onSearchButtonClick: _.noop,
 };
 
+const props = {
+  additionalClassNames: [
+    'class-a',
+    'class-b',
+  ],
+  category: '0',
+  categoryOptions: [
+    { value: '0', label: 'Option' },
+  ],
+  onCategorySelect: _.noop,
+  searchString: '',
+  onSearchStringChange: _.noop,
+  onSearchButtonClick: _.noop,
+  dts: 'test-dts',
+};
+
 describe('CategorySearchComponent', () => {
   it('should render with defaults', () => {
     const component = shallow(<CategorySearch {...defaultProps} />);
+    expect(component.prop('className')).to.equal('category-search-component');
 
     const selectElement = component.find(Select);
     expect(selectElement).to.have.length(1);
@@ -34,6 +46,12 @@ describe('CategorySearchComponent', () => {
 
     const buttonElement = component.find(Button);
     expect(buttonElement).to.have.length(1);
+  });
+
+  it('should render with props', () => {
+    const component = shallow(<CategorySearch {...props} />);
+    expect(component.prop('className')).to.equal('category-search-component class-a class-b');
+    expect(component.prop('data-test-selector')).to.equal('test-dts');
   });
 
   it('should pass onCategorySelect down to dropdown', () => {

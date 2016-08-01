@@ -1,5 +1,4 @@
-@import '../color';
-@import '../font-weight';
+@import '../variable';
 
 .category-search-component {
   display: flex;
@@ -38,6 +37,7 @@
     }
 
     > .Select-arrow-zone {
+      line-height: $line-height-base;
       padding-top: 6px;
     }
   }

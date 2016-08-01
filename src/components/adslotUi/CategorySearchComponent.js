@@ -6,6 +6,7 @@ import { FlexibleSpacer, SvgSymbol } from 'alexandria-adslot';
 require('styles/adslotUi/CategorySearch.scss');
 
 const CategorySearchComponent = ({
+  additionalClassNames,
   category,
   categoryOptions,
   onCategorySelect,
@@ -13,13 +14,15 @@ const CategorySearchComponent = ({
   searchPlaceholder,
   onSearchStringChange,
   onSearchButtonClick,
+  dts,
 }) => {
+  const className = ['category-search-component'].concat(additionalClassNames).join(' ');
   const placeholder = searchPlaceholder || 'Search';
   const onCategorySelectBound = (option) => onCategorySelect(option.value);
   const onSearchStringChangeBound = (event) => onSearchStringChange(event.target.value);
 
   return (
-    <div className="category-search-component">
+    <div className={className} data-test-selector={dts}>
       <Select
         className="category-search-component-dropdown"
         clearable={false}
@@ -53,6 +56,7 @@ const CategorySearchComponent = ({
 };
 
 CategorySearchComponent.propTypes = {
+  additionalClassNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   category: PropTypes.string.isRequired,
   categoryOptions: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
@@ -63,6 +67,11 @@ CategorySearchComponent.propTypes = {
   searchPlaceholder: PropTypes.string,
   onSearchStringChange: PropTypes.func.isRequired,
   onSearchButtonClick: PropTypes.func.isRequired,
+  dts: PropTypes.string,
+};
+
+CategorySearchComponent.defaultProps = {
+  additionalClassNames: [],
 };
 
 export default CategorySearchComponent;
