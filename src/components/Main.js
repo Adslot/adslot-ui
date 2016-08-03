@@ -708,7 +708,7 @@ class AppComponent extends React.Component {
           categoryOptions={this.state.categoryOptions}
           onCategorySelect={this.setCategory}
           searchString={this.state.categorySearchString}
-          searchPlaceholder="Search products"
+          searchPlaceholder="Search for all the things."
           onSearchStringChange={this.setCategorySearchString}
           onSearchButtonClick={this.performCategorySearch}
         />
