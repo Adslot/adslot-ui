@@ -1,79 +1,85 @@
 @import '../variable';
+@import '../icon';
 
 .category-search-component {
+  $component-height: 30px;
+  $component-padding: 10px;
   display: flex;
-}
 
-.category-search-component-dropdown.Select {
-  $border-radius: 2px;
-  flex: 0 0 auto;
+  &-dropdown.Select {
+    flex: 0 0 auto;
 
-  > .Select-control.Select-control { // Specificity hack
-    border-color: $color-border-lighter;
-    border-radius: $border-radius 0 0 $border-radius;
-    box-shadow: none;
-    height: 32px;
-    width: auto;
+    > .Select-control.Select-control { // Specificity hack
+      border-color: $color-border-lighter;
+      border-radius: $border-radius-base 0 0 $border-radius-base;
+      box-shadow: none;
+      height: $component-height + 2;
+      width: auto;
 
-    > .Select-value {
-      cursor: pointer;
-      font-weight: $font-weight-bold;
-      line-height: 30px;
-      padding-left: 10px;
-      padding-right: 4px;
-      position: static;
+      .Select-value {
+        cursor: pointer;
+        font-weight: $font-weight-bold;
+        line-height: $component-height;
+        padding-left: $component-padding;
+        padding-right: 4px; // Because the dropdown triangle gives the illusion of more space, we reduce it here
+        position: static;
+
+        &-label {
+          color: $color-text-label !important;
+        }
+      }
+
+      .Select-input {
+        // react-select applies an inline style of "display: inline-block"
+        // that can only be overridden by using !important here
+        display: block !important;
+        height: 0;
+      }
+
+      > .Select-arrow-zone {
+        line-height: $line-height-base;
+        padding-top: 6px;
+      }
     }
 
-    > .Select-value > .Select-value-label {
-      color: $color-text-label !important;
-    }
-
-    > .Select-input {
-      // react-select applies an inline style of
-      // "display: inline-block" that can only be
-      // overridden by using !important here
-      display: block !important;
-      height: 0;
-    }
-
-    > .Select-arrow-zone {
-      line-height: $line-height-base;
-      padding-top: 6px;
-    }
-  }
-
-  > .Select-menu-outer {
-    max-height: none;
-    width: auto;
-
-    > .Select-menu {
+    > .Select-menu-outer {
       max-height: none;
       width: auto;
-    }
 
-    > .Select-menu > .Select-option {
-      white-space: nowrap;
-      padding: 4px 10px;
-      min-width: 175px;
+      > .Select-menu {
+        max-height: none;
+        width: auto;
+
+        > .Select-option {
+          white-space: nowrap;
+          padding: $padding-base-vertical $component-padding;
+          min-width: 175px;
+        }
+      }
     }
   }
-}
 
-.category-search-component-text-input {
-  &.form-control {
-    border-bottom-left-radius: 0;
-    border-left: 0;
-    border-top-left-radius: 0;
-    flex: 1;
-    height: 32px;
-    padding: 4px 10px;
+  &-text-input {
+    &.form-control {
+      border-bottom-left-radius: 0;
+      border-left: 0;
+      border-top-left-radius: 0;
+      flex: 1;
+      height: $component-height + 2;
+      padding: $padding-base-vertical $component-padding;
+      margin-right: -3px; // have the search button overlap on borders
+    }
   }
-}
 
-.category-search-component-button {
-  flex: 0 0 auto;
-
-  .svg-symbol-component {
-    fill: $color-text-inverse;
+  &-button.btn {
+    &,
+    &:active {
+      width: 50px;
+      background-image: $icon-search;
+      background-origin: content-box;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: none;
+    }
   }
 }

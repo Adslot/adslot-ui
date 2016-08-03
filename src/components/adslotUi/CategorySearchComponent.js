@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import Select from 'react-select';
 import Button from 'react-bootstrap/lib/Button';
-import { FlexibleSpacer, SvgSymbol } from 'alexandria-adslot';
 
 require('styles/adslotUi/CategorySearch.scss');
 
@@ -44,13 +43,7 @@ const CategorySearchComponent = ({
         className="category-search-component-button"
         bsStyle="primary"
         onClick={onSearchButtonClick}
-      >
-        <span className="flexible-wrapper-inline">
-          <FlexibleSpacer />
-          <SvgSymbol href="/assets/svg-symbols.svg#search" />
-          <FlexibleSpacer />
-        </span>
-      </Button>
+      >&nbsp;</Button>
     </div>
   );
 };
