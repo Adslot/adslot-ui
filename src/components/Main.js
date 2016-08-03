@@ -710,7 +710,7 @@ class AppComponent extends React.Component {
           searchString={this.state.categorySearchString}
           searchPlaceholder="Search for all the things."
           onSearchStringChange={this.setCategorySearchString}
-          onSearchButtonClick={this.performCategorySearch}
+          onSearch={this.performCategorySearch}
         />
       </div>
     );

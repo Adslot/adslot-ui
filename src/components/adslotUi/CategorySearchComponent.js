@@ -12,13 +12,19 @@ const CategorySearchComponent = ({
   searchString,
   searchPlaceholder,
   onSearchStringChange,
-  onSearchButtonClick,
+  onSearch,
   dts,
 }) => {
   const className = ['category-search-component'].concat(additionalClassNames).join(' ');
   const placeholder = searchPlaceholder || 'Search';
   const onCategorySelectBound = (option) => onCategorySelect(option.value);
   const onSearchStringChangeBound = (event) => onSearchStringChange(event.target.value);
+  const onTextInputKeyPress = (event) => {
+    const ENTER_KEY = 13;
+    if (event.keyCode === ENTER_KEY) {
+      onSearch();
+    }
+  };
 
   return (
     <div className={className} data-test-selector={dts}>
@@ -35,6 +41,7 @@ const CategorySearchComponent = ({
       <input
         className="category-search-component-text-input form-control"
         onChange={onSearchStringChangeBound}
+        onKeyPress={onTextInputKeyPress}
         placeholder={placeholder}
         type="text"
         value={searchString}
@@ -42,7 +49,7 @@ const CategorySearchComponent = ({
       <Button
         className="category-search-component-button"
         bsStyle="primary"
-        onClick={onSearchButtonClick}
+        onClick={onSearch}
       >&nbsp;</Button>
     </div>
   );
@@ -59,7 +66,7 @@ CategorySearchComponent.propTypes = {
   searchString: PropTypes.string.isRequired,
   searchPlaceholder: PropTypes.string,
   onSearchStringChange: PropTypes.func.isRequired,
-  onSearchButtonClick: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
   dts: PropTypes.string,
 };
 
