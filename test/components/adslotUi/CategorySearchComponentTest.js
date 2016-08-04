@@ -14,7 +14,7 @@ const defaultProps = {
   onCategorySelect: _.noop,
   searchString: '',
   onSearchStringChange: _.noop,
-  onSearchButtonClick: _.noop,
+  onSearch: _.noop,
 };
 
 const props = {
@@ -29,7 +29,7 @@ const props = {
   onCategorySelect: _.noop,
   searchString: '',
   onSearchStringChange: _.noop,
-  onSearchButtonClick: _.noop,
+  onSearch: _.noop,
   dts: 'test-dts',
 };
 
@@ -54,7 +54,7 @@ describe('CategorySearchComponent', () => {
     expect(component.prop('data-test-selector')).to.equal('test-dts');
   });
 
-  it('should pass onCategorySelect down to dropdown', () => {
+  it('should bind onCategorySelect to dropdown change event', () => {
     let callback = sinon.spy();
     const component = shallow(<CategorySearch {...defaultProps} onCategorySelect={callback} />);
     const selectElement = component.find(Select);
@@ -63,7 +63,7 @@ describe('CategorySearchComponent', () => {
     expect(callback.calledWith('2'));
   });
 
-  it('should pass onSearchStringChange down to search input', () => {
+  it('should bind onSearchStringChange to search input change event', () => {
     let callback = sinon.spy();
     const component = shallow(<CategorySearch {...defaultProps} onSearchStringChange={callback} />);
     const inputElement = component.find('input');
@@ -72,9 +72,21 @@ describe('CategorySearchComponent', () => {
     expect(callback.calledWith('Granny Smith'));
   });
 
-  it('should pass onSearchButtonClick down to search button', () => {
+  it('should bind onSearch to search input key press event', () => {
     let callback = sinon.spy();
-    const component = shallow(<CategorySearch {...defaultProps} onSearchButtonClick={callback} />);
+    const component = shallow(<CategorySearch {...defaultProps} onSearch={callback} />);
+    const inputElement = component.find('input');
+    const ENTER_KEY = 13;
+    inputElement.simulate('keypress', { keyCode: ENTER_KEY });
+    expect(callback.calledOnce).to.equal(true);
+    const A_KEY = 65;
+    inputElement.simulate('keypress', { keyCode: A_KEY });
+    expect(callback.calledOnce).to.equal(true);
+  });
+
+  it('should bind onSearch to search button click event', () => {
+    let callback = sinon.spy();
+    const component = shallow(<CategorySearch {...defaultProps} onSearch={callback} />);
     const buttonElement = component.find(Button);
     buttonElement.simulate('click');
     expect(callback.calledOnce).to.equal(true);
