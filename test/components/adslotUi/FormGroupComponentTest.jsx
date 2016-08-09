@@ -1,4 +1,4 @@
-import FormGroupComponent from 'components/adslotUi/FormGroupComponent.js';
+import FormGroupComponent from 'components/adslotUi/FormGroupComponent';
 import React from 'react';
 import { shallow } from 'enzyme';
 

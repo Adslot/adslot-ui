@@ -10,6 +10,7 @@ module.exports = function configureKarma(config) {
     port: 8080,
     captureTimeout: 60000,
     frameworks: ['phantomjs-shim', 'mocha', 'chai'],
+
     // logLevel: config.LOG_DEBUG,
     client: {
       mocha: {},
@@ -33,7 +34,7 @@ module.exports = function configureKarma(config) {
           functions: 100,
           lines: 100,
           excludes: [
-            'src/components/Main.js',
+            'src/components/Main.jsx',
           ],
         },
       },

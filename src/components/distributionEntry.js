@@ -1,11 +1,4 @@
 // Export the consumable components.
-
-require('styles/_bootstrap-custom.scss');
-require('styles/_icheck-custom.scss');
-require('styles/_react-select-custom.scss');
-require('styles/_react-toggle-custom.scss');
-require('styles/_react-datepicker-custom.scss');
-
 import Accordion from 'components/adslotUi/AccordionComponent';
 import Button from 'react-bootstrap/lib/Button';
 import CategorySearch from 'components/adslotUi/CategorySearchComponent';
@@ -52,6 +45,12 @@ import {
   Tag,
   Totals,
 } from 'alexandria-adslot';
+
+require('styles/_bootstrap-custom.scss');
+require('styles/_icheck-custom.scss');
+require('styles/_react-select-custom.scss');
+require('styles/_react-toggle-custom.scss');
+require('styles/_react-datepicker-custom.scss');
 
 module.exports = {
   Accordion,

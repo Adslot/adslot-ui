@@ -23,7 +23,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.js?$/,
+        test: /\.(js|jsx)$/,
         include: [
           path.join(__dirname, '/../src'),
         ],

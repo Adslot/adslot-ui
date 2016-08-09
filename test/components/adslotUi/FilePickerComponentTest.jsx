@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import sinon from 'sinon';
-import FilePickerComponent from 'components/adslotUi/FilePickerComponent.js';
+import FilePickerComponent from 'components/adslotUi/FilePickerComponent';
 import { mount, shallow } from 'enzyme';
 
 describe('FilePickerComponent', () => {
