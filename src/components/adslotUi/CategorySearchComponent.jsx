@@ -21,7 +21,11 @@ const CategorySearchComponent = ({
   const onSearchStringChangeBound = (event) => onSearchStringChange(event.target.value);
   const onTextInputKeyPress = (event) => {
     const ENTER_KEY = 13;
-    if (event.keyCode === ENTER_KEY) {
+
+    // event.keyCode always returns 0 on Chrome (a known bug), so we must do a check
+    // for event.which as well. For more info on the bug, see this SO entry:
+    // http://stackoverflow.com/questions/1897333/firing-a-keyboard-event-on-chrome
+    if (event.which === ENTER_KEY || event.keyCode === ENTER_KEY) {
       onSearch();
     }
   };
