@@ -16,6 +16,7 @@ describe('TreePickerSelectedComponent', () => {
 
   const {
     actNode,
+    itemType,
     ntNode,
     rootTypes,
   } = TreePickerMocks;
@@ -56,7 +57,7 @@ describe('TreePickerSelectedComponent', () => {
   };
 
   it('should render with defaults', () => {
-    const component = shallow(<TreePickerSelected />);
+    const component = shallow(<TreePickerSelected itemType={itemType} />);
     expect(component.prop('className')).to.equal('treepickerselected-component');
 
     checkHeader(component);
@@ -90,6 +91,7 @@ describe('TreePickerSelectedComponent', () => {
       averageWithinRootType: true,
       emptyIcon: 'awesome-url',
       emptySvgSymbol: { href: '/some.svg#id' },
+      itemType,
       selectedLabel: 'Selected Targeting',
       rootTypes,
       selectedNodesByRootType,
@@ -150,6 +152,7 @@ describe('TreePickerSelectedComponent', () => {
   it('should render with averageWithinRootType false', () => {
     const props = {
       averageWithinRootType: false,
+      itemType,
       rootTypes,
       selectedNodesByRootType,
     };
@@ -171,6 +174,7 @@ describe('TreePickerSelectedComponent', () => {
 
   it('should render alert as warning when warnOnRequired is true', () => {
     const props = {
+      itemType,
       rootTypes,
       selectedNodesByRootType,
       warnOnRequired: true,
@@ -184,7 +188,7 @@ describe('TreePickerSelectedComponent', () => {
 
   it('should error when there is a selectedNode with no corresponding rootType', () => {
     expect(() => {
-      shallow(<TreePickerSelected selectedNodesByRootType={selectedNodesByRootType} />);
+      shallow(<TreePickerSelected itemType={itemType} selectedNodesByRootType={selectedNodesByRootType} />);
     }).to.throw('TreePickerSelectedComponent requires a rootType for id a');
   });
 });

@@ -56,6 +56,8 @@ const initialSelection = [
   ntNode,
 ];
 
+const itemType = 'example item type';
+
 const TreePickerMocks = immutable({
   actNode,
   ntNode,
@@ -63,6 +65,7 @@ const TreePickerMocks = immutable({
   baseItem,
   cbrNode,
   initialSelection,
+  itemType,
   maleNode,
   qldNode,
   saNode,

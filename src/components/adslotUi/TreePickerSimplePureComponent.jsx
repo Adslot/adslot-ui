@@ -21,6 +21,7 @@ const TreePickerSimplePureComponent = ({
   includeNode,
   initialStateNode,
   initialStateSymbol,
+  itemType,
   removeNode,
   searchOnChange,
   searchOnClear,
@@ -36,7 +37,10 @@ const TreePickerSimplePureComponent = ({
 
   return (
     <div className="treepickersimplepure-component">
-      <SplitPane additionalClassNames={additionalClassNames}>
+      <SplitPane
+        additionalClassNames={additionalClassNames}
+        dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}
+      >
         <TreePickerNav
           {...{
             breadcrumbNodes,
@@ -58,6 +62,7 @@ const TreePickerSimplePureComponent = ({
             emptyText,
             expandNode,
             includeNode,
+            itemType,
             nodes: selectableNodes,
             selected: false,
           }}
@@ -65,12 +70,13 @@ const TreePickerSimplePureComponent = ({
         <FlexibleSpacer />
       </SplitPane>
 
-      <SplitPane>
+      <SplitPane dts={`treepicker-splitpane-selected-${_.kebabCase(itemType)}`}>
         <TreePickerGrid
           {...{
             disabled,
             emptySvgSymbol,
             emptyText: 'Nothing selected.',
+            itemType,
             nodes: selectedNodes,
             removeNode,
             selected: true,
@@ -95,6 +101,7 @@ TreePickerSimplePureComponent.propTypes = {
   includeNode: PropTypes.func,
   initialStateNode: PropTypes.any,
   initialStateSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  itemType: PropTypes.string.isRequired,
   removeNode: PropTypes.func,
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
@@ -108,6 +115,7 @@ TreePickerSimplePureComponent.propTypes = {
 
 TreePickerSimplePureComponent.defaultProps = {
   disabled: false,
+  itemType: 'node',
 };
 
 export default TreePickerSimplePureComponent;

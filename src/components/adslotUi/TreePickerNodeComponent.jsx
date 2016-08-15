@@ -14,7 +14,7 @@ const getExpander = ({ expandNode, node }) => {
     return {
       expandNodeBound,
       expanderElement:
-        <GridCell onClick={expandNodeBound}>
+        <GridCell onClick={expandNodeBound} dts="expander">
           <div className={`${baseClass}-expander`} />
         </GridCell>,
     };
@@ -27,6 +27,7 @@ const TreePickerNodeComponent = ({
   disabled,
   expandNode,
   includeNode,
+  itemType,
   node,
   removeNode,
   selected,
@@ -48,10 +49,10 @@ const TreePickerNodeComponent = ({
     {};
 
   return (
-    <div className={`${baseClass}`} data-test-selector="treepicker-grid-row">
-      <GridRow>
+    <div className={`${baseClass}`}>
+      <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
         {selected ?
-          <GridCell classSuffixes={['button']}>
+          <GridCell classSuffixes={['button']} dts="button-remove">
             <Button
               block bsSize="xsmall"
               className="btn-inverse"
@@ -62,7 +63,7 @@ const TreePickerNodeComponent = ({
             </Button>
           </GridCell>
         : null}
-        <GridCell stretch {...labelCellProps}>
+        <GridCell stretch {...labelCellProps} dts="label">
           <span>{node.label}</span>
           {!_.isEmpty(node.type) && !_.isEmpty(pathElement) ?
             <span className={`${baseClass}-metadata`}> ({node.type} in {pathElement})</span> :
@@ -71,13 +72,13 @@ const TreePickerNodeComponent = ({
         </GridCell>
         {expanderElement}
         {_.isNumber(node.value) ?
-          <GridCell>
+          <GridCell dts="value">
             {valueFormatter(node.value)}
           </GridCell> :
           null
         }
         {!selected ?
-          <GridCell classSuffixes={['button']}>
+          <GridCell classSuffixes={['button']} dts="button-add">
             <Button
               block bsSize="xsmall"
               className="btn-inverse"
@@ -99,6 +100,7 @@ TreePickerNodeComponent.propTypes = {
   disabled: PropTypes.bool,
   expandNode: PropTypes.func,
   includeNode: PropTypes.func.isRequired,
+  itemType: PropTypes.string.isRequired,
   node: TreePickerPropTypes.node.isRequired,
   removeNode: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,

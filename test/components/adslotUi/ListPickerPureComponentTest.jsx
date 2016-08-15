@@ -24,7 +24,7 @@ describe('ListPickerPureComponent', () => {
   it('should render with defaults', () => {
     const component = shallow(<ListPickerPureComponent />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-undefined');
+    expect(component.prop('data-test-selector')).to.equal(`listpickerpure-component-item`);
 
     const gridElements = component.find(Grid);
     expect(gridElements).to.have.length(1);
@@ -71,13 +71,11 @@ describe('ListPickerPureComponent', () => {
     const props = {
       items: usersWithUuid,
       itemHeaders: userHeaders,
-      itemType: 'user',
       labelFormatter,
       selectedItems: selectedItemsWithUuid,
     };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const headerGridElement = component.find(Grid).first();
     const gridHeaderElement = headerGridElement.find(GridRow);
@@ -109,10 +107,9 @@ describe('ListPickerPureComponent', () => {
   it('should render with props including addonFormatter', () => {
     const addonFormatter = () => (<Empty />);
     const itemHeaders = _.assign({}, ListPickerMocks.userHeaders, { addon: 'Required' });
-    const props = { items: users, itemHeaders, itemType: 'user', labelFormatter, selectedItems, addonFormatter };
+    const props = { items: users, itemHeaders, labelFormatter, selectedItems, addonFormatter };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const headerGridElement = component.find(Grid).first();
     const gridHeaderElement = headerGridElement.find(GridRow);
@@ -130,10 +127,9 @@ describe('ListPickerPureComponent', () => {
   });
 
   it('should render radio buttons with `allowMultiSelection` as false', () => {
-    const props = { allowMultiSelection: false, items: users, itemType: 'user', selectedItems };
+    const props = { allowMultiSelection: false, items: users, selectedItems };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const gridElement = component.find(Grid);
     const gridRowElements = gridElement.find(GridRow);
@@ -148,10 +144,9 @@ describe('ListPickerPureComponent', () => {
   });
 
   it('should throw when we select without a `selectItem` handler', () => {
-    const props = { items: users, itemType: 'user', selectedItems };
+    const props = { items: users, selectedItems };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const gridElement = component.find(Grid);
     const gridRowElements = gridElement.find(GridRow);
@@ -164,10 +159,9 @@ describe('ListPickerPureComponent', () => {
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
-    const props = { items: users, itemType: 'user', selectedItems };
+    const props = { items: users, selectedItems };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const gridElement = component.find(Grid);
     const gridRowElements = gridElement.find(GridRow);
@@ -185,7 +179,6 @@ describe('ListPickerPureComponent', () => {
     const props = {
       allowMultiSelection: false,
       items: users,
-      itemType: 'user',
       selectedItems,
       selectItem: (item, allowMultiSelection) => {
         handlerCalled++;
@@ -194,7 +187,6 @@ describe('ListPickerPureComponent', () => {
     };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const gridElement = component.find(Grid);
     const gridRowElements = gridElement.find(GridRow);
@@ -211,7 +203,6 @@ describe('ListPickerPureComponent', () => {
     let isAllowMultiSelection;
     const props = {
       items: users,
-      itemType: 'user',
       selectedItems,
       deselectItem: (item, allowMultiSelection) => {
         handlerCalled++;
@@ -220,7 +211,6 @@ describe('ListPickerPureComponent', () => {
     };
     const component = shallow(<ListPickerPureComponent {...props} />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
 
     const gridElement = component.find(Grid);
     const gridRowElements = gridElement.find(GridRow);

@@ -21,6 +21,7 @@ const TreePickerPureComponent = ({
   expandNode,
   helpText,
   includeNode,
+  itemType,
   removeNode,
   rootTypes,
   searchOnChange,
@@ -51,12 +52,15 @@ const TreePickerPureComponent = ({
   return (
     <div className="treepickerpure-component">
 
-      <SplitPane dts="treepicker-splitpane-available">
+      <SplitPane dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}>
 
         <ul className="nav nav-tabs">
           {visibleRootTypes.length ? _.map(visibleRootTypes, (rootType) =>
             <li className={(rootType.id === activeRootTypeId) ? 'active' : ''} key={rootType.id}>
-              <a onClick={changeRootTypeBound(rootType)} data-test-selector="treepicker-nav-tab">
+              <a
+                onClick={changeRootTypeBound(rootType)}
+                data-test-selector={`treepicker-nav-tab-${_.kebabCase(rootType.label)}`}
+              >
                 <SvgSymbol
                   href={_.get(rootType, 'svgSymbol.href')}
                   classSuffixes={_.get(rootType, 'svgSymbol.classSuffixes', ['gray-darker'])}
@@ -86,6 +90,7 @@ const TreePickerPureComponent = ({
             emptyText: 'No items to select.',
             expandNode,
             includeNode,
+            itemType,
             nodes: selectableNodes,
             selected: false,
             valueFormatter,
@@ -95,7 +100,7 @@ const TreePickerPureComponent = ({
         <FlexibleSpacer />
       </SplitPane>
 
-      <SplitPane dts="treepicker-splitpane-selected">
+      <SplitPane dts={`treepicker-splitpane-selected-${_.kebabCase(itemType)}`}>
 
         <TreePickerSelected
           {...{
@@ -103,6 +108,7 @@ const TreePickerPureComponent = ({
             baseItem,
             emptySvgSymbol,
             helpText,
+            itemType,
             removeNode,
             rootTypes,
             selectedLabel,
@@ -140,6 +146,7 @@ TreePickerPureComponent.propTypes = {
     sum: PropTypes.string,
   }),
   includeNode: PropTypes.func,
+  itemType: PropTypes.string.isRequired,
   removeNode: PropTypes.func,
   rootTypes: PropTypes.arrayOf(TreePickerPropTypes.rootType).isRequired,
   searchOnChange: PropTypes.func,
@@ -159,6 +166,7 @@ TreePickerPureComponent.propTypes = {
 
 TreePickerPureComponent.defaultProps = {
   averageWithinRootType: false,
+  itemType: 'node',
   rootTypes: [],
   selectedNodesByRootType: {},
   subtree: [],

@@ -17,6 +17,7 @@ describe('TreePickerComponent', () => {
     baseItem,
     cbrNode,
     initialSelection,
+    itemType,
     maleNode,
     ntNode,
     qldNode,
@@ -93,6 +94,7 @@ describe('TreePickerComponent', () => {
     expect(treePickerPureElement.prop('emptySvgSymbol')).to.be.an('undefined');
     expect(treePickerPureElement.prop('expandNode')).to.be.a('function');
     expect(treePickerPureElement.prop('includeNode')).to.be.a('function');
+    expect(treePickerPureElement.prop('itemType')).to.equal('node');
     expect(treePickerPureElement.prop('removeNode')).to.be.a('function');
     expect(treePickerPureElement.prop('rootTypes')).to.deep.equal([]);
     expect(treePickerPureElement.prop('searchOnChange')).to.be.a('function');
@@ -128,6 +130,7 @@ describe('TreePickerComponent', () => {
         sum: 'The sum of all fears.',
       },
       initialSelection,
+      itemType,
       modalTitle: 'Edit Targeting',
       rootTypes,
       selectedLabel: 'Selected Targeting',
@@ -155,6 +158,7 @@ describe('TreePickerComponent', () => {
       sum: 'The sum of all fears.',
     });
     expect(treePickerPureElement.prop('includeNode')).to.be.a('function');
+    expect(treePickerPureElement.prop('itemType')).to.equal(itemType);
     expect(treePickerPureElement.prop('removeNode')).to.be.a('function');
     expect(treePickerPureElement.prop('rootTypes')).to.equal(rootTypes);
     expect(treePickerPureElement.prop('searchOnChange')).to.be.a('function');
@@ -341,7 +345,9 @@ describe('TreePickerComponent', () => {
   });
 
   it('should throw when we click Apply without a handler', () => {
-    const component = createAndMountComponent(<TreePickerComponent initialSelection={initialSelection} />);
+    const component = createAndMountComponent(<TreePickerComponent
+      initialSelection={initialSelection}
+    />);
     const modalFooterElement = component.find(Modal.Footer);
     const applyButtonElement = modalFooterElement.find('[data-test-selector="treepicker-apply-button"]');
     expect(() => applyButtonElement.simulate('click')).to.throw(

@@ -154,7 +154,7 @@ class ListPickerComponent extends React.Component {
 
 ListPickerComponent.displayName = 'AdslotUiListPickerComponent';
 
-const itemType = PropTypes.shape({
+const itemProps = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });
 
@@ -164,7 +164,7 @@ ListPickerComponent.propTypes = {
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  initialSelection: PropTypes.arrayOf(itemType).isRequired,
+  initialSelection: PropTypes.arrayOf(itemProps).isRequired,
   itemHeaders: PropTypes.shape({
     label: PropTypes.string,
     toggle: PropTypes.string,
@@ -179,7 +179,7 @@ ListPickerComponent.propTypes = {
       })
     ).isRequired,
   }),
-  items: PropTypes.arrayOf(itemType).isRequired,
+  items: PropTypes.arrayOf(itemProps).isRequired,
   itemType: PropTypes.string.isRequired,
   labelFormatter: PropTypes.func,
   addonFormatter: PropTypes.func,
@@ -203,6 +203,7 @@ ListPickerComponent.defaultProps = {
   allowMultiSelection: true,
   initialSelection: [],
   items: [],
+  itemType: 'item',
   modalApply: () => { throw new Error('AdslotUi ListPicker needs a modalApply handler'); },
 
   modalClassName: 'listpicker-component',
