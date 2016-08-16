@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _AccordionComponent = __webpack_require__(208);
+	var _AccordionComponent = __webpack_require__(209);
 
 	var _AccordionComponent2 = _interopRequireDefault(_AccordionComponent);
 
@@ -87,27 +87,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _CategorySearchComponent = __webpack_require__(209);
+	var _CategorySearchComponent = __webpack_require__(210);
 
 	var _CategorySearchComponent2 = _interopRequireDefault(_CategorySearchComponent);
 
-	var _Checkbox = __webpack_require__(198);
+	var _Checkbox = __webpack_require__(199);
 
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
-	var _ConfirmModalComponent = __webpack_require__(210);
+	var _ConfirmModalComponent = __webpack_require__(211);
 
 	var _ConfirmModalComponent2 = _interopRequireDefault(_ConfirmModalComponent);
 
-	var _reactDatepicker = __webpack_require__(317);
+	var _reactDatepicker = __webpack_require__(318);
 
 	var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
 
-	var _FilePickerComponent = __webpack_require__(211);
+	var _FilePickerComponent = __webpack_require__(212);
 
 	var _FilePickerComponent2 = _interopRequireDefault(_FilePickerComponent);
 
-	var _FormGroupComponent = __webpack_require__(212);
+	var _FormGroupComponent = __webpack_require__(213);
 
 	var _FormGroupComponent2 = _interopRequireDefault(_FormGroupComponent);
 
@@ -123,15 +123,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _OverlayTrigger = __webpack_require__(164);
+	var _OverlayTrigger = __webpack_require__(165);
 
 	var _OverlayTrigger2 = _interopRequireDefault(_OverlayTrigger);
 
-	var _PagedGridComponent = __webpack_require__(213);
+	var _PagedGridComponent = __webpack_require__(214);
 
 	var _PagedGridComponent2 = _interopRequireDefault(_PagedGridComponent);
 
-	var _Pagination = __webpack_require__(165);
+	var _Pagination = __webpack_require__(166);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
@@ -139,7 +139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _PanelComponent2 = _interopRequireDefault(_PanelComponent);
 
-	var _Popover = __webpack_require__(166);
+	var _Popover = __webpack_require__(167);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -147,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Radio2 = _interopRequireDefault(_Radio);
 
-	var _RadioGroup = __webpack_require__(319);
+	var _RadioGroup = __webpack_require__(320);
 
 	var _RadioGroup2 = _interopRequireDefault(_RadioGroup);
 
@@ -155,27 +155,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactSelect2 = _interopRequireDefault(_reactSelect);
 
-	var _Tab = __webpack_require__(248);
+	var _Tab = __webpack_require__(249);
 
 	var _Tab2 = _interopRequireDefault(_Tab);
 
-	var _Tabs = __webpack_require__(250);
+	var _Tabs = __webpack_require__(251);
 
 	var _Tabs2 = _interopRequireDefault(_Tabs);
 
-	var _reactToggle = __webpack_require__(348);
+	var _reactToggle = __webpack_require__(349);
 
 	var _reactToggle2 = _interopRequireDefault(_reactToggle);
 
-	var _TreePickerComponent = __webpack_require__(214);
+	var _TreePickerComponent = __webpack_require__(215);
 
 	var _TreePickerComponent2 = _interopRequireDefault(_TreePickerComponent);
 
-	var _TreePickerSimplePureComponent = __webpack_require__(217);
+	var _TreePickerSimplePureComponent = __webpack_require__(218);
 
 	var _TreePickerSimplePureComponent2 = _interopRequireDefault(_TreePickerSimplePureComponent);
 
-	var _UserListPickerComponent = __webpack_require__(218);
+	var _UserListPickerComponent = __webpack_require__(219);
 
 	var _UserListPickerComponent2 = _interopRequireDefault(_UserListPickerComponent);
 
@@ -184,13 +184,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Export the consumable components.
-
-
-	__webpack_require__(219);
 	__webpack_require__(220);
-	__webpack_require__(222);
-	__webpack_require__(223);
 	__webpack_require__(221);
+	__webpack_require__(223);
+	__webpack_require__(224);
+	__webpack_require__(222);
 
 	module.exports = {
 	  Accordion: _AccordionComponent2.default,
@@ -244,7 +242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
-	//! version : 2.13.0
+	//! version : 2.14.1
 	//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 	//! license : MIT
 	//! momentjs.com
@@ -269,6 +267,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function isArray(input) {
 	        return input instanceof Array || Object.prototype.toString.call(input) === '[object Array]';
+	    }
+
+	    function isObject(input) {
+	        return Object.prototype.toString.call(input) === '[object Object]';
+	    }
+
+	    function isObjectEmpty(obj) {
+	        var k;
+	        for (k in obj) {
+	            // even if its not own property I'd still call it non-empty
+	            return false;
+	        }
+	        return true;
 	    }
 
 	    function isDate(input) {
@@ -466,7 +477,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function absFloor (number) {
 	        if (number < 0) {
-	            return Math.ceil(number);
+	            // -0 -> 0
+	            return Math.ceil(number) || 0;
 	        } else {
 	            return Math.floor(number);
 	        }
@@ -539,10 +551,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
 	    }
 
-	    function isObject(input) {
-	        return Object.prototype.toString.call(input) === '[object Object]';
-	    }
-
 	    function locale_set__set (config) {
 	        var prop, i;
 	        for (i in config) {
@@ -574,6 +582,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
+	        for (prop in parentConfig) {
+	            if (hasOwnProp(parentConfig, prop) &&
+	                    !hasOwnProp(childConfig, prop) &&
+	                    isObject(parentConfig[prop])) {
+	                // make sure changes to properties don't modify parent config
+	                res[prop] = extend({}, res[prop]);
+	            }
+	        }
 	        return res;
 	    }
 
@@ -599,161 +615,83 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    }
 
-	    // internal storage for locale config files
-	    var locales = {};
-	    var globalLocale;
+	    var defaultCalendar = {
+	        sameDay : '[Today at] LT',
+	        nextDay : '[Tomorrow at] LT',
+	        nextWeek : 'dddd [at] LT',
+	        lastDay : '[Yesterday at] LT',
+	        lastWeek : '[Last] dddd [at] LT',
+	        sameElse : 'L'
+	    };
 
-	    function normalizeLocale(key) {
-	        return key ? key.toLowerCase().replace('_', '-') : key;
+	    function locale_calendar__calendar (key, mom, now) {
+	        var output = this._calendar[key] || this._calendar['sameElse'];
+	        return isFunction(output) ? output.call(mom, now) : output;
 	    }
 
-	    // pick the locale from the array
-	    // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
-	    // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
-	    function chooseLocale(names) {
-	        var i = 0, j, next, locale, split;
+	    var defaultLongDateFormat = {
+	        LTS  : 'h:mm:ss A',
+	        LT   : 'h:mm A',
+	        L    : 'MM/DD/YYYY',
+	        LL   : 'MMMM D, YYYY',
+	        LLL  : 'MMMM D, YYYY h:mm A',
+	        LLLL : 'dddd, MMMM D, YYYY h:mm A'
+	    };
 
-	        while (i < names.length) {
-	            split = normalizeLocale(names[i]).split('-');
-	            j = split.length;
-	            next = normalizeLocale(names[i + 1]);
-	            next = next ? next.split('-') : null;
-	            while (j > 0) {
-	                locale = loadLocale(split.slice(0, j).join('-'));
-	                if (locale) {
-	                    return locale;
-	                }
-	                if (next && next.length >= j && compareArrays(split, next, true) >= j - 1) {
-	                    //the next array item is better than a shallower substring of this one
-	                    break;
-	                }
-	                j--;
-	            }
-	            i++;
+	    function longDateFormat (key) {
+	        var format = this._longDateFormat[key],
+	            formatUpper = this._longDateFormat[key.toUpperCase()];
+
+	        if (format || !formatUpper) {
+	            return format;
 	        }
-	        return null;
+
+	        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
+	            return val.slice(1);
+	        });
+
+	        return this._longDateFormat[key];
 	    }
 
-	    function loadLocale(name) {
-	        var oldLocale = null;
-	        // TODO: Find a better way to register and load all the locales in Node
-	        if (!locales[name] && (typeof module !== 'undefined') &&
-	                module && module.exports) {
-	            try {
-	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(237)("./" + name);
-	                // because defineLocale currently also sets the global locale, we
-	                // want to undo that for lazy loaded locales
-	                locale_locales__getSetGlobalLocale(oldLocale);
-	            } catch (e) { }
-	        }
-	        return locales[name];
+	    var defaultInvalidDate = 'Invalid date';
+
+	    function invalidDate () {
+	        return this._invalidDate;
 	    }
 
-	    // This function will load locale and then set the global locale.  If
-	    // no arguments are passed in, it will simply return the current global
-	    // locale key.
-	    function locale_locales__getSetGlobalLocale (key, values) {
-	        var data;
-	        if (key) {
-	            if (isUndefined(values)) {
-	                data = locale_locales__getLocale(key);
-	            }
-	            else {
-	                data = defineLocale(key, values);
-	            }
+	    var defaultOrdinal = '%d';
+	    var defaultOrdinalParse = /\d{1,2}/;
 
-	            if (data) {
-	                // moment.duration._locale = moment._locale = data;
-	                globalLocale = data;
-	            }
-	        }
-
-	        return globalLocale._abbr;
+	    function ordinal (number) {
+	        return this._ordinal.replace('%d', number);
 	    }
 
-	    function defineLocale (name, config) {
-	        if (config !== null) {
-	            config.abbr = name;
-	            if (locales[name] != null) {
-	                deprecateSimple('defineLocaleOverride',
-	                        'use moment.updateLocale(localeName, config) to change ' +
-	                        'an existing locale. moment.defineLocale(localeName, ' +
-	                        'config) should only be used for creating a new locale');
-	                config = mergeConfigs(locales[name]._config, config);
-	            } else if (config.parentLocale != null) {
-	                if (locales[config.parentLocale] != null) {
-	                    config = mergeConfigs(locales[config.parentLocale]._config, config);
-	                } else {
-	                    // treat as if there is no base config
-	                    deprecateSimple('parentLocaleUndefined',
-	                            'specified parentLocale is not defined yet');
-	                }
-	            }
-	            locales[name] = new Locale(config);
+	    var defaultRelativeTime = {
+	        future : 'in %s',
+	        past   : '%s ago',
+	        s  : 'a few seconds',
+	        m  : 'a minute',
+	        mm : '%d minutes',
+	        h  : 'an hour',
+	        hh : '%d hours',
+	        d  : 'a day',
+	        dd : '%d days',
+	        M  : 'a month',
+	        MM : '%d months',
+	        y  : 'a year',
+	        yy : '%d years'
+	    };
 
-	            // backwards compat for now: also set the locale
-	            locale_locales__getSetGlobalLocale(name);
-
-	            return locales[name];
-	        } else {
-	            // useful for testing
-	            delete locales[name];
-	            return null;
-	        }
+	    function relative__relativeTime (number, withoutSuffix, string, isFuture) {
+	        var output = this._relativeTime[string];
+	        return (isFunction(output)) ?
+	            output(number, withoutSuffix, string, isFuture) :
+	            output.replace(/%d/i, number);
 	    }
 
-	    function updateLocale(name, config) {
-	        if (config != null) {
-	            var locale;
-	            if (locales[name] != null) {
-	                config = mergeConfigs(locales[name]._config, config);
-	            }
-	            locale = new Locale(config);
-	            locale.parentLocale = locales[name];
-	            locales[name] = locale;
-
-	            // backwards compat for now: also set the locale
-	            locale_locales__getSetGlobalLocale(name);
-	        } else {
-	            // pass null for config to unupdate, useful for tests
-	            if (locales[name] != null) {
-	                if (locales[name].parentLocale != null) {
-	                    locales[name] = locales[name].parentLocale;
-	                } else if (locales[name] != null) {
-	                    delete locales[name];
-	                }
-	            }
-	        }
-	        return locales[name];
-	    }
-
-	    // returns locale data
-	    function locale_locales__getLocale (key) {
-	        var locale;
-
-	        if (key && key._locale && key._locale._abbr) {
-	            key = key._locale._abbr;
-	        }
-
-	        if (!key) {
-	            return globalLocale;
-	        }
-
-	        if (!isArray(key)) {
-	            //short-circuit everything else
-	            locale = loadLocale(key);
-	            if (locale) {
-	                return locale;
-	            }
-	            key = [key];
-	        }
-
-	        return chooseLocale(key);
-	    }
-
-	    function locale_locales__listLocales() {
-	        return keys(locales);
+	    function pastFuture (diff, output) {
+	        var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
+	        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
 	    }
 
 	    var aliases = {};
@@ -784,6 +722,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return normalizedInput;
 	    }
 
+	    var priorities = {};
+
+	    function addUnitPriority(unit, priority) {
+	        priorities[unit] = priority;
+	    }
+
+	    function getPrioritizedUnits(unitsObj) {
+	        var units = [];
+	        for (var u in unitsObj) {
+	            units.push({unit: u, priority: priorities[u]});
+	        }
+	        units.sort(function (a, b) {
+	            return a.priority - b.priority;
+	        });
+	        return units;
+	    }
+
 	    function makeGetSet (unit, keepTime) {
 	        return function (value) {
 	            if (value != null) {
@@ -809,11 +764,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // MOMENTS
 
-	    function getSet (units, value) {
-	        var unit;
+	    function stringGet (units) {
+	        units = normalizeUnits(units);
+	        if (isFunction(this[units])) {
+	            return this[units]();
+	        }
+	        return this;
+	    }
+
+
+	    function stringSet (units, value) {
 	        if (typeof units === 'object') {
-	            for (unit in units) {
-	                this.set(unit, units[unit]);
+	            units = normalizeObjectUnits(units);
+	            var prioritized = getPrioritizedUnits(units);
+	            for (var i = 0; i < prioritized.length; i++) {
+	                this[prioritized[i].unit](units[prioritized[i].unit]);
 	            }
 	        } else {
 	            units = normalizeUnits(units);
@@ -1053,6 +1018,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    addUnitAlias('month', 'M');
 
+	    // PRIORITY
+
+	    addUnitPriority('month', 8);
+
 	    // PARSING
 
 	    addRegexToken('M',    match1to2);
@@ -1084,7 +1053,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
 	    function localeMonths (m, format) {
 	        return isArray(this._months) ? this._months[m.month()] :
-	            this._months[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+	            this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
 	    }
 
 	    var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
@@ -1225,6 +1194,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this._monthsShortRegex;
 	            }
 	        } else {
+	            if (!hasOwnProp(this, '_monthsShortRegex')) {
+	                this._monthsShortRegex = defaultMonthsShortRegex;
+	            }
 	            return this._monthsShortStrictRegex && isStrict ?
 	                this._monthsShortStrictRegex : this._monthsShortRegex;
 	        }
@@ -1242,6 +1214,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this._monthsRegex;
 	            }
 	        } else {
+	            if (!hasOwnProp(this, '_monthsRegex')) {
+	                this._monthsRegex = defaultMonthsRegex;
+	            }
 	            return this._monthsStrictRegex && isStrict ?
 	                this._monthsStrictRegex : this._monthsRegex;
 	        }
@@ -1270,6 +1245,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        for (i = 0; i < 12; i++) {
 	            shortPieces[i] = regexEscape(shortPieces[i]);
 	            longPieces[i] = regexEscape(longPieces[i]);
+	        }
+	        for (i = 0; i < 24; i++) {
 	            mixedPieces[i] = regexEscape(mixedPieces[i]);
 	        }
 
@@ -1277,6 +1254,873 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._monthsShortRegex = this._monthsRegex;
 	        this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
 	        this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+	    }
+
+	    // FORMATTING
+
+	    addFormatToken('Y', 0, 0, function () {
+	        var y = this.year();
+	        return y <= 9999 ? '' + y : '+' + y;
+	    });
+
+	    addFormatToken(0, ['YY', 2], 0, function () {
+	        return this.year() % 100;
+	    });
+
+	    addFormatToken(0, ['YYYY',   4],       0, 'year');
+	    addFormatToken(0, ['YYYYY',  5],       0, 'year');
+	    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
+
+	    // ALIASES
+
+	    addUnitAlias('year', 'y');
+
+	    // PRIORITIES
+
+	    addUnitPriority('year', 1);
+
+	    // PARSING
+
+	    addRegexToken('Y',      matchSigned);
+	    addRegexToken('YY',     match1to2, match2);
+	    addRegexToken('YYYY',   match1to4, match4);
+	    addRegexToken('YYYYY',  match1to6, match6);
+	    addRegexToken('YYYYYY', match1to6, match6);
+
+	    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+	    addParseToken('YYYY', function (input, array) {
+	        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
+	    });
+	    addParseToken('YY', function (input, array) {
+	        array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
+	    });
+	    addParseToken('Y', function (input, array) {
+	        array[YEAR] = parseInt(input, 10);
+	    });
+
+	    // HELPERS
+
+	    function daysInYear(year) {
+	        return isLeapYear(year) ? 366 : 365;
+	    }
+
+	    function isLeapYear(year) {
+	        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+	    }
+
+	    // HOOKS
+
+	    utils_hooks__hooks.parseTwoDigitYear = function (input) {
+	        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
+	    };
+
+	    // MOMENTS
+
+	    var getSetYear = makeGetSet('FullYear', true);
+
+	    function getIsLeapYear () {
+	        return isLeapYear(this.year());
+	    }
+
+	    function createDate (y, m, d, h, M, s, ms) {
+	        //can't just apply() to create a date:
+	        //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
+	        var date = new Date(y, m, d, h, M, s, ms);
+
+	        //the date constructor remaps years 0-99 to 1900-1999
+	        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
+	            date.setFullYear(y);
+	        }
+	        return date;
+	    }
+
+	    function createUTCDate (y) {
+	        var date = new Date(Date.UTC.apply(null, arguments));
+
+	        //the Date.UTC function remaps years 0-99 to 1900-1999
+	        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
+	            date.setUTCFullYear(y);
+	        }
+	        return date;
+	    }
+
+	    // start-of-first-week - start-of-year
+	    function firstWeekOffset(year, dow, doy) {
+	        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
+	            fwd = 7 + dow - doy,
+	            // first-week day local weekday -- which local weekday is fwd
+	            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
+
+	        return -fwdlw + fwd - 1;
+	    }
+
+	    //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+	    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
+	        var localWeekday = (7 + weekday - dow) % 7,
+	            weekOffset = firstWeekOffset(year, dow, doy),
+	            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
+	            resYear, resDayOfYear;
+
+	        if (dayOfYear <= 0) {
+	            resYear = year - 1;
+	            resDayOfYear = daysInYear(resYear) + dayOfYear;
+	        } else if (dayOfYear > daysInYear(year)) {
+	            resYear = year + 1;
+	            resDayOfYear = dayOfYear - daysInYear(year);
+	        } else {
+	            resYear = year;
+	            resDayOfYear = dayOfYear;
+	        }
+
+	        return {
+	            year: resYear,
+	            dayOfYear: resDayOfYear
+	        };
+	    }
+
+	    function weekOfYear(mom, dow, doy) {
+	        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
+	            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
+	            resWeek, resYear;
+
+	        if (week < 1) {
+	            resYear = mom.year() - 1;
+	            resWeek = week + weeksInYear(resYear, dow, doy);
+	        } else if (week > weeksInYear(mom.year(), dow, doy)) {
+	            resWeek = week - weeksInYear(mom.year(), dow, doy);
+	            resYear = mom.year() + 1;
+	        } else {
+	            resYear = mom.year();
+	            resWeek = week;
+	        }
+
+	        return {
+	            week: resWeek,
+	            year: resYear
+	        };
+	    }
+
+	    function weeksInYear(year, dow, doy) {
+	        var weekOffset = firstWeekOffset(year, dow, doy),
+	            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
+	        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
+	    }
+
+	    // FORMATTING
+
+	    addFormatToken('w', ['ww', 2], 'wo', 'week');
+	    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
+
+	    // ALIASES
+
+	    addUnitAlias('week', 'w');
+	    addUnitAlias('isoWeek', 'W');
+
+	    // PRIORITIES
+
+	    addUnitPriority('week', 5);
+	    addUnitPriority('isoWeek', 5);
+
+	    // PARSING
+
+	    addRegexToken('w',  match1to2);
+	    addRegexToken('ww', match1to2, match2);
+	    addRegexToken('W',  match1to2);
+	    addRegexToken('WW', match1to2, match2);
+
+	    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
+	        week[token.substr(0, 1)] = toInt(input);
+	    });
+
+	    // HELPERS
+
+	    // LOCALES
+
+	    function localeWeek (mom) {
+	        return weekOfYear(mom, this._week.dow, this._week.doy).week;
+	    }
+
+	    var defaultLocaleWeek = {
+	        dow : 0, // Sunday is the first day of the week.
+	        doy : 6  // The week that contains Jan 1st is the first week of the year.
+	    };
+
+	    function localeFirstDayOfWeek () {
+	        return this._week.dow;
+	    }
+
+	    function localeFirstDayOfYear () {
+	        return this._week.doy;
+	    }
+
+	    // MOMENTS
+
+	    function getSetWeek (input) {
+	        var week = this.localeData().week(this);
+	        return input == null ? week : this.add((input - week) * 7, 'd');
+	    }
+
+	    function getSetISOWeek (input) {
+	        var week = weekOfYear(this, 1, 4).week;
+	        return input == null ? week : this.add((input - week) * 7, 'd');
+	    }
+
+	    // FORMATTING
+
+	    addFormatToken('d', 0, 'do', 'day');
+
+	    addFormatToken('dd', 0, 0, function (format) {
+	        return this.localeData().weekdaysMin(this, format);
+	    });
+
+	    addFormatToken('ddd', 0, 0, function (format) {
+	        return this.localeData().weekdaysShort(this, format);
+	    });
+
+	    addFormatToken('dddd', 0, 0, function (format) {
+	        return this.localeData().weekdays(this, format);
+	    });
+
+	    addFormatToken('e', 0, 0, 'weekday');
+	    addFormatToken('E', 0, 0, 'isoWeekday');
+
+	    // ALIASES
+
+	    addUnitAlias('day', 'd');
+	    addUnitAlias('weekday', 'e');
+	    addUnitAlias('isoWeekday', 'E');
+
+	    // PRIORITY
+	    addUnitPriority('day', 11);
+	    addUnitPriority('weekday', 11);
+	    addUnitPriority('isoWeekday', 11);
+
+	    // PARSING
+
+	    addRegexToken('d',    match1to2);
+	    addRegexToken('e',    match1to2);
+	    addRegexToken('E',    match1to2);
+	    addRegexToken('dd',   function (isStrict, locale) {
+	        return locale.weekdaysMinRegex(isStrict);
+	    });
+	    addRegexToken('ddd',   function (isStrict, locale) {
+	        return locale.weekdaysShortRegex(isStrict);
+	    });
+	    addRegexToken('dddd',   function (isStrict, locale) {
+	        return locale.weekdaysRegex(isStrict);
+	    });
+
+	    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
+	        var weekday = config._locale.weekdaysParse(input, token, config._strict);
+	        // if we didn't get a weekday name, mark the date as invalid
+	        if (weekday != null) {
+	            week.d = weekday;
+	        } else {
+	            getParsingFlags(config).invalidWeekday = input;
+	        }
+	    });
+
+	    addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
+	        week[token] = toInt(input);
+	    });
+
+	    // HELPERS
+
+	    function parseWeekday(input, locale) {
+	        if (typeof input !== 'string') {
+	            return input;
+	        }
+
+	        if (!isNaN(input)) {
+	            return parseInt(input, 10);
+	        }
+
+	        input = locale.weekdaysParse(input);
+	        if (typeof input === 'number') {
+	            return input;
+	        }
+
+	        return null;
+	    }
+
+	    function parseIsoWeekday(input, locale) {
+	        if (typeof input === 'string') {
+	            return locale.weekdaysParse(input) % 7 || 7;
+	        }
+	        return isNaN(input) ? null : input;
+	    }
+
+	    // LOCALES
+
+	    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
+	    function localeWeekdays (m, format) {
+	        return isArray(this._weekdays) ? this._weekdays[m.day()] :
+	            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+	    }
+
+	    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+	    function localeWeekdaysShort (m) {
+	        return this._weekdaysShort[m.day()];
+	    }
+
+	    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+	    function localeWeekdaysMin (m) {
+	        return this._weekdaysMin[m.day()];
+	    }
+
+	    function day_of_week__handleStrictParse(weekdayName, format, strict) {
+	        var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
+	        if (!this._weekdaysParse) {
+	            this._weekdaysParse = [];
+	            this._shortWeekdaysParse = [];
+	            this._minWeekdaysParse = [];
+
+	            for (i = 0; i < 7; ++i) {
+	                mom = create_utc__createUTC([2000, 1]).day(i);
+	                this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
+	                this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
+	                this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
+	            }
+	        }
+
+	        if (strict) {
+	            if (format === 'dddd') {
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else if (format === 'ddd') {
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else {
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            }
+	        } else {
+	            if (format === 'dddd') {
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else if (format === 'ddd') {
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            } else {
+	                ii = indexOf.call(this._minWeekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._weekdaysParse, llc);
+	                if (ii !== -1) {
+	                    return ii;
+	                }
+	                ii = indexOf.call(this._shortWeekdaysParse, llc);
+	                return ii !== -1 ? ii : null;
+	            }
+	        }
+	    }
+
+	    function localeWeekdaysParse (weekdayName, format, strict) {
+	        var i, mom, regex;
+
+	        if (this._weekdaysParseExact) {
+	            return day_of_week__handleStrictParse.call(this, weekdayName, format, strict);
+	        }
+
+	        if (!this._weekdaysParse) {
+	            this._weekdaysParse = [];
+	            this._minWeekdaysParse = [];
+	            this._shortWeekdaysParse = [];
+	            this._fullWeekdaysParse = [];
+	        }
+
+	        for (i = 0; i < 7; i++) {
+	            // make the regex if we don't have it already
+
+	            mom = create_utc__createUTC([2000, 1]).day(i);
+	            if (strict && !this._fullWeekdaysParse[i]) {
+	                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
+	                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
+	                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
+	            }
+	            if (!this._weekdaysParse[i]) {
+	                regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
+	                this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
+	            }
+	            // test the regex
+	            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
+	                return i;
+	            }
+	        }
+	    }
+
+	    // MOMENTS
+
+	    function getSetDayOfWeek (input) {
+	        if (!this.isValid()) {
+	            return input != null ? this : NaN;
+	        }
+	        var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
+	        if (input != null) {
+	            input = parseWeekday(input, this.localeData());
+	            return this.add(input - day, 'd');
+	        } else {
+	            return day;
+	        }
+	    }
+
+	    function getSetLocaleDayOfWeek (input) {
+	        if (!this.isValid()) {
+	            return input != null ? this : NaN;
+	        }
+	        var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
+	        return input == null ? weekday : this.add(input - weekday, 'd');
+	    }
+
+	    function getSetISODayOfWeek (input) {
+	        if (!this.isValid()) {
+	            return input != null ? this : NaN;
+	        }
+
+	        // behaves the same as moment#day except
+	        // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
+	        // as a setter, sunday should belong to the previous week.
+
+	        if (input != null) {
+	            var weekday = parseIsoWeekday(input, this.localeData());
+	            return this.day(this.day() % 7 ? weekday : weekday - 7);
+	        } else {
+	            return this.day() || 7;
+	        }
+	    }
+
+	    var defaultWeekdaysRegex = matchWord;
+	    function weekdaysRegex (isStrict) {
+	        if (this._weekdaysParseExact) {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                computeWeekdaysParse.call(this);
+	            }
+	            if (isStrict) {
+	                return this._weekdaysStrictRegex;
+	            } else {
+	                return this._weekdaysRegex;
+	            }
+	        } else {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                this._weekdaysRegex = defaultWeekdaysRegex;
+	            }
+	            return this._weekdaysStrictRegex && isStrict ?
+	                this._weekdaysStrictRegex : this._weekdaysRegex;
+	        }
+	    }
+
+	    var defaultWeekdaysShortRegex = matchWord;
+	    function weekdaysShortRegex (isStrict) {
+	        if (this._weekdaysParseExact) {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                computeWeekdaysParse.call(this);
+	            }
+	            if (isStrict) {
+	                return this._weekdaysShortStrictRegex;
+	            } else {
+	                return this._weekdaysShortRegex;
+	            }
+	        } else {
+	            if (!hasOwnProp(this, '_weekdaysShortRegex')) {
+	                this._weekdaysShortRegex = defaultWeekdaysShortRegex;
+	            }
+	            return this._weekdaysShortStrictRegex && isStrict ?
+	                this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
+	        }
+	    }
+
+	    var defaultWeekdaysMinRegex = matchWord;
+	    function weekdaysMinRegex (isStrict) {
+	        if (this._weekdaysParseExact) {
+	            if (!hasOwnProp(this, '_weekdaysRegex')) {
+	                computeWeekdaysParse.call(this);
+	            }
+	            if (isStrict) {
+	                return this._weekdaysMinStrictRegex;
+	            } else {
+	                return this._weekdaysMinRegex;
+	            }
+	        } else {
+	            if (!hasOwnProp(this, '_weekdaysMinRegex')) {
+	                this._weekdaysMinRegex = defaultWeekdaysMinRegex;
+	            }
+	            return this._weekdaysMinStrictRegex && isStrict ?
+	                this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
+	        }
+	    }
+
+
+	    function computeWeekdaysParse () {
+	        function cmpLenRev(a, b) {
+	            return b.length - a.length;
+	        }
+
+	        var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [],
+	            i, mom, minp, shortp, longp;
+	        for (i = 0; i < 7; i++) {
+	            // make the regex if we don't have it already
+	            mom = create_utc__createUTC([2000, 1]).day(i);
+	            minp = this.weekdaysMin(mom, '');
+	            shortp = this.weekdaysShort(mom, '');
+	            longp = this.weekdays(mom, '');
+	            minPieces.push(minp);
+	            shortPieces.push(shortp);
+	            longPieces.push(longp);
+	            mixedPieces.push(minp);
+	            mixedPieces.push(shortp);
+	            mixedPieces.push(longp);
+	        }
+	        // Sorting makes sure if one weekday (or abbr) is a prefix of another it
+	        // will match the longer piece.
+	        minPieces.sort(cmpLenRev);
+	        shortPieces.sort(cmpLenRev);
+	        longPieces.sort(cmpLenRev);
+	        mixedPieces.sort(cmpLenRev);
+	        for (i = 0; i < 7; i++) {
+	            shortPieces[i] = regexEscape(shortPieces[i]);
+	            longPieces[i] = regexEscape(longPieces[i]);
+	            mixedPieces[i] = regexEscape(mixedPieces[i]);
+	        }
+
+	        this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+	        this._weekdaysShortRegex = this._weekdaysRegex;
+	        this._weekdaysMinRegex = this._weekdaysRegex;
+
+	        this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
+	        this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
+	        this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
+	    }
+
+	    // FORMATTING
+
+	    function hFormat() {
+	        return this.hours() % 12 || 12;
+	    }
+
+	    function kFormat() {
+	        return this.hours() || 24;
+	    }
+
+	    addFormatToken('H', ['HH', 2], 0, 'hour');
+	    addFormatToken('h', ['hh', 2], 0, hFormat);
+	    addFormatToken('k', ['kk', 2], 0, kFormat);
+
+	    addFormatToken('hmm', 0, 0, function () {
+	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
+	    });
+
+	    addFormatToken('hmmss', 0, 0, function () {
+	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
+	            zeroFill(this.seconds(), 2);
+	    });
+
+	    addFormatToken('Hmm', 0, 0, function () {
+	        return '' + this.hours() + zeroFill(this.minutes(), 2);
+	    });
+
+	    addFormatToken('Hmmss', 0, 0, function () {
+	        return '' + this.hours() + zeroFill(this.minutes(), 2) +
+	            zeroFill(this.seconds(), 2);
+	    });
+
+	    function meridiem (token, lowercase) {
+	        addFormatToken(token, 0, 0, function () {
+	            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
+	        });
+	    }
+
+	    meridiem('a', true);
+	    meridiem('A', false);
+
+	    // ALIASES
+
+	    addUnitAlias('hour', 'h');
+
+	    // PRIORITY
+	    addUnitPriority('hour', 13);
+
+	    // PARSING
+
+	    function matchMeridiem (isStrict, locale) {
+	        return locale._meridiemParse;
+	    }
+
+	    addRegexToken('a',  matchMeridiem);
+	    addRegexToken('A',  matchMeridiem);
+	    addRegexToken('H',  match1to2);
+	    addRegexToken('h',  match1to2);
+	    addRegexToken('HH', match1to2, match2);
+	    addRegexToken('hh', match1to2, match2);
+
+	    addRegexToken('hmm', match3to4);
+	    addRegexToken('hmmss', match5to6);
+	    addRegexToken('Hmm', match3to4);
+	    addRegexToken('Hmmss', match5to6);
+
+	    addParseToken(['H', 'HH'], HOUR);
+	    addParseToken(['a', 'A'], function (input, array, config) {
+	        config._isPm = config._locale.isPM(input);
+	        config._meridiem = input;
+	    });
+	    addParseToken(['h', 'hh'], function (input, array, config) {
+	        array[HOUR] = toInt(input);
+	        getParsingFlags(config).bigHour = true;
+	    });
+	    addParseToken('hmm', function (input, array, config) {
+	        var pos = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos));
+	        array[MINUTE] = toInt(input.substr(pos));
+	        getParsingFlags(config).bigHour = true;
+	    });
+	    addParseToken('hmmss', function (input, array, config) {
+	        var pos1 = input.length - 4;
+	        var pos2 = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos1));
+	        array[MINUTE] = toInt(input.substr(pos1, 2));
+	        array[SECOND] = toInt(input.substr(pos2));
+	        getParsingFlags(config).bigHour = true;
+	    });
+	    addParseToken('Hmm', function (input, array, config) {
+	        var pos = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos));
+	        array[MINUTE] = toInt(input.substr(pos));
+	    });
+	    addParseToken('Hmmss', function (input, array, config) {
+	        var pos1 = input.length - 4;
+	        var pos2 = input.length - 2;
+	        array[HOUR] = toInt(input.substr(0, pos1));
+	        array[MINUTE] = toInt(input.substr(pos1, 2));
+	        array[SECOND] = toInt(input.substr(pos2));
+	    });
+
+	    // LOCALES
+
+	    function localeIsPM (input) {
+	        // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+	        // Using charAt should be more compatible.
+	        return ((input + '').toLowerCase().charAt(0) === 'p');
+	    }
+
+	    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
+	    function localeMeridiem (hours, minutes, isLower) {
+	        if (hours > 11) {
+	            return isLower ? 'pm' : 'PM';
+	        } else {
+	            return isLower ? 'am' : 'AM';
+	        }
+	    }
+
+
+	    // MOMENTS
+
+	    // Setting the hour should keep the time, because the user explicitly
+	    // specified which hour he wants. So trying to maintain the same hour (in
+	    // a new timezone) makes sense. Adding/subtracting hours does not follow
+	    // this rule.
+	    var getSetHour = makeGetSet('Hours', true);
+
+	    var baseConfig = {
+	        calendar: defaultCalendar,
+	        longDateFormat: defaultLongDateFormat,
+	        invalidDate: defaultInvalidDate,
+	        ordinal: defaultOrdinal,
+	        ordinalParse: defaultOrdinalParse,
+	        relativeTime: defaultRelativeTime,
+
+	        months: defaultLocaleMonths,
+	        monthsShort: defaultLocaleMonthsShort,
+
+	        week: defaultLocaleWeek,
+
+	        weekdays: defaultLocaleWeekdays,
+	        weekdaysMin: defaultLocaleWeekdaysMin,
+	        weekdaysShort: defaultLocaleWeekdaysShort,
+
+	        meridiemParse: defaultLocaleMeridiemParse
+	    };
+
+	    // internal storage for locale config files
+	    var locales = {};
+	    var globalLocale;
+
+	    function normalizeLocale(key) {
+	        return key ? key.toLowerCase().replace('_', '-') : key;
+	    }
+
+	    // pick the locale from the array
+	    // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
+	    // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
+	    function chooseLocale(names) {
+	        var i = 0, j, next, locale, split;
+
+	        while (i < names.length) {
+	            split = normalizeLocale(names[i]).split('-');
+	            j = split.length;
+	            next = normalizeLocale(names[i + 1]);
+	            next = next ? next.split('-') : null;
+	            while (j > 0) {
+	                locale = loadLocale(split.slice(0, j).join('-'));
+	                if (locale) {
+	                    return locale;
+	                }
+	                if (next && next.length >= j && compareArrays(split, next, true) >= j - 1) {
+	                    //the next array item is better than a shallower substring of this one
+	                    break;
+	                }
+	                j--;
+	            }
+	            i++;
+	        }
+	        return null;
+	    }
+
+	    function loadLocale(name) {
+	        var oldLocale = null;
+	        // TODO: Find a better way to register and load all the locales in Node
+	        if (!locales[name] && (typeof module !== 'undefined') &&
+	                module && module.exports) {
+	            try {
+	                oldLocale = globalLocale._abbr;
+	                __webpack_require__(238)("./" + name);
+	                // because defineLocale currently also sets the global locale, we
+	                // want to undo that for lazy loaded locales
+	                locale_locales__getSetGlobalLocale(oldLocale);
+	            } catch (e) { }
+	        }
+	        return locales[name];
+	    }
+
+	    // This function will load locale and then set the global locale.  If
+	    // no arguments are passed in, it will simply return the current global
+	    // locale key.
+	    function locale_locales__getSetGlobalLocale (key, values) {
+	        var data;
+	        if (key) {
+	            if (isUndefined(values)) {
+	                data = locale_locales__getLocale(key);
+	            }
+	            else {
+	                data = defineLocale(key, values);
+	            }
+
+	            if (data) {
+	                // moment.duration._locale = moment._locale = data;
+	                globalLocale = data;
+	            }
+	        }
+
+	        return globalLocale._abbr;
+	    }
+
+	    function defineLocale (name, config) {
+	        if (config !== null) {
+	            var parentConfig = baseConfig;
+	            config.abbr = name;
+	            if (locales[name] != null) {
+	                deprecateSimple('defineLocaleOverride',
+	                        'use moment.updateLocale(localeName, config) to change ' +
+	                        'an existing locale. moment.defineLocale(localeName, ' +
+	                        'config) should only be used for creating a new locale ' +
+	                        'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
+	                parentConfig = locales[name]._config;
+	            } else if (config.parentLocale != null) {
+	                if (locales[config.parentLocale] != null) {
+	                    parentConfig = locales[config.parentLocale]._config;
+	                } else {
+	                    // treat as if there is no base config
+	                    deprecateSimple('parentLocaleUndefined',
+	                            'specified parentLocale is not defined yet. See http://momentjs.com/guides/#/warnings/parent-locale/');
+	                }
+	            }
+	            locales[name] = new Locale(mergeConfigs(parentConfig, config));
+
+	            // backwards compat for now: also set the locale
+	            locale_locales__getSetGlobalLocale(name);
+
+	            return locales[name];
+	        } else {
+	            // useful for testing
+	            delete locales[name];
+	            return null;
+	        }
+	    }
+
+	    function updateLocale(name, config) {
+	        if (config != null) {
+	            var locale, parentConfig = baseConfig;
+	            // MERGE
+	            if (locales[name] != null) {
+	                parentConfig = locales[name]._config;
+	            }
+	            config = mergeConfigs(parentConfig, config);
+	            locale = new Locale(config);
+	            locale.parentLocale = locales[name];
+	            locales[name] = locale;
+
+	            // backwards compat for now: also set the locale
+	            locale_locales__getSetGlobalLocale(name);
+	        } else {
+	            // pass null for config to unupdate, useful for tests
+	            if (locales[name] != null) {
+	                if (locales[name].parentLocale != null) {
+	                    locales[name] = locales[name].parentLocale;
+	                } else if (locales[name] != null) {
+	                    delete locales[name];
+	                }
+	            }
+	        }
+	        return locales[name];
+	    }
+
+	    // returns locale data
+	    function locale_locales__getLocale (key) {
+	        var locale;
+
+	        if (key && key._locale && key._locale._abbr) {
+	            key = key._locale._abbr;
+	        }
+
+	        if (!key) {
+	            return globalLocale;
+	        }
+
+	        if (!isArray(key)) {
+	            //short-circuit everything else
+	            locale = loadLocale(key);
+	            if (locale) {
+	                return locale;
+	            }
+	            key = [key];
+	        }
+
+	        return chooseLocale(key);
+	    }
+
+	    function locale_locales__listLocales() {
+	        return keys(locales);
 	    }
 
 	    function checkOverflow (m) {
@@ -1419,157 +2263,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'moment construction falls back to js Date. This is ' +
 	        'discouraged and will be removed in upcoming major ' +
 	        'release. Please refer to ' +
-	        'https://github.com/moment/moment/issues/1407 for more info.',
+	        'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
 	        function (config) {
 	            config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
 	        }
 	    );
-
-	    function createDate (y, m, d, h, M, s, ms) {
-	        //can't just apply() to create a date:
-	        //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
-	        var date = new Date(y, m, d, h, M, s, ms);
-
-	        //the date constructor remaps years 0-99 to 1900-1999
-	        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
-	            date.setFullYear(y);
-	        }
-	        return date;
-	    }
-
-	    function createUTCDate (y) {
-	        var date = new Date(Date.UTC.apply(null, arguments));
-
-	        //the Date.UTC function remaps years 0-99 to 1900-1999
-	        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
-	            date.setUTCFullYear(y);
-	        }
-	        return date;
-	    }
-
-	    // FORMATTING
-
-	    addFormatToken('Y', 0, 0, function () {
-	        var y = this.year();
-	        return y <= 9999 ? '' + y : '+' + y;
-	    });
-
-	    addFormatToken(0, ['YY', 2], 0, function () {
-	        return this.year() % 100;
-	    });
-
-	    addFormatToken(0, ['YYYY',   4],       0, 'year');
-	    addFormatToken(0, ['YYYYY',  5],       0, 'year');
-	    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
-
-	    // ALIASES
-
-	    addUnitAlias('year', 'y');
-
-	    // PARSING
-
-	    addRegexToken('Y',      matchSigned);
-	    addRegexToken('YY',     match1to2, match2);
-	    addRegexToken('YYYY',   match1to4, match4);
-	    addRegexToken('YYYYY',  match1to6, match6);
-	    addRegexToken('YYYYYY', match1to6, match6);
-
-	    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
-	    addParseToken('YYYY', function (input, array) {
-	        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
-	    });
-	    addParseToken('YY', function (input, array) {
-	        array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
-	    });
-	    addParseToken('Y', function (input, array) {
-	        array[YEAR] = parseInt(input, 10);
-	    });
-
-	    // HELPERS
-
-	    function daysInYear(year) {
-	        return isLeapYear(year) ? 366 : 365;
-	    }
-
-	    function isLeapYear(year) {
-	        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-	    }
-
-	    // HOOKS
-
-	    utils_hooks__hooks.parseTwoDigitYear = function (input) {
-	        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
-	    };
-
-	    // MOMENTS
-
-	    var getSetYear = makeGetSet('FullYear', true);
-
-	    function getIsLeapYear () {
-	        return isLeapYear(this.year());
-	    }
-
-	    // start-of-first-week - start-of-year
-	    function firstWeekOffset(year, dow, doy) {
-	        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
-	            fwd = 7 + dow - doy,
-	            // first-week day local weekday -- which local weekday is fwd
-	            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
-
-	        return -fwdlw + fwd - 1;
-	    }
-
-	    //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
-	    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
-	        var localWeekday = (7 + weekday - dow) % 7,
-	            weekOffset = firstWeekOffset(year, dow, doy),
-	            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
-	            resYear, resDayOfYear;
-
-	        if (dayOfYear <= 0) {
-	            resYear = year - 1;
-	            resDayOfYear = daysInYear(resYear) + dayOfYear;
-	        } else if (dayOfYear > daysInYear(year)) {
-	            resYear = year + 1;
-	            resDayOfYear = dayOfYear - daysInYear(year);
-	        } else {
-	            resYear = year;
-	            resDayOfYear = dayOfYear;
-	        }
-
-	        return {
-	            year: resYear,
-	            dayOfYear: resDayOfYear
-	        };
-	    }
-
-	    function weekOfYear(mom, dow, doy) {
-	        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
-	            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
-	            resWeek, resYear;
-
-	        if (week < 1) {
-	            resYear = mom.year() - 1;
-	            resWeek = week + weeksInYear(resYear, dow, doy);
-	        } else if (week > weeksInYear(mom.year(), dow, doy)) {
-	            resWeek = week - weeksInYear(mom.year(), dow, doy);
-	            resYear = mom.year() + 1;
-	        } else {
-	            resYear = mom.year();
-	            resWeek = week;
-	        }
-
-	        return {
-	            week: resWeek,
-	            year: resYear
-	        };
-	    }
-
-	    function weeksInYear(year, dow, doy) {
-	        var weekOffset = firstWeekOffset(year, dow, doy),
-	            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
-	        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
-	    }
 
 	    // Pick the first defined of two or three arguments.
 	    function defaults(a, b, c) {
@@ -1767,9 +2465,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        // clear _12h flag if hour is <= 12
-	        if (getParsingFlags(config).bigHour === true &&
-	                config._a[HOUR] <= 12 &&
-	                config._a[HOUR] > 0) {
+	        if (config._a[HOUR] <= 12 &&
+	            getParsingFlags(config).bigHour === true &&
+	            config._a[HOUR] > 0) {
 	            getParsingFlags(config).bigHour = undefined;
 	        }
 
@@ -1895,11 +2593,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return new Moment(checkOverflow(input));
 	        } else if (isArray(format)) {
 	            configFromStringAndArray(config);
-	        } else if (format) {
-	            configFromStringAndFormat(config);
 	        } else if (isDate(input)) {
 	            config._d = input;
-	        } else {
+	        } else if (format) {
+	            configFromStringAndFormat(config);
+	        }  else {
 	            configFromInput(config);
 	        }
 
@@ -1940,6 +2638,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            strict = locale;
 	            locale = undefined;
 	        }
+
+	        if ((isObject(input) && isObjectEmpty(input)) ||
+	                (isArray(input) && input.length === 0)) {
+	            input = undefined;
+	        }
 	        // object construction must be done this way.
 	        // https://github.com/moment/moment/issues/1423
 	        c._isAMomentObject = true;
@@ -1957,19 +2660,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var prototypeMin = deprecate(
-	         'moment().min is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548',
-	         function () {
-	             var other = local__createLocal.apply(null, arguments);
-	             if (this.isValid() && other.isValid()) {
-	                 return other < this ? this : other;
-	             } else {
-	                 return valid__createInvalid();
-	             }
-	         }
-	     );
+	        'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
+	        function () {
+	            var other = local__createLocal.apply(null, arguments);
+	            if (this.isValid() && other.isValid()) {
+	                return other < this ? this : other;
+	            } else {
+	                return valid__createInvalid();
+	            }
+	        }
+	    );
 
 	    var prototypeMax = deprecate(
-	        'moment().max is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548',
+	        'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
 	        function () {
 	            var other = local__createLocal.apply(null, arguments);
 	            if (this.isValid() && other.isValid()) {
@@ -2388,7 +3091,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var dur, tmp;
 	            //invert the arguments, but complain about it
 	            if (period !== null && !isNaN(+period)) {
-	                deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period).');
+	                deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period). ' +
+	                'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
 	                tmp = val; val = period; period = tmp;
 	            }
 
@@ -2428,20 +3132,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var add_subtract__add      = createAdder(1, 'add');
 	    var add_subtract__subtract = createAdder(-1, 'subtract');
 
-	    function moment_calendar__calendar (time, formats) {
-	        // We want to compare the start of today, vs this.
-	        // Getting start-of-today depends on whether we're local/utc/offset or not.
-	        var now = time || local__createLocal(),
-	            sod = cloneWithOffset(now, this).startOf('day'),
-	            diff = this.diff(sod, 'days', true),
-	            format = diff < -6 ? 'sameElse' :
+	    function getCalendarFormat(myMoment, now) {
+	        var diff = myMoment.diff(now, 'days', true);
+	        return diff < -6 ? 'sameElse' :
 	                diff < -1 ? 'lastWeek' :
 	                diff < 0 ? 'lastDay' :
 	                diff < 1 ? 'sameDay' :
 	                diff < 2 ? 'nextDay' :
 	                diff < 7 ? 'nextWeek' : 'sameElse';
+	    }
 
-	        var output = formats && (isFunction(formats[format]) ? formats[format]() : formats[format]);
+	    function moment_calendar__calendar (time, formats) {
+	        // We want to compare the start of today, vs this.
+	        // Getting start-of-today depends on whether we're local/utc/offset or not.
+	        var now = time || local__createLocal(),
+	            sod = cloneWithOffset(now, this).startOf('day'),
+	            format = utils_hooks__hooks.calendarFormat(this, sod) || 'sameElse';
+
+	        var output = formats && (isFunction(formats[format]) ? formats[format].call(this, now) : formats[format]);
 
 	        return this.format(output || this.localeData().calendar(format, this, local__createLocal(now)));
 	    }
@@ -2658,27 +3366,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // the following switch intentionally omits break keywords
 	        // to utilize falling through the cases.
 	        switch (units) {
-	        case 'year':
-	            this.month(0);
-	            /* falls through */
-	        case 'quarter':
-	        case 'month':
-	            this.date(1);
-	            /* falls through */
-	        case 'week':
-	        case 'isoWeek':
-	        case 'day':
-	        case 'date':
-	            this.hours(0);
-	            /* falls through */
-	        case 'hour':
-	            this.minutes(0);
-	            /* falls through */
-	        case 'minute':
-	            this.seconds(0);
-	            /* falls through */
-	        case 'second':
-	            this.milliseconds(0);
+	            case 'year':
+	                this.month(0);
+	                /* falls through */
+	            case 'quarter':
+	            case 'month':
+	                this.date(1);
+	                /* falls through */
+	            case 'week':
+	            case 'isoWeek':
+	            case 'day':
+	            case 'date':
+	                this.hours(0);
+	                /* falls through */
+	            case 'hour':
+	                this.minutes(0);
+	                /* falls through */
+	            case 'minute':
+	                this.seconds(0);
+	                /* falls through */
+	            case 'second':
+	                this.milliseconds(0);
 	        }
 
 	        // weeks are a special case
@@ -2720,7 +3428,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    function toDate () {
-	        return this._offset ? new Date(this.valueOf()) : this._d;
+	        return new Date(this.valueOf());
 	    }
 
 	    function toArray () {
@@ -2791,6 +3499,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    addUnitAlias('weekYear', 'gg');
 	    addUnitAlias('isoWeekYear', 'GG');
+
+	    // PRIORITY
+
+	    addUnitPriority('weekYear', 1);
+	    addUnitPriority('isoWeekYear', 1);
+
 
 	    // PARSING
 
@@ -2867,6 +3581,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    addUnitAlias('quarter', 'Q');
 
+	    // PRIORITY
+
+	    addUnitPriority('quarter', 7);
+
 	    // PARSING
 
 	    addRegexToken('Q', match1);
@@ -2882,65 +3600,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // FORMATTING
 
-	    addFormatToken('w', ['ww', 2], 'wo', 'week');
-	    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
-
-	    // ALIASES
-
-	    addUnitAlias('week', 'w');
-	    addUnitAlias('isoWeek', 'W');
-
-	    // PARSING
-
-	    addRegexToken('w',  match1to2);
-	    addRegexToken('ww', match1to2, match2);
-	    addRegexToken('W',  match1to2);
-	    addRegexToken('WW', match1to2, match2);
-
-	    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
-	        week[token.substr(0, 1)] = toInt(input);
-	    });
-
-	    // HELPERS
-
-	    // LOCALES
-
-	    function localeWeek (mom) {
-	        return weekOfYear(mom, this._week.dow, this._week.doy).week;
-	    }
-
-	    var defaultLocaleWeek = {
-	        dow : 0, // Sunday is the first day of the week.
-	        doy : 6  // The week that contains Jan 1st is the first week of the year.
-	    };
-
-	    function localeFirstDayOfWeek () {
-	        return this._week.dow;
-	    }
-
-	    function localeFirstDayOfYear () {
-	        return this._week.doy;
-	    }
-
-	    // MOMENTS
-
-	    function getSetWeek (input) {
-	        var week = this.localeData().week(this);
-	        return input == null ? week : this.add((input - week) * 7, 'd');
-	    }
-
-	    function getSetISOWeek (input) {
-	        var week = weekOfYear(this, 1, 4).week;
-	        return input == null ? week : this.add((input - week) * 7, 'd');
-	    }
-
-	    // FORMATTING
-
 	    addFormatToken('D', ['DD', 2], 'Do', 'date');
 
 	    // ALIASES
 
 	    addUnitAlias('date', 'D');
+
+	    // PRIOROITY
+	    addUnitPriority('date', 9);
 
 	    // PARSING
 
@@ -2961,332 +3628,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // FORMATTING
 
-	    addFormatToken('d', 0, 'do', 'day');
-
-	    addFormatToken('dd', 0, 0, function (format) {
-	        return this.localeData().weekdaysMin(this, format);
-	    });
-
-	    addFormatToken('ddd', 0, 0, function (format) {
-	        return this.localeData().weekdaysShort(this, format);
-	    });
-
-	    addFormatToken('dddd', 0, 0, function (format) {
-	        return this.localeData().weekdays(this, format);
-	    });
-
-	    addFormatToken('e', 0, 0, 'weekday');
-	    addFormatToken('E', 0, 0, 'isoWeekday');
-
-	    // ALIASES
-
-	    addUnitAlias('day', 'd');
-	    addUnitAlias('weekday', 'e');
-	    addUnitAlias('isoWeekday', 'E');
-
-	    // PARSING
-
-	    addRegexToken('d',    match1to2);
-	    addRegexToken('e',    match1to2);
-	    addRegexToken('E',    match1to2);
-	    addRegexToken('dd',   function (isStrict, locale) {
-	        return locale.weekdaysMinRegex(isStrict);
-	    });
-	    addRegexToken('ddd',   function (isStrict, locale) {
-	        return locale.weekdaysShortRegex(isStrict);
-	    });
-	    addRegexToken('dddd',   function (isStrict, locale) {
-	        return locale.weekdaysRegex(isStrict);
-	    });
-
-	    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
-	        var weekday = config._locale.weekdaysParse(input, token, config._strict);
-	        // if we didn't get a weekday name, mark the date as invalid
-	        if (weekday != null) {
-	            week.d = weekday;
-	        } else {
-	            getParsingFlags(config).invalidWeekday = input;
-	        }
-	    });
-
-	    addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
-	        week[token] = toInt(input);
-	    });
-
-	    // HELPERS
-
-	    function parseWeekday(input, locale) {
-	        if (typeof input !== 'string') {
-	            return input;
-	        }
-
-	        if (!isNaN(input)) {
-	            return parseInt(input, 10);
-	        }
-
-	        input = locale.weekdaysParse(input);
-	        if (typeof input === 'number') {
-	            return input;
-	        }
-
-	        return null;
-	    }
-
-	    // LOCALES
-
-	    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
-	    function localeWeekdays (m, format) {
-	        return isArray(this._weekdays) ? this._weekdays[m.day()] :
-	            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
-	    }
-
-	    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
-	    function localeWeekdaysShort (m) {
-	        return this._weekdaysShort[m.day()];
-	    }
-
-	    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
-	    function localeWeekdaysMin (m) {
-	        return this._weekdaysMin[m.day()];
-	    }
-
-	    function day_of_week__handleStrictParse(weekdayName, format, strict) {
-	        var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
-	        if (!this._weekdaysParse) {
-	            this._weekdaysParse = [];
-	            this._shortWeekdaysParse = [];
-	            this._minWeekdaysParse = [];
-
-	            for (i = 0; i < 7; ++i) {
-	                mom = create_utc__createUTC([2000, 1]).day(i);
-	                this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
-	                this._shortWeekdaysParse[i] = this.weekdaysShort(mom, '').toLocaleLowerCase();
-	                this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
-	            }
-	        }
-
-	        if (strict) {
-	            if (format === 'dddd') {
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else if (format === 'ddd') {
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else {
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            }
-	        } else {
-	            if (format === 'dddd') {
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else if (format === 'ddd') {
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            } else {
-	                ii = indexOf.call(this._minWeekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._weekdaysParse, llc);
-	                if (ii !== -1) {
-	                    return ii;
-	                }
-	                ii = indexOf.call(this._shortWeekdaysParse, llc);
-	                return ii !== -1 ? ii : null;
-	            }
-	        }
-	    }
-
-	    function localeWeekdaysParse (weekdayName, format, strict) {
-	        var i, mom, regex;
-
-	        if (this._weekdaysParseExact) {
-	            return day_of_week__handleStrictParse.call(this, weekdayName, format, strict);
-	        }
-
-	        if (!this._weekdaysParse) {
-	            this._weekdaysParse = [];
-	            this._minWeekdaysParse = [];
-	            this._shortWeekdaysParse = [];
-	            this._fullWeekdaysParse = [];
-	        }
-
-	        for (i = 0; i < 7; i++) {
-	            // make the regex if we don't have it already
-
-	            mom = create_utc__createUTC([2000, 1]).day(i);
-	            if (strict && !this._fullWeekdaysParse[i]) {
-	                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
-	                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
-	                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
-	            }
-	            if (!this._weekdaysParse[i]) {
-	                regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
-	                this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
-	            }
-	            // test the regex
-	            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
-	                return i;
-	            }
-	        }
-	    }
-
-	    // MOMENTS
-
-	    function getSetDayOfWeek (input) {
-	        if (!this.isValid()) {
-	            return input != null ? this : NaN;
-	        }
-	        var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
-	        if (input != null) {
-	            input = parseWeekday(input, this.localeData());
-	            return this.add(input - day, 'd');
-	        } else {
-	            return day;
-	        }
-	    }
-
-	    function getSetLocaleDayOfWeek (input) {
-	        if (!this.isValid()) {
-	            return input != null ? this : NaN;
-	        }
-	        var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
-	        return input == null ? weekday : this.add(input - weekday, 'd');
-	    }
-
-	    function getSetISODayOfWeek (input) {
-	        if (!this.isValid()) {
-	            return input != null ? this : NaN;
-	        }
-	        // behaves the same as moment#day except
-	        // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
-	        // as a setter, sunday should belong to the previous week.
-	        return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
-	    }
-
-	    var defaultWeekdaysRegex = matchWord;
-	    function weekdaysRegex (isStrict) {
-	        if (this._weekdaysParseExact) {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                computeWeekdaysParse.call(this);
-	            }
-	            if (isStrict) {
-	                return this._weekdaysStrictRegex;
-	            } else {
-	                return this._weekdaysRegex;
-	            }
-	        } else {
-	            return this._weekdaysStrictRegex && isStrict ?
-	                this._weekdaysStrictRegex : this._weekdaysRegex;
-	        }
-	    }
-
-	    var defaultWeekdaysShortRegex = matchWord;
-	    function weekdaysShortRegex (isStrict) {
-	        if (this._weekdaysParseExact) {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                computeWeekdaysParse.call(this);
-	            }
-	            if (isStrict) {
-	                return this._weekdaysShortStrictRegex;
-	            } else {
-	                return this._weekdaysShortRegex;
-	            }
-	        } else {
-	            return this._weekdaysShortStrictRegex && isStrict ?
-	                this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
-	        }
-	    }
-
-	    var defaultWeekdaysMinRegex = matchWord;
-	    function weekdaysMinRegex (isStrict) {
-	        if (this._weekdaysParseExact) {
-	            if (!hasOwnProp(this, '_weekdaysRegex')) {
-	                computeWeekdaysParse.call(this);
-	            }
-	            if (isStrict) {
-	                return this._weekdaysMinStrictRegex;
-	            } else {
-	                return this._weekdaysMinRegex;
-	            }
-	        } else {
-	            return this._weekdaysMinStrictRegex && isStrict ?
-	                this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
-	        }
-	    }
-
-
-	    function computeWeekdaysParse () {
-	        function cmpLenRev(a, b) {
-	            return b.length - a.length;
-	        }
-
-	        var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [],
-	            i, mom, minp, shortp, longp;
-	        for (i = 0; i < 7; i++) {
-	            // make the regex if we don't have it already
-	            mom = create_utc__createUTC([2000, 1]).day(i);
-	            minp = this.weekdaysMin(mom, '');
-	            shortp = this.weekdaysShort(mom, '');
-	            longp = this.weekdays(mom, '');
-	            minPieces.push(minp);
-	            shortPieces.push(shortp);
-	            longPieces.push(longp);
-	            mixedPieces.push(minp);
-	            mixedPieces.push(shortp);
-	            mixedPieces.push(longp);
-	        }
-	        // Sorting makes sure if one weekday (or abbr) is a prefix of another it
-	        // will match the longer piece.
-	        minPieces.sort(cmpLenRev);
-	        shortPieces.sort(cmpLenRev);
-	        longPieces.sort(cmpLenRev);
-	        mixedPieces.sort(cmpLenRev);
-	        for (i = 0; i < 7; i++) {
-	            shortPieces[i] = regexEscape(shortPieces[i]);
-	            longPieces[i] = regexEscape(longPieces[i]);
-	            mixedPieces[i] = regexEscape(mixedPieces[i]);
-	        }
-
-	        this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
-	        this._weekdaysShortRegex = this._weekdaysRegex;
-	        this._weekdaysMinRegex = this._weekdaysRegex;
-
-	        this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
-	        this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
-	        this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
-	    }
-
-	    // FORMATTING
-
 	    addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
 
 	    // ALIASES
 
 	    addUnitAlias('dayOfYear', 'DDD');
+
+	    // PRIORITY
+	    addUnitPriority('dayOfYear', 4);
 
 	    // PARSING
 
@@ -3307,136 +3656,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // FORMATTING
 
-	    function hFormat() {
-	        return this.hours() % 12 || 12;
-	    }
-
-	    function kFormat() {
-	        return this.hours() || 24;
-	    }
-
-	    addFormatToken('H', ['HH', 2], 0, 'hour');
-	    addFormatToken('h', ['hh', 2], 0, hFormat);
-	    addFormatToken('k', ['kk', 2], 0, kFormat);
-
-	    addFormatToken('hmm', 0, 0, function () {
-	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
-	    });
-
-	    addFormatToken('hmmss', 0, 0, function () {
-	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
-	            zeroFill(this.seconds(), 2);
-	    });
-
-	    addFormatToken('Hmm', 0, 0, function () {
-	        return '' + this.hours() + zeroFill(this.minutes(), 2);
-	    });
-
-	    addFormatToken('Hmmss', 0, 0, function () {
-	        return '' + this.hours() + zeroFill(this.minutes(), 2) +
-	            zeroFill(this.seconds(), 2);
-	    });
-
-	    function meridiem (token, lowercase) {
-	        addFormatToken(token, 0, 0, function () {
-	            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
-	        });
-	    }
-
-	    meridiem('a', true);
-	    meridiem('A', false);
-
-	    // ALIASES
-
-	    addUnitAlias('hour', 'h');
-
-	    // PARSING
-
-	    function matchMeridiem (isStrict, locale) {
-	        return locale._meridiemParse;
-	    }
-
-	    addRegexToken('a',  matchMeridiem);
-	    addRegexToken('A',  matchMeridiem);
-	    addRegexToken('H',  match1to2);
-	    addRegexToken('h',  match1to2);
-	    addRegexToken('HH', match1to2, match2);
-	    addRegexToken('hh', match1to2, match2);
-
-	    addRegexToken('hmm', match3to4);
-	    addRegexToken('hmmss', match5to6);
-	    addRegexToken('Hmm', match3to4);
-	    addRegexToken('Hmmss', match5to6);
-
-	    addParseToken(['H', 'HH'], HOUR);
-	    addParseToken(['a', 'A'], function (input, array, config) {
-	        config._isPm = config._locale.isPM(input);
-	        config._meridiem = input;
-	    });
-	    addParseToken(['h', 'hh'], function (input, array, config) {
-	        array[HOUR] = toInt(input);
-	        getParsingFlags(config).bigHour = true;
-	    });
-	    addParseToken('hmm', function (input, array, config) {
-	        var pos = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos));
-	        array[MINUTE] = toInt(input.substr(pos));
-	        getParsingFlags(config).bigHour = true;
-	    });
-	    addParseToken('hmmss', function (input, array, config) {
-	        var pos1 = input.length - 4;
-	        var pos2 = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos1));
-	        array[MINUTE] = toInt(input.substr(pos1, 2));
-	        array[SECOND] = toInt(input.substr(pos2));
-	        getParsingFlags(config).bigHour = true;
-	    });
-	    addParseToken('Hmm', function (input, array, config) {
-	        var pos = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos));
-	        array[MINUTE] = toInt(input.substr(pos));
-	    });
-	    addParseToken('Hmmss', function (input, array, config) {
-	        var pos1 = input.length - 4;
-	        var pos2 = input.length - 2;
-	        array[HOUR] = toInt(input.substr(0, pos1));
-	        array[MINUTE] = toInt(input.substr(pos1, 2));
-	        array[SECOND] = toInt(input.substr(pos2));
-	    });
-
-	    // LOCALES
-
-	    function localeIsPM (input) {
-	        // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
-	        // Using charAt should be more compatible.
-	        return ((input + '').toLowerCase().charAt(0) === 'p');
-	    }
-
-	    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
-	    function localeMeridiem (hours, minutes, isLower) {
-	        if (hours > 11) {
-	            return isLower ? 'pm' : 'PM';
-	        } else {
-	            return isLower ? 'am' : 'AM';
-	        }
-	    }
-
-
-	    // MOMENTS
-
-	    // Setting the hour should keep the time, because the user explicitly
-	    // specified which hour he wants. So trying to maintain the same hour (in
-	    // a new timezone) makes sense. Adding/subtracting hours does not follow
-	    // this rule.
-	    var getSetHour = makeGetSet('Hours', true);
-
-	    // FORMATTING
-
 	    addFormatToken('m', ['mm', 2], 0, 'minute');
 
 	    // ALIASES
 
 	    addUnitAlias('minute', 'm');
+
+	    // PRIORITY
+
+	    addUnitPriority('minute', 14);
 
 	    // PARSING
 
@@ -3455,6 +3683,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // ALIASES
 
 	    addUnitAlias('second', 's');
+
+	    // PRIORITY
+
+	    addUnitPriority('second', 15);
 
 	    // PARSING
 
@@ -3500,6 +3732,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // ALIASES
 
 	    addUnitAlias('millisecond', 'ms');
+
+	    // PRIORITY
+
+	    addUnitPriority('millisecond', 16);
 
 	    // PARSING
 
@@ -3550,7 +3786,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.fromNow           = fromNow;
 	    momentPrototype__proto.to                = to;
 	    momentPrototype__proto.toNow             = toNow;
-	    momentPrototype__proto.get               = getSet;
+	    momentPrototype__proto.get               = stringGet;
 	    momentPrototype__proto.invalidAt         = invalidAt;
 	    momentPrototype__proto.isAfter           = isAfter;
 	    momentPrototype__proto.isBefore          = isBefore;
@@ -3565,7 +3801,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.max               = prototypeMax;
 	    momentPrototype__proto.min               = prototypeMin;
 	    momentPrototype__proto.parsingFlags      = parsingFlags;
-	    momentPrototype__proto.set               = getSet;
+	    momentPrototype__proto.set               = stringSet;
 	    momentPrototype__proto.startOf           = startOf;
 	    momentPrototype__proto.subtract          = add_subtract__subtract;
 	    momentPrototype__proto.toArray           = toArray;
@@ -3625,7 +3861,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.parseZone            = setOffsetToParsedOffset;
 	    momentPrototype__proto.hasAlignedHourOffset = hasAlignedHourOffset;
 	    momentPrototype__proto.isDST                = isDaylightSavingTime;
-	    momentPrototype__proto.isDSTShifted         = isDaylightSavingTimeShifted;
 	    momentPrototype__proto.isLocal              = isLocal;
 	    momentPrototype__proto.isUtcOffset          = isUtcOffset;
 	    momentPrototype__proto.isUtc                = isUtc;
@@ -3639,7 +3874,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    momentPrototype__proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
 	    momentPrototype__proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
 	    momentPrototype__proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
-	    momentPrototype__proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779', getSetZone);
+	    momentPrototype__proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/', getSetZone);
+	    momentPrototype__proto.isDSTShifted = deprecate('isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information', isDaylightSavingTimeShifted);
 
 	    var momentPrototype = momentPrototype__proto;
 
@@ -3651,143 +3887,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return local__createLocal.apply(null, arguments).parseZone();
 	    }
 
-	    var defaultCalendar = {
-	        sameDay : '[Today at] LT',
-	        nextDay : '[Tomorrow at] LT',
-	        nextWeek : 'dddd [at] LT',
-	        lastDay : '[Yesterday at] LT',
-	        lastWeek : '[Last] dddd [at] LT',
-	        sameElse : 'L'
-	    };
-
-	    function locale_calendar__calendar (key, mom, now) {
-	        var output = this._calendar[key];
-	        return isFunction(output) ? output.call(mom, now) : output;
-	    }
-
-	    var defaultLongDateFormat = {
-	        LTS  : 'h:mm:ss A',
-	        LT   : 'h:mm A',
-	        L    : 'MM/DD/YYYY',
-	        LL   : 'MMMM D, YYYY',
-	        LLL  : 'MMMM D, YYYY h:mm A',
-	        LLLL : 'dddd, MMMM D, YYYY h:mm A'
-	    };
-
-	    function longDateFormat (key) {
-	        var format = this._longDateFormat[key],
-	            formatUpper = this._longDateFormat[key.toUpperCase()];
-
-	        if (format || !formatUpper) {
-	            return format;
-	        }
-
-	        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
-	            return val.slice(1);
-	        });
-
-	        return this._longDateFormat[key];
-	    }
-
-	    var defaultInvalidDate = 'Invalid date';
-
-	    function invalidDate () {
-	        return this._invalidDate;
-	    }
-
-	    var defaultOrdinal = '%d';
-	    var defaultOrdinalParse = /\d{1,2}/;
-
-	    function ordinal (number) {
-	        return this._ordinal.replace('%d', number);
-	    }
-
 	    function preParsePostFormat (string) {
 	        return string;
 	    }
 
-	    var defaultRelativeTime = {
-	        future : 'in %s',
-	        past   : '%s ago',
-	        s  : 'a few seconds',
-	        m  : 'a minute',
-	        mm : '%d minutes',
-	        h  : 'an hour',
-	        hh : '%d hours',
-	        d  : 'a day',
-	        dd : '%d days',
-	        M  : 'a month',
-	        MM : '%d months',
-	        y  : 'a year',
-	        yy : '%d years'
-	    };
-
-	    function relative__relativeTime (number, withoutSuffix, string, isFuture) {
-	        var output = this._relativeTime[string];
-	        return (isFunction(output)) ?
-	            output(number, withoutSuffix, string, isFuture) :
-	            output.replace(/%d/i, number);
-	    }
-
-	    function pastFuture (diff, output) {
-	        var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
-	        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
-	    }
-
 	    var prototype__proto = Locale.prototype;
 
-	    prototype__proto._calendar       = defaultCalendar;
 	    prototype__proto.calendar        = locale_calendar__calendar;
-	    prototype__proto._longDateFormat = defaultLongDateFormat;
 	    prototype__proto.longDateFormat  = longDateFormat;
-	    prototype__proto._invalidDate    = defaultInvalidDate;
 	    prototype__proto.invalidDate     = invalidDate;
-	    prototype__proto._ordinal        = defaultOrdinal;
 	    prototype__proto.ordinal         = ordinal;
-	    prototype__proto._ordinalParse   = defaultOrdinalParse;
 	    prototype__proto.preparse        = preParsePostFormat;
 	    prototype__proto.postformat      = preParsePostFormat;
-	    prototype__proto._relativeTime   = defaultRelativeTime;
 	    prototype__proto.relativeTime    = relative__relativeTime;
 	    prototype__proto.pastFuture      = pastFuture;
 	    prototype__proto.set             = locale_set__set;
 
 	    // Month
 	    prototype__proto.months            =        localeMonths;
-	    prototype__proto._months           = defaultLocaleMonths;
 	    prototype__proto.monthsShort       =        localeMonthsShort;
-	    prototype__proto._monthsShort      = defaultLocaleMonthsShort;
 	    prototype__proto.monthsParse       =        localeMonthsParse;
-	    prototype__proto._monthsRegex      = defaultMonthsRegex;
 	    prototype__proto.monthsRegex       = monthsRegex;
-	    prototype__proto._monthsShortRegex = defaultMonthsShortRegex;
 	    prototype__proto.monthsShortRegex  = monthsShortRegex;
 
 	    // Week
 	    prototype__proto.week = localeWeek;
-	    prototype__proto._week = defaultLocaleWeek;
 	    prototype__proto.firstDayOfYear = localeFirstDayOfYear;
 	    prototype__proto.firstDayOfWeek = localeFirstDayOfWeek;
 
 	    // Day of Week
 	    prototype__proto.weekdays       =        localeWeekdays;
-	    prototype__proto._weekdays      = defaultLocaleWeekdays;
 	    prototype__proto.weekdaysMin    =        localeWeekdaysMin;
-	    prototype__proto._weekdaysMin   = defaultLocaleWeekdaysMin;
 	    prototype__proto.weekdaysShort  =        localeWeekdaysShort;
-	    prototype__proto._weekdaysShort = defaultLocaleWeekdaysShort;
 	    prototype__proto.weekdaysParse  =        localeWeekdaysParse;
 
-	    prototype__proto._weekdaysRegex      = defaultWeekdaysRegex;
 	    prototype__proto.weekdaysRegex       =        weekdaysRegex;
-	    prototype__proto._weekdaysShortRegex = defaultWeekdaysShortRegex;
 	    prototype__proto.weekdaysShortRegex  =        weekdaysShortRegex;
-	    prototype__proto._weekdaysMinRegex   = defaultWeekdaysMinRegex;
 	    prototype__proto.weekdaysMinRegex    =        weekdaysMinRegex;
 
 	    // Hours
 	    prototype__proto.isPM = localeIsPM;
-	    prototype__proto._meridiemParse = defaultLocaleMeridiemParse;
 	    prototype__proto.meridiem = localeMeridiem;
 
 	    function lists__get (format, index, field, setter) {
@@ -4116,6 +4255,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return substituteTimeAgo.apply(null, a);
 	    }
 
+	    // This function allows you to set the rounding function for relative time strings
+	    function duration_humanize__getSetRelativeTimeRounding (roundingFunction) {
+	        if (roundingFunction === undefined) {
+	            return round;
+	        }
+	        if (typeof(roundingFunction) === 'function') {
+	            round = roundingFunction;
+	            return true;
+	        }
+	        return false;
+	    }
+
 	    // This function allows you to set a threshold for relative time strings
 	    function duration_humanize__getSetRelativeTimeThreshold (threshold, limit) {
 	        if (thresholds[threshold] === undefined) {
@@ -4248,7 +4399,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Side effect imports
 
 
-	    utils_hooks__hooks.version = '2.13.0';
+	    utils_hooks__hooks.version = '2.14.1';
 
 	    setHookCallback(local__createLocal);
 
@@ -4275,7 +4426,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    utils_hooks__hooks.locales               = locale_locales__listLocales;
 	    utils_hooks__hooks.weekdaysShort         = lists__listWeekdaysShort;
 	    utils_hooks__hooks.normalizeUnits        = normalizeUnits;
+	    utils_hooks__hooks.relativeTimeRounding = duration_humanize__getSetRelativeTimeRounding;
 	    utils_hooks__hooks.relativeTimeThreshold = duration_humanize__getSetRelativeTimeThreshold;
+	    utils_hooks__hooks.calendarFormat        = getCalendarFormat;
 	    utils_hooks__hooks.prototype             = momentPrototype;
 
 	    var _moment = utils_hooks__hooks;
@@ -4283,7 +4436,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _moment;
 
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(354)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(355)(module)))
 
 /***/ },
 /* 2 */
@@ -4361,13 +4514,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 5 */
-[362, 170],
+[363, 171],
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	!function(e,t){ true?module.exports=t(__webpack_require__(2),__webpack_require__(7)):"function"==typeof define&&define.amd?define(["react","lodash"],t):"object"==typeof exports?exports.Alexandria=t(require("react"),require("lodash")):e.Alexandria=t(e.React,e._)}(this,function(e,t){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return e[r].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=e,t.c=n,t.p="/assets/",t(0)}([function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}var o=n(75),a=r(o),i=n(13),s=r(i),l=n(14),c=r(l),f=n(15),p=r(f),u=n(16),d=r(u),h=n(18),g=r(h),m=n(19),b=r(m),v=n(7),y=r(v),x=n(9),_=r(x),P=n(8),T=r(P),w=n(10),M=r(w),k=n(20),E=r(k),C=n(21),S=r(C),A=n(22),N=r(A),R=n(23),O=r(R),j=n(24),q=r(j),B=n(6),I=r(B),D=n(11),L=r(D),z=n(25),U=r(z),F=n(26),H=r(F);(0,a["default"])(),e.exports={Alert:s["default"],Avatar:c["default"],BorderedWell:p["default"],Breadcrumb:d["default"],Card:g["default"],Empty:b["default"],FlexibleSpacer:y["default"],Grid:_["default"],GridCell:T["default"],GridRow:M["default"],PageTitle:E["default"],PrettyDiff:S["default"],Search:N["default"],Slicey:O["default"],Statistic:q["default"],SvgSymbol:I["default"],SvgSymbolCircle:L["default"],Tag:U["default"],Totals:H["default"]}},function(t,n){t.exports=e},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var n=this[t];n[2]?e.push("@media "+n[2]+"{"+n[1]+"}"):e.push(n[1])}return e.join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var a=this[o][0];"number"==typeof a&&(r[a]=!0)}for(o=0;o<t.length;o++){var i=t[o];"number"==typeof i[0]&&r[i[0]]||(n&&!i[2]?i[2]=n:n&&(i[2]="("+i[2]+") and ("+n+")"),e.push(i))}},e}},function(e,t,n){function r(e,t){for(var n=0;n<e.length;n++){var r=e[n],o=d[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(c(r.parts[a],t))}else{for(var i=[],a=0;a<r.parts.length;a++)i.push(c(r.parts[a],t));d[r.id]={id:r.id,refs:1,parts:i}}}}function o(e){for(var t=[],n={},r=0;r<e.length;r++){var o=e[r],a=o[0],i=o[1],s=o[2],l=o[3],c={css:i,media:s,sourceMap:l};n[a]?n[a].parts.push(c):t.push(n[a]={id:a,parts:[c]})}return t}function a(e,t){var n=m(),r=y[y.length-1];if("top"===e.insertAt)r?r.nextSibling?n.insertBefore(t,r.nextSibling):n.appendChild(t):n.insertBefore(t,n.firstChild),y.push(t);else{if("bottom"!==e.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(t)}}function i(e){e.parentNode.removeChild(e);var t=y.indexOf(e);t>=0&&y.splice(t,1)}function s(e){var t=document.createElement("style");return t.type="text/css",a(e,t),t}function l(e){var t=document.createElement("link");return t.rel="stylesheet",a(e,t),t}function c(e,t){var n,r,o;if(t.singleton){var a=v++;n=b||(b=s(t)),r=f.bind(null,n,a,!1),o=f.bind(null,n,a,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=l(t),r=u.bind(null,n),o=function(){i(n),n.href&&URL.revokeObjectURL(n.href)}):(n=s(t),r=p.bind(null,n),o=function(){i(n)});return r(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;r(e=t)}else o()}}function f(e,t,n,r){var o=n?"":r.css;if(e.styleSheet)e.styleSheet.cssText=x(t,o);else{var a=document.createTextNode(o),i=e.childNodes;i[t]&&e.removeChild(i[t]),i.length?e.insertBefore(a,i[t]):e.appendChild(a)}}function p(e,t){var n=t.css,r=t.media;if(r&&e.setAttribute("media",r),e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}function u(e,t){var n=t.css,r=t.sourceMap;r&&(n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var o=new Blob([n],{type:"text/css"}),a=e.href;e.href=URL.createObjectURL(o),a&&URL.revokeObjectURL(a)}var d={},h=function(e){var t;return function(){return"undefined"==typeof t&&(t=e.apply(this,arguments)),t}},g=h(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),m=h(function(){return document.head||document.getElementsByTagName("head")[0]}),b=null,v=0,y=[];e.exports=function(e,t){if("object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");t=t||{},"undefined"==typeof t.singleton&&(t.singleton=g()),"undefined"==typeof t.insertAt&&(t.insertAt="bottom");var n=o(e);return r(n,t),function(e){for(var a=[],i=0;i<n.length;i++){var s=n[i],l=d[s.id];l.refs--,a.push(l)}if(e){var c=o(e);r(c,t)}for(var i=0;i<a.length;i++){var l=a[i];if(0===l.refs){for(var f=0;f<l.parts.length;f++)l.parts[f]();delete d[l.id]}}}};var x=function(){var e=[];return function(t,n){return e[t]=n,e.filter(Boolean).join("\n")}}()},function(e,n){e.exports=t},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=function(e){var t=e.classSuffixes,n=e.suffixOptions,r=e.componentClass,o=a["default"].compact(t);return a["default"].forEach(n,function(e,t){e&&o.push(a["default"].kebabCase(t))}),a["default"].isEmpty(o)?"":a["default"].map(o,function(e){return" "+r+"-"+e}).join("")};t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o),i=n(5),s=r(i);n(69);var l=function(e){var t=e.classSuffixes,n=e.href,r="svg-symbol-component",o={clickable:e.onClick},i=(0,s["default"])({classSuffixes:t,suffixOptions:o,componentClass:r});return a["default"].createElement("svg",{className:""+r+i},a["default"].createElement("use",{xlinkHref:n}))};l.displayName="AlexandriaSvgSymbolComponent",l.propTypes={classSuffixes:o.PropTypes.arrayOf(o.PropTypes.string.isRequired),href:o.PropTypes.string,onClick:o.PropTypes.func},l.defaultProps={classSuffixes:[]},t["default"]=l},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(60);var i=function(){return a["default"].createElement("div",{className:"flexible-spacer-component"})};i.displayName="AlexandriaFlexibleSpacerComponent",t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},a=n(1),i=r(a),s=n(5),l=r(s);n(62);var c=function(e){var t=e.children,n=e.classSuffixes,r=e.onClick,a=e.stretch,s=e.dts,c="grid-component-cell",f=(0,l["default"])({classSuffixes:n,suffixOptions:{stretch:a,clickable:r},componentClass:c}),p=r?{onClick:r}:{};return i["default"].createElement("div",o({className:""+c+f},p,{"if":!0,dts:!0,"data-test-selector":s}),t)};c.displayName="AlexandriaGridCellComponent",c.propTypes={children:a.PropTypes.node,classSuffixes:a.PropTypes.arrayOf(a.PropTypes.string).isRequired,onClick:a.PropTypes.func,stretch:a.PropTypes.bool.isRequired,dts:a.PropTypes.string},c.defaultProps={classSuffixes:[],stretch:!1},t["default"]=c},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(61);var i=function(e){var t=e.children;return a["default"].createElement("div",{className:"grid-component"},t)};i.displayName="AlexandriaGridComponent",i.propTypes={children:o.PropTypes.node},t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o),i=n(5),s=r(i);n(63);var l=function(e){var t=e.horizontalBorder,n=e["short"],r=e.type,o=e.verticalCellBorder,i=e.children,l=e.dts,c="grid-component-row",f=(0,s["default"])({classSuffixes:[r],suffixOptions:{horizontalBorder:t,"short":n,verticalCellBorder:o},componentClass:c});return a["default"].createElement("div",{className:""+c+f,"if":!0,dts:!0,"data-test-selector":l},i)};l.displayName="AlexandriaGridRowComponent",l.propTypes={children:o.PropTypes.node,horizontalBorder:o.PropTypes.bool.isRequired,"short":o.PropTypes.bool.isRequired,type:o.PropTypes.oneOf(["body","header","subfooter","footer"]).isRequired,verticalCellBorder:o.PropTypes.bool.isRequired,dts:o.PropTypes.string},l.defaultProps={horizontalBorder:!0,"short":!1,type:"body",verticalCellBorder:!1},t["default"]=l},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},a=n(6),i=r(a),s=n(1),l=r(s),c=n(5),f=r(c);n(70);var p=function(e){var t="svgsymbolcircle-component",n=(0,f["default"])({classSuffixes:e.classSuffixes,componentClass:t});return l["default"].createElement("div",{className:""+t+n},l["default"].createElement(i["default"],o({classSuffixes:e.classSuffixes,href:e.href},e)))};p.displayName="AlexandriaSvgSymbolCircleComponent",p.propTypes={classSuffixes:i["default"].propTypes.classSuffixes,href:s.PropTypes.string},t["default"]=p},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=.5;t.QUARTER=Math.PI/2,t.HALF=Math.PI,t.ROUND=2*Math.PI,t.getPointX=function(e){return n*Math.cos(e)},t.getPointY=function(e){return n*Math.sin(e)}},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(53);var i=function(e){var t=e.type,n=e.children;return a["default"].createElement("div",{className:"alert-component alert-component-"+t},n)};i.displayName="AlexandriaAlertComponent",i.propTypes={type:o.PropTypes.oneOf(["success","info","warning","danger"]),children:o.PropTypes.node.isRequired},i.defaultProps={type:"info"},t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(1),s=r(i);n(54);var l="avatar-component",c=function(e){var t=e.color,n=e.givenName,r=e.image,o=e.surname;return s["default"].createElement("div",{className:t?l+" "+l+"-"+t:l,title:(n||"")+" "+(o||"")},r?s["default"].createElement("img",{className:l+"-image",src:r,role:"presentation"}):null,s["default"].createElement("div",{className:"avatar-component-initials"},""+(a["default"].first(n)||"")+(a["default"].first(o)||"")))};c.displayName="AlexandriaAvatarComponent",c.propTypes={color:i.PropTypes.string,givenName:i.PropTypes.string,image:i.PropTypes.string,surname:i.PropTypes.string},t["default"]=c},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(55);var i=function(e){var t=e.children;return a["default"].createElement("div",{className:"borderedwell-component"},t)};i.displayName="AlexandriaBorderedWellComponent",i.propTypes={children:o.PropTypes.node},t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(17),s=r(i),l=n(1),c=r(l);n(56);var f=function(e){var t=e.nodes,n=e.onClick,r="breadcrumb-component";return 0===t.length?c["default"].createElement("div",{className:r}):c["default"].createElement("div",{className:r},c["default"].createElement(s["default"],{isLast:!1,node:{id:"all",label:"All"},onClick:n}),a["default"].map(t,function(e,o){return c["default"].createElement("span",{className:r+"-node",key:e.id},c["default"].createElement("span",{className:r+"-node-divider"}," > "),c["default"].createElement(s["default"],{isLast:o===t.length-1,node:e,onClick:n}))}))};f.displayName="AlexandriaBreadcrumbComponent",f.propTypes={nodes:l.PropTypes.arrayOf(s["default"].propTypes.node).isRequired,onClick:l.PropTypes.func.isRequired},f.defaultProps={nodes:[],onClick:function(e){throw new Error("Alexandria Breadcrumb needs an onClick handler to take "+e)}},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(57);var i=function(e){var t=e.isLast,n=e.node,r=e.onClick,o="breadcrumbnode-component";if(t)return a["default"].createElement("span",{className:o},n.label);var i=function(){return r(n.id)};return a["default"].createElement("span",{className:o+" "+o+"-link",onClick:i},n.label)};i.displayName="AlexandriaBreadcrumbNodeComponent",i.propTypes={isLast:o.PropTypes.bool.isRequired,node:o.PropTypes.shape({id:o.PropTypes.string.isRequired,label:o.PropTypes.string.isRequired}),onClick:o.PropTypes.func.isRequired},t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(1),s=r(i);n(58);var l=function(e){var t=e.children,n=e.className,r=e.stretch,o=e.fill,a=e.append,i="card-component-content",l=[i];return r&&l.push("stretch"),o&&l.push("fill"),a&&l.push("append"),n&&l.push(n),s["default"].createElement("div",{className:l.join(" ")},t)};l.displayName="AlexandriaCardContentComponent",l.propTypes={children:i.PropTypes.node.isRequired,className:i.PropTypes.string,fill:i.PropTypes.bool.isRequired,stretch:i.PropTypes.bool.isRequired,append:i.PropTypes.bool},l.defaultProps={fill:!1,stretch:!1,append:!1};var c=function(e){var t=e.children,n=e.className,r=e.accent,o="card-component",i=[o];r&&i.push("accent accent-"+r),n&&i.push(n);var l=s["default"].Children.map(t,function(e){return a["default"].get(e,"props.append")?null:e}),c=s["default"].Children.map(t,function(e){return a["default"].get(e,"props.append")?e:null});return s["default"].createElement("div",{className:i.join(" ")},s["default"].createElement("div",{className:o+"-content-container"},l),c)};c.displayName="AlexandriaCardComponent",c.propTypes={children:i.PropTypes.node.isRequired,className:i.PropTypes.string,accent:i.PropTypes.string},t["default"]={Container:c,Content:l}},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(11),s=r(i),l=n(1),c=r(l);n(59);var f=function p(e){var t=e.collection,n=e.svgSymbol,r=e.text,o=a["default"].isEmpty(n.classSuffixes)?p.defaultProps.svgSymbol.classSuffixes:n.classSuffixes;return a["default"].isEmpty(t)?c["default"].createElement("div",{className:"empty-component"},c["default"].createElement(s["default"],{href:n.href,classSuffixes:o}),c["default"].createElement("div",{className:"empty-component-text"},r)):c["default"].createElement("div",null)};f.displayName="AlexandriaEmptyComponent",f.propTypes={collection:l.PropTypes.any,svgSymbol:l.PropTypes.shape(s["default"].propTypes),text:l.PropTypes.any},f.defaultProps={collection:null,svgSymbol:{classSuffixes:["gray-darker","70","circle"]},text:"Nothing to show."},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o),i=n(7),s=r(i);n(64);var l="pagetitle-component",c=function(e){var t=e.children,n=e.isFooter,r=e.title,o=n?l+" "+l+"-is-footer":l;return a["default"].createElement("div",{className:o},t?a["default"].createElement("span",{className:"flexible-wrapper-inline"},r,a["default"].createElement(s["default"],null),t):r)};c.displayName="AlexandriaPageTitleComponent",c.propTypes={children:o.PropTypes.node,isFooter:o.PropTypes.bool.isRequired,title:o.PropTypes.string},c.defaultProps={isFooter:!1},t["default"]=c},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(52),s=r(i),l=n(1),c=r(l);n(65);var f=function(e){var t=e.newText,n=e.oldText,r=new s["default"],o=r.diff_main(n,t),i=function(e){switch(e){case s["default"].DIFF_DELETE:return"pretty-diff-component-delete";case s["default"].DIFF_INSERT:return"pretty-diff-component-insert";default:return"pretty-diff-component-equal"}};return c["default"].createElement("div",{className:"pretty-diff-component"},a["default"].map(o,function(e,t){return c["default"].createElement("span",{key:t,className:i(e[0])},e[1])}))};f.displayName="PrettyDiffComponent",f.propTypes={newText:l.PropTypes.string.isRequired,oldText:l.PropTypes.string.isRequired},f.defaultProps={newText:"",oldText:""},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(6),s=r(i),l=n(1),c=r(l);n(66);var f=function(e){var t=e.disabled,n=e.onChange,r=e.onClear,o=e.placeholder,i=e.svgSymbolCancel,l=e.svgSymbolSearch,f=e.value,p=t?["color-disabled"]:l.classSuffixes,u=t?["color-disabled"]:i.classSuffixes,d=t?null:function(e){return n(a["default"].get(e,"target.value"))},h=t?null:r;return c["default"].createElement("div",{className:"search-component"},c["default"].createElement("input",{autoComplete:"off",className:"search-component-input",disabled:t,name:"search",onChange:d,placeholder:"Search "+o,type:"search",value:f}),a["default"].isEmpty(f)?c["default"].createElement(s["default"],{href:l.href,classSuffixes:p}):c["default"].createElement(s["default"],{href:i.href,classSuffixes:u,onClick:h}))};f.displayName="AlexandriaSearchComponent",f.propTypes={disabled:l.PropTypes.bool,onChange:l.PropTypes.func.isRequired,onClear:l.PropTypes.func.isRequired,placeholder:l.PropTypes.string.isRequired,svgSymbolCancel:l.PropTypes.shape(s["default"].propTypes),svgSymbolSearch:l.PropTypes.shape(s["default"].propTypes),value:l.PropTypes.string.isRequired},f.defaultProps={disabled:!1,onChange:function(){throw new Error("Alexandria Search needs an onChange handler")},onClear:function(){throw new Error("Alexandria Search needs an onClear handler")},placeholder:"",svgSymbolCancel:{classSuffixes:["gray-darker"],href:"/assets/svg-symbols.svg#cancel"},svgSymbolSearch:{classSuffixes:["gray-light"],href:"/assets/svg-symbols.svg#search"},value:""},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(27),s=r(i),l=n(28),c=r(l),f=n(29),p=r(f),u=n(1),d=r(u),h=n(12);n(67);var g=function(e){return a["default"].filter(e,function(e){var t=e.value;return t>0})},m=function(e){var t=a["default"].sum(e,"value"),n=new Array(e.length),r=-h.QUARTER,o=0;return a["default"].map(n,function(n,a){var i=e[a],s=h.ROUND*i.value/t;return o=r,r+=s,{label:i.label,id:a,largeArcFlag:s>h.HALF?1:0,x1:(0,h.getPointX)(o),y1:(0,h.getPointY)(o),x2:(0,h.getPointX)(r),y2:(0,h.getPointY)(r)}})},b=function(e){return e.length>1?a["default"].map(m(e),function(e){return d["default"].createElement(s["default"],{key:e.id,data:e})}):d["default"].createElement("circle",{className:"arc-component "+a["default"].kebabCase(e[0].label),r:".5",cx:"0",cy:"0"})},v=function(e){return{className:"slicey-component",height:e,width:e,viewBox:"-0.5 -0.5 1 1"}},y=function(e){var t=e.dataset,n=e.diameter,r=e.donut,o=e.marker,i=g(t),s=r?d["default"].createElement(c["default"],null):null,l=o?d["default"].createElement(p["default"],{fraction:o}):null;return a["default"].isEmpty(i)?d["default"].createElement("svg",v(n),d["default"].createElement("circle",{className:"slicey-empty",r:".5",cx:"0",cy:"0"}),l,s):d["default"].createElement("svg",v(n),d["default"].createElement("circle",{className:"slicey-background",r:".49",cx:"0",cy:"0"}),b(i),l,s)};y.displayName="AlexandriaSliceyComponent",y.propTypes={dataset:u.PropTypes.arrayOf(u.PropTypes.shape({label:u.PropTypes.string.isRequired,value:u.PropTypes.number.isRequired})),diameter:u.PropTypes.number,donut:u.PropTypes.bool,marker:u.PropTypes.number},y.defaultProps={diameter:100},t["default"]=y},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(68);var i=function(e){var t=e.label,n=e.value,r=e.inline,o="statistic-component",i=[o];return r&&i.push("inline"),a["default"].createElement("div",{className:i.join(" ")},a["default"].createElement("div",{className:o+"-value"},n),a["default"].createElement("label",{className:o+"-label"},t))};i.displayName="AlexandriaStatisticComponent",i.propTypes={inline:o.PropTypes.bool.isRequired,label:o.PropTypes.string.isRequired,value:o.PropTypes.string.isRequired},i.defaultProps={inline:!1},t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0}),t.ActionButton=void 0;var o=n(1),a=r(o),i=n(5),s=r(i),l=n(6),c=r(l);n(71);var f="tag-component",p=t.ActionButton=function(e){var t=e.onAction,n=e.id,r=e.actionIconSvgHref;return a["default"].createElement("span",{className:"action-button",onClick:function(){return t(n)}},a["default"].createElement(c["default"],{href:r}))};p.propTypes={id:o.PropTypes.string.isRequired,onAction:o.PropTypes.func.isRequired,actionIconSvgHref:o.PropTypes.string.isRequired};var u=function(e){var t=e.children,n=e.inverse,r=e.id,o=e.onAction,i=e.accent,l=e.actionIconSvgHref,c=[];n&&c.push("inverse"),i&&c.push("accent accent-"+i),o&&c.push("actionable");var u=(0,s["default"])({classSuffixes:c,componentClass:f});return a["default"].createElement("span",{className:""+f+u,"data-test-selector":"tag-"+r},a["default"].createElement("label",{title:t},t),o?a["default"].createElement(p,{onAction:o,id:r,actionIconSvgHref:l}):null)};u.displayName="AlexandriaTagComponent",u.propTypes={children:o.PropTypes.string.isRequired,id:o.PropTypes.string,accent:o.PropTypes.string,inverse:o.PropTypes.bool,onAction:o.PropTypes.func,actionIconSvgHref:o.PropTypes.string},u.defaultProps={id:"default"},t["default"]=u},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(9),s=r(i),l=n(8),c=r(l),f=n(10),p=r(f),u=n(1),d=r(u),h=function(e){var t=e.toSum,n=e.valueFormatter;return d["default"].createElement(s["default"],null,(0,a["default"])(t).reject({isHidden:!0}).map(function(e,t){return d["default"].createElement(p["default"],{"short":!0,horizontalBorder:!1,key:t},d["default"].createElement(c["default"],{stretch:!0},e.label),d["default"].createElement(c["default"],{dts:a["default"].kebabCase(e.label)+"-value"},n(e.value)))}).value(),d["default"].createElement(p["default"],{"short":!0,horizontalBorder:!1,type:"footer"},d["default"].createElement(c["default"],{stretch:!0},"Total"),d["default"].createElement(c["default"],{dts:"total-value"},n(a["default"].sum(t,"value")))))};h.displayName="AlexandriaTotalsComponent",h.propTypes={toSum:u.PropTypes.arrayOf(u.PropTypes.shape({label:u.PropTypes.string,value:u.PropTypes.number.isRequired,isHidden:u.PropTypes.bool})).isRequired,valueFormatter:u.PropTypes.func.isRequired},h.defaultProps={toSum:[],valueFormatter:function(e){return""+e}},t["default"]=h},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),a=r(o),i=n(1),s=r(i);n(72);var l=function(e){var t=e.data;if(!t)return s["default"].createElement("path",{className:"arc-component"});var n="M0,0 L"+t.x1+","+t.y1+" A0.5,0.5 0 "+t.largeArcFlag+",1 "+t.x2+","+t.y2+" z";return s["default"].createElement("path",{className:"arc-component "+a["default"].kebabCase(t.label),d:n})};l.displayName="AlexandriaSliceyArcComponent",l.propTypes={data:i.PropTypes.shape({label:i.PropTypes.string.isRequired,id:i.PropTypes.number.isRequired,largeArcFlag:i.PropTypes.number.isRequired,x1:i.PropTypes.number.isRequired,y1:i.PropTypes.number.isRequired,x2:i.PropTypes.number.isRequired,y2:i.PropTypes.number.isRequired})},t["default"]=l},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o);n(73);var i=function(){return a["default"].createElement("circle",{className:"donut-component",r:".45",cx:"0",cy:"0"})};i.displayName="AlexandriaSliceyDonutComponent",t["default"]=i},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),a=r(o),i=n(12);n(74);var s=function(e){var t=e.fraction,n=function(e){var t=i.ROUND*e-i.QUARTER;return(0,i.getPointX)(t)+","+(0,i.getPointY)(t)+" 0,0"};return a["default"].createElement("polyline",{className:"marker-component",points:n(t)})};s.displayName="AlexandriaSliceyMarkerComponent",s.propTypes={fraction:o.PropTypes.number},s.defaultProps={fraction:0},t["default"]=s},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".alert-component{color:#fff;font-size:12px;line-height:20px;padding:10px}.alert-component-success{background-color:#5bb75b}.alert-component-info{background-color:#49afcd}.alert-component-warning{background-color:#faa732}.alert-component-danger{background-color:#da4f49}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".avatar-component{background-color:#ababab;border-radius:50%;color:#fff;cursor:default;display:inline-block;font-size:15px;font-weight:500;height:35px;line-height:36px;position:relative;text-align:center;text-transform:uppercase;vertical-align:middle;width:35px}.avatar-component-image{border-radius:50%;height:100%;left:0;position:absolute;top:0}.avatar-component-blue{background-color:#006dcc}.avatar-component-green{background-color:#5bb75b}.avatar-component-red{background-color:#da4f49}.avatar-component-orange{background-color:#faa732}.avatar-component-cyan{background-color:#49afcd}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".borderedwell-component{background-color:#fff;border:1px solid #e8e8e8}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".breadcrumb-component{color:#49afcd;cursor:default;font-size:12px;font-weight:300;height:10px;line-height:10px}.breadcrumb-component-link{cursor:pointer}.breadcrumb-component-link:active,.breadcrumb-component-link:hover{color:#0492ba;text-decoration:underline}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".breadcrumbnode-component-link{cursor:pointer}.breadcrumbnode-component-link:active,.breadcrumbnode-component-link:hover{color:#0492ba;text-decoration:underline}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".card-component{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font-size:12px;margin-bottom:28px;min-height:40px;min-width:205px;vertical-align:top}.card-component-grid-container{-ms-flex-align:stretch;align-items:stretch;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;margin-right:-28px}.card-component-grid-container .card-component{margin-right:28px}.card-component .flexible-spacer-component{border:0}.card-component-content-container{background-color:#fff;border:1px solid #e8e8e8;border-radius:5px;box-shadow:0 2px 0 #d3d3d3;display:-ms-flexbox;display:flex;-ms-flex-preferred-size:100%;flex-basis:100%;-ms-flex-direction:column;flex-direction:column;height:100%}.card-component-content-container .card-component-content:not(.fill):last-child{padding-bottom:20px}.card-component.accent .card-component-content-container{border-bottom-width:5px}.card-component-content{padding:20px 20px 0}.card-component-content.append{color:#ababab;font-weight:100;padding:5px 1px 0}.card-component-content.stretch{padding-left:0;padding-right:0}.card-component-content.fill{padding:0}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".empty-component{cursor:default;margin:0 auto;padding:60px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.empty-component-text{color:#ababab;font-size:12px;line-height:1.5;margin-top:10px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".flexible-spacer-component{border:1px solid #e8e8e8;-ms-flex-positive:1;flex-grow:1}.flexible-wrapper-inline{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;height:inherit}.flexible-wrapper-inline .flexible-spacer-component{border:0}.flexible-wrapper-inline>.svg-symbol-component{margin:auto}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".grid-component{border-left:1px solid #e8e8e8;border-top:1px solid #e8e8e8;box-sizing:border-box;display:inline-block;-ms-flex-negative:0;flex-shrink:0;font-size:12px;font-weight:300;line-height:1.5;vertical-align:top;width:100%}.grid-component,.grid-component-row-vertical-cell-border .grid-component-cell{border-right:1px solid #e8e8e8}.grid-component-row-vertical-cell-border .grid-component-cell:last-child{border-right:0}.grid-component+.grid-component{border-top:0}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".grid-component-cell{-ms-flex-positive:1;flex-grow:1;-ms-flex-negative:0;flex-shrink:0;padding:8px 0 8px 10px}.grid-component-cell:last-child{padding-right:10px}.grid-component-cell-stretch{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;-ms-flex-preferred-size:100%;flex-basis:100%;-ms-flex-negative:1;flex-shrink:1}.grid-component-cell-clickable{cursor:pointer}.grid-component-row-vertical-cell-border .grid-component-cell{padding-right:10px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".grid-component-row{border-bottom:1px solid transparent;display:-ms-flexbox;display:flex}.grid-component-row-header{color:#838383}.grid-component-row-subfooter{background-color:#f9f9f9;color:#838383}.grid-component-row-subfooter .grid-component-cell:last-child{color:#333}.grid-component-row-footer{font-weight:500}.grid-component-row-short .grid-component-cell{padding-bottom:3px;padding-top:3px}.grid-component-row-horizontal-border,.grid-component-row:last-child{border-bottom-color:#e8e8e8}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".pagetitle-component{border-bottom:1px solid #e8e8e8;box-sizing:content-box;font-size:18px;height:30px;line-height:30px;padding:20px 30px}.pagetitle-component-is-footer{border-bottom:0;border-top:1px solid #e8e8e8}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".pretty-diff-component{border:1px solid #e8e8e8;font-size:12px;padding:10px;white-space:pre-wrap}.pretty-diff-component-delete{color:#da4f49;text-decoration:line-through}.pretty-diff-component-insert{color:#5bb75b}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".search-component{height:26px;line-height:26px;position:relative;width:100%}.search-component ::-webkit-search-cancel-button,.search-component ::-webkit-search-decoration{-webkit-appearance:none;appearance:none}.search-component-input{-webkit-appearance:textfield;border:1px solid #e8e8e8;border-radius:2px;box-sizing:border-box;color:#333;font-size:12px;height:inherit;margin:0;padding:0 0 0 10px;width:inherit}.search-component-input::-webkit-input-placeholder{color:#ababab;font-weight:100}.search-component-input::-moz-placeholder{color:#ababab;font-weight:100}.search-component-input:-ms-input-placeholder{color:#ababab;font-weight:100}.search-component-input::placeholder{color:#ababab;font-weight:100}.search-component-input:active,.search-component-input:focus{border-color:#ababab;outline:0}.search-component-input:disabled{border:1px solid #e8e8e8;color:#ababab}.search-component .svg-symbol-component{box-sizing:content-box;height:100%;padding:0 4px;position:absolute;right:0;top:1px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".slicey-component{vertical-align:top}.slicey-background{fill:#5a5a5a}.slicey-empty{fill:#f9f9f9}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".statistic-component{font-size:15px}.statistic-component-value{font-weight:500}.statistic-component-label{color:#838383;font-weight:100}.statistic-component+.statistic-component{margin-top:5px}.statistic-component.inline .statistic-component-label,.statistic-component.inline .statistic-component-value{display:inline-block}.statistic-component.inline .statistic-component-label{margin-left:5px}",""]);
-	},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".svg-symbol-component{display:inline-block;height:16px;pointer-events:none;width:16px}.svg-symbol-component-70{height:70px;width:70px}.svg-symbol-component-gray-light{fill:#d3d3d3}.svg-symbol-component-gray-darker{fill:#5a5a5a}.svg-symbol-component-color-disabled{fill:#d3d3d3}.svg-symbol-component-clickable{cursor:pointer;pointer-events:auto}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".svgsymbolcircle-component{background-color:#e8e8e8;border-radius:50%;display:inline-block;height:16px;width:16px}.svgsymbolcircle-component-inverse{background-color:#fff}.svgsymbolcircle-component .svg-symbol-component{height:12px;margin:2px;width:12px}.svgsymbolcircle-component-70{height:70px;width:70px}.svgsymbolcircle-component .svg-symbol-component-70{height:50px;margin:10px;width:50px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".tag-component{-ms-flex-align:center;align-items:center;background-color:#838383;border-radius:2px;box-sizing:border-box;color:#fff;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;font-weight:100;height:22px;margin-right:5px;padding:0 5px}.tag-component.tag-component-inverse{background-color:#f3f3f3;border-left:4px solid;color:#838383}.tag-component.tag-component-inverse .action-button{fill:#ababab}.tag-component-actionable{padding-right:0}.tag-component-accent{font-weight:500}.tag-component .action-button{box-sizing:border-box;cursor:pointer;display:inline-block;fill:#fff;fill-opacity:.6;height:22px;padding-top:3px;text-align:center;width:22px}.tag-component .action-button:hover{fill-opacity:1}.tag-component label{max-width:105px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".arc-component.positive{fill:#5bb75b}.arc-component.negative{fill:#da4f49}.arc-component.info{fill:#49afcd}.arc-component.pending,.arc-component.warning{fill:#faa732}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".donut-component{fill:#fff}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".marker-component{stroke:#da4f49;stroke-width:.02}",""])},function(e,t){"use strict";function n(){this.Diff_Timeout=1,this.Diff_EditCost=4,this.Match_Threshold=.5,this.Match_Distance=1e3,this.Patch_DeleteThreshold=.5,this.Patch_Margin=4,this.Match_MaxBits=32}var r=-1,o=1,a=0;n.Diff,n.prototype.diff_main=function(e,t,n,r){"undefined"==typeof r&&(r=this.Diff_Timeout<=0?Number.MAX_VALUE:(new Date).getTime()+1e3*this.Diff_Timeout);var o=r;if(null==e||null==t)throw new Error("Null input. (diff_main)");if(e==t)return e?[[a,e]]:[];"undefined"==typeof n&&(n=!0);var i=n,s=this.diff_commonPrefix(e,t),l=e.substring(0,s);e=e.substring(s),t=t.substring(s),s=this.diff_commonSuffix(e,t);var c=e.substring(e.length-s);e=e.substring(0,e.length-s),t=t.substring(0,t.length-s);var f=this.diff_compute_(e,t,i,o);return l&&f.unshift([a,l]),c&&f.push([a,c]),this.diff_cleanupMerge(f),f},n.prototype.diff_compute_=function(e,t,n,i){var s;if(!e)return[[o,t]];if(!t)return[[r,e]];var l=e.length>t.length?e:t,c=e.length>t.length?t:e,f=l.indexOf(c);if(f!=-1)return s=[[o,l.substring(0,f)],[a,c],[o,l.substring(f+c.length)]],e.length>t.length&&(s[0][0]=s[2][0]=r),s;if(1==c.length)return[[r,e],[o,t]];var p=this.diff_halfMatch_(e,t);if(p){var u=p[0],d=p[1],h=p[2],g=p[3],m=p[4],b=this.diff_main(u,h,n,i),v=this.diff_main(d,g,n,i);return b.concat([[a,m]],v)}return n&&e.length>100&&t.length>100?this.diff_lineMode_(e,t,i):this.diff_bisect_(e,t,i)},n.prototype.diff_lineMode_=function(e,t,n){var i=this.diff_linesToChars_(e,t);e=i.chars1,t=i.chars2;var s=i.lineArray,l=this.diff_main(e,t,!1,n);this.diff_charsToLines_(l,s),this.diff_cleanupSemantic(l),l.push([a,""]);for(var c=0,f=0,p=0,u="",d="";c<l.length;){switch(l[c][0]){case o:p++,d+=l[c][1];break;case r:f++,u+=l[c][1];break;case a:if(f>=1&&p>=1){l.splice(c-f-p,f+p),c=c-f-p;for(var i=this.diff_main(u,d,!1,n),h=i.length-1;h>=0;h--)l.splice(c,0,i[h]);c+=i.length}p=0,f=0,u="",d=""}c++}return l.pop(),l},n.prototype.diff_bisect_=function(e,t,n){for(var a=e.length,i=t.length,s=Math.ceil((a+i)/2),l=s,c=2*s,f=new Array(c),p=new Array(c),u=0;u<c;u++)f[u]=-1,p[u]=-1;f[l+1]=0,p[l+1]=0;for(var d=a-i,h=d%2!=0,g=0,m=0,b=0,v=0,y=0;y<s&&!((new Date).getTime()>n);y++){for(var x=-y+g;x<=y-m;x+=2){var _,P=l+x;_=x==-y||x!=y&&f[P-1]<f[P+1]?f[P+1]:f[P-1]+1;for(var T=_-x;_<a&&T<i&&e.charAt(_)==t.charAt(T);)_++,T++;if(f[P]=_,_>a)m+=2;else if(T>i)g+=2;else if(h){var w=l+d-x;if(w>=0&&w<c&&p[w]!=-1){var M=a-p[w];if(_>=M)return this.diff_bisectSplit_(e,t,_,T,n)}}}for(var k=-y+b;k<=y-v;k+=2){var M,w=l+k;M=k==-y||k!=y&&p[w-1]<p[w+1]?p[w+1]:p[w-1]+1;for(var E=M-k;M<a&&E<i&&e.charAt(a-M-1)==t.charAt(i-E-1);)M++,E++;if(p[w]=M,M>a)v+=2;else if(E>i)b+=2;else if(!h){var P=l+d-k;if(P>=0&&P<c&&f[P]!=-1){var _=f[P],T=l+_-P;if(M=a-M,_>=M)return this.diff_bisectSplit_(e,t,_,T,n)}}}}return[[r,e],[o,t]]},n.prototype.diff_bisectSplit_=function(e,t,n,r,o){var a=e.substring(0,n),i=t.substring(0,r),s=e.substring(n),l=t.substring(r),c=this.diff_main(a,i,!1,o),f=this.diff_main(s,l,!1,o);return c.concat(f)},n.prototype.diff_linesToChars_=function(e,t){function n(e){for(var t="",n=0,a=-1,i=r.length;a<e.length-1;){a=e.indexOf("\n",n),a==-1&&(a=e.length-1);var s=e.substring(n,a+1);n=a+1,(o.hasOwnProperty?o.hasOwnProperty(s):void 0!==o[s])?t+=String.fromCharCode(o[s]):(t+=String.fromCharCode(i),o[s]=i,r[i++]=s)}return t}var r=[],o={};r[0]="";var a=n(e),i=n(t);return{chars1:a,chars2:i,lineArray:r}},n.prototype.diff_charsToLines_=function(e,t){for(var n=0;n<e.length;n++){for(var r=e[n][1],o=[],a=0;a<r.length;a++)o[a]=t[r.charCodeAt(a)];e[n][1]=o.join("")}},n.prototype.diff_commonPrefix=function(e,t){if(!e||!t||e.charAt(0)!=t.charAt(0))return 0;for(var n=0,r=Math.min(e.length,t.length),o=r,a=0;n<o;)e.substring(a,o)==t.substring(a,o)?(n=o,a=n):r=o,o=Math.floor((r-n)/2+n);return o},n.prototype.diff_commonSuffix=function(e,t){if(!e||!t||e.charAt(e.length-1)!=t.charAt(t.length-1))return 0;for(var n=0,r=Math.min(e.length,t.length),o=r,a=0;n<o;)e.substring(e.length-o,e.length-a)==t.substring(t.length-o,t.length-a)?(n=o,a=n):r=o,o=Math.floor((r-n)/2+n);return o},n.prototype.diff_commonOverlap_=function(e,t){var n=e.length,r=t.length;if(0==n||0==r)return 0;n>r?e=e.substring(n-r):n<r&&(t=t.substring(0,n));var o=Math.min(n,r);if(e==t)return o;for(var a=0,i=1;;){var s=e.substring(o-i),l=t.indexOf(s);if(l==-1)return a;i+=l,0!=l&&e.substring(o-i)!=t.substring(0,i)||(a=i,i++)}},n.prototype.diff_halfMatch_=function(e,t){function n(e,t,n){for(var r,o,a,s,l=e.substring(n,n+Math.floor(e.length/4)),c=-1,f="";(c=t.indexOf(l,c+1))!=-1;){var p=i.diff_commonPrefix(e.substring(n),t.substring(c)),u=i.diff_commonSuffix(e.substring(0,n),t.substring(0,c));f.length<u+p&&(f=t.substring(c-u,c)+t.substring(c,c+p),r=e.substring(0,n-u),o=e.substring(n+p),a=t.substring(0,c-u),s=t.substring(c+p))}return 2*f.length>=e.length?[r,o,a,s,f]:null}if(this.Diff_Timeout<=0)return null;var r=e.length>t.length?e:t,o=e.length>t.length?t:e;if(r.length<4||2*o.length<r.length)return null;var a,i=this,s=n(r,o,Math.ceil(r.length/4)),l=n(r,o,Math.ceil(r.length/2));if(!s&&!l)return null;a=l?s&&s[4].length>l[4].length?s:l:s;var c,f,p,u;e.length>t.length?(c=a[0],f=a[1],p=a[2],u=a[3]):(p=a[0],u=a[1],c=a[2],f=a[3]);var d=a[4];return[c,f,p,u,d]},n.prototype.diff_cleanupSemantic=function(e){for(var t=!1,n=[],i=0,s=null,l=0,c=0,f=0,p=0,u=0;l<e.length;)e[l][0]==a?(n[i++]=l,c=p,f=u,p=0,u=0,s=e[l][1]):(e[l][0]==o?p+=e[l][1].length:u+=e[l][1].length,s&&s.length<=Math.max(c,f)&&s.length<=Math.max(p,u)&&(e.splice(n[i-1],0,[r,s]),e[n[i-1]+1][0]=o,i--,i--,l=i>0?n[i-1]:-1,c=0,f=0,p=0,u=0,s=null,t=!0)),l++;for(t&&this.diff_cleanupMerge(e),this.diff_cleanupSemanticLossless(e),l=1;l<e.length;){if(e[l-1][0]==r&&e[l][0]==o){var d=e[l-1][1],h=e[l][1],g=this.diff_commonOverlap_(d,h),m=this.diff_commonOverlap_(h,d);g>=m?(g>=d.length/2||g>=h.length/2)&&(e.splice(l,0,[a,h.substring(0,g)]),e[l-1][1]=d.substring(0,d.length-g),e[l+1][1]=h.substring(g),l++):(m>=d.length/2||m>=h.length/2)&&(e.splice(l,0,[a,d.substring(0,m)]),e[l-1][0]=o,e[l-1][1]=h.substring(0,h.length-m),e[l+1][0]=r,e[l+1][1]=d.substring(m),l++),l++}l++}},n.prototype.diff_cleanupSemanticLossless=function(e){function t(e,t){if(!e||!t)return 6;var r=e.charAt(e.length-1),o=t.charAt(0),a=r.match(n.nonAlphaNumericRegex_),i=o.match(n.nonAlphaNumericRegex_),s=a&&r.match(n.whitespaceRegex_),l=i&&o.match(n.whitespaceRegex_),c=s&&r.match(n.linebreakRegex_),f=l&&o.match(n.linebreakRegex_),p=c&&e.match(n.blanklineEndRegex_),u=f&&t.match(n.blanklineStartRegex_);return p||u?5:c||f?4:a&&!s&&l?3:s||l?2:a||i?1:0}for(var r=1;r<e.length-1;){if(e[r-1][0]==a&&e[r+1][0]==a){var o=e[r-1][1],i=e[r][1],s=e[r+1][1],l=this.diff_commonSuffix(o,i);if(l){var c=i.substring(i.length-l);o=o.substring(0,o.length-l),i=c+i.substring(0,i.length-l),s=c+s}for(var f=o,p=i,u=s,d=t(o,i)+t(i,s);i.charAt(0)===s.charAt(0);){o+=i.charAt(0),i=i.substring(1)+s.charAt(0),s=s.substring(1);var h=t(o,i)+t(i,s);h>=d&&(d=h,f=o,p=i,u=s)}e[r-1][1]!=f&&(f?e[r-1][1]=f:(e.splice(r-1,1),r--),e[r][1]=p,u?e[r+1][1]=u:(e.splice(r+1,1),r--))}r++}},n.nonAlphaNumericRegex_=/[^a-zA-Z0-9]/,n.whitespaceRegex_=/\s/,n.linebreakRegex_=/[\r\n]/,n.blanklineEndRegex_=/\n\r?\n$/,n.blanklineStartRegex_=/^\r?\n\r?\n/,n.prototype.diff_cleanupEfficiency=function(e){for(var t=!1,n=[],i=0,s=null,l=0,c=!1,f=!1,p=!1,u=!1;l<e.length;)e[l][0]==a?(e[l][1].length<this.Diff_EditCost&&(p||u)?(n[i++]=l,c=p,f=u,s=e[l][1]):(i=0,s=null),p=u=!1):(e[l][0]==r?u=!0:p=!0,s&&(c&&f&&p&&u||s.length<this.Diff_EditCost/2&&c+f+p+u==3)&&(e.splice(n[i-1],0,[r,s]),e[n[i-1]+1][0]=o,i--,s=null,c&&f?(p=u=!0,i=0):(i--,l=i>0?n[i-1]:-1,p=u=!1),t=!0)),l++;t&&this.diff_cleanupMerge(e)},n.prototype.diff_cleanupMerge=function(e){e.push([a,""]);for(var t,n=0,i=0,s=0,l="",c="";n<e.length;)switch(e[n][0]){case o:s++,c+=e[n][1],n++;break;case r:i++,l+=e[n][1],n++;break;case a:i+s>1?(0!==i&&0!==s&&(t=this.diff_commonPrefix(c,l),0!==t&&(n-i-s>0&&e[n-i-s-1][0]==a?e[n-i-s-1][1]+=c.substring(0,t):(e.splice(0,0,[a,c.substring(0,t)]),n++),c=c.substring(t),l=l.substring(t)),t=this.diff_commonSuffix(c,l),0!==t&&(e[n][1]=c.substring(c.length-t)+e[n][1],c=c.substring(0,c.length-t),l=l.substring(0,l.length-t))),0===i?e.splice(n-s,i+s,[o,c]):0===s?e.splice(n-i,i+s,[r,l]):e.splice(n-i-s,i+s,[r,l],[o,c]),n=n-i-s+(i?1:0)+(s?1:0)+1):0!==n&&e[n-1][0]==a?(e[n-1][1]+=e[n][1],e.splice(n,1)):n++,s=0,i=0,l="",c=""}""===e[e.length-1][1]&&e.pop();var f=!1;for(n=1;n<e.length-1;)e[n-1][0]==a&&e[n+1][0]==a&&(e[n][1].substring(e[n][1].length-e[n-1][1].length)==e[n-1][1]?(e[n][1]=e[n-1][1]+e[n][1].substring(0,e[n][1].length-e[n-1][1].length),e[n+1][1]=e[n-1][1]+e[n+1][1],e.splice(n-1,1),f=!0):e[n][1].substring(0,e[n+1][1].length)==e[n+1][1]&&(e[n-1][1]+=e[n+1][1],e[n][1]=e[n][1].substring(e[n+1][1].length)+e[n+1][1],e.splice(n+1,1),f=!0)),n++;f&&this.diff_cleanupMerge(e)},n.prototype.diff_xIndex=function(e,t){var n,a=0,i=0,s=0,l=0;for(n=0;n<e.length&&(e[n][0]!==o&&(a+=e[n][1].length),e[n][0]!==r&&(i+=e[n][1].length),!(a>t));n++)s=a,l=i;return e.length!=n&&e[n][0]===r?l:l+(t-s)},n.prototype.diff_prettyHtml=function(e){for(var t=[],n=/&/g,i=/</g,s=/>/g,l=/\n/g,c=0;c<e.length;c++){var f=e[c][0],p=e[c][1],u=p.replace(n,"&amp;").replace(i,"&lt;").replace(s,"&gt;").replace(l,"&para;<br>");switch(f){case o:t[c]='<ins style="background:#e6ffe6;">'+u+"</ins>";break;case r:t[c]='<del style="background:#ffe6e6;">'+u+"</del>";break;case a:t[c]="<span>"+u+"</span>"}}return t.join("")},n.prototype.diff_text1=function(e){for(var t=[],n=0;n<e.length;n++)e[n][0]!==o&&(t[n]=e[n][1]);return t.join("")},n.prototype.diff_text2=function(e){for(var t=[],n=0;n<e.length;n++)e[n][0]!==r&&(t[n]=e[n][1]);return t.join("")},n.prototype.diff_levenshtein=function(e){for(var t=0,n=0,i=0,s=0;s<e.length;s++){var l=e[s][0],c=e[s][1];switch(l){case o:n+=c.length;break;case r:i+=c.length;break;case a:t+=Math.max(n,i),n=0,i=0}}return t+=Math.max(n,i)},n.prototype.diff_toDelta=function(e){for(var t=[],n=0;n<e.length;n++)switch(e[n][0]){case o:t[n]="+"+encodeURI(e[n][1]);break;case r:t[n]="-"+e[n][1].length;break;case a:t[n]="="+e[n][1].length}return t.join("\t").replace(/%20/g," ")},n.prototype.diff_fromDelta=function(e,t){for(var n=[],i=0,s=0,l=t.split(/\t/g),c=0;c<l.length;c++){var f=l[c].substring(1);switch(l[c].charAt(0)){case"+":try{n[i++]=[o,decodeURI(f)]}catch(p){throw new Error("Illegal escape in diff_fromDelta: "+f)}break;case"-":case"=":var u=parseInt(f,10);if(isNaN(u)||u<0)throw new Error("Invalid number in diff_fromDelta: "+f);var d=e.substring(s,s+=u);"="==l[c].charAt(0)?n[i++]=[a,d]:n[i++]=[r,d];break;default:if(l[c])throw new Error("Invalid diff operation in diff_fromDelta: "+l[c])}}if(s!=e.length)throw new Error("Delta length ("+s+") does not equal source text length ("+e.length+").");return n},n.prototype.match_main=function(e,t,n){if(null==e||null==t||null==n)throw new Error("Null input. (match_main)");return n=Math.max(0,Math.min(n,e.length)),e==t?0:e.length?e.substring(n,n+t.length)==t?n:this.match_bitap_(e,t,n):-1},n.prototype.match_bitap_=function(e,t,n){function r(e,r){var o=e/t.length,i=Math.abs(n-r);return a.Match_Distance?o+i/a.Match_Distance:i?1:o}if(t.length>this.Match_MaxBits)throw new Error("Pattern too long for this browser.");var o=this.match_alphabet_(t),a=this,i=this.Match_Threshold,s=e.indexOf(t,n);s!=-1&&(i=Math.min(r(0,s),i),s=e.lastIndexOf(t,n+t.length),s!=-1&&(i=Math.min(r(0,s),i)));var l=1<<t.length-1;s=-1;for(var c,f,p,u=t.length+e.length,d=0;d<t.length;d++){for(c=0,f=u;c<f;)r(d,n+f)<=i?c=f:u=f,f=Math.floor((u-c)/2+c);u=f;var h=Math.max(1,n-f+1),g=Math.min(n+f,e.length)+t.length,m=Array(g+2);m[g+1]=(1<<d)-1;for(var b=g;b>=h;b--){var v=o[e.charAt(b-1)];if(0===d?m[b]=(m[b+1]<<1|1)&v:m[b]=(m[b+1]<<1|1)&v|((p[b+1]|p[b])<<1|1)|p[b+1],m[b]&l){var y=r(d,b-1);if(y<=i){if(i=y,s=b-1,!(s>n))break;h=Math.max(1,2*n-s)}}}if(r(d+1,n)>i)break;p=m}return s},n.prototype.match_alphabet_=function(e){for(var t={},n=0;n<e.length;n++)t[e.charAt(n)]=0;for(var n=0;n<e.length;n++)t[e.charAt(n)]|=1<<e.length-n-1;return t},n.prototype.patch_addContext_=function(e,t){if(0!=t.length){for(var n=t.substring(e.start2,e.start2+e.length1),r=0;t.indexOf(n)!=t.lastIndexOf(n)&&n.length<this.Match_MaxBits-this.Patch_Margin-this.Patch_Margin;)r+=this.Patch_Margin,n=t.substring(e.start2-r,e.start2+e.length1+r);r+=this.Patch_Margin;var o=t.substring(e.start2-r,e.start2);o&&e.diffs.unshift([a,o]);var i=t.substring(e.start2+e.length1,e.start2+e.length1+r);i&&e.diffs.push([a,i]),e.start1-=o.length,e.start2-=o.length,e.length1+=o.length+i.length,e.length2+=o.length+i.length}},n.prototype.patch_make=function(e,t,i){var s,l;if("string"==typeof e&&"string"==typeof t&&"undefined"==typeof i)s=e,l=this.diff_main(s,t,!0),l.length>2&&(this.diff_cleanupSemantic(l),this.diff_cleanupEfficiency(l));else if(e&&"object"==typeof e&&"undefined"==typeof t&&"undefined"==typeof i)l=e,s=this.diff_text1(l);else if("string"==typeof e&&t&&"object"==typeof t&&"undefined"==typeof i)s=e,l=t;else{if("string"!=typeof e||"string"!=typeof t||!i||"object"!=typeof i)throw new Error("Unknown call format to patch_make.");s=e,l=i}if(0===l.length)return[];for(var c=[],f=new n.patch_obj,p=0,u=0,d=0,h=s,g=s,m=0;m<l.length;m++){var b=l[m][0],v=l[m][1];switch(p||b===a||(f.start1=u,f.start2=d),b){case o:f.diffs[p++]=l[m],f.length2+=v.length,g=g.substring(0,d)+v+g.substring(d);break;case r:f.length1+=v.length,f.diffs[p++]=l[m],g=g.substring(0,d)+g.substring(d+v.length);break;case a:v.length<=2*this.Patch_Margin&&p&&l.length!=m+1?(f.diffs[p++]=l[m],f.length1+=v.length,f.length2+=v.length):v.length>=2*this.Patch_Margin&&p&&(this.patch_addContext_(f,h),c.push(f),f=new n.patch_obj,p=0,h=g,u=d)}b!==o&&(u+=v.length),b!==r&&(d+=v.length)}return p&&(this.patch_addContext_(f,h),c.push(f)),c},n.prototype.patch_deepCopy=function(e){for(var t=[],r=0;r<e.length;r++){var o=e[r],a=new n.patch_obj;a.diffs=[];for(var i=0;i<o.diffs.length;i++)a.diffs[i]=o.diffs[i].slice();a.start1=o.start1,a.start2=o.start2,a.length1=o.length1,a.length2=o.length2,t[r]=a}return t},n.prototype.patch_apply=function(e,t){if(0==e.length)return[t,[]];e=this.patch_deepCopy(e);var n=this.patch_addPadding(e);t=n+t+n,this.patch_splitMax(e);for(var i=0,s=[],l=0;l<e.length;l++){var c,f=e[l].start2+i,p=this.diff_text1(e[l].diffs),u=-1;if(p.length>this.Match_MaxBits?(c=this.match_main(t,p.substring(0,this.Match_MaxBits),f),c!=-1&&(u=this.match_main(t,p.substring(p.length-this.Match_MaxBits),f+p.length-this.Match_MaxBits),(u==-1||c>=u)&&(c=-1))):c=this.match_main(t,p,f),c==-1)s[l]=!1,i-=e[l].length2-e[l].length1;else{s[l]=!0,i=c-f;var d;if(d=u==-1?t.substring(c,c+p.length):t.substring(c,u+this.Match_MaxBits),p==d)t=t.substring(0,c)+this.diff_text2(e[l].diffs)+t.substring(c+p.length);else{var h=this.diff_main(p,d,!1);if(p.length>this.Match_MaxBits&&this.diff_levenshtein(h)/p.length>this.Patch_DeleteThreshold)s[l]=!1;else{this.diff_cleanupSemanticLossless(h);for(var g,m=0,b=0;b<e[l].diffs.length;b++){var v=e[l].diffs[b];v[0]!==a&&(g=this.diff_xIndex(h,m)),v[0]===o?t=t.substring(0,c+g)+v[1]+t.substring(c+g):v[0]===r&&(t=t.substring(0,c+g)+t.substring(c+this.diff_xIndex(h,m+v[1].length))),v[0]!==r&&(m+=v[1].length)}}}}}return t=t.substring(n.length,t.length-n.length),[t,s]},n.prototype.patch_addPadding=function(e){for(var t=this.Patch_Margin,n="",r=1;r<=t;r++)n+=String.fromCharCode(r);for(var r=0;r<e.length;r++)e[r].start1+=t,e[r].start2+=t;var o=e[0],i=o.diffs;if(0==i.length||i[0][0]!=a)i.unshift([a,n]),o.start1-=t,o.start2-=t,o.length1+=t,o.length2+=t;else if(t>i[0][1].length){var s=t-i[0][1].length;i[0][1]=n.substring(i[0][1].length)+i[0][1],o.start1-=s,o.start2-=s,o.length1+=s,o.length2+=s}if(o=e[e.length-1],i=o.diffs,0==i.length||i[i.length-1][0]!=a)i.push([a,n]),o.length1+=t,o.length2+=t;else if(t>i[i.length-1][1].length){var s=t-i[i.length-1][1].length;i[i.length-1][1]+=n.substring(0,s),o.length1+=s,o.length2+=s}return n},n.prototype.patch_splitMax=function(e){for(var t=this.Match_MaxBits,i=0;i<e.length;i++)if(!(e[i].length1<=t)){var s=e[i];e.splice(i--,1);for(var l=s.start1,c=s.start2,f="";0!==s.diffs.length;){var p=new n.patch_obj,u=!0;for(p.start1=l-f.length,p.start2=c-f.length,""!==f&&(p.length1=p.length2=f.length,p.diffs.push([a,f]));0!==s.diffs.length&&p.length1<t-this.Patch_Margin;){var d=s.diffs[0][0],h=s.diffs[0][1];d===o?(p.length2+=h.length,c+=h.length,p.diffs.push(s.diffs.shift()),u=!1):d===r&&1==p.diffs.length&&p.diffs[0][0]==a&&h.length>2*t?(p.length1+=h.length,l+=h.length,u=!1,p.diffs.push([d,h]),s.diffs.shift()):(h=h.substring(0,t-p.length1-this.Patch_Margin),p.length1+=h.length,l+=h.length,d===a?(p.length2+=h.length,c+=h.length):u=!1,p.diffs.push([d,h]),h==s.diffs[0][1]?s.diffs.shift():s.diffs[0][1]=s.diffs[0][1].substring(h.length))}f=this.diff_text2(p.diffs),f=f.substring(f.length-this.Patch_Margin);var g=this.diff_text1(s.diffs).substring(0,this.Patch_Margin);""!==g&&(p.length1+=g.length,p.length2+=g.length,0!==p.diffs.length&&p.diffs[p.diffs.length-1][0]===a?p.diffs[p.diffs.length-1][1]+=g:p.diffs.push([a,g])),u||e.splice(++i,0,p)}}},n.prototype.patch_toText=function(e){for(var t=[],n=0;n<e.length;n++)t[n]=e[n];return t.join("")},n.prototype.patch_fromText=function(e){var t=[];if(!e)return t;for(var i=e.split("\n"),s=0,l=/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@$/;s<i.length;){var c=i[s].match(l);if(!c)throw new Error("Invalid patch string: "+i[s]);var f=new n.patch_obj;for(t.push(f),f.start1=parseInt(c[1],10),""===c[2]?(f.start1--,f.length1=1):"0"==c[2]?f.length1=0:(f.start1--,f.length1=parseInt(c[2],10)),f.start2=parseInt(c[3],10),""===c[4]?(f.start2--,f.length2=1):"0"==c[4]?f.length2=0:(f.start2--,f.length2=parseInt(c[4],10)),s++;s<i.length;){var p=i[s].charAt(0);try{var u=decodeURI(i[s].substring(1))}catch(d){throw new Error("Illegal escape in patch_fromText: "+u)}if("-"==p)f.diffs.push([r,u]);else if("+"==p)f.diffs.push([o,u]);else if(" "==p)f.diffs.push([a,u]);else{if("@"==p)break;if(""!==p)throw new Error('Invalid patch mode "'+p+'" in: '+u)}s++}}return t},n.patch_obj=function(){this.diffs=[],this.start1=null,this.start2=null,this.length1=0,this.length2=0},n.patch_obj.prototype.toString=function(){var e,t;e=0===this.length1?this.start1+",0":1==this.length1?this.start1+1:this.start1+1+","+this.length1,t=0===this.length2?this.start2+",0":1==this.length2?this.start2+1:this.start2+1+","+this.length2;for(var n,i=["@@ -"+e+" +"+t+" @@\n"],s=0;s<this.diffs.length;s++){switch(this.diffs[s][0]){case o:n="+";break;case r:n="-";break;case a:n=" "}i[s+1]=n+encodeURI(this.diffs[s][1])+"\n"}return i.join("").replace(/%20/g," ")},e.exports=n,e.exports.diff_match_patch=n,e.exports.DIFF_DELETE=r,e.exports.DIFF_INSERT=o,e.exports.DIFF_EQUAL=a},function(e,t,n){var r=n(30);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(31);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(32);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(33);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(34);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(35);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(36);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(37);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(38);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(39);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(40);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(41);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(42);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(43);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(44);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(45);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(46);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(47);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(48);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(49);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(50);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(51);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r,o;!function(n,a){r=[],o=function(){return n.svg4everybody=a()}.apply(t,r),!(void 0!==o&&(e.exports=o))}(this,function(){/*! svg4everybody v2.1.0 | github.com/jonathantneal/svg4everybody */
-	function e(e,t){if(t){var n=document.createDocumentFragment(),r=!e.getAttribute("viewBox")&&t.getAttribute("viewBox");r&&e.setAttribute("viewBox",r);for(var o=t.cloneNode(!0);o.childNodes.length;)n.appendChild(o.firstChild);e.appendChild(n)}}function t(t){t.onreadystatechange=function(){if(4===t.readyState){var n=t._cachedDocument;n||(n=t._cachedDocument=document.implementation.createHTMLDocument(""),n.body.innerHTML=t.responseText,t._cachedTarget={}),t._embeds.splice(0).map(function(r){var o=t._cachedTarget[r.id];o||(o=t._cachedTarget[r.id]=n.getElementById(r.id)),e(r.svg,o)})}},t.onreadystatechange()}function n(n){function r(){for(var n=0;n<p.length;){var i=p[n],s=i.parentNode;if(s&&/svg/i.test(s.nodeName)){var l=i.getAttribute("xlink:href");if(o&&(!a.validate||a.validate(l,s,i))){s.removeChild(i);var u=l.split("#"),d=u.shift(),h=u.join("#");if(d.length){var g=c[d];g||(g=c[d]=new XMLHttpRequest,g.open("GET",d),g.send(),g._embeds=[]),g._embeds.push({svg:s,id:h}),t(g)}else e(s,document.getElementById(h))}}else++n}f(r,67)}var o,a=Object(n),i=/\bTrident\/[567]\b|\bMSIE (?:9|10)\.0\b/,s=/\bAppleWebKit\/(\d+)\b/,l=/\bEdge\/12\.(\d+)\b/;o="polyfill"in a?a.polyfill:i.test(navigator.userAgent)||(navigator.userAgent.match(l)||[])[1]<10547||(navigator.userAgent.match(s)||[])[1]<537;var c={},f=window.requestAnimationFrame||setTimeout,p=document.getElementsByTagName("use");o&&r()}return n})}])});
+	!function(e,t){ true?module.exports=t(__webpack_require__(2),__webpack_require__(7)):"function"==typeof define&&define.amd?define(["react","lodash"],t):"object"==typeof exports?exports.Alexandria=t(require("react"),require("lodash")):e.Alexandria=t(e.React,e._)}(this,function(e,t){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return e[r].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=e,t.c=n,t.p="/assets/",t(0)}([function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}var o=n(75),i=r(o),a=n(13),s=r(a),l=n(14),c=r(l),f=n(15),p=r(f),u=n(16),d=r(u),h=n(18),g=r(h),m=n(19),b=r(m),v=n(7),y=r(v),x=n(9),_=r(x),P=n(8),T=r(P),w=n(10),M=r(w),k=n(20),E=r(k),C=n(21),S=r(C),A=n(22),N=r(A),R=n(23),O=r(R),j=n(24),q=r(j),B=n(6),I=r(B),D=n(11),L=r(D),z=n(25),U=r(z),F=n(26),H=r(F);(0,i["default"])(),e.exports={Alert:s["default"],Avatar:c["default"],BorderedWell:p["default"],Breadcrumb:d["default"],Card:g["default"],Empty:b["default"],FlexibleSpacer:y["default"],Grid:_["default"],GridCell:T["default"],GridRow:M["default"],PageTitle:E["default"],PrettyDiff:S["default"],Search:N["default"],Slicey:O["default"],Statistic:q["default"],SvgSymbol:I["default"],SvgSymbolCircle:L["default"],Tag:U["default"],Totals:H["default"]}},function(t,n){t.exports=e},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var n=this[t];n[2]?e.push("@media "+n[2]+"{"+n[1]+"}"):e.push(n[1])}return e.join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<t.length;o++){var a=t[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(e,t,n){function r(e,t){for(var n=0;n<e.length;n++){var r=e[n],o=d[r.id];if(o){o.refs++;for(var i=0;i<o.parts.length;i++)o.parts[i](r.parts[i]);for(;i<r.parts.length;i++)o.parts.push(c(r.parts[i],t))}else{for(var a=[],i=0;i<r.parts.length;i++)a.push(c(r.parts[i],t));d[r.id]={id:r.id,refs:1,parts:a}}}}function o(e){for(var t=[],n={},r=0;r<e.length;r++){var o=e[r],i=o[0],a=o[1],s=o[2],l=o[3],c={css:a,media:s,sourceMap:l};n[i]?n[i].parts.push(c):t.push(n[i]={id:i,parts:[c]})}return t}function i(e,t){var n=m(),r=y[y.length-1];if("top"===e.insertAt)r?r.nextSibling?n.insertBefore(t,r.nextSibling):n.appendChild(t):n.insertBefore(t,n.firstChild),y.push(t);else{if("bottom"!==e.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(t)}}function a(e){e.parentNode.removeChild(e);var t=y.indexOf(e);t>=0&&y.splice(t,1)}function s(e){var t=document.createElement("style");return t.type="text/css",i(e,t),t}function l(e){var t=document.createElement("link");return t.rel="stylesheet",i(e,t),t}function c(e,t){var n,r,o;if(t.singleton){var i=v++;n=b||(b=s(t)),r=f.bind(null,n,i,!1),o=f.bind(null,n,i,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=l(t),r=u.bind(null,n),o=function(){a(n),n.href&&URL.revokeObjectURL(n.href)}):(n=s(t),r=p.bind(null,n),o=function(){a(n)});return r(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;r(e=t)}else o()}}function f(e,t,n,r){var o=n?"":r.css;if(e.styleSheet)e.styleSheet.cssText=x(t,o);else{var i=document.createTextNode(o),a=e.childNodes;a[t]&&e.removeChild(a[t]),a.length?e.insertBefore(i,a[t]):e.appendChild(i)}}function p(e,t){var n=t.css,r=t.media;if(r&&e.setAttribute("media",r),e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}function u(e,t){var n=t.css,r=t.sourceMap;r&&(n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var o=new Blob([n],{type:"text/css"}),i=e.href;e.href=URL.createObjectURL(o),i&&URL.revokeObjectURL(i)}var d={},h=function(e){var t;return function(){return"undefined"==typeof t&&(t=e.apply(this,arguments)),t}},g=h(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),m=h(function(){return document.head||document.getElementsByTagName("head")[0]}),b=null,v=0,y=[];e.exports=function(e,t){if("object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");t=t||{},"undefined"==typeof t.singleton&&(t.singleton=g()),"undefined"==typeof t.insertAt&&(t.insertAt="bottom");var n=o(e);return r(n,t),function(e){for(var i=[],a=0;a<n.length;a++){var s=n[a],l=d[s.id];l.refs--,i.push(l)}if(e){var c=o(e);r(c,t)}for(var a=0;a<i.length;a++){var l=i[a];if(0===l.refs){for(var f=0;f<l.parts.length;f++)l.parts[f]();delete d[l.id]}}}};var x=function(){var e=[];return function(t,n){return e[t]=n,e.filter(Boolean).join("\n")}}()},function(e,n){e.exports=t},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=function(e){var t=e.classSuffixes,n=e.suffixOptions,r=e.componentClass,o=i["default"].compact(t);return i["default"].forEach(n,function(e,t){e&&o.push(i["default"].kebabCase(t))}),i["default"].isEmpty(o)?"":i["default"].map(o,function(e){return" "+r+"-"+e}).join("")};t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o),a=n(5),s=r(a);n(69);var l=function(e){var t=e.classSuffixes,n=e.href,r="svg-symbol-component",o={clickable:e.onClick},a=(0,s["default"])({classSuffixes:t,suffixOptions:o,componentClass:r});return i["default"].createElement("svg",{className:""+r+a},i["default"].createElement("use",{xlinkHref:n}))};l.displayName="AlexandriaSvgSymbolComponent",l.propTypes={classSuffixes:o.PropTypes.arrayOf(o.PropTypes.string.isRequired),href:o.PropTypes.string,onClick:o.PropTypes.func},l.defaultProps={classSuffixes:[]},t["default"]=l},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(60);var a=function(){return i["default"].createElement("div",{className:"flexible-spacer-component"})};a.displayName="AlexandriaFlexibleSpacerComponent",t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},i=n(1),a=r(i),s=n(5),l=r(s);n(62);var c=function(e){var t=e.children,n=e.classSuffixes,r=e.onClick,i=e.stretch,s=e.dts,c="grid-component-cell",f=(0,l["default"])({classSuffixes:n,suffixOptions:{stretch:i,clickable:r},componentClass:c}),p=r?{onClick:r}:{};return a["default"].createElement("div",o({className:""+c+f},p,{"if":!0,dts:!0,"data-test-selector":s}),t)};c.displayName="AlexandriaGridCellComponent",c.propTypes={children:i.PropTypes.node,classSuffixes:i.PropTypes.arrayOf(i.PropTypes.string).isRequired,onClick:i.PropTypes.func,stretch:i.PropTypes.bool.isRequired,dts:i.PropTypes.string},c.defaultProps={classSuffixes:[],stretch:!1},t["default"]=c},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(61);var a=function(e){var t=e.children;return i["default"].createElement("div",{className:"grid-component"},t)};a.displayName="AlexandriaGridComponent",a.propTypes={children:o.PropTypes.node},t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o),a=n(5),s=r(a);n(63);var l=function(e){var t=e.horizontalBorder,n=e["short"],r=e.type,o=e.verticalCellBorder,a=e.children,l=e.dts,c="grid-component-row",f=(0,s["default"])({classSuffixes:[r],suffixOptions:{horizontalBorder:t,"short":n,verticalCellBorder:o},componentClass:c});return i["default"].createElement("div",{className:""+c+f,"if":!0,dts:!0,"data-test-selector":l},a)};l.displayName="AlexandriaGridRowComponent",l.propTypes={children:o.PropTypes.node,horizontalBorder:o.PropTypes.bool.isRequired,"short":o.PropTypes.bool.isRequired,type:o.PropTypes.oneOf(["body","header","subfooter","footer"]).isRequired,verticalCellBorder:o.PropTypes.bool.isRequired,dts:o.PropTypes.string},l.defaultProps={horizontalBorder:!0,"short":!1,type:"body",verticalCellBorder:!1},t["default"]=l},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},i=n(6),a=r(i),s=n(1),l=r(s),c=n(5),f=r(c);n(70);var p=function(e){var t="svgsymbolcircle-component",n=(0,f["default"])({classSuffixes:e.classSuffixes,componentClass:t});return l["default"].createElement("div",{className:""+t+n},l["default"].createElement(a["default"],o({classSuffixes:e.classSuffixes,href:e.href},e)))};p.displayName="AlexandriaSvgSymbolCircleComponent",p.propTypes={classSuffixes:a["default"].propTypes.classSuffixes,href:s.PropTypes.string},t["default"]=p},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=.5;t.QUARTER=Math.PI/2,t.HALF=Math.PI,t.ROUND=2*Math.PI,t.getPointX=function(e){return n*Math.cos(e)},t.getPointY=function(e){return n*Math.sin(e)}},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(53);var a=function(e){var t=e.type,n=e.children;return i["default"].createElement("div",{className:"alert-component alert-component-"+t},n)};a.displayName="AlexandriaAlertComponent",a.propTypes={type:o.PropTypes.oneOf(["success","info","warning","danger"]),children:o.PropTypes.node.isRequired},a.defaultProps={type:"info"},t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(1),s=r(a);n(54);var l="avatar-component",c=function(e){var t=e.color,n=e.givenName,r=e.image,o=e.surname;return s["default"].createElement("div",{className:t?l+" "+l+"-"+t:l,title:(n||"")+" "+(o||"")},r?s["default"].createElement("img",{className:l+"-image",src:r,role:"presentation"}):null,s["default"].createElement("div",{className:"avatar-component-initials"},""+(i["default"].first(n)||"")+(i["default"].first(o)||"")))};c.displayName="AlexandriaAvatarComponent",c.propTypes={color:a.PropTypes.string,givenName:a.PropTypes.string,image:a.PropTypes.string,surname:a.PropTypes.string},t["default"]=c},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(55);var a=function(e){var t=e.children;return i["default"].createElement("div",{className:"borderedwell-component"},t)};a.displayName="AlexandriaBorderedWellComponent",a.propTypes={children:o.PropTypes.node},t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(17),s=r(a),l=n(1),c=r(l);n(56);var f=function(e){var t=e.nodes,n=e.onClick,r="breadcrumb-component";return 0===t.length?c["default"].createElement("div",{className:r}):c["default"].createElement("div",{className:r},c["default"].createElement(s["default"],{isLast:!1,node:{id:"all",label:"All"},onClick:n}),i["default"].map(t,function(e,o){return c["default"].createElement("span",{className:r+"-node",key:e.id},c["default"].createElement("span",{className:r+"-node-divider"}," > "),c["default"].createElement(s["default"],{isLast:o===t.length-1,node:e,onClick:n}))}))};f.displayName="AlexandriaBreadcrumbComponent",f.propTypes={nodes:l.PropTypes.arrayOf(s["default"].propTypes.node).isRequired,onClick:l.PropTypes.func.isRequired},f.defaultProps={nodes:[],onClick:function(e){throw new Error("Alexandria Breadcrumb needs an onClick handler to take "+e)}},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(57);var a=function(e){var t=e.isLast,n=e.node,r=e.onClick,o="breadcrumbnode-component";if(t)return i["default"].createElement("span",{className:o},n.label);var a=function(){return r(n.id)};return i["default"].createElement("span",{className:o+" "+o+"-link",onClick:a},n.label)};a.displayName="AlexandriaBreadcrumbNodeComponent",a.propTypes={isLast:o.PropTypes.bool.isRequired,node:o.PropTypes.shape({id:o.PropTypes.string.isRequired,label:o.PropTypes.string.isRequired}),onClick:o.PropTypes.func.isRequired},t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(1),s=r(a);n(58);var l=function(e){var t=e.children,n=e.className,r=e.stretch,o=e.fill,i=e.append,a="card-component-content",l=[a];return r&&l.push("stretch"),o&&l.push("fill"),i&&l.push("append"),n&&l.push(n),s["default"].createElement("div",{className:l.join(" ")},t)};l.displayName="AlexandriaCardContentComponent",l.propTypes={children:a.PropTypes.node.isRequired,className:a.PropTypes.string,fill:a.PropTypes.bool.isRequired,stretch:a.PropTypes.bool.isRequired,append:a.PropTypes.bool},l.defaultProps={fill:!1,stretch:!1,append:!1};var c=function(e){var t=e.children,n=e.className,r=e.accent,o="card-component",a=[o];r&&a.push("accent accent-"+r),n&&a.push(n);var l=s["default"].Children.map(t,function(e){return i["default"].get(e,"props.append")?null:e}),c=s["default"].Children.map(t,function(e){return i["default"].get(e,"props.append")?e:null});return s["default"].createElement("div",{className:a.join(" ")},s["default"].createElement("div",{className:o+"-content-container"},l),c)};c.displayName="AlexandriaCardComponent",c.propTypes={children:a.PropTypes.node.isRequired,className:a.PropTypes.string,accent:a.PropTypes.string},t["default"]={Container:c,Content:l}},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(11),s=r(a),l=n(1),c=r(l);n(59);var f=function p(e){var t=e.collection,n=e.svgSymbol,r=e.text,o=i["default"].isEmpty(n.classSuffixes)?p.defaultProps.svgSymbol.classSuffixes:n.classSuffixes;return i["default"].isEmpty(t)?c["default"].createElement("div",{className:"empty-component"},c["default"].createElement(s["default"],{href:n.href,classSuffixes:o}),c["default"].createElement("div",{className:"empty-component-text"},r)):c["default"].createElement("div",null)};f.displayName="AlexandriaEmptyComponent",f.propTypes={collection:l.PropTypes.any,svgSymbol:l.PropTypes.shape(s["default"].propTypes),text:l.PropTypes.any},f.defaultProps={collection:null,svgSymbol:{classSuffixes:["gray-darker","70","circle"]},text:"Nothing to show."},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o),a=n(7),s=r(a);n(64);var l="pagetitle-component",c=function(e){var t=e.children,n=e.isFooter,r=e.title,o=n?l+" "+l+"-is-footer":l;return i["default"].createElement("div",{className:o},t?i["default"].createElement("span",{className:"flexible-wrapper-inline"},r,i["default"].createElement(s["default"],null),t):r)};c.displayName="AlexandriaPageTitleComponent",c.propTypes={children:o.PropTypes.node,isFooter:o.PropTypes.bool.isRequired,title:o.PropTypes.string},c.defaultProps={isFooter:!1},t["default"]=c},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(52),s=r(a),l=n(1),c=r(l);n(65);var f=function(e){var t=e.newText,n=e.oldText,r=new s["default"],o=r.diff_main(n,t),a=function(e){switch(e){case s["default"].DIFF_DELETE:return"pretty-diff-component-delete";case s["default"].DIFF_INSERT:return"pretty-diff-component-insert";default:return"pretty-diff-component-equal"}};return c["default"].createElement("div",{className:"pretty-diff-component"},i["default"].map(o,function(e,t){return c["default"].createElement("span",{key:t,className:a(e[0])},e[1])}))};f.displayName="PrettyDiffComponent",f.propTypes={newText:l.PropTypes.string.isRequired,oldText:l.PropTypes.string.isRequired},f.defaultProps={newText:"",oldText:""},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(6),s=r(a),l=n(1),c=r(l);n(66);var f=function(e){var t=e.disabled,n=e.onChange,r=e.onClear,o=e.placeholder,a=e.svgSymbolCancel,l=e.svgSymbolSearch,f=e.value,p=t?["color-disabled"]:l.classSuffixes,u=t?["color-disabled"]:a.classSuffixes,d=t?null:function(e){return n(i["default"].get(e,"target.value"))},h=t?null:r;return c["default"].createElement("div",{className:"search-component"},c["default"].createElement("input",{autoComplete:"off",className:"search-component-input",disabled:t,name:"search",onChange:d,placeholder:"Search "+o,type:"search",value:f}),i["default"].isEmpty(f)?c["default"].createElement(s["default"],{href:l.href,classSuffixes:p}):c["default"].createElement(s["default"],{href:a.href,classSuffixes:u,onClick:h}))};f.displayName="AlexandriaSearchComponent",f.propTypes={disabled:l.PropTypes.bool,onChange:l.PropTypes.func.isRequired,onClear:l.PropTypes.func.isRequired,placeholder:l.PropTypes.string.isRequired,svgSymbolCancel:l.PropTypes.shape(s["default"].propTypes),svgSymbolSearch:l.PropTypes.shape(s["default"].propTypes),value:l.PropTypes.string.isRequired},f.defaultProps={disabled:!1,onChange:function(){throw new Error("Alexandria Search needs an onChange handler")},onClear:function(){throw new Error("Alexandria Search needs an onClear handler")},placeholder:"",svgSymbolCancel:{classSuffixes:["gray-darker"],href:"/assets/svg-symbols.svg#cancel"},svgSymbolSearch:{classSuffixes:["gray-light"],href:"/assets/svg-symbols.svg#search"},value:""},t["default"]=f},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(27),s=r(a),l=n(28),c=r(l),f=n(29),p=r(f),u=n(1),d=r(u),h=n(12);n(67);var g=function(e){return i["default"].filter(e,function(e){var t=e.value;return t>0})},m=function(e){var t=i["default"].sum(e,"value"),n=new Array(e.length),r=-h.QUARTER,o=0;return i["default"].map(n,function(n,i){var a=e[i],s=h.ROUND*a.value/t;return o=r,r+=s,{label:a.label,id:i,largeArcFlag:s>h.HALF?1:0,x1:(0,h.getPointX)(o),y1:(0,h.getPointY)(o),x2:(0,h.getPointX)(r),y2:(0,h.getPointY)(r)}})},b=function(e){return e.length>1?i["default"].map(m(e),function(e){return d["default"].createElement(s["default"],{key:e.id,data:e})}):d["default"].createElement("circle",{className:"arc-component "+i["default"].kebabCase(e[0].label),r:".5",cx:"0",cy:"0"})},v=function(e){return{className:"slicey-component",height:e,width:e,viewBox:"-0.5 -0.5 1 1"}},y=function(e){var t=e.dataset,n=e.diameter,r=e.donut,o=e.marker,a=g(t),s=r?d["default"].createElement(c["default"],null):null,l=o?d["default"].createElement(p["default"],{fraction:o}):null;return i["default"].isEmpty(a)?d["default"].createElement("svg",v(n),d["default"].createElement("circle",{className:"slicey-empty",r:".5",cx:"0",cy:"0"}),l,s):d["default"].createElement("svg",v(n),d["default"].createElement("circle",{className:"slicey-background",r:".49",cx:"0",cy:"0"}),b(a),l,s)};y.displayName="AlexandriaSliceyComponent",y.propTypes={dataset:u.PropTypes.arrayOf(u.PropTypes.shape({label:u.PropTypes.string.isRequired,value:u.PropTypes.number.isRequired})),diameter:u.PropTypes.number,donut:u.PropTypes.bool,marker:u.PropTypes.number},y.defaultProps={diameter:100},t["default"]=y},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(68);var a=function(e){var t=e.label,n=e.value,r=e.inline,o="statistic-component",a=[o];return r&&a.push("inline"),i["default"].createElement("div",{className:a.join(" ")},i["default"].createElement("div",{className:o+"-value"},n),i["default"].createElement("label",{className:o+"-label"},t))};a.displayName="AlexandriaStatisticComponent",a.propTypes={inline:o.PropTypes.bool.isRequired,label:o.PropTypes.string.isRequired,value:o.PropTypes.string.isRequired},a.defaultProps={inline:!1},t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0}),t.ActionButton=void 0;var o=n(1),i=r(o),a=n(5),s=r(a),l=n(6),c=r(l);n(71);var f="tag-component",p=t.ActionButton=function(e){var t=e.onAction,n=e.id,r=e.actionIconSvgHref;return i["default"].createElement("span",{className:"action-button",onClick:function(){return t(n)}},i["default"].createElement(c["default"],{href:r}))};p.propTypes={id:o.PropTypes.string.isRequired,onAction:o.PropTypes.func.isRequired,actionIconSvgHref:o.PropTypes.string.isRequired};var u=function(e){var t=e.children,n=e.inverse,r=e.id,o=e.onAction,a=e.accent,l=e.actionIconSvgHref,c=[];n&&c.push("inverse"),a&&c.push("accent accent-"+a),o&&c.push("actionable");var u=(0,s["default"])({classSuffixes:c,componentClass:f});return i["default"].createElement("span",{className:""+f+u,"data-test-selector":"tag-"+r},i["default"].createElement("label",{title:t},t),o?i["default"].createElement(p,{onAction:o,id:r,actionIconSvgHref:l}):null)};u.displayName="AlexandriaTagComponent",u.propTypes={children:o.PropTypes.string.isRequired,id:o.PropTypes.string,accent:o.PropTypes.string,inverse:o.PropTypes.bool,onAction:o.PropTypes.func,actionIconSvgHref:o.PropTypes.string},u.defaultProps={id:"default"},t["default"]=u},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(9),s=r(a),l=n(8),c=r(l),f=n(10),p=r(f),u=n(1),d=r(u),h=function(e){var t=e.toSum,n=e.valueFormatter;return d["default"].createElement(s["default"],null,(0,i["default"])(t).reject({isHidden:!0}).map(function(e,t){return d["default"].createElement(p["default"],{"short":!0,horizontalBorder:!1,key:t},d["default"].createElement(c["default"],{stretch:!0},e.label),d["default"].createElement(c["default"],{dts:i["default"].kebabCase(e.label)+"-value"},n(e.value)))}).value(),d["default"].createElement(p["default"],{"short":!0,horizontalBorder:!1,type:"footer"},d["default"].createElement(c["default"],{stretch:!0},"Total"),d["default"].createElement(c["default"],{dts:"total-value"},n(i["default"].sum(t,"value")))))};h.displayName="AlexandriaTotalsComponent",h.propTypes={toSum:u.PropTypes.arrayOf(u.PropTypes.shape({label:u.PropTypes.string,value:u.PropTypes.number.isRequired,isHidden:u.PropTypes.bool})).isRequired,valueFormatter:u.PropTypes.func.isRequired},h.defaultProps={toSum:[],valueFormatter:function(e){return""+e}},t["default"]=h},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(4),i=r(o),a=n(1),s=r(a);n(72);var l=function(e){var t=e.data;if(!t)return s["default"].createElement("path",{className:"arc-component"});var n="M0,0 L"+t.x1+","+t.y1+" A0.5,0.5 0 "+t.largeArcFlag+",1 "+t.x2+","+t.y2+" z";return s["default"].createElement("path",{className:"arc-component "+i["default"].kebabCase(t.label),d:n})};l.displayName="AlexandriaSliceyArcComponent",l.propTypes={data:a.PropTypes.shape({label:a.PropTypes.string.isRequired,id:a.PropTypes.number.isRequired,largeArcFlag:a.PropTypes.number.isRequired,x1:a.PropTypes.number.isRequired,y1:a.PropTypes.number.isRequired,x2:a.PropTypes.number.isRequired,y2:a.PropTypes.number.isRequired})},t["default"]=l},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o);n(73);var a=function(){return i["default"].createElement("circle",{className:"donut-component",r:".45",cx:"0",cy:"0"})};a.displayName="AlexandriaSliceyDonutComponent",t["default"]=a},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),i=r(o),a=n(12);n(74);var s=function(e){var t=e.fraction,n=function(e){var t=a.ROUND*e-a.QUARTER;return(0,a.getPointX)(t)+","+(0,a.getPointY)(t)+" 0,0"};return i["default"].createElement("polyline",{className:"marker-component",points:n(t)})};s.displayName="AlexandriaSliceyMarkerComponent",s.propTypes={fraction:o.PropTypes.number},s.defaultProps={fraction:0},t["default"]=s},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".alert-component{color:#fff;font-size:12px;line-height:20px;padding:10px}.alert-component-success{background-color:#5bb75b}.alert-component-info{background-color:#49afcd}.alert-component-warning{background-color:#faa732}.alert-component-danger{background-color:#da4f49}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".avatar-component{background-color:#ababab;border-radius:50%;color:#fff;cursor:default;display:inline-block;font-size:15px;font-weight:500;height:35px;line-height:36px;position:relative;text-align:center;text-transform:uppercase;vertical-align:middle;width:35px}.avatar-component-image{border-radius:50%;height:100%;left:0;position:absolute;top:0}.avatar-component-blue{background-color:#006dcc}.avatar-component-green{background-color:#5bb75b}.avatar-component-red{background-color:#da4f49}.avatar-component-orange{background-color:#faa732}.avatar-component-cyan{background-color:#49afcd}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".borderedwell-component{background-color:#fff;border:1px solid #e8e8e8}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".breadcrumb-component{color:#49afcd;cursor:default;font-size:12px;font-weight:300;height:10px;line-height:10px}.breadcrumb-component-link{cursor:pointer}.breadcrumb-component-link:active,.breadcrumb-component-link:hover{color:#0492ba;text-decoration:underline}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".breadcrumbnode-component-link{cursor:pointer}.breadcrumbnode-component-link:active,.breadcrumbnode-component-link:hover{color:#0492ba;text-decoration:underline}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".card-component{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font-size:12px;margin-bottom:28px;min-height:40px;min-width:205px;vertical-align:top}.card-component-grid-container{-ms-flex-align:stretch;align-items:stretch;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;margin-right:-28px}.card-component-grid-container .card-component{margin-right:28px}.card-component .flexible-spacer-component{border:0}.card-component-content-container{background-color:#fff;border:1px solid #e8e8e8;border-radius:5px;box-shadow:0 2px 0 #d3d3d3;display:-ms-flexbox;display:flex;-ms-flex-preferred-size:100%;flex-basis:100%;-ms-flex-direction:column;flex-direction:column;height:100%}.card-component-content-container .card-component-content:not(.fill):last-child{padding-bottom:20px}.card-component.accent .card-component-content-container{border-bottom-width:5px}.card-component-content{padding:20px 20px 0}.card-component-content.append{color:#ababab;font-weight:100;padding:5px 1px 0}.card-component-content.stretch{padding-left:0;padding-right:0}.card-component-content.fill{padding:0}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".empty-component{cursor:default;margin:0 auto;padding:60px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.empty-component-text{color:#ababab;font-size:12px;line-height:1.5;margin-top:10px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".flexible-spacer-component{border:1px solid #e8e8e8;-ms-flex-positive:1;flex-grow:1}.flexible-wrapper-inline{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;height:inherit}.flexible-wrapper-inline .flexible-spacer-component{border:0}.flexible-wrapper-inline>.svg-symbol-component{margin:auto}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".grid-component{border-left:1px solid #e8e8e8;border-top:1px solid #e8e8e8;box-sizing:border-box;display:inline-block;-ms-flex-negative:0;flex-shrink:0;font-size:12px;font-weight:300;line-height:1.5;vertical-align:top;width:100%}.grid-component,.grid-component-row-vertical-cell-border .grid-component-cell{border-right:1px solid #e8e8e8}.grid-component-row-vertical-cell-border .grid-component-cell:last-child{border-right:0}.grid-component+.grid-component{border-top:0}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".grid-component-cell{-ms-flex-positive:1;flex-grow:1;-ms-flex-negative:0;flex-shrink:0;padding:8px 0 8px 10px}.grid-component-cell:last-child{padding-right:10px}.grid-component-cell-stretch{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;-ms-flex-preferred-size:100%;flex-basis:100%;-ms-flex-negative:1;flex-shrink:1}.grid-component-cell-clickable{cursor:pointer}.grid-component-row-vertical-cell-border .grid-component-cell{padding-right:10px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".grid-component-row{border-bottom:1px solid transparent;display:-ms-flexbox;display:flex}.grid-component-row-header{color:#838383}.grid-component-row-subfooter{background-color:#f9f9f9;color:#838383}.grid-component-row-subfooter .grid-component-cell:last-child{color:#333}.grid-component-row-footer{font-weight:500}.grid-component-row-short .grid-component-cell{padding-bottom:3px;padding-top:3px}.grid-component-row-horizontal-border,.grid-component-row:last-child{border-bottom-color:#e8e8e8}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".pagetitle-component{border-bottom:1px solid #e8e8e8;box-sizing:content-box;font-size:18px;height:30px;line-height:30px;padding:20px 30px}.pagetitle-component-is-footer{border-bottom:0;border-top:1px solid #e8e8e8}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".pretty-diff-component{border:1px solid #e8e8e8;font-size:12px;padding:10px;white-space:pre-wrap}.pretty-diff-component-delete{color:#da4f49;text-decoration:line-through}.pretty-diff-component-insert{color:#5bb75b}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".search-component{height:26px;line-height:26px;position:relative;width:100%}.search-component ::-webkit-search-cancel-button,.search-component ::-webkit-search-decoration{-webkit-appearance:none;appearance:none}.search-component-input{-webkit-appearance:textfield;border:1px solid #e8e8e8;border-radius:2px;box-sizing:border-box;color:#333;font-size:12px;height:inherit;margin:0;padding:0 0 0 10px;width:inherit}.search-component-input::-webkit-input-placeholder{color:#ababab;font-weight:100}.search-component-input::-moz-placeholder{color:#ababab;font-weight:100}.search-component-input:-ms-input-placeholder{color:#ababab;font-weight:100}.search-component-input::placeholder{color:#ababab;font-weight:100}.search-component-input:active,.search-component-input:focus{border-color:#ababab;outline:0}.search-component-input:disabled{border:1px solid #e8e8e8;color:#ababab}.search-component .svg-symbol-component{box-sizing:content-box;height:100%;padding:0 4px;position:absolute;right:0;top:1px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".slicey-component{vertical-align:top}.slicey-background{fill:#5a5a5a}.slicey-empty{fill:#f9f9f9}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".statistic-component{font-size:15px}.statistic-component-value{font-weight:500}.statistic-component-label{color:#838383;font-weight:100}.statistic-component+.statistic-component{margin-top:5px}.statistic-component.inline .statistic-component-label,.statistic-component.inline .statistic-component-value{display:inline-block}.statistic-component.inline .statistic-component-label{margin-left:5px}",""]);
+	},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".svg-symbol-component{display:inline-block;height:16px;pointer-events:none;width:16px}.svg-symbol-component-70{height:70px;width:70px}.svg-symbol-component-200{height:200px;width:200px}.svg-symbol-component-250{height:250px;width:250px}.svg-symbol-component-gray-light{fill:#d3d3d3}.svg-symbol-component-gray-darker{fill:#5a5a5a}.svg-symbol-component-color-disabled{fill:#d3d3d3}.svg-symbol-component-clickable{cursor:pointer;pointer-events:auto}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".svgsymbolcircle-component{background-color:#e8e8e8;border-radius:50%;display:inline-block;height:16px;width:16px}.svgsymbolcircle-component-inverse{background-color:#fff}.svgsymbolcircle-component .svg-symbol-component{height:12px;margin:2px;width:12px}.svgsymbolcircle-component-70{height:70px;width:70px}.svgsymbolcircle-component .svg-symbol-component-70{height:50px;margin:10px;width:50px}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".tag-component{-ms-flex-align:center;align-items:center;background-color:#838383;border-radius:2px;box-sizing:border-box;color:#fff;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;font-weight:100;height:22px;margin-right:5px;padding:0 5px}.tag-component.tag-component-inverse{background-color:#f3f3f3;border-left:4px solid;color:#838383}.tag-component.tag-component-inverse .action-button{fill:#ababab}.tag-component-actionable{padding-right:0}.tag-component-accent label{font-weight:500}.tag-component .action-button{box-sizing:border-box;cursor:pointer;display:inline-block;fill:#fff;fill-opacity:.6;height:22px;padding-top:3px;text-align:center;width:22px}.tag-component .action-button:hover{fill-opacity:1}.tag-component label{margin-bottom:0;max-width:105px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".arc-component.positive{fill:#5bb75b}.arc-component.negative{fill:#da4f49}.arc-component.info{fill:#49afcd}.arc-component.pending,.arc-component.warning{fill:#faa732}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".donut-component{fill:#fff}",""])},function(e,t,n){t=e.exports=n(2)(),t.push([e.id,".marker-component{stroke:#da4f49;stroke-width:.02}",""])},function(e,t){"use strict";function n(){this.Diff_Timeout=1,this.Diff_EditCost=4,this.Match_Threshold=.5,this.Match_Distance=1e3,this.Patch_DeleteThreshold=.5,this.Patch_Margin=4,this.Match_MaxBits=32}var r=-1,o=1,i=0;n.Diff,n.prototype.diff_main=function(e,t,n,r){"undefined"==typeof r&&(r=this.Diff_Timeout<=0?Number.MAX_VALUE:(new Date).getTime()+1e3*this.Diff_Timeout);var o=r;if(null==e||null==t)throw new Error("Null input. (diff_main)");if(e==t)return e?[[i,e]]:[];"undefined"==typeof n&&(n=!0);var a=n,s=this.diff_commonPrefix(e,t),l=e.substring(0,s);e=e.substring(s),t=t.substring(s),s=this.diff_commonSuffix(e,t);var c=e.substring(e.length-s);e=e.substring(0,e.length-s),t=t.substring(0,t.length-s);var f=this.diff_compute_(e,t,a,o);return l&&f.unshift([i,l]),c&&f.push([i,c]),this.diff_cleanupMerge(f),f},n.prototype.diff_compute_=function(e,t,n,a){var s;if(!e)return[[o,t]];if(!t)return[[r,e]];var l=e.length>t.length?e:t,c=e.length>t.length?t:e,f=l.indexOf(c);if(f!=-1)return s=[[o,l.substring(0,f)],[i,c],[o,l.substring(f+c.length)]],e.length>t.length&&(s[0][0]=s[2][0]=r),s;if(1==c.length)return[[r,e],[o,t]];var p=this.diff_halfMatch_(e,t);if(p){var u=p[0],d=p[1],h=p[2],g=p[3],m=p[4],b=this.diff_main(u,h,n,a),v=this.diff_main(d,g,n,a);return b.concat([[i,m]],v)}return n&&e.length>100&&t.length>100?this.diff_lineMode_(e,t,a):this.diff_bisect_(e,t,a)},n.prototype.diff_lineMode_=function(e,t,n){var a=this.diff_linesToChars_(e,t);e=a.chars1,t=a.chars2;var s=a.lineArray,l=this.diff_main(e,t,!1,n);this.diff_charsToLines_(l,s),this.diff_cleanupSemantic(l),l.push([i,""]);for(var c=0,f=0,p=0,u="",d="";c<l.length;){switch(l[c][0]){case o:p++,d+=l[c][1];break;case r:f++,u+=l[c][1];break;case i:if(f>=1&&p>=1){l.splice(c-f-p,f+p),c=c-f-p;for(var a=this.diff_main(u,d,!1,n),h=a.length-1;h>=0;h--)l.splice(c,0,a[h]);c+=a.length}p=0,f=0,u="",d=""}c++}return l.pop(),l},n.prototype.diff_bisect_=function(e,t,n){for(var i=e.length,a=t.length,s=Math.ceil((i+a)/2),l=s,c=2*s,f=new Array(c),p=new Array(c),u=0;u<c;u++)f[u]=-1,p[u]=-1;f[l+1]=0,p[l+1]=0;for(var d=i-a,h=d%2!=0,g=0,m=0,b=0,v=0,y=0;y<s&&!((new Date).getTime()>n);y++){for(var x=-y+g;x<=y-m;x+=2){var _,P=l+x;_=x==-y||x!=y&&f[P-1]<f[P+1]?f[P+1]:f[P-1]+1;for(var T=_-x;_<i&&T<a&&e.charAt(_)==t.charAt(T);)_++,T++;if(f[P]=_,_>i)m+=2;else if(T>a)g+=2;else if(h){var w=l+d-x;if(w>=0&&w<c&&p[w]!=-1){var M=i-p[w];if(_>=M)return this.diff_bisectSplit_(e,t,_,T,n)}}}for(var k=-y+b;k<=y-v;k+=2){var M,w=l+k;M=k==-y||k!=y&&p[w-1]<p[w+1]?p[w+1]:p[w-1]+1;for(var E=M-k;M<i&&E<a&&e.charAt(i-M-1)==t.charAt(a-E-1);)M++,E++;if(p[w]=M,M>i)v+=2;else if(E>a)b+=2;else if(!h){var P=l+d-k;if(P>=0&&P<c&&f[P]!=-1){var _=f[P],T=l+_-P;if(M=i-M,_>=M)return this.diff_bisectSplit_(e,t,_,T,n)}}}}return[[r,e],[o,t]]},n.prototype.diff_bisectSplit_=function(e,t,n,r,o){var i=e.substring(0,n),a=t.substring(0,r),s=e.substring(n),l=t.substring(r),c=this.diff_main(i,a,!1,o),f=this.diff_main(s,l,!1,o);return c.concat(f)},n.prototype.diff_linesToChars_=function(e,t){function n(e){for(var t="",n=0,i=-1,a=r.length;i<e.length-1;){i=e.indexOf("\n",n),i==-1&&(i=e.length-1);var s=e.substring(n,i+1);n=i+1,(o.hasOwnProperty?o.hasOwnProperty(s):void 0!==o[s])?t+=String.fromCharCode(o[s]):(t+=String.fromCharCode(a),o[s]=a,r[a++]=s)}return t}var r=[],o={};r[0]="";var i=n(e),a=n(t);return{chars1:i,chars2:a,lineArray:r}},n.prototype.diff_charsToLines_=function(e,t){for(var n=0;n<e.length;n++){for(var r=e[n][1],o=[],i=0;i<r.length;i++)o[i]=t[r.charCodeAt(i)];e[n][1]=o.join("")}},n.prototype.diff_commonPrefix=function(e,t){if(!e||!t||e.charAt(0)!=t.charAt(0))return 0;for(var n=0,r=Math.min(e.length,t.length),o=r,i=0;n<o;)e.substring(i,o)==t.substring(i,o)?(n=o,i=n):r=o,o=Math.floor((r-n)/2+n);return o},n.prototype.diff_commonSuffix=function(e,t){if(!e||!t||e.charAt(e.length-1)!=t.charAt(t.length-1))return 0;for(var n=0,r=Math.min(e.length,t.length),o=r,i=0;n<o;)e.substring(e.length-o,e.length-i)==t.substring(t.length-o,t.length-i)?(n=o,i=n):r=o,o=Math.floor((r-n)/2+n);return o},n.prototype.diff_commonOverlap_=function(e,t){var n=e.length,r=t.length;if(0==n||0==r)return 0;n>r?e=e.substring(n-r):n<r&&(t=t.substring(0,n));var o=Math.min(n,r);if(e==t)return o;for(var i=0,a=1;;){var s=e.substring(o-a),l=t.indexOf(s);if(l==-1)return i;a+=l,0!=l&&e.substring(o-a)!=t.substring(0,a)||(i=a,a++)}},n.prototype.diff_halfMatch_=function(e,t){function n(e,t,n){for(var r,o,i,s,l=e.substring(n,n+Math.floor(e.length/4)),c=-1,f="";(c=t.indexOf(l,c+1))!=-1;){var p=a.diff_commonPrefix(e.substring(n),t.substring(c)),u=a.diff_commonSuffix(e.substring(0,n),t.substring(0,c));f.length<u+p&&(f=t.substring(c-u,c)+t.substring(c,c+p),r=e.substring(0,n-u),o=e.substring(n+p),i=t.substring(0,c-u),s=t.substring(c+p))}return 2*f.length>=e.length?[r,o,i,s,f]:null}if(this.Diff_Timeout<=0)return null;var r=e.length>t.length?e:t,o=e.length>t.length?t:e;if(r.length<4||2*o.length<r.length)return null;var i,a=this,s=n(r,o,Math.ceil(r.length/4)),l=n(r,o,Math.ceil(r.length/2));if(!s&&!l)return null;i=l?s&&s[4].length>l[4].length?s:l:s;var c,f,p,u;e.length>t.length?(c=i[0],f=i[1],p=i[2],u=i[3]):(p=i[0],u=i[1],c=i[2],f=i[3]);var d=i[4];return[c,f,p,u,d]},n.prototype.diff_cleanupSemantic=function(e){for(var t=!1,n=[],a=0,s=null,l=0,c=0,f=0,p=0,u=0;l<e.length;)e[l][0]==i?(n[a++]=l,c=p,f=u,p=0,u=0,s=e[l][1]):(e[l][0]==o?p+=e[l][1].length:u+=e[l][1].length,s&&s.length<=Math.max(c,f)&&s.length<=Math.max(p,u)&&(e.splice(n[a-1],0,[r,s]),e[n[a-1]+1][0]=o,a--,a--,l=a>0?n[a-1]:-1,c=0,f=0,p=0,u=0,s=null,t=!0)),l++;for(t&&this.diff_cleanupMerge(e),this.diff_cleanupSemanticLossless(e),l=1;l<e.length;){if(e[l-1][0]==r&&e[l][0]==o){var d=e[l-1][1],h=e[l][1],g=this.diff_commonOverlap_(d,h),m=this.diff_commonOverlap_(h,d);g>=m?(g>=d.length/2||g>=h.length/2)&&(e.splice(l,0,[i,h.substring(0,g)]),e[l-1][1]=d.substring(0,d.length-g),e[l+1][1]=h.substring(g),l++):(m>=d.length/2||m>=h.length/2)&&(e.splice(l,0,[i,d.substring(0,m)]),e[l-1][0]=o,e[l-1][1]=h.substring(0,h.length-m),e[l+1][0]=r,e[l+1][1]=d.substring(m),l++),l++}l++}},n.prototype.diff_cleanupSemanticLossless=function(e){function t(e,t){if(!e||!t)return 6;var r=e.charAt(e.length-1),o=t.charAt(0),i=r.match(n.nonAlphaNumericRegex_),a=o.match(n.nonAlphaNumericRegex_),s=i&&r.match(n.whitespaceRegex_),l=a&&o.match(n.whitespaceRegex_),c=s&&r.match(n.linebreakRegex_),f=l&&o.match(n.linebreakRegex_),p=c&&e.match(n.blanklineEndRegex_),u=f&&t.match(n.blanklineStartRegex_);return p||u?5:c||f?4:i&&!s&&l?3:s||l?2:i||a?1:0}for(var r=1;r<e.length-1;){if(e[r-1][0]==i&&e[r+1][0]==i){var o=e[r-1][1],a=e[r][1],s=e[r+1][1],l=this.diff_commonSuffix(o,a);if(l){var c=a.substring(a.length-l);o=o.substring(0,o.length-l),a=c+a.substring(0,a.length-l),s=c+s}for(var f=o,p=a,u=s,d=t(o,a)+t(a,s);a.charAt(0)===s.charAt(0);){o+=a.charAt(0),a=a.substring(1)+s.charAt(0),s=s.substring(1);var h=t(o,a)+t(a,s);h>=d&&(d=h,f=o,p=a,u=s)}e[r-1][1]!=f&&(f?e[r-1][1]=f:(e.splice(r-1,1),r--),e[r][1]=p,u?e[r+1][1]=u:(e.splice(r+1,1),r--))}r++}},n.nonAlphaNumericRegex_=/[^a-zA-Z0-9]/,n.whitespaceRegex_=/\s/,n.linebreakRegex_=/[\r\n]/,n.blanklineEndRegex_=/\n\r?\n$/,n.blanklineStartRegex_=/^\r?\n\r?\n/,n.prototype.diff_cleanupEfficiency=function(e){for(var t=!1,n=[],a=0,s=null,l=0,c=!1,f=!1,p=!1,u=!1;l<e.length;)e[l][0]==i?(e[l][1].length<this.Diff_EditCost&&(p||u)?(n[a++]=l,c=p,f=u,s=e[l][1]):(a=0,s=null),p=u=!1):(e[l][0]==r?u=!0:p=!0,s&&(c&&f&&p&&u||s.length<this.Diff_EditCost/2&&c+f+p+u==3)&&(e.splice(n[a-1],0,[r,s]),e[n[a-1]+1][0]=o,a--,s=null,c&&f?(p=u=!0,a=0):(a--,l=a>0?n[a-1]:-1,p=u=!1),t=!0)),l++;t&&this.diff_cleanupMerge(e)},n.prototype.diff_cleanupMerge=function(e){e.push([i,""]);for(var t,n=0,a=0,s=0,l="",c="";n<e.length;)switch(e[n][0]){case o:s++,c+=e[n][1],n++;break;case r:a++,l+=e[n][1],n++;break;case i:a+s>1?(0!==a&&0!==s&&(t=this.diff_commonPrefix(c,l),0!==t&&(n-a-s>0&&e[n-a-s-1][0]==i?e[n-a-s-1][1]+=c.substring(0,t):(e.splice(0,0,[i,c.substring(0,t)]),n++),c=c.substring(t),l=l.substring(t)),t=this.diff_commonSuffix(c,l),0!==t&&(e[n][1]=c.substring(c.length-t)+e[n][1],c=c.substring(0,c.length-t),l=l.substring(0,l.length-t))),0===a?e.splice(n-s,a+s,[o,c]):0===s?e.splice(n-a,a+s,[r,l]):e.splice(n-a-s,a+s,[r,l],[o,c]),n=n-a-s+(a?1:0)+(s?1:0)+1):0!==n&&e[n-1][0]==i?(e[n-1][1]+=e[n][1],e.splice(n,1)):n++,s=0,a=0,l="",c=""}""===e[e.length-1][1]&&e.pop();var f=!1;for(n=1;n<e.length-1;)e[n-1][0]==i&&e[n+1][0]==i&&(e[n][1].substring(e[n][1].length-e[n-1][1].length)==e[n-1][1]?(e[n][1]=e[n-1][1]+e[n][1].substring(0,e[n][1].length-e[n-1][1].length),e[n+1][1]=e[n-1][1]+e[n+1][1],e.splice(n-1,1),f=!0):e[n][1].substring(0,e[n+1][1].length)==e[n+1][1]&&(e[n-1][1]+=e[n+1][1],e[n][1]=e[n][1].substring(e[n+1][1].length)+e[n+1][1],e.splice(n+1,1),f=!0)),n++;f&&this.diff_cleanupMerge(e)},n.prototype.diff_xIndex=function(e,t){var n,i=0,a=0,s=0,l=0;for(n=0;n<e.length&&(e[n][0]!==o&&(i+=e[n][1].length),e[n][0]!==r&&(a+=e[n][1].length),!(i>t));n++)s=i,l=a;return e.length!=n&&e[n][0]===r?l:l+(t-s)},n.prototype.diff_prettyHtml=function(e){for(var t=[],n=/&/g,a=/</g,s=/>/g,l=/\n/g,c=0;c<e.length;c++){var f=e[c][0],p=e[c][1],u=p.replace(n,"&amp;").replace(a,"&lt;").replace(s,"&gt;").replace(l,"&para;<br>");switch(f){case o:t[c]='<ins style="background:#e6ffe6;">'+u+"</ins>";break;case r:t[c]='<del style="background:#ffe6e6;">'+u+"</del>";break;case i:t[c]="<span>"+u+"</span>"}}return t.join("")},n.prototype.diff_text1=function(e){for(var t=[],n=0;n<e.length;n++)e[n][0]!==o&&(t[n]=e[n][1]);return t.join("")},n.prototype.diff_text2=function(e){for(var t=[],n=0;n<e.length;n++)e[n][0]!==r&&(t[n]=e[n][1]);return t.join("")},n.prototype.diff_levenshtein=function(e){for(var t=0,n=0,a=0,s=0;s<e.length;s++){var l=e[s][0],c=e[s][1];switch(l){case o:n+=c.length;break;case r:a+=c.length;break;case i:t+=Math.max(n,a),n=0,a=0}}return t+=Math.max(n,a)},n.prototype.diff_toDelta=function(e){for(var t=[],n=0;n<e.length;n++)switch(e[n][0]){case o:t[n]="+"+encodeURI(e[n][1]);break;case r:t[n]="-"+e[n][1].length;break;case i:t[n]="="+e[n][1].length}return t.join("\t").replace(/%20/g," ")},n.prototype.diff_fromDelta=function(e,t){for(var n=[],a=0,s=0,l=t.split(/\t/g),c=0;c<l.length;c++){var f=l[c].substring(1);switch(l[c].charAt(0)){case"+":try{n[a++]=[o,decodeURI(f)]}catch(p){throw new Error("Illegal escape in diff_fromDelta: "+f)}break;case"-":case"=":var u=parseInt(f,10);if(isNaN(u)||u<0)throw new Error("Invalid number in diff_fromDelta: "+f);var d=e.substring(s,s+=u);"="==l[c].charAt(0)?n[a++]=[i,d]:n[a++]=[r,d];break;default:if(l[c])throw new Error("Invalid diff operation in diff_fromDelta: "+l[c])}}if(s!=e.length)throw new Error("Delta length ("+s+") does not equal source text length ("+e.length+").");return n},n.prototype.match_main=function(e,t,n){if(null==e||null==t||null==n)throw new Error("Null input. (match_main)");return n=Math.max(0,Math.min(n,e.length)),e==t?0:e.length?e.substring(n,n+t.length)==t?n:this.match_bitap_(e,t,n):-1},n.prototype.match_bitap_=function(e,t,n){function r(e,r){var o=e/t.length,a=Math.abs(n-r);return i.Match_Distance?o+a/i.Match_Distance:a?1:o}if(t.length>this.Match_MaxBits)throw new Error("Pattern too long for this browser.");var o=this.match_alphabet_(t),i=this,a=this.Match_Threshold,s=e.indexOf(t,n);s!=-1&&(a=Math.min(r(0,s),a),s=e.lastIndexOf(t,n+t.length),s!=-1&&(a=Math.min(r(0,s),a)));var l=1<<t.length-1;s=-1;for(var c,f,p,u=t.length+e.length,d=0;d<t.length;d++){for(c=0,f=u;c<f;)r(d,n+f)<=a?c=f:u=f,f=Math.floor((u-c)/2+c);u=f;var h=Math.max(1,n-f+1),g=Math.min(n+f,e.length)+t.length,m=Array(g+2);m[g+1]=(1<<d)-1;for(var b=g;b>=h;b--){var v=o[e.charAt(b-1)];if(0===d?m[b]=(m[b+1]<<1|1)&v:m[b]=(m[b+1]<<1|1)&v|((p[b+1]|p[b])<<1|1)|p[b+1],m[b]&l){var y=r(d,b-1);if(y<=a){if(a=y,s=b-1,!(s>n))break;h=Math.max(1,2*n-s)}}}if(r(d+1,n)>a)break;p=m}return s},n.prototype.match_alphabet_=function(e){for(var t={},n=0;n<e.length;n++)t[e.charAt(n)]=0;for(var n=0;n<e.length;n++)t[e.charAt(n)]|=1<<e.length-n-1;return t},n.prototype.patch_addContext_=function(e,t){if(0!=t.length){for(var n=t.substring(e.start2,e.start2+e.length1),r=0;t.indexOf(n)!=t.lastIndexOf(n)&&n.length<this.Match_MaxBits-this.Patch_Margin-this.Patch_Margin;)r+=this.Patch_Margin,n=t.substring(e.start2-r,e.start2+e.length1+r);r+=this.Patch_Margin;var o=t.substring(e.start2-r,e.start2);o&&e.diffs.unshift([i,o]);var a=t.substring(e.start2+e.length1,e.start2+e.length1+r);a&&e.diffs.push([i,a]),e.start1-=o.length,e.start2-=o.length,e.length1+=o.length+a.length,e.length2+=o.length+a.length}},n.prototype.patch_make=function(e,t,a){var s,l;if("string"==typeof e&&"string"==typeof t&&"undefined"==typeof a)s=e,l=this.diff_main(s,t,!0),l.length>2&&(this.diff_cleanupSemantic(l),this.diff_cleanupEfficiency(l));else if(e&&"object"==typeof e&&"undefined"==typeof t&&"undefined"==typeof a)l=e,s=this.diff_text1(l);else if("string"==typeof e&&t&&"object"==typeof t&&"undefined"==typeof a)s=e,l=t;else{if("string"!=typeof e||"string"!=typeof t||!a||"object"!=typeof a)throw new Error("Unknown call format to patch_make.");s=e,l=a}if(0===l.length)return[];for(var c=[],f=new n.patch_obj,p=0,u=0,d=0,h=s,g=s,m=0;m<l.length;m++){var b=l[m][0],v=l[m][1];switch(p||b===i||(f.start1=u,f.start2=d),b){case o:f.diffs[p++]=l[m],f.length2+=v.length,g=g.substring(0,d)+v+g.substring(d);break;case r:f.length1+=v.length,f.diffs[p++]=l[m],g=g.substring(0,d)+g.substring(d+v.length);break;case i:v.length<=2*this.Patch_Margin&&p&&l.length!=m+1?(f.diffs[p++]=l[m],f.length1+=v.length,f.length2+=v.length):v.length>=2*this.Patch_Margin&&p&&(this.patch_addContext_(f,h),c.push(f),f=new n.patch_obj,p=0,h=g,u=d)}b!==o&&(u+=v.length),b!==r&&(d+=v.length)}return p&&(this.patch_addContext_(f,h),c.push(f)),c},n.prototype.patch_deepCopy=function(e){for(var t=[],r=0;r<e.length;r++){var o=e[r],i=new n.patch_obj;i.diffs=[];for(var a=0;a<o.diffs.length;a++)i.diffs[a]=o.diffs[a].slice();i.start1=o.start1,i.start2=o.start2,i.length1=o.length1,i.length2=o.length2,t[r]=i}return t},n.prototype.patch_apply=function(e,t){if(0==e.length)return[t,[]];e=this.patch_deepCopy(e);var n=this.patch_addPadding(e);t=n+t+n,this.patch_splitMax(e);for(var a=0,s=[],l=0;l<e.length;l++){var c,f=e[l].start2+a,p=this.diff_text1(e[l].diffs),u=-1;if(p.length>this.Match_MaxBits?(c=this.match_main(t,p.substring(0,this.Match_MaxBits),f),c!=-1&&(u=this.match_main(t,p.substring(p.length-this.Match_MaxBits),f+p.length-this.Match_MaxBits),(u==-1||c>=u)&&(c=-1))):c=this.match_main(t,p,f),c==-1)s[l]=!1,a-=e[l].length2-e[l].length1;else{s[l]=!0,a=c-f;var d;if(d=u==-1?t.substring(c,c+p.length):t.substring(c,u+this.Match_MaxBits),p==d)t=t.substring(0,c)+this.diff_text2(e[l].diffs)+t.substring(c+p.length);else{var h=this.diff_main(p,d,!1);if(p.length>this.Match_MaxBits&&this.diff_levenshtein(h)/p.length>this.Patch_DeleteThreshold)s[l]=!1;else{this.diff_cleanupSemanticLossless(h);for(var g,m=0,b=0;b<e[l].diffs.length;b++){var v=e[l].diffs[b];v[0]!==i&&(g=this.diff_xIndex(h,m)),v[0]===o?t=t.substring(0,c+g)+v[1]+t.substring(c+g):v[0]===r&&(t=t.substring(0,c+g)+t.substring(c+this.diff_xIndex(h,m+v[1].length))),v[0]!==r&&(m+=v[1].length)}}}}}return t=t.substring(n.length,t.length-n.length),[t,s]},n.prototype.patch_addPadding=function(e){for(var t=this.Patch_Margin,n="",r=1;r<=t;r++)n+=String.fromCharCode(r);for(var r=0;r<e.length;r++)e[r].start1+=t,e[r].start2+=t;var o=e[0],a=o.diffs;if(0==a.length||a[0][0]!=i)a.unshift([i,n]),o.start1-=t,o.start2-=t,o.length1+=t,o.length2+=t;else if(t>a[0][1].length){var s=t-a[0][1].length;a[0][1]=n.substring(a[0][1].length)+a[0][1],o.start1-=s,o.start2-=s,o.length1+=s,o.length2+=s}if(o=e[e.length-1],a=o.diffs,0==a.length||a[a.length-1][0]!=i)a.push([i,n]),o.length1+=t,o.length2+=t;else if(t>a[a.length-1][1].length){var s=t-a[a.length-1][1].length;a[a.length-1][1]+=n.substring(0,s),o.length1+=s,o.length2+=s}return n},n.prototype.patch_splitMax=function(e){for(var t=this.Match_MaxBits,a=0;a<e.length;a++)if(!(e[a].length1<=t)){var s=e[a];e.splice(a--,1);for(var l=s.start1,c=s.start2,f="";0!==s.diffs.length;){var p=new n.patch_obj,u=!0;for(p.start1=l-f.length,p.start2=c-f.length,""!==f&&(p.length1=p.length2=f.length,p.diffs.push([i,f]));0!==s.diffs.length&&p.length1<t-this.Patch_Margin;){var d=s.diffs[0][0],h=s.diffs[0][1];d===o?(p.length2+=h.length,c+=h.length,p.diffs.push(s.diffs.shift()),u=!1):d===r&&1==p.diffs.length&&p.diffs[0][0]==i&&h.length>2*t?(p.length1+=h.length,l+=h.length,u=!1,p.diffs.push([d,h]),s.diffs.shift()):(h=h.substring(0,t-p.length1-this.Patch_Margin),p.length1+=h.length,l+=h.length,d===i?(p.length2+=h.length,c+=h.length):u=!1,p.diffs.push([d,h]),h==s.diffs[0][1]?s.diffs.shift():s.diffs[0][1]=s.diffs[0][1].substring(h.length))}f=this.diff_text2(p.diffs),f=f.substring(f.length-this.Patch_Margin);var g=this.diff_text1(s.diffs).substring(0,this.Patch_Margin);""!==g&&(p.length1+=g.length,p.length2+=g.length,0!==p.diffs.length&&p.diffs[p.diffs.length-1][0]===i?p.diffs[p.diffs.length-1][1]+=g:p.diffs.push([i,g])),u||e.splice(++a,0,p)}}},n.prototype.patch_toText=function(e){for(var t=[],n=0;n<e.length;n++)t[n]=e[n];return t.join("")},n.prototype.patch_fromText=function(e){var t=[];if(!e)return t;for(var a=e.split("\n"),s=0,l=/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@$/;s<a.length;){var c=a[s].match(l);if(!c)throw new Error("Invalid patch string: "+a[s]);var f=new n.patch_obj;for(t.push(f),f.start1=parseInt(c[1],10),""===c[2]?(f.start1--,f.length1=1):"0"==c[2]?f.length1=0:(f.start1--,f.length1=parseInt(c[2],10)),f.start2=parseInt(c[3],10),""===c[4]?(f.start2--,f.length2=1):"0"==c[4]?f.length2=0:(f.start2--,f.length2=parseInt(c[4],10)),s++;s<a.length;){var p=a[s].charAt(0);try{var u=decodeURI(a[s].substring(1))}catch(d){throw new Error("Illegal escape in patch_fromText: "+u)}if("-"==p)f.diffs.push([r,u]);else if("+"==p)f.diffs.push([o,u]);else if(" "==p)f.diffs.push([i,u]);else{if("@"==p)break;if(""!==p)throw new Error('Invalid patch mode "'+p+'" in: '+u)}s++}}return t},n.patch_obj=function(){this.diffs=[],this.start1=null,this.start2=null,this.length1=0,this.length2=0},n.patch_obj.prototype.toString=function(){var e,t;e=0===this.length1?this.start1+",0":1==this.length1?this.start1+1:this.start1+1+","+this.length1,t=0===this.length2?this.start2+",0":1==this.length2?this.start2+1:this.start2+1+","+this.length2;for(var n,a=["@@ -"+e+" +"+t+" @@\n"],s=0;s<this.diffs.length;s++){switch(this.diffs[s][0]){case o:n="+";break;case r:n="-";break;case i:n=" "}a[s+1]=n+encodeURI(this.diffs[s][1])+"\n"}return a.join("").replace(/%20/g," ")},e.exports=n,e.exports.diff_match_patch=n,e.exports.DIFF_DELETE=r,e.exports.DIFF_INSERT=o,e.exports.DIFF_EQUAL=i},function(e,t,n){var r=n(30);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(31);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(32);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(33);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(34);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(35);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(36);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(37);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(38);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(39);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(40);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(41);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(42);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(43);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(44);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(45);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(46);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(47);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(48);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(49);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(50);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r=n(51);"string"==typeof r&&(r=[[e.id,r,""]]);n(3)(r,{});r.locals&&(e.exports=r.locals)},function(e,t,n){var r,o;!function(n,i){r=[],o=function(){return n.svg4everybody=i()}.apply(t,r),!(void 0!==o&&(e.exports=o))}(this,function(){/*! svg4everybody v2.1.0 | github.com/jonathantneal/svg4everybody */
+	function e(e,t){if(t){var n=document.createDocumentFragment(),r=!e.getAttribute("viewBox")&&t.getAttribute("viewBox");r&&e.setAttribute("viewBox",r);for(var o=t.cloneNode(!0);o.childNodes.length;)n.appendChild(o.firstChild);e.appendChild(n)}}function t(t){t.onreadystatechange=function(){if(4===t.readyState){var n=t._cachedDocument;n||(n=t._cachedDocument=document.implementation.createHTMLDocument(""),n.body.innerHTML=t.responseText,t._cachedTarget={}),t._embeds.splice(0).map(function(r){var o=t._cachedTarget[r.id];o||(o=t._cachedTarget[r.id]=n.getElementById(r.id)),e(r.svg,o)})}},t.onreadystatechange()}function n(n){function r(){for(var n=0;n<p.length;){var a=p[n],s=a.parentNode;if(s&&/svg/i.test(s.nodeName)){var l=a.getAttribute("xlink:href");if(o&&(!i.validate||i.validate(l,s,a))){s.removeChild(a);var u=l.split("#"),d=u.shift(),h=u.join("#");if(d.length){var g=c[d];g||(g=c[d]=new XMLHttpRequest,g.open("GET",d),g.send(),g._embeds=[]),g._embeds.push({svg:s,id:h}),t(g)}else e(s,document.getElementById(h))}}else++n}f(r,67)}var o,i=Object(n),a=/\bTrident\/[567]\b|\bMSIE (?:9|10)\.0\b/,s=/\bAppleWebKit\/(\d+)\b/,l=/\bEdge\/12\.(\d+)\b/;o="polyfill"in i?i.polyfill:a.test(navigator.userAgent)||(navigator.userAgent.match(l)||[])[1]<10547||(navigator.userAgent.match(s)||[])[1]<537;var c={},f=window.requestAnimationFrame||setTimeout,p=document.getElementsByTagName("use");o&&r()}return n})}])});
 
 /***/ },
 /* 7 */
@@ -4695,7 +4848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 12 */
-[363, 171, 252],
+[364, 172, 253],
 /* 13 */
 /***/ function(module, exports) {
 
@@ -4717,7 +4870,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 14 */
-[391, 195],
+[392, 196],
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4918,9 +5071,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _Object$assign = __webpack_require__(170)['default'];
+	var _Object$assign = __webpack_require__(171)['default'];
 
-	var _Object$create = __webpack_require__(171)['default'];
+	var _Object$create = __webpack_require__(172)['default'];
 
 	var _Object$keys = __webpack_require__(22)['default'];
 
@@ -5112,7 +5265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(255), __esModule: true };
+	module.exports = { "default": __webpack_require__(256), __esModule: true };
 
 /***/ },
 /* 23 */
@@ -5201,7 +5354,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _domHelpersEvents = __webpack_require__(273);
+	var _domHelpersEvents = __webpack_require__(274);
 
 	var _domHelpersEvents2 = _interopRequireDefault(_domHelpersEvents);
 
@@ -5213,11 +5366,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _domHelpersUtilInDOM2 = _interopRequireDefault(_domHelpersUtilInDOM);
 
-	var _domHelpersUtilScrollbarSize = __webpack_require__(182);
+	var _domHelpersUtilScrollbarSize = __webpack_require__(183);
 
 	var _domHelpersUtilScrollbarSize2 = _interopRequireDefault(_domHelpersUtilScrollbarSize);
 
-	var _lodashCompatObjectPick = __webpack_require__(188);
+	var _lodashCompatObjectPick = __webpack_require__(189);
 
 	var _lodashCompatObjectPick2 = _interopRequireDefault(_lodashCompatObjectPick);
 
@@ -5229,15 +5382,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactOverlaysLibModal = __webpack_require__(303);
+	var _reactOverlaysLibModal = __webpack_require__(304);
 
 	var _reactOverlaysLibModal2 = _interopRequireDefault(_reactOverlaysLibModal);
 
-	var _reactOverlaysLibUtilsIsOverflowing = __webpack_require__(192);
+	var _reactOverlaysLibUtilsIsOverflowing = __webpack_require__(193);
 
 	var _reactOverlaysLibUtilsIsOverflowing2 = _interopRequireDefault(_reactOverlaysLibUtilsIsOverflowing);
 
-	var _reactPropTypesLibDeprecated = __webpack_require__(314);
+	var _reactPropTypesLibDeprecated = __webpack_require__(315);
 
 	var _reactPropTypesLibDeprecated2 = _interopRequireDefault(_reactPropTypesLibDeprecated);
 
@@ -5253,23 +5406,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Fade2 = _interopRequireDefault(_Fade);
 
-	var _ModalDialog = __webpack_require__(240);
+	var _ModalDialog = __webpack_require__(241);
 
 	var _ModalDialog2 = _interopRequireDefault(_ModalDialog);
 
-	var _ModalBody = __webpack_require__(239);
+	var _ModalBody = __webpack_require__(240);
 
 	var _ModalBody2 = _interopRequireDefault(_ModalBody);
 
-	var _ModalHeader = __webpack_require__(242);
+	var _ModalHeader = __webpack_require__(243);
 
 	var _ModalHeader2 = _interopRequireDefault(_ModalHeader);
 
-	var _ModalTitle = __webpack_require__(243);
+	var _ModalTitle = __webpack_require__(244);
 
 	var _ModalTitle2 = _interopRequireDefault(_ModalTitle);
 
-	var _ModalFooter = __webpack_require__(241);
+	var _ModalFooter = __webpack_require__(242);
 
 	var _ModalFooter2 = _interopRequireDefault(_ModalFooter);
 
@@ -5654,7 +5807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
-	var _Object$defineProperty = __webpack_require__(200)["default"];
+	var _Object$defineProperty = __webpack_require__(201)["default"];
 
 	exports["default"] = (function () {
 	  function defineProperties(target, props) {
@@ -5679,13 +5832,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 34 */
-[362, 320],
+[363, 321],
 /* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _Object$getOwnPropertyDescriptor = __webpack_require__(322)["default"];
+	var _Object$getOwnPropertyDescriptor = __webpack_require__(323)["default"];
 
 	exports["default"] = function get(_x, _x2, _x3) {
 	  var _again = true;
@@ -5730,7 +5883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 36 */
-[363, 321, 323],
+[364, 322, 324],
 /* 37 */
 4,
 /* 38 */
@@ -5756,7 +5909,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } // TODO: Move to Alexandria.
 
-	__webpack_require__(230);
+	__webpack_require__(231);
 
 	var SplitPaneComponent = function SplitPaneComponent(_ref) {
 	  var children = _ref.children;
@@ -5807,7 +5960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _reactOverlaysLibTransition = __webpack_require__(308);
+	var _reactOverlaysLibTransition = __webpack_require__(309);
 
 	var _reactOverlaysLibTransition2 = _interopRequireDefault(_reactOverlaysLibTransition);
 
@@ -6183,7 +6336,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 43 */
-[376, 261, 23, 172],
+[377, 262, 23, 173],
 /* 44 */
 26,
 /* 45 */
@@ -6212,10 +6365,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var camelize = __webpack_require__(181),
-	    hyphenate = __webpack_require__(283),
-	    _getComputedStyle = __webpack_require__(278),
-	    removeStyle = __webpack_require__(279);
+	var camelize = __webpack_require__(182),
+	    hyphenate = __webpack_require__(284),
+	    _getComputedStyle = __webpack_require__(279),
+	    removeStyle = __webpack_require__(280);
 
 	var has = Object.prototype.hasOwnProperty;
 
@@ -6266,8 +6419,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(49),
-	    isString = __webpack_require__(187),
-	    support = __webpack_require__(189);
+	    isString = __webpack_require__(188),
+	    support = __webpack_require__(190);
 
 	/**
 	 * Converts `value` to an object if it's not one.
@@ -6357,7 +6510,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _common = __webpack_require__(193);
+	var _common = __webpack_require__(194);
 
 	/**
 	 * Checks whether a prop provides a DOM element
@@ -6407,7 +6560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _EnhancedSwitch = __webpack_require__(199);
+	var _EnhancedSwitch = __webpack_require__(200);
 
 	var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 
@@ -6456,7 +6609,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 53 */
-[376, 333, 38, 202],
+[377, 334, 38, 203],
 /* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6480,7 +6633,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(346);
+	var _reactInputAutosize = __webpack_require__(347);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -6488,23 +6641,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _blacklist = __webpack_require__(345);
+	var _blacklist = __webpack_require__(346);
 
 	var _blacklist2 = _interopRequireDefault(_blacklist);
 
-	var _utilsStripDiacritics = __webpack_require__(207);
+	var _utilsStripDiacritics = __webpack_require__(208);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
-	var _Async = __webpack_require__(342);
+	var _Async = __webpack_require__(343);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _Option = __webpack_require__(343);
+	var _Option = __webpack_require__(344);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(344);
+	var _Value = __webpack_require__(345);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -7632,7 +7785,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(226);
+	__webpack_require__(227);
 
 	var ListPickerComponent = function (_React$Component) {
 	  _inherits(ListPickerComponent, _React$Component);
@@ -7921,7 +8074,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _Checkbox = __webpack_require__(198);
+	var _Checkbox = __webpack_require__(199);
 
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
@@ -7937,7 +8090,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(227);
+	__webpack_require__(228);
 
 	var isItemSelected = function isItemSelected(_ref) {
 	  var item = _ref.item;
@@ -8038,7 +8191,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var itemProps = _react.PropTypes.shape({
 	  id: _react.PropTypes.any.isRequired });
 
-	// id can be numeric or uuid string
 	ListPickerPureComponent.propTypes = {
 	  allowMultiSelection: _react.PropTypes.bool.isRequired,
 	  deselectItem: _react.PropTypes.func.isRequired,
@@ -8096,7 +8248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(229);
+	__webpack_require__(230);
 
 	var PanelComponent = function PanelComponent(_ref) {
 	  var id = _ref.id;
@@ -8263,7 +8415,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(231);
+	__webpack_require__(232);
 
 	var TreePickerNavComponent = function TreePickerNavComponent(_ref) {
 	  var breadcrumbNodes = _ref.breadcrumbNodes;
@@ -8339,7 +8491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(232);
+	__webpack_require__(233);
 
 	var baseClass = 'treepickernode-component';
 
@@ -8589,19 +8741,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : afrikaans (af)
+	//! locale : Afrikaans [af]
 	//! author : Werner Mollentze : https://github.com/wernerm
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
 
 	    var af = moment.defineLocale('af', {
 	        months : 'Januarie_Februarie_Maart_April_Mei_Junie_Julie_Augustus_September_Oktober_November_Desember'.split('_'),
-	        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Aug_Sep_Okt_Nov_Des'.split('_'),
+	        monthsShort : 'Jan_Feb_Mrt_Apr_Mei_Jun_Jul_Aug_Sep_Okt_Nov_Des'.split('_'),
 	        weekdays : 'Sondag_Maandag_Dinsdag_Woensdag_Donderdag_Vrydag_Saterdag'.split('_'),
 	        weekdaysShort : 'Son_Maa_Din_Woe_Don_Vry_Sat'.split('_'),
 	        weekdaysMin : 'So_Ma_Di_Wo_Do_Vr_Sa'.split('_'),
@@ -8666,13 +8818,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Moroccan Arabic (ar-ma)
+	//! locale : Arabic (Morocco) [ar-ma]
 	//! author : ElFadili Yassine : https://github.com/ElFadiliY
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8730,12 +8882,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Arabic Saudi Arabia (ar-sa)
+	//! locale : Arabic (Saudi Arabia) [ar-sa]
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8838,11 +8990,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale  : Tunisian Arabic (ar-tn)
+	//! locale  :  Arabic (Tunisia) [ar-tn]
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -8900,14 +9052,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! Locale: Arabic (ar)
-	//! Author: Abdel Said: https://github.com/abdelsaid
-	//! Changes in months, weekdays: Ahmed Elkhatib
+	//! locale : Arabic [ar]
+	//! author : Abdel Said: https://github.com/abdelsaid
+	//! changes in months, weekdays: Ahmed Elkhatib
 	//! Native plural forms: forabi https://github.com/forabi
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9041,12 +9193,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : azerbaijani (az)
+	//! locale : Azerbaijani [az]
 	//! author : topchiyev : https://github.com/topchiyev
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9150,14 +9302,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : belarusian (be)
+	//! locale : Belarusian [be]
 	//! author : Dmitry Demidov : https://github.com/demidov91
 	//! author: Praleska: http://praleska.pro/
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9215,15 +9367,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                case 3:
-	                case 5:
-	                case 6:
-	                    return '[У мінулую] dddd [ў] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                    return '[У мінулы] dddd [ў] LT';
+	                    case 0:
+	                    case 3:
+	                    case 5:
+	                    case 6:
+	                        return '[У мінулую] dddd [ў] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                        return '[У мінулы] dddd [ў] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -9261,16 +9413,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}-(і|ы|га)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	            case 'M':
-	            case 'd':
-	            case 'DDD':
-	            case 'w':
-	            case 'W':
-	                return (number % 10 === 2 || number % 10 === 3) && (number % 100 !== 12 && number % 100 !== 13) ? number + '-і' : number + '-ы';
-	            case 'D':
-	                return number + '-га';
-	            default:
-	                return number;
+	                case 'M':
+	                case 'd':
+	                case 'DDD':
+	                case 'w':
+	                case 'W':
+	                    return (number % 10 === 2 || number % 10 === 3) && (number % 100 !== 12 && number % 100 !== 13) ? number + '-і' : number + '-ы';
+	                case 'D':
+	                    return number + '-га';
+	                default:
+	                    return number;
 	            }
 	        },
 	        week : {
@@ -9288,12 +9440,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : bulgarian (bg)
+	//! locale : Bulgarian [bg]
 	//! author : Krasen Borisov : https://github.com/kraz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9319,15 +9471,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastDay : '[Вчера в] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                case 3:
-	                case 6:
-	                    return '[В изминалата] dddd [в] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[В изминалия] dddd [в] LT';
+	                    case 0:
+	                    case 3:
+	                    case 6:
+	                        return '[В изминалата] dddd [в] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[В изминалия] dddd [в] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -9382,12 +9534,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bengali (bn)
+	//! locale : Bengali [bn]
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9505,12 +9657,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : tibetan (bo)
+	//! locale : Tibetan [bo]
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9628,12 +9780,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : breton (br)
+	//! locale : Breton [br]
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9648,14 +9800,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    function specialMutationForYears(number) {
 	        switch (lastNumber(number)) {
-	        case 1:
-	        case 3:
-	        case 4:
-	        case 5:
-	        case 9:
-	            return number + ' bloaz';
-	        default:
-	            return number + ' vloaz';
+	            case 1:
+	            case 3:
+	            case 4:
+	            case 5:
+	            case 9:
+	                return number + ' bloaz';
+	            default:
+	                return number + ' vloaz';
 	        }
 	    }
 	    function lastNumber(number) {
@@ -9740,13 +9892,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : bosnian (bs)
+	//! locale : Bosnian [bs]
 	//! author : Nedim Cholich : https://github.com/frontyard
 	//! based on (hr) translation by Bojan Marković
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9754,53 +9906,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 'm':
-	            return withoutSuffix ? 'jedna minuta' : 'jedne minute';
-	        case 'mm':
-	            if (number === 1) {
-	                result += 'minuta';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'minute';
-	            } else {
-	                result += 'minuta';
-	            }
-	            return result;
-	        case 'h':
-	            return withoutSuffix ? 'jedan sat' : 'jednog sata';
-	        case 'hh':
-	            if (number === 1) {
-	                result += 'sat';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'sata';
-	            } else {
-	                result += 'sati';
-	            }
-	            return result;
-	        case 'dd':
-	            if (number === 1) {
-	                result += 'dan';
-	            } else {
-	                result += 'dana';
-	            }
-	            return result;
-	        case 'MM':
-	            if (number === 1) {
-	                result += 'mjesec';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'mjeseca';
-	            } else {
-	                result += 'mjeseci';
-	            }
-	            return result;
-	        case 'yy':
-	            if (number === 1) {
-	                result += 'godina';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'godine';
-	            } else {
-	                result += 'godina';
-	            }
-	            return result;
+	            case 'm':
+	                return withoutSuffix ? 'jedna minuta' : 'jedne minute';
+	            case 'mm':
+	                if (number === 1) {
+	                    result += 'minuta';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'minute';
+	                } else {
+	                    result += 'minuta';
+	                }
+	                return result;
+	            case 'h':
+	                return withoutSuffix ? 'jedan sat' : 'jednog sata';
+	            case 'hh':
+	                if (number === 1) {
+	                    result += 'sat';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'sata';
+	                } else {
+	                    result += 'sati';
+	                }
+	                return result;
+	            case 'dd':
+	                if (number === 1) {
+	                    result += 'dan';
+	                } else {
+	                    result += 'dana';
+	                }
+	                return result;
+	            case 'MM':
+	                if (number === 1) {
+	                    result += 'mjesec';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'mjeseca';
+	                } else {
+	                    result += 'mjeseci';
+	                }
+	                return result;
+	            case 'yy':
+	                if (number === 1) {
+	                    result += 'godina';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'godine';
+	                } else {
+	                    result += 'godina';
+	                }
+	                return result;
 	        }
 	    }
 
@@ -9825,32 +9977,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay  : '[sutra u] LT',
 	            nextWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[u] [nedjelju] [u] LT';
-	                case 3:
-	                    return '[u] [srijedu] [u] LT';
-	                case 6:
-	                    return '[u] [subotu] [u] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[u] dddd [u] LT';
+	                    case 0:
+	                        return '[u] [nedjelju] [u] LT';
+	                    case 3:
+	                        return '[u] [srijedu] [u] LT';
+	                    case 6:
+	                        return '[u] [subotu] [u] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[jučer u] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                case 3:
-	                    return '[prošlu] dddd [u] LT';
-	                case 6:
-	                    return '[prošle] [subote] [u] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[prošli] dddd [u] LT';
+	                    case 0:
+	                    case 3:
+	                        return '[prošlu] dddd [u] LT';
+	                    case 6:
+	                        return '[prošle] [subote] [u] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[prošli] dddd [u] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -9887,12 +10039,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : catalan (ca)
+	//! locale : Catalan [ca]
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9972,12 +10124,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : czech (cs)
+	//! locale : Czech [cs]
 	//! author : petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -9990,53 +10142,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 's':  // a few seconds / in a few seconds / a few seconds ago
-	            return (withoutSuffix || isFuture) ? 'pár sekund' : 'pár sekundami';
-	        case 'm':  // a minute / in a minute / a minute ago
-	            return withoutSuffix ? 'minuta' : (isFuture ? 'minutu' : 'minutou');
-	        case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'minuty' : 'minut');
-	            } else {
-	                return result + 'minutami';
-	            }
-	            break;
-	        case 'h':  // an hour / in an hour / an hour ago
-	            return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
-	        case 'hh': // 9 hours / in 9 hours / 9 hours ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'hodiny' : 'hodin');
-	            } else {
-	                return result + 'hodinami';
-	            }
-	            break;
-	        case 'd':  // a day / in a day / a day ago
-	            return (withoutSuffix || isFuture) ? 'den' : 'dnem';
-	        case 'dd': // 9 days / in 9 days / 9 days ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'dny' : 'dní');
-	            } else {
-	                return result + 'dny';
-	            }
-	            break;
-	        case 'M':  // a month / in a month / a month ago
-	            return (withoutSuffix || isFuture) ? 'měsíc' : 'měsícem';
-	        case 'MM': // 9 months / in 9 months / 9 months ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'měsíce' : 'měsíců');
-	            } else {
-	                return result + 'měsíci';
-	            }
-	            break;
-	        case 'y':  // a year / in a year / a year ago
-	            return (withoutSuffix || isFuture) ? 'rok' : 'rokem';
-	        case 'yy': // 9 years / in 9 years / 9 years ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'roky' : 'let');
-	            } else {
-	                return result + 'lety';
-	            }
-	            break;
+	            case 's':  // a few seconds / in a few seconds / a few seconds ago
+	                return (withoutSuffix || isFuture) ? 'pár sekund' : 'pár sekundami';
+	            case 'm':  // a minute / in a minute / a minute ago
+	                return withoutSuffix ? 'minuta' : (isFuture ? 'minutu' : 'minutou');
+	            case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'minuty' : 'minut');
+	                } else {
+	                    return result + 'minutami';
+	                }
+	                break;
+	            case 'h':  // an hour / in an hour / an hour ago
+	                return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
+	            case 'hh': // 9 hours / in 9 hours / 9 hours ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'hodiny' : 'hodin');
+	                } else {
+	                    return result + 'hodinami';
+	                }
+	                break;
+	            case 'd':  // a day / in a day / a day ago
+	                return (withoutSuffix || isFuture) ? 'den' : 'dnem';
+	            case 'dd': // 9 days / in 9 days / 9 days ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'dny' : 'dní');
+	                } else {
+	                    return result + 'dny';
+	                }
+	                break;
+	            case 'M':  // a month / in a month / a month ago
+	                return (withoutSuffix || isFuture) ? 'měsíc' : 'měsícem';
+	            case 'MM': // 9 months / in 9 months / 9 months ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'měsíce' : 'měsíců');
+	                } else {
+	                    return result + 'měsíci';
+	                }
+	                break;
+	            case 'y':  // a year / in a year / a year ago
+	                return (withoutSuffix || isFuture) ? 'rok' : 'rokem';
+	            case 'yy': // 9 years / in 9 years / 9 years ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'roky' : 'let');
+	                } else {
+	                    return result + 'lety';
+	                }
+	                break;
 	        }
 	    }
 
@@ -10074,43 +10226,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	            L : 'DD.MM.YYYY',
 	            LL : 'D. MMMM YYYY',
 	            LLL : 'D. MMMM YYYY H:mm',
-	            LLLL : 'dddd D. MMMM YYYY H:mm'
+	            LLLL : 'dddd D. MMMM YYYY H:mm',
+	            l : 'D. M. YYYY'
 	        },
 	        calendar : {
 	            sameDay: '[dnes v] LT',
 	            nextDay: '[zítra v] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[v neděli v] LT';
-	                case 1:
-	                case 2:
-	                    return '[v] dddd [v] LT';
-	                case 3:
-	                    return '[ve středu v] LT';
-	                case 4:
-	                    return '[ve čtvrtek v] LT';
-	                case 5:
-	                    return '[v pátek v] LT';
-	                case 6:
-	                    return '[v sobotu v] LT';
+	                    case 0:
+	                        return '[v neděli v] LT';
+	                    case 1:
+	                    case 2:
+	                        return '[v] dddd [v] LT';
+	                    case 3:
+	                        return '[ve středu v] LT';
+	                    case 4:
+	                        return '[ve čtvrtek v] LT';
+	                    case 5:
+	                        return '[v pátek v] LT';
+	                    case 6:
+	                        return '[v sobotu v] LT';
 	                }
 	            },
 	            lastDay: '[včera v] LT',
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[minulou neděli v] LT';
-	                case 1:
-	                case 2:
-	                    return '[minulé] dddd [v] LT';
-	                case 3:
-	                    return '[minulou středu v] LT';
-	                case 4:
-	                case 5:
-	                    return '[minulý] dddd [v] LT';
-	                case 6:
-	                    return '[minulou sobotu v] LT';
+	                    case 0:
+	                        return '[minulou neděli v] LT';
+	                    case 1:
+	                    case 2:
+	                        return '[minulé] dddd [v] LT';
+	                    case 3:
+	                        return '[minulou středu v] LT';
+	                    case 4:
+	                    case 5:
+	                        return '[minulý] dddd [v] LT';
+	                    case 6:
+	                        return '[minulou sobotu v] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -10147,12 +10300,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : chuvash (cv)
+	//! locale : Chuvash [cv]
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10214,12 +10367,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Welsh (cy)
+	//! locale : Welsh [cy]
 	//! author : Robert Allen
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10298,12 +10451,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : danish (da)
+	//! locale : Danish [da]
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10362,7 +10515,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : austrian german (de-at)
+	//! locale : German (Austria) [de-at]
 	//! author : lluchs : https://github.com/lluchs
 	//! author: Menelion Elensúle: https://github.com/Oire
 	//! author : Martin Groller : https://github.com/MadMG
@@ -10370,7 +10523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10445,14 +10598,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : german (de)
+	//! locale : German [de]
 	//! author : lluchs : https://github.com/lluchs
 	//! author: Menelion Elensúle: https://github.com/Oire
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10527,12 +10680,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : dhivehi (dv)
+	//! locale : Maldivian [dv]
 	//! author : Jawish Hameed : https://github.com/jawish
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10630,12 +10783,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : modern greek (el)
+	//! locale : Greek [el]
 	//! author : Aggelos Karalias : https://github.com/mehiel
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10732,11 +10885,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : australian english (en-au)
+	//! locale : English (Australia) [en-au]
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10802,12 +10955,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : canadian english (en-ca)
+	//! locale : English (Canada) [en-ca]
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10869,12 +11022,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : great britain english (en-gb)
+	//! locale : English (United Kingdom) [en-gb]
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -10940,12 +11093,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Irish english (en-ie)
+	//! locale : English (Ireland) [en-ie]
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11011,11 +11164,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : New Zealand english (en-nz)
+	//! locale : English (New Zealand) [en-nz]
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11081,14 +11234,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : esperanto (eo)
+	//! locale : Esperanto [eo]
 	//! author : Colin Dean : https://github.com/colindean
 	//! komento: Mi estas malcerta se mi korekte traktis akuzativojn en tiu traduko.
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11158,12 +11311,96 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : spanish (es)
+	//! locale : Spanish (Dominican Republic) [es-do]
+
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(1)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, function (moment) { 'use strict';
+
+
+	    var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
+	        monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+
+	    var es_do = moment.defineLocale('es-do', {
+	        months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
+	        monthsShort : function (m, format) {
+	            if (/-MMM-/.test(format)) {
+	                return monthsShort[m.month()];
+	            } else {
+	                return monthsShortDot[m.month()];
+	            }
+	        },
+	        monthsParseExact : true,
+	        weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
+	        weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
+	        weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
+	        weekdaysParseExact : true,
+	        longDateFormat : {
+	            LT : 'h:mm A',
+	            LTS : 'h:mm:ss A',
+	            L : 'DD/MM/YYYY',
+	            LL : 'D [de] MMMM [de] YYYY',
+	            LLL : 'D [de] MMMM [de] YYYY h:mm A',
+	            LLLL : 'dddd, D [de] MMMM [de] YYYY h:mm A'
+	        },
+	        calendar : {
+	            sameDay : function () {
+	                return '[hoy a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	            },
+	            nextDay : function () {
+	                return '[mañana a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	            },
+	            nextWeek : function () {
+	                return 'dddd [a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	            },
+	            lastDay : function () {
+	                return '[ayer a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	            },
+	            lastWeek : function () {
+	                return '[el] dddd [pasado a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	            },
+	            sameElse : 'L'
+	        },
+	        relativeTime : {
+	            future : 'en %s',
+	            past : 'hace %s',
+	            s : 'unos segundos',
+	            m : 'un minuto',
+	            mm : '%d minutos',
+	            h : 'una hora',
+	            hh : '%d horas',
+	            d : 'un día',
+	            dd : '%d días',
+	            M : 'un mes',
+	            MM : '%d meses',
+	            y : 'un año',
+	            yy : '%d años'
+	        },
+	        ordinalParse : /\d{1,2}º/,
+	        ordinal : '%dº',
+	        week : {
+	            dow : 1, // Monday is the first day of the week.
+	            doy : 4  // The week that contains Jan 4th is the first week of the year.
+	        }
+	    });
+
+	    return es_do;
+
+	}));
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	//! locale : Spanish [es]
 	//! author : Julio Napurí : https://github.com/julionc
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11239,17 +11476,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : estonian (et)
+	//! locale : Estonian [et]
 	//! author : Henry Kehlmann : https://github.com/madhenry
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11323,16 +11560,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : euskara (eu)
+	//! locale : Basque [eu]
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11393,16 +11630,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Persian (fa)
+	//! locale : Persian [fa]
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11503,16 +11740,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : finnish (fi)
+	//! locale : Finnish [fi]
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11525,33 +11762,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = '';
 	        switch (key) {
-	        case 's':
-	            return isFuture ? 'muutaman sekunnin' : 'muutama sekunti';
-	        case 'm':
-	            return isFuture ? 'minuutin' : 'minuutti';
-	        case 'mm':
-	            result = isFuture ? 'minuutin' : 'minuuttia';
-	            break;
-	        case 'h':
-	            return isFuture ? 'tunnin' : 'tunti';
-	        case 'hh':
-	            result = isFuture ? 'tunnin' : 'tuntia';
-	            break;
-	        case 'd':
-	            return isFuture ? 'päivän' : 'päivä';
-	        case 'dd':
-	            result = isFuture ? 'päivän' : 'päivää';
-	            break;
-	        case 'M':
-	            return isFuture ? 'kuukauden' : 'kuukausi';
-	        case 'MM':
-	            result = isFuture ? 'kuukauden' : 'kuukautta';
-	            break;
-	        case 'y':
-	            return isFuture ? 'vuoden' : 'vuosi';
-	        case 'yy':
-	            result = isFuture ? 'vuoden' : 'vuotta';
-	            break;
+	            case 's':
+	                return isFuture ? 'muutaman sekunnin' : 'muutama sekunti';
+	            case 'm':
+	                return isFuture ? 'minuutin' : 'minuutti';
+	            case 'mm':
+	                result = isFuture ? 'minuutin' : 'minuuttia';
+	                break;
+	            case 'h':
+	                return isFuture ? 'tunnin' : 'tunti';
+	            case 'hh':
+	                result = isFuture ? 'tunnin' : 'tuntia';
+	                break;
+	            case 'd':
+	                return isFuture ? 'päivän' : 'päivä';
+	            case 'dd':
+	                result = isFuture ? 'päivän' : 'päivää';
+	                break;
+	            case 'M':
+	                return isFuture ? 'kuukauden' : 'kuukausi';
+	            case 'MM':
+	                result = isFuture ? 'kuukauden' : 'kuukautta';
+	                break;
+	            case 'y':
+	                return isFuture ? 'vuoden' : 'vuosi';
+	            case 'yy':
+	                result = isFuture ? 'vuoden' : 'vuotta';
+	                break;
 	        }
 	        result = verbalNumber(number, isFuture) + ' ' + result;
 	        return result;
@@ -11614,16 +11851,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : faroese (fo)
+	//! locale : Faroese [fo]
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11678,16 +11915,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : canadian french (fr-ca)
+	//! locale : French (Canada) [fr-ca]
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11742,16 +11979,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : swiss french (fr)
+	//! locale : French (Switzerland) [fr-ch]
 	//! author : Gaspard Bucher : https://github.com/gaspard
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11810,16 +12047,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : french (fr)
+	//! locale : French [fr]
 	//! author : John Fischer : https://github.com/jfroffice
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11878,16 +12115,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : frisian (fy)
+	//! locale : Frisian [fy]
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -11955,16 +12192,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : great britain scottish gealic (gd)
+	//! locale : Scottish Gaelic [gd]
 	//! author : Jon Ashdown : https://github.com/jonashdown
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12035,16 +12272,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : galician (gl)
+	//! locale : Galician [gl]
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12116,18 +12353,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Hebrew (he)
+	//! locale : Hebrew [he]
 	//! author : Tomer Cohen : https://github.com/tomer
 	//! author : Moshe Simantov : https://github.com/DevelopmentIL
 	//! author : Tal Ater : https://github.com/TalAter
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12219,16 +12456,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : hindi (hi)
+	//! locale : Hindi [hi]
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12347,16 +12584,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : hrvatski (hr)
+	//! locale : Croatian [hr]
 	//! author : Bojan Marković : https://github.com/bmarkovic
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12364,53 +12601,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 'm':
-	            return withoutSuffix ? 'jedna minuta' : 'jedne minute';
-	        case 'mm':
-	            if (number === 1) {
-	                result += 'minuta';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'minute';
-	            } else {
-	                result += 'minuta';
-	            }
-	            return result;
-	        case 'h':
-	            return withoutSuffix ? 'jedan sat' : 'jednog sata';
-	        case 'hh':
-	            if (number === 1) {
-	                result += 'sat';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'sata';
-	            } else {
-	                result += 'sati';
-	            }
-	            return result;
-	        case 'dd':
-	            if (number === 1) {
-	                result += 'dan';
-	            } else {
-	                result += 'dana';
-	            }
-	            return result;
-	        case 'MM':
-	            if (number === 1) {
-	                result += 'mjesec';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'mjeseca';
-	            } else {
-	                result += 'mjeseci';
-	            }
-	            return result;
-	        case 'yy':
-	            if (number === 1) {
-	                result += 'godina';
-	            } else if (number === 2 || number === 3 || number === 4) {
-	                result += 'godine';
-	            } else {
-	                result += 'godina';
-	            }
-	            return result;
+	            case 'm':
+	                return withoutSuffix ? 'jedna minuta' : 'jedne minute';
+	            case 'mm':
+	                if (number === 1) {
+	                    result += 'minuta';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'minute';
+	                } else {
+	                    result += 'minuta';
+	                }
+	                return result;
+	            case 'h':
+	                return withoutSuffix ? 'jedan sat' : 'jednog sata';
+	            case 'hh':
+	                if (number === 1) {
+	                    result += 'sat';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'sata';
+	                } else {
+	                    result += 'sati';
+	                }
+	                return result;
+	            case 'dd':
+	                if (number === 1) {
+	                    result += 'dan';
+	                } else {
+	                    result += 'dana';
+	                }
+	                return result;
+	            case 'MM':
+	                if (number === 1) {
+	                    result += 'mjesec';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'mjeseca';
+	                } else {
+	                    result += 'mjeseci';
+	                }
+	                return result;
+	            case 'yy':
+	                if (number === 1) {
+	                    result += 'godina';
+	                } else if (number === 2 || number === 3 || number === 4) {
+	                    result += 'godine';
+	                } else {
+	                    result += 'godina';
+	                }
+	                return result;
 	        }
 	    }
 
@@ -12438,32 +12675,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay  : '[sutra u] LT',
 	            nextWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[u] [nedjelju] [u] LT';
-	                case 3:
-	                    return '[u] [srijedu] [u] LT';
-	                case 6:
-	                    return '[u] [subotu] [u] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[u] dddd [u] LT';
+	                    case 0:
+	                        return '[u] [nedjelju] [u] LT';
+	                    case 3:
+	                        return '[u] [srijedu] [u] LT';
+	                    case 6:
+	                        return '[u] [subotu] [u] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[jučer u] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                case 3:
-	                    return '[prošlu] dddd [u] LT';
-	                case 6:
-	                    return '[prošle] [subote] [u] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[prošli] dddd [u] LT';
+	                    case 0:
+	                    case 3:
+	                        return '[prošlu] dddd [u] LT';
+	                    case 6:
+	                        return '[prošle] [subote] [u] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[prošli] dddd [u] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -12496,16 +12733,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : hungarian (hu)
+	//! locale : Hungarian [hu]
 	//! author : Adam Brunner : https://github.com/adambrunner
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12515,28 +12752,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var num = number,
 	            suffix;
 	        switch (key) {
-	        case 's':
-	            return (isFuture || withoutSuffix) ? 'néhány másodperc' : 'néhány másodperce';
-	        case 'm':
-	            return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
-	        case 'mm':
-	            return num + (isFuture || withoutSuffix ? ' perc' : ' perce');
-	        case 'h':
-	            return 'egy' + (isFuture || withoutSuffix ? ' óra' : ' órája');
-	        case 'hh':
-	            return num + (isFuture || withoutSuffix ? ' óra' : ' órája');
-	        case 'd':
-	            return 'egy' + (isFuture || withoutSuffix ? ' nap' : ' napja');
-	        case 'dd':
-	            return num + (isFuture || withoutSuffix ? ' nap' : ' napja');
-	        case 'M':
-	            return 'egy' + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
-	        case 'MM':
-	            return num + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
-	        case 'y':
-	            return 'egy' + (isFuture || withoutSuffix ? ' év' : ' éve');
-	        case 'yy':
-	            return num + (isFuture || withoutSuffix ? ' év' : ' éve');
+	            case 's':
+	                return (isFuture || withoutSuffix) ? 'néhány másodperc' : 'néhány másodperce';
+	            case 'm':
+	                return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
+	            case 'mm':
+	                return num + (isFuture || withoutSuffix ? ' perc' : ' perce');
+	            case 'h':
+	                return 'egy' + (isFuture || withoutSuffix ? ' óra' : ' órája');
+	            case 'hh':
+	                return num + (isFuture || withoutSuffix ? ' óra' : ' órája');
+	            case 'd':
+	                return 'egy' + (isFuture || withoutSuffix ? ' nap' : ' napja');
+	            case 'dd':
+	                return num + (isFuture || withoutSuffix ? ' nap' : ' napja');
+	            case 'M':
+	                return 'egy' + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
+	            case 'MM':
+	                return num + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
+	            case 'y':
+	                return 'egy' + (isFuture || withoutSuffix ? ' év' : ' éve');
+	            case 'yy':
+	                return num + (isFuture || withoutSuffix ? ' év' : ' éve');
 	        }
 	        return '';
 	    }
@@ -12609,16 +12846,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Armenian (hy-am)
+	//! locale : Armenian [hy-am]
 	//! author : Armendarabyan : https://github.com/armendarabyan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12685,16 +12922,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}|\d{1,2}-(ին|րդ)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	            case 'DDD':
-	            case 'w':
-	            case 'W':
-	            case 'DDDo':
-	                if (number === 1) {
-	                    return number + '-ին';
-	                }
-	                return number + '-րդ';
-	            default:
-	                return number;
+	                case 'DDD':
+	                case 'w':
+	                case 'W':
+	                case 'DDDo':
+	                    if (number === 1) {
+	                        return number + '-ին';
+	                    }
+	                    return number + '-րդ';
+	                default:
+	                    return number;
 	            }
 	        },
 	        week : {
@@ -12708,17 +12945,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bahasa Indonesia (id)
+	//! locale : Indonesian [id]
 	//! author : Mohammad Satrio Utomo : https://github.com/tyok
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12795,16 +13032,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : icelandic (is)
+	//! locale : Icelandic [is]
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -12820,59 +13057,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 's':
-	            return withoutSuffix || isFuture ? 'nokkrar sekúndur' : 'nokkrum sekúndum';
-	        case 'm':
-	            return withoutSuffix ? 'mínúta' : 'mínútu';
-	        case 'mm':
-	            if (plural(number)) {
-	                return result + (withoutSuffix || isFuture ? 'mínútur' : 'mínútum');
-	            } else if (withoutSuffix) {
-	                return result + 'mínúta';
-	            }
-	            return result + 'mínútu';
-	        case 'hh':
-	            if (plural(number)) {
-	                return result + (withoutSuffix || isFuture ? 'klukkustundir' : 'klukkustundum');
-	            }
-	            return result + 'klukkustund';
-	        case 'd':
-	            if (withoutSuffix) {
-	                return 'dagur';
-	            }
-	            return isFuture ? 'dag' : 'degi';
-	        case 'dd':
-	            if (plural(number)) {
-	                if (withoutSuffix) {
-	                    return result + 'dagar';
+	            case 's':
+	                return withoutSuffix || isFuture ? 'nokkrar sekúndur' : 'nokkrum sekúndum';
+	            case 'm':
+	                return withoutSuffix ? 'mínúta' : 'mínútu';
+	            case 'mm':
+	                if (plural(number)) {
+	                    return result + (withoutSuffix || isFuture ? 'mínútur' : 'mínútum');
+	                } else if (withoutSuffix) {
+	                    return result + 'mínúta';
 	                }
-	                return result + (isFuture ? 'daga' : 'dögum');
-	            } else if (withoutSuffix) {
-	                return result + 'dagur';
-	            }
-	            return result + (isFuture ? 'dag' : 'degi');
-	        case 'M':
-	            if (withoutSuffix) {
-	                return 'mánuður';
-	            }
-	            return isFuture ? 'mánuð' : 'mánuði';
-	        case 'MM':
-	            if (plural(number)) {
-	                if (withoutSuffix) {
-	                    return result + 'mánuðir';
+	                return result + 'mínútu';
+	            case 'hh':
+	                if (plural(number)) {
+	                    return result + (withoutSuffix || isFuture ? 'klukkustundir' : 'klukkustundum');
 	                }
-	                return result + (isFuture ? 'mánuði' : 'mánuðum');
-	            } else if (withoutSuffix) {
-	                return result + 'mánuður';
-	            }
-	            return result + (isFuture ? 'mánuð' : 'mánuði');
-	        case 'y':
-	            return withoutSuffix || isFuture ? 'ár' : 'ári';
-	        case 'yy':
-	            if (plural(number)) {
-	                return result + (withoutSuffix || isFuture ? 'ár' : 'árum');
-	            }
-	            return result + (withoutSuffix || isFuture ? 'ár' : 'ári');
+	                return result + 'klukkustund';
+	            case 'd':
+	                if (withoutSuffix) {
+	                    return 'dagur';
+	                }
+	                return isFuture ? 'dag' : 'degi';
+	            case 'dd':
+	                if (plural(number)) {
+	                    if (withoutSuffix) {
+	                        return result + 'dagar';
+	                    }
+	                    return result + (isFuture ? 'daga' : 'dögum');
+	                } else if (withoutSuffix) {
+	                    return result + 'dagur';
+	                }
+	                return result + (isFuture ? 'dag' : 'degi');
+	            case 'M':
+	                if (withoutSuffix) {
+	                    return 'mánuður';
+	                }
+	                return isFuture ? 'mánuð' : 'mánuði';
+	            case 'MM':
+	                if (plural(number)) {
+	                    if (withoutSuffix) {
+	                        return result + 'mánuðir';
+	                    }
+	                    return result + (isFuture ? 'mánuði' : 'mánuðum');
+	                } else if (withoutSuffix) {
+	                    return result + 'mánuður';
+	                }
+	                return result + (isFuture ? 'mánuð' : 'mánuði');
+	            case 'y':
+	                return withoutSuffix || isFuture ? 'ár' : 'ári';
+	            case 'yy':
+	                if (plural(number)) {
+	                    return result + (withoutSuffix || isFuture ? 'ár' : 'árum');
+	                }
+	                return result + (withoutSuffix || isFuture ? 'ár' : 'ári');
 	        }
 	    }
 
@@ -12926,17 +13163,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 109 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : italian (it)
+	//! locale : Italian [it]
 	//! author : Lorenzo : https://github.com/aliem
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13000,16 +13237,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 110 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : japanese (ja)
+	//! locale : Japanese [ja]
 	//! author : LI Long : https://github.com/baryon
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13050,12 +13287,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse : /\d{1,2}日/,
 	        ordinal : function (number, period) {
 	            switch (period) {
-	            case 'd':
-	            case 'D':
-	            case 'DDD':
-	                return number + '日';
-	            default:
-	                return number;
+	                case 'd':
+	                case 'D':
+	                case 'DDD':
+	                    return number + '日';
+	                default:
+	                    return number;
 	            }
 	        },
 	        relativeTime : {
@@ -13080,17 +13317,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 111 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Boso Jowo (jv)
+	//! locale : Japanese [jv]
 	//! author : Rony Lantip : https://github.com/lantip
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13167,16 +13404,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 112 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Georgian (ka)
+	//! locale : Georgian [ka]
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13260,16 +13497,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 113 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : kazakh (kk)
+	//! locale : Kazakh [kk]
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13351,16 +13588,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 114 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : khmer (km)
+	//! locale : Cambodian [km]
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13413,11 +13650,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 115 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : korean (ko)
+	//! locale : Korean [ko]
 	//!
 	//! authors
 	//!
@@ -13426,7 +13663,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13485,16 +13722,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 116 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : kyrgyz (ky)
+	//! locale : Kyrgyz [ky]
 	//! author : Chyngyz Arystan uulu : https://github.com/chyngyz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13577,16 +13814,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 117 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Luxembourgish (lb)
+	//! locale : Luxembourgish [lb]
 	//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13717,16 +13954,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 118 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : lao (lo)
+	//! locale : Lao [lo]
 	//! author : Ryan Hart : https://github.com/ryanhart2
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13791,16 +14028,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 119 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Lithuanian (lt)
+	//! locale : Lithuanian [lt]
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13850,7 +14087,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var lt = moment.defineLocale('lt', {
 	        months : {
 	            format: 'sausio_vasario_kovo_balandžio_gegužės_birželio_liepos_rugpjūčio_rugsėjo_spalio_lapkričio_gruodžio'.split('_'),
-	            standalone: 'sausis_vasaris_kovas_balandis_gegužė_birželis_liepa_rugpjūtis_rugsėjis_spalis_lapkritis_gruodis'.split('_')
+	            standalone: 'sausis_vasaris_kovas_balandis_gegužė_birželis_liepa_rugpjūtis_rugsėjis_spalis_lapkritis_gruodis'.split('_'),
+	            isFormat: /D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?|MMMM?(\[[^\[\]]*\]|\s+)+D[oD]?/
 	        },
 	        monthsShort : 'sau_vas_kov_bal_geg_bir_lie_rgp_rgs_spa_lap_grd'.split('_'),
 	        weekdays : {
@@ -13911,17 +14149,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 120 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : latvian (lv)
+	//! locale : Latvian [lv]
 	//! author : Kristaps Karlsons : https://github.com/skakri
 	//! author : Jānis Elmeris : https://github.com/JanisE
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -13944,11 +14182,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function format(forms, number, withoutSuffix) {
 	        if (withoutSuffix) {
 	            // E.g. "21 minūte", "3 minūtes".
-	            return number % 10 === 1 && number !== 11 ? forms[2] : forms[3];
+	            return number % 10 === 1 && number % 100 !== 11 ? forms[2] : forms[3];
 	        } else {
 	            // E.g. "21 minūtes" as in "pēc 21 minūtes".
 	            // E.g. "3 minūtēm" as in "pēc 3 minūtēm".
-	            return number % 10 === 1 && number !== 11 ? forms[0] : forms[1];
+	            return number % 10 === 1 && number % 100 !== 11 ? forms[0] : forms[1];
 	        }
 	    }
 	    function relativeTimeWithPlural(number, withoutSuffix, key) {
@@ -14012,16 +14250,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 121 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Montenegrin (me)
+	//! locale : Montenegrin [me]
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14071,17 +14309,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[u] [nedjelju] [u] LT';
-	                case 3:
-	                    return '[u] [srijedu] [u] LT';
-	                case 6:
-	                    return '[u] [subotu] [u] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[u] dddd [u] LT';
+	                    case 0:
+	                        return '[u] [nedjelju] [u] LT';
+	                    case 3:
+	                        return '[u] [srijedu] [u] LT';
+	                    case 6:
+	                        return '[u] [subotu] [u] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[juče u] LT',
@@ -14127,16 +14365,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 122 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : macedonian (mk)
+	//! locale : Macedonian [mk]
 	//! author : Borislav Mickov : https://github.com/B0k0
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14162,15 +14400,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastDay : '[Вчера во] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                case 3:
-	                case 6:
-	                    return '[Изминатата] dddd [во] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[Изминатиот] dddd [во] LT';
+	                    case 0:
+	                    case 3:
+	                    case 6:
+	                        return '[Изминатата] dddd [во] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[Изминатиот] dddd [во] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -14221,16 +14459,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 123 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : malayalam (ml)
+	//! locale : Malayalam [ml]
 	//! author : Floyd Pink : https://github.com/floydpink
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14306,17 +14544,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 124 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Marathi (mr)
+	//! locale : Marathi [mr]
 	//! author : Harshad Kale : https://github.com/kalehv
 	//! author : Vivek Athalye : https://github.com/vnathalye
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14469,16 +14707,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 125 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bahasa Malaysia (ms-MY)
+	//! locale : Malay [ms-my]
+	//! note : DEPRECATED, the correct one is [ms]
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14555,16 +14794,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 126 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Bahasa Malaysia (ms-MY)
+	//! locale : Malay [ms]
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14641,16 +14880,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 127 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Burmese (my)
+	//! locale : Burmese [my]
 	//! author : Squar team, mysquar.com
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14738,17 +14977,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 128 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : norwegian bokmål (nb)
+	//! locale : Norwegian Bokmål [nb]
 	//! authors : Espen Hovlandsdal : https://github.com/rexxars
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14805,16 +15044,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 129 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : nepali/nepalese
+	//! locale : Nepalese [ne]
 	//! author : suvash : https://github.com/suvash
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -14932,16 +15171,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 130 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : dutch (nl)
+	//! locale : Dutch [nl]
 	//! author : Joris Röling : https://github.com/jjupiter
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15009,16 +15248,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 131 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : norwegian nynorsk (nn)
+	//! locale : Nynorsk [nn]
 	//! author : https://github.com/mechuwind
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15073,16 +15312,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 132 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : punjabi india (pa-in)
+	//! locale : Punjabi (India) [pa-in]
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15201,16 +15440,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 133 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : polish (pl)
+	//! locale : Polish [pl]
 	//! author : Rafal Hirsz : https://github.com/evoL
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15223,18 +15462,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 'm':
-	            return withoutSuffix ? 'minuta' : 'minutę';
-	        case 'mm':
-	            return result + (plural(number) ? 'minuty' : 'minut');
-	        case 'h':
-	            return withoutSuffix  ? 'godzina'  : 'godzinę';
-	        case 'hh':
-	            return result + (plural(number) ? 'godziny' : 'godzin');
-	        case 'MM':
-	            return result + (plural(number) ? 'miesiące' : 'miesięcy');
-	        case 'yy':
-	            return result + (plural(number) ? 'lata' : 'lat');
+	            case 'm':
+	                return withoutSuffix ? 'minuta' : 'minutę';
+	            case 'mm':
+	                return result + (plural(number) ? 'minuty' : 'minut');
+	            case 'h':
+	                return withoutSuffix  ? 'godzina'  : 'godzinę';
+	            case 'hh':
+	                return result + (plural(number) ? 'godziny' : 'godzin');
+	            case 'MM':
+	                return result + (plural(number) ? 'miesiące' : 'miesięcy');
+	            case 'yy':
+	                return result + (plural(number) ? 'lata' : 'lat');
 	        }
 	    }
 
@@ -15270,14 +15509,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastDay: '[Wczoraj o] LT',
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[W zeszłą niedzielę o] LT';
-	                case 3:
-	                    return '[W zeszłą środę o] LT';
-	                case 6:
-	                    return '[W zeszłą sobotę o] LT';
-	                default:
-	                    return '[W zeszły] dddd [o] LT';
+	                    case 0:
+	                        return '[W zeszłą niedzielę o] LT';
+	                    case 3:
+	                        return '[W zeszłą środę o] LT';
+	                    case 6:
+	                        return '[W zeszłą sobotę o] LT';
+	                    default:
+	                        return '[W zeszły] dddd [o] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -15310,16 +15549,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 134 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : brazilian portuguese (pt-br)
+	//! locale : Portuguese (Brazil) [pt-br]
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15375,16 +15614,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 135 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : portuguese (pt)
+	//! locale : Portuguese [pt]
 	//! author : Jefferson : https://github.com/jalex79
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15444,17 +15683,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 136 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : romanian (ro)
+	//! locale : Romanian [ro]
 	//! author : Vlad Gurdiga : https://github.com/gurdiga
 	//! author : Valentin Agachi : https://github.com/avaly
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15523,18 +15762,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 137 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : russian (ru)
+	//! locale : Russian [ru]
 	//! author : Viktorminator : https://github.com/Viktorminator
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	//! author : Коренберг Марк : https://github.com/socketpair
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15583,10 +15822,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        monthsParse : monthsParse,
 	        longMonthsParse : monthsParse,
 	        shortMonthsParse : monthsParse,
-	        monthsRegex: /^(сентябр[яь]|октябр[яь]|декабр[яь]|феврал[яь]|январ[яь]|апрел[яь]|августа?|ноябр[яь]|сент\.|февр\.|нояб\.|июнь|янв.|июль|дек.|авг.|апр.|марта|мар[.т]|окт.|июн[яь]|июл[яь]|ма[яй])/i,
-	        monthsShortRegex: /^(сентябр[яь]|октябр[яь]|декабр[яь]|феврал[яь]|январ[яь]|апрел[яь]|августа?|ноябр[яь]|сент\.|февр\.|нояб\.|июнь|янв.|июль|дек.|авг.|апр.|марта|мар[.т]|окт.|июн[яь]|июл[яь]|ма[яй])/i,
-	        monthsStrictRegex: /^(сентябр[яь]|октябр[яь]|декабр[яь]|феврал[яь]|январ[яь]|апрел[яь]|августа?|ноябр[яь]|марта?|июн[яь]|июл[яь]|ма[яй])/i,
-	        monthsShortStrictRegex: /^(нояб\.|февр\.|сент\.|июль|янв\.|июн[яь]|мар[.т]|авг\.|апр\.|окт\.|дек\.|ма[яй])/i,
+
+	        // полные названия с падежами, по три буквы, для некоторых, по 4 буквы, сокращения с точкой и без точки
+	        monthsRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
+
+	        // копия предыдущего
+	        monthsShortRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
+
+	        // полные названия с падежами
+	        monthsStrictRegex: /^(январ[яь]|феврал[яь]|марта?|апрел[яь]|ма[яй]|июн[яь]|июл[яь]|августа?|сентябр[яь]|октябр[яь]|ноябр[яь]|декабр[яь])/i,
+
+	        // Выражение, которое соотвествует только сокращённым формам
+	        monthsShortStrictRegex: /^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,
 	        longDateFormat : {
 	            LT : 'HH:mm',
 	            LTS : 'HH:mm:ss',
@@ -15602,16 +15849,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextWeek: function (now) {
 	                if (now.week() !== this.week()) {
 	                    switch (this.day()) {
-	                    case 0:
-	                        return '[В следующее] dddd [в] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                        return '[В следующий] dddd [в] LT';
-	                    case 3:
-	                    case 5:
-	                    case 6:
-	                        return '[В следующую] dddd [в] LT';
+	                        case 0:
+	                            return '[В следующее] dddd [в] LT';
+	                        case 1:
+	                        case 2:
+	                        case 4:
+	                            return '[В следующий] dddd [в] LT';
+	                        case 3:
+	                        case 5:
+	                        case 6:
+	                            return '[В следующую] dddd [в] LT';
 	                    }
 	                } else {
 	                    if (this.day() === 2) {
@@ -15624,16 +15871,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lastWeek: function (now) {
 	                if (now.week() !== this.week()) {
 	                    switch (this.day()) {
-	                    case 0:
-	                        return '[В прошлое] dddd [в] LT';
-	                    case 1:
-	                    case 2:
-	                    case 4:
-	                        return '[В прошлый] dddd [в] LT';
-	                    case 3:
-	                    case 5:
-	                    case 6:
-	                        return '[В прошлую] dddd [в] LT';
+	                        case 0:
+	                            return '[В прошлое] dddd [в] LT';
+	                        case 1:
+	                        case 2:
+	                        case 4:
+	                            return '[В прошлый] dddd [в] LT';
+	                        case 3:
+	                        case 5:
+	                        case 6:
+	                            return '[В прошлую] dddd [в] LT';
 	                    }
 	                } else {
 	                    if (this.day() === 2) {
@@ -15678,17 +15925,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}-(й|го|я)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	            case 'M':
-	            case 'd':
-	            case 'DDD':
-	                return number + '-й';
-	            case 'D':
-	                return number + '-го';
-	            case 'w':
-	            case 'W':
-	                return number + '-я';
-	            default:
-	                return number;
+	                case 'M':
+	                case 'd':
+	                case 'DDD':
+	                    return number + '-й';
+	                case 'D':
+	                    return number + '-го';
+	                case 'w':
+	                case 'W':
+	                    return number + '-я';
+	                default:
+	                    return number;
 	            }
 	        },
 	        week : {
@@ -15702,16 +15949,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 138 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Northern Sami (se)
+	//! locale : Northern Sami [se]
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15767,16 +16014,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 139 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Sinhalese (si)
+	//! locale : Sinhalese [si]
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15842,17 +16089,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 140 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : slovak (sk)
+	//! locale : Slovak [sk]
 	//! author : Martin Minka : https://github.com/k2s
 	//! based on work of petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -15865,53 +16112,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 's':  // a few seconds / in a few seconds / a few seconds ago
-	            return (withoutSuffix || isFuture) ? 'pár sekúnd' : 'pár sekundami';
-	        case 'm':  // a minute / in a minute / a minute ago
-	            return withoutSuffix ? 'minúta' : (isFuture ? 'minútu' : 'minútou');
-	        case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'minúty' : 'minút');
-	            } else {
-	                return result + 'minútami';
-	            }
-	            break;
-	        case 'h':  // an hour / in an hour / an hour ago
-	            return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
-	        case 'hh': // 9 hours / in 9 hours / 9 hours ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'hodiny' : 'hodín');
-	            } else {
-	                return result + 'hodinami';
-	            }
-	            break;
-	        case 'd':  // a day / in a day / a day ago
-	            return (withoutSuffix || isFuture) ? 'deň' : 'dňom';
-	        case 'dd': // 9 days / in 9 days / 9 days ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'dni' : 'dní');
-	            } else {
-	                return result + 'dňami';
-	            }
-	            break;
-	        case 'M':  // a month / in a month / a month ago
-	            return (withoutSuffix || isFuture) ? 'mesiac' : 'mesiacom';
-	        case 'MM': // 9 months / in 9 months / 9 months ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'mesiace' : 'mesiacov');
-	            } else {
-	                return result + 'mesiacmi';
-	            }
-	            break;
-	        case 'y':  // a year / in a year / a year ago
-	            return (withoutSuffix || isFuture) ? 'rok' : 'rokom';
-	        case 'yy': // 9 years / in 9 years / 9 years ago
-	            if (withoutSuffix || isFuture) {
-	                return result + (plural(number) ? 'roky' : 'rokov');
-	            } else {
-	                return result + 'rokmi';
-	            }
-	            break;
+	            case 's':  // a few seconds / in a few seconds / a few seconds ago
+	                return (withoutSuffix || isFuture) ? 'pár sekúnd' : 'pár sekundami';
+	            case 'm':  // a minute / in a minute / a minute ago
+	                return withoutSuffix ? 'minúta' : (isFuture ? 'minútu' : 'minútou');
+	            case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'minúty' : 'minút');
+	                } else {
+	                    return result + 'minútami';
+	                }
+	                break;
+	            case 'h':  // an hour / in an hour / an hour ago
+	                return withoutSuffix ? 'hodina' : (isFuture ? 'hodinu' : 'hodinou');
+	            case 'hh': // 9 hours / in 9 hours / 9 hours ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'hodiny' : 'hodín');
+	                } else {
+	                    return result + 'hodinami';
+	                }
+	                break;
+	            case 'd':  // a day / in a day / a day ago
+	                return (withoutSuffix || isFuture) ? 'deň' : 'dňom';
+	            case 'dd': // 9 days / in 9 days / 9 days ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'dni' : 'dní');
+	                } else {
+	                    return result + 'dňami';
+	                }
+	                break;
+	            case 'M':  // a month / in a month / a month ago
+	                return (withoutSuffix || isFuture) ? 'mesiac' : 'mesiacom';
+	            case 'MM': // 9 months / in 9 months / 9 months ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'mesiace' : 'mesiacov');
+	                } else {
+	                    return result + 'mesiacmi';
+	                }
+	                break;
+	            case 'y':  // a year / in a year / a year ago
+	                return (withoutSuffix || isFuture) ? 'rok' : 'rokom';
+	            case 'yy': // 9 years / in 9 years / 9 years ago
+	                if (withoutSuffix || isFuture) {
+	                    return result + (plural(number) ? 'roky' : 'rokov');
+	                } else {
+	                    return result + 'rokmi';
+	                }
+	                break;
 	        }
 	    }
 
@@ -15934,36 +16181,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay: '[zajtra o] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[v nedeľu o] LT';
-	                case 1:
-	                case 2:
-	                    return '[v] dddd [o] LT';
-	                case 3:
-	                    return '[v stredu o] LT';
-	                case 4:
-	                    return '[vo štvrtok o] LT';
-	                case 5:
-	                    return '[v piatok o] LT';
-	                case 6:
-	                    return '[v sobotu o] LT';
+	                    case 0:
+	                        return '[v nedeľu o] LT';
+	                    case 1:
+	                    case 2:
+	                        return '[v] dddd [o] LT';
+	                    case 3:
+	                        return '[v stredu o] LT';
+	                    case 4:
+	                        return '[vo štvrtok o] LT';
+	                    case 5:
+	                        return '[v piatok o] LT';
+	                    case 6:
+	                        return '[v sobotu o] LT';
 	                }
 	            },
 	            lastDay: '[včera o] LT',
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[minulú nedeľu o] LT';
-	                case 1:
-	                case 2:
-	                    return '[minulý] dddd [o] LT';
-	                case 3:
-	                    return '[minulú stredu o] LT';
-	                case 4:
-	                case 5:
-	                    return '[minulý] dddd [o] LT';
-	                case 6:
-	                    return '[minulú sobotu o] LT';
+	                    case 0:
+	                        return '[minulú nedeľu o] LT';
+	                    case 1:
+	                    case 2:
+	                        return '[minulý] dddd [o] LT';
+	                    case 3:
+	                        return '[minulú stredu o] LT';
+	                    case 4:
+	                    case 5:
+	                        return '[minulý] dddd [o] LT';
+	                    case 6:
+	                        return '[minulú sobotu o] LT';
 	                }
 	            },
 	            sameElse: 'L'
@@ -15996,16 +16243,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 141 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : slovenian (sl)
+	//! locale : Slovenian [sl]
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16013,71 +16260,71 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
-	        case 's':
-	            return withoutSuffix || isFuture ? 'nekaj sekund' : 'nekaj sekundami';
-	        case 'm':
-	            return withoutSuffix ? 'ena minuta' : 'eno minuto';
-	        case 'mm':
-	            if (number === 1) {
-	                result += withoutSuffix ? 'minuta' : 'minuto';
-	            } else if (number === 2) {
-	                result += withoutSuffix || isFuture ? 'minuti' : 'minutama';
-	            } else if (number < 5) {
-	                result += withoutSuffix || isFuture ? 'minute' : 'minutami';
-	            } else {
-	                result += withoutSuffix || isFuture ? 'minut' : 'minutami';
-	            }
-	            return result;
-	        case 'h':
-	            return withoutSuffix ? 'ena ura' : 'eno uro';
-	        case 'hh':
-	            if (number === 1) {
-	                result += withoutSuffix ? 'ura' : 'uro';
-	            } else if (number === 2) {
-	                result += withoutSuffix || isFuture ? 'uri' : 'urama';
-	            } else if (number < 5) {
-	                result += withoutSuffix || isFuture ? 'ure' : 'urami';
-	            } else {
-	                result += withoutSuffix || isFuture ? 'ur' : 'urami';
-	            }
-	            return result;
-	        case 'd':
-	            return withoutSuffix || isFuture ? 'en dan' : 'enim dnem';
-	        case 'dd':
-	            if (number === 1) {
-	                result += withoutSuffix || isFuture ? 'dan' : 'dnem';
-	            } else if (number === 2) {
-	                result += withoutSuffix || isFuture ? 'dni' : 'dnevoma';
-	            } else {
-	                result += withoutSuffix || isFuture ? 'dni' : 'dnevi';
-	            }
-	            return result;
-	        case 'M':
-	            return withoutSuffix || isFuture ? 'en mesec' : 'enim mesecem';
-	        case 'MM':
-	            if (number === 1) {
-	                result += withoutSuffix || isFuture ? 'mesec' : 'mesecem';
-	            } else if (number === 2) {
-	                result += withoutSuffix || isFuture ? 'meseca' : 'mesecema';
-	            } else if (number < 5) {
-	                result += withoutSuffix || isFuture ? 'mesece' : 'meseci';
-	            } else {
-	                result += withoutSuffix || isFuture ? 'mesecev' : 'meseci';
-	            }
-	            return result;
-	        case 'y':
-	            return withoutSuffix || isFuture ? 'eno leto' : 'enim letom';
-	        case 'yy':
-	            if (number === 1) {
-	                result += withoutSuffix || isFuture ? 'leto' : 'letom';
-	            } else if (number === 2) {
-	                result += withoutSuffix || isFuture ? 'leti' : 'letoma';
-	            } else if (number < 5) {
-	                result += withoutSuffix || isFuture ? 'leta' : 'leti';
-	            } else {
-	                result += withoutSuffix || isFuture ? 'let' : 'leti';
-	            }
-	            return result;
+	            case 's':
+	                return withoutSuffix || isFuture ? 'nekaj sekund' : 'nekaj sekundami';
+	            case 'm':
+	                return withoutSuffix ? 'ena minuta' : 'eno minuto';
+	            case 'mm':
+	                if (number === 1) {
+	                    result += withoutSuffix ? 'minuta' : 'minuto';
+	                } else if (number === 2) {
+	                    result += withoutSuffix || isFuture ? 'minuti' : 'minutama';
+	                } else if (number < 5) {
+	                    result += withoutSuffix || isFuture ? 'minute' : 'minutami';
+	                } else {
+	                    result += withoutSuffix || isFuture ? 'minut' : 'minutami';
+	                }
+	                return result;
+	            case 'h':
+	                return withoutSuffix ? 'ena ura' : 'eno uro';
+	            case 'hh':
+	                if (number === 1) {
+	                    result += withoutSuffix ? 'ura' : 'uro';
+	                } else if (number === 2) {
+	                    result += withoutSuffix || isFuture ? 'uri' : 'urama';
+	                } else if (number < 5) {
+	                    result += withoutSuffix || isFuture ? 'ure' : 'urami';
+	                } else {
+	                    result += withoutSuffix || isFuture ? 'ur' : 'urami';
+	                }
+	                return result;
+	            case 'd':
+	                return withoutSuffix || isFuture ? 'en dan' : 'enim dnem';
+	            case 'dd':
+	                if (number === 1) {
+	                    result += withoutSuffix || isFuture ? 'dan' : 'dnem';
+	                } else if (number === 2) {
+	                    result += withoutSuffix || isFuture ? 'dni' : 'dnevoma';
+	                } else {
+	                    result += withoutSuffix || isFuture ? 'dni' : 'dnevi';
+	                }
+	                return result;
+	            case 'M':
+	                return withoutSuffix || isFuture ? 'en mesec' : 'enim mesecem';
+	            case 'MM':
+	                if (number === 1) {
+	                    result += withoutSuffix || isFuture ? 'mesec' : 'mesecem';
+	                } else if (number === 2) {
+	                    result += withoutSuffix || isFuture ? 'meseca' : 'mesecema';
+	                } else if (number < 5) {
+	                    result += withoutSuffix || isFuture ? 'mesece' : 'meseci';
+	                } else {
+	                    result += withoutSuffix || isFuture ? 'mesecev' : 'meseci';
+	                }
+	                return result;
+	            case 'y':
+	                return withoutSuffix || isFuture ? 'eno leto' : 'enim letom';
+	            case 'yy':
+	                if (number === 1) {
+	                    result += withoutSuffix || isFuture ? 'leto' : 'letom';
+	                } else if (number === 2) {
+	                    result += withoutSuffix || isFuture ? 'leti' : 'letoma';
+	                } else if (number < 5) {
+	                    result += withoutSuffix || isFuture ? 'leta' : 'leti';
+	                } else {
+	                    result += withoutSuffix || isFuture ? 'let' : 'leti';
+	                }
+	                return result;
 	        }
 	    }
 
@@ -16103,33 +16350,33 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            nextWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[v] [nedeljo] [ob] LT';
-	                case 3:
-	                    return '[v] [sredo] [ob] LT';
-	                case 6:
-	                    return '[v] [soboto] [ob] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[v] dddd [ob] LT';
+	                    case 0:
+	                        return '[v] [nedeljo] [ob] LT';
+	                    case 3:
+	                        return '[v] [sredo] [ob] LT';
+	                    case 6:
+	                        return '[v] [soboto] [ob] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[v] dddd [ob] LT';
 	                }
 	            },
 	            lastDay  : '[včeraj ob] LT',
 	            lastWeek : function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[prejšnjo] [nedeljo] [ob] LT';
-	                case 3:
-	                    return '[prejšnjo] [sredo] [ob] LT';
-	                case 6:
-	                    return '[prejšnjo] [soboto] [ob] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[prejšnji] dddd [ob] LT';
+	                    case 0:
+	                        return '[prejšnjo] [nedeljo] [ob] LT';
+	                    case 3:
+	                        return '[prejšnjo] [sredo] [ob] LT';
+	                    case 6:
+	                        return '[prejšnjo] [soboto] [ob] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[prejšnji] dddd [ob] LT';
 	                }
 	            },
 	            sameElse : 'L'
@@ -16162,18 +16409,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 142 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Albanian (sq)
+	//! locale : Albanian [sq]
 	//! author : Flakërim Ismani : https://github.com/flakerimi
 	//! author: Menelion Elensúle: https://github.com/Oire (tests)
 	//! author : Oerd Cukalla : https://github.com/oerd (fixes)
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16236,16 +16483,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 143 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Serbian-cyrillic (sr-cyrl)
+	//! locale : Serbian Cyrillic [sr-cyrl]
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16294,17 +16541,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay: '[сутра у] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[у] [недељу] [у] LT';
-	                case 3:
-	                    return '[у] [среду] [у] LT';
-	                case 6:
-	                    return '[у] [суботу] [у] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[у] dddd [у] LT';
+	                    case 0:
+	                        return '[у] [недељу] [у] LT';
+	                    case 3:
+	                        return '[у] [среду] [у] LT';
+	                    case 6:
+	                        return '[у] [суботу] [у] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[у] dddd [у] LT';
 	                }
 	            },
 	            lastDay  : '[јуче у] LT',
@@ -16350,16 +16597,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 144 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Serbian-latin (sr)
+	//! locale : Serbian [sr]
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16408,17 +16655,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextDay: '[sutra u] LT',
 	            nextWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                    return '[u] [nedelju] [u] LT';
-	                case 3:
-	                    return '[u] [sredu] [u] LT';
-	                case 6:
-	                    return '[u] [subotu] [u] LT';
-	                case 1:
-	                case 2:
-	                case 4:
-	                case 5:
-	                    return '[u] dddd [u] LT';
+	                    case 0:
+	                        return '[u] [nedelju] [u] LT';
+	                    case 3:
+	                        return '[u] [sredu] [u] LT';
+	                    case 6:
+	                        return '[u] [subotu] [u] LT';
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                    case 5:
+	                        return '[u] dddd [u] LT';
 	                }
 	            },
 	            lastDay  : '[juče u] LT',
@@ -16464,16 +16711,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 145 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : siSwati (ss)
+	//! locale : Swazi [ss]
 	//! author : Nicolai Davies<mail@nicolai.io> : https://github.com/nicolaidavies
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16557,16 +16804,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 146 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : swedish (sv)
+	//! locale : Swedish [sv]
 	//! author : Jens Alm : https://github.com/ulmus
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16630,16 +16877,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 147 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : swahili (sw)
+	//! locale : Swahili [sw]
 	//! author : Fahad Kassim : https://github.com/fadsel
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16693,16 +16940,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 148 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : tamil (ta)
+	//! locale : Tamil [ta]
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16826,16 +17073,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 149 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : telugu (te)
+	//! locale : Telugu [te]
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -16919,23 +17166,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 150 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : thai (th)
+	//! locale : Thai [th]
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
 
 	    var th = moment.defineLocale('th', {
 	        months : 'มกราคม_กุมภาพันธ์_มีนาคม_เมษายน_พฤษภาคม_มิถุนายน_กรกฎาคม_สิงหาคม_กันยายน_ตุลาคม_พฤศจิกายน_ธันวาคม'.split('_'),
-	        monthsShort : 'มกรา_กุมภา_มีนา_เมษา_พฤษภา_มิถุนา_กรกฎา_สิงหา_กันยา_ตุลา_พฤศจิกา_ธันวา'.split('_'),
+	        monthsShort : 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
 	        monthsParseExact: true,
 	        weekdays : 'อาทิตย์_จันทร์_อังคาร_พุธ_พฤหัสบดี_ศุกร์_เสาร์'.split('_'),
 	        weekdaysShort : 'อาทิตย์_จันทร์_อังคาร_พุธ_พฤหัส_ศุกร์_เสาร์'.split('_'), // yes, three characters difference
@@ -16990,16 +17237,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 151 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Tagalog/Filipino (tl-ph)
+	//! locale : Tagalog (Philippines) [tl-ph]
 	//! author : Dan Hagman
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17056,16 +17303,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 152 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Klingon (tlh)
+	//! locale : Klingon [tlh]
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17075,24 +17322,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function translateFuture(output) {
 	        var time = output;
 	        time = (output.indexOf('jaj') !== -1) ?
-	    	time.slice(0, -3) + 'leS' :
-	    	(output.indexOf('jar') !== -1) ?
-	    	time.slice(0, -3) + 'waQ' :
-	    	(output.indexOf('DIS') !== -1) ?
-	    	time.slice(0, -3) + 'nem' :
-	    	time + ' pIq';
+	        time.slice(0, -3) + 'leS' :
+	        (output.indexOf('jar') !== -1) ?
+	        time.slice(0, -3) + 'waQ' :
+	        (output.indexOf('DIS') !== -1) ?
+	        time.slice(0, -3) + 'nem' :
+	        time + ' pIq';
 	        return time;
 	    }
 
 	    function translatePast(output) {
 	        var time = output;
 	        time = (output.indexOf('jaj') !== -1) ?
-	    	time.slice(0, -3) + 'Hu’' :
-	    	(output.indexOf('jar') !== -1) ?
-	    	time.slice(0, -3) + 'wen' :
-	    	(output.indexOf('DIS') !== -1) ?
-	    	time.slice(0, -3) + 'ben' :
-	    	time + ' ret';
+	        time.slice(0, -3) + 'Hu’' :
+	        (output.indexOf('jar') !== -1) ?
+	        time.slice(0, -3) + 'wen' :
+	        (output.indexOf('DIS') !== -1) ?
+	        time.slice(0, -3) + 'ben' :
+	        time + ' ret';
 	        return time;
 	    }
 
@@ -17114,9 +17361,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function numberAsNoun(number) {
 	        var hundred = Math.floor((number % 1000) / 100),
-	    	ten = Math.floor((number % 100) / 10),
-	    	one = number % 10,
-	    	word = '';
+	        ten = Math.floor((number % 100) / 10),
+	        one = number % 10,
+	        word = '';
 	        if (hundred > 0) {
 	            word += numbersNouns[hundred] + 'vatlh';
 	        }
@@ -17180,17 +17427,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 153 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : turkish (tr)
+	//! locale : Turkish [tr]
 	//! authors : Erhan Gundogan : https://github.com/erhangundogan,
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17274,16 +17521,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 154 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : talossan (tzl)
+	//! locale : Talossan [tzl]
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17369,16 +17616,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 155 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Morocco Central Atlas Tamaziɣt in Latin (tzm-latn)
+	//! locale : Central Atlas Tamazight Latin [tzm-latn]
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17431,16 +17678,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 156 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : Morocco Central Atlas Tamaziɣt (tzm)
+	//! locale : Central Atlas Tamazight [tzm]
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17493,17 +17740,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 157 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : ukrainian (uk)
+	//! locale : Ukrainian [uk]
 	//! author : zemlanin : https://github.com/zemlanin
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17573,15 +17820,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nextWeek: processHoursFunction('[У] dddd ['),
 	            lastWeek: function () {
 	                switch (this.day()) {
-	                case 0:
-	                case 3:
-	                case 5:
-	                case 6:
-	                    return processHoursFunction('[Минулої] dddd [').call(this);
-	                case 1:
-	                case 2:
-	                case 4:
-	                    return processHoursFunction('[Минулого] dddd [').call(this);
+	                    case 0:
+	                    case 3:
+	                    case 5:
+	                    case 6:
+	                        return processHoursFunction('[Минулої] dddd [').call(this);
+	                    case 1:
+	                    case 2:
+	                    case 4:
+	                        return processHoursFunction('[Минулого] dddd [').call(this);
 	                }
 	            },
 	            sameElse: 'L'
@@ -17620,16 +17867,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}-(й|го)/,
 	        ordinal: function (number, period) {
 	            switch (period) {
-	            case 'M':
-	            case 'd':
-	            case 'DDD':
-	            case 'w':
-	            case 'W':
-	                return number + '-й';
-	            case 'D':
-	                return number + '-го';
-	            default:
-	                return number;
+	                case 'M':
+	                case 'd':
+	                case 'DDD':
+	                case 'w':
+	                case 'W':
+	                    return number + '-й';
+	                case 'D':
+	                    return number + '-го';
+	                default:
+	                    return number;
 	            }
 	        },
 	        week : {
@@ -17643,16 +17890,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 158 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : uzbek (uz)
+	//! locale : Uzbek [uz]
 	//! author : Sardor Muminov : https://github.com/muminoff
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17705,16 +17952,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 159 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : vietnamese (vi)
+	//! locale : Vietnamese [vi]
 	//! author : Bang Nguyen : https://github.com/bangnk
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17788,16 +18035,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : pseudo (x-pseudo)
+	//! locale : Pseudo [x-pseudo]
 	//! author : Andrew Hood : https://github.com/andrewhood125
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17860,17 +18107,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : chinese (zh-cn)
+	//! locale : Chinese (China) [zh-cn]
 	//! author : suupic : https://github.com/suupic
 	//! author : Zeno Zeng : https://github.com/zenozeng
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -17951,17 +18198,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}(日|月|周)/,
 	        ordinal : function (number, period) {
 	            switch (period) {
-	            case 'd':
-	            case 'D':
-	            case 'DDD':
-	                return number + '日';
-	            case 'M':
-	                return number + '月';
-	            case 'w':
-	            case 'W':
-	                return number + '周';
-	            default:
-	                return number;
+	                case 'd':
+	                case 'D':
+	                case 'DDD':
+	                    return number + '日';
+	                case 'M':
+	                    return number + '月';
+	                case 'w':
+	                case 'W':
+	                    return number + '周';
+	                default:
+	                    return number;
 	            }
 	        },
 	        relativeTime : {
@@ -17991,16 +18238,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
-	//! locale : traditional chinese (zh-tw)
+	//! locale : Chinese (Taiwan) [zh-tw]
 	//! author : Ben : https://github.com/ben-lin
+	//! author : Chris Lam : https://github.com/hehachris
 
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
-	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
 
@@ -18023,12 +18271,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            lll : 'YYYY年MMMD日Ah點mm分',
 	            llll : 'YYYY年MMMD日ddddAh點mm分'
 	        },
-	        meridiemParse: /早上|上午|中午|下午|晚上/,
+	        meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
 	        meridiemHour : function (hour, meridiem) {
 	            if (hour === 12) {
 	                hour = 0;
 	            }
-	            if (meridiem === '早上' || meridiem === '上午') {
+	            if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
 	                return hour;
 	            } else if (meridiem === '中午') {
 	                return hour >= 11 ? hour : hour + 12;
@@ -18038,7 +18286,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        meridiem : function (hour, minute, isLower) {
 	            var hm = hour * 100 + minute;
-	            if (hm < 900) {
+	            if (hm < 600) {
+	                return '凌晨';
+	            } else if (hm < 900) {
 	                return '早上';
 	            } else if (hm < 1130) {
 	                return '上午';
@@ -18061,33 +18311,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ordinalParse: /\d{1,2}(日|月|週)/,
 	        ordinal : function (number, period) {
 	            switch (period) {
-	            case 'd' :
-	            case 'D' :
-	            case 'DDD' :
-	                return number + '日';
-	            case 'M' :
-	                return number + '月';
-	            case 'w' :
-	            case 'W' :
-	                return number + '週';
-	            default :
-	                return number;
+	                case 'd' :
+	                case 'D' :
+	                case 'DDD' :
+	                    return number + '日';
+	                case 'M' :
+	                    return number + '月';
+	                case 'w' :
+	                case 'W' :
+	                    return number + '週';
+	                default :
+	                    return number;
 	            }
 	        },
 	        relativeTime : {
 	            future : '%s內',
 	            past : '%s前',
 	            s : '幾秒',
-	            m : '1分鐘',
-	            mm : '%d分鐘',
-	            h : '1小時',
-	            hh : '%d小時',
-	            d : '1天',
-	            dd : '%d天',
-	            M : '1個月',
-	            MM : '%d個月',
-	            y : '1年',
-	            yy : '%d年'
+	            m : '1 分鐘',
+	            mm : '%d 分鐘',
+	            h : '1 小時',
+	            hh : '%d 小時',
+	            d : '1 天',
+	            dd : '%d 天',
+	            M : '1 個月',
+	            MM : '%d 個月',
+	            y : '1 年',
+	            yy : '%d 年'
 	        }
 	    });
 
@@ -18096,13 +18346,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(350);
+	module.exports = __webpack_require__(351);
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/* eslint-disable react/prop-types */
@@ -18121,7 +18371,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _domHelpersQueryContains2 = _interopRequireDefault(_domHelpersQueryContains);
 
-	var _lodashCompatObjectPick = __webpack_require__(188);
+	var _lodashCompatObjectPick = __webpack_require__(189);
 
 	var _lodashCompatObjectPick2 = _interopRequireDefault(_lodashCompatObjectPick);
 
@@ -18137,7 +18387,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _Overlay = __webpack_require__(246);
+	var _Overlay = __webpack_require__(247);
 
 	var _Overlay2 = _interopRequireDefault(_Overlay);
 
@@ -18183,7 +18433,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    delayHide: _react2['default'].PropTypes.number,
 
 	    /**
-	     * The initial visibility state of the Overlay, for more nuanced visibility controll consider
+	     * The initial visibility state of the Overlay, for more nuanced visibility control consider
 	     * using the Overlay component directly.
 	     */
 	    defaultOverlayShown: _react2['default'].PropTypes.bool,
@@ -18422,7 +18672,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18447,7 +18697,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsBootstrapUtils = __webpack_require__(8);
 
-	var _PaginationButton = __webpack_require__(247);
+	var _PaginationButton = __webpack_require__(248);
 
 	var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
 
@@ -18729,7 +18979,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18748,7 +18998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactPropTypesLibIsRequiredForA11y = __webpack_require__(196);
+	var _reactPropTypesLibIsRequiredForA11y = __webpack_require__(197);
 
 	var _reactPropTypesLibIsRequiredForA11y2 = _interopRequireDefault(_reactPropTypesLibIsRequiredForA11y);
 
@@ -18850,7 +19100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// we don't want to expose the `style` property
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18865,7 +19115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _uncontrollable = __webpack_require__(197);
+	var _uncontrollable = __webpack_require__(198);
 
 	var _uncontrollable2 = _interopRequireDefault(_uncontrollable);
 
@@ -18934,19 +19184,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	  getChildContext: function getChildContext() {
 	    var _props = this.props;
 	    var activeKey = _props.activeKey;
-	    var onSelect = _props.onSelect;
 	    var generateChildId = _props.generateChildId;
 	    var id = _props.id;
 
 	    return {
 	      $bs_tabcontainer: {
 	        activeKey: activeKey,
-	        onSelect: onSelect,
+	        onSelect: this.handleSelect,
 	        getId: generateChildId || function (key, type) {
 	          return id ? id + '-' + type + '-' + key : null;
 	        }
 	      }
 	    };
+	  },
+
+	  componentWillUnmount: function componentWillUnmount() {
+	    // isMounted() isn't `true` at this point;
+	    this.unmounting = true;
+	  },
+
+	  handleSelect: function handleSelect(key) {
+	    if (!this.unmounting) {
+	      this.props.onSelect(key);
+	    }
 	  },
 
 	  render: function render() {
@@ -18967,7 +19227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -19126,6 +19386,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return function () {
 	      panes.splice(panes.indexOf(eventKey), 1);
+
+	      // #1892
+	      // new active state can propagate down _before_
+	      // the tab actually unmounts, so it will map be exiting.
+	      // since an exiting tab won't complete, clear the bad state
+	      if (eventKey === _this._exitingPane) {
+	        _this.handlePaneExited();
+	      }
+
+	      // If the tab was active, we need to tell the container
+	      // that it no longer exists and as such is not active.
 	      if (eventKey === _this.getActiveKey()) {
 	        _this.getContext('$bs_tabcontainer').onSelect();
 	      }
@@ -19150,7 +19421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19196,13 +19467,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 170 */
-[356, 253],
 /* 171 */
 [357, 254],
 /* 172 */
-[373, 257],
+[358, 255],
 /* 173 */
+[374, 258],
+/* 174 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -19214,7 +19485,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -19222,20 +19493,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 175 */
-[386, 260],
 /* 176 */
+[387, 261],
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var hasClass = __webpack_require__(177);
+	var hasClass = __webpack_require__(178);
 
 	module.exports = function addClass(element, className) {
 	  if (element.classList) element.classList.add(className);else if (!hasClass(element)) element.className = element.className + ' ' + className;
 	};
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19244,7 +19515,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19266,7 +19537,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = off;
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19301,7 +19572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19316,7 +19587,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19326,7 +19597,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	'use strict';
-	var camelize = __webpack_require__(281);
+	var camelize = __webpack_require__(282);
 	var msPattern = /^-ms-/;
 
 	module.exports = function camelizeStyleName(string) {
@@ -19334,7 +19605,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19364,10 +19635,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getLength = __webpack_require__(294),
+	var getLength = __webpack_require__(295),
 	    isLength = __webpack_require__(47);
 
 	/**
@@ -19385,10 +19656,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(183),
+	var isArrayLike = __webpack_require__(184),
 	    isObjectLike = __webpack_require__(24);
 
 	/** Used for native method references. */
@@ -19425,10 +19696,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(295),
+	var getNative = __webpack_require__(296),
 	    isLength = __webpack_require__(47),
 	    isObjectLike = __webpack_require__(24);
 
@@ -19471,7 +19742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(49);
@@ -19515,7 +19786,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObjectLike = __webpack_require__(24);
@@ -19556,14 +19827,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFlatten = __webpack_require__(288),
-	    bindCallback = __webpack_require__(292),
-	    pickByArray = __webpack_require__(298),
-	    pickByCallback = __webpack_require__(299),
-	    restParam = __webpack_require__(285);
+	var baseFlatten = __webpack_require__(289),
+	    bindCallback = __webpack_require__(293),
+	    pickByArray = __webpack_require__(299),
+	    pickByCallback = __webpack_require__(300),
+	    restParam = __webpack_require__(286);
 
 	/**
 	 * Creates an object composed of the picked `object` properties. Property
@@ -19604,7 +19875,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports) {
 
 	/** Used for native method references. */
@@ -19706,7 +19977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19841,7 +20112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19854,7 +20125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _domHelpersEventsOn2 = _interopRequireDefault(_domHelpersEventsOn);
 
-	var _domHelpersEventsOff = __webpack_require__(178);
+	var _domHelpersEventsOff = __webpack_require__(179);
 
 	var _domHelpersEventsOff2 = _interopRequireDefault(_domHelpersEventsOff);
 
@@ -19870,7 +20141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19915,7 +20186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19954,11 +20225,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 194 */
-[391, 193],
 /* 195 */
-193,
+[392, 194],
 /* 196 */
+194,
+/* 197 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19979,14 +20250,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _createUncontrollable = __webpack_require__(315);
+	var _createUncontrollable = __webpack_require__(316);
 
 	var _createUncontrollable2 = _interopRequireDefault(_createUncontrollable);
 
@@ -20015,7 +20286,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20040,7 +20311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _EnhancedSwitch = __webpack_require__(199);
+	var _EnhancedSwitch = __webpack_require__(200);
 
 	var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 
@@ -20083,7 +20354,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -20096,9 +20367,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classCallCheck = __webpack_require__(32)['default'];
 
-	var _defineProperty = __webpack_require__(324)['default'];
+	var _defineProperty = __webpack_require__(325)['default'];
 
-	var _objectWithoutProperties = __webpack_require__(201)['default'];
+	var _objectWithoutProperties = __webpack_require__(202)['default'];
 
 	var _extends = __webpack_require__(34)['default'];
 
@@ -20620,17 +20891,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(327), __esModule: true };
+	module.exports = { "default": __webpack_require__(328), __esModule: true };
 
 /***/ },
-/* 201 */
-13,
 /* 202 */
-[373, 330],
+13,
 /* 203 */
+[374, 331],
+/* 204 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -20640,13 +20911,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 204 */
-173,
 /* 205 */
-[378, 332],
-/* 206 */
 174,
+/* 206 */
+[379, 333],
 /* 207 */
+175,
+/* 208 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20661,7 +20932,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20730,7 +21001,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = AccordionComponent;
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20753,7 +21024,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(224);
+	__webpack_require__(225);
 
 	var CategorySearchComponent = function CategorySearchComponent(_ref) {
 	  var additionalClassNames = _ref.additionalClassNames;
@@ -20840,7 +21111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = CategorySearchComponent;
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20945,7 +21216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ConfirmModalComponent;
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20978,7 +21249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(225);
+	__webpack_require__(226);
 
 	var baseClass = 'filepicker-component';
 
@@ -21090,7 +21361,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = FilePickerComponent;
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21178,7 +21449,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = FormGroupComponent;
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21195,7 +21466,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _alexandriaAdslot = __webpack_require__(6);
 
-	var _Pagination = __webpack_require__(165);
+	var _Pagination = __webpack_require__(166);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
@@ -21211,7 +21482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(228);
+	__webpack_require__(229);
 
 	var PagedGridComponent = function (_React$Component) {
 	  _inherits(PagedGridComponent, _React$Component);
@@ -21337,7 +21608,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = PagedGridComponent;
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21352,7 +21623,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _seamlessImmutable = __webpack_require__(353);
+	var _seamlessImmutable = __webpack_require__(354);
 
 	var _seamlessImmutable2 = _interopRequireDefault(_seamlessImmutable);
 
@@ -21364,7 +21635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _reactAddonsPureRenderMixin = __webpack_require__(163);
+	var _reactAddonsPureRenderMixin = __webpack_require__(164);
 
 	var _reactAddonsPureRenderMixin2 = _interopRequireDefault(_reactAddonsPureRenderMixin);
 
@@ -21372,7 +21643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TreePickerPropTypes2 = _interopRequireDefault(_TreePickerPropTypes);
 
-	var _TreePickerPureComponent = __webpack_require__(215);
+	var _TreePickerPureComponent = __webpack_require__(216);
 
 	var _TreePickerPureComponent2 = _interopRequireDefault(_TreePickerPureComponent);
 
@@ -21698,7 +21969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = TreePickerComponent;
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21727,7 +21998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TreePickerPropTypes2 = _interopRequireDefault(_TreePickerPropTypes);
 
-	var _TreePickerSelectedComponent = __webpack_require__(216);
+	var _TreePickerSelectedComponent = __webpack_require__(217);
 
 	var _TreePickerSelectedComponent2 = _interopRequireDefault(_TreePickerSelectedComponent);
 
@@ -21741,7 +22012,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(233);
+	__webpack_require__(234);
 
 	var TreePickerPureComponent = function TreePickerPureComponent(_ref) {
 	  var activeRootTypeId = _ref.activeRootTypeId;
@@ -21917,7 +22188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = TreePickerPureComponent;
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21938,11 +22209,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _fastStatelessWrapper2 = _interopRequireDefault(_fastStatelessWrapper);
 
-	var _OverlayTrigger = __webpack_require__(164);
+	var _OverlayTrigger = __webpack_require__(165);
 
 	var _OverlayTrigger2 = _interopRequireDefault(_OverlayTrigger);
 
-	var _Popover = __webpack_require__(166);
+	var _Popover = __webpack_require__(167);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -21962,7 +22233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(234);
+	__webpack_require__(235);
 
 	var TreePickerNodeFast = (0, _fastStatelessWrapper2.default)(_TreePickerNodeComponent2.default, ['node.id', 'selected']);
 
@@ -22161,7 +22432,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = TreePickerSelectedComponent;
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22200,7 +22471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(235);
+	__webpack_require__(236);
 
 	var TreePickerSimplePureComponent = function TreePickerSimplePureComponent(_ref) {
 	  var additionalClassNames = _ref.additionalClassNames;
@@ -22310,7 +22581,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = TreePickerSimplePureComponent;
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22335,7 +22606,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(236);
+	__webpack_require__(237);
 
 	var UserListPickerComponent = function UserListPickerComponent(_ref) {
 	  var allowEmptySelection = _ref.allowEmptySelection;
@@ -22440,47 +22711,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = UserListPickerComponent;
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 220 */
-219,
 /* 221 */
-219,
+220,
 /* 222 */
-219,
+220,
 /* 223 */
-219,
+220,
 /* 224 */
-219,
+220,
 /* 225 */
-219,
+220,
 /* 226 */
-219,
+220,
 /* 227 */
-219,
+220,
 /* 228 */
-219,
+220,
 /* 229 */
-219,
+220,
 /* 230 */
-219,
+220,
 /* 231 */
-219,
+220,
 /* 232 */
-219,
+220,
 /* 233 */
-219,
+220,
 /* 234 */
-219,
+220,
 /* 235 */
-219,
+220,
 /* 236 */
-219,
+220,
 /* 237 */
+220,
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
@@ -22538,152 +22809,154 @@ return /******/ (function(modules) { // webpackBootstrap
 		"./en-nz.js": 88,
 		"./eo": 89,
 		"./eo.js": 89,
-		"./es": 90,
-		"./es.js": 90,
-		"./et": 91,
-		"./et.js": 91,
-		"./eu": 92,
-		"./eu.js": 92,
-		"./fa": 93,
-		"./fa.js": 93,
-		"./fi": 94,
-		"./fi.js": 94,
-		"./fo": 95,
-		"./fo.js": 95,
-		"./fr": 98,
-		"./fr-ca": 96,
-		"./fr-ca.js": 96,
-		"./fr-ch": 97,
-		"./fr-ch.js": 97,
-		"./fr.js": 98,
-		"./fy": 99,
-		"./fy.js": 99,
-		"./gd": 100,
-		"./gd.js": 100,
-		"./gl": 101,
-		"./gl.js": 101,
-		"./he": 102,
-		"./he.js": 102,
-		"./hi": 103,
-		"./hi.js": 103,
-		"./hr": 104,
-		"./hr.js": 104,
-		"./hu": 105,
-		"./hu.js": 105,
-		"./hy-am": 106,
-		"./hy-am.js": 106,
-		"./id": 107,
-		"./id.js": 107,
-		"./is": 108,
-		"./is.js": 108,
-		"./it": 109,
-		"./it.js": 109,
-		"./ja": 110,
-		"./ja.js": 110,
-		"./jv": 111,
-		"./jv.js": 111,
-		"./ka": 112,
-		"./ka.js": 112,
-		"./kk": 113,
-		"./kk.js": 113,
-		"./km": 114,
-		"./km.js": 114,
-		"./ko": 115,
-		"./ko.js": 115,
-		"./ky": 116,
-		"./ky.js": 116,
-		"./lb": 117,
-		"./lb.js": 117,
-		"./lo": 118,
-		"./lo.js": 118,
-		"./lt": 119,
-		"./lt.js": 119,
-		"./lv": 120,
-		"./lv.js": 120,
-		"./me": 121,
-		"./me.js": 121,
-		"./mk": 122,
-		"./mk.js": 122,
-		"./ml": 123,
-		"./ml.js": 123,
-		"./mr": 124,
-		"./mr.js": 124,
-		"./ms": 126,
-		"./ms-my": 125,
-		"./ms-my.js": 125,
-		"./ms.js": 126,
-		"./my": 127,
-		"./my.js": 127,
-		"./nb": 128,
-		"./nb.js": 128,
-		"./ne": 129,
-		"./ne.js": 129,
-		"./nl": 130,
-		"./nl.js": 130,
-		"./nn": 131,
-		"./nn.js": 131,
-		"./pa-in": 132,
-		"./pa-in.js": 132,
-		"./pl": 133,
-		"./pl.js": 133,
-		"./pt": 135,
-		"./pt-br": 134,
-		"./pt-br.js": 134,
-		"./pt.js": 135,
-		"./ro": 136,
-		"./ro.js": 136,
-		"./ru": 137,
-		"./ru.js": 137,
-		"./se": 138,
-		"./se.js": 138,
-		"./si": 139,
-		"./si.js": 139,
-		"./sk": 140,
-		"./sk.js": 140,
-		"./sl": 141,
-		"./sl.js": 141,
-		"./sq": 142,
-		"./sq.js": 142,
-		"./sr": 144,
-		"./sr-cyrl": 143,
-		"./sr-cyrl.js": 143,
-		"./sr.js": 144,
-		"./ss": 145,
-		"./ss.js": 145,
-		"./sv": 146,
-		"./sv.js": 146,
-		"./sw": 147,
-		"./sw.js": 147,
-		"./ta": 148,
-		"./ta.js": 148,
-		"./te": 149,
-		"./te.js": 149,
-		"./th": 150,
-		"./th.js": 150,
-		"./tl-ph": 151,
-		"./tl-ph.js": 151,
-		"./tlh": 152,
-		"./tlh.js": 152,
-		"./tr": 153,
-		"./tr.js": 153,
-		"./tzl": 154,
-		"./tzl.js": 154,
-		"./tzm": 156,
-		"./tzm-latn": 155,
-		"./tzm-latn.js": 155,
-		"./tzm.js": 156,
-		"./uk": 157,
-		"./uk.js": 157,
-		"./uz": 158,
-		"./uz.js": 158,
-		"./vi": 159,
-		"./vi.js": 159,
-		"./x-pseudo": 160,
-		"./x-pseudo.js": 160,
-		"./zh-cn": 161,
-		"./zh-cn.js": 161,
-		"./zh-tw": 162,
-		"./zh-tw.js": 162
+		"./es": 91,
+		"./es-do": 90,
+		"./es-do.js": 90,
+		"./es.js": 91,
+		"./et": 92,
+		"./et.js": 92,
+		"./eu": 93,
+		"./eu.js": 93,
+		"./fa": 94,
+		"./fa.js": 94,
+		"./fi": 95,
+		"./fi.js": 95,
+		"./fo": 96,
+		"./fo.js": 96,
+		"./fr": 99,
+		"./fr-ca": 97,
+		"./fr-ca.js": 97,
+		"./fr-ch": 98,
+		"./fr-ch.js": 98,
+		"./fr.js": 99,
+		"./fy": 100,
+		"./fy.js": 100,
+		"./gd": 101,
+		"./gd.js": 101,
+		"./gl": 102,
+		"./gl.js": 102,
+		"./he": 103,
+		"./he.js": 103,
+		"./hi": 104,
+		"./hi.js": 104,
+		"./hr": 105,
+		"./hr.js": 105,
+		"./hu": 106,
+		"./hu.js": 106,
+		"./hy-am": 107,
+		"./hy-am.js": 107,
+		"./id": 108,
+		"./id.js": 108,
+		"./is": 109,
+		"./is.js": 109,
+		"./it": 110,
+		"./it.js": 110,
+		"./ja": 111,
+		"./ja.js": 111,
+		"./jv": 112,
+		"./jv.js": 112,
+		"./ka": 113,
+		"./ka.js": 113,
+		"./kk": 114,
+		"./kk.js": 114,
+		"./km": 115,
+		"./km.js": 115,
+		"./ko": 116,
+		"./ko.js": 116,
+		"./ky": 117,
+		"./ky.js": 117,
+		"./lb": 118,
+		"./lb.js": 118,
+		"./lo": 119,
+		"./lo.js": 119,
+		"./lt": 120,
+		"./lt.js": 120,
+		"./lv": 121,
+		"./lv.js": 121,
+		"./me": 122,
+		"./me.js": 122,
+		"./mk": 123,
+		"./mk.js": 123,
+		"./ml": 124,
+		"./ml.js": 124,
+		"./mr": 125,
+		"./mr.js": 125,
+		"./ms": 127,
+		"./ms-my": 126,
+		"./ms-my.js": 126,
+		"./ms.js": 127,
+		"./my": 128,
+		"./my.js": 128,
+		"./nb": 129,
+		"./nb.js": 129,
+		"./ne": 130,
+		"./ne.js": 130,
+		"./nl": 131,
+		"./nl.js": 131,
+		"./nn": 132,
+		"./nn.js": 132,
+		"./pa-in": 133,
+		"./pa-in.js": 133,
+		"./pl": 134,
+		"./pl.js": 134,
+		"./pt": 136,
+		"./pt-br": 135,
+		"./pt-br.js": 135,
+		"./pt.js": 136,
+		"./ro": 137,
+		"./ro.js": 137,
+		"./ru": 138,
+		"./ru.js": 138,
+		"./se": 139,
+		"./se.js": 139,
+		"./si": 140,
+		"./si.js": 140,
+		"./sk": 141,
+		"./sk.js": 141,
+		"./sl": 142,
+		"./sl.js": 142,
+		"./sq": 143,
+		"./sq.js": 143,
+		"./sr": 145,
+		"./sr-cyrl": 144,
+		"./sr-cyrl.js": 144,
+		"./sr.js": 145,
+		"./ss": 146,
+		"./ss.js": 146,
+		"./sv": 147,
+		"./sv.js": 147,
+		"./sw": 148,
+		"./sw.js": 148,
+		"./ta": 149,
+		"./ta.js": 149,
+		"./te": 150,
+		"./te.js": 150,
+		"./th": 151,
+		"./th.js": 151,
+		"./tl-ph": 152,
+		"./tl-ph.js": 152,
+		"./tlh": 153,
+		"./tlh.js": 153,
+		"./tr": 154,
+		"./tr.js": 154,
+		"./tzl": 155,
+		"./tzl.js": 155,
+		"./tzm": 157,
+		"./tzm-latn": 156,
+		"./tzm-latn.js": 156,
+		"./tzm.js": 157,
+		"./uk": 158,
+		"./uk.js": 158,
+		"./uz": 159,
+		"./uz.js": 159,
+		"./vi": 160,
+		"./vi.js": 160,
+		"./x-pseudo": 161,
+		"./x-pseudo.js": 161,
+		"./zh-cn": 162,
+		"./zh-cn.js": 162,
+		"./zh-tw": 163,
+		"./zh-tw.js": 163
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -22696,11 +22969,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 237;
+	webpackContext.id = 238;
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22953,7 +23226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23004,7 +23277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23074,7 +23347,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23136,7 +23409,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23243,7 +23516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23294,7 +23567,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23313,7 +23586,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _keycode = __webpack_require__(284);
+	var _keycode = __webpack_require__(285);
 
 	var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -23325,7 +23598,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactPropTypesLibAll = __webpack_require__(313);
+	var _reactPropTypesLibAll = __webpack_require__(314);
 
 	var _reactPropTypesLibAll2 = _interopRequireDefault(_reactPropTypesLibAll);
 
@@ -23339,7 +23612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsCreateChainedFunction2 = _interopRequireDefault(_utilsCreateChainedFunction);
 
-	var _utilsTabUtils = __webpack_require__(169);
+	var _utilsTabUtils = __webpack_require__(170);
 
 	var _utilsValidComponentChildren = __webpack_require__(42);
 
@@ -23643,7 +23916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23746,7 +24019,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* eslint react/prop-types: [2, {ignore: ["container", "containerPadding", "target", "placement", "children"] }] */
@@ -23770,7 +24043,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactOverlaysLibOverlay = __webpack_require__(305);
+	var _reactOverlaysLibOverlay = __webpack_require__(306);
 
 	var _reactOverlaysLibOverlay2 = _interopRequireDefault(_reactOverlaysLibOverlay);
 
@@ -23890,7 +24163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23983,7 +24256,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24004,15 +24277,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TabPane = __webpack_require__(249);
+	var _TabPane = __webpack_require__(250);
 
 	var _TabPane2 = _interopRequireDefault(_TabPane);
 
-	var _TabContainer = __webpack_require__(167);
+	var _TabContainer = __webpack_require__(168);
 
 	var _TabContainer2 = _interopRequireDefault(_TabContainer);
 
-	var _TabContent = __webpack_require__(168);
+	var _TabContent = __webpack_require__(169);
 
 	var _TabContent2 = _interopRequireDefault(_TabContent);
 
@@ -24059,7 +24332,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24074,7 +24347,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _domHelpersClassAddClass = __webpack_require__(176);
+	var _domHelpersClassAddClass = __webpack_require__(177);
 
 	var _domHelpersClassAddClass2 = _interopRequireDefault(_domHelpersClassAddClass);
 
@@ -24096,7 +24369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsCreateChainedFunction2 = _interopRequireDefault(_utilsCreateChainedFunction);
 
-	var _utilsTabUtils = __webpack_require__(169);
+	var _utilsTabUtils = __webpack_require__(170);
 
 	var _Fade = __webpack_require__(40);
 
@@ -24362,7 +24635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24381,7 +24654,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _uncontrollable = __webpack_require__(197);
+	var _uncontrollable = __webpack_require__(198);
 
 	var _uncontrollable2 = _interopRequireDefault(_uncontrollable);
 
@@ -24389,15 +24662,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Col = __webpack_require__(238);
+	var _Col = __webpack_require__(239);
 
 	var _Col2 = _interopRequireDefault(_Col);
 
-	var _Nav = __webpack_require__(244);
+	var _Nav = __webpack_require__(245);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(245);
+	var _NavItem = __webpack_require__(246);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
@@ -24405,11 +24678,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _styleMaps2 = _interopRequireDefault(_styleMaps);
 
-	var _reactPropTypesLibIsRequiredForA11y = __webpack_require__(196);
+	var _reactPropTypesLibIsRequiredForA11y = __webpack_require__(197);
 
 	var _reactPropTypesLibIsRequiredForA11y2 = _interopRequireDefault(_reactPropTypesLibIsRequiredForA11y);
 
-	var _utilsDeprecationWarning = __webpack_require__(251);
+	var _utilsDeprecationWarning = __webpack_require__(252);
 
 	var _utilsDeprecationWarning2 = _interopRequireDefault(_utilsDeprecationWarning);
 
@@ -24417,11 +24690,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsValidComponentChildren2 = _interopRequireDefault(_utilsValidComponentChildren);
 
-	var _TabContainer = __webpack_require__(167);
+	var _TabContainer = __webpack_require__(168);
 
 	var _TabContainer2 = _interopRequireDefault(_TabContainer);
 
-	var _TabContent = __webpack_require__(168);
+	var _TabContent = __webpack_require__(169);
 
 	var _TabContent2 = _interopRequireDefault(_TabContent);
 
@@ -24704,7 +24977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24785,22 +25058,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 252 */
-[359, 256],
 /* 253 */
-[365, 266, 23],
+[360, 257],
 /* 254 */
-[367, 44],
+[366, 267, 23],
 /* 255 */
+[368, 44],
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(267);
+	__webpack_require__(268);
 	module.exports = __webpack_require__(23).Object.keys;
 
 /***/ },
-/* 256 */
-[369, 268, 23],
 /* 257 */
+[370, 269, 23],
+/* 258 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -24809,9 +25082,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 258 */
-[372, 174],
 /* 259 */
+[373, 175],
+/* 260 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -24821,9 +25094,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 260 */
-203,
 /* 261 */
+204,
+/* 262 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -24832,32 +25105,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 262 */
-[378, 259],
 /* 263 */
-[380, 44, 175, 262, 173],
+[379, 260],
 /* 264 */
-[381, 43, 23, 173],
+[381, 44, 176, 263, 174],
 /* 265 */
-[383, 44, 174, 258, 172],
+[382, 43, 23, 174],
 /* 266 */
-[388, 43, 263],
+[384, 44, 175, 259, 173],
 /* 267 */
+[389, 43, 264],
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(175);
+	var toObject = __webpack_require__(176);
 
-	__webpack_require__(264)('keys', function($keys){
+	__webpack_require__(265)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 268 */
-[389, 43, 265],
 /* 269 */
+[390, 43, 266],
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24886,19 +25159,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = {
-	  addClass: __webpack_require__(176),
-	  removeClass: __webpack_require__(271),
-	  hasClass: __webpack_require__(177)
+	  addClass: __webpack_require__(177),
+	  removeClass: __webpack_require__(272),
+	  hasClass: __webpack_require__(178)
 	};
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24908,13 +25181,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var contains = __webpack_require__(28),
-	    qsa = __webpack_require__(276);
+	    qsa = __webpack_require__(277);
 
 	module.exports = function (selector, handler) {
 	  return function (e) {
@@ -24929,18 +25202,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var on = __webpack_require__(45),
-	    off = __webpack_require__(178),
-	    filter = __webpack_require__(272);
+	    off = __webpack_require__(179),
+	    filter = __webpack_require__(273);
 
 	module.exports = { on: on, off: off, filter: filter };
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24976,7 +25249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24986,19 +25259,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports['default'] = position;
 
-	var _offset = __webpack_require__(179);
+	var _offset = __webpack_require__(180);
 
 	var _offset2 = babelHelpers.interopRequireDefault(_offset);
 
-	var _offsetParent = __webpack_require__(274);
+	var _offsetParent = __webpack_require__(275);
 
 	var _offsetParent2 = babelHelpers.interopRequireDefault(_offsetParent);
 
-	var _scrollTop = __webpack_require__(180);
+	var _scrollTop = __webpack_require__(181);
 
 	var _scrollTop2 = babelHelpers.interopRequireDefault(_scrollTop);
 
-	var _scrollLeft = __webpack_require__(277);
+	var _scrollLeft = __webpack_require__(278);
 
 	var _scrollLeft2 = babelHelpers.interopRequireDefault(_scrollLeft);
 
@@ -25038,7 +25311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25070,7 +25343,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25085,14 +25358,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var babelHelpers = __webpack_require__(30);
 
-	var _utilCamelizeStyle = __webpack_require__(181);
+	var _utilCamelizeStyle = __webpack_require__(182);
 
 	var _utilCamelizeStyle2 = babelHelpers.interopRequireDefault(_utilCamelizeStyle);
 
@@ -25138,7 +25411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25148,7 +25421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25208,7 +25481,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25222,7 +25495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25234,7 +25507,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25245,7 +25518,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
-	var hyphenate = __webpack_require__(282);
+	var hyphenate = __webpack_require__(283);
 	var msPattern = /^ms-/;
 
 	module.exports = function hyphenateStyleName(string) {
@@ -25253,7 +25526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports) {
 
 	// Source: http://jsfiddle.net/vWx8V/
@@ -25405,7 +25678,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports) {
 
 	/** Used as the `TypeError` message for "Functions" methods. */
@@ -25469,7 +25742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports) {
 
 	/**
@@ -25497,7 +25770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports) {
 
 	/**
@@ -25523,13 +25796,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayPush = __webpack_require__(287),
-	    isArguments = __webpack_require__(184),
-	    isArray = __webpack_require__(185),
-	    isArrayLike = __webpack_require__(183),
+	var arrayPush = __webpack_require__(288),
+	    isArguments = __webpack_require__(185),
+	    isArray = __webpack_require__(186),
+	    isArrayLike = __webpack_require__(184),
 	    isObjectLike = __webpack_require__(24);
 
 	/**
@@ -25570,10 +25843,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var createBaseFor = __webpack_require__(293);
+	var createBaseFor = __webpack_require__(294);
 
 	/**
 	 * The base implementation of `baseForIn` and `baseForOwn` which iterates
@@ -25593,11 +25866,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFor = __webpack_require__(289),
-	    keysIn = __webpack_require__(301);
+	var baseFor = __webpack_require__(290),
+	    keysIn = __webpack_require__(302);
 
 	/**
 	 * The base implementation of `_.forIn` without support for callback
@@ -25616,7 +25889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var toObject = __webpack_require__(48);
@@ -25638,10 +25911,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var identity = __webpack_require__(302);
+	var identity = __webpack_require__(303);
 
 	/**
 	 * A specialized version of `baseCallback` which only supports `this` binding
@@ -25683,7 +25956,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var toObject = __webpack_require__(48);
@@ -25716,10 +25989,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseProperty = __webpack_require__(291);
+	var baseProperty = __webpack_require__(292);
 
 	/**
 	 * Gets the "length" property value of `object`.
@@ -25737,10 +26010,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isNative = __webpack_require__(300);
+	var isNative = __webpack_require__(301);
 
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -25759,7 +26032,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports) {
 
 	/**
@@ -25786,7 +26059,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports) {
 
 	/** Used to detect unsigned integer values. */
@@ -25816,7 +26089,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var toObject = __webpack_require__(48);
@@ -25850,10 +26123,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 299 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseForIn = __webpack_require__(290);
+	var baseForIn = __webpack_require__(291);
 
 	/**
 	 * A specialized version of `_.pick` which picks `object` properties `predicate`
@@ -25878,11 +26151,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 300 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(186),
-	    isHostObject = __webpack_require__(296),
+	var isFunction = __webpack_require__(187),
+	    isHostObject = __webpack_require__(297),
 	    isObjectLike = __webpack_require__(24);
 
 	/** Used to detect host constructors (Safari > 5). */
@@ -25933,18 +26206,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 301 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayEach = __webpack_require__(286),
-	    isArguments = __webpack_require__(184),
-	    isArray = __webpack_require__(185),
-	    isFunction = __webpack_require__(186),
-	    isIndex = __webpack_require__(297),
+	var arrayEach = __webpack_require__(287),
+	    isArguments = __webpack_require__(185),
+	    isArray = __webpack_require__(186),
+	    isFunction = __webpack_require__(187),
+	    isIndex = __webpack_require__(298),
 	    isLength = __webpack_require__(47),
 	    isObject = __webpack_require__(49),
-	    isString = __webpack_require__(187),
-	    support = __webpack_require__(189);
+	    isString = __webpack_require__(188),
+	    support = __webpack_require__(190);
 
 	/** `Object#toString` result references. */
 	var arrayTag = '[object Array]',
@@ -26075,7 +26348,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports) {
 
 	/**
@@ -26101,7 +26374,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*eslint-disable react/prop-types */
@@ -26127,15 +26400,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactPropTypesLibMountable2 = _interopRequireDefault(_reactPropTypesLibMountable);
 
-	var _reactPropTypesLibElementType = __webpack_require__(194);
+	var _reactPropTypesLibElementType = __webpack_require__(195);
 
 	var _reactPropTypesLibElementType2 = _interopRequireDefault(_reactPropTypesLibElementType);
 
-	var _Portal = __webpack_require__(190);
+	var _Portal = __webpack_require__(191);
 
 	var _Portal2 = _interopRequireDefault(_Portal);
 
-	var _ModalManager = __webpack_require__(304);
+	var _ModalManager = __webpack_require__(305);
 
 	var _ModalManager2 = _interopRequireDefault(_ModalManager);
 
@@ -26143,11 +26416,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsOwnerDocument2 = _interopRequireDefault(_utilsOwnerDocument);
 
-	var _utilsAddEventListener = __webpack_require__(191);
+	var _utilsAddEventListener = __webpack_require__(192);
 
 	var _utilsAddEventListener2 = _interopRequireDefault(_utilsAddEventListener);
 
-	var _utilsAddFocusListener = __webpack_require__(309);
+	var _utilsAddFocusListener = __webpack_require__(310);
 
 	var _utilsAddFocusListener2 = _interopRequireDefault(_utilsAddFocusListener);
 
@@ -26155,7 +26428,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _domHelpersUtilInDOM2 = _interopRequireDefault(_domHelpersUtilInDOM);
 
-	var _domHelpersActiveElement = __webpack_require__(269);
+	var _domHelpersActiveElement = __webpack_require__(270);
 
 	var _domHelpersActiveElement2 = _interopRequireDefault(_domHelpersActiveElement);
 
@@ -26615,7 +26888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26630,19 +26903,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _domHelpersStyle2 = _interopRequireDefault(_domHelpersStyle);
 
-	var _domHelpersClass = __webpack_require__(270);
+	var _domHelpersClass = __webpack_require__(271);
 
 	var _domHelpersClass2 = _interopRequireDefault(_domHelpersClass);
 
-	var _domHelpersUtilScrollbarSize = __webpack_require__(182);
+	var _domHelpersUtilScrollbarSize = __webpack_require__(183);
 
 	var _domHelpersUtilScrollbarSize2 = _interopRequireDefault(_domHelpersUtilScrollbarSize);
 
-	var _utilsIsOverflowing = __webpack_require__(192);
+	var _utilsIsOverflowing = __webpack_require__(193);
 
 	var _utilsIsOverflowing2 = _interopRequireDefault(_utilsIsOverflowing);
 
-	var _utilsManageAriaHidden = __webpack_require__(311);
+	var _utilsManageAriaHidden = __webpack_require__(312);
 
 	function findIndexOf(arr, cb) {
 	  var idx = -1;
@@ -26776,7 +27049,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26797,19 +27070,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Portal = __webpack_require__(190);
+	var _Portal = __webpack_require__(191);
 
 	var _Portal2 = _interopRequireDefault(_Portal);
 
-	var _Position = __webpack_require__(306);
+	var _Position = __webpack_require__(307);
 
 	var _Position2 = _interopRequireDefault(_Position);
 
-	var _RootCloseWrapper = __webpack_require__(307);
+	var _RootCloseWrapper = __webpack_require__(308);
 
 	var _RootCloseWrapper2 = _interopRequireDefault(_RootCloseWrapper);
 
-	var _reactPropTypesLibElementType = __webpack_require__(194);
+	var _reactPropTypesLibElementType = __webpack_require__(195);
 
 	var _reactPropTypesLibElementType2 = _interopRequireDefault(_reactPropTypesLibElementType);
 
@@ -26988,7 +27261,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27025,7 +27298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsGetContainer2 = _interopRequireDefault(_utilsGetContainer);
 
-	var _utilsOverlayPositionUtils = __webpack_require__(312);
+	var _utilsOverlayPositionUtils = __webpack_require__(313);
 
 	var _reactPropTypesLibMountable = __webpack_require__(51);
 
@@ -27191,7 +27464,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27212,11 +27485,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _utilsAddEventListener = __webpack_require__(191);
+	var _utilsAddEventListener = __webpack_require__(192);
 
 	var _utilsAddEventListener2 = _interopRequireDefault(_utilsAddEventListener);
 
-	var _utilsCreateChainedFunction = __webpack_require__(310);
+	var _utilsCreateChainedFunction = __webpack_require__(311);
 
 	var _utilsCreateChainedFunction2 = _interopRequireDefault(_utilsCreateChainedFunction);
 
@@ -27367,7 +27640,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27392,7 +27665,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _domHelpersTransitionProperties = __webpack_require__(280);
+	var _domHelpersTransitionProperties = __webpack_require__(281);
 
 	var _domHelpersTransitionProperties2 = _interopRequireDefault(_domHelpersTransitionProperties);
 
@@ -27719,7 +27992,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports['default'] = Transition;
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports) {
 
 	/**
@@ -27755,9 +28028,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 310 */
-19,
 /* 311 */
+19,
+/* 312 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27809,7 +28082,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27822,15 +28095,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ownerDocument2 = _interopRequireDefault(_ownerDocument);
 
-	var _domHelpersQueryOffset = __webpack_require__(179);
+	var _domHelpersQueryOffset = __webpack_require__(180);
 
 	var _domHelpersQueryOffset2 = _interopRequireDefault(_domHelpersQueryOffset);
 
-	var _domHelpersQueryPosition = __webpack_require__(275);
+	var _domHelpersQueryPosition = __webpack_require__(276);
 
 	var _domHelpersQueryPosition2 = _interopRequireDefault(_domHelpersQueryPosition);
 
-	var _domHelpersQueryScrollTop = __webpack_require__(180);
+	var _domHelpersQueryScrollTop = __webpack_require__(181);
 
 	var _domHelpersQueryScrollTop2 = _interopRequireDefault(_domHelpersQueryScrollTop);
 
@@ -27948,7 +28221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27956,7 +28229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports['default'] = all;
 
-	var _common = __webpack_require__(195);
+	var _common = __webpack_require__(196);
 
 	function all() {
 	  for (var _len = arguments.length, propTypes = Array(_len), _key = 0; _key < _len; _key++) {
@@ -27993,7 +28266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28031,7 +28304,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28050,7 +28323,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _utils = __webpack_require__(316);
+	var _utils = __webpack_require__(317);
 
 	var utils = _interopRequireWildcard(_utils);
 
@@ -28187,7 +28460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -28318,12 +28591,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(1), __webpack_require__(2), __webpack_require__(318), __webpack_require__(10));
+			module.exports = factory(__webpack_require__(1), __webpack_require__(2), __webpack_require__(319), __webpack_require__(10));
 		else if(typeof define === 'function' && define.amd)
 			define(["moment", "react", "react-onclickoutside", "react-dom"], factory);
 		else if(typeof exports === 'object')
@@ -28417,7 +28690,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		  propTypes: {
 		    autoComplete: _react2.default.PropTypes.string,
 		    className: _react2.default.PropTypes.string,
-		    dateFormat: _react2.default.PropTypes.string,
+		    dateFormat: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.array]),
 		    dateFormatCalendar: _react2.default.PropTypes.string,
 		    disabled: _react2.default.PropTypes.bool,
 		    endDate: _react2.default.PropTypes.object,
@@ -28633,7 +28906,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		  propTypes: {
 		    date: _react2.default.PropTypes.object,
-		    dateFormat: _react2.default.PropTypes.string,
+		    dateFormat: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.array]),
 		    disabled: _react2.default.PropTypes.bool,
 		    excludeDates: _react2.default.PropTypes.array,
 		    filterDate: _react2.default.PropTypes.func,
@@ -28683,7 +28956,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		    this.setState({ value: value });
 		  },
 		  safeDateFormat: function safeDateFormat(props) {
-		    return props.date && props.date.clone().locale(props.locale || _moment2.default.locale()).format(props.dateFormat) || '';
+		    return props.date && props.date.clone().locale(props.locale || _moment2.default.locale()).format(Array.isArray(props.dateFormat) ? props.dateFormat[0] : props.dateFormat) || '';
 		  },
 		  handleBlur: function handleBlur(event) {
 		    this.setState({
@@ -28910,8 +29183,14 @@ return /******/ (function(modules) { // webpackBootstrap
 		    var current = (0, _moment2.default)();
 		    if (selected) {
 		      return selected;
+		    } else if (minDate && maxDate && openToDate && openToDate.isBetween(minDate, maxDate)) {
+		      return openToDate;
+		    } else if (minDate && openToDate && openToDate.isAfter(minDate)) {
+		      return openToDate;
 		    } else if (minDate && minDate.isAfter(current)) {
 		      return minDate;
+		    } else if (maxDate && openToDate && openToDate.isBefore(maxDate)) {
+		      return openToDate;
 		    } else if (maxDate && maxDate.isBefore(current)) {
 		      return maxDate;
 		    } else if (openToDate) {
@@ -29288,7 +29567,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		  render: function render() {
 		    return _react2.default.createElement(
 		      'div',
-		      { className: 'react-datepicker__month' },
+		      { className: 'react-datepicker__month', role: 'listbox' },
 		      this.renderWeeks()
 		    );
 		  }
@@ -29448,7 +29727,11 @@ return /******/ (function(modules) { // webpackBootstrap
 		  render: function render() {
 		    return _react2.default.createElement(
 		      'div',
-		      { className: this.getClassNames(), onClick: this.handleClick },
+		      {
+		        className: this.getClassNames(),
+		        onClick: this.handleClick,
+		        'aria-label': 'day-' + this.props.day.date(),
+		        role: 'option' },
 		      this.props.day.date()
 		    );
 		  }
@@ -29693,7 +29976,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* 15 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.3.1 */
+		var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.3.4 */
 
 		(function(root, factory) {
 		  if (true) {
@@ -29717,6 +30000,32 @@ return /******/ (function(modules) { // webpackBootstrap
 		}
 
 		var zeroElement = null;
+
+		// Same as native getBoundingClientRect, except it takes into account parent <frame> offsets
+		// if the element lies within a nested document (<frame> or <iframe>-like).
+		function getActualBoundingClientRect(node) {
+		  var boundingRect = node.getBoundingClientRect();
+
+		  // The original object returned by getBoundingClientRect is immutable, so we clone it
+		  // We can't use extend because the properties are not considered part of the object by hasOwnProperty in IE9
+		  var rect = {};
+		  for (var k in boundingRect) {
+		    rect[k] = boundingRect[k];
+		  }
+
+		  if (node.ownerDocument !== document) {
+		    var _frameElement = node.ownerDocument.defaultView.frameElement;
+		    if (_frameElement) {
+		      var frameRect = getActualBoundingClientRect(_frameElement);
+		      rect.top += frameRect.top;
+		      rect.bottom += frameRect.top;
+		      rect.left += frameRect.left;
+		      rect.right += frameRect.left;
+		    }
+		  }
+
+		  return rect;
+		}
 
 		function getScrollParents(el) {
 		  // In firefox if the el is inside an iframe with display: none; window.getComputedStyle() will return null;
@@ -29753,7 +30062,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		    }
 		  }
 
-		  parents.push(document.body);
+		  parents.push(el.ownerDocument.body);
+
+		  // If the node is within a frame, account for the parent window scroll
+		  if (el.ownerDocument !== document) {
+		    parents.push(el.ownerDocument.defaultView);
+		  }
+
 		  return parents;
 		}
 
@@ -29787,13 +30102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		  var id = node.getAttribute('data-tether-id');
 		  if (typeof zeroPosCache[id] === 'undefined') {
-		    zeroPosCache[id] = {};
-
-		    var rect = node.getBoundingClientRect();
-		    for (var k in rect) {
-		      // Can't use extend, as on IE9, elements don't resolve to be hasOwnProperty
-		      zeroPosCache[id][k] = rect[k];
-		    }
+		    zeroPosCache[id] = getActualBoundingClientRect(node);
 
 		    // Clear the cache when this position call is done
 		    defer(function () {
@@ -29822,13 +30131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		  var docEl = doc.documentElement;
 
-		  var box = {};
-		  // The original object returned by getBoundingClientRect is immutable, so we clone it
-		  // We can't use extend because the properties are not considered part of the object by hasOwnProperty in IE9
-		  var rect = el.getBoundingClientRect();
-		  for (var k in rect) {
-		    box[k] = rect[k];
-		  }
+		  var box = getActualBoundingClientRect(el);
 
 		  var origin = getOrigin();
 
@@ -29947,7 +30250,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		}
 
 		function getClassName(el) {
-		  if (el.className instanceof SVGAnimatedString) {
+		  // Can't use just SVGAnimatedString here since nodes within a Frame in IE have
+		  // completely separately SVGAnimatedString base classes
+		  if (el.className instanceof el.ownerDocument.defaultView.SVGAnimatedString) {
 		    return el.className.baseVal;
 		  }
 		  return el.className;
@@ -30012,7 +30317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		  }, {
 		    key: 'off',
 		    value: function off(event, handler) {
-		      if (typeof this.bindings !== 'undefined' && typeof this.bindings[event] !== 'undefined') {
+		      if (typeof this.bindings === 'undefined' || typeof this.bindings[event] === 'undefined') {
 		        return;
 		      }
 
@@ -30066,6 +30371,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		})();
 
 		TetherBase.Utils = {
+		  getActualBoundingClientRect: getActualBoundingClientRect,
 		  getScrollParents: getScrollParents,
 		  getBounds: getBounds,
 		  getOffsetParent: getOffsetParent,
@@ -30124,7 +30430,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		  }
 		  var el = document.createElement('div');
 
-		  var transforms = ['transform', 'webkitTransform', 'OTransform', 'MozTransform', 'msTransform'];
+		  var transforms = ['transform', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform'];
 		  for (var i = 0; i < transforms.length; ++i) {
 		    var key = transforms[i];
 		    if (el.style[key] !== undefined) {
@@ -30523,7 +30829,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		      this.enabled = true;
 
 		      this.scrollParents.forEach(function (parent) {
-		        if (parent !== document) {
+		        if (parent !== _this3.target.ownerDocument) {
 		          parent.addEventListener('scroll', _this3.position);
 		        }
 		      });
@@ -30723,21 +31029,24 @@ return /******/ (function(modules) { // webpackBootstrap
 		        }
 		      };
 
+		      var doc = this.target.ownerDocument;
+		      var win = doc.defaultView;
+
 		      var scrollbarSize = undefined;
-		      if (document.body.scrollWidth > window.innerWidth) {
+		      if (doc.body.scrollWidth > win.innerWidth) {
 		        scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
 		        next.viewport.bottom -= scrollbarSize.height;
 		      }
 
-		      if (document.body.scrollHeight > window.innerHeight) {
+		      if (doc.body.scrollHeight > win.innerHeight) {
 		        scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
 		        next.viewport.right -= scrollbarSize.width;
 		      }
 
-		      if (['', 'static'].indexOf(document.body.style.position) === -1 || ['', 'static'].indexOf(document.body.parentElement.style.position) === -1) {
+		      if (['', 'static'].indexOf(doc.body.style.position) === -1 || ['', 'static'].indexOf(doc.body.parentElement.style.position) === -1) {
 		        // Absolute positioning in the body will be relative to the page, not the 'initial containing block'
-		        next.page.bottom = document.body.scrollHeight - top - height;
-		        next.page.right = document.body.scrollWidth - left - width;
+		        next.page.bottom = doc.body.scrollHeight - top - height;
+		        next.page.right = doc.body.scrollWidth - left - width;
 		      }
 
 		      if (typeof this.options.optimizations !== 'undefined' && this.options.optimizations.moveElement !== false && !(typeof this.targetModifier !== 'undefined')) {
@@ -30756,8 +31065,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		            offsetBorder[side.toLowerCase()] = parseFloat(offsetParentStyle['border' + side + 'Width']);
 		          });
 
-		          offsetPosition.right = document.body.scrollWidth - offsetPosition.left - offsetParentSize.width + offsetBorder.right;
-		          offsetPosition.bottom = document.body.scrollHeight - offsetPosition.top - offsetParentSize.height + offsetBorder.bottom;
+		          offsetPosition.right = doc.body.scrollWidth - offsetPosition.left - offsetParentSize.width + offsetBorder.right;
+		          offsetPosition.bottom = doc.body.scrollHeight - offsetPosition.top - offsetParentSize.height + offsetBorder.bottom;
 
 		          if (next.page.top >= offsetPosition.top + offsetBorder.top && next.page.bottom >= offsetPosition.bottom) {
 		            if (next.page.left >= offsetPosition.left + offsetBorder.left && next.page.right >= offsetPosition.right) {
@@ -30915,7 +31224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		        if (!offsetParentIsBody) {
 		          this.element.parentNode.removeChild(this.element);
-		          document.body.appendChild(this.element);
+		          this.element.ownerDocument.body.appendChild(this.element);
 		        }
 		      }
 
@@ -30935,6 +31244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		      if (write) {
 		        defer(function () {
 		          extend(_this8.element.style, writeCSS);
+		          _this8.trigger('repositioned');
 		        });
 		      }
 		    }
@@ -30975,11 +31285,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		  if (typeof to.nodeType !== 'undefined') {
 		    (function () {
+		      var node = to;
 		      var size = getBounds(to);
 		      var pos = size;
 		      var style = getComputedStyle(to);
 
 		      to = [pos.left, pos.top, size.width + pos.left, size.height + pos.top];
+
+		      // Account any parent Frames scroll offset
+		      if (node.ownerDocument !== document) {
+		        var win = node.ownerDocument.defaultView;
+		        to[0] += win.pageXOffset;
+		        to[1] += win.pageYOffset;
+		        to[2] += win.pageXOffset;
+		        to[3] += win.pageYOffset;
+		      }
 
 		      BOUNDS_FORMAT.forEach(function (side, i) {
 		        side = side[0].toUpperCase() + side.substr(1);
@@ -31457,7 +31777,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	;
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31595,7 +31915,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -31608,7 +31928,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classCallCheck = __webpack_require__(32)['default'];
 
-	var _objectWithoutProperties = __webpack_require__(201)['default'];
+	var _objectWithoutProperties = __webpack_require__(202)['default'];
 
 	var _extends = __webpack_require__(34)['default'];
 
@@ -31789,24 +32109,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 320 */
-[356, 325],
 /* 321 */
 [357, 326],
 /* 322 */
+[358, 327],
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(328), __esModule: true };
+	module.exports = { "default": __webpack_require__(329), __esModule: true };
 
 /***/ },
-/* 323 */
-[359, 329],
 /* 324 */
+[360, 330],
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _Object$defineProperty = __webpack_require__(200)["default"];
+	var _Object$defineProperty = __webpack_require__(201)["default"];
 
 	exports["default"] = function (obj, key, value) {
 	  if (key in obj) {
@@ -31826,11 +32146,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 
 /***/ },
-/* 325 */
-[365, 339, 38],
 /* 326 */
-[367, 26],
+[366, 340, 38],
 /* 327 */
+[368, 26],
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(26);
@@ -31839,63 +32159,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 328 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(26);
-	__webpack_require__(340);
+	__webpack_require__(341);
 	module.exports = function getOwnPropertyDescriptor(it, key){
 	  return $.getDesc(it, key);
 	};
 
 /***/ },
-/* 329 */
-[369, 341, 38],
 /* 330 */
-257,
+[370, 342, 38],
 /* 331 */
-[372, 206],
+258,
 /* 332 */
-259,
+[373, 207],
 /* 333 */
-261,
+260,
 /* 334 */
-[380, 26, 338, 205, 204],
+262,
 /* 335 */
-[381, 53, 38, 204],
+[381, 26, 339, 206, 205],
 /* 336 */
-[383, 26, 206, 331, 202],
+[382, 53, 38, 205],
 /* 337 */
+[384, 26, 207, 332, 203],
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(205)
-	  , defined = __webpack_require__(203);
+	var IObject = __webpack_require__(206)
+	  , defined = __webpack_require__(204);
 	module.exports = function(it){
 	  return IObject(defined(it));
 	};
 
 /***/ },
-/* 338 */
-[386, 203],
 /* 339 */
-[388, 53, 334],
+[387, 204],
 /* 340 */
+[389, 53, 335],
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-	var toIObject = __webpack_require__(337);
+	var toIObject = __webpack_require__(338);
 
-	__webpack_require__(335)('getOwnPropertyDescriptor', function($getOwnPropertyDescriptor){
+	__webpack_require__(336)('getOwnPropertyDescriptor', function($getOwnPropertyDescriptor){
 	  return function getOwnPropertyDescriptor(it, key){
 	    return $getOwnPropertyDescriptor(toIObject(it), key);
 	  };
 	});
 
 /***/ },
-/* 341 */
-[389, 53, 336],
 /* 342 */
+[390, 53, 337],
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31912,7 +32232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(207);
+	var _utilsStripDiacritics = __webpack_require__(208);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -32081,7 +32401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Async;
 
 /***/ },
-/* 343 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32197,7 +32517,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Option;
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32308,7 +32628,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Value;
 
 /***/ },
-/* 345 */
+/* 346 */
 /***/ function(module, exports) {
 
 	module.exports = function blacklist (src) {
@@ -32334,7 +32654,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 346 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32468,7 +32788,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = AutosizeInput;
 
 /***/ },
-/* 347 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32483,20 +32803,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    return React.createElement(
 	      "svg",
-	      { width: "14", height: "11", viewBox: "0 0 14 11", xmlns: "http://www.w3.org/2000/svg" },
+	      { width: "14", height: "11", viewBox: "0 0 14 11" },
 	      React.createElement(
 	        "title",
 	        null,
 	        "switch-check"
 	      ),
-	      React.createElement("path", { d: "M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0", fill: "#fff", "fill-rule": "evenodd" })
+	      React.createElement("path", { d: "M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0", fill: "#fff", fillRule: "evenodd" })
 	    );
 	  }
 	});
 
 
 /***/ },
-/* 348 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32509,11 +32829,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var classNames = _interopRequire(__webpack_require__(3));
 
-	var Check = _interopRequire(__webpack_require__(347));
+	var Check = _interopRequire(__webpack_require__(348));
 
-	var X = _interopRequire(__webpack_require__(349));
+	var X = _interopRequire(__webpack_require__(350));
 
-	var PureRenderMixin = _interopRequire(__webpack_require__(163));
+	var PureRenderMixin = _interopRequire(__webpack_require__(164));
 
 	module.exports = React.createClass({
 	  mixins: [PureRenderMixin],
@@ -32610,7 +32930,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 349 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32625,20 +32945,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    return React.createElement(
 	      "svg",
-	      { width: "10", height: "10", viewBox: "0 0 10 10", xmlns: "http://www.w3.org/2000/svg" },
+	      { width: "10", height: "10", viewBox: "0 0 10 10" },
 	      React.createElement(
 	        "title",
 	        null,
 	        "switch-x"
 	      ),
-	      React.createElement("path", { d: "M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12", fill: "#fff", "fill-rule": "evenodd" })
+	      React.createElement("path", { d: "M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12", fill: "#fff", fillRule: "evenodd" })
 	    );
 	  }
 	});
 
 
 /***/ },
-/* 350 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -32654,7 +32974,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var shallowCompare = __webpack_require__(351);
+	var shallowCompare = __webpack_require__(352);
 
 	/**
 	 * If your React component's render function is "pure", e.g. it will render the
@@ -32691,7 +33011,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = ReactComponentWithPureRenderMixin;
 
 /***/ },
-/* 351 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -32707,7 +33027,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var shallowEqual = __webpack_require__(352);
+	var shallowEqual = __webpack_require__(353);
 
 	/**
 	 * Does a shallow comparison for props and state.
@@ -32721,7 +33041,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = shallowCompare;
 
 /***/ },
-/* 352 */
+/* 353 */
 /***/ function(module, exports) {
 
 	/**
@@ -32792,7 +33112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = shallowEqual;
 
 /***/ },
-/* 353 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {(function() {
@@ -33018,7 +33338,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (typeof remove !== "function") {
 	      // If we weren't given an array, use the arguments list.
 	      var keysToRemoveArray = (remove instanceof Array) ?
-	         remove : Array.prototype.slice.call(arguments);
+	         remove.slice() : Array.prototype.slice.call(arguments);
+
+	      // Convert numeric keys to strings since that's how they'll
+	      // come from the enumeration of the object.
+	      keysToRemoveArray.forEach(function(el, idx, arr) {
+	        if(typeof(el) === "number") {
+	          arr[idx] = el.toString();
+	        }
+	      });
 
 	      remove = function(val, key) {
 	        return keysToRemoveArray.indexOf(key) !== -1;
@@ -33367,7 +33695,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 354 */
+/* 355 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -33383,29 +33711,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 355 */,
-/* 356 */
-/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
-
-	module.exports = { "default": __webpack_require__(__webpack_module_template_argument_0__), __esModule: true };
-
-/***/ },
+/* 356 */,
 /* 357 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	module.exports = { "default": __webpack_require__(__webpack_module_template_argument_0__), __esModule: true };
 
 /***/ },
-/* 358 */,
-/* 359 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	module.exports = { "default": __webpack_require__(__webpack_module_template_argument_0__), __esModule: true };
 
 /***/ },
-/* 360 */,
+/* 359 */,
+/* 360 */
+/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
+
+	module.exports = { "default": __webpack_require__(__webpack_module_template_argument_0__), __esModule: true };
+
+/***/ },
 /* 361 */,
-/* 362 */
+/* 362 */,
+/* 363 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	"use strict";
@@ -33429,7 +33757,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 
 /***/ },
-/* 363 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__) {
 
 	"use strict";
@@ -33457,16 +33785,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 
 /***/ },
-/* 364 */,
-/* 365 */
+/* 365 */,
+/* 366 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__) {
 
 	__webpack_require__(__webpack_module_template_argument_0__);
 	module.exports = __webpack_require__(__webpack_module_template_argument_1__).Object.assign;
 
 /***/ },
-/* 366 */,
-/* 367 */
+/* 367 */,
+/* 368 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	var $ = __webpack_require__(__webpack_module_template_argument_0__);
@@ -33475,17 +33803,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 368 */,
-/* 369 */
+/* 369 */,
+/* 370 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__) {
 
 	__webpack_require__(__webpack_module_template_argument_0__);
 	module.exports = __webpack_require__(__webpack_module_template_argument_1__).Object.setPrototypeOf;
 
 /***/ },
-/* 370 */,
 /* 371 */,
-/* 372 */
+/* 372 */,
+/* 373 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	var isObject = __webpack_require__(__webpack_module_template_argument_0__);
@@ -33495,7 +33823,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 373 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	// optional / simple context binding
@@ -33520,9 +33848,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 374 */,
 /* 375 */,
-/* 376 */
+/* 376 */,
+/* 377 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__, __webpack_module_template_argument_2__) {
 
 	var global    = __webpack_require__(__webpack_module_template_argument_0__)
@@ -33573,8 +33901,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = $export;
 
 /***/ },
-/* 377 */,
-/* 378 */
+/* 378 */,
+/* 379 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -33584,8 +33912,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 379 */,
-/* 380 */
+/* 380 */,
+/* 381 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__, __webpack_module_template_argument_2__, __webpack_module_template_argument_3__) {
 
 	// 19.1.2.1 Object.assign(target, source, ...)
@@ -33623,7 +33951,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	} : Object.assign;
 
 /***/ },
-/* 381 */
+/* 382 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__, __webpack_module_template_argument_2__) {
 
 	// most Object methods by ES6 should accept primitives
@@ -33638,8 +33966,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 382 */,
-/* 383 */
+/* 383 */,
+/* 384 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__, __webpack_module_template_argument_2__, __webpack_module_template_argument_3__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -33670,9 +33998,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 384 */,
 /* 385 */,
-/* 386 */
+/* 386 */,
+/* 387 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	// 7.1.13 ToObject(argument)
@@ -33682,8 +34010,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 387 */,
-/* 388 */
+/* 388 */,
+/* 389 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__) {
 
 	// 19.1.3.1 Object.assign(target, source)
@@ -33692,7 +34020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(__webpack_module_template_argument_1__)});
 
 /***/ },
-/* 389 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
@@ -33700,8 +34028,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(__webpack_module_template_argument_1__).set});
 
 /***/ },
-/* 390 */,
-/* 391 */
+/* 391 */,
+/* 392 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	'use strict';
