@@ -257,6 +257,8 @@ class AppComponent extends React.Component {
 
     const addonFormatter = () => (<Checkbox />);
 
+    const nodeRenderer = (value) => (<Checkbox label={value.label}/>);
+
     const avatarColor = () => 'cyan';
 
     const teamMember1 = { avatar: '//lorempixel.com/35/35/people/7', givenName: 'John', id: 1, surname: 'Smith' };
@@ -588,6 +590,7 @@ class AppComponent extends React.Component {
           subtree={this.state.simpleSubtree}
           searchValue={this.state.searchValueTreePickerPure}
           searchOnChange={this.setSearchTreePickerPure}
+          nodeRenderer={nodeRenderer}
         />
 
         <h1>ListPicker</h1>
