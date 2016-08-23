@@ -67,6 +67,7 @@ describe('TreePickerPureComponent', () => {
       },
       includeNode: testFunction,
       itemType,
+      nodeRenderer: testFunction,
       removeNode: testFunction,
       rootTypes,
       searchOnQuery: testFunction,
@@ -130,5 +131,6 @@ describe('TreePickerPureComponent', () => {
       sum: 'The sum of fears.',
     });
     expect(treePickerSelectedElement.prop('valueFormatter')).to.equal(props.valueFormatter);
+    expect(treePickerGridElement.prop('nodeRenderer')).to.equal(props.nodeRenderer);
   });
 });

@@ -51,6 +51,8 @@ const maleNode = { id: '4', label: 'Males', type: '', path: [], value: 500, root
 
 const valueFormatter = (value) => value;
 
+const nodeRenderer = (value) => `Test value: ${value.label}`;
+
 const initialSelection = [
   actNode,
   ntNode,
@@ -67,6 +69,7 @@ const TreePickerMocks = immutable({
   initialSelection,
   itemType,
   maleNode,
+  nodeRenderer,
   qldNode,
   saNode,
   svgSymbol,

@@ -8436,6 +8436,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var includeNode = _ref.includeNode;
 	  var itemType = _ref.itemType;
 	  var nodes = _ref.nodes;
+	  var nodeRenderer = _ref.nodeRenderer;
 	  var removeNode = _ref.removeNode;
 	  var selected = _ref.selected;
 	  var valueFormatter = _ref.valueFormatter;
@@ -8452,6 +8453,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        includeNode: includeNode,
 	        itemType: itemType,
 	        node: node,
+	        nodeRenderer: nodeRenderer,
 	        removeNode: removeNode,
 	        selected: selected,
 	        valueFormatter: valueFormatter
@@ -8475,6 +8477,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  includeNode: _react.PropTypes.func,
 	  itemType: _react.PropTypes.string.isRequired,
 	  nodes: _react.PropTypes.arrayOf(_TreePickerPropTypes2.default.node),
+	  nodeRenderer: _react.PropTypes.func,
 	  removeNode: _react.PropTypes.func,
 	  selected: _react.PropTypes.bool.isRequired,
 	  valueFormatter: _react.PropTypes.func
@@ -8613,6 +8616,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var includeNode = _ref2.includeNode;
 	  var itemType = _ref2.itemType;
 	  var node = _ref2.node;
+	  var nodeRenderer = _ref2.nodeRenderer;
 	  var removeNode = _ref2.removeNode;
 	  var selected = _ref2.selected;
 	  var valueFormatter = _ref2.valueFormatter;
@@ -8660,7 +8664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _react2.default.createElement(
 	          'span',
 	          null,
-	          node.label
+	          nodeRenderer(node)
 	        ),
 	        !_lodash2.default.isEmpty(node.type) && !_lodash2.default.isEmpty(pathElement) ? _react2.default.createElement(
 	          'span',
@@ -8704,6 +8708,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  includeNode: _react.PropTypes.func.isRequired,
 	  itemType: _react.PropTypes.string.isRequired,
 	  node: _TreePickerPropTypes2.default.node.isRequired,
+	  nodeRenderer: _react.PropTypes.func,
 	  removeNode: _react.PropTypes.func.isRequired,
 	  selected: _react.PropTypes.bool.isRequired,
 	  valueFormatter: _react.PropTypes.func.isRequired
@@ -8723,6 +8728,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  selected: false,
 	  valueFormatter: function valueFormatter(value) {
 	    return value;
+	  },
+	  nodeRenderer: function nodeRenderer(node) {
+	    return node.label;
 	  }
 	};
 
@@ -22197,6 +22205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var helpText = _ref.helpText;
 	  var includeNode = _ref.includeNode;
 	  var itemType = _ref.itemType;
+	  var nodeRenderer = _ref.nodeRenderer;
 	  var removeNode = _ref.removeNode;
 	  var rootTypes = _ref.rootTypes;
 	  var searchOnChange = _ref.searchOnChange;
@@ -22282,6 +22291,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        includeNode: includeNode,
 	        itemType: itemType,
 	        nodes: selectableNodes,
+	        nodeRenderer: nodeRenderer,
 	        selected: false,
 	        valueFormatter: valueFormatter,
 	        disableInclude: disableInclude
@@ -22331,6 +22341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }),
 	  includeNode: _react.PropTypes.func,
 	  itemType: _react.PropTypes.string.isRequired,
+	  nodeRenderer: _react.PropTypes.func,
 	  removeNode: _react.PropTypes.func,
 	  rootTypes: _react.PropTypes.arrayOf(_TreePickerPropTypes2.default.rootType).isRequired,
 	  searchOnChange: _react.PropTypes.func,
@@ -22657,6 +22668,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var initialStateNode = _ref.initialStateNode;
 	  var initialStateSymbol = _ref.initialStateSymbol;
 	  var itemType = _ref.itemType;
+	  var nodeRenderer = _ref.nodeRenderer;
 	  var removeNode = _ref.removeNode;
 	  var searchOnChange = _ref.searchOnChange;
 	  var searchOnClear = _ref.searchOnClear;
@@ -22698,6 +22710,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        includeNode: includeNode,
 	        itemType: itemType,
 	        nodes: selectableNodes,
+	        nodeRenderer: nodeRenderer,
 	        selected: false
 	      }),
 	      _react2.default.createElement(_alexandriaAdslot.FlexibleSpacer, null)
@@ -22711,6 +22724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        emptyText: 'Nothing selected.',
 	        itemType: itemType,
 	        nodes: selectedNodes,
+	        nodeRenderer: nodeRenderer,
 	        removeNode: removeNode,
 	        selected: true
 	      }),
@@ -22733,6 +22747,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  initialStateNode: _react.PropTypes.any,
 	  initialStateSymbol: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes),
 	  itemType: _react.PropTypes.string.isRequired,
+	  nodeRenderer: _react.PropTypes.func,
 	  removeNode: _react.PropTypes.func,
 	  searchOnChange: _react.PropTypes.func,
 	  searchOnClear: _react.PropTypes.func,

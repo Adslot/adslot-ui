@@ -11,6 +11,7 @@ describe('TreePickerGridComponent', () => {
     qldNode,
     saNode,
     svgSymbol,
+    nodeRenderer,
     valueFormatter,
   } = TreePickerMocks;
 
@@ -22,6 +23,7 @@ describe('TreePickerGridComponent', () => {
       includeNode: _.noop,
       itemType,
       nodes: [qldNode, saNode],
+      nodeRenderer,
       removeNode: _.noop,
       selected: false,
       valueFormatter,

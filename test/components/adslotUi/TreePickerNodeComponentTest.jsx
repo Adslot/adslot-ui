@@ -7,7 +7,7 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 import { shallow, mount } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
-  const { cbrNode, actNode, itemType } = TreePickerMocks;
+  const { cbrNode, actNode, itemType, nodeRenderer } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
     const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
@@ -48,6 +48,16 @@ describe('TreePickerNodeComponent', () => {
     expect(buttonElement.prop('onClick')).to.be.a('function');
     expect(buttonElement.prop('disabled')).to.equal(false);
     expect(buttonElement.children().text()).to.equal('+');
+  });
+
+  it('should render node via nodeRenderer', () => {
+    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={actNode} nodeRenderer={nodeRenderer} />);
+
+    const rowElement = component.find(GridRow);
+    const cellElements = rowElement.find(GridCell);
+    const labelWrapperCellElement = cellElements.first();
+    const labelElement = labelWrapperCellElement.children().first();
+    expect(labelElement.text()).to.equal('Test value: Australian Capital Territory');
   });
 
   it('should render unselectable nodes with an include button', () => {

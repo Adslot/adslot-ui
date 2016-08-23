@@ -34,6 +34,7 @@ describe('TreePickerSimplePureComponent', () => {
     expandNode: _.noop,
     includeNode: _.noop,
     itemType,
+    nodeRenderer: _.noop,
     removeNode: _.noop,
     searchOnChange: _.noop,
     searchOnClear: _.noop,

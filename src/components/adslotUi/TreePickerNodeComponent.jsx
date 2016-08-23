@@ -29,6 +29,7 @@ const TreePickerNodeComponent = ({
   includeNode,
   itemType,
   node,
+  nodeRenderer,
   removeNode,
   selected,
   valueFormatter,
@@ -64,7 +65,7 @@ const TreePickerNodeComponent = ({
           </GridCell>
         : null}
         <GridCell stretch {...labelCellProps} dts="label">
-          <span>{node.label}</span>
+          <span>{nodeRenderer(node)}</span>
           {!_.isEmpty(node.type) && !_.isEmpty(pathElement) ?
             <span className={`${baseClass}-metadata`}> ({node.type} in {pathElement})</span> :
             null
@@ -102,6 +103,7 @@ TreePickerNodeComponent.propTypes = {
   includeNode: PropTypes.func.isRequired,
   itemType: PropTypes.string.isRequired,
   node: TreePickerPropTypes.node.isRequired,
+  nodeRenderer: PropTypes.func,
   removeNode: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func.isRequired,
@@ -116,6 +118,7 @@ TreePickerNodeComponent.defaultProps = {
 
   selected: false,
   valueFormatter: (value) => value,
+  nodeRenderer: (node) => node.label
 };
 
 export default TreePickerNodeComponent;

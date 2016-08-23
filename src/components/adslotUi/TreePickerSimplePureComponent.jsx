@@ -22,6 +22,7 @@ const TreePickerSimplePureComponent = ({
   initialStateNode,
   initialStateSymbol,
   itemType,
+  nodeRenderer,
   removeNode,
   searchOnChange,
   searchOnClear,
@@ -64,6 +65,7 @@ const TreePickerSimplePureComponent = ({
             includeNode,
             itemType,
             nodes: selectableNodes,
+            nodeRenderer,
             selected: false,
           }}
         />
@@ -78,6 +80,7 @@ const TreePickerSimplePureComponent = ({
             emptyText: 'Nothing selected.',
             itemType,
             nodes: selectedNodes,
+            nodeRenderer,
             removeNode,
             selected: true,
           }}
@@ -102,6 +105,7 @@ TreePickerSimplePureComponent.propTypes = {
   initialStateNode: PropTypes.any,
   initialStateSymbol: PropTypes.shape(SvgSymbol.propTypes),
   itemType: PropTypes.string.isRequired,
+  nodeRenderer: PropTypes.func,
   removeNode: PropTypes.func,
   searchOnChange: PropTypes.func,
   searchOnClear: PropTypes.func,
