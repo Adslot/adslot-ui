@@ -7886,7 +7886,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function ListPickerComponent(props) {
 	    _classCallCheck(this, ListPickerComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ListPickerComponent).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (ListPickerComponent.__proto__ || Object.getPrototypeOf(ListPickerComponent)).call(this, props));
 
 	    var _arr = ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'loadData', 'selectItem'];
 
@@ -8781,7 +8781,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function FastStatelessWrapperComponent() {
 	      _classCallCheck(this, FastStatelessWrapperComponent);
 
-	      return _possibleConstructorReturn(this, Object.getPrototypeOf(FastStatelessWrapperComponent).apply(this, arguments));
+	      return _possibleConstructorReturn(this, (FastStatelessWrapperComponent.__proto__ || Object.getPrototypeOf(FastStatelessWrapperComponent)).apply(this, arguments));
 	    }
 
 	    _createClass(FastStatelessWrapperComponent, [{
@@ -21438,7 +21438,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function FilePickerComponent() {
 	    _classCallCheck(this, FilePickerComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FilePickerComponent).call(this));
+	    var _this = _possibleConstructorReturn(this, (FilePickerComponent.__proto__ || Object.getPrototypeOf(FilePickerComponent)).call(this));
 
 	    _this.state = { fileName: '' };
 	    _this.onChange = _this.onChange.bind(_this);
@@ -21669,7 +21669,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function PagedGridComponent() {
 	    _classCallCheck(this, PagedGridComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PagedGridComponent).call(this));
+	    var _this = _possibleConstructorReturn(this, (PagedGridComponent.__proto__ || Object.getPrototypeOf(PagedGridComponent)).call(this));
 
 	    _this.state = { activePage: 1 };
 	    return _this;
@@ -21856,7 +21856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function TreePickerComponent(props) {
 	    _classCallCheck(this, TreePickerComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TreePickerComponent).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (TreePickerComponent.__proto__ || Object.getPrototypeOf(TreePickerComponent)).call(this, props));
 
 	    var _arr = ['applyAction', 'breadcrumbOnClick', 'cancelAction', 'changeRootType', 'expandNode', 'includeNode', 'loadData', 'removeNode', 'searchOnChange', 'searchOnClear', 'searchOnQuery'];
 
@@ -22662,8 +22662,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var disabled = _ref.disabled;
 	  var disableInclude = _ref.disableInclude;
 	  var emptySvgSymbol = _ref.emptySvgSymbol;
+	  var emptySelectedListSvgSymbol = _ref.emptySelectedListSvgSymbol;
+	  var emptyText = _ref.emptyText;
+	  var emptySelectedListText = _ref.emptySelectedListText;
 	  var expandNode = _ref.expandNode;
-	  var subtree = _ref.subtree;
 	  var includeNode = _ref.includeNode;
 	  var initialStateNode = _ref.initialStateNode;
 	  var initialStateSymbol = _ref.initialStateSymbol;
@@ -22675,11 +22677,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var searchPlaceholder = _ref.searchPlaceholder;
 	  var searchValue = _ref.searchValue;
 	  var selectedNodes = _ref.selectedNodes;
+	  var subtree = _ref.subtree;
 	  var svgSymbolCancel = _ref.svgSymbolCancel;
 	  var svgSymbolSearch = _ref.svgSymbolSearch;
 
 	  var selectableNodes = (0, _TreePickerHelpers.removeSelected)({ subtree: subtree, selectedNodes: selectedNodes });
-	  var emptyText = initialStateNode && _lodash2.default.isEmpty(searchValue) ? initialStateNode : 'No items to select.';
+	  var searchTextNode = emptyText || 'No items to select.';
+	  searchTextNode = initialStateNode && _lodash2.default.isEmpty(searchValue) ? initialStateNode : searchTextNode;
 	  var emptySymbol = initialStateSymbol && _lodash2.default.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
 
 	  return _react2.default.createElement(
@@ -22705,7 +22709,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      _react2.default.createElement(_TreePickerGridComponent2.default, {
 	        disabled: disabled || disableInclude,
 	        emptySvgSymbol: emptySymbol,
-	        emptyText: emptyText,
+	        emptyText: searchTextNode,
 	        expandNode: expandNode,
 	        includeNode: includeNode,
 	        itemType: itemType,
@@ -22720,8 +22724,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      { dts: 'treepicker-splitpane-selected-' + _lodash2.default.kebabCase(itemType) },
 	      _react2.default.createElement(_TreePickerGridComponent2.default, {
 	        disabled: disabled,
-	        emptySvgSymbol: emptySvgSymbol,
-	        emptyText: 'Nothing selected.',
+	        emptySvgSymbol: emptySelectedListSvgSymbol || emptySvgSymbol,
+	        emptyText: emptySelectedListText || 'Nothing selected.',
 	        itemType: itemType,
 	        nodes: selectedNodes,
 	        nodeRenderer: nodeRenderer,
@@ -22742,6 +22746,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  disabled: _react.PropTypes.bool,
 	  disableInclude: _react.PropTypes.bool,
 	  emptySvgSymbol: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes),
+	  emptySelectedListSvgSymbol: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes),
+	  emptyText: _react.PropTypes.any,
+	  emptySelectedListText: _react.PropTypes.any,
 	  expandNode: _react.PropTypes.func,
 	  includeNode: _react.PropTypes.func,
 	  initialStateNode: _react.PropTypes.any,

@@ -55,6 +55,7 @@ class AppComponent extends React.Component {
       'setCategory',
       'setCategorySearchString',
       'setSearchValue',
+      'searchOnClear',
       'setSelectedDate',
       'setSearchTreePickerPure',
       'performCategorySearch',
@@ -162,6 +163,10 @@ class AppComponent extends React.Component {
       ],
       categorySearchString: '',
     };
+  }
+
+  searchOnClear() {
+    this.setSearchValue('');
   }
 
   setCategory(categoryValue) {
