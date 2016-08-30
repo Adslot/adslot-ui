@@ -27,7 +27,6 @@ describe('TreePickerSimplePureComponent', () => {
   const props = {
     breadcrumbNodes: [saNode],
     breadcrumbOnClick: _.noop,
-    emptyText: 'Nothing to see here.',
     emptySvgSymbol: svgSymbol,
     initialStateNode: 'Begin searching.',
     initialStateSymbol: TreePickerMocks.svgSymbol,
@@ -76,13 +75,37 @@ describe('TreePickerSimplePureComponent', () => {
     expect(rightPaneElement.find(FlexibleSpacer)).to.have.length(1);
   });
 
-  it('should render with empty state props', () => {
+  it('should render with given empty state node', () => {
+    const loaderStateProps = _.assign({}, props, {
+      emptyText: 'Loading...',
+      searchValue: 'Victoria',
+      initialSelection: [],
+    });
+
+    const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
+    expect(component.find(TreePickerGrid).first().prop('Loading...'));
+  });
+
+  it('should render with default empty state props', () => {
     const emptyStateProps = _.assign({}, props, {
       searchValue: 'Victoria',
       initialSelection: [],
     });
 
     const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);
-    expect(component.find(TreePickerGrid).first().prop('Nothing to see here.'));
+    expect(component.find(TreePickerGrid).first().prop('No items to select.'));
+  });
+
+  it('should render with given empty text and svg icon for the selected side', () => {
+    const emptyStateProps = _.assign({}, props, {
+      searchValue: 'Victoria',
+      initialSelection: [],
+      emptySelectedListText: 'Nothing to show',
+      emptySelectedListSvgSymbol: TreePickerMocks.svgSymbol,
+    });
+
+    const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);
+    expect(component.find(TreePickerGrid).first().prop('No items to select.'));
+    expect(component.find(TreePickerGrid).last().prop('Nothing to show'));
   });
 });

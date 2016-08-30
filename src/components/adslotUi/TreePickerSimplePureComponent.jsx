@@ -16,8 +16,10 @@ const TreePickerSimplePureComponent = ({
   disabled,
   disableInclude,
   emptySvgSymbol,
+  emptySelectedListSvgSymbol,
+  emptyText,
+  emptySelectedListText,
   expandNode,
-  subtree,
   includeNode,
   initialStateNode,
   initialStateSymbol,
@@ -29,11 +31,13 @@ const TreePickerSimplePureComponent = ({
   searchPlaceholder,
   searchValue,
   selectedNodes,
+  subtree,
   svgSymbolCancel,
   svgSymbolSearch,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
-  const emptyText = initialStateNode && _.isEmpty(searchValue) ? initialStateNode : 'No items to select.';
+  let searchTextNode = emptyText || 'No items to select.';
+  searchTextNode = initialStateNode && _.isEmpty(searchValue) ? initialStateNode : searchTextNode;
   const emptySymbol = initialStateSymbol && _.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
 
   return (
@@ -60,7 +64,7 @@ const TreePickerSimplePureComponent = ({
           {...{
             disabled: disabled || disableInclude,
             emptySvgSymbol: emptySymbol,
-            emptyText,
+            emptyText: searchTextNode,
             expandNode,
             includeNode,
             itemType,
@@ -76,8 +80,8 @@ const TreePickerSimplePureComponent = ({
         <TreePickerGrid
           {...{
             disabled,
-            emptySvgSymbol,
-            emptyText: 'Nothing selected.',
+            emptySvgSymbol: emptySelectedListSvgSymbol || emptySvgSymbol,
+            emptyText: emptySelectedListText || 'Nothing selected.',
             itemType,
             nodes: selectedNodes,
             nodeRenderer,
@@ -100,6 +104,9 @@ TreePickerSimplePureComponent.propTypes = {
   disabled: PropTypes.bool,
   disableInclude: PropTypes.bool,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySelectedListSvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptyText: PropTypes.any,
+  emptySelectedListText: PropTypes.any,
   expandNode: PropTypes.func,
   includeNode: PropTypes.func,
   initialStateNode: PropTypes.any,
