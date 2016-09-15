@@ -5,6 +5,7 @@ import SearchBar from 'components/adslotUi/SearchBarComponent';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import DatePicker from 'react-datepicker/dist/react-datepicker';
+import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import FilePicker from 'components/adslotUi/FilePickerComponent';
 import FormGroup from 'components/adslotUi/FormGroupComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
@@ -18,10 +19,13 @@ import Popover from 'react-bootstrap/lib/Popover';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
+import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
-import TreePicker from 'components/adslotUi/TreePickerComponent';
+import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
+import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
+import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
 import TreePickerSimplePure from 'components/adslotUi/TreePickerSimplePureComponent';
 import UserListPicker from 'components/adslotUi/UserListPickerComponent';
 import {
@@ -64,6 +68,7 @@ module.exports = {
   ConfirmModal,
   DatePicker,
   Empty,
+  fastStatelessWrapper,
   FilePicker,
   FlexibleSpacer,
   FormGroup,
@@ -86,6 +91,7 @@ module.exports = {
   SearchField: Search,
   Select,
   Slicey,
+  SplitPane,
   Statistic,
   SvgSymbol,
   SvgSymbolCircle,
@@ -94,7 +100,9 @@ module.exports = {
   Tag,
   Toggle,
   Totals,
-  TreePicker,
+  TreePickerGrid,
+  TreePickerNav,
+  TreePickerNode,
   TreePickerSimplePure,
   UserListPicker,
 };

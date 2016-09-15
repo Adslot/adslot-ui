@@ -24,7 +24,6 @@ import {
   Tab,
   Tabs,
   Toggle,
-  TreePicker,
   TreePickerSimplePure,
   UserListPicker,
 } from './distributionEntry';
@@ -62,7 +61,6 @@ class AppComponent extends React.Component {
       'toggleListPickerModal',
       'toggleSimpleModal',
       'toggleSplitListPickerModal',
-      'toggleTreePickerModal',
       'toggleUserListPickerModal',
       'togglePanel',
       'toggleAccordionPanel',
@@ -200,10 +198,6 @@ class AppComponent extends React.Component {
     this.setState({ showConfirmModal: !this.state.showConfirmModal });
   }
 
-  toggleTreePickerModal() {
-    this.setState({ showTreePickerModal: !this.state.showTreePickerModal });
-  }
-
   togglePanel() {
     const nextPanel = Immutable.from(this.state.panel).asMutable();
     nextPanel.isCollapsed = !nextPanel.isCollapsed;
@@ -295,32 +289,6 @@ class AppComponent extends React.Component {
 
     const qldNode =
       { id: '2', label: 'Queensland', type: 'State', path: auPath, value: 500, rootTypeId: '0', isExpandable: true };
-
-    const initialSelection = [
-      actNode,
-      ntNode,
-    ];
-
-    const getSubtree = ({ rootTypeId, query, nodeId }, cb) => {
-      if (rootTypeId === '0' && !query && !nodeId) {
-        return cb([
-          actNode,
-          ntNode,
-          qldNode,
-          {
-            id: '3',
-            label: 'South Australia',
-            isSelectable: false,
-            type: 'State',
-            path: auPath,
-            value: 500,
-            rootTypeId: '0',
-          },
-        ]);
-      }
-
-      return cb([]);
-    };
 
     return (
       <div className="index">
@@ -514,32 +482,6 @@ class AppComponent extends React.Component {
         <Provider store={store}>
           <ExampleSelect />
         </Provider>
-
-        <h1>TreePicker</h1>
-
-        <Button data-test-selector="button-tree-picker" bsStyle="primary" onClick={this.toggleTreePickerModal}>
-          Open TreePicker
-        </Button>
-
-        <TreePicker
-          baseItem={baseItem}
-          modalClose={this.toggleTreePickerModal}
-          initialSelection={initialSelection}
-          itemType="segment value"
-          helpText={{
-            average: `CPM line items use the average method.
-              Targeting adjusts which people, but not the number of people who see your ad.`,
-            sum: `CPD (Sponsorship) line items use the sum method.
-              Targeting adjusts which people, and the number of people who see your ad.`,
-          }}
-          getSubtree={getSubtree}
-          modalTitle="Edit Targeting"
-          rootTypes={rootTypes}
-          selectedLabel="Selected Targeting"
-          show={this.state.showTreePickerModal}
-          totalsSuffix="CPD"
-          valueFormatter={valueFormatter}
-        />
 
         <h1>TreePickerSimplePure with initial state</h1>
 
