@@ -19,3 +19,11 @@
     display: none;
   }
 }
+
+.has-error {
+  .filepicker-component {
+    .form-control {
+      border: 0; // Error style is applied to .filepicker-component-highlight
+    }
+  }
+}
