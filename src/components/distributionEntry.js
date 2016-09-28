@@ -1,7 +1,7 @@
 // Export the consumable components.
 import Accordion from 'components/adslotUi/AccordionComponent';
 import Button from 'react-bootstrap/lib/Button';
-import CategorySearch from 'components/adslotUi/CategorySearchComponent';
+import SearchBar from 'components/adslotUi/SearchBarComponent';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import DatePicker from 'react-datepicker/dist/react-datepicker';
@@ -60,7 +60,6 @@ module.exports = {
   Breadcrumb,
   Button,
   Card,
-  CategorySearch,
   Checkbox,
   ConfirmModal,
   DatePicker,
@@ -83,7 +82,8 @@ module.exports = {
   PrettyDiff,
   Radio,
   RadioGroup,
-  Search,
+  SearchBar,
+  SearchField: Search,
   Select,
   Slicey,
   Statistic,

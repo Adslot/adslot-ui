@@ -1,0 +1,31 @@
+@import '../variable';
+@import '../icon';
+
+.search-bar-component {
+  $component-height: 30px;
+  $component-padding: 10px;
+  display: flex;
+
+  &-text-input {
+    &.form-control {
+      flex: 1;
+      height: $component-height + 2;
+      margin-right: -3px; // have the search button overlap on borders
+      padding: $padding-base-vertical $component-padding;
+    }
+  }
+
+  &-button {
+    &.btn {
+      &,
+      &:active {
+        background-image: $icon-search;
+        background-origin: content-box;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow: none;
+        width: 50px;
+      }
+    }
+  }
+}
