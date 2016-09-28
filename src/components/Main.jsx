@@ -9,7 +9,6 @@ import moment from 'moment';
 import {
   Accordion,
   Button,
-  CategorySearch,
   Checkbox,
   ConfirmModal,
   DatePicker,
@@ -20,6 +19,7 @@ import {
   Panel,
   Radio,
   RadioGroup,
+  SearchBar,
   SvgSymbol,
   Tab,
   Tabs,
@@ -52,13 +52,12 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
-      'setCategory',
-      'setCategorySearchString',
+      'setSearchBarString',
       'setSearchValue',
       'searchOnClear',
       'setSelectedDate',
       'setSearchTreePickerPure',
-      'performCategorySearch',
+      'performSearchBarSearch',
       'toggleConfirmModal',
       'toggleListPickerModal',
       'toggleSimpleModal',
@@ -133,48 +132,12 @@ class AppComponent extends React.Component {
         { id: '2', label: 'Norfolk Island', path: [{ id: '11', label: 'AU' }], type: '', isSelectable: false },
         { id: '3', label: 'Queensland', path: [{ id: '12', label: 'AU' }], type: '' },
       ],
-      category: '0',
-      categoryOptions: [
-        { value: '0', label: 'All Categories' },
-        { value: '1', label: 'Arts & Entertainment' },
-        { value: '2', label: 'Automotive' },
-        { value: '3', label: 'Business' },
-        { value: '4', label: 'Careers' },
-        { value: '5', label: 'Education' },
-        { value: '6', label: 'Family & Parenting' },
-        { value: '7', label: 'Food & Drink' },
-        { value: '8', label: 'Health & Fitness' },
-        { value: '9', label: 'Hobbies & Interests' },
-        { value: '10', label: 'Home & Garden' },
-        { value: '11', label: 'Law, Gov\'t & Politics' },
-        { value: '12', label: 'News' },
-        { value: '25', label: 'Personal Finance' },
-        { value: '13', label: 'Pets' },
-        { value: '14', label: 'Real Estate' },
-        { value: '15', label: 'Religion & Spirituality' },
-        { value: '16', label: 'Science' },
-        { value: '17', label: 'Shopping' },
-        { value: '18', label: 'Society' },
-        { value: '19', label: 'Sports' },
-        { value: '24', label: 'Style & Fashion' },
-        { value: '20', label: 'Technology & Computing' },
-        { value: '21', label: 'Travel' },
-        { value: '23', label: 'Other' },
-      ],
-      categorySearchString: '',
+      searchBarString: '',
     };
   }
 
-  searchOnClear() {
-    this.setSearchValue('');
-  }
-
-  setCategory(categoryValue) {
-    this.setState({ category: categoryValue });
-  }
-
-  setCategorySearchString(searchString) {
-    this.setState({ categorySearchString: searchString });
+  setSearchBarString(searchBarString) {
+    this.setState({ searchBarString });
   }
 
   setSearchValue(newValue) {
@@ -209,8 +172,12 @@ class AppComponent extends React.Component {
     this.setState({ startDate: newValue });
   }
 
-  performCategorySearch() {
-    console.log(`Searching "${this.state.categorySearchString}"...`);
+  searchOnClear() {
+    this.setSearchValue('');
+  }
+
+  performSearchBarSearch() {
+    console.log(`Searching "${this.state.searchBarString}"...`);
   }
 
   toggleListPickerModal() {
@@ -714,15 +681,12 @@ class AppComponent extends React.Component {
         <h1>Accordion</h1>
         <Accordion panels={this.state.accordionPanels} onPanelClick={this.toggleAccordionPanel} />
 
-        <h1>Category Search</h1>
-        <CategorySearch
-          category={this.state.category}
-          categoryOptions={this.state.categoryOptions}
-          onCategorySelect={this.setCategory}
-          searchString={this.state.categorySearchString}
+        <h1>Search Bar</h1>
+        <SearchBar
+          searchString={this.state.searchBarString}
           searchPlaceholder="Search for all the things."
-          onSearchStringChange={this.setCategorySearchString}
-          onSearch={this.performCategorySearch}
+          onSearchStringChange={this.setSearchBarString}
+          onSearch={this.performSearchBarSearch}
         />
       </div>
     );
