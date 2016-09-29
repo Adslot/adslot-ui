@@ -34,6 +34,9 @@ const TreePickerSimplePureComponent = ({
   subtree,
   svgSymbolCancel,
   svgSymbolSearch,
+
+  rootTypes,
+  selectedNodesByRootType,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   let searchTextNode = emptyText || 'No items to select.';
@@ -87,6 +90,9 @@ const TreePickerSimplePureComponent = ({
             nodeRenderer,
             removeNode,
             selected: true,
+
+            rootTypes,
+            selectedNodesByRootType,
           }}
         />
         <FlexibleSpacer />
@@ -122,11 +128,17 @@ TreePickerSimplePureComponent.propTypes = {
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
+
+  rootTypes: PropTypes.arrayOf(TreePickerPropTypes.rootType).isRequired,
+  selectedNodesByRootType: PropTypes.shape(),
 };
 
 TreePickerSimplePureComponent.defaultProps = {
   disabled: false,
   itemType: 'node',
+
+  rootTypes: [],
+  selectedNodesByRootType: {},
 };
 
 export default TreePickerSimplePureComponent;
