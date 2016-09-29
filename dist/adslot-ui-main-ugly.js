@@ -21003,6 +21003,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _iCheck = 'iCheck';
 	var _iCheckHelper = _iCheck + '-helper';
+	var _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
 
 	var EnhancedSwitch = (function (_React$Component) {
 	  _inherits(EnhancedSwitch, _React$Component);
@@ -21170,8 +21171,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } else {
 	      checked = props.defaultChecked;
 	    }
-	    // Assume we aren't on a mobile for server-side-rendering
-	    this._mobile = false;
 	    this.state = {
 	      checked: checked,
 	      focused: false,
@@ -21183,12 +21182,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(EnhancedSwitch, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      if (typeof navigator !== 'undefined') {
-	        this._mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
-	      }
 	      this.adjustStyle();
 	      this.setIndeterminate();
-	      this.forceUpdate();
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
@@ -21257,7 +21252,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          checked: checked
 	        });
 	      }
-
 	      if (this.props.onChange) {
 	        this.props.onChange(e, checked);
 	      }
@@ -21295,6 +21289,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return;
 	      }
 
+	      // let type = event.type;
+
 	      var newChecked = !this.refs.checkbox.checked;
 
 	      if (!('checked' in this.props)) {
@@ -21306,10 +21302,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      event.preventDefault();
 	      event.stopPropagation();
-
-	      if (this.props.onChange) {
-	        // make sure <ins /> element is not target
-	        event.target = this.refs.checkbox;
+	      if (this.props.onChange && !this.props.label) {
 	        this.props.onChange(event, newChecked);
 	      }
 	    }
@@ -21367,7 +21360,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      // Choose how to hide input
 	      var hide = undefined;
-	      if (this._mobile) {
+	      if (_mobile) {
 	        hide = {
 	          position: 'absolute',
 	          visibility: 'hidden'
@@ -21429,12 +21422,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        name: name,
 	        value: value,
 	        defaultChecked: props.defaultChecked,
+	        // checked: !!checked,
 	        onChange: this.handleChange.bind(this),
 	        onBlur: this.handleBlur.bind(this),
 	        onFocus: this.handleFocus.bind(this)
 	      };
 
-	      var inputElement = _react2['default'].createElement('input', inputProps);
+	      var inputElement = _react2['default'].createElement('input', _extends({}, other, inputProps));
 
 	      var insertElement = props.insert || undefined;
 	      if (insertElement && !_react2['default'].isValidElement(insertElement)) {
@@ -21480,7 +21474,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 	          }
 
-	        if (this._mobile) {
+	        if (_mobile) {
 	          event.stopPropagation();
 	        }
 	        // return false;
