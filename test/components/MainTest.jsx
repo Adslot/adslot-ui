@@ -72,13 +72,6 @@ describe('MainComponent', () => {
     expect(toggleComponent).to.have.length(1);
   });
 
-  it('should toggle `showTreePickerModal` on `Open Treepicker` click', () => {
-    const treePickerButtonElement = MainComponent.find('[data-test-selector="button-tree-picker"]');
-    treePickerButtonElement.simulate('click');
-    const treePickerElement = MainComponent.find(TreePicker);
-    expect(treePickerElement.prop('show')).to.equal(true);
-  });
-
   it('should toggle `panel.isCollapsed` on `Toggle Panel` click', () => {
     const panelElement = MainComponent.find(Panel);
     expect(MainComponent.state().panel.isCollapsed).to.equal(false);
@@ -91,22 +84,6 @@ describe('MainComponent', () => {
     expect(MainComponent.state().accordionPanels[0].isCollapsed).to.equal(false);
     accordionElement.prop('onPanelClick')('1');
     expect(MainComponent.state().accordionPanels[0].isCollapsed).to.equal(true);
-  });
-
-  it('should pass a custom valueFormatter into the TreePicker', () => {
-    const treePickerElement = MainComponent.find(TreePicker);
-    expect(treePickerElement.prop('valueFormatter')(155)).to.equal('$1.55');
-  });
-
-  it('should pass a custom initialSelection into the TreePicker', () => {
-    const treePickerElement = MainComponent.find(TreePicker);
-    expect(treePickerElement.prop('initialSelection')).to.have.length(2);
-  });
-
-  it('should pass a custom getSubtree into the TreePicker', () => {
-    const treePickerElement = MainComponent.find(TreePicker);
-    treePickerElement.prop('getSubtree')({}, (subtree) => expect(subtree).to.have.length(0));
-    treePickerElement.prop('getSubtree')({ rootTypeId: '0' }, (subtree) => expect(subtree).to.have.length(4));
   });
 
   it('should render a TreePickerSimplePure', () => {
