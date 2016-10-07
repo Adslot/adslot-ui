@@ -7,7 +7,7 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 import { shallow, mount } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
-  const { cbrNode, actNode, itemType, nodeRenderer } = TreePickerMocks;
+  const { cbrNode, cbrNodeAlreadySelected, actNode, itemType, nodeRenderer } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
     const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
@@ -48,6 +48,23 @@ describe('TreePickerNodeComponent', () => {
     expect(buttonElement.prop('onClick')).to.be.a('function');
     expect(buttonElement.prop('disabled')).to.equal(false);
     expect(buttonElement.children().text()).to.equal('+');
+  });
+
+  it('should render metadata of nodes already selected containing ancestory data', () => {
+    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNodeAlreadySelected} />);
+
+    const metaDataElement = component.find('.treepickernode-component-metadata');
+    expect(metaDataElement).to.have.length(1);
+
+    expect(metaDataElement.children()).to.have.length(5);
+    expect(metaDataElement.children().at(0).text()).to.equal(' (');
+    expect(metaDataElement.children().at(1).text()).to.equal('City');
+    expect(metaDataElement.children().at(2).text()).to.equal(' in ');
+
+    const pathElement = metaDataElement.children().at(3);
+    expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
+    expect(pathElement.children().text()).to.equal('ACT, AU');
+    expect(metaDataElement.children().at(4).text()).to.equal(')');
   });
 
   it('should render node via nodeRenderer', () => {

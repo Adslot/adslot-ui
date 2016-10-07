@@ -34,9 +34,13 @@ const TreePickerNodeComponent = ({
   selected,
   valueFormatter,
 }) => {
-  const pathElement = !_.isEmpty(node.path) ?
+
+  const printPathText = (node) => _(node.path).map('label').clone().reverse().join(', ');
+  const printAncestorText = (node) => _(node.ancestors).map('label').join(', ');
+
+  const pathElement = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors)) ?
     <span className={`${baseClass}-path`}>
-      {_(node.path).map('label').clone().reverse().join(', ')}
+      { !_.isEmpty(node.path) ? printPathText(node) : printAncestorText(node) }
     </span> :
     null;
 
