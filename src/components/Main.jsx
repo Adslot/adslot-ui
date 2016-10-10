@@ -307,6 +307,12 @@ class AppComponent extends React.Component {
           <Button className="btn-inverse" bsStyle="primary" disabled>
             Inverse Disabled
           </Button>
+          <Button className="btn-borderless">
+            Borderless
+          </Button>
+          <Button className="btn-borderless" disabled>
+            Borderless Disabled
+          </Button>
         </div>
 
         <div className="btn-panel">
