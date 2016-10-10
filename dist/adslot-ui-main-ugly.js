@@ -6776,7 +6776,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function ListPickerComponent(props) {
 	    _classCallCheck(this, ListPickerComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ListPickerComponent).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (ListPickerComponent.__proto__ || Object.getPrototypeOf(ListPickerComponent)).call(this, props));
 
 	    var _arr = ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'loadData', 'selectItem'];
 
@@ -7671,7 +7671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function FastStatelessWrapperComponent() {
 	      _classCallCheck(this, FastStatelessWrapperComponent);
 
-	      return _possibleConstructorReturn(this, Object.getPrototypeOf(FastStatelessWrapperComponent).apply(this, arguments));
+	      return _possibleConstructorReturn(this, (FastStatelessWrapperComponent.__proto__ || Object.getPrototypeOf(FastStatelessWrapperComponent)).apply(this, arguments));
 	    }
 
 	    _createClass(FastStatelessWrapperComponent, [{
@@ -20871,7 +20871,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function FilePickerComponent() {
 	    _classCallCheck(this, FilePickerComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FilePickerComponent).call(this));
+	    var _this = _possibleConstructorReturn(this, (FilePickerComponent.__proto__ || Object.getPrototypeOf(FilePickerComponent)).call(this));
 
 	    _this.state = { fileName: '' };
 	    _this.onChange = _this.onChange.bind(_this);
@@ -21102,7 +21102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function PagedGridComponent() {
 	    _classCallCheck(this, PagedGridComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PagedGridComponent).call(this));
+	    var _this = _possibleConstructorReturn(this, (PagedGridComponent.__proto__ || Object.getPrototypeOf(PagedGridComponent)).call(this));
 
 	    _this.state = { activePage: 1 };
 	    return _this;

@@ -65,7 +65,7 @@
 
 // Don't use btn-default (use .btn-inverse instead) but don't break for .remove-file.
 .btn-default {
-  &:not(.btn-inverse, .remove-file) {
+  &:not(.btn-inverse, .remove-file, .btn-borderless) {
     font-size: 100px;
   }
 }
@@ -75,7 +75,7 @@
   margin-right: 5px;
 
   // Make border the same colour as the fill.
-  &:not(.btn-inverse) {
+  &:not(.btn-inverse, .btn-borderless) {
 
     &,
     &:active,
@@ -122,6 +122,20 @@
   &,
   &:active {
     @include reset-shadow-and-transform;
+  }
+}
+
+.btn-borderless {
+  &:not(:disabled) {
+    @include button-variant($color-text-light, $color-inverse, $color-white);
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+      border-color: $color-border-light;
+      box-shadow: 0 1px $color-border-light;
+    }
   }
 }
 
