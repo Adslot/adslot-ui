@@ -32,7 +32,7 @@
 .btn-inverse {
   // :not(:disabled) is used instead of :enabled as various elements (a, div, span)
   // are styled as buttons but do not have an :enabled state
-  &:not(:disabled) {
+  &:not(:disabled, [disabled='disabled']) {
     @include button-variant($color-text-light, $color-inverse, $color-border-light);
 
     &:hover,
@@ -60,13 +60,6 @@
     &.btn-danger {
       @include button-inverse($color-negative);
     }
-  }
-}
-
-// Don't use btn-default (use .btn-inverse instead) but don't break for .remove-file.
-.btn-default {
-  &:not(.btn-inverse, .remove-file, .btn-borderless) {
-    font-size: 100px;
   }
 }
 
