@@ -32,7 +32,8 @@
 .btn-inverse {
   // :not(:disabled) is used instead of :enabled as various elements (a, div, span)
   // are styled as buttons but do not have an :enabled state
-  &:not(:disabled, [disabled='disabled']) {
+  &:not(:disabled),
+  &:not([disabled='disabled']) {
     @include button-variant($color-text-light, $color-inverse, $color-border-light);
 
     &:hover,
