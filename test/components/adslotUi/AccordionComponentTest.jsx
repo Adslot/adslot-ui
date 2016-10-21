@@ -46,7 +46,7 @@ describe('AccordionComponent', () => {
   });
 
   it('should pass onPanelClick down to panels', () => {
-    let callback = sinon.spy();
+    const callback = sinon.spy();
     const panels = [panel1, panel2, panel3];
     const component = mount(<Accordion panels={panels} onPanelClick={callback} />);
     const panelElements = component.find(Panel);

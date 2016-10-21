@@ -23,6 +23,16 @@ const getExpander = ({ expandNode, node }) => {
   return {};
 };
 
+const printPathText = (node) => _(node.path)
+  .map('label')
+  .clone()
+  .reverse()
+  .join(', ');
+
+const printAncestorText = (node) => _(node.ancestors)
+  .map('label')
+  .join(', ');
+
 const TreePickerNodeComponent = ({
   disabled,
   expandNode,
@@ -34,24 +44,17 @@ const TreePickerNodeComponent = ({
   selected,
   valueFormatter,
 }) => {
-
-  const printPathText = (node) => _(node.path).map('label').clone().reverse().join(', ');
-  const printAncestorText = (node) => _(node.ancestors).map('label').join(', ');
-
   const pathElement = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors)) ?
     <span className={`${baseClass}-path`}>
-      { !_.isEmpty(node.path) ? printPathText(node) : printAncestorText(node) }
-    </span> :
-    null;
+      { _.isEmpty(node.path) ? printAncestorText(node) : printPathText(node) }
+    </span> : null;
 
   const includeNodeBound = includeNode.bind(null, node);
   const removeNodeBound = removeNode.bind(null, node);
 
   const { expandNodeBound, expanderElement } = getExpander({ expandNode, node });
 
-  const labelCellProps = expanderElement ?
-    { onClick: expandNodeBound } :
-    {};
+  const labelCellProps = expanderElement ? { onClick: expandNodeBound } : {};
 
   return (
     <div className={`${baseClass}`}>
@@ -122,7 +125,7 @@ TreePickerNodeComponent.defaultProps = {
 
   selected: false,
   valueFormatter: (value) => value,
-  nodeRenderer: (node) => node.label
+  nodeRenderer: (node) => node.label,
 };
 
 export default TreePickerNodeComponent;

@@ -7,7 +7,7 @@
 
 :100: We strive for 100% test coverage, to run tests locally use `npm run test`.
 
-:do_not_litter: We love lint. It keeps things consistent and protects against human error. Linting will be run automatically after running `npm run test`. You can also run `npm run posttest` on its own. See [commit conventions](#commit-conventions).
+:do_not_litter: We love lint. It keeps things consistent and protects against human error. Linting will be run automatically after running `npm run test`. You can also run `npm run lint` on its own. See [commit conventions](#commit-conventions).
 
 :speech_balloon: Ensure that your effort is aligned with the project's roadmap by talking to the maintainers, especially if you are going to spend a lot of time on it.
 

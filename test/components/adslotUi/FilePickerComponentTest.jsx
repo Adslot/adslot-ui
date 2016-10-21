@@ -32,7 +32,7 @@ describe('FilePickerComponent', () => {
     expect(fileElement.prop('title')).to.equal('');
 
     const selectButtonElement = component.find(Button);
-    const fileInput = component.instance().refs.fileInput;
+    const fileInput = component.instance().fileInput;
     sinon.spy(fileInput, 'click');
     selectButtonElement.simulate('click');
     expect(fileInput.click.calledOnce).to.equal(true);

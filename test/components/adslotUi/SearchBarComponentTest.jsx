@@ -42,7 +42,7 @@ describe('SearchBarComponent', () => {
   });
 
   it('should bind onSearchStringChange to search input change event', () => {
-    let callback = sinon.spy();
+    const callback = sinon.spy();
     const component = shallow(<SearchBar {...defaultProps} onSearchStringChange={callback} />);
     const inputElement = component.find('input');
     inputElement.simulate('change', { target: { value: 'Granny Smith' } });
@@ -51,7 +51,7 @@ describe('SearchBarComponent', () => {
   });
 
   it('should bind onSearch to search input key press event', () => {
-    let callback = sinon.spy();
+    const callback = sinon.spy();
     const component = shallow(<SearchBar {...defaultProps} onSearch={callback} />);
     const inputElement = component.find('input');
     const ENTER_KEY = 13;
@@ -63,7 +63,7 @@ describe('SearchBarComponent', () => {
   });
 
   it('should bind onSearch to search button click event', () => {
-    let callback = sinon.spy();
+    const callback = sinon.spy();
     const component = shallow(<SearchBar {...defaultProps} onSearch={callback} />);
     const buttonElement = component.find(Button);
     buttonElement.simulate('click');

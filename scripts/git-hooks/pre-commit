@@ -12,26 +12,67 @@ then
   fi
 fi
 
-echo "Running git pre-commit hook…"
+echo -e "---------------------------\nRunning git pre-commit hook\n---------------------------"
 
 
 # Protect master from accidental commits.
-echo "  - checking branch isn't 'master';"
+echo "🔍  Checking branch isn't master."
 branchName=$(git branch | grep '*' | sed 's/* //')
 if [ $branchName == 'master' ]
 then
-  echo "Failed, attempting to commit to master. Please create a branch for your work." && exit 1
+  echo "💔  Cannot commit to master, please create a branch." && exit 1
 fi
 
 
 # Run linting and commit check.
-echo "  - linting"
-npm run posttest
+STAGED_SRC_FILES=`git diff --staged --name-only HEAD ./src | grep .*\\.js | grep -v json`; # JS & JSX Files included
+STAGED_TEST_FILES=`git diff --staged --name-only HEAD ./test | grep .*\\.js | grep -v json`; # JS & JSX Files included
+STAGED_SASS_FILES=`git diff --staged --name-only HEAD ./src/styles | grep .*\\.scss`;
+SRC_EXIT_CODE=1;
+TEST_EXIT_CODE=1;
+SASS_EXIT_CODE=1;
+JSCS_EXIT_CODE=1;
+COMMIT_MSG_EXIT_CODE=1;
 
+echo "🔍  Running linting on staged files…";
+echo "    - ESLint Source";
+if [ "$STAGED_SRC_FILES" ]; then
+  eslint --rulesdir ./src $STAGED_SRC_FILES && SRC_EXIT_CODE=0;
+else
+  SRC_EXIT_CODE=0;
+fi
+
+echo "    - ESLint Tests";
+if [ "$STAGED_TEST_FILES" ]; then
+  echo "linting test";
+  eslint --rulesdir ./test $STAGED_TEST_FILES && TEST_EXIT_CODE=0;
+else
+  TEST_EXIT_CODE=0;
+fi
+
+echo "    - SASSLint";
+if [ "$STAGED_SASS_FILES" ]; then
+  sass-lint $STAGED_SASS_FILES -v && SASS_EXIT_CODE=0;
+else
+  SASS_EXIT_CODE=0;
+fi
+
+echo "    - JSCSLint";
+if [ "$STAGED_SRC_FILES" ]; then
+  jscs $STAGED_SRC_FILES $STAGED_TEST_FILES && JSCS_EXIT_CODE=0;
+else
+  JSCS_EXIT_CODE=0;
+fi
+
+if [ $SRC_EXIT_CODE -eq 1 ] || [ $TEST_EXIT_CODE -eq 1 ] || [ $SASS_EXIT_CODE -eq 1 ] || [ $JSCS_EXIT_CODE -eq 1 ]; then
+  echo "💔  Linting failed.";
+  exit 1;
+fi
+
+echo "🔍  Checking commit message.";
+node scripts/commit-msg && COMMIT_MSG_EXIT_CODE=0;
+if [ $COMMIT_MSG_EXIT_CODE -eq 1 ]; then exit 1; fi
 
 # Compile the distribution from source.
-echo "  - compiling distribution files;"
+echo "🔍  Compiling distribution files."
 npm run -s dist && git add dist/*
-
-
-echo "…done."

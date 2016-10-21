@@ -42,7 +42,7 @@ describe('PanelComponent', () => {
   });
 
   it('should trigger onClick when clicking header', () => {
-    let callback = sinon.spy();
+    const callback = sinon.spy();
 
     const component = shallow(<Panel onClick={callback} {...panel3} />);
     const headerElement = component.find('.panel-component-header');

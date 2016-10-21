@@ -68,7 +68,11 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render node via nodeRenderer', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={actNode} nodeRenderer={nodeRenderer} />);
+    const component = shallow(<TreePickerNodeComponent
+      itemType={itemType}
+      node={actNode}
+      nodeRenderer={nodeRenderer}
+    />);
 
     const rowElement = component.find(GridRow);
     const cellElements = rowElement.find(GridCell);
