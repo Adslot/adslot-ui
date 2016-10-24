@@ -212,18 +212,11 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    const baseItem = {
-      label: 'Awesome Product',
-      value: 10000,
-    };
-
-    const valueFormatter = (value) => `$${Math.round(value) / 100}`;
-
     const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 
     const addonFormatter = () => (<Checkbox />);
 
-    const nodeRenderer = (value) => (<Checkbox label={value.label}/>);
+    const nodeRenderer = (value) => (<Checkbox label={value.label} />);
 
     const avatarColor = () => 'cyan';
 
@@ -258,37 +251,6 @@ class AppComponent extends React.Component {
     };
 
     const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
-    const svgSymbol = { href: '/assets/svg-symbols.svg#list' };
-
-    const rootTypes = [
-      {
-        label: 'Geography',
-        id: '0',
-        svgSymbol,
-        emptySvgSymbol,
-        isRequired: true,
-      },
-      { label: 'Gender', id: '1', svgSymbol, isRequired: false },
-      { label: 'Age', id: '2', svgSymbol, isRequired: false },
-    ];
-
-    const auPath = [{ id: '10', label: 'AU' }];
-
-    const actNode =
-      { id: '0', label: 'Australian Capital Territory', type: 'State', path: auPath, rootTypeId: '0' };
-
-    const ntNode = {
-      id: '1',
-      isExpandable: true,
-      label: 'Northern Territory',
-      path: auPath,
-      rootTypeId: '0',
-      type: 'State',
-      value: 500,
-    };
-
-    const qldNode =
-      { id: '2', label: 'Queensland', type: 'State', path: auPath, value: 500, rootTypeId: '0', isExpandable: true };
 
     return (
       <div className="index">
@@ -360,7 +322,7 @@ class AppComponent extends React.Component {
         </div>
 
         <div className="btn-panel">
-          <a className="btn btn-inverse" href="#">Anchor</a>
+          <a className="btn btn-inverse" href="#top">Anchor</a>
           <span className="btn btn-inverse btn-primary">Span</span>
           <div className="btn btn-inverse btn-success">Div</div>
         </div>

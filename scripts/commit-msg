@@ -31,7 +31,7 @@ function splitCommandResultToLines(result) {
 function checkGitCommit() {
   var commitMsgs, failed;
 
-  echo("Validating commit message…");
+  echo("🔍  Validating commit message.");
 
   commitMsgs = [execSilent("git log -1 --format=format:%s --no-merges")];
 
@@ -42,7 +42,7 @@ function checkGitCommit() {
 
   // Check for more than one commit
   if (commitMsgs.length > 1) {
-    echo(" - More than one commit found, please squash.");
+    echo("💔  More than one commit found, please squash.");
     failed = true;
   }
 
@@ -50,13 +50,13 @@ function checkGitCommit() {
   // Ignore long greenkeeper update messages (chore).
   if (!semver.valid(commitMsgs[0]) && !/^chore/.test(commitMsgs[0]) && !/^Revert /.test(commitMsgs[0])) {
     if (commitMsgs[0].slice(0, commitMsgs[0].indexOf("\n")).length > 72) {
-      echo(" - First line of commit message must not exceed 72 characters");
+      echo("💔  First line of commit message must not exceed 72 characters");
       failed = true;
     }
 
     // Check for tag at start of message
     if (!TAG_REGEX.test(commitMsgs[0])) {
-      echo([" - Commit summary must start with one of:",
+      echo(["💔  Commit summary must start with one of:",
         "    'Fix:'",
         "    'Update:'",
         "    'Breaking:'",

@@ -159,12 +159,14 @@ describe('ListPickerComponent', () => {
     expect(itemInfoLabelElement.children().text()).to.equal('User Details');
 
     const itemInfoPropertyElements = itemInfoGridElement.find(GridRow);
-    expect(itemInfoPropertyElements.at(1).find(GridCell).first().children().text()).to.equal('Name');
-    expect(itemInfoPropertyElements.at(1).find(GridCell).last().children().text()).to.equal('Jill Smith');
-    expect(itemInfoPropertyElements.at(1).find(GridCell).last().prop('dts')).to.equal('name');
-    expect(itemInfoPropertyElements.at(2).find(GridCell).first().children().text()).to.equal('Age');
-    expect(itemInfoPropertyElements.at(2).find(GridCell).last().children().text()).to.equal('21');
-    expect(itemInfoPropertyElements.at(2).find(GridCell).last().prop('dts')).to.equal('age');
+    const firstItemInfoProperty = itemInfoPropertyElements.at(1).find(GridCell);
+    const secondItemInfoProperty = itemInfoPropertyElements.at(2).find(GridCell);
+    expect(firstItemInfoProperty.first().children().text()).to.equal('Name');
+    expect(firstItemInfoProperty.last().children().text()).to.equal('Jill Smith');
+    expect(firstItemInfoProperty.last().prop('dts')).to.equal('name');
+    expect(secondItemInfoProperty.first().children().text()).to.equal('Age');
+    expect(secondItemInfoProperty.last().children().text()).to.equal('21');
+    expect(secondItemInfoProperty.last().prop('dts')).to.equal('age');
 
     const listPickerPureElement = splitPaneElements.find(ListPickerPureComponent);
     expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);

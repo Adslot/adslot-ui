@@ -1,4 +1,3 @@
-import mapDispatchToProps from '../redux/actions';
 import React, { PropTypes } from 'react';
 import {
   Button,
@@ -12,6 +11,7 @@ import {
   Select,
 } from 'components/distributionEntry';
 import { connect } from 'react-redux';
+import mapDispatchToProps from '../redux/actions';
 
 const selectFruit = [
   { value: 'du', label: 'Durian' },
@@ -100,7 +100,7 @@ const ExampleForm = ({
                 onChange={onChange('textarea')}
                 placeholder="Text area"
                 value={formValues.textarea}
-              ></textarea>
+              />
               <p className="help-block">Help text or example.</p>
             </div>
           </div>

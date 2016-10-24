@@ -8751,6 +8751,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return {};
 	};
 
+	var printPathText = function printPathText(node) {
+	  return (0, _lodash2.default)(node.path).map('label').clone().reverse().join(', ');
+	};
+
+	var printAncestorText = function printAncestorText(node) {
+	  return (0, _lodash2.default)(node.ancestors).map('label').join(', ');
+	};
+
 	var TreePickerNodeComponent = function TreePickerNodeComponent(_ref2) {
 	  var disabled = _ref2.disabled;
 	  var expandNode = _ref2.expandNode;
@@ -8762,18 +8770,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var selected = _ref2.selected;
 	  var valueFormatter = _ref2.valueFormatter;
 
-
-	  var printPathText = function printPathText(node) {
-	    return (0, _lodash2.default)(node.path).map('label').clone().reverse().join(', ');
-	  };
-	  var printAncestorText = function printAncestorText(node) {
-	    return (0, _lodash2.default)(node.ancestors).map('label').join(', ');
-	  };
-
 	  var pathElement = !(_lodash2.default.isEmpty(node.path) && _lodash2.default.isEmpty(node.ancestors)) ? _react2.default.createElement(
 	    'span',
 	    { className: baseClass + '-path' },
-	    !_lodash2.default.isEmpty(node.path) ? printPathText(node) : printAncestorText(node)
+	    _lodash2.default.isEmpty(node.path) ? printAncestorText(node) : printPathText(node)
 	  ) : null;
 
 	  var includeNodeBound = includeNode.bind(null, node);
@@ -21446,9 +21446,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  _createClass(FilePickerComponent, [{
 	    key: 'onChange',
-	    value: function onChange(event) {
-	      this.setState({ fileName: event.target.files[0].name });
-	      this.props.onSelect(event.target.files[0]);
+	    value: function onChange(changeEvent) {
+	      this.setState({ fileName: changeEvent.target.files[0].name });
+	      this.props.onSelect(changeEvent.target.files[0]);
 	    }
 	  }, {
 	    key: 'removeFile',
@@ -21466,6 +21466,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var mainClass = (0, _classnames2.default)(_defineProperty({}, baseClass + '-highlight', this.props.isHighlighted), baseClass, 'input-group');
 	      var fileName = this.state.fileName;
 
+	      var onClickHandler = function onClickHandler() {
+	        _this2.fileInput.click();
+	      };
 
 	      return _react2.default.createElement(
 	        'div',
@@ -21489,9 +21492,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          ) : null,
 	          !fileName && !this.props.disabled ? _react2.default.createElement(
 	            _Button2.default,
-	            { className: 'btn-inverse', onClick: function onClick() {
-	                return _this2.refs.fileInput.click();
-	              } },
+	            { className: 'btn-inverse', onClick: onClickHandler },
 	            _react2.default.createElement(
 	              'span',
 	              null,
@@ -21499,7 +21500,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ),
 	            _react2.default.createElement('input', {
 	              className: 'file-input',
-	              ref: 'fileInput',
+	              ref: function ref(inputElementRef) {
+	                _this2.fileInput = inputElementRef;
+	              },
+
 	              type: 'file',
 	              onChange: this.onChange,
 	              accept: this.props.filter,

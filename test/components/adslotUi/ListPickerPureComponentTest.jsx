@@ -24,7 +24,7 @@ describe('ListPickerPureComponent', () => {
   it('should render with defaults', () => {
     const component = shallow(<ListPickerPureComponent />);
     expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal(`listpickerpure-component-item`);
+    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-item');
 
     const gridElements = component.find(Grid);
     expect(gridElements).to.have.length(1);

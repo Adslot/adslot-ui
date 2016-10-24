@@ -97,7 +97,8 @@ class ListPickerComponent extends React.Component {
         <Modal.Body>
           {props.modalDescription ? <p>{props.modalDescription}</p> : null}
           {_.isEmpty(props.itemInfo) ?
-            <div className="listpicker-component-body">{listPickerPureElement}</div> :
+            <div className="listpicker-component-body">{listPickerPureElement}</div>
+          :
             <div className="listpicker-component-body-split">
               <SplitPane dts={_.kebabCase(props.itemInfo.label)}>
                 <Grid>

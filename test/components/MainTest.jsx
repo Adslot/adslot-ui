@@ -13,7 +13,6 @@ import {
   Radio,
   RadioGroup,
   Toggle,
-  TreePicker,
   TreePickerSimplePure,
   UserListPicker,
 } from 'components/distributionEntry';
