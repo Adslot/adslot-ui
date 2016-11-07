@@ -354,7 +354,7 @@ class AppComponent extends React.Component {
         </Button>
 
         <Modal show={this.state.showSimpleModal} bsSize="small" keyboard={false}>
-          <Modal.Header>
+          <Modal.Header closeButton onHide={this.toggleSimpleModal}>
             <Modal.Title>Modal Label</Modal.Title>
           </Modal.Header>
           <Modal.Body>
