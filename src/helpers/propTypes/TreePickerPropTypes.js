@@ -11,7 +11,7 @@ export default {
         id: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
       }).isRequired
-    ).isRequired,
+    ),
     type: PropTypes.string.isRequired,
     value: PropTypes.number,
   }),
