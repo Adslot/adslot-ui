@@ -330,8 +330,8 @@ class AppComponent extends React.Component {
 
         <h1>Tabs</h1>
         <div className="btn-panel">
-          <Tabs defaultActiveKey="Audience" animation={false}>
-            <Tab eventKey="Targeting" title="Targeting" active>Targeting content</Tab>
+          <Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
+            <Tab eventKey="Targeting" title="Targeting">Targeting content</Tab>
             <Tab
               eventKey="Audience"
               title={<span className="flexible-wrapper-inline"><SvgSymbol /><FlexibleSpacer />Audience</span>}

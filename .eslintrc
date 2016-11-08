@@ -29,6 +29,7 @@
     "no-cond-assign": [2, "except-parens"],
     "no-mixed-operators": ["error", {"groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]]}],
     "quote-props": 0,
+    "import/no-extraneous-dependencies": 0,
     "lodash/callback-binding": 2,
     "lodash/chain-style": [2, "as-needed"],
     "lodash/collection-return": 2,

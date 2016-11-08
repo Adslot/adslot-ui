@@ -1,6 +1,5 @@
 {
   "rules": {
     "max-statements": [2, 6],
-    "import/no-extraneous-dependencies": 1, // Warning as this should address this at some point
   }
 }

@@ -7,7 +7,7 @@ import { GridCell, GridRow } from 'alexandria-adslot';
 import { shallow, mount } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
-  const { cbrNode, cbrNodeAlreadySelected, actNode, itemType, nodeRenderer } = TreePickerMocks;
+  const { cbrNode, cbrNodeAlreadySelected, actNode, maleNode, itemType, nodeRenderer } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
     const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
@@ -293,5 +293,15 @@ describe('TreePickerNodeComponent', () => {
     expect(() => {
       buttonElement.simulate('click');
     }).to.throw('AdslotUi TreePickerNode needs a removeNode handler');
+  });
+
+  it('should accept both strings and numbers as node ids', () => {
+    const stringIdNode = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} selected />);
+    const numberIdNode = shallow(<TreePickerNodeComponent itemType={itemType} node={maleNode} />);
+
+    expect(cbrNode.id).to.equal('au-act-cbr');
+    expect(maleNode.id).to.equal(4);
+    expect(stringIdNode.find(GridRow).prop('dts')).to.equal('example-item-type-au-act-cbr');
+    expect(numberIdNode.find(GridRow).prop('dts')).to.equal('example-item-type-4');
   });
 });
