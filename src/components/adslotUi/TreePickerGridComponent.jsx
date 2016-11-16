@@ -19,6 +19,7 @@ const TreePickerGridComponent = ({
   selected,
   valueFormatter,
   emptyText,
+  hideIcon,
 }) => (
   <Grid>
     {_.map(nodes, (node) =>
@@ -42,6 +43,7 @@ const TreePickerGridComponent = ({
         collection={nodes}
         svgSymbol={emptySvgSymbol}
         text={emptyText}
+        hideIcon={hideIcon}
       /> :
       null}
   </Grid>
@@ -61,10 +63,12 @@ TreePickerGridComponent.propTypes = {
   removeNode: PropTypes.func,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func,
+  hideIcon: PropTypes.bool,
 };
 
 TreePickerGridComponent.defaultProps = {
   disabled: false,
+  hideIcon: true,
 };
 
 export default TreePickerGridComponent;
