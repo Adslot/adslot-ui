@@ -72,7 +72,7 @@
     "karma-phantomjs-shim": "^1.4.0",
     "karma-webpack": "^1.8.0",
     "minimist": "^1.2.0",
-    "mocha": "^3.0.2",
+    "mocha": "^3.2.0",
     "moment": "^2.14.1",
     "node-sass": "^3.8.0",
     "null-loader": "^0.1.1",
