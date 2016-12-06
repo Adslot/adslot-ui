@@ -20,8 +20,8 @@ const rootTypes = [
   { label: 'Hidden Segments', id: 'd', svgSymbol, isRequired: false, hidden: true },
 ];
 
-const auPath = { id: 'au', label: 'AU' };
-const actPath = { id: 'au-act', label: 'ACT' };
+const auPath = { id: 'au', label: 'AU', path: [] };
+const actPath = { id: 'au-act', label: 'ACT', path: [auPath] };
 
 const actNode = {
   id: 'au-act',
@@ -52,12 +52,13 @@ const cbrNodeAlreadySelected = {
   label: 'Canberra',
   type: 'City',
   ancestors: [actPath, auPath],
+  path: [],
   value: 2000,
   rootTypeId: 'a',
   isExpandable: true,
 };
 
-const maleNode = { id: '4', label: 'Males', type: '', path: [], value: 500, rootTypeId: 'b' };
+const maleNode = { id: 4, label: 'Males', type: '', path: [], value: 500, rootTypeId: 'b' };
 
 const valueFormatter = (value) => value;
 

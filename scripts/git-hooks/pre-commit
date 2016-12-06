@@ -8,12 +8,17 @@ then
   isVersionChange=$(git diff --cached | grep "+  \"version\"")
   if [[ -n "${isVersionChange[@]}" ]]
   then
+    echo -e "---------------------\nPreparing for release\n---------------------"
+    echo "👾  Installing node modules."
+    npm install
+    echo "📑  Compiling distribution files for release."
+    npm run -s dist && git add dist/*
     exit 0
   fi
 fi
 
-echo -e "---------------------------\nRunning git pre-commit hook\n---------------------------"
 
+echo -e "---------------------------\nRunning git pre-commit hook\n---------------------------"
 
 # Protect master from accidental commits.
 echo "🔍  Checking branch isn't master."
@@ -25,54 +30,50 @@ fi
 
 
 # Run linting and commit check.
-STAGED_SRC_FILES=`git diff --staged --name-only HEAD ./src | grep .*\\.js | grep -v json`; # JS & JSX Files included
-STAGED_TEST_FILES=`git diff --staged --name-only HEAD ./test | grep .*\\.js | grep -v json`; # JS & JSX Files included
-STAGED_SASS_FILES=`git diff --staged --name-only HEAD ./src/styles | grep .*\\.scss`;
-SRC_EXIT_CODE=1;
-TEST_EXIT_CODE=1;
-SASS_EXIT_CODE=1;
-JSCS_EXIT_CODE=1;
-COMMIT_MSG_EXIT_CODE=1;
+STAGED_SRC_FILES=`git diff --staged --name-only HEAD ./src | grep .*\\.js | grep -v json` # JS & JSX Files included
+STAGED_TEST_FILES=`git diff --staged --name-only HEAD ./test | grep .*\\.js | grep -v json` # JS & JSX Files included
+STAGED_SASS_FILES=`git diff --staged --name-only HEAD ./src/styles | grep .*\\.scss`
+SRC_EXIT_CODE=1
+TEST_EXIT_CODE=1
+SASS_EXIT_CODE=1
+JSCS_EXIT_CODE=1
+COMMIT_MSG_EXIT_CODE=1
 
-echo "🔍  Running linting on staged files…";
-echo "    - ESLint Source";
+echo "🔍  Running linting on staged files…"
+echo "    - ESLint Source"
 if [ "$STAGED_SRC_FILES" ]; then
-  eslint --rulesdir ./src $STAGED_SRC_FILES && SRC_EXIT_CODE=0;
+  eslint --rulesdir ./src $STAGED_SRC_FILES && SRC_EXIT_CODE=0
 else
-  SRC_EXIT_CODE=0;
+  SRC_EXIT_CODE=0
 fi
 
-echo "    - ESLint Tests";
+echo "    - ESLint Tests"
 if [ "$STAGED_TEST_FILES" ]; then
-  echo "linting test";
-  eslint --rulesdir ./test $STAGED_TEST_FILES && TEST_EXIT_CODE=0;
+  echo "linting test"
+  eslint --rulesdir ./test $STAGED_TEST_FILES && TEST_EXIT_CODE=0
 else
-  TEST_EXIT_CODE=0;
+  TEST_EXIT_CODE=0
 fi
 
 echo "    - SASSLint";
 if [ "$STAGED_SASS_FILES" ]; then
-  sass-lint $STAGED_SASS_FILES -v && SASS_EXIT_CODE=0;
+  sass-lint $STAGED_SASS_FILES -v && SASS_EXIT_CODE=0
 else
-  SASS_EXIT_CODE=0;
+  SASS_EXIT_CODE=0
 fi
 
-echo "    - JSCSLint";
+echo "    - JSCSLint"
 if [ "$STAGED_SRC_FILES" ]; then
-  jscs $STAGED_SRC_FILES $STAGED_TEST_FILES && JSCS_EXIT_CODE=0;
+  jscs $STAGED_SRC_FILES $STAGED_TEST_FILES && JSCS_EXIT_CODE=0
 else
-  JSCS_EXIT_CODE=0;
+  JSCS_EXIT_CODE=0
 fi
 
 if [ $SRC_EXIT_CODE -eq 1 ] || [ $TEST_EXIT_CODE -eq 1 ] || [ $SASS_EXIT_CODE -eq 1 ] || [ $JSCS_EXIT_CODE -eq 1 ]; then
-  echo "💔  Linting failed.";
-  exit 1;
+  echo "💔  Linting failed."
+  exit 1
 fi
 
-echo "🔍  Checking commit message.";
-node scripts/commit-msg && COMMIT_MSG_EXIT_CODE=0;
+echo "🔍  Checking commit message."
+node scripts/commit-msg && COMMIT_MSG_EXIT_CODE=0
 if [ $COMMIT_MSG_EXIT_CODE -eq 1 ]; then exit 1; fi
-
-# Compile the distribution from source.
-echo "🔍  Compiling distribution files."
-npm run -s dist && git add dist/*
