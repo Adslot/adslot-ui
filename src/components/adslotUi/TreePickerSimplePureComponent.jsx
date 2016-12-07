@@ -31,6 +31,7 @@ const TreePickerSimplePureComponent = ({
   searchPlaceholder,
   searchValue,
   selectedNodes,
+  hideIcon,
   subtree,
   svgSymbolCancel,
   svgSymbolSearch,
@@ -87,6 +88,7 @@ const TreePickerSimplePureComponent = ({
             nodeRenderer,
             removeNode,
             selected: true,
+            hideIcon,
           }}
         />
         <FlexibleSpacer />
@@ -119,6 +121,7 @@ TreePickerSimplePureComponent.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchValue: PropTypes.string,
   selectedNodes: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired).isRequired,
+  hideIcon: PropTypes.bool,
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),

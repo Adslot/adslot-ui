@@ -108,4 +108,14 @@ describe('TreePickerSimplePureComponent', () => {
     expect(component.find(TreePickerGrid).first().prop('No items to select.'));
     expect(component.find(TreePickerGrid).last().prop('Nothing to show'));
   });
+
+  it('should render with given empty selected state node', () => {
+    const loaderStateProps = _.assign({}, props, {
+      initialSelectedStateNode: 'Select...',
+      selectedNodes: [],
+    });
+
+    const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
+    expect(component.find(TreePickerGrid).last().prop('Select...'));
+  });
 });

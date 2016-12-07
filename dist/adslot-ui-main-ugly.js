@@ -9033,7 +9033,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      removeNode = _ref.removeNode,
 	      selected = _ref.selected,
 	      valueFormatter = _ref.valueFormatter,
-	      emptyText = _ref.emptyText;
+	      emptyText = _ref.emptyText,
+	      hideIcon = _ref.hideIcon;
 	  return _react2.default.createElement(
 	    _alexandriaAdslot.Grid,
 	    null,
@@ -9055,7 +9056,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    nodes ? _react2.default.createElement(_alexandriaAdslot.Empty, {
 	      collection: nodes,
 	      svgSymbol: emptySvgSymbol,
-	      text: emptyText
+	      text: emptyText,
+	      hideIcon: hideIcon
 	    }) : null
 	  );
 	};
@@ -9073,11 +9075,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  nodeRenderer: _react.PropTypes.func,
 	  removeNode: _react.PropTypes.func,
 	  selected: _react.PropTypes.bool.isRequired,
-	  valueFormatter: _react.PropTypes.func
+	  valueFormatter: _react.PropTypes.func,
+	  hideIcon: _react.PropTypes.bool
 	};
 
 	TreePickerGridComponent.defaultProps = {
-	  disabled: false
+	  disabled: false,
+	  hideIcon: true
 	};
 
 	exports.default = TreePickerGridComponent;
@@ -22817,6 +22821,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      searchPlaceholder = _ref.searchPlaceholder,
 	      searchValue = _ref.searchValue,
 	      selectedNodes = _ref.selectedNodes,
+	      hideIcon = _ref.hideIcon,
 	      subtree = _ref.subtree,
 	      svgSymbolCancel = _ref.svgSymbolCancel,
 	      svgSymbolSearch = _ref.svgSymbolSearch;
@@ -22870,7 +22875,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        nodes: selectedNodes,
 	        nodeRenderer: nodeRenderer,
 	        removeNode: removeNode,
-	        selected: true
+	        selected: true,
+	        hideIcon: hideIcon
 	      }),
 	      _react2.default.createElement(_alexandriaAdslot.FlexibleSpacer, null)
 	    )
@@ -22901,6 +22907,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  searchPlaceholder: _react.PropTypes.string,
 	  searchValue: _react.PropTypes.string,
 	  selectedNodes: _react.PropTypes.arrayOf(_TreePickerPropTypes2.default.node.isRequired).isRequired,
+	  hideIcon: _react.PropTypes.bool,
 	  subtree: _react.PropTypes.arrayOf(_TreePickerPropTypes2.default.node.isRequired),
 	  svgSymbolCancel: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes),
 	  svgSymbolSearch: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes)
