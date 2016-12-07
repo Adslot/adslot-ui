@@ -127,7 +127,7 @@ class AppComponent extends React.Component {
       ],
       treePickerPureSubtree: [],
       selectedNodes: [
-        { id: '2', label: 'Norfolk Island', path: [{ id: '11', label: 'AU' }], type: '', isSelectable: false },
+        { id: '2', label: 'Norfolk Island', path: [], type: '', isSelectable: false },
         { id: '3', label: 'Queensland', path: [{ id: '12', label: 'AU' }], type: '' },
       ],
       searchBarString: '',

@@ -57,7 +57,7 @@ const TreePickerNodeComponent = ({
   const labelCellProps = expanderElement ? { onClick: expandNodeBound } : {};
 
   return (
-    <div className={`${baseClass}`}>
+    <div className={!_.isEmpty(node.path) || !_.isEmpty(node.ancestors) ? `${baseClass} child-node` : `${baseClass}`}>
       <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
         {selected ?
           <GridCell classSuffixes={['button']} dts="button-remove">

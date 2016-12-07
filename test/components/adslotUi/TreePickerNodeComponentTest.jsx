@@ -11,7 +11,7 @@ describe('TreePickerNodeComponent', () => {
 
   it('should render a node with defaults', () => {
     const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
-    expect(component.prop('className')).to.equal('treepickernode-component');
+    expect(component.prop('className')).to.equal('treepickernode-component child-node');
     expect(component.type()).to.equal('div');
 
     const rowElement = component.find(GridRow);
@@ -141,6 +141,16 @@ describe('TreePickerNodeComponent', () => {
     expect(rowElement.prop('children')).to.have.length(5);
     const valueCellElement = rowElement.prop('children')[3];
     expect(valueCellElement).to.be.a('null');
+  });
+
+  it('should not have the child node class for root nodes', () => {
+    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={maleNode} />);
+    expect(component.prop('className')).to.equal('treepickernode-component');
+  });
+
+  it('should have the child node class for child nodes', () => {
+    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
+    expect(component.prop('className')).to.equal('treepickernode-component child-node');
   });
 
   it('should fire expandNode when clicking on the `expand` cell', () => {
