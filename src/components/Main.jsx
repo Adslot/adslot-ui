@@ -455,9 +455,11 @@ class AppComponent extends React.Component {
 
         <TreePickerSimplePure
           itemType={this.state.itemType}
+          hideIcon
           selectedNodes={[]}
           subtree={this.state.treePickerPureSubtree}
-          initialStateNode={<div><h><b>Start by searching for items</b></h></div>}
+          emptySelectedListText={<div><b>Choose items of interest</b></div>}
+          initialStateNode={<div><b>Start by searching for items</b></div>}
           searchValue={this.state.searchValue}
           searchOnChange={this.setSearchValue}
           searchOnClear={this.searchOnClear}

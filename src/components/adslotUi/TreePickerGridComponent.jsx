@@ -11,6 +11,7 @@ const TreePickerGridComponent = ({
   disabled,
   emptySvgSymbol,
   expandNode,
+  hideIcon,
   includeNode,
   itemType,
   nodes,
@@ -40,6 +41,7 @@ const TreePickerGridComponent = ({
     {nodes ?
       <Empty
         collection={nodes}
+        hideIcon={hideIcon}
         svgSymbol={emptySvgSymbol}
         text={emptyText}
       /> :
@@ -54,6 +56,7 @@ TreePickerGridComponent.propTypes = {
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   emptyText: PropTypes.any.isRequired,
   expandNode: PropTypes.func,
+  hideIcon: PropTypes.bool,
   includeNode: PropTypes.func,
   itemType: PropTypes.string.isRequired,
   nodes: PropTypes.arrayOf(TreePickerPropTypes.node),
@@ -65,6 +68,7 @@ TreePickerGridComponent.propTypes = {
 
 TreePickerGridComponent.defaultProps = {
   disabled: false,
+  hideIcon: false,
 };
 
 export default TreePickerGridComponent;
