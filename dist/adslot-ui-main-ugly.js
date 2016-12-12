@@ -9026,6 +9026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var disabled = _ref.disabled,
 	      emptySvgSymbol = _ref.emptySvgSymbol,
 	      expandNode = _ref.expandNode,
+	      hideIcon = _ref.hideIcon,
 	      includeNode = _ref.includeNode,
 	      itemType = _ref.itemType,
 	      nodes = _ref.nodes,
@@ -9054,6 +9055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }),
 	    nodes ? _react2.default.createElement(_alexandriaAdslot.Empty, {
 	      collection: nodes,
+	      hideIcon: hideIcon,
 	      svgSymbol: emptySvgSymbol,
 	      text: emptyText
 	    }) : null
@@ -9067,6 +9069,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  emptySvgSymbol: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes),
 	  emptyText: _react.PropTypes.any.isRequired,
 	  expandNode: _react.PropTypes.func,
+	  hideIcon: _react.PropTypes.bool,
 	  includeNode: _react.PropTypes.func,
 	  itemType: _react.PropTypes.string.isRequired,
 	  nodes: _react.PropTypes.arrayOf(_TreePickerPropTypes2.default.node),
@@ -9077,7 +9080,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	TreePickerGridComponent.defaultProps = {
-	  disabled: false
+	  disabled: false,
+	  hideIcon: false
 	};
 
 	exports.default = TreePickerGridComponent;
@@ -22806,6 +22810,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      emptyText = _ref.emptyText,
 	      emptySelectedListText = _ref.emptySelectedListText,
 	      expandNode = _ref.expandNode,
+	      hideIcon = _ref.hideIcon,
 	      includeNode = _ref.includeNode,
 	      initialStateNode = _ref.initialStateNode,
 	      initialStateSymbol = _ref.initialStateSymbol,
@@ -22866,6 +22871,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        disabled: disabled,
 	        emptySvgSymbol: emptySelectedListSvgSymbol || emptySvgSymbol,
 	        emptyText: emptySelectedListText || 'Nothing selected.',
+	        hideIcon: hideIcon,
 	        itemType: itemType,
 	        nodes: selectedNodes,
 	        nodeRenderer: nodeRenderer,
@@ -22890,6 +22896,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  emptyText: _react.PropTypes.any,
 	  emptySelectedListText: _react.PropTypes.any,
 	  expandNode: _react.PropTypes.func,
+	  hideIcon: _react.PropTypes.bool,
 	  includeNode: _react.PropTypes.func,
 	  initialStateNode: _react.PropTypes.any,
 	  initialStateSymbol: _react.PropTypes.shape(_alexandriaAdslot.SvgSymbol.propTypes),
