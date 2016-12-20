@@ -12,8 +12,8 @@ then
     echo "👾  Installing node modules."
     npm install
     echo "📑  Compiling distribution files for release."
-    npm run -s dist && git add dist/*
-    exit 0
+    npm run -s dist && git add dist/* && exit 0
+    exit 1
   fi
 fi
 
