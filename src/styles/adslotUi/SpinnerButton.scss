@@ -1,0 +1,26 @@
+.spinner-button-component {
+  &-children-container {
+    visibility: hidden; // preserves width and height of button
+  }
+
+  .spinner-container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+
+    // workaround for vertical centering
+    .spinner-component {
+      .spinner {
+        &-small {
+          margin-top: 1px;
+        }
+
+        &-medium {
+          margin-top: -3px;
+        }
+      }
+    }
+  }
+}

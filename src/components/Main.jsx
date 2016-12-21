@@ -9,6 +9,7 @@ import moment from 'moment';
 import {
   Accordion,
   Button,
+  SpinnerButton,
   Checkbox,
   ConfirmModal,
   DatePicker,
@@ -327,6 +328,27 @@ class AppComponent extends React.Component {
           <div className="btn btn-inverse btn-success">Div</div>
         </div>
 
+        <h3>Spinner Buttons</h3>
+        <div className="btn-panel">
+          <SpinnerButton isLoading className="btn-borderless" bsSize="sm">
+            Small Borderless
+          </SpinnerButton>
+          <SpinnerButton isLoading bsStyle="success" bsSize="large">
+            Big Success
+          </SpinnerButton>
+          <SpinnerButton
+            isLoading
+            bsStyle="primary"
+          >
+            Primary
+          </SpinnerButton>
+          <SpinnerButton disabled>
+            Disabled
+          </SpinnerButton>
+          <SpinnerButton bsStyle="primary">
+            Not spinning
+          </SpinnerButton>
+        </div>
 
         <h1>Tabs</h1>
         <div className="btn-panel">

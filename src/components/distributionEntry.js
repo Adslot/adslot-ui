@@ -1,6 +1,5 @@
 // Export the consumable components.
 import Accordion from 'components/adslotUi/AccordionComponent';
-import Button from 'react-bootstrap/lib/Button';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
@@ -23,6 +22,8 @@ import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
+import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
+import Button from 'react-bootstrap/lib/Button';
 import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
@@ -50,19 +51,20 @@ import {
   Totals,
 } from 'alexandria-adslot';
 
-require('styles/_bootstrap-custom.scss');
-require('styles/_icheck-custom.scss');
-require('styles/_react-select-custom.scss');
-require('styles/_react-toggle-custom.scss');
-require('styles/_react-datepicker-custom.scss');
+import 'styles/_bootstrap-custom.scss';
+import 'styles/_icheck-custom.scss';
+import 'styles/_react-select-custom.scss';
+import 'styles/_react-toggle-custom.scss';
+import 'styles/_react-datepicker-custom.scss';
 
-module.exports = {
+export {
   Accordion,
   Alert,
   Avatar,
   BorderedWell,
   Breadcrumb,
   Button,
+  SpinnerButton,
   Card,
   Checkbox,
   ConfirmModal,
@@ -88,7 +90,7 @@ module.exports = {
   Radio,
   RadioGroup,
   SearchBar,
-  SearchField: Search,
+  Search as SearchField,
   Select,
   Slicey,
   SplitPane,
