@@ -81,7 +81,7 @@
     "open": "^0.0.5",
     "phantomjs-prebuilt": "^2.1.13",
     "postcss-loader": "^0.9.1",
-    "react-addons-test-utils": "=15.3.2",
+    "react-addons-test-utils": "15.4.2",
     "react-addons-shallow-compare": "=15.3.2",
     "react-bootstrap": "^0.30.7",
     "react-datepicker": "^0.29.0",
