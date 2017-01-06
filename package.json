@@ -106,7 +106,7 @@
   "dependencies": {
     "lodash": "=3.10.1",
     "react": "=15.3.2",
-    "react-dom": "=15.3.2"
+    "react-dom": "15.4.2"
   },
   "engines": {
     "node": "^4.6"
