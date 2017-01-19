@@ -28,15 +28,14 @@ describe('TreePickerNodeComponent', () => {
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(1);
-    expect(metaDataElement.children()).to.have.length(5);
+    expect(metaDataElement.children()).to.have.length(4);
     expect(metaDataElement.children().at(0).text()).to.equal(' (');
-    expect(metaDataElement.children().at(1).text()).to.equal('City');
-    expect(metaDataElement.children().at(2).text()).to.equal(' in ');
+    expect(metaDataElement.children().at(1).text()).to.equal('City in ');
 
-    const pathElement = metaDataElement.children().at(3);
+    const pathElement = metaDataElement.children().at(2);
     expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
     expect(pathElement.children().text()).to.equal('ACT, AU');
-    expect(metaDataElement.children().at(4).text()).to.equal(')');
+    expect(metaDataElement.children().at(3).text()).to.equal(')');
 
     const valueCellElement = cellElements.at(1);
     expect(valueCellElement.children().text()).to.equal('2000');
@@ -56,15 +55,14 @@ describe('TreePickerNodeComponent', () => {
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(1);
 
-    expect(metaDataElement.children()).to.have.length(5);
+    expect(metaDataElement.children()).to.have.length(4);
     expect(metaDataElement.children().at(0).text()).to.equal(' (');
-    expect(metaDataElement.children().at(1).text()).to.equal('City');
-    expect(metaDataElement.children().at(2).text()).to.equal(' in ');
+    expect(metaDataElement.children().at(1).text()).to.equal('City in ');
 
-    const pathElement = metaDataElement.children().at(3);
+    const pathElement = metaDataElement.children().at(2);
     expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
     expect(pathElement.children().text()).to.equal('ACT, AU');
-    expect(metaDataElement.children().at(4).text()).to.equal(')');
+    expect(metaDataElement.children().at(3).text()).to.equal(')');
   });
 
   it('should render node via nodeRenderer', () => {
@@ -263,13 +261,17 @@ describe('TreePickerNodeComponent', () => {
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
     const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.children()).to.have.length(1);
+    expect(labelWrapperCellElement.children()).to.have.length(2);
 
     const labelElement = labelWrapperCellElement.children().first();
     expect(labelElement.text()).to.equal('Toyota');
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
-    expect(metaDataElement).to.have.length(0);
+    expect(metaDataElement).to.have.length(1);
+    expect(metaDataElement.children()).to.have.length(3);
+    expect(metaDataElement.children().at(0).text()).to.equal(' (');
+    expect(metaDataElement.children().at(1).text()).to.equal('Cars');
+    expect(metaDataElement.children().at(2).text()).to.equal(')');
 
     const valueCellElement = cellElements.at(1);
     expect(valueCellElement.children().text()).to.equal('400');

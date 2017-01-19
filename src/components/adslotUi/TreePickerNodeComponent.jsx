@@ -33,6 +33,8 @@ const printAncestorText = (node) => _(node.ancestors)
   .map('label')
   .join(', ');
 
+const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
+
 const TreePickerNodeComponent = ({
   disabled,
   expandNode,
@@ -73,8 +75,8 @@ const TreePickerNodeComponent = ({
         : null}
         <GridCell stretch {...labelCellProps} dts="label">
           <span>{nodeRenderer(node)}</span>
-          {!_.isEmpty(node.type) && !_.isEmpty(pathElement) ?
-            <span className={`${baseClass}-metadata`}> ({node.type} in {pathElement})</span> :
+          {!_.isEmpty(pathElement) ?
+            <span className={`${baseClass}-metadata`}> ({pathPrefix(node)}{pathElement})</span> :
             null
           }
         </GridCell>
