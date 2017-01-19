@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNodeComponent from 'components/adslotUi/TreePickerNodeComponent';
-import { GridCell, GridRow } from 'alexandria-adslot';
+import { GridCell, GridRow, Spinner } from 'alexandria-adslot';
 import { shallow, mount } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
@@ -180,6 +180,25 @@ describe('TreePickerNodeComponent', () => {
     expect(labelWrapperCellElement.prop('stretch')).to.equal(true);
     labelWrapperCellElement.simulate('click');
     expect(nodes).to.deep.equal([cbrNode]);
+  });
+
+  it('should set component state to isLoading when clicked', () => {
+    const nodes = [];
+    const expandNode = (node) => {
+      nodes.push(node);
+    };
+
+    const component = shallow(<TreePickerNodeComponent
+      itemType={itemType}
+      node={cbrNode}
+      expandNode={expandNode}
+    />);
+
+    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const expanderCellElement = rowElement.find(GridCell).at(1);
+    expanderCellElement.simulate('click');
+    expect(component.state().isLoading).to.equal(true);
+    expect(component.find(Spinner)).to.have.length(1);
   });
 
   it('should not show the expander element when the node is not expandable', () => {

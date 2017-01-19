@@ -2,26 +2,11 @@ import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import React, { PropTypes } from 'react';
-import { GridCell, GridRow } from 'alexandria-adslot';
+import { GridCell, GridRow, Spinner } from 'alexandria-adslot';
 
 require('styles/adslotUi/TreePickerNode.scss');
 
 const baseClass = 'treepickernode-component';
-
-const getExpander = ({ expandNode, node }) => {
-  if (expandNode && node.isExpandable) {
-    const expandNodeBound = expandNode.bind(null, node);
-    return {
-      expandNodeBound,
-      expanderElement:
-        <GridCell onClick={expandNodeBound} dts="expander">
-          <div className={`${baseClass}-expander`} />
-        </GridCell>,
-    };
-  }
-
-  return {};
-};
 
 const printPathText = (node) => _(node.path)
   .map('label')
@@ -35,74 +20,117 @@ const printAncestorText = (node) => _(node.ancestors)
 
 const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
 
-const TreePickerNodeComponent = ({
-  disabled,
-  expandNode,
-  includeNode,
-  itemType,
-  node,
-  nodeRenderer,
-  removeNode,
-  selected,
-  valueFormatter,
-}) => {
-  const pathElement = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors)) ?
-    <span className={`${baseClass}-path`}>
-      { _.isEmpty(node.path) ? printAncestorText(node) : printPathText(node) }
-    </span> : null;
+class TreePickerNodeComponent extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const includeNodeBound = includeNode.bind(null, node);
-  const removeNodeBound = removeNode.bind(null, node);
+    this.state = {
+      isLoading: false,
+    };
+  }
 
-  const { expandNodeBound, expanderElement } = getExpander({ expandNode, node });
+  getExpander() {
+    const {
+      expandNode,
+      node,
+    } = this.props;
 
-  const labelCellProps = expanderElement ? { onClick: expandNodeBound } : {};
+    if (expandNode && node.isExpandable) {
+      const expandNodeBound = (() => {
+        this.setState({ isLoading: true });
+        expandNode(node);
+      });
 
-  return (
-    <div className={!_.isEmpty(node.path) || !_.isEmpty(node.ancestors) ? `${baseClass} child-node` : `${baseClass}`}>
-      <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
-        {selected ?
-          <GridCell classSuffixes={['button']} dts="button-remove">
-            <Button
-              block bsSize="xsmall"
-              className="btn-inverse"
-              onClick={removeNodeBound}
-              disabled={disabled || node.isSelectable === false}
-            >
-              −
-            </Button>
+      return {
+        expandNodeBound,
+        expanderElement:
+          <GridCell onClick={expandNodeBound} dts="expander">
+            {
+              this.state.isLoading ? <Spinner size="small" />
+            :
+              <div className={`${baseClass}-expander`} />
+            }
+          </GridCell>,
+      };
+    }
+
+    return {};
+  }
+
+  // Bind so we can maintain context in async callbacks, and events.
+  bindIncludeNode() {
+    return this.props.includeNode.bind(null, this.props.node);
+  }
+
+  bindRemoveNode() {
+    return this.props.removeNode.bind(null, this.props.node);
+  }
+
+  render() {
+    const {
+      disabled,
+      itemType,
+      node,
+      nodeRenderer,
+      selected,
+      valueFormatter,
+    } = this.props;
+
+    const pathElement = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors)) ?
+      <span className={`${baseClass}-path`}>
+        { _.isEmpty(node.path) ? printAncestorText(node) : printPathText(node) }
+      </span> : null;
+
+    const { expandNodeBound, expanderElement } = this.getExpander();
+
+    const labelCellProps = expanderElement && !node.isLoading ? { onClick: expandNodeBound } : {};
+
+    return (
+      <div className={!_.isEmpty(node.path) || !_.isEmpty(node.ancestors) ? `${baseClass} child-node` : `${baseClass}`}>
+        <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
+          {selected ?
+            <GridCell classSuffixes={['button']} dts="button-remove">
+              <Button
+                block bsSize="xsmall"
+                className="btn-inverse"
+                onClick={this.bindRemoveNode()}
+                disabled={disabled || node.isSelectable === false}
+              >
+                −
+              </Button>
+            </GridCell>
+          : null}
+          <GridCell stretch {...labelCellProps} dts="label">
+            <span>{nodeRenderer(node)}</span>
+            {!_.isEmpty(pathElement) ?
+              <span className={`${baseClass}-metadata`}> ({pathPrefix(node)}{pathElement})</span> :
+              null
+            }
           </GridCell>
-        : null}
-        <GridCell stretch {...labelCellProps} dts="label">
-          <span>{nodeRenderer(node)}</span>
-          {!_.isEmpty(pathElement) ?
-            <span className={`${baseClass}-metadata`}> ({pathPrefix(node)}{pathElement})</span> :
+          {expanderElement}
+          {_.isNumber(node.value) ?
+            <GridCell dts="value">
+              {valueFormatter(node.value)}
+            </GridCell> :
             null
           }
-        </GridCell>
-        {expanderElement}
-        {_.isNumber(node.value) ?
-          <GridCell dts="value">
-            {valueFormatter(node.value)}
-          </GridCell> :
-          null
-        }
-        {!selected ?
-          <GridCell classSuffixes={['button']} dts="button-add">
-            <Button
-              block bsSize="xsmall"
-              className="btn-inverse"
-              onClick={includeNodeBound}
-              disabled={disabled || node.isSelectable === false}
-            >
-              +
-            </Button>
-          </GridCell>
-        : null}
-      </GridRow>
-    </div>
-  );
-};
+          {!selected ?
+            <GridCell classSuffixes={['button']} dts="button-add">
+              <Button
+                block bsSize="xsmall"
+                className="btn-inverse"
+                onClick={this.bindIncludeNode()}
+                disabled={disabled || node.isSelectable === false || node.isLoading}
+              >
+                +
+              </Button>
+            </GridCell>
+          : null}
+        </GridRow>
+      </div>
+    );
+  }
+}
 
 TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 

@@ -48,6 +48,8 @@ const reducer = combineReducers({
 
 const store = createStore(reducer); // One store per app.
 
+const auNode = { id: '10', label: 'Australia', path: [], type: '', isExpandable: true };
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -56,6 +58,8 @@ class AppComponent extends React.Component {
       'setSearchValue',
       'searchOnClear',
       'setSelectedDate',
+      'expandChildren',
+      'breadcrumbOnClick',
       'setSearchTreePickerPure',
       'performSearchBarSearch',
       'toggleConfirmModal',
@@ -122,16 +126,14 @@ class AppComponent extends React.Component {
         { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
         { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
       ],
-      simpleSubtree: [
-        { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
-        { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
-      ],
+      simpleSubtree: [auNode],
       treePickerPureSubtree: [],
       selectedNodes: [
         { id: '2', label: 'Norfolk Island', path: [], type: '', isSelectable: false },
         { id: '3', label: 'Queensland', path: [{ id: '12', label: 'AU' }], type: '' },
       ],
       searchBarString: '',
+      breadcrumbNodes: [],
     };
   }
 
@@ -169,6 +171,30 @@ class AppComponent extends React.Component {
 
   setSelectedDate(newValue) {
     this.setState({ startDate: newValue });
+  }
+
+  expandChildren() {
+    let intervalId;
+
+    const updateSubtree = () => {
+      clearInterval(intervalId);
+      this.setState({
+        breadcrumbNodes: [auNode],
+        simpleSubtree: [
+          { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
+          { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
+        ],
+      });
+    };
+
+    intervalId = setInterval(updateSubtree, 1000);
+  }
+
+  breadcrumbOnClick() {
+    this.setState({
+      breadcrumbNodes: [],
+      simpleSubtree: [auNode],
+    });
   }
 
   searchOnClear() {
@@ -494,9 +520,12 @@ class AppComponent extends React.Component {
           groupFormatter={(node) => `${node.label.split(' ').length} words`}
           itemType={this.state.itemType}
           selectedNodes={this.state.selectedNodes}
+          breadcrumbNodes={this.state.breadcrumbNodes}
+          breadcrumbOnClick={this.breadcrumbOnClick}
           subtree={this.state.simpleSubtree}
           searchValue={this.state.searchValueTreePickerPure}
           searchOnChange={this.setSearchTreePickerPure}
+          expandNode={this.expandChildren}
           nodeRenderer={nodeRenderer}
         />
 
