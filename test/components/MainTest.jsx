@@ -109,21 +109,10 @@ describe('MainComponent', () => {
 
   it('should set the correct search values for TreePickerSimplePure without initial state', () => {
     const treePickerSimplePureElement = MainComponent.find(TreePickerSimplePure).last();
-    MainComponent.setState({
-      searchValueTreePickerPure: 'Aus',
-      subTree: [
-        { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
-        { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
-      ],
-      simpleSubtree: [
-        { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'AU' }], type: '' },
-        { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'AU' }], type: '' },
-      ],
-    });
-    expect(treePickerSimplePureElement.prop('subtree')).to.have.length(2);
+    expect(treePickerSimplePureElement.prop('subtree')).to.have.length(1);
     treePickerSimplePureElement.prop('searchOnChange')('Territory');
     treePickerSimplePureElement.prop('searchOnChange')('');
-    expect(treePickerSimplePureElement.prop('subtree')).to.have.length(2);
+    expect(treePickerSimplePureElement.prop('subtree')).to.have.length(1);
   });
 
   it('should toggle `showListPickerModal` on `Open ListPicker` click', () => {
