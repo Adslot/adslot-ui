@@ -9201,6 +9201,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _lodash = __webpack_require__(12);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
@@ -9221,28 +9223,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	__webpack_require__(259);
 
 	var baseClass = 'treepickernode-component';
-
-	var getExpander = function getExpander(_ref) {
-	  var expandNode = _ref.expandNode,
-	      node = _ref.node;
-
-	  if (expandNode && node.isExpandable) {
-	    var expandNodeBound = expandNode.bind(null, node);
-	    return {
-	      expandNodeBound: expandNodeBound,
-	      expanderElement: _react2.default.createElement(
-	        _alexandriaAdslot.GridCell,
-	        { onClick: expandNodeBound, dts: 'expander' },
-	        _react2.default.createElement('div', { className: baseClass + '-expander' })
-	      )
-	    };
-	  }
-
-	  return {};
-	};
 
 	var printPathText = function printPathText(node) {
 	  return (0, _lodash2.default)(node.path).map('label').clone().reverse().join(', ');
@@ -9252,93 +9241,154 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return (0, _lodash2.default)(node.ancestors).map('label').join(', ');
 	};
 
-	var TreePickerNodeComponent = function TreePickerNodeComponent(_ref2) {
-	  var disabled = _ref2.disabled,
-	      expandNode = _ref2.expandNode,
-	      includeNode = _ref2.includeNode,
-	      itemType = _ref2.itemType,
-	      node = _ref2.node,
-	      nodeRenderer = _ref2.nodeRenderer,
-	      removeNode = _ref2.removeNode,
-	      selected = _ref2.selected,
-	      valueFormatter = _ref2.valueFormatter;
-
-	  var pathElement = !(_lodash2.default.isEmpty(node.path) && _lodash2.default.isEmpty(node.ancestors)) ? _react2.default.createElement(
-	    'span',
-	    { className: baseClass + '-path' },
-	    _lodash2.default.isEmpty(node.path) ? printAncestorText(node) : printPathText(node)
-	  ) : null;
-
-	  var includeNodeBound = includeNode.bind(null, node);
-	  var removeNodeBound = removeNode.bind(null, node);
-
-	  var _getExpander = getExpander({ expandNode: expandNode, node: node }),
-	      expandNodeBound = _getExpander.expandNodeBound,
-	      expanderElement = _getExpander.expanderElement;
-
-	  var labelCellProps = expanderElement ? { onClick: expandNodeBound } : {};
-
-	  return _react2.default.createElement(
-	    'div',
-	    { className: !_lodash2.default.isEmpty(node.path) || !_lodash2.default.isEmpty(node.ancestors) ? baseClass + ' child-node' : '' + baseClass },
-	    _react2.default.createElement(
-	      _alexandriaAdslot.GridRow,
-	      { dts: _lodash2.default.kebabCase(itemType) + '-' + node.id },
-	      selected ? _react2.default.createElement(
-	        _alexandriaAdslot.GridCell,
-	        { classSuffixes: ['button'], dts: 'button-remove' },
-	        _react2.default.createElement(
-	          _Button2.default,
-	          {
-	            block: true, bsSize: 'xsmall',
-	            className: 'btn-inverse',
-	            onClick: removeNodeBound,
-	            disabled: disabled || node.isSelectable === false
-	          },
-	          '\u2212'
-	        )
-	      ) : null,
-	      _react2.default.createElement(
-	        _alexandriaAdslot.GridCell,
-	        _extends({ stretch: true }, labelCellProps, { dts: 'label' }),
-	        _react2.default.createElement(
-	          'span',
-	          null,
-	          nodeRenderer(node)
-	        ),
-	        !_lodash2.default.isEmpty(node.type) && !_lodash2.default.isEmpty(pathElement) ? _react2.default.createElement(
-	          'span',
-	          { className: baseClass + '-metadata' },
-	          ' (',
-	          node.type,
-	          ' in ',
-	          pathElement,
-	          ')'
-	        ) : null
-	      ),
-	      expanderElement,
-	      _lodash2.default.isNumber(node.value) ? _react2.default.createElement(
-	        _alexandriaAdslot.GridCell,
-	        { dts: 'value' },
-	        valueFormatter(node.value)
-	      ) : null,
-	      !selected ? _react2.default.createElement(
-	        _alexandriaAdslot.GridCell,
-	        { classSuffixes: ['button'], dts: 'button-add' },
-	        _react2.default.createElement(
-	          _Button2.default,
-	          {
-	            block: true, bsSize: 'xsmall',
-	            className: 'btn-inverse',
-	            onClick: includeNodeBound,
-	            disabled: disabled || node.isSelectable === false
-	          },
-	          '+'
-	        )
-	      ) : null
-	    )
-	  );
+	var pathPrefix = function pathPrefix(_ref) {
+	  var type = _ref.type;
+	  return _lodash2.default.isEmpty(type) ? '' : type + ' in ';
 	};
+
+	var TreePickerNodeComponent = function (_React$Component) {
+	  _inherits(TreePickerNodeComponent, _React$Component);
+
+	  function TreePickerNodeComponent(props) {
+	    _classCallCheck(this, TreePickerNodeComponent);
+
+	    var _this = _possibleConstructorReturn(this, (TreePickerNodeComponent.__proto__ || Object.getPrototypeOf(TreePickerNodeComponent)).call(this, props));
+
+	    _this.state = {
+	      isLoading: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(TreePickerNodeComponent, [{
+	    key: 'getExpander',
+	    value: function getExpander() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          expandNode = _props.expandNode,
+	          node = _props.node;
+
+
+	      if (expandNode && node.isExpandable) {
+	        var expandNodeBound = function expandNodeBound() {
+	          _this2.setState({ isLoading: true });
+	          expandNode(node);
+	        };
+
+	        return {
+	          expandNodeBound: expandNodeBound,
+	          expanderElement: _react2.default.createElement(
+	            _alexandriaAdslot.GridCell,
+	            { onClick: expandNodeBound, dts: 'expander' },
+	            this.state.isLoading ? _react2.default.createElement(_alexandriaAdslot.Spinner, { size: 'small' }) : _react2.default.createElement('div', { className: baseClass + '-expander' })
+	          )
+	        };
+	      }
+
+	      return {};
+	    }
+
+	    // Bind so we can maintain context in async callbacks, and events.
+
+	  }, {
+	    key: 'bindIncludeNode',
+	    value: function bindIncludeNode() {
+	      return this.props.includeNode.bind(null, this.props.node);
+	    }
+	  }, {
+	    key: 'bindRemoveNode',
+	    value: function bindRemoveNode() {
+	      return this.props.removeNode.bind(null, this.props.node);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props,
+	          disabled = _props2.disabled,
+	          itemType = _props2.itemType,
+	          node = _props2.node,
+	          nodeRenderer = _props2.nodeRenderer,
+	          selected = _props2.selected,
+	          valueFormatter = _props2.valueFormatter;
+
+
+	      var pathElement = !(_lodash2.default.isEmpty(node.path) && _lodash2.default.isEmpty(node.ancestors)) ? _react2.default.createElement(
+	        'span',
+	        { className: baseClass + '-path' },
+	        _lodash2.default.isEmpty(node.path) ? printAncestorText(node) : printPathText(node)
+	      ) : null;
+
+	      var _getExpander = this.getExpander(),
+	          expandNodeBound = _getExpander.expandNodeBound,
+	          expanderElement = _getExpander.expanderElement;
+
+	      var labelCellProps = expanderElement && !node.isLoading ? { onClick: expandNodeBound } : {};
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: !_lodash2.default.isEmpty(node.path) || !_lodash2.default.isEmpty(node.ancestors) ? baseClass + ' child-node' : '' + baseClass },
+	        _react2.default.createElement(
+	          _alexandriaAdslot.GridRow,
+	          { dts: _lodash2.default.kebabCase(itemType) + '-' + node.id },
+	          selected ? _react2.default.createElement(
+	            _alexandriaAdslot.GridCell,
+	            { classSuffixes: ['button'], dts: 'button-remove' },
+	            _react2.default.createElement(
+	              _Button2.default,
+	              {
+	                block: true, bsSize: 'xsmall',
+	                className: 'btn-inverse',
+	                onClick: this.bindRemoveNode(),
+	                disabled: disabled || node.isSelectable === false
+	              },
+	              '\u2212'
+	            )
+	          ) : null,
+	          _react2.default.createElement(
+	            _alexandriaAdslot.GridCell,
+	            _extends({ stretch: true }, labelCellProps, { dts: 'label' }),
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              nodeRenderer(node)
+	            ),
+	            !_lodash2.default.isEmpty(pathElement) ? _react2.default.createElement(
+	              'span',
+	              { className: baseClass + '-metadata' },
+	              ' (',
+	              pathPrefix(node),
+	              pathElement,
+	              ')'
+	            ) : null
+	          ),
+	          expanderElement,
+	          _lodash2.default.isNumber(node.value) ? _react2.default.createElement(
+	            _alexandriaAdslot.GridCell,
+	            { dts: 'value' },
+	            valueFormatter(node.value)
+	          ) : null,
+	          !selected ? _react2.default.createElement(
+	            _alexandriaAdslot.GridCell,
+	            { classSuffixes: ['button'], dts: 'button-add' },
+	            _react2.default.createElement(
+	              _Button2.default,
+	              {
+	                block: true, bsSize: 'xsmall',
+	                className: 'btn-inverse',
+	                onClick: this.bindIncludeNode(),
+	                disabled: disabled || node.isSelectable === false || node.isLoading
+	              },
+	              '+'
+	            )
+	          ) : null
+	        )
+	      );
+	    }
+	  }]);
+
+	  return TreePickerNodeComponent;
+	}(_react2.default.Component);
 
 	TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 
