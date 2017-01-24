@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
-import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
-import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
+import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
+import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import React, { PropTypes } from 'react';
 import { FlexibleSpacer, SvgSymbol } from 'alexandria-adslot';
