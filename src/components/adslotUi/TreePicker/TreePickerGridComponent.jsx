@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
-import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
+import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import React, { PropTypes } from 'react';
 import { Empty, Grid, GridRow, SvgSymbol } from 'alexandria-adslot';

@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
-import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
-import TreePickerSimplePure from 'components/adslotUi/TreePickerSimplePureComponent';
-import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
+import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
+import TreePickerSimplePure from 'components/adslotUi/TreePicker/TreePickerSimplePureComponent';
+import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import { FlexibleSpacer } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
 

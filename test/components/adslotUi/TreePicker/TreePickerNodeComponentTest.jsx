@@ -1,16 +1,18 @@
 import _ from 'lodash';
+import sinon from 'sinon';
 import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import TreePickerMocks from 'mocks/TreePickerMocks';
-import TreePickerNodeComponent from 'components/adslotUi/TreePickerNodeComponent';
-import { GridCell, GridRow, Spinner } from 'alexandria-adslot';
+import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
+import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
+import { GridCell, GridRow } from 'alexandria-adslot';
 import { shallow, mount } from 'enzyme';
 
 describe('TreePickerNodeComponent', () => {
   const { cbrNode, cbrNodeAlreadySelected, actNode, maleNode, itemType, nodeRenderer } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
     expect(component.prop('className')).to.equal('treepickernode-component child-node');
     expect(component.type()).to.equal('div');
 
@@ -50,7 +52,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render metadata of nodes already selected containing ancestory data', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNodeAlreadySelected} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNodeAlreadySelected} />);
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(1);
@@ -66,7 +68,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render node via nodeRenderer', () => {
-    const component = shallow(<TreePickerNodeComponent
+    const component = shallow(<TreePickerNode
       itemType={itemType}
       node={actNode}
       nodeRenderer={nodeRenderer}
@@ -80,7 +82,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render unselectable nodes with an include button', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={actNode} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={actNode} />);
 
     const rowElement = component.find(GridRow);
     const cellElements = rowElement.find(GridCell);
@@ -89,7 +91,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render the button first when selected is true', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} selected />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
 
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
@@ -109,7 +111,7 @@ describe('TreePickerNodeComponent', () => {
     let fireCount = 0;
     const testFunction = () => { fireCount += 1; };
 
-    const component = mount(<TreePickerNodeComponent
+    const component = mount(<TreePickerNode
       itemType={itemType} node={cbrNode} removeNode={testFunction} selected disabled
     />);
     const buttonElement = component.find(Button);
@@ -120,7 +122,7 @@ describe('TreePickerNodeComponent', () => {
 
   it('should filter value when provided', () => {
     const valueFormatter = (value) => `€${value / 100}`;
-    const component = shallow(<TreePickerNodeComponent
+    const component = shallow(<TreePickerNode
       itemType={itemType} node={cbrNode} valueFormatter={valueFormatter}
     />);
 
@@ -133,7 +135,7 @@ describe('TreePickerNodeComponent', () => {
     const node = _.clone(cbrNode);
     delete node.value;
     const props = { itemType, node };
-    const component = shallow(<TreePickerNodeComponent {...props} />);
+    const component = shallow(<TreePickerNode {...props} />);
 
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     expect(rowElement.prop('children')).to.have.length(5);
@@ -142,81 +144,59 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should not have the child node class for root nodes', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={maleNode} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={maleNode} />);
     expect(component.prop('className')).to.equal('treepickernode-component');
   });
 
   it('should have the child node class for child nodes', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
     expect(component.prop('className')).to.equal('treepickernode-component child-node');
   });
 
-  it('should fire expandNode when clicking on the `expand` cell', () => {
-    const nodes = [];
-    const expandNode = (node) => nodes.push(node);
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} expandNode={expandNode} />);
+  it('should fire expandNode when clicking on the label cell', (done) => {
+    const props = {
+      expandNode: (node) => {
+        expect(node).to.deep.equal(cbrNode);
+        done();
+      },
+
+      node: cbrNode,
+      itemType,
+    };
+
+    const component = shallow(<TreePickerNode {...props} />);
 
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(4); // meta data cell, expander cell, value cell and include button cell
-
-    const expanderCellElement = cellElements.at(1);
-    const expanderElement = expanderCellElement.find(GridCell);
-    expect(expanderElement.children().prop('className')).to.equal('treepickernode-component-expander');
-    expanderCellElement.simulate('click');
-    expect(nodes).to.deep.equal([cbrNode]);
-  });
-
-  it('should fire expandNode when clicking on the label cell', () => {
-    const nodes = [];
-    const expandNode = (node) => nodes.push(node);
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} expandNode={expandNode} />);
-
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(4); // meta data cell, expander cell, value cell and include button cell
+    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
+    expect(rowElement.find(TreePickerNodeExpander)).to.have.length(1);
 
     const labelWrapperCellElement = cellElements.first();
     expect(labelWrapperCellElement.prop('stretch')).to.equal(true);
     labelWrapperCellElement.simulate('click');
-    expect(nodes).to.deep.equal([cbrNode]);
-  });
-
-  it('should set component state to isLoading when clicked', () => {
-    const nodes = [];
-    const expandNode = (node) => {
-      nodes.push(node);
-    };
-
-    const component = shallow(<TreePickerNodeComponent
-      itemType={itemType}
-      node={cbrNode}
-      expandNode={expandNode}
-    />);
-
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
-    const expanderCellElement = rowElement.find(GridCell).at(1);
-    expanderCellElement.simulate('click');
-    expect(component.state().isLoading).to.equal(true);
-    expect(component.find(Spinner)).to.have.length(1);
   });
 
   it('should not show the expander element when the node is not expandable', () => {
-    const nonExpandableNode = _.defaults({ isExpandable: false }, cbrNode);
-    const nodes = [];
-    const expandNode = (node) => nodes.push(node);
-    const component = shallow(<TreePickerNodeComponent
-      itemType={itemType} node={nonExpandableNode} expandNode={expandNode}
-    />);
+    const props = {
+      expandNode: sinon.spy(),
+      node: _.defaults({ isExpandable: false }, cbrNode),
+      itemType,
+    };
+
+    const component = shallow(<TreePickerNode {...props} />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
+    expect(rowElement.find(TreePickerNodeExpander)).to.have.length(0);
+    const labelWrapperCellElement = cellElements.first();
+    labelWrapperCellElement.simulate('click');
+    expect(props.expandNode.callCount).to.eql(0);
   });
 
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
     const includeNode = (node) => nodes.push(node);
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} includeNode={includeNode} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} includeNode={includeNode} />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
@@ -228,7 +208,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should error on click of `include` button without includeNode handler', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
@@ -248,7 +228,7 @@ describe('TreePickerNodeComponent', () => {
       value: 400,
       path: [],
     };
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={node} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={node} />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${node.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
@@ -274,7 +254,7 @@ describe('TreePickerNodeComponent', () => {
       value: 400,
       path: [{ id: '30', label: 'Cars' }],
     };
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={node} />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={node} />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${node.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
@@ -300,7 +280,7 @@ describe('TreePickerNodeComponent', () => {
     const nodes = [cbrNode];
     const removeNode = (node) => _.remove(nodes, { id: node.id });
     const props = { itemType, node: cbrNode, removeNode, selected: true };
-    const component = shallow(<TreePickerNodeComponent {...props} />);
+    const component = shallow(<TreePickerNode {...props} />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
@@ -314,7 +294,7 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should error on click of `remove` button without removeNode handler', () => {
-    const component = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} selected />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
@@ -327,8 +307,8 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should accept both strings and numbers as node ids', () => {
-    const stringIdNode = shallow(<TreePickerNodeComponent itemType={itemType} node={cbrNode} selected />);
-    const numberIdNode = shallow(<TreePickerNodeComponent itemType={itemType} node={maleNode} />);
+    const stringIdNode = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
+    const numberIdNode = shallow(<TreePickerNode itemType={itemType} node={maleNode} />);
 
     expect(cbrNode.id).to.equal('au-act-cbr');
     expect(maleNode.id).to.equal(4);

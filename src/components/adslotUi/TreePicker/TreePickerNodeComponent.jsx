@@ -1,8 +1,9 @@
+import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import Button from 'react-bootstrap/lib/Button';
+import { GridCell, GridRow } from 'alexandria-adslot';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
-import React, { PropTypes } from 'react';
-import { GridCell, GridRow, Spinner } from 'alexandria-adslot';
+import TreePickerNodeExpander from './TreePickerNodeExpanderComponent';
 
 require('styles/adslotUi/TreePickerNode.scss');
 
@@ -27,43 +28,25 @@ class TreePickerNodeComponent extends React.Component {
     this.state = {
       isLoading: false,
     };
+    this.setLoadingAndExpandNode = this.setLoadingAndExpandNode.bind(this);
+    this.includeNodeBound = this.props.includeNode.bind(this, this.props.node);
+    this.removeNodeBound = this.props.removeNode.bind(this, this.props.node);
   }
 
-  getExpander() {
-    const {
-      expandNode,
-      node,
-    } = this.props;
+  setLoadingAndExpandNode() {
+    // Using intervals and setState callback to seamlessly and consistently show the spinner despite sync
+    // or async expandNode method. Renders spinner even for slow DOM redraws or large lists.
+    const DELAY = 25;
+    const delayedExpandNode = () => {
+      const intervalToClear = setInterval(() => {
+        this.props.expandNode(this.props.node);
+        clearInterval(intervalToClear);
+      },
 
-    if (expandNode && node.isExpandable) {
-      const expandNodeBound = (() => {
-        this.setState({ isLoading: true });
-        expandNode(node);
-      });
+      DELAY);
+    };
 
-      return {
-        expandNodeBound,
-        expanderElement:
-          <GridCell onClick={expandNodeBound} dts="expander">
-            {
-              this.state.isLoading ? <Spinner size="small" />
-            :
-              <div className={`${baseClass}-expander`} />
-            }
-          </GridCell>,
-      };
-    }
-
-    return {};
-  }
-
-  // Bind so we can maintain context in async callbacks, and events.
-  bindIncludeNode() {
-    return this.props.includeNode.bind(null, this.props.node);
-  }
-
-  bindRemoveNode() {
-    return this.props.removeNode.bind(null, this.props.node);
+    this.setState({ isLoading: true }, delayedExpandNode);
   }
 
   render() {
@@ -71,29 +54,31 @@ class TreePickerNodeComponent extends React.Component {
       disabled,
       itemType,
       node,
+      expandNode,
       nodeRenderer,
       selected,
       valueFormatter,
     } = this.props;
 
-    const pathElement = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors)) ?
+    const isChildNode = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors));
+    const isExpandable = expandNode && node.isExpandable;
+
+    const pathElement = isChildNode ?
       <span className={`${baseClass}-path`}>
         { _.isEmpty(node.path) ? printAncestorText(node) : printPathText(node) }
       </span> : null;
 
-    const { expandNodeBound, expanderElement } = this.getExpander();
-
-    const labelCellProps = expanderElement && !node.isLoading ? { onClick: expandNodeBound } : {};
+    const labelCellProps = isExpandable && !this.state.isLoading ? { onClick: this.setLoadingAndExpandNode } : {};
 
     return (
-      <div className={!_.isEmpty(node.path) || !_.isEmpty(node.ancestors) ? `${baseClass} child-node` : `${baseClass}`}>
+      <div className={isChildNode ? `${baseClass} child-node` : `${baseClass}`}>
         <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
           {selected ?
             <GridCell classSuffixes={['button']} dts="button-remove">
               <Button
                 block bsSize="xsmall"
                 className="btn-inverse"
-                onClick={this.bindRemoveNode()}
+                onClick={this.removeNodeBound}
                 disabled={disabled || node.isSelectable === false}
               >
                 −
@@ -107,7 +92,11 @@ class TreePickerNodeComponent extends React.Component {
               null
             }
           </GridCell>
-          {expanderElement}
+
+          {isExpandable ?
+            <TreePickerNodeExpander isLoading={this.state.isLoading} onClick={this.setLoadingAndExpandNode} /> : null
+          }
+
           {_.isNumber(node.value) ?
             <GridCell dts="value">
               {valueFormatter(node.value)}
@@ -119,8 +108,8 @@ class TreePickerNodeComponent extends React.Component {
               <Button
                 block bsSize="xsmall"
                 className="btn-inverse"
-                onClick={this.bindIncludeNode()}
-                disabled={disabled || node.isSelectable === false || node.isLoading}
+                onClick={this.includeNodeBound}
+                disabled={disabled || node.isSelectable === false || this.state.isLoading}
               >
                 +
               </Button>

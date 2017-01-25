@@ -526,6 +526,8 @@ class AppComponent extends React.Component {
           searchValue={this.state.searchValueTreePickerPure}
           searchOnChange={this.setSearchTreePickerPure}
           expandNode={this.expandChildren}
+          includeNode={_.noop}
+          removeNode={_.noop}
           nodeRenderer={nodeRenderer}
         />
 

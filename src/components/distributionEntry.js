@@ -24,10 +24,10 @@ import Tabs from 'react-bootstrap/lib/Tabs';
 import Toggle from 'react-toggle';
 import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
 import Button from 'react-bootstrap/lib/Button';
-import TreePickerGrid from 'components/adslotUi/TreePickerGridComponent';
-import TreePickerNav from 'components/adslotUi/TreePickerNavComponent';
-import TreePickerNode from 'components/adslotUi/TreePickerNodeComponent';
-import TreePickerSimplePure from 'components/adslotUi/TreePickerSimplePureComponent';
+import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
+import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
+import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
+import TreePickerSimplePure from 'components/adslotUi/TreePicker/TreePickerSimplePureComponent';
 import UserListPicker from 'components/adslotUi/UserListPickerComponent';
 import {
   Alert,
