@@ -99,7 +99,7 @@
     "sinon": "^2.0.0-pre.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.3",
+    "webpack": "^2.2.1",
     "webpack-dev-server": "^1.16.2",
     "webpack-sources": "^0.1.3"
   },
