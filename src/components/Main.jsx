@@ -9,7 +9,6 @@ import moment from 'moment';
 import {
   Accordion,
   Button,
-  SpinnerButton,
   Checkbox,
   ConfirmModal,
   DatePicker,
@@ -21,6 +20,7 @@ import {
   Radio,
   RadioGroup,
   SearchBar,
+  SpinnerButton,
   SvgSymbol,
   Tab,
   Tabs,
