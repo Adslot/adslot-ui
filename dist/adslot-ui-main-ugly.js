@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.UserListPicker = exports.TreePickerSimplePure = exports.TreePickerNode = exports.TreePickerNav = exports.TreePickerGrid = exports.Totals = exports.Toggle = exports.Tag = exports.Tabs = exports.Tab = exports.SvgSymbolCircle = exports.SvgSymbol = exports.Statistic = exports.SplitPane = exports.Slicey = exports.Select = exports.SearchField = exports.SearchBar = exports.RadioGroup = exports.Radio = exports.PrettyDiff = exports.Popover = exports.Panel = exports.Pagination = exports.PageTitle = exports.PagedGrid = exports.OverlayTrigger = exports.Modal = exports.ListPickerPure = exports.ListPicker = exports.GridRow = exports.GridCell = exports.Grid = exports.FormGroup = exports.FlexibleSpacer = exports.FilePicker = exports.fastStatelessWrapper = exports.Empty = exports.DatePicker = exports.ConfirmModal = exports.Checkbox = exports.Card = exports.SpinnerButton = exports.Button = exports.Breadcrumb = exports.BorderedWell = exports.Avatar = exports.Alert = exports.Accordion = undefined;
+	exports.UserListPicker = exports.TreePickerSimplePure = exports.TreePickerNode = exports.TreePickerNav = exports.TreePickerGrid = exports.Totals = exports.Toggle = exports.Tag = exports.Tabs = exports.Tab = exports.SvgSymbolCircle = exports.SvgSymbol = exports.Statistic = exports.SplitPane = exports.SpinnerButton = exports.Spinner = exports.Slicey = exports.Select = exports.SearchField = exports.SearchBar = exports.RadioGroup = exports.Radio = exports.PrettyDiff = exports.Popover = exports.Panel = exports.Pagination = exports.PageTitle = exports.PagedGrid = exports.OverlayTrigger = exports.Modal = exports.ListPickerPure = exports.ListPicker = exports.GridRow = exports.GridCell = exports.Grid = exports.FormGroup = exports.FlexibleSpacer = exports.FilePicker = exports.fastStatelessWrapper = exports.Empty = exports.DatePicker = exports.ConfirmModal = exports.Checkbox = exports.Card = exports.Button = exports.Breadcrumb = exports.BorderedWell = exports.Avatar = exports.Alert = exports.Accordion = undefined;
 
 	var _AccordionComponent = __webpack_require__(233);
 
@@ -225,7 +225,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.BorderedWell = _alexandriaAdslot.BorderedWell;
 	exports.Breadcrumb = _alexandriaAdslot.Breadcrumb;
 	exports.Button = _Button2.default;
-	exports.SpinnerButton = _SpinnerButtonComponent2.default;
 	exports.Card = _alexandriaAdslot.Card;
 	exports.Checkbox = _Checkbox2.default;
 	exports.ConfirmModal = _ConfirmModalComponent2.default;
@@ -254,6 +253,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.SearchField = _alexandriaAdslot.Search;
 	exports.Select = _reactSelect2.default;
 	exports.Slicey = _alexandriaAdslot.Slicey;
+	exports.Spinner = _alexandriaAdslot.Spinner;
+	exports.SpinnerButton = _SpinnerButtonComponent2.default;
 	exports.SplitPane = _SplitPaneComponent2.default;
 	exports.Statistic = _alexandriaAdslot.Statistic;
 	exports.SvgSymbol = _alexandriaAdslot.SvgSymbol;
