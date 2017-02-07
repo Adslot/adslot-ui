@@ -36,7 +36,7 @@
   ],
   "author": "Adslot",
   "devDependencies": {
-    "alexandria-adslot": "^4.0.2",
+    "alexandria-adslot": "^4.1.0",
     "autoprefixer": "^6.5.3",
     "babel-core": "^6.18.2",
     "babel-eslint": "^6.1.2",
