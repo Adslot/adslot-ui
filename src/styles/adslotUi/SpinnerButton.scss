@@ -1,4 +1,6 @@
 .spinner-button-component {
+  position: relative;
+
   &-children-container {
     visibility: hidden; // preserves width and height of button
   }
