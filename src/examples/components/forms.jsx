@@ -153,7 +153,20 @@ const ExampleForm = ({
               <div className="checkbox">
                 <Checkbox
                   disabled={isSubmitting}
-                  label={<span>Checkbox.</span>}
+                  label={<span>Accept the terms.</span>}
+                  onChange={onChangeCheckbox('checkbox')}
+                  value={formValues.checkbox}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="exampleCheckbox" className="control-label col-xs-3">Enable Some Feature</label>
+            <div className="col-xs-9">
+              <div className="checkbox">
+                <Checkbox
+                  disabled={isSubmitting}
                   onChange={onChangeCheckbox('checkbox')}
                   value={formValues.checkbox}
                 />
