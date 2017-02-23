@@ -1,10 +1,12 @@
 @import '../variable';
 
+$checkbox-margin: 2px;
+
 input {
   &[type='checkbox'],
   &[type='radio'] {
     cursor: pointer;
-    margin: 2px 0 0;
+    margin: $checkbox-margin 0 0;
   }
 }
 
@@ -24,9 +26,23 @@ input {
 
   label {
     font-weight: $font-weight-medium;
+    margin-top: 5px;
 
     .icheckbox {
       margin-left: -20px; // align with bootstrap, which expects the checkbox element to be -20px
     }
+  }
+
+  > * {
+    margin-top: 5px;
+  }
+}
+
+
+.icheckbox {
+  input {
+    width: $input-container-height - $checkbox-margin;
+    height: $input-container-height - $checkbox-margin;
+    margin-left: 0; // fix bootstrap override on hidden input
   }
 }
