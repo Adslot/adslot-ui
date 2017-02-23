@@ -12,7 +12,6 @@ import {
   Panel,
   Radio,
   RadioGroup,
-  Toggle,
   TreePickerSimplePure,
   UserListPicker,
 } from 'components/distributionEntry';
@@ -64,11 +63,6 @@ describe('MainComponent', () => {
     const radioGroupComponent = MainComponent.find(RadioGroup);
     const radioComponent = radioGroupComponent.find(Radio).first();
     expect(radioComponent.prop('label')).to.equal('Unchecked');
-  });
-
-  it('should have a toggle component', () => {
-    const toggleComponent = MainComponent.find(Toggle);
-    expect(toggleComponent).to.have.length(1);
   });
 
   it('should toggle `panel.isCollapsed` on `Toggle Panel` click', () => {

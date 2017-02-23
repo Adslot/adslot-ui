@@ -21,7 +21,6 @@ import Select from 'react-select';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
-import Toggle from 'react-toggle';
 import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
 import Button from 'react-bootstrap/lib/Button';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
@@ -55,7 +54,6 @@ import {
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
 import 'styles/_react-select-custom.scss';
-import 'styles/_react-toggle-custom.scss';
 import 'styles/_react-datepicker-custom.scss';
 
 export {
@@ -102,7 +100,6 @@ export {
   Tab,
   Tabs,
   Tag,
-  Toggle,
   Totals,
   TreePickerGrid,
   TreePickerNav,
