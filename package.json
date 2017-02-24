@@ -59,7 +59,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-lodash": "^1.10.3",
     "eslint-plugin-react": "=6.5.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.10.0",
     "generator-react-webpack": "^3.3.4",
     "isparta-loader": "^2.0.0",
