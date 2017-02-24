@@ -26,20 +26,23 @@ describe('SpinnerButtonComponent', () => {
   });
 
   it('should be disabled in loading mode', () => {
-    const element = shallow(
-      <SpinnerButton isLoading>Test</SpinnerButton>
-    );
-    const buttonElement = element.find('Button');
+    const buttonElement = shallow(<SpinnerButton isLoading>Test</SpinnerButton>)
+      .find('Button');
+
     expect(buttonElement.prop('disabled')).to.equal(true);
   });
 
-  it('should preserve disabled state even when not loading', () => {
-    const element = shallow(
-      <SpinnerButton disabled>Test</SpinnerButton>
-    );
+  it('should honour disabled when not loading', () => {
+    const buttonElement = shallow(<SpinnerButton disabled>Test</SpinnerButton>)
+      .find('Button');
 
-    const buttonElement = element.find('Button');
     expect(buttonElement.prop('isLoading')).to.equal(undefined);
+    expect(buttonElement.prop('disabled')).to.equal(true);
+  });
+
+  it('should ignore disabled when loading', () => {
+    const buttonElement = shallow(<SpinnerButton isLoading disabled={false}>Test</SpinnerButton>)
+      .find('Button');
     expect(buttonElement.prop('disabled')).to.equal(true);
   });
 });

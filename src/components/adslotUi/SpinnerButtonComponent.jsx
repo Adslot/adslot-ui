@@ -16,8 +16,8 @@ const SpinnerButton = (props) => {
 
   return (
     <Button
-      disabled={isLoading || props.disabled}
       {..._.pick(props, _.keys(Button.propTypes))}
+      disabled={isLoading || props.disabled}
       className={classNames('spinner-button-component', props.className)}
       {...expandDts(dts)}
     >
