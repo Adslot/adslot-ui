@@ -41,7 +41,6 @@ const config = _.merge(baseConfig, {
     },
   },
   entry: {
-    "main-ugly": path.join(componentsPath, '/distributionEntry.js'),
     main: path.join(componentsPath, '/distributionEntry.js'),
   },
   output: {

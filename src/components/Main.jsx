@@ -24,7 +24,6 @@ import {
   SvgSymbol,
   Tab,
   Tabs,
-  Toggle,
   TreePickerSimplePure,
   UserListPicker,
 } from './distributionEntry';
@@ -488,10 +487,6 @@ class AppComponent extends React.Component {
             value="audience"
           />
         </RadioGroup>
-
-
-        <h1>Toggle</h1>
-        <span>Left</span> <Toggle /> <span>Right</span>
 
 
         <h1>Select</h1>
