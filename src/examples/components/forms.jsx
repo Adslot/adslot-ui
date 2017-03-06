@@ -54,8 +54,8 @@ const ExampleForm = ({
 
           <div className="form-group">
             <label htmlFor="exampleTextInput" className="control-label col-xs-3">Text input</label>
-            <div className="col-xs-9">
-              <div className="input-group col-xs-6">
+            <div className="col-xs-5">
+              <div className="input-group col-xs-12">
                 <input
                   className="form-control"
                   disabled={isSubmitting}
@@ -69,7 +69,7 @@ const ExampleForm = ({
               <br />
 
               <div className="form-control-static">Instruction or grouped placeholder</div>
-              <div className="input-group col-xs-6">
+              <div className="input-group col-xs-12">
                 <div className="input-group-addon">$</div>
                 <input
                   className="form-control"
@@ -92,7 +92,7 @@ const ExampleForm = ({
               Text area
               <div className="help-block">(recommended)</div>
             </label>
-            <div className="col-xs-9">
+            <div className="col-xs-5">
               <textarea
                 className="form-control"
                 disabled={isSubmitting}
@@ -107,7 +107,7 @@ const ExampleForm = ({
 
           <div className="form-group">
             <label htmlFor="fruitSelect" className="control-label col-xs-3">Select box</label>
-            <div className="col-xs-9">
+            <div className="col-xs-5">
               <Select
                 clearable={false}
                 disabled={isSubmitting}
@@ -124,7 +124,7 @@ const ExampleForm = ({
 
           <div className="form-group">
             <label htmlFor="exampleInputFile" className="control-label col-xs-3">File input</label>
-            <div className="col-xs-9">
+            <div className="col-xs-5">
               <input
                 type="file"
                 disabled={isSubmitting}
@@ -136,7 +136,7 @@ const ExampleForm = ({
 
           <div className="form-group">
             <label htmlFor="exampleFilePicker" className="control-label col-xs-3">FilePicker Component</label>
-            <div className="col-xs-9">
+            <div className="col-xs-5">
               <FilePicker
                 filter="*.*"
                 disabled={isSubmitting}
@@ -149,7 +149,7 @@ const ExampleForm = ({
           </div>
 
           <div className="form-group">
-            <div className="col-xs-9 col-xs-offset-3">
+            <div className="col-xs-5 col-xs-offset-3">
               <div className="checkbox">
                 <Checkbox
                   disabled={isSubmitting}
@@ -163,7 +163,7 @@ const ExampleForm = ({
 
           <div className="form-group">
             <label htmlFor="exampleCheckbox" className="control-label col-xs-3">Enable Some Feature</label>
-            <div className="col-xs-9">
+            <div className="col-xs-5">
               <div className="checkbox">
                 <Checkbox
                   disabled={isSubmitting}
@@ -176,7 +176,7 @@ const ExampleForm = ({
 
           <div className="form-group">
             <label htmlFor="exampleRadioGroup" className="control-label col-xs-3">RadioGroup Stacked</label>
-            <div className="col-xs-9">
+            <div className="col-xs-5">
               <RadioGroup className="radiogroup-stacked" name="testRadioGroup">
                 <Radio
                   label="Geography"

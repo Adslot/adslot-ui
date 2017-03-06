@@ -146,3 +146,9 @@
     }
   }
 }
+
+.input-group-btn {
+  > .btn {
+    padding-bottom: $padding-base-vertical - 1px;
+  }
+}
