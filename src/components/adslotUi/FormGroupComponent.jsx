@@ -15,8 +15,8 @@ const FormGroupComponent = ({
   return (
     <div className="form-group">
       <label htmlFor={inputId} className="control-label col-xs-3">{label}</label>
-      <div className="col-xs-9">
-        <div className="input-group col-xs-6">
+      <div className="col-xs-5">
+        <div className="input-group col-xs-12">
           {addonElement}
           <input
             className="form-control"

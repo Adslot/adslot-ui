@@ -1,47 +1,53 @@
 @import '../variable';
 
-$checkbox-margin: 2px;
-$input-container-height: 18px;
+.checkbox,
+.radio,
+.radiogroup-stacked {
+  label {
+    font-weight: $font-weight-medium;
+    padding-top: 1px;
+  }
+
+  .icheckbox {
+    margin-left: -20px; // For alignment with bootstrap
+
+    > input {
+      margin-left: 0;
+    }
+  }
+
+  // When a checkbox is directly inside a .checkbox we need to ingore the -20px margin
+  > .icheckbox,
+  > .iradio {
+    margin-left: 0;
+  }
+
+  > input {
+    &[type='checkbox'],
+    &[type='radio'] {
+      margin-left: 0;
+    }
+  }
+}
 
 input {
   &[type='checkbox'],
   &[type='radio'] {
-    cursor: pointer;
-    margin: $checkbox-margin 0 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 0;
   }
 }
 
-.radio + .radio,
-.checkbox + .checkbox {
-  margin-top: 5px;
-}
-
-.checkbox,
-.radio {
-  line-height: $input-container-height;
-  margin-bottom: 0;
-  margin-top: 0;
-  min-height: $input-container-height;
-
-  label {
+.icheckbox,
+.iradio {
+  + span {
     font-weight: $font-weight-medium;
-    margin-top: 5px;
+  }
 
-    .icheckbox {
-      margin-left: -20px; // align with bootstrap, which expects the checkbox element to be -20px
+  &:not(.disabled) {
+    + span {
+      cursor: pointer;
     }
-  }
-
-  > * {
-    margin-top: 5px;
-  }
-}
-
-
-.icheckbox {
-  input {
-    width: $input-container-height - $checkbox-margin;
-    height: $input-container-height - $checkbox-margin;
-    margin-left: 0; // fix bootstrap override on hidden input
   }
 }

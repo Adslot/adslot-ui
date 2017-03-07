@@ -19,12 +19,12 @@ describe('FormGroupComponent', () => {
     expect(labelElement.prop('className')).to.equal('control-label col-xs-3');
     expect(labelElement.text()).to.equal('Sweet Caroline');
 
-    const columnElement = component.find('.col-xs-9');
+    const columnElement = component.find('.col-xs-5');
     expect(columnElement).to.have.length(1);
 
     const inputGroupElement = columnElement.find('.input-group');
     expect(inputGroupElement).to.have.length(1);
-    expect(inputGroupElement.prop('className')).to.equal('input-group col-xs-6');
+    expect(inputGroupElement.prop('className')).to.equal('input-group col-xs-12');
 
     const inputElement = inputGroupElement.find('input');
     expect(inputElement).to.have.length(1);
