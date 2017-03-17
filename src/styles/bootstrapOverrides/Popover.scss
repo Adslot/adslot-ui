@@ -4,7 +4,7 @@
   $popover-shadow: 0 1px 0 rgba($color-shadow, .25);
 
   box-shadow: $popover-shadow;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-light;
 
   &-content {
     padding: ($spacing-etalon / 6) ($spacing-etalon / 3);

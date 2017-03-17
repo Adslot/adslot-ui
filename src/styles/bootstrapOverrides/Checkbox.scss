@@ -4,7 +4,7 @@
 .radio,
 .radiogroup-stacked {
   label {
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-light;
     padding-top: 1px;
   }
 
@@ -42,7 +42,7 @@ input {
 .icheckbox,
 .iradio {
   + span {
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-light;
   }
 
   &:not(.disabled) {
