@@ -40,7 +40,7 @@ $select-item-padding-horizontal: 5px;
 
 .Select {
   $select-input-border-active: $color-border;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-light;
 
   &-menu-outer {
     border-color: $select-input-border-active;
