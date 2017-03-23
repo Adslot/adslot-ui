@@ -41,7 +41,9 @@ const config = _.merge(baseConfig, {
     },
   },
   entry: {
-    main: path.join(componentsPath, '/distributionEntry.js'),
+    main: path.join(componentsPath, '/distributionEntry'),
+    core: path.join(componentsPath, '/distributionEntry/core'),
+    extra: path.join(componentsPath, '/distributionEntry/extra'),
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -57,7 +59,7 @@ const config = _.merge(baseConfig, {
         warnings: false,
       },
       sourceMap: false,
-      include: /main\.js$/,
+      include: /\.js$/,
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
