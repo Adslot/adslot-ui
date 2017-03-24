@@ -3,7 +3,6 @@ import Accordion from 'components/adslotUi/AccordionComponent';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
-import DatePicker from 'react-datepicker/dist/react-datepicker';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import FilePicker from 'components/adslotUi/FilePickerComponent';
 import FormGroup from 'components/adslotUi/FormGroupComponent';
@@ -54,7 +53,6 @@ import {
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
 import 'styles/_react-select-custom.scss';
-import 'styles/_react-datepicker-custom.scss';
 
 export {
   Accordion,
@@ -66,7 +64,6 @@ export {
   Card,
   Checkbox,
   ConfirmModal,
-  DatePicker,
   Empty,
   fastStatelessWrapper,
   FilePicker,
