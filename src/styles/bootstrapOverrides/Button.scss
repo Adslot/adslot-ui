@@ -110,11 +110,14 @@
 
 .btn-link {
   cursor: pointer;
-  font-weight: $font-weight-bold; // Overrides 'normal'
 
   &,
   &:active {
     @include reset-shadow-and-transform;
+  }
+
+  &:disabled {
+    background-color: transparent;
   }
 }
 

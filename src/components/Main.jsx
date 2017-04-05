@@ -313,6 +313,12 @@ class AppComponent extends React.Component {
           <Button bsStyle="primary" disabled>
             Disabled
           </Button>
+          <Button bsStyle="link">
+            Link
+          </Button>
+          <Button bsStyle="link" disabled>
+            Link Disabled
+          </Button>
           <Button bsStyle="primary">
             <span className="flexible-wrapper-inline">
               Trailing Character<FlexibleSpacer />+
