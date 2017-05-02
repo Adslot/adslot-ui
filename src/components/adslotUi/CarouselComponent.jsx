@@ -1,0 +1,63 @@
+import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import Carousel from 'nuka-carousel';
+
+require('styles/adslotUi/Carousel.scss');
+
+const baseClass = 'carousel-component';
+const decoratorStyles = {
+  bottom: 0,
+  width: '30px',
+};
+
+export const getPrevDecorator = () => {
+  const component = ({ previousSlide }) => <button className={`${baseClass}-prev`} onClick={previousSlide} />;
+  component.propTypes = { previousSlide: PropTypes.func.isRequired };
+
+  return {
+    component,
+    position: 'TopLeft',
+    style: decoratorStyles,
+  };
+};
+
+export const getNextDecorator = () => {
+  const component = ({ nextSlide }) => <button className={`${baseClass}-next`} onClick={nextSlide} />;
+  component.propTypes = { nextSlide: PropTypes.func.isRequired };
+
+  return {
+    component,
+    position: 'TopRight',
+    style: decoratorStyles,
+  };
+};
+
+const CarouselComponent = (props) => {
+  const { className, children } = props;
+  const decorators = [getPrevDecorator(), getNextDecorator()];
+
+  return (
+    <Carousel decorators={decorators} {...props} className={classNames(baseClass, className)}>
+      {children}
+    </Carousel>
+  );
+};
+
+CarouselComponent.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+
+// See Nuka Carousel docs for other options:
+// https://github.com/FormidableLabs/nuka-carousel
+CarouselComponent.defaultProps = {
+  autoplay: true,
+  autoplayInterval: 10000,
+  cellAlign: 'center',
+  cellSpacing: 15,
+  slidesToShow: 2,
+  slideWidth: '447.5px', // 440px (image width) + 15px (spacing) / 2
+  wrapAround: true,
+};
+
+export default CarouselComponent;
