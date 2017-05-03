@@ -48,6 +48,7 @@ import {
   SvgSymbol,
   SvgSymbolCircle,
   Tag,
+  TileGrid,
   Totals,
 } from 'alexandria-adslot';
 
@@ -99,6 +100,7 @@ export {
   Tab,
   Tabs,
   Tag,
+  TileGrid,
   Totals,
   TreePickerGrid,
   TreePickerNav,
