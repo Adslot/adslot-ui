@@ -50,7 +50,7 @@
     "classnames": "^2.2.5",
     "codecov.io": "^0.1.6",
     "css-loader": "^0.26.1",
-    "enzyme": "^2.7.1",
+    "enzyme": "=2.7.1",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^10.0.1",
     "eslint-import-resolver-webpack": "^0.8.1",
