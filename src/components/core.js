@@ -1,6 +1,7 @@
 // Export the consumable components.
 import Accordion from 'components/adslotUi/AccordionComponent';
-import SearchBar from 'components/adslotUi/SearchBarComponent';
+import Button from 'react-bootstrap/lib/Button';
+import Carousel from 'components/adslotUi/CarouselComponent';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
@@ -16,12 +17,12 @@ import Panel from 'components/adslotUi/PanelComponent';
 import Popover from 'react-bootstrap/lib/Popover';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
+import SearchBar from 'components/adslotUi/SearchBarComponent';
 import Select from 'react-select';
+import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
-import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
-import Button from 'react-bootstrap/lib/Button';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
@@ -62,6 +63,7 @@ export {
   Breadcrumb,
   Button,
   Card,
+  Carousel,
   Checkbox,
   ConfirmModal,
   Empty,

@@ -9,6 +9,7 @@ import moment from 'moment';
 import {
   Accordion,
   Button,
+  Carousel,
   Checkbox,
   ConfirmModal,
   DatePicker,
@@ -655,6 +656,27 @@ class AppComponent extends React.Component {
           onSearchStringChange={this.setSearchBarString}
           onSearch={this.performSearchBarSearch}
         />
+
+        <h1>Carousel</h1>
+        <Carousel>
+          <a style={{ display: 'block' }} href="/">
+            <img src="/assets/carousel/carousel-1.jpg" alt="Slide 1" />
+          </a>
+          <img src="/assets/carousel/carousel-2.jpg" alt="Slide 2" />
+          <div style={{ position: 'relative' }}>
+            <h1
+              style={{
+                position: 'absolute',
+                right: 0,
+                left: 0,
+                'text-align': 'center',
+                color: '#fff',
+              }}
+            >ＡＥＳＴＨＥＴＩＣＳ</h1>
+            <img src="/assets/carousel/carousel-3.jpg" alt="Slide 3" />
+          </div>
+          <img src="/assets/carousel/carousel-4.jpg" alt="Slide 4" />
+        </Carousel>
       </div>
     );
   }
