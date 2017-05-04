@@ -1,22 +1,11 @@
 #!/bin/bash
 PATH="node_modules/.bin:$PATH"
 
-# If we've only made a change to the package.json's version, it's a release and we should bypass the pre-commit check.
-isPackageJsonChange=$(git diff --cached --stat | grep "package.json | 2 +-")
-if [[ -n "${isPackageJsonChange[@]}" ]]
-then
-  isVersionChange=$(git diff --cached | grep "+  \"version\"")
-  if [[ -n "${isVersionChange[@]}" ]]
-  then
-    echo -e "---------------------\nPreparing for release\n---------------------"
-    echo "👾  Installing node modules."
-    npm install
-    echo "📑  Compiling distribution files for release."
-    npm run -s dist && git add dist/* && exit 0
-    exit 1
-  fi
+COMMIT_MSGS=`git log -1 --format=format:%s --no-merges`;
+RELEASE_REGEX="^(?:Release):";
+if [[ $COMMIT_MSGS =~ $RELEASE_REGEX ]]; then
+  exit 0
 fi
-
 
 echo -e "---------------------------\nRunning git pre-commit hook\n---------------------------"
 
