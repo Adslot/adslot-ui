@@ -2,7 +2,7 @@
 PATH="node_modules/.bin:$PATH"
 
 # If we've only made a change to the package.json's version, it's a release and we should bypass the pre-commit check.
-isPackageJsonChange=$(git diff --cached --stat | grep "package.json | 2 +-")
+isPackageJsonChange=$(git diff --cached --stat | grep "npm-shrinkwrap.json | 2 +-") && $(git diff --cached --stat | grep "package.json        | 2 +-")
 if [[ -n "${isPackageJsonChange[@]}" ]]
 then
   isVersionChange=$(git diff --cached | grep "+  \"version\"")
