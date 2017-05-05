@@ -1,6 +1,6 @@
 {
   "name": "adslot-ui",
-  "version": "15.0.3",
+  "version": "16.0.0",
   "dependencies": {
     "alexandria-adslot": {
       "version": "5.0.0",
