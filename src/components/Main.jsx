@@ -54,28 +54,28 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
-      'setSearchBarString',
-      'setSearchValue',
-      'searchOnClear',
-      'setSelectedDate',
       'expandChildren',
-      'breadcrumbOnClick',
-      'setSearchTreePickerPure',
       'performSearchBarSearch',
+      'pickerBreadcrumbOnClick',
+      'pickerSearchOnClear',
+      'setPickerSearchValue',
+      'setPurePickerSearchValue',
+      'setSearchBarString',
+      'setSelectedDate',
+      'toggleAccordionPanel',
       'toggleConfirmModal',
       'toggleListPickerModal',
+      'togglePanel',
       'toggleSimpleModal',
       'toggleSplitListPickerModal',
       'toggleUserListPickerModal',
-      'togglePanel',
-      'toggleAccordionPanel',
     ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {
       itemType: 'segment value',
       showSimpleModal: false,
-      searchValue: '',
-      searchValueTreePickerPure: '',
+      pickerSearchValue: '',
+      purePickerSearchValue: '',
       panel: {
         id: '0',
         title: 'Panel',
@@ -133,16 +133,44 @@ class AppComponent extends React.Component {
         { id: '3', label: 'Queensland', path: [{ id: '12', label: 'AU' }], type: '' },
       ],
       searchBarString: '',
-      breadcrumbNodes: [],
+      pickerBreadcrumbNodes: [],
     };
   }
 
-  setSearchBarString(searchBarString) {
-    this.setState({ searchBarString });
+  expandChildren() {
+    let intervalId;
+
+    const updateSubtree = () => {
+      clearInterval(intervalId);
+      this.setState({
+        pickerBreadcrumbNodes: [auNode],
+        simpleSubtree: [
+          { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
+          { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
+        ],
+      });
+    };
+
+    intervalId = setInterval(updateSubtree, 1000);
   }
 
-  setSearchValue(newValue) {
-    this.setState({ searchValue: newValue });
+  performSearchBarSearch() {
+    console.log(`Searching "${this.state.searchBarString}"...`);
+  }
+
+  pickerBreadcrumbOnClick() {
+    this.setState({
+      pickerBreadcrumbNodes: [],
+      simpleSubtree: [auNode],
+    });
+  }
+
+  pickerSearchOnClear() {
+    this.setPickerSearchValue('');
+  }
+
+  setPickerSearchValue(newValue) {
+    this.setState({ pickerSearchValue: newValue });
     this.setState({
       treePickerPureSubtree:
         _.filter(this.state.subTree, ({ label }) => {
@@ -155,8 +183,8 @@ class AppComponent extends React.Component {
     });
   }
 
-  setSearchTreePickerPure(newValue) {
-    this.setState({ searchValueTreePickerPure: newValue });
+  setPurePickerSearchValue(newValue) {
+    this.setState({ purePickerSearchValue: newValue });
     this.setState({
       simpleSubtree:
         _.filter(this.state.subTree, ({ label }) => {
@@ -169,60 +197,27 @@ class AppComponent extends React.Component {
     });
   }
 
+  setSearchBarString(searchBarString) {
+    this.setState({ searchBarString });
+  }
+
   setSelectedDate(newValue) {
     this.setState({ startDate: newValue });
   }
 
-  expandChildren() {
-    let intervalId;
-
-    const updateSubtree = () => {
-      clearInterval(intervalId);
-      this.setState({
-        breadcrumbNodes: [auNode],
-        simpleSubtree: [
-          { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
-          { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
-        ],
-      });
-    };
-
-    intervalId = setInterval(updateSubtree, 1000);
-  }
-
-  breadcrumbOnClick() {
-    this.setState({
-      breadcrumbNodes: [],
-      simpleSubtree: [auNode],
-    });
-  }
-
-  searchOnClear() {
-    this.setSearchValue('');
-  }
-
-  performSearchBarSearch() {
-    console.log(`Searching "${this.state.searchBarString}"...`);
-  }
-
-  toggleListPickerModal() {
-    this.setState({ showListPickerModal: !this.state.showListPickerModal });
-  }
-
-  toggleSplitListPickerModal() {
-    this.setState({ showSplitListPickerModal: !this.state.showSplitListPickerModal });
-  }
-
-  toggleUserListPickerModal() {
-    this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
-  }
-
-  toggleSimpleModal() {
-    this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  toggleAccordionPanel(panelId) {
+    const nextPanels = Immutable.from(this.state.accordionPanels).asMutable({ deep: true });
+    const panelToToggle = _.find(nextPanels, { id: panelId });
+    panelToToggle.isCollapsed = !panelToToggle.isCollapsed;
+    this.setState({ accordionPanels: nextPanels });
   }
 
   toggleConfirmModal() {
     this.setState({ showConfirmModal: !this.state.showConfirmModal });
+  }
+
+  toggleListPickerModal() {
+    this.setState({ showListPickerModal: !this.state.showListPickerModal });
   }
 
   togglePanel() {
@@ -231,11 +226,16 @@ class AppComponent extends React.Component {
     this.setState({ panel: nextPanel });
   }
 
-  toggleAccordionPanel(panelId) {
-    const nextPanels = Immutable.from(this.state.accordionPanels).asMutable({ deep: true });
-    const panelToToggle = _.find(nextPanels, { id: panelId });
-    panelToToggle.isCollapsed = !panelToToggle.isCollapsed;
-    this.setState({ accordionPanels: nextPanels });
+  toggleSimpleModal() {
+    this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  }
+
+  toggleSplitListPickerModal() {
+    this.setState({ showSplitListPickerModal: !this.state.showSplitListPickerModal });
+  }
+
+  toggleUserListPickerModal() {
+    this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
   }
 
   render() {
@@ -510,10 +510,10 @@ class AppComponent extends React.Component {
           subtree={this.state.treePickerPureSubtree}
           emptySelectedListText={<div><b>Choose items of interest</b></div>}
           initialStateNode={<div><b>Start by searching for items</b></div>}
-          searchValue={this.state.searchValue}
-          searchOnChange={this.setSearchValue}
-          searchOnClear={this.searchOnClear}
-          additionalClassNames={this.state.searchValue ? undefined : ['background-highlighted', 'test-class']}
+          searchValue={this.state.pickerSearchValue}
+          searchOnChange={this.setPickerSearchValue}
+          searchOnClear={this.pickerSearchOnClear}
+          additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
         />
 
         <h1>TreePickerSimplePure without initial state</h1>
@@ -522,11 +522,11 @@ class AppComponent extends React.Component {
           groupFormatter={(node) => `${node.label.split(' ').length} words`}
           itemType={this.state.itemType}
           selectedNodes={this.state.selectedNodes}
-          breadcrumbNodes={this.state.breadcrumbNodes}
-          breadcrumbOnClick={this.breadcrumbOnClick}
+          breadcrumbNodes={this.state.pickerBreadcrumbNodes}
+          breadcrumbOnClick={this.pickerBreadcrumbOnClick}
           subtree={this.state.simpleSubtree}
-          searchValue={this.state.searchValueTreePickerPure}
-          searchOnChange={this.setSearchTreePickerPure}
+          searchValue={this.state.purePickerSearchValue}
+          searchOnChange={this.setPurePickerSearchValue}
           expandNode={this.expandChildren}
           includeNode={_.noop}
           removeNode={_.noop}
