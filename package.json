@@ -14,14 +14,17 @@
     "lint": "npm run eslint && npm run sass-lint && npm run jscs-lint && npm run check-commit",
     "posttest": "npm run lint",
     "profile": "webpack --env=dist --profile --json > stats.json",
-    "release:major": "git checkout master && git pull && npm version major && npm publish && git push --follow-tags",
-    "release:minor": "git checkout master && git pull && npm version minor && npm publish && git push --follow-tags",
-    "release:patch": "git checkout master && git pull && npm version patch && npm publish && git push --follow-tags",
     "sass-lint": "sass-lint './src/**/*.scss' -v",
     "start": "node server.js --env=dev",
     "start:cold": "node server.js --env=dev-cold",
     "test": "karma start",
-    "test:watch": "karma start --autoWatch=true --singleRun=false"
+    "test:watch": "karma start --autoWatch=true --singleRun=false",
+    "release:major": "npm version major -m 'Release: major version %s.'",
+    "release:minor": "npm version minor -m 'Release: minor version %s.'",
+    "release:patch": "npm version patch -m 'Release: patch version %s.'",
+    "preversion": "echo 'Releasing…' && git checkout master && git pull && npm i && npm prune",
+    "version": "echo '…generating dist…' && npm run -s dist && git add dist/*",
+    "postversion": "npm publish && git push --follow-tags && echo '…released.'"
   },
   "repository": {
     "type": "git",
