@@ -39,6 +39,7 @@ The `Tag` is one of the following:
 - `Docs` - changes to documentation only.
 - `Build` - changes to build process only.
 - `Upgrade` - for a dependency upgrade.
+- `Release` - for a release called via npm run release:*.
 
 The message summary should be a one-sentence description of the change,
 and it must be 72 characters in length or shorter.
@@ -52,3 +53,15 @@ Upgrade: through2 to 2.0.0
 ```
 
 The commit message format is important because they're used to create a changelog for each release.
+
+## Releasing
+
+Please follow sem-ver for release conventions.
+
+Releases need to have the variable `RELEASE=true` pre-pended to the command like so:
+
+```
+RELEASE=true npm run release:minor
+```
+
+This will ensure that the distribution gets bundled but the pre-commit hooks will not bail because you're committing to master.

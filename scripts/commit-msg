@@ -64,6 +64,7 @@ function checkGitCommit() {
         "    'Build:'",
         "    'New:'",
         "    'Upgrade:'",
+        "    'Release:'",
         "   Please refer to the contribution guidelines for more details.",
       ].join("\n"));
       failed = true;
