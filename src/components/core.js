@@ -15,6 +15,7 @@ import PagedGrid from 'components/adslotUi/PagedGridComponent';
 import Pagination from 'react-bootstrap/lib/Pagination';
 import Panel from 'components/adslotUi/PanelComponent';
 import Popover from 'react-bootstrap/lib/Popover';
+import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
@@ -85,6 +86,7 @@ export {
   Panel,
   Popover,
   PrettyDiff,
+  ProgressBar,
   Radio,
   RadioGroup,
   SearchBar,
