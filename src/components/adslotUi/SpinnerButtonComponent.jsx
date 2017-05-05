@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-
 import Button from 'react-bootstrap/lib/Button';
-import { Spinner } from 'alexandria-adslot';
-import 'styles/adslotUi/SpinnerButton.scss';
+import Spinner from 'components/alexandria/SpinnerComponent';
 import expandDts from '../../helpers/expandDtsHelper';
+
+require('styles/adslotUi/SpinnerButton.scss');
 
 const SpinnerButton = (props) => {
   const {

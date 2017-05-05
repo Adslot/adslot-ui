@@ -1,10 +1,14 @@
 import _ from 'lodash';
+import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
-import React, { PropTypes } from 'react';
-import { FlexibleSpacer, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
+import Grid from 'components/alexandria/GridComponent';
+import GridRow from 'components/alexandria/GridRowComponent';
+import GridCell from 'components/alexandria/GridCellComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 
 require('styles/adslotUi/ListPicker.scss');
 

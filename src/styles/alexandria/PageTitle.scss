@@ -1,0 +1,17 @@
+@import '../border';
+@import '../font-size';
+@import '../variable';
+
+.pagetitle-component {
+  border-bottom: $border-lighter;
+  box-sizing: content-box;
+  font-size: $font-size-header;
+  height: $spacing-etalon;
+  line-height: $spacing-etalon;
+  padding: ($spacing-etalon / 1.5) $spacing-etalon;
+
+  &-is-footer {
+    border-bottom: 0;
+    border-top: $border-lighter;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { SvgSymbol } from 'alexandria-adslot';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 
 require('styles/adslotUi/Panel.scss');
 

@@ -1,0 +1,51 @@
+@import '../border';
+@import '../color';
+@import '../font-size';
+@import '../font-weight';
+
+$diameter: 35px;
+
+.avatar-component {
+  background-color: $color-gray;
+  border-radius: $border-radius-circle;
+  color: $color-text-inverse;
+  cursor: default;
+  display: inline-block;
+  font-size: $font-size-subheader;
+  font-weight: $font-weight-bold;
+  height: $diameter;
+  line-height: $diameter + 1px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: $diameter;
+
+  &-image {
+    border-radius: $border-radius-circle;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  &-blue {
+    background-color: $color-blue;
+  }
+
+  &-green {
+    background-color: $color-green;
+  }
+
+  &-red {
+    background-color: $color-red;
+  }
+
+  &-orange {
+    background-color: $color-orange;
+  }
+
+  &-cyan {
+    background-color: $color-cyan;
+  }
+}

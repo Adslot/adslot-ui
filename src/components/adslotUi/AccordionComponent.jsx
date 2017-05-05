@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import Panel from 'components/adslotUi/PanelComponent';
-import { Card } from 'alexandria-adslot';
+import Card from 'components/alexandria/CardComponent';
 
 const AccordionComponent = ({ dts, panels, onPanelClick }) => (
   <Card.Container>

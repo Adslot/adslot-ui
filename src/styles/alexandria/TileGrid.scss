@@ -1,0 +1,61 @@
+@import '../color';
+@import '../border';
+@import '../font-size';
+@import '../font-weight';
+
+.tile-grid-component {
+  &-title {
+    color: $color-text;
+    display: block;
+    font-size: $font-size-header;
+    font-weight: $font-weight-bold;
+    margin-bottom: 10px;
+  }
+
+  &-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-item-link {
+    background: $color-placeholder 50%;
+    border-radius: $border-radius-heavy;
+    box-shadow: inset 0 -4px 0 $color-shadow-light;
+    box-sizing: border-box;
+    color: $color-text-inverse;
+    cursor: pointer;
+    display: block;
+    font-size: $font-size-header;
+    font-weight: $font-weight-bold;
+    height: 124px;
+    line-height: 1;
+    padding: 30px;
+    padding-left: 20px;
+    position: relative;
+    text-transform: uppercase;
+    width: 204px;
+
+    &:hover,
+    &:focus {
+      color: $color-text-inverse;
+      text-decoration: none;
+
+      &::after {
+        background-color: $color-overlay;
+        border-radius: $border-radius-heavy;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+    }
+  }
+}

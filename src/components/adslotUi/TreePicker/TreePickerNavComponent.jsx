@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Breadcrumb, Search, SvgSymbol } from 'alexandria-adslot';
+import Breadcrumb from 'components/alexandria/BreadcrumbComponent';
+import Search from 'components/alexandria/SearchComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 
 require('styles/adslotUi/TreePickerNav.scss');
