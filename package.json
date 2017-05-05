@@ -23,8 +23,8 @@
     "release:minor": "npm version minor -m 'Release: minor version %s.'",
     "release:patch": "npm version patch -m 'Release: patch version %s.'",
     "preversion": "echo 'Releasing…' && git checkout master && git pull && npm i && npm prune",
-    "version": "echo '…generating dist…' && npm run -s dist && git add dist/*",
-    "postversion": "npm publish && git push --follow-tags && echo '…released.'"
+    "version": "RELEASE=true; echo '…generating dist…' && npm run -s dist && git add dist/*",
+    "postversion": "unset RELEASE; npm publish && git push --follow-tags && echo '…released.'"
   },
   "repository": {
     "type": "git",
