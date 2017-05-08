@@ -9,8 +9,7 @@ Core component library. By Adslot
 ---------------------------------
 
 A library of core components used to develop our Adslot and Symphony products.
-This will draw on custom in-house components from adslot/alexandria as well as restyled
-vendor components eg Bootstrap, Select2.
+This includes Alexandria and third-party restyled components, e.g. Bootstrap.
 
 Technology:
 
@@ -70,15 +69,18 @@ npm run test:watch
 Generating New Components
 -------------------------
 
+__Adslot UI:__
+
 `yo react-webpack:component adslot-ui/ComponentName` 
-or
-`yo react-webpack:component adslot-ui/component-name`
 
-This creates a new component, its stylesheet and a basic test case.
+__Alexandria:__
 
-Most of the time you will want to add:
+`yo react-webpack:component alexandria/ComponentName` 
 
-`--stateless`
+However, you __must__ change the file extension of the component and test to .jsx, as the generator
+only supports creating components with a .js extension.
+
+Most of the time you will also want to add: `--stateless`
 
 That makes a stateless component (pure function, no internal state).
 
