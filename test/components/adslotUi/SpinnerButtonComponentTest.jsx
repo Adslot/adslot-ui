@@ -1,7 +1,7 @@
 import React from 'react';
-import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
-import { Spinner } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
+import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
+import Spinner from 'components/alexandria/SpinnerComponent';
 
 describe('SpinnerButtonComponent', () => {
   it('should render with defaults', () => {

@@ -38,8 +38,10 @@
     height: 100%;
 
     .card-component-content {
-      &:not(.fill):last-child {
-        padding-bottom: $card-padding-etalon;
+      &:not(.fill) {
+        &:last-child {
+          padding-bottom: $card-padding-etalon;
+        }
       }
     }
   }

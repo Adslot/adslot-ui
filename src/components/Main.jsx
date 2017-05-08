@@ -84,6 +84,10 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
+      'setPickerSearchValue',
+      'setPurePickerSearchValue',
+      'setSearchBarString',
+      'setSelectedDate',
       'breadcrumbOnClick',
       'expandChildren',
       'performSearchBarSearch',
@@ -92,10 +96,6 @@ class AppComponent extends React.Component {
       'searchOnChange',
       'searchOnClear',
       'searchOnQuery',
-      'setPickerSearchValue',
-      'setPurePickerSearchValue',
-      'setSearchBarString',
-      'setSelectedDate',
       'toggleAccordionPanel',
       'toggleConfirmModal',
       'toggleListPickerModal',
@@ -175,6 +175,42 @@ class AppComponent extends React.Component {
     this.throttledSearchOnQuery = _.throttle(() => this.searchOnQuery(this.state.searchValue), 200);
   }
 
+  setPickerSearchValue(newValue) {
+    this.setState({ pickerSearchValue: newValue });
+    this.setState({
+      treePickerPureSubtree:
+        _.filter(this.state.subTree, ({ label }) => {
+          if (newValue) {
+            return _.includes(label.toLowerCase(), newValue.toLowerCase());
+          }
+
+          return false;
+        }),
+    });
+  }
+
+  setPurePickerSearchValue(newValue) {
+    this.setState({ purePickerSearchValue: newValue });
+    this.setState({
+      simpleSubtree:
+        _.filter(this.state.subTree, ({ label }) => {
+          if (newValue) {
+            return _.includes(label.toLowerCase(), newValue.toLowerCase());
+          }
+
+          return true;
+        }),
+    });
+  }
+
+  setSearchBarString(searchBarString) {
+    this.setState({ searchBarString });
+  }
+
+  setSelectedDate(newValue) {
+    this.setState({ startDate: newValue });
+  }
+
   breadcrumbOnClick(newActiveId) {
     const { breadcrumbNodes } = this.state;
     this.setState({
@@ -227,42 +263,6 @@ class AppComponent extends React.Component {
 
     const breadcrumbNodes = (query === '') ? defaultBreadcrumbNodes : [];
     this.setState({ breadcrumbNodes });
-  }
-
-  setPickerSearchValue(newValue) {
-    this.setState({ pickerSearchValue: newValue });
-    this.setState({
-      treePickerPureSubtree:
-        _.filter(this.state.subTree, ({ label }) => {
-          if (newValue) {
-            return _.includes(label.toLowerCase(), newValue.toLowerCase());
-          }
-
-          return false;
-        }),
-    });
-  }
-
-  setPurePickerSearchValue(newValue) {
-    this.setState({ purePickerSearchValue: newValue });
-    this.setState({
-      simpleSubtree:
-        _.filter(this.state.subTree, ({ label }) => {
-          if (newValue) {
-            return _.includes(label.toLowerCase(), newValue.toLowerCase());
-          }
-
-          return true;
-        }),
-    });
-  }
-
-  setSearchBarString(searchBarString) {
-    this.setState({ searchBarString });
-  }
-
-  setSelectedDate(newValue) {
-    this.setState({ startDate: newValue });
   }
 
   toggleAccordionPanel(panelId) {

@@ -1,12 +1,14 @@
+import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
-import ListPickerMocks from 'mocks/ListPickerMocks';
-import Modal from 'react-bootstrap/lib/Modal';
-import React from 'react';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
-import { Grid, GridCell, GridRow } from 'alexandria-adslot';
+import Grid from 'components/alexandria/GridComponent';
+import GridCell from 'components/alexandria/GridCellComponent';
+import GridRow from 'components/alexandria/GridRowComponent';
 import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
+import ListPickerMocks from 'mocks/ListPickerMocks';
 
 describe('ListPickerComponent', () => {
   const {
