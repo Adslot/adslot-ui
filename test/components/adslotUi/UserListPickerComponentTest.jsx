@@ -1,9 +1,9 @@
-import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
-import ListPickerMocks from 'mocks/ListPickerMocks';
 import React from 'react';
-import UserListPickerComponent from 'components/adslotUi/UserListPickerComponent';
-import { Avatar } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
+import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
+import UserListPickerComponent from 'components/adslotUi/UserListPickerComponent';
+import Avatar from 'components/alexandria/AvatarComponent';
+import ListPickerMocks from 'mocks/ListPickerMocks';
 
 describe('UserListPickerComponent', () => {
   const {

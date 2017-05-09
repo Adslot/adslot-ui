@@ -12,14 +12,20 @@ body {
 .index {
 
   margin: 0 auto;
-  max-width: 1344px;
+  max-width: 1094px;
   min-width: 300px;
   padding: 0 $spacing-etalon $spacing-etalon;
 
   > h1 {
+    font-weight: $font-weight-bold;
     margin-bottom: $spacing-etalon;
-    margin-top: ($spacing-etalon * 2);
-   }
+    margin-top: ($spacing-etalon * 3);
+  }
+
+  > h2 {
+    margin-bottom: $spacing-etalon;
+    margin-top: ($spacing-etalon * 3);
+  }
 
   > .btn-panel + .btn-panel {
     margin-top: $spacing-etalon;
@@ -40,4 +46,47 @@ body {
       margin-left: -21px;
     }
   }
+}
+
+// A re-usable example for creating custom accent colours for the <Tag> component
+@mixin accent($id, $color-accent) {
+  label {
+    &.accent-#{$id} {
+      color: $color-accent;
+    }
+  }
+
+  .card-component {
+    &.accent-#{$id} {
+      .card-component-content-container {
+        border-bottom-color: $color-accent;
+      }
+    }
+  }
+
+  .tag-component-accent {
+    &.accent-#{$id} {
+      border-color: $color-accent;
+
+      &:not(.tag-component-inverse) {
+        background-color: $color-accent;
+      }
+
+      &.tag-component-inverse {
+        color: $color-accent;
+        fill: $color-accent;
+      }
+    }
+  }
+}
+
+@include accent(0, $color-positive);
+@include accent(1, $color-pending);
+@include accent(2, $color-negative);
+
+.spinner-colour-style-warning {
+  border-bottom-color: $color-red-dark;
+  border-left-color: $color-red-dark;
+  border-right-color: $color-red-dark;
+  border-top-color: $color-orange;
 }

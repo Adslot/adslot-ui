@@ -62,7 +62,10 @@ $color-ended: $color-gray-darkest;
 $color-ended-selected: $color-black;
 $color-rejected: $color-black;
 
+$color-placeholder: $color-gray-lighter;
 $color-inverse: $color-white;
+$color-background: $color-white;
+$color-overlay: $color-gray-dark;
 
 // Layout
 $color-well: $color-white;
@@ -70,13 +73,17 @@ $color-background: $color-white;
 $color-background-highlighted: $color-gray-lightest;
 
 // Typography
-$color-text-placeholder: $color-gray;
-$color-text: $color-gray-darkest;
-$color-text-light: $color-gray-dark;
-$color-text-label: $color-gray-dark;
-$color-text-form: $color-gray-darker;
+$color-link-hover: $color-cyan-dark;
+$color-link: $color-cyan;
 $color-text-dark: $color-black;
+$color-text-disabled: $color-gray;
+$color-text-form: $color-gray-darker;
 $color-text-inverse: $color-white;
+$color-text-label: $color-gray-dark;
+$color-text-light: $color-gray-dark;
+$color-text-placeholder: $color-gray;
+$color-text-sub: $color-gray;
+$color-text: $color-gray-darkest;
 
 // Borders
 $color-border-lightest: $color-gray-lightest;
@@ -86,6 +93,7 @@ $color-border: $color-gray;
 $color-border-darker: $color-gray-darker;
 $color-border-error: $color-red-dark;
 $color-shadow: $color-black;
+$color-shadow-light: $color-gray-light;
 
 // Modal
 $color-modal-shadow: rgba($color-shadow, .25);

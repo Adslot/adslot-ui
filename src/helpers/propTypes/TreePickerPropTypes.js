@@ -1,5 +1,5 @@
 import { PropTypes } from 'react';
-import { SvgSymbol } from 'alexandria-adslot';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import idPropType from '../../helpers/propTypes/idPropType';
 
 export default {

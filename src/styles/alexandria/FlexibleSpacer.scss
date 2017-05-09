@@ -1,0 +1,22 @@
+@import '../border';
+
+.flexible-spacer-component {
+  border: $border-lighter;
+  flex-grow: 1;
+}
+
+.flexible-wrapper-inline {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+
+  .flexible-spacer-component {
+    border: 0;
+  }
+
+  > .svg-symbol-component {
+    // Combined with `height: inherit` on .flexible-wrapper-inline,
+    // auto margins middle-aligns SVGs in flexible wrappers
+    margin: auto;
+  }
+}

@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
-import TreePickerGrid, { TreePickerNodeFast } from 'components/adslotUi/TreePicker/TreePickerGridComponent';
-import TreePickerMocks from 'mocks/TreePickerMocks';
-import { Empty, Grid } from 'alexandria-adslot';
 import { shallow } from 'enzyme';
+import TreePickerGrid, { TreePickerNodeFast } from 'components/adslotUi/TreePicker/TreePickerGridComponent';
+import Empty from 'components/alexandria/EmptyComponent';
+import Grid from 'components/alexandria/GridComponent';
+import TreePickerMocks from 'mocks/TreePickerMocks';
 
 describe('TreePickerGridComponent', () => {
   const {

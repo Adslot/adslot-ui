@@ -1,12 +1,13 @@
 import _ from 'lodash';
-import sinon from 'sinon';
-import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
-import TreePickerMocks from 'mocks/TreePickerMocks';
+import sinon from 'sinon';
+import { shallow, mount } from 'enzyme';
+import Button from 'react-bootstrap/lib/Button';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
-import { GridCell, GridRow } from 'alexandria-adslot';
-import { shallow, mount } from 'enzyme';
+import GridRow from 'components/alexandria/GridRowComponent';
+import GridCell from 'components/alexandria/GridCellComponent';
+import TreePickerMocks from 'mocks/TreePickerMocks';
 
 describe('TreePickerNodeComponent', () => {
   const { cbrNode, cbrNodeAlreadySelected, actNode, maleNode, itemType, nodeRenderer } = TreePickerMocks;

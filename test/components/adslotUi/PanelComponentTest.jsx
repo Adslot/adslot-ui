@@ -1,9 +1,9 @@
 import React from 'react';
-import Panel from 'components/adslotUi/PanelComponent';
-import PanelMocks from 'mocks/PanelMocks';
-import { SvgSymbol } from 'alexandria-adslot';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
+import Panel from 'components/adslotUi/PanelComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import PanelMocks from 'mocks/PanelMocks';
 
 describe('PanelComponent', () => {
   const {

@@ -1,8 +1,12 @@
 import _ from 'lodash';
+import React, { PropTypes } from 'react';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
-import React, { PropTypes } from 'react';
-import { Empty, Grid, GridRow, GridCell, SvgSymbol } from 'alexandria-adslot';
+import Empty from 'components/alexandria/EmptyComponent';
+import Grid from 'components/alexandria/GridComponent';
+import GridRow from 'components/alexandria/GridRowComponent';
+import GridCell from 'components/alexandria/GridCellComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 
 require('styles/adslotUi/ListPickerPure.scss');
 

@@ -1,0 +1,68 @@
+@import '../border';
+@import '../color';
+@import '../font-size';
+@import '../font-weight';
+@import '../variable';
+
+.tag-component {
+  $tag-height: 22px;
+  $tag-spacing-etalon: 5px;
+  $color-tag-inverse: $color-gray-lightest;
+  $color-tag-action-inverse: $color-gray;
+
+  align-items: center;
+  background-color: $color-text-light;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  color: $color-text-inverse;
+  display: inline-flex;
+  font-size: $font-size-body;
+  font-weight: $font-weight-light;
+  margin-right: $tag-spacing-etalon;
+  min-height: $tag-height;
+  padding: 0 $tag-spacing-etalon;
+
+  &.tag-component-inverse { // explicit .tag-component to force override of `.accent-n` inverse bg/fill colours
+    background-color: $color-tag-inverse;
+    border-left: 4px solid;
+    color: $color-text-light;
+
+    .action-button {
+      fill: $color-tag-action-inverse;
+    }
+  }
+
+  &-actionable {
+    padding-right: 0;
+  }
+
+  &-accent {
+    label {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .action-button {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    fill: $color-inverse;
+    fill-opacity: .6;
+    height: $tag-height;
+    padding-top: ($tag-height - $svg-icon-size) / 2;
+    text-align: center;
+    width: $tag-height;
+
+    &:hover {
+      fill-opacity: 1;
+    }
+  }
+
+  label {
+    margin-bottom: 0;
+    max-width: 105px; // Fits ~18 characters
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

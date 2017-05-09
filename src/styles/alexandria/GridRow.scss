@@ -1,0 +1,39 @@
+@import '../color';
+@import '../border';
+@import '../font-weight';
+
+.grid-component-row {
+  border-bottom: 1px solid transparent;
+  display: flex;
+
+  &-header {
+    color: $color-text-light;
+  }
+
+  &-subfooter {
+    background-color: $color-gray-white;
+    color: $color-text-light;
+
+    .grid-component-cell {
+      &:last-child {
+        color: $color-text;
+      }
+    }
+  }
+
+  &-footer {
+    font-weight: $font-weight-bold;
+  }
+
+  &-short {
+    .grid-component-cell {
+      padding-bottom: 3px;
+      padding-top: 3px;
+    }
+  }
+
+  &-horizontal-border,
+  &:last-child {
+    border-bottom-color: $color-border-lighter;
+  }
+}

@@ -1,8 +1,8 @@
-import sinon from 'sinon';
 import React from 'react';
-import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
-import { Spinner } from 'alexandria-adslot';
+import sinon from 'sinon';
 import { shallow } from 'enzyme';
+import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
+import Spinner from 'components/alexandria/SpinnerComponent';
 
 describe('TreePickerNodeExpanderComponent', () => {
   it('should render with default isLoading false', () => {

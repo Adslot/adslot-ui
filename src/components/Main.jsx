@@ -8,23 +8,42 @@ import Immutable from 'seamless-immutable';
 import moment from 'moment';
 import {
   Accordion,
+  Alert,
+  Avatar,
+  BorderedWell,
+  Breadcrumb,
   Button,
+  Card,
   Carousel,
   Checkbox,
   ConfirmModal,
   DatePicker,
+  Empty,
   FlexibleSpacer,
+  Grid,
+  GridCell,
+  GridRow,
   ListPicker,
   Modal,
+  PageTitle,
   PagedGrid,
   Panel,
+  PrettyDiff,
   Radio,
   RadioGroup,
   SearchBar,
+  SearchField,
+  Slicey,
+  Spinner,
   SpinnerButton,
+  Statistic,
   SvgSymbol,
+  SvgSymbolCircle,
   Tab,
   Tabs,
+  Tag,
+  TileGrid,
+  Totals,
   TreePickerSimplePure,
   UserListPicker,
 } from './distributionEntry';
@@ -50,32 +69,47 @@ const store = createStore(reducer); // One store per app.
 
 const auNode = { id: '10', label: 'Australia', path: [], type: '', isExpandable: true };
 
+const defaultBreadcrumbNodes = [
+  { id: 'aaa-111', label: 'Australia' },
+  { id: 'aaa-222', label: 'Victoria' },
+  { id: 'aaa-333', label: 'Melbourne' },
+];
+
+const diffStrings = [
+  '<the\n quick fox>',
+  '<the\n slow fox jumped>',
+];
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     for (const methodName of [
+      'setPickerSearchValue',
+      'setPurePickerSearchValue',
       'setSearchBarString',
-      'setSearchValue',
-      'searchOnClear',
       'setSelectedDate',
-      'expandChildren',
       'breadcrumbOnClick',
-      'setSearchTreePickerPure',
+      'expandChildren',
       'performSearchBarSearch',
+      'pickerBreadcrumbOnClick',
+      'pickerSearchOnClear',
+      'searchOnChange',
+      'searchOnClear',
+      'searchOnQuery',
+      'toggleAccordionPanel',
       'toggleConfirmModal',
       'toggleListPickerModal',
+      'togglePanel',
       'toggleSimpleModal',
       'toggleSplitListPickerModal',
       'toggleUserListPickerModal',
-      'togglePanel',
-      'toggleAccordionPanel',
     ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {
       itemType: 'segment value',
       showSimpleModal: false,
-      searchValue: '',
-      searchValueTreePickerPure: '',
+      pickerSearchValue: '',
+      purePickerSearchValue: '',
       panel: {
         id: '0',
         title: 'Panel',
@@ -133,16 +167,16 @@ class AppComponent extends React.Component {
         { id: '3', label: 'Queensland', path: [{ id: '12', label: 'AU' }], type: '' },
       ],
       searchBarString: '',
-      breadcrumbNodes: [],
+      pickerBreadcrumbNodes: [],
+      breadcrumbNodes: defaultBreadcrumbNodes,
+      searchValue: '',
     };
+
+    this.throttledSearchOnQuery = _.throttle(() => this.searchOnQuery(this.state.searchValue), 200);
   }
 
-  setSearchBarString(searchBarString) {
-    this.setState({ searchBarString });
-  }
-
-  setSearchValue(newValue) {
-    this.setState({ searchValue: newValue });
+  setPickerSearchValue(newValue) {
+    this.setState({ pickerSearchValue: newValue });
     this.setState({
       treePickerPureSubtree:
         _.filter(this.state.subTree, ({ label }) => {
@@ -155,8 +189,8 @@ class AppComponent extends React.Component {
     });
   }
 
-  setSearchTreePickerPure(newValue) {
-    this.setState({ searchValueTreePickerPure: newValue });
+  setPurePickerSearchValue(newValue) {
+    this.setState({ purePickerSearchValue: newValue });
     this.setState({
       simpleSubtree:
         _.filter(this.state.subTree, ({ label }) => {
@@ -169,8 +203,19 @@ class AppComponent extends React.Component {
     });
   }
 
+  setSearchBarString(searchBarString) {
+    this.setState({ searchBarString });
+  }
+
   setSelectedDate(newValue) {
     this.setState({ startDate: newValue });
+  }
+
+  breadcrumbOnClick(newActiveId) {
+    const { breadcrumbNodes } = this.state;
+    this.setState({
+      breadcrumbNodes: _.slice(breadcrumbNodes, 0, 1 + _.findIndex(breadcrumbNodes, { id: newActiveId })),
+    });
   }
 
   expandChildren() {
@@ -179,7 +224,7 @@ class AppComponent extends React.Component {
     const updateSubtree = () => {
       clearInterval(intervalId);
       this.setState({
-        breadcrumbNodes: [auNode],
+        pickerBreadcrumbNodes: [auNode],
         simpleSubtree: [
           { id: '0', label: 'Northern Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
           { id: '1', label: 'Australian Capital Territory', path: [{ id: '10', label: 'Australia' }], type: '' },
@@ -190,39 +235,49 @@ class AppComponent extends React.Component {
     intervalId = setInterval(updateSubtree, 1000);
   }
 
-  breadcrumbOnClick() {
-    this.setState({
-      breadcrumbNodes: [],
-      simpleSubtree: [auNode],
-    });
-  }
-
-  searchOnClear() {
-    this.setSearchValue('');
-  }
-
   performSearchBarSearch() {
     console.log(`Searching "${this.state.searchBarString}"...`);
   }
 
-  toggleListPickerModal() {
-    this.setState({ showListPickerModal: !this.state.showListPickerModal });
+  pickerBreadcrumbOnClick() {
+    this.setState({
+      pickerBreadcrumbNodes: [],
+      simpleSubtree: [auNode],
+    });
   }
 
-  toggleSplitListPickerModal() {
-    this.setState({ showSplitListPickerModal: !this.state.showSplitListPickerModal });
+  pickerSearchOnClear() {
+    this.setPickerSearchValue('');
   }
 
-  toggleUserListPickerModal() {
-    this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
+  searchOnChange(value) {
+    this.setState({ searchValue: value }, this.throttledSearchOnQuery);
   }
 
-  toggleSimpleModal() {
-    this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  searchOnClear() {
+    this.searchOnChange('');
+  }
+
+  searchOnQuery(query) {
+    console.log('Query:', query); /* eslint no-console: 0 */
+
+    const breadcrumbNodes = (query === '') ? defaultBreadcrumbNodes : [];
+    this.setState({ breadcrumbNodes });
+  }
+
+  toggleAccordionPanel(panelId) {
+    const nextPanels = Immutable.from(this.state.accordionPanels).asMutable({ deep: true });
+    const panelToToggle = _.find(nextPanels, { id: panelId });
+    panelToToggle.isCollapsed = !panelToToggle.isCollapsed;
+    this.setState({ accordionPanels: nextPanels });
   }
 
   toggleConfirmModal() {
     this.setState({ showConfirmModal: !this.state.showConfirmModal });
+  }
+
+  toggleListPickerModal() {
+    this.setState({ showListPickerModal: !this.state.showListPickerModal });
   }
 
   togglePanel() {
@@ -231,11 +286,16 @@ class AppComponent extends React.Component {
     this.setState({ panel: nextPanel });
   }
 
-  toggleAccordionPanel(panelId) {
-    const nextPanels = Immutable.from(this.state.accordionPanels).asMutable({ deep: true });
-    const panelToToggle = _.find(nextPanels, { id: panelId });
-    panelToToggle.isCollapsed = !panelToToggle.isCollapsed;
-    this.setState({ accordionPanels: nextPanels });
+  toggleSimpleModal() {
+    this.setState({ showSimpleModal: !this.state.showSimpleModal });
+  }
+
+  toggleSplitListPickerModal() {
+    this.setState({ showSplitListPickerModal: !this.state.showSplitListPickerModal });
+  }
+
+  toggleUserListPickerModal() {
+    this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
   }
 
   render() {
@@ -279,10 +339,20 @@ class AppComponent extends React.Component {
 
     const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
 
+    const sliceyDataset = [
+      { label: 'positive', value: 50 },
+      { label: 'negative', value: 25 },
+      { label: 'info', value: 35 },
+    ];
+
+    const cellClicked = () => console.log('Cell clicked');
+
     return (
       <div className="index">
 
-        <h1>Buttons</h1>
+        <h1>Adslot UI</h1>
+
+        <h2>Buttons</h2>
         <div className="btn-panel">
           <Button className="btn-inverse">
             Inverse
@@ -360,7 +430,7 @@ class AppComponent extends React.Component {
           <div className="btn btn-inverse btn-success">Div</div>
         </div>
 
-        <h3>Spinner Buttons</h3>
+        <h2>Spinner Buttons</h2>
         <div className="btn-panel">
           <SpinnerButton isLoading className="btn-borderless" bsSize="sm">
             Small Borderless
@@ -382,7 +452,7 @@ class AppComponent extends React.Component {
           </SpinnerButton>
         </div>
 
-        <h1>Tabs</h1>
+        <h2>Tabs</h2>
         <div className="btn-panel">
           <Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
             <Tab eventKey="Targeting" title="Targeting">Targeting content</Tab>
@@ -402,7 +472,7 @@ class AppComponent extends React.Component {
           </Tabs>
         </div>
 
-        <h1>Modal</h1>
+        <h2>Modal</h2>
         <Button data-test-selector="button-modal" className="btn-inverse" onClick={this.toggleSimpleModal}>
           Open Modal
         </Button>
@@ -438,7 +508,7 @@ class AppComponent extends React.Component {
         />
 
 
-        <h1>Checkboxes</h1>
+        <h2>Checkboxes</h2>
         <div className="checkbox-example">
           <Checkbox label="Unchecked" />
           <br />
@@ -451,7 +521,7 @@ class AppComponent extends React.Component {
           <Checkbox label="A very long label that wraps around nicely" />
         </div>
 
-        <h1>Radio Buttons</h1>
+        <h2>Radio Buttons</h2>
         <RadioGroup name="testRadio" value="2">
           <Radio
             label="Unchecked"
@@ -496,12 +566,12 @@ class AppComponent extends React.Component {
         </RadioGroup>
 
 
-        <h1>Select</h1>
+        <h2>Select</h2>
         <Provider store={store}>
           <ExampleSelect />
         </Provider>
 
-        <h1>TreePickerSimplePure with initial state</h1>
+        <h2>TreePickerSimplePure with initial state</h2>
 
         <TreePickerSimplePure
           itemType={this.state.itemType}
@@ -510,30 +580,30 @@ class AppComponent extends React.Component {
           subtree={this.state.treePickerPureSubtree}
           emptySelectedListText={<div><b>Choose items of interest</b></div>}
           initialStateNode={<div><b>Start by searching for items</b></div>}
-          searchValue={this.state.searchValue}
-          searchOnChange={this.setSearchValue}
-          searchOnClear={this.searchOnClear}
-          additionalClassNames={this.state.searchValue ? undefined : ['background-highlighted', 'test-class']}
+          searchValue={this.state.pickerSearchValue}
+          searchOnChange={this.setPickerSearchValue}
+          searchOnClear={this.pickerSearchOnClear}
+          additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
         />
 
-        <h1>TreePickerSimplePure without initial state</h1>
+        <h2>TreePickerSimplePure without initial state</h2>
 
         <TreePickerSimplePure
           groupFormatter={(node) => `${node.label.split(' ').length} words`}
           itemType={this.state.itemType}
           selectedNodes={this.state.selectedNodes}
-          breadcrumbNodes={this.state.breadcrumbNodes}
-          breadcrumbOnClick={this.breadcrumbOnClick}
+          breadcrumbNodes={this.state.pickerBreadcrumbNodes}
+          breadcrumbOnClick={this.pickerBreadcrumbOnClick}
           subtree={this.state.simpleSubtree}
-          searchValue={this.state.searchValueTreePickerPure}
-          searchOnChange={this.setSearchTreePickerPure}
+          searchValue={this.state.purePickerSearchValue}
+          searchOnChange={this.setPurePickerSearchValue}
           expandNode={this.expandChildren}
           includeNode={_.noop}
           removeNode={_.noop}
           nodeRenderer={nodeRenderer}
         />
 
-        <h1>ListPicker</h1>
+        <h2>ListPicker</h2>
 
         <Button data-test-selector="button-list-picker" bsStyle="primary" onClick={this.toggleListPickerModal}>
           Open ListPicker
@@ -579,7 +649,7 @@ class AppComponent extends React.Component {
           show={this.state.showSplitListPickerModal}
         />
 
-        <h1>UserListPicker</h1>
+        <h2>UserListPicker</h2>
 
         <Button
           bsStyle="primary"
@@ -602,7 +672,7 @@ class AppComponent extends React.Component {
         />
 
 
-        <h1>PagedGrid</h1>
+        <h2>PagedGrid</h2>
 
         <PagedGrid
           columns={pagedGridColumns}
@@ -618,7 +688,7 @@ class AppComponent extends React.Component {
         />
 
 
-        <h1>Date Picker</h1>
+        <h2>Date Picker</h2>
         <div className="row">
           <div className="col-xs-3">
             <DatePicker
@@ -631,12 +701,12 @@ class AppComponent extends React.Component {
           </div>
         </div>
 
-        <h1>Forms</h1>
+        <h2>Forms</h2>
         <Provider store={store}>
           <ExampleForm />
         </Provider>
 
-        <h1>Panel</h1>
+        <h2>Panel</h2>
         <Panel
           id={this.state.panel.id}
           title={this.state.panel.title}
@@ -646,10 +716,10 @@ class AppComponent extends React.Component {
           <p>{this.state.panel.content}</p>
         </Panel>
 
-        <h1>Accordion</h1>
+        <h2>Accordion</h2>
         <Accordion panels={this.state.accordionPanels} onPanelClick={this.toggleAccordionPanel} />
 
-        <h1>Search Bar</h1>
+        <h2>Search Bar</h2>
         <SearchBar
           searchString={this.state.searchBarString}
           searchPlaceholder="Search for all the things."
@@ -657,26 +727,236 @@ class AppComponent extends React.Component {
           onSearch={this.performSearchBarSearch}
         />
 
-        <h1>Carousel</h1>
+        <h2>Carousel</h2>
         <Carousel>
           <a style={{ display: 'block' }} href="/">
             <img src="/assets/carousel/carousel-1.jpg" alt="Slide 1" />
           </a>
           <img src="/assets/carousel/carousel-2.jpg" alt="Slide 2" />
           <div style={{ position: 'relative' }}>
-            <h1
+            <h2
               style={{
                 position: 'absolute',
                 right: 0,
                 left: 0,
-                'text-align': 'center',
+                textAlign: 'center',
                 color: '#fff',
               }}
-            >ＡＥＳＴＨＥＴＩＣＳ</h1>
+            >ＡＥＳＴＨＥＴＩＣＳ</h2>
             <img src="/assets/carousel/carousel-3.jpg" alt="Slide 3" />
           </div>
           <img src="/assets/carousel/carousel-4.jpg" alt="Slide 4" />
         </Carousel>
+
+
+        <h1>Alexandria</h1>
+
+        <h2>Alert</h2>
+        <Alert type="success">You did it!</Alert>
+        <Alert type="info" dts="yay">Alert with DTS</Alert>
+
+        <h2>Avatar</h2>
+        <Avatar givenName="John" surname="Smith" />
+        <Avatar givenName="John" surname="Smith" color="blue" />
+        <Avatar givenName="John" surname="Smith" color="green" />
+        <Avatar givenName="John" surname="Smith" color="red" />
+        <Avatar givenName="John" surname="Smith" color="orange" />
+        <Avatar givenName="John" surname="Smith" color="cyan" />
+        <Avatar givenName="John" surname="Smith" image="//lorempixel.com/35/35/people/7" />
+
+        <h2>BorderedWell</h2>
+        <BorderedWell>
+          <PageTitle title="PageTitle" />
+          <Empty
+            collection={[]}
+            text="Empty"
+            svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+          />
+          <PageTitle isFooter>
+            <SvgSymbol />
+          </PageTitle>
+        </BorderedWell>
+
+        <h2>Breadcrumb</h2>
+        <Breadcrumb nodes={this.state.breadcrumbNodes} onClick={this.breadcrumbOnClick} />
+
+        <h2>Cards</h2>
+        <Card.Container>
+          <Card.Content><small>I am Cardy McCardface.</small></Card.Content>
+          <Card.Content><em>I am Cardy McCardface.</em></Card.Content>
+          <Card.Content><strong>I am Cardy McCardface.</strong></Card.Content>
+        </Card.Container>
+        <div className="card-component-grid-container">
+          <Card.Container accent="0">
+            <Card.Content fill><PageTitle title="Card" /></Card.Content>
+            <Card.Content>I am a card with an accent.</Card.Content>
+            <Card.Content><Avatar givenName="Cardy" surname="McCardface" color="green" /></Card.Content>
+          </Card.Container>
+          <Card.Container>
+            <Card.Content fill><PageTitle title="Card" /></Card.Content>
+            <Card.Content>
+              <Avatar givenName="Cardy" surname="McCardface" color="red" />
+              <span>&nbsp;I am a card.</span>
+            </Card.Content>
+          </Card.Container>
+          <Card.Container className="fixed-height-card">
+            <Card.Content stretch><Alert type="info">I am a fixed height card.</Alert></Card.Content>
+            <FlexibleSpacer />
+            <Card.Content>I have <code>flex</code> spacing.</Card.Content>
+          </Card.Container>
+          <Card.Container>
+            <Card.Content>I am a card with a sub-note.</Card.Content>
+            <Card.Content append>
+              <span>Append me.</span>
+            </Card.Content>
+          </Card.Container>
+        </div>
+
+        <h2>Empty</h2>
+        <Empty
+          collection={[]}
+          text="I'm hungry"
+          svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+        />
+
+        <Empty
+          collection={[]}
+          text="Don't show the icon"
+          svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+          hideIcon
+        />
+
+        <h2>FlexibleSpacer</h2>
+        <small>Expands to fill leftover space in a <code>display: flex;</code> container:</small>
+        <FlexibleSpacer />
+
+        <h2>Grid</h2>
+        <Grid>
+          <GridRow type="header">
+            <GridCell>
+              Header
+            </GridCell>
+            <GridCell>
+              Header
+            </GridCell>
+            <GridCell>
+              Header
+            </GridCell>
+          </GridRow>
+          <GridRow verticalCellBorder>
+            <GridCell stretch>
+              Content
+            </GridCell>
+            <GridCell>
+              Content
+            </GridCell>
+            <GridCell>
+              Content
+            </GridCell>
+          </GridRow>
+          <GridRow>
+            <GridCell>
+              Content
+            </GridCell>
+            <GridCell>
+              Content
+            </GridCell>
+            <GridCell onClick={cellClicked}>
+              This Cell logs clicks.
+            </GridCell>
+          </GridRow>
+        </Grid>
+
+        <h2>Spinner</h2>
+        <Spinner />
+        { /* Custom sizes and colour style */ }
+        <Spinner size="medium" colourStyle="warning" />
+        <Spinner size="small" />
+
+        <h2>PageTitle</h2>
+        <PageTitle title="Alexandria">
+          <Avatar givenName="A" surname="D" />
+        </PageTitle>
+
+        <h2>Pretty Diff</h2>
+        <PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />
+
+        <h2>Search</h2>
+        <SearchField
+          onChange={this.searchOnChange}
+          onClear={this.searchOnClear}
+          placeholder="Cities"
+          value={this.state.searchValue}
+        />
+
+        <h2>Slicey</h2>
+        <Slicey dataset={sliceyDataset} diameter={150} marker={0.2} donut />
+
+        <h2>Statistic</h2>
+        <Statistic value="50 Million" label="Page Views" />
+        <br />
+        <Statistic value="1" label="Inline Statistic" inline />
+
+        <h2>SvgSymbol</h2>
+        <SvgSymbol href="/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={['70']} />
+        <SvgSymbol href="/assets/svg-symbols.svg#checklist-incomplete" />
+
+        <h2>SvgSymbolCircle</h2>
+        <SvgSymbolCircle href="/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={['50']} />
+        <SvgSymbolCircle href="/assets/svg-symbols.svg#checklist-incomplete" />
+        <SvgSymbolCircle href="/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={['70', 'inverse']} />
+
+        <h2>Tag</h2>
+        <Tag actionIconSvgHref="/assets/svg-symbols.svg#cancel">You are it!</Tag>
+        <Tag actionIconSvgHref="/assets/svg-symbols.svg#cancel" inverse>Inverse</Tag>
+        <Tag actionIconSvgHref="/assets/svg-symbols.svg#cancel" accent="2" inverse onAction={_.noop} id="foo">
+          Inverse Clearable
+        </Tag>
+        <Tag actionIconSvgHref="/assets/svg-symbols.svg#cancel" accent="1">Custom Colour</Tag>
+        <Tag actionIconSvgHref="/assets/svg-symbols.svg#cancel" inverse accent="1">Inverse Custom Colour</Tag>
+        <Tag accent="2" onAction={_.noop} id="bar" actionIconSvgHref="/assets/svg-symbols.svg#cancel">Clearable</Tag>
+        <Tag accent="2" onAction={_.noop} id="bar" actionIconSvgHref="/assets/svg-symbols.svg#cancel">
+          <div style={{ width: '100px' }}>Column 1</div>
+          <div style={{ width: '100px' }}>Column 2</div>
+          <div style={{ width: '100px' }}>
+            Column 3
+            <p>multiline<br />content</p>
+          </div>
+        </Tag>
+
+        <p>
+          <label className="accent-0">Example</label>
+          <label className="accent-1"> accent </label>
+          <label className="accent-2">sharing</label>
+        </p>
+
+        <h2>TileGrid</h2>
+        <TileGrid
+          title="Browse by category"
+          items={[
+            { id: 'news', title: 'News' },
+            { id: 'sport', title: 'Sport' },
+            { id: 'health', title: 'Health & Fitness' },
+            { id: 'tech', title: 'Technology & Computing' },
+          ]}
+          onItemClick={_.noop}
+        />
+
+        <h2>Totals</h2>
+        <Grid>
+          <GridRow>
+            <GridCell stretch>In the sum but not in the Totals Component</GridCell>
+            <GridCell>10</GridCell>
+          </GridRow>
+        </Grid>
+        <Totals
+          toSum={[
+            { value: 10, isHidden: true },
+            { label: 'Movies Category - Medium Rectangle', value: 1000 },
+            { label: 'Selected', value: 36.80 },
+          ]}
+        />
+
       </div>
     );
   }

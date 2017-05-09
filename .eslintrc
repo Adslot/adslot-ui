@@ -30,6 +30,11 @@
     "no-mixed-operators": ["error", {"groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]]}],
     "quote-props": 0,
     "import/no-extraneous-dependencies": 0,
+    "react/self-closing-comp": ["error", {
+      "component": true,
+      "html": false
+    }],
+    "jsx-a11y/label-has-for": 0,
     "lodash/callback-binding": 2,
     "lodash/chain-style": [2, "as-needed"],
     "lodash/collection-return": 2,

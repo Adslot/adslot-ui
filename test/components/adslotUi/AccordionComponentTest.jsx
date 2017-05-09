@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
-import Accordion from 'components/adslotUi/AccordionComponent';
-import Panel from 'components/adslotUi/PanelComponent';
-import { Card } from 'alexandria-adslot';
-import PanelMocks from 'mocks/PanelMocks';
 import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
+import Accordion from 'components/adslotUi/AccordionComponent';
+import Panel from 'components/adslotUi/PanelComponent';
+import Card from 'components/alexandria/CardComponent';
+import PanelMocks from 'mocks/PanelMocks';
 
 describe('AccordionComponent', () => {
   const {
