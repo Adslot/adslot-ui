@@ -9,8 +9,8 @@ describe('TileGridComponent', () => {
   const props = {
     title: 'Lorem ipsum',
     items: [
-      { id: 'a', title: 'Alpha' },
-      { id: 'b', title: 'Beta' },
+      { id: 0, classSuffix: 'alpha', title: 'Alpha' },
+      { id: 1, classSuffix: 'beta', title: 'Beta' },
     ],
     onItemClick: _.noop,
   };
@@ -34,7 +34,7 @@ describe('TileGridComponent', () => {
     expect(list.children()).to.have.length(2);
 
     const firstTileItem = list.childAt(0);
-    expect(firstTileItem.prop('className')).to.equal('tile-grid-component-item tile-grid-component-item-a');
+    expect(firstTileItem.prop('className')).to.equal('tile-grid-component-item tile-grid-component-item-alpha');
 
     const firstTileLink = firstTileItem.find('.tile-grid-component-item-link');
     expect(firstTileLink).to.have.length(1);
@@ -42,7 +42,7 @@ describe('TileGridComponent', () => {
     expect(firstTileLink.text()).to.equal('Alpha');
 
     const secondTileItem = list.childAt(1);
-    expect(secondTileItem.prop('className')).to.equal('tile-grid-component-item tile-grid-component-item-b');
+    expect(secondTileItem.prop('className')).to.equal('tile-grid-component-item tile-grid-component-item-beta');
 
     const secondTileLink = secondTileItem.find('.tile-grid-component-item-link');
     expect(secondTileLink).to.have.length(1);
@@ -57,11 +57,11 @@ describe('TileGridComponent', () => {
     const firstTileLink = tileLinks.at(0);
     firstTileLink.simulate('click');
     expect(onItemClickSpy.callCount).to.equal(1);
-    expect(onItemClickSpy.calledWith('a')).to.equal(true);
+    expect(onItemClickSpy.calledWith(0)).to.equal(true);
 
     const secondTileLink = tileLinks.at(1);
     secondTileLink.simulate('click');
     expect(onItemClickSpy.callCount).to.equal(2);
-    expect(onItemClickSpy.calledWith('b')).to.equal(true);
+    expect(onItemClickSpy.calledWith(1)).to.equal(true);
   });
 });
