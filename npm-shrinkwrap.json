@@ -1,6 +1,6 @@
 {
   "name": "adslot-ui",
-  "version": "16.0.1",
+  "version": "17.0.0",
   "dependencies": {
     "autoprefixer": {
       "version": "6.7.7",
