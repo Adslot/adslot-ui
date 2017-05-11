@@ -1,7 +1,0 @@
-{
-  "preset": "airbnb",
-  "disallowSpacesInsideTemplateStringPlaceholders": false,
-  "maximumLineLength": 120,
-  "requireSpacesInsideObjectBrackets": "all",
-  "validateQuoteMarks": false
-}

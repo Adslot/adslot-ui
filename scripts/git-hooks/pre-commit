@@ -16,13 +16,12 @@ fi
 
 
 # Run linting and commit check.
-STAGED_SRC_FILES=`git diff --staged --name-only HEAD ./src | grep .*\\.js | grep -v json` # JS & JSX Files included
-STAGED_TEST_FILES=`git diff --staged --name-only HEAD ./test | grep .*\\.js | grep -v json` # JS & JSX Files included
+STAGED_SRC_FILES=(`git diff --staged --name-only HEAD ./src | grep '\.jsx\|\.js\?$' | grep -v json`) # JS & JSX Files included
+STAGED_TEST_FILES=(`git diff --staged --name-only HEAD ./test | grep '\.jsx\|\.js\?$' | grep -v json`) # JS & JSX Files included
 STAGED_SASS_FILES=`git diff --staged --name-only HEAD ./src/styles | grep .*\\.scss`
 SRC_EXIT_CODE=1
 TEST_EXIT_CODE=1
 SASS_EXIT_CODE=1
-JSCS_EXIT_CODE=1
 COMMIT_MSG_EXIT_CODE=1
 
 echo "🔍  Running linting on staged files…"
@@ -48,14 +47,7 @@ else
   SASS_EXIT_CODE=0
 fi
 
-echo "    - JSCSLint"
-if [ "$STAGED_SRC_FILES" ]; then
-  jscs $STAGED_SRC_FILES $STAGED_TEST_FILES && JSCS_EXIT_CODE=0
-else
-  JSCS_EXIT_CODE=0
-fi
-
-if [ $SRC_EXIT_CODE -eq 1 ] || [ $TEST_EXIT_CODE -eq 1 ] || [ $SASS_EXIT_CODE -eq 1 ] || [ $JSCS_EXIT_CODE -eq 1 ]; then
+if [ $SRC_EXIT_CODE -eq 1 ] || [ $TEST_EXIT_CODE -eq 1 ] || [ $SASS_EXIT_CODE -eq 1 ]; then
   echo "💔  Linting failed."
   exit 1
 fi

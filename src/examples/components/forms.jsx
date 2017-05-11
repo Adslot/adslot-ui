@@ -5,6 +5,7 @@ import {
   BorderedWell,
   FilePicker,
   FormGroup,
+  HelpIconPopover,
   PageTitle,
   Radio,
   RadioGroup,
@@ -31,6 +32,15 @@ const ExampleForm = ({
   const onChangeFile = (fileData) => updateValues({ file: fileData });
 
   const submitForm = () => validateAndSave(formValues);
+  const footerText = (
+    <div>
+      <strong>NOTE:</strong> This could have something useful to say.
+      <HelpIconPopover placement="top" id="form-example-help">
+        <p><strong>Further information.</strong></p>
+        <p>If you're not sure what<br />to do you may find<br />this information<br />more insightful.</p>
+      </HelpIconPopover>
+    </div>
+  );
 
   return (
     <BorderedWell>
@@ -197,7 +207,7 @@ const ExampleForm = ({
         </fieldset>
       </form>
 
-      <PageTitle isFooter>
+      <PageTitle isFooter title={footerText}>
         <Button className="btn-inverse" disabled={isSubmitting}>Cancel</Button>
         <Button bsStyle="primary" onClick={submitForm} disabled={isSubmitting}>Save</Button>
       </PageTitle>

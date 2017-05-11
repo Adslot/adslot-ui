@@ -6,6 +6,7 @@
 .panel-component {
   $transition-duration: 250ms;
   $transition-timing-function: ease-out;
+  $panel-padding: 20px;
 
   background-color: $color-panel-expanded;
   transition: background-color $transition-duration $transition-timing-function;
@@ -17,6 +18,8 @@
   &-header {
     cursor: pointer;
     font-weight: $font-weight-bold;
+    border-bottom: $border-lighter;
+    line-height: 22px;
 
     &::before {
       background: $icon-chevron no-repeat;
@@ -25,6 +28,8 @@
       height: $icon-size;
       transition: transform $transition-duration $transition-timing-function;
       width: $icon-size;
+      fill: $color-text;
+      margin-top: 3px;
     }
 
     .svg-symbol-component {
@@ -32,8 +37,8 @@
       height: $icon-size-large;
       margin-right: 10px;
       position: relative;
-      top: -3px;
       width: $icon-size-large;
+      fill: $color-text;
     }
   }
 
@@ -43,13 +48,15 @@
 
   &-header,
   &-content {
-    padding: 20px;
+    padding: $panel-padding;
   }
 
   &.collapsed {
     background-color: $color-panel-collapsed;
 
     .panel-component-header {
+      border-bottom: 0;
+
       &::before {
         transform: rotate(180deg);
       }
@@ -58,6 +65,12 @@
     .panel-component-content {
       display: none;
     }
+  }
+
+
+  hr {
+    margin-left: -$panel-padding;
+    margin-right: -$panel-padding;
   }
 }
 

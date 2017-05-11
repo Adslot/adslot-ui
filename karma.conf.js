@@ -10,8 +10,11 @@ module.exports = function configureKarma(config) {
     port: 8080,
     captureTimeout: 60000,
     frameworks: ['phantomjs-shim', 'mocha', 'chai'],
-
-    // logLevel: config.LOG_DEBUG,
+    browserConsoleLogOptions: {
+      level: 'log',
+      format: '%b %T: %m',
+      terminal: true,
+    },
     client: {
       mocha: {},
     },

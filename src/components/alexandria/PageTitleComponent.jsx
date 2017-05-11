@@ -19,7 +19,7 @@ PageTitleComponent.displayName = 'AlexandriaPageTitleComponent';
 PageTitleComponent.propTypes = {
   children: PropTypes.node,
   isFooter: PropTypes.bool.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 PageTitleComponent.defaultProps = {
   isFooter: false,

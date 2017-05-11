@@ -19,7 +19,6 @@ Technology:
 - [SCSS](http://sass-lang.com)
 - [Yeoman](http://yeoman.io)
 - [ESLint](http://eslint.org)
-- [JSCS](http://jscs.info)
 - [Autoprefixer](https://github.com/postcss/autoprefixer)
 
 Development
