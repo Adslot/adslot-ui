@@ -1,6 +1,6 @@
 {
   "name": "adslot-ui",
-  "version": "17.0.0",
+  "version": "18.0.0",
   "description": "Core component library. By Adslot",
   "main": "dist/adslot-ui-main.js",
   "license": "MIT",
