@@ -23,6 +23,7 @@ import {
   Grid,
   GridCell,
   GridRow,
+  HelpIconPopover,
   ListPicker,
   Modal,
   PageTitle,
@@ -488,6 +489,13 @@ class AppComponent extends React.Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
+            <label className="pull-left">
+              <strong>NOTE:</strong> This could have something useful to say.
+              <HelpIconPopover placement="bottom" id="modal-example-help">
+                <p><strong>Further information.</strong></p>
+                <p>If you're not sure what<br />to do you may find<br />this information<br />more insightful.</p>
+              </HelpIconPopover>
+            </label>
             <Button className="btn-inverse" onClick={this.toggleSimpleModal}>
               Standard
             </Button>
@@ -520,6 +528,15 @@ class AppComponent extends React.Component {
           <br />
           <Checkbox label="A very long label that wraps around nicely" />
         </div>
+
+        <h2>Help Icon</h2>
+        <HelpIconPopover id="help-text-example">
+          <p>I think <em>you</em> know what to do.</p>
+          <p><Slicey dataset={sliceyDataset} diameter={150} marker={0.2} donut /></p>
+          <p>Cupcake ipsum dolor sit.</p>
+          <p>Amet macaroon sweet roll pastry.</p>
+          <p>Cake brownie chocolate<br />cake wafer muffin cotton<br />candy.</p>
+        </HelpIconPopover>
 
         <h2>Radio Buttons</h2>
         <RadioGroup name="testRadio" value="2">

@@ -18,6 +18,7 @@ import Tabs from 'react-bootstrap/lib/Tabs';
 import Accordion from 'components/adslotUi/AccordionComponent';
 import Carousel from 'components/adslotUi/CarouselComponent';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
+import HelpIconPopover from 'components/adslotUi/HelpIconPopoverComponent';
 import FilePicker from 'components/adslotUi/FilePickerComponent';
 import FormGroup from 'components/adslotUi/FormGroupComponent';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
@@ -80,6 +81,7 @@ export {
   Grid,
   GridCell,
   GridRow,
+  HelpIconPopover,
   ListPicker,
   ListPickerPure,
   Modal,

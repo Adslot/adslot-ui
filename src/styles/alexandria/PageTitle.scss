@@ -11,7 +11,9 @@
   padding: ($spacing-etalon / 1.5) $spacing-etalon;
 
   &-is-footer {
-    border-bottom: 0;
     border-top: $border-lighter;
+    border-bottom: 0;
+    color: $color-text-label;
+    font-size: $font-size-base;
   }
 }

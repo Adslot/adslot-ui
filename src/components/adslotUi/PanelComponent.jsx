@@ -10,7 +10,7 @@ const PanelComponent = ({ id, dts, icon, title, isCollapsed, onClick, children }
 
   return (
     <div className={classesCombined} data-test-selector={dts}>
-      <div className="panel-component-header" onClick={onHeaderClick}>
+      <div className="panel-component-header clearfix" onClick={onHeaderClick}>
         {icon ? <SvgSymbol href={icon.href} /> : null}
         {title}
       </div>

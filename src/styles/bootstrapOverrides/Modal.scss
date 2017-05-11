@@ -56,8 +56,12 @@
     }
 
     > label {
+      font-weight: $font-weight-light;
+      color: $color-text-label;
+      margin-bottom: 0;
+      line-height: $modal-header-footer-height - ($modal-footer-padding * 2);
+
       &.pull-left {
-        line-height: $modal-header-footer-height - ($modal-footer-padding * 2);
         padding: 0 ($modal-header-footer-left-padding - $modal-footer-padding);
 
         > input {

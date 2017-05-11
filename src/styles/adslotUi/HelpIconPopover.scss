@@ -1,0 +1,15 @@
+@import '../color';
+
+.help-icon-popover-component {
+  > span {
+    vertical-align: middle;
+    margin-left: 3px;
+    padding: 2px;
+  }
+
+  .svg-symbol-component-help-icon {
+    fill: $color-help;
+    width: 10px;
+    height: 10px;
+  }
+}
