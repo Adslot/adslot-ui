@@ -219,7 +219,7 @@ ExampleForm.propTypes = {
   formValues: PropTypes.shape({
     addonText: PropTypes.string,
     checkbox: PropTypes.bool,
-    file: PropTypes.string,
+    file: PropTypes.object,
     group: PropTypes.string,
     select: PropTypes.string,
     text: PropTypes.string,

@@ -38,6 +38,7 @@ module.exports = function configureKarma(config) {
           lines: 100,
           excludes: [
             'src/components/Main.jsx',
+            'src/examples/components/FilePickerDemo.jsx'
           ],
         },
       },

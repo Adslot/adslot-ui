@@ -52,6 +52,7 @@ import {
 import {
   ExampleForm,
   ExampleSelect,
+  FilePickerDemo,
 } from '../examples/exampleEntry';
 
 import {
@@ -452,6 +453,8 @@ class AppComponent extends React.Component {
             Not spinning
           </SpinnerButton>
         </div>
+
+        <FilePickerDemo />
 
         <h2>Tabs</h2>
         <div className="btn-panel">
