@@ -81,6 +81,8 @@ const diffStrings = [
   '<the\n slow fox jumped>',
 ];
 
+const titleWithHelp = <div>I am a title<HelpIconPopover id="1">How does this work?</HelpIconPopover></div>;
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -121,7 +123,7 @@ class AppComponent extends React.Component {
         {
           id: '1',
           icon: { href: '/assets/svg-symbols.svg#list' },
-          title: 'Panel 1',
+          title: titleWithHelp,
           isCollapsed: false,
           content: 'Panel 1 content. This panel is expanded by default.',
         },
@@ -137,16 +139,21 @@ class AppComponent extends React.Component {
           icon: { href: '/assets/svg-symbols.svg#list' },
           title: 'Panel 3',
           isCollapsed: true,
-          content: (<ul>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
-            <li>List item 4</li>
-            <li>List item 5</li>
-            <li>List item 6</li>
-            <li>List item 7</li>
-            <li>List item 8</li>
-          </ul>),
+          content: (<div>
+            <ul>
+              <li>List item 1</li>
+              <li>List item 2</li>
+              <li>List item 3</li>
+              <li>List item 4</li>
+            </ul>
+            <hr />
+            <ul>
+              <li>List item 5</li>
+              <li>List item 6</li>
+              <li>List item 7</li>
+              <li>List item 8</li>
+            </ul>
+          </div>),
         },
         {
           id: '4',
@@ -480,7 +487,7 @@ class AppComponent extends React.Component {
 
         <Modal show={this.state.showSimpleModal} bsSize="small" keyboard={false}>
           <Modal.Header closeButton onHide={this.toggleSimpleModal}>
-            <Modal.Title>Modal Label</Modal.Title>
+            <Modal.Title>Modal Label <HelpIconPopover id="modal-title">This is my jam.</HelpIconPopover></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
@@ -783,7 +790,7 @@ class AppComponent extends React.Component {
 
         <h2>BorderedWell</h2>
         <BorderedWell>
-          <PageTitle title="PageTitle" />
+          <PageTitle title={titleWithHelp} />
           <Empty
             collection={[]}
             text="Empty"
