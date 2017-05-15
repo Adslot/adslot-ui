@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import Button from 'react-bootstrap/lib/Button';
 
 import sinon from 'sinon';
@@ -33,6 +34,9 @@ describe('SearchBarComponent', () => {
 
     const buttonElement = component.find(Button);
     expect(buttonElement).to.have.length(1);
+
+    const svgSymbolElement = buttonElement.find(SvgSymbol);
+    expect(svgSymbolElement).to.have.length(1);
   });
 
   it('should render with props', () => {

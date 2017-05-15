@@ -1,5 +1,4 @@
 @import '../variable';
-@import '../icon';
 
 .search-bar-component {
   $component-height: 30px;
@@ -17,14 +16,11 @@
 
   &-button {
     &.btn {
-      &,
-      &:active {
-        background-image: $icon-search;
-        background-origin: content-box;
-        background-position: center;
-        background-repeat: no-repeat;
-        box-shadow: none;
-        width: 50px;
+      line-height: 1;
+      width: 36px;
+
+      > .svg-symbol-component-search-icon {
+        fill: $color-primary;
       }
     }
   }
