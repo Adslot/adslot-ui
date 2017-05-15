@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 
 require('styles/adslotUi/SearchBar.scss');
 
@@ -36,10 +37,12 @@ const SearchBarComponent = ({
         value={searchString}
       />
       <Button
-        className="search-bar-component-button"
+        className="search-bar-component-button btn-inverse"
         bsStyle="primary"
         onClick={onSearch}
-      >&nbsp;</Button>
+      >
+        <SvgSymbol classSuffixes={['search-icon']} href="/assets/svg-symbols.svg#search" />
+      </Button>
     </div>
   );
 };
