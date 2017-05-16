@@ -951,10 +951,10 @@ class AppComponent extends React.Component {
         <TileGrid
           title="Browse by category"
           items={[
-            { id: 0, classSuffix: 'news', title: 'News' },
-            { id: 1, classSuffix: 'sport', title: 'Sport' },
-            { id: 2, classSuffix: 'health', title: 'Health & Fitness' },
-            { id: 3, classSuffix: 'tech', title: 'Technology & Computing' },
+            { id: '0', classSuffix: 'news', title: 'News' },
+            { id: '1', classSuffix: 'sport', title: 'Sport' },
+            { id: '2', classSuffix: 'health', title: 'Health & Fitness' },
+            { id: '3', classSuffix: 'tech', title: 'Technology & Computing' },
           ]}
           onItemClick={_.noop}
         />
