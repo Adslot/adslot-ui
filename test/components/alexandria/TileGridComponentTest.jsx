@@ -9,8 +9,8 @@ describe('TileGridComponent', () => {
   const props = {
     title: 'Lorem ipsum',
     items: [
-      { id: 0, classSuffix: 'alpha', title: 'Alpha' },
-      { id: 1, classSuffix: 'beta', title: 'Beta' },
+      { id: '0', classSuffix: 'alpha', title: 'Alpha' },
+      { id: '1', classSuffix: 'beta', title: 'Beta' },
     ],
     onItemClick: _.noop,
   };
@@ -57,11 +57,11 @@ describe('TileGridComponent', () => {
     const firstTileLink = tileLinks.at(0);
     firstTileLink.simulate('click');
     expect(onItemClickSpy.callCount).to.equal(1);
-    expect(onItemClickSpy.calledWith(0)).to.equal(true);
+    expect(onItemClickSpy.calledWith('0')).to.equal(true);
 
     const secondTileLink = tileLinks.at(1);
     secondTileLink.simulate('click');
     expect(onItemClickSpy.callCount).to.equal(2);
-    expect(onItemClickSpy.calledWith(1)).to.equal(true);
+    expect(onItemClickSpy.calledWith('1')).to.equal(true);
   });
 });
