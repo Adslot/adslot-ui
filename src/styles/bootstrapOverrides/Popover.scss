@@ -7,6 +7,16 @@
   font-weight: $font-weight-light;
 
   &-content {
-    padding: ($spacing-etalon / 6) ($spacing-etalon / 3);
+    $popover-vertical-padding: $spacing-etalon / 6;
+    $popover-horizontal-padding: $spacing-etalon / 3;
+    padding: $popover-vertical-padding $popover-horizontal-padding;
+
+    p {
+      margin-bottom: $popover-vertical-padding;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }

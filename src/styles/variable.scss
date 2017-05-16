@@ -121,6 +121,11 @@ $pagination-active-border: $color-border-lighter;
 
 $pagination-disabled-border: $color-border-lighter;
 
+// == Popover
+$popover-border-color: $color-border-lighter;
+$popover-arrow-width: 5px;
+$popover-arrow-outer-color: $popover-border-color;
+
 // == Form states and alerts
 $state-success-text: $color-positive;
 $state-success-bg: $color-positive;

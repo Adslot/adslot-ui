@@ -25,7 +25,7 @@ PanelComponent.propTypes = {
   id: PropTypes.string.isRequired,
   dts: PropTypes.string,
   icon: PropTypes.shape(SvgSymbol.propTypes),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   isCollapsed: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.any,
