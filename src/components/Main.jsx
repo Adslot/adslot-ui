@@ -747,6 +747,7 @@ class AppComponent extends React.Component {
         <SearchBar
           searchString={this.state.searchBarString}
           searchPlaceholder="Search for all the things."
+          searchIconHref="/assets/svg-symbols.svg#search"
           onSearchStringChange={this.setSearchBarString}
           onSearch={this.performSearchBarSearch}
         />
