@@ -17,7 +17,7 @@ const TotalsComponent = ({ toSum, valueFormatter }) => (
       .value()}
     <GridRow short horizontalBorder={false} type="footer">
       <GridCell stretch>Total</GridCell>
-      <GridCell dts="total-value">{valueFormatter(_.sum(toSum, 'value'))}</GridCell>
+      <GridCell dts="total-value">{valueFormatter(_.sumBy(toSum, 'value'))}</GridCell>
     </GridRow>
   </Grid>
 );

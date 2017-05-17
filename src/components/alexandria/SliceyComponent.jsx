@@ -10,7 +10,7 @@ require('styles/alexandria/Slicey.scss');
 const filterDataset = (dataset) => _.filter(dataset, ({ value }) => value > 0);
 
 const getArcs = (datasetForArcs) => {
-  const total = _.sum(datasetForArcs, 'value');
+  const total = _.sumBy(datasetForArcs, 'value');
 
   const arcs = new Array(datasetForArcs.length);
   let endAngle = -QUARTER;
