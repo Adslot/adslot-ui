@@ -8,6 +8,7 @@ const SearchBarComponent = ({
   additionalClassNames,
   searchString,
   searchPlaceholder,
+  searchIconHref,
   onSearchStringChange,
   onSearch,
   dts,
@@ -41,7 +42,7 @@ const SearchBarComponent = ({
         bsStyle="primary"
         onClick={onSearch}
       >
-        <SvgSymbol classSuffixes={['search-icon']} href="/assets/svg-symbols.svg#search" />
+        <SvgSymbol classSuffixes={['search-icon']} href={searchIconHref} />
       </Button>
     </div>
   );
@@ -51,6 +52,7 @@ SearchBarComponent.propTypes = {
   additionalClassNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   searchString: PropTypes.string.isRequired,
   searchPlaceholder: PropTypes.string,
+  searchIconHref: PropTypes.string.isRequired,
   onSearchStringChange: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   dts: PropTypes.string,
