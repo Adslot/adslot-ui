@@ -7,29 +7,35 @@ require('styles/adslotUi/FilePicker.scss');
 const baseClass = 'filepicker-component';
 
 class FilePickerComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = { fileName: '' };
+  constructor(props) {
+    super(props);
+
+    this.state = { isFileSelected: false };
+
     this.onChange = this.onChange.bind(this);
     this.removeFile = this.removeFile.bind(this);
   }
 
   onChange(changeEvent) {
-    this.setState({ fileName: changeEvent.target.files[0].name });
+    if (!this.state.isFileSelected) {
+      this.setState({ isFileSelected: true });
+    }
     this.props.onSelect(changeEvent.target.files[0]);
   }
 
   removeFile() {
-    this.setState({ fileName: '' });
-    if (this.props.onRemove) { this.props.onRemove(); }
+    if (this.state.isFileSelected) {
+      this.fileInput.value = null;
+      this.setState({ isFileSelected: false });
+      if (this.props.onRemove) { this.props.onRemove(); }
+    }
   }
 
   render() {
     const mainClass = classNames({ [`${baseClass}-highlight`]: this.props.isHighlighted }, baseClass, 'input-group');
-    const { fileName } = this.state;
-    const onClickHandler = () => {
-      this.fileInput.click();
-    };
+    const { isFileSelected } = this.state;
+    const fileName = isFileSelected && this.fileInput && this.fileInput.files.length > 0
+      ? this.fileInput.files[0].name : '';
 
     return (
       <div className={mainClass}>
@@ -43,25 +49,22 @@ class FilePickerComponent extends React.Component {
           title={fileName}
         />
         <div className="input-group-btn">
-          {fileName ? <Button className="remove-file" onClick={this.removeFile}>×</Button> : null}
-          {!fileName && !this.props.disabled ?
-            <Button className="btn-inverse" onClick={onClickHandler}>
-              <span>{this.props.label}</span>
-              <input
-                className="file-input"
-                ref={
-                  (inputElementRef) => { this.fileInput = inputElementRef; }
-                }
-
-                type="file"
-                onChange={this.onChange}
-                accept={this.props.filter}
-                data-test-selector={this.props.dts}
-              />
-            </Button>
-          :
-            <Button bsStyle="primary" disabled>{this.props.label}</Button>
-          }
+          {isFileSelected ? <Button className="remove-file" onClick={this.removeFile}>×</Button> : null}
+          <Button
+            className="btn-inverse"
+            onClick={() => { this.fileInput.click(); }}
+            disabled={this.props.disabled || isFileSelected}
+          >
+            <span>{this.props.label}</span>
+            <input
+              className="file-input"
+              ref={(ref) => { this.fileInput = ref; }}
+              type="file"
+              onChange={this.onChange}
+              accept={this.props.filter}
+              data-test-selector={this.props.dts}
+            />
+          </Button>
         </div>
       </div>
     );
@@ -83,6 +86,7 @@ FilePickerComponent.defaultProps = {
   isHighlighted: false,
   label: 'Select',
   placeholder: 'No file selected',
+  disabled: false,
 };
 
 export default FilePickerComponent;

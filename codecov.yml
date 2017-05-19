@@ -4,3 +4,4 @@ coverage:
   range: 98...100
   ignore:
     - "src/components/Main.js"
+    - "src/examples/components/FilePickerDemo.js"

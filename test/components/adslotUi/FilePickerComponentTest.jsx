@@ -23,51 +23,70 @@ describe('FilePickerComponent', () => {
   });
 
   it('should show remove button and call `onSelect` when file selected', () => {
-    let onSelectCalls = 0;
-    const onSelect = () => { onSelectCalls++; };
+    let selectedFileName = '';
+    const onSelect = (file) => { selectedFileName = file.name; };
 
     // mount is needed for refs
     const component = mount(<FilePickerComponent onSelect={onSelect} dts="test-file-picker-input" />);
-    let fileElement = component.find('.form-control');
-    expect(fileElement.prop('title')).to.equal('');
 
-    const selectButtonElement = component.find(Button);
+    expect(component.find('.form-control').prop('title')).to.equal('');
+
     const fileInput = component.instance().fileInput;
     sinon.spy(fileInput, 'click');
-    selectButtonElement.simulate('click');
+    component.find(Button).simulate('click');
     expect(fileInput.click.calledOnce).to.equal(true);
     fileInput.click.restore();
 
-    const fileInputElement = component.find('[data-test-selector="test-file-picker-input"]');
-    fileInputElement.simulate('change', { target: { files: [{ name: 'selected file' }] } });
-    expect(component.state('fileName')).to.equal('selected file');
+    component
+      .find('[data-test-selector="test-file-picker-input"]')
+      .simulate('change', { target: { files: [{ name: 'selected file' }] } });
+    component.node.fileInput = {
+      files: [{ name: 'selected file' }],
+    };
+    component.update();
+    expect(component.state('isFileSelected')).to.equal(true);
 
-    fileElement = component.find('.form-control');
-    expect(fileElement.prop('title')).to.equal('selected file');
+    component
+      .find('[data-test-selector="test-file-picker-input"]')
+      .simulate('change', { target: { files: [{ name: 'another file' }] } });
+    component.node.fileInput = {
+      files: [{ name: 'another file' }],
+    };
+    component.update();
+    expect(component.state('isFileSelected')).to.equal(true);
 
-    const removeElement = component.find('.remove-file');
-    expect(removeElement).to.have.length(1);
+    expect(component.find('.form-control').prop('title')).to.equal('another file');
 
-    expect(onSelectCalls).to.equal(1);
+    expect(selectedFileName).to.equal('another file');
+
+    expect(component.find('.remove-file')).to.have.length(1);
   });
 
   it('should remove file selected when remove file button is clicked', () => {
-    const component = shallow(<FilePickerComponent onSelect={_.noop} />);
-    component.setState({ fileName: 'selected file' });
-    let fileElement = component.find('.form-control');
-    expect(fileElement.prop('title')).to.equal('selected file');
+    const component = mount(<FilePickerComponent onSelect={_.noop} />);
 
-    const removeElement = component.find('.remove-file');
-    removeElement.simulate('click');
+    component.setState({ isFileSelected: true });
+    component.node.fileInput = {
+      files: [{ name: 'selected file' }],
+    };
+    component.update();
 
-    fileElement = component.find('.form-control');
-    expect(fileElement.prop('title')).to.equal('');
+    expect(component.find('.form-control').prop('title')).to.equal('selected file');
+
+    component.find('.remove-file').simulate('click');
+
+    expect(component.find('.form-control').prop('title')).to.equal('');
   });
 
   it('should call `onRemove` when remove file button is clicked', (done) => {
-    const component = shallow(<FilePickerComponent onSelect={_.noop} onRemove={done} />);
-    component.setState({ fileName: 'selected file' });
-    const removeElement = component.find('.remove-file');
-    removeElement.simulate('click');
+    const component = mount(<FilePickerComponent onSelect={_.noop} onRemove={done} />);
+
+    component.node.fileInput = {
+      files: [{ name: 'selected file' }],
+    };
+    component.update();
+    component.setState({ isFileSelected: true });
+
+    component.find('.remove-file').simulate('click');
   });
 });
