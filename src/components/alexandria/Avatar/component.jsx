@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/Avatar.scss');
+import './styles.scss';
 
 const baseClass = 'avatar-component';
 const AvatarComponent = ({ color, givenName, image, surname }) => (

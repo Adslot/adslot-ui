@@ -1,6 +1,6 @@
-import AvatarComponent from 'components/alexandria/AvatarComponent';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+import AvatarComponent from './component';
 
 describe('AvatarComponent', () => {
   it('should render with defaults', () => {

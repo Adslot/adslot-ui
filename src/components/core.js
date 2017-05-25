@@ -38,7 +38,7 @@ import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 
 // Alexandria
 import Alert from 'components/alexandria/Alert/component';
-import Avatar from 'components/alexandria/AvatarComponent';
+import Avatar from 'components/alexandria/Avatar/component';
 import BorderedWell from 'components/alexandria/BorderedWellComponent';
 import Breadcrumb from 'components/alexandria/BreadcrumbComponent';
 import Card from 'components/alexandria/CardComponent';
