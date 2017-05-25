@@ -1,14 +1,14 @@
 {
   "env": {
-    "mocha": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "globals": {
     "expect": false
   },
   "rules": {
     "lodash/prefer-lodash-method": 0,
-    "import/no-extraneous-dependencies": 0,
+    "import/no-extraneous-dependencies": 0
   },
   "settings": {
     "import/resolver": {
@@ -16,5 +16,5 @@
         "config": "cfg/test.js"
       }
     }
-  },
+  }
 }

@@ -1,6 +1,6 @@
-import AlertComponent from 'components/alexandria/AlertComponent';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+import AlertComponent from './component';
 
 describe('AlertComponent', () => {
   it('should render default info type', () => {

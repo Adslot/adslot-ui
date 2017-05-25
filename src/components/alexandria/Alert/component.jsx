@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import expandDts from '../../helpers/expandDtsHelper';
-
-require('styles/alexandria/Alert.scss');
+import expandDts from '../../../helpers/expandDtsHelper';
+import './styles.scss';
 
 const AlertComponent = ({ type, children, dts }) => (
   <div className={`alert-component alert-component-${type}`} {...expandDts(dts)}>

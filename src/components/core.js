@@ -37,7 +37,7 @@ import UserListPicker from 'components/adslotUi/UserListPickerComponent';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 
 // Alexandria
-import Alert from 'components/alexandria/AlertComponent';
+import Alert from 'components/alexandria/Alert/component';
 import Avatar from 'components/alexandria/AvatarComponent';
 import BorderedWell from 'components/alexandria/BorderedWellComponent';
 import Breadcrumb from 'components/alexandria/BreadcrumbComponent';
