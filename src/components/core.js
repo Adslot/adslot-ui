@@ -28,6 +28,7 @@ import Panel from 'components/adslotUi/PanelComponent';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
 import SpinnerButton from 'components/adslotUi/SpinnerButtonComponent';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
+import TextEllipsis from 'components/adslotUi/TextEllipsisComponent';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
@@ -108,6 +109,7 @@ export {
   Tab,
   Tabs,
   Tag,
+  TextEllipsis,
   TileGrid,
   Totals,
   TreePickerGrid,
