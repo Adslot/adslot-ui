@@ -52,7 +52,7 @@ import PrettyDiff from 'components/alexandria/PrettyDiffComponent';
 import Search from 'components/alexandria/SearchComponent';
 import Slicey from 'components/alexandria/SliceyComponent';
 import Spinner from 'components/alexandria/SpinnerComponent';
-import Statistic from 'components/alexandria/StatisticComponent';
+import Statistic from 'components/alexandria/Statistic/component';
 import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import SvgSymbolCircle from 'components/alexandria/SvgSymbolCircleComponent';
 import Tag from 'components/alexandria/TagComponent';

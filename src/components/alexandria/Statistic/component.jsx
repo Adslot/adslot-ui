@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/Statistic.scss');
+import './styles.scss';
 
 const StatisticComponent = ({ label, value, inline }) => {
   const baseClass = 'statistic-component';
