@@ -8,7 +8,7 @@ var semver = require("semver");
 'use strict';
 
 // Greenkeeper commit style ('chore(package)') should be allowed until commit templates are supported.
-var TAG_REGEX = /^(?:Fix|Update|Breaking|Docs|Build|New|Upgrade|chore\(package\)):/;
+var TAG_REGEX = /^(?:Release|Fix|Update|Breaking|Docs|Build|New|Upgrade|chore\(package\)):/;
 
 /**
  * Executes a command and returns the output instead of printing it to stdout.
