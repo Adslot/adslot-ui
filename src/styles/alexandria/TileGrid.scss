@@ -21,7 +21,7 @@
   }
 
   &-item-link {
-    $text-shadow: rgba($color-shadow-light, .7);
+    $text-shadow: rgba(0, 0, 0, .2);
 
     background: $color-placeholder 50%;
     border-radius: $border-radius-heavy;
@@ -39,7 +39,7 @@
     position: relative;
     text-transform: uppercase;
     width: 204px;
-    text-shadow: 0 0 5px $text-shadow; // increase contrast of text against background
+    text-shadow: 0 0 2px $text-shadow; // increase contrast of text against background
 
     &:hover,
     &:focus {
