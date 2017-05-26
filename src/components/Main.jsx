@@ -43,7 +43,6 @@ import {
   Tab,
   Tabs,
   Tag,
-  TextEllipsis,
   TileGrid,
   Totals,
   TreePickerSimplePure,
@@ -54,6 +53,7 @@ import {
   ExampleForm,
   ExampleSelect,
   FilePickerDemo,
+  TextEllipsisDemo,
 } from '../examples/exampleEntry';
 
 import {
@@ -986,12 +986,7 @@ class AppComponent extends React.Component {
           ]}
         />
 
-        <h2>TextEllipsis</h2>
-
-        <div style={{ width: '100px' }}>
-          <TextEllipsis text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit." />
-        </div>
-
+        <TextEllipsisDemo />
       </div>
     );
   }

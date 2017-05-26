@@ -17,23 +17,21 @@ class TextEllipsisComponent extends Component {
     this.setTruncate();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return ((this.state.truncated !== nextState.truncated) || (this.props.text !== nextProps.text));
-  }
-
   componentDidUpdate() {
     this.setTruncate();
   }
 
   setTruncate() {
-    this.setState({
-      truncated: this.container.scrollWidth > this.container.clientWidth,
-    });
+    const nextTruncateState = this.container.scrollWidth > this.container.clientWidth;
+    if (this.state.truncated !== nextTruncateState) {
+      this.setState({
+        truncated: nextTruncateState,
+      });
+    }
   }
 
   render() {
     const {
-      text,
       popoverProps,
       overlayTriggerProps,
     } = this.props;
@@ -41,12 +39,12 @@ class TextEllipsisComponent extends Component {
 
     if (truncated) {
       const tooltip = (
-        <Popover {...popoverProps}>{text}</Popover>
+        <Popover {...popoverProps}>{this.props.children}</Popover>
       );
 
       return (
         <OverlayTrigger {...overlayTriggerProps} overlay={tooltip}>
-          <div className="text-ellipsis-component" ref={(ref) => { this.container = ref; }}>{text}</div>
+          <div className="text-ellipsis-component" ref={(ref) => { this.container = ref; }}>{this.props.children}</div>
         </OverlayTrigger>
       );
     }
@@ -56,14 +54,14 @@ class TextEllipsisComponent extends Component {
         className="text-ellipsis-component"
         ref={(ref) => { this.container = ref; }}
       >
-        {text}
+        {this.props.children}
       </div>
     );
   }
 }
 
 TextEllipsisComponent.propTypes = {
-  text: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   overlayTriggerProps: PropTypes.shape(_.omit(OverlayTrigger.propTypes, ['overlay'])).isRequired,
   popoverProps: PropTypes.shape(Popover.propTypes).isRequired,
 };
