@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/BreadcrumbNode.scss');
+import './styles.scss';
 
 const BreadcrumbNodeComponent = ({ isLast, node, onClick }) => {
   const baseClass = 'breadcrumbnode-component';

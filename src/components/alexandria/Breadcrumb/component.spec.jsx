@@ -1,7 +1,7 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import BreadcrumbNodeComponent from 'components/alexandria/BreadcrumbNodeComponent';
+import BreadcrumbNodeComponent from 'components/alexandria/BreadcrumbNode/component';
 import BreadcrumbComponent from './component';
 
 describe('BreadcrumbComponent', () => {

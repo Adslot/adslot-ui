@@ -1,6 +1,6 @@
-import BreadcrumbNodeComponent from 'components/alexandria/BreadcrumbNodeComponent';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+import BreadcrumbNodeComponent from './component';
 
 describe('BreadcrumbNodeComponent', () => {
   let node;
