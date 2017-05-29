@@ -1,7 +1,7 @@
-@import '../color';
-@import '../border';
-@import '../font-size';
-@import '../font-weight';
+@import 'styles/color';
+@import 'styles/border';
+@import 'styles/font-size';
+@import 'styles/font-weight';
 
 .card-component {
   $card-padding-etalon: 20px;

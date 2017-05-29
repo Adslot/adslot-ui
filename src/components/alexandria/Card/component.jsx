@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import expandDts from '../../helpers/expandDtsHelper';
-
-require('styles/alexandria/Card.scss');
+import expandDts from '../../../helpers/expandDtsHelper';
+import './styles.scss';
 
 const CardContentComponent = ({ children, className, stretch, fill, append, dts }) => {
   const baseClass = 'card-component-content';

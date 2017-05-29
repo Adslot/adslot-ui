@@ -41,7 +41,7 @@ import Alert from 'components/alexandria/Alert/component';
 import Avatar from 'components/alexandria/Avatar/component';
 import BorderedWell from 'components/alexandria/BorderedWell/component';
 import Breadcrumb from 'components/alexandria/Breadcrumb/component';
-import Card from 'components/alexandria/CardComponent';
+import Card from 'components/alexandria/Card/component';
 import Empty from 'components/alexandria/EmptyComponent';
 import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
 import Grid from 'components/alexandria/GridComponent';

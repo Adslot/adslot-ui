@@ -1,7 +1,7 @@
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-
-import CardComponent from 'components/alexandria/CardComponent';
+import CardComponent from './component';
 
 describe('CardContainerComponent', () => {
   it('should render and pass through children', () => {
