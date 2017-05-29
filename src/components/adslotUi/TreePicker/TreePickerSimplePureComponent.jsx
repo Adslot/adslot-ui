@@ -4,7 +4,7 @@ import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
 import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import { removeSelected } from 'helpers/TreePickerHelpers';
 

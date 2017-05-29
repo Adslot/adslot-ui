@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
 
 require('styles/alexandria/PageTitle.scss');
 

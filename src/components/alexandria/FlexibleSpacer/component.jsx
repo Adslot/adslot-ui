@@ -1,6 +1,5 @@
 import React from 'react';
-
-require('styles/alexandria/FlexibleSpacer.scss');
+import './styles.scss';
 
 const FlexibleSpacerComponent = () => <div className="flexible-spacer-component" />;
 

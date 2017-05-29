@@ -43,7 +43,7 @@ import BorderedWell from 'components/alexandria/BorderedWell/component';
 import Breadcrumb from 'components/alexandria/Breadcrumb/component';
 import Card from 'components/alexandria/Card/component';
 import Empty from 'components/alexandria/Empty/component';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
 import Grid from 'components/alexandria/GridComponent';
 import GridCell from 'components/alexandria/GridCellComponent';
 import GridRow from 'components/alexandria/GridRowComponent';

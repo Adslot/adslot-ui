@@ -1,6 +1,6 @@
-import { shallow } from 'enzyme';
-import FlexibleSpacerComponent from 'components/alexandria/FlexibleSpacerComponent';
 import React from 'react';
+import { shallow } from 'enzyme';
+import FlexibleSpacerComponent from './component';
 
 describe('FlexibleSpacerComponent', () => {
   it('should have its component name as className', () => {

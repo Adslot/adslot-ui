@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/lib/Button';
 import ListPickerPure from 'components/adslotUi/ListPickerPureComponent';
 import Modal from 'react-bootstrap/lib/Modal';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
 import Grid from 'components/alexandria/GridComponent';
 import GridRow from 'components/alexandria/GridRowComponent';
 import GridCell from 'components/alexandria/GridCellComponent';
