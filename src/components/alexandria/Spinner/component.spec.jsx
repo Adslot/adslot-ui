@@ -1,6 +1,6 @@
-import { shallow } from 'enzyme';
-import SpinnerComponent from 'components/alexandria/SpinnerComponent';
 import React from 'react';
+import { shallow } from 'enzyme';
+import SpinnerComponent from './component';
 
 describe('SpinnerComponent', () => {
   it('should render with defaults', () => {

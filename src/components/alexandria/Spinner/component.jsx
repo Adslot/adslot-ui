@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/Spinner.scss');
+import './styles.scss';
 
 const Spinner = ({ size, colourStyle }) => (
   <div className="spinner-component">

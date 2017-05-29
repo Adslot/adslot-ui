@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Button from 'react-bootstrap/lib/Button';
-import Spinner from 'components/alexandria/SpinnerComponent';
+import Spinner from 'components/alexandria/Spinner/component';
 import expandDts from '../../helpers/expandDtsHelper';
 
 require('styles/adslotUi/SpinnerButton.scss');

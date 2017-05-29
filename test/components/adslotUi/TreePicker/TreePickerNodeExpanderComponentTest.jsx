@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
-import Spinner from 'components/alexandria/SpinnerComponent';
+import Spinner from 'components/alexandria/Spinner/component';
 
 describe('TreePickerNodeExpanderComponent', () => {
   it('should render with default isLoading false', () => {
