@@ -1,8 +1,8 @@
-@import '../border';
-@import '../color';
-@import '../font-size';
-@import '../font-weight';
-@import '../variable';
+@import 'styles/border';
+@import 'styles/color';
+@import 'styles/font-size';
+@import 'styles/font-weight';
+@import 'styles/variable';
 
 .tag-component {
   $tag-height: 22px;

@@ -1,9 +1,10 @@
-import { shallow } from 'enzyme';
+/* eslint-disable lodash/prefer-lodash-method */
 import _ from 'lodash';
-import Tag, { ActionButton } from 'components/alexandria/TagComponent';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import React from 'react';
 import sinon from 'sinon';
+import { shallow } from 'enzyme';
+import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import Tag, { ActionButton } from './component';
 
 describe('TagComponent', () => {
   it('should render a default tag', () => {

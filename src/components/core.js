@@ -55,7 +55,7 @@ import Spinner from 'components/alexandria/Spinner/component';
 import Statistic from 'components/alexandria/Statistic/component';
 import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import SvgSymbolCircle from 'components/alexandria/SvgSymbolCircleComponent';
-import Tag from 'components/alexandria/TagComponent';
+import Tag from 'components/alexandria/Tag/component';
 import TileGrid from 'components/alexandria/TileGridComponent';
 import Totals from 'components/alexandria/TotalsComponent';
 
