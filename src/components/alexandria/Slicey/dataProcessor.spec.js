@@ -1,4 +1,4 @@
-import { QUARTER, HALF, ROUND, getPointX, getPointY } from 'components/alexandria/slicey/dataProcessor';
+import { QUARTER, HALF, ROUND, getPointX, getPointY } from './dataProcessor';
 
 describe('DataProcessor', () => {
   it('should export constants', () => {

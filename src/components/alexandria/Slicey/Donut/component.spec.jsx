@@ -1,6 +1,6 @@
-import DonutComponent from 'components/alexandria/slicey/DonutComponent';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+import DonutComponent from './component';
 
 describe('DonutComponent', () => {
   let component;

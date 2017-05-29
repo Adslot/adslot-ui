@@ -1,7 +1,6 @@
-@import '../../color';
+@import 'styles/color';
 
 .arc-component {
-
   &.positive {
     fill: $color-positive;
   }

@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
-
-import { ROUND, QUARTER, getPointX, getPointY } from './dataProcessor';
-
-require('styles/alexandria/slicey/Marker.scss');
+import { ROUND, QUARTER, getPointX, getPointY } from 'components/alexandria/Slicey/dataProcessor';
+import './styles.scss';
 
 const MarkerComponent = ({ fraction }) => {
   const getMarkerPoints = (markerValue) => {

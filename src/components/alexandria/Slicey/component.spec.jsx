@@ -1,9 +1,10 @@
-import ArcComponent from 'components/alexandria/slicey/ArcComponent';
-import DonutComponent from 'components/alexandria/slicey/DonutComponent';
-import MarkerComponent from 'components/alexandria/slicey/MarkerComponent';
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import SliceyComponent from 'components/alexandria/SliceyComponent';
 import { shallow } from 'enzyme';
+import ArcComponent from 'components/alexandria/Slicey/Arc/component';
+import DonutComponent from 'components/alexandria/Slicey/Donut/component';
+import MarkerComponent from 'components/alexandria/Slicey/Marker/component';
+import SliceyComponent from './component';
 
 describe('SliceyComponent', () => {
   let dataset;

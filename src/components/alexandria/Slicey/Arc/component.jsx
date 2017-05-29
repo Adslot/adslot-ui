@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/slicey/Arc.scss');
+import './styles.scss';
 
 const ArcComponent = ({ data }) => {
   if (!data) {

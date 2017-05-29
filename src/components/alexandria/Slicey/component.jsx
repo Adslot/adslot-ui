@@ -1,11 +1,10 @@
 import _ from 'lodash';
-import Arc from 'components/alexandria/slicey/ArcComponent';
-import Donut from 'components/alexandria/slicey/DonutComponent';
-import Marker from 'components/alexandria/slicey/MarkerComponent';
 import React, { PropTypes } from 'react';
-import { ROUND, HALF, QUARTER, getPointX, getPointY } from 'components/alexandria/slicey/dataProcessor';
-
-require('styles/alexandria/Slicey.scss');
+import Arc from 'components/alexandria/Slicey/Arc/component';
+import Donut from 'components/alexandria/Slicey/Donut/component';
+import Marker from 'components/alexandria/Slicey/Marker/component';
+import { ROUND, HALF, QUARTER, getPointX, getPointY } from './dataProcessor';
+import './styles.scss';
 
 const filterDataset = (dataset) => _.filter(dataset, ({ value }) => value > 0);
 

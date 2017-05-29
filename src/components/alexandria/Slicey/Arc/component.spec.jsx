@@ -1,6 +1,6 @@
-import ArcComponent from 'components/alexandria/slicey/ArcComponent';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+import ArcComponent from './component';
 
 describe('ArcComponent', () => {
   it('should have its component name as default className', () => {

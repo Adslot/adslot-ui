@@ -50,7 +50,7 @@ import GridRow from 'components/alexandria/GridRow/component';
 import PageTitle from 'components/alexandria/PageTitle/component';
 import PrettyDiff from 'components/alexandria/PrettyDiff/component';
 import Search from 'components/alexandria/Search/component';
-import Slicey from 'components/alexandria/SliceyComponent';
+import Slicey from 'components/alexandria/Slicey/component';
 import Spinner from 'components/alexandria/Spinner/component';
 import Statistic from 'components/alexandria/Statistic/component';
 import SvgSymbol from 'components/alexandria/SvgSymbol/component';

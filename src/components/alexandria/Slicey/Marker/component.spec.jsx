@@ -1,6 +1,6 @@
-import { shallow } from 'enzyme';
-import MarkerComponent from 'components/alexandria/slicey/MarkerComponent';
 import React from 'react';
+import { shallow } from 'enzyme';
+import MarkerComponent from './component';
 
 describe('MarkerComponent', () => {
   it('should have its component name as default className', () => {

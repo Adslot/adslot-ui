@@ -1,6 +1,5 @@
 import React from 'react';
-
-require('styles/alexandria/slicey/Donut.scss');
+import './styles.scss';
 
 const DonutComponent = () => (
   <circle className="donut-component" r=".45" cx="0" cy="0"></circle>
