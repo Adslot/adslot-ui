@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Carousel from 'nuka-carousel';
@@ -5,13 +6,20 @@ import Carousel from 'nuka-carousel';
 require('styles/adslotUi/Carousel.scss');
 
 const baseClass = 'carousel-component';
+const navigationDelay = 600;
 const decoratorStyles = {
   bottom: 0,
   width: '30px',
 };
 
 export const getPrevDecorator = () => {
-  const component = ({ previousSlide }) => <button className={`${baseClass}-prev`} onClick={previousSlide} />;
+  let previousSlideThrottled;
+  const component = ({ previousSlide }) => {
+    if (!previousSlideThrottled) {
+      previousSlideThrottled = _.throttle(previousSlide, navigationDelay);
+    }
+    return (<button className={`${baseClass}-prev`} onClick={previousSlideThrottled} />);
+  };
   component.propTypes = { previousSlide: PropTypes.func.isRequired };
 
   return {
@@ -22,7 +30,13 @@ export const getPrevDecorator = () => {
 };
 
 export const getNextDecorator = () => {
-  const component = ({ nextSlide }) => <button className={`${baseClass}-next`} onClick={nextSlide} />;
+  let nextSlideThrottled;
+  const component = ({ nextSlide }) => {
+    if (!nextSlideThrottled) {
+      nextSlideThrottled = _.throttle(nextSlide, navigationDelay);
+    }
+    return (<button className={`${baseClass}-next`} onClick={nextSlideThrottled} />);
+  };
   component.propTypes = { nextSlide: PropTypes.func.isRequired };
 
   return {
