@@ -1,9 +1,9 @@
+/* eslint-disable lodash/prefer-lodash-method */
 import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-
-import TileGridComponent from 'components/alexandria/TileGridComponent';
+import TileGridComponent from './component';
 
 describe('TileGridComponent', () => {
   const props = {

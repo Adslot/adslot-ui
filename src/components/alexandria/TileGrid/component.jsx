@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/TileGrid.scss');
+import './styles.scss';
 
 const TileGridComponent = ({ title, items, onItemClick }) => {
   const baseClass = 'tile-grid-component';
