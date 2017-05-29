@@ -1,7 +1,7 @@
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-
-import PageTitleComponent from '../../../src/components/alexandria/PageTitleComponent';
+import PageTitleComponent from './component';
 
 describe('PageTitleComponent', () => {
   it('should have its component name as default className', () => {
@@ -23,7 +23,6 @@ describe('PageTitleComponent', () => {
     expect(component.prop('className')).to.equal('pagetitle-component');
     expect(component.childAt(0).prop('className')).to.equal('flexible-wrapper-inline');
     expect(component.childAt(0).children()).to.have.length(3);
-
     expect(component.find('.test-class').text()).to.equal('Party town');
   });
 

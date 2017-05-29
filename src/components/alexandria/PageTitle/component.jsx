@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
-
-require('styles/alexandria/PageTitle.scss');
+import './styles.scss';
 
 const baseClass = 'pagetitle-component';
 

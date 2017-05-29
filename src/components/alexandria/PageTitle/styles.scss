@@ -1,6 +1,6 @@
-@import '../border';
-@import '../font-size';
-@import '../variable';
+@import 'styles/border';
+@import 'styles/font-size';
+@import 'styles/variable';
 
 .pagetitle-component {
   border-bottom: $border-lighter;

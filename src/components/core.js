@@ -47,7 +47,7 @@ import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
 import Grid from 'components/alexandria/Grid/component';
 import GridCell from 'components/alexandria/GridCell/component';
 import GridRow from 'components/alexandria/GridRow/component';
-import PageTitle from 'components/alexandria/PageTitleComponent';
+import PageTitle from 'components/alexandria/PageTitle/component';
 import PrettyDiff from 'components/alexandria/PrettyDiffComponent';
 import Search from 'components/alexandria/SearchComponent';
 import Slicey from 'components/alexandria/SliceyComponent';
