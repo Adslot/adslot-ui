@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
-
-import classSuffixHelper from '../../helpers/classSuffixHelper';
-
-require('styles/alexandria/SvgSymbol.scss');
+import classSuffixHelper from '../../../helpers/classSuffixHelper';
+import './styles.scss';
 
 const SvgSymbolComponent = (props) => {
   const { classSuffixes, href, onClick } = props;

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 import classSuffixHelper from '../../../helpers/classSuffixHelper';
 import './styles.scss';
 

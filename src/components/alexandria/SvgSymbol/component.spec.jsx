@@ -1,6 +1,7 @@
-import { shallow } from 'enzyme';
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import SvgSymbolComponent from 'components/alexandria/SvgSymbolComponent';
+import { shallow } from 'enzyme';
+import SvgSymbolComponent from './component';
 
 describe('SvgSymbolComponent', () => {
   it('should render with href', () => {

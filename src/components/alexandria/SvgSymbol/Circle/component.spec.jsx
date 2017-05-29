@@ -1,7 +1,8 @@
-import { shallow } from 'enzyme';
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import SvgSymbolCircleComponent from 'components/alexandria/SvgSymbolCircleComponent';
-import SvgSymbolComponent from 'components/alexandria/SvgSymbolComponent';
+import { shallow } from 'enzyme';
+import SvgSymbolComponent from 'components/alexandria/SvgSymbol/component';
+import SvgSymbolCircleComponent from './component';
 
 describe('SvgSymbolCircleComponent', () => {
   it('should render with defaults', () => {

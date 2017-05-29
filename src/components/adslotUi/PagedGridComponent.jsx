@@ -5,7 +5,7 @@ import Empty from 'components/alexandria/Empty/component';
 import Grid from 'components/alexandria/Grid/component';
 import GridRow from 'components/alexandria/GridRow/component';
 import GridCell from 'components/alexandria/GridCell/component';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 
 require('styles/adslotUi/PagedGrid.scss');
 

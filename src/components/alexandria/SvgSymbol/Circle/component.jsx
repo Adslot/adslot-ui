@@ -1,9 +1,7 @@
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import React, { PropTypes } from 'react';
-
-import classSuffixHelper from '../../helpers/classSuffixHelper';
-
-require('styles/alexandria/SvgSymbolCircle.scss');
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
+import classSuffixHelper from '../../../../helpers/classSuffixHelper';
+import './styles.scss';
 
 const SvgSymbolCircleComponent = (props) => {
   const componentClass = 'svgsymbolcircle-component';

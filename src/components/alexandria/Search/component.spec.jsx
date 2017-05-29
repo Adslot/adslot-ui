@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import { shallow } from 'enzyme';
 import React from 'react';
-import SvgSymbolComponent from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbolComponent from 'components/alexandria/SvgSymbol/component';
 import SearchComponent from './component';
 
 describe('SearchComponent', () => {

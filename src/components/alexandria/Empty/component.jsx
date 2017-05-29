@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import SvgSymbolCircle from 'components/alexandria/SvgSymbolCircleComponent';
+import SvgSymbolCircle from 'components/alexandria/SvgSymbol/Circle/component';
 import './styles.scss';
 
 const EmptyComponent = ({ collection, svgSymbol, text, hideIcon }) => {

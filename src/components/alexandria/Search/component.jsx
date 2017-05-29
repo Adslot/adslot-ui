@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 import './styles.scss';
 
 const SearchComponent = ({

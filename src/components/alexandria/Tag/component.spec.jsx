@@ -3,7 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 import Tag, { ActionButton } from './component';
 
 describe('TagComponent', () => {

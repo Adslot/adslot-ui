@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 import Button from 'react-bootstrap/lib/Button';
 
 import sinon from 'sinon';

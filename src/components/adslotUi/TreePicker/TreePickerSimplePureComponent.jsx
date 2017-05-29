@@ -5,7 +5,7 @@ import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridCompone
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 import { removeSelected } from 'helpers/TreePickerHelpers';
 
 require('styles/adslotUi/TreePickerSimplePure.scss');

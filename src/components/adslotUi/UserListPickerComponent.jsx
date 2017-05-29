@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import ListPicker from 'components/adslotUi/ListPickerComponent';
 import Avatar from 'components/alexandria/Avatar/component';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol/component';
 
 require('styles/adslotUi/UserListPicker.scss');
 
