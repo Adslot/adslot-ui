@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
-import Empty from 'components/alexandria/EmptyComponent';
+import Empty from 'components/alexandria/Empty/component';
 import Grid from 'components/alexandria/GridComponent';
 import GridRow from 'components/alexandria/GridRowComponent';
 import SvgSymbol from 'components/alexandria/SvgSymbolComponent';

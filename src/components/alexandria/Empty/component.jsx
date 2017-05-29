@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import SvgSymbolCircle from 'components/alexandria/SvgSymbolCircleComponent';
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/Empty.scss');
+import SvgSymbolCircle from 'components/alexandria/SvgSymbolCircleComponent';
+import './styles.scss';
 
 const EmptyComponent = ({ collection, svgSymbol, text, hideIcon }) => {
   const classSuffixes = _.isEmpty(svgSymbol.classSuffixes) ?

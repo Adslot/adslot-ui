@@ -42,7 +42,7 @@ import Avatar from 'components/alexandria/Avatar/component';
 import BorderedWell from 'components/alexandria/BorderedWell/component';
 import Breadcrumb from 'components/alexandria/Breadcrumb/component';
 import Card from 'components/alexandria/Card/component';
-import Empty from 'components/alexandria/EmptyComponent';
+import Empty from 'components/alexandria/Empty/component';
 import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
 import Grid from 'components/alexandria/GridComponent';
 import GridCell from 'components/alexandria/GridCellComponent';

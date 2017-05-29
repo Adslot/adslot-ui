@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
 import TreePickerGrid, { TreePickerNodeFast } from 'components/adslotUi/TreePicker/TreePickerGridComponent';
-import Empty from 'components/alexandria/EmptyComponent';
+import Empty from 'components/alexandria/Empty/component';
 import Grid from 'components/alexandria/GridComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 

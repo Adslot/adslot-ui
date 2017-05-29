@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import Pagination from 'react-bootstrap/lib/Pagination';
-import Empty from 'components/alexandria/EmptyComponent';
+import Empty from 'components/alexandria/Empty/component';
 import Grid from 'components/alexandria/GridComponent';
 import GridRow from 'components/alexandria/GridRowComponent';
 import GridCell from 'components/alexandria/GridCellComponent';

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
-import Empty from 'components/alexandria/EmptyComponent';
+import Empty from 'components/alexandria/Empty/component';
 import Grid from 'components/alexandria/GridComponent';
 import GridCell from 'components/alexandria/GridCellComponent';
 import GridRow from 'components/alexandria/GridRowComponent';
