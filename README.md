@@ -74,7 +74,8 @@ __Adslot UI:__
 
 __Alexandria:__
 
-`yo react-webpack:component alexandria/ComponentName` 
+We don't currently have a command for generating Alexandria components.
+Simply create a directory for the component, and put all related files in there.
 
 However, you __must__ change the file extension of the component and test to .jsx, as the generator
 only supports creating components with a .js extension.
