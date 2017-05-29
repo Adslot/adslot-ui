@@ -44,6 +44,15 @@ describe('CarouselComponent', () => {
       expect(component.prop('className')).to.equal('carousel-component-prev');
       expect(component.prop('onClick')).to.be.a('function');
     });
+
+    it('should call the same throttled function for each onClick event', () => {
+      const decorator = getPrevDecorator();
+      const componentA = shallow(decorator.component({ previousSlide: _.noop }));
+      const onClickA = componentA.prop('onClick');
+      const componentB = shallow(decorator.component({ previousSlide: _.noop }));
+      const onClickB = componentB.prop('onClick');
+      expect(onClickA).to.equal(onClickB);
+    });
   });
 
   describe('getNextDecorator()', () => {
@@ -59,6 +68,15 @@ describe('CarouselComponent', () => {
       const component = shallow(decorator.component({ nextSlide: _.noop }));
       expect(component.prop('className')).to.equal('carousel-component-next');
       expect(component.prop('onClick')).to.be.a('function');
+    });
+
+    it('should call the same throttled function for each onClick event', () => {
+      const decorator = getNextDecorator();
+      const componentA = shallow(decorator.component({ nextSlide: _.noop }));
+      const onClickA = componentA.prop('onClick');
+      const componentB = shallow(decorator.component({ nextSlide: _.noop }));
+      const onClickB = componentB.prop('onClick');
+      expect(onClickA).to.equal(onClickB);
     });
   });
 });
