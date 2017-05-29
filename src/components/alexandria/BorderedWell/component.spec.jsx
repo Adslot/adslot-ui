@@ -1,3 +1,4 @@
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
 import BorderedWellComponent from './component';

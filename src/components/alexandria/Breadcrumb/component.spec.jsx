@@ -1,7 +1,8 @@
-import BreadcrumbComponent from 'components/alexandria/BreadcrumbComponent';
-import BreadcrumbNodeComponent from 'components/alexandria/BreadcrumbNodeComponent';
-import { shallow } from 'enzyme';
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
+import { shallow } from 'enzyme';
+import BreadcrumbNodeComponent from 'components/alexandria/BreadcrumbNodeComponent';
+import BreadcrumbComponent from './component';
 
 describe('BreadcrumbComponent', () => {
   let nodes;
