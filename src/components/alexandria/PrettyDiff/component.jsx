@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import DiffMatchPatch from 'diff-match-patch';
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/PrettyDiff.scss');
+import DiffMatchPatch from 'diff-match-patch';
+import './styles.scss';
 
 const PrettyDiffComponent = ({ newText, oldText }) => {
   const dmp = new DiffMatchPatch();

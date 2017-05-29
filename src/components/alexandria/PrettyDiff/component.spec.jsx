@@ -1,6 +1,7 @@
-import PrettyDiffComponent from 'components/alexandria/PrettyDiffComponent';
-import { shallow } from 'enzyme';
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
+import { shallow } from 'enzyme';
+import PrettyDiffComponent from './component';
 
 describe('PrettyDiffComponent', () => {
   const diffStrings = [
