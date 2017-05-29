@@ -1,7 +1,7 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
 import classSuffixHelper from 'helpers/classSuffixHelper';
-import GridRowComponent from '../../../src/components/alexandria/GridRowComponent';
+import GridRowComponent from './component';
 
 describe('GridRowComponent', () => {
   const componentClass = 'grid-component-row';

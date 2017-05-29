@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import expandDts from '../../helpers/expandDtsHelper';
-
-require('styles/alexandria/Grid.scss');
+import expandDts from '../../../helpers/expandDtsHelper';
+import './styles.scss';
 
 const GridComponent = ({ children, dts }) =>
   <div className="grid-component" {...expandDts(dts)}>

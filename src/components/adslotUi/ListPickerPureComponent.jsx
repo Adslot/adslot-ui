@@ -3,9 +3,9 @@ import React, { PropTypes } from 'react';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import Empty from 'components/alexandria/Empty/component';
-import Grid from 'components/alexandria/GridComponent';
-import GridRow from 'components/alexandria/GridRowComponent';
-import GridCell from 'components/alexandria/GridCellComponent';
+import Grid from 'components/alexandria/Grid/component';
+import GridRow from 'components/alexandria/GridRow/component';
+import GridCell from 'components/alexandria/GridCell/component';
 import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 
 require('styles/adslotUi/ListPickerPure.scss');

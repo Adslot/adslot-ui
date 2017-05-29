@@ -5,8 +5,8 @@ import { shallow, mount } from 'enzyme';
 import Button from 'react-bootstrap/lib/Button';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
-import GridRow from 'components/alexandria/GridRowComponent';
-import GridCell from 'components/alexandria/GridCellComponent';
+import GridRow from 'components/alexandria/GridRow/component';
+import GridCell from 'components/alexandria/GridCell/component';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 
 describe('TreePickerNodeComponent', () => {

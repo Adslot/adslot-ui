@@ -1,8 +1,8 @@
-import { shallow } from 'enzyme';
-import GridCellComponent from 'components/alexandria/GridCellComponent';
-import GridComponent from 'components/alexandria/GridComponent';
-import GridRowComponent from 'components/alexandria/GridRowComponent';
 import React from 'react';
+import { shallow } from 'enzyme';
+import GridCellComponent from 'components/alexandria/GridCell/component';
+import GridComponent from 'components/alexandria/Grid/component';
+import GridRowComponent from 'components/alexandria/GridRow/component';
 import TotalsComponent from 'components/alexandria/TotalsComponent';
 
 describe('TotalsComponent', () => {

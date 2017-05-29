@@ -1,7 +1,7 @@
-import classSuffixHelper from 'helpers/classSuffixHelper';
-import { shallow } from 'enzyme';
-import GridCellComponent from 'components/alexandria/GridCellComponent';
 import React from 'react';
+import { shallow } from 'enzyme';
+import classSuffixHelper from 'helpers/classSuffixHelper';
+import GridCellComponent from './component';
 
 describe('GridCellComponent', () => {
   const componentClass = 'grid-component-cell';

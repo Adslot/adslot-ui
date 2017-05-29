@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
-
-import classSuffixHelper from '../../helpers/classSuffixHelper';
-import expandDts from '../../helpers/expandDtsHelper';
-
-require('styles/alexandria/GridRow.scss');
+import classSuffixHelper from '../../../helpers/classSuffixHelper';
+import expandDts from '../../../helpers/expandDtsHelper';
+import './styles.scss';
 
 const GridRowComponent = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {
   const componentClass = 'grid-component-row';

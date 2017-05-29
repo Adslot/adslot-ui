@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Pagination from 'react-bootstrap/lib/Pagination';
 import PagedGridComponent from 'components/adslotUi/PagedGridComponent';
-import GridRow from 'components/alexandria/GridRowComponent';
-import GridCell from 'components/alexandria/GridCellComponent';
+import GridRow from 'components/alexandria/GridRow/component';
+import GridCell from 'components/alexandria/GridCell/component';
 
 describe('PagedGridComponent', () => {
   it('should render with no items', () => {

@@ -4,8 +4,8 @@ import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import Empty from 'components/alexandria/Empty/component';
-import Grid from 'components/alexandria/GridComponent';
-import GridRow from 'components/alexandria/GridRowComponent';
+import Grid from 'components/alexandria/Grid/component';
+import GridRow from 'components/alexandria/GridRow/component';
 import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 
 require('styles/adslotUi/TreePickerGrid.scss');
