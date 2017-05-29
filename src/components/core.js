@@ -49,7 +49,7 @@ import GridCell from 'components/alexandria/GridCell/component';
 import GridRow from 'components/alexandria/GridRow/component';
 import PageTitle from 'components/alexandria/PageTitle/component';
 import PrettyDiff from 'components/alexandria/PrettyDiff/component';
-import Search from 'components/alexandria/SearchComponent';
+import Search from 'components/alexandria/Search/component';
 import Slicey from 'components/alexandria/SliceyComponent';
 import Spinner from 'components/alexandria/SpinnerComponent';
 import Statistic from 'components/alexandria/Statistic/component';

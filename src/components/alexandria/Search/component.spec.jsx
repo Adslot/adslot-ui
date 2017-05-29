@@ -1,8 +1,9 @@
+/* eslint-disable lodash/prefer-lodash-method */
 import _ from 'lodash';
 import { shallow } from 'enzyme';
 import React from 'react';
-import SearchComponent from 'components/alexandria/SearchComponent';
 import SvgSymbolComponent from 'components/alexandria/SvgSymbolComponent';
+import SearchComponent from './component';
 
 describe('SearchComponent', () => {
   it('should render using defaultProps', () => {

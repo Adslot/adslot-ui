@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TreePickerNavComponent from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import Breadcrumb from 'components/alexandria/Breadcrumb/component';
-import Search from 'components/alexandria/SearchComponent';
+import Search from 'components/alexandria/Search/component';
 
 describe('TreePickerNavComponent', () => {
   it('should render with defaults', () => {
