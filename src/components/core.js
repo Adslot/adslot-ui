@@ -57,7 +57,7 @@ import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
 import SvgSymbolCircle from 'components/alexandria/SvgSymbolCircleComponent';
 import Tag from 'components/alexandria/Tag/component';
 import TileGrid from 'components/alexandria/TileGrid/component';
-import Totals from 'components/alexandria/TotalsComponent';
+import Totals from 'components/alexandria/Totals/component';
 
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';

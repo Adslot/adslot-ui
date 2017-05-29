@@ -1,9 +1,10 @@
+/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
 import GridCellComponent from 'components/alexandria/GridCell/component';
 import GridComponent from 'components/alexandria/Grid/component';
 import GridRowComponent from 'components/alexandria/GridRow/component';
-import TotalsComponent from 'components/alexandria/TotalsComponent';
+import TotalsComponent from './component';
 
 describe('TotalsComponent', () => {
   it('should render with defaults', () => {
