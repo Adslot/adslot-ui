@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-import BorderedWellComponent from '../../../src/components/alexandria/BorderedWellComponent';
+import BorderedWellComponent from './component';
 
 describe('BorderedWellComponent', () => {
   it('should have its component name as default className', () => {

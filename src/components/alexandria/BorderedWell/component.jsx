@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-
-require('styles/alexandria/BorderedWell.scss');
+import './styles.scss';
 
 const BorderedWellComponent = ({ children }) => (
   <div className="borderedwell-component">
