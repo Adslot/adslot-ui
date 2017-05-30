@@ -5,8 +5,8 @@ import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
 import Grid from 'components/alexandria/Grid';
-import GridCell from 'components/alexandria/GridCell';
-import GridRow from 'components/alexandria/GridRow';
+import GridCell from 'components/alexandria/Grid/Cell';
+import GridRow from 'components/alexandria/Grid/Row';
 import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 

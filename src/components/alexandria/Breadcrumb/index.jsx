@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import BreadcrumbNodeComponent from 'components/alexandria/BreadcrumbNode';
+import BreadcrumbNodeComponent from 'components/alexandria/Breadcrumb/Node';
 import './styles.scss';
 
 const BreadcrumbComponent = ({ nodes, onClick }) => {

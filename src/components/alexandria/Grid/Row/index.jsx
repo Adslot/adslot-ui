@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import classSuffixHelper from '../../../helpers/classSuffixHelper';
-import expandDts from '../../../helpers/expandDtsHelper';
+import classSuffixHelper from '../../../../helpers/classSuffixHelper';
+import expandDts from '../../../../helpers/expandDtsHelper';
 import './styles.scss';
 
 const GridRowComponent = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {

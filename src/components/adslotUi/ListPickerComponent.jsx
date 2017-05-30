@@ -6,8 +6,8 @@ import Modal from 'react-bootstrap/lib/Modal';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import FlexibleSpacer from 'components/alexandria/FlexibleSpacer';
 import Grid from 'components/alexandria/Grid';
-import GridRow from 'components/alexandria/GridRow';
-import GridCell from 'components/alexandria/GridCell';
+import GridRow from 'components/alexandria/Grid/Row';
+import GridCell from 'components/alexandria/Grid/Cell';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
 
 require('styles/adslotUi/ListPicker.scss');

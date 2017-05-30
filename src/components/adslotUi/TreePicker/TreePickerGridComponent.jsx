@@ -5,7 +5,7 @@ import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeCompone
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import Empty from 'components/alexandria/Empty';
 import Grid from 'components/alexandria/Grid';
-import GridRow from 'components/alexandria/GridRow';
+import GridRow from 'components/alexandria/Grid/Row';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
 
 require('styles/adslotUi/TreePickerGrid.scss');
