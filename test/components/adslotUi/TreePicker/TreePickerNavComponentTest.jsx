@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
 import TreePickerNavComponent from 'components/adslotUi/TreePicker/TreePickerNavComponent';
-import Breadcrumb from 'components/alexandria/BreadcrumbComponent';
-import Search from 'components/alexandria/SearchComponent';
+import Breadcrumb from 'components/alexandria/Breadcrumb';
+import Search from 'components/alexandria/Search';
 
 describe('TreePickerNavComponent', () => {
   it('should render with defaults', () => {

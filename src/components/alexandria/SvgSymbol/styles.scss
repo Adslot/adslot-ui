@@ -1,0 +1,46 @@
+@import 'styles/color';
+@import 'styles/variable';
+
+.svg-symbol-component {
+  @mixin size($diameter) {
+    &-#{$diameter} {
+      height: $diameter + px;
+      width: $diameter + px;
+    }
+  }
+
+  @mixin fill($color-name, $color) {
+    &-#{$color-name} {
+      fill: $color;
+    }
+  }
+
+  // Sizes. Classes look like `.svg-symbol-component-70`.
+  @include size(16);
+  @include size(70);
+  @include size(200);
+  @include size(250);
+
+  // Colours. Classes look like `.svg-symbol-component-gray-light`.
+  @include fill('color-disabled', $color-gray-light);
+  @include fill('cyan-dark', $color-cyan-dark);
+  @include fill('gray', $color-gray);
+  @include fill('gray-darker', $color-gray-darker);
+  @include fill('gray-light', $color-gray-light);
+  @include fill('green-dark', $color-green-dark);
+  @include fill('orange-dark', $color-orange-dark);
+  @include fill('red', $color-red);
+
+
+
+  display: inline-block;
+  height: $svg-icon-size;
+  pointer-events: none;
+  width: $svg-icon-size;
+
+  // Passing an onClick to an SvgSymbol makes the cursor a hand.
+  &-clickable {
+    cursor: pointer;
+    pointer-events: auto;
+  }
+}

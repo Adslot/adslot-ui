@@ -68,4 +68,7 @@ module.exports = {
       },
     ],
   },
+  sassLoader: {
+    includePaths: [srcPath],
+  },
 };

@@ -1,0 +1,20 @@
+@import 'styles/color';
+
+.arc-component {
+  &.positive {
+    fill: $color-positive;
+  }
+
+  &.negative {
+    fill: $color-negative;
+  }
+
+  &.info {
+    fill: $color-info;
+  }
+
+  &.warning,
+  &.pending {
+    fill: $color-warning;
+  }
+}

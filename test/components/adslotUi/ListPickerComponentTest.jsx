@@ -4,9 +4,9 @@ import Modal from 'react-bootstrap/lib/Modal';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
-import Grid from 'components/alexandria/GridComponent';
-import GridCell from 'components/alexandria/GridCellComponent';
-import GridRow from 'components/alexandria/GridRowComponent';
+import Grid from 'components/alexandria/Grid';
+import GridCell from 'components/alexandria/Grid/Cell';
+import GridRow from 'components/alexandria/Grid/Row';
 import { createAndMountComponent } from 'testHelpers/shallowRenderHelpers';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 

@@ -1,0 +1,15 @@
+@import 'styles/color';
+
+.slicey {
+  &-component {
+    vertical-align: top;
+  }
+
+  &-background {
+    fill: $color-gray-darker;
+  }
+
+  &-empty {
+    fill: $color-gray-white;
+  }
+}

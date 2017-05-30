@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
-import SvgSymbol from 'components/alexandria/SvgSymbolComponent';
+import SvgSymbol from 'components/alexandria/SvgSymbol';
 
 require('styles/adslotUi/SearchBar.scss');
 

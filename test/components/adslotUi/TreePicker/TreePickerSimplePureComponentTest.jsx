@@ -6,7 +6,7 @@ import TreePickerMocks from 'mocks/TreePickerMocks';
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerSimplePure from 'components/adslotUi/TreePicker/TreePickerSimplePureComponent';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacerComponent';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacer';
 
 const checkElement = (expectedProps) =>
   (element, propsList) =>

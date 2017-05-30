@@ -5,7 +5,11 @@
   },
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
+  },
+  "globals": {
+    "expect": false
   },
   "extends": "airbnb",
   "plugins": [

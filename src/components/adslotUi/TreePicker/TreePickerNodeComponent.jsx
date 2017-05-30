@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
-import GridCell from 'components/alexandria/GridCellComponent';
-import GridRow from 'components/alexandria/GridRowComponent';
+import GridCell from 'components/alexandria/Grid/Cell';
+import GridRow from 'components/alexandria/Grid/Row';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerNodeExpander from './TreePickerNodeExpanderComponent';
 

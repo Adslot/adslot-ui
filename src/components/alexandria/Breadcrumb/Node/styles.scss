@@ -1,0 +1,13 @@
+@import 'styles/color';
+
+.breadcrumbnode-component {
+  &-link {
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: $color-link-hover;
+      text-decoration: underline;
+    }
+  }
+}

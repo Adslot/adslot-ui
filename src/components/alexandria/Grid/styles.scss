@@ -1,0 +1,32 @@
+@import 'styles/color';
+@import 'styles/font-weight';
+@import 'styles/font-size';
+@import 'styles/border';
+
+.grid-component {
+  border-left: $border-lighter;
+  border-right: $border-lighter;
+  border-top: $border-lighter;
+  box-sizing: border-box;
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: $font-size-body;
+  font-weight: $font-weight-light;
+  line-height: 1.5;
+  vertical-align: top;
+  width: 100%;
+
+  &-row-vertical-cell-border {
+    .grid-component-cell {
+      border-right: $border-lighter;
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+
+  + .grid-component {
+    border-top: 0;
+  }
+}
