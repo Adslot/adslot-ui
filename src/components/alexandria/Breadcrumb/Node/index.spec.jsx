@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import BreadcrumbNodeComponent from '.';
+import BreadcrumbNode from '.';
 
-describe('BreadcrumbNodeComponent', () => {
+describe('BreadcrumbNode', () => {
   let node;
   let onClick;
 
@@ -13,7 +13,7 @@ describe('BreadcrumbNodeComponent', () => {
 
   it('should render a link node', () => {
     const props = { isLast: false, onClick, node };
-    const component = shallow(<BreadcrumbNodeComponent {...props} />);
+    const component = shallow(<BreadcrumbNode {...props} />);
 
     expect(component.type()).to.equal('span');
     expect(component.prop('className')).to.equal('breadcrumbnode-component breadcrumbnode-component-link');
@@ -23,7 +23,7 @@ describe('BreadcrumbNodeComponent', () => {
 
   it('should render a last node', () => {
     const props = { isLast: true, onClick, node };
-    const component = shallow(<BreadcrumbNodeComponent {...props} />);
+    const component = shallow(<BreadcrumbNode {...props} />);
 
     expect(component.type()).to.equal('span');
     expect(component.prop('className')).to.equal('breadcrumbnode-component');
@@ -35,7 +35,7 @@ describe('BreadcrumbNodeComponent', () => {
     const idsRemoved = [];
     const onClickMock = (newActiveId) => idsRemoved.push(newActiveId);
     const props = { isLast: false, onClick: onClickMock, node };
-    const component = shallow(<BreadcrumbNodeComponent {...props} />);
+    const component = shallow(<BreadcrumbNode {...props} />);
 
     expect(component.prop('className')).to.equal('breadcrumbnode-component breadcrumbnode-component-link');
     expect(component.text()).to.equal(node.label);

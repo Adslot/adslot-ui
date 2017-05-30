@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import './styles.scss';
 
-const StatisticComponent = ({ label, value, inline }) => {
+const Statistic = ({ label, value, inline }) => {
   const baseClass = 'statistic-component';
   const statisticClassNames = [baseClass];
   if (inline) statisticClassNames.push('inline');
@@ -14,16 +14,16 @@ const StatisticComponent = ({ label, value, inline }) => {
   );
 };
 
-StatisticComponent.displayName = 'AlexandriaStatisticComponent';
+Statistic.displayName = 'AlexandriaStatisticComponent';
 
-StatisticComponent.propTypes = {
+Statistic.propTypes = {
   inline: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
 
-StatisticComponent.defaultProps = {
+Statistic.defaultProps = {
   inline: false,
 };
 
-export default StatisticComponent;
+export default Statistic;

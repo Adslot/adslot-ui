@@ -1,16 +1,16 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import PrettyDiffComponent from '.';
+import PrettyDiff from '.';
 
-describe('PrettyDiffComponent', () => {
+describe('PrettyDiff', () => {
   const diffStrings = [
     '<the quick fox>',
     '<the slow fox jumped>',
   ];
 
   it('should render with spans having different classes', () => {
-    const component = shallow(<PrettyDiffComponent newText={diffStrings[1]} oldText={diffStrings[0]} />);
+    const component = shallow(<PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />);
     expect(component.prop('className')).to.equal('pretty-diff-component');
 
     const equalSpans = component.find('.pretty-diff-component-equal');

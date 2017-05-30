@@ -17,7 +17,7 @@ ActionButton.propTypes = {
   actionIconSvgHref: PropTypes.string.isRequired,
 };
 
-const TagComponent = ({ children, inverse, id, onAction, accent, actionIconSvgHref }) => {
+const Tag = ({ children, inverse, id, onAction, accent, actionIconSvgHref }) => {
   const classSuffixes = [];
   if (inverse) { classSuffixes.push('inverse'); }
 
@@ -35,9 +35,9 @@ const TagComponent = ({ children, inverse, id, onAction, accent, actionIconSvgHr
   );
 };
 
-TagComponent.displayName = 'AlexandriaTagComponent';
+Tag.displayName = 'AlexandriaTagComponent';
 
-TagComponent.propTypes = {
+Tag.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string,
   accent: PropTypes.string,
@@ -46,8 +46,8 @@ TagComponent.propTypes = {
   actionIconSvgHref: PropTypes.string,
 };
 
-TagComponent.defaultProps = {
+Tag.defaultProps = {
   id: 'default',
 };
 
-export default TagComponent;
+export default Tag;

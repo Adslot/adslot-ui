@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.scss';
 
-const FlexibleSpacerComponent = () => <div className="flexible-spacer-component" />;
+const FlexibleSpacer = () => <div className="flexible-spacer-component" />;
 
-FlexibleSpacerComponent.displayName = 'AlexandriaFlexibleSpacerComponent';
+FlexibleSpacer.displayName = 'AlexandriaFlexibleSpacerComponent';
 
-export default FlexibleSpacerComponent;
+export default FlexibleSpacer;

@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
 import './styles.scss';
 
-const SearchComponent = ({
+const Search = ({
   disabled,
   onChange,
   onClear,
@@ -38,9 +38,9 @@ const SearchComponent = ({
   );
 };
 
-SearchComponent.displayName = 'AlexandriaSearchComponent';
+Search.displayName = 'AlexandriaSearchComponent';
 
-SearchComponent.propTypes = {
+Search.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
@@ -50,7 +50,7 @@ SearchComponent.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-SearchComponent.defaultProps = {
+Search.defaultProps = {
   disabled: false,
 
   onChange: () => { throw new Error('Alexandria Search needs an onChange handler'); },
@@ -69,4 +69,4 @@ SearchComponent.defaultProps = {
   value: '',
 };
 
-export default SearchComponent;
+export default Search;

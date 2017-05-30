@@ -3,7 +3,7 @@ import SvgSymbol from 'components/alexandria/SvgSymbol';
 import classSuffixHelper from '../../../../helpers/classSuffixHelper';
 import './styles.scss';
 
-const SvgSymbolCircleComponent = (props) => {
+const SvgSymbolCircle = (props) => {
   const componentClass = 'svgsymbolcircle-component';
   const classesList = classSuffixHelper({ classSuffixes: props.classSuffixes, componentClass });
   return (
@@ -13,11 +13,11 @@ const SvgSymbolCircleComponent = (props) => {
   );
 };
 
-SvgSymbolCircleComponent.displayName = 'AlexandriaSvgSymbolCircleComponent';
+SvgSymbolCircle.displayName = 'AlexandriaSvgSymbolCircleComponent';
 
-SvgSymbolCircleComponent.propTypes = {
+SvgSymbolCircle.propTypes = {
   classSuffixes: SvgSymbol.propTypes.classSuffixes,
   href: PropTypes.string,
 };
 
-export default SvgSymbolCircleComponent;
+export default SvgSymbolCircle;

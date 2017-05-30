@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.scss';
 
-const DonutComponent = () => (
+const Donut = () => (
   <circle className="donut-component" r=".45" cx="0" cy="0"></circle>
 );
 
-DonutComponent.displayName = 'AlexandriaSliceyDonutComponent';
+Donut.displayName = 'AlexandriaSliceyDonutComponent';
 
-export default DonutComponent;
+export default Donut;

@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import './styles.scss';
 
 const baseClass = 'avatar-component';
-const AvatarComponent = ({ color, givenName, image, surname }) => (
+const Avatar = ({ color, givenName, image, surname }) => (
   <div
     className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
     title={`${givenName || ''} ${surname || ''}`}
@@ -18,13 +18,13 @@ const AvatarComponent = ({ color, givenName, image, surname }) => (
   </div>
 );
 
-AvatarComponent.displayName = 'AlexandriaAvatarComponent';
+Avatar.displayName = 'AlexandriaAvatarComponent';
 
-AvatarComponent.propTypes = {
+Avatar.propTypes = {
   color: PropTypes.string,
   givenName: PropTypes.string,
   image: PropTypes.string,
   surname: PropTypes.string,
 };
 
-export default AvatarComponent;
+export default Avatar;

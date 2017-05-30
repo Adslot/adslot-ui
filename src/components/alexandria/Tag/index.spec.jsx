@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
 import Tag, { ActionButton } from '.';
 
-describe('TagComponent', () => {
+describe('Tag', () => {
   it('should render a default tag', () => {
     const component = shallow(<Tag>You are it!</Tag>);
     expect(component.find('span').prop('className')).to.equal('tag-component');

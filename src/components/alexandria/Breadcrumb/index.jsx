@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import BreadcrumbNodeComponent from 'components/alexandria/Breadcrumb/Node';
+import BreadcrumbNode from 'components/alexandria/Breadcrumb/Node';
 import './styles.scss';
 
-const BreadcrumbComponent = ({ nodes, onClick }) => {
+const Breadcrumb = ({ nodes, onClick }) => {
   const baseClass = 'breadcrumb-component';
 
   if (nodes.length === 0) {
@@ -12,7 +12,7 @@ const BreadcrumbComponent = ({ nodes, onClick }) => {
 
   return (
     <div className={baseClass}>
-      <BreadcrumbNodeComponent
+      <BreadcrumbNode
         isLast={false}
         node={{ id: 'all', label: 'All' }}
         onClick={onClick}
@@ -21,7 +21,7 @@ const BreadcrumbComponent = ({ nodes, onClick }) => {
         _.map(nodes, (node, index) =>
           <span className={`${baseClass}-node`} key={node.id}>
             <span className={`${baseClass}-node-divider`}> > </span>
-            <BreadcrumbNodeComponent
+            <BreadcrumbNode
               isLast={index === nodes.length - 1}
               node={node}
               onClick={onClick}
@@ -33,17 +33,17 @@ const BreadcrumbComponent = ({ nodes, onClick }) => {
   );
 };
 
-BreadcrumbComponent.displayName = 'AlexandriaBreadcrumbComponent';
+Breadcrumb.displayName = 'AlexandriaBreadcrumbComponent';
 
-BreadcrumbComponent.propTypes = {
-  nodes: PropTypes.arrayOf(BreadcrumbNodeComponent.propTypes.node).isRequired,
+Breadcrumb.propTypes = {
+  nodes: PropTypes.arrayOf(BreadcrumbNode.propTypes.node).isRequired,
   onClick: PropTypes.func.isRequired,
 };
-BreadcrumbComponent.defaultProps = {
+Breadcrumb.defaultProps = {
   nodes: [],
   onClick: (newActiveId) => {
     throw new Error(`Alexandria Breadcrumb needs an onClick handler to take ${newActiveId}`);
   },
 };
 
-export default BreadcrumbComponent;
+export default Breadcrumb;

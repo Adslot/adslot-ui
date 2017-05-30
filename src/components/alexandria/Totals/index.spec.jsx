@@ -1,28 +1,28 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import GridCellComponent from 'components/alexandria/Grid/Cell';
-import GridComponent from 'components/alexandria/Grid';
-import GridRowComponent from 'components/alexandria/Grid/Row';
-import TotalsComponent from '.';
+import GridCell from 'components/alexandria/Grid/Cell';
+import Grid from 'components/alexandria/Grid';
+import GridRow from 'components/alexandria/Grid/Row';
+import Totals from '.';
 
-describe('TotalsComponent', () => {
+describe('Totals', () => {
   it('should render with defaults', () => {
-    const component = shallow(<TotalsComponent />);
-    expect(component.type()).to.equal(GridComponent);
+    const component = shallow(<Totals />);
+    expect(component.type()).to.equal(Grid);
     expect(component.children()).to.have.length(1);
 
     const totalRow = component.children().first();
-    expect(totalRow.type()).to.equal(GridRowComponent);
+    expect(totalRow.type()).to.equal(GridRow);
     expect(totalRow.prop('short')).to.equal(true);
     expect(totalRow.prop('horizontalBorder')).to.equal(false);
     expect(totalRow.prop('type')).to.equal('footer');
 
-    const totalLabelEl = totalRow.find(GridCellComponent).first();
+    const totalLabelEl = totalRow.find(GridCell).first();
     expect(totalLabelEl.prop('stretch')).to.equal(true);
     expect(totalLabelEl.children().text()).to.equal('Total');
 
-    const totalValueEl = totalRow.find(GridCellComponent).last();
+    const totalValueEl = totalRow.find(GridCell).last();
     expect(totalValueEl.prop('stretch')).to.equal(false);
     expect(totalValueEl.children().text()).to.equal('0');
   });
@@ -36,31 +36,31 @@ describe('TotalsComponent', () => {
       ],
       valueFormatter: (value) => `€${(value / 100).toFixed(2)}`,
     };
-    const component = shallow(<TotalsComponent {...props} />);
+    const component = shallow(<Totals {...props} />);
 
-    expect(component.type()).to.equal(GridComponent);
-    const rows = component.find(GridRowComponent);
+    expect(component.type()).to.equal(Grid);
+    const rows = component.find(GridRow);
 
     const firstRow = rows.at(0);
     expect(firstRow.prop('short')).to.equal(true);
     expect(firstRow.prop('horizontalBorder')).to.equal(false);
 
-    let labelEl = firstRow.find(GridCellComponent).first();
+    let labelEl = firstRow.find(GridCell).first();
     expect(labelEl.prop('stretch')).to.equal(true);
     expect(labelEl.children().text()).to.equal('Custom Paint for Yo Whip');
 
-    let valueEl = firstRow.find(GridCellComponent).last();
+    let valueEl = firstRow.find(GridCell).last();
     expect(valueEl.children().text()).to.equal('€2000.00');
 
     const secondRow = rows.at(1);
     expect(secondRow.prop('short')).to.equal(true);
     expect(secondRow.prop('horizontalBorder')).to.equal(false);
 
-    labelEl = secondRow.find(GridCellComponent).first();
+    labelEl = secondRow.find(GridCell).first();
     expect(labelEl.prop('stretch')).to.equal(true);
     expect(labelEl.children().text()).to.equal('Selected');
 
-    valueEl = secondRow.find(GridCellComponent).last();
+    valueEl = secondRow.find(GridCell).last();
     expect(valueEl.children().text()).to.equal('€500.00');
 
     const totalRow = rows.at(2);
@@ -68,11 +68,11 @@ describe('TotalsComponent', () => {
     expect(totalRow.prop('horizontalBorder')).to.equal(false);
     expect(totalRow.prop('type')).to.equal('footer');
 
-    labelEl = totalRow.find(GridCellComponent).first();
+    labelEl = totalRow.find(GridCell).first();
     expect(labelEl.prop('stretch')).to.equal(true);
     expect(labelEl.children().text()).to.equal('Total');
 
-    valueEl = totalRow.find(GridCellComponent).last();
+    valueEl = totalRow.find(GridCell).last();
     expect(valueEl.children().text()).to.equal('€2501.00');
   });
 });

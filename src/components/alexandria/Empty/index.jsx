@@ -3,9 +3,9 @@ import React, { PropTypes } from 'react';
 import SvgSymbolCircle from 'components/alexandria/SvgSymbol/Circle';
 import './styles.scss';
 
-const EmptyComponent = ({ collection, svgSymbol, text, hideIcon }) => {
+const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
   const classSuffixes = _.isEmpty(svgSymbol.classSuffixes) ?
-    EmptyComponent.defaultProps.svgSymbol.classSuffixes :
+    Empty.defaultProps.svgSymbol.classSuffixes :
     svgSymbol.classSuffixes;
 
   if (_.isEmpty(collection)) {
@@ -24,15 +24,15 @@ const EmptyComponent = ({ collection, svgSymbol, text, hideIcon }) => {
   return <div />;
 };
 
-EmptyComponent.displayName = 'AlexandriaEmptyComponent';
+Empty.displayName = 'AlexandriaEmptyComponent';
 
-EmptyComponent.propTypes = {
+Empty.propTypes = {
   collection: PropTypes.any,
   svgSymbol: PropTypes.shape(SvgSymbolCircle.propTypes),
   text: PropTypes.any, // can be string or, if you want rich formatting, a node
   hideIcon: PropTypes.bool,
 };
-EmptyComponent.defaultProps = {
+Empty.defaultProps = {
   collection: null,
   svgSymbol: {
     classSuffixes: ['gray-darker', '70', 'circle'],
@@ -41,4 +41,4 @@ EmptyComponent.defaultProps = {
   hideIcon: false,
 };
 
-export default EmptyComponent;
+export default Empty;

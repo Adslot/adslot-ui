@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import DiffMatchPatch from 'diff-match-patch';
 import './styles.scss';
 
-const PrettyDiffComponent = ({ newText, oldText }) => {
+const PrettyDiff = ({ newText, oldText }) => {
   const dmp = new DiffMatchPatch();
   const diffs = dmp.diff_main(oldText, newText);
 
@@ -27,15 +27,15 @@ const PrettyDiffComponent = ({ newText, oldText }) => {
   );
 };
 
-PrettyDiffComponent.displayName = 'PrettyDiffComponent';
+PrettyDiff.displayName = 'PrettyDiffComponent';
 
-PrettyDiffComponent.propTypes = {
+PrettyDiff.propTypes = {
   newText: PropTypes.string.isRequired,
   oldText: PropTypes.string.isRequired,
 };
-PrettyDiffComponent.defaultProps = {
+PrettyDiff.defaultProps = {
   newText: '',
   oldText: '',
 };
 
-export default PrettyDiffComponent;
+export default PrettyDiff;

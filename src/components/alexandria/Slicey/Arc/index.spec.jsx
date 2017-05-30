@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ArcComponent from '.';
+import Arc from '.';
 
-describe('ArcComponent', () => {
+describe('Arc', () => {
   it('should have its component name as default className', () => {
-    const component = shallow(<ArcComponent />);
+    const component = shallow(<Arc />);
     expect(component.prop('className')).to.equal('arc-component');
   });
 
@@ -20,7 +20,7 @@ describe('ArcComponent', () => {
         y2: 0.47,
       },
     };
-    const component = shallow(<ArcComponent {...props} />);
+    const component = shallow(<Arc {...props} />);
     expect(component.prop('className')).to.equal('arc-component something-great');
     expect(component.type()).to.equal('path');
     expect(component.prop('d')).to.equal('M0,0 L3.06,-0.5 A0.5,0.5 0 0,1 0.14,0.47 z');

@@ -4,7 +4,7 @@ import GridCell from 'components/alexandria/Grid/Cell';
 import GridRow from 'components/alexandria/Grid/Row';
 import React, { PropTypes } from 'react';
 
-const TotalsComponent = ({ toSum, valueFormatter }) => (
+const Totals = ({ toSum, valueFormatter }) => (
   <Grid>
     {_(toSum)
       .reject({ isHidden: true })
@@ -22,9 +22,9 @@ const TotalsComponent = ({ toSum, valueFormatter }) => (
   </Grid>
 );
 
-TotalsComponent.displayName = 'AlexandriaTotalsComponent';
+Totals.displayName = 'AlexandriaTotalsComponent';
 
-TotalsComponent.propTypes = {
+Totals.propTypes = {
   toSum: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
@@ -35,9 +35,9 @@ TotalsComponent.propTypes = {
   valueFormatter: PropTypes.func.isRequired,
 };
 
-TotalsComponent.defaultProps = {
+Totals.defaultProps = {
   toSum: [],
   valueFormatter: (value) => `${value}`,
 };
 
-export default TotalsComponent;
+export default Totals;

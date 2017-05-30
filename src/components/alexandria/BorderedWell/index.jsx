@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react';
 import './styles.scss';
 
-const BorderedWellComponent = ({ children }) => (
+const BorderedWell = ({ children }) => (
   <div className="borderedwell-component">
     {children}
   </div>
 );
 
-BorderedWellComponent.displayName = 'AlexandriaBorderedWellComponent';
+BorderedWell.displayName = 'AlexandriaBorderedWellComponent';
 
-BorderedWellComponent.propTypes = {
+BorderedWell.propTypes = {
   children: PropTypes.node,
 };
 
-export default BorderedWellComponent;
+export default BorderedWell;

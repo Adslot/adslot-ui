@@ -3,9 +3,9 @@ import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import TileGridComponent from '.';
+import TileGrid from '.';
 
-describe('TileGridComponent', () => {
+describe('TileGrid', () => {
   const props = {
     title: 'Lorem ipsum',
     items: [
@@ -16,7 +16,7 @@ describe('TileGridComponent', () => {
   };
 
   it('renders with basic props', () => {
-    const component = shallow(<TileGridComponent {...props} items={[]} />);
+    const component = shallow(<TileGrid {...props} items={[]} />);
     expect(component.prop('className')).to.equal('tile-grid-component');
 
     const title = component.find('.tile-grid-component-title');
@@ -29,7 +29,7 @@ describe('TileGridComponent', () => {
   });
 
   it('renders with items', () => {
-    const component = shallow(<TileGridComponent {...props} />);
+    const component = shallow(<TileGrid {...props} />);
     const list = component.find('.tile-grid-component-list');
     expect(list.children()).to.have.length(2);
 
@@ -52,7 +52,7 @@ describe('TileGridComponent', () => {
 
   it('handles tile clicks', () => {
     const onItemClickSpy = sinon.spy();
-    const component = shallow(<TileGridComponent {...props} onItemClick={onItemClickSpy} />);
+    const component = shallow(<TileGrid {...props} onItemClick={onItemClickSpy} />);
     const tileLinks = component.find('.tile-grid-component-item-link');
     const firstTileLink = tileLinks.at(0);
     firstTileLink.simulate('click');

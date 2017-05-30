@@ -1,11 +1,11 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import SvgSymbolComponent from '.';
+import SvgSymbol from '.';
 
-describe('SvgSymbolComponent', () => {
+describe('SvgSymbol', () => {
   it('should render with href', () => {
-    const component = shallow(<SvgSymbolComponent />);
+    const component = shallow(<SvgSymbol />);
     expect(component.prop('className')).to.equal('svg-symbol-component');
     expect(component.type()).to.equal('svg');
 
@@ -18,7 +18,7 @@ describe('SvgSymbolComponent', () => {
       classSuffixes: ['16', 'red'],
       href: '/assets/other-svg-symbols.svg#checklist-incomplete',
     };
-    const component = shallow(<SvgSymbolComponent {...props} />);
+    const component = shallow(<SvgSymbol {...props} />);
     expect(component.prop('className')).to
       .equal('svg-symbol-component svg-symbol-component-16 svg-symbol-component-red');
 

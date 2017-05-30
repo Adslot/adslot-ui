@@ -1,12 +1,12 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ArcComponent from 'components/alexandria/Slicey/Arc';
-import DonutComponent from 'components/alexandria/Slicey/Donut';
-import MarkerComponent from 'components/alexandria/Slicey/Marker';
-import SliceyComponent from '.';
+import Arc from 'components/alexandria/Slicey/Arc';
+import Donut from 'components/alexandria/Slicey/Donut';
+import Marker from 'components/alexandria/Slicey/Marker';
+import Slicey from '.';
 
-describe('SliceyComponent', () => {
+describe('Slicey', () => {
   let dataset;
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('SliceyComponent', () => {
   });
 
   it('should render an empty state', () => {
-    const component = shallow(<SliceyComponent />);
+    const component = shallow(<Slicey />);
     expect(component.prop('className')).to.equal('slicey-component');
     expect(component.prop('height')).to.equal(100);
     expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
@@ -25,14 +25,14 @@ describe('SliceyComponent', () => {
 
     expect(component.find('.slicey-background')).to.have.length(0);
     expect(component.find('.slicey-empty')).to.have.length(1);
-    expect(component.find(ArcComponent)).to.have.length(0);
-    expect(component.find(MarkerComponent)).to.have.length(0);
-    expect(component.find(DonutComponent)).to.have.length(0);
+    expect(component.find(Arc)).to.have.length(0);
+    expect(component.find(Marker)).to.have.length(0);
+    expect(component.find(Donut)).to.have.length(0);
   });
 
   it('should render a given dataset', () => {
     const props = { dataset };
-    const component = shallow(<SliceyComponent {...props} />);
+    const component = shallow(<Slicey {...props} />);
     expect(component.prop('className')).to.equal('slicey-component');
     expect(component.prop('height')).to.equal(100);
     expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
@@ -43,14 +43,14 @@ describe('SliceyComponent', () => {
 
     expect(component.find('.slicey-background')).to.have.length(1);
     expect(component.find('.slicey-empty')).to.have.length(0);
-    expect(component.find(ArcComponent)).to.have.length(2);
-    expect(component.find(MarkerComponent)).to.have.length(0);
-    expect(component.find(DonutComponent)).to.have.length(0);
+    expect(component.find(Arc)).to.have.length(2);
+    expect(component.find(Marker)).to.have.length(0);
+    expect(component.find(Donut)).to.have.length(0);
   });
 
   it('should render a circle if there is only one arc to draw', () => {
     const props = { dataset: [{ label: 'positive', value: 5 }] };
-    const component = shallow(<SliceyComponent {...props} />);
+    const component = shallow(<Slicey {...props} />);
     expect(component.prop('className')).to.equal('slicey-component');
     expect(component.prop('height')).to.equal(100);
     expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
@@ -64,9 +64,9 @@ describe('SliceyComponent', () => {
 
     expect(component.find('.slicey-background')).to.have.length(1);
     expect(component.find('.slicey-empty')).to.have.length(0);
-    expect(component.find(ArcComponent)).to.have.length(0);
-    expect(component.find(MarkerComponent)).to.have.length(0);
-    expect(component.find(DonutComponent)).to.have.length(0);
+    expect(component.find(Arc)).to.have.length(0);
+    expect(component.find(Marker)).to.have.length(0);
+    expect(component.find(Donut)).to.have.length(0);
   });
 
   it('should render a marker on a donut with a custom diameter', () => {
@@ -76,7 +76,7 @@ describe('SliceyComponent', () => {
       donut: true,
       diameter: 50,
     };
-    const component = shallow(<SliceyComponent {...props} />);
+    const component = shallow(<Slicey {...props} />);
     expect(component.prop('className')).to.equal('slicey-component');
     expect(component.prop('height')).to.equal(50);
     expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
@@ -87,11 +87,11 @@ describe('SliceyComponent', () => {
 
     expect(component.find('.slicey-background')).to.have.length(1);
     expect(component.find('.slicey-empty')).to.have.length(0);
-    expect(component.find(ArcComponent)).to.have.length(2);
+    expect(component.find(Arc)).to.have.length(2);
 
-    const marker = component.find(MarkerComponent);
+    const marker = component.find(Marker);
     expect(marker.prop('fraction')).to.equal(0.5);
 
-    expect(component.find(DonutComponent)).to.have.length(1);
+    expect(component.find(Donut)).to.have.length(1);
   });
 });

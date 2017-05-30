@@ -3,7 +3,7 @@ import classSuffixHelper from '../../../../helpers/classSuffixHelper';
 import expandDts from '../../../../helpers/expandDtsHelper';
 import './styles.scss';
 
-const GridRowComponent = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {
+const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {
   const componentClass = 'grid-component-row';
   const classesList = classSuffixHelper({
     classSuffixes: [type],
@@ -18,9 +18,9 @@ const GridRowComponent = ({ horizontalBorder, short, type, verticalCellBorder, c
   );
 };
 
-GridRowComponent.displayName = 'AlexandriaGridRowComponent';
+GridRow.displayName = 'AlexandriaGridRowComponent';
 
-GridRowComponent.propTypes = {
+GridRow.propTypes = {
   children: PropTypes.node,
   horizontalBorder: PropTypes.bool.isRequired,
   short: PropTypes.bool.isRequired,
@@ -29,11 +29,11 @@ GridRowComponent.propTypes = {
   dts: PropTypes.string,
 };
 
-GridRowComponent.defaultProps = {
+GridRow.defaultProps = {
   horizontalBorder: true,
   short: false,
   type: 'body',
   verticalCellBorder: false,
 };
 
-export default GridRowComponent;
+export default GridRow;

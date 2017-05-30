@@ -3,7 +3,7 @@ import classSuffixHelper from '../../../../helpers/classSuffixHelper';
 import expandDts from '../../../../helpers/expandDtsHelper';
 import './styles.scss';
 
-const GridCellComponent = ({ children, classSuffixes, onClick, stretch, dts }) => {
+const GridCell = ({ children, classSuffixes, onClick, stretch, dts }) => {
   const componentClass = 'grid-component-cell';
   const classesList = classSuffixHelper({
     classSuffixes,
@@ -22,9 +22,9 @@ const GridCellComponent = ({ children, classSuffixes, onClick, stretch, dts }) =
   );
 };
 
-GridCellComponent.displayName = 'AlexandriaGridCellComponent';
+GridCell.displayName = 'AlexandriaGridCellComponent';
 
-GridCellComponent.propTypes = {
+GridCell.propTypes = {
   children: PropTypes.node,
   classSuffixes: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClick: PropTypes.func,
@@ -32,9 +32,9 @@ GridCellComponent.propTypes = {
   dts: PropTypes.string,
 };
 
-GridCellComponent.defaultProps = {
+GridCell.defaultProps = {
   classSuffixes: [],
   stretch: false,
 };
 
-export default GridCellComponent;
+export default GridCell;

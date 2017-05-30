@@ -1,10 +1,10 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import BreadcrumbNodeComponent from 'components/alexandria/Breadcrumb/Node';
-import BreadcrumbComponent from '.';
+import BreadcrumbNode from 'components/alexandria/Breadcrumb/Node';
+import Breadcrumb from '.';
 
-describe('BreadcrumbComponent', () => {
+describe('Breadcrumb', () => {
   let nodes;
 
   beforeEach(() => {
@@ -16,18 +16,18 @@ describe('BreadcrumbComponent', () => {
   });
 
   it('should render empty with the component className when no nodes', () => {
-    const component = shallow(<BreadcrumbComponent />);
+    const component = shallow(<Breadcrumb />);
     expect(component.prop('className')).to.equal('breadcrumb-component');
-    expect(component.find(BreadcrumbNodeComponent)).to.have.length(0);
+    expect(component.find(BreadcrumbNode)).to.have.length(0);
   });
 
   it('should render nodes', () => {
-    const component = shallow(<BreadcrumbComponent nodes={nodes} />);
+    const component = shallow(<Breadcrumb nodes={nodes} />);
     expect(component.prop('className')).to.equal('breadcrumb-component');
-    expect(component.find(BreadcrumbNodeComponent)).to.have.length(4);
+    expect(component.find(BreadcrumbNode)).to.have.length(4);
 
     const allLink = component.children().first();
-    expect(allLink.type()).to.equal(BreadcrumbNodeComponent);
+    expect(allLink.type()).to.equal(BreadcrumbNode);
     expect(allLink.prop('isLast')).to.equal(false);
     expect(allLink.prop('node')).to.deep.equal({ id: 'all', label: 'All' });
     expect(allLink.prop('onClick')).to.be.a('function');
@@ -38,7 +38,7 @@ describe('BreadcrumbComponent', () => {
       const dividerElement = nodeWrapperElement.find('.breadcrumb-component-node-divider');
       expect(dividerElement.text()).to.equal(' > ');
 
-      const nodeElement = nodeWrapperElement.find(BreadcrumbNodeComponent);
+      const nodeElement = nodeWrapperElement.find(BreadcrumbNode);
       expect(nodeElement.prop('node')).to.equal(nodes[index]);
 
       expect(nodeElement.prop('isLast')).to.equal(index === nodes.length - 1);
@@ -46,7 +46,7 @@ describe('BreadcrumbComponent', () => {
     });
   });
   it('should error when clicking a node with no onClick handler', () => {
-    const component = shallow(<BreadcrumbComponent nodes={nodes} />);
+    const component = shallow(<Breadcrumb nodes={nodes} />);
     const allLinkElement = component.children().first();
     expect(() => {
       allLinkElement.simulate('click', 'all');

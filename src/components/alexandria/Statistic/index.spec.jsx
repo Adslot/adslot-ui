@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import StatisticComponent from '.';
+import Statistic from '.';
 
-describe('StatisticComponent', () => {
+describe('Statistic', () => {
   it('should render with value and label', () => {
-    const component = shallow(<StatisticComponent label="Views" value="2 Million" />);
+    const component = shallow(<Statistic label="Views" value="2 Million" />);
     expect(component.prop('className')).to.equal('statistic-component');
     expect(component.children()).to.have.length(2);
 
@@ -18,7 +18,7 @@ describe('StatisticComponent', () => {
   });
 
   it('should render inline', () => {
-    const component = shallow(<StatisticComponent label="Views" value="2 Million" inline />);
+    const component = shallow(<Statistic label="Views" value="2 Million" inline />);
     expect(component.prop('className')).to.equal('statistic-component inline');
   });
 });

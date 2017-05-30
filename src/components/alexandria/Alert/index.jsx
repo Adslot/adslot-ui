@@ -2,22 +2,22 @@ import React, { PropTypes } from 'react';
 import expandDts from '../../../helpers/expandDtsHelper';
 import './styles.scss';
 
-const AlertComponent = ({ type, children, dts }) => (
+const Alert = ({ type, children, dts }) => (
   <div className={`alert-component alert-component-${type}`} {...expandDts(dts)}>
     {children}
   </div>
 );
 
-AlertComponent.displayName = 'AlexandriaAlertComponent';
+Alert.displayName = 'AlexandriaAlertComponent';
 
-AlertComponent.propTypes = {
+Alert.propTypes = {
   type: PropTypes.oneOf(['success', 'info', 'warning', 'danger']),
   children: PropTypes.node.isRequired,
   dts: PropTypes.string,
 };
 
-AlertComponent.defaultProps = {
+Alert.defaultProps = {
   type: 'info',
 };
 
-export default AlertComponent;
+export default Alert;

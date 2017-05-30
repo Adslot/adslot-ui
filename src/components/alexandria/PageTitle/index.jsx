@@ -4,7 +4,7 @@ import './styles.scss';
 
 const baseClass = 'pagetitle-component';
 
-const PageTitleComponent = ({ children, isFooter, title }) => {
+const PageTitle = ({ children, isFooter, title }) => {
   const className = isFooter ? `${baseClass} ${baseClass}-is-footer` : baseClass;
   return (
     <div className={className}>
@@ -13,15 +13,15 @@ const PageTitleComponent = ({ children, isFooter, title }) => {
   );
 };
 
-PageTitleComponent.displayName = 'AlexandriaPageTitleComponent';
+PageTitle.displayName = 'AlexandriaPageTitleComponent';
 
-PageTitleComponent.propTypes = {
+PageTitle.propTypes = {
   children: PropTypes.node,
   isFooter: PropTypes.bool.isRequired,
   title: PropTypes.node,
 };
-PageTitleComponent.defaultProps = {
+PageTitle.defaultProps = {
   isFooter: false,
 };
 
-export default PageTitleComponent;
+export default PageTitle;

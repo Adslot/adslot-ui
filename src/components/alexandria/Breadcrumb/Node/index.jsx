@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import './styles.scss';
 
-const BreadcrumbNodeComponent = ({ isLast, node, onClick }) => {
+const BreadcrumbNode = ({ isLast, node, onClick }) => {
   const baseClass = 'breadcrumbnode-component';
   if (isLast) {
     return (
@@ -17,9 +17,9 @@ const BreadcrumbNodeComponent = ({ isLast, node, onClick }) => {
     </span>);
 };
 
-BreadcrumbNodeComponent.displayName = 'AlexandriaBreadcrumbNodeComponent';
+BreadcrumbNode.displayName = 'AlexandriaBreadcrumbNodeComponent';
 
-BreadcrumbNodeComponent.propTypes = {
+BreadcrumbNode.propTypes = {
   isLast: PropTypes.bool.isRequired,
   node: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -28,4 +28,4 @@ BreadcrumbNodeComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default BreadcrumbNodeComponent;
+export default BreadcrumbNode;

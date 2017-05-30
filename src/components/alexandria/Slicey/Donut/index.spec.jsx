@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DonutComponent from '.';
+import Donut from '.';
 
-describe('DonutComponent', () => {
+describe('Donut', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DonutComponent />);
+    component = shallow(<Donut />);
   });
 
   it('should have its component name as default className', () => {

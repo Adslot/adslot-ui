@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import './styles.scss';
 
-const TileGridComponent = ({ title, items, onItemClick }) => {
+const TileGrid = ({ title, items, onItemClick }) => {
   const baseClass = 'tile-grid-component';
 
   return (
@@ -19,7 +19,7 @@ const TileGridComponent = ({ title, items, onItemClick }) => {
   );
 };
 
-TileGridComponent.propTypes = {
+TileGrid.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -29,6 +29,6 @@ TileGridComponent.propTypes = {
   onItemClick: PropTypes.func.isRequired,
 };
 
-TileGridComponent.displayName = 'AlexandriaTileGridComponent';
+TileGrid.displayName = 'AlexandriaTileGridComponent';
 
-export default TileGridComponent;
+export default TileGrid;

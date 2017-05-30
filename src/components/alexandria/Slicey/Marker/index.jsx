@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { ROUND, QUARTER, getPointX, getPointY } from 'components/alexandria/Slicey/dataProcessor';
 import './styles.scss';
 
-const MarkerComponent = ({ fraction }) => {
+const Marker = ({ fraction }) => {
   const getMarkerPoints = (markerValue) => {
     const pointOnCircle = (ROUND * markerValue) - QUARTER;
     return `${getPointX(pointOnCircle)},${getPointY(pointOnCircle)} 0,0`;
@@ -13,13 +13,13 @@ const MarkerComponent = ({ fraction }) => {
   );
 };
 
-MarkerComponent.displayName = 'AlexandriaSliceyMarkerComponent';
+Marker.displayName = 'AlexandriaSliceyMarkerComponent';
 
-MarkerComponent.propTypes = {
+Marker.propTypes = {
   fraction: PropTypes.number,
 };
-MarkerComponent.defaultProps = {
+Marker.defaultProps = {
   fraction: 0,
 };
 
-export default MarkerComponent;
+export default Marker;

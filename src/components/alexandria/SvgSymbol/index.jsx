@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classSuffixHelper from '../../../helpers/classSuffixHelper';
 import './styles.scss';
 
-const SvgSymbolComponent = (props) => {
+const SvgSymbol = (props) => {
   const { classSuffixes, href, onClick } = props;
   const componentClass = 'svg-symbol-component';
   const suffixOptions = { clickable: props.onClick };
@@ -15,16 +15,16 @@ const SvgSymbolComponent = (props) => {
   );
 };
 
-SvgSymbolComponent.displayName = 'AlexandriaSvgSymbolComponent';
+SvgSymbol.displayName = 'AlexandriaSvgSymbolComponent';
 
-SvgSymbolComponent.propTypes = {
+SvgSymbol.propTypes = {
   classSuffixes: PropTypes.arrayOf(PropTypes.string.isRequired),
   href: PropTypes.string,
   onClick: PropTypes.func,
 };
 
-SvgSymbolComponent.defaultProps = {
+SvgSymbol.defaultProps = {
   classSuffixes: [],
 };
 
-export default SvgSymbolComponent;
+export default SvgSymbol;

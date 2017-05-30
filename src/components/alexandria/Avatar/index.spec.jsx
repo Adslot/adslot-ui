@@ -1,11 +1,11 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import AvatarComponent from '.';
+import Avatar from '.';
 
-describe('AvatarComponent', () => {
+describe('Avatar', () => {
   it('should render with defaults', () => {
-    const component = shallow(<AvatarComponent />);
+    const component = shallow(<Avatar />);
     expect(component.prop('className')).to.equal('avatar-component');
     expect(component.prop('title')).to.equal(' ');
 
@@ -17,7 +17,7 @@ describe('AvatarComponent', () => {
   });
 
   it('should render with names given', () => {
-    const component = shallow(<AvatarComponent givenName="John" surname="Doe" />);
+    const component = shallow(<Avatar givenName="John" surname="Doe" />);
     expect(component.prop('className')).to.equal('avatar-component');
     expect(component.prop('title')).to.equal('John Doe');
 
@@ -29,7 +29,7 @@ describe('AvatarComponent', () => {
   });
 
   it('should render with different color', () => {
-    const component = shallow(<AvatarComponent givenName="John" surname="Doe" color="blue" />);
+    const component = shallow(<Avatar givenName="John" surname="Doe" color="blue" />);
     expect(component.prop('className')).to.equal('avatar-component avatar-component-blue');
     expect(component.prop('title')).to.equal('John Doe');
 
@@ -41,7 +41,7 @@ describe('AvatarComponent', () => {
   });
 
   it('should render with avatar', () => {
-    const component = shallow(<AvatarComponent givenName="John" surname="Doe" image="//avatar.com" />);
+    const component = shallow(<Avatar givenName="John" surname="Doe" image="//avatar.com" />);
     expect(component.prop('className')).to.equal('avatar-component');
     expect(component.prop('title')).to.equal('John Doe');
 

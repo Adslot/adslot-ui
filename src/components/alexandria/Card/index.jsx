@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import expandDts from '../../../helpers/expandDtsHelper';
 import './styles.scss';
 
-const CardContentComponent = ({ children, className, stretch, fill, append, dts }) => {
+const CardContent = ({ children, className, stretch, fill, append, dts }) => {
   const baseClass = 'card-component-content';
   const contentClassNames = [baseClass];
 
@@ -19,9 +19,9 @@ const CardContentComponent = ({ children, className, stretch, fill, append, dts 
   );
 };
 
-CardContentComponent.displayName = 'AlexandriaCardContentComponent';
+CardContent.displayName = 'AlexandriaCardContentComponent';
 
-CardContentComponent.propTypes = {
+CardContent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   fill: PropTypes.bool.isRequired,
@@ -30,13 +30,13 @@ CardContentComponent.propTypes = {
   dts: PropTypes.string,
 };
 
-CardContentComponent.defaultProps = {
+CardContent.defaultProps = {
   fill: false,
   stretch: false,
   append: false,
 };
 
-const CardComponent = ({ children, className, accent, dts }) => {
+const Card = ({ children, className, accent, dts }) => {
   const baseClass = 'card-component';
   const containerClassNames = [baseClass];
   if (accent) containerClassNames.push(`accent accent-${accent}`);
@@ -57,9 +57,9 @@ const CardComponent = ({ children, className, accent, dts }) => {
   );
 };
 
-CardComponent.displayName = 'AlexandriaCardComponent';
+Card.displayName = 'AlexandriaCardComponent';
 
-CardComponent.propTypes = {
+Card.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   accent: PropTypes.string,
@@ -67,6 +67,6 @@ CardComponent.propTypes = {
 };
 
 export default {
-  Container: CardComponent,
-  Content: CardContentComponent,
+  Container: Card,
+  Content: CardContent,
 };

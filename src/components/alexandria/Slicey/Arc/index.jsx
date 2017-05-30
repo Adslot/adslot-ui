@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import './styles.scss';
 
-const ArcComponent = ({ data }) => {
+const Arc = ({ data }) => {
   if (!data) {
     return (
       <path className="arc-component"></path>
@@ -13,9 +13,9 @@ const ArcComponent = ({ data }) => {
   return <path className={`arc-component ${_.kebabCase(data.label)}`} d={dataString}></path>;
 };
 
-ArcComponent.displayName = 'AlexandriaSliceyArcComponent';
+Arc.displayName = 'AlexandriaSliceyArcComponent';
 
-ArcComponent.propTypes = {
+Arc.propTypes = {
   data: PropTypes.shape({
     label: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
@@ -27,4 +27,4 @@ ArcComponent.propTypes = {
   }),
 };
 
-export default ArcComponent;
+export default Arc;

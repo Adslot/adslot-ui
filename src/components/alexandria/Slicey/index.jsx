@@ -51,7 +51,7 @@ const getSvgProps = (diameter) => (
   }
 );
 
-const SliceyComponent = ({ dataset, diameter, donut, marker }) => {
+const Slicey = ({ dataset, diameter, donut, marker }) => {
   const filteredDataset = filterDataset(dataset);
 
   const donutEl = donut ? <Donut /> : null;
@@ -78,9 +78,9 @@ const SliceyComponent = ({ dataset, diameter, donut, marker }) => {
   );
 };
 
-SliceyComponent.displayName = 'AlexandriaSliceyComponent';
+Slicey.displayName = 'AlexandriaSliceyComponent';
 
-SliceyComponent.propTypes = {
+Slicey.propTypes = {
   dataset: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -92,8 +92,8 @@ SliceyComponent.propTypes = {
   marker: PropTypes.number,
 };
 
-SliceyComponent.defaultProps = {
+Slicey.defaultProps = {
   diameter: 100,
 };
 
-export default SliceyComponent;
+export default Slicey;
