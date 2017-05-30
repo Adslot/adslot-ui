@@ -23,7 +23,6 @@ class TextEllipsisDemo extends Component {
   render() {
     return (
       <div className="text-ellipsis-demo">
-        <h2>TextEllipsis</h2>
         <Alert type="warning">HTML editor is only used for demo purpose</Alert>
         <br />
         <div className="row">

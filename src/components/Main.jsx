@@ -777,6 +777,8 @@ class AppComponent extends React.Component {
           <img src="/assets/carousel/carousel-4.jpg" alt="Slide 4" />
         </Carousel>
 
+        <h2>TextEllipsis</h2>
+        <TextEllipsisDemo />
 
         <h1>Alexandria</h1>
 
@@ -985,8 +987,6 @@ class AppComponent extends React.Component {
             { label: 'Selected', value: 36.80 },
           ]}
         />
-
-        <TextEllipsisDemo />
       </div>
     );
   }
