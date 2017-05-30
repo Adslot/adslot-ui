@@ -4,8 +4,8 @@ import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacer/component';
-import SvgSymbol from 'components/alexandria/SvgSymbol/component';
+import FlexibleSpacer from 'components/alexandria/FlexibleSpacer';
+import SvgSymbol from 'components/alexandria/SvgSymbol';
 import { removeSelected } from 'helpers/TreePickerHelpers';
 
 require('styles/adslotUi/TreePickerSimplePure.scss');

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import SearchBar from 'components/adslotUi/SearchBarComponent';
-import SvgSymbol from 'components/alexandria/SvgSymbol/component';
+import SvgSymbol from 'components/alexandria/SvgSymbol';
 import Button from 'react-bootstrap/lib/Button';
 
 import sinon from 'sinon';
@@ -9,6 +9,7 @@ import { shallow } from 'enzyme';
 
 const defaultProps = {
   searchString: '',
+  searchIconHref: '',
   onSearchStringChange: _.noop,
   onSearch: _.noop,
 };
@@ -19,6 +20,7 @@ const props = {
     'class-b',
   ],
   searchString: '',
+  searchIconHref: '',
   onSearchStringChange: _.noop,
   onSearch: _.noop,
   dts: 'test-dts',

@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import Pagination from 'react-bootstrap/lib/Pagination';
-import Empty from 'components/alexandria/Empty/component';
-import Grid from 'components/alexandria/Grid/component';
-import GridRow from 'components/alexandria/GridRow/component';
-import GridCell from 'components/alexandria/GridCell/component';
-import SvgSymbol from 'components/alexandria/SvgSymbol/component';
+import Empty from 'components/alexandria/Empty';
+import Grid from 'components/alexandria/Grid';
+import GridRow from 'components/alexandria/GridRow';
+import GridCell from 'components/alexandria/GridCell';
+import SvgSymbol from 'components/alexandria/SvgSymbol';
 
 require('styles/adslotUi/PagedGrid.scss');
 

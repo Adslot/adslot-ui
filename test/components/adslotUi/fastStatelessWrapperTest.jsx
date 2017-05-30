@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
-import Grid from 'components/alexandria/Grid/component';
+import Grid from 'components/alexandria/Grid';
 
 describe('fastStatelessWrapper', () => {
   it('should re-render on specified attribute change', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import Panel from 'components/adslotUi/PanelComponent';
-import SvgSymbol from 'components/alexandria/SvgSymbol/component';
+import SvgSymbol from 'components/alexandria/SvgSymbol';
 import PanelMocks from 'mocks/PanelMocks';
 
 describe('PanelComponent', () => {

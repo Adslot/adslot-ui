@@ -3,10 +3,10 @@ import React, { PropTypes } from 'react';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
-import Empty from 'components/alexandria/Empty/component';
-import Grid from 'components/alexandria/Grid/component';
-import GridRow from 'components/alexandria/GridRow/component';
-import SvgSymbol from 'components/alexandria/SvgSymbol/component';
+import Empty from 'components/alexandria/Empty';
+import Grid from 'components/alexandria/Grid';
+import GridRow from 'components/alexandria/GridRow';
+import SvgSymbol from 'components/alexandria/SvgSymbol';
 
 require('styles/adslotUi/TreePickerGrid.scss');
 

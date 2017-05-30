@@ -4,10 +4,10 @@ import { shallow } from 'enzyme';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
-import Empty from 'components/alexandria/Empty/component';
-import Grid from 'components/alexandria/Grid/component';
-import GridCell from 'components/alexandria/GridCell/component';
-import GridRow from 'components/alexandria/GridRow/component';
+import Empty from 'components/alexandria/Empty';
+import Grid from 'components/alexandria/Grid';
+import GridCell from 'components/alexandria/GridCell';
+import GridRow from 'components/alexandria/GridRow';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 
 describe('ListPickerPureComponent', () => {

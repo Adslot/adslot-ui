@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import UserListPickerComponent from 'components/adslotUi/UserListPickerComponent';
-import Avatar from 'components/alexandria/Avatar/component';
+import Avatar from 'components/alexandria/Avatar';
 import ListPickerMocks from 'mocks/ListPickerMocks';
 
 describe('UserListPickerComponent', () => {
