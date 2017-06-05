@@ -39,6 +39,7 @@ module.exports = function configureKarma(config) {
           excludes: [
             'src/components/Main.jsx',
             'src/components/**/*.spec.*',
+            'src/components/**/example.jsx',
             'src/examples/**/*',
           ],
         },

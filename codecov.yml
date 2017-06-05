@@ -5,4 +5,5 @@ coverage:
   ignore:
     - "src/components/Main.js"
     - "src/components/**/*.spec.*"
+    - "src/components/**/example.jsx"
     - "src/examples"

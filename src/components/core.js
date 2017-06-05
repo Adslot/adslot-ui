@@ -16,6 +16,7 @@ import Tabs from 'react-bootstrap/lib/Tabs';
 
 // Adslot UI
 import Accordion from 'components/adslotUi/AccordionComponent';
+import AlertInput from 'components/adslotUi/AlertInput';
 import Carousel from 'components/adslotUi/CarouselComponent';
 import ConfirmModal from 'components/adslotUi/ConfirmModalComponent';
 import HelpIconPopover from 'components/adslotUi/HelpIconPopoverComponent';
@@ -66,6 +67,7 @@ import 'styles/_react-select-custom.scss';
 export {
   Accordion,
   Alert,
+  AlertInput,
   Avatar,
   BorderedWell,
   Breadcrumb,

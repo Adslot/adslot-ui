@@ -61,6 +61,8 @@ import {
   visibilityReducer,
 } from '../examples/redux/reducers';
 
+import AlertInputExample from './adslotUi/AlertInput/example';
+
 require('styles/App.scss');
 
 const reducer = combineReducers({
@@ -461,6 +463,8 @@ class AppComponent extends React.Component {
             Not spinning
           </SpinnerButton>
         </div>
+
+        <AlertInputExample />
 
         <FilePickerDemo />
 
