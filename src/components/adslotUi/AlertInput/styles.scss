@@ -7,7 +7,7 @@
   border: $border-lighter;
   border-radius: $border-radius;
   display: flex;
-  padding: 4px 8px;
+  padding: 4px;
 
   &.success {
     border-color: $color-positive;
@@ -28,6 +28,7 @@
   &-input {
     border: 0;
     flex: 1;
+    width: 100%;
 
     &:focus {
       outline: none;
@@ -38,11 +39,11 @@
     color: $color-text-addon;
 
     &:first-child {
-      margin-right: 4px;
+      margin-right: 2px;
     }
 
     &:last-child {
-      margin-left: 4px;
+      margin-left: 2px;
     }
   }
 
@@ -51,6 +52,12 @@
       border-radius: 4px;
       box-shadow: none;
       font-size: $font-size-small;
+
+      .popover-content {
+        color: inherit;
+        padding: 5px 10px;
+        width: auto;
+      }
 
       &.bottom {
         $arrow-width: 16px;
