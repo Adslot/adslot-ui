@@ -10,17 +10,25 @@ describe('AlertInput', () => {
     const props = {
       value: 'lorem',
       onValueChange: _.noop,
+      onBlur: _.noop,
     };
     const component = shallow(<AlertInput {...props} />);
-    expect(component.hasClass('alert-input-component')).to.equal(true);
-    expect(component.children()).to.have.length(1);
+    expect(component.prop('trigger')).to.eql(['hover', 'focus']);
+    expect(component.prop('placement')).to.equal('bottom');
+    expect(component.prop('overlay').type).to.equal('div');
+    expect(component.prop('overlay').className).to.be.an('undefined');
 
-    const inputElement = component.childAt(0);
+    const rootElement = component.childAt(0);
+    expect(rootElement.hasClass('alert-input-component')).to.equal(true);
+    expect(rootElement.children()).to.have.length(1);
+
+    const inputElement = rootElement.childAt(0);
     expect(inputElement.prop('className')).to.equal('alert-input-component-input');
     expect(inputElement.prop('type')).to.equal('text');
     expect(inputElement.prop('value')).to.equal('lorem');
     expect(inputElement.prop('onClick')).to.be.a('function');
     expect(inputElement.prop('onChange')).to.be.a('function');
+    expect(inputElement.prop('onBlur')).to.be.a('function');
   });
 
   it('should render with addons', () => {
@@ -29,12 +37,13 @@ describe('AlertInput', () => {
       suffixAddon: '.00',
     };
     const component = shallow(<AlertInput {...props} />);
-    expect(component.children()).to.have.length(3);
+    const rootElement = component.childAt(0);
+    expect(rootElement.children()).to.have.length(3);
 
-    const prefixElement = component.childAt(0);
+    const prefixElement = rootElement.childAt(0);
     expect(prefixElement.text()).to.equal('$');
 
-    const suffixElement = component.childAt(2);
+    const suffixElement = rootElement.childAt(2);
     expect(suffixElement.text()).to.equal('.00');
   });
 
@@ -43,19 +52,17 @@ describe('AlertInput', () => {
       alertStatus: 'error',
     };
     const component = shallow(<AlertInput {...props} />);
-    expect(component.prop('className')).to.equal('alert-input-component error');
-    expect(component.children()).to.have.length(1);
+    const rootElement = component.childAt(0);
+    expect(rootElement.prop('className')).to.equal('alert-input-component error');
+    expect(rootElement.children()).to.have.length(1);
   });
 
-  it('should render OverlayTrigger and Popover', () => {
+  it('should render Popover when there is an alert message', () => {
     const props = {
       alertStatus: 'error',
       alertMessage: 'Lorem ipsum dolor sit amet.',
     };
     const component = shallow(<AlertInput {...props} />);
-    expect(component.prop('trigger')).to.eql(['hover', 'focus']);
-    expect(component.prop('placement')).to.equal('bottom');
-
     const popover = component.prop('overlay');
     expect(popover.props.className).to.equal('alert-input-component-popover error');
     expect(popover.props.id).to.equal('alert-input-popover');

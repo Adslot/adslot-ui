@@ -4,6 +4,7 @@
 
 .alert-input-component {
   align-items: center;
+  background-color: $color-well;
   border: $border-lighter;
   border-radius: $border-radius;
   display: flex;
@@ -26,6 +27,7 @@
   }
 
   &-input {
+    background-color: $color-well;
     border: 0;
     flex: 1;
     width: 100%;
