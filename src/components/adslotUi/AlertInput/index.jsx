@@ -6,6 +6,7 @@ import './styles.scss';
 export const baseClass = 'alert-input-component';
 
 const AlertInput = ({
+  defaultValue,
   value,
   prefixAddon,
   suffixAddon,
@@ -13,40 +14,41 @@ const AlertInput = ({
   alertMessage,
   popoverTrigger,
   onValueChange,
+  onBlur,
 }) => {
-  const selectAll = (event) => event.target.select();
-  const baseComponent = (
-    <div className={`${baseClass} ${alertStatus}`}>
-      {prefixAddon ? <span className={`${baseClass}-addon`}>{prefixAddon}</span> : null}
-      <input
-        className={`${baseClass}-input`}
-        type="text"
-        value={value}
-        onClick={selectAll}
-        onChange={onValueChange}
-      />
-      {suffixAddon ? <span className={`${baseClass}-addon`}>{suffixAddon}</span> : null}
-    </div>
-  );
+  let popover = <div />;
 
   if (alertMessage) {
-    const popover = (
+    popover = (
       <Popover className={`${baseClass}-popover ${alertStatus}`} id="alert-input-popover">
         <strong>{alertMessage}</strong>
       </Popover>
     );
-
-    return (
-      <OverlayTrigger trigger={popoverTrigger} placement="bottom" overlay={popover}>
-        {baseComponent}
-      </OverlayTrigger>
-    );
   }
 
-  return baseComponent;
+  const selectAll = (event) => event.target.select();
+
+  return (
+    <OverlayTrigger trigger={popoverTrigger} placement="bottom" overlay={popover}>
+      <div className={`${baseClass} ${alertStatus}`}>
+        {prefixAddon ? <span className={`${baseClass}-addon`}>{prefixAddon}</span> : null}
+        <input
+          className={`${baseClass}-input`}
+          type="text"
+          defaultValue={defaultValue}
+          value={value}
+          onClick={selectAll}
+          onChange={onValueChange}
+          onBlur={onBlur}
+        />
+        {suffixAddon ? <span className={`${baseClass}-addon`}>{suffixAddon}</span> : null}
+      </div>
+    </OverlayTrigger>
+  );
 };
 
 AlertInput.propTypes = {
+  defaultValue: PropTypes.string,
   value: PropTypes.string,
   prefixAddon: PropTypes.node,
   suffixAddon: PropTypes.node,
@@ -54,6 +56,7 @@ AlertInput.propTypes = {
   alertMessage: PropTypes.string,
   popoverTrigger: OverlayTrigger.propTypes.trigger,
   onValueChange: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 AlertInput.defaultProps = {
