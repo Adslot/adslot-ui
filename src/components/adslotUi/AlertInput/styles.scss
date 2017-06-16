@@ -9,6 +9,11 @@
   border-radius: $border-radius;
   display: flex;
   padding: 4px;
+  position: relative;
+
+  &.is-focused {
+    border-color: $color-border;
+  }
 
   &.success {
     border-color: $color-positive;
