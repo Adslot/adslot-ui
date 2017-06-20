@@ -3,10 +3,10 @@ import React, { PropTypes } from 'react';
 import './styles.scss';
 
 const baseClass = 'avatar-component';
-const Avatar = ({ color, givenName, image, surname }) => (
+const Avatar = ({ color, givenName, tooltip, image, surname }) => (
   <div
     className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
-    title={`${givenName || ''} ${surname || ''}`}
+    title={tooltip !== undefined ? tooltip : `${givenName || ''} ${surname || ''}`}
   >
 
     {image ? <img className={`${baseClass}-image`} src={image} role="presentation" /> : null}
@@ -23,6 +23,7 @@ Avatar.displayName = 'AlexandriaAvatarComponent';
 Avatar.propTypes = {
   color: PropTypes.string,
   givenName: PropTypes.string,
+  tooltip: PropTypes.string,
   image: PropTypes.string,
   surname: PropTypes.string,
 };
