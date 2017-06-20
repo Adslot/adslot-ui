@@ -1,51 +1,111 @@
-import React, { PropTypes } from 'react';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
+import Overlay from 'react-bootstrap/lib/Overlay';
 import Popover from 'react-bootstrap/lib/Popover';
 import './styles.scss';
 
 export const baseClass = 'alert-input-component';
 
-const AlertInput = ({
-  defaultValue,
-  value,
-  prefixAddon,
-  suffixAddon,
-  alertStatus = '',
-  alertMessage,
-  popoverTrigger,
-  onValueChange,
-  onBlur,
-}) => {
-  let popover = <div />;
-
-  if (alertMessage) {
-    popover = (
-      <Popover className={`${baseClass}-popover ${alertStatus}`} id="alert-input-popover">
-        <strong>{alertMessage}</strong>
-      </Popover>
-    );
+export default class AlertInput extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFocused: false,
+      isPopoverVisible: false,
+    };
+    this.getRef = this.getRef.bind(this);
+    this.setRef = this.setRef.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleInputFocus = this.handleInputFocus.bind(this);
+    this.handleInputBlur = this.handleInputBlur.bind(this);
   }
 
-  const selectAll = (event) => event.target.select();
+  getRef() {
+    return this.root;
+  }
 
-  return (
-    <OverlayTrigger trigger={popoverTrigger} placement="bottom" overlay={popover}>
-      <div className={`${baseClass} ${alertStatus}`}>
+  setRef(root) {
+    this.root = root;
+  }
+
+  handleMouseEnter() {
+    if (this.props.alertMessage) {
+      this.setState({ isPopoverVisible: true });
+    }
+  }
+
+  handleMouseLeave() {
+    this.setState({ isPopoverVisible: false });
+  }
+
+  handleInputFocus(event) {
+    event.target.select();
+    this.setState({
+      isFocused: true,
+      isPopoverVisible: Boolean(this.props.alertMessage),
+    });
+  }
+
+  handleInputBlur(event) {
+    this.setState({
+      isFocused: false,
+      isPopoverVisible: false,
+    });
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  }
+
+  render() {
+    const {
+      defaultValue,
+      value,
+      prefixAddon,
+      suffixAddon,
+      alertStatus = '',
+      alertMessage,
+      onValueChange,
+    } = this.props;
+
+    const className = classnames({
+      [baseClass]: true,
+      [alertStatus]: true,
+      'is-focused': this.state.isFocused,
+    });
+
+    return (
+      <div
+        className={className}
+        ref={this.setRef}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
         {prefixAddon ? <span className={`${baseClass}-addon`}>{prefixAddon}</span> : null}
         <input
           className={`${baseClass}-input`}
           type="text"
           defaultValue={defaultValue}
           value={value}
-          onClick={selectAll}
           onChange={onValueChange}
-          onBlur={onBlur}
+          onFocus={this.handleInputFocus}
+          onBlur={this.handleInputBlur}
         />
         {suffixAddon ? <span className={`${baseClass}-addon`}>{suffixAddon}</span> : null}
+        <Overlay
+          show={this.state.isPopoverVisible}
+          target={this.getRef}
+          placement="bottom"
+        >
+          <Popover className={`${baseClass}-popover ${alertStatus}`} id="alert-input-popover">
+            <strong>{alertMessage}</strong>
+          </Popover>
+        </Overlay>
       </div>
-    </OverlayTrigger>
-  );
-};
+    );
+  }
+}
 
 AlertInput.propTypes = {
   defaultValue: PropTypes.string,
@@ -54,13 +114,6 @@ AlertInput.propTypes = {
   suffixAddon: PropTypes.node,
   alertStatus: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
   alertMessage: PropTypes.string,
-  popoverTrigger: OverlayTrigger.propTypes.trigger,
   onValueChange: PropTypes.func,
   onBlur: PropTypes.func,
 };
-
-AlertInput.defaultProps = {
-  popoverTrigger: ['hover', 'focus'],
-};
-
-export default AlertInput;
