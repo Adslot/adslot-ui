@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import GridCell from 'components/alexandria/Grid/Cell';
 import GridRow from 'components/alexandria/Grid/Row';
+import TextEllipsis from 'components/adslotUi/TextEllipsisComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 import TreePickerNodeExpander from './TreePickerNodeExpanderComponent';
 
@@ -87,11 +88,13 @@ class TreePickerNodeComponent extends React.Component {
             </GridCell>
           : null}
           <GridCell stretch {...labelCellProps} dts="label">
-            <span>{nodeRenderer(node)}</span>
-            {!_.isEmpty(pathElement) ?
-              <span className={`${baseClass}-metadata`}> ({pathPrefix(node)}{pathElement})</span> :
-              null
-            }
+            <TextEllipsis>
+              <span>{nodeRenderer(node)}</span>
+              {!_.isEmpty(pathElement) ?
+                <span className={`${baseClass}-metadata`}> ({pathPrefix(node)}{pathElement})</span> :
+                null
+              }
+            </TextEllipsis>
           </GridCell>
 
           {isExpandable ?

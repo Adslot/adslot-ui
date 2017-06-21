@@ -7,6 +7,7 @@ import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeCompone
 import TreePickerNodeExpander from 'components/adslotUi/TreePicker/TreePickerNodeExpanderComponent';
 import GridRow from 'components/alexandria/Grid/Row';
 import GridCell from 'components/alexandria/Grid/Cell';
+import TextEllipsis from 'components/adslotUi/TextEllipsisComponent';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 
 describe('TreePickerNodeComponent', () => {
@@ -24,10 +25,9 @@ describe('TreePickerNodeComponent', () => {
     expect(component.find(Button)).to.have.length(1);
 
     const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.children()).to.have.length(2);
-
-    const labelElement = labelWrapperCellElement.children().first();
-    expect(labelElement.text()).to.equal('Canberra');
+    expect(labelWrapperCellElement.find(TextEllipsis)).to.have.length(1);
+    const ellipsisElement = labelWrapperCellElement.find(TextEllipsis);
+    expect(ellipsisElement.children().first().text()).to.equal('Canberra');
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(1);
@@ -77,7 +77,7 @@ describe('TreePickerNodeComponent', () => {
 
     const rowElement = component.find(GridRow);
     const cellElements = rowElement.find(GridCell);
-    const labelWrapperCellElement = cellElements.first();
+    const labelWrapperCellElement = cellElements.first().find(TextEllipsis);
     const labelElement = labelWrapperCellElement.children().first();
     expect(labelElement.text()).to.equal('Test value: Australian Capital Territory');
   });
@@ -237,8 +237,8 @@ describe('TreePickerNodeComponent', () => {
     const labelWrapperCellElement = cellElements.first();
     expect(labelWrapperCellElement.children()).to.have.length(1);
 
-    const labelElement = labelWrapperCellElement.children().first();
-    expect(labelElement.text()).to.equal('Cameroon');
+    const ellipsisElement = labelWrapperCellElement.children().first().find(TextEllipsis);
+    expect(ellipsisElement.children().first().text()).to.equal('Cameroon');
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(0);
@@ -260,10 +260,10 @@ describe('TreePickerNodeComponent', () => {
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
-    const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.children()).to.have.length(2);
+    const ellipsisElement = cellElements.first().find(TextEllipsis);
+    expect(ellipsisElement.children()).to.have.length(2);
 
-    const labelElement = labelWrapperCellElement.children().first();
+    const labelElement = ellipsisElement.children().first();
     expect(labelElement.text()).to.equal('Toyota');
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
