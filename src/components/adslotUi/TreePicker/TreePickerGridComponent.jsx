@@ -32,13 +32,11 @@ const TreePickerGridComponent = ({
     <Grid>
       {_.map(nodesByGroupLabel, (groupedNodes, label) =>
         <div className="treepickergrid-component-group" key={_.kebabCase(label)}>
-          {_.size(nodesByGroupLabel) > 1 ?
-            <div className="treepickergrid-component-group-label">
-              <GridRow dts={`group-label-${_.kebabCase(label)}`}>
-                {label}
-              </GridRow>
-            </div> :
-            null}
+          <div className="treepickergrid-component-group-label">
+            <GridRow dts={`group-label-${_.kebabCase(label)}`}>
+              {label}
+            </GridRow>
+          </div>
           {_.map(groupedNodes, (node) =>
             <TreePickerNodeFast
               key={node.id}
