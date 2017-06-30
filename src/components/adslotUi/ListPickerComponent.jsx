@@ -12,6 +12,11 @@ import SvgSymbol from 'components/alexandria/SvgSymbol';
 
 require('styles/adslotUi/ListPicker.scss');
 
+const isSubset = (array, subArray) =>
+  _(subArray)
+    .difference(array)
+    .isEmpty();
+
 class ListPickerComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -135,11 +140,15 @@ class ListPickerComponent extends React.Component {
         <Modal.Footer>
           {_.isEmpty(props.linkButtons) ? null :
             <div className="pull-left">
-              {_.map(props.linkButtons, (linkButton) =>
-                <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
-                  {linkButton.label}
-                </Button>
-              )}
+              {_.map(props.linkButtons, (linkButton) => (
+                _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ?
+                  (
+                    <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
+                      {linkButton.label}
+                    </Button>
+                  ) :
+                  linkButton
+              ))}
             </div>
           }
           <Button className="btn-inverse" onClick={this.cancelAction} data-test-selector="listpicker-cancel-button">
@@ -162,6 +171,14 @@ ListPickerComponent.displayName = 'AdslotUiListPickerComponent';
 const itemProps = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });
+
+const linkButtonsProps = PropTypes.arrayOf(PropTypes.oneOfType([
+  PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired,
+  }),
+  PropTypes.node,
+]));
 
 ListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool.isRequired,
@@ -188,12 +205,7 @@ ListPickerComponent.propTypes = {
   itemType: PropTypes.string.isRequired,
   labelFormatter: PropTypes.func,
   addonFormatter: PropTypes.func,
-  linkButtons: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
-    })
-  ),
+  linkButtons: linkButtonsProps,
   modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string,
   modalClassName: PropTypes.string,
@@ -209,6 +221,7 @@ ListPickerComponent.defaultProps = {
   initialSelection: [],
   items: [],
   itemType: 'item',
+  linkButtons: [],
   modalApply: () => { throw new Error('AdslotUi ListPicker needs a modalApply handler'); },
 
   modalClassName: 'listpicker-component',
