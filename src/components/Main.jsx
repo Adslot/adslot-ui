@@ -110,6 +110,7 @@ class AppComponent extends React.Component {
       'toggleSimpleModal',
       'toggleSplitListPickerModal',
       'toggleUserListPickerModal',
+      'toggleCustomFooterListPicker',
     ]) { this[methodName] = this[methodName].bind(this); }
 
     this.state = {
@@ -308,6 +309,10 @@ class AppComponent extends React.Component {
 
   toggleUserListPickerModal() {
     this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
+  }
+
+  toggleCustomFooterListPicker() {
+    this.setState({ showCustomFooterListPickerModal: !this.state.showCustomFooterListPickerModal });
   }
 
   render() {
@@ -679,6 +684,34 @@ class AppComponent extends React.Component {
           modalFootnote="You can select one user."
           modalTitle="Select User"
           show={this.state.showSplitListPickerModal}
+        />
+
+        <h2>ListPicker with custom footer elements</h2>
+
+        <Button
+          bsStyle="primary"
+          data-test-selector="button-custom-footer-list-picker"
+          onClick={this.toggleCustomFooterListPicker}
+        >
+          Open ListPicker with custom footer
+        </Button>
+
+        <ListPicker
+          allowMultiSelection={false}
+          initialSelection={listPickerInitialSelection}
+          itemHeaders={listPickerItemHeaders}
+          items={listPickerItems}
+          itemType="list"
+          labelFormatter={labelFormatter}
+          addonFormatter={addonFormatter}
+          modalClose={this.toggleCustomFooterListPicker}
+          modalDescription="Please select the user that you want."
+          modalFootnote="You can select one user."
+          modalTitle="Select User"
+          linkButtons={[{ label: 'Create User', href: '#' }, (<Checkbox key="checkbox" label="this is a checkbox" />)]}
+          show={this.state.showCustomFooterListPickerModal}
+          userHeaders={listPickerItemHeaders}
+          users={listPickerItems}
         />
 
         <h2>UserListPicker</h2>

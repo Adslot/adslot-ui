@@ -134,8 +134,15 @@ describe('MainComponent', () => {
   it('should toggle `showSplitListPickerModal` on `Open Split ListPicker` click', () => {
     const splitListPickerButtonElement = MainComponent.find('[data-test-selector="button-split-list-picker"]');
     splitListPickerButtonElement.simulate('click');
-    const splitListPickerElement = MainComponent.find(ListPicker).last();
+    const splitListPickerElement = MainComponent.find(ListPicker).at(1);
     expect(splitListPickerElement.prop('show')).to.equal(true);
+  });
+
+  it('should toggle `showCustomFooterListPickerModal` on `Open ListPicker with custom footer` click', () => {
+    const customFooterButtonElement = MainComponent.find('[data-test-selector="button-custom-footer-list-picker"]');
+    customFooterButtonElement.simulate('click');
+    const customFooterListPickerElement = MainComponent.find(ListPicker).at(2);
+    expect(customFooterListPickerElement.prop('show')).to.equal(true);
   });
 
   it('should toggle `showUserListPickerModal` on `Open UserListPicker` click', () => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import Radio from 'react-bootstrap/lib/Radio';
 import ListPickerComponent from 'components/adslotUi/ListPickerComponent';
 import ListPickerPureComponent from 'components/adslotUi/ListPickerPureComponent';
 import SplitPaneComponent from 'components/adslotUi/SplitPaneComponent';
@@ -275,5 +276,48 @@ describe('ListPickerComponent', () => {
     const modalFooterElement = component.find(Modal.Footer);
     const cancelButtonElement = modalFooterElement.find(Button).first();
     expect(cancelButtonElement.prop('onClick')).to.throw('AdslotUi ListPicker needs a modalClose handler');
+  });
+
+  describe('linkButtons', () => {
+    const initialSelection = getInitialSelection();
+    let props = null;
+
+    beforeEach(() => {
+      props = {
+        emptyMessage: 'No users.',
+        emptySvgSymbol: { href: '/some.svg#id' },
+        initialSelection,
+        items: users,
+        itemHeaders: userHeaders,
+        itemType: 'user',
+        labelFormatter,
+        linkButtons: [{ label: 'Create User', href: '#' }],
+        modalDescription: 'Select users.',
+        modalFootnote: 'You can select multiple users.',
+        modalTitle: 'Select Users',
+      };
+    });
+
+    it('should render as node', () => {
+      props.linkButtons = [(<Radio />)];
+      const component = createAndMountComponent(<ListPickerComponent {...props} />);
+      const modalFooterElement = component.find(Modal.Footer);
+      const linkButtonContainer = modalFooterElement.find('.pull-left').first();
+      expect(linkButtonContainer.find(Radio)).to.have.length(1);
+    });
+
+    it('should render as mixed nodes and buttons', () => {
+      props.linkButtons = [{ label: 'Create User', href: '#' }, (<Radio />)];
+      const component = createAndMountComponent(<ListPickerComponent {...props} />);
+      const modalFooterElement = component.find(Modal.Footer);
+      const linkButtonContainer = modalFooterElement.find('.pull-left').first();
+      expect(linkButtonContainer.find(Radio)).to.have.length(1);
+      expect(linkButtonContainer.find(Button)).to.have.length(1);
+
+      const buttonElement = linkButtonContainer.find(Button);
+      expect(buttonElement.prop('className')).to.equal('btn-inverse');
+      expect(buttonElement.prop('href')).to.equal('#');
+      expect(buttonElement.prop('children')).to.equal('Create User');
+    });
   });
 });
