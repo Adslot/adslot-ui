@@ -62,6 +62,7 @@ import {
 } from '../examples/redux/reducers';
 
 import AlertInputExample from './adslotUi/AlertInput/example';
+import TextareaExample from './adslotUi/Textarea/example';
 
 require('styles/App.scss');
 
@@ -465,6 +466,8 @@ class AppComponent extends React.Component {
         </div>
 
         <AlertInputExample />
+
+        <TextareaExample />
 
         <FilePickerDemo />
 
