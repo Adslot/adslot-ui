@@ -641,6 +641,7 @@ class AppComponent extends React.Component {
           includeNode={_.noop}
           removeNode={_.noop}
           nodeRenderer={nodeRenderer}
+          displayGroupHeader
         />
 
         <h2>ListPicker</h2>

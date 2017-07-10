@@ -26,17 +26,21 @@ const TreePickerGridComponent = ({
   selected,
   valueFormatter,
   emptyText,
+  displayGroupHeader,
 }) => {
   const nodesByGroupLabel = _.groupBy(nodes, groupFormatter);
   return (
     <Grid>
       {_.map(nodesByGroupLabel, (groupedNodes, label) =>
         <div className="treepickergrid-component-group" key={_.kebabCase(label)}>
-          <div className="treepickergrid-component-group-label">
-            <GridRow dts={`group-label-${_.kebabCase(label)}`}>
-              {label}
-            </GridRow>
-          </div>
+          {(displayGroupHeader) ?
+            <div className="treepickergrid-component-group-label">
+              <GridRow dts={`group-label-${_.kebabCase(label)}`}>
+                {label}
+              </GridRow>
+            </div> :
+            null
+          }
           {_.map(groupedNodes, (node) =>
             <TreePickerNodeFast
               key={node.id}
@@ -83,12 +87,14 @@ TreePickerGridComponent.propTypes = {
   removeNode: PropTypes.func,
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func,
+  displayGroupHeader: PropTypes.bool,
 };
 
 TreePickerGridComponent.defaultProps = {
   disabled: false,
   hideIcon: false,
   groupFormatter: () => 'Default Group',
+  displayGroupHeader: true,
 };
 
 export default TreePickerGridComponent;
