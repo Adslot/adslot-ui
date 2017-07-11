@@ -16,6 +16,7 @@ describe('ListPickerPureComponent', () => {
     labelFormatter,
     teamMember4,
     userHeaders,
+    nodeUserHeaders,
     users,
     usersWithUuid,
   } = ListPickerMocks;
@@ -127,6 +128,26 @@ describe('ListPickerPureComponent', () => {
       const gridRowCellAddonElement = gridRowCellRightElement.find(Empty);
       expect(gridRowCellAddonElement.length).to.equal(1);
     });
+  });
+
+  it('should allow user to render node type label', () => {
+    const props = {
+      itemType: 'group-user',
+      items: users,
+      itemHeaders: nodeUserHeaders,
+      labelFormatter,
+      selectedItems,
+    };
+    const component = shallow(<ListPickerPureComponent {...props} />);
+    expect(component.prop('className')).to.equal('listpickerpure-component');
+    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-group-user');
+
+    const headerGridElement = component.find(Grid).first();
+    const gridHeaderElement = headerGridElement.find(GridRow);
+    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
+    expect(gridHeaderCellElements.first().find('.left-sub-label').text()).to.equal('Group');
+    expect(gridHeaderCellElements.first().find('.right-sub-label').text()).to.equal('Team');
+    expect(gridHeaderCellElements.last().children().text()).to.equal('Member');
   });
 
   it('should render radio buttons with `allowMultiSelection` as false', () => {

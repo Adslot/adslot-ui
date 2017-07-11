@@ -98,7 +98,7 @@ ListPickerPureComponent.propTypes = {
   labelFormatter: PropTypes.func.isRequired,
   addonFormatter: PropTypes.func,
   itemHeaders: PropTypes.shape({
-    label: PropTypes.string,
+    label: PropTypes.node,
     toggle: PropTypes.string,
   }),
   items: PropTypes.arrayOf(itemProps).isRequired,
