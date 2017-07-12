@@ -98,7 +98,10 @@ describe('AlertInput', () => {
   describe('render()', () => {
     it('should render with input props', () => {
       const props = {
-        value: 'lorem',
+        value: 100,
+        type: 'number',
+        min: 0,
+        placeholder: 'Type a number',
         onValueChange: _.noop,
         onBlur: _.noop,
       };
@@ -110,8 +113,10 @@ describe('AlertInput', () => {
 
       const inputElement = component.childAt(0);
       expect(inputElement.prop('className')).to.equal('alert-input-component-input');
-      expect(inputElement.prop('type')).to.equal('text');
-      expect(inputElement.prop('value')).to.equal('lorem');
+      expect(inputElement.prop('type')).to.equal('number');
+      expect(inputElement.prop('min')).to.equal(0);
+      expect(inputElement.prop('placeholder')).to.equal('Type a number');
+      expect(inputElement.prop('value')).to.equal(100);
       expect(inputElement.prop('onChange')).to.be.a('function');
       expect(inputElement.prop('onFocus')).to.be.a('function');
       expect(inputElement.prop('onBlur')).to.be.a('function');
@@ -120,6 +125,10 @@ describe('AlertInput', () => {
       expect(overlayElement.prop('show')).to.equal(false);
       expect(overlayElement.prop('target')).to.be.a('function');
       expect(overlayElement.prop('placement')).to.equal('bottom');
+    });
+
+    it('should also render with default props', () => {
+      expect(shallow(<AlertInput />).find('input').prop('type')).to.equal('text');
     });
 
     it('should render with addons', () => {

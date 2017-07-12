@@ -62,6 +62,9 @@ export default class AlertInput extends Component {
     const {
       defaultValue,
       value,
+      type,
+      min,
+      placeholder,
       prefixAddon,
       suffixAddon,
       alertStatus = '',
@@ -85,9 +88,11 @@ export default class AlertInput extends Component {
         {prefixAddon ? <span className={`${baseClass}-addon`}>{prefixAddon}</span> : null}
         <input
           className={`${baseClass}-input`}
-          type="text"
+          type={type}
           defaultValue={defaultValue}
           value={value}
+          min={min}
+          placeholder={placeholder}
           onChange={onValueChange}
           onFocus={this.handleInputFocus}
           onBlur={this.handleInputBlur}
@@ -110,6 +115,9 @@ export default class AlertInput extends Component {
 AlertInput.propTypes = {
   defaultValue: PropTypes.string,
   value: PropTypes.string,
+  type: PropTypes.oneOf(['text', 'number']),
+  min: PropTypes.number,
+  placeholder: PropTypes.string,
   prefixAddon: PropTypes.node,
   suffixAddon: PropTypes.node,
   alertStatus: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
@@ -117,3 +125,8 @@ AlertInput.propTypes = {
   onValueChange: PropTypes.func,
   onBlur: PropTypes.func,
 };
+
+AlertInput.defaultProps = {
+  type: 'text',
+};
+
