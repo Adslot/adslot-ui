@@ -1,0 +1,130 @@
+@import '~styles/color';
+
+$tab-title-height: 42px;
+$chevron-width: 10px;
+$chevron-border-width: 1px;
+$underline-width: 2px;
+$header-line-height: 18px;
+
+$outer-border: $tab-title-height / 2;
+$inner-border: $outer-border - $chevron-border-width;
+$active-tab-padding: ($tab-title-height - $header-line-height) / 2;
+
+$color-tab-default: $color-gray-white;
+$color-tab-hover: $color-gray-lighter;
+$color-tab-active: $color-white;
+
+$color-accent-default: $color-orange;
+$color-accent-success: $color-positive;
+$color-accent-warning: $color-warning;
+$color-accent-warning-hover: $color-warning-selected;
+
+
+.chevron-tabs-component {
+  .chevron-tab-component {
+    background-color: $color-tab-default;
+    height: $tab-title-height;
+    line-height: $tab-title-height;
+    position: relative;
+
+    a {
+      line-height: $header-line-height;
+      padding-top: $active-tab-padding;
+    }
+
+    &:hover {
+      background-color: $color-tab-hover;
+    }
+
+    &.active {
+      background-color: $color-tab-active;
+
+      &:hover {
+        background-color: $color-tab-active;
+      }
+    }
+
+    &.disabled {
+      background-color: $color-tab-default;
+    }
+
+    &:not(:last-child) {
+      &:hover::after { // sass-lint:disable-line force-pseudo-nesting
+        border-left: $chevron-width solid $color-tab-hover;
+      }
+
+      // this CSS forms the triangles
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 100%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        z-index: 2;
+      }
+
+      // this border color controls the color of the triangle (what looks like the fill of the triangle)
+      &::after {
+        top: $chevron-border-width;
+        border-top: $inner-border solid transparent;
+        border-right: transparent;
+        border-bottom: $inner-border solid transparent;
+        border-left: $chevron-width solid $color-tab-default;
+      }
+
+      // this border color controls the outside, thin border
+      &::before {
+        top: 0;
+        border-top: $outer-border solid transparent;
+        border-right: transparent;
+        border-bottom: $outer-border solid transparent;
+        border-left: $chevron-width solid $color-tab-hover;
+      }
+
+      &.active {
+        &::after {
+          border-left: $chevron-width solid $color-tab-active;
+        }
+      }
+
+      &.disabled {
+        &::after {
+          border-left: $chevron-width solid $color-tab-default;
+        }
+      }
+    }
+
+    &.warning,
+    &.success {
+      border-bottom: $underline-width solid;
+
+      &.active,
+      &:hover {
+        border-bottom: $underline-width solid;
+      }
+    }
+
+    &.warning,
+    &.warning:hover { // sass-lint:disable-line force-pseudo-nesting
+      border-bottom-color: $color-accent-warning-hover;
+
+      &.active,
+      &.disabled {
+        border-bottom-color: $color-accent-warning;
+      }
+    }
+
+    &.success,
+    &.success:hover { // sass-lint:disable-line force-pseudo-nesting
+      border-bottom-color: $color-accent-success;
+
+      &.active,
+      &.disabled {
+        border-bottom-color: $color-accent-success;
+      }
+    }
+  }
+}

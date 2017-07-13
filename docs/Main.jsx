@@ -58,6 +58,7 @@ import DatePicker from 'react-datepicker/dist/react-datepicker';
 import AlertInputExample from 'adslot-ui/AlertInput/example';
 import TextareaExample from 'adslot-ui/Textarea/example';
 import SearchExample from 'adslot-ui/Search/example';
+import AdslotTabsExample from 'adslot-ui/AdslotTabs/example';
 
 import {
   ExampleForm,
@@ -509,6 +510,8 @@ class AppComponent extends React.Component {
             </Tab>
           </Tabs>
         </div>
+
+        <AdslotTabsExample />
 
         <PageTitle title="Modal"><small>Adslot UI</small></PageTitle>
         <Button data-test-selector="button-modal" className="btn-inverse" onClick={this.toggleSimpleModal}>
