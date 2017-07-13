@@ -12,7 +12,6 @@ import Pagination from 'react-bootstrap/lib/Pagination';
 import Popover from 'react-bootstrap/lib/Popover';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Tab from 'react-bootstrap/lib/Tab';
-import Tabs from 'react-bootstrap/lib/Tabs';
 
 // Adslot UI
 import Accordion from 'components/adslotUi/AccordionComponent';
@@ -37,6 +36,7 @@ import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeCompone
 import TreePickerSimplePure from 'components/adslotUi/TreePicker/TreePickerSimplePureComponent';
 import UserListPicker from 'components/adslotUi/UserListPickerComponent';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
+import Tabs from 'components/adslotUi/AdslotTabs';
 
 // Alexandria
 import Alert from 'components/alexandria/Alert';

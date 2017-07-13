@@ -40,8 +40,6 @@ import {
   Statistic,
   SvgSymbol,
   SvgSymbolCircle,
-  Tab,
-  Tabs,
   Tag,
   TileGrid,
   Totals,
@@ -63,6 +61,7 @@ import {
 
 import AlertInputExample from './adslotUi/AlertInput/example';
 import TextareaExample from './adslotUi/Textarea/example';
+import AdslotTabsExample from './adslotUi/AdslotTabs/example';
 
 require('styles/App.scss');
 
@@ -476,25 +475,7 @@ class AppComponent extends React.Component {
 
         <FilePickerDemo />
 
-        <h2>Tabs</h2>
-        <div className="btn-panel">
-          <Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
-            <Tab eventKey="Targeting" title="Targeting">Targeting content</Tab>
-            <Tab
-              eventKey="Audience"
-              title={<span className="flexible-wrapper-inline"><SvgSymbol /><FlexibleSpacer />Audience</span>}
-            >
-              Audience content
-            </Tab>
-            <Tab
-              eventKey="Billing"
-              title={<span className="flexible-wrapper-inline">+<FlexibleSpacer />Billing</span>}
-              disabled
-            >
-              Billing content
-            </Tab>
-          </Tabs>
-        </div>
+        <AdslotTabsExample />
 
         <h2>Modal</h2>
         <Button data-test-selector="button-modal" className="btn-inverse" onClick={this.toggleSimpleModal}>
