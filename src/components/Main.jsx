@@ -54,6 +54,7 @@ import {
   ExampleSelect,
   FilePickerDemo,
   TextEllipsisDemo,
+  TreePickerSimplePureDemo,
 } from '../examples/exampleEntry';
 
 import {
@@ -643,6 +644,8 @@ class AppComponent extends React.Component {
           nodeRenderer={nodeRenderer}
           displayGroupHeader
         />
+
+        <TreePickerSimplePureDemo />
 
         <h2>ListPicker</h2>
 

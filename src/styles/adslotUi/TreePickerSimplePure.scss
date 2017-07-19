@@ -12,7 +12,6 @@
   .treepickernav-component {
     background-color: $color-background;
     border-top: $border-lighter;
-    min-height: 71px; // Align the rows after this item with the other pane's rows.
   }
 
   .splitpane-component + .splitpane-component {
