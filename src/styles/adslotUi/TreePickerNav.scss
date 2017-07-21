@@ -3,7 +3,6 @@
 .treepickernav-component {
   border-left: $border-lighter;
   border-right: $border-lighter;
-  min-height: 66px; // Fix Chrome rendering bug when the node list is longer than one page.
   padding: 10px;
 
   > div + div {
