@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import GridCell from 'components/alexandria/Grid/Cell';
 import GridRow from 'components/alexandria/Grid/Row';

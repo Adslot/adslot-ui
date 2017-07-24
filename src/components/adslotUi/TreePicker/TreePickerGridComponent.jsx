@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import fastStatelessWrapper from 'components/adslotUi/fastStatelessWrapper';
 import TreePickerNode from 'components/adslotUi/TreePicker/TreePickerNodeComponent';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';

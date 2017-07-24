@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import SplitPane from 'components/adslotUi/SplitPaneComponent';
 import TreePickerGrid from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import TreePickerNav from 'components/adslotUi/TreePicker/TreePickerNavComponent';

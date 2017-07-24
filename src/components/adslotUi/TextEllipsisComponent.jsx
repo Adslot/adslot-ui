@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 require('styles/adslotUi/TextEllipsis.scss');

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import GridCell from 'components/alexandria/Grid/Cell';
 import Spinner from 'components/alexandria/Spinner';
 
