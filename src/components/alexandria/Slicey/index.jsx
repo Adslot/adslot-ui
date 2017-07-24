@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Arc from 'components/alexandria/Slicey/Arc';
 import Donut from 'components/alexandria/Slicey/Donut';
 import Marker from 'components/alexandria/Slicey/Marker';

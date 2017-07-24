@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
 import idPropType from '../../helpers/propTypes/idPropType';
 

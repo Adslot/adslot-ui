@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import Empty from 'components/alexandria/Empty';

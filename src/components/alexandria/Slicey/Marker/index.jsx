@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { ROUND, QUARTER, getPointX, getPointY } from 'components/alexandria/Slicey/dataProcessor';
 import './styles.scss';
 

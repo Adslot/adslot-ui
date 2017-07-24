@@ -1,8 +1,9 @@
 import _ from 'lodash';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from 'components/alexandria/Grid';
 import GridCell from 'components/alexandria/Grid/Cell';
 import GridRow from 'components/alexandria/Grid/Row';
-import React, { PropTypes } from 'react';
 
 const Totals = ({ toSum, valueFormatter }) => (
   <Grid>

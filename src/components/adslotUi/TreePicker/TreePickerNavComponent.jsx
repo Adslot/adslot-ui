@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Breadcrumb from 'components/alexandria/Breadcrumb';
 import Search from 'components/alexandria/Search';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
