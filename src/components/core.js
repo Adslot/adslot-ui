@@ -6,6 +6,8 @@ import Select from 'react-select';
 
 // React Bootstrap
 import Button from 'react-bootstrap/lib/Button';
+import Dropdown from 'react-bootstrap/lib/Dropdown';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Pagination from 'react-bootstrap/lib/Pagination';
@@ -77,6 +79,7 @@ export {
   Carousel,
   Checkbox,
   ConfirmModal,
+  Dropdown,
   Empty,
   fastStatelessWrapper,
   FilePicker,
@@ -88,6 +91,7 @@ export {
   HelpIconPopover,
   ListPicker,
   ListPickerPure,
+  MenuItem,
   Modal,
   OverlayTrigger,
   PagedGrid,
