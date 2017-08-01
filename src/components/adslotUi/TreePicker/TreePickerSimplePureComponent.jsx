@@ -46,7 +46,7 @@ const TreePickerSimplePureComponent = ({
   const emptySymbol = initialStateSymbol && _.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
 
   return (
-    <div className="treepickersimplepure-component">
+    <div className={`treepickersimplepure-component ${disabled ? 'disabled' : ''}`}>
       <SplitPane
         additionalClassNames={additionalClassNames}
         dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}

@@ -78,6 +78,7 @@ class TreePickerSimplePureDemo extends Component {
       displayGroupHeader: false,
       breadcrumbNodes: [],
       dataSet,
+      disabled: false,
     };
 
     for (const propsFunction of [
@@ -87,6 +88,7 @@ class TreePickerSimplePureDemo extends Component {
       'deselectNode',
       'expandNode',
       'breadcrumbOnClick',
+      'toggleDisabled',
     ]) { this[propsFunction] = this[propsFunction].bind(this); }
 
     this.getSubtree = this.getSubtree.bind(this);
@@ -168,6 +170,12 @@ class TreePickerSimplePureDemo extends Component {
     });
   }
 
+  toggleDisabled() {
+    this.setState({
+      disabled: !this.state.disabled,
+    });
+  }
+
   render() {
     const treePickerProps = {
       groupFormatter,
@@ -183,6 +191,7 @@ class TreePickerSimplePureDemo extends Component {
       removeNode: this.deselectNode,
       expandNode: this.expandNode,
       breadcrumbOnClick: this.breadcrumbOnClick,
+      disabled: this.state.disabled,
     };
 
     return (
@@ -192,6 +201,9 @@ class TreePickerSimplePureDemo extends Component {
         <div className="row">
           <Checkbox checked={this.state.displayGroupHeader} onChange={this.toggleDisplayGroupHeader}>
             Toggle Group Header
+          </Checkbox>
+          <Checkbox checked={this.state.disabled} onChange={this.toggleDisabled}>
+            Toggle Disabled
           </Checkbox>
         </div>
         <div className="row">

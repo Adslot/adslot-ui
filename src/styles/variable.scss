@@ -6,7 +6,6 @@
 
 $spacing-etalon: 30px;
 $svg-icon-size: 16px;
-$treepicker-height: 500px;
 
 // Bootstrap 3 variables
 
@@ -125,6 +124,10 @@ $pagination-disabled-border: $color-border-lighter;
 $popover-border-color: $color-border-lighter;
 $popover-arrow-width: 5px;
 $popover-arrow-outer-color: $popover-border-color;
+
+// == TreePicker
+$treepicker-height: 500px;
+$treepicker-disabled-opacity: .65;
 
 // == Form states and alerts
 $state-success-text: $color-positive;

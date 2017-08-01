@@ -20,4 +20,9 @@
       text-decoration: underline;
     }
   }
+
+  &.disabled {
+    color: $color-text-disabled;
+    pointer-events: none;
+  }
 }
