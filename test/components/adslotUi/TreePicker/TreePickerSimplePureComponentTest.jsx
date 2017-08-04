@@ -47,7 +47,7 @@ describe('TreePickerSimplePureComponent', () => {
 
   it('should render with props', () => {
     const component = shallow(<TreePickerSimplePure {...props} />);
-    expect(component.prop('className')).to.equal('treepickersimplepure-component');
+    expect(component.prop('className')).to.equal('treepickersimplepure-component ');
 
     expect(component.find(SplitPaneComponent)).to.have.length(2);
     expect(component.children().every(SplitPaneComponent)).to.equal(true);
@@ -117,5 +117,10 @@ describe('TreePickerSimplePureComponent', () => {
 
     const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
     expect(component.find(TreePickerGrid).last().prop('Select...'));
+  });
+
+  it('should have disabled class included when disabled set to true', () => {
+    const component = shallow(<TreePickerSimplePure disabled {...props} />);
+    expect(component.prop('className')).to.equal('treepickersimplepure-component disabled');
   });
 });

@@ -1,11 +1,19 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
+import _ from 'lodash';
+import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import BreadcrumbNode from 'components/alexandria/Breadcrumb/Node';
 import Breadcrumb from '.';
 
 describe('Breadcrumb', () => {
   let nodes;
+  let sandbox = null;
+  const onClick = _.noop;
+
+  before(() => {
+    sandbox = sinon.sandbox.create();
+  });
 
   beforeEach(() => {
     nodes = [
@@ -15,15 +23,19 @@ describe('Breadcrumb', () => {
     ];
   });
 
+  afterEach(() => sandbox.restore());
+
   it('should render empty with the component className when no nodes', () => {
     const component = shallow(<Breadcrumb />);
-    expect(component.prop('className')).to.equal('breadcrumb-component');
+    expect(component.hasClass('breadcrumb-component')).to.equal(true);
+    expect(component.hasClass('disabled')).to.equal(false);
     expect(component.find(BreadcrumbNode)).to.have.length(0);
   });
 
   it('should render nodes', () => {
     const component = shallow(<Breadcrumb nodes={nodes} />);
-    expect(component.prop('className')).to.equal('breadcrumb-component');
+    expect(component.hasClass('breadcrumb-component')).to.equal(true);
+    expect(component.hasClass('disabled')).to.equal(false);
     expect(component.find(BreadcrumbNode)).to.have.length(4);
 
     const allLink = component.children().first();
@@ -45,11 +57,44 @@ describe('Breadcrumb', () => {
       expect(nodeElement.prop('onClick')).to.be.a('function');
     });
   });
+
   it('should error when clicking a node with no onClick handler', () => {
     const component = shallow(<Breadcrumb nodes={nodes} />);
     const allLinkElement = component.children().first();
     expect(() => {
       allLinkElement.simulate('click', 'all');
     }).to.throw('Alexandria Breadcrumb needs an onClick handler to take all');
+  });
+
+  it('should call props.onClick when clicking a node with onClick handler', () => {
+    const props = { onClick, nodes };
+    sandbox.spy(props, 'onClick');
+
+    const component = shallow(<Breadcrumb {...props} />);
+    const allLinkElement = component.children().first();
+    allLinkElement.simulate('click', 'all');
+    expect(props.onClick.called).to.equal(true);
+  });
+
+  describe('disabled', () => {
+    const props = {
+      onClick,
+      nodes,
+      disabled: true,
+    };
+    let component = null;
+
+    beforeEach(() => {
+      sandbox.spy(props, 'onClick');
+      component = shallow(<Breadcrumb {...props} />);
+    });
+
+    it('should have disabled class', () => expect(component.hasClass('disabled')).to.equal(true));
+
+    it('should not call props.onClick when clicked on breadcrumbs node', () => {
+      const allLinkElement = component.children().first();
+      allLinkElement.simulate('click', 'all');
+      expect(props.onClick.called).to.equal(false);
+    });
   });
 });

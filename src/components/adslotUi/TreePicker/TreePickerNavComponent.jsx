@@ -17,7 +17,7 @@ const TreePickerNavComponent = ({
   svgSymbolCancel,
   svgSymbolSearch,
 }) => (
-  <div className="treepickernav-component" data-test-selector="treepicker-nav-search">
+  <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
     <Search
       disabled={disabled}
       onChange={searchOnChange}
@@ -26,7 +26,11 @@ const TreePickerNavComponent = ({
       svgSymbolSearch={svgSymbolSearch}
       value={searchValue}
     />
-    {!disabled ? <Breadcrumb nodes={breadcrumbNodes} onClick={breadcrumbOnClick} /> : null}
+    <Breadcrumb
+      disabled={disabled}
+      nodes={breadcrumbNodes}
+      onClick={breadcrumbOnClick}
+    />
   </div>
 );
 
