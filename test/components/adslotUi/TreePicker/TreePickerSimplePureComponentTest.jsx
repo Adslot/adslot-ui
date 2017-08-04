@@ -46,6 +46,7 @@ describe('TreePickerSimplePureComponent', () => {
     subtree: [qldNode, saNode, actNode, ntNode],
     svgSymbolCancel: svgSymbol,
     svgSymbolSearch: svgSymbol,
+    hideSearchOnRoot: false,
   };
 
   it('should render with props', () => {
@@ -127,5 +128,19 @@ describe('TreePickerSimplePureComponent', () => {
   it('should have disabled class included when disabled set to true', () => {
     const component = shallow(<TreePickerSimplePure disabled {...props} />);
     expect(component.prop('className')).to.equal('treepickersimplepure-component disabled');
+  });
+
+  it('should not render TreePickerNav when hideSearchOnRoot is true and on root level ', () => {
+    const hideSearchOnRootProps = _.assign({}, props, { hideSearchOnRoot: true, breadcrumbNodes: [] });
+    const component = shallow(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+    const navElement = component.find(TreePickerNav);
+    expect(navElement).to.have.length(0);
+  });
+
+  it('should render TreePickerNav when hideSearchOnRoot is true and not on root level', () => {
+    const hideSearchOnRootProps = _.assign({}, props, { hideSearchOnRoot: true });
+    const component = shallow(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+    const navElement = component.find(TreePickerNav);
+    expect(navElement).to.have.length(1);
   });
 });
