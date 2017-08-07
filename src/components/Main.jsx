@@ -391,6 +391,9 @@ class AppComponent extends React.Component {
           <Button className="btn-borderless" disabled>
             Borderless Disabled
           </Button>
+          <Button className="btn-flat">
+            Flat Button
+          </Button>
         </div>
 
         <div className="btn-panel">

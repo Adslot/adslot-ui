@@ -135,6 +135,19 @@
   }
 }
 
+.btn-flat {
+  &:not(:disabled) {
+    @include button-variant($color-text-light, $color-inverse, $color-white);
+    border: 0;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+    }
+  }
+}
+
 .btn-xs,
 .btn-group-xs > .btn {
   font-size: $font-size-tiny;
