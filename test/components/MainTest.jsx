@@ -95,17 +95,17 @@ describe('MainComponent', () => {
       ],
       treePickerPureSubtree: [],
     });
-    treePickerSimplePureElement.prop('searchOnChange')('Sri');
+    treePickerSimplePureElement.prop('onChange')('Sri');
     expect(treePickerSimplePureElement.prop('subtree')).to.have.length(0);
-    treePickerSimplePureElement.prop('searchOnChange')('');
+    treePickerSimplePureElement.prop('onChange')('');
     expect(treePickerSimplePureElement.prop('subtree')).to.have.length(0);
   });
 
   it('should set the correct search values for TreePickerSimplePure without initial state', () => {
     const treePickerSimplePureElement = MainComponent.find(TreePickerSimplePure).last();
     expect(treePickerSimplePureElement.prop('subtree')).to.have.length(1);
-    treePickerSimplePureElement.prop('searchOnChange')('Territory');
-    treePickerSimplePureElement.prop('searchOnChange')('');
+    treePickerSimplePureElement.prop('onChange')('Territory');
+    treePickerSimplePureElement.prop('onChange')('');
     expect(treePickerSimplePureElement.prop('subtree')).to.have.length(1);
   });
 

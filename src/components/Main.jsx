@@ -55,6 +55,7 @@ import {
   FilePickerDemo,
   TextEllipsisDemo,
   TreePickerSimplePureDemo,
+  TreePickerDebounceDemo,
 } from '../examples/exampleEntry';
 
 import {
@@ -625,7 +626,7 @@ class AppComponent extends React.Component {
           emptySelectedListText={<div><b>Choose items of interest</b></div>}
           initialStateNode={<div><b>Start by searching for items</b></div>}
           searchValue={this.state.pickerSearchValue}
-          searchOnChange={this.setPickerSearchValue}
+          onChange={this.setPickerSearchValue}
           searchOnClear={this.pickerSearchOnClear}
           additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
         />
@@ -640,7 +641,7 @@ class AppComponent extends React.Component {
           breadcrumbOnClick={this.pickerBreadcrumbOnClick}
           subtree={this.state.simpleSubtree}
           searchValue={this.state.purePickerSearchValue}
-          searchOnChange={this.setPurePickerSearchValue}
+          onChange={this.setPurePickerSearchValue}
           expandNode={this.expandChildren}
           includeNode={_.noop}
           removeNode={_.noop}
@@ -649,6 +650,8 @@ class AppComponent extends React.Component {
         />
 
         <TreePickerSimplePureDemo />
+
+        <TreePickerDebounceDemo />
 
         <h2>ListPicker</h2>
 
