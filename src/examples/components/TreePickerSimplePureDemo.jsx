@@ -79,6 +79,8 @@ class TreePickerSimplePureDemo extends Component {
       breadcrumbNodes: [],
       dataSet,
       disabled: false,
+      searchOnEnterKey: false,
+      debounceInterval: 0,
     };
 
     for (const propsFunction of [
@@ -89,9 +91,43 @@ class TreePickerSimplePureDemo extends Component {
       'expandNode',
       'breadcrumbOnClick',
       'toggleDisabled',
+      'toggleSearchOnEnterKey',
+      'onClear',
+      'onSearch',
     ]) { this[propsFunction] = this[propsFunction].bind(this); }
 
     this.getSubtree = this.getSubtree.bind(this);
+    this.title = 'TreePickerSimplePure with interactive data';
+  }
+
+  onSearch(value) {
+    if (!_.isEmpty(value)) {
+      this.setState({
+        subtree: _.filter(this.state.dataSet, ({ label }) => {
+          if (value) {
+            return _.includes(label.toLowerCase(), value.toLowerCase());
+          }
+
+          return false;
+        }),
+      });
+    } else {
+      // go back to current breadcrumb node
+      this.setState({
+        subtree: this.getSubtree(_.last(this.state.breadcrumbNodes)),
+      });
+    }
+  }
+
+  onClear(value) {
+    this.setSearchValue(value);
+    this.onSearch(value);
+  }
+
+  setSearchValue(newValue) {
+    this.setState({
+      searchValue: newValue,
+    });
   }
 
   getSubtree(node = 'all') {
@@ -104,27 +140,10 @@ class TreePickerSimplePureDemo extends Component {
     });
   }
 
-  setSearchValue(newValue) {
+  toggleSearchOnEnterKey() {
     this.setState({
-      searchValue: newValue,
+      searchOnEnterKey: !this.state.searchOnEnterKey,
     });
-
-    if (!_.isEmpty(newValue)) {
-      this.setState({
-        subtree: _.filter(this.state.dataSet, ({ label }) => {
-          if (newValue) {
-            return _.includes(label.toLowerCase(), newValue.toLowerCase());
-          }
-
-          return false;
-        }),
-      });
-    } else {
-      // go back to current breadcrumb node
-      this.setState({
-        subtree: this.getSubtree(_.last(this.state.breadcrumbNodes)),
-      });
-    }
   }
 
   breadcrumbOnClick(nodeId) {
@@ -186,17 +205,22 @@ class TreePickerSimplePureDemo extends Component {
       subtree: this.state.subtree,
       selectedNodes: this.state.selectedNodes,
       breadcrumbNodes: this.state.breadcrumbNodes,
-      searchOnChange: this.setSearchValue,
+      onChange: this.setSearchValue,
+      onClear: this.onClear,
+      onSearch: this.onSearch,
+      searchOnChange: !this.state.searchOnEnterKey,
+      searchOnEnterKey: this.state.searchOnEnterKey,
       includeNode: this.selectNode,
       removeNode: this.deselectNode,
       expandNode: this.expandNode,
       breadcrumbOnClick: this.breadcrumbOnClick,
       disabled: this.state.disabled,
+      debounceInterval: this.state.debounceInterval,
     };
 
     return (
       <div className="tree-picker-simple-pure-demo">
-        <h2>TreePickerSimplePure with interactive data</h2>
+        <h2>{this.title}</h2>
 
         <div className="row">
           <Checkbox checked={this.state.displayGroupHeader} onChange={this.toggleDisplayGroupHeader}>
@@ -204,6 +228,9 @@ class TreePickerSimplePureDemo extends Component {
           </Checkbox>
           <Checkbox checked={this.state.disabled} onChange={this.toggleDisabled}>
             Toggle Disabled
+          </Checkbox>
+          <Checkbox checked={this.state.searchOnEnterKey} onChange={this.toggleSearchOnEnterKey}>
+            Toggle Search On Enter Key
           </Checkbox>
         </div>
         <div className="row">

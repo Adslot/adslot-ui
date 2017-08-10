@@ -2,10 +2,10 @@ import _ from 'lodash';
 import sinon from 'sinon';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import Search from 'components/adslotUi/Search';
 import TreePickerNavComponent from 'components/adslotUi/TreePicker/TreePickerNavComponent';
 import Breadcrumb from 'components/alexandria/Breadcrumb';
 import BreadcrumbNode from 'components/alexandria/Breadcrumb/Node';
-import Search from 'components/alexandria/Search';
 
 describe('TreePickerNavComponent', () => {
   const testFunction = _.noop;
@@ -16,8 +16,8 @@ describe('TreePickerNavComponent', () => {
   const props = {
     breadcrumbNodes,
     breadcrumbOnClick: testFunction,
-    searchOnChange: testFunction,
-    searchOnClear: testFunction,
+    onChange: testFunction,
+    onClear: testFunction,
     searchValue: 'needle',
     disabled: false,
   };

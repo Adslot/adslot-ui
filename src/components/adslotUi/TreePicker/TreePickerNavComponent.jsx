@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Search from 'components/adslotUi/Search';
 import Breadcrumb from 'components/alexandria/Breadcrumb';
-import Search from 'components/alexandria/Search';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
 import TreePickerPropTypes from 'helpers/propTypes/TreePickerPropTypes';
 
@@ -10,9 +10,13 @@ require('styles/adslotUi/TreePickerNav.scss');
 const TreePickerNavComponent = ({
   breadcrumbNodes,
   breadcrumbOnClick,
+  debounceInterval,
   disabled,
+  onClear,
+  onChange,
+  onSearch,
   searchOnChange,
-  searchOnClear,
+  searchOnEnterKey,
   searchValue,
   svgSymbolCancel,
   svgSymbolSearch,
@@ -20,8 +24,12 @@ const TreePickerNavComponent = ({
   <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
     <Search
       disabled={disabled}
-      onChange={searchOnChange}
-      onClear={searchOnClear}
+      debounceInterval={debounceInterval}
+      onClear={onClear}
+      onChange={onChange}
+      onSearch={onSearch}
+      searchOnChange={searchOnChange}
+      searchOnEnterKey={searchOnEnterKey}
       svgSymbolCancel={svgSymbolCancel}
       svgSymbolSearch={svgSymbolSearch}
       value={searchValue}
@@ -39,15 +47,22 @@ TreePickerNavComponent.propTypes = {
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,
-  searchOnChange: PropTypes.func,
-  searchOnClear: PropTypes.func,
+  onChange: PropTypes.func,
+  onClear: PropTypes.func,
+  onSearch: PropTypes.func,
+  debounceInterval: PropTypes.number,
+  searchOnChange: PropTypes.bool,
+  searchOnEnterKey: PropTypes.bool,
   searchValue: PropTypes.string,
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
 };
 
 TreePickerNavComponent.defaultProps = {
+  debounceInterval: 0,
   disabled: false,
+  searchOnChange: true,
+  searchOnEnterKey: false,
 };
 
 export default TreePickerNavComponent;

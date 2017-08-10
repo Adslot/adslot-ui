@@ -1,0 +1,114 @@
+import _ from 'lodash';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import SvgSymbol from 'components/alexandria/SvgSymbol/index';
+import './styles.scss';
+
+export default class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: props.value };
+    this.debounceOnSearch = _.debounce(props.onSearch, props.debounceInterval);
+    this.onChange = this.onChange.bind(this);
+    this.onClear = this.onClear.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+  }
+
+  onChange(event) {
+    const { disabled, searchOnChange, onChange } = this.props;
+    if (disabled) return;
+
+    const value = _.get(event, 'target.value');
+
+    this.setState({ value });
+    onChange(value);
+
+    if (searchOnChange) this.debounceOnSearch(value);
+  }
+
+  onKeyPress(event) {
+    const { disabled, searchOnEnterKey, onSearch } = this.props;
+    if (disabled) return;
+
+    if (searchOnEnterKey && event.which === 13) {
+      onSearch(this.state.value);
+    }
+  }
+
+  onClear() {
+    const { disabled, onChange, onClear, onSearch, searchOnChange } = this.props;
+    if (disabled) return;
+
+    const value = '';
+
+    this.setState({ value });
+    onChange(value);
+    if (searchOnChange) {
+      onSearch(value);
+    }
+    onClear(value);
+  }
+
+  render() {
+    const { disabled, placeholder, svgSymbolCancel, svgSymbolSearch } = this.props;
+    const searchClassSuffixes = disabled ? ['color-disabled'] : svgSymbolSearch.classSuffixes;
+    const cancelClassSuffixes = disabled ? ['color-disabled'] : svgSymbolCancel.classSuffixes;
+
+    return (
+      <div className="search-component">
+        <input
+          autoComplete="off"
+          className="search-component-input"
+          disabled={disabled}
+          name="search"
+          onChange={this.onChange}
+          onKeyPress={this.onKeyPress}
+          placeholder={`Search ${placeholder}`}
+          type="search"
+          value={this.state.value}
+        />
+        {_.isEmpty(this.state.value)
+          ? <SvgSymbol href={svgSymbolSearch.href} classSuffixes={searchClassSuffixes} />
+          : <SvgSymbol href={svgSymbolCancel.href} classSuffixes={cancelClassSuffixes} onClick={this.onClear} />
+        }
+      </div>
+    );
+  }
+}
+
+Search.displayName = 'AdslotUiSearchComponent';
+
+Search.propTypes = {
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  onClear: PropTypes.func,
+  onSearch: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
+  svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
+  svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
+  value: PropTypes.string,
+  searchOnChange: PropTypes.bool,
+  searchOnEnterKey: PropTypes.bool,
+  debounceInterval: PropTypes.number,
+};
+
+Search.defaultProps = {
+  disabled: false,
+  onChange: _.noop,
+  onClear: _.noop,
+  onSearch: _.noop,
+  placeholder: '',
+  svgSymbolCancel: {
+    classSuffixes: ['gray-darker'],
+    href: '/assets/svg-symbols.svg#cancel',
+  },
+  svgSymbolSearch: {
+    classSuffixes: ['gray-light'],
+    href: '/assets/svg-symbols.svg#search',
+  },
+  value: '',
+  searchOnChange: true,
+  searchOnEnterKey: false,
+  debounceInterval: 0,
+};
+
