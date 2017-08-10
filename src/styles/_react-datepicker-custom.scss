@@ -58,6 +58,8 @@
   &__current-month {
     color: $color-text-form;
     font-weight: $datepicker-font-weight;
+    font-size: $datepicker-font-size;
+    margin-top: -7px;
   }
 
   &__navigation {

@@ -634,7 +634,7 @@ class AppComponent extends React.Component {
         <h2>TreePickerSimplePure without initial state</h2>
 
         <TreePickerSimplePure
-          groupFormatter={(node) => `${node.label.split(' ').length} words`}
+          groupFormatter={(node) => `${_.split(node.label, ' ').length} words`}
           itemType={this.state.itemType}
           selectedNodes={this.state.selectedNodes}
           breadcrumbNodes={this.state.pickerBreadcrumbNodes}

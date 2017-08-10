@@ -111,6 +111,7 @@ describe('Search', () => {
     beforeEach(() => {
       props.searchOnEnterKey = true;
       props.searchOnChange = false;
+      props.disabled = false;
       disabledStub = sandbox.stub(props, 'disabled');
     });
 
