@@ -43,6 +43,7 @@ const TreePickerSimplePureComponent = ({
   svgSymbolCancel,
   svgSymbolSearch,
   displayGroupHeader,
+  hideSearchOnRoot,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   let searchTextNode = emptyText || 'No items to select.';
@@ -55,23 +56,26 @@ const TreePickerSimplePureComponent = ({
         additionalClassNames={additionalClassNames}
         dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}
       >
-        <TreePickerNav
-          {...{
-            breadcrumbNodes,
-            breadcrumbOnClick,
-            debounceInterval,
-            disabled,
-            onClear,
-            onChange,
-            onSearch,
-            searchOnChange,
-            searchOnEnterKey,
-            searchPlaceholder,
-            searchValue,
-            svgSymbolCancel,
-            svgSymbolSearch,
-          }}
-        />
+        {hideSearchOnRoot && _.isEmpty(breadcrumbNodes)
+          ? null
+          : <TreePickerNav
+            {...{
+              breadcrumbNodes,
+              breadcrumbOnClick,
+              debounceInterval,
+              disabled,
+              onClear,
+              onChange,
+              onSearch,
+              searchOnChange,
+              searchOnEnterKey,
+              searchPlaceholder,
+              searchValue,
+              svgSymbolCancel,
+              svgSymbolSearch,
+            }}
+          />
+        }
 
         <TreePickerGrid
           {...{
@@ -146,6 +150,7 @@ TreePickerSimplePureComponent.propTypes = {
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
   displayGroupHeader: PropTypes.bool,
+  hideSearchOnRoot: PropTypes.bool,
 };
 
 TreePickerSimplePureComponent.defaultProps = {
@@ -155,6 +160,7 @@ TreePickerSimplePureComponent.defaultProps = {
   displayGroupHeader: true,
   searchOnChange: true,
   searchOnEnterKey: false,
+  hideSearchOnRoot: false,
 };
 
 export default TreePickerSimplePureComponent;

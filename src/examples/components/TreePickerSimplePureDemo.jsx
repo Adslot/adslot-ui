@@ -81,6 +81,7 @@ class TreePickerSimplePureDemo extends Component {
       disabled: false,
       searchOnEnterKey: false,
       debounceInterval: 0,
+      hideSearchOnRoot: false,
     };
 
     for (const propsFunction of [
@@ -94,6 +95,7 @@ class TreePickerSimplePureDemo extends Component {
       'toggleSearchOnEnterKey',
       'onClear',
       'onSearch',
+      'toggleHideSearch',
     ]) { this[propsFunction] = this[propsFunction].bind(this); }
 
     this.getSubtree = this.getSubtree.bind(this);
@@ -195,6 +197,12 @@ class TreePickerSimplePureDemo extends Component {
     });
   }
 
+  toggleHideSearch() {
+    this.setState({
+      hideSearchOnRoot: !this.state.hideSearchOnRoot,
+    });
+  }
+
   render() {
     const treePickerProps = {
       groupFormatter,
@@ -216,6 +224,7 @@ class TreePickerSimplePureDemo extends Component {
       breadcrumbOnClick: this.breadcrumbOnClick,
       disabled: this.state.disabled,
       debounceInterval: this.state.debounceInterval,
+      hideSearchOnRoot: this.state.hideSearchOnRoot,
     };
 
     return (
@@ -231,6 +240,9 @@ class TreePickerSimplePureDemo extends Component {
           </Checkbox>
           <Checkbox checked={this.state.searchOnEnterKey} onChange={this.toggleSearchOnEnterKey}>
             Toggle Search On Enter Key
+          </Checkbox>
+          <Checkbox checked={this.state.hideSearchOnRoot} onChange={this.toggleHideSearch}>
+            Toggle Hide Search On Root
           </Checkbox>
         </div>
         <div className="row">
