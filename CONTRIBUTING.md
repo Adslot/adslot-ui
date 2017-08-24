@@ -56,7 +56,9 @@ The commit message format is important because they're used to create a changelo
 
 ## Releasing
 
-Please follow sem-ver for release conventions.
+See [Release](RELEASE.md).
+
+#### TL;DR
 
 Releases need to have the variable `RELEASE=true` pre-pended to the command like so:
 
