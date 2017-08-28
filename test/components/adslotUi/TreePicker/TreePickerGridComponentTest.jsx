@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import TreePickerGrid, { TreePickerNodeFast } from 'components/adslotUi/TreePicker/TreePickerGridComponent';
 import Empty from 'components/alexandria/Empty';
 import Grid from 'components/alexandria/Grid';
+import Spinner from 'components/alexandria/Spinner';
 import TreePickerMocks from 'mocks/TreePickerMocks';
 
 describe('TreePickerGridComponent', () => {
@@ -154,5 +155,28 @@ describe('TreePickerGridComponent', () => {
     const emptyElement = gridElement.find(Empty);
 
     expect(emptyElement).to.have.length(0);
+  });
+
+  it('should display a loading state instead of empty state when isLoading is set to true', () => {
+    const props = {
+      selected: false,
+      itemType: 'test',
+      emptyText: 'nothing here',
+      isLoading: true,
+    };
+    const component = shallow(<TreePickerGrid {...props} />);
+    expect(component.find(Spinner)).to.have.length(1);
+  });
+
+  it('should display a loading state instead of nodes when isLoading is set to true', () => {
+    const props = {
+      selected: false,
+      itemType: 'test',
+      emptyText: 'nothing here',
+      nodes: [qldNode],
+    };
+
+    const component = shallow(<TreePickerGrid {...props} isLoading />);
+    expect(component.find(Spinner)).to.have.length(1);
   });
 });

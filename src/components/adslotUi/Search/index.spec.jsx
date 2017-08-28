@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import React from 'react';
 import SvgSymbol from 'components/alexandria/SvgSymbol/index';
+import Spinner from 'components/alexandria/Spinner/index';
 import Search from '.';
 
 describe('Search', () => {
@@ -27,6 +28,7 @@ describe('Search', () => {
   it('should render using defaultProps', () => {
     const component = shallow(<Search />);
     expect(component.prop('className')).to.equal('search-component');
+    expect(component.find(Spinner).length).to.equal(0);
 
     const inputEl = component.find('input');
     expect(inputEl.prop('className')).to.equal('search-component-input');
@@ -142,6 +144,11 @@ describe('Search', () => {
       const svgSymbolEl = component.find(SvgSymbol);
       svgSymbolEl.simulate('click');
       expect(props.onSearch.called).to.equal(false);
+    });
+
+    it('should render loading spinner when isLoading set to true', () => {
+      const component = shallow(<Search {...props} isLoading />);
+      expect(component.find(Spinner).length).to.equal(1);
     });
   });
 });
