@@ -12,6 +12,7 @@ const TreePickerNavComponent = ({
   breadcrumbOnClick,
   debounceInterval,
   disabled,
+  isLoading,
   onClear,
   onChange,
   onSearch,
@@ -25,6 +26,7 @@ const TreePickerNavComponent = ({
     <Search
       disabled={disabled}
       debounceInterval={debounceInterval}
+      isLoading={isLoading}
       onClear={onClear}
       onChange={onChange}
       onSearch={onSearch}
@@ -47,6 +49,7 @@ TreePickerNavComponent.propTypes = {
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   onSearch: PropTypes.func,
@@ -61,6 +64,7 @@ TreePickerNavComponent.propTypes = {
 TreePickerNavComponent.defaultProps = {
   debounceInterval: 0,
   disabled: false,
+  isLoading: false,
   searchOnChange: true,
   searchOnEnterKey: false,
 };

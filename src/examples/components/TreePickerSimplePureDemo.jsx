@@ -103,22 +103,28 @@ class TreePickerSimplePureDemo extends Component {
   }
 
   onSearch(value) {
-    if (!_.isEmpty(value)) {
-      this.setState({
-        subtree: _.filter(this.state.dataSet, ({ label }) => {
-          if (value) {
-            return _.includes(label.toLowerCase(), value.toLowerCase());
-          }
+    const search = () => {
+      if (!_.isEmpty(value)) {
+        this.setState({
+          subtree: _.filter(this.state.dataSet, ({ label }) => {
+            if (value) {
+              return _.includes(label.toLowerCase(), value.toLowerCase());
+            }
 
-          return false;
-        }),
-      });
-    } else {
-      // go back to current breadcrumb node
-      this.setState({
-        subtree: this.getSubtree(_.last(this.state.breadcrumbNodes)),
-      });
-    }
+            return false;
+          }),
+          isLoading: false,
+        });
+      } else {
+        // go back to current breadcrumb node
+        this.setState({
+          subtree: this.getSubtree(_.last(this.state.breadcrumbNodes)),
+          isLoading: false,
+        });
+      }
+    };
+
+    this.setState({ isLoading: true }, () => setTimeout(search, 1000));
   }
 
   onClear(value) {
@@ -246,7 +252,7 @@ class TreePickerSimplePureDemo extends Component {
           </Checkbox>
         </div>
         <div className="row">
-          <TreePickerSimplePure {...treePickerProps} />
+          <TreePickerSimplePure {...treePickerProps} isLoading={this.state.isLoading} />
         </div>
       </div>
     );

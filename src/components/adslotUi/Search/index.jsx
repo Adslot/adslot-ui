@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbol from 'components/alexandria/SvgSymbol/index';
+import Spinner from 'components/alexandria/Spinner/index';
 import './styles.scss';
 
 export default class Search extends Component {
@@ -50,7 +51,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { disabled, placeholder, svgSymbolCancel, svgSymbolSearch } = this.props;
+    const { disabled, isLoading, placeholder, svgSymbolCancel, svgSymbolSearch } = this.props;
     const searchClassSuffixes = disabled ? ['color-disabled'] : svgSymbolSearch.classSuffixes;
     const cancelClassSuffixes = disabled ? ['color-disabled'] : svgSymbolCancel.classSuffixes;
 
@@ -67,6 +68,7 @@ export default class Search extends Component {
           type="search"
           value={this.state.value}
         />
+        {isLoading ? <Spinner size="small" /> : null}
         {_.isEmpty(this.state.value)
           ? <SvgSymbol href={svgSymbolSearch.href} classSuffixes={searchClassSuffixes} />
           : <SvgSymbol href={svgSymbolCancel.href} classSuffixes={cancelClassSuffixes} onClick={this.onClear} />
@@ -80,6 +82,7 @@ Search.displayName = 'AdslotUiSearchComponent';
 
 Search.propTypes = {
   disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   onSearch: PropTypes.func,
@@ -94,6 +97,7 @@ Search.propTypes = {
 
 Search.defaultProps = {
   disabled: false,
+  isLoading: false,
   onChange: _.noop,
   onClear: _.noop,
   onSearch: _.noop,

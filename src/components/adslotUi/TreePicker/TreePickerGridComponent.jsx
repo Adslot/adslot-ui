@@ -8,6 +8,7 @@ import Empty from 'components/alexandria/Empty';
 import Grid from 'components/alexandria/Grid';
 import GridRow from 'components/alexandria/Grid/Row';
 import SvgSymbol from 'components/alexandria/SvgSymbol';
+import Spinner from 'components/alexandria/Spinner/index';
 
 require('styles/adslotUi/TreePickerGrid.scss');
 
@@ -21,6 +22,7 @@ const TreePickerGridComponent = ({
   hideIcon,
   includeNode,
   itemType,
+  isLoading,
   nodes,
   nodeRenderer,
   removeNode,
@@ -32,7 +34,11 @@ const TreePickerGridComponent = ({
   const nodesByGroupLabel = _.groupBy(nodes, groupFormatter);
   return (
     <Grid>
-      {_.map(nodesByGroupLabel, (groupedNodes, label) =>
+      {isLoading ?
+        <div className="loading-nodes-container">
+          <Spinner /><p>Loading…</p>
+        </div>
+      : _.map(nodesByGroupLabel, (groupedNodes, label) => (
         <div className="treepickergrid-component-group" key={_.kebabCase(label)}>
           {(displayGroupHeader) ?
             <div className="treepickergrid-component-group-label">
@@ -59,8 +65,8 @@ const TreePickerGridComponent = ({
             />
           )}
         </div>
-      )}
-      {nodes ?
+      ))}
+      {nodes && !isLoading ?
         <Empty
           collection={nodes}
           hideIcon={hideIcon}
@@ -83,6 +89,7 @@ TreePickerGridComponent.propTypes = {
   hideIcon: PropTypes.bool,
   includeNode: PropTypes.func,
   itemType: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
   nodes: PropTypes.arrayOf(TreePickerPropTypes.node),
   nodeRenderer: PropTypes.func,
   removeNode: PropTypes.func,
@@ -93,9 +100,10 @@ TreePickerGridComponent.propTypes = {
 
 TreePickerGridComponent.defaultProps = {
   disabled: false,
-  hideIcon: false,
-  groupFormatter: () => 'Default Group',
   displayGroupHeader: true,
+  groupFormatter: () => 'Default Group',
+  hideIcon: false,
+  isLoading: false,
 };
 
 export default TreePickerGridComponent;
