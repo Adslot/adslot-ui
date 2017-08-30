@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import TreePickerSimplePure from '../../components/adslotUi/TreePicker/TreePickerSimplePureComponent';
 
-const groupFormatter = (node) => (`${node.label.split(' ').length} words`);
+const groupFormatter = (node) => (`${_.split(node.label, ' ').length} words`);
 
 const dataSet = [
   { id: '1', label: 'Australia', path: [], type: '', isExpandable: true, isSelectable: false },
