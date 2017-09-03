@@ -1,7 +1,7 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import SvgSymbolCircle from 'components/alexandria/SvgSymbol/Circle';
+import SvgSymbolCircle from 'alexandria/SvgSymbol/Circle';
 import Empty from '.';
 
 describe('Empty', () => {

@@ -55,7 +55,7 @@
     "lodash/prefer-filter": [2, 3],
     "lodash/prefer-get": [2, 3],
     "lodash/prefer-lodash-chain": 2,
-    "lodash/prefer-lodash-method": 2,
+    "lodash/prefer-lodash-method": 0,
     "lodash/prefer-lodash-typecheck": 2,
     "lodash/prefer-map": 2,
     "lodash/prefer-matches": [2, 3],

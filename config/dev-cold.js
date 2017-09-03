@@ -11,7 +11,7 @@ const publicPath = '/assets/';
 
 module.exports = merge(commonConfig, {
   entry: [
-    './components/run.jsx', // the entry point of our app
+    './docs/run', // the entry point of our app
   ],
   output: {
     path: resolve(__dirname, '../dist/assets'),

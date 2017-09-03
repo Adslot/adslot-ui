@@ -1,0 +1,26 @@
+@import '~styles/border';
+@import '~styles/font-weight';
+
+.pagedgrid-component {
+  .grid-component-cell {
+    &:not(.grid-component-cell-stretch) {
+      flex-basis: 100px;
+    }
+  }
+
+  .empty-component {
+    border-bottom: $border-lighter;
+  }
+
+  &-pagination {
+    display: flex;
+    justify-content: flex-end;
+
+    &-info {
+      display: inline-block;
+      font-weight: $font-weight-light;
+      line-height: 28px;
+      margin: 18px 10px;
+    }
+  }
+}

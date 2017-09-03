@@ -8,8 +8,9 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx'],
     alias: {
-      components: `${srcPath}/components/`,
-      helpers: `${srcPath}/helpers/`,
+      'adslot-ui': `${srcPath}/components/adslot-ui`,
+      alexandria: `${srcPath}/components/alexandria`,
+      lib: `${srcPath}/lib/`,
       styles: `${srcPath}/styles/`, // When importing from `.scss` files prefix with ~ like `@import ~styles/variables`
     },
   },
@@ -19,6 +20,7 @@ module.exports = {
       {
         enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
         test: /\.(js|jsx)$/,
+        exclude: [/node_modules/, /(\.spec)\.(js|jsx)$/],
         include: srcPath,
         use: ['eslint-loader'],
       },
@@ -36,7 +38,8 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /(\.spec)\.(js|jsx)$/],
+        include: srcPath,
         options: {
           // This is a feature of `babel-loader` for webpack (not Babel itself). It enables caching results
           // in ./node_modules/.cache/babel-loader/ directory for faster rebuilds.

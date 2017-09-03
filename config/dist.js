@@ -1,16 +1,14 @@
 // development config
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const path = require('path');
+const { resolve } = require('path');
 const commonConfig = require('./common');
-
-const componentsPath = path.resolve(__dirname, '../src/components/');
 
 module.exports = merge(commonConfig, {
   entry: {
-    main: path.join(componentsPath, '/distributionEntry'),
-    core: path.join(componentsPath, '/distributionEntry/core'),
-    extra: path.join(componentsPath, '/distributionEntry/extra'),
+    main: resolve(__dirname, '../src/dist-entry'),
+    core: resolve(__dirname, '../src/dist-entry/core'),
+    extra: resolve(__dirname, '../src/dist-entry/extra'),
   },
   externals: {
     lodash: {
@@ -45,7 +43,7 @@ module.exports = merge(commonConfig, {
     },
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: resolve(__dirname, '../dist'),
     filename: 'adslot-ui-[name].js',
     libraryTarget: 'umd',
     library: 'AdslotUI',

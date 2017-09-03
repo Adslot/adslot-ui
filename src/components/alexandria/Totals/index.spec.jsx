@@ -1,9 +1,9 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import GridCell from 'components/alexandria/Grid/Cell';
-import Grid from 'components/alexandria/Grid';
-import GridRow from 'components/alexandria/Grid/Row';
+import GridCell from 'alexandria/Grid/Cell';
+import Grid from 'alexandria/Grid';
+import GridRow from 'alexandria/Grid/Row';
 import Totals from '.';
 
 describe('Totals', () => {

@@ -9,7 +9,7 @@
     "clean": "rimraf dist/*",
     "codecov": "cat coverage/coverage-final.json | codecov",
     "dist": "webpack --bail --env=dist --progress -p --hide-modules",
-    "eslint": "eslint --ext .jsx,.js --rulesdir ./src ./src && eslint  --ext .jsx,.js --rulesdir ./test ./test",
+    "eslint": "eslint --ext .jsx,.js --rulesdir ./src ./src",
     "lint": "npm run eslint && npm run sass-lint && npm run check-commit",
     "posttest": "npm run lint",
     "postversion": "npm publish && git push --follow-tags && echo '…released.'",
@@ -21,10 +21,11 @@
     "sass-lint": "sass-lint './src/**/*.scss' -v",
     "start": "npm run start:dev",
     "start:dev": "webpack-dev-server --config=./config/dev.js",
-    "start:dev-cold": "webpack-dev-server --config=./config/dev-cold.js",
+    "start:cold": "node server.js --env=dev-cold",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
-    "version": "echo '…generating dist…' && npm run -s dist && git add dist/*"
+    "version": "echo '…generating dist…' && npm run -s dist && git add dist/*",
+    "scaffold": "./scripts/scaffold"
   },
   "repository": {
     "type": "git",

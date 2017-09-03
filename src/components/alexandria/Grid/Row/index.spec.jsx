@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import classSuffixHelper from 'helpers/classSuffixHelper';
+import { classSuffixHelper } from 'lib/utils';
 import GridRow from '.';
 
 describe('GridRow', () => {

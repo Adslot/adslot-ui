@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classSuffixHelper from '../../../helpers/classSuffixHelper';
+import { classSuffixHelper } from 'lib/utils';
 import './styles.scss';
 
 const SvgSymbol = (props) => {

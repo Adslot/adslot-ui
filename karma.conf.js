@@ -6,7 +6,7 @@ module.exports = function configureKarma(config) {
     browsers: ['ChromeHeadless'],
     colors: true,
     files: [
-      'test/loadtests.js',
+      'config/loadtests.js',
     ],
     port: 8080,
     captureTimeout: 60000,
@@ -22,7 +22,7 @@ module.exports = function configureKarma(config) {
     singleRun: true,
     reporters: ['coverage', 'mocha'],
     preprocessors: {
-      'test/loadtests.js': ['webpack'],
+      'config/loadtests.js': ['webpack'],
     },
     coverageReporter: {
       dir: 'coverage/',
@@ -38,10 +38,11 @@ module.exports = function configureKarma(config) {
           functions: 100,
           lines: 100,
           excludes: [
-            'src/components/Main.jsx',
+            'component-template/*',
             'src/components/**/*.spec.*',
+            'src/components/**/mocks.*',
             'src/components/**/example.jsx',
-            'src/examples/**/*',
+            'src/lib/**/*.js',
           ],
         },
       },

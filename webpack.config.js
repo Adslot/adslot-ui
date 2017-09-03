@@ -1,18 +1,24 @@
 const path = require('path');
-const args = require('minimist')(process.argv.slice(2));
+const minimist = require('minimist');
 
-// List of allowed environments
-const allowedEnvs = ['dev', 'dist', 'test'];
+/**
+ * Get an environment from arguments
+ * @param  {Array}  args
+ * @return {String}
+ */
+function getEnv(args) {
+  switch (true) {
+    case Boolean(args._.length > 0 && args._.indexOf('start') !== -1):
+      return 'test';
 
-// Set the correct environment
-let env;
-if (args._.length > 0 && args._.indexOf('start') !== -1) {
-  env = 'test';
-} else if (args.env) {
-  env = args.env;
-} else {
-  env = 'dev';
+    case Boolean(args.env):
+      return args.env;
+
+    default:
+      return 'dev';
+  }
 }
+
 
 /**
  * Get an allowed environment
@@ -20,18 +26,22 @@ if (args._.length > 0 && args._.indexOf('start') !== -1) {
  * @return {String}
  */
 function getValidEnv(env) {
+  const allowedEnvs = ['dev', 'dist', 'test'];
   const isValid = env && env.length > 0 && allowedEnvs.indexOf(env) !== -1;
   return isValid ? env : 'dev';
 }
+
 
 /**
  * Build the webpack configuration
  * @param  {String} env Environment to use
  * @return {Object} Webpack config
  */
-function buildConfig(env) {
-  const usedEnv = getValidEnv(env);
-  return require(path.join(__dirname, `config/${usedEnv}.js`));
+function buildConfig() {
+  const args = minimist(process.argv.slice(2));
+  const usedEnv = getValidEnv(getEnv(args));
+  return require(path.join(__dirname, `config/${usedEnv}.js`));  // eslint-disable-line global-require
 }
 
-module.exports = buildConfig(env);
+
+module.exports = buildConfig();
