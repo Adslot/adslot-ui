@@ -8,16 +8,7 @@
     padding-top: 1px;
   }
 
-  .icheckbox {
-    margin-left: -20px; // For alignment with bootstrap
-
-    > input {
-      margin-left: 0;
-    }
-  }
-
   // When a checkbox is directly inside a .checkbox we need to ingore the -20px margin
-  > .icheckbox,
   > .iradio {
     margin-left: 0;
   }
@@ -39,7 +30,6 @@ input {
   }
 }
 
-.icheckbox,
 .iradio {
   + span {
     font-weight: $font-weight-light;

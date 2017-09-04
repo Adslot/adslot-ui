@@ -1,0 +1,26 @@
+@import 'styles/variable';
+
+.checkbox-component {
+  $checkbox-size: 16x;
+
+  font-weight: $font-weight-light;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-bottom: 0;
+  line-height: $checkbox-size;
+  cursor: pointer;
+
+  input {
+    &[type='checkbox'] {
+      width: $checkbox-size;
+      height: $checkbox-size;
+      margin-right: 5px;
+      display: flex;
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+  }
+}

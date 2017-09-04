@@ -1,5 +1,4 @@
 // Export the consumable components.
-import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
@@ -46,6 +45,7 @@ import Alert from 'components/alexandria/Alert';
 import Avatar from 'components/alexandria/Avatar';
 import BorderedWell from 'components/alexandria/BorderedWell';
 import Breadcrumb from 'components/alexandria/Breadcrumb';
+import Checkbox from 'components/alexandria/Checkbox';
 import Card from 'components/alexandria/Card';
 import Empty from 'components/alexandria/Empty';
 import FlexibleSpacer from 'components/alexandria/FlexibleSpacer';

@@ -38,14 +38,6 @@ body {
 
 .checkbox-example {
   width: 200px;
-
-  label {
-    padding-left: 21px;
-
-    > .icheckbox {
-      margin-left: -21px;
-    }
-  }
 }
 
 // A re-usable example for creating custom accent colours for the <Tag> component
