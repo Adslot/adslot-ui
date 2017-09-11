@@ -1,7 +1,7 @@
-@import 'styles/color';
-@import 'styles/font-weight';
-@import 'styles/font-size';
-@import 'styles/variable';
+@import '~styles/color';
+@import '~styles/font-weight';
+@import '~styles/font-size';
+@import '~styles/variable';
 
 .spinner-component {
   $color-spinner-light: $color-gray-light;

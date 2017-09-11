@@ -1,13 +1,17 @@
-const _ = require('lodash');
-const baseConfig = require('./base');
-const path = require('path');
+// development config
+const merge = require('webpack-merge');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const commonConfig = require('./common');
+
 const componentsPath = path.resolve(__dirname, '../src/components/');
 
-const config = _.merge(baseConfig, {
-  cache: false,
-  devtool: 'inline',
+module.exports = merge(commonConfig, {
+  entry: {
+    main: path.join(componentsPath, '/distributionEntry'),
+    core: path.join(componentsPath, '/distributionEntry/core'),
+    extra: path.join(componentsPath, '/distributionEntry/extra'),
+  },
   externals: {
     lodash: {
       root: '_',
@@ -40,37 +44,34 @@ const config = _.merge(baseConfig, {
       amd: 'redux',
     },
   },
-  entry: {
-    main: path.join(componentsPath, '/distributionEntry'),
-    core: path.join(componentsPath, '/distributionEntry/core'),
-    extra: path.join(componentsPath, '/distributionEntry/extra'),
-  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'adslot-ui-[name].js',
     libraryTarget: 'umd',
     library: 'AdslotUI',
   },
+  devtool: 'inline',
+  cache: false,
   plugins: [
-    new ExtractTextPlugin('adslot-ui.css'),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({ // ensures webpack will always optimise for production
+      'process.env.NODE_ENV': '"production"',
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
       },
+      output: {
+        comments: false,
+      },
       sourceMap: false,
       include: /\.js$/,
+      parallel: {
+        cache: true,
+        workers: 2, // run on two cores #GSD
+      },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 });
-
-config.module.loaders.push({
-  test: /\.(js|jsx)$/,
-  loader: 'babel-loader',
-  include: path.join(__dirname, '/../src'),
-});
-
-module.exports = config;

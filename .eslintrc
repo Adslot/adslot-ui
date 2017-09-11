@@ -22,7 +22,7 @@
     },
     "import/resolver": {
       "webpack": {
-        "config": "cfg/dev.js"
+        "config": "config/dev.js"
       }
     }
   },
