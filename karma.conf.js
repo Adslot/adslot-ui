@@ -1,4 +1,4 @@
-const webpackCfg = require('./webpack.config');
+const webpackConfig = require('./webpack.config');
 
 module.exports = function configureKarma(config) {
   config.set({
@@ -46,9 +46,19 @@ module.exports = function configureKarma(config) {
         },
       },
     },
-    webpack: webpackCfg,
-    webpackServer: {
+    webpack: webpackConfig,
+    webpackMiddleware: {
       noInfo: true,
+      stats: {
+        assets: false,
+        chunks: false,
+        children: false,
+        colors: true,
+        errorDetails: true,
+        errors: true,
+        timings: false,
+        warnings: true,
+      },
     },
   });
 };
