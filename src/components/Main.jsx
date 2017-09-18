@@ -33,7 +33,6 @@ import {
   Radio,
   RadioGroup,
   SearchBar,
-  SearchField,
   Slicey,
   Spinner,
   SpinnerButton,
@@ -65,6 +64,7 @@ import {
 
 import AlertInputExample from './adslotUi/AlertInput/example';
 import TextareaExample from './adslotUi/Textarea/example';
+import SearchExample from './adslotUi/Search/example';
 
 require('styles/App.scss');
 
@@ -962,13 +962,7 @@ class AppComponent extends React.Component {
         <h2>Pretty Diff</h2>
         <PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />
 
-        <h2>Search</h2>
-        <SearchField
-          onChange={this.searchOnChange}
-          onClear={this.searchOnClear}
-          placeholder="Cities"
-          value={this.state.searchValue}
-        />
+        <SearchExample />
 
         <h2>Slicey</h2>
         <Slicey dataset={sliceyDataset} diameter={150} marker={0.2} donut />

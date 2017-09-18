@@ -8,8 +8,9 @@ import './styles.scss';
 export default class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: props.value };
     this.debounceOnSearch = _.debounce(props.onSearch, props.debounceInterval);
+    this.defaultValue = props.value;
+
     this.onChange = this.onChange.bind(this);
     this.onClear = this.onClear.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
@@ -20,10 +21,7 @@ export default class Search extends Component {
     if (disabled) return;
 
     const value = _.get(event, 'target.value');
-
-    this.setState({ value });
     onChange(value);
-
     if (searchOnChange) this.debounceOnSearch(value);
   }
 
@@ -32,7 +30,8 @@ export default class Search extends Component {
     if (disabled) return;
 
     if (searchOnEnterKey && event.which === 13) {
-      onSearch(this.state.value);
+      const value = _.get(event, 'target.value');
+      onSearch(value);
     }
   }
 
@@ -42,7 +41,6 @@ export default class Search extends Component {
 
     const value = '';
 
-    this.setState({ value });
     onChange(value);
     if (searchOnChange) {
       onSearch(value);
@@ -51,7 +49,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { disabled, isLoading, placeholder, svgSymbolCancel, svgSymbolSearch } = this.props;
+    const { disabled, isLoading, placeholder, svgSymbolCancel, svgSymbolSearch, value } = this.props;
     const searchClassSuffixes = disabled ? ['color-disabled'] : svgSymbolSearch.classSuffixes;
     const cancelClassSuffixes = disabled ? ['color-disabled'] : svgSymbolCancel.classSuffixes;
 
@@ -66,10 +64,11 @@ export default class Search extends Component {
           onKeyPress={this.onKeyPress}
           placeholder={`Search ${placeholder}`}
           type="search"
-          value={this.state.value}
+          value={value}
+          defaultValue={this.defaultValue}
         />
         {isLoading ? <Spinner size="small" /> : null}
-        {_.isEmpty(this.state.value)
+        {_.isEmpty(value)
           ? <SvgSymbol href={svgSymbolSearch.href} classSuffixes={searchClassSuffixes} />
           : <SvgSymbol href={svgSymbolCancel.href} classSuffixes={cancelClassSuffixes} onClick={this.onClear} />
         }

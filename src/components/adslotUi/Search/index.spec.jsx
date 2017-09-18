@@ -5,10 +5,9 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import SvgSymbol from 'components/alexandria/SvgSymbol/index';
 import Spinner from 'components/alexandria/Spinner/index';
-import Search from '.';
+import Search from './';
 
 describe('Search', () => {
-  const testFunction = _.noop;
   let sandbox = null;
   let props = {};
 
@@ -17,7 +16,7 @@ describe('Search', () => {
   });
 
   beforeEach(() => {
-    props = { value: 'some value', onClear: testFunction, onChange: testFunction, onSearch: testFunction };
+    props = { onClear: _.noop, onChange: _.noop, onSearch: _.noop };
     sandbox.spy(props, 'onClear');
     sandbox.spy(props, 'onChange');
     sandbox.spy(props, 'onSearch');
@@ -52,37 +51,39 @@ describe('Search', () => {
     expect(inputEl.prop('placeholder')).to.equal('Search your feelings');
   });
 
-  it('should render using a value', () => {
-    const component = shallow(<Search value="needle" />);
+  describe('onChange()', () => {
+    it('should fire onChange when the user changes the value', () => {
+      const component = shallow(<Search {...props} />);
 
-    const inputEl = component.find('input');
-    expect(inputEl.prop('value')).to.equal('needle');
+      const inputEl = component.find('input');
+      inputEl.simulate('change', { target: { value: 'needle' } });
+      expect(props.onChange.calledOnce).to.equal(true);
+      expect(props.onChange.calledWith('needle')).to.equal(true);
+    });
 
-    const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl.prop('href')).to.equal('/assets/svg-symbols.svg#cancel');
-    expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-darker']);
-  });
+    it('should do nothing if `disabled` flag is on', () => {
+      const component = shallow(<Search {...props} disabled />);
 
-  it('should fire onChange when the user changes the value', () => {
-    const component = shallow(<Search {...props} />);
+      const inputEl = component.find('input');
+      inputEl.simulate('change', { target: { value: 'needle' } });
+      expect(props.onChange.calledOnce).to.equal(false);
+    });
 
-    const inputEl = component.find('input');
-    inputEl.simulate('change', { target: { value: 'needle' } });
-    expect(props.onChange.calledOnce).to.equal(true);
-    expect(props.onChange.calledWith('needle')).to.equal(true);
-  });
-
-  it('should not fire onChange when the user changes the value while disabled', () => {
-    props.disabled = true;
-    const component = shallow(<Search {...props} />);
-
-    const inputEl = component.find('input');
-    inputEl.simulate('change', { target: { value: 'needle' } });
-    expect(props.onChange.called).to.equal(false);
+    it('should not fire onSearch if `searchOnChange` is false', () => {
+      const component = shallow(<Search {...props} searchOnChange={false} />);
+      const inputEl = component.find('input');
+      inputEl.simulate('change', { target: { value: 'needle' } });
+      setImmediate(() => {
+        expect(props.onSearch.calledOnce).to.equal(false);
+      });
+    });
   });
 
   it('should not fire onClear, onChange, onSearch when user clicks the icon while disabled', () => {
-    props.disabled = true;
+    _.assign(props, {
+      disabled: true,
+      value: 'some value',
+    });
     const component = shallow(<Search {...props} />);
 
     const svgSymbolEl = component.find(SvgSymbol);
@@ -93,6 +94,7 @@ describe('Search', () => {
   });
 
   it('should fire onClear, onChange, onSearch once with empty string value when user clicks the icon', () => {
+    props.value = 'some value';
     const component = shallow(<Search {...props} />);
 
     const svgSymbolEl = component.find(SvgSymbol);
@@ -103,6 +105,14 @@ describe('Search', () => {
     expect(props.onChange.calledWith('')).to.equal(true);
     expect(props.onSearch.calledOnce).to.equal(true);
     expect(props.onSearch.calledWith('')).to.equal(true);
+  });
+
+  it('should render with a value', () => {
+    props.value = 'some value';
+    const component = shallow(<Search {...props} />);
+    const inputEl = component.find('input');
+
+    expect(inputEl.prop('value')).to.equal('some value');
   });
 
   describe('with searchOnEnterKey prop', () => {
