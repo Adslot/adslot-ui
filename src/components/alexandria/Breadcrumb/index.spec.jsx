@@ -3,7 +3,7 @@ import React from 'react';
 import _ from 'lodash';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
-import BreadcrumbNode from 'components/alexandria/Breadcrumb/Node';
+import BreadcrumbNode from 'alexandria/Breadcrumb/Node';
 import Breadcrumb from '.';
 
 describe('Breadcrumb', () => {

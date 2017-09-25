@@ -14,10 +14,9 @@ This includes Alexandria and third-party restyled components, e.g. Bootstrap.
 Technology:
 
 - [React](http://facebook.github.io/react/)
-- ES2015 (using [Babel](http://babeljs.io)\)
+- ES201x (using [Babel](http://babeljs.io)\)
 - [Webpack](https://github.com/webpack/webpack)
 - [SCSS](http://sass-lang.com)
-- [Yeoman](http://yeoman.io)
 - [ESLint](http://eslint.org)
 - [Autoprefixer](https://github.com/postcss/autoprefixer)
 
@@ -27,8 +26,6 @@ Development
 - Take a look at our [Contributing](CONTRIBUTING.md) guidelines
 
 - Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
-
-- Install [yeoman](http://yeoman.io) globally: `npm install -g yo` [OPTIONAL]
 
 - Install NPM dependencies: `npm i`
 
@@ -70,19 +67,18 @@ Generating New Components
 
 __Adslot UI:__
 
-`yo react-webpack:component adslot-ui/ComponentName` 
+As simple as running the `scaffold` command which will create your new Adslot UI component from `/component-template`.
+
+```sh
+npm run scaffold MyComponentName
+```
+
+You'll get an `index.jsx`, `index.spec.jsx` and `styles.scss` created under `src/components/adslot-ui/MyComponentName`.
 
 __Alexandria:__
 
-We don't currently have a command for generating Alexandria components.
-Simply create a directory for the component, and put all related files in there.
-
-However, you __must__ change the file extension of the component and test to .jsx, as the generator
-only supports creating components with a .js extension.
-
-Most of the time you will also want to add: `--stateless`
-
-That makes a stateless component (pure function, no internal state).
+We don't have a command for generating Alexandria components.
+Create a directory for the component, and put all related files in there. You can copy `/component-template` to help.
 
 Build Profiling
 ---------------

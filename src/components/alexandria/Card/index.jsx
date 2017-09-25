@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import expandDts from '../../../helpers/expandDtsHelper';
+import { expandDts } from 'lib/utils';
 import './styles.scss';
 
 const CardContent = ({ children, className, stretch, fill, append, dts }) => {

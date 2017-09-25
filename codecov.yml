@@ -3,7 +3,6 @@ coverage:
   precision: 2
   range: 98...100
   ignore:
-    - "src/components/Main.js"
     - "src/components/**/*.spec.*"
+    - "src/components/**/mocks.*"
     - "src/components/**/example.jsx"
-    - "src/examples"

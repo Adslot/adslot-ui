@@ -1,9 +1,9 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Arc from 'components/alexandria/Slicey/Arc';
-import Donut from 'components/alexandria/Slicey/Donut';
-import Marker from 'components/alexandria/Slicey/Marker';
+import Arc from 'alexandria/Slicey/Arc';
+import Donut from 'alexandria/Slicey/Donut';
+import Marker from 'alexandria/Slicey/Marker';
 import Slicey from '.';
 
 describe('Slicey', () => {

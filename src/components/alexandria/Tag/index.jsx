@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SvgSymbol from 'components/alexandria/SvgSymbol';
-import classSuffixHelper from '../../../helpers/classSuffixHelper';
+import SvgSymbol from 'alexandria/SvgSymbol';
+import { classSuffixHelper } from 'lib/utils';
 import './styles.scss';
 
 const componentClass = 'tag-component';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import expandDts from '../../../helpers/expandDtsHelper';
+import { expandDts } from 'lib/utils';
 import './styles.scss';
 
 const Alert = ({ type, children, dts }) => (

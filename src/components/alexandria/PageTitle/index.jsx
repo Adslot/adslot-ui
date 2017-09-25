@@ -1,6 +1,7 @@
 import React from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
-import FlexibleSpacer from 'components/alexandria/FlexibleSpacer';
+import FlexibleSpacer from 'alexandria/FlexibleSpacer';
 import './styles.scss';
 
 const baseClass = 'pagetitle-component';
@@ -8,7 +9,7 @@ const baseClass = 'pagetitle-component';
 const PageTitle = ({ children, isFooter, title }) => {
   const className = isFooter ? `${baseClass} ${baseClass}-is-footer` : baseClass;
   return (
-    <div className={className}>
+    <div className={className} id={_.kebabCase(title)}>
       {children ? <span className="flexible-wrapper-inline">{title}<FlexibleSpacer />{children}</span> : title}
     </div>
   );

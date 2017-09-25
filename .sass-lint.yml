@@ -2,7 +2,6 @@ options:
   formatter: stylish
 files:
   include: '**/*.scss'
-  ignore: './src/styles/adslotUi/CategorySearch.scss'
 rules:
   # Extends
   extends-before-mixins: 2

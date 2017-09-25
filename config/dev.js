@@ -20,7 +20,7 @@ module.exports = merge(commonConfig, {
     // bundle the client for hot reloading, only- means to only hot reload for successful updates
     'webpack/hot/only-dev-server',
      // the entry point of our app
-    './components/run.jsx',
+    '../docs/run',
   ],
   output: {
     filename: 'app.js',
@@ -29,6 +29,18 @@ module.exports = merge(commonConfig, {
   },
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        include: resolve(__dirname, '../docs'),
+        exclude: /node_modules/,
+        options: {
+          // This is a feature of `babel-loader` for webpack (not Babel itself). It enables caching results
+          // in ./node_modules/.cache/babel-loader/ directory for faster rebuilds.
+          cacheDirectory: true,
+        },
+      },
+
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
@@ -40,11 +52,12 @@ module.exports = merge(commonConfig, {
   },
   devServer: {
     hot: true, // enable HMR on the server
-    contentBase: resolve(__dirname, '../src'), // match the output path
+    contentBase: resolve(__dirname, '../docs'), // match the output path
     publicPath, // match the output `publicPath`
     port: PORT,
     host: HOST,
     noInfo: true,
+    historyApiFallback: true,
     stats: {
       assets: false,
       chunks: false,
