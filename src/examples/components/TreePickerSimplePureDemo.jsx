@@ -162,6 +162,7 @@ class TreePickerSimplePureDemo extends Component {
     this.setState({
       breadcrumbNodes: _.slice(breadcrumbNodes, 0, newBreadcrumbHeadIndex + 1),
       subtree: this.getSubtree(nodeId === 'all' ? 'all' : newHeadNode),
+      searchValue: '',
     });
   }
 
