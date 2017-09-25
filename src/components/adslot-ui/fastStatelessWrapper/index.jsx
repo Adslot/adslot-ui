@@ -11,7 +11,7 @@ import React from 'react';
 */
 
 const fastStatelessWrapper = (ComposedComponent, propsToCheck) =>
-  class FastStatelessWrapperComponent extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  class FastStatelessWrapperComponent extends React.Component {
     shouldComponentUpdate(nextProps) {
       const isEqualProps = (toGet) => {
         const getFromProps = (props) => _.get(props, toGet);

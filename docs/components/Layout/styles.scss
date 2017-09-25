@@ -1,0 +1,37 @@
+@import '~styles/variable';
+
+body {
+  font-family: $font-family-sans-serif;
+  margin: 0;
+}
+
+.adslot-ui-layout {
+
+  .adslot-ui-body {
+    display: flex;
+    flex-direction: row;
+    padding: $spacing-etalon;
+  }
+
+  pre {
+    display: inline;
+  }
+}
+
+.adslot-ui-sidebar-area {
+  margin-right: $spacing-etalon;
+  flex: 0 1 1;
+}
+
+.adslot-ui-content-area {
+  flex: 1;
+
+  > .pagetitle-component {
+    margin-bottom: $spacing-etalon;
+    padding-left: 0;
+
+    &:not(:first-child) {
+      margin-top: ($spacing-etalon * 4);
+    }
+  }
+}

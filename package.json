@@ -89,6 +89,7 @@
     "react-icheck": "^0.3.8",
     "react-redux": "^4.4.8",
     "react-select": "^1.0.0-rc.10",
+    "react-syntax-highlighter": "^5.7.0",
     "react-test-renderer": "^15.6.1",
     "redux": "^3.7.2",
     "rimraf": "^2.6.1",

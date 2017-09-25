@@ -57,7 +57,6 @@ module.exports = function configureKarma(config) {
             'component-template/*',
             'src/components/**/*.spec.*',
             'src/components/**/mocks.*',
-            'src/components/**/example.jsx',
             'src/lib/**/*.js',
           ],
         },

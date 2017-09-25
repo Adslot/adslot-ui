@@ -90,7 +90,7 @@ Upload the new `stats.json` file to [Webpack Analyse Tool](http://webpack.github
 Optimizing Performance of Stateless Components
 ---------------
 
-Add the following to Main.js:
+Add the following to /docs/Layout/index.jsx:
 
 ```js
 import Perf from 'react-addons-perf';

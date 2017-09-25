@@ -5,7 +5,7 @@ const { resolve } = require('path');
 
 const commonConfig = require('./common');
 
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || '8888';
 
 const publicPath = '/assets/';
@@ -55,6 +55,7 @@ module.exports = merge(commonConfig, {
     publicPath, // match the output `publicPath`
     port: PORT,
     host: HOST,
+    disableHostCheck: true,
     noInfo: true,
     historyApiFallback: true,
     stats: {
@@ -67,7 +68,7 @@ module.exports = merge(commonConfig, {
       timings: false,
       warnings: true,
     },
-    open: `http://${HOST}:${PORT}/webpack-dev-server/`,
+    open: `http://${HOST}:${PORT}`,
   },
   devtool: 'cheap-module-eval-source-map',
   plugins: [
