@@ -75,7 +75,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: 'adslot-ui.css',
+      filename: 'adslot-ui-[name].css',
     }),
   ],
   performance: {
