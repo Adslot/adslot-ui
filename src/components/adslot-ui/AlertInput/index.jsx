@@ -87,17 +87,19 @@ export default class AlertInput extends Component {
         onMouseLeave={this.handleMouseLeave}
       >
         {prefixAddon ? <span className={`${baseClass}-addon`}>{prefixAddon}</span> : null}
-        <input
-          className={`${baseClass}-input`}
-          type={type}
-          defaultValue={defaultValue}
-          value={value}
-          min={min}
-          placeholder={placeholder}
-          onChange={onValueChange}
-          onFocus={this.handleInputFocus}
-          onBlur={this.handleInputBlur}
-        />
+        <span className={`${baseClass}-flex-wrapper`}>
+          <input
+            className={`${baseClass}-input`}
+            type={type}
+            defaultValue={defaultValue}
+            value={value}
+            min={min}
+            placeholder={placeholder}
+            onChange={onValueChange}
+            onFocus={this.handleInputFocus}
+            onBlur={this.handleInputBlur}
+          />
+        </span>
         {suffixAddon ? <span className={`${baseClass}-addon`}>{suffixAddon}</span> : null}
         <Overlay
           show={this.state.isPopoverVisible}
