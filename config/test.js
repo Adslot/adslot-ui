@@ -34,7 +34,11 @@ module.exports = merge(commonConfig, {
       {
         test: jsRegEx,
         include: srcPath,
-        loader: 'isparta-loader',
+        exclude: /src\/lib/,
+        use: {
+          loader: 'istanbul-instrumenter-loader',
+          options: { esModules: true },
+        },
       },
     ],
   },
