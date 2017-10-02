@@ -1,7 +1,7 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import _ from 'lodash';
 import sinon from 'sinon';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import Spinner from 'alexandria/Spinner';
@@ -49,6 +49,22 @@ describe('Search', () => {
 
     const inputEl = component.find('input');
     expect(inputEl.prop('placeholder')).to.equal('Search your feelings');
+  });
+
+  describe('componentWillReceiveProps()', () => {
+    it('should not update state when props does not have `value` attribute', () => {
+      const component = mount(<Search />);
+      component.find('input').simulate('change', { target: { value: 'needle' } });
+      component.setProps({ placeholder: 'something' });
+      expect(component.state('searchValue')).to.equal('needle');
+    });
+
+    it('should update state when props has `value` attribute', () => {
+      const component = mount(<Search />);
+      component.find('input').simulate('change', { target: { value: 'needle' } });
+      component.setProps({ value: 'value from prop' });
+      expect(component.state('searchValue')).to.equal('value from prop');
+    });
   });
 
   describe('onChange()', () => {

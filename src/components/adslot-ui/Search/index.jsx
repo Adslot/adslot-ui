@@ -11,10 +11,19 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.debounceOnSearch = _.debounce(props.onSearch, props.debounceInterval);
+    this.state = {
+      searchValue: this.props.value || '',
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onClear = this.onClear.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isNull(nextProps.value)) {
+      this.setState({ searchValue: nextProps.value });
+    }
   }
 
   onChange(event) {
@@ -22,6 +31,7 @@ class Search extends Component {
     if (disabled) return;
 
     const value = _.get(event, 'target.value');
+    this.setState({ searchValue: value });
     onChange(value);
     if (searchOnChange) this.debounceOnSearch(value);
   }
@@ -41,6 +51,7 @@ class Search extends Component {
     if (disabled) return;
 
     const value = '';
+    this.setState({ searchValue: value });
 
     onChange(value);
     if (searchOnChange) {
@@ -50,7 +61,8 @@ class Search extends Component {
   }
 
   render() {
-    const { disabled, isLoading, placeholder, svgSymbolCancel, svgSymbolSearch, value } = this.props;
+    const { disabled, isLoading, placeholder, svgSymbolCancel, svgSymbolSearch } = this.props;
+    const { searchValue } = this.state;
     const searchClassSuffixes = disabled ? ['color-disabled'] : svgSymbolSearch.classSuffixes;
     const cancelClassSuffixes = disabled ? ['color-disabled'] : svgSymbolCancel.classSuffixes;
 
@@ -65,10 +77,10 @@ class Search extends Component {
           onKeyPress={this.onKeyPress}
           placeholder={`Search ${placeholder}`}
           type="search"
-          value={value}
+          value={searchValue}
         />
         {isLoading ? <Spinner size="small" /> : null}
-        {_.isEmpty(value)
+        {_.isEmpty(searchValue)
           ? <SvgSymbol href={svgSymbolSearch.href} classSuffixes={searchClassSuffixes} />
           : <SvgSymbol href={svgSymbolCancel.href} classSuffixes={cancelClassSuffixes} onClick={this.onClear} />
         }
@@ -109,7 +121,7 @@ Search.defaultProps = {
     classSuffixes: ['gray-light'],
     href: '/assets/svg-symbols.svg#search',
   },
-  value: '',
+  value: null,
   searchOnChange: true,
   searchOnEnterKey: false,
   debounceInterval: 0,
