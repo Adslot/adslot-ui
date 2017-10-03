@@ -10,7 +10,7 @@ describe('SvgSymbol', () => {
     expect(component.type()).to.equal('svg');
 
     const useElement = component.find('use');
-    expect(useElement.prop('xlinkHref')).to.equal(undefined);
+    expect(useElement.prop('href')).to.equal(undefined);
   });
 
   it('should render with props', () => {
@@ -23,6 +23,6 @@ describe('SvgSymbol', () => {
       .equal('svg-symbol-component svg-symbol-component-16 svg-symbol-component-red');
 
     const useElement = component.find('use');
-    expect(useElement.prop('xlinkHref')).to.equal('/assets/other-svg-symbols.svg#checklist-incomplete');
+    expect(useElement.prop('href')).to.equal('/assets/other-svg-symbols.svg#checklist-incomplete');
   });
 });
