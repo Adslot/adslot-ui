@@ -62,6 +62,16 @@ describe('FilePickerComponent', () => {
     expect(component.find('.remove-file')).to.have.length(1);
   });
 
+  it('removeFile() should do nothing if isFileSelected is false', () => {
+    const component = mount(<FilePickerComponent onSelect={_.noop} />);
+    component.setState({ isFileSelected: true });
+    const removeFile = component.find('.remove-file').prop('onClick');
+    component.setState({ isFileSelected: false });
+    sinon.spy(component, 'setState');
+    removeFile();
+    expect(component.setState.called).to.equal(false);
+  });
+
   it('should remove file selected when remove file button is clicked', () => {
     const component = mount(<FilePickerComponent onSelect={_.noop} />);
 
