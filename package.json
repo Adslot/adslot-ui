@@ -41,7 +41,7 @@
   "author": "Adslot",
   "devDependencies": {
     "autoprefixer": "^7.1.2",
-    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-react-jsx": "^6.24.1",
