@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "ecmaFeatures": {
     "jsx": true,
     "modules": true
@@ -38,6 +39,7 @@
       "component": true,
       "html": false
     }],
+    "react/prefer-stateless-function": 0,
     "jsx-a11y/label-has-for": 0,
     "lodash/callback-binding": 2,
     "lodash/chain-style": [2, "as-needed"],

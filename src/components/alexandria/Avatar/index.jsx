@@ -1,23 +1,29 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
 const baseClass = 'avatar-component';
-const Avatar = ({ color, givenName, tooltip, image, surname }) => (
-  <div
-    className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
-    title={tooltip !== undefined ? tooltip : `${givenName || ''} ${surname || ''}`}
-  >
+class Avatar extends PureComponent {
+  render() {
+    const { color, givenName, tooltip, image, surname } = this.props;
 
-    {image ? <img className={`${baseClass}-image`} src={image} role="presentation" /> : null}
+    return (
+      <div
+        className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
+        title={tooltip !== undefined ? tooltip : `${givenName || ''} ${surname || ''}`}
+      >
 
-    <div className="avatar-component-initials">
-      {`${_.first(givenName) || ''}${_.first(surname) || ''}`}
-    </div>
+        {image ? <img className={`${baseClass}-image`} src={image} role="presentation" /> : null}
 
-  </div>
-);
+        <div className="avatar-component-initials">
+          {`${_.first(givenName) || ''}${_.first(surname) || ''}`}
+        </div>
+
+      </div>
+    );
+  }
+}
 
 Avatar.displayName = 'AlexandriaAvatarComponent';
 

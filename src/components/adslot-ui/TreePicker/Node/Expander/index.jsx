@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import GridCell from 'alexandria/Grid/Cell';
 import Spinner from 'alexandria/Spinner';
 
-const TreePickerNodeExpander = ({
-  isLoading,
-  onClick,
-}) => {
-  const props = {
-    dts: 'expander',
-  };
+class TreePickerNodeExpander extends PureComponent {
+  render() {
+    const { isLoading, onClick } = this.props;
 
-  if (!isLoading) props.onClick = onClick;
+    // TODO: Should not be this way
+    const props = { dts: 'expander' };
 
-  return (<GridCell {...props}>
-    {isLoading ?
-      <Spinner size="small" /> : <div className="treepickernode-component-expander" />
-    }
-  </GridCell>);
-};
+    // TODO: Not sure why this was done, should be changed
+    if (!isLoading) props.onClick = onClick;
+
+    return (<GridCell {...props}>
+      {isLoading ?
+        <Spinner size="small" /> : <div className="treepickernode-component-expander" />
+      }
+    </GridCell>);
+  }
+}
 
 TreePickerNodeExpander.propTypes = {
   isLoading: PropTypes.bool.isRequired,

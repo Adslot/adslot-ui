@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from 'lib/utils';
 import './styles.scss';
 
-const Alert = ({ type, children, dts }) => (
-  <div className={`alert-component alert-component-${type}`} {...expandDts(dts)}>
-    {children}
-  </div>
-);
+class Alert extends PureComponent {
+  render = () => (
+    <div className={`alert-component alert-component-${this.props.type}`} {...expandDts(this.props.dts)}>
+      {this.props.children}
+    </div>
+  );
+}
 
 Alert.displayName = 'AlexandriaAlertComponent';
 

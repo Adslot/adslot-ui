@@ -1,24 +1,28 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from 'lib/utils';
 import './styles.scss';
 
-const CardContent = ({ children, className, stretch, fill, append, dts }) => {
-  const baseClass = 'card-component-content';
-  const contentClassNames = [baseClass];
+class CardContent extends PureComponent {
+  render() {
+    const { children, className, stretch, fill, append, dts } = this.props;
 
-  if (stretch) contentClassNames.push('stretch');
-  if (fill) contentClassNames.push('fill');
-  if (append) contentClassNames.push('append');
-  if (className) contentClassNames.push(className);
+    const baseClass = 'card-component-content';
+    const contentClassNames = [baseClass];
 
-  return (
-    <div className={contentClassNames.join(' ')} {...expandDts(dts)}>
-      {children}
-    </div>
-  );
-};
+    if (stretch) contentClassNames.push('stretch');
+    if (fill) contentClassNames.push('fill');
+    if (append) contentClassNames.push('append');
+    if (className) contentClassNames.push(className);
+
+    return (
+      <div className={contentClassNames.join(' ')} {...expandDts(dts)}>
+        {children}
+      </div>
+    );
+  }
+}
 
 CardContent.displayName = 'AlexandriaCardContentComponent';
 

@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbol from 'alexandria/SvgSymbol';
 
 require('./styles.scss');
 
-const PanelComponent = ({ id, dts, icon, title, isCollapsed, onClick, children }) => {
-  const baseClass = 'panel-component';
-  const classesCombined = isCollapsed ? [baseClass, 'collapsed'].join(' ') : baseClass;
-  const onHeaderClick = () => onClick(id);
+class PanelComponent extends PureComponent {
+  onHeaderClick = () => this.props.onClick(this.props.id);
 
-  return (
-    <div className={classesCombined} data-test-selector={dts}>
-      <div className="panel-component-header clearfix" onClick={onHeaderClick}>
-        {icon ? <SvgSymbol href={icon.href} /> : null}
-        {title}
+  render() {
+    const { dts, icon, title, isCollapsed, children } = this.props;
+
+    const baseClass = 'panel-component';
+    const classesCombined = isCollapsed ? [baseClass, 'collapsed'].join(' ') : baseClass;
+
+    return (
+      <div className={classesCombined} data-test-selector={dts}>
+        <div className="panel-component-header clearfix" onClick={this.onHeaderClick}>
+          {icon ? <SvgSymbol href={icon.href} /> : null}
+          {title}
+        </div>
+        <div className="panel-component-content">
+          {children}
+        </div>
       </div>
-      <div className="panel-component-content">
-        {children}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 PanelComponent.propTypes = {
   id: PropTypes.string.isRequired,

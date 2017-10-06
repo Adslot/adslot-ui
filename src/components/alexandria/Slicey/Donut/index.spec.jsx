@@ -18,4 +18,8 @@ describe('Donut', () => {
     expect(component.prop('cx')).to.equal('0');
     expect(component.prop('cy')).to.equal('0');
   });
+
+  it('should return false for shouldComponentUpdate', () => {
+    expect(component.instance().shouldComponentUpdate()).to.equal(false);
+  });
 });

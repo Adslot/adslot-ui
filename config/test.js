@@ -30,16 +30,6 @@ module.exports = merge(commonConfig, {
         test: /\.(png|jpg|gif|woff|woff2|css|sass|scss|less|styl)$/,
         loader: 'null-loader', // tests don't care about images and style
       },
-
-      {
-        test: jsRegEx,
-        include: srcPath,
-        exclude: /src\/lib/,
-        use: {
-          loader: 'istanbul-instrumenter-loader',
-          options: { esModules: true },
-        },
-      },
     ],
   },
   externals: {

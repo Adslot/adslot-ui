@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { classSuffixHelper, expandDts } from 'lib/utils';
 import './styles.scss';
 
-const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {
-  const componentClass = 'grid-component-row';
-  const classesList = classSuffixHelper({
-    classSuffixes: [type],
-    suffixOptions: { horizontalBorder, short, verticalCellBorder },
-    componentClass,
-  });
+class GridRow extends PureComponent {
+  render() {
+    const { horizontalBorder, short, type, verticalCellBorder, children, dts } = this.props;
 
-  return (
-    <div className={`${componentClass}${classesList}`} {...expandDts(dts)}>
-      {children}
-    </div>
-  );
-};
+    const componentClass = 'grid-component-row';
+    const classesList = classSuffixHelper({
+      classSuffixes: [type],
+      suffixOptions: { horizontalBorder, short, verticalCellBorder },
+      componentClass,
+    });
+
+    return (
+      <div className={`${componentClass}${classesList}`} {...expandDts(dts)}>
+        {children}
+      </div>
+    );
+  }
+}
 
 GridRow.displayName = 'AlexandriaGridRowComponent';
 

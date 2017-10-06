@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import { classSuffixHelper } from 'lib/utils';
@@ -6,11 +6,13 @@ import './styles.scss';
 
 const componentClass = 'tag-component';
 
-export const ActionButton = ({ onAction, id, actionIconSvgHref }) => (
-  <span className="action-button" onClick={() => onAction(id)}>
-    <SvgSymbol href={actionIconSvgHref} />
-  </span>
-);
+export class ActionButton extends PureComponent {
+  render = () => (
+    <span className="action-button" onClick={() => this.props.onAction(this.props.id)}>
+      <SvgSymbol href={this.props.actionIconSvgHref} />
+    </span>
+  )
+}
 
 ActionButton.propTypes = {
   id: PropTypes.string.isRequired,
@@ -18,6 +20,7 @@ ActionButton.propTypes = {
   actionIconSvgHref: PropTypes.string.isRequired,
 };
 
+// TODO: Move out of here???
 const Tag = ({ children, inverse, id, onAction, accent, actionIconSvgHref }) => {
   const classSuffixes = [];
   if (inverse) { classSuffixes.push('inverse'); }

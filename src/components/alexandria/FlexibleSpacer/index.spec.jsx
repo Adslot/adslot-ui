@@ -7,4 +7,9 @@ describe('FlexibleSpacer', () => {
     const component = shallow(<FlexibleSpacer />);
     expect(component.prop('className')).to.equal('flexible-spacer-component');
   });
+
+  it('should return false for shouldComponentUpdate', () => {
+    const component = shallow(<FlexibleSpacer />);
+    expect(component.instance().shouldComponentUpdate()).to.equal(false);
+  });
 });

@@ -1,18 +1,18 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Arc = ({ data }) => {
-  if (!data) {
-    return (
-      <path className="arc-component"></path>
-    );
-  }
+class Arc extends PureComponent {
+  render() {
+    const { data } = this.props;
 
-  const dataString = `M0,0 L${data.x1},${data.y1} A0.5,0.5 0 ${data.largeArcFlag},1 ${data.x2},${data.y2} z`;
-  return <path className={`arc-component ${_.kebabCase(data.label)}`} d={dataString}></path>;
-};
+    if (!data) return <path className="arc-component"></path>;
+
+    const dataString = `M0,0 L${data.x1},${data.y1} A0.5,0.5 0 ${data.largeArcFlag},1 ${data.x2},${data.y2} z`;
+    return <path className={`arc-component ${_.kebabCase(data.label)}`} d={dataString}></path>;
+  }
+}
 
 Arc.displayName = 'AlexandriaSliceyArcComponent';
 

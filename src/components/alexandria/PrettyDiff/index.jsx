@@ -1,14 +1,11 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DiffMatchPatch from 'diff-match-patch';
 import './styles.scss';
 
-const PrettyDiff = ({ newText, oldText }) => {
-  const dmp = new DiffMatchPatch();
-  const diffs = dmp.diff_main(oldText, newText);
-
-  const getTextClass = (diffType) => {
+class PrettyDiff extends PureComponent {
+  getTextClass = (diffType) => {
     switch (diffType) {
       case DiffMatchPatch.DIFF_DELETE:
         return 'pretty-diff-component-delete';
@@ -19,14 +16,22 @@ const PrettyDiff = ({ newText, oldText }) => {
     }
   };
 
-  return (
-    <div className="pretty-diff-component">
-      {_.map(diffs, (diff, index) =>
-        <span key={index} className={getTextClass(diff[0])}>{diff[1]}</span>
-      )}
-    </div>
-  );
-};
+  dmp = new DiffMatchPatch();
+
+  render() {
+    const { newText, oldText } = this.props;
+
+    const diffs = this.dmp.diff_main(oldText, newText);
+
+    return (
+      <div className="pretty-diff-component">
+        {_.map(diffs, (diff, index) =>
+          <span key={index} className={this.getTextClass(diff[0])}>{diff[1]}</span>
+        )}
+      </div>
+    );
+  }
+}
 
 PrettyDiff.displayName = 'PrettyDiffComponent';
 

@@ -1,32 +1,38 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'adslot-ui/Panel';
 import Card from 'alexandria/Card';
 
-const AccordionComponent = ({ dts, panels, onPanelClick }) => (
-  <Card.Container>
-    <Card.Content fill>
-      {_.map(panels, (panel) => {
-        const panelDts = dts ? `panel-${panel.id}` : undefined;
+class AccordionComponent extends PureComponent {
+  render() {
+    const { dts, panels, onPanelClick } = this.props;
 
-        return (
-          <Panel
-            key={panel.id}
-            id={panel.id}
-            icon={panel.icon}
-            title={panel.title}
-            isCollapsed={panel.isCollapsed}
-            onClick={onPanelClick}
-            dts={panelDts}
-          >
-            {panel.content}
-          </Panel>
-        );
-      })}
-    </Card.Content>
-  </Card.Container>
-);
+    return (
+      <Card.Container>
+        <Card.Content fill>
+          {_.map(panels, (panel) => {
+            const panelDts = dts ? `panel-${panel.id}` : undefined;
+
+            return (
+              <Panel
+                key={panel.id}
+                id={panel.id}
+                icon={panel.icon}
+                title={panel.title}
+                isCollapsed={panel.isCollapsed}
+                onClick={onPanelClick}
+                dts={panelDts}
+              >
+                {panel.content}
+              </Panel>
+            );
+          })}
+        </Card.Content>
+      </Card.Container>
+    );
+  }
+}
 
 const accordionPanelPropTypes = _.pick(Panel.propTypes, [
   'id',

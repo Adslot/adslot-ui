@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { expandDts, classSuffixHelper } from 'lib/utils';
 import './styles.scss';
 
-const GridCell = ({ children, classSuffixes, onClick, stretch, dts }) => {
-  const componentClass = 'grid-component-cell';
-  const classesList = classSuffixHelper({
-    classSuffixes,
-    suffixOptions: {
-      stretch,
-      clickable: onClick,
-    },
-    componentClass,
-  });
-  const extraProps = onClick ? { onClick } : {};
+class GridCell extends PureComponent {
+  render() {
+    const { children, classSuffixes, onClick, stretch, dts } = this.props;
 
-  return (
-    <div className={`${componentClass}${classesList}`} {...extraProps} {...expandDts(dts)}>
-      {children}
-    </div>
-  );
-};
+    const componentClass = 'grid-component-cell';
+    const classesList = classSuffixHelper({
+      classSuffixes,
+      suffixOptions: {
+        stretch,
+        clickable: onClick,
+      },
+      componentClass,
+    });
+    const extraProps = onClick ? { onClick } : {};
+
+    return (
+      <div className={`${componentClass}${classesList}`} {...extraProps} {...expandDts(dts)}>
+        {children}
+      </div>
+    );
+  }
+}
 
 GridCell.displayName = 'AlexandriaGridCellComponent';
 

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
@@ -13,76 +13,80 @@ require('./styles.scss');
 
 const isItemSelected = ({ item, selectedItems }) => _.some(selectedItems, { id: item.id });
 
-const ListPickerPureComponent = ({
-  allowMultiSelection,
-  deselectItem,
-  emptyIcon,
-  emptyMessage,
-  emptySvgSymbol,
-  items,
-  labelFormatter,
-  addonFormatter,
-  itemHeaders,
-  itemType,
-  selectItem,
-  selectedItems,
-}) => {
-  const handleChange = (item) => (event, checked) => {
+class ListPickerPureComponent extends PureComponent {
+  handleChange = (item) => (event, checked) => {
     if (checked) {
-      selectItem(item, allowMultiSelection);
+      this.props.selectItem(item, this.props.allowMultiSelection);
     } else {
-      deselectItem(item, allowMultiSelection);
+      this.props.deselectItem(item, this.props.allowMultiSelection);
     }
   };
 
-  const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
+  render() {
+    const {
+      allowMultiSelection,
+      emptyIcon,
+      emptyMessage,
+      emptySvgSymbol,
+      items,
+      labelFormatter,
+      addonFormatter,
+      itemHeaders,
+      itemType,
+      selectedItems,
+    } = this.props;
 
-  return (
-    <div className="listpickerpure-component" data-test-selector={`listpickerpure-component-${_.kebabCase(itemType)}`}>
-      {itemHeaders ?
-        <Grid>
-          <GridRow type="header">
-            <GridCell stretch>
-              {itemHeaders.label}
-            </GridCell>
-            <GridCell classSuffixes={['header-toggle']}>
-              {itemHeaders.toggle}
-            </GridCell>
-            {addonFormatter ?
-              <GridCell classSuffixes={['header-addon']}>
-                {itemHeaders.addon}
+    const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
+
+    const dts = `listpickerpure-component-${_.kebabCase(itemType)}`;
+
+    return (
+      <div className="listpickerpure-component" data-test-selector={dts}>
+        {itemHeaders ?
+          <Grid>
+            <GridRow type="header">
+              <GridCell stretch>
+                {itemHeaders.label}
               </GridCell>
-            : null}
-          </GridRow>
-        </Grid> :
-        null
-      }
-      <div className="listpickerpure-component-items">
-        <Grid>
-          {_.map(items, (item) =>
-            <GridRow key={item.id} dts={`${_.kebabCase(itemType)}-${item.id}`}>
-              <GridCell stretch dts="label">
-                {labelFormatter(item)}
-              </GridCell>
-              <GridCell classSuffixes={['toggle']} dts="toggle">
-                <ToggleComponent
-                  checked={isItemSelected({ item, selectedItems })}
-                  onChange={handleChange(item)}
-                />
+              <GridCell classSuffixes={['header-toggle']}>
+                {itemHeaders.toggle}
               </GridCell>
               {addonFormatter ?
-                <GridCell classSuffixes={['addon']} dts="addon">
-                  {addonFormatter(item)}
+                <GridCell classSuffixes={['header-addon']}>
+                  {itemHeaders.addon}
                 </GridCell>
               : null}
             </GridRow>
-          )}
-          <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
-        </Grid>
+          </Grid> :
+          null
+        }
+        <div className="listpickerpure-component-items">
+          <Grid>
+            {_.map(items, (item) =>
+              <GridRow key={item.id} dts={`${_.kebabCase(itemType)}-${item.id}`}>
+                <GridCell stretch dts="label">
+                  {labelFormatter(item)}
+                </GridCell>
+                <GridCell classSuffixes={['toggle']} dts="toggle">
+                  <ToggleComponent
+                    checked={isItemSelected({ item, selectedItems })}
+                    onChange={this.handleChange(item)}
+                  />
+                </GridCell>
+                {addonFormatter ?
+                  <GridCell classSuffixes={['addon']} dts="addon">
+                    {addonFormatter(item)}
+                  </GridCell>
+                : null}
+              </GridRow>
+            )}
+            <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
+          </Grid>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 ListPickerPureComponent.displayName = 'AdslotUiListPickerPureComponent';
 

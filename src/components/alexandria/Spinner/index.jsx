@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Spinner = ({ size, colourStyle }) => (
-  <div className="spinner-component">
-    <div className={`spinner spinner-${size} spinner-colour-style-${colourStyle}`} />
-  </div>
-);
+class Spinner extends PureComponent {
+  render = () => (
+    <div className="spinner-component">
+      <div className={`spinner spinner-${this.props.size} spinner-colour-style-${this.props.colourStyle}`} />
+    </div>
+  );
+}
 
 Spinner.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),

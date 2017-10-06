@@ -1,29 +1,33 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbolCircle from 'alexandria/SvgSymbol/Circle';
 import './styles.scss';
 
-const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
-  const classSuffixes = _.isEmpty(svgSymbol.classSuffixes) ?
-    Empty.defaultProps.svgSymbol.classSuffixes :
-    svgSymbol.classSuffixes;
+class Empty extends PureComponent {
+  render() {
+    const { collection, svgSymbol, text, hideIcon } = this.props;
 
-  if (_.isEmpty(collection)) {
-    return (
-      <div className="empty-component">
-        {hideIcon ? null :
-          <SvgSymbolCircle
-            href={svgSymbol.href}
-            classSuffixes={classSuffixes}
-          />}
-        <div className="empty-component-text">{text}</div>
-      </div>
-    );
+    const classSuffixes = _.isEmpty(svgSymbol.classSuffixes) ?
+      Empty.defaultProps.svgSymbol.classSuffixes :
+      svgSymbol.classSuffixes;
+
+    if (_.isEmpty(collection)) {
+      return (
+        <div className="empty-component">
+          {hideIcon ? null :
+            <SvgSymbolCircle
+              href={svgSymbol.href}
+              classSuffixes={classSuffixes}
+            />}
+          <div className="empty-component-text">{text}</div>
+        </div>
+      );
+    }
+
+    return <div />;
   }
-
-  return <div />;
-};
+}
 
 Empty.displayName = 'AlexandriaEmptyComponent';
 

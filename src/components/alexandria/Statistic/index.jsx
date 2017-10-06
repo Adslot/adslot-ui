@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Statistic = ({ label, value, inline }) => {
-  const baseClass = 'statistic-component';
-  const statisticClassNames = [baseClass];
-  if (inline) statisticClassNames.push('inline');
+class Statistic extends PureComponent {
+  render() {
+    const { label, value, inline } = this.props;
 
-  return (
-    <label className={statisticClassNames.join(' ')}>
-      <div className={`${baseClass}-value`}>{value}</div>
-      <div className={`${baseClass}-label`}>{label}</div>
-    </label>
-  );
-};
+    const baseClass = 'statistic-component';
+    const statisticClassNames = [baseClass];
+    if (inline) statisticClassNames.push('inline');
+
+    return (
+      <label className={statisticClassNames.join(' ')}>
+        <div className={`${baseClass}-value`}>{value}</div>
+        <div className={`${baseClass}-label`}>{label}</div>
+      </label>
+    );
+  }
+}
 
 Statistic.displayName = 'AlexandriaStatisticComponent';
 

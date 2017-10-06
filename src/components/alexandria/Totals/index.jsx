@@ -1,27 +1,33 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'alexandria/Grid';
 import GridCell from 'alexandria/Grid/Cell';
 import GridRow from 'alexandria/Grid/Row';
 
-const Totals = ({ toSum, valueFormatter }) => (
-  <Grid>
-    {_(toSum)
-      .reject({ isHidden: true })
-      .map((item, index) =>
-        <GridRow short horizontalBorder={false} key={index}>
-          <GridCell stretch>{item.label}</GridCell>
-          <GridCell dts={`${_.kebabCase(item.label)}-value`}>{valueFormatter(item.value)}</GridCell>
+class Totals extends PureComponent {
+  render() {
+    const { toSum, valueFormatter } = this.props;
+
+    return (
+      <Grid>
+        {_(toSum)
+          .reject({ isHidden: true })
+          .map((item, index) =>
+            <GridRow short horizontalBorder={false} key={index}>
+              <GridCell stretch>{item.label}</GridCell>
+              <GridCell dts={`${_.kebabCase(item.label)}-value`}>{valueFormatter(item.value)}</GridCell>
+            </GridRow>
+          )
+          .value()}
+        <GridRow short horizontalBorder={false} type="footer">
+          <GridCell stretch>Total</GridCell>
+          <GridCell dts="total-value">{valueFormatter(_.sumBy(toSum, 'value'))}</GridCell>
         </GridRow>
-      )
-      .value()}
-    <GridRow short horizontalBorder={false} type="footer">
-      <GridCell stretch>Total</GridCell>
-      <GridCell dts="total-value">{valueFormatter(_.sumBy(toSum, 'value'))}</GridCell>
-    </GridRow>
-  </Grid>
-);
+      </Grid>
+    );
+  }
+}
 
 Totals.displayName = 'AlexandriaTotalsComponent';
 

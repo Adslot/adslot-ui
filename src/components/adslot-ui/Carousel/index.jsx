@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Carousel from 'nuka-carousel';
@@ -47,16 +47,18 @@ export const getNextDecorator = () => {
   };
 };
 
-const CarouselComponent = (props) => {
-  const { className, children } = props;
-  const decorators = [getPrevDecorator(), getNextDecorator()];
+class CarouselComponent extends PureComponent {
+  render() {
+    const { className, children } = this.props;
+    const decorators = [getPrevDecorator(), getNextDecorator()];
 
-  return (
-    <Carousel decorators={decorators} {...props} className={classNames(baseClass, className)}>
-      {children}
-    </Carousel>
-  );
-};
+    return (
+      <Carousel decorators={decorators} {...this.props} className={classNames(baseClass, className)}>
+        {children}
+      </Carousel>
+    );
+  }
+}
 
 CarouselComponent.propTypes = {
   className: PropTypes.string,

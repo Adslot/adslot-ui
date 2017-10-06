@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { ROUND, QUARTER, getPointX, getPointY } from 'alexandria/Slicey/dataProcessor';
 import './styles.scss';
 
-const Marker = ({ fraction }) => {
-  const getMarkerPoints = (markerValue) => {
+class Marker extends PureComponent {
+  getMarkerPoints = (markerValue) => {
     const pointOnCircle = (ROUND * markerValue) - QUARTER;
     return `${getPointX(pointOnCircle)},${getPointY(pointOnCircle)} 0,0`;
   };
 
-  return (
-    <polyline className="marker-component" points={getMarkerPoints(fraction)} />
-  );
-};
+  render = () => <polyline className="marker-component" points={this.getMarkerPoints(this.props.fraction)} />;
+}
 
 Marker.displayName = 'AlexandriaSliceyMarkerComponent';
 

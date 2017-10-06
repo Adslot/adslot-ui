@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const BreadcrumbNode = ({ isLast, node, onClick }) => {
-  const baseClass = 'breadcrumbnode-component';
-  if (isLast) {
+class BreadcrumbNode extends PureComponent {
+  onClickNode = () => this.props.onClick(this.props.node.id);
+
+  render() {
+    const baseClass = 'breadcrumbnode-component';
+    if (this.props.isLast) {
+      return (
+        <span className={baseClass}>
+          {this.props.node.label}
+        </span>);
+    }
+
     return (
-      <span className={baseClass}>
-        {node.label}
+      <span className={`${baseClass} ${baseClass}-link`} onClick={this.onClickNode}>
+        {this.props.node.label}
       </span>);
   }
-
-  const onClickNode = () => onClick(node.id);
-  return (
-    <span className={`${baseClass} ${baseClass}-link`} onClick={onClickNode}>
-      {node.label}
-    </span>);
-};
+}
 
 BreadcrumbNode.displayName = 'AlexandriaBreadcrumbNodeComponent';
 

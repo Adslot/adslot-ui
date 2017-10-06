@@ -1,20 +1,23 @@
 // TODO: Move to Alexandria.
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { expandDts } from 'lib/utils';
 
 require('./styles.scss');
 
-const SplitPaneComponent = ({ children, dts, additionalClassNames }) => {
-  const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);
+class SplitPaneComponent extends PureComponent {
+  render() {
+    const { children, dts, additionalClassNames } = this.props;
+    const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);
 
-  return (
-    <div className={splitPaneClass} {...expandDts(dts)}>
-      {children}
-    </div>
-  );
-};
+    return (
+      <div className={splitPaneClass} {...expandDts(dts)}>
+        {children}
+      </div>
+    );
+  }
+}
 
 SplitPaneComponent.displayName = 'AdslotUiSplitPaneComponent';
 SplitPaneComponent.propTypes = {

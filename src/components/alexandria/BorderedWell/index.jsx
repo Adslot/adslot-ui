@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const BorderedWell = ({ children }) => (
-  <div className="borderedwell-component">
-    {children}
-  </div>
-);
+class BorderedWell extends PureComponent {
+  render = () => (
+    <div className="borderedwell-component">
+      {this.props.children}
+    </div>
+  );
+}
 
 BorderedWell.displayName = 'AlexandriaBorderedWellComponent';
 

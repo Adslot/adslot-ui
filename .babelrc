@@ -19,6 +19,17 @@
   "plugins": [
     "transform-strict-mode",
     "transform-react-jsx",
+    "transform-class-properties",
     "react-hot-loader/babel"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [["istanbul", {
+        "exclude": [
+          "src/**/*.spec**",
+          "src/lib/**"
+        ]
+      }]]
+    }
+  }
 }

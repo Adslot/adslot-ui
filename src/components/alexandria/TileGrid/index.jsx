@@ -1,24 +1,28 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const TileGrid = ({ title, items, onItemClick }) => {
-  const baseClass = 'tile-grid-component';
+class TileGrid extends PureComponent {
+  render() {
+    const { title, items, onItemClick } = this.props;
 
-  return (
-    <div className={baseClass}>
-      <strong className={`${baseClass}-title`}>{title}</strong>
-      <ul className={`${baseClass}-list`}>
-        {_.map(items, (item) => (
-          <li key={item.id} className={`${baseClass}-item ${baseClass}-item-${item.classSuffix}`}>
-            <a className={`${baseClass}-item-link`} onClick={() => onItemClick(item.id)}>{item.title}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    const baseClass = 'tile-grid-component';
+
+    return (
+      <div className={baseClass}>
+        <strong className={`${baseClass}-title`}>{title}</strong>
+        <ul className={`${baseClass}-list`}>
+          {_.map(items, (item) => (
+            <li key={item.id} className={`${baseClass}-item ${baseClass}-item-${item.classSuffix}`}>
+              <a className={`${baseClass}-item-link`} onClick={() => onItemClick(item.id)}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 TileGrid.propTypes = {
   title: PropTypes.string.isRequired,

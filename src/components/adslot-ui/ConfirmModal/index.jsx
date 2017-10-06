@@ -1,39 +1,47 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 
-const ConfirmModalComponent = ({
-  buttonCancelLabel,
-  buttonConfirmLabel,
-  modalApply,
-  modalClose,
-  modalDescription,
-  modalTitle,
-  show,
-}) => {
-  const cancelAction = () => { modalClose(); };
+class ConfirmModalComponent extends PureComponent {
+  cancelAction = () => this.props.modalClose();
 
-  const applyAction = () => {
-    modalApply();
-    modalClose();
+  applyAction = () => {
+    this.props.modalApply();
+    this.props.modalClose();
   };
 
-  return (
-    <Modal className="confirm-modal-component" show={show} bsSize="small" keyboard={false}>
-      {modalTitle ? <Modal.Header><Modal.Title>{modalTitle}</Modal.Title></Modal.Header> : null}
-      <Modal.Body>
-        <p>{modalDescription}</p>
-      </Modal.Body>
-      <Modal.Footer>
-        {modalClose ? <Button className="btn-inverse" onClick={cancelAction} data-test-selector="confirm-modal-cancel">
-          {buttonCancelLabel}</Button> : null}
-        <Button bsStyle="primary" onClick={applyAction} data-test-selector="confirm-modal-confirm">
-          {buttonConfirmLabel}</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-};
+  render() {
+    const {
+      buttonCancelLabel,
+      buttonConfirmLabel,
+      modalClose,
+      modalDescription,
+      modalTitle,
+      show,
+    } = this.props;
+
+    return (
+      <Modal className="confirm-modal-component" show={show} bsSize="small" keyboard={false}>
+        {modalTitle ? <Modal.Header><Modal.Title>{modalTitle}</Modal.Title></Modal.Header> : null}
+        <Modal.Body>
+          <p>{modalDescription}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          {
+            modalClose ? <Button
+              className="btn-inverse"
+              onClick={this.cancelAction}
+              data-test-selector="confirm-modal-cancel"
+            >{buttonCancelLabel}</Button> : null
+          }
+          <Button bsStyle="primary" onClick={this.applyAction} data-test-selector="confirm-modal-confirm">
+            {buttonConfirmLabel}</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+}
 
 ConfirmModalComponent.displayName = 'AdslotUiConfirmModalComponent';
 

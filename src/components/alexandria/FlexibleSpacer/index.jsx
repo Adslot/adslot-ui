@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles.scss';
 
-const FlexibleSpacer = () => <div className="flexible-spacer-component" />;
+class FlexibleSpacer extends Component {
+  shouldComponentUpdate = () => false;
+
+  render = () => <div className="flexible-spacer-component" />;
+}
 
 FlexibleSpacer.displayName = 'AlexandriaFlexibleSpacerComponent';
 

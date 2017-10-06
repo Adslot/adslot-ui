@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles.scss';
 
-const Donut = () => (
-  <circle className="donut-component" r=".45" cx="0" cy="0"></circle>
-);
+class Donut extends Component {
+  shouldComponentUpdate = () => false;
+
+  render = () => <circle className="donut-component" r=".45" cx="0" cy="0"></circle>;
+}
 
 Donut.displayName = 'AlexandriaSliceyDonutComponent';
 
