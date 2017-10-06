@@ -1,4 +1,17 @@
 const webpackConfig = require('./webpack.config');
+const webpack = require('webpack');
+const _ = require('lodash');
+
+const env = { ADSLOT_TEST_FILE: '' };
+
+webpackConfig.plugins.push(
+  new webpack.DefinePlugin(
+    _(env)
+      .assign(_.pick(process.env, _.keys(env)))
+      .mapValues(JSON.stringify)
+      .value()
+  )
+);
 
 module.exports = function configureKarma(config) {
   config.set({
