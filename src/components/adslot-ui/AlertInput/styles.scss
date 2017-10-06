@@ -31,6 +31,10 @@
     border-color: $color-negative;
   }
 
+  &-flex-wrapper {
+    width: 100%;
+  }
+
   &-input {
     background-color: $color-well;
     border: 0;

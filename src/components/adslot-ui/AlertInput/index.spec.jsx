@@ -111,7 +111,7 @@ describe('AlertInput', () => {
       expect(component.prop('onMouseLeave')).to.be.a('function');
       expect(component.children()).to.have.length(2);
 
-      const inputElement = component.childAt(0);
+      const inputElement = component.childAt(0).childAt(0);
       expect(inputElement.prop('className')).to.equal('alert-input-component-input');
       expect(inputElement.prop('type')).to.equal('number');
       expect(inputElement.prop('min')).to.equal(0);
