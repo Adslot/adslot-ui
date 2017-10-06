@@ -13,7 +13,7 @@ const Avatar = ({ color, givenName, tooltip, image, surname }) => (
     {image ? <img className={`${baseClass}-image`} src={image} role="presentation" /> : null}
 
     <div className="avatar-component-initials">
-      {`${_.first(givenName) || ''}${_.first(surname) || ''}`}
+      {`${_.head(givenName) || ''}${_.head(surname) || ''}`}
     </div>
 
   </div>

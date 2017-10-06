@@ -25,8 +25,8 @@ CardContent.displayName = 'AlexandriaCardContentComponent';
 CardContent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  fill: PropTypes.bool.isRequired,
-  stretch: PropTypes.bool.isRequired,
+  fill: PropTypes.bool,
+  stretch: PropTypes.bool,
   append: PropTypes.bool,
   dts: PropTypes.string,
 };

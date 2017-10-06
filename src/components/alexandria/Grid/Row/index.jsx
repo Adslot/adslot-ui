@@ -22,10 +22,10 @@ GridRow.displayName = 'AlexandriaGridRowComponent';
 
 GridRow.propTypes = {
   children: PropTypes.node,
-  horizontalBorder: PropTypes.bool.isRequired,
-  short: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf(['body', 'header', 'subfooter', 'footer']).isRequired,
-  verticalCellBorder: PropTypes.bool.isRequired,
+  horizontalBorder: PropTypes.bool,
+  short: PropTypes.bool,
+  type: PropTypes.oneOf(['body', 'header', 'subfooter', 'footer']),
+  verticalCellBorder: PropTypes.bool,
   dts: PropTypes.string,
 };
 

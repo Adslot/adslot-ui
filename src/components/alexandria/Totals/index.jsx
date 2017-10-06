@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -32,8 +33,8 @@ Totals.propTypes = {
       value: PropTypes.number.isRequired,
       isHidden: PropTypes.bool,
     })
-  ).isRequired,
-  valueFormatter: PropTypes.func.isRequired,
+  ),
+  valueFormatter: PropTypes.func,
 };
 
 Totals.defaultProps = {

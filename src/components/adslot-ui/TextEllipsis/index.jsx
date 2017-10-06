@@ -6,7 +6,6 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 require('./styles.scss');
 
 class TextEllipsisComponent extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -63,8 +62,8 @@ class TextEllipsisComponent extends Component {
 
 TextEllipsisComponent.propTypes = {
   children: PropTypes.node.isRequired,
-  overlayTriggerProps: PropTypes.shape(_.omit(OverlayTrigger.propTypes, ['overlay'])).isRequired,
-  popoverProps: PropTypes.shape(Popover.propTypes).isRequired,
+  overlayTriggerProps: PropTypes.shape(_.omit(OverlayTrigger.propTypes, ['overlay'])),
+  popoverProps: PropTypes.shape(Popover.propTypes),
 };
 
 TextEllipsisComponent.defaultProps = {

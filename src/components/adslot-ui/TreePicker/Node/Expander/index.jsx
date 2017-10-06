@@ -21,7 +21,7 @@ const TreePickerNodeExpander = ({
 };
 
 TreePickerNodeExpander.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
 };
 

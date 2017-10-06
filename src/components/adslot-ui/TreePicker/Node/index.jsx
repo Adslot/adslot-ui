@@ -79,7 +79,8 @@ class TreePickerNodeComponent extends React.Component {
           {selected ?
             <GridCell classSuffixes={['button']} dts="button-remove">
               <Button
-                block bsSize="xsmall"
+                block
+                bsSize="xsmall"
                 className="btn-inverse"
                 onClick={this.removeNodeBound}
                 disabled={disabled || node.isSelectable === false}
@@ -111,7 +112,8 @@ class TreePickerNodeComponent extends React.Component {
           {!selected ?
             <GridCell classSuffixes={['button']} dts="button-add">
               <Button
-                block bsSize="xsmall"
+                block
+                bsSize="xsmall"
                 className="btn-inverse"
                 onClick={this.includeNodeBound}
                 disabled={disabled || node.isSelectable === false || this.state.isLoading}
@@ -131,22 +133,19 @@ TreePickerNodeComponent.displayName = 'AdslotUiTreePickerNodeComponent';
 TreePickerNodeComponent.propTypes = {
   disabled: PropTypes.bool,
   expandNode: PropTypes.func,
-  includeNode: PropTypes.func.isRequired,
+  includeNode: PropTypes.func,
   itemType: PropTypes.string.isRequired,
   node: TreePickerPropTypes.node.isRequired,
   nodeRenderer: PropTypes.func,
-  removeNode: PropTypes.func.isRequired,
-  selected: PropTypes.bool.isRequired,
-  valueFormatter: PropTypes.func.isRequired,
+  removeNode: PropTypes.func,
+  selected: PropTypes.bool,
+  valueFormatter: PropTypes.func,
 };
 
 TreePickerNodeComponent.defaultProps = {
   disabled: false,
-
   includeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`); },
-
   removeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`); },
-
   selected: false,
   valueFormatter: (value) => value,
   nodeRenderer: (node) => node.label,

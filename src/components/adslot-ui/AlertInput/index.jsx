@@ -121,7 +121,7 @@ export default class AlertInput extends Component {
 
 AlertInput.propTypes = {
   defaultValue: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   type: PropTypes.oneOf(['text', 'number']),
   min: PropTypes.number,
   placeholder: PropTypes.string,
@@ -137,4 +137,3 @@ AlertInput.propTypes = {
 AlertInput.defaultProps = {
   type: 'text',
 };
-

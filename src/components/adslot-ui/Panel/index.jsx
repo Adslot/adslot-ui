@@ -29,7 +29,7 @@ PanelComponent.propTypes = {
   title: PropTypes.node.isRequired,
   isCollapsed: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
 
 PanelComponent.defaultProps = {

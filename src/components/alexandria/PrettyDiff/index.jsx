@@ -31,8 +31,8 @@ const PrettyDiff = ({ newText, oldText }) => {
 PrettyDiff.displayName = 'PrettyDiffComponent';
 
 PrettyDiff.propTypes = {
-  newText: PropTypes.string.isRequired,
-  oldText: PropTypes.string.isRequired,
+  newText: PropTypes.string,
+  oldText: PropTypes.string,
 };
 PrettyDiff.defaultProps = {
   newText: '',

@@ -50,7 +50,7 @@ const SearchBarComponent = ({
 };
 
 SearchBarComponent.propTypes = {
-  additionalClassNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  additionalClassNames: PropTypes.arrayOf(PropTypes.string),
   searchString: PropTypes.string.isRequired,
   searchPlaceholder: PropTypes.string,
   searchIconHref: PropTypes.string.isRequired,

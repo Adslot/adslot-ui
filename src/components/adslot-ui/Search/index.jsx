@@ -85,7 +85,7 @@ Search.propTypes = {
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   onSearch: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
   value: PropTypes.string,

@@ -20,14 +20,16 @@ const isSubset = (array, subArray) =>
 class ListPickerComponent extends React.Component {
   constructor(props) {
     super(props);
-    for (const methodName of [
+    [
       'applyAction',
       'cancelAction',
       'deselectItem',
       'getApplyButtonState',
       'loadData',
       'selectItem',
-    ]) { this[methodName] = this[methodName].bind(this); }
+    ].forEach((methodName) => {
+      this[methodName] = this[methodName].bind(this);
+    });
 
     this.state = {};
   }
@@ -79,42 +81,60 @@ class ListPickerComponent extends React.Component {
   }
 
   render() {
-    const { state, props } = this;
+    const { selectedItems, disableApplyButton } = this.state;
+    const {
+      allowMultiSelection,
+      emptyIcon,
+      emptyMessage,
+      emptySvgSymbol,
+      labelFormatter,
+      addonFormatter,
+      itemHeaders,
+      items,
+      itemType,
+      itemInfo,
+      show,
+      modalClassName,
+      modalTitle,
+      modalDescription,
+      modalFootnote,
+      linkButtons,
+    } = this.props;
 
     const listPickerPureElement = (
       <ListPickerPure
-        allowMultiSelection={props.allowMultiSelection}
-        emptyIcon={props.emptyIcon}
-        emptyMessage={props.emptyMessage}
-        emptySvgSymbol={props.emptySvgSymbol}
+        allowMultiSelection={allowMultiSelection}
+        emptyIcon={emptyIcon}
+        emptyMessage={emptyMessage}
+        emptySvgSymbol={emptySvgSymbol}
         deselectItem={this.deselectItem}
-        labelFormatter={props.labelFormatter}
-        addonFormatter={props.addonFormatter}
-        itemHeaders={props.itemHeaders}
-        items={props.items}
-        itemType={props.itemType}
+        labelFormatter={labelFormatter}
+        addonFormatter={addonFormatter}
+        itemHeaders={itemHeaders}
+        items={items}
+        itemType={itemType}
         selectItem={this.selectItem}
-        selectedItems={state.selectedItems}
+        selectedItems={selectedItems}
       />
     );
 
     return (
-      <Modal className={props.modalClassName} show={props.show} bsSize="large" keyboard={false}>
+      <Modal className={modalClassName} show={show} bsSize="large" keyboard={false}>
         <Modal.Header>
-          <Modal.Title>{props.modalTitle}</Modal.Title>
+          <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.modalDescription ? <p>{props.modalDescription}</p> : null}
-          {_.isEmpty(props.itemInfo) ?
+          {modalDescription ? <p>{modalDescription}</p> : null}
+          {_.isEmpty(itemInfo) ?
             <div className="listpicker-component-body">{listPickerPureElement}</div>
           :
             <div className="listpicker-component-body-split">
-              <SplitPane dts={_.kebabCase(props.itemInfo.label)}>
+              <SplitPane dts={_.kebabCase(itemInfo.label)}>
                 <Grid>
                   <GridRow type="header">
-                    <GridCell>{props.itemInfo.label}</GridCell>
+                    <GridCell>{itemInfo.label}</GridCell>
                   </GridRow>
-                  {_.map(props.itemInfo.properties, (property) =>
+                  {_.map(itemInfo.properties, (property) =>
                     <GridRow key={property.label} horizontalBorder={false}>
                       <GridCell classSuffixes={['label']}>{property.label}</GridCell>
                       <GridCell
@@ -135,12 +155,13 @@ class ListPickerComponent extends React.Component {
               </SplitPane>
             </div>
           }
-          {props.modalFootnote ? <div className="listpicker-component-footnote">{props.modalFootnote}</div> : null}
+          {modalFootnote ? <div className="listpicker-component-footnote">{modalFootnote}</div> : null}
         </Modal.Body>
         <Modal.Footer>
-          {_.isEmpty(props.linkButtons) ? null :
+          {
+            _.isEmpty(linkButtons) ? null :
             <div className="pull-left">
-              {_.map(props.linkButtons, (linkButton) => (
+              {_.map(linkButtons, (linkButton) => (
                 _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ?
                   (
                     <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
@@ -155,7 +176,9 @@ class ListPickerComponent extends React.Component {
             Cancel
           </Button>
           <Button
-            bsStyle="primary" onClick={this.applyAction} disabled={state.disableApplyButton}
+            bsStyle="primary"
+            onClick={this.applyAction}
+            disabled={disableApplyButton}
             data-test-selector="listpicker-apply-button"
           >
             Apply
@@ -181,12 +204,12 @@ const linkButtonsProps = PropTypes.arrayOf(PropTypes.oneOfType([
 ]));
 
 ListPickerComponent.propTypes = {
-  allowEmptySelection: PropTypes.bool.isRequired,
-  allowMultiSelection: PropTypes.bool.isRequired,
+  allowEmptySelection: PropTypes.bool,
+  allowMultiSelection: PropTypes.bool,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  initialSelection: PropTypes.arrayOf(itemProps).isRequired,
+  initialSelection: PropTypes.arrayOf(itemProps),
   itemHeaders: PropTypes.shape({
     label: PropTypes.string,
     toggle: PropTypes.string,
@@ -201,18 +224,18 @@ ListPickerComponent.propTypes = {
       })
     ).isRequired,
   }),
-  items: PropTypes.arrayOf(itemProps).isRequired,
-  itemType: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(itemProps),
+  itemType: PropTypes.string,
   labelFormatter: PropTypes.func,
   addonFormatter: PropTypes.func,
   linkButtons: linkButtonsProps,
-  modalApply: PropTypes.func.isRequired,
+  modalApply: PropTypes.func,
   modalDescription: PropTypes.string,
   modalClassName: PropTypes.string,
-  modalClose: PropTypes.func.isRequired,
+  modalClose: PropTypes.func,
   modalFootnote: PropTypes.string,
-  modalTitle: PropTypes.string.isRequired,
-  show: PropTypes.bool.isRequired,
+  modalTitle: PropTypes.string,
+  show: PropTypes.bool,
 };
 
 ListPickerComponent.defaultProps = {
@@ -223,10 +246,8 @@ ListPickerComponent.defaultProps = {
   itemType: 'item',
   linkButtons: [],
   modalApply: () => { throw new Error('AdslotUi ListPicker needs a modalApply handler'); },
-
   modalClassName: 'listpicker-component',
   modalClose: () => { throw new Error('AdslotUi ListPicker needs a modalClose handler'); },
-
   modalTitle: 'Select Items',
   show: false,
 };

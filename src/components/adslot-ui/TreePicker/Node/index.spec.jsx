@@ -112,9 +112,15 @@ describe('TreePickerNodeComponent', () => {
     let fireCount = 0;
     const testFunction = () => { fireCount += 1; };
 
-    const component = mount(<TreePickerNode
-      itemType={itemType} node={cbrNode} removeNode={testFunction} selected disabled
-    />);
+    const component = mount(
+      <TreePickerNode
+        itemType={itemType}
+        node={cbrNode}
+        removeNode={testFunction}
+        selected
+        disabled
+      />
+    );
     const buttonElement = component.find(Button);
     expect(buttonElement.prop('disabled')).to.equal(true);
     buttonElement.simulate('click');
@@ -123,9 +129,13 @@ describe('TreePickerNodeComponent', () => {
 
   it('should filter value when provided', () => {
     const valueFormatter = (value) => `€${value / 100}`;
-    const component = shallow(<TreePickerNode
-      itemType={itemType} node={cbrNode} valueFormatter={valueFormatter}
-    />);
+    const component = shallow(
+      <TreePickerNode
+        itemType={itemType}
+        node={cbrNode}
+        valueFormatter={valueFormatter}
+      />
+    );
 
     const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
     const valueCellElement = rowElement.prop('children')[3];

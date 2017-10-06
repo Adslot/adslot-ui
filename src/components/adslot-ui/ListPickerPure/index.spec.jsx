@@ -177,9 +177,8 @@ describe('ListPickerPureComponent', () => {
     const unselectedCheckboxElement = gridRowElements.at(0).find(Checkbox);
     expect(unselectedCheckboxElement.prop('checked')).to.equal(false);
 
-    expect(() => unselectedCheckboxElement.simulate('change', null, true)).to.throw(
-      'AdslotUi ListPickerPure needs a selectItem handler'
-    );
+    expect(() => unselectedCheckboxElement.simulate('change', null, true))
+      .to.throw('AdslotUi ListPickerPure needs a selectItem handler');
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
@@ -192,9 +191,8 @@ describe('ListPickerPureComponent', () => {
     const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
     expect(selectedCheckboxElement.prop('checked')).to.equal(true);
 
-    expect(() => selectedCheckboxElement.simulate('change', null, false)).to.throw(
-      'AdslotUi ListPickerPure needs a deselectItem handler'
-    );
+    expect(() => selectedCheckboxElement.simulate('change', null, false))
+      .to.throw('AdslotUi ListPickerPure needs a deselectItem handler');
   });
 
   it('should call `selectItem` handler when we select', () => {
