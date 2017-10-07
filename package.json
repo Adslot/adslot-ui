@@ -22,8 +22,8 @@
     "start": "npm run start:dev",
     "start:dev": "webpack-dev-server --config=./config/dev.js",
     "start:cold": "node server.js --env=dev-cold",
-    "test": "scripts/test",
-    "test:watch": "scripts/test watch",
+    "test": "scripts/test --coverage",
+    "test:watch": "scripts/test --watch",
     "version": "echo '…generating dist…' && npm run -s dist && git add dist/*",
     "scaffold": "./scripts/scaffold"
   },

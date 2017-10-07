@@ -55,11 +55,11 @@ npm run lint
 
 # Run tests and posttest linting
 
-npm run test
+npm run test [-- --no-coverage]
 
 # Run tests and rebuild on file changes.
 
-npm run test:watch
+npm run test:watch [--file=<path>] [--coverage]
 ```
 
 Generating New Components

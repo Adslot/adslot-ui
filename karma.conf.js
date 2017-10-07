@@ -33,7 +33,10 @@ module.exports = function configureKarma(config) {
       mocha: {},
     },
     singleRun: true,
-    reporters: ['coverage', 'mocha'],
+    reporters: _.compact([
+      process.env.npm_config_coverage ? 'coverage' : null,
+      'mocha'
+    ]),
     preprocessors: {
       'config/loadtests.js': ['webpack'],
     },

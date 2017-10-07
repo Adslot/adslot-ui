@@ -7,7 +7,7 @@ const commonConfig = require('./common');
 const srcPath = path.resolve(__dirname, '../src');
 const jsRegEx = /\.(js|jsx)$/;
 
-module.exports = merge(commonConfig, {
+const testConfig = merge(commonConfig, {
   output: {
     path: path.join(__dirname, '/../dist/assets'),
     filename: 'app.js',
@@ -30,16 +30,6 @@ module.exports = merge(commonConfig, {
         test: /\.(png|jpg|gif|woff|woff2|css|sass|scss|less|styl)$/,
         loader: 'null-loader', // tests don't care about images and style
       },
-
-      {
-        test: jsRegEx,
-        include: srcPath,
-        exclude: /src\/lib/,
-        use: {
-          loader: 'istanbul-instrumenter-loader',
-          options: { esModules: true },
-        },
-      },
     ],
   },
   externals: {
@@ -49,11 +39,28 @@ module.exports = merge(commonConfig, {
     'react/lib/ReactContext': 'react',
     'react-addons-test-utils': 'react-dom',
   },
-  devtool: 'inline-source-map',
-  plugins: [
-    new webpack.SourceMapDevToolPlugin({
-      filename: null, // if no value is provided the sourcemap is inlined
-      test: jsRegEx,
-    }),
-  ],
 });
+
+module.exports = process.env.npm_config_coverage
+  ? merge(testConfig, {
+    module: {
+      rules: [
+        {
+          test: jsRegEx,
+          include: srcPath,
+          exclude: /src\/lib/,
+          use: {
+            loader: 'istanbul-instrumenter-loader',
+            options: { esModules: true },
+          },
+        },
+      ],
+    },
+    devtool: 'inline-source-map',
+    plugins: [
+      new webpack.SourceMapDevToolPlugin({
+        filename: null, // if no value is provided the sourcemap is inlined
+        test: jsRegEx,
+      }),
+    ],
+  }) : testConfig;
