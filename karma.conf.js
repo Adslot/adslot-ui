@@ -1,4 +1,17 @@
 const webpackConfig = require('./webpack.config');
+const webpack = require('webpack');
+const _ = require('lodash');
+
+const env = { ADSLOT_TEST_FILE: '' };
+
+webpackConfig.plugins.push(
+  new webpack.DefinePlugin(
+    _(env)
+      .assign(_.pick(process.env, _.keys(env)))
+      .mapValues(JSON.stringify)
+      .value()
+  )
+);
 
 module.exports = function configureKarma(config) {
   config.set({
@@ -20,7 +33,10 @@ module.exports = function configureKarma(config) {
       mocha: {},
     },
     singleRun: true,
-    reporters: ['coverage', 'mocha'],
+    reporters: _.compact([
+      process.env.npm_config_coverage ? 'coverage' : null,
+      'mocha'
+    ]),
     preprocessors: {
       'config/loadtests.js': ['webpack'],
     },
