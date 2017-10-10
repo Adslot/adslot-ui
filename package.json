@@ -81,7 +81,6 @@
     "nuka-carousel": "^2.0.4",
     "null-loader": "^0.1.1",
     "object-assign": "^4.1.1",
-    "open-browser-webpack-plugin": "0.0.5",
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
     "react-bootstrap": "^0.31.1",
