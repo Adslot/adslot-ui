@@ -5,4 +5,3 @@ coverage:
   ignore:
     - "src/components/**/*.spec.*"
     - "src/components/**/mocks.*"
-    - "src/components/**/example.jsx"

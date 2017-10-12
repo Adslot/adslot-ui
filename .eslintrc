@@ -34,6 +34,7 @@
     "no-mixed-operators": ["error", {"groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]]}],
     "quote-props": 0,
     "import/no-extraneous-dependencies": 0,
+    "react/prefer-stateless-function": 0,
     "react/self-closing-comp": ["error", {
       "component": true,
       "html": false
