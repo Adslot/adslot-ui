@@ -107,6 +107,9 @@ const exampleProps = {
       propType: 'onBlur',
       type: 'func',
     }, {
+      propType: 'onFocus',
+      type: 'func',
+    }, {
       propType: 'type',
       type: "oneOf: 'text', 'number'",
     }, {

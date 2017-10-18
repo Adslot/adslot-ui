@@ -46,6 +46,10 @@ export default class AlertInput extends Component {
       isFocused: true,
       isPopoverVisible: Boolean(this.props.alertMessage),
     });
+
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   }
 
   handleInputBlur(event) {
@@ -127,6 +131,7 @@ AlertInput.propTypes = {
   alertMessage: PropTypes.string,
   onValueChange: PropTypes.func,
   onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 AlertInput.defaultProps = {
