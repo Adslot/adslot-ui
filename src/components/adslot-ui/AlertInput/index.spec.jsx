@@ -70,6 +70,26 @@ describe('AlertInput', () => {
       });
       expect(focusEvent.target.select.callCount).to.equal(1);
     });
+
+    it('should call prop `onFocus` if exists', () => {
+      const onFocusSpy = sinon.spy();
+      const focusEvent = {
+        target: {
+          select: sinon.spy(),
+        },
+      };
+      const component = shallow(<AlertInput onFocus={onFocusSpy} />);
+      const inputElement = component.find('.alert-input-component-input');
+
+      inputElement.simulate('focus', focusEvent);
+
+      expect(component.state()).to.eql({
+        isFocused: true,
+        isPopoverVisible: false,
+      });
+      expect(focusEvent.target.select.callCount).to.equal(1);
+      expect(onFocusSpy.callCount).to.equal(1);
+    });
   });
 
   describe('handleInputBlur ()', () => {
