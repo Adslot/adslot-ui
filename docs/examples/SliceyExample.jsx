@@ -21,16 +21,14 @@ class SliceyExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Slicey',
-  exampleCodeSnippet: `
-    <Slicey
-      dataset={[
-        { label: 'info', value: 35 },
-        { label: 'positive', value: 123 },
-        { label: 'negative', value: 15 },
-      ]}
-      diameter={100}
-    />
-  `,
+  exampleCodeSnippet: `<Slicey
+  dataset={[
+    { label: 'info', value: 35 },
+    { label: 'positive', value: 123 },
+    { label: 'negative', value: 15 },
+  ]}
+  diameter={100}
+/>`,
   propTypes: [{
     propType: 'dataset',
     type: 'arrayOf {string: label, number: value}',

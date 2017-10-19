@@ -22,9 +22,13 @@ export const exampleProps = {
   exampleCodeSnippet: '<Button bsStyle="primary" onClick={onClick}>\n  Apply\n</Button>',
   propTypes: [{
     propType: 'bsStyle',
-    type: 'string',
+    type: 'string, oneOf primary, link, and default.',
     defaultValue: 'default',
-    note: <span>For an inverse button use <pre>className="btn-inverse"</pre> width a style .</span>,
+    note: <span>
+      For an inverse button use <pre>className="btn-inverse"</pre>.
+      <br />It's uncommon to use <pre>success</pre>, <pre>info</pre>, <pre>warning</pre>, or <pre>danger</pre>
+      which are supported by Bootstrap but not us.
+    </span>,
   }, {
     propType: 'onClick',
     type: 'func',

@@ -12,17 +12,22 @@ class StatisticExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Statistic',
+  notes: 'Used for metadata stats and pricing information.',
   exampleCodeSnippet: '<Statistic value="50 Million" label="Page Views" />',
   propTypes: [
     {
       propType: 'inline',
       type: 'boolean',
+      note: 'Horizontal layout as opposed to stacked.',
+      defaultValue: 'false',
     }, {
       propType: 'label',
       type: 'string',
+      note: 'Preferred TitleCase (aka. PascalCase, StartCase)',
     }, {
       propType: 'value',
       type: 'string',
+      note: 'Where value is a number consider human readable strings e.g \'Million\' instead of 000,000.',
     },
   ],
 };
