@@ -68,6 +68,7 @@ import {
   TreePickerSimplePure,
   UserListPicker,
   InformationBox,
+  HoverDropdownMenu,
 } from 'adslot-ui';
 
 export {
@@ -129,4 +130,5 @@ export {
   TreePickerSimplePure,
   UserListPicker,
   InformationBox,
+  HoverDropdownMenu,
 };
