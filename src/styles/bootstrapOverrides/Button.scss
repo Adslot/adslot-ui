@@ -108,7 +108,14 @@
   }
 }
 
-.btn-link {
+.btn-popover-reason {
+  max-width: 140px;
+  color: $color-help;
+  font-size: $font-size-small;
+}
+
+// disable lint on next line as we need to force extra specificity to ensure disabled styles take precedence
+.btn.btn-link { // sass-lint:disable-line force-element-nesting
   cursor: pointer;
 
   &,
@@ -116,7 +123,15 @@
     @include reset-shadow-and-transform;
   }
 
-  &:disabled {
+
+  &:disabled,
+  &[disabled] {
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+
+  &:hover,
+  &:active {
     background-color: transparent;
   }
 }

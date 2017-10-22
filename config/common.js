@@ -9,6 +9,7 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx'],
     alias: {
+      'third-party': `${srcPath}/components/third-party`,
       'adslot-ui': `${srcPath}/components/adslot-ui`,
       alexandria: `${srcPath}/components/alexandria`,
       lib: `${srcPath}/lib/`,
