@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Navigation from '../Navigation';
+import Contributors from '../Contributors';
 
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
@@ -208,6 +209,9 @@ class PageLayout extends React.Component {
             <TreePickerExample />
           </ContentArea>
         </div>
+
+
+        <Contributors />
       </div>
     );
   }

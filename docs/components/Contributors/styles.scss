@@ -1,0 +1,13 @@
+@import '~styles/variable';
+
+.git-contributors {
+  .avatars-container {
+    padding: $spacing-etalon;
+    text-align: center;
+
+    .avatar-component {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
