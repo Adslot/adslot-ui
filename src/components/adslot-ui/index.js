@@ -21,6 +21,7 @@ import TreePickerNode from 'adslot-ui/TreePicker/Node';
 import TreePickerSimplePure from 'adslot-ui/TreePicker';
 import UserListPicker from 'adslot-ui/UserListPicker';
 import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
+import InformationBox from 'adslot-ui/InformationBox';
 
 export {
   Accordion,
@@ -46,4 +47,5 @@ export {
   TreePickerNode,
   TreePickerSimplePure,
   UserListPicker,
+  InformationBox,
 };

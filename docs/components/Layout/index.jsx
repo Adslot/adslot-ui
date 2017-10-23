@@ -43,6 +43,7 @@ import SearchExample from '../../examples/SearchExample';
 import SearchBarExample from '../../examples/SearchBarExample';
 import TreePickerExample from '../../examples/TreePickerExample';
 import UserListPickerExample from '../../examples/UserListPickerExample';
+import InformationBoxExample from '../../examples/InformationBoxExample';
 import SplitPaneExample from '../../examples/SplitPaneExample';
 
 import { PageTitle } from '../../../src/dist-entry';
@@ -116,6 +117,7 @@ const componentsBySection = {
     'tile-grid',
     'flexible-spacer',
     'split-pane',
+    'information-box',
   ],
   'tree-picker': [
     'tree-picker',
@@ -203,6 +205,7 @@ class PageLayout extends React.Component {
             <TileGridExample />
             <FlexibleSpacerExample />
             <SplitPaneExample />
+            <InformationBoxExample />
 
             <PageTitle title="Tree Picker" />
             <TreePickerExample />
