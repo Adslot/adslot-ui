@@ -30,17 +30,22 @@ class SpinnerButtonExample extends React.Component {
 const exampleProps = {
   componentName: 'SpinnerButton',
   notes: <div>Extends the above <pre>Button</pre> component with added loading state.</div>,
-  exampleCodeSnippet: '<SpinnerButton bsStyle="primary" isLoading={isLoading} onClick={onClick}>\n  Save Details\n</SpinnerButton>',
-  propTypes: [{
-    propType: 'isLoading',
-    type: 'bool',
-    defaultValue: 'false',
-    note: <span>When <pre>isLoading</pre> is <pre>true</pre> the button is disabled.</span>,
-  }, {
-    propType: 'onClick',
-    type: 'func',
-    note: <span>Should set <pre>isLoading</pre> to true, and reset to <pre>false</pre> upon completion.</span>,
-  }],
+  exampleCodeSnippet: `<SpinnerButton bsStyle="primary" isLoading={isLoading} onClick={onClick}>
+  Save Details
+</SpinnerButton>`,
+  propTypes: [
+    {
+      propType: 'isLoading',
+      type: 'bool',
+      defaultValue: 'false',
+      note: <span>When <pre>isLoading</pre> is <pre>true</pre> the button is disabled.</span>,
+    },
+    {
+      propType: 'onClick',
+      type: 'func',
+      note: <span>Should set <pre>isLoading</pre> to true, and reset to <pre>false</pre> upon completion.</span>,
+    },
+  ],
 };
 
 

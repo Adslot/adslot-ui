@@ -18,7 +18,6 @@ const exampleProps = {
     {
       propType: 'maxLength',
       type: 'number',
-      defaultValue: null,
     },
     {
       propType: 'statusClass',
@@ -28,7 +27,6 @@ const exampleProps = {
     {
       propType: 'onChange',
       type: 'func',
-      defaultValue: null,
     },
   ],
 };

@@ -45,11 +45,23 @@ const exampleProps = {
   propTypes: [
     {
       propType: 'columns',
-      type: 'array',
+      type: 'arrayOf({ string: key, node: label, bool: stretch })',
+    },
+    {
+      propType: 'emptyIcon',
+      type: 'string',
+    },
+    {
+      propType: 'emptyMessage',
+      type: 'string',
+    },
+    {
+      propType: 'emptySvgSymbol',
+      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
     },
     {
       propType: 'items',
-      type: 'array',
+      type: 'arrayOf({ node: id })',
     },
     {
       propType: 'perPage',

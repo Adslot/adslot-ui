@@ -61,12 +61,17 @@ const exampleProps = {
   propTypes: [
     {
       propType: 'nodes',
-      type: 'arrayOf',
+      type: 'arrayOf { string: id, string: label }',
     },
     {
       propType: 'onClick',
       type: 'func',
       note: 'onClick(nodeId)',
+    },
+    {
+      propType: 'disabled',
+      type: 'bool',
+      defaultValue: 'false',
     },
   ],
 };

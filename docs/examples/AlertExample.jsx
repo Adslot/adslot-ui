@@ -15,10 +15,21 @@ class AlertExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'Alert',
   exampleCodeSnippet: '<Alert type="danger">Unable to save. We can\'t talk to the API, try again in a bit.</Alert>',
-  propTypes: [{
-    propType: 'type',
-    type: "oneOf: 'danger', 'warning', 'error', 'success'",
-  }],
+  propTypes: [
+    {
+      propType: 'type',
+      type: "oneOf: 'danger', 'warning', 'error', 'success'",
+    },
+    {
+      propType: 'children',
+      type: 'node',
+    },
+    {
+      propType: 'dts',
+      type: 'string',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+    },
+  ],
 };
 
 

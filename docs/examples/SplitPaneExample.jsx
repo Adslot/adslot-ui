@@ -34,14 +34,16 @@ const exampleProps = {
     {
       propType: 'additionalClassNames',
       type: 'array',
-      defaultValue: '',
-      note: '',
+      defaultValue: <pre>[]</pre>,
+    },
+    {
+      propType: 'children',
+      type: 'node',
     },
     {
       propType: 'dts',
-      type: '',
-      defaultValue: '',
-      note: '',
+      type: 'string',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
     },
   ],
 };

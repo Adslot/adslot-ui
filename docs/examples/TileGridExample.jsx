@@ -46,16 +46,12 @@ const exampleProps = {
 />`,
   propTypes: [
     {
-      propType: 'id',
-      type: 'string',
-    },
-    {
-      propType: 'classSuffix',
-      type: 'string',
-    },
-    {
       propType: 'title',
       type: 'string',
+    },
+    {
+      propType: 'items',
+      type: 'arrayOf { string: id, string: classSuffix, string: title }',
     },
     {
       propType: 'onItemClick',

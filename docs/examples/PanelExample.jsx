@@ -61,6 +61,15 @@ const exampleProps = {
       note: '',
     },
     {
+      propType: 'dts',
+      type: 'string',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+    },
+    {
+      propType: 'icon',
+      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+    },
+    {
       propType: 'title',
       type: 'string',
       defaultValue: '',
@@ -69,7 +78,7 @@ const exampleProps = {
     {
       propType: 'isCollapsed',
       type: 'boolean',
-      defaultValue: '',
+      defaultValue: 'false',
       note: '',
     },
     {

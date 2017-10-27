@@ -28,11 +28,25 @@ const exampleProps = {
   }, {
     propType: 'overlayTriggerProps',
     type: 'shape',
-    note: <span>See <a href="https://react-bootstrap.github.io/components.html#overlays-trigger-props" target="_blank" rel="noopener noreferrer">React Bootstrap Docs</a>.</span>,
+    note: <span>
+      See
+      <a
+        href="https://react-bootstrap.github.io/components.html#overlays-trigger-props"
+        target="_blank"
+        rel="noopener noreferrer"
+      >React Bootstrap Docs</a>.
+    </span>,
   }, {
     propType: 'popoverProps',
     type: 'shape',
-    note: <span>See <a href="https://react-bootstrap.github.io/components.html#popover-props" target="_blank" rel="noopener noreferrer">React Bootstrap Docs</a>.</span>,
+    note: <span>
+      See
+      <a
+        href="https://react-bootstrap.github.io/components.html#popover-props"
+        target="_blank"
+        rel="noopener noreferrer"
+      >React Bootstrap Docs</a>.
+    </span>,
   }],
 };
 

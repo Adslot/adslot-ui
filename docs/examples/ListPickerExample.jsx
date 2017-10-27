@@ -88,20 +88,39 @@ const exampleProps = {
       defaultValue: 'true',
     },
     {
+      propType: 'emptyIcon',
+      type: 'string',
+    },
+    {
+      propType: 'emptyMessage',
+      type: 'string',
+    },
+    {
+      propType: 'emptySvgSymbol',
+      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+    },
+    {
       propType: 'initialSelection',
       type: 'array',
+      defaultValue: <pre>[]</pre>,
     },
     {
       propType: 'itemHeaders',
-      type: 'object',
+      type: 'shapeOf { string: label, string: toggle, string: addon }',
+    },
+    {
+      propType: 'itemInfo',
+      type: 'shapeOf { string: label, arrayOf({ string: label, string: value }): properties, string: addon }',
     },
     {
       propType: 'items',
       type: 'array',
+      defaultValue: <pre>[]</pre>,
     },
     {
       propType: 'itemType',
       type: 'string',
+      defaultValue: 'item',
     },
     {
       propType: 'labelFormatter',
@@ -112,16 +131,27 @@ const exampleProps = {
       type: 'func',
     },
     {
-      propType: 'modalClose',
-      type: 'func',
+      propType: 'linkButtons',
+      type: 'arrayOf(node|{ string: label, string: href })',
     },
     {
       propType: 'modalApply',
       type: 'func',
+      defaultValue: "() => { throw new Error('AdslotUi ListPicker needs a modalApply handler'); }",
     },
     {
       propType: 'modalDescription',
       type: 'string',
+    },
+    {
+      propType: 'modalClassName',
+      type: 'string',
+      defaultValue: 'listpicker-component',
+    },
+    {
+      propType: 'modalClose',
+      type: 'func',
+      defaultValue: "() => { throw new Error('AdslotUi ListPicker needs a modalClose handler'); }",
     },
     {
       propType: 'modalFootnote',
@@ -130,10 +160,12 @@ const exampleProps = {
     {
       propType: 'modalTitle',
       type: 'string',
+      defaultValue: 'Select Items',
     },
     {
       propType: 'show',
       type: 'boolean',
+      defaultValue: 'false',
     },
   ],
 };

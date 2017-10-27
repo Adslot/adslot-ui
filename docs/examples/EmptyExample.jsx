@@ -33,11 +33,13 @@ const exampleProps = {
   propTypes: [
     {
       propType: 'collection',
-      type: 'any',
+      type: 'node',
+      defaultValue: 'null',
     },
     {
       propType: 'text',
-      type: 'string',
+      type: 'node',
+      defaultValue: 'Nothing to show.',
     },
     {
       propType: 'svgSymbol',

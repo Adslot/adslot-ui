@@ -58,6 +58,11 @@ const exampleProps = {
   exampleCodeSnippet: '<Accordion panels={accordionPanels} onPanelClick={this.toggleAccordionPanel} />',
   propTypes: [
     {
+      propType: 'dts',
+      type: 'string',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+    },
+    {
       propType: 'panels',
       type: <span>arrayOf <a href="#panel-example">Panels</a></span>,
     },

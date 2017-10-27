@@ -42,10 +42,12 @@ const exampleProps = {
     {
       propType: 'oldText',
       type: 'string',
+      defaultValue: '',
     },
     {
       propType: 'newText',
       type: 'string',
+      defaultValue: '',
     },
   ],
 };

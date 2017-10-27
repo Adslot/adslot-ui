@@ -54,10 +54,21 @@ const exampleProps = {
   <img src="/assets/carousel/carousel-4.jpg" alt="Slide 4" />
 </Carousel>
 `,
-  propTypes: [{
-    propType: 'children',
-    type: 'node',
-  }],
+  propTypes: [
+    {
+      propType: 'children',
+      type: 'node',
+    },
+    {
+      propType: 'className',
+      type: 'string',
+    },
+    {
+      propType: 'Nuka Carousel prop types',
+      type: '',
+      note: <a href="https://github.com/FormidableLabs/nuka-carousel">See Nuka Carousel docs for other options</a>,
+    },
+  ],
 };
 
 

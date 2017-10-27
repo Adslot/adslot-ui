@@ -87,7 +87,7 @@ Example.propTypes = ({
   propTypes: PropTypes.arrayOf(PropTypes.shape({
     propType: PropTypes.string.isRequired,
     type: PropTypes.node.isRequired,
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.node,
     note: PropTypes.node,
   })).isRequired,
 });
