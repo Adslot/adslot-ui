@@ -18,7 +18,7 @@ const Statistic = ({ label, value, inline }) => {
 Statistic.displayName = 'AlexandriaStatisticComponent';
 
 Statistic.propTypes = {
-  inline: PropTypes.bool.isRequired,
+  inline: PropTypes.bool,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };

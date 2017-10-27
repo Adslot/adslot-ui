@@ -38,20 +38,19 @@ const ConfirmModalComponent = ({
 ConfirmModalComponent.displayName = 'AdslotUiConfirmModalComponent';
 
 ConfirmModalComponent.propTypes = {
-  buttonCancelLabel: PropTypes.string.isRequired,
-  buttonConfirmLabel: PropTypes.string.isRequired,
-  modalApply: PropTypes.func.isRequired,
+  buttonCancelLabel: PropTypes.string,
+  buttonConfirmLabel: PropTypes.string,
+  modalApply: PropTypes.func,
   modalClose: PropTypes.func,
-  modalDescription: PropTypes.string.isRequired,
+  modalDescription: PropTypes.string,
   modalTitle: PropTypes.string,
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
 };
 
 ConfirmModalComponent.defaultProps = {
   buttonCancelLabel: 'Cancel',
   buttonConfirmLabel: 'Confirm',
   modalApply: () => { throw new Error('AdslotUi ConfirmModal needs a modalApply handler'); },
-
   modalDescription: 'Are you sure?',
   show: false,
 };

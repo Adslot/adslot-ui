@@ -44,7 +44,7 @@ FormGroupComponent.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 FormGroupComponent.defaultProps = {

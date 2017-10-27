@@ -12,11 +12,13 @@ const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
   if (_.isEmpty(collection)) {
     return (
       <div className="empty-component">
-        {hideIcon ? null :
+        {
+          hideIcon ? null :
           <SvgSymbolCircle
             href={svgSymbol.href}
             classSuffixes={classSuffixes}
-          />}
+          />
+        }
         <div className="empty-component-text">{text}</div>
       </div>
     );
@@ -28,9 +30,9 @@ const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
 Empty.displayName = 'AlexandriaEmptyComponent';
 
 Empty.propTypes = {
-  collection: PropTypes.any,
+  collection: PropTypes.node,
   svgSymbol: PropTypes.shape(SvgSymbolCircle.propTypes),
-  text: PropTypes.any, // can be string or, if you want rich formatting, a node
+  text: PropTypes.node, // can be string or, if you want rich formatting, a node
   hideIcon: PropTypes.bool,
 };
 Empty.defaultProps = {

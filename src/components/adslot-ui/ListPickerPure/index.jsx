@@ -91,33 +91,31 @@ const itemProps = PropTypes.shape({
 });
 
 ListPickerPureComponent.propTypes = {
-  allowMultiSelection: PropTypes.bool.isRequired,
-  deselectItem: PropTypes.func.isRequired,
+  allowMultiSelection: PropTypes.bool,
+  deselectItem: PropTypes.func,
   emptyIcon: PropTypes.string,
-  emptyMessage: PropTypes.string.isRequired,
+  emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  labelFormatter: PropTypes.func.isRequired,
+  labelFormatter: PropTypes.func,
   addonFormatter: PropTypes.func,
   itemHeaders: PropTypes.shape({
     label: PropTypes.node,
     toggle: PropTypes.string,
   }),
-  items: PropTypes.arrayOf(itemProps).isRequired,
-  itemType: PropTypes.string.isRequired,
-  selectItem: PropTypes.func.isRequired,
-  selectedItems: PropTypes.arrayOf(itemProps).isRequired,
+  items: PropTypes.arrayOf(itemProps),
+  itemType: PropTypes.string,
+  selectItem: PropTypes.func,
+  selectedItems: PropTypes.arrayOf(itemProps),
 };
 
 ListPickerPureComponent.defaultProps = {
   allowMultiSelection: true,
   deselectItem: () => { throw new Error('AdslotUi ListPickerPure needs a deselectItem handler'); },
-
   emptyMessage: 'No items to select.',
   labelFormatter: (item) => item.label,
   items: [],
   itemType: 'item',
   selectItem: () => { throw new Error('AdslotUi ListPickerPure needs a selectItem handler'); },
-
   selectedItems: [],
 };
 

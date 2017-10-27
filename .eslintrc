@@ -1,7 +1,9 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    }
   },
   "env": {
     "browser": true,
@@ -18,7 +20,7 @@
   ],
   "settings": {
     "lodash": {
-      "version": 3
+      "version": 4
     },
     "import/resolver": {
       "webpack": {
@@ -40,6 +42,9 @@
       "html": false
     }],
     "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/alt-text": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
     "lodash/callback-binding": 2,
     "lodash/chain-style": [2, "as-needed"],
     "lodash/collection-return": 2,
@@ -68,6 +73,24 @@
     "lodash/prefer-wrapper-method": 2,
     "lodash/preferred-alias": 2,
     "lodash/prop-shorthand": [2, "always"],
-    "lodash/unwrap": 2
+    "lodash/unwrap": 2,
+    "react/require-default-props": 0,
+    "react/jsx-closing-tag-location": 0,
+    "react/jsx-wrap-multilines": 0,
+    "arrow-parens": 0,
+    "function-paren-newline": 0,
+    "no-plusplus": 0,
+    "prefer-destructuring": 0,
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "never"
+    }],
+    "object-curly-newline": ["error", {
+      "multiline": true,
+      "consistent": true
+    }]
   }
 }

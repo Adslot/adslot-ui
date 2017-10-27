@@ -23,7 +23,7 @@ const Breadcrumb = ({ nodes, onClick, disabled }) => {
       {
         _.map(nodes, (node, index) =>
           <span className={`${baseClass}-node`} key={node.id}>
-            <span className={`${baseClass}-node-divider`}> > </span>
+            <span className={`${baseClass}-node-divider`}> &gt; </span>
             <BreadcrumbNode
               isLast={index === nodes.length - 1}
               node={node}
@@ -39,8 +39,8 @@ const Breadcrumb = ({ nodes, onClick, disabled }) => {
 Breadcrumb.displayName = 'AlexandriaBreadcrumbComponent';
 
 Breadcrumb.propTypes = {
-  nodes: PropTypes.arrayOf(BreadcrumbNode.propTypes.node).isRequired,
-  onClick: PropTypes.func.isRequired,
+  nodes: PropTypes.arrayOf(BreadcrumbNode.propTypes.node),
+  onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };
 Breadcrumb.defaultProps = {

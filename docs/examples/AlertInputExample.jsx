@@ -84,7 +84,7 @@ const exampleProps = {
       defaultValue: 'text',
     }, {
       propType: 'value',
-      type: 'string',
+      type: "string|number",
     }, {
       propType: 'min',
       type: 'number',

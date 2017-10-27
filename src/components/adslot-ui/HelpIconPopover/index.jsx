@@ -21,7 +21,7 @@ const HelpIconPopover = ({ children, id, placement }) => {
 HelpIconPopover.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
-  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 };
 
 HelpIconPopover.defaultProps = {

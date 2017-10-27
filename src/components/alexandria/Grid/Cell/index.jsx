@@ -26,9 +26,9 @@ GridCell.displayName = 'AlexandriaGridCellComponent';
 
 GridCell.propTypes = {
   children: PropTypes.node,
-  classSuffixes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  classSuffixes: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func,
-  stretch: PropTypes.bool.isRequired,
+  stretch: PropTypes.bool,
   dts: PropTypes.string,
 };
 

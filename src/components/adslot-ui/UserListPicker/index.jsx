@@ -65,22 +65,22 @@ const userType = PropTypes.shape({
 });
 
 UserListPickerComponent.propTypes = {
-  allowEmptySelection: PropTypes.bool.isRequired,
-  avatarColor: PropTypes.func.isRequired,
+  allowEmptySelection: PropTypes.bool,
+  avatarColor: PropTypes.func,
   emptyIcon: PropTypes.string,
-  emptyMessage: PropTypes.string.isRequired,
+  emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-  initialSelection: PropTypes.arrayOf(userType).isRequired,
-  modalApply: PropTypes.func.isRequired,
-  modalDescription: PropTypes.string.isRequired,
-  modalClose: PropTypes.func.isRequired,
-  modalTitle: PropTypes.string.isRequired,
-  show: PropTypes.bool.isRequired,
+  initialSelection: PropTypes.arrayOf(userType),
+  modalApply: PropTypes.func,
+  modalDescription: PropTypes.string,
+  modalClose: PropTypes.func,
+  modalTitle: PropTypes.string,
+  show: PropTypes.bool,
   userHeaders: PropTypes.shape({
     label: PropTypes.string,
     toggle: PropTypes.string,
-  }).isRequired,
-  users: PropTypes.arrayOf(userType).isRequired,
+  }),
+  users: PropTypes.arrayOf(userType),
 };
 
 UserListPickerComponent.defaultProps = {
