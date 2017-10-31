@@ -12,13 +12,13 @@ const publicPath = '/assets/';
 
 module.exports = merge(commonConfig, {
   entry: [
-     // activate HMR for React (needs to be before everything except polyfills)
+    // activate HMR for React (needs to be before everything except polyfills)
     'react-hot-loader/patch',
     // bundle the client for webpack-dev-server and connect to the provided endpoint
     `webpack-dev-server/client?http://${HOST}:${PORT}`,
     // bundle the client for hot reloading, only- means to only hot reload for successful updates
     'webpack/hot/only-dev-server',
-     // the entry point of our app
+    // the entry point of our app
     '../docs/run',
   ],
   output: {
