@@ -8,7 +8,7 @@
     "check-commit": "node scripts/commit-msg",
     "clean": "rimraf dist/*",
     "codecov": "cat coverage/coverage-final.json | codecov",
-    "dist": "webpack --bail --env=dist --progress -p --hide-modules",
+    "dist": "./scripts/dist",
     "eslint": "eslint --ext .jsx,.js --rulesdir ./src ./src",
     "lint": "npm run eslint && npm run sass-lint && npm run check-commit",
     "posttest": "npm run lint",
