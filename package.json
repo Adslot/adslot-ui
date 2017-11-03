@@ -112,6 +112,6 @@
     "svg4everybody": "^2.1.9"
   },
   "engines": {
-    "node": "6"
+    "node": ">=6 <9"
   }
 }
