@@ -52,7 +52,17 @@ const exampleProps = {
     <GridCell onClick={cellClicked}>This Cell logs clicks.</GridCell>
   </GridRow>
 </Grid>`,
-  propTypes: [],
+  propTypes: [
+    {
+      propType: 'children',
+      type: 'node',
+    },
+    {
+      propType: 'dts',
+      type: 'string',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+    },
+  ],
 };
 
 

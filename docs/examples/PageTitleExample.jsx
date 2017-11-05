@@ -15,10 +15,21 @@ class PageTitleExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'PageTitle',
   exampleCodeSnippet: '<PageTitle title="Campaign 12345: Adslot"><small>Version 5</small></PageTitle>',
-  propTypes: [{
-    propType: 'title',
-    type: 'string',
-  }],
+  propTypes: [
+    {
+      propType: 'title',
+      type: 'string',
+    },
+    {
+      propType: 'children',
+      type: 'node',
+    },
+    {
+      propType: 'isFooter',
+      type: 'bool',
+      defaultValue: 'false',
+    },
+  ],
 };
 
 

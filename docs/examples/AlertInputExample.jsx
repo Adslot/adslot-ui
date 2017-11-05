@@ -81,10 +81,13 @@ const exampleProps = {
     {
       propType: 'defaultValue',
       type: 'string',
-      defaultValue: 'text',
     }, {
       propType: 'value',
-      type: "string|number",
+      type: 'string|number',
+    }, {
+      propType: 'type',
+      type: "oneOf: 'text', 'number'",
+      defaultValue: 'text',
     }, {
       propType: 'min',
       type: 'number',
@@ -98,6 +101,13 @@ const exampleProps = {
       propType: 'suffixAddon',
       type: 'node',
     }, {
+      propType: 'alertStatus',
+      type: "oneOf: 'success', 'info', 'warning', 'error'",
+      defaultValue: 'success',
+      note: <span>As <pre>success</pre> is assumed, and help is always displayed independently, the accepted pattern
+      is to only use <pre>warning</pre> and <pre>error</pre> feedback states with this component.
+      Otherwise leave type undefined for <pre>success</pre>.</span>,
+    }, {
       propType: 'alertMessage',
       type: 'string',
     }, {
@@ -109,12 +119,6 @@ const exampleProps = {
     }, {
       propType: 'onFocus',
       type: 'func',
-    }, {
-      propType: 'type',
-      type: "oneOf: 'text', 'number'",
-    }, {
-      propType: 'alertStatus',
-      type: "oneOf: 'success', 'info', 'warning', 'error'",
     },
   ],
 };

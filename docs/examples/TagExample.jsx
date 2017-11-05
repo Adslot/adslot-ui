@@ -74,19 +74,26 @@ const exampleProps = {
   onAction={this.deleteTag}
   inverse
   actionIconSvgHref="/assets/svg-symbols.svg#cancel"
->Display</Tag>`,
+>
+  Display
+</Tag>`,
   propTypes: [
     {
-      propType: 'inverse',
-      type: 'boolean',
+      propType: 'children',
+      type: 'node',
     },
     {
       propType: 'id',
       type: 'string',
+      defaultValue: 'default',
     },
     {
       propType: 'accent',
       type: 'string',
+    },
+    {
+      propType: 'inverse',
+      type: 'boolean',
     },
     {
       propType: 'onAction',

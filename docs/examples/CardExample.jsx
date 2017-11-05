@@ -19,10 +19,25 @@ const exampleProps = {
   exampleCodeSnippet: `<Card.Container>
   <Card.Content>Card body.</Card.Content>
 </Card.Container>`,
-  propTypes: [{
-    propType: 'children',
-    type: 'arrayOf <Card.Content>',
-  }],
+  propTypes: [
+    {
+      propType: 'children',
+      type: 'arrayOf <Card.Content>',
+    },
+    {
+      propType: 'className',
+      type: 'string',
+    },
+    {
+      propType: 'accent',
+      type: 'string',
+    },
+    {
+      propType: 'dts',
+      type: 'string',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+    },
+  ],
 };
 
 

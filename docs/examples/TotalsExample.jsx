@@ -35,6 +35,12 @@ const exampleProps = {
     {
       propType: 'toSum',
       type: 'arrayOf {number: value, string: label, boolean: isHidden}',
+      defaultValue: <pre>[]</pre>,
+    },
+    {
+      propType: 'valueFormatter',
+      type: 'func',
+      defaultValue: <pre>(value) =&gt; `$value`</pre>,
     },
   ],
 };

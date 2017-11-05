@@ -49,44 +49,37 @@ const exampleProps = {
     {
       propType: 'additionalClassNames',
       type: 'array',
-      defaultValue: '',
+      defaultValue: <pre>[]</pre>,
       note: 'array of strings',
     },
     {
       propType: 'searchString',
       type: 'string',
-      defaultValue: '',
       note: 'required',
     },
     {
       propType: 'searchPlaceholder',
       type: 'string',
-      defaultValue: '',
-      note: '',
     },
     {
       propType: 'searchIconHref',
       type: 'string',
-      defaultValue: '',
       note: 'required',
     },
     {
       propType: 'onSearchStringChange',
       type: 'func',
-      defaultValue: '',
       note: 'required',
     },
     {
       propType: 'onSearch',
       type: 'func',
-      defaultValue: '',
       note: 'required',
     },
     {
       propType: 'dts',
       type: 'string',
-      defaultValue: '',
-      note: '',
+      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
     },
   ],
 };

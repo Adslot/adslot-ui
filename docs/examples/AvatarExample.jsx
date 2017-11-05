@@ -17,7 +17,15 @@ const exampleProps = {
   exampleCodeSnippet: '<Avatar givenName="John" surname="Smith" />',
   propTypes: [
     {
+      propType: 'color',
+      type: 'string',
+    },
+    {
       propType: 'givenName',
+      type: 'string',
+    },
+    {
+      propType: 'tooltip',
       type: 'string',
     },
     {
