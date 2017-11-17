@@ -30,13 +30,13 @@ const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
 Empty.displayName = 'AlexandriaEmptyComponent';
 
 Empty.propTypes = {
-  collection: PropTypes.node,
+  collection: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   svgSymbol: PropTypes.shape(SvgSymbolCircle.propTypes),
   text: PropTypes.node, // can be string or, if you want rich formatting, a node
   hideIcon: PropTypes.bool,
 };
+
 Empty.defaultProps = {
-  collection: null,
   svgSymbol: {
     classSuffixes: ['gray-darker', '70', 'circle'],
   },

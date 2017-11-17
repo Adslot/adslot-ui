@@ -72,16 +72,14 @@ export default class AlertInput extends Component {
       placeholder,
       prefixAddon,
       suffixAddon,
-      alertStatus = '',
+      alertStatus,
       alertMessage,
       onValueChange,
     } = this.props;
 
-    const className = classnames({
-      [baseClass]: true,
-      [alertStatus]: true,
-      'is-focused': this.state.isFocused,
-    });
+    const className = classnames(baseClass, { [alertStatus]: alertStatus, 'is-focused': this.state.isFocused });
+
+    const popoverClassName = classnames(`${baseClass}-popover`, { [alertStatus]: alertStatus });
 
     return (
       <div
@@ -110,7 +108,7 @@ export default class AlertInput extends Component {
           target={this.getRef}
           placement="bottom"
         >
-          <Popover className={`${baseClass}-popover ${alertStatus}`} id="alert-input-popover">
+          <Popover className={popoverClassName} id="alert-input-popover">
             <strong>{alertMessage}</strong>
           </Popover>
         </Overlay>
