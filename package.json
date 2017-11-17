@@ -78,7 +78,7 @@
     "mocha": "^3.5.2",
     "moment": "^2.18.1",
     "node-sass": "^4.5.3",
-    "nuka-carousel": "^2.0.4",
+    "nuka-carousel": "^3.0.0",
     "null-loader": "^0.1.1",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.6",
