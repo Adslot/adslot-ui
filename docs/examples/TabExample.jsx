@@ -17,7 +17,7 @@ class TabExample extends React.PureComponent {
           eventKey="Audience"
           title={
             <span className="flexible-wrapper-inline">
-              <SvgSymbol href="/assets/svg-symbols.svg#list" />
+              <SvgSymbol href="./docs/assets/svg-symbols.svg#list" />
               <FlexibleSpacer />
               Audience
             </span>}
@@ -25,14 +25,14 @@ class TabExample extends React.PureComponent {
           <Empty
             collection={[]}
             text="No audience details."
-            svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+            svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
           />
         </Tab>
         <Tab
           eventKey="Billing"
           title={
             <span className="flexible-wrapper-inline">
-              <SvgSymbol href="/assets/svg-symbols.svg#calendar" />
+              <SvgSymbol href="./docs/assets/svg-symbols.svg#calendar" />
               <FlexibleSpacer />
               Billing
             </span>}
@@ -40,7 +40,7 @@ class TabExample extends React.PureComponent {
           <Empty
             collection={[]}
             text="No billing information."
-            svgSymbol={{ href: '/assets/svg-symbols.svg#calendar' }}
+            svgSymbol={{ href: './docs/assets/svg-symbols.svg#calendar' }}
           />
         </Tab>
       </Tabs>
@@ -61,7 +61,7 @@ const exampleProps = {
     eventKey="Audience"
     title={
       <span className="flexible-wrapper-inline">
-        <SvgSymbol href="/assets/svg-symbols.svg#list" />
+        <SvgSymbol href="./docs/assets/svg-symbols.svg#list" />
         <FlexibleSpacer />
         Audience
       </span>}
@@ -69,14 +69,14 @@ const exampleProps = {
     <Empty
       collection={[]}
       text="No audience details."
-      svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+      svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
     />
   </Tab>
   <Tab
     eventKey="Billing"
     title={
       <span className="flexible-wrapper-inline">
-        <SvgSymbol href="/assets/svg-symbols.svg#calendar" />
+        <SvgSymbol href="./docs/assets/svg-symbols.svg#calendar" />
         <FlexibleSpacer />
         Billing
       </span>}
@@ -84,7 +84,7 @@ const exampleProps = {
     <Empty
       collection={[]}
       text="No billing information."
-      svgSymbol={{ href: '/assets/svg-symbols.svg#calendar' }}
+      svgSymbol={{ href: './docs/assets/svg-symbols.svg#calendar' }}
     />
   </Tab>
 </Tabs>`,

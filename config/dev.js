@@ -8,7 +8,7 @@ const commonConfig = require('./common');
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || '8888';
 
-const publicPath = '/assets/';
+const publicPath = '/docs/assets/';
 
 module.exports = merge(commonConfig, {
   entry: [
@@ -51,7 +51,7 @@ module.exports = merge(commonConfig, {
   },
   devServer: {
     hot: true, // enable HMR on the server
-    contentBase: resolve(__dirname, '../docs'), // match the output path
+    contentBase: resolve(__dirname, '../docs'),
     publicPath, // match the output `publicPath`
     port: PORT,
     host: HOST,

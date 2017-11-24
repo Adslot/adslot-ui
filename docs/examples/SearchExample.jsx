@@ -86,7 +86,7 @@ const exampleProps = {
       type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
       defaultValue: (
         <pre>
-          {JSON.stringify({ classSuffixes: ['gray-darker'], href: '/assets/svg-symbols.svg#cancel' })}
+          {JSON.stringify({ classSuffixes: ['gray-darker'], href: './docs/assets/svg-symbols.svg#cancel' })}
         </pre>
       ),
     },
@@ -95,7 +95,7 @@ const exampleProps = {
       type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
       defaultValue: (
         <pre>
-          {JSON.stringify({ classSuffixes: ['gray-light'], href: '/assets/svg-symbols.svg#search' })}
+          {JSON.stringify({ classSuffixes: ['gray-light'], href: './docs/assets/svg-symbols.svg#search' })}
         </pre>
       ),
     },

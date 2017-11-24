@@ -6,7 +6,7 @@ import {
 
 class SvgSymbolCircleExample extends React.PureComponent {
   render() {
-    return <SvgSymbolCircle href="/assets/svg-symbols.svg#calendar" classSuffixes={['50']} />;
+    return <SvgSymbolCircle href="./docs/assets/svg-symbols.svg#calendar" classSuffixes={['50']} />;
   }
 }
 
@@ -14,7 +14,7 @@ class SvgSymbolCircleExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'SvgSymbolCircle',
   notes: <span>See <a href="#svg-symbol-component">SVG Symbol</a> component.</span>,
-  exampleCodeSnippet: '<SvgSymbolCircle href="/assets/svg-symbols.svg#calendar" classSuffixes={[\'50\']} />',
+  exampleCodeSnippet: '<SvgSymbolCircle href="./docs/assets/svg-symbols.svg#calendar" classSuffixes={[\'50\']} />',
   propTypes: [
     {
       propType: 'href',

@@ -11,7 +11,7 @@ const initialState = {
   accordionPanels: [
     {
       id: '1',
-      icon: { href: '/assets/svg-symbols.svg#list' },
+      icon: { href: './docs/assets/svg-symbols.svg#list' },
       title: 'Filter by region',
       isCollapsed: true,
       content: <ul className="list-unstyled">
@@ -21,7 +21,7 @@ const initialState = {
     },
     {
       id: '2',
-      icon: { href: '/assets/svg-symbols.svg#list' },
+      icon: { href: './docs/assets/svg-symbols.svg#list' },
       title: 'Filter by device',
       isCollapsed: false,
       content: (<ul className="list-unstyled">
