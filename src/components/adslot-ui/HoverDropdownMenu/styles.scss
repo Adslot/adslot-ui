@@ -1,0 +1,28 @@
+@import '~styles/variable';
+
+$dropdown-width: 160px;
+
+.hover-dropdown {
+  display: inline-block;
+
+  &-popover {
+    .popover-title {
+      font-weight: $font-weight-bold;
+      padding: 8px 2px 8px 6px;
+      background-color: $popover-title-bg;
+    }
+
+    .popover-content {
+      width: $dropdown-width;
+      padding: 4px 0;
+
+      ul {
+        margin: 0;
+      }
+
+      .btn {
+        padding: 0;
+      }
+    }
+  }
+}
