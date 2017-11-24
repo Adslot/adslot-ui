@@ -47,6 +47,7 @@ import UserListPickerExample from '../../examples/UserListPickerExample';
 import InformationBoxExample from '../../examples/InformationBoxExample';
 import SplitPaneExample from '../../examples/SplitPaneExample';
 import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
+import NavigationExample from '../../examples/NavigationExample';
 
 import { PageTitle } from '../../../src/dist-entry';
 
@@ -89,6 +90,7 @@ const componentsBySection = {
     'breadcrumb',
     'tab',
     'hover-dropdown-menu',
+    'navigation-tabs',
   ],
   'feedback-and-states': [
     'alert',
@@ -178,6 +180,7 @@ class PageLayout extends React.Component {
             <BreadcrumbExample />
             <TabExample />
             <HoverDropdownMenuExample />
+            <NavigationExample />
 
             <PageTitle title="Feedback and States" />
             <AlertExample />
