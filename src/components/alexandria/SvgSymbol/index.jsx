@@ -11,7 +11,7 @@ const SvgSymbol = (props) => {
 
   return (
     <svg className={`${componentClass}${classesList}`} onClick={onClick}>
-      <use href={href} />
+      <use href={href} xlinkHref={href} />
     </svg>
   );
 };

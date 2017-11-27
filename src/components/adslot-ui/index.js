@@ -23,9 +23,6 @@ import UserListPicker from 'adslot-ui/UserListPicker';
 import HoverDropdownMenu from 'adslot-ui/HoverDropdownMenu';
 import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
 import InformationBox from 'adslot-ui/InformationBox';
-import svg4everybody from 'svg4everybody';
-
-svg4everybody({ polyfill: true });
 
 export {
   Accordion,
