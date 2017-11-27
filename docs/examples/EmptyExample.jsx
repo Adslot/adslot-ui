@@ -12,7 +12,7 @@ class EmptyExample extends React.PureComponent {
         <Empty
           collection={[]}
           text="No items selected"
-          svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+          svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
         />
       </div>
     );
@@ -27,7 +27,7 @@ const exampleProps = {
     <Empty
       collection={[]}
       text="No items selected"
-      svgSymbol={{ href: '/assets/svg-symbols.svg#checklist-incomplete' }}
+      svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
     />
   `,
   propTypes: [

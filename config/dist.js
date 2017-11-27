@@ -11,6 +11,7 @@ module.exports = () => {
     main: resolve(__dirname, '../src/dist-entry'),
     core: resolve(__dirname, '../src/dist-entry/core'),
     extra: resolve(__dirname, '../src/dist-entry/extra'),
+    docs: resolve(__dirname, '../docs/run'),
   };
   const plugins = [
     new webpack.NoEmitOnErrorsPlugin(),

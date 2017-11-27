@@ -6,7 +6,7 @@ import {
 } from '../../src/dist-entry';
 
 const avatarColor = () => 'cyan';
-const emptySvgSymbol = { href: '/assets/svg-symbols.svg#checklist-incomplete' };
+const emptySvgSymbol = { href: './docs/assets/svg-symbols.svg#checklist-incomplete' };
 const teamMember1 = { avatar: '//lorempixel.com/35/35/people/7', givenName: 'John', id: 1, surname: 'Smith' };
 const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
 const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };

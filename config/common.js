@@ -2,6 +2,7 @@ const { resolve } = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const srcPath = resolve(__dirname, '../src');
+const docsPath = resolve(__dirname, '../docs');
 
 module.exports = {
   resolve: {
@@ -21,7 +22,7 @@ module.exports = {
         enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/, /(\.spec)\.(js|jsx)$/],
-        include: srcPath,
+        include: [srcPath, docsPath],
         use: ['eslint-loader'],
       },
 
@@ -39,7 +40,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: [/node_modules/, /(\.spec)\.(js|jsx)$/],
-        include: srcPath,
+        include: [srcPath, docsPath],
         options: {
           // This is a feature of `babel-loader` for webpack (not Babel itself). It enables caching results
           // in ./node_modules/.cache/babel-loader/ directory for faster rebuilds.
