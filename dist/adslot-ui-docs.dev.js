@@ -8564,7 +8564,7 @@ var Empty = function Empty(_ref) {
 Empty.displayName = 'AlexandriaEmptyComponent';
 
 Empty.propTypes = {
-  collection: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.array]),
+  collection: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.array, _propTypes2.default.object]),
   svgSymbol: _propTypes2.default.shape(_Circle2.default.propTypes),
   text: _propTypes2.default.node, // can be string or, if you want rich formatting, a node
   hideIcon: _propTypes2.default.bool
@@ -23000,12 +23000,12 @@ var ListPickerComponent = function (_React$Component) {
           _lodash2.default.isEmpty(linkButtons) ? null : _react2.default.createElement(
             'div',
             { className: 'pull-left' },
-            _lodash2.default.map(linkButtons, function (linkButton) {
+            _lodash2.default.map(linkButtons, function (linkButton, key) {
               return _lodash2.default.isObject(linkButton) && isSubset(_lodash2.default.keys(linkButton), ['label', 'href']) ? _react2.default.createElement(
                 _Button2.default,
                 { key: linkButton.label, className: 'btn-inverse', href: linkButton.href },
                 linkButton.label
-              ) : linkButton;
+              ) : _react2.default.cloneElement(linkButton, { key: key });
             })
           ),
           _react2.default.createElement(
@@ -56948,6 +56948,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactBootstrap = __webpack_require__(113);
 
 var _PopoverLinkItem = __webpack_require__(507);
@@ -57094,10 +57098,10 @@ var HoverDropdownMenuComponent = exports.HoverDropdownMenuComponent = function (
 }(_react2.default.Component);
 
 HoverDropdownMenuComponent.propTypes = {
-  arrowPosition: _react.PropTypes.oneOf(['left', 'right']),
-  headerText: _react.PropTypes.string,
-  hoverComponent: _react.PropTypes.element.isRequired,
-  children: _react.PropTypes.node
+  arrowPosition: _propTypes2.default.oneOf(['left', 'right']),
+  headerText: _propTypes2.default.string,
+  hoverComponent: _propTypes2.default.element.isRequired,
+  children: _propTypes2.default.node
 };
 
 HoverDropdownMenuComponent.defaultProps = {
@@ -57149,6 +57153,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactBootstrap = __webpack_require__(113);
 
 __webpack_require__(508);
@@ -57159,8 +57167,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable react/prop-types */
-
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var PopoverLinkItemComponent = function (_React$PureComponent) {
   _inherits(PopoverLinkItemComponent, _React$PureComponent);
@@ -57174,6 +57181,7 @@ var PopoverLinkItemComponent = function (_React$PureComponent) {
   _createClass(PopoverLinkItemComponent, [{
     key: 'render',
     value: function render() {
+      // eslint-disable-next-line react/prop-types
       var _props = this.props,
           target = _props.target,
           title = _props.title,
@@ -57212,13 +57220,13 @@ var PopoverLinkItemComponent = function (_React$PureComponent) {
 }(_react2.default.PureComponent);
 
 var LINK_PROPS = exports.LINK_PROPS = {
-  target: _react.PropTypes.oneOf(['_blank', '_self', '_modal']),
-  title: _react.PropTypes.string.isRequired,
-  url: _react.PropTypes.string,
-  isEnabled: _react.PropTypes.bool
+  target: _propTypes2.default.oneOf(['_blank', '_self', '_modal']),
+  title: _propTypes2.default.string.isRequired,
+  url: _propTypes2.default.string,
+  isEnabled: _propTypes2.default.bool
 };
 
-PopoverLinkItemComponent.propTypes = _lodash2.default.assign({ onClick: _react.PropTypes.func }, LINK_PROPS);
+PopoverLinkItemComponent.propTypes = _lodash2.default.assign({ onClick: _propTypes2.default.func }, LINK_PROPS);
 
 PopoverLinkItemComponent.defaultProps = {
   target: '_self',
@@ -94129,7 +94137,7 @@ var exampleProps = {
       'React Select Documentation'
     )
   ),
-  exampleCodeSnippet: '<Select\n  clearable={false}\n  name="countriesSelect"\n  noResultsText="Sorry, couldn\'t find that country."\n  options={[\n    { value: \'au\', label: \'Australia\' },\n    { value: \'ca\', label: \'Canada\' },\n    { value: \'jp\', label: \'Japan\', disabled: true },\n    { value: \'uk\', label: \'United Kingdom\' },\n  ]}\n  placeholder="Countries"\n/>',
+  exampleCodeSnippet: '<Select\n    clearable={false}\n    name="countriesSelect"\n    noResultsText="Sorry, couldn\'t find that country."\n    options={[\n      { value: \'au\', label: \'Australia\' },\n      { value: \'ca\', label: \'Canada\' },\n      { value: \'jp\', label: \'Japan\', disabled: true },\n      { value: \'uk\', label: \'United Kingdom\' },\n    ]}\n    placeholder="Countries"\n    value={this.state.selected}\n    onChange={this.onChangeHandler}\n  />',
   propTypes: []
 };
 
