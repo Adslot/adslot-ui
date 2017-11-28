@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Overlay, Popover } from 'react-bootstrap';
 import PopoverLinkItem from './PopoverLinkItem';
 import './styles.scss';

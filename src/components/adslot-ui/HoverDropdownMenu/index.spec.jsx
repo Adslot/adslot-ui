@@ -52,7 +52,7 @@ describe('HoverDropdownMenuComponent', () => {
   it('should render popover with list of links when `links` is not empty', () => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
-        {_.map(links, (link) => <HoverDropdownMenu.Item {...link} />)}
+        {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
     expect(component.find(Overlay)).to.have.length(1);
@@ -62,13 +62,14 @@ describe('HoverDropdownMenuComponent', () => {
   it('should set state to open dropdown when hovering on the component', () => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
-        {_.map(links, (link) => <HoverDropdownMenu.Item {...link} />)}
+        {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
-    component.find('.hover-dropdown').simulate('mouseEnter', { target: 'some target' });
+    const target = <mock-dom-element />;
+    component.find('.hover-dropdown').simulate('mouseEnter', { target });
     expect(component.state()).to.eql({
       isOpen: true,
-      target: 'some target',
+      target,
       mouseInPopover: false,
     });
   });
@@ -76,7 +77,7 @@ describe('HoverDropdownMenuComponent', () => {
   it('should set `state.isOpen` to false when leaving the component', (done) => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
-        {_.map(links, (link) => <HoverDropdownMenu.Item {...link} />)}
+        {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
     component.setState({ isOpen: true });
@@ -90,7 +91,7 @@ describe('HoverDropdownMenuComponent', () => {
   it('should not set `state.isOpen` to false when `state.mouseInPopover` is true', (done) => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
-        {_.map(links, (link) => <HoverDropdownMenu.Item {...link} />)}
+        {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
     component.setState({ isOpen: true, mouseInPopover: true });
@@ -104,7 +105,7 @@ describe('HoverDropdownMenuComponent', () => {
   it('should set `state.mouseInPopover` to true when user entering popover', () => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
-        {_.map(links, (link) => <HoverDropdownMenu.Item {...link} />)}
+        {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
 
@@ -116,7 +117,7 @@ describe('HoverDropdownMenuComponent', () => {
   it('should set `state.mouseInPopover` and `state.isOpen` to false when user leaving popover', (done) => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
-        {_.map(links, (link) => <HoverDropdownMenu.Item {...link} />)}
+        {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
     component.setState({ mouseInPopover: true, isOpen: true });
@@ -139,6 +140,7 @@ describe('HoverDropdownMenuComponent', () => {
 
     beforeEach(() => {
       popoverProps = {
+        id: 'popover',
         style: {
           left: 100,
         },

@@ -1,12 +1,13 @@
-/* eslint-disable react/prop-types */
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import './styles.scss';
 
 
 class PopoverLinkItemComponent extends React.PureComponent {
   render() {
+    // eslint-disable-next-line react/prop-types
     const { target, title, url, isEnabled, onClick } = this.props;
 
     const buttonProps = {
