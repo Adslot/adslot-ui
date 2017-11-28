@@ -39,17 +39,19 @@ const exampleProps = {
   componentName: 'Select',
   notes: <span>See <a href="https://github.com/JedWatson/react-select">React Select Documentation</a></span>,
   exampleCodeSnippet: `<Select
-  clearable={false}
-  name="countriesSelect"
-  noResultsText="Sorry, couldn't find that country."
-  options={[
-    { value: 'au', label: 'Australia' },
-    { value: 'ca', label: 'Canada' },
-    { value: 'jp', label: 'Japan', disabled: true },
-    { value: 'uk', label: 'United Kingdom' },
-  ]}
-  placeholder="Countries"
-/>`,
+    clearable={false}
+    name="countriesSelect"
+    noResultsText="Sorry, couldn't find that country."
+    options={[
+      { value: 'au', label: 'Australia' },
+      { value: 'ca', label: 'Canada' },
+      { value: 'jp', label: 'Japan', disabled: true },
+      { value: 'uk', label: 'United Kingdom' },
+    ]}
+    placeholder="Countries"
+    value={this.state.selected}
+    onChange={this.onChangeHandler}
+  />`,
   propTypes: [],
 };
 
