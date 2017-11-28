@@ -161,14 +161,14 @@ class ListPickerComponent extends React.Component {
           {
             _.isEmpty(linkButtons) ? null :
             <div className="pull-left">
-              {_.map(linkButtons, (linkButton) => (
+              {_.map(linkButtons, (linkButton, key) => (
                 _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ?
                   (
                     <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
                       {linkButton.label}
                     </Button>
                   ) :
-                  linkButton
+                  React.cloneElement(linkButton, { key })
               ))}
             </div>
           }
