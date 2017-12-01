@@ -41,7 +41,6 @@
   "author": "Adslot",
   "devDependencies": {
     "autoprefixer": "^7.1.2",
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -112,5 +111,16 @@
   },
   "engines": {
     "node": ">=6 <9"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 5%",
+    "ie >= 11",
+    "not and_chr > 0",
+    "not and_uc > 0",
+    "not android > 0",
+    "not ie_mob > 0",
+    "not ios_saf > 0",
+    "not op_mini > 0"
+  ]
 }
