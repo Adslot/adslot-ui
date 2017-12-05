@@ -7,37 +7,37 @@ import {
 } from '../../../src/dist-entry';
 import './styles.scss';
 
+const initialOpenPanel = 'form-elements';
+
 const contentFactory = (navigateTo) => (componentName) => <li key={componentName}>
   <Button bsStyle="link" onClick={() => navigateTo(componentName)}>{_.startCase(componentName)}</Button>
 </li>;
 
-const panelFactory = (navigateTo) => (section, sectionName) => ({
+const panelFactory = (navigateTo, currentOpenPanel) => (section, sectionName) => ({
   id: sectionName,
   title: _.startCase(sectionName),
   content: <ul className="list-unstyled">{_.map(section, contentFactory(navigateTo))}</ul>,
-  isCollapsed: sectionName !== 'form-elements',
+  isCollapsed: sectionName !== currentOpenPanel,
 });
-
 
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      panels: _.map(props.componentsBySection, panelFactory(props.navigateTo)),
+      currentOpenPanel: initialOpenPanel,
     };
     this.togglePanel = this.togglePanel.bind(this);
   }
 
   togglePanel(panelId) {
-    const nextPanels = _.assign({}, this.state.panels);
-    const panel = _.find(nextPanels, { id: panelId });
-    panel.isCollapsed = !panel.isCollapsed;
-    this.setState({ panels: nextPanels });
+    const nextPanel = panelId === this.state.currentOpenPanel ? '' : panelId
+    this.setState({ currentOpenPanel: nextPanel })
   }
 
   render() {
+    const panels = _.map(this.props.componentsBySection, panelFactory(this.props.navigateTo, this.state.currentOpenPanel));
     return (<div className="adslot-ui-navigation">
-      <Accordion onPanelClick={this.togglePanel} panels={this.state.panels} />
+      <Accordion onPanelClick={this.togglePanel} panels={panels} />
     </div>);
   }
 }
