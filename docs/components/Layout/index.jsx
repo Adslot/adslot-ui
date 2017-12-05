@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
+import SearchBar from '../SearchBar';
 
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
@@ -144,12 +145,17 @@ class PageLayout extends React.Component {
     };
   }
 
+  handleSearch(searchText) {
+    console.log(searchText);
+  }
+
   render() {
     return (
       <div className="adslot-ui-layout">
         <Header />
         <div className="adslot-ui-body">
           <SidebarArea>
+            <SearchBar searchCB={this.handleSearch} />
             <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
           </SidebarArea>
           <ContentArea>
