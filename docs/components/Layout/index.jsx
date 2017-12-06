@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
-import SearchBar from '../SearchBar';
+import SearchBarUI from '../SearchBar';
+import SearchResultCard from '../SearchResultCard';
 
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
@@ -132,21 +133,40 @@ const componentsBySection = {
   ],
 };
 
+const compoentIndexForSearch = _.flatMap(componentsBySection)
+
 class PageLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       page: 'buttons',
+      hideNavigation: false,
+      searchResult: [],
     };
 
     this.navigateTo = (newPage) => {
       if (newPage !== this.state.page) { this.setState({ page: newPage }); }
       window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
     };
-  }
 
-  handleSearch(searchText) {
-    console.log(searchText);
+    this.handleSearch = (searchText) => {
+      if (searchText === ''){
+        this.clearSearch()
+      } else {
+        const re = new RegExp(searchText, 'i')
+        this.setState({
+          hideNavigation: true,
+          searchResult: _(compoentIndexForSearch).filter((val) => re.test(val)).sort().value(),
+        });
+      }
+    }
+
+    this.clearSearch = () => {
+      this.setState({
+        hideNavigation: false,
+        searchResult: [],
+      })
+    }
   }
 
   render() {
@@ -155,8 +175,16 @@ class PageLayout extends React.Component {
         <Header />
         <div className="adslot-ui-body">
           <SidebarArea>
-            <SearchBar searchCB={this.handleSearch} />
-            <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
+            <SearchBarUI searchCB={this.handleSearch} />
+            {
+              this.state.hideNavigation
+                ? (<SearchResultCard
+                    searchResult={this.state.searchResult}
+                    navigateTo={this.navigateTo}
+                    clearSearch={this.clearSearch}
+                  />)
+                : <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
+            }
           </SidebarArea>
           <ContentArea>
             <PageTitle title="Form Elements" />

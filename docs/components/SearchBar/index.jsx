@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
-  SearchBar
+  SearchBar,
 } from '../../../src/dist-entry';
 import './styles.scss';
 
@@ -12,11 +12,9 @@ class SearchBarUI extends React.Component {
     this.state = {
       searchBarString: '',
     };
-    this.handleStringChange = this.handleStringChange.bind(this);
-  }
-
-  handleStringChange(searchBarString) {
-    this.setState({ searchBarString });
+    this.handleStringChange = (searchBarString) => {
+      this.setState({ searchBarString: searchBarString.trim() });
+    }
   }
 
   render() {
