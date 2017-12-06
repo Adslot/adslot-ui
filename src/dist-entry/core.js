@@ -15,6 +15,7 @@ import Popover from 'react-bootstrap/lib/Popover';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';
+import NavItem from 'react-bootstrap/lib/NavItem';
 
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
@@ -54,6 +55,7 @@ import {
   HelpIconPopover,
   ListPicker,
   ListPickerPure,
+  Nav,
   PagedGrid,
   Panel,
   Search,
@@ -97,6 +99,8 @@ export {
   ListPickerPure,
   MenuItem,
   Modal,
+  Nav,
+  NavItem,
   OverlayTrigger,
   PagedGrid,
   PageTitle,

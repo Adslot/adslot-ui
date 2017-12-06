@@ -23,6 +23,7 @@ import UserListPicker from 'adslot-ui/UserListPicker';
 import HoverDropdownMenu from 'adslot-ui/HoverDropdownMenu';
 import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
 import InformationBox from 'adslot-ui/InformationBox';
+import Nav from 'adslot-ui/Navigation';
 
 export {
   Accordion,
@@ -35,6 +36,7 @@ export {
   HelpIconPopover,
   ListPicker,
   ListPickerPure,
+  Nav,
   PagedGrid,
   Panel,
   Search,
