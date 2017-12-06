@@ -8,6 +8,14 @@
     max-width: 940px;
   }
 
+  .adslot-ui-code-snippet {
+    max-width: 940px;
+  }
+
+  .adslot-ui-proptype-table {
+    max-width: 1100px;
+  }
+
   h2 {
     margin-bottom: $spacing-etalon;
     font-size: $font-size-header;
@@ -19,12 +27,40 @@
   }
 
   table {
-    td:empty:before {
-      content: '—';
-    }
 
     + .empty-component {
       padding: 0;
     }
+
+    tr {
+      td {
+
+        &:empty:before {
+          content: '—';
+        }
+
+        &:nth-child(1) {
+          width: 10%;
+        }
+
+        &:nth-child(2) {
+          width: 15%;
+        }
+
+        &:nth-child(3) {
+          width: 25%;
+        }
+
+        &:nth-child(4) {
+          width: 50%;
+        }
+
+        pre {
+          white-space: pre-wrap;
+        }
+
+      }
+    }
+
   }
 }

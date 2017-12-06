@@ -44,35 +44,38 @@ class Example extends React.PureComponent {
           {children}
         </div>
 
-        <SyntaxHighlighter language="html" style={github}>{exampleCodeSnippet}</SyntaxHighlighter>
-
+        <div className="adslot-ui-code-snippet">
+          <SyntaxHighlighter language="html" style={github}>{exampleCodeSnippet}</SyntaxHighlighter>
+        </div>
 
         <h3>PropTypes</h3>
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>PropType</th>
-              <th>Type</th>
-              <th>Default Value</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
-              <tr key={propType}>
-                <td><pre>{propType}</pre></td>
-                <td><pre>{type}</pre></td>
-                <td>{defaultValue}</td>
-                <td>{note}</td>
+        <div className="adslot-ui-proptype-table">
+          <table className="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>PropType</th>
+                <th>Type</th>
+                <th>Default Value</th>
+                <th>Notes</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <Empty
-          collection={propTypes}
-          hideIcon
-          text="No PropType definitions for this component, please check the source-code."
-        />
+            </thead>
+            <tbody>
+              {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
+                <tr key={propType}>
+                  <td><pre>{propType}</pre></td>
+                  <td><pre>{type}</pre></td>
+                  <td>{defaultValue}</td>
+                  <td>{note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <Empty
+            collection={propTypes}
+            hideIcon
+            text="No PropType definitions for this component, please check the source-code."
+          />
+        </div>
         <Button bsStyle="link" href="#top">↑ Back to top.</Button>
       </div>
     );
