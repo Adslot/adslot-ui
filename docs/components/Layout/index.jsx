@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
+<<<<<<< HEAD
 import SearchBar from '../SearchBar';
 <<<<<<< HEAD
 import SearchResultCard from '../SearchResultCard';
 =======
 >>>>>>> 248c9c7... Docs: Add searchbar component
+=======
+import SearchBarUI from '../SearchBar';
+import SearchResultCard from '../SearchResultCard';
+>>>>>>> 38bb043... Docs: Add search result card
 
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
@@ -137,21 +142,31 @@ const componentsBySection = {
   ],
 };
 
+<<<<<<< HEAD
 const componentIndexForSearch = _.flatMap(componentsBySection);
+=======
+const compoentIndexForSearch = _.flatMap(componentsBySection)
+>>>>>>> 38bb043... Docs: Add search result card
 
 class PageLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       page: 'buttons',
+<<<<<<< HEAD
       searchTerm: '',
       searchResults: [],
+=======
+      hideNavigation: false,
+      searchResult: [],
+>>>>>>> 38bb043... Docs: Add search result card
     };
 
     this.navigateTo = (newPage) => {
       if (newPage !== this.state.page) { this.setState({ page: newPage }); }
       window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
     };
+<<<<<<< HEAD
 
     this.filterComponents = (searchTerm) => {
       const searchTermRegExp = new RegExp(searchTerm, 'i');
@@ -179,9 +194,27 @@ class PageLayout extends React.Component {
       });
     };
   }
+=======
+>>>>>>> 38bb043... Docs: Add search result card
 
-  handleSearch(searchText) {
-    console.log(searchText);
+    this.handleSearch = (searchText) => {
+      if (searchText === ''){
+        this.clearSearch()
+      } else {
+        const re = new RegExp(searchText, 'i')
+        this.setState({
+          hideNavigation: true,
+          searchResult: _(compoentIndexForSearch).filter((val) => re.test(val)).sort().value(),
+        });
+      }
+    }
+
+    this.clearSearch = () => {
+      this.setState({
+        hideNavigation: false,
+        searchResult: [],
+      })
+    }
   }
 
   render() {
@@ -190,6 +223,7 @@ class PageLayout extends React.Component {
         <Header />
         <div className="adslot-ui-body">
           <SidebarArea>
+<<<<<<< HEAD
 <<<<<<< HEAD
             <SearchBar onSearch={this.handleSearch} />
             {
@@ -205,6 +239,18 @@ class PageLayout extends React.Component {
             <SearchBar searchCB={this.handleSearch} />
             <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
 >>>>>>> 248c9c7... Docs: Add searchbar component
+=======
+            <SearchBarUI searchCB={this.handleSearch} />
+            {
+              this.state.hideNavigation
+                ? (<SearchResultCard
+                    searchResult={this.state.searchResult}
+                    navigateTo={this.navigateTo}
+                    clearSearch={this.clearSearch}
+                  />)
+                : <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
+            }
+>>>>>>> 38bb043... Docs: Add search result card
           </SidebarArea>
           <ContentArea>
             <PageTitle title="Form Elements" />

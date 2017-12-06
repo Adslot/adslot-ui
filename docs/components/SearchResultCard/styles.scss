@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '~styles/variable';
 
 .search-result-card {
@@ -28,4 +29,30 @@
       padding: 0;
     }
   }
+=======
+.adslot-ui-searchresultcard {
+  width: 240px;
+  
+  pre {
+    font-size: 15px;
+  }
+
+  .clear-button {
+    float: right;
+  }
+
+  .card-component-content {
+    &:first-child {
+      padding: 20px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    &:nth-child(2) {
+      padding-top: 20px;
+    }
+
+    padding-top: 0;
+  }
+
+>>>>>>> 38bb043... Docs: Add search result card
 }

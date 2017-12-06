@@ -10,7 +10,7 @@ class SearchBarComponent extends React.Component {
 =======
 import _ from 'lodash';
 import {
-  SearchBar
+  SearchBar,
 } from '../../../src/dist-entry';
 import './styles.scss';
 
@@ -22,6 +22,7 @@ class SearchBarUI extends React.Component {
       searchBarString: '',
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.handleStringChange = (searchBarString) => {
       this.setState({ searchBarString: searchBarString.trim() });
     };
@@ -32,6 +33,11 @@ class SearchBarUI extends React.Component {
   handleStringChange(searchBarString) {
     this.setState({ searchBarString });
 >>>>>>> 248c9c7... Docs: Add searchbar component
+=======
+    this.handleStringChange = (searchBarString) => {
+      this.setState({ searchBarString: searchBarString.trim() });
+    }
+>>>>>>> 38bb043... Docs: Add search result card
   }
 
   render() {
