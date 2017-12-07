@@ -30,12 +30,15 @@ class Navigation extends React.Component {
   }
 
   togglePanel(panelId) {
-    const nextPanel = panelId === this.state.currentOpenPanel ? '' : panelId
-    this.setState({ currentOpenPanel: nextPanel })
+    const nextPanel = panelId === this.state.currentOpenPanel ? '' : panelId;
+    this.setState({ currentOpenPanel: nextPanel });
   }
 
   render() {
-    const panels = _.map(this.props.componentsBySection, panelFactory(this.props.navigateTo, this.state.currentOpenPanel));
+    const panels = _.map(
+      this.props.componentsBySection,
+      panelFactory(this.props.navigateTo, this.state.currentOpenPanel)
+    );
     return (<div className="adslot-ui-navigation">
       <Accordion onPanelClick={this.togglePanel} panels={panels} />
     </div>);
@@ -43,7 +46,7 @@ class Navigation extends React.Component {
 }
 Navigation.propTypes = {
   navigateTo: PropTypes.func.isRequired,
-  componentsBySection: PropTypes.object.isRequired,
+  componentsBySection: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string.isRequired)).isRequired,
 };
 
 export default Navigation;

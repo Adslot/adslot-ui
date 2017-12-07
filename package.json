@@ -9,7 +9,7 @@
     "clean": "rimraf dist/*",
     "codecov": "cat coverage/coverage-final.json | codecov",
     "dist": "./scripts/dist",
-    "eslint": "eslint --ext .jsx,.js --rulesdir ./src ./src",
+    "eslint": "eslint --ext .jsx,.js ./src && eslint --ext .jsx,.js ./docs",
     "lint": "npm run eslint && npm run sass-lint && npm run check-commit",
     "posttest": "npm run lint",
     "postversion": "npm publish && git push --follow-tags && echo '…released.'",

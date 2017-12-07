@@ -12,17 +12,6 @@ import './styles.scss';
 
 
 class Example extends React.PureComponent {
-  getPropTypeTableTemplate({ propType, type, defaultValue, note }) {
-    return (
-      <tr key={propType}>
-        <td><pre>{propType}</pre></td>
-        <td><pre>{type}</pre></td>
-        <td>{defaultValue}</td>
-        <td>{note}</td>
-      </tr>
-    );
-  }
-
   render() {
     const {
       children,

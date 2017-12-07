@@ -57,9 +57,11 @@ import '../../examples/styles.scss';
 const SidebarArea = ({ children }) => <div className="adslot-ui-sidebar-area">{children}</div>;
 const ContentArea = ({ children }) => <div className="adslot-ui-content-area">{children}</div>;
 
-SidebarArea.propTypes = ContentArea.propTypes = {
+SidebarArea.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+ContentArea.propTypes = SidebarArea.propTypes;
 
 const componentsBySection = {
   'form-elements': [
