@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 @import '~styles/variable';
 
 .search-result-card {
@@ -30,29 +31,36 @@
     }
   }
 =======
+=======
+@import '~styles/variable';
+
+>>>>>>> 71f002d... Docs: Changes based on reviews
 .adslot-ui-searchresultcard {
   width: 240px;
-  
-  pre {
-    font-size: 15px;
-  }
-
-  .clear-button {
-    float: right;
-  }
 
   .card-component-content {
+    padding-top: 0;
+
     &:first-child {
-      padding: 20px;
-      border-bottom: 1px solid #e8e8e8;
+      padding: $spacing-etalon;
+      border-bottom: 1px solid $gray-lighter;
+      display: flex;
     }
 
     &:nth-child(2) {
-      padding-top: 20px;
+      padding-top: $spacing-etalon;
     }
 
-    padding-top: 0;
-  }
+    .title {
+      flex: 1;
+    }
 
+<<<<<<< HEAD
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+    .clear-button {
+      padding: 0;
+    }
+  }
+>>>>>>> 71f002d... Docs: Changes based on reviews
 }

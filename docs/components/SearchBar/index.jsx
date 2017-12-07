@@ -49,6 +49,7 @@ class SearchBarUI extends React.Component {
         searchIconHref="./docs/assets/svg-symbols.svg#search"
         onSearchStringChange={this.handleStringChange}
 <<<<<<< HEAD
+<<<<<<< HEAD
         onSearch={() => this.props.onSearch(this.state.searchBarString)}
       />
     );
@@ -62,13 +63,16 @@ SearchBarComponent.propTypes = {
 export default SearchBarComponent;
 =======
         onSearch={() => this.props.searchCB(this.state.searchBarString)}
+=======
+        onSearch={() => this.props.onSearch(this.state.searchBarString)}
+>>>>>>> 71f002d... Docs: Changes based on reviews
       />
     )
   }
 }
 
 SearchBarUI.propTypes = {
-  searchCB: PropTypes.func.isRequired
+  onSearch: PropTypes.func.isRequired
 }
 
 export default SearchBarUI
