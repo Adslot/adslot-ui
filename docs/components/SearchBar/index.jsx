@@ -5,7 +5,7 @@ import {
 } from '../../../src/dist-entry';
 import './styles.scss';
 
-class SearchBarUI extends React.Component {
+class SearchBarComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,8 +30,8 @@ class SearchBarUI extends React.Component {
   }
 }
 
-SearchBarUI.propTypes = {
+SearchBarComponent.propTypes = {
   onSearch: PropTypes.func.isRequired,
 };
 
-export default SearchBarUI;
+export default SearchBarComponent;

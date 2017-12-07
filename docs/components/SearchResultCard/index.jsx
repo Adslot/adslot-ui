@@ -18,7 +18,7 @@ const SearchResultCard = ({
       <strong className="title">Results</strong>
       <Button
         bsStyle="link"
-        onClick={() => clearSearch()}
+        onClick={clearSearch}
         className="clear-button"
       >
         Clear
