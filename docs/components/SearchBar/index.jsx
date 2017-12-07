@@ -17,8 +17,12 @@ import {
 } from '../../../src/dist-entry';
 import './styles.scss';
 
+<<<<<<< HEAD
 class SearchBarUI extends React.Component {
 >>>>>>> 248c9c7... Docs: Add searchbar component
+=======
+class SearchBarComponent extends React.Component {
+>>>>>>> 55413c3... Docs: Small changes
   constructor(props) {
     super(props);
     this.state = {
@@ -78,13 +82,17 @@ export default SearchBarComponent;
   }
 }
 
-SearchBarUI.propTypes = {
+SearchBarComponent.propTypes = {
   onSearch: PropTypes.func.isRequired,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 export default SearchBarUI
 >>>>>>> 248c9c7... Docs: Add searchbar component
 =======
 export default SearchBarUI;
 >>>>>>> 64ae14f... Docs: Changes based on eslint
+=======
+export default SearchBarComponent;
+>>>>>>> 55413c3... Docs: Small changes

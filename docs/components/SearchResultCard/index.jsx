@@ -39,10 +39,14 @@ const SearchResultCard = ({
       <Button
         bsStyle="link"
 <<<<<<< HEAD
+<<<<<<< HEAD
         onClick={clearSearch}
 =======
         onClick={() => clearSearch()}
 >>>>>>> 64ae14f... Docs: Changes based on eslint
+=======
+        onClick={clearSearch}
+>>>>>>> 55413c3... Docs: Small changes
         className="clear-button"
       >
         Clear
