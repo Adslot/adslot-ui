@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
-import SearchBarUI from '../SearchBar';
+import SearchBar from '../SearchBar';
 import SearchResultCard from '../SearchResultCard';
 
 import ButtonExample from '../../examples/ButtonExample';
@@ -140,7 +140,7 @@ class PageLayout extends React.Component {
     super(props);
     this.state = {
       page: 'buttons',
-      hideNavigation: false,
+      searchTerm: '',
       searchResult: [],
     };
 
@@ -149,13 +149,13 @@ class PageLayout extends React.Component {
       window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
     };
 
-    this.handleSearch = (searchText) => {
-      if (searchText === ''){
+    this.handleSearch = (searchTerm) => {
+      if (searchTerm === ''){
         this.clearSearch()
       } else {
-        const re = new RegExp(searchText, 'i')
+        const re = new RegExp(searchTerm, 'i')
         this.setState({
-          hideNavigation: true,
+          searchTerm,
           searchResult: _(compoentIndexForSearch).filter((val) => re.test(val)).sort().value(),
         });
       }
@@ -163,7 +163,7 @@ class PageLayout extends React.Component {
 
     this.clearSearch = () => {
       this.setState({
-        hideNavigation: false,
+        searchTerm: '',
         searchResult: [],
       })
     }
@@ -175,9 +175,9 @@ class PageLayout extends React.Component {
         <Header />
         <div className="adslot-ui-body">
           <SidebarArea>
-            <SearchBarUI searchCB={this.handleSearch} />
+            <SearchBar onSearch={this.handleSearch} />
             {
-              this.state.hideNavigation
+              (this.state.searchTerm.length > 0 || this.state.searchResult.length > 0)
                 ? (<SearchResultCard
                     searchResult={this.state.searchResult}
                     navigateTo={this.navigateTo}

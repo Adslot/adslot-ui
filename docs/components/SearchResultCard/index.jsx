@@ -15,7 +15,7 @@ const SearchResultCard = ({
   return (
     <Card.Container className="adslot-ui-searchresultcard">
       <Card.Content key="search-result-card-title">
-        <pre><b>Results</b></pre>
+        <strong className="title">Results</strong>
         <Button
           bsStyle="link"
           onClick={() => clearSearch()}
@@ -25,18 +25,22 @@ const SearchResultCard = ({
         </Button>
       </Card.Content>
       {
-        React.Children.map(searchResult, (componentName) => {
-          return (
-            <Card.Content key={componentName}>
-              <Button
-                bsStyle="link"
-                onClick={() => navigateTo(componentName)}
-              >
-                {_.startCase(componentName)}
-              </Button>
-            </Card.Content>
-          )
-        })
+        (searchResult.length > 0)
+          ? React.Children.map(searchResult, (componentName) => {
+            return (
+              <Card.Content key={componentName}>
+                <Button
+                  bsStyle="link"
+                  onClick={() => navigateTo(componentName)}
+                >
+                  {_.startCase(componentName)}
+                </Button>
+              </Card.Content>
+            )
+          })
+          : (<Card.Content key={"search-result-card-empty"}>
+            No results found.
+          </Card.Content>)
       }
     </Card.Container>
   )
