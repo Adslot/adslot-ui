@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   SearchBar,
 } from '../../../src/dist-entry';
@@ -9,6 +10,8 @@ import './styles.scss';
 class SearchBarComponent extends React.Component {
 =======
 import _ from 'lodash';
+=======
+>>>>>>> 64ae14f... Docs: Changes based on eslint
 import {
   SearchBar,
 } from '../../../src/dist-entry';
@@ -36,8 +39,12 @@ class SearchBarUI extends React.Component {
 =======
     this.handleStringChange = (searchBarString) => {
       this.setState({ searchBarString: searchBarString.trim() });
+<<<<<<< HEAD
     }
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+    };
+>>>>>>> 64ae14f... Docs: Changes based on eslint
   }
 
   render() {
@@ -67,13 +74,17 @@ export default SearchBarComponent;
         onSearch={() => this.props.onSearch(this.state.searchBarString)}
 >>>>>>> 71f002d... Docs: Changes based on reviews
       />
-    )
+    );
   }
 }
 
 SearchBarUI.propTypes = {
-  onSearch: PropTypes.func.isRequired
-}
+  onSearch: PropTypes.func.isRequired,
+};
 
+<<<<<<< HEAD
 export default SearchBarUI
 >>>>>>> 248c9c7... Docs: Add searchbar component
+=======
+export default SearchBarUI;
+>>>>>>> 64ae14f... Docs: Changes based on eslint

@@ -13,7 +13,11 @@ import _ from 'lodash';
 import {
   Card,
   Button,
+<<<<<<< HEAD
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+  Empty,
+>>>>>>> 64ae14f... Docs: Changes based on eslint
 } from '../../../src/dist-entry';
 import './styles.scss';
 
@@ -21,14 +25,24 @@ const SearchResultCard = ({
   navigateTo,
   clearSearch,
 <<<<<<< HEAD
+<<<<<<< HEAD
   searchResults,
 }) => (
   <Card.Container className="search-result-card">
+=======
+  searchResults,
+}) => (
+  <Card.Container className="adslot-ui-searchresultcard">
+>>>>>>> 64ae14f... Docs: Changes based on eslint
     <Card.Content key="search-result-card-title">
       <strong className="title">Results</strong>
       <Button
         bsStyle="link"
+<<<<<<< HEAD
         onClick={clearSearch}
+=======
+        onClick={() => clearSearch()}
+>>>>>>> 64ae14f... Docs: Changes based on eslint
         className="clear-button"
       >
         Clear
@@ -53,6 +67,7 @@ const SearchResultCard = ({
     />
   </Card.Container>
 );
+<<<<<<< HEAD
 =======
   searchResult
 }) => {
@@ -90,10 +105,13 @@ const SearchResultCard = ({
   )
 }
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+>>>>>>> 64ae14f... Docs: Changes based on eslint
 
 SearchResultCard.propTypes = {
   navigateTo: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired,
+<<<<<<< HEAD
 <<<<<<< HEAD
   searchResults: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
@@ -101,5 +119,9 @@ SearchResultCard.propTypes = {
   searchResult: PropTypes.array.isRequired,
 }
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+  searchResults: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+>>>>>>> 64ae14f... Docs: Changes based on eslint
 
 export default SearchResultCard;

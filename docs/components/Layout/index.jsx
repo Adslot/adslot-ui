@@ -147,10 +147,14 @@ const componentsBySection = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const componentIndexForSearch = _.flatMap(componentsBySection);
 =======
 const compoentIndexForSearch = _.flatMap(componentsBySection)
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+const componentIndexForSearch = _.flatMap(componentsBySection);
+>>>>>>> 64ae14f... Docs: Changes based on eslint
 
 class PageLayout extends React.Component {
   constructor(props) {
@@ -165,9 +169,13 @@ class PageLayout extends React.Component {
       hideNavigation: false,
 =======
       searchTerm: '',
+<<<<<<< HEAD
 >>>>>>> 71f002d... Docs: Changes based on reviews
       searchResult: [],
 >>>>>>> 38bb043... Docs: Add search result card
+=======
+      searchResults: [],
+>>>>>>> 64ae14f... Docs: Changes based on eslint
     };
 
     this.navigateTo = (newPage) => {
@@ -206,23 +214,23 @@ class PageLayout extends React.Component {
 >>>>>>> 38bb043... Docs: Add search result card
 
     this.handleSearch = (searchTerm) => {
-      if (searchTerm === ''){
-        this.clearSearch()
+      if (searchTerm.length === 0) {
+        this.clearSearch();
       } else {
-        const re = new RegExp(searchTerm, 'i')
+        const regex = new RegExp(searchTerm, 'i');
         this.setState({
           searchTerm,
-          searchResult: _(compoentIndexForSearch).filter((val) => re.test(val)).sort().value(),
+          searchResults: _(componentIndexForSearch).filter((val) => regex.test(val)).sort().value(),
         });
       }
-    }
+    };
 
     this.clearSearch = () => {
       this.setState({
         searchTerm: '',
-        searchResult: [],
-      })
-    }
+        searchResults: [],
+      });
+    };
   }
 
   render() {
@@ -254,12 +262,12 @@ class PageLayout extends React.Component {
             <SearchBar onSearch={this.handleSearch} />
 >>>>>>> 71f002d... Docs: Changes based on reviews
             {
-              (this.state.searchTerm.length > 0 || this.state.searchResult.length > 0)
+              (this.state.searchTerm.length > 0 || this.state.searchResults.length > 0)
                 ? (<SearchResultCard
-                    searchResult={this.state.searchResult}
-                    navigateTo={this.navigateTo}
-                    clearSearch={this.clearSearch}
-                  />)
+                  searchResults={this.state.searchResults}
+                  navigateTo={this.navigateTo}
+                  clearSearch={this.clearSearch}
+                />)
                 : <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
             }
 >>>>>>> 38bb043... Docs: Add search result card
