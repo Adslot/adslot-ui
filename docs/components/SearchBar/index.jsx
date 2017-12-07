@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import {
   SearchBar,
 } from '../../../src/dist-entry';
@@ -14,7 +13,7 @@ class SearchBarUI extends React.Component {
     };
     this.handleStringChange = (searchBarString) => {
       this.setState({ searchBarString: searchBarString.trim() });
-    }
+    };
   }
 
   render() {
@@ -27,12 +26,12 @@ class SearchBarUI extends React.Component {
         onSearchStringChange={this.handleStringChange}
         onSearch={() => this.props.onSearch(this.state.searchBarString)}
       />
-    )
+    );
   }
 }
 
 SearchBarUI.propTypes = {
-  onSearch: PropTypes.func.isRequired
-}
+  onSearch: PropTypes.func.isRequired,
+};
 
-export default SearchBarUI
+export default SearchBarUI;
