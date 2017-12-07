@@ -14,18 +14,16 @@ class Contributors extends React.Component {
     this.state = { contributors: [] };
     this.renderContributors = this.renderContributors.bind(this);
 
-    this.getContributors().then((contributors) => {
-      this.setState({ contributors });
-    });
+    this.getContributors();
   }
-
 
   getContributors() {
-    return new Promise((resolve) => {
-      fetch('https://api.github.com/repos/Adslot/adslot-ui/contributors').then(resolve);
-    }).then((response) => response.json());
+    fetch('https://api.github.com/repos/Adslot/adslot-ui/contributors')
+      .then((response) => response.json())
+      .then((contributors) => {
+        this.setState({ contributors });
+      });
   }
-
 
   renderContributors() {
     return _.map(this.state.contributors, ({
@@ -47,7 +45,9 @@ class Contributors extends React.Component {
     return (
       <div className="git-contributors">
         <PageTitle title="Contributors">
-          <small>Thanks to all <strong>{this.state.contributors.length}</strong> of our contributors!</small>
+          {this.state.contributors.length ?
+            <small>Thanks to all <strong>{this.state.contributors.length}</strong> of our contributors!</small>
+          : null }
         </PageTitle>
         <div className="avatars-container">
           {this.state.contributors.length ? this.renderContributors() : <Spinner size="medium" />}
