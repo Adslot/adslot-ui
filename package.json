@@ -104,6 +104,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "babel-plugin-react-bootstrap": "0.0.2",
     "diff-match-patch": "^1.0.0",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
