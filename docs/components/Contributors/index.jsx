@@ -28,7 +28,7 @@ class Contributors extends React.Component {
   renderContributors() {
     return _.map(this.state.contributors, ({
       login,
-      avatar_url,
+      avatar_url, // eslint-disable-line camelcase
       contributions,
     }) =>
       <Avatar
