@@ -19,8 +19,9 @@ describe('SvgSymbol', () => {
       href: '/assets/other-svg-symbols.svg#checklist-incomplete',
     };
     const component = shallow(<SvgSymbol {...props} />);
-    expect(component.prop('className')).to
-      .equal('svg-symbol-component svg-symbol-component-16 svg-symbol-component-red');
+    expect(component.prop('className')).to.equal(
+      'svg-symbol-component svg-symbol-component-16 svg-symbol-component-red'
+    );
 
     const useElement = component.find('use');
     expect(useElement.prop('href')).to.equal('/assets/other-svg-symbols.svg#checklist-incomplete');

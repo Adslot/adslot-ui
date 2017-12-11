@@ -19,7 +19,6 @@ function getEnv(args) {
   }
 }
 
-
 /**
  * Get an allowed environment
  * @param  {String}  env
@@ -31,7 +30,6 @@ function getValidEnv(env) {
   return isValid ? env : 'dev';
 }
 
-
 /**
  * Build the webpack configuration
  * @param  {String} env Environment to use
@@ -40,8 +38,7 @@ function getValidEnv(env) {
 function buildConfig() {
   const args = minimist(process.argv.slice(2));
   const usedEnv = getValidEnv(getEnv(args));
-  return require(path.join(__dirname, `config/${usedEnv}.js`));  // eslint-disable-line global-require
+  return require(path.join(__dirname, `config/${usedEnv}.js`)); // eslint-disable-line global-require
 }
-
 
 module.exports = buildConfig();

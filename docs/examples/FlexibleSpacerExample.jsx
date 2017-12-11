@@ -1,16 +1,12 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  FlexibleSpacer,
-} from '../../src/dist-entry';
-
+import { FlexibleSpacer } from '../../src/dist-entry';
 
 class FlexibleSpacerExample extends React.PureComponent {
   render() {
-    return (<FlexibleSpacer />);
+    return <FlexibleSpacer />;
   }
 }
-
 
 const exampleProps = {
   componentName: 'Flexible Spacer',
@@ -19,5 +15,8 @@ const exampleProps = {
   propTypes: [],
 };
 
-
-export default () => <Example {...exampleProps}><FlexibleSpacerExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <FlexibleSpacerExample />
+  </Example>
+);

@@ -20,11 +20,17 @@ ActionButton.propTypes = {
 
 const Tag = ({ children, inverse, id, onAction, accent, actionIconSvgHref }) => {
   const classSuffixes = [];
-  if (inverse) { classSuffixes.push('inverse'); }
+  if (inverse) {
+    classSuffixes.push('inverse');
+  }
 
-  if (accent) { classSuffixes.push(`accent accent-${accent}`); }
+  if (accent) {
+    classSuffixes.push(`accent accent-${accent}`);
+  }
 
-  if (onAction) { classSuffixes.push('actionable'); }
+  if (onAction) {
+    classSuffixes.push('actionable');
+  }
 
   const classes = classSuffixHelper({ classSuffixes, componentClass });
 

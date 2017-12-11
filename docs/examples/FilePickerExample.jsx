@@ -1,18 +1,14 @@
-/**/import React from 'react';
+/**/ import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import {
-  FilePicker,
-} from '../../src/dist-entry';
-
+import { FilePicker } from '../../src/dist-entry';
 
 class FilePickerExample extends React.PureComponent {
   render() {
     const onSelect = _.noop;
-    return (<FilePicker onSelect={onSelect} />);
+    return <FilePicker onSelect={onSelect} />;
   }
 }
-
 
 const exampleProps = {
   componentName: 'File Picker',
@@ -49,7 +45,7 @@ const exampleProps = {
     {
       propType: 'onSelect',
       type: 'func',
-      note: (<pre>{'onSelect({ isClosed, lastModified, lastModifiedDate, name, size, type })'}</pre>),
+      note: <pre>{'onSelect({ isClosed, lastModified, lastModifiedDate, name, size, type })'}</pre>,
     },
     {
       propType: 'placeholder',
@@ -59,5 +55,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><FilePickerExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <FilePickerExample />
+  </Example>
+);

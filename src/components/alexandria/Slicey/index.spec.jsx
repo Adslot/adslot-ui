@@ -10,10 +10,7 @@ describe('Slicey', () => {
   let dataset;
 
   beforeEach(() => {
-    dataset = [
-      { label: 'positive', value: 5 },
-      { label: 'negative', value: 3 },
-    ];
+    dataset = [{ label: 'positive', value: 5 }, { label: 'negative', value: 3 }];
   });
 
   it('should render an empty state', () => {

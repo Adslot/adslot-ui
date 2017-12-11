@@ -24,10 +24,12 @@ describe('Card.Container', () => {
   });
 
   it('should render with appended and nested children', () => {
-    const component = shallow(<Card.Container accent="foo">
-      <Card.Content>Nested</Card.Content>
-      <Card.Content append>Appended</Card.Content>
-    </Card.Container>);
+    const component = shallow(
+      <Card.Container accent="foo">
+        <Card.Content>Nested</Card.Content>
+        <Card.Content append>Appended</Card.Content>
+      </Card.Container>
+    );
 
     expect(component.find(Card.Content)).to.have.length(2); // Should have two card contents
 
@@ -35,7 +37,12 @@ describe('Card.Container', () => {
     expect(nestedChild).to.have.length(1);
     expect(nestedChild.children().text()).to.equal('Nested');
     expect(component.children(Card.Content)).to.have.length(1);
-    expect(component.children(Card.Content).children().text()).to.equal('Appended');
+    expect(
+      component
+        .children(Card.Content)
+        .children()
+        .text()
+    ).to.equal('Appended');
   });
 
   it('should apply data-test-selector', () => {
@@ -72,7 +79,11 @@ describe('Card.Content', () => {
   });
 
   it('should render with custom classNames', () => {
-    const component = shallow(<Card.Content fill className="some classes">Test Text</Card.Content>);
+    const component = shallow(
+      <Card.Content fill className="some classes">
+        Test Text
+      </Card.Content>
+    );
     expect(component.prop('className')).to.equal('card-component-content fill some classes');
     expect(component.children()).to.have.length(1);
   });

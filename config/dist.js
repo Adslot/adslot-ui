@@ -25,7 +25,8 @@ module.exports = () => {
 
   if (buildType === 'production') {
     plugins.push(
-      new webpack.DefinePlugin({ // ensures webpack will always optimise for production
+      new webpack.DefinePlugin({
+        // ensures webpack will always optimise for production
         'process.env.NODE_ENV': '"production"',
       }),
       new webpack.optimize.UglifyJsPlugin({
@@ -72,7 +73,7 @@ module.exports = () => {
         commonjs: 'react-redux',
         amd: 'react-redux',
       },
-      'redux': {
+      redux: {
         root: 'Redux',
         commonjs2: 'redux',
         commonjs: 'redux',

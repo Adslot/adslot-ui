@@ -148,7 +148,11 @@ describe('AlertInput', () => {
     });
 
     it('should also render with default props', () => {
-      expect(shallow(<AlertInput />).find('input').prop('type')).to.equal('text');
+      expect(
+        shallow(<AlertInput />)
+          .find('input')
+          .prop('type')
+      ).to.equal('text');
     });
 
     it('should render with addons', () => {

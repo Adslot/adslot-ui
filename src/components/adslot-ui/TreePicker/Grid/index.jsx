@@ -34,46 +34,41 @@ const TreePickerGridComponent = ({
   const nodesByGroupLabel = _.groupBy(nodes, groupFormatter);
   return (
     <Grid>
-      {isLoading ?
+      {isLoading ? (
         <div className="loading-nodes-container">
-          <Spinner /><p>Loading…</p>
+          <Spinner />
+          <p>Loading…</p>
         </div>
-      : _.map(nodesByGroupLabel, (groupedNodes, label) => (
-        <div className="treepickergrid-component-group" key={_.kebabCase(label)}>
-          {(displayGroupHeader) ?
-            <div className="treepickergrid-component-group-label">
-              <GridRow dts={`group-label-${_.kebabCase(label)}`}>
-                {label}
-              </GridRow>
-            </div> :
-            null
-          }
-          {_.map(groupedNodes, (node) =>
-            <TreePickerNodeFast
-              key={node.id}
-              {...{
-                disabled,
-                expandNode,
-                includeNode,
-                itemType,
-                node,
-                nodeRenderer,
-                removeNode,
-                selected,
-                valueFormatter,
-              }}
-            />
-          )}
-        </div>
-      ))}
-      {nodes && !isLoading ?
-        <Empty
-          collection={nodes}
-          hideIcon={hideIcon}
-          svgSymbol={emptySvgSymbol}
-          text={emptyText}
-        /> :
-        null}
+      ) : (
+        _.map(nodesByGroupLabel, (groupedNodes, label) => (
+          <div className="treepickergrid-component-group" key={_.kebabCase(label)}>
+            {displayGroupHeader ? (
+              <div className="treepickergrid-component-group-label">
+                <GridRow dts={`group-label-${_.kebabCase(label)}`}>{label}</GridRow>
+              </div>
+            ) : null}
+            {_.map(groupedNodes, node => (
+              <TreePickerNodeFast
+                key={node.id}
+                {...{
+                  disabled,
+                  expandNode,
+                  includeNode,
+                  itemType,
+                  node,
+                  nodeRenderer,
+                  removeNode,
+                  selected,
+                  valueFormatter,
+                }}
+              />
+            ))}
+          </div>
+        ))
+      )}
+      {nodes && !isLoading ? (
+        <Empty collection={nodes} hideIcon={hideIcon} svgSymbol={emptySvgSymbol} text={emptyText} />
+      ) : null}
     </Grid>
   );
 };

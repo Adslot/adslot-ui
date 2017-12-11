@@ -18,9 +18,7 @@ module.exports = function configureKarma(config) {
     basePath: '',
     browsers: ['ChromeHeadless'],
     colors: true,
-    files: [
-      'config/loadtests.js',
-    ],
+    files: ['config/loadtests.js'],
     port: 8080,
     captureTimeout: 60000,
     frameworks: ['mocha', 'chai'],
@@ -33,20 +31,13 @@ module.exports = function configureKarma(config) {
       mocha: {},
     },
     singleRun: true,
-    reporters: _.compact([
-      process.env.npm_config_coverage ? 'coverage' : null,
-      'mocha'
-    ]),
+    reporters: _.compact([process.env.npm_config_coverage ? 'coverage' : null, 'mocha']),
     preprocessors: {
       'config/loadtests.js': ['webpack'],
     },
     coverageReporter: {
       dir: 'coverage/',
-      reporters: [
-        { type: 'lcov', subdir: '.' },
-        { type: 'json', subdir: '.' },
-        { type: 'text-summary', subdir: '.' },
-      ],
+      reporters: [{ type: 'lcov', subdir: '.' }, { type: 'json', subdir: '.' }, { type: 'text-summary', subdir: '.' }],
       check: {
         each: {
           statements: 100,

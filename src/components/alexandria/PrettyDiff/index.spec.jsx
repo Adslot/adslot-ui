@@ -4,10 +4,7 @@ import { shallow } from 'enzyme';
 import PrettyDiff from '.';
 
 describe('PrettyDiff', () => {
-  const diffStrings = [
-    '<the quick fox>',
-    '<the slow fox jumped>',
-  ];
+  const diffStrings = ['<the quick fox>', '<the slow fox jumped>'];
 
   it('should render with spans having different classes', () => {
     const component = shallow(<PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />);

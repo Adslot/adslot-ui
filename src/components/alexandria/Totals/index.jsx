@@ -10,12 +10,12 @@ const Totals = ({ toSum, valueFormatter }) => (
   <Grid>
     {_(toSum)
       .reject({ isHidden: true })
-      .map((item, index) =>
+      .map((item, index) => (
         <GridRow short horizontalBorder={false} key={index}>
           <GridCell stretch>{item.label}</GridCell>
           <GridCell dts={`${_.kebabCase(item.label)}-value`}>{valueFormatter(item.value)}</GridCell>
         </GridRow>
-      )
+      ))
       .value()}
     <GridRow short horizontalBorder={false} type="footer">
       <GridCell stretch>Total</GridCell>
@@ -39,7 +39,7 @@ Totals.propTypes = {
 
 Totals.defaultProps = {
   toSum: [],
-  valueFormatter: (value) => `${value}`,
+  valueFormatter: value => `${value}`,
 };
 
 export default Totals;

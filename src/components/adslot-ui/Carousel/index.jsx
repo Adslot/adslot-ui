@@ -19,7 +19,7 @@ export const getPrevDecorator = () => {
     if (!previousSlideThrottled) {
       previousSlideThrottled = _.throttle(previousSlide, navigationDelay);
     }
-    return (<button className={`${baseClass}-prev`} onClick={previousSlideThrottled} />);
+    return <button className={`${baseClass}-prev`} onClick={previousSlideThrottled} />;
   };
   component.propTypes = { previousSlide: PropTypes.func.isRequired };
 
@@ -36,7 +36,7 @@ export const getNextDecorator = () => {
     if (!nextSlideThrottled) {
       nextSlideThrottled = _.throttle(nextSlide, navigationDelay);
     }
-    return (<button className={`${baseClass}-next`} onClick={nextSlideThrottled} />);
+    return <button className={`${baseClass}-next`} onClick={nextSlideThrottled} />;
   };
   component.propTypes = { nextSlide: PropTypes.func.isRequired };
 
@@ -47,7 +47,7 @@ export const getNextDecorator = () => {
   };
 };
 
-const CarouselComponent = (props) => {
+const CarouselComponent = props => {
   const { className, children } = props;
   const decorators = [getPrevDecorator(), getNextDecorator()];
 

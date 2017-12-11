@@ -1,7 +1,7 @@
 Adslot UI
 =========
 
-[![npm version](https://badge.fury.io/js/adslot-ui.svg)](https://badge.fury.io/js/adslot-ui) 
+[![npm version](https://badge.fury.io/js/adslot-ui.svg)](https://badge.fury.io/js/adslot-ui)
 [![Build Status](https://travis-ci.org/Adslot/adslot-ui.svg?branch=master)](https://travis-ci.org/Adslot/adslot-ui)
 [![codecov.io](https://codecov.io/github/Adslot/adslot-ui/coverage.svg?branch=master)](https://codecov.io/github/Adslot/adslot-ui?branch=master)
 
@@ -30,10 +30,6 @@ Development
 - Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
 
 - Install NPM dependencies: `npm i`
-
-- Set-up git hooks
-
-  `rm -rf .git/hooks && cd .git/ && ln -s ../scripts/git-hooks hooks && chmod +x hooks/* && cd -`
 
 Commands
 --------

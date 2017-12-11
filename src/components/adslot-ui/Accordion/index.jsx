@@ -7,7 +7,7 @@ import Card from 'alexandria/Card';
 const AccordionComponent = ({ dts, panels, onPanelClick }) => (
   <Card.Container>
     <Card.Content fill>
-      {_.map(panels, (panel) => {
+      {_.map(panels, panel => {
         const panelDts = dts ? `panel-${panel.id}` : undefined;
 
         return (
@@ -28,12 +28,7 @@ const AccordionComponent = ({ dts, panels, onPanelClick }) => (
   </Card.Container>
 );
 
-const accordionPanelPropTypes = _.pick(Panel.propTypes, [
-  'id',
-  'icon',
-  'title',
-  'isCollapsed',
-]);
+const accordionPanelPropTypes = _.pick(Panel.propTypes, ['id', 'icon', 'title', 'isCollapsed']);
 
 accordionPanelPropTypes.content = PropTypes.node;
 

@@ -17,7 +17,13 @@ const rootTypes = [
   },
   { label: 'Audiences', id: 'b', svgSymbol, isRequired: false },
   { label: 'Segments', id: 'c', svgSymbol, isRequired: true },
-  { label: 'Hidden Segments', id: 'd', svgSymbol, isRequired: false, hidden: true },
+  {
+    label: 'Hidden Segments',
+    id: 'd',
+    svgSymbol,
+    isRequired: false,
+    hidden: true,
+  },
 ];
 
 const auPath = { id: 'au', label: 'AU', path: [] };
@@ -33,9 +39,30 @@ const actNode = {
   isSelectable: false,
 };
 
-const ntNode = { id: 'au-nt', label: 'Northern Territory', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
-const qldNode = { id: 'au-qld', label: 'Queensland', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
-const saNode = { id: 'au-sa', label: 'South Australia', type: 'State', path: [auPath], value: 500, rootTypeId: 'a' };
+const ntNode = {
+  id: 'au-nt',
+  label: 'Northern Territory',
+  type: 'State',
+  path: [auPath],
+  value: 500,
+  rootTypeId: 'a',
+};
+const qldNode = {
+  id: 'au-qld',
+  label: 'Queensland',
+  type: 'State',
+  path: [auPath],
+  value: 500,
+  rootTypeId: 'a',
+};
+const saNode = {
+  id: 'au-sa',
+  label: 'South Australia',
+  type: 'State',
+  path: [auPath],
+  value: 500,
+  rootTypeId: 'a',
+};
 
 const cbrNode = {
   id: 'au-act-cbr',
@@ -58,16 +85,20 @@ const cbrNodeAlreadySelected = {
   isExpandable: true,
 };
 
-const maleNode = { id: 4, label: 'Males', type: '', path: [], value: 500, rootTypeId: 'b' };
+const maleNode = {
+  id: 4,
+  label: 'Males',
+  type: '',
+  path: [],
+  value: 500,
+  rootTypeId: 'b',
+};
 
-const valueFormatter = (value) => value;
+const valueFormatter = value => value;
 
-const nodeRenderer = (value) => `Test value: ${value.label}`;
+const nodeRenderer = value => `Test value: ${value.label}`;
 
-const initialSelection = [
-  actNode,
-  ntNode,
-];
+const initialSelection = [actNode, ntNode];
 
 const itemType = 'example item type';
 

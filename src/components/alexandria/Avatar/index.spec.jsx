@@ -54,33 +54,21 @@ describe('Avatar', () => {
   });
 
   it('should render with default title of givenName surname', () => {
-    const element = shallow(<Avatar
-      color="blue"
-      givenName="Firstname"
-      surname="Surname"
-    />);
+    const element = shallow(<Avatar color="blue" givenName="Firstname" surname="Surname" />);
     const divContainer = element.find('div.avatar-component').first();
     expect(divContainer.prop('title')).to.equal('Firstname Surname');
   });
 
   it('should render with custom title property when tooltip with custom text supplied', () => {
-    const element = shallow(<Avatar
-      color="blue"
-      givenName="Firstname"
-      surname="Surname"
-      tooltip="Name of logged-in user"
-    />);
+    const element = shallow(
+      <Avatar color="blue" givenName="Firstname" surname="Surname" tooltip="Name of logged-in user" />
+    );
     const divContainer = element.find('div.avatar-component').first();
     expect(divContainer.prop('title')).to.equal('Name of logged-in user');
   });
 
   it('should render with empty title property when tooltip with empty text supplied', () => {
-    const element = shallow(<Avatar
-      color="blue"
-      givenName="Firstname"
-      surname="Surname"
-      tooltip=""
-    />);
+    const element = shallow(<Avatar color="blue" givenName="Firstname" surname="Surname" tooltip="" />);
     const divContainer = element.find('div.avatar-component').first();
     expect(divContainer.prop('title')).to.equal('');
   });

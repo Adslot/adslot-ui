@@ -16,8 +16,8 @@ const SearchBarComponent = ({
 }) => {
   const className = ['search-bar-component'].concat(additionalClassNames).join(' ');
   const placeholder = searchPlaceholder || 'Search';
-  const onSearchStringChangeBound = (event) => onSearchStringChange(event.target.value);
-  const onTextInputKeyPress = (event) => {
+  const onSearchStringChangeBound = event => onSearchStringChange(event.target.value);
+  const onTextInputKeyPress = event => {
     const ENTER_KEY = 13;
 
     // event.keyCode always returns 0 on Chrome (a known bug), so we must do a check
@@ -38,11 +38,7 @@ const SearchBarComponent = ({
         type="text"
         value={searchString}
       />
-      <Button
-        className="search-bar-component-button btn-inverse"
-        bsStyle="primary"
-        onClick={onSearch}
-      >
+      <Button className="search-bar-component-button btn-inverse" bsStyle="primary" onClick={onSearch}>
         <SvgSymbol classSuffixes={['search-icon']} href={searchIconHref} />
       </Button>
     </div>

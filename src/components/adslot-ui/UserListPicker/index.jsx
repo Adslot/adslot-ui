@@ -22,14 +22,9 @@ const UserListPickerComponent = ({
   userHeaders,
   users,
 }) => {
-  const labelFormatter = (user) => (
+  const labelFormatter = user => (
     <div className="userlistpicker-component-user-label">
-      <Avatar
-        image={user.avatar}
-        color={avatarColor(user)}
-        givenName={user.givenName}
-        surname={user.surname}
-      />
+      <Avatar image={user.avatar} color={avatarColor(user)} givenName={user.givenName} surname={user.surname} />
       <span>{`${user.givenName} ${user.surname}`}</span>
     </div>
   );
@@ -88,9 +83,13 @@ UserListPickerComponent.defaultProps = {
   avatarColor: _.noop,
   emptyMessage: 'No users.',
   initialSelection: [],
-  modalApply: () => { throw new Error('AdslotUi UserListPicker needs a modalApply handler'); },
+  modalApply: () => {
+    throw new Error('AdslotUi UserListPicker needs a modalApply handler');
+  },
 
-  modalClose: () => { throw new Error('AdslotUi UserListPicker needs a modalClose handler'); },
+  modalClose: () => {
+    throw new Error('AdslotUi UserListPicker needs a modalClose handler');
+  },
 
   modalDescription: 'Select users.',
   modalTitle: 'Select Users',

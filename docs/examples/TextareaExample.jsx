@@ -1,13 +1,10 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Textarea,
-} from '../../src/dist-entry';
-
+import { Textarea } from '../../src/dist-entry';
 
 class TextareaExample extends React.PureComponent {
   render() {
-    return (<Textarea maxLength={250} />);
+    return <Textarea maxLength={250} />;
   }
 }
 
@@ -31,5 +28,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><TextareaExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <TextareaExample />
+  </Example>
+);

@@ -30,14 +30,22 @@ describe('Tag', () => {
   });
 
   it('should render an inverse tag with highlight', () => {
-    const component = shallow(<Tag inverse accent="foo">You are it!</Tag>);
+    const component = shallow(
+      <Tag inverse accent="foo">
+        You are it!
+      </Tag>
+    );
     expect(component.find('span').prop('className')).to.equal(
       'tag-component tag-component-inverse tag-component-accent accent-foo'
     );
   });
 
   it('should render an actionable tag', () => {
-    const component = shallow(<Tag onAction={_.noop} actionIconSvgHref="foo">You are it!</Tag>);
+    const component = shallow(
+      <Tag onAction={_.noop} actionIconSvgHref="foo">
+        You are it!
+      </Tag>
+    );
     expect(component.find(ActionButton)).to.have.length(1);
     expect(component.find('span').prop('className')).to.equal('tag-component tag-component-actionable');
   });
@@ -54,10 +62,12 @@ describe('Tag', () => {
   });
 
   it('should render children nodes', () => {
-    const component = shallow(<Tag onAction={_.noop} actionIconSvgHref="foo">
-      <div className="child" />
-      <div className="child" />
-    </Tag>);
+    const component = shallow(
+      <Tag onAction={_.noop} actionIconSvgHref="foo">
+        <div className="child" />
+        <div className="child" />
+      </Tag>
+    );
     expect(component.find('.child')).to.have.length(2);
   });
 });

@@ -27,18 +27,38 @@ describe('TreePickerNodeComponent', () => {
     const labelWrapperCellElement = cellElements.first();
     expect(labelWrapperCellElement.find(TextEllipsis)).to.have.length(1);
     const ellipsisElement = labelWrapperCellElement.find(TextEllipsis);
-    expect(ellipsisElement.children().first().text()).to.equal('Canberra');
+    expect(
+      ellipsisElement
+        .children()
+        .first()
+        .text()
+    ).to.equal('Canberra');
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(1);
     expect(metaDataElement.children()).to.have.length(4);
-    expect(metaDataElement.children().at(0).text()).to.equal(' (');
-    expect(metaDataElement.children().at(1).text()).to.equal('City in ');
+    expect(
+      metaDataElement
+        .children()
+        .at(0)
+        .text()
+    ).to.equal('(');
+    expect(
+      metaDataElement
+        .children()
+        .at(1)
+        .text()
+    ).to.equal('City in ');
 
     const pathElement = metaDataElement.children().at(2);
     expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
     expect(pathElement.children().text()).to.equal('ACT, AU');
-    expect(metaDataElement.children().at(3).text()).to.equal(')');
+    expect(
+      metaDataElement
+        .children()
+        .at(3)
+        .text()
+    ).to.equal(')');
 
     const valueCellElement = cellElements.at(1);
     expect(valueCellElement.children().text()).to.equal('2000');
@@ -59,21 +79,32 @@ describe('TreePickerNodeComponent', () => {
     expect(metaDataElement).to.have.length(1);
 
     expect(metaDataElement.children()).to.have.length(4);
-    expect(metaDataElement.children().at(0).text()).to.equal(' (');
-    expect(metaDataElement.children().at(1).text()).to.equal('City in ');
+    expect(
+      metaDataElement
+        .children()
+        .at(0)
+        .text()
+    ).to.equal('(');
+    expect(
+      metaDataElement
+        .children()
+        .at(1)
+        .text()
+    ).to.equal('City in ');
 
     const pathElement = metaDataElement.children().at(2);
     expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
     expect(pathElement.children().text()).to.equal('ACT, AU');
-    expect(metaDataElement.children().at(3).text()).to.equal(')');
+    expect(
+      metaDataElement
+        .children()
+        .at(3)
+        .text()
+    ).to.equal(')');
   });
 
   it('should render node via nodeRenderer', () => {
-    const component = shallow(<TreePickerNode
-      itemType={itemType}
-      node={actNode}
-      nodeRenderer={nodeRenderer}
-    />);
+    const component = shallow(<TreePickerNode itemType={itemType} node={actNode} nodeRenderer={nodeRenderer} />);
 
     const rowElement = component.find(GridRow);
     const cellElements = rowElement.find(GridCell);
@@ -94,7 +125,9 @@ describe('TreePickerNodeComponent', () => {
   it('should render the button first when selected is true', () => {
     const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
 
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
     expect(component.find(Button)).to.have.length(1);
@@ -110,16 +143,12 @@ describe('TreePickerNodeComponent', () => {
 
   it('should render button as disabled when disabled is true', () => {
     let fireCount = 0;
-    const testFunction = () => { fireCount += 1; };
+    const testFunction = () => {
+      fireCount += 1;
+    };
 
     const component = mount(
-      <TreePickerNode
-        itemType={itemType}
-        node={cbrNode}
-        removeNode={testFunction}
-        selected
-        disabled
-      />
+      <TreePickerNode itemType={itemType} node={cbrNode} removeNode={testFunction} selected disabled />
     );
     const buttonElement = component.find(Button);
     expect(buttonElement.prop('disabled')).to.equal(true);
@@ -128,16 +157,12 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should filter value when provided', () => {
-    const valueFormatter = (value) => `€${value / 100}`;
-    const component = shallow(
-      <TreePickerNode
-        itemType={itemType}
-        node={cbrNode}
-        valueFormatter={valueFormatter}
-      />
-    );
+    const valueFormatter = value => `€${value / 100}`;
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} valueFormatter={valueFormatter} />);
 
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const valueCellElement = rowElement.prop('children')[3];
     expect(valueCellElement.props.children).to.equal('€20');
   });
@@ -148,7 +173,9 @@ describe('TreePickerNodeComponent', () => {
     const props = { itemType, node };
     const component = shallow(<TreePickerNode {...props} />);
 
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     expect(rowElement.prop('children')).to.have.length(5);
     const valueCellElement = rowElement.prop('children')[3];
     expect(valueCellElement).to.be.a('null');
@@ -164,9 +191,9 @@ describe('TreePickerNodeComponent', () => {
     expect(component.prop('className')).to.equal('treepickernode-component child-node');
   });
 
-  it('should fire expandNode when clicking on the label cell', (done) => {
+  it('should fire expandNode when clicking on the label cell', done => {
     const props = {
-      expandNode: (node) => {
+      expandNode: node => {
         expect(node).to.deep.equal(cbrNode);
         done();
       },
@@ -177,7 +204,9 @@ describe('TreePickerNodeComponent', () => {
 
     const component = shallow(<TreePickerNode {...props} />);
 
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
     expect(rowElement.find(TreePickerNodeExpander)).to.have.length(1);
@@ -195,7 +224,9 @@ describe('TreePickerNodeComponent', () => {
     };
 
     const component = shallow(<TreePickerNode {...props} />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
     expect(rowElement.find(TreePickerNodeExpander)).to.have.length(0);
@@ -206,9 +237,11 @@ describe('TreePickerNodeComponent', () => {
 
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
-    const includeNode = (node) => nodes.push(node);
+    const includeNode = node => nodes.push(node);
     const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} includeNode={includeNode} />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -220,7 +253,9 @@ describe('TreePickerNodeComponent', () => {
 
   it('should error on click of `include` button without includeNode handler', () => {
     const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -240,15 +275,25 @@ describe('TreePickerNodeComponent', () => {
       path: [],
     };
     const component = shallow(<TreePickerNode itemType={itemType} node={node} />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${node.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${node.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
     const labelWrapperCellElement = cellElements.first();
     expect(labelWrapperCellElement.children()).to.have.length(1);
 
-    const ellipsisElement = labelWrapperCellElement.children().first().find(TextEllipsis);
-    expect(ellipsisElement.children().first().text()).to.equal('Cameroon');
+    const ellipsisElement = labelWrapperCellElement
+      .children()
+      .first()
+      .find(TextEllipsis);
+    expect(
+      ellipsisElement
+        .children()
+        .first()
+        .text()
+    ).to.equal('Cameroon');
 
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(0);
@@ -266,7 +311,9 @@ describe('TreePickerNodeComponent', () => {
       path: [{ id: '30', label: 'Cars' }],
     };
     const component = shallow(<TreePickerNode itemType={itemType} node={node} />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${node.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${node.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
 
@@ -279,9 +326,24 @@ describe('TreePickerNodeComponent', () => {
     const metaDataElement = component.find('.treepickernode-component-metadata');
     expect(metaDataElement).to.have.length(1);
     expect(metaDataElement.children()).to.have.length(3);
-    expect(metaDataElement.children().at(0).text()).to.equal(' (');
-    expect(metaDataElement.children().at(1).text()).to.equal('Cars');
-    expect(metaDataElement.children().at(2).text()).to.equal(')');
+    expect(
+      metaDataElement
+        .children()
+        .at(0)
+        .text()
+    ).to.equal('(');
+    expect(
+      metaDataElement
+        .children()
+        .at(1)
+        .text()
+    ).to.equal('Cars');
+    expect(
+      metaDataElement
+        .children()
+        .at(2)
+        .text()
+    ).to.equal(')');
 
     const valueCellElement = cellElements.at(1);
     expect(valueCellElement.children().text()).to.equal('400');
@@ -289,10 +351,12 @@ describe('TreePickerNodeComponent', () => {
 
   it('should fire removeNode when clicking on the `remove` button', () => {
     const nodes = [cbrNode];
-    const removeNode = (node) => _.remove(nodes, { id: node.id });
+    const removeNode = node => _.remove(nodes, { id: node.id });
     const props = { itemType, node: cbrNode, removeNode, selected: true };
     const component = shallow(<TreePickerNode {...props} />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
 
@@ -306,7 +370,9 @@ describe('TreePickerNodeComponent', () => {
 
   it('should error on click of `remove` button without removeNode handler', () => {
     const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
-    const rowElement = component.find({ dts: `${_.kebabCase(itemType)}-${cbrNode.id}` });
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
     const cellElements = rowElement.find(GridCell);
     expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
 

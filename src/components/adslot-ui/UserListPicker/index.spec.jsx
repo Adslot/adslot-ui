@@ -5,11 +5,7 @@ import Avatar from 'alexandria/Avatar';
 import ListPickerMocks from 'adslot-ui/ListPicker/mocks';
 
 describe('UserListPickerComponent', () => {
-  const {
-    getInitialSelection,
-    userHeaders,
-    users,
-  } = ListPickerMocks;
+  const { getInitialSelection, userHeaders, users } = ListPickerMocks;
 
   it('should render with defaults', () => {
     const component = shallow(<UserListPicker />);
@@ -39,7 +35,9 @@ describe('UserListPickerComponent', () => {
     const component = shallow(<UserListPicker {...props} />);
     expect(component.type()).to.equal(ListPicker);
 
-    expect(component.prop('emptySvgSymbol')).to.deep.equal({ href: '/some.svg#id' });
+    expect(component.prop('emptySvgSymbol')).to.deep.equal({
+      href: '/some.svg#id',
+    });
     expect(component.prop('initialSelection')).to.deep.equal(getInitialSelection());
     expect(component.prop('itemHeaders')).to.deep.equal(userHeaders);
     expect(component.prop('itemType')).to.equal('user');

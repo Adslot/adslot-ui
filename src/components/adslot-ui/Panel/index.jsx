@@ -15,9 +15,7 @@ const PanelComponent = ({ id, dts, icon, title, isCollapsed, onClick, children }
         {icon ? <SvgSymbol href={icon.href} /> : null}
         {title}
       </div>
-      <div className="panel-component-content">
-        {children}
-      </div>
+      <div className="panel-component-content">{children}</div>
     </div>
   );
 };

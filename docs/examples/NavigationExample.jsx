@@ -1,10 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Nav,
-  NavItem,
-} from '../../src/dist-entry';
-
+import { Nav, NavItem } from '../../src/dist-entry';
 
 class NavigationExample extends React.PureComponent {
   constructor(props) {
@@ -24,8 +20,12 @@ class NavigationExample extends React.PureComponent {
   render() {
     return (
       <Nav activeKey={this.state.activeKey} onSelect={this.onSelect}>
-        <NavItem eventKey={0} href="#" title="Dashboard Home" className="dashboard-tab">Dashboard</NavItem>
-        <NavItem eventKey={1} title="Analytics Reporting">Reports</NavItem>
+        <NavItem eventKey={0} href="#" title="Dashboard Home" className="dashboard-tab">
+          Dashboard
+        </NavItem>
+        <NavItem eventKey={1} title="Analytics Reporting">
+          Reports
+        </NavItem>
       </Nav>
     );
   }
@@ -43,15 +43,15 @@ const exampleProps = {
       propType: 'React Bootstrap Nav prop types',
       type: '',
       defaultValue: '',
-      note: <a
-        href="https://react-bootstrap.github.io/components.html#navs"
-        target="_blank"
-        rel="noopener noreferrer"
-      >React Bootstrap Docs</a>,
+      note: (
+        <a href="https://react-bootstrap.github.io/components.html#navs" target="_blank" rel="noopener noreferrer">
+          React Bootstrap Docs
+        </a>
+      ),
     },
     {
       propType: 'dts',
-      type: "string",
+      type: 'string',
       note: 'data-test-selector; used for testing purposes',
     },
     {
@@ -63,4 +63,8 @@ const exampleProps = {
   ],
 };
 
-export default () => <Example {...exampleProps}><NavigationExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <NavigationExample />
+  </Example>
+);

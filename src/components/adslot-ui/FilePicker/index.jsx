@@ -28,15 +28,17 @@ class FilePickerComponent extends React.Component {
     if (this.state.isFileSelected) {
       this.fileInput.value = null;
       this.setState({ isFileSelected: false });
-      if (this.props.onRemove) { this.props.onRemove(); }
+      if (this.props.onRemove) {
+        this.props.onRemove();
+      }
     }
   }
 
   render() {
     const mainClass = classNames({ [`${baseClass}-highlight`]: this.props.isHighlighted }, baseClass, 'input-group');
     const { isFileSelected } = this.state;
-    const fileName = isFileSelected && this.fileInput && this.fileInput.files.length > 0
-      ? this.fileInput.files[0].name : '';
+    const fileName =
+      isFileSelected && this.fileInput && this.fileInput.files.length > 0 ? this.fileInput.files[0].name : '';
 
     return (
       <div className={mainClass}>
@@ -50,16 +52,24 @@ class FilePickerComponent extends React.Component {
           title={fileName}
         />
         <div className="input-group-btn">
-          {isFileSelected ? <Button className="remove-file" onClick={this.removeFile}>×</Button> : null}
+          {isFileSelected ? (
+            <Button className="remove-file" onClick={this.removeFile}>
+              ×
+            </Button>
+          ) : null}
           <Button
             className="btn-inverse"
-            onClick={() => { this.fileInput.click(); }}
+            onClick={() => {
+              this.fileInput.click();
+            }}
             disabled={this.props.disabled || isFileSelected}
           >
             <span>{this.props.label}</span>
             <input
               className="file-input"
-              ref={(ref) => { this.fileInput = ref; }}
+              ref={ref => {
+                this.fileInput = ref;
+              }}
               type="file"
               onChange={this.onChange}
               accept={this.props.filter}

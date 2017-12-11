@@ -17,7 +17,11 @@ describe('SplitPaneComponent', () => {
   });
 
   it('should transclude children', () => {
-    const component = shallow(<SplitPaneComponent><div /></SplitPaneComponent>);
+    const component = shallow(
+      <SplitPaneComponent>
+        <div />
+      </SplitPaneComponent>
+    );
     expect(component.prop('className')).to.equal('splitpane-component');
     expect(component.children().type()).to.equal('div');
   });

@@ -1,9 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  TileGrid,
-} from '../../src/dist-entry';
-
+import { TileGrid } from '../../src/dist-entry';
 
 class TileGridExample extends React.PureComponent {
   constructor() {
@@ -30,7 +27,6 @@ class TileGridExample extends React.PureComponent {
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Tile Grid',
@@ -60,5 +56,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><TileGridExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <TileGridExample />
+  </Example>
+);

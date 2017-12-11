@@ -15,7 +15,12 @@ describe('FilePickerComponent', () => {
     expect(fileElement.prop('title')).to.equal('');
 
     const selectButtonElement = component.find(Button);
-    expect(selectButtonElement.children().find('span').text()).to.equal('Select');
+    expect(
+      selectButtonElement
+        .children()
+        .find('span')
+        .text()
+    ).to.equal('Select');
 
     const fileInputElement = component.find('.file-input');
     expect(fileInputElement.prop('type')).to.equal('file');
@@ -24,7 +29,9 @@ describe('FilePickerComponent', () => {
 
   it('should show remove button and call `onSelect` when file selected', () => {
     let selectedFileName = '';
-    const onSelect = (file) => { selectedFileName = file.name; };
+    const onSelect = file => {
+      selectedFileName = file.name;
+    };
 
     // mount is needed for refs
     const component = mount(<FilePickerComponent onSelect={onSelect} dts="test-file-picker-input" />);
@@ -88,7 +95,7 @@ describe('FilePickerComponent', () => {
     expect(component.find('.form-control').prop('title')).to.equal('');
   });
 
-  it('should call `onRemove` when remove file button is clicked', (done) => {
+  it('should call `onRemove` when remove file button is clicked', done => {
     const component = mount(<FilePickerComponent onSelect={_.noop} onRemove={done} />);
 
     component.node.fileInput = {

@@ -8,21 +8,11 @@ import TreePickerSimplePure, { removeSelected } from 'adslot-ui/TreePicker';
 import TreePickerGrid from 'adslot-ui/TreePicker/Grid';
 import TreePickerMocks from './mocks';
 
-const checkElement = (expectedProps) =>
-  (element, propsList) =>
-    _.forEach(propsList, (propName) =>
-      expect(element.prop(propName)).to.equal(expectedProps[propName]));
+const checkElement = expectedProps => (element, propsList) =>
+  _.forEach(propsList, propName => expect(element.prop(propName)).to.equal(expectedProps[propName]));
 
 describe('TreePickerSimplePureComponent', () => {
-  const {
-    actNode,
-    initialSelection,
-    itemType,
-    ntNode,
-    qldNode,
-    saNode,
-    svgSymbol,
-  } = TreePickerMocks;
+  const { actNode, initialSelection, itemType, ntNode, qldNode, saNode, svgSymbol } = TreePickerMocks;
 
   const props = {
     breadcrumbNodes: [saNode],
@@ -55,7 +45,12 @@ describe('TreePickerSimplePureComponent', () => {
 
     expect(component.find(SplitPaneComponent)).to.have.length(2);
     expect(component.children().every(SplitPaneComponent)).to.equal(true);
-    expect(component.find(TreePickerGrid).first().prop('Begin searching.'));
+    expect(
+      component
+        .find(TreePickerGrid)
+        .first()
+        .prop('Begin searching.')
+    );
 
     const navElement = component.find(TreePickerNav);
     expect(navElement).to.have.length(1);
@@ -74,10 +69,14 @@ describe('TreePickerSimplePureComponent', () => {
       'svgSymbolSearch',
     ]);
 
-    const leftPaneElement = component.find({ dts: `treepicker-splitpane-available-${_.kebabCase(itemType)}` });
+    const leftPaneElement = component.find({
+      dts: `treepicker-splitpane-available-${_.kebabCase(itemType)}`,
+    });
     expect(leftPaneElement.find(FlexibleSpacer)).to.have.length(1);
 
-    const rightPaneElement = component.find({ dts: `treepicker-splitpane-selected-${_.kebabCase(itemType)}` });
+    const rightPaneElement = component.find({
+      dts: `treepicker-splitpane-selected-${_.kebabCase(itemType)}`,
+    });
     expect(rightPaneElement.find(FlexibleSpacer)).to.have.length(1);
   });
 
@@ -89,7 +88,12 @@ describe('TreePickerSimplePureComponent', () => {
     });
 
     const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
-    expect(component.find(TreePickerGrid).first().prop('Loading...'));
+    expect(
+      component
+        .find(TreePickerGrid)
+        .first()
+        .prop('Loading...')
+    );
   });
 
   it('should render with default empty state props', () => {
@@ -99,7 +103,12 @@ describe('TreePickerSimplePureComponent', () => {
     });
 
     const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);
-    expect(component.find(TreePickerGrid).first().prop('No items to select.'));
+    expect(
+      component
+        .find(TreePickerGrid)
+        .first()
+        .prop('No items to select.')
+    );
   });
 
   it('should render with given empty text and svg icon for the selected side', () => {
@@ -111,8 +120,18 @@ describe('TreePickerSimplePureComponent', () => {
     });
 
     const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);
-    expect(component.find(TreePickerGrid).first().prop('No items to select.'));
-    expect(component.find(TreePickerGrid).last().prop('Nothing to show'));
+    expect(
+      component
+        .find(TreePickerGrid)
+        .first()
+        .prop('No items to select.')
+    );
+    expect(
+      component
+        .find(TreePickerGrid)
+        .last()
+        .prop('Nothing to show')
+    );
   });
 
   it('should render with given empty selected state node', () => {
@@ -122,7 +141,12 @@ describe('TreePickerSimplePureComponent', () => {
     });
 
     const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
-    expect(component.find(TreePickerGrid).last().prop('Select...'));
+    expect(
+      component
+        .find(TreePickerGrid)
+        .last()
+        .prop('Select...')
+    );
   });
 
   it('should have disabled class included when disabled set to true', () => {
@@ -131,14 +155,19 @@ describe('TreePickerSimplePureComponent', () => {
   });
 
   it('should not render TreePickerNav when hideSearchOnRoot is true and on root level ', () => {
-    const hideSearchOnRootProps = _.assign({}, props, { hideSearchOnRoot: true, breadcrumbNodes: [] });
+    const hideSearchOnRootProps = _.assign({}, props, {
+      hideSearchOnRoot: true,
+      breadcrumbNodes: [],
+    });
     const component = shallow(<TreePickerSimplePure {...hideSearchOnRootProps} />);
     const navElement = component.find(TreePickerNav);
     expect(navElement).to.have.length(0);
   });
 
   it('should render TreePickerNav when hideSearchOnRoot is true and not on root level', () => {
-    const hideSearchOnRootProps = _.assign({}, props, { hideSearchOnRoot: true });
+    const hideSearchOnRootProps = _.assign({}, props, {
+      hideSearchOnRoot: true,
+    });
     const component = shallow(<TreePickerSimplePure {...hideSearchOnRootProps} />);
     const navElement = component.find(TreePickerNav);
     expect(navElement).to.have.length(1);

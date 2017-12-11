@@ -1,9 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import {
-  Panel,
-} from '../../src/dist-entry';
+import { Panel } from '../../src/dist-entry';
 
 class PanelExample extends React.Component {
   constructor() {
@@ -29,15 +27,14 @@ class PanelExample extends React.Component {
         onClick={this.togglePanel}
       >
         <p>
-          Lorem ipsum amet dolore voluptate veniam nulla dolore nulla adipisicing irure
-          adipisicing qui fugiat veniam. Ullamco reprehenderit cillum irure esse ad eu dolor laboris.
+          Lorem ipsum amet dolore voluptate veniam nulla dolore nulla adipisicing irure adipisicing qui fugiat veniam.
+          Ullamco reprehenderit cillum irure esse ad eu dolor laboris.
         </p>
         <p>Consequat commodo consequat eiusmod sit mollit elit ex nostrud consectetur.</p>
       </Panel>
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Panel',
@@ -67,7 +64,11 @@ const exampleProps = {
     },
     {
       propType: 'icon',
-      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+      type: (
+        <span>
+          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+        </span>
+      ),
     },
     {
       propType: 'title',
@@ -96,5 +97,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><PanelExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <PanelExample />
+  </Example>
+);

@@ -1,10 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Button,
-  ConfirmModal,
-} from '../../src/dist-entry';
-
+import { Button, ConfirmModal } from '../../src/dist-entry';
 
 class ConfirmModalExample extends React.PureComponent {
   constructor() {
@@ -27,12 +23,13 @@ class ConfirmModalExample extends React.PureComponent {
           modalClose={this.toggleConfirmModal}
           show={this.state.showConfirmModal}
         />
-        <Button bsStyle="primary" onClick={this.toggleConfirmModal}>Sign Off</Button>
+        <Button bsStyle="primary" onClick={this.toggleConfirmModal}>
+          Sign Off
+        </Button>
       </div>
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Confirm Modal',
@@ -78,5 +75,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><ConfirmModalExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <ConfirmModalExample />
+  </Example>
+);

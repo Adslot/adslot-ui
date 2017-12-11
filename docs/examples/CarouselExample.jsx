@@ -1,9 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Carousel,
-} from '../../src/dist-entry';
-
+import { Carousel } from '../../src/dist-entry';
 
 class CarouselExample extends React.PureComponent {
   render() {
@@ -22,7 +19,9 @@ class CarouselExample extends React.PureComponent {
               textAlign: 'center',
               color: '#fff',
             }}
-          >ＡＥＳＴＨＥＴＩＣＳ<small>Adslot UI</small></h2>
+          >
+            ＡＥＳＴＨＥＴＩＣＳ<small>Adslot UI</small>
+          </h2>
           <img src="./docs/assets/carousel/carousel-3.jpg" alt="Slide 3" />
         </div>
         <img src="./docs/assets/carousel/carousel-4.jpg" alt="Slide 4" />
@@ -71,5 +70,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><CarouselExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <CarouselExample />
+  </Example>
+);

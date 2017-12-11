@@ -36,11 +36,7 @@ const TreePickerNavComponent = ({
       svgSymbolSearch={svgSymbolSearch}
       value={searchValue}
     />
-    <Breadcrumb
-      disabled={disabled}
-      nodes={breadcrumbNodes}
-      onClick={breadcrumbOnClick}
-    />
+    <Breadcrumb disabled={disabled} nodes={breadcrumbNodes} onClick={breadcrumbOnClick} />
   </div>
 );
 

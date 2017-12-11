@@ -1,24 +1,19 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  PrettyDiff,
-} from '../../src/dist-entry';
-
+import { PrettyDiff } from '../../src/dist-entry';
 
 class PrettyDiffExample extends React.PureComponent {
   render() {
-    return (<PrettyDiff
-      newText={
-`<A HREF="https://adslot.com/buy">
+    return (
+      <PrettyDiff
+        newText={`<A HREF="https://adslot.com/buy">
   <IMG SRC="https://adslot.com/image.png" ALT="Buy now.">
-</A>`
-      }
-      oldText={
-`<A HREF="http://adslot.com/click">
+</A>`}
+        oldText={`<A HREF="http://adslot.com/click">
   <IMG SRC="http://adslot.com/image.jpg" ALT="Click here">
-</A>`
-      }
-    />);
+</A>`}
+      />
+    );
   }
 }
 
@@ -52,5 +47,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><PrettyDiffExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <PrettyDiffExample />
+  </Example>
+);

@@ -7,7 +7,7 @@ import './styles.scss';
 const Breadcrumb = ({ nodes, onClick, disabled }) => {
   const baseClass = 'breadcrumb-component';
   const className = `${baseClass} ${disabled ? 'disabled' : ''}`;
-  const onClickFunc = (newActiveId) => !disabled && onClick(newActiveId);
+  const onClickFunc = newActiveId => !disabled && onClick(newActiveId);
 
   if (nodes.length === 0) {
     return <div className={className} />;
@@ -15,23 +15,13 @@ const Breadcrumb = ({ nodes, onClick, disabled }) => {
 
   return (
     <div className={className}>
-      <BreadcrumbNode
-        isLast={false}
-        node={{ id: 'all', label: 'All' }}
-        onClick={onClickFunc}
-      />
-      {
-        _.map(nodes, (node, index) =>
-          <span className={`${baseClass}-node`} key={node.id}>
-            <span className={`${baseClass}-node-divider`}> &gt; </span>
-            <BreadcrumbNode
-              isLast={index === nodes.length - 1}
-              node={node}
-              onClick={onClickFunc}
-            />
-          </span>
-        )
-      }
+      <BreadcrumbNode isLast={false} node={{ id: 'all', label: 'All' }} onClick={onClickFunc} />
+      {_.map(nodes, (node, index) => (
+        <span className={`${baseClass}-node`} key={node.id}>
+          <span className={`${baseClass}-node-divider`}> &gt; </span>
+          <BreadcrumbNode isLast={index === nodes.length - 1} node={node} onClick={onClickFunc} />
+        </span>
+      ))}
     </div>
   );
 };
@@ -45,7 +35,7 @@ Breadcrumb.propTypes = {
 };
 Breadcrumb.defaultProps = {
   nodes: [],
-  onClick: (newActiveId) => {
+  onClick: newActiveId => {
     throw new Error(`Alexandria Breadcrumb needs an onClick handler to take ${newActiveId}`);
   },
   disabled: false,

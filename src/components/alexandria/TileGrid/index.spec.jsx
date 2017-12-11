@@ -8,10 +8,7 @@ import TileGrid from '.';
 describe('TileGrid', () => {
   const props = {
     title: 'Lorem ipsum',
-    items: [
-      { id: '0', classSuffix: 'alpha', title: 'Alpha' },
-      { id: '1', classSuffix: 'beta', title: 'Beta' },
-    ],
+    items: [{ id: '0', classSuffix: 'alpha', title: 'Alpha' }, { id: '1', classSuffix: 'beta', title: 'Beta' }],
     onItemClick: _.noop,
   };
 

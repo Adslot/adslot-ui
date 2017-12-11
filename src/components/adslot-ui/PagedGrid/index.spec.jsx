@@ -7,7 +7,11 @@ import GridCell from 'alexandria/Grid/Cell';
 
 describe('PagedGridComponent', () => {
   it('should render with no items', () => {
-    const props = { columns: [{ key: 'name', label: 'Name' }], items: [], perPage: 1 };
+    const props = {
+      columns: [{ key: 'name', label: 'Name' }],
+      items: [],
+      perPage: 1,
+    };
     const component = shallow(<PagedGridComponent {...props} />);
     expect(component.prop('className')).to.equal('pagedgrid-component');
 
@@ -32,7 +36,7 @@ describe('PagedGridComponent', () => {
     const component = shallow(<PagedGridComponent {...props} />);
     const gridRowElements = component.find(GridRow);
     expect(gridRowElements).to.have.length(2);
-    gridRowElements.forEach((gridRowElement) => expect(gridRowElement.prop('verticalCellBorder')).to.equal(false));
+    gridRowElements.forEach(gridRowElement => expect(gridRowElement.prop('verticalCellBorder')).to.equal(false));
 
     const paginationElement = component.find(Pagination);
     expect(paginationElement).to.have.length(1);
@@ -48,7 +52,7 @@ describe('PagedGridComponent', () => {
     const component = shallow(<PagedGridComponent {...props} />);
     const gridRowElements = component.find(GridRow);
     expect(gridRowElements).to.have.length(2);
-    gridRowElements.forEach((gridRowElement) => expect(gridRowElement.prop('verticalCellBorder')).to.equal(true));
+    gridRowElements.forEach(gridRowElement => expect(gridRowElement.prop('verticalCellBorder')).to.equal(true));
 
     let paginationInfoElement = component.find('.pagedgrid-component-pagination-info');
     expect(paginationInfoElement.text()).to.equal('1–1 of 3');

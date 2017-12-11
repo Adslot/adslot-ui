@@ -1,28 +1,29 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  xxx,
-} from '../../src/dist-entry';
-
+import { xxx } from '../../src/dist-entry';
 
 class xxxExample extends React.PureComponent {
   render() {
-    return (<xxx />);
+    return <xxx />;
   }
 }
-
 
 const exampleProps = {
   componentName: 'xxx',
   notes: '',
   exampleCodeSnippet: '<xxx />',
-  propTypes: [{
-    propType: '',
-    type: '',
-    defaultValue: '',
-    note: '',
-  }],
+  propTypes: [
+    {
+      propType: '',
+      type: '',
+      defaultValue: '',
+      note: '',
+    },
+  ],
 };
 
-
-export default () => <Example {...exampleProps}><xxxExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <xxxExample />
+  </Example>
+);

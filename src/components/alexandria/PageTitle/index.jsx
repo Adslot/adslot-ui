@@ -10,7 +10,15 @@ const PageTitle = ({ children, isFooter, title }) => {
   const className = isFooter ? `${baseClass} ${baseClass}-is-footer` : baseClass;
   return (
     <div className={className} id={_.kebabCase(title)}>
-      {children ? <span className="flexible-wrapper-inline">{title}<FlexibleSpacer />{children}</span> : title}
+      {children ? (
+        <span className="flexible-wrapper-inline">
+          {title}
+          <FlexibleSpacer />
+          {children}
+        </span>
+      ) : (
+        title
+      )}
     </div>
   );
 };

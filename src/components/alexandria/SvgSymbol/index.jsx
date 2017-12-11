@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { classSuffixHelper } from 'lib/utils';
 import './styles.scss';
 
-const SvgSymbol = (props) => {
+const SvgSymbol = props => {
   const { classSuffixes, href, onClick } = props;
   const componentClass = 'svg-symbol-component';
   const suffixOptions = { clickable: props.onClick };
-  const classesList = classSuffixHelper({ classSuffixes, suffixOptions, componentClass });
+  const classesList = classSuffixHelper({
+    classSuffixes,
+    suffixOptions,
+    componentClass,
+  });
 
   return (
     <svg className={`${componentClass}${classesList}`} onClick={onClick}>

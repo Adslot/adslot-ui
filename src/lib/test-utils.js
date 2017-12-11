@@ -10,7 +10,7 @@ exports.runComponentWillReceiveProps = ({ shallowRenderer, nextProps }) => {
   shallowRenderer.update();
 };
 
-exports.createAndMountComponent = (component) => {
+exports.createAndMountComponent = component => {
   const shallowRenderer = shallow(component);
   exports.runComponentDidMount({ shallowRenderer });
   return shallowRenderer;

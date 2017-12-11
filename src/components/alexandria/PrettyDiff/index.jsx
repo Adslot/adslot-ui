@@ -8,7 +8,7 @@ const PrettyDiff = ({ newText, oldText }) => {
   const dmp = new DiffMatchPatch();
   const diffs = dmp.diff_main(oldText, newText);
 
-  const getTextClass = (diffType) => {
+  const getTextClass = diffType => {
     switch (diffType) {
       case DiffMatchPatch.DIFF_DELETE:
         return 'pretty-diff-component-delete';
@@ -21,9 +21,11 @@ const PrettyDiff = ({ newText, oldText }) => {
 
   return (
     <div className="pretty-diff-component">
-      {_.map(diffs, (diff, index) =>
-        <span key={index} className={getTextClass(diff[0])}>{diff[1]}</span>
-      )}
+      {_.map(diffs, (diff, index) => (
+        <span key={index} className={getTextClass(diff[0])}>
+          {diff[1]}
+        </span>
+      ))}
     </div>
   );
 };

@@ -1,10 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import {
-  Button,
-  Breadcrumb,
-} from '../../src/dist-entry';
+import { Button, Breadcrumb } from '../../src/dist-entry';
 
 const initialState = {
   breadcrumbNodes: [
@@ -31,24 +28,28 @@ class BreadcrumbExample extends React.Component {
     this.setState({ breadcrumbNodes: [] });
   }
 
-  resetState() { this.setState(initialState); }
+  resetState() {
+    this.setState(initialState);
+  }
 
   navigateToNode(nodeId) {
     const nodeIndex = _.findIndex(this.state.breadcrumbNodes, { id: nodeId });
-    this.setState({ breadcrumbNodes: [].concat(this.state.breadcrumbNodes.slice(0, nodeIndex + 1)) });
+    this.setState({
+      breadcrumbNodes: [].concat(this.state.breadcrumbNodes.slice(0, nodeIndex + 1)),
+    });
   }
 
   render() {
     if (_.isEmpty(this.state.breadcrumbNodes)) {
-      return <Button className="btn-inverse" onClick={this.resetState}>Reset breadcrumb example</Button>;
+      return (
+        <Button className="btn-inverse" onClick={this.resetState}>
+          Reset breadcrumb example
+        </Button>
+      );
     }
-    return (<Breadcrumb
-      nodes={this.state.breadcrumbNodes}
-      onClick={this.onClickHandler}
-    />);
+    return <Breadcrumb nodes={this.state.breadcrumbNodes} onClick={this.onClickHandler} />;
   }
 }
-
 
 const exampleProps = {
   componentName: 'Breadcrumb',
@@ -76,5 +77,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><BreadcrumbExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <BreadcrumbExample />
+  </Example>
+);

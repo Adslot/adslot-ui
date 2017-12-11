@@ -7,7 +7,8 @@ describe('InformationBoxComponent', () => {
     const component = shallow(
       <InformationBox title="render title here" icon="assets/img#done">
         <div>I am child</div>
-      </InformationBox>);
+      </InformationBox>
+    );
 
     const titleElement = component.find('.information-box-title');
     expect(titleElement).to.have.length(1);
@@ -20,7 +21,8 @@ describe('InformationBoxComponent', () => {
     const component = shallow(
       <InformationBox icon="assets/img#done">
         <div>I am child</div>
-      </InformationBox>);
+      </InformationBox>
+    );
 
     const titleElement = component.find('.information-box-title');
     expect(titleElement).to.have.length(0);
@@ -33,7 +35,8 @@ describe('InformationBoxComponent', () => {
     const component = shallow(
       <InformationBox title="render title here">
         <div>I am child</div>
-      </InformationBox>);
+      </InformationBox>
+    );
 
     expect(component.find('.information-box-title')).to.have.length(1);
     expect(component.find('.information-box-node').children()).to.have.length(1);

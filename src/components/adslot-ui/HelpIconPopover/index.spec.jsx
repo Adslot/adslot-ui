@@ -17,7 +17,11 @@ describe('HelpIconPopoverComponent', () => {
   });
 
   it('should allow custom placement positions', () => {
-    const element = shallow(<HelpIconPopover id="tired-help" placement="bottom">Have some coffee.</HelpIconPopover>);
+    const element = shallow(
+      <HelpIconPopover id="tired-help" placement="bottom">
+        Have some coffee.
+      </HelpIconPopover>
+    );
     const overlayElement = element.find(OverlayTrigger);
     expect(overlayElement.prop('placement')).to.equal('bottom');
   });

@@ -6,11 +6,7 @@ describe('FormGroupComponent', () => {
   const helpText = "Help me if you can I'm feeling down.";
   const label = 'Sweet Caroline';
   it('should render with required props', () => {
-    const component = shallow(<FormGroupComponent
-      helpText={helpText}
-      label={label}
-      placeholder="baz"
-    />);
+    const component = shallow(<FormGroupComponent helpText={helpText} label={label} placeholder="baz" />);
     expect(component.prop('className')).to.equal('form-group');
 
     const labelElement = component.find('label');
@@ -42,14 +38,16 @@ describe('FormGroupComponent', () => {
 
   it('should render with an addon and a value', () => {
     const onChangeMock = () => null;
-    const component = shallow(<FormGroupComponent
-      addon="$"
-      helpText={helpText}
-      label={label}
-      onChange={onChangeMock}
-      placeholder="5.00"
-      value="10.00"
-    />);
+    const component = shallow(
+      <FormGroupComponent
+        addon="$"
+        helpText={helpText}
+        label={label}
+        onChange={onChangeMock}
+        placeholder="5.00"
+        value="10.00"
+      />
+    );
     expect(component.prop('className')).to.equal('form-group');
 
     const inputGroupElement = component.find('.input-group');
@@ -66,14 +64,16 @@ describe('FormGroupComponent', () => {
 
   it('should render as disabled', () => {
     const onChangeMock = () => null;
-    const component = shallow(<FormGroupComponent
-      disabled
-      helpText={helpText}
-      label={label}
-      onChange={onChangeMock}
-      placeholder="I should be disabled"
-      value="10.00"
-    />);
+    const component = shallow(
+      <FormGroupComponent
+        disabled
+        helpText={helpText}
+        label={label}
+        onChange={onChangeMock}
+        placeholder="I should be disabled"
+        value="10.00"
+      />
+    );
 
     const inputGroupElement = component.find('.input-group');
 

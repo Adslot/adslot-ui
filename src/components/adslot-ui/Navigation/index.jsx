@@ -7,7 +7,6 @@ import { expandDts } from 'lib/utils';
 
 import './styles.scss';
 
-
 class NavigationComponent extends React.PureComponent {
   render() {
     const { barPosition, children, dts } = this.props;
@@ -15,7 +14,11 @@ class NavigationComponent extends React.PureComponent {
     const classes = `${barPosition}-bar`;
     const navProps = _.omit(this.props, ['barPosition']);
 
-    return (<Nav {...navProps} {...expandDts(dts)} bsClass="nav-borderless" className={classes}>{children}</Nav>);
+    return (
+      <Nav {...navProps} {...expandDts(dts)} bsClass="nav-borderless" className={classes}>
+        {children}
+      </Nav>
+    );
   }
 }
 

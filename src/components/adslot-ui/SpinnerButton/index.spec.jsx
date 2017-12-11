@@ -10,12 +10,19 @@ describe('SpinnerButtonComponent', () => {
     const buttonElement = element.find('Button');
     expect(buttonElement.prop('disabled')).to.equal(false);
     expect(buttonElement.prop('isLoading')).to.equal(undefined);
-    expect(element.children().last().text()).to.equal('Test');
+    expect(
+      element
+        .children()
+        .last()
+        .text()
+    ).to.equal('Test');
   });
 
   it('should pass props to button', () => {
     const element = shallow(
-      <SpinnerButton dts="test" bsStyle="primary" bsSize="lg" isLoading>Test</SpinnerButton>
+      <SpinnerButton dts="test" bsStyle="primary" bsSize="lg" isLoading>
+        Test
+      </SpinnerButton>
     );
     expect(element.find(Spinner)).to.have.length(1);
 
@@ -26,23 +33,24 @@ describe('SpinnerButtonComponent', () => {
   });
 
   it('should be disabled in loading mode', () => {
-    const buttonElement = shallow(<SpinnerButton isLoading>Test</SpinnerButton>)
-      .find('Button');
+    const buttonElement = shallow(<SpinnerButton isLoading>Test</SpinnerButton>).find('Button');
 
     expect(buttonElement.prop('disabled')).to.equal(true);
   });
 
   it('should honour disabled when not loading', () => {
-    const buttonElement = shallow(<SpinnerButton disabled>Test</SpinnerButton>)
-      .find('Button');
+    const buttonElement = shallow(<SpinnerButton disabled>Test</SpinnerButton>).find('Button');
 
     expect(buttonElement.prop('isLoading')).to.equal(undefined);
     expect(buttonElement.prop('disabled')).to.equal(true);
   });
 
   it('should ignore disabled when loading', () => {
-    const buttonElement = shallow(<SpinnerButton isLoading disabled={false}>Test</SpinnerButton>)
-      .find('Button');
+    const buttonElement = shallow(
+      <SpinnerButton isLoading disabled={false}>
+        Test
+      </SpinnerButton>
+    ).find('Button');
     expect(buttonElement.prop('disabled')).to.equal(true);
   });
 });

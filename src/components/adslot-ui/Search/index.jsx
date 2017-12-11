@@ -1,10 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  SvgSymbol,
-  Spinner,
-} from 'alexandria';
+import { SvgSymbol, Spinner } from 'alexandria';
 import './styles.scss';
 
 class Search extends Component {
@@ -68,10 +65,11 @@ class Search extends Component {
           value={value}
         />
         {isLoading ? <Spinner size="small" /> : null}
-        {_.isEmpty(value)
-          ? <SvgSymbol href={svgSymbolSearch.href} classSuffixes={searchClassSuffixes} />
-          : <SvgSymbol href={svgSymbolCancel.href} classSuffixes={cancelClassSuffixes} onClick={this.onClear} />
-        }
+        {_.isEmpty(value) ? (
+          <SvgSymbol href={svgSymbolSearch.href} classSuffixes={searchClassSuffixes} />
+        ) : (
+          <SvgSymbol href={svgSymbolCancel.href} classSuffixes={cancelClassSuffixes} onClick={this.onClear} />
+        )}
       </div>
     );
   }

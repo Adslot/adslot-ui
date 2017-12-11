@@ -1,9 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import {
-  AlertInput,
-} from '../../src/dist-entry';
+import { AlertInput } from '../../src/dist-entry';
 
 const initialState = {
   impressions: null,
@@ -11,13 +9,11 @@ const initialState = {
   message: null,
 };
 
-
 class AlertInputExample extends React.Component {
   constructor() {
     super();
     this.state = initialState;
-    if(typeof(this.state.impressions) != "string")
-      this.state.impressions = "";
+    if (typeof this.state.impressions != 'string') this.state.impressions = '';
     this.changeValue = this.changeValue.bind(this);
   }
 
@@ -30,7 +26,10 @@ class AlertInputExample extends React.Component {
         return { status: 'error', message: 'Impressions should be a number.' };
 
       case value < 1000:
-        return { status: 'warning', message: 'A minimum value of 1000 impressions is expected.' };
+        return {
+          status: 'warning',
+          message: 'A minimum value of 1000 impressions is expected.',
+        };
 
       default:
         return { status: 'success' };
@@ -59,12 +58,11 @@ class AlertInputExample extends React.Component {
         suffixAddon="impressions"
         alertStatus={this.state.status}
         alertMessage={this.state.message}
-        onValueChange={(event) => this.changeValue(event.target.value)}
+        onValueChange={event => this.changeValue(event.target.value)}
       />
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Alert Input',
@@ -81,47 +79,65 @@ const exampleProps = {
     {
       propType: 'defaultValue',
       type: 'string',
-    }, {
+    },
+    {
       propType: 'value',
       type: 'string|number',
-    }, {
+    },
+    {
       propType: 'type',
       type: "oneOf: 'text', 'number'",
       defaultValue: 'text',
-    }, {
+    },
+    {
       propType: 'min',
       type: 'number',
-    }, {
+    },
+    {
       propType: 'placeholder',
       type: 'string',
-    }, {
+    },
+    {
       propType: 'prefixAddon',
       type: 'node',
-    }, {
+    },
+    {
       propType: 'suffixAddon',
       type: 'node',
-    }, {
+    },
+    {
       propType: 'alertStatus',
       type: "oneOf: 'success', 'info', 'warning', 'error'",
       defaultValue: 'success',
-      note: <span>As <pre>success</pre> is assumed, and help is always displayed independently, the accepted pattern
-      is to only use <pre>warning</pre> and <pre>error</pre> feedback states with this component.
-      Otherwise leave type undefined for <pre>success</pre>.</span>,
-    }, {
+      note: (
+        <span>
+          As <pre>success</pre> is assumed, and help is always displayed independently, the accepted pattern is to only
+          use <pre>warning</pre> and <pre>error</pre> feedback states with this component. Otherwise leave type
+          undefined for <pre>success</pre>.
+        </span>
+      ),
+    },
+    {
       propType: 'alertMessage',
       type: 'string',
-    }, {
+    },
+    {
       propType: 'onValueChange',
       type: 'func',
-    }, {
+    },
+    {
       propType: 'onBlur',
       type: 'func',
-    }, {
+    },
+    {
       propType: 'onFocus',
       type: 'func',
     },
   ],
 };
 
-
-export default () => <Example {...exampleProps}><AlertInputExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <AlertInputExample />
+  </Example>
+);

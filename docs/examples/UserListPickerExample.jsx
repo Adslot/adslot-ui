@@ -1,13 +1,17 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Button,
-  UserListPicker,
-} from '../../src/dist-entry';
+import { Button, UserListPicker } from '../../src/dist-entry';
 
 const avatarColor = () => 'cyan';
-const emptySvgSymbol = { href: './docs/assets/svg-symbols.svg#checklist-incomplete' };
-const teamMember1 = { avatar: '//lorempixel.com/35/35/people/7', givenName: 'John', id: 1, surname: 'Smith' };
+const emptySvgSymbol = {
+  href: './docs/assets/svg-symbols.svg#checklist-incomplete',
+};
+const teamMember1 = {
+  avatar: '//lorempixel.com/35/35/people/7',
+  givenName: 'John',
+  id: 1,
+  surname: 'Smith',
+};
 const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
 const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
 const listPickerItems = [teamMember1, teamMember2, teamMember3];
@@ -28,7 +32,9 @@ class UserListPickerExample extends React.Component {
   }
 
   toggleUserListPickerModal() {
-    this.setState({ showUserListPickerModal: !this.state.showUserListPickerModal });
+    this.setState({
+      showUserListPickerModal: !this.state.showUserListPickerModal,
+    });
   }
 
   render() {
@@ -46,16 +52,21 @@ class UserListPickerExample extends React.Component {
           userHeaders={listPickerItemHeaders}
           users={listPickerItems}
         />
-        <Button className="btn-inverse" onClick={this.toggleUserListPickerModal}>Assign Team</Button>
+        <Button className="btn-inverse" onClick={this.toggleUserListPickerModal}>
+          Assign Team
+        </Button>
       </div>
     );
   }
 }
 
-
 const exampleProps = {
   componentName: 'UserListPicker',
-  notes: <span>Implements <a href="#list-picker-example">List Picker</a> Component</span>,
+  notes: (
+    <span>
+      Implements <a href="#list-picker-example">List Picker</a> Component
+    </span>
+  ),
   exampleCodeSnippet: `
     <UserListPicker
       avatarColor={avatarColor}
@@ -92,7 +103,11 @@ const exampleProps = {
     },
     {
       propType: 'emptySvgSymbol',
-      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+      type: (
+        <span>
+          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+        </span>
+      ),
     },
     {
       propType: 'initialSelection',
@@ -135,5 +150,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><UserListPickerExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <UserListPickerExample />
+  </Example>
+);
