@@ -150,14 +150,21 @@ class PageLayout extends React.Component {
       window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
     };
 
+    this.filterComponents = (searchTerm) => {
+      const searchTermRegExp = new RegExp(searchTerm, 'i');
+      return _(componentIndexForSearch)
+        .filter((val) => searchTermRegExp.test(val))
+        .sort()
+        .value();
+    };
+
     this.handleSearch = (searchTerm) => {
       if (searchTerm.length === 0) {
         this.clearSearch();
       } else {
-        const regex = new RegExp(searchTerm, 'i');
         this.setState({
           searchTerm,
-          searchResults: _(componentIndexForSearch).filter((val) => regex.test(val)).sort().value(),
+          searchResults: this.filterComponents(searchTerm),
         });
       }
     };

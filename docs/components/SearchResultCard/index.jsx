@@ -1,6 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import {
   Card,
   Button,
@@ -13,7 +13,7 @@ const SearchResultCard = ({
   clearSearch,
   searchResults,
 }) => (
-  <Card.Container className="adslot-ui-searchresultcard">
+  <Card.Container className="search-result-card">
     <Card.Content key="search-result-card-title">
       <strong className="title">Results</strong>
       <Button
