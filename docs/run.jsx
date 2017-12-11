@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import App from './components/Layout';
+import Layout from './components/Layout';
 
-const renderApp = () => {
+const renderApp = (App) => {
   ReactDOM.render(
     <AppContainer>
       <App />
@@ -12,8 +12,11 @@ const renderApp = () => {
   );
 };
 
-renderApp();
+renderApp(Layout);
 
 if (module.hot) {
-  module.hot.accept('./components/Layout', renderApp);
+  module.hot.accept('./components/Layout', () => {
+    const NextLayout = require('./components/Layout').default; // eslint-disable-line
+    renderApp(NextLayout);
+  });
 }
