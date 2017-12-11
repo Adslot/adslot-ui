@@ -4,20 +4,8 @@ import PropTypes from 'prop-types';
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import SearchBar from '../SearchBar';
-<<<<<<< HEAD
 import SearchResultCard from '../SearchResultCard';
-=======
->>>>>>> 248c9c7... Docs: Add searchbar component
-=======
-import SearchBarUI from '../SearchBar';
-=======
-import SearchBar from '../SearchBar';
->>>>>>> 71f002d... Docs: Changes based on reviews
-import SearchResultCard from '../SearchResultCard';
->>>>>>> 38bb043... Docs: Add search result card
 
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
@@ -146,72 +134,21 @@ const componentsBySection = {
   ],
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 const componentIndexForSearch = _.flatMap(componentsBySection);
-=======
-const compoentIndexForSearch = _.flatMap(componentsBySection)
->>>>>>> 38bb043... Docs: Add search result card
-=======
-const componentIndexForSearch = _.flatMap(componentsBySection);
->>>>>>> 64ae14f... Docs: Changes based on eslint
 
 class PageLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       page: 'buttons',
-<<<<<<< HEAD
-<<<<<<< HEAD
       searchTerm: '',
       searchResults: [],
-=======
-      hideNavigation: false,
-=======
-      searchTerm: '',
-<<<<<<< HEAD
->>>>>>> 71f002d... Docs: Changes based on reviews
-      searchResult: [],
->>>>>>> 38bb043... Docs: Add search result card
-=======
-      searchResults: [],
->>>>>>> 64ae14f... Docs: Changes based on eslint
     };
 
     this.navigateTo = (newPage) => {
       if (newPage !== this.state.page) { this.setState({ page: newPage }); }
       window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
     };
-<<<<<<< HEAD
-
-    this.filterComponents = (searchTerm) => {
-      const searchTermRegExp = new RegExp(searchTerm, 'i');
-      return _(componentIndexForSearch)
-        .filter((val) => searchTermRegExp.test(val))
-        .sort()
-        .value();
-    };
-
-    this.handleSearch = (searchTerm) => {
-      if (searchTerm.length === 0) {
-        this.clearSearch();
-      } else {
-        this.setState({
-          searchTerm,
-          searchResults: this.filterComponents(searchTerm),
-        });
-      }
-    };
-
-    this.clearSearch = () => {
-      this.setState({
-        searchTerm: '',
-        searchResults: [],
-      });
-    };
-  }
-=======
->>>>>>> 38bb043... Docs: Add search result card
 
     this.filterComponents = (searchTerm) => {
       const searchTermRegExp = new RegExp(searchTerm, 'i');
@@ -246,9 +183,6 @@ class PageLayout extends React.Component {
         <Header />
         <div className="adslot-ui-body">
           <SidebarArea>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             <SearchBar onSearch={this.handleSearch} />
             {
               (this.state.searchTerm.length > 0 || this.state.searchResults.length > 0)
@@ -259,25 +193,6 @@ class PageLayout extends React.Component {
                 />)
                 : <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
             }
-=======
-            <SearchBar searchCB={this.handleSearch} />
-            <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
->>>>>>> 248c9c7... Docs: Add searchbar component
-=======
-            <SearchBarUI searchCB={this.handleSearch} />
-=======
-            <SearchBar onSearch={this.handleSearch} />
->>>>>>> 71f002d... Docs: Changes based on reviews
-            {
-              (this.state.searchTerm.length > 0 || this.state.searchResults.length > 0)
-                ? (<SearchResultCard
-                  searchResults={this.state.searchResults}
-                  navigateTo={this.navigateTo}
-                  clearSearch={this.clearSearch}
-                />)
-                : <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
-            }
->>>>>>> 38bb043... Docs: Add search result card
           </SidebarArea>
           <ContentArea>
             <PageTitle title="Form Elements" />

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -7,53 +5,20 @@ import {
   Card,
   Button,
   Empty,
-=======
-=======
-import _ from 'lodash';
->>>>>>> 68bdf6e... Docs: Changes based on reviews
-import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  Card,
-  Button,
-<<<<<<< HEAD
->>>>>>> 38bb043... Docs: Add search result card
-=======
-  Empty,
->>>>>>> 64ae14f... Docs: Changes based on eslint
 } from '../../../src/dist-entry';
 import './styles.scss';
 
 const SearchResultCard = ({
   navigateTo,
   clearSearch,
-<<<<<<< HEAD
-<<<<<<< HEAD
   searchResults,
 }) => (
   <Card.Container className="search-result-card">
-=======
-  searchResults,
-}) => (
-<<<<<<< HEAD
-  <Card.Container className="adslot-ui-searchresultcard">
->>>>>>> 64ae14f... Docs: Changes based on eslint
-=======
-  <Card.Container className="search-result-card">
->>>>>>> 68bdf6e... Docs: Changes based on reviews
     <Card.Content key="search-result-card-title">
       <strong className="title">Results</strong>
       <Button
         bsStyle="link"
-<<<<<<< HEAD
-<<<<<<< HEAD
         onClick={clearSearch}
-=======
-        onClick={() => clearSearch()}
->>>>>>> 64ae14f... Docs: Changes based on eslint
-=======
-        onClick={clearSearch}
->>>>>>> 55413c3... Docs: Small changes
         className="clear-button"
       >
         Clear
@@ -78,61 +43,11 @@ const SearchResultCard = ({
     />
   </Card.Container>
 );
-<<<<<<< HEAD
-=======
-  searchResult
-}) => {
-  return (
-    <Card.Container className="adslot-ui-searchresultcard">
-      <Card.Content key="search-result-card-title">
-        <strong className="title">Results</strong>
-        <Button
-          bsStyle="link"
-          onClick={() => clearSearch()}
-          className="clear-button"
-        >
-          Clear
-        </Button>
-      </Card.Content>
-      {
-        (searchResult.length > 0)
-          ? React.Children.map(searchResult, (componentName) => {
-            return (
-              <Card.Content key={componentName}>
-                <Button
-                  bsStyle="link"
-                  onClick={() => navigateTo(componentName)}
-                >
-                  {_.startCase(componentName)}
-                </Button>
-              </Card.Content>
-            )
-          })
-          : (<Card.Content key={"search-result-card-empty"}>
-            No results found.
-          </Card.Content>)
-      }
-    </Card.Container>
-  )
-}
->>>>>>> 38bb043... Docs: Add search result card
-=======
->>>>>>> 64ae14f... Docs: Changes based on eslint
 
 SearchResultCard.propTypes = {
   navigateTo: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired,
-<<<<<<< HEAD
-<<<<<<< HEAD
   searchResults: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
-=======
-  searchResult: PropTypes.array.isRequired,
-}
->>>>>>> 38bb043... Docs: Add search result card
-=======
-  searchResults: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
->>>>>>> 64ae14f... Docs: Changes based on eslint
 
 export default SearchResultCard;
