@@ -6109,18 +6109,29 @@ fieldset[disabled] .btn-inverse:not(:disabled):not([disabled='disabled']).btn-da
   min-width: 8px;
 }
 
-.btn-link {
+.btn-popover-reason {
+  max-width: 140px;
+  color: #ababab;
+  font-size: 11px;
+}
+
+.btn.btn-link {
   cursor: pointer;
 }
 
-.btn-link, .btn-link:active {
+.btn.btn-link, .btn.btn-link:active {
   -webkit-box-shadow: none;
           box-shadow: none;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
 
-.btn-link:disabled {
+.btn.btn-link:disabled, .btn.btn-link[disabled] {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+.btn.btn-link:hover, .btn.btn-link:active {
   background-color: transparent;
 }
 

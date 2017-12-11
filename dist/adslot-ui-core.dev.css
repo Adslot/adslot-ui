@@ -5757,18 +5757,29 @@ fieldset[disabled] .btn-inverse:not(:disabled):not([disabled='disabled']).btn-da
   min-width: 8px;
 }
 
-.btn-link {
+.btn-popover-reason {
+  max-width: 140px;
+  color: #ababab;
+  font-size: 11px;
+}
+
+.btn.btn-link {
   cursor: pointer;
 }
 
-.btn-link, .btn-link:active {
+.btn.btn-link, .btn.btn-link:active {
   -webkit-box-shadow: none;
           box-shadow: none;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
 
-.btn-link:disabled {
+.btn.btn-link:disabled, .btn.btn-link[disabled] {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+.btn.btn-link:hover, .btn.btn-link:active {
   background-color: transparent;
 }
 
@@ -8190,4 +8201,84 @@ strong {
   border-radius: 50%;
   text-align: center;
   overflow: hidden;
+}
+.nav-borderless {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-size: 12px;
+  font-weight: 300;
+  padding: 0;
+  height: 50px;
+}
+
+.nav-borderless > li {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 100px;
+      flex-basis: 100px;
+  text-align: left;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 0;
+}
+
+.nav-borderless > li:hover, .nav-borderless > li.active {
+  border-color: #1950a3;
+}
+
+.nav-borderless > li > a {
+  color: #5a5a5a;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-borderless > li.disabled {
+  cursor: default;
+}
+
+.nav-borderless > li.disabled a {
+  color: #ababab;
+}
+
+.nav-borderless.top-bar > li {
+  margin-top: 3px;
+}
+
+.nav-borderless.top-bar > li:hover, .nav-borderless.top-bar > li.active {
+  margin: 0;
+  border-top-width: 3px;
+}
+
+.nav-borderless.bottom-bar > li {
+  margin-bottom: 3px;
+}
+
+.nav-borderless.bottom-bar > li:hover, .nav-borderless.bottom-bar > li.active {
+  margin: 0;
+  border-bottom-width: 3px;
 }
