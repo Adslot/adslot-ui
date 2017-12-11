@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -7,9 +8,11 @@ import {
   Button,
   Empty,
 =======
+=======
+import _ from 'lodash';
+>>>>>>> 68bdf6e... Docs: Changes based on reviews
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import {
   Card,
   Button,
@@ -32,8 +35,12 @@ const SearchResultCard = ({
 =======
   searchResults,
 }) => (
+<<<<<<< HEAD
   <Card.Container className="adslot-ui-searchresultcard">
 >>>>>>> 64ae14f... Docs: Changes based on eslint
+=======
+  <Card.Container className="search-result-card">
+>>>>>>> 68bdf6e... Docs: Changes based on reviews
     <Card.Content key="search-result-card-title">
       <strong className="title">Results</strong>
       <Button

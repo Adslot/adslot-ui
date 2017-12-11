@@ -3,6 +3,7 @@
 @import '~styles/variable';
 
 .search-result-card {
+<<<<<<< HEAD
   width: 240px;
 
   .card-component-content {
@@ -36,6 +37,8 @@
 
 >>>>>>> 71f002d... Docs: Changes based on reviews
 .adslot-ui-searchresultcard {
+=======
+>>>>>>> 68bdf6e... Docs: Changes based on reviews
   width: 240px;
 
   .card-component-content {
@@ -43,7 +46,7 @@
 
     &:first-child {
       padding: $spacing-etalon;
-      border-bottom: 1px solid $gray-lighter;
+      border-bottom: $border-lighter;
       display: flex;
     }
 
