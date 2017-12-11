@@ -5,7 +5,8 @@ import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
 
 // React Bootstrap
-import Button from 'react-bootstrap/lib/Button';
+import { Button } from 'third-party';
+
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
