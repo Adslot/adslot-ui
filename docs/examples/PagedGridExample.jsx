@@ -1,8 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  PagedGrid,
-} from '../../src/dist-entry';
+import { PagedGrid } from '../../src/dist-entry';
 
 class PagedGridExample extends React.PureComponent {
   render() {
@@ -24,7 +22,6 @@ class PagedGridExample extends React.PureComponent {
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Paged Grid',
@@ -57,7 +54,11 @@ const exampleProps = {
     },
     {
       propType: 'emptySvgSymbol',
-      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+      type: (
+        <span>
+          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+        </span>
+      ),
     },
     {
       propType: 'items',
@@ -74,5 +75,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><PagedGridExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <PagedGridExample />
+  </Example>
+);

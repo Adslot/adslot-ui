@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import './styles.scss';
 
-
 class PopoverLinkItemComponent extends React.PureComponent {
   render() {
     // eslint-disable-next-line react/prop-types

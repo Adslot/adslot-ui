@@ -1,41 +1,24 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  Button,
-  Empty,
-} from '../../../src/dist-entry';
+import { Card, Button, Empty } from '../../../src/dist-entry';
 import './styles.scss';
 
-const SearchResultCard = ({
-  navigateTo,
-  clearSearch,
-  searchResults,
-}) => (
+const SearchResultCard = ({ navigateTo, clearSearch, searchResults }) => (
   <Card.Container className="search-result-card">
     <Card.Content key="search-result-card-title">
       <strong className="title">Results</strong>
-      <Button
-        bsStyle="link"
-        onClick={clearSearch}
-        className="clear-button"
-      >
+      <Button bsStyle="link" onClick={clearSearch} className="clear-button">
         Clear
       </Button>
     </Card.Content>
-    {
-      _.map(searchResults, (componentName) => (
-        <Card.Content key={componentName}>
-          <Button
-            bsStyle="link"
-            onClick={() => navigateTo(componentName)}
-          >
-            {_.startCase(componentName)}
-          </Button>
-        </Card.Content>
-      ))
-    }
+    {_.map(searchResults, componentName => (
+      <Card.Content key={componentName}>
+        <Button bsStyle="link" onClick={() => navigateTo(componentName)}>
+          {_.startCase(componentName)}
+        </Button>
+      </Card.Content>
+    ))}
     <Empty
       collection={searchResults}
       text="No results found."

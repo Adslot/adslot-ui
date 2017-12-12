@@ -24,22 +24,24 @@ class PagedGridComponent extends React.Component {
   render() {
     const { activePage } = this.state;
     const { columns, emptyIcon, emptyMessage, emptySvgSymbol, items, perPage, verticalCellBorder } = this.props;
-    const pageItems = _(items).clone().splice((this.state.activePage - 1) * perPage, perPage);
+    const pageItems = _(items)
+      .clone()
+      .splice((this.state.activePage - 1) * perPage, perPage);
     const totalPages = Math.ceil(items.length / perPage);
 
     return (
-      <div className="pagedgrid-component" >
+      <div className="pagedgrid-component">
         <Grid>
           <GridRow type="header" verticalCellBorder={verticalCellBorder}>
-            {_.map(columns, (column) =>
+            {_.map(columns, column => (
               <GridCell key={column.key} classSuffixes={[_.kebabCase(column.key)]} stretch={column.stretch}>
                 {column.label}
               </GridCell>
-            )}
+            ))}
           </GridRow>
-          {_.map(pageItems, (item) =>
+          {_.map(pageItems, item => (
             <GridRow key={item.id} verticalCellBorder={verticalCellBorder}>
-              {_.map(columns, (column) =>
+              {_.map(columns, column => (
                 <GridCell
                   key={`${item.id}-${column.key}`}
                   classSuffixes={[_.kebabCase(column.key)]}
@@ -47,12 +49,12 @@ class PagedGridComponent extends React.Component {
                 >
                   {_.get(item, column.key)}
                 </GridCell>
-              )}
+              ))}
             </GridRow>
-          )}
+          ))}
           <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
         </Grid>
-        {totalPages > 1 ?
+        {totalPages > 1 ? (
           <div className="pagedgrid-component-pagination">
             <span className="pagedgrid-component-pagination-info">
               {(activePage - 1) * perPage + 1}–{Math.min(activePage * perPage, items.length)} of {items.length}
@@ -61,10 +63,11 @@ class PagedGridComponent extends React.Component {
               activePage={activePage}
               items={totalPages}
               next
-              onSelect={(selectedPage) => this.setState({ activePage: selectedPage })}
+              onSelect={selectedPage => this.setState({ activePage: selectedPage })}
               prev
             />
-          </div> : null}
+          </div>
+        ) : null}
       </div>
     );
   }

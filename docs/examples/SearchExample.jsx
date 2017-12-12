@@ -1,9 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Search,
-} from '../../src/dist-entry';
-
+import { Search } from '../../src/dist-entry';
 
 class SearchExample extends React.Component {
   constructor() {
@@ -29,16 +26,17 @@ class SearchExample extends React.Component {
   }
 
   render() {
-    return (<Search
-      value={this.state.value}
-      onChange={this.onChange}
-      onSearch={this.onSearch}
-      debounceInterval={350}
-      isLoading={this.state.isLoading}
-    />);
+    return (
+      <Search
+        value={this.state.value}
+        onChange={this.onChange}
+        onSearch={this.onSearch}
+        debounceInterval={350}
+        isLoading={this.state.isLoading}
+      />
+    );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Search',
@@ -83,19 +81,33 @@ const exampleProps = {
     },
     {
       propType: 'svgSymbolCancel',
-      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+      type: (
+        <span>
+          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+        </span>
+      ),
       defaultValue: (
         <pre>
-          {JSON.stringify({ classSuffixes: ['gray-darker'], href: './docs/assets/svg-symbols.svg#cancel' })}
+          {JSON.stringify({
+            classSuffixes: ['gray-darker'],
+            href: './docs/assets/svg-symbols.svg#cancel',
+          })}
         </pre>
       ),
     },
     {
       propType: 'svgSymbolSearch',
-      type: <span>shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.</span>,
+      type: (
+        <span>
+          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+        </span>
+      ),
       defaultValue: (
         <pre>
-          {JSON.stringify({ classSuffixes: ['gray-light'], href: './docs/assets/svg-symbols.svg#search' })}
+          {JSON.stringify({
+            classSuffixes: ['gray-light'],
+            href: './docs/assets/svg-symbols.svg#search',
+          })}
         </pre>
       ),
     },
@@ -125,5 +137,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><SearchExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <SearchExample />
+  </Example>
+);

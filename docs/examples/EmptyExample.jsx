@@ -1,9 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Empty,
-} from '../../src/dist-entry';
-
+import { Empty } from '../../src/dist-entry';
 
 class EmptyExample extends React.PureComponent {
   render() {
@@ -12,13 +9,14 @@ class EmptyExample extends React.PureComponent {
         <Empty
           collection={[]}
           text="No items selected"
-          svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
+          svgSymbol={{
+            href: './docs/assets/svg-symbols.svg#checklist-incomplete',
+          }}
         />
       </div>
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Empty',
@@ -44,7 +42,11 @@ const exampleProps = {
     {
       propType: 'svgSymbol',
       type: 'shape',
-      note: <span>Accepts <a href="#svg-symbol-example">SVG Symbol</a> props such as href.</span>,
+      note: (
+        <span>
+          Accepts <a href="#svg-symbol-example">SVG Symbol</a> props such as href.
+        </span>
+      ),
     },
     {
       propType: 'hideIcon',
@@ -55,5 +57,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><EmptyExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <EmptyExample />
+  </Example>
+);

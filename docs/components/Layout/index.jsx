@@ -80,41 +80,14 @@ const componentsBySection = {
     'select',
     'date-picker',
   ],
-  'typography-and-text-layout': [
-    'text-ellipsis',
-  ],
-  'stats-and-data': [
-    'statistic',
-    'totals',
-    'slicey',
-  ],
-  'icons-and-graphics': [
-    'svg-symbol',
-  ],
-  navigation: [
-    'breadcrumb',
-    'tab',
-    'hover-dropdown-menu',
-    'navigation-tabs',
-  ],
-  'feedback-and-states': [
-    'alert',
-    'empty',
-    'spinner',
-    'pretty-diff',
-  ],
-  dialogue: [
-    'help-icon-popover',
-    'avatar',
-  ],
-  modals: [
-    'confirm-modal',
-  ],
-  search: [
-    'search',
-    'search-bar',
-    'tag',
-  ],
+  'typography-and-text-layout': ['text-ellipsis'],
+  'stats-and-data': ['statistic', 'totals', 'slicey'],
+  'icons-and-graphics': ['svg-symbol'],
+  navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
+  'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff'],
+  dialogue: ['help-icon-popover', 'avatar'],
+  modals: ['confirm-modal'],
+  search: ['search', 'search-bar', 'tag'],
   grouping: [
     'page-title',
     'card',
@@ -129,9 +102,7 @@ const componentsBySection = {
     'split-pane',
     'information-box',
   ],
-  'tree-picker': [
-    'tree-picker',
-  ],
+  'tree-picker': ['tree-picker'],
 };
 
 const componentIndexForSearch = _.flatMap(componentsBySection);
@@ -145,20 +116,22 @@ class PageLayout extends React.Component {
       searchResults: [],
     };
 
-    this.navigateTo = (newPage) => {
-      if (newPage !== this.state.page) { this.setState({ page: newPage }); }
+    this.navigateTo = newPage => {
+      if (newPage !== this.state.page) {
+        this.setState({ page: newPage });
+      }
       window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
     };
 
-    this.filterComponents = (searchTerm) => {
+    this.filterComponents = searchTerm => {
       const searchTermRegExp = new RegExp(searchTerm, 'i');
       return _(componentIndexForSearch)
-        .filter((val) => searchTermRegExp.test(val))
+        .filter(val => searchTermRegExp.test(val))
         .sort()
         .value();
     };
 
-    this.handleSearch = (searchTerm) => {
+    this.handleSearch = searchTerm => {
       if (searchTerm.length === 0) {
         this.clearSearch();
       } else {
@@ -184,15 +157,15 @@ class PageLayout extends React.Component {
         <div className="adslot-ui-body">
           <SidebarArea>
             <SearchBar onSearch={this.handleSearch} />
-            {
-              (this.state.searchTerm.length > 0 || this.state.searchResults.length > 0)
-                ? (<SearchResultCard
-                  searchResults={this.state.searchResults}
-                  navigateTo={this.navigateTo}
-                  clearSearch={this.clearSearch}
-                />)
-                : <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
-            }
+            {this.state.searchTerm.length > 0 || this.state.searchResults.length > 0 ? (
+              <SearchResultCard
+                searchResults={this.state.searchResults}
+                navigateTo={this.navigateTo}
+                clearSearch={this.clearSearch}
+              />
+            ) : (
+              <Navigation componentsBySection={componentsBySection} navigateTo={this.navigateTo} />
+            )}
           </SidebarArea>
           <ContentArea>
             <PageTitle title="Form Elements" />
@@ -263,16 +236,13 @@ class PageLayout extends React.Component {
           </ContentArea>
         </div>
 
-
         <Contributors />
       </div>
     );
   }
 }
 
-
 // <FormGroupExample />
 // <ListPickerPureExample />
-
 
 export default PageLayout;

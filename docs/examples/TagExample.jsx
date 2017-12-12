@@ -1,10 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Button,
-  Tag,
-} from '../../src/dist-entry';
+import { Button, Tag } from '../../src/dist-entry';
 
 const initialState = {
   tags: [
@@ -43,25 +40,35 @@ class TagExample extends React.Component {
 
   deleteTag(tagIdToDelete) {
     this.setState({
-      tags: _.reject(this.state.tags, (tag) => tag.id === tagIdToDelete),
+      tags: _.reject(this.state.tags, tag => tag.id === tagIdToDelete),
     });
   }
 
   render() {
     if (_.isEmpty(this.state.tags)) {
-      return <Button className="btn-inverse" onClick={this.resetTags}>Reset tag example</Button>;
+      return (
+        <Button className="btn-inverse" onClick={this.resetTags}>
+          Reset tag example
+        </Button>
+      );
     }
 
-    return (<div>{_.map(this.state.tags, (tag) => (
-      <Tag
-        key={tag.id}
-        id={tag.id}
-        accent={tag.accent}
-        onAction={this.deleteTag}
-        inverse
-        actionIconSvgHref={tag.actionIconSvgHref}
-      >{tag.text}</Tag>
-    ))}</div>);
+    return (
+      <div>
+        {_.map(this.state.tags, tag => (
+          <Tag
+            key={tag.id}
+            id={tag.id}
+            accent={tag.accent}
+            onAction={this.deleteTag}
+            inverse
+            actionIconSvgHref={tag.actionIconSvgHref}
+          >
+            {tag.text}
+          </Tag>
+        ))}
+      </div>
+    );
   }
 }
 
@@ -106,5 +113,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><TagExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <TagExample />
+  </Example>
+);

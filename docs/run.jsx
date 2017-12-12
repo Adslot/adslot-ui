@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Layout from './components/Layout';
 
-const renderApp = (App) => {
+const renderApp = App => {
   ReactDOM.render(
     <AppContainer>
       <App />

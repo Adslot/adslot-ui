@@ -1,9 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Select,
-} from '../../src/dist-entry';
-
+import { Select } from '../../src/dist-entry';
 
 class SelectExample extends React.Component {
   constructor() {
@@ -17,27 +14,32 @@ class SelectExample extends React.Component {
   }
 
   render() {
-    return (<Select
-      clearable={false}
-      name="countriesSelect"
-      noResultsText="Sorry, couldn't find that country."
-      options={[
-        { value: 'au', label: 'Australia' },
-        { value: 'ca', label: 'Canada' },
-        { value: 'jp', label: 'Japan', disabled: true },
-        { value: 'uk', label: 'United Kingdom' },
-      ]}
-      placeholder="Countries"
-      value={this.state.selected}
-      onChange={this.onChangeHandler}
-    />);
+    return (
+      <Select
+        clearable={false}
+        name="countriesSelect"
+        noResultsText="Sorry, couldn't find that country."
+        options={[
+          { value: 'au', label: 'Australia' },
+          { value: 'ca', label: 'Canada' },
+          { value: 'jp', label: 'Japan', disabled: true },
+          { value: 'uk', label: 'United Kingdom' },
+        ]}
+        placeholder="Countries"
+        value={this.state.selected}
+        onChange={this.onChangeHandler}
+      />
+    );
   }
 }
 
-
 const exampleProps = {
   componentName: 'Select',
-  notes: <span>See <a href="https://github.com/JedWatson/react-select">React Select Documentation</a></span>,
+  notes: (
+    <span>
+      See <a href="https://github.com/JedWatson/react-select">React Select Documentation</a>
+    </span>
+  ),
   exampleCodeSnippet: `<Select
     clearable={false}
     name="countriesSelect"
@@ -55,5 +57,8 @@ const exampleProps = {
   propTypes: [],
 };
 
-
-export default () => <Example {...exampleProps}><SelectExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <SelectExample />
+  </Example>
+);

@@ -43,24 +43,25 @@ const testConfig = merge(commonConfig, {
 
 module.exports = process.env.npm_config_coverage
   ? merge(testConfig, {
-    module: {
-      rules: [
-        {
-          test: jsRegEx,
-          include: srcPath,
-          exclude: /src\/lib/,
-          use: {
-            loader: 'istanbul-instrumenter-loader',
-            options: { esModules: true },
+      module: {
+        rules: [
+          {
+            test: jsRegEx,
+            include: srcPath,
+            exclude: /src\/lib/,
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: { esModules: true },
+            },
           },
-        },
+        ],
+      },
+      devtool: 'inline-source-map',
+      plugins: [
+        new webpack.SourceMapDevToolPlugin({
+          filename: null, // if no value is provided the sourcemap is inlined
+          test: jsRegEx,
+        }),
       ],
-    },
-    devtool: 'inline-source-map',
-    plugins: [
-      new webpack.SourceMapDevToolPlugin({
-        filename: null, // if no value is provided the sourcemap is inlined
-        test: jsRegEx,
-      }),
-    ],
-  }) : testConfig;
+    })
+  : testConfig;

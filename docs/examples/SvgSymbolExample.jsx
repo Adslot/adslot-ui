@@ -1,8 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  SvgSymbol,
-} from '../../src/dist-entry';
+import { SvgSymbol } from '../../src/dist-entry';
 
 class SvgSymbolExample extends React.PureComponent {
   render() {
@@ -10,10 +8,10 @@ class SvgSymbolExample extends React.PureComponent {
   }
 }
 
-
 const exampleProps = {
   componentName: 'SvgSymbol',
-  exampleCodeSnippet: '<SvgSymbol href="./docs/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={[\'70\']} />',
+  exampleCodeSnippet:
+    '<SvgSymbol href="./docs/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={[\'70\']} />',
   propTypes: [
     {
       propType: 'href',
@@ -30,5 +28,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><SvgSymbolExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <SvgSymbolExample />
+  </Example>
+);

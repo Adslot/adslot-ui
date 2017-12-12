@@ -27,7 +27,7 @@ const ListPickerPureComponent = ({
   selectItem,
   selectedItems,
 }) => {
-  const handleChange = (item) => (event, checked) => {
+  const handleChange = item => (event, checked) => {
     if (checked) {
       selectItem(item, allowMultiSelection);
     } else {
@@ -39,44 +39,32 @@ const ListPickerPureComponent = ({
 
   return (
     <div className="listpickerpure-component" data-test-selector={`listpickerpure-component-${_.kebabCase(itemType)}`}>
-      {itemHeaders ?
+      {itemHeaders ? (
         <Grid>
           <GridRow type="header">
-            <GridCell stretch>
-              {itemHeaders.label}
-            </GridCell>
-            <GridCell classSuffixes={['header-toggle']}>
-              {itemHeaders.toggle}
-            </GridCell>
-            {addonFormatter ?
-              <GridCell classSuffixes={['header-addon']}>
-                {itemHeaders.addon}
-              </GridCell>
-            : null}
+            <GridCell stretch>{itemHeaders.label}</GridCell>
+            <GridCell classSuffixes={['header-toggle']}>{itemHeaders.toggle}</GridCell>
+            {addonFormatter ? <GridCell classSuffixes={['header-addon']}>{itemHeaders.addon}</GridCell> : null}
           </GridRow>
-        </Grid> :
-        null
-      }
+        </Grid>
+      ) : null}
       <div className="listpickerpure-component-items">
         <Grid>
-          {_.map(items, (item) =>
+          {_.map(items, item => (
             <GridRow key={item.id} dts={`${_.kebabCase(itemType)}-${item.id}`}>
               <GridCell stretch dts="label">
                 {labelFormatter(item)}
               </GridCell>
               <GridCell classSuffixes={['toggle']} dts="toggle">
-                <ToggleComponent
-                  checked={isItemSelected({ item, selectedItems })}
-                  onChange={handleChange(item)}
-                />
+                <ToggleComponent checked={isItemSelected({ item, selectedItems })} onChange={handleChange(item)} />
               </GridCell>
-              {addonFormatter ?
+              {addonFormatter ? (
                 <GridCell classSuffixes={['addon']} dts="addon">
                   {addonFormatter(item)}
                 </GridCell>
-              : null}
+              ) : null}
             </GridRow>
-          )}
+          ))}
           <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
         </Grid>
       </div>
@@ -110,12 +98,16 @@ ListPickerPureComponent.propTypes = {
 
 ListPickerPureComponent.defaultProps = {
   allowMultiSelection: true,
-  deselectItem: () => { throw new Error('AdslotUi ListPickerPure needs a deselectItem handler'); },
+  deselectItem: () => {
+    throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');
+  },
   emptyMessage: 'No items to select.',
-  labelFormatter: (item) => item.label,
+  labelFormatter: item => item.label,
   items: [],
   itemType: 'item',
-  selectItem: () => { throw new Error('AdslotUi ListPickerPure needs a selectItem handler'); },
+  selectItem: () => {
+    throw new Error('AdslotUi ListPickerPure needs a selectItem handler');
+  },
   selectedItems: [],
 };
 

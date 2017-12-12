@@ -1,16 +1,16 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  PageTitle,
-} from '../../src/dist-entry';
-
+import { PageTitle } from '../../src/dist-entry';
 
 class PageTitleExample extends React.PureComponent {
   render() {
-    return (<PageTitle title="Campaign 12345: Adslot"><small>Version 5</small></PageTitle>);
+    return (
+      <PageTitle title="Campaign 12345: Adslot">
+        <small>Version 5</small>
+      </PageTitle>
+    );
   }
 }
-
 
 const exampleProps = {
   componentName: 'PageTitle',
@@ -32,5 +32,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><PageTitleExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <PageTitleExample />
+  </Example>
+);

@@ -6,11 +6,7 @@ import SvgSymbol from 'alexandria/SvgSymbol';
 import PanelMocks from './mocks';
 
 describe('PanelComponent', () => {
-  const {
-    panel1,
-    panel2,
-    panel3,
-  } = PanelMocks;
+  const { panel1, panel2, panel3 } = PanelMocks;
 
   it('should render with defaults', () => {
     const component = shallow(<Panel {...panel1} />);
@@ -52,4 +48,3 @@ describe('PanelComponent', () => {
     expect(callback.calledWith('3')).to.equal(true);
   });
 });
-

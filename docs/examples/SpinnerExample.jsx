@@ -1,16 +1,12 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Spinner,
-} from '../../src/dist-entry';
-
+import { Spinner } from '../../src/dist-entry';
 
 class SpinnerExample extends React.PureComponent {
   render() {
     return <Spinner />;
   }
 }
-
 
 const exampleProps = {
   componentName: 'Spinner',
@@ -29,5 +25,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><SpinnerExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <SpinnerExample />
+  </Example>
+);

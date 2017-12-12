@@ -20,21 +20,18 @@ const isSubset = (array, subArray) =>
 class ListPickerComponent extends React.Component {
   constructor(props) {
     super(props);
-    [
-      'applyAction',
-      'cancelAction',
-      'deselectItem',
-      'getApplyButtonState',
-      'loadData',
-      'selectItem',
-    ].forEach((methodName) => {
-      this[methodName] = this[methodName].bind(this);
-    });
+    ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'loadData', 'selectItem'].forEach(
+      methodName => {
+        this[methodName] = this[methodName].bind(this);
+      }
+    );
 
     this.state = {};
   }
 
-  componentDidMount() { this.loadData(); }
+  componentDidMount() {
+    this.loadData();
+  }
 
   getApplyButtonState(selectedItems) {
     if (this.props.allowEmptySelection) return false;
@@ -125,27 +122,23 @@ class ListPickerComponent extends React.Component {
         </Modal.Header>
         <Modal.Body>
           {modalDescription ? <p>{modalDescription}</p> : null}
-          {_.isEmpty(itemInfo) ?
+          {_.isEmpty(itemInfo) ? (
             <div className="listpicker-component-body">{listPickerPureElement}</div>
-          :
+          ) : (
             <div className="listpicker-component-body-split">
               <SplitPane dts={_.kebabCase(itemInfo.label)}>
                 <Grid>
                   <GridRow type="header">
                     <GridCell>{itemInfo.label}</GridCell>
                   </GridRow>
-                  {_.map(itemInfo.properties, (property) =>
+                  {_.map(itemInfo.properties, property => (
                     <GridRow key={property.label} horizontalBorder={false}>
                       <GridCell classSuffixes={['label']}>{property.label}</GridCell>
-                      <GridCell
-                        classSuffixes={['value']}
-                        dts={_.kebabCase(property.label)}
-                        stretch
-                      >
+                      <GridCell classSuffixes={['value']} dts={_.kebabCase(property.label)} stretch>
                         {property.value}
                       </GridCell>
                     </GridRow>
-                  )}
+                  ))}
                 </Grid>
                 <FlexibleSpacer />
               </SplitPane>
@@ -154,24 +147,25 @@ class ListPickerComponent extends React.Component {
                 <FlexibleSpacer />
               </SplitPane>
             </div>
-          }
+          )}
           {modalFootnote ? <div className="listpicker-component-footnote">{modalFootnote}</div> : null}
         </Modal.Body>
         <Modal.Footer>
-          {
-            _.isEmpty(linkButtons) ? null :
+          {_.isEmpty(linkButtons) ? null : (
             <div className="pull-left">
-              {_.map(linkButtons, (linkButton, key) => (
-                _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ?
-                  (
+              {_.map(
+                linkButtons,
+                (linkButton, key) =>
+                  _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
                     <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
                       {linkButton.label}
                     </Button>
-                  ) :
-                  React.cloneElement(linkButton, { key })
-              ))}
+                  ) : (
+                    React.cloneElement(linkButton, { key })
+                  )
+              )}
             </div>
-          }
+          )}
           <Button className="btn-inverse" onClick={this.cancelAction} data-test-selector="listpicker-cancel-button">
             Cancel
           </Button>
@@ -195,13 +189,15 @@ const itemProps = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });
 
-const linkButtonsProps = PropTypes.arrayOf(PropTypes.oneOfType([
-  PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-  }),
-  PropTypes.node,
-]));
+const linkButtonsProps = PropTypes.arrayOf(
+  PropTypes.oneOfType([
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+    }),
+    PropTypes.node,
+  ])
+);
 
 ListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool,
@@ -245,9 +241,13 @@ ListPickerComponent.defaultProps = {
   items: [],
   itemType: 'item',
   linkButtons: [],
-  modalApply: () => { throw new Error('AdslotUi ListPicker needs a modalApply handler'); },
+  modalApply: () => {
+    throw new Error('AdslotUi ListPicker needs a modalApply handler');
+  },
   modalClassName: 'listpicker-component',
-  modalClose: () => { throw new Error('AdslotUi ListPicker needs a modalClose handler'); },
+  modalClose: () => {
+    throw new Error('AdslotUi ListPicker needs a modalClose handler');
+  },
   modalTitle: 'Select Items',
   show: false,
 };

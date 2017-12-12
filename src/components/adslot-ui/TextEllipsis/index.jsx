@@ -31,20 +31,22 @@ class TextEllipsisComponent extends Component {
   }
 
   render() {
-    const {
-      popoverProps,
-      overlayTriggerProps,
-    } = this.props;
+    const { popoverProps, overlayTriggerProps } = this.props;
     const { truncated } = this.state;
 
     if (truncated) {
-      const tooltip = (
-        <Popover {...popoverProps}>{this.props.children}</Popover>
-      );
+      const tooltip = <Popover {...popoverProps}>{this.props.children}</Popover>;
 
       return (
         <OverlayTrigger {...overlayTriggerProps} overlay={tooltip}>
-          <div className="text-ellipsis-component" ref={(ref) => { this.container = ref; }}>{this.props.children}</div>
+          <div
+            className="text-ellipsis-component"
+            ref={ref => {
+              this.container = ref;
+            }}
+          >
+            {this.props.children}
+          </div>
         </OverlayTrigger>
       );
     }
@@ -52,7 +54,9 @@ class TextEllipsisComponent extends Component {
     return (
       <div
         className="text-ellipsis-component"
-        ref={(ref) => { this.container = ref; }}
+        ref={ref => {
+          this.container = ref;
+        }}
       >
         {this.props.children}
       </div>

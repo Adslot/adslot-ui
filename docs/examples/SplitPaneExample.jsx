@@ -1,8 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  SplitPane,
-} from '../../src/dist-entry';
+import { SplitPane } from '../../src/dist-entry';
 
 class SplitPaneExample extends React.PureComponent {
   render() {
@@ -18,7 +16,6 @@ class SplitPaneExample extends React.PureComponent {
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'SplitPane',
@@ -48,5 +45,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><SplitPaneExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <SplitPaneExample />
+  </Example>
+);

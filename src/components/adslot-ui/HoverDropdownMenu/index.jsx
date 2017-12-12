@@ -9,7 +9,7 @@ import './styles.scss';
 const POPOVER_WIDTH = 160;
 
 /* eslint-disable react/prop-types */
-export const renderPopoverComponent = (arrowPosition) => (props) => {
+export const renderPopoverComponent = arrowPosition => props => {
   // default offset is 50%, therefore to adjust to align with the arrow, we need to move back/forth 30%
   const popoverOffset = POPOVER_WIDTH * 0.3;
   const popoverProps = _.assign({}, props, {
@@ -19,10 +19,9 @@ export const renderPopoverComponent = (arrowPosition) => (props) => {
     },
   });
 
-  return (<Popover {...popoverProps} />);
+  return <Popover {...popoverProps} />;
 };
 /* eslint-enable react/prop-types */
-
 
 export class HoverDropdownMenuComponent extends React.Component {
   constructor(props) {
@@ -69,29 +68,22 @@ export class HoverDropdownMenuComponent extends React.Component {
   }
 
   render() {
-    const {
-      arrowPosition,
-      headerText,
-      hoverComponent,
-      children,
-    } = this.props;
+    const { arrowPosition, headerText, hoverComponent, children } = this.props;
 
     const HoverPopover = renderPopoverComponent(arrowPosition);
 
     return (
       <div
         className="hover-dropdown"
-        ref={(element) => { this.element = element; }}
+        ref={element => {
+          this.element = element;
+        }}
         onMouseEnter={this.openMenu}
         onMouseLeave={this.closeMenu}
       >
         {hoverComponent}
         {children && children.length > 0 ? (
-          <Overlay
-            show={this.state.isOpen}
-            target={this.state.target}
-            placement="bottom"
-          >
+          <Overlay show={this.state.isOpen} target={this.state.target} placement="bottom">
             <HoverPopover
               id="hover-dropdown-popover"
               className="hover-dropdown-popover"
@@ -99,13 +91,10 @@ export class HoverDropdownMenuComponent extends React.Component {
               onMouseLeave={this.popoverLeaveHandler}
               title={headerText}
             >
-              <ul className="list-unstyled">
-                {children}
-              </ul>
+              <ul className="list-unstyled">{children}</ul>
             </HoverPopover>
           </Overlay>
         ) : null}
-
       </div>
     );
   }

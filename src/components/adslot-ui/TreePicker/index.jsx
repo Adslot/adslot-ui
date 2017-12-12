@@ -10,13 +10,11 @@ import TreePickerPropTypes from '../../prop-types/TreePickerPropTypes';
 
 require('./styles.scss');
 
-
 export const removeSelected = ({ subtree, selectedNodes }) => {
   if (!subtree) return subtree;
 
   return _.reject(subtree, ({ id }) => _.some(selectedNodes, { id }));
 };
-
 
 const TreePickerSimplePureComponent = ({
   additionalClassNames,
@@ -64,9 +62,8 @@ const TreePickerSimplePureComponent = ({
         additionalClassNames={additionalClassNames}
         dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}
       >
-        {hideSearchOnRoot && _.isEmpty(breadcrumbNodes)
-          ? null
-          : <TreePickerNav
+        {hideSearchOnRoot && _.isEmpty(breadcrumbNodes) ? null : (
+          <TreePickerNav
             {...{
               breadcrumbNodes,
               breadcrumbOnClick,
@@ -84,7 +81,7 @@ const TreePickerSimplePureComponent = ({
               svgSymbolSearch,
             }}
           />
-        }
+        )}
 
         <TreePickerGrid
           {...{

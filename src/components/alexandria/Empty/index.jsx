@@ -5,20 +5,14 @@ import SvgSymbolCircle from 'alexandria/SvgSymbol/Circle';
 import './styles.scss';
 
 const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
-  const classSuffixes = _.isEmpty(svgSymbol.classSuffixes) ?
-    Empty.defaultProps.svgSymbol.classSuffixes :
-    svgSymbol.classSuffixes;
+  const classSuffixes = _.isEmpty(svgSymbol.classSuffixes)
+    ? Empty.defaultProps.svgSymbol.classSuffixes
+    : svgSymbol.classSuffixes;
 
   if (_.isEmpty(collection)) {
     return (
       <div className="empty-component">
-        {
-          hideIcon ? null :
-          <SvgSymbolCircle
-            href={svgSymbol.href}
-            classSuffixes={classSuffixes}
-          />
-        }
+        {hideIcon ? null : <SvgSymbolCircle href={svgSymbol.href} classSuffixes={classSuffixes} />}
         <div className="empty-component-text">{text}</div>
       </div>
     );

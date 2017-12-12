@@ -21,7 +21,11 @@ describe('ButtonComponent', () => {
   });
 
   it('should not duplicate btn-inverse class if both legacy and new are used', () => {
-    const element = shallow(<Button inverse className="btn-inverse">Test</Button>);
+    const element = shallow(
+      <Button inverse className="btn-inverse">
+        Test
+      </Button>
+    );
     expect(element.prop('className')).to.equal('btn-inverse');
   });
 
@@ -41,7 +45,11 @@ describe('ButtonComponent', () => {
   });
 
   it('should render disabled button with a reason popover', () => {
-    const element = shallow(<Button disabled reason="Because">Test</Button>);
+    const element = shallow(
+      <Button disabled reason="Because">
+        Test
+      </Button>
+    );
     const overlay = element.find(OverlayTrigger);
     expect(overlay).to.have.length(1);
     expect(shallow(overlay.prop('overlay')).text()).to.eql('Because');

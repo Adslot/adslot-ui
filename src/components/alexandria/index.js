@@ -19,7 +19,6 @@ import Tag from 'alexandria/Tag';
 import TileGrid from 'alexandria/TileGrid';
 import Totals from 'alexandria/Totals';
 
-
 export {
   Alert,
   Avatar,

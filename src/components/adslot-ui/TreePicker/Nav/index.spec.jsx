@@ -9,10 +9,7 @@ import BreadcrumbNode from 'alexandria/Breadcrumb/Node';
 
 describe('TreePickerNavComponent', () => {
   const testFunction = _.noop;
-  const breadcrumbNodes = [
-    { id: 'a', label: 'UK' },
-    { id: 'b', label: 'London' },
-  ];
+  const breadcrumbNodes = [{ id: 'a', label: 'UK' }, { id: 'b', label: 'London' }];
   const props = {
     breadcrumbNodes,
     breadcrumbOnClick: testFunction,

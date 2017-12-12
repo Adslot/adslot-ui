@@ -7,12 +7,12 @@ import { expandDts } from 'lib/utils';
 require('./styles.scss');
 
 const HelpIconPopover = ({ children, id, placement }) => {
-  const popover = (<Popover id={`popover-${id}`}>{children}</Popover>);
+  const popover = <Popover id={`popover-${id}`}>{children}</Popover>;
 
   return (
     <div {...expandDts(id)} className="help-icon-popover-component">
       <OverlayTrigger trigger={['focus', 'hover']} placement={placement} overlay={popover}>
-        <div className="help-icon-popover-component-trigger"></div>
+        <div className="help-icon-popover-component-trigger" />
       </OverlayTrigger>
     </div>
   );

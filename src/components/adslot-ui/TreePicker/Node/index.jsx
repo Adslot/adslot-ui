@@ -12,15 +12,17 @@ require('./styles.scss');
 
 const baseClass = 'treepickernode-component';
 
-const printPathText = (node) => _(node.path)
-  .map('label')
-  .clone()
-  .reverse()
-  .join(', ');
+const printPathText = node =>
+  _(node.path)
+    .map('label')
+    .clone()
+    .reverse()
+    .join(', ');
 
-const printAncestorText = (node) => _(node.ancestors)
-  .map('label')
-  .join(', ');
+const printAncestorText = node =>
+  _(node.ancestors)
+    .map('label')
+    .join(', ');
 
 const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
 
@@ -44,39 +46,30 @@ class TreePickerNodeComponent extends React.Component {
       const intervalToClear = setInterval(() => {
         this.props.expandNode(this.props.node);
         clearInterval(intervalToClear);
-      },
-
-      DELAY);
+      }, DELAY);
     };
 
     this.setState({ isLoading: true }, delayedExpandNode);
   }
 
   render() {
-    const {
-      disabled,
-      itemType,
-      node,
-      expandNode,
-      nodeRenderer,
-      selected,
-      valueFormatter,
-    } = this.props;
+    const { disabled, itemType, node, expandNode, nodeRenderer, selected, valueFormatter } = this.props;
 
     const isChildNode = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors));
     const isExpandable = expandNode && node.isExpandable;
 
-    const pathElement = isChildNode ?
+    const pathElement = isChildNode ? (
       <span className={`${baseClass}-path`}>
-        { _.isEmpty(node.path) ? printAncestorText(node) : printPathText(node) }
-      </span> : null;
+        {_.isEmpty(node.path) ? printAncestorText(node) : printPathText(node)}
+      </span>
+    ) : null;
 
     const labelCellProps = isExpandable && !this.state.isLoading ? { onClick: this.setLoadingAndExpandNode } : {};
 
     return (
       <div className={isChildNode ? `${baseClass} child-node` : `${baseClass}`}>
         <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
-          {selected ?
+          {selected ? (
             <GridCell classSuffixes={['button']} dts="button-remove">
               <Button
                 block
@@ -88,28 +81,25 @@ class TreePickerNodeComponent extends React.Component {
                 −
               </Button>
             </GridCell>
-          : null}
+          ) : null}
           <GridCell stretch {...labelCellProps} dts="label">
             <TextEllipsis>
               <span>{nodeRenderer(node)}</span>
-              {!_.isEmpty(pathElement) ?
-                <span className={`${baseClass}-metadata`}> ({pathPrefix(node)}{pathElement})</span> :
-                null
-              }
+              {!_.isEmpty(pathElement) ? (
+                <span className={`${baseClass}-metadata`}>
+                  ({pathPrefix(node)}
+                  {pathElement})
+                </span>
+              ) : null}
             </TextEllipsis>
           </GridCell>
 
-          {isExpandable ?
-            <TreePickerNodeExpander isLoading={this.state.isLoading} onClick={this.setLoadingAndExpandNode} /> : null
-          }
+          {isExpandable ? (
+            <TreePickerNodeExpander isLoading={this.state.isLoading} onClick={this.setLoadingAndExpandNode} />
+          ) : null}
 
-          {_.isNumber(node.value) ?
-            <GridCell dts="value">
-              {valueFormatter(node.value)}
-            </GridCell> :
-            null
-          }
-          {!selected ?
+          {_.isNumber(node.value) ? <GridCell dts="value">{valueFormatter(node.value)}</GridCell> : null}
+          {!selected ? (
             <GridCell classSuffixes={['button']} dts="button-add">
               <Button
                 block
@@ -121,7 +111,7 @@ class TreePickerNodeComponent extends React.Component {
                 +
               </Button>
             </GridCell>
-          : null}
+          ) : null}
         </GridRow>
       </div>
     );
@@ -144,11 +134,15 @@ TreePickerNodeComponent.propTypes = {
 
 TreePickerNodeComponent.defaultProps = {
   disabled: false,
-  includeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`); },
-  removeNode: (node) => { throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`); },
+  includeNode: node => {
+    throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);
+  },
+  removeNode: node => {
+    throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);
+  },
   selected: false,
-  valueFormatter: (value) => value,
-  nodeRenderer: (node) => node.label,
+  valueFormatter: value => value,
+  nodeRenderer: node => node.label,
 };
 
 export default TreePickerNodeComponent;

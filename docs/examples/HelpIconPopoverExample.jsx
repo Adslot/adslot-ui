@@ -1,14 +1,14 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  HelpIconPopover,
-} from '../../src/dist-entry';
+import { HelpIconPopover } from '../../src/dist-entry';
 
 class HelpIconPopoverExample extends React.PureComponent {
   render() {
     return (
       <HelpIconPopover id="help-text-example">
-        <p>Download your <em>latest</em> report.</p>
+        <p>
+          Download your <em>latest</em> report.
+        </p>
       </HelpIconPopover>
     );
   }
@@ -16,8 +16,12 @@ class HelpIconPopoverExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Help Icon',
-  notes: <span>Help text icon and popoover of rich-text. Useful in modals, accordions and page headers.
-  For forms, use stacked <pre>.help-block</pre> text.</span>,
+  notes: (
+    <span>
+      Help text icon and popoover of rich-text. Useful in modals, accordions and page headers. For forms, use stacked{' '}
+      <pre>.help-block</pre> text.
+    </span>
+  ),
   exampleCodeSnippet: `<HelpIconPopover id="help-text-example">
   <p>Download your <em>latest</em> report.</p>
 </HelpIconPopover>`,
@@ -40,4 +44,8 @@ const exampleProps = {
   ],
 };
 
-export default () => <Example {...exampleProps}><HelpIconPopoverExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <HelpIconPopoverExample />
+  </Example>
+);

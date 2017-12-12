@@ -12,16 +12,9 @@ import { createAndMountComponent } from 'lib/test-utils';
 import ListPickerMocks from './mocks';
 
 describe('ListPickerComponent', () => {
-  const {
-    getInitialSelection,
-    userHeaders,
-    users,
-    labelFormatter,
-    teamMember1,
-    teamMember2,
-  } = ListPickerMocks;
+  const { getInitialSelection, userHeaders, users, labelFormatter, teamMember1, teamMember2 } = ListPickerMocks;
 
-  const getListPickerPureElement = (rootComponent) => {
+  const getListPickerPureElement = rootComponent => {
     const modalBodyElement = rootComponent.find(Modal.Body);
     return modalBodyElement.find(ListPickerPureComponent);
   };
@@ -100,7 +93,9 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal(initialSelection);
     expect(listPickerPureElement.prop('deselectItem')).to.be.a('function');
-    expect(listPickerPureElement.prop('emptySvgSymbol')).to.deep.equal({ href: '/some.svg#id' });
+    expect(listPickerPureElement.prop('emptySvgSymbol')).to.deep.equal({
+      href: '/some.svg#id',
+    });
     expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
@@ -119,10 +114,7 @@ describe('ListPickerComponent', () => {
   it('should render with props for split pane', () => {
     const itemInfo = {
       label: 'User Details',
-      properties: [
-        { label: 'Name', value: 'Jill Smith' },
-        { label: 'Age', value: '21' },
-      ],
+      properties: [{ label: 'Name', value: 'Jill Smith' }, { label: 'Age', value: '21' }],
     };
     const initialSelection = getInitialSelection();
     const props = {
@@ -158,17 +150,40 @@ describe('ListPickerComponent', () => {
     const splitPaneElements = modalBodyElement.find(SplitPaneComponent);
     expect(splitPaneElements.first().prop('dts')).to.equal('user-details');
     const itemInfoGridElement = splitPaneElements.first().find(Grid);
-    const itemInfoLabelElement = itemInfoGridElement.find(GridRow).first().find(GridCell);
+    const itemInfoLabelElement = itemInfoGridElement
+      .find(GridRow)
+      .first()
+      .find(GridCell);
     expect(itemInfoLabelElement.children().text()).to.equal('User Details');
 
     const itemInfoPropertyElements = itemInfoGridElement.find(GridRow);
     const firstItemInfoProperty = itemInfoPropertyElements.at(1).find(GridCell);
     const secondItemInfoProperty = itemInfoPropertyElements.at(2).find(GridCell);
-    expect(firstItemInfoProperty.first().children().text()).to.equal('Name');
-    expect(firstItemInfoProperty.last().children().text()).to.equal('Jill Smith');
+    expect(
+      firstItemInfoProperty
+        .first()
+        .children()
+        .text()
+    ).to.equal('Name');
+    expect(
+      firstItemInfoProperty
+        .last()
+        .children()
+        .text()
+    ).to.equal('Jill Smith');
     expect(firstItemInfoProperty.last().prop('dts')).to.equal('name');
-    expect(secondItemInfoProperty.first().children().text()).to.equal('Age');
-    expect(secondItemInfoProperty.last().children().text()).to.equal('21');
+    expect(
+      secondItemInfoProperty
+        .first()
+        .children()
+        .text()
+    ).to.equal('Age');
+    expect(
+      secondItemInfoProperty
+        .last()
+        .children()
+        .text()
+    ).to.equal('21');
     expect(secondItemInfoProperty.last().prop('dts')).to.equal('age');
 
     const listPickerPureElement = splitPaneElements.find(ListPickerPureComponent);
@@ -236,9 +251,13 @@ describe('ListPickerComponent', () => {
   it('should call `modalApply` and `modalClose` when we click Apply', () => {
     let applyCalls = null;
     let closeCalls = 0;
-    const applyMock = (selectedItems) => { applyCalls = selectedItems; };
+    const applyMock = selectedItems => {
+      applyCalls = selectedItems;
+    };
 
-    const closeMock = () => { closeCalls += 1; };
+    const closeMock = () => {
+      closeCalls += 1;
+    };
 
     const props = {
       initialSelection: getInitialSelection(),
@@ -262,7 +281,9 @@ describe('ListPickerComponent', () => {
 
   it('should call `modalClose` when we click Cancel', () => {
     let closeCalls = 0;
-    const closeMock = () => { closeCalls += 1; };
+    const closeMock = () => {
+      closeCalls += 1;
+    };
 
     const component = createAndMountComponent(<ListPickerComponent modalClose={closeMock} />);
     const modalFooterElement = component.find(Modal.Footer);
@@ -299,7 +320,7 @@ describe('ListPickerComponent', () => {
     });
 
     it('should render as node', () => {
-      props.linkButtons = [(<Radio />)];
+      props.linkButtons = [<Radio />];
       const component = createAndMountComponent(<ListPickerComponent {...props} />);
       const modalFooterElement = component.find(Modal.Footer);
       const linkButtonContainer = modalFooterElement.find('.pull-left').first();
@@ -307,7 +328,7 @@ describe('ListPickerComponent', () => {
     });
 
     it('should render as mixed nodes and buttons', () => {
-      props.linkButtons = [{ label: 'Create User', href: '#' }, (<Radio />)];
+      props.linkButtons = [{ label: 'Create User', href: '#' }, <Radio />];
       const component = createAndMountComponent(<ListPickerComponent {...props} />);
       const modalFooterElement = component.find(Modal.Footer);
       const linkButtonContainer = modalFooterElement.find('.pull-left').first();

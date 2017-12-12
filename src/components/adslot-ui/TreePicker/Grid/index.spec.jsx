@@ -6,14 +6,7 @@ import { Empty, Grid, Spinner } from 'alexandria';
 import TreePickerMocks from 'adslot-ui/TreePicker/mocks';
 
 describe('TreePickerGridComponent', () => {
-  const {
-    itemType,
-    qldNode,
-    saNode,
-    svgSymbol,
-    nodeRenderer,
-    valueFormatter,
-  } = TreePickerMocks;
+  const { itemType, qldNode, saNode, svgSymbol, nodeRenderer, valueFormatter } = TreePickerMocks;
 
   it('should render with props', () => {
     const props = {
@@ -61,7 +54,7 @@ describe('TreePickerGridComponent', () => {
         emptySvgSymbol: svgSymbol,
         emptyText: 'Empty!',
         expandNode: _.noop,
-        groupFormatter: (node) => node.id,
+        groupFormatter: node => node.id,
         includeNode: _.noop,
         itemType,
         nodes: [qldNode, saNode],
@@ -84,7 +77,12 @@ describe('TreePickerGridComponent', () => {
       _.forEach(props.nodes, (node, index) => {
         const groupElement = groupElements.at(index);
         const labelElement = groupElement.find('.treepickergrid-component-group-label');
-        expect(labelElement.children().children().text()).to.equal(node.id);
+        expect(
+          labelElement
+            .children()
+            .children()
+            .text()
+        ).to.equal(node.id);
 
         const nodeElement = groupElement.find(TreePickerNodeFast);
         expect(nodeElement.prop('expandNode')).to.equal(props.expandNode);
@@ -120,7 +118,7 @@ describe('TreePickerGridComponent', () => {
       emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
       expandNode: _.noop,
-      groupFormatter: (node) => node.randomAttr,
+      groupFormatter: node => node.randomAttr,
       includeNode: _.noop,
       itemType,
       nodes: [qldNode],

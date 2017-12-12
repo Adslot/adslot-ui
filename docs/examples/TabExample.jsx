@@ -1,13 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Empty,
-  SvgSymbol,
-  FlexibleSpacer,
-  Tabs,
-  Tab,
-} from '../../src/dist-entry';
-
+import { Empty, SvgSymbol, FlexibleSpacer, Tabs, Tab } from '../../src/dist-entry';
 
 class TabExample extends React.PureComponent {
   render() {
@@ -20,12 +13,15 @@ class TabExample extends React.PureComponent {
               <SvgSymbol href="./docs/assets/svg-symbols.svg#list" />
               <FlexibleSpacer />
               Audience
-            </span>}
+            </span>
+          }
         >
           <Empty
             collection={[]}
             text="No audience details."
-            svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
+            svgSymbol={{
+              href: './docs/assets/svg-symbols.svg#checklist-incomplete',
+            }}
           />
         </Tab>
         <Tab
@@ -35,7 +31,8 @@ class TabExample extends React.PureComponent {
               <SvgSymbol href="./docs/assets/svg-symbols.svg#calendar" />
               <FlexibleSpacer />
               Billing
-            </span>}
+            </span>
+          }
         >
           <Empty
             collection={[]}
@@ -48,14 +45,20 @@ class TabExample extends React.PureComponent {
   }
 }
 
-
 const exampleProps = {
   componentName: 'Tab',
-  notes: (<p>See <a href="https://getbootstrap.com/docs/3.3/components/#nav-tabs" target="_blank" rel="noopener noreferrer">
-    Bootstrap documentation
-  </a> or <a href="https://react-bootstrap.github.io/components.html#tabs" target="_blank" rel="noopener noreferrer">
-    React Bootstrap documentation
-  </a>.</p>),
+  notes: (
+    <p>
+      See{' '}
+      <a href="https://getbootstrap.com/docs/3.3/components/#nav-tabs" target="_blank" rel="noopener noreferrer">
+        Bootstrap documentation
+      </a>{' '}
+      or{' '}
+      <a href="https://react-bootstrap.github.io/components.html#tabs" target="_blank" rel="noopener noreferrer">
+        React Bootstrap documentation
+      </a>.
+    </p>
+  ),
   exampleCodeSnippet: `<Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
   <Tab
     eventKey="Audience"
@@ -91,5 +94,8 @@ const exampleProps = {
   propTypes: [],
 };
 
-
-export default () => <Example {...exampleProps}><TabExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <TabExample />
+  </Example>
+);

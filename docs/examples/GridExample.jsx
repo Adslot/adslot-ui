@@ -1,10 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Grid,
-  GridCell,
-  GridRow,
-} from '../../src/dist-entry';
+import { Grid, GridCell, GridRow } from '../../src/dist-entry';
 
 const cellClicked = () => console.log('Cell clicked');
 
@@ -31,7 +27,6 @@ class GridExample extends React.PureComponent {
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'Grid',
@@ -65,5 +60,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><GridExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <GridExample />
+  </Example>
+);

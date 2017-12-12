@@ -34,7 +34,7 @@ describe('HoverDropdownMenuComponent', () => {
 
     props = {
       headerText: 'test header',
-      hoverComponent: (<Avatar givenName="John" surname="Smith" tooltip="test tooltip" />),
+      hoverComponent: <Avatar givenName="John" surname="Smith" tooltip="test tooltip" />,
       onLinkClick: _.noop,
     };
 
@@ -74,7 +74,7 @@ describe('HoverDropdownMenuComponent', () => {
     });
   });
 
-  it('should set `state.isOpen` to false when leaving the component', (done) => {
+  it('should set `state.isOpen` to false when leaving the component', done => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
@@ -88,7 +88,7 @@ describe('HoverDropdownMenuComponent', () => {
     }, 200);
   });
 
-  it('should not set `state.isOpen` to false when `state.mouseInPopover` is true', (done) => {
+  it('should not set `state.isOpen` to false when `state.mouseInPopover` is true', done => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
@@ -110,18 +110,24 @@ describe('HoverDropdownMenuComponent', () => {
     );
 
     component.simulate('mouseEnter', { target: '' });
-    component.find(Overlay).children().simulate('mouseEnter');
+    component
+      .find(Overlay)
+      .children()
+      .simulate('mouseEnter');
     expect(component.state('mouseInPopover')).to.equal(true);
   });
 
-  it('should set `state.mouseInPopover` and `state.isOpen` to false when user leaving popover', (done) => {
+  it('should set `state.mouseInPopover` and `state.isOpen` to false when user leaving popover', done => {
     const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
     component.setState({ mouseInPopover: true, isOpen: true });
-    component.find(Overlay).children().simulate('mouseLeave');
+    component
+      .find(Overlay)
+      .children()
+      .simulate('mouseLeave');
     setTimeout(() => {
       expect(component.state('mouseInPopover')).to.equal(false);
       expect(component.state('isOpen')).to.equal(false);
@@ -131,8 +137,9 @@ describe('HoverDropdownMenuComponent', () => {
 
   it('should remove `title` prop from hover component', () => {
     const component = mount(<HoverDropdownMenu {...props} />);
-    expect(component.find('.avatar-component').html())
-      .to.equal('<div class="avatar-component"><div class="avatar-component-initials">JS</div></div>');
+    expect(component.find('.avatar-component').html()).to.equal(
+      '<div class="avatar-component"><div class="avatar-component-initials">JS</div></div>'
+    );
   });
 
   describe('renderPopoverComponent()', () => {

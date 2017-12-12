@@ -7,11 +7,7 @@ import Card from 'alexandria/Card';
 import PanelMocks from 'adslot-ui/Panel/mocks';
 
 describe('AccordionComponent', () => {
-  const {
-    panel1,
-    panel2,
-    panel3,
-  } = PanelMocks;
+  const { panel1, panel2, panel3 } = PanelMocks;
 
   it('should render with defaults', () => {
     const component = shallow(<Accordion panels={[]} onPanelClick={_.noop} />);
@@ -50,9 +46,18 @@ describe('AccordionComponent', () => {
     const component = mount(<Accordion panels={panels} onPanelClick={callback} />);
     const panelElements = component.find(Panel);
 
-    panelElements.at(0).childAt(0).simulate('click');
-    panelElements.at(1).childAt(0).simulate('click');
-    panelElements.at(2).childAt(0).simulate('click');
+    panelElements
+      .at(0)
+      .childAt(0)
+      .simulate('click');
+    panelElements
+      .at(1)
+      .childAt(0)
+      .simulate('click');
+    panelElements
+      .at(2)
+      .childAt(0)
+      .simulate('click');
 
     expect(callback.calledThrice).to.equal(true);
     expect(callback.firstCall.calledWith('1'));

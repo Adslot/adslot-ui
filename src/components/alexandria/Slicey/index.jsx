@@ -7,9 +7,9 @@ import Marker from 'alexandria/Slicey/Marker';
 import { ROUND, HALF, QUARTER, getPointX, getPointY } from './dataProcessor';
 import './styles.scss';
 
-const filterDataset = (dataset) => _.filter(dataset, ({ value }) => value > 0);
+const filterDataset = dataset => _.filter(dataset, ({ value }) => value > 0);
 
-const getArcs = (datasetForArcs) => {
+const getArcs = datasetForArcs => {
   const total = _.sumBy(datasetForArcs, 'value');
 
   const arcs = new Array(datasetForArcs.length);
@@ -34,23 +34,20 @@ const getArcs = (datasetForArcs) => {
 };
 
 // IE Can't draw a complete circle as an arc, so swap it to a circle element.
-const getArcElements = (filteredDataset) => {
+const getArcElements = filteredDataset => {
   if (filteredDataset.length > 1) {
-    return _.map(getArcs(filteredDataset), (arc) =>
-      <Arc key={arc.id} data={arc} />);
+    return _.map(getArcs(filteredDataset), arc => <Arc key={arc.id} data={arc} />);
   }
 
   return <circle className={`arc-component ${_.kebabCase(filteredDataset[0].label)}`} r=".5" cx="0" cy="0" />;
 };
 
-const getSvgProps = (diameter) => (
-  {
-    className: 'slicey-component',
-    height: diameter,
-    width: diameter,
-    viewBox: '-0.5 -0.5 1 1',
-  }
-);
+const getSvgProps = diameter => ({
+  className: 'slicey-component',
+  height: diameter,
+  width: diameter,
+  viewBox: '-0.5 -0.5 1 1',
+});
 
 const Slicey = ({ dataset, diameter, donut, marker }) => {
   const filteredDataset = filterDataset(dataset);

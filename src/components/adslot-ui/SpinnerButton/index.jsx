@@ -16,11 +16,7 @@ class SpinnerButton extends React.PureComponent {
   }
 
   render() {
-    const {
-      isLoading,
-      children,
-      dts,
-    } = this.props;
+    const { isLoading, children, dts } = this.props;
     return (
       <Button
         {..._.pick(this.props, _.keys(Button.propTypes))}
@@ -28,21 +24,24 @@ class SpinnerButton extends React.PureComponent {
         className={classNames('spinner-button-component', this.props.className)}
         {...expandDts(dts)}
       >
-        {isLoading ?
+        {isLoading ? (
           <div className="spinner-container">
             <Spinner size={_.includes(['lg', 'large'], this.props.bsSize) ? 'medium' : 'small'} />
           </div>
-        : null }
+        ) : null}
         <div className={isLoading ? 'spinner-button-component-children-container' : null}>{children}</div>
       </Button>
     );
   }
 }
 
-SpinnerButton.propTypes = _.assign({
-  isLoading: PropTypes.bool,
-  dts: PropTypes.string,
-}, Button.propTypes);
+SpinnerButton.propTypes = _.assign(
+  {
+    isLoading: PropTypes.bool,
+    dts: PropTypes.string,
+  },
+  Button.propTypes
+);
 
 SpinnerButton.defaultProps = {
   isLoading: false,

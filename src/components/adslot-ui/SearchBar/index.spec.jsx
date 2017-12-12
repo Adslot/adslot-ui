@@ -15,10 +15,7 @@ const defaultProps = {
 };
 
 const props = {
-  additionalClassNames: [
-    'class-a',
-    'class-b',
-  ],
+  additionalClassNames: ['class-a', 'class-b'],
   searchString: '',
   searchIconHref: '',
   onSearchStringChange: _.noop,

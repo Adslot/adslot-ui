@@ -1,16 +1,12 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  Avatar,
-} from '../../src/dist-entry';
-
+import { Avatar } from '../../src/dist-entry';
 
 class AvatarExample extends React.PureComponent {
   render() {
     return <Avatar givenName="John" surname="Smith" />;
   }
 }
-
 
 const exampleProps = {
   componentName: 'Avatar',
@@ -40,5 +36,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><AvatarExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <AvatarExample />
+  </Example>
+);

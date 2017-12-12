@@ -33,7 +33,7 @@ describe('BreadcrumbNode', () => {
 
   it('should trigger onClick when clicking a node', () => {
     const idsRemoved = [];
-    const onClickMock = (newActiveId) => idsRemoved.push(newActiveId);
+    const onClickMock = newActiveId => idsRemoved.push(newActiveId);
     const props = { isLast: false, onClick: onClickMock, node };
     const component = shallow(<BreadcrumbNode {...props} />);
 

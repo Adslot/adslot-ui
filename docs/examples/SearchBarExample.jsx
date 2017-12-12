@@ -1,8 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import {
-  SearchBar,
-} from '../../src/dist-entry';
+import { SearchBar } from '../../src/dist-entry';
 
 class SearchBarExample extends React.Component {
   constructor() {
@@ -34,7 +32,6 @@ class SearchBarExample extends React.Component {
     );
   }
 }
-
 
 const exampleProps = {
   componentName: 'SearchBar',
@@ -84,5 +81,8 @@ const exampleProps = {
   ],
 };
 
-
-export default () => <Example {...exampleProps}><SearchBarExample /></Example>;
+export default () => (
+  <Example {...exampleProps}>
+    <SearchBarExample />
+  </Example>
+);

@@ -5,7 +5,7 @@ import GridCell from '.';
 
 describe('GridCell', () => {
   const componentClass = 'grid-component-cell';
-  const getClassNames = (classSuffixes) => {
+  const getClassNames = classSuffixes => {
     const classNames = classSuffixHelper({ classSuffixes, componentClass });
     return `${componentClass}${classNames}`;
   };
@@ -34,7 +34,9 @@ describe('GridCell', () => {
 
   it('should handle onClick when passed', () => {
     let called = 0;
-    const onClick = () => { called += 1; };
+    const onClick = () => {
+      called += 1;
+    };
 
     const component = shallow(<GridCell onClick={onClick} />);
     expect(component.prop('className')).to.equal(getClassNames(['clickable']));

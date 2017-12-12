@@ -5,17 +5,15 @@ import './styles.scss';
 const BreadcrumbNode = ({ isLast, node, onClick }) => {
   const baseClass = 'breadcrumbnode-component';
   if (isLast) {
-    return (
-      <span className={baseClass}>
-        {node.label}
-      </span>);
+    return <span className={baseClass}>{node.label}</span>;
   }
 
   const onClickNode = () => onClick(node.id);
   return (
     <span className={`${baseClass} ${baseClass}-link`} onClick={onClickNode}>
       {node.label}
-    </span>);
+    </span>
+  );
 };
 
 BreadcrumbNode.displayName = 'AlexandriaBreadcrumbNodeComponent';

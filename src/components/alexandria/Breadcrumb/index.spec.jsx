@@ -16,11 +16,7 @@ describe('Breadcrumb', () => {
   });
 
   beforeEach(() => {
-    nodes = [
-      { id: 'a', label: 'Canada' },
-      { id: 'b', label: 'British Columbia' },
-      { id: 'c', label: 'Victoria' },
-    ];
+    nodes = [{ id: 'a', label: 'Canada' }, { id: 'b', label: 'British Columbia' }, { id: 'c', label: 'Victoria' }];
   });
 
   afterEach(() => sandbox.restore());
