@@ -101,11 +101,11 @@ Search.defaultProps = {
   placeholder: '',
   svgSymbolCancel: {
     classSuffixes: ['gray-darker'],
-    href: '/assets/svg-symbols.svg#cancel',
+    href: './docs/assets/svg-symbols.svg#cancel',
   },
   svgSymbolSearch: {
     classSuffixes: ['gray-light'],
-    href: '/assets/svg-symbols.svg#search',
+    href: './docs/assets/svg-symbols.svg#search',
   },
   value: '',
   searchOnChange: true,

@@ -39,7 +39,7 @@ describe('Search', () => {
     expect(inputEl.prop('value')).to.equal('');
 
     const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl.prop('href')).to.equal('/assets/svg-symbols.svg#search');
+    expect(svgSymbolEl.prop('href')).to.equal('./docs/assets/svg-symbols.svg#search');
     expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-light']);
     expect(svgSymbolEl.prop('onClick')).to.be.an('undefined');
   });
