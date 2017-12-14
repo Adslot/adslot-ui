@@ -21,41 +21,45 @@
 @include accent('pending', $color-pending);
 @include accent('negative', $color-negative);
 
-#alert-input-example {
-  .adslot-ui-example {
-    width: 140px;
+.adslot-ui-example-container {
+  &.alert-input-example {
+    .adslot-ui-example {
+      width: 140px;
+    }
   }
-}
 
-#accordion-example,
-#card-example {
-  .adslot-ui-example {
-    width: 240px;
+  &.accordion-example,
+  &.card-example {
+    .adslot-ui-example {
+      width: 240px;
+    }
   }
-}
 
-#file-picker-example,
-#text-ellipsis-example,
-#textarea-example,
-#select-example,
-#panel-example {
-  .adslot-ui-example {
-    width: 380px;
+  &.file-picker-example,
+  &.text-ellipsis-example,
+  &.textarea-example,
+  &.select-example,
+  &.panel-example {
+    .adslot-ui-example {
+      width: 380px;
+    }
   }
-}
 
-#totals-example,
-#empty-example,
-#search-example,
-#search-bar-example,
-#pretty-diff-example {
-  .adslot-ui-example {
-    width: 560px;
+  &.totals-example,
+  &.empty-example,
+  &.search-example,
+  &.search-bar-example,
+  &.pretty-diff-example {
+    .adslot-ui-example {
+      width: 560px;
+    }
   }
-}
 
-#navigation-tabs-example {
-  .dashboard-tab {
-    border-color: $color-red-dark;
+  &.navigation-tabs-example {
+    .adslot-ui-example {
+      .dashboard-tab {
+        border-color: $color-red-dark;
+      }
+    }
   }
 }

@@ -12,7 +12,10 @@ class Example extends React.PureComponent {
     const { children, componentName, notes, exampleCodeSnippet, propTypes } = this.props;
 
     return (
-      <div className="adslot-ui-example-container" id={`${_.kebabCase(componentName)}-example`}>
+      <div
+        className={`adslot-ui-example-container ${_.kebabCase(componentName)}-example`}
+        id={`${_.kebabCase(componentName)}-example`}
+      >
         <h2>{componentName}</h2>
 
         {notes ? <div>{notes}</div> : null}

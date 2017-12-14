@@ -1,6 +1,8 @@
+@import '~styles/variable';
+
 .adslot-ui-header {
   > .pagetitle-component {
-    background: #fff;
+    background: $color-background;
 
     .svg-symbol-component {
       width: 156px;

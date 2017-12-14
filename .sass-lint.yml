@@ -1,7 +1,9 @@
 options:
   formatter: stylish
 files:
-  include: '**/*.scss'
+  include:
+    - 'src/**/*.scss'
+    - 'docs/**/*.scss'
 rules:
   # Extends
   extends-before-mixins: 2

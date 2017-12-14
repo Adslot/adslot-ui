@@ -35,8 +35,10 @@
     tr {
       td {
 
-        &:empty:before {
-          content: '—';
+        &:empty {
+          &::before {
+            content: '—';
+          }
         }
 
         &:nth-child(1) {

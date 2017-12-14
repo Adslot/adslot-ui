@@ -16,8 +16,10 @@
       padding-top: $spacing-etalon;
     }
 
-    &:nth-last-child(2):not(:first-child) {
-      padding-bottom: $spacing-etalon;
+    &:nth-last-child(2) {
+      &:not(:first-child) {
+        padding-bottom: $spacing-etalon;
+      }
     }
 
     .title {

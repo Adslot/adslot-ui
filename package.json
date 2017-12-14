@@ -10,7 +10,7 @@
     "clean": "rimraf dist/*",
     "codecov": "cat coverage/coverage-final.json | codecov",
     "dist": "./scripts/dist",
-    "lint:sass": "sass-lint './src/**/*.scss' -v",
+    "lint:sass": "sass-lint -v",
     "lint:eslint": "eslint --ext .jsx,.js ./src && eslint --ext .jsx,.js ./docs",
     "lint:prettier": "prettier-check '{src,docs,config}/**/*.{js,json,jsx}'",
     "lint": "npm run lint:eslint && npm run lint:sass && npm run lint:prettier",
