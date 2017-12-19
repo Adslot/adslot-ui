@@ -1,15 +1,16 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/dist/styles';
+import NotePanel from '../NotePanel';
 import { Button, Empty } from '../../../src/dist-entry';
 
 import './styles.scss';
 
 class Example extends React.PureComponent {
   render() {
-    const { children, componentName, notes, exampleCodeSnippet, propTypes } = this.props;
+    const { children, componentName, notes, exampleCodeSnippet, propTypes, designNotes } = this.props;
 
     return (
       <div
@@ -18,7 +19,8 @@ class Example extends React.PureComponent {
       >
         <h2>{componentName}</h2>
 
-        {notes ? <div>{notes}</div> : null}
+        {designNotes ? <NotePanel componentName={componentName} title="Design notes" notes={designNotes} /> : null}
+        {notes ? <NotePanel componentName={componentName} title="Technical notes" notes={notes} /> : null}
 
         <h3>Example</h3>
         <div className="adslot-ui-example">{children}</div>
@@ -73,6 +75,7 @@ Example.propTypes = {
   children: PropTypes.element.isRequired,
   componentName: PropTypes.string.isRequired,
   notes: PropTypes.node,
+  designNotes: PropTypes.node,
   exampleCodeSnippet: PropTypes.string.isRequired,
   propTypes: PropTypes.arrayOf(
     PropTypes.shape({

@@ -35,10 +35,16 @@ class SelectExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Select',
+  designNotes: (
+    <p>
+      <span className="text-bold">Select</span> When a single selection from more than 3 options is required the select
+      drop down should be used.
+    </p>
+  ),
   notes: (
-    <span>
+    <p>
       See <a href="https://github.com/JedWatson/react-select">React Select Documentation</a>
-    </span>
+    </p>
   ),
   exampleCodeSnippet: `<Select
     clearable={false}

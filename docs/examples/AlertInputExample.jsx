@@ -66,6 +66,14 @@ class AlertInputExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Alert Input',
+  designNotes: (
+    <p>
+      <pre className="text-bold">Alert input</pre> provide direct feedback by{' '}
+      <pre className="text-orange text-bold">‘Warning’</pre> the user but not blocking them.{' '}
+      <pre className="text-red text-bold">‘Required’</pre> informing the users there is required information or they
+      have entered incorrect information.
+    </p>
+  ),
   exampleCodeSnippet: `
     <AlertInput
       value={this.state.impressions}
