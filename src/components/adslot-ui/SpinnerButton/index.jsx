@@ -3,7 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from 'react-bootstrap/lib/Button';
+import { Button } from 'third-party';
 import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
 
