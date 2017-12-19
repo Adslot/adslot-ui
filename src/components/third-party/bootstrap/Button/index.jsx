@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import BootstrapButton from 'react-bootstrap/lib/Button';
 import BootstrapPopover from 'react-bootstrap/lib/Popover';
 import BootstrapOverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import { expandDts } from 'lib/utils';
+import { expandDts } from '../../../../lib/utils';
 
 class Button extends React.PureComponent {
   renderWithReason() {
