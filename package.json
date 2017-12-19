@@ -1,6 +1,6 @@
 {
   "name": "adslot-ui",
-  "version": "23.7.1",
+  "version": "23.8.0",
   "description": "Core component library. By Adslot",
   "main": "dist/adslot-ui-main.js",
   "license": "MIT",
@@ -44,9 +44,15 @@
     "printWidth": 120
   },
   "lint-staged": {
-    "*.{js,json,jsx}": ["prettier --write", "git add"]
+    "*.{js,json,jsx}": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "keywords": ["UI Library", "components"],
+  "keywords": [
+    "UI Library",
+    "components"
+  ],
   "author": "Adslot",
   "devDependencies": {
     "autoprefixer": "^7.1.2",

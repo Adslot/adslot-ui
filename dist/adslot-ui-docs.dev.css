@@ -8061,6 +8061,10 @@ strong {
   color: #838383;
 }
 
+.treepickernode-component-metadata::before {
+  content: ' ';
+}
+
 .treepickernode-component .grid-component-cell-button {
   padding-bottom: 7px;
   padding-top: 7px;
@@ -15072,7 +15076,7 @@ strong {
   padding: 0;
 }
 
-.adslot-ui-example-container table tr td:empty:before {
+.adslot-ui-example-container table tr td:empty::before {
   content: '\2014';
 }
 
@@ -15175,31 +15179,22 @@ body {
   fill: #da4f49;
 }
 
-#alert-input-example .adslot-ui-example {
+.adslot-ui-example-container.alert-input-example .adslot-ui-example {
   width: 140px;
 }
 
-#accordion-example .adslot-ui-example,
-#card-example .adslot-ui-example {
+.adslot-ui-example-container.accordion-example .adslot-ui-example, .adslot-ui-example-container.card-example .adslot-ui-example {
   width: 240px;
 }
 
-#file-picker-example .adslot-ui-example,
-#text-ellipsis-example .adslot-ui-example,
-#textarea-example .adslot-ui-example,
-#select-example .adslot-ui-example,
-#panel-example .adslot-ui-example {
+.adslot-ui-example-container.file-picker-example .adslot-ui-example, .adslot-ui-example-container.text-ellipsis-example .adslot-ui-example, .adslot-ui-example-container.textarea-example .adslot-ui-example, .adslot-ui-example-container.select-example .adslot-ui-example, .adslot-ui-example-container.panel-example .adslot-ui-example {
   width: 380px;
 }
 
-#totals-example .adslot-ui-example,
-#empty-example .adslot-ui-example,
-#search-example .adslot-ui-example,
-#search-bar-example .adslot-ui-example,
-#pretty-diff-example .adslot-ui-example {
+.adslot-ui-example-container.totals-example .adslot-ui-example, .adslot-ui-example-container.empty-example .adslot-ui-example, .adslot-ui-example-container.search-example .adslot-ui-example, .adslot-ui-example-container.search-bar-example .adslot-ui-example, .adslot-ui-example-container.pretty-diff-example .adslot-ui-example {
   width: 560px;
 }
 
-#navigation-tabs-example .dashboard-tab {
+.adslot-ui-example-container.navigation-tabs-example .adslot-ui-example .dashboard-tab {
   border-color: #d5382e;
 }

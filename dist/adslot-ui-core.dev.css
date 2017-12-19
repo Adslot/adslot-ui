@@ -8061,6 +8061,10 @@ strong {
   color: #838383;
 }
 
+.treepickernode-component-metadata::before {
+  content: ' ';
+}
+
 .treepickernode-component .grid-component-cell-button {
   padding-bottom: 7px;
   padding-top: 7px;
