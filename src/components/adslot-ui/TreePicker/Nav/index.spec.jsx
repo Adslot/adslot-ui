@@ -79,7 +79,7 @@ describe('TreePickerNavComponent', () => {
       breadcrumbNodeElement = breadcrumbElement.find(BreadcrumbNode);
     });
 
-    it('should have disabled class', () => expect(component.hasClass('disabled')).to.equal(true));
+    it('should have disabled class', () => expect(component.childAt(0).hasClass('disabled')).to.equal(true));
 
     it('should render breadcrumbs', () => expect(breadcrumbElement).to.have.length(1));
 

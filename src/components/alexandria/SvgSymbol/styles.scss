@@ -30,9 +30,6 @@
   @include fill('green-dark', $color-green-dark);
   @include fill('orange-dark', $color-orange-dark);
   @include fill('red', $color-red);
-
-
-
   display: inline-block;
   height: $svg-icon-size;
   pointer-events: none;

@@ -49,19 +49,22 @@ describe('AccordionComponent', () => {
     panelElements
       .at(0)
       .childAt(0)
+      .childAt(0)
       .simulate('click');
     panelElements
       .at(1)
+      .childAt(0)
       .childAt(0)
       .simulate('click');
     panelElements
       .at(2)
       .childAt(0)
+      .childAt(0)
       .simulate('click');
 
-    expect(callback.calledThrice).to.equal(true);
-    expect(callback.firstCall.calledWith('1'));
-    expect(callback.secondCall.calledWith('2'));
-    expect(callback.thirdCall.calledWith('3'));
+    expect(callback.callCount).to.equal(3);
+    expect(callback.firstCall.calledWith('1')).to.equal(true);
+    expect(callback.secondCall.calledWith('2')).to.equal(true);
+    expect(callback.thirdCall.calledWith('3')).to.equal(true);
   });
 });

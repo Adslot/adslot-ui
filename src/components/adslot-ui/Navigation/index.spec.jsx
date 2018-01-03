@@ -22,17 +22,6 @@ describe('NavigationComponent', () => {
 
     expect(component.find(Nav)).to.have.length(1);
     expect(component.find(Nav).prop('className')).to.equals('bottom-bar');
-  });
-
-  it('should render with bsStyle is borderless', () => {
-    props.bsStyle = 'borderless';
-
-    const component = shallow(
-      <Navigation {...props}>
-        <NavItem>test</NavItem>
-      </Navigation>
-    );
-
     expect(component.find(Nav).prop('bsClass')).to.equal('nav-borderless');
   });
 });

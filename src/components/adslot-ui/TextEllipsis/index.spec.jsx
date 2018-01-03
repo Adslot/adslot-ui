@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { OverlayTrigger } from 'react-bootstrap';
 import TextEllipsis from 'adslot-ui/TextEllipsis';
 
@@ -13,7 +13,7 @@ describe('TextEllipsisComponent', () => {
   });
 
   it('should render with defaults', () => {
-    const component = shallow(<TextEllipsis>Sample text</TextEllipsis>);
+    const component = mount(<TextEllipsis>Sample text</TextEllipsis>);
     expect(component.find('.text-ellipsis-component')).to.have.length(1);
     expect(component.instance().props.overlayTriggerProps).to.eql({
       trigger: ['focus', 'hover'],
@@ -52,6 +52,7 @@ describe('TextEllipsisComponent', () => {
       component.setProps({
         children: 'long text: The quick brown fox jumps over the lazy dog',
       });
+      component.update();
       expect(component.find(OverlayTrigger)).to.have.length(1);
     });
 
@@ -61,6 +62,7 @@ describe('TextEllipsisComponent', () => {
       expect(component.find(OverlayTrigger)).to.have.length(1);
 
       component.setProps({ children: 'x' });
+      component.update();
       expect(component.find(OverlayTrigger)).to.have.length(0);
     });
   });

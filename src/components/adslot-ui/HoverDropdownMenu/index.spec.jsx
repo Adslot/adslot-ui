@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 import { Overlay } from 'react-bootstrap';
@@ -44,28 +44,48 @@ describe('HoverDropdownMenuComponent', () => {
   afterEach(() => sandbox.restore());
 
   it('should render with default props', () => {
-    const component = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent} />);
+    // using mount so refs work
+    const component = mount(<HoverDropdownMenu hoverComponent={props.hoverComponent} />);
     expect(component.find(Avatar)).to.have.length(1);
     expect(component.find(Overlay)).to.have.length(0);
   });
 
   it('should render popover with list of links when `links` is not empty', () => {
-    const component = shallow(
+    const component = mount(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
+
+    component.setState({
+      isOpen: true,
+      mouseInPopover: false,
+    });
+    component.update();
+
     expect(component.find(Overlay)).to.have.length(1);
     expect(component.find(PopoverLinkItem)).to.have.length(2);
+    expect(
+      component
+        .find(PopoverLinkItem)
+        .at(0)
+        .text()
+    ).to.equal('Link 1');
+    expect(
+      component
+        .find(PopoverLinkItem)
+        .at(1)
+        .text()
+    ).to.equal('Logout');
   });
 
   it('should set state to open dropdown when hovering on the component', () => {
-    const component = shallow(
+    const component = mount(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
-    const target = <mock-dom-element />;
+    const target = null;
     component.find('.hover-dropdown').simulate('mouseEnter', { target });
     expect(component.state()).to.eql({
       isOpen: true,
@@ -75,7 +95,7 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should set `state.isOpen` to false when leaving the component', done => {
-    const component = shallow(
+    const component = mount(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
@@ -89,7 +109,7 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should not set `state.isOpen` to false when `state.mouseInPopover` is true', done => {
-    const component = shallow(
+    const component = mount(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
@@ -103,13 +123,13 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should set `state.mouseInPopover` to true when user entering popover', () => {
-    const component = shallow(
+    const component = mount(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>
     );
 
-    component.simulate('mouseEnter', { target: '' });
+    component.simulate('mouseEnter', { target: null });
     component
       .find(Overlay)
       .children()
@@ -118,7 +138,7 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should set `state.mouseInPopover` and `state.isOpen` to false when user leaving popover', done => {
-    const component = shallow(
+    const component = mount(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
       </HoverDropdownMenu>

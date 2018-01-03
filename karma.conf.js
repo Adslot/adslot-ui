@@ -18,7 +18,9 @@ module.exports = function configureKarma(config) {
     basePath: '',
     browsers: ['ChromeHeadless'],
     colors: true,
-    files: ['config/loadtests.js'],
+    files: [
+      'config/load-tests.js',
+    ],
     port: 8080,
     captureTimeout: 60000,
     frameworks: ['mocha', 'chai'],
@@ -33,7 +35,7 @@ module.exports = function configureKarma(config) {
     singleRun: true,
     reporters: _.compact([process.env.npm_config_coverage ? 'coverage' : null, 'mocha']),
     preprocessors: {
-      'config/loadtests.js': ['webpack'],
+      'config/load-tests.js': ['webpack'],
     },
     coverageReporter: {
       dir: 'coverage/',
