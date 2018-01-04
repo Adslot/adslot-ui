@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Button } from 'third-party';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import BootstrapButton from 'react-bootstrap/lib/Button';
+import { Button } from 'third-party';
+import Spinner from 'alexandria/Spinner';
 
 describe('ButtonComponent', () => {
   it('should render Bootstrap Button', () => {
@@ -12,12 +13,12 @@ describe('ButtonComponent', () => {
 
   it('should support legacy classname btn-inverse for non-breaking change', () => {
     const element = shallow(<Button className="btn-inverse">Test</Button>);
-    expect(element.prop('className')).to.equal('btn-inverse');
+    expect(element.prop('className')).to.equal('button-component btn-inverse');
   });
 
   it('should support className prop', () => {
     const element = shallow(<Button className="all the-classes">Test</Button>);
-    expect(element.prop('className')).to.equal('all the-classes');
+    expect(element.prop('className')).to.equal('button-component all the-classes');
   });
 
   it('should not duplicate btn-inverse class if both legacy and new are used', () => {
@@ -26,12 +27,12 @@ describe('ButtonComponent', () => {
         Test
       </Button>
     );
-    expect(element.prop('className')).to.equal('btn-inverse');
+    expect(element.prop('className')).to.equal('button-component btn-inverse');
   });
 
   it('should render inverse button with btn-inverse class', () => {
     const element = shallow(<Button inverse>Test</Button>);
-    expect(element.prop('className')).to.equal('btn-inverse');
+    expect(element.prop('className')).to.equal('button-component btn-inverse');
   });
 
   it('should support data-test-selectors', () => {
@@ -53,5 +54,20 @@ describe('ButtonComponent', () => {
     const overlay = element.find(OverlayTrigger);
     expect(overlay).to.have.length(1);
     expect(shallow(overlay.prop('overlay')).text()).to.eql('Because');
+  });
+
+  it('should render Spinner if isLoading is true', () => {
+    const element = shallow(<Button isLoading>Spinner</Button>);
+    expect(element.find(Spinner)).to.have.length(1);
+  });
+
+  it('should only allow bsSize medium or small on Spinner', () => {
+    const element = shallow(
+      <Button isLoading bsSize="lg">
+        Spinner
+      </Button>
+    );
+    const spinnerEl = element.find(Spinner);
+    expect(spinnerEl.prop('size')).to.equal('medium');
   });
 });

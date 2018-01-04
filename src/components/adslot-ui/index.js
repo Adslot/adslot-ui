@@ -11,7 +11,6 @@ import PagedGrid from 'adslot-ui/PagedGrid';
 import Panel from 'adslot-ui/Panel';
 import Search from 'adslot-ui/Search';
 import SearchBar from 'adslot-ui/SearchBar';
-import SpinnerButton from 'adslot-ui/SpinnerButton';
 import SplitPane from 'adslot-ui/SplitPane';
 import Textarea from 'adslot-ui/Textarea';
 import TextEllipsis from 'adslot-ui/TextEllipsis';
@@ -41,7 +40,6 @@ export {
   Panel,
   Search,
   SearchBar,
-  SpinnerButton,
   SplitPane,
   Textarea,
   TextEllipsis,
