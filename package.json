@@ -44,9 +44,9 @@
     "printWidth": 120
   },
   "lint-staged": {
-    "*.{js,json,jsx}": [
+    "{src,docs,config}/**/*.{js,json,jsx}": [
       "prettier --write",
-      "git add"
+      "git update-index --again"
     ]
   },
   "keywords": [
