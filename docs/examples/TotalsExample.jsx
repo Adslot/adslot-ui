@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Totals } from '../../src/dist-entry';
+import { Totals } from '../../src';
 
 class TotalsExample extends React.PureComponent {
   render() {

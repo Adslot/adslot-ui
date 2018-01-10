@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Slicey } from '../../src/dist-entry';
+import { Slicey } from '../../src';
 
 class SliceyExample extends React.PureComponent {
   render() {

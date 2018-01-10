@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Button, ConfirmModal } from '../../src/dist-entry';
+import { Button, ConfirmModal } from '../../src';
 
 class ConfirmModalExample extends React.PureComponent {
   constructor() {

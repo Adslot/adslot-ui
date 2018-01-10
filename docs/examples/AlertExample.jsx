@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Alert } from '../../src/dist-entry';
+import { Alert } from '../../src';
 
 class AlertExample extends React.PureComponent {
   render() {

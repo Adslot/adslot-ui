@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Empty, SvgSymbol, FlexibleSpacer, Tabs, Tab } from '../../src/dist-entry';
+import { Empty, SvgSymbol, FlexibleSpacer, Tabs, Tab } from '../../src';
 
 class TabExample extends React.PureComponent {
   render() {

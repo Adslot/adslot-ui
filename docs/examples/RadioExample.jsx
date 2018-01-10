@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Radio, RadioGroup } from '../../src/dist-entry';
+import { Radio, RadioGroup } from '../../src';
 
 class RadioExample extends React.PureComponent {
   render() {

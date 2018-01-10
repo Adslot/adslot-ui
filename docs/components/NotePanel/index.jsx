@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from '../../../src/dist-entry';
+import { Panel } from '../../../src';
 
 import './styles.scss';
 

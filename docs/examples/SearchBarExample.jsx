@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { SearchBar } from '../../src/dist-entry';
+import { SearchBar } from '../../src';
 
 class SearchBarExample extends React.Component {
   constructor() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { PrettyDiff } from '../../src/dist-entry';
+import { PrettyDiff } from '../../src';
 
 class PrettyDiffExample extends React.PureComponent {
   render() {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import { Avatar, HoverDropdownMenu } from '../../src/dist-entry';
+import { Avatar, HoverDropdownMenu } from '../../src';
 
 class HoverDropdownMenuExample extends React.PureComponent {
   render() {

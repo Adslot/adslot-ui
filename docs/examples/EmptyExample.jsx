@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Empty } from '../../src/dist-entry';
+import { Empty } from '../../src';
 
 class EmptyExample extends React.PureComponent {
   render() {

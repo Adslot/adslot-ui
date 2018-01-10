@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Example from '../components/Example';
-import { DatePicker } from '../../src/dist-entry';
+import { DatePicker } from '../../src';
 
 class DatePickerExample extends React.Component {
   constructor() {

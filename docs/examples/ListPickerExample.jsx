@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from 'react-icheck/lib/Checkbox';
 import Example from '../components/Example';
-import { ListPicker, Button } from '../../src/dist-entry';
+import { ListPicker, Button } from '../../src';
 
 const teamMember1 = {
   avatar: '//lorempixel.com/35/35/people/7',

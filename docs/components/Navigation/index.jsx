@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { Accordion, Button } from '../../../src/dist-entry';
+import { Accordion, Button } from '../../../src';
 import './styles.scss';
 
 const initialOpenPanel = 'form-elements';

@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Avatar, Spinner, PageTitle } from '../../../src/dist-entry';
+import { Avatar, Spinner, PageTitle } from '../../../src';
 
 import './styles.scss';
 

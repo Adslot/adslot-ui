@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { HelpIconPopover } from '../../src/dist-entry';
+import { HelpIconPopover } from '../../src';
 
 class HelpIconPopoverExample extends React.PureComponent {
   render() {

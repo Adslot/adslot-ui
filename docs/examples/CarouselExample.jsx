@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Carousel } from '../../src/dist-entry';
+import { Carousel } from '../../src';
 
 class CarouselExample extends React.PureComponent {
   render() {

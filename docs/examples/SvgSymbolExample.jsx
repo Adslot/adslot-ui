@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { SvgSymbol } from '../../src/dist-entry';
+import { SvgSymbol } from '../../src';
 
 class SvgSymbolExample extends React.PureComponent {
   render() {

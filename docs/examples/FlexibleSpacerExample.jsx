@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { FlexibleSpacer } from '../../src/dist-entry';
+import { FlexibleSpacer } from '../../src';
 
 class FlexibleSpacerExample extends React.PureComponent {
   render() {

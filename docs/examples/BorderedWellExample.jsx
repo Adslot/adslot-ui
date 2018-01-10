@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { BorderedWell } from '../../src/dist-entry';
+import { BorderedWell } from '../../src';
 
 class BorderedWellExample extends React.PureComponent {
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Nav, NavItem } from '../../src/dist-entry';
+import { Nav, NavItem } from '../../src';
 
 class NavigationExample extends React.PureComponent {
   constructor(props) {

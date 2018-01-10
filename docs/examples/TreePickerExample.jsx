@@ -1,7 +1,7 @@
 import React from 'react';
 import Example from '../components/Example';
 import _ from 'lodash';
-import { TreePickerSimplePure } from '../../src/dist-entry';
+import { TreePickerSimplePure } from '../../src';
 
 class TreePickerExample extends React.Component {
   constructor() {

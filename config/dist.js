@@ -8,9 +8,7 @@ module.exports = () => {
   const buildType = process.env.TYPE || 'development';
 
   let entries = {
-    main: resolve(__dirname, '../src/dist-entry'),
-    core: resolve(__dirname, '../src/dist-entry/core'),
-    extra: resolve(__dirname, '../src/dist-entry/extra'),
+    main: resolve(__dirname, '../src'),
     docs: resolve(__dirname, '../docs/run'),
   };
   const plugins = [
@@ -78,6 +76,12 @@ module.exports = () => {
         commonjs2: 'redux',
         commonjs: 'redux',
         amd: 'redux',
+      },
+      moment: {
+        root: 'moment',
+        commonjs2: 'moment',
+        commonjs: 'moment',
+        amd: 'moment',
       },
     },
     output: {
