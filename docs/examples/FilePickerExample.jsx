@@ -1,4 +1,4 @@
-/**/ import React from 'react';
+import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
 import { FilePicker } from '../../src/dist-entry';
@@ -12,6 +12,11 @@ class FilePickerExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'File Picker',
+  designNotes: (
+    <p>
+      <span className="text-bold">File picker</span> allows the user to easily add and remove a file for upload.
+    </p>
+  ),
   exampleCodeSnippet: '<FilePicker onSelect={onSelect} />',
   propTypes: [
     {

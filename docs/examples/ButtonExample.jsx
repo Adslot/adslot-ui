@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import Example from '../components/Example';
 import { Button } from '../../src/dist-entry';
 
@@ -40,6 +39,26 @@ export const exampleProps = {
       </a>.
     </p>
   ),
+  designNotes: (
+    <p>
+      <span className="text-bold">Primary buttons</span> are used to drive user action, there is only one primary action
+      button per page. Primary buttons display filled with a colour and inverted white text eg.{' '}
+      <span className="text-blue text-bold">Blue</span>, <span className="text-green text-bold">Green</span> and used
+      commonly for Sign off, Save, Apply, Approve etc.
+      <br />
+      <br />
+      <span className="text-bold">Inverted button</span> is used as a secondary action to the primary action on the
+      page. Inverted buttons are bordered with <span className="text-gray-light text-bold">Gray-Light</span> with text{' '}
+      <span className="text-gray-dark text-bold">Gray-Dark</span> and used commonly for eg. Edit, Cancel, Add Product,
+      Close etc.
+      <br />
+      <br />
+      <span className="text-bold">Inverted coloured buttons</span> are used as second primary actions alongside a
+      primary action. Use the same colour for the border and text eg. <span className="text-blue text-bold">Blue</span>,{' '}
+      <span className="text-green text-bold">Green</span>, <span className="text-red text-bold">Red</span> eg. Cancel
+      Campaign, Save, Reject etc.
+    </p>
+  ),
   exampleCodeSnippet: `<div>
     <Button
       bsStyle="link"
@@ -64,7 +83,7 @@ export const exampleProps = {
       defaultValue: 'default',
       note: (
         <span>
-          <br />It's uncommon to use <pre>success</pre>, <pre>info</pre>, <pre>warning</pre>, or <pre>danger</pre>
+          <br />It&apos;s uncommon to use <pre>success</pre>, <pre>info</pre>, <pre>warning</pre>, or <pre>danger</pre>
           which are supported by Bootstrap but not us.
         </span>
       ),

@@ -30,9 +30,15 @@ class SpinnerButtonExample extends React.Component {
 const exampleProps = {
   componentName: 'SpinnerButton',
   notes: (
-    <div>
+    <p>
       Extends the above <pre>Button</pre> component with added loading state.
-    </div>
+    </p>
+  ),
+  designNotes: (
+    <p>
+      <span className="text-bold">Spinner button</span> is used when we have a delayed response fetching
+      information/data and require to inform the user on-click that we working to deliver their action.
+    </p>
   ),
   exampleCodeSnippet: `<SpinnerButton bsStyle="primary" isLoading={isLoading} onClick={onClick}>
   Save Details

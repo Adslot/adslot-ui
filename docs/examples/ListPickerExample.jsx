@@ -1,6 +1,6 @@
 import React from 'react';
-import Example from '../components/Example';
 import Checkbox from 'react-icheck/lib/Checkbox';
+import Example from '../components/Example';
 import { ListPicker, Button } from '../../src/dist-entry';
 
 const teamMember1 = {
@@ -62,6 +62,12 @@ class ListPickerExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'List Picker',
+  designNotes: (
+    <p>
+      <span className="text-bold">List picker</span> displays lists in modals for users to make selections and apply as
+      required. This same pattern is used in the <span>UserListPicker</span>.
+    </p>
+  ),
   exampleCodeSnippet: `
     <ListPicker
       allowMultiSelection={false}

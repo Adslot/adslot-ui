@@ -10,11 +10,16 @@ class CheckboxExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Checkbox',
+  designNotes: (
+    <p>
+      <span className="text-bold">Checkbox</span> used for making one or more selections from multiple options.
+    </p>
+  ),
   exampleCodeSnippet: '<Checkbox label="Agree to the terms and conditions." />',
   notes: (
-    <span>
+    <p>
       See <a href="https://github.com/luqin/react-icheck">React iCheck Documentation</a>
-    </span>
+    </p>
   ),
   propTypes: [
     {

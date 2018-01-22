@@ -1,0 +1,39 @@
+@import '~styles/variable';
+
+.note-panel {
+  width: 750px;
+
+  ~ .note-panel {
+    margin-top: $spacing-etalon;
+  }
+
+  .text {
+    &-blue {
+      color: $color-blue;
+    }
+
+    &-green {
+      color: $color-green;
+    }
+
+    &-gray-light {
+      color: $color-gray-light;
+    }
+
+    &-gray-dark {
+      color: $color-gray-dark;
+    }
+
+    &-red {
+      color: $color-red;
+    }
+
+    &-orange {
+      color: $color-orange;
+    }
+
+    &-bold {
+      font-weight: $font-weight-bold;
+    }
+  }
+}

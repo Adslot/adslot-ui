@@ -10,6 +10,13 @@ class TextareaExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Textarea',
+  designNotes: (
+    <p>
+      <span className="text-bold">Text area</span> used to capture comments, creative ad tags etc. If there is a
+      character limitation then the count should be listed below and on the right side of the text area. Font size is{' '}
+      <span className="text-bold">12px</span>, weight <span className="text-bold">300</span>.
+    </p>
+  ),
   exampleCodeSnippet: '<Textarea maxLength={250} />',
   propTypes: [
     {
