@@ -10,7 +10,6 @@ import SearchResultCard from '../SearchResultCard';
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
 import FilePickerExample from '../../examples/FilePickerExample';
-import SpinnerButtonExample from '../../examples/SpinnerButtonExample';
 import TextareaExample from '../../examples/TextareaExample';
 import TextEllipsisExample from '../../examples/TextEllipsisExample';
 import AlertExample from '../../examples/AlertExample';
@@ -69,7 +68,6 @@ ContentArea.propTypes = SidebarArea.propTypes;
 const componentsBySection = {
   'form-elements': [
     'button',
-    'spinner-button',
     'alert-input',
     'file-picker',
     'textarea',
@@ -170,7 +168,6 @@ class PageLayout extends React.Component {
           <ContentArea>
             <PageTitle title="Form Elements" />
             <ButtonExample />
-            <SpinnerButtonExample />
             <AlertInputExample />
             <FilePickerExample />
             <TextareaExample />

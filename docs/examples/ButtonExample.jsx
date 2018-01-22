@@ -92,6 +92,7 @@ export const exampleProps = {
       propType: 'inverse',
       type: 'bool',
       note: 'Renders an inverse button. Can be used with bsStyle to create primary inverse buttons.',
+      defaultValue: 'false',
     },
     {
       propType: 'reason',
@@ -111,6 +112,12 @@ export const exampleProps = {
           We rarely use <pre>large</pre>, and should not use <pre>small</pre>.
         </span>
       ),
+    },
+    {
+      propType: 'isLoading',
+      type: 'bool',
+      defaultValue: 'false',
+      note: 'set this to true to display Spinner and disable the button',
     },
   ],
 };

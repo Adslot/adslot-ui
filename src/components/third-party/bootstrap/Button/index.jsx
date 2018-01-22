@@ -7,9 +7,23 @@ import classNames from 'classnames';
 import BootstrapButton from 'react-bootstrap/lib/Button';
 import BootstrapPopover from 'react-bootstrap/lib/Popover';
 import BootstrapOverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
+import './styles.scss';
 
 class Button extends React.PureComponent {
+  renderSpinner() {
+    if (this.props.isLoading) {
+      return (
+        <div className="spinner-container">
+          <Spinner size={_.includes(['lg', 'large'], this.props.bsSize) ? 'medium' : 'small'} />
+        </div>
+      );
+    }
+
+    return null;
+  }
+
   renderWithReason() {
     const popover = (
       <BootstrapPopover id="btn-reason" className="btn-popover-reason">
@@ -24,15 +38,20 @@ class Button extends React.PureComponent {
   }
 
   renderButton() {
-    const { inverse, children, dts, className } = this.props;
+    const { inverse, children, dts, className, isLoading, disabled } = this.props;
+    const classes = classNames('button-component', className, {
+      'btn-inverse': inverse && !/btn-inverse/.test(className),
+    });
 
     return (
       <BootstrapButton
         {..._.pick(this.props, _.keys(BootstrapButton.propTypes))}
-        className={classNames(className, { 'btn-inverse': inverse && !/btn-inverse/.test(className) })}
+        disabled={isLoading || disabled}
+        className={classes}
         {...expandDts(dts)}
       >
-        {children}
+        {this.renderSpinner()}
+        <div className={isLoading ? 'button-component-children-container' : null}>{children}</div>
       </BootstrapButton>
     );
   }
@@ -48,12 +67,14 @@ Button.propTypes = _.assign(
     inverse: PropTypes.bool,
     reason: PropTypes.string,
     dts: PropTypes.string,
+    isLoading: PropTypes.bool,
   },
   BootstrapButton.propTypes
 );
 
 Button.defaultProps = {
   inverse: false,
+  isLoading: false,
 };
 
 export default Button;
