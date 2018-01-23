@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Grid, GridCell, GridRow } from '../../src/dist-entry';
+import { Grid, GridCell, GridRow } from '../../src';
 
 const cellClicked = () => console.log('Cell clicked');
 

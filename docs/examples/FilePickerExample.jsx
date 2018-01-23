@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import { FilePicker } from '../../src/dist-entry';
+import { FilePicker } from '../../src';
 
 class FilePickerExample extends React.PureComponent {
   render() {

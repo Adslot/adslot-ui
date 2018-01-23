@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { SplitPane } from '../../src/dist-entry';
+import { SplitPane } from '../../src';
 
 class SplitPaneExample extends React.PureComponent {
   render() {

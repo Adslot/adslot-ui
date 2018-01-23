@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Button, UserListPicker } from '../../src/dist-entry';
+import { Button, UserListPicker } from '../../src';
 
 const avatarColor = () => 'cyan';
 const emptySvgSymbol = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Statistic } from '../../src/dist-entry';
+import { Statistic } from '../../src';
 
 class StatisticExample extends React.PureComponent {
   render() {

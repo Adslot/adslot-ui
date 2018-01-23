@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import { Panel } from '../../src/dist-entry';
+import { Panel } from '../../src';
 
 class PanelExample extends React.Component {
   constructor() {

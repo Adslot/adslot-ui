@@ -15,4 +15,4 @@ cp ./docs/examples/template.jsx ./docs/examples/"${1}Example.jsx"
 sed -i '.bak' "s/xxx/$1/g" docs/examples/"$1"Example.jsx && rm -f docs/examples/"$1"Example.jsx.bak;
 sed -i '.bak' "s/xxx/$1/g" src/components/adslot-ui/"$1"/* && rm -f src/components/adslot-ui/"$1"/*.bak;
 sed -i '.bak' "s/x-x-x/$(sed -e 's/\([A-Z]\)/-\1/g' -e 's/^-//' <<< $1  | tr '[:upper:]' '[:lower:]')/g" src/components/adslot-ui/"$1"/* && rm -f src/components/adslot-ui/"$1"/*.bak;
-echo "✓ Generated '${1}'. Don't forget to add your new component to src/dist-entry/core.js" && exit 0;
+echo "✓ Generated '${1}'. Don't forget to add your new component to src/index.js" && exit 0;

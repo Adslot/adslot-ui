@@ -51,7 +51,7 @@ import SplitPaneExample from '../../examples/SplitPaneExample';
 import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
 import NavigationExample from '../../examples/NavigationExample';
 
-import { PageTitle } from '../../../src/dist-entry';
+import { PageTitle } from '../../../src';
 
 import './styles.scss';
 import '../../examples/styles.scss';

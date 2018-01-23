@@ -4,7 +4,7 @@ if (process.env.TYPE === 'development') {
   plugins = [...plugins, 'react-hot-loader/babel'];
 }
 
-const presets = ['env', 'react'];
+const presets = process.env.TYPE === 'development' ? [['env', { modules: false }], 'react'] : ['env', 'react'];
 
 module.exports = {
   presets,

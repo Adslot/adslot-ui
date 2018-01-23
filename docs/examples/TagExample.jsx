@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import { Button, Tag } from '../../src/dist-entry';
+import { Button, Tag } from '../../src';
 
 const initialState = {
   tags: [

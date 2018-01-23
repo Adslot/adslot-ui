@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, PageTitle, SvgSymbol } from '../../../src/dist-entry';
+import { Button, PageTitle, SvgSymbol } from '../../../src';
 import './styles.scss';
 
 const HeaderGraphics = () => (

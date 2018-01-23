@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import { AlertInput } from '../../src/dist-entry';
+import { AlertInput } from '../../src';
 
 const initialState = {
   impressions: null,

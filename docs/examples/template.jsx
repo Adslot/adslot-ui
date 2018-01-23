@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { xxx } from '../../src/dist-entry';
+import { xxx } from '../../src';
 
 class xxxExample extends React.PureComponent {
   render() {

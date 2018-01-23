@@ -4,6 +4,8 @@ import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
 
+import DatePicker from 'react-datepicker';
+
 // React Bootstrap
 import { Button } from 'third-party';
 
@@ -20,6 +22,7 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
+import 'styles/_react-datepicker-custom.scss';
 import 'styles/_react-select-custom.scss';
 
 import {
@@ -86,6 +89,7 @@ export {
   Checkbox,
   ConfirmModal,
   Dropdown,
+  DatePicker,
   Empty,
   fastStatelessWrapper,
   FilePicker,

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Empty } from '../../../src/dist-entry';
+import { Card, Button, Empty } from '../../../src';
 import './styles.scss';
 
 const SearchResultCard = ({ navigateTo, clearSearch, searchResults }) => (

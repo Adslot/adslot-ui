@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Select } from '../../src/dist-entry';
+import { Select } from '../../src';
 
 class SelectExample extends React.Component {
   constructor() {

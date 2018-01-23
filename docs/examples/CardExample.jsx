@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Card } from '../../src/dist-entry';
+import { Card } from '../../src';
 
 class CardExample extends React.PureComponent {
   render() {

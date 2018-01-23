@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Avatar } from '../../src/dist-entry';
+import { Avatar } from '../../src';
 
 class AvatarExample extends React.PureComponent {
   render() {

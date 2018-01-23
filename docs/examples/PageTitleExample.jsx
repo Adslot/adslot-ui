@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { PageTitle } from '../../src/dist-entry';
+import { PageTitle } from '../../src';
 
 class PageTitleExample extends React.PureComponent {
   render() {

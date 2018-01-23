@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Button } from '../../src/dist-entry';
+import { Button } from '../../src';
 
 class ButtonExample extends React.PureComponent {
   constructor(props) {

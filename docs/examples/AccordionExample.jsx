@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Immutable from 'seamless-immutable';
 import Example from '../components/Example';
-import { Accordion, Checkbox } from '../../src/dist-entry';
+import { Accordion, Checkbox } from '../../src';
 
 const initialState = {
   accordionPanels: [

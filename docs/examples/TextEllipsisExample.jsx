@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { TextEllipsis } from '../../src/dist-entry';
+import { TextEllipsis } from '../../src';
 
 const loremIpsum = `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
