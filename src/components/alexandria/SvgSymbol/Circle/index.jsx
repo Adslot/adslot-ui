@@ -20,7 +20,7 @@ const SvgSymbolCircle = props => {
 SvgSymbolCircle.displayName = 'AlexandriaSvgSymbolCircleComponent';
 
 SvgSymbolCircle.propTypes = {
-  classSuffixes: SvgSymbol.propTypes.classSuffixes,
+  classSuffixes: SvgSymbol.propTypes.classSuffixes, // eslint-disable-line react/no-typos
   href: PropTypes.string,
 };
 

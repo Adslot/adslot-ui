@@ -142,18 +142,14 @@ describe('TreePickerNodeComponent', () => {
   });
 
   it('should render button as disabled when disabled is true', () => {
-    let fireCount = 0;
-    const testFunction = () => {
-      fireCount += 1;
-    };
-
+    const testFunction = sinon.spy();
     const component = mount(
       <TreePickerNode itemType={itemType} node={cbrNode} removeNode={testFunction} selected disabled />
     );
     const buttonElement = component.find(Button);
     expect(buttonElement.prop('disabled')).to.equal(true);
     buttonElement.simulate('click');
-    expect(fireCount).to.equal(0);
+    expect(testFunction.callCount).to.equal(0);
   });
 
   it('should filter value when provided', () => {
@@ -191,29 +187,13 @@ describe('TreePickerNodeComponent', () => {
     expect(component.prop('className')).to.equal('treepickernode-component child-node');
   });
 
-  it('should fire expandNode when clicking on the label cell', done => {
-    const props = {
-      expandNode: node => {
-        expect(node).to.deep.equal(cbrNode);
-        done();
-      },
+  it('should fire expandNode when clicking on the label cell', () => {
+    const spy = sinon.spy();
+    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} expandNode={spy} />);
 
-      node: cbrNode,
-      itemType,
-    };
-
-    const component = shallow(<TreePickerNode {...props} />);
-
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
-    expect(rowElement.find(TreePickerNodeExpander)).to.have.length(1);
-
-    const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.prop('stretch')).to.equal(true);
-    labelWrapperCellElement.simulate('click');
+    const labelElement = component.find({ dts: 'label' });
+    labelElement.simulate('click');
+    expect(spy.callCount).to.equal(1);
   });
 
   it('should not show the expander element when the node is not expandable', () => {

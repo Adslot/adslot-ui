@@ -36,20 +36,11 @@ class TreePickerNodeComponent extends React.Component {
     this.setLoadingAndExpandNode = this.setLoadingAndExpandNode.bind(this);
     this.includeNodeBound = this.props.includeNode.bind(this, this.props.node);
     this.removeNodeBound = this.props.removeNode.bind(this, this.props.node);
+    if (this.props.expandNode) this.expandNodeBound = this.props.expandNode.bind(this, this.props.node);
   }
 
   setLoadingAndExpandNode() {
-    // Using intervals and setState callback to seamlessly and consistently show the spinner despite sync
-    // or async expandNode method. Renders spinner even for slow DOM redraws or large lists.
-    const DELAY = 25;
-    const delayedExpandNode = () => {
-      const intervalToClear = setInterval(() => {
-        this.props.expandNode(this.props.node);
-        clearInterval(intervalToClear);
-      }, DELAY);
-    };
-
-    this.setState({ isLoading: true }, delayedExpandNode);
+    this.setState({ isLoading: true }, this.expandNodeBound);
   }
 
   render() {

@@ -81,7 +81,7 @@
           margin-left: -$arrow-half-width;
           top: -($arrow-width);
 
-          &:after {
+          &::after {
             border-width: $arrow-half-width - 1px;
             margin-left: -($arrow-half-width - 1px);
             top: -($arrow-half-width - 2px);

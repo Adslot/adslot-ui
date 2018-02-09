@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { github } from 'react-syntax-highlighter/dist/styles';
+import SyntaxHighlighter, { prism } from 'react-syntax-highlighter/prism';
 import NotePanel from '../NotePanel';
 import { Button, Empty } from '../../../src';
 
@@ -26,7 +25,7 @@ class Example extends React.PureComponent {
         <div className="adslot-ui-example">{children}</div>
 
         <div className="adslot-ui-code-snippet">
-          <SyntaxHighlighter language="html" style={github}>
+          <SyntaxHighlighter language="jsx" style={prism}>
             {exampleCodeSnippet}
           </SyntaxHighlighter>
         </div>

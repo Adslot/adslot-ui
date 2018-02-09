@@ -9,19 +9,26 @@ class TreePickerExample extends React.Component {
     this.state = {
       itemType: 'segment value',
       treePickerPureSubtree: [],
+      selectedNodes: [],
       pickerSearchValue: '',
       subTree: [
         {
           id: '0',
           label: 'Northern Territory',
-          path: [{ id: '10', label: 'AU' }],
-          type: '',
+          path: [{ id: '10', label: 'Australia' }],
+          type: 'Territory',
         },
         {
           id: '1',
           label: 'Australian Capital Territory',
-          path: [{ id: '10', label: 'AU' }],
-          type: '',
+          path: [{ id: '10', label: 'Australia' }],
+          type: 'Territory',
+        },
+        {
+          id: '2',
+          label: 'Victoria',
+          path: [{ id: '10', label: 'Australia' }],
+          type: 'State',
         },
       ],
     };
@@ -49,7 +56,7 @@ class TreePickerExample extends React.Component {
       <TreePickerSimplePure
         itemType={this.state.itemType}
         hideIcon
-        selectedNodes={[]}
+        selectedNodes={this.state.selectedNodes}
         subtree={this.state.treePickerPureSubtree}
         emptySelectedListText={
           <div>
@@ -64,7 +71,8 @@ class TreePickerExample extends React.Component {
         searchValue={this.state.pickerSearchValue}
         onChange={this.setPickerSearchValue}
         searchOnClear={this.pickerSearchOnClear}
-        includeNode={_.noop}
+        includeNode={node => this.setState({ selectedNodes: _.concat([], this.state.selectedNodes, node) })}
+        removeNode={node => this.setState({ selectedNodes: _.reject(this.state.selectedNodes, { id: node.id }) })}
         additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
       />
     );

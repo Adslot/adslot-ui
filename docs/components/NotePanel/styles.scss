@@ -7,6 +7,10 @@
     margin-top: $spacing-etalon;
   }
 
+  pre {
+    display: inline;
+  }
+
   .text {
     &-blue {
       color: $color-blue;
