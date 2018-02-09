@@ -1,15 +1,18 @@
 sudo: required
 language: node_js
 node_js:
-- '6'
-- '8'
+  - '6'
+  - '8'
 addons:
   chrome: stable
 before_script:
-- sudo chown root /opt/google/chrome/chrome-sandbox
-- sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+  - sudo chown root /opt/google/chrome/chrome-sandbox
+  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+script:
+  - npm test
+  - npm run dist
 after_success:
-- npm run codecov
+  - npm run codecov
 notifications:
   hipchat:
     on_pull_requests: false
