@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/bin/bash -e
 
-echo 'Deleting distribution files...';
-npm run clean;
+echo 'Deleting distribution files...'
+npm run clean
 
-echo 'Generating development build...';
-TYPE=development webpack --bail --env=dist --progress --hide-modules;
+echo 'Generating development build...'
+TYPE=development webpack --bail --env=dist --progress --hide-modules
 
-echo 'Generating production build...';
-TYPE=production webpack --bail --env=dist --progress -p --hide-modules;
-exit 0;
+echo 'Generating production build...'
+TYPE=production webpack --bail --env=dist --progress -p --hide-modules
