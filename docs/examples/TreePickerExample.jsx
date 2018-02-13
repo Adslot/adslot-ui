@@ -95,14 +95,20 @@ const exampleProps = {
 />`,
   propTypes: [
     {
+      propType: 'additionalClassNames',
+      type: 'arrayOf(string)',
+      note: 'Class Names for SplitPane component',
+    },
+    {
       propType: 'breadcrumbNodes',
       type: 'arrayOf { id: string/number, label: string }',
-      note: 'returns node id',
+      note: `returns node id. This prop is not required,
+        but an empty array is not allowed. At least one element is required in the array.`,
     },
     {
       propType: 'breadcrumbOnClick',
       type: 'func',
-      note: 'required. This propType creates a list of breadcrumb node',
+      note: 'This propType creates a list of breadcrumb node',
     },
     {
       propType: 'debounceInterval',
@@ -114,7 +120,7 @@ const exampleProps = {
       propType: 'disabled',
       type: 'bool',
       defaultValue: <pre>false</pre>,
-      note: 'disables treepicker including serach bar',
+      note: 'disables treepicker including search bar',
     },
     {
       propType: 'disableInclude',
@@ -141,13 +147,13 @@ const exampleProps = {
     },
     {
       propType: 'emptyText',
-      type: 'string',
-      note: `displays this text when there will be no item on left Grid`,
+      type: 'node',
+      note: `displays this text when there will be no item on left Grid. Prefer type 'string', but rich text can be used here.`,
     },
     {
       propType: 'emptySelectedListText',
-      type: 'string',
-      note: `displays this text when there will be no item on right Grid(Selected list)`,
+      type: 'node',
+      note: `displays this text when there will be no item on right Grid(Selected list). Prefer type 'string', but rich text can be used here.`,
     },
     {
       propType: 'expandNode',
@@ -186,7 +192,7 @@ const exampleProps = {
     {
       propType: 'itemType',
       type: 'string',
-      defaultValue: <pre>node</pre>,
+      defaultValue: <pre>'node'</pre>,
       note: 'uses for specific className',
     },
     {
@@ -206,7 +212,12 @@ const exampleProps = {
     {
       propType: 'onChange',
       type: 'func',
-      note: 'triggers search input onchange',
+      note: 'onChange function triggers, when search input changes',
+    },
+    {
+      propType: 'onClear',
+      type: 'func',
+      note: 'onClear function triggers, when the user clicks the clear button on search input',
     },
     {
       propType: 'onSearch',
@@ -217,13 +228,13 @@ const exampleProps = {
       propType: 'searchOnChange',
       type: 'bool',
       defaultValue: <pre>true</pre>,
-      note: 'Serach for item on onChange trigger when the value is true',
+      note: 'When true, search is triggered as soon as the user types in the search field',
     },
     {
       propType: 'searchOnEnterKey',
       type: 'bool',
       defaultValue: <pre>false</pre>,
-      note: 'Serach for item on Enter key trigger when the value is true',
+      note: 'When true, triggers search when the user presses the Enter key',
     },
     {
       propType: 'searchPlaceholder',
@@ -241,7 +252,8 @@ const exampleProps = {
     {
       propType: 'subtree',
       type: 'arrayOf Treepicker Nodes',
-      note: 'required. A list of available unselected nodes',
+      note: `A list of available unselected nodes. This prop is not required,
+        but an empty array is not allowed. At least one element is required in the array.`,
     },
     {
       propType: 'svgSymbolCancel',
