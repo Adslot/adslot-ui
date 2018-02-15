@@ -372,4 +372,11 @@ describe('TreePickerNodeComponent', () => {
     expect(stringIdNode.find(GridRow).prop('dts')).to.equal('example-item-type-au-act-cbr');
     expect(numberIdNode.find(GridRow).prop('dts')).to.equal('example-item-type-4');
   });
+
+  it('should throw error message when props does not contain `path` or `ancestors`', () => {
+    const nodeWithoutPathAndAncestors = _.omit(cbrNode, ['path', 'ancestors']);
+    expect(() => {
+      shallow(<TreePickerNode itemType={itemType} node={nodeWithoutPathAndAncestors} />);
+    }).to.throw(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors'`);
+  });
 });
