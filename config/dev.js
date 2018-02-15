@@ -29,18 +29,6 @@ module.exports = merge(commonConfig, {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        include: resolve(__dirname, '../docs'),
-        exclude: /node_modules/,
-        options: {
-          // This is a feature of `babel-loader` for webpack (not Babel itself). It enables caching results
-          // in ./node_modules/.cache/babel-loader/ directory for faster rebuilds.
-          cacheDirectory: true,
-        },
-      },
-
-      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',

@@ -28,6 +28,10 @@ const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
 
 class TreePickerNodeComponent extends React.Component {
   constructor(props) {
+    if (_.isUndefined(props.node.path) && _.isUndefined(props.node.ancestors)) {
+      throw new Error(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors' for ${props.node}`);
+    }
+
     super(props);
 
     this.state = {
