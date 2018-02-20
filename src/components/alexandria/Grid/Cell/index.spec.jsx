@@ -59,4 +59,9 @@ describe('GridCell', () => {
     const component = shallow(<GridCell dts="this-has-data-test-selector" />);
     expect(component.prop('data-test-selector')).to.equal('this-has-data-test-selector');
   });
+
+  it('should add custom classes when passed addonClassNames', () => {
+    const component = shallow(<GridCell addonClassNames={['addonClass1', 'addonClass2']} />);
+    expect(component.prop('className')).to.equal('grid-component-cell addonClass1 addonClass2');
+  });
 });
