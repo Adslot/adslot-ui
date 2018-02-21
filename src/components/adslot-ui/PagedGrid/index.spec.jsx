@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Pagination from 'react-bootstrap/lib/Pagination';
+import Pagination from 'third-party/bootstrap/Pagination';
 import PagedGridComponent from 'adslot-ui/PagedGrid';
 import GridRow from 'alexandria/Grid/Row';
 import GridCell from 'alexandria/Grid/Cell';
