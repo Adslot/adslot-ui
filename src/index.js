@@ -4,7 +4,6 @@ import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Pagination from 'react-bootstrap/lib/Pagination';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import NavItem from 'react-bootstrap/lib/NavItem';
 
@@ -72,6 +71,7 @@ import InformationBox from './components/InformationBox';
 import HoverDropdownMenu from './components/HoverDropdownMenu';
 import OverlayLoader from './components/OverlayLoader';
 import VerticalNav from './components/VerticalNavigation';
+import Pagination from './components/Pagination';
 
 export {
   Accordion,

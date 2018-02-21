@@ -64,6 +64,9 @@ import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
 import SearchExample from '../../examples/SearchExample';
 import ActionPanelExample from '../../examples/ActionPanelExample';
 import SwitchExample from '../../examples/SwitchExample';
+import PaginationExample from '../../examples/PaginationExample';
+import DropdownExample from '../../examples/DropdownExample';
+import ProgressBarExample from '../../examples/ProgressBarExample';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -95,9 +98,17 @@ const componentsBySection = {
     'switch',
   ],
   'typography-and-text-layout': ['text-ellipsis'],
-  'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
+  'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey', 'progress-bar'],
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
-  navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs', 'vertical-navigation-tabs'],
+  navigation: [
+    'breadcrumb',
+    'tab',
+    'pagination',
+    'dropdown',
+    'hover-dropdown-menu',
+    'navigation-tabs',
+    'vertical-navigation-tabs',
+  ],
   'feedback-and-states': ['alert', 'empty', 'spinner', 'overlay-loader', 'pretty-diff', 'status-pill'],
   dialogue: ['popover', 'popover-with-ref', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
@@ -204,6 +215,7 @@ class PageLayout extends React.Component {
             <StatisticExample />
             <TotalsExample />
             <SliceyExample />
+            <ProgressBarExample />
 
             <PageTitle title="Icons and Graphics" />
             <SvgSymbolExample />
@@ -212,6 +224,8 @@ class PageLayout extends React.Component {
             <PageTitle title="Navigation" />
             <BreadcrumbExample />
             <TabExample />
+            <PaginationExample />
+            <DropdownExample />
             <HoverDropdownMenuExample />
             <NavigationExample />
             <VerticalNavigationExample />

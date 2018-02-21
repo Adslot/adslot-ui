@@ -131,7 +131,7 @@
     "prettier-check": "^2.0.0",
     "prop-types": "^15.7.2",
     "puppeteer": "^1.18.1",
-    "react-bootstrap": "^0.31.5",
+    "react-bootstrap": "^0.32.4",
     "react-datepicker": "github:Adslot/react-datepicker#2a1ebb8618e1996c321331ef01d290424272d126",
     "react-dev-utils": "^9.0.1",
     "react-redux": "^7.1.0",

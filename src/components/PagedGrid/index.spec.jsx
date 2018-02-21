@@ -1,7 +1,6 @@
-import { GridCell, GridRow } from 'adslot-ui';
+import { GridCell, GridRow, Pagination } from 'adslot-ui';
 import { shallow } from 'enzyme';
 import React from 'react';
-import Pagination from 'react-bootstrap/lib/Pagination';
 import PagedGridComponent from '.';
 
 describe('PagedGridComponent', () => {
