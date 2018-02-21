@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { expandDts, classSuffixHelper } from 'lib/utils';
 import './styles.scss';
 
-const GridCell = ({ children, classSuffixes, onClick, stretch, dts }) => {
+const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNames }) => {
   const componentClass = 'grid-component-cell';
   const classesList = classSuffixHelper({
     classSuffixes,
@@ -13,10 +13,12 @@ const GridCell = ({ children, classSuffixes, onClick, stretch, dts }) => {
     },
     componentClass,
   });
+  const baseClassNames = `${componentClass}${classesList}`;
+  const className = addonClassNames ? [baseClassNames, ...addonClassNames].join(' ') : baseClassNames;
   const extraProps = onClick ? { onClick } : {};
 
   return (
-    <div className={`${componentClass}${classesList}`} {...extraProps} {...expandDts(dts)}>
+    <div className={className} {...extraProps} {...expandDts(dts)}>
       {children}
     </div>
   );
@@ -25,11 +27,12 @@ const GridCell = ({ children, classSuffixes, onClick, stretch, dts }) => {
 GridCell.displayName = 'AlexandriaGridCellComponent';
 
 GridCell.propTypes = {
+  addonClassNames: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,
   classSuffixes: PropTypes.arrayOf(PropTypes.string),
+  dts: PropTypes.string,
   onClick: PropTypes.func,
   stretch: PropTypes.bool,
-  dts: PropTypes.string,
 };
 
 GridCell.defaultProps = {
