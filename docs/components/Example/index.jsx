@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SyntaxHighlighter, { prism } from 'react-syntax-highlighter/prism';
 import NotePanel from '../NotePanel';
-import { Button, Empty } from '../../../src';
+import PropTypeTable from '../PropTypeTable';
+import { Button } from '../../../src';
 
 import './styles.scss';
 
@@ -30,38 +31,8 @@ class Example extends React.PureComponent {
           </SyntaxHighlighter>
         </div>
 
-        <h3>PropTypes</h3>
-        <div className="adslot-ui-proptype-table">
-          <table className="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>PropType</th>
-                <th>Type</th>
-                <th>Default Value</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
-                <tr key={propType}>
-                  <td>
-                    <pre>{propType}</pre>
-                  </td>
-                  <td>
-                    <pre>{type}</pre>
-                  </td>
-                  <td>{defaultValue}</td>
-                  <td>{note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Empty
-            collection={propTypes}
-            hideIcon
-            text="No PropType definitions for this component, please check the source-code."
-          />
-        </div>
+        <PropTypeTable propTypes={propTypes} />
+
         <Button bsStyle="link" href="#top">
           ↑ Back to top.
         </Button>
@@ -76,14 +47,7 @@ Example.propTypes = {
   notes: PropTypes.node,
   designNotes: PropTypes.node,
   exampleCodeSnippet: PropTypes.string.isRequired,
-  propTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      propType: PropTypes.string.isRequired,
-      type: PropTypes.node.isRequired,
-      defaultValue: PropTypes.node,
-      note: PropTypes.node,
-    })
-  ).isRequired,
+  propTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Example;
