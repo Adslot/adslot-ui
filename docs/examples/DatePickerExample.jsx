@@ -40,14 +40,15 @@ const exampleProps = {
       </p>
     </div>
   ),
-  exampleCodeSnippet: `<DatePicker
-  className="form-control"
-  dateFormat="DD MMM YYYY"
-  selected={this.state.startDate}
-  onChange={this.setSelectedDate}
-  placeholderText="Date e.g. 03 Sep 2016"
-/>`,
-  propTypes: [],
+  exampleCodeSnippet: `
+  <DatePicker
+    className="form-control"
+    dateFormat="DD MMM YYYY"
+    selected={this.state.startDate}
+    onChange={this.setSelectedDate}
+    placeholderText="Date e.g. 03 Sep 2016"
+  />`,
+  propTypeSectionArray: [],
 };
 
 export default () => (

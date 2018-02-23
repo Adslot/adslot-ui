@@ -33,16 +33,20 @@ const exampleProps = {
       }
     />
   `,
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'oldText',
-      type: 'string',
-      defaultValue: '',
-    },
-    {
-      propType: 'newText',
-      type: 'string',
-      defaultValue: '',
+      propTypes: [
+        {
+          propType: 'oldText',
+          type: 'string',
+          defaultValue: '',
+        },
+        {
+          propType: 'newText',
+          type: 'string',
+          defaultValue: '',
+        },
+      ],
     },
   ],
 };

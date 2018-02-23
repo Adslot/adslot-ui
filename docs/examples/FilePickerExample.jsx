@@ -18,44 +18,48 @@ const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: '<FilePicker onSelect={onSelect} />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'disabled',
-      type: 'bool',
-      defaultValue: 'false',
-    },
-    {
-      propType: 'dts',
-      type: 'string',
-      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
-    },
-    {
-      propType: 'filter',
-      type: 'string',
-    },
-    {
-      propType: 'isHighlighted',
-      type: 'bool',
-      defaultValue: 'false',
-    },
-    {
-      propType: 'label',
-      type: 'string',
-      defaultValue: 'Select',
-    },
-    {
-      propType: 'onRemove',
-      type: 'func',
-    },
-    {
-      propType: 'onSelect',
-      type: 'func',
-      note: <pre>{'onSelect({ isClosed, lastModified, lastModifiedDate, name, size, type })'}</pre>,
-    },
-    {
-      propType: 'placeholder',
-      type: 'string',
-      defaultValue: 'No file selected',
+      propTypes: [
+        {
+          propType: 'disabled',
+          type: 'bool',
+          defaultValue: 'false',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+        {
+          propType: 'filter',
+          type: 'string',
+        },
+        {
+          propType: 'isHighlighted',
+          type: 'bool',
+          defaultValue: 'false',
+        },
+        {
+          propType: 'label',
+          type: 'string',
+          defaultValue: 'Select',
+        },
+        {
+          propType: 'onRemove',
+          type: 'func',
+        },
+        {
+          propType: 'onSelect',
+          type: 'func',
+          note: <pre>{'onSelect({ isClosed, lastModified, lastModifiedDate, name, size, type })'}</pre>,
+        },
+        {
+          propType: 'placeholder',
+          type: 'string',
+          defaultValue: 'No file selected',
+        },
+      ],
     },
   ],
 };

@@ -3,6 +3,10 @@
 .adslot-ui-proptype-table {
   max-width: 1100px;
 
+  & + & {
+    margin-top: $spacing-etalon;
+  }
+
   table {
 
     + .empty-component {

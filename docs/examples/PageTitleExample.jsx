@@ -23,19 +23,23 @@ const exampleProps = {
     </div>
   ),
   exampleCodeSnippet: '<PageTitle title="Campaign 12345: Adslot"><small>Version 5</small></PageTitle>',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'title',
-      type: 'string',
-    },
-    {
-      propType: 'children',
-      type: 'node',
-    },
-    {
-      propType: 'isFooter',
-      type: 'bool',
-      defaultValue: 'false',
+      propTypes: [
+        {
+          propType: 'title',
+          type: 'string',
+        },
+        {
+          propType: 'children',
+          type: 'node',
+        },
+        {
+          propType: 'isFooter',
+          type: 'bool',
+          defaultValue: 'false',
+        },
+      ],
     },
   ],
 };

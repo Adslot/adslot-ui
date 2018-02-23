@@ -65,39 +65,40 @@ const exampleProps = {
       </a>.
     </p>
   ),
-  exampleCodeSnippet: `<Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
-  <Tab
-    eventKey="Audience"
-    title={
-      <span className="flexible-wrapper-inline">
-        <SvgSymbol href="./docs/assets/svg-symbols.svg#list" />
-        <FlexibleSpacer />
-        Audience
-      </span>}
-  >
-    <Empty
-      collection={[]}
-      text="No audience details."
-      svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
-    />
-  </Tab>
-  <Tab
-    eventKey="Billing"
-    title={
-      <span className="flexible-wrapper-inline">
-        <SvgSymbol href="./docs/assets/svg-symbols.svg#calendar" />
-        <FlexibleSpacer />
-        Billing
-      </span>}
-  >
-    <Empty
-      collection={[]}
-      text="No billing information."
-      svgSymbol={{ href: './docs/assets/svg-symbols.svg#calendar' }}
-    />
-  </Tab>
-</Tabs>`,
-  propTypes: [],
+  exampleCodeSnippet: `
+  <Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
+    <Tab
+      eventKey="Audience"
+      title={
+        <span className="flexible-wrapper-inline">
+          <SvgSymbol href="./docs/assets/svg-symbols.svg#list" />
+          <FlexibleSpacer />
+          Audience
+        </span>}
+    >
+      <Empty
+        collection={[]}
+        text="No audience details."
+        svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
+      />
+    </Tab>
+    <Tab
+      eventKey="Billing"
+      title={
+        <span className="flexible-wrapper-inline">
+          <SvgSymbol href="./docs/assets/svg-symbols.svg#calendar" />
+          <FlexibleSpacer />
+          Billing
+        </span>}
+    >
+      <Empty
+        collection={[]}
+        text="No billing information."
+        svgSymbol={{ href: './docs/assets/svg-symbols.svg#calendar' }}
+      />
+    </Tab>
+  </Tabs>`,
+  propTypeSectionArray: [],
 };
 
 export default () => (

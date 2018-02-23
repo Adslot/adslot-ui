@@ -83,63 +83,67 @@ const exampleProps = {
       onValueChange={(event) => this.changeValue(event.target.value)}
     />
   `,
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'defaultValue',
-      type: 'string',
-    },
-    {
-      propType: 'value',
-      type: 'string|number',
-    },
-    {
-      propType: 'type',
-      type: "oneOf: 'text', 'number'",
-      defaultValue: 'text',
-    },
-    {
-      propType: 'min',
-      type: 'number',
-    },
-    {
-      propType: 'placeholder',
-      type: 'string',
-    },
-    {
-      propType: 'prefixAddon',
-      type: 'node',
-    },
-    {
-      propType: 'suffixAddon',
-      type: 'node',
-    },
-    {
-      propType: 'alertStatus',
-      type: "oneOf: 'success', 'info', 'warning', 'error'",
-      defaultValue: 'success',
-      note: (
-        <span>
-          As <pre>success</pre> is assumed, and help is always displayed independently, the accepted pattern is to only
-          use <pre>warning</pre> and <pre>error</pre> feedback states with this component. Otherwise leave type
-          undefined for <pre>success</pre>.
-        </span>
-      ),
-    },
-    {
-      propType: 'alertMessage',
-      type: 'string',
-    },
-    {
-      propType: 'onValueChange',
-      type: 'func',
-    },
-    {
-      propType: 'onBlur',
-      type: 'func',
-    },
-    {
-      propType: 'onFocus',
-      type: 'func',
+      propTypes: [
+        {
+          propType: 'defaultValue',
+          type: 'string',
+        },
+        {
+          propType: 'value',
+          type: 'string|number',
+        },
+        {
+          propType: 'type',
+          type: "oneOf: 'text', 'number'",
+          defaultValue: 'text',
+        },
+        {
+          propType: 'min',
+          type: 'number',
+        },
+        {
+          propType: 'placeholder',
+          type: 'string',
+        },
+        {
+          propType: 'prefixAddon',
+          type: 'node',
+        },
+        {
+          propType: 'suffixAddon',
+          type: 'node',
+        },
+        {
+          propType: 'alertStatus',
+          type: "oneOf: 'success', 'info', 'warning', 'error'",
+          defaultValue: 'success',
+          note: (
+            <span>
+              As <pre>success</pre> is assumed, and help is always displayed independently, the accepted pattern is to
+              only use <pre>warning</pre> and <pre>error</pre> feedback states with this component. Otherwise leave type
+              undefined for <pre>success</pre>.
+            </span>
+          ),
+        },
+        {
+          propType: 'alertMessage',
+          type: 'string',
+        },
+        {
+          propType: 'onValueChange',
+          type: 'func',
+        },
+        {
+          propType: 'onBlur',
+          type: 'func',
+        },
+        {
+          propType: 'onFocus',
+          type: 'func',
+        },
+      ],
     },
   ],
 };

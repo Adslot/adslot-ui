@@ -16,18 +16,22 @@ const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: '<SvgSymbolCircle href="./docs/assets/svg-symbols.svg#calendar" classSuffixes={[\'50\']} />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'href',
-      type: 'string',
-    },
-    {
-      propType: 'classSuffixes',
-      type: 'arrayOf string',
-    },
-    {
-      propType: 'onClick',
-      type: 'func',
+      propTypes: [
+        {
+          propType: 'href',
+          type: 'string',
+        },
+        {
+          propType: 'classSuffixes',
+          type: 'arrayOf string',
+        },
+        {
+          propType: 'onClick',
+          type: 'func',
+        },
+      ],
     },
   ],
 };

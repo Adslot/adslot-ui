@@ -19,16 +19,20 @@ const exampleProps = {
     </div>
   ),
   exampleCodeSnippet: '<Spinner />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'size',
-      type: "oneOf: 'large', medium', 'small'",
-      defaultValue: 'large',
-    },
-    {
-      propType: 'colourStyle',
-      type: 'string',
-      defaultValue: 'default',
+      propTypes: [
+        {
+          propType: 'size',
+          type: "oneOf: 'large', medium', 'small'",
+          defaultValue: 'large',
+        },
+        {
+          propType: 'colourStyle',
+          type: 'string',
+          defaultValue: 'default',
+        },
+      ],
     },
   ],
 };

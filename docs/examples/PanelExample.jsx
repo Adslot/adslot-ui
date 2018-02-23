@@ -44,61 +44,66 @@ const exampleProps = {
       its own.
     </p>
   ),
-  exampleCodeSnippet: `<Panel
-  id="8db886a1-671f-4a40-a000-3c6bf1f87ecd"
-  title="Read more about integration"
-  isCollapsed={this.state.isCollapsed}
-  onClick={this.togglePanel}
->
-  <p>
-    Lorem ipsum amet dolore voluptate veniam nulla dolore nulla adipisicing irure
-    adipisicing qui fugiat veniam. Ullamco reprehenderit cillum irure esse ad eu dolor laboris.
-  </p>
-  <p>Consequat commodo consequat eiusmod sit mollit elit ex nostrud consectetur.</p>
-</Panel>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <Panel
+    id="8db886a1-671f-4a40-a000-3c6bf1f87ecd"
+    title="Read more about integration"
+    isCollapsed={this.state.isCollapsed}
+    onClick={this.togglePanel}
+  >
+    <p>
+      Lorem ipsum amet dolore voluptate veniam nulla dolore nulla adipisicing irure
+      adipisicing qui fugiat veniam. Ullamco reprehenderit cillum irure esse ad eu dolor laboris.
+    </p>
+    <p>Consequat commodo consequat eiusmod sit mollit elit ex nostrud consectetur.</p>
+  </Panel>`,
+  propTypeSectionArray: [
     {
-      propType: 'id',
-      type: 'string',
-      defaultValue: '',
-      note: '',
-    },
-    {
-      propType: 'dts',
-      type: 'string',
-      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
-    },
-    {
-      propType: 'icon',
-      type: (
-        <span>
-          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
-        </span>
-      ),
-    },
-    {
-      propType: 'title',
-      type: 'string',
-      defaultValue: '',
-      note: '',
-    },
-    {
-      propType: 'isCollapsed',
-      type: 'boolean',
-      defaultValue: 'false',
-      note: '',
-    },
-    {
-      propType: 'onClick',
-      type: 'func',
-      defaultValue: '',
-      note: '',
-    },
-    {
-      propType: 'children',
-      type: 'node',
-      defaultValue: '',
-      note: '',
+      propTypes: [
+        {
+          propType: 'id',
+          type: 'string',
+          defaultValue: '',
+          note: '',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+        {
+          propType: 'icon',
+          type: (
+            <span>
+              shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+            </span>
+          ),
+        },
+        {
+          propType: 'title',
+          type: 'string',
+          defaultValue: '',
+          note: '',
+        },
+        {
+          propType: 'isCollapsed',
+          type: 'boolean',
+          defaultValue: 'false',
+          note: '',
+        },
+        {
+          propType: 'onClick',
+          type: 'func',
+          defaultValue: '',
+          note: '',
+        },
+        {
+          propType: 'children',
+          type: 'node',
+          defaultValue: '',
+          note: '',
+        },
+      ],
     },
   ],
 };

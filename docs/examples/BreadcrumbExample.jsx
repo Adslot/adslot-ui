@@ -65,20 +65,24 @@ const exampleProps = {
       onClick={this.onClickHandler}
     />
   `,
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'nodes',
-      type: 'arrayOf { string: id, string: label }',
-    },
-    {
-      propType: 'onClick',
-      type: 'func',
-      note: 'onClick(nodeId)',
-    },
-    {
-      propType: 'disabled',
-      type: 'bool',
-      defaultValue: 'false',
+      propTypes: [
+        {
+          propType: 'nodes',
+          type: 'arrayOf { string: id, string: label }',
+        },
+        {
+          propType: 'onClick',
+          type: 'func',
+          note: 'onClick(nodeId)',
+        },
+        {
+          propType: 'disabled',
+          type: 'bool',
+          defaultValue: 'false',
+        },
+      ],
     },
   ],
 };

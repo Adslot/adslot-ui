@@ -12,7 +12,7 @@ const exampleProps = {
   componentName: 'Flexible Spacer',
   notes: 'Used to fill a flex container with empty space.',
   exampleCodeSnippet: '<FlexibleSpacer />',
-  propTypes: [],
+  propTypeSectionArray: [],
 };
 
 export default () => (

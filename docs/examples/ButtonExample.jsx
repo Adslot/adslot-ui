@@ -76,48 +76,53 @@ export const exampleProps = {
       Apply
     </Button>
   </div>`,
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'bsStyle',
-      type: 'string, oneOf primary, link, and default.',
-      defaultValue: 'default',
-      note: (
-        <span>
-          <br />It&apos;s uncommon to use <pre>success</pre>, <pre>info</pre>, <pre>warning</pre>, or <pre>danger</pre>
-          which are supported by Bootstrap but not us.
-        </span>
-      ),
-    },
-    {
-      propType: 'inverse',
-      type: 'bool',
-      note: 'Renders an inverse button. Can be used with bsStyle to create primary inverse buttons.',
-      defaultValue: 'false',
-    },
-    {
-      propType: 'reason',
-      type: 'string',
-      note: 'Used in tandem with the disabled prop to present a popover explaining why the button is disabled.',
-    },
-    {
-      propType: 'onClick',
-      type: 'func',
-      note: 'onClick(event)',
-    },
-    {
-      propType: 'bsSize',
-      type: 'string',
-      note: (
-        <span>
-          We rarely use <pre>large</pre>, and should not use <pre>small</pre>.
-        </span>
-      ),
-    },
-    {
-      propType: 'isLoading',
-      type: 'bool',
-      defaultValue: 'false',
-      note: 'set this to true to display Spinner and disable the button',
+      propTypes: [
+        {
+          propType: 'bsStyle',
+          type: 'string, oneOf primary, link, and default.',
+          defaultValue: 'default',
+          note: (
+            <span>
+              <br />It&apos;s uncommon to use <pre>success</pre>, <pre>info</pre>, <pre>warning</pre>, or{' '}
+              <pre>danger</pre>
+              which are supported by Bootstrap but not us.
+            </span>
+          ),
+        },
+        {
+          propType: 'inverse',
+          type: 'bool',
+          note: 'Renders an inverse button. Can be used with bsStyle to create primary inverse buttons.',
+          defaultValue: 'false',
+        },
+        {
+          propType: 'reason',
+          type: 'string',
+          note: 'Used in tandem with the disabled prop to present a popover explaining why the button is disabled.',
+        },
+        {
+          propType: 'onClick',
+          type: 'func',
+          note: 'onClick(event)',
+        },
+        {
+          propType: 'bsSize',
+          type: 'string',
+          note: (
+            <span>
+              We rarely use <pre>large</pre>, and should not use <pre>small</pre>.
+            </span>
+          ),
+        },
+        {
+          propType: 'isLoading',
+          type: 'bool',
+          defaultValue: 'false',
+          note: 'set this to true to display Spinner and disable the button',
+        },
+      ],
     },
   ],
 };

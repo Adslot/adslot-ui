@@ -46,99 +46,104 @@ const exampleProps = {
       begin typing.
     </p>
   ),
-  exampleCodeSnippet: `<Search
-  value={this.state.value}
-  onChange={this.onChange}
-  onSearch={this.onSearch}
-  debounceInterval={350}
-  isLoading={this.state.isLoading}
-/>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <Search
+    value={this.state.value}
+    onChange={this.onChange}
+    onSearch={this.onSearch}
+    debounceInterval={350}
+    isLoading={this.state.isLoading}
+  />`,
+  propTypeSectionArray: [
     {
-      propType: 'disabled',
-      type: 'bool',
-      defaultValue: 'false',
-      note: 'determine if the Search bar is disabled',
-    },
-    {
-      propType: 'isLoading',
-      type: 'bool',
-      defaultValue: 'false',
-    },
-    {
-      propType: 'onChange',
-      type: 'func',
-      note: <pre>onChange(value)</pre>,
-    },
-    {
-      propType: 'onClear',
-      type: 'func',
-      note: <pre>onClear(value)</pre>,
-    },
-    {
-      propType: 'onSearch',
-      type: 'func',
-      note: <pre>onSearch(value)</pre>,
-    },
-    {
-      propType: 'placeholder',
-      type: 'string',
-      defaultValue: <pre>&apos;&apos;</pre>,
-    },
-    {
-      propType: 'svgSymbolCancel',
-      type: (
-        <span>
-          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
-        </span>
-      ),
-      defaultValue: (
-        <pre>
-          {JSON.stringify({
-            classSuffixes: ['gray-darker'],
-            href: './docs/assets/svg-symbols.svg#cancel',
-          })}
-        </pre>
-      ),
-    },
-    {
-      propType: 'svgSymbolSearch',
-      type: (
-        <span>
-          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
-        </span>
-      ),
-      defaultValue: (
-        <pre>
-          {JSON.stringify({
-            classSuffixes: ['gray-light'],
-            href: './docs/assets/svg-symbols.svg#search',
-          })}
-        </pre>
-      ),
-    },
-    {
-      propType: 'value',
-      type: 'string',
-      defaultValue: <pre>&apos;&apos;</pre>,
-      note: 'As value within search component is uncontrolled we need to pass in the search value externally.',
-    },
-    {
-      propType: 'searchOnChange',
-      type: 'bool',
-      defaultValue: 'true',
-      note: 'determine if onSearch() will be fired upon text changes',
-    },
-    {
-      propType: 'searchOnEnterKey',
-      type: 'bool',
-      defaultValue: 'false',
-      note: 'determine if onSearch() will be fired upon pressing Enter key',
-    },
-    {
-      propType: 'debounceInterval',
-      type: 'number',
-      defaultValue: '0',
+      propTypes: [
+        {
+          propType: 'disabled',
+          type: 'bool',
+          defaultValue: 'false',
+          note: 'determine if the Search bar is disabled',
+        },
+        {
+          propType: 'isLoading',
+          type: 'bool',
+          defaultValue: 'false',
+        },
+        {
+          propType: 'onChange',
+          type: 'func',
+          note: <pre>onChange(value)</pre>,
+        },
+        {
+          propType: 'onClear',
+          type: 'func',
+          note: <pre>onClear(value)</pre>,
+        },
+        {
+          propType: 'onSearch',
+          type: 'func',
+          note: <pre>onSearch(value)</pre>,
+        },
+        {
+          propType: 'placeholder',
+          type: 'string',
+          defaultValue: <pre>&apos;&apos;</pre>,
+        },
+        {
+          propType: 'svgSymbolCancel',
+          type: (
+            <span>
+              shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+            </span>
+          ),
+          defaultValue: (
+            <pre>
+              {JSON.stringify({
+                classSuffixes: ['gray-darker'],
+                href: './docs/assets/svg-symbols.svg#cancel',
+              })}
+            </pre>
+          ),
+        },
+        {
+          propType: 'svgSymbolSearch',
+          type: (
+            <span>
+              shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+            </span>
+          ),
+          defaultValue: (
+            <pre>
+              {JSON.stringify({
+                classSuffixes: ['gray-light'],
+                href: './docs/assets/svg-symbols.svg#search',
+              })}
+            </pre>
+          ),
+        },
+        {
+          propType: 'value',
+          type: 'string',
+          defaultValue: <pre>&apos;&apos;</pre>,
+          note: 'As value within search component is uncontrolled we need to pass in the search value externally.',
+        },
+        {
+          propType: 'searchOnChange',
+          type: 'bool',
+          defaultValue: 'true',
+          note: 'determine if onSearch() will be fired upon text changes',
+        },
+        {
+          propType: 'searchOnEnterKey',
+          type: 'bool',
+          defaultValue: 'false',
+          note: 'determine if onSearch() will be fired upon pressing Enter key',
+        },
+        {
+          propType: 'debounceInterval',
+          type: 'number',
+          defaultValue: '0',
+        },
+      ],
     },
   ],
 };
