@@ -20,6 +20,12 @@ class EmptyExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Empty',
+  designNotes: (
+    <p>
+      Empty states should be used when data or information is not available. Always display a graphic icon with
+      supported copy to give context to the empty area.
+    </p>
+  ),
   notes: 'Given a collection prop will render an empty state when collection is empty.',
   exampleCodeSnippet: `
     <Empty

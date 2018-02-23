@@ -40,7 +40,12 @@ class HoverDropdownMenuExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Hover Dropdown Menu',
-  notes: '',
+  designNotes: (
+    <div>
+      <p>Hover dropdown menu aids in helping the user discover selectable options on rollover.</p>
+      <label>Example: Profile menu</label>
+    </div>
+  ),
   exampleCodeSnippet: `
 const links = [
   {

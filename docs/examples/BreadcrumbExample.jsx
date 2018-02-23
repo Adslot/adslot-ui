@@ -53,6 +53,12 @@ class BreadcrumbExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Breadcrumb',
+  designNotes: (
+    <p>
+      Bread crumbs allow the user to return to the previous or parent folder. Currently used in deep nested content
+      within our <a href="#tree-picker-example">Tree Pickers</a>.
+    </p>
+  ),
   exampleCodeSnippet: `
     <Breadcrumb
       nodes={this.state.breadcrumbNodes}

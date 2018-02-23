@@ -33,6 +33,7 @@ class ConfirmModalExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Confirm Modal',
+  designNotes: <p>Confirm modal are commonly used to verify an action.</p>,
   exampleCodeSnippet: `<ConfirmModal
   modalApply={this.toggleConfirmModal}
   modalClose={this.toggleConfirmModal}

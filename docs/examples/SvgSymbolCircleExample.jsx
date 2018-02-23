@@ -10,10 +10,10 @@ class SvgSymbolCircleExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'SvgSymbolCircle',
-  notes: (
-    <span>
-      See <a href="#svg-symbol-component">SVG Symbol</a> component.
-    </span>
+  designNotes: (
+    <p>
+      For more details see <a href="#svg-symbol-example">SVG Symbol</a> component.
+    </p>
   ),
   exampleCodeSnippet: '<SvgSymbolCircle href="./docs/assets/svg-symbols.svg#calendar" classSuffixes={[\'50\']} />',
   propTypes: [

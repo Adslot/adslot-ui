@@ -67,6 +67,12 @@ class AccordionExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Accordion',
+  designNotes: (
+    <p>
+      The accordion menu is commonly used to group long list of filter options. Allowing the user to expand and close
+      areas of the list.
+    </p>
+  ),
   exampleCodeSnippet: '<Accordion panels={accordionPanels} onPanelClick={this.toggleAccordionPanel} />',
   propTypes: [
     {

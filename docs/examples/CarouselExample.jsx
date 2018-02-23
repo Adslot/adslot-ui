@@ -32,6 +32,12 @@ class CarouselExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Carousel',
+  designNotes: (
+    <p>
+      Carousel is used to showcase an area with visual message, and allowing marketing to customise propositions to each
+      region. Arrows on each end are used to slide through each panel.
+    </p>
+  ),
   exampleCodeSnippet: `
 <Carousel>
   <a style={{ display: 'block' }} href="/">

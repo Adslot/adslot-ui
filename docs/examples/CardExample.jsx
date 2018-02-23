@@ -14,6 +14,9 @@ class CardExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Card',
+  designNotes: (
+    <p>Cards are used as a visual list which usually contain a logo or icon to assist the user in with discovery.</p>
+  ),
   exampleCodeSnippet: `<Card.Container>
   <Card.Content>Card body.</Card.Content>
 </Card.Container>`,

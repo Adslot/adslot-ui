@@ -81,6 +81,13 @@ class TreePickerExample extends React.Component {
 
 const exampleProps = {
   componentName: 'TreePicker',
+  designNotes: (
+    <p>
+      Tree pickers are useful for users when we require to configure from large list, allowing users to clearly see the
+      result of their action in the right panel. This split view allows the user to quickly edit, review and save their
+      selection.
+    </p>
+  ),
   exampleCodeSnippet: `<TreePickerSimplePure
   itemType={this.state.itemType}
   hideIcon
@@ -131,7 +138,7 @@ const exampleProps = {
       propType: 'emptySvgSymbol',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
       note: `displays this svg symbol when there will be no item on both left or right Grid`,
@@ -140,7 +147,7 @@ const exampleProps = {
       propType: 'emptySelectedListSvgSymbol',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
       note: `displays this svg symbol when there will be no item on right Grid(Selected list)`,
@@ -184,7 +191,7 @@ const exampleProps = {
       propType: 'initialStateSymbol',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
       note: 'same as emptySymbol',
@@ -259,7 +266,7 @@ const exampleProps = {
       propType: 'svgSymbolCancel',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
     },
@@ -267,7 +274,7 @@ const exampleProps = {
       propType: 'svgSymbolSearch',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
     },

@@ -40,6 +40,12 @@ class SearchExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Search',
+  designNotes: (
+    <p>
+      Search field is more commonly used within the pickers and modals with spinner indicating search action when you
+      begin typing.
+    </p>
+  ),
   exampleCodeSnippet: `<Search
   value={this.state.value}
   onChange={this.onChange}
@@ -83,7 +89,7 @@ const exampleProps = {
       propType: 'svgSymbolCancel',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
       defaultValue: (
@@ -99,7 +105,7 @@ const exampleProps = {
       propType: 'svgSymbolSearch',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
       defaultValue: (

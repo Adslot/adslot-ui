@@ -56,7 +56,7 @@ const exampleProps = {
       propType: 'emptySvgSymbol',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
     },

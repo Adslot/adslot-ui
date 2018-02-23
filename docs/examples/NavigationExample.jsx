@@ -33,7 +33,12 @@ class NavigationExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Navigation Tabs',
-  notes: '',
+  designNotes: (
+    <div>
+      <p>Primarily used as secondary level navigation which requires users to switch between views and information.</p>
+      <label>Example: Campaign navigation.</label>
+    </div>
+  ),
   exampleCodeSnippet: `<Nav activeKey={this.state.activeKey} onSelect={this.onSelect}>
   <NavItem eventKey={0} href="#" title="Dashboard Home" className="dashboard-tab"}>Dashboard</NavItem>
   <NavItem eventKey={1} title="Analytics Reporting">Reports</NavItem>

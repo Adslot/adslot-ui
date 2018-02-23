@@ -14,6 +14,12 @@ class InformationBoxExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Information Box',
+  designNotes: (
+    <p>
+      Information box is commonly used to highlight useful information on recent actions as well as what needs to be
+      next in the workflow.
+    </p>
+  ),
   exampleCodeSnippet: `
     <InformationBox
       title="This is an information"
