@@ -47,6 +47,12 @@ class TabExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Tab',
+  designNotes: (
+    <p>
+      Tabs are most commonly used with areas that require the user to switch between views. Each tab label is supported
+      by an icon.
+    </p>
+  ),
   notes: (
     <p>
       See{' '}

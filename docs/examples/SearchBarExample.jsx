@@ -35,6 +35,7 @@ class SearchBarExample extends React.Component {
 
 const exampleProps = {
   componentName: 'SearchBar',
+  designNotes: <p>Search Bar is commonly used above the pages designed to manage filter pills and search.</p>,
   exampleCodeSnippet: `<SearchBar
   searchString={this.state.searchBarString}
   searchPlaceholder="Enter a word or phrase to find matching items."

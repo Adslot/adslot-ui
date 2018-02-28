@@ -10,6 +10,17 @@ class AvatarExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Avatar',
+  designNotes: (
+    <div>
+      <p>
+        Avatars are used to personalise the user’s experience allowing each buyer and seller feel they are collaborating
+        with an actual person.
+      </p>
+      <p>
+        <label>Example:</label> Profile area, Inbox and User section.
+      </p>
+    </div>
+  ),
   exampleCodeSnippet: '<Avatar givenName="John" surname="Smith" />',
   propTypes: [
     {

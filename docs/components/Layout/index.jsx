@@ -80,7 +80,7 @@ const componentsBySection = {
   ],
   'typography-and-text-layout': ['text-ellipsis'],
   'stats-and-data': ['statistic', 'totals', 'slicey'],
-  'icons-and-graphics': ['svg-symbol'],
+  'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
   'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff'],
   dialogue: ['help-icon-popover', 'avatar'],

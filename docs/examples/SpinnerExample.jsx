@@ -10,6 +10,14 @@ class SpinnerExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Spinner',
+  designNotes: (
+    <div>
+      <p>The spinner is commonly used to indicate it is processing the user's action.</p>
+      <p>
+        <label>Example:</label> Used inside a button or cell, or while loading a page.
+      </p>
+    </div>
+  ),
   exampleCodeSnippet: '<Spinner />',
   propTypes: [
     {

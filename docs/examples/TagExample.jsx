@@ -74,7 +74,12 @@ class TagExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Tag',
-  notes: 'A tag is intended for use as a list of selected options such as search filters.',
+  designNotes: (
+    <p>
+      Tags most commonly used to list selected filters, a multiple select drop down displaying the selected pill within
+      the input field.
+    </p>
+  ),
   exampleCodeSnippet: `<Tag
   id="0ac7d4ce-af36-4fd9-b142-6377f8ad5f17"
   accent="positive"

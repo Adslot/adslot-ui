@@ -38,6 +38,12 @@ class PanelExample extends React.Component {
 
 const exampleProps = {
   componentName: 'Panel',
+  designNotes: (
+    <p>
+      Panel is an expandable information panel which can be used in a group (accordion). Panel is not commonly used on
+      its own.
+    </p>
+  ),
   exampleCodeSnippet: `<Panel
   id="8db886a1-671f-4a40-a000-3c6bf1f87ecd"
   title="Read more about integration"
@@ -66,7 +72,7 @@ const exampleProps = {
       propType: 'icon',
       type: (
         <span>
-          shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
+          shapeOf <a href="#svg-symbol-example">SVG Symbol</a> prop types.
         </span>
       ),
     },

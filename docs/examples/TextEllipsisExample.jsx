@@ -17,6 +17,13 @@ class TextEllipsisExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Text Ellipsis',
+  designNotes: (
+    <p>
+      Truncating provides enough information to the user initially, as well as indicating a hover over is available for
+      displaying hidden information. Commonly used for grid cells, grid labels, marketplace tile info, product names
+      etc.
+    </p>
+  ),
   notes: 'Useful for single line truncation of text values, also provides a hover over displaying the full text.',
   exampleCodeSnippet: `<TextEllipsis>${loremIpsum}</TextEllipsis>`,
   propTypes: [
