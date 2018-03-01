@@ -10,7 +10,7 @@ import './styles.scss';
 
 class Example extends React.PureComponent {
   render() {
-    const { children, componentName, notes, exampleCodeSnippet, propTypes, designNotes } = this.props;
+    const { children, componentName, notes, exampleCodeSnippet, propTypeSectionArray, designNotes } = this.props;
 
     return (
       <div
@@ -30,8 +30,8 @@ class Example extends React.PureComponent {
             {exampleCodeSnippet}
           </SyntaxHighlighter>
         </div>
-
-        <PropTypeTable propTypes={propTypes} />
+        {_.map(propTypeSectionArray, section => <PropTypeTable propTypes={section.propTypes} label={section.label} />)}
+        {_.isEmpty(propTypeSectionArray) ? <PropTypeTable isEmptyTable /> : null}
 
         <Button bsStyle="link" href="#top">
           ↑ Back to top.
@@ -47,7 +47,7 @@ Example.propTypes = {
   notes: PropTypes.node,
   designNotes: PropTypes.node,
   exampleCodeSnippet: PropTypes.string.isRequired,
-  propTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  propTypeSectionArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Example;

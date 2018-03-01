@@ -26,42 +26,46 @@ const exampleProps = {
   ),
   notes: 'Useful for single line truncation of text values, also provides a hover over displaying the full text.',
   exampleCodeSnippet: `<TextEllipsis>${loremIpsum}</TextEllipsis>`,
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'children',
-      type: 'node',
-    },
-    {
-      propType: 'overlayTriggerProps',
-      type: 'shape',
-      note: (
-        <span>
-          See
-          <a
-            href="https://react-bootstrap.github.io/components.html#overlays-trigger-props"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Bootstrap Docs
-          </a>.
-        </span>
-      ),
-    },
-    {
-      propType: 'popoverProps',
-      type: 'shape',
-      note: (
-        <span>
-          See
-          <a
-            href="https://react-bootstrap.github.io/components.html#popover-props"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Bootstrap Docs
-          </a>.
-        </span>
-      ),
+      propTypes: [
+        {
+          propType: 'children',
+          type: 'node',
+        },
+        {
+          propType: 'overlayTriggerProps',
+          type: 'shape',
+          note: (
+            <span>
+              See
+              <a
+                href="https://react-bootstrap.github.io/components.html#overlays-trigger-props"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                React Bootstrap Docs
+              </a>.
+            </span>
+          ),
+        },
+        {
+          propType: 'popoverProps',
+          type: 'shape',
+          note: (
+            <span>
+              See
+              <a
+                href="https://react-bootstrap.github.io/components.html#popover-props"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                React Bootstrap Docs
+              </a>.
+            </span>
+          ),
+        },
+      ],
     },
   ],
 };

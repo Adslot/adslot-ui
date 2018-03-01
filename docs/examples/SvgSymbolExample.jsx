@@ -27,18 +27,22 @@ const exampleProps = {
   ),
   exampleCodeSnippet:
     '<SvgSymbol href="./docs/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={[\'70\']} />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'href',
-      type: 'string',
-    },
-    {
-      propType: 'classSuffixes',
-      type: 'arrayOf string',
-    },
-    {
-      propType: 'onClick',
-      type: 'func',
+      propTypes: [
+        {
+          propType: 'href',
+          type: 'string',
+        },
+        {
+          propType: 'classSuffixes',
+          type: 'arrayOf string',
+        },
+        {
+          propType: 'onClick',
+          type: 'func',
+        },
+      ],
     },
   ],
 };

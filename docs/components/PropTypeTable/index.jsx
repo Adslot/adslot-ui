@@ -7,42 +7,41 @@ import './styles.scss';
 
 class PropTypeTable extends React.PureComponent {
   render() {
-    const { propTypes } = this.props;
+    const { propTypes, label, isEmptyTable } = this.props;
+    const tableTitle = label ? `PropTypes — ${label}` : 'PropTypes';
 
     return (
-      <div>
-        <h3>PropTypes</h3>
-        <div className="adslot-ui-proptype-table">
-          <table className="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th className="col-prop-type">PropType</th>
-                <th className="col-type">Type</th>
-                <th className="col-default-value">Default Value</th>
-                <th className="col-notes">Notes</th>
+      <div className="adslot-ui-proptype-table">
+        <h3>{tableTitle}</h3>
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th className="col-prop-type">PropType</th>
+              <th className="col-type">Type</th>
+              <th className="col-default-value">Default Value</th>
+              <th className="col-notes">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
+              <tr key={propType}>
+                <td>
+                  <pre>{propType}</pre>
+                </td>
+                <td>
+                  <pre>{type}</pre>
+                </td>
+                <td>
+                  <pre>{defaultValue}</pre>
+                </td>
+                <td>{note}</td>
               </tr>
-            </thead>
-            <tbody>
-              {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
-                <tr key={propType}>
-                  <td>
-                    <pre>{propType}</pre>
-                  </td>
-                  <td>
-                    <pre>{type}</pre>
-                  </td>
-                  <td>{defaultValue}</td>
-                  <td>{note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Empty
-            collection={propTypes}
-            hideIcon
-            text="No PropType definitions for this component, please check the source-code."
-          />
-        </div>
+            ))}
+          </tbody>
+        </table>
+        {isEmptyTable ? (
+          <Empty hideIcon text="No PropType definitions for this component, please check the source-code." />
+        ) : null}
       </div>
     );
   }
@@ -57,6 +56,12 @@ PropTypeTable.propTypes = {
       note: PropTypes.node,
     })
   ).isRequired,
+  label: PropTypes.string,
+  isEmptyTable: PropTypes.bool,
+};
+
+PropTypeTable.defaultProps = {
+  isEmptyTable: false,
 };
 
 export default PropTypeTable;

@@ -33,24 +33,29 @@ const exampleProps = {
       <pre>.help-block</pre> text.
     </span>
   ),
-  exampleCodeSnippet: `<HelpIconPopover id="help-text-example">
-  <p>Download your <em>latest</em> report.</p>
-</HelpIconPopover>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <HelpIconPopover id="help-text-example">
+    <p>Download your <em>latest</em> report.</p>
+  </HelpIconPopover>`,
+  propTypeSectionArray: [
     {
-      propType: 'id',
-      type: 'string',
-      note: 'A unique identifier for the element.',
-    },
-    {
-      propType: 'children',
-      type: 'node',
-      note: 'Rich-text, html help message.',
-    },
-    {
-      propType: 'placement',
-      type: 'string oneOf top, right, bottom, left',
-      defaultValue: 'right',
+      propTypes: [
+        {
+          propType: 'id',
+          type: 'string',
+          note: 'A unique identifier for the element.',
+        },
+        {
+          propType: 'children',
+          type: 'node',
+          note: 'Rich-text, html help message.',
+        },
+        {
+          propType: 'placement',
+          type: 'string oneOf top, right, bottom, left',
+          defaultValue: 'right',
+        },
+      ],
     },
   ],
 };

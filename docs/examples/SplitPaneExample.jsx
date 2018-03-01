@@ -19,28 +19,33 @@ class SplitPaneExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'SplitPane',
-  exampleCodeSnippet: `<div style={{ display: 'flex' }}>
-  <SplitPane dts="left-side">
-    <p>First pane</p>
-  </SplitPane>
-  <SplitPane dts="right-side">
-    <p>Second pane</p>
-  </SplitPane>
-</div>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <div style={{ display: 'flex' }}>
+    <SplitPane dts="left-side">
+      <p>First pane</p>
+    </SplitPane>
+    <SplitPane dts="right-side">
+      <p>Second pane</p>
+    </SplitPane>
+  </div>`,
+  propTypeSectionArray: [
     {
-      propType: 'additionalClassNames',
-      type: 'array',
-      defaultValue: <pre>[]</pre>,
-    },
-    {
-      propType: 'children',
-      type: 'node',
-    },
-    {
-      propType: 'dts',
-      type: 'string',
-      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+      propTypes: [
+        {
+          propType: 'additionalClassNames',
+          type: 'array',
+          defaultValue: <pre>[]</pre>,
+        },
+        {
+          propType: 'children',
+          type: 'node',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+      ],
     },
   ],
 };

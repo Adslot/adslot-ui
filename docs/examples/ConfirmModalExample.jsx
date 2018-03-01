@@ -34,44 +34,49 @@ class ConfirmModalExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'Confirm Modal',
   designNotes: <p>Confirm modal are commonly used to verify an action.</p>,
-  exampleCodeSnippet: `<ConfirmModal
-  modalApply={this.toggleConfirmModal}
-  modalClose={this.toggleConfirmModal}
-  show={this.state.showConfirmModal}
-/>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <ConfirmModal
+    modalApply={this.toggleConfirmModal}
+    modalClose={this.toggleConfirmModal}
+    show={this.state.showConfirmModal}
+  />`,
+  propTypeSectionArray: [
     {
-      propType: 'buttonCancelLabel',
-      type: 'string',
-      defaultValue: 'Cancel',
-    },
-    {
-      propType: 'buttonConfirmLabel',
-      type: 'string',
-      defaultValue: 'Confirm',
-    },
-    {
-      propType: 'modalApply',
-      type: 'func',
-      defaultValue: "() => { throw new Error('AdslotUi ConfirmModal needs a modalApply handler'); }",
-    },
-    {
-      propType: 'modalClose',
-      type: 'func',
-    },
-    {
-      propType: 'modalDescription',
-      type: 'string',
-      defaultValue: 'Are you sure?',
-    },
-    {
-      propType: 'modalTitle',
-      type: 'string',
-    },
-    {
-      propType: 'show',
-      type: 'boolean',
-      defaultValue: 'true',
+      propTypes: [
+        {
+          propType: 'buttonCancelLabel',
+          type: 'string',
+          defaultValue: 'Cancel',
+        },
+        {
+          propType: 'buttonConfirmLabel',
+          type: 'string',
+          defaultValue: 'Confirm',
+        },
+        {
+          propType: 'modalApply',
+          type: 'func',
+          defaultValue: "() => { throw new Error('AdslotUi ConfirmModal needs a modalApply handler'); }",
+        },
+        {
+          propType: 'modalClose',
+          type: 'func',
+        },
+        {
+          propType: 'modalDescription',
+          type: 'string',
+          defaultValue: 'Are you sure?',
+        },
+        {
+          propType: 'modalTitle',
+          type: 'string',
+        },
+        {
+          propType: 'show',
+          type: 'boolean',
+          defaultValue: 'true',
+        },
+      ],
     },
   ],
 };

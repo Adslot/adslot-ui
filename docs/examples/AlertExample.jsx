@@ -32,19 +32,23 @@ const exampleProps = {
     </div>
   ),
   exampleCodeSnippet: '<Alert type="danger">Unable to save. We can\'t talk to the API, try again in a bit.</Alert>',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'type',
-      type: "oneOf: 'danger', 'warning', 'error', 'success'",
-    },
-    {
-      propType: 'children',
-      type: 'node',
-    },
-    {
-      propType: 'dts',
-      type: 'string',
-      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+      propTypes: [
+        {
+          propType: 'type',
+          type: "oneOf: 'success', 'info', 'warning', 'danger'",
+        },
+        {
+          propType: 'children',
+          type: 'node',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+      ],
     },
   ],
 };

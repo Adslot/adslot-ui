@@ -19,24 +19,27 @@ class TotalsExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'Totals',
   exampleCodeSnippet: `
-    <Totals
-      toSum={[
-        { value: 10, isHidden: true },
-        { label: 'Movies Category - Medium Rectangle', value: 1000 },
-        { label: 'Selected', value: 36.80 },
-      ]}
-    />
-  `,
-  propTypes: [
+  <Totals
+    toSum={[
+      { value: 10, isHidden: true },
+      { label: 'Movies Category - Medium Rectangle', value: 1000 },
+      { label: 'Selected', value: 36.80 },
+    ]}
+  />`,
+  propTypeSectionArray: [
     {
-      propType: 'toSum',
-      type: 'arrayOf {number: value, string: label, boolean: isHidden}',
-      defaultValue: <pre>[]</pre>,
-    },
-    {
-      propType: 'valueFormatter',
-      type: 'func',
-      defaultValue: <pre>(value) =&gt; `$value`</pre>,
+      propTypes: [
+        {
+          propType: 'toSum',
+          type: 'arrayOf {number: value, string: label, boolean: isHidden}',
+          defaultValue: <pre>[]</pre>,
+        },
+        {
+          propType: 'valueFormatter',
+          type: 'func',
+          defaultValue: <pre>(value) =&gt; `$value`</pre>,
+        },
+      ],
     },
   ],
 };

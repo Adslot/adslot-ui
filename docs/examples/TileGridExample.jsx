@@ -30,28 +30,33 @@ class TileGridExample extends React.PureComponent {
 
 const exampleProps = {
   componentName: 'Tile Grid',
-  exampleCodeSnippet: `<TileGrid
-  title="Browse by category"
-  items={[
-    { id: '0', classSuffix: 'news', title: 'News' },
-    { id: '1', classSuffix: 'sport', title: 'Sport' },
-    { id: '2', classSuffix: 'health', title: 'Health & Fitness' },
-    { id: '3', classSuffix: 'tech', title: 'Technology & Computing' },
-  ]}
-  onItemClick={this.onClick}
-/>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <TileGrid
+    title="Browse by category"
+    items={[
+      { id: '0', classSuffix: 'news', title: 'News' },
+      { id: '1', classSuffix: 'sport', title: 'Sport' },
+      { id: '2', classSuffix: 'health', title: 'Health & Fitness' },
+      { id: '3', classSuffix: 'tech', title: 'Technology & Computing' },
+    ]}
+    onItemClick={this.onClick}
+  />`,
+  propTypeSectionArray: [
     {
-      propType: 'title',
-      type: 'string',
-    },
-    {
-      propType: 'items',
-      type: 'arrayOf { string: id, string: classSuffix, string: title }',
-    },
-    {
-      propType: 'onItemClick',
-      type: 'func',
+      propTypes: [
+        {
+          propType: 'title',
+          type: 'string',
+        },
+        {
+          propType: 'items',
+          type: 'arrayOf { string: id, string: classSuffix, string: title }',
+        },
+        {
+          propType: 'onItemClick',
+          type: 'func',
+        },
+      ],
     },
   ],
 };

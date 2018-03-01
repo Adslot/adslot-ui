@@ -11,10 +11,14 @@ class BorderedWellExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'BorderedWell',
   exampleCodeSnippet: '<BorderedWell>Content body.</BorderedWell>',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'children',
-      type: 'node',
+      propTypes: [
+        {
+          propType: 'children',
+          type: 'node',
+        },
+      ],
     },
   ],
 };

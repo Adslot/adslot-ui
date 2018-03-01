@@ -12,12 +12,17 @@ const exampleProps = {
   componentName: 'xxx',
   notes: '',
   exampleCodeSnippet: '<xxx />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: '',
-      type: '',
-      defaultValue: '',
-      note: '',
+      label: '',
+      propTypes: [
+        {
+          propType: '',
+          type: '',
+          defaultValue: '',
+          note: '',
+        },
+      ],
     },
   ],
 };

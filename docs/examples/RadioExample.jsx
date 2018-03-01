@@ -26,23 +26,28 @@ const exampleProps = {
       See <a href="https://github.com/luqin/react-icheck">React iCheck Documentation</a>
     </p>
   ),
-  exampleCodeSnippet: `<RadioGroup name="yesNo" className="radiogroup-stacked">
-  <Radio label="Yes" value="true" />
-  <Radio label="No" value="false" />
-</RadioGroup>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <RadioGroup name="yesNo" className="radiogroup-stacked">
+    <Radio label="Yes" value="true" />
+    <Radio label="No" value="false" />
+  </RadioGroup>`,
+  propTypeSectionArray: [
     {
-      propType: 'label',
-      type: 'node',
-      note: 'Usually fine to rely on a string but can pass HTML e.g. for a url.',
-    },
-    {
-      propType: 'value',
-      type: 'string',
-    },
-    {
-      propType: 'onChange',
-      type: 'func',
+      propTypes: [
+        {
+          propType: 'label',
+          type: 'node',
+          note: 'Usually fine to rely on a string but can pass HTML e.g. for a url.',
+        },
+        {
+          propType: 'value',
+          type: 'string',
+        },
+        {
+          propType: 'onChange',
+          type: 'func',
+        },
+      ],
     },
   ],
 };

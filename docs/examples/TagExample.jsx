@@ -80,40 +80,45 @@ const exampleProps = {
       the input field.
     </p>
   ),
-  exampleCodeSnippet: `<Tag
-  id="0ac7d4ce-af36-4fd9-b142-6377f8ad5f17"
-  accent="positive"
-  onAction={this.deleteTag}
-  inverse
-  actionIconSvgHref="./docs/assets/svg-symbols.svg#cancel"
->
-  Display
-</Tag>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <Tag
+    id="0ac7d4ce-af36-4fd9-b142-6377f8ad5f17"
+    accent="positive"
+    onAction={this.deleteTag}
+    inverse
+    actionIconSvgHref="./docs/assets/svg-symbols.svg#cancel"
+  >
+    Display
+  </Tag>`,
+  propTypeSectionArray: [
     {
-      propType: 'children',
-      type: 'node',
-    },
-    {
-      propType: 'id',
-      type: 'string',
-      defaultValue: 'default',
-    },
-    {
-      propType: 'accent',
-      type: 'string',
-    },
-    {
-      propType: 'inverse',
-      type: 'boolean',
-    },
-    {
-      propType: 'onAction',
-      type: 'func',
-    },
-    {
-      propType: 'actionIconSvgHref',
-      type: 'string',
+      propTypes: [
+        {
+          propType: 'children',
+          type: 'node',
+        },
+        {
+          propType: 'id',
+          type: 'string',
+          defaultValue: 'default',
+        },
+        {
+          propType: 'accent',
+          type: 'string',
+        },
+        {
+          propType: 'inverse',
+          type: 'boolean',
+        },
+        {
+          propType: 'onAction',
+          type: 'func',
+        },
+        {
+          propType: 'actionIconSvgHref',
+          type: 'string',
+        },
+      ],
     },
   ],
 };

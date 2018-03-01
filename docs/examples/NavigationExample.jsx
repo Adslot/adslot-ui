@@ -39,31 +39,36 @@ const exampleProps = {
       <label>Example: Campaign navigation.</label>
     </div>
   ),
-  exampleCodeSnippet: `<Nav activeKey={this.state.activeKey} onSelect={this.onSelect}>
-  <NavItem eventKey={0} href="#" title="Dashboard Home" className="dashboard-tab"}>Dashboard</NavItem>
-  <NavItem eventKey={1} title="Analytics Reporting">Reports</NavItem>
-</Nav>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <Nav activeKey={this.state.activeKey} onSelect={this.onSelect}>
+    <NavItem eventKey={0} href="#" title="Dashboard Home" className="dashboard-tab"}>Dashboard</NavItem>
+    <NavItem eventKey={1} title="Analytics Reporting">Reports</NavItem>
+  </Nav>`,
+  propTypeSectionArray: [
     {
-      propType: 'React Bootstrap Nav prop types',
-      type: '',
-      defaultValue: '',
-      note: (
-        <a href="https://react-bootstrap.github.io/components.html#navs" target="_blank" rel="noopener noreferrer">
-          React Bootstrap Docs
-        </a>
-      ),
-    },
-    {
-      propType: 'dts',
-      type: 'string',
-      note: 'data-test-selector; used for testing purposes',
-    },
-    {
-      propType: 'barPosition',
-      type: "oneOf: 'top', 'bottom'",
-      defaultValue: 'bottom',
-      note: 'Determine the position of selected tab bar indicator',
+      propTypes: [
+        {
+          propType: 'React Bootstrap Nav prop types',
+          type: '',
+          defaultValue: '',
+          note: (
+            <a href="https://react-bootstrap.github.io/components.html#navs" target="_blank" rel="noopener noreferrer">
+              React Bootstrap Docs
+            </a>
+          ),
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'data-test-selector; used for testing purposes',
+        },
+        {
+          propType: 'barPosition',
+          type: "oneOf: 'top', 'bottom'",
+          defaultValue: 'bottom',
+          note: 'Determine the position of selected tab bar indicator',
+        },
+      ],
     },
   ],
 };

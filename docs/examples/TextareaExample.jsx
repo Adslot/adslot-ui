@@ -18,19 +18,23 @@ const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: '<Textarea maxLength={250} />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'maxLength',
-      type: 'number',
-    },
-    {
-      propType: 'statusClass',
-      type: 'string',
-      defaultValue: '',
-    },
-    {
-      propType: 'onChange',
-      type: 'func',
+      propTypes: [
+        {
+          propType: 'maxLength',
+          type: 'number',
+        },
+        {
+          propType: 'statusClass',
+          type: 'string',
+          defaultValue: '',
+        },
+        {
+          propType: 'onChange',
+          type: 'func',
+        },
+      ],
     },
   ],
 };

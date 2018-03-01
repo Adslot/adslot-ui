@@ -36,48 +36,53 @@ class SearchBarExample extends React.Component {
 const exampleProps = {
   componentName: 'SearchBar',
   designNotes: <p>Search Bar is commonly used above the pages designed to manage filter pills and search.</p>,
-  exampleCodeSnippet: `<SearchBar
-  searchString={this.state.searchBarString}
-  searchPlaceholder="Enter a word or phrase to find matching items."
-  searchIconHref="./docs/assets/svg-symbols.svg#search"
-  onSearchStringChange={this.setSearchBarString}
-  onSearch={this.performSearchBarSearch}
-/>`,
-  propTypes: [
+  exampleCodeSnippet: `
+  <SearchBar
+    searchString={this.state.searchBarString}
+    searchPlaceholder="Enter a word or phrase to find matching items."
+    searchIconHref="./docs/assets/svg-symbols.svg#search"
+    onSearchStringChange={this.setSearchBarString}
+    onSearch={this.performSearchBarSearch}
+  />`,
+  propTypeSectionArray: [
     {
-      propType: 'additionalClassNames',
-      type: 'array',
-      defaultValue: <pre>[]</pre>,
-      note: 'array of strings',
-    },
-    {
-      propType: 'searchString',
-      type: 'string',
-      note: 'required',
-    },
-    {
-      propType: 'searchPlaceholder',
-      type: 'string',
-    },
-    {
-      propType: 'searchIconHref',
-      type: 'string',
-      note: 'required',
-    },
-    {
-      propType: 'onSearchStringChange',
-      type: 'func',
-      note: 'required',
-    },
-    {
-      propType: 'onSearch',
-      type: 'func',
-      note: 'required',
-    },
-    {
-      propType: 'dts',
-      type: 'string',
-      note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+      propTypes: [
+        {
+          propType: 'additionalClassNames',
+          type: 'array',
+          defaultValue: <pre>[]</pre>,
+          note: 'array of strings',
+        },
+        {
+          propType: 'searchString',
+          type: 'string',
+          note: 'required',
+        },
+        {
+          propType: 'searchPlaceholder',
+          type: 'string',
+        },
+        {
+          propType: 'searchIconHref',
+          type: 'string',
+          note: 'required',
+        },
+        {
+          propType: 'onSearchStringChange',
+          type: 'func',
+          note: 'required',
+        },
+        {
+          propType: 'onSearch',
+          type: 'func',
+          note: 'required',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+      ],
     },
   ],
 };

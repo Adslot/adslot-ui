@@ -60,7 +60,7 @@ const exampleProps = {
     value={this.state.selected}
     onChange={this.onChangeHandler}
   />`,
-  propTypes: [],
+  propTypeSectionArray: [],
 };
 
 export default () => (

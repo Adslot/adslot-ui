@@ -22,27 +22,31 @@ const exampleProps = {
     </div>
   ),
   exampleCodeSnippet: '<Avatar givenName="John" surname="Smith" />',
-  propTypes: [
+  propTypeSectionArray: [
     {
-      propType: 'color',
-      type: 'string',
-    },
-    {
-      propType: 'givenName',
-      type: 'string',
-    },
-    {
-      propType: 'tooltip',
-      type: 'string',
-    },
-    {
-      propType: 'surname',
-      type: 'string',
-    },
-    {
-      propType: 'image',
-      type: 'string',
-      note: 'URL to image source (e.g. Gravatar).',
+      propTypes: [
+        {
+          propType: 'color',
+          type: 'string',
+        },
+        {
+          propType: 'givenName',
+          type: 'string',
+        },
+        {
+          propType: 'tooltip',
+          type: 'string',
+        },
+        {
+          propType: 'surname',
+          type: 'string',
+        },
+        {
+          propType: 'image',
+          type: 'string',
+          note: 'URL to image source (e.g. Gravatar).',
+        },
+      ],
     },
   ],
 };
