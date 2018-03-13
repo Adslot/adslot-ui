@@ -21,6 +21,16 @@ describe('ButtonComponent', () => {
     expect(element.prop('className')).to.equal('button-component all the-classes');
   });
 
+  it('should support valid html attributes', () => {
+    const element = shallow(
+      <Button id="button-id" data-item-name="someDataValue">
+        Test
+      </Button>
+    );
+    expect(element.prop('id')).to.equal('button-id');
+    expect(element.prop('data-item-name')).to.equal('someDataValue');
+  });
+
   it('should not duplicate btn-inverse class if both legacy and new are used', () => {
     const element = shallow(
       <Button inverse className="btn-inverse">
