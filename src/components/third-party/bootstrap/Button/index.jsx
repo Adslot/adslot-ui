@@ -11,7 +11,7 @@ import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
 import './styles.scss';
 
-const AdslotButtonPropTypes = {
+const adslotButtonPropTypes = {
   inverse: PropTypes.bool,
   reason: PropTypes.string,
   dts: PropTypes.string,
@@ -52,7 +52,7 @@ class Button extends React.PureComponent {
 
     return (
       <BootstrapButton
-        {..._.omit(this.props, _.keys(AdslotButtonPropTypes))}
+        {..._.omit(this.props, _.keys(adslotButtonPropTypes))}
         disabled={isLoading || disabled}
         className={classes}
         {...expandDts(dts)}
@@ -69,7 +69,7 @@ class Button extends React.PureComponent {
   }
 }
 
-Button.propTypes = _.assign(AdslotButtonPropTypes, BootstrapButton.propTypes);
+Button.propTypes = _.assign({}, adslotButtonPropTypes, BootstrapButton.propTypes);
 
 Button.defaultProps = {
   inverse: false,
