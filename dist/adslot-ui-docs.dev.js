@@ -6865,6 +6865,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+var AdslotButtonPropTypes = {
+  inverse: prop_types_default.a.bool,
+  reason: prop_types_default.a.string,
+  dts: prop_types_default.a.string,
+  isLoading: prop_types_default.a.bool
+};
+
 var Button_Button = function (_React$PureComponent) {
   _inherits(Button, _React$PureComponent);
 
@@ -6918,7 +6925,7 @@ var Button_Button = function (_React$PureComponent) {
 
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
         Button_default.a,
-        Button__extends({}, external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.pick(this.props, external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.keys(Button_default.a.propTypes)), {
+        Button__extends({}, external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.omit(this.props, external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.keys(AdslotButtonPropTypes)), {
           disabled: isLoading || disabled,
           className: classes
         }, expandDts(dts)),
@@ -6944,12 +6951,7 @@ var Button_Button = function (_React$PureComponent) {
   return Button;
 }(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.PureComponent);
 
-Button_Button.propTypes = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.assign({
-  inverse: prop_types_default.a.bool,
-  reason: prop_types_default.a.string,
-  dts: prop_types_default.a.string,
-  isLoading: prop_types_default.a.bool
-}, Button_default.a.propTypes);
+Button_Button.propTypes = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.assign(AdslotButtonPropTypes, Button_default.a.propTypes);
 
 Button_Button.defaultProps = {
   inverse: false,
@@ -6964,6 +6966,8 @@ var Button__temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+
+  __REACT_HOT_LOADER__.register(AdslotButtonPropTypes, 'AdslotButtonPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
 
   __REACT_HOT_LOADER__.register(Button_Button, 'Button', '/home/jenkins/workspace/release-adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
 
