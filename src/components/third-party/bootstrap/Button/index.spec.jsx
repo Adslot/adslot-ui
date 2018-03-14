@@ -11,6 +11,11 @@ describe('ButtonComponent', () => {
     expect(element.type()).to.equal(BootstrapButton);
   });
 
+  it('should pass through Bootstrap Button props', () => {
+    const element = shallow(<Button bsStyle="link">Test</Button>);
+    expect(element.prop('bsStyle')).to.equal('link');
+  });
+
   it('should support legacy classname btn-inverse for non-breaking change', () => {
     const element = shallow(<Button className="btn-inverse">Test</Button>);
     expect(element.prop('className')).to.equal('button-component btn-inverse');
