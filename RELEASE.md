@@ -33,7 +33,6 @@ Else, if docs or build we don't need to do a release.
    1. git checkout master
    1. git pull
    1. npm install
-   1. npm prune (removes unused dependencies)
 1. npm run version
    1. webpack --env=dist (generate distribution js)
    1. git add dist/* (add webpack generated distribution)
