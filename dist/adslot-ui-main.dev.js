@@ -41807,7 +41807,7 @@ var Carousel = (0, _createReactClass2.default)({
     autoplay: _propTypes2.default.bool,
     autoplayInterval: _propTypes2.default.number,
     beforeSlide: _propTypes2.default.func,
-    cellAlign: _propTypes2.default.oneOf(['left', 'center', 'right']),
+    cellAlign: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
     cellSpacing: _propTypes2.default.number,
     data: _propTypes2.default.func,
     decorators: _propTypes2.default.arrayOf(_propTypes2.default.shape({
@@ -42289,25 +42289,30 @@ var Carousel = (0, _createReactClass2.default)({
   getTargetLeft: function getTargetLeft(touchOffset, slide) {
     var offset;
     var target = slide || this.state.currentSlide;
-    switch (this.props.cellAlign) {
-      case 'left':
-        {
-          offset = 0;
-          offset -= this.props.cellSpacing * target;
-          break;
-        }
-      case 'center':
-        {
-          offset = (this.state.frameWidth - this.state.slideWidth) / 2;
-          offset -= this.props.cellSpacing * target;
-          break;
-        }
-      case 'right':
-        {
-          offset = this.state.frameWidth - this.state.slideWidth;
-          offset -= this.props.cellSpacing * target;
-          break;
-        }
+    if(typeof this.props.cellAlign === 'number') {
+      offset = this.props.cellAlign;
+      offset -= this.props.cellSpacing * target;
+    } else {
+      switch (this.props.cellAlign) {
+        case 'left':
+          {
+            offset = 0;
+            offset -= this.props.cellSpacing * target;
+            break;
+          }
+        case 'center':
+          {
+            offset = (this.state.frameWidth - this.state.slideWidth) / 2;
+            offset -= this.props.cellSpacing * target;
+            break;
+          }
+        case 'right':
+          {
+            offset = this.state.frameWidth - this.state.slideWidth;
+            offset -= this.props.cellSpacing * target;
+            break;
+          }
+      }
     }
 
     var left = this.state.slideWidth * target;
@@ -42394,7 +42399,8 @@ var Carousel = (0, _createReactClass2.default)({
         frame,
         frameWidth,
         frameHeight,
-        slideHeight;
+        slideHeight,
+        toScroll;
 
     slidesToScroll = props.slidesToScroll;
     frame = this.refs.frame;
@@ -42424,7 +42430,8 @@ var Carousel = (0, _createReactClass2.default)({
     frameWidth = props.vertical ? frameHeight : frame.offsetWidth;
 
     if (props.slidesToScroll === 'auto') {
-      slidesToScroll = Math.floor(frameWidth / (slideWidth + props.cellSpacing));
+      toScroll = frameWidth / (slideWidth + props.cellSpacing);
+      slidesToScroll = props.slideWidth === 1 ? Math.ceil(toScroll) : Math.floor(toScroll);
     }
 
     this.setState({
@@ -42516,7 +42523,7 @@ var Carousel = (0, _createReactClass2.default)({
     var end = (this.state.slideWidth + this.props.cellSpacing) * slidesToShow * -1;
 
     if (this.props.wrapAround) {
-      var slidesBefore = Math.ceil(positionValue / this.state.slideWidth);
+      var slidesBefore = Math.ceil(positionValue / (this.state.slideWidth + this.props.cellSpacing));
       if (this.state.slideCount - slidesBefore <= index) {
         return (this.state.slideWidth + this.props.cellSpacing) * (this.state.slideCount - index) * -1;
       }
@@ -42527,8 +42534,8 @@ var Carousel = (0, _createReactClass2.default)({
         slidesAfter = Math.ceil((Math.abs(positionValue) - this.state.slideWidth) / this.state.slideWidth);
       }
 
-      if (index <= slidesAfter - 1) {
-        return (this.state.slideWidth + this.props.cellSpacing) * (this.state.slideCount + index);
+      if (index <= slidesAfter - 2) {
+        return (this.state.slideWidth + this.props.cellSpacing) * (slidesBefore < 0 ? this.state.slideCount + index : index);
       }
     }
 
@@ -43093,6 +43100,27 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
      */
     componentWillUnmount: 'DEFINE_MANY',
 
+    /**
+     * Replacement for (deprecated) `componentWillMount`.
+     *
+     * @optional
+     */
+    UNSAFE_componentWillMount: 'DEFINE_MANY',
+
+    /**
+     * Replacement for (deprecated) `componentWillReceiveProps`.
+     *
+     * @optional
+     */
+    UNSAFE_componentWillReceiveProps: 'DEFINE_MANY',
+
+    /**
+     * Replacement for (deprecated) `componentWillUpdate`.
+     *
+     * @optional
+     */
+    UNSAFE_componentWillUpdate: 'DEFINE_MANY',
+
     // ==== Advanced methods ====
 
     /**
@@ -43106,6 +43134,23 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
      * @overridable
      */
     updateComponent: 'OVERRIDE_BASE'
+  };
+
+  /**
+   * Similar to ReactClassInterface but for static methods.
+   */
+  var ReactClassStaticInterface = {
+    /**
+     * This method is invoked after a component is instantiated and when it
+     * receives new props. Return an object to update state in response to
+     * prop changes. Return null to indicate no change to state.
+     *
+     * If an object is returned, its keys will be merged into the existing state.
+     *
+     * @return {object || null}
+     * @optional
+     */
+    getDerivedStateFromProps: 'DEFINE_MANY_MERGED'
   };
 
   /**
@@ -43342,6 +43387,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
     if (!statics) {
       return;
     }
+
     for (var name in statics) {
       var property = statics[name];
       if (!statics.hasOwnProperty(name)) {
@@ -43358,14 +43404,25 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         name
       );
 
-      var isInherited = name in Constructor;
-      _invariant(
-        !isInherited,
-        'ReactClass: You are attempting to define ' +
-          '`%s` on your component more than once. This conflict may be ' +
-          'due to a mixin.',
-        name
-      );
+      var isAlreadyDefined = name in Constructor;
+      if (isAlreadyDefined) {
+        var specPolicy = ReactClassStaticInterface.hasOwnProperty(name)
+          ? ReactClassStaticInterface[name]
+          : null;
+
+        _invariant(
+          specPolicy === 'DEFINE_MANY_MERGED',
+          'ReactClass: You are attempting to define ' +
+            '`%s` on your component more than once. This conflict may be ' +
+            'due to a mixin.',
+          name
+        );
+
+        Constructor[name] = createMergedResultFunction(Constructor[name], property);
+
+        return;
+      }
+
       Constructor[name] = property;
     }
   }
@@ -43673,6 +43730,12 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         !Constructor.prototype.componentWillRecieveProps,
         '%s has a method called ' +
           'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?',
+        spec.displayName || 'A component'
+      );
+      warning(
+        !Constructor.prototype.UNSAFE_componentWillRecieveProps,
+        '%s has a method called UNSAFE_componentWillRecieveProps(). ' +
+          'Did you mean UNSAFE_componentWillReceiveProps()?',
         spec.displayName || 'A component'
       );
     }
