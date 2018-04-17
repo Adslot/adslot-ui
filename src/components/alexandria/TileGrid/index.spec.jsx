@@ -61,4 +61,40 @@ describe('TileGrid', () => {
     expect(onItemClickSpy.callCount).to.equal(2);
     expect(onItemClickSpy.calledWith('1')).to.equal(true);
   });
+
+  it('should handle evenly distributed', () => {
+    props.distributed = true;
+    const component = shallow(<TileGrid {...props} />);
+    const tileList = component.find('.tile-grid-component-item-distributed');
+    expect(tileList).to.have.length(2);
+  });
+
+  it('should add image for background if imgLink is provided', () => {
+    const itemsWithLink = [
+      { id: '0', classSuffix: 'alpha', title: 'Alpha', imgLink: '/linkAlpha.jpg' },
+      { id: '1', classSuffix: 'beta', title: 'Beta', imgLink: '/linkBeta.jpg' },
+    ];
+    props.items = itemsWithLink;
+    const component = shallow(<TileGrid {...props} />);
+    const tileList = component.find('.tile-grid-component-item-img-wrapper');
+    expect(tileList).to.have.length(2);
+  });
+
+  it('should handle image position', () => {
+    const itemsWithLinkAndPosition = [
+      { id: '0', classSuffix: 'one', title: 'One', imgLink: '/linkOne.jpg', imgAlign: 'left' },
+      { id: '1', classSuffix: 'two', title: 'Two', imgLink: '/linkTwo.jpg', imgAlign: 'center' },
+      { id: '1', classSuffix: 'three', title: 'Three', imgLink: '/linkThree.jpg', imgAlign: 'right' },
+    ];
+    props.items = itemsWithLinkAndPosition;
+    const component = shallow(<TileGrid {...props} />);
+    const tileList = component.find('.tile-grid-component-item-img-wrapper');
+    expect(tileList).to.have.length(3);
+    const leftAlignedTile = component.find('.tile-grid-component-item-img-wrapper-left');
+    expect(leftAlignedTile).to.have.length(1);
+    const centerAlignedTile = component.find('.tile-grid-component-item-img-wrapper-center');
+    expect(centerAlignedTile).to.have.length(1);
+    const rightAlignedTile = component.find('.tile-grid-component-item-img-wrapper-right');
+    expect(rightAlignedTile).to.have.length(1);
+  });
 });
