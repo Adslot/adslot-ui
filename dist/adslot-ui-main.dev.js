@@ -8487,39 +8487,74 @@ var TileGrid_styles_default = /*#__PURE__*/__webpack_require__.n(TileGrid_styles
 
 
 
+var defaultWidth = 204; // 204px
+var defaultMaxWidth = 295; // 295px
+var TileGrid_baseClass = 'tile-grid-component';
+
 var TileGrid_TileGrid = function TileGrid(_ref) {
   var title = _ref.title,
       items = _ref.items,
-      onItemClick = _ref.onItemClick;
+      onItemClick = _ref.onItemClick,
+      distributed = _ref.distributed;
 
-  var baseClass = 'tile-grid-component';
+  var cardList = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.map(items, function (item) {
+    var itemClassNames = [TileGrid_baseClass + '-item', TileGrid_baseClass + '-item-' + item.classSuffix];
+    if (distributed) itemClassNames.push(TileGrid_baseClass + '-item-distributed');
+
+    var imgWrapperClassNames = [TileGrid_baseClass + '-item-img-wrapper'];
+
+    if (item.imgLink) {
+      switch (item.imgAlign || 'left') {
+        case 'center':
+          imgWrapperClassNames.push(TileGrid_baseClass + '-item-img-wrapper-center');
+          break;
+        case 'right':
+          imgWrapperClassNames.push(TileGrid_baseClass + '-item-img-wrapper-right');
+          break;
+        case 'left':
+        default:
+          imgWrapperClassNames.push(TileGrid_baseClass + '-item-img-wrapper-left');
+      }
+    }
+
+    var itemStyle = distributed ? { maxWidth: item.maxWidth || defaultMaxWidth } : { width: item.width || defaultWidth };
+
+    return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+      'li',
+      { key: item.id, className: itemClassNames.join(' '), style: itemStyle },
+      item.imgLink ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+        'div',
+        { className: imgWrapperClassNames.join(' ') },
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('img', { src: item.imgLink })
+      ) : null,
+      external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+        'a',
+        { className: TileGrid_baseClass + '-item-link', onClick: function onClick() {
+            return onItemClick(item.id);
+          } },
+        item.title
+      )
+    );
+  });
 
   return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
     'div',
-    { className: baseClass },
+    { className: TileGrid_baseClass },
     external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
       'strong',
-      { className: baseClass + '-title' },
+      { className: TileGrid_baseClass + '-title' },
       title
     ),
     external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
       'ul',
-      { className: baseClass + '-list' },
-      external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.map(items, function (item) {
-        return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-          'li',
-          { key: item.id, className: baseClass + '-item ' + baseClass + '-item-' + item.classSuffix },
-          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-            'a',
-            { className: baseClass + '-item-link', onClick: function onClick() {
-                return onItemClick(item.id);
-              } },
-            item.title
-          )
-        );
-      })
+      { className: TileGrid_baseClass + '-list' },
+      cardList
     )
   );
+};
+
+TileGrid_TileGrid.defaultProps = {
+  distributed: false
 };
 
 TileGrid_TileGrid.propTypes = {
@@ -8527,9 +8562,14 @@ TileGrid_TileGrid.propTypes = {
   items: prop_types_default.a.arrayOf(prop_types_default.a.shape({
     id: idPropType.isRequired,
     classSuffix: prop_types_default.a.string.isRequired,
-    title: prop_types_default.a.string.isRequired
+    title: prop_types_default.a.string.isRequired,
+    imgLink: prop_types_default.a.string,
+    width: prop_types_default.a.number,
+    maxWidth: prop_types_default.a.number,
+    imgAlign: prop_types_default.a.oneOf(['left', 'right', 'center'])
   })).isRequired,
-  onItemClick: prop_types_default.a.func.isRequired
+  onItemClick: prop_types_default.a.func.isRequired,
+  distributed: prop_types_default.a.bool
 };
 
 TileGrid_TileGrid.displayName = 'AlexandriaTileGridComponent';
@@ -8542,6 +8582,12 @@ var TileGrid__temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+
+  __REACT_HOT_LOADER__.register(defaultWidth, 'defaultWidth', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+
+  __REACT_HOT_LOADER__.register(defaultMaxWidth, 'defaultMaxWidth', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+
+  __REACT_HOT_LOADER__.register(TileGrid_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
   __REACT_HOT_LOADER__.register(TileGrid_TileGrid, 'TileGrid', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 

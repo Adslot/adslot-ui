@@ -8487,39 +8487,74 @@ var TileGrid_styles_default = /*#__PURE__*/__webpack_require__.n(TileGrid_styles
 
 
 
+var defaultWidth = 204; // 204px
+var defaultMaxWidth = 295; // 295px
+var TileGrid_baseClass = 'tile-grid-component';
+
 var TileGrid_TileGrid = function TileGrid(_ref) {
   var title = _ref.title,
       items = _ref.items,
-      onItemClick = _ref.onItemClick;
+      onItemClick = _ref.onItemClick,
+      distributed = _ref.distributed;
 
-  var baseClass = 'tile-grid-component';
+  var cardList = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.map(items, function (item) {
+    var itemClassNames = [TileGrid_baseClass + '-item', TileGrid_baseClass + '-item-' + item.classSuffix];
+    if (distributed) itemClassNames.push(TileGrid_baseClass + '-item-distributed');
+
+    var imgWrapperClassNames = [TileGrid_baseClass + '-item-img-wrapper'];
+
+    if (item.imgLink) {
+      switch (item.imgAlign || 'left') {
+        case 'center':
+          imgWrapperClassNames.push(TileGrid_baseClass + '-item-img-wrapper-center');
+          break;
+        case 'right':
+          imgWrapperClassNames.push(TileGrid_baseClass + '-item-img-wrapper-right');
+          break;
+        case 'left':
+        default:
+          imgWrapperClassNames.push(TileGrid_baseClass + '-item-img-wrapper-left');
+      }
+    }
+
+    var itemStyle = distributed ? { maxWidth: item.maxWidth || defaultMaxWidth } : { width: item.width || defaultWidth };
+
+    return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+      'li',
+      { key: item.id, className: itemClassNames.join(' '), style: itemStyle },
+      item.imgLink ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+        'div',
+        { className: imgWrapperClassNames.join(' ') },
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('img', { src: item.imgLink })
+      ) : null,
+      external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+        'a',
+        { className: TileGrid_baseClass + '-item-link', onClick: function onClick() {
+            return onItemClick(item.id);
+          } },
+        item.title
+      )
+    );
+  });
 
   return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
     'div',
-    { className: baseClass },
+    { className: TileGrid_baseClass },
     external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
       'strong',
-      { className: baseClass + '-title' },
+      { className: TileGrid_baseClass + '-title' },
       title
     ),
     external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
       'ul',
-      { className: baseClass + '-list' },
-      external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.map(items, function (item) {
-        return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-          'li',
-          { key: item.id, className: baseClass + '-item ' + baseClass + '-item-' + item.classSuffix },
-          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-            'a',
-            { className: baseClass + '-item-link', onClick: function onClick() {
-                return onItemClick(item.id);
-              } },
-            item.title
-          )
-        );
-      })
+      { className: TileGrid_baseClass + '-list' },
+      cardList
     )
   );
+};
+
+TileGrid_TileGrid.defaultProps = {
+  distributed: false
 };
 
 TileGrid_TileGrid.propTypes = {
@@ -8527,9 +8562,14 @@ TileGrid_TileGrid.propTypes = {
   items: prop_types_default.a.arrayOf(prop_types_default.a.shape({
     id: idPropType.isRequired,
     classSuffix: prop_types_default.a.string.isRequired,
-    title: prop_types_default.a.string.isRequired
+    title: prop_types_default.a.string.isRequired,
+    imgLink: prop_types_default.a.string,
+    width: prop_types_default.a.number,
+    maxWidth: prop_types_default.a.number,
+    imgAlign: prop_types_default.a.oneOf(['left', 'right', 'center'])
   })).isRequired,
-  onItemClick: prop_types_default.a.func.isRequired
+  onItemClick: prop_types_default.a.func.isRequired,
+  distributed: prop_types_default.a.bool
 };
 
 TileGrid_TileGrid.displayName = 'AlexandriaTileGridComponent';
@@ -8542,6 +8582,12 @@ var TileGrid__temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+
+  __REACT_HOT_LOADER__.register(defaultWidth, 'defaultWidth', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+
+  __REACT_HOT_LOADER__.register(defaultMaxWidth, 'defaultMaxWidth', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+
+  __REACT_HOT_LOADER__.register(TileGrid_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
   __REACT_HOT_LOADER__.register(TileGrid_TileGrid, 'TileGrid', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
@@ -49914,6 +49960,8 @@ function TileGridExample__inherits(subClass, superClass) { if (typeof superClass
 
 
 
+var exampleImageLink = './docs/assets/tileGrid/example-image.jpg';
+
 var TileGridExample_TileGridExample = function (_React$PureComponent) {
   TileGridExample__inherits(TileGridExample, _React$PureComponent);
 
@@ -49936,8 +49984,9 @@ var TileGridExample_TileGridExample = function (_React$PureComponent) {
     value: function render() {
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index["TileGrid"], {
         title: 'Browse by category',
-        items: [{ id: '0', classSuffix: 'news', title: 'News' }, { id: '1', classSuffix: 'sport', title: 'Sport' }, { id: '2', classSuffix: 'health', title: 'Health & Fitness' }, { id: '3', classSuffix: 'tech', title: 'Technology & Computing' }],
-        onItemClick: this.onClick
+        items: [{ id: '0', classSuffix: 'news', title: 'News', imgLink: exampleImageLink }, { id: '1', classSuffix: 'sport', title: 'Sport', imgLink: exampleImageLink, imgAlign: 'center' }, { id: '2', classSuffix: 'health', title: 'Health & Fitness', imgLink: exampleImageLink, imgAlign: 'right' }, { id: '3', classSuffix: 'tech', title: 'Technology & Computing' }],
+        onItemClick: this.onClick,
+        distributed: true
       });
     }
   }]);
@@ -49947,17 +49996,58 @@ var TileGridExample_TileGridExample = function (_React$PureComponent) {
 
 var TileGridExample_exampleProps = {
   componentName: 'Tile Grid',
-  exampleCodeSnippet: '\n  <TileGrid\n    title="Browse by category"\n    items={[\n      { id: \'0\', classSuffix: \'news\', title: \'News\' },\n      { id: \'1\', classSuffix: \'sport\', title: \'Sport\' },\n      { id: \'2\', classSuffix: \'health\', title: \'Health & Fitness\' },\n      { id: \'3\', classSuffix: \'tech\', title: \'Technology & Computing\' },\n    ]}\n    onItemClick={this.onClick}\n  />',
+  exampleCodeSnippet: '\n  <TileGrid\n    title="Browse by category"\n    items={[\n      { id: \'0\', classSuffix: \'news\', title: \'News\', imgLink: exampleImageLink },\n      { id: \'1\', classSuffix: \'sport\', title: \'Sport\', imgLink: exampleImageLink, imgAlign: \'center\' },\n      { id: \'2\', classSuffix: \'health\', title: \'Health & Fitness\', imgLink: exampleImageLink, imgAlign: \'right\' },\n      { id: \'3\', classSuffix: \'tech\', title: \'Technology & Computing\' },\n    ]}\n    onItemClick={this.onClick}\n    distributed\n  />',
   propTypeSectionArray: [{
+    label: 'TileGrid',
     propTypes: [{
       propType: 'title',
       type: 'string'
     }, {
       propType: 'items',
-      type: 'arrayOf { string: id, string: classSuffix, string: title }'
+      type: 'arrayOf(item object)',
+      note: 'The shape of item object is defined below'
     }, {
       propType: 'onItemClick',
       type: 'func'
+    }, {
+      propType: 'distributed',
+      type: 'bool',
+      defaultValue: 'false',
+      note: 'If distributed is true, each tile in this component will have a distributed width.'
+    }]
+  }, {
+    label: '(Item Object)',
+    propTypes: [{
+      propType: 'id',
+      type: 'string || number',
+      note: 'required'
+    }, {
+      propType: 'classSuffix',
+      type: 'string',
+      note: 'required'
+    }, {
+      propType: 'title',
+      type: 'string',
+      note: 'required'
+    }, {
+      propType: 'imgLink',
+      type: 'string',
+      note: 'Address link used for background image of each tile.'
+    }, {
+      propType: 'width',
+      type: 'number',
+      defaultValue: '204',
+      note: 'Defining width of each tile. (In pixels)'
+    }, {
+      propType: 'maxWidth',
+      type: 'number',
+      defaultValue: '295',
+      note: 'Defining max-width of each tile. (In pixels)'
+    }, {
+      propType: 'imgAlign',
+      type: 'oneOf(\'left\', \'right\', \'center\')',
+      defaultValue: 'left',
+      note: 'Used for defining the position of background image. (Only working if imgLink is defined)'
     }]
   }]
 };
@@ -49977,6 +50067,8 @@ var TileGridExample__temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
+
+  __REACT_HOT_LOADER__.register(exampleImageLink, 'exampleImageLink', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TileGridExample.jsx');
 
   __REACT_HOT_LOADER__.register(TileGridExample_TileGridExample, 'TileGridExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TileGridExample.jsx');
 
