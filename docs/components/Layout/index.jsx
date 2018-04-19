@@ -14,6 +14,7 @@ import TextareaExample from '../../examples/TextareaExample';
 import TextEllipsisExample from '../../examples/TextEllipsisExample';
 import AlertExample from '../../examples/AlertExample';
 import CheckboxExample from '../../examples/CheckboxExample';
+import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
 import RadioExample from '../../examples/RadioExample';
 import SelectExample from '../../examples/SelectExample';
 import DatePickerExample from '../../examples/DatePickerExample';
@@ -74,6 +75,7 @@ const componentsBySection = {
     'list-picker',
     'user-list-picker',
     'checkbox',
+    'checkbox-group',
     'radio',
     'select',
     'date-picker',
@@ -174,6 +176,7 @@ class PageLayout extends React.Component {
             <ListPickerExample />
             <UserListPickerExample />
             <CheckboxExample />
+            <CheckboxGroupExample />
             <RadioExample />
             <SelectExample />
             <DatePickerExample />
