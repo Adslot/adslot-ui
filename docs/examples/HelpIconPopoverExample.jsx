@@ -30,7 +30,7 @@ const exampleProps = {
   notes: (
     <span>
       Help text icon and popoover of rich-text. Useful in modals, accordions and page headers. For forms, use stacked{' '}
-      <pre>.help-block</pre> text.
+      <code>.help-block</code> text.
     </span>
   ),
   exampleCodeSnippet: `

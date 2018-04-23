@@ -35,7 +35,7 @@ const exampleProps = {
         See <a href="https://github.com/Hacker0x01/react-datepicker">React DatePicker Documentation</a>.
       </p>
       <p>
-        For a Date Range Picker, use two Date Pickers with <pre>minDate</pre> and <pre>maxDate</pre> props for
+        For a Date Range Picker, use two Date Pickers with <code>minDate</code> and <code>maxDate</code> props for
         validation.
       </p>
     </div>

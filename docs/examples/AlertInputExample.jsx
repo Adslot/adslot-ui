@@ -68,9 +68,9 @@ const exampleProps = {
   componentName: 'Alert Input',
   designNotes: (
     <p>
-      <pre className="text-bold">Alert input</pre> provide direct feedback by{' '}
-      <pre className="text-orange text-bold">‘Warning’</pre> the user but not blocking them.{' '}
-      <pre className="text-red text-bold">‘Required’</pre> informing the users there is required information or they
+      <code className="text-bold">Alert input</code> provide direct feedback by{' '}
+      <code className="text-orange text-bold">‘Warning’</code> the user but not blocking them.{' '}
+      <code className="text-red text-bold">‘Required’</code> informing the users there is required information or they
       have entered incorrect information.
     </p>
   ),
@@ -121,9 +121,9 @@ const exampleProps = {
           defaultValue: 'success',
           note: (
             <span>
-              As <pre>success</pre> is assumed, and help is always displayed independently, the accepted pattern is to
-              only use <pre>warning</pre> and <pre>error</pre> feedback states with this component. Otherwise leave type
-              undefined for <pre>success</pre>.
+              As <code>success</code> is assumed, and help is always displayed independently, the accepted pattern is to
+              only use <code>warning</code> and <code>error</code> feedback states with this component. Otherwise leave
+              type undefined for <code>success</code>.
             </span>
           ),
         },

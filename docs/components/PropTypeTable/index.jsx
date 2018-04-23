@@ -26,13 +26,13 @@ class PropTypeTable extends React.PureComponent {
             {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
               <tr key={propType}>
                 <td>
-                  <pre>{propType}</pre>
+                  <code>{propType}</code>
                 </td>
                 <td>
-                  <pre>{type}</pre>
+                  <code>{type}</code>
                 </td>
                 <td>
-                  <pre>{defaultValue}</pre>
+                  <code>{defaultValue}</code>
                 </td>
                 <td>{note}</td>
               </tr>

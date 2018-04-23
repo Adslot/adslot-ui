@@ -144,7 +144,7 @@ const exampleProps = {
         {
           propType: 'classSuffixes',
           type: 'arrayOf(String)',
-          defaultValue: <pre>[]</pre>,
+          defaultValue: <code>[]</code>,
           note: `Every element provided in this prop, will generate a className like 'grid-component-cell-something'.`,
         },
         {

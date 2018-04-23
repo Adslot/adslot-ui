@@ -71,22 +71,22 @@ const exampleProps = {
         {
           propType: 'onChange',
           type: 'func',
-          note: <pre>onChange(value)</pre>,
+          note: <code>onChange(value)</code>,
         },
         {
           propType: 'onClear',
           type: 'func',
-          note: <pre>onClear(value)</pre>,
+          note: <code>onClear(value)</code>,
         },
         {
           propType: 'onSearch',
           type: 'func',
-          note: <pre>onSearch(value)</pre>,
+          note: <code>onSearch(value)</code>,
         },
         {
           propType: 'placeholder',
           type: 'string',
-          defaultValue: <pre>&apos;&apos;</pre>,
+          defaultValue: <code>&apos;&apos;</code>,
         },
         {
           propType: 'svgSymbolCancel',
@@ -97,10 +97,14 @@ const exampleProps = {
           ),
           defaultValue: (
             <pre>
-              {JSON.stringify({
-                classSuffixes: ['gray-darker'],
-                href: './docs/assets/svg-symbols.svg#cancel',
-              })}
+              {JSON.stringify(
+                {
+                  classSuffixes: ['gray-darker'],
+                  href: './docs/assets/svg-symbols.svg#cancel',
+                },
+                null,
+                2
+              )}
             </pre>
           ),
         },
@@ -113,17 +117,21 @@ const exampleProps = {
           ),
           defaultValue: (
             <pre>
-              {JSON.stringify({
-                classSuffixes: ['gray-light'],
-                href: './docs/assets/svg-symbols.svg#search',
-              })}
+              {JSON.stringify(
+                {
+                  classSuffixes: ['gray-light'],
+                  href: './docs/assets/svg-symbols.svg#search',
+                },
+                null,
+                2
+              )}
             </pre>
           ),
         },
         {
           propType: 'value',
           type: 'string',
-          defaultValue: <pre>&apos;&apos;</pre>,
+          defaultValue: <code>&apos;&apos;</code>,
           note: 'As value within search component is uncontrolled we need to pass in the search value externally.',
         },
         {
