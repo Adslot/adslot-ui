@@ -34,7 +34,7 @@ const exampleProps = {
         {
           propType: 'additionalClassNames',
           type: 'array',
-          defaultValue: <pre>[]</pre>,
+          defaultValue: <code>[]</code>,
         },
         {
           propType: 'children',

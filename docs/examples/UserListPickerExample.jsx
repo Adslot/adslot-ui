@@ -114,7 +114,7 @@ const exampleProps = {
         {
           propType: 'initialSelection',
           type: 'arrayOf { string: avatar, string: givenName, number: id, string: surname }',
-          defaultValue: <pre>[]</pre>,
+          defaultValue: <code>[]</code>,
         },
         {
           propType: 'modalApply',
@@ -142,12 +142,12 @@ const exampleProps = {
         {
           propType: 'userHeaders',
           type: '{ string: label, string: toggle }',
-          defaultValue: <pre>{JSON.stringify({ label: 'Team', toggle: 'Member' })}</pre>,
+          defaultValue: <code>{JSON.stringify({ label: 'Team', toggle: 'Member' })}</code>,
         },
         {
           propType: 'users',
           type: 'arrayOf {string: avatar, string: givenName, number: id, string: surname}',
-          defaultValue: <pre>[]</pre>,
+          defaultValue: <code>[]</code>,
         },
       ],
     },

@@ -33,7 +33,7 @@ const exampleProps = {
           note: (
             <span>
               Slicey will represent all values as percentage of the pie based on the sum of all values. Label will
-              provide a className to each slice as <pre>.arc-component-{'${label}'}</pre>.
+              provide a className to each slice as <code>.arc-component-{'${label}'}</code>.
             </span>
           ),
         },

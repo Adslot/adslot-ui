@@ -117,7 +117,7 @@ const exampleProps = {
         {
           propType: 'initialSelection',
           type: 'array',
-          defaultValue: <pre>[]</pre>,
+          defaultValue: <code>[]</code>,
         },
         {
           propType: 'itemHeaders',
@@ -130,7 +130,7 @@ const exampleProps = {
         {
           propType: 'items',
           type: 'array',
-          defaultValue: <pre>[]</pre>,
+          defaultValue: <code>[]</code>,
         },
         {
           propType: 'itemType',

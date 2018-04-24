@@ -85,8 +85,8 @@ export const exampleProps = {
           defaultValue: 'default',
           note: (
             <span>
-              <br />It&apos;s uncommon to use <pre>success</pre>, <pre>info</pre>, <pre>warning</pre>, or{' '}
-              <pre>danger</pre>
+              <br />It&apos;s uncommon to use <code>success</code>, <code>info</code>, <code>warning</code>, or{' '}
+              <code>danger</code>
               which are supported by Bootstrap but not us.
             </span>
           ),
@@ -112,7 +112,7 @@ export const exampleProps = {
           type: 'string',
           note: (
             <span>
-              We rarely use <pre>large</pre>, and should not use <pre>small</pre>.
+              We rarely use <code>large</code>, and should not use <code>small</code>.
             </span>
           ),
         },

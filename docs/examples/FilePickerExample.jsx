@@ -52,7 +52,7 @@ const exampleProps = {
         {
           propType: 'onSelect',
           type: 'func',
-          note: <pre>{'onSelect({ isClosed, lastModified, lastModifiedDate, name, size, type })'}</pre>,
+          note: <code>{'onSelect({ isClosed, lastModified, lastModifiedDate, name, size, type })'}</code>,
         },
         {
           propType: 'placeholder',

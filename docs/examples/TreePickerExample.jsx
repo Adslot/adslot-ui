@@ -123,13 +123,13 @@ const exampleProps = {
         {
           propType: 'debounceInterval',
           type: 'number',
-          defaultValue: <pre>0</pre>,
+          defaultValue: <code>0</code>,
           note: 'Interval time on search',
         },
         {
           propType: 'disabled',
           type: 'bool',
-          defaultValue: <pre>false</pre>,
+          defaultValue: <code>false</code>,
           note: 'disables treepicker including search bar',
         },
         {
@@ -202,13 +202,13 @@ const exampleProps = {
         {
           propType: 'itemType',
           type: 'string',
-          defaultValue: <pre>'node'</pre>,
+          defaultValue: <code>'node'</code>,
           note: 'uses for specific className',
         },
         {
           propType: 'isLoading',
           type: 'bool',
-          defaultValue: <pre>false</pre>,
+          defaultValue: <code>false</code>,
         },
         {
           propType: 'nodeRenderer',
@@ -237,13 +237,13 @@ const exampleProps = {
         {
           propType: 'searchOnChange',
           type: 'bool',
-          defaultValue: <pre>true</pre>,
+          defaultValue: <code>true</code>,
           note: 'When true, search is triggered as soon as the user types in the search field',
         },
         {
           propType: 'searchOnEnterKey',
           type: 'bool',
-          defaultValue: <pre>false</pre>,
+          defaultValue: <code>false</code>,
           note: 'When true, triggers search when the user presses the Enter key',
         },
         {
@@ -284,13 +284,13 @@ const exampleProps = {
         {
           propType: 'displayGroupHeader',
           type: 'bool',
-          defaultValue: <pre>true</pre>,
+          defaultValue: <code>true</code>,
           note: 'e.g: Default Group',
         },
         {
           propType: 'hideSearchOnRoot',
           type: 'bool',
-          defaultValue: <pre>false</pre>,
+          defaultValue: <code>false</code>,
         },
       ],
     },
