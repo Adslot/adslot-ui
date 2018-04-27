@@ -37,3 +37,51 @@ body {
     }
   }
 }
+
+.note-panel {
+  // sass-lint:disable no-color-literals
+  background: none rgb(253, 253, 253); // to match react-syntax-highlighter coy
+  // sass-lint:enable no-color-literals
+
+  ~ .note-panel {
+    margin-top: 10px;
+  }
+
+  pre {
+    display: inline;
+  }
+
+  .text {
+    &-blue {
+      color: $color-blue;
+    }
+
+    &-cyan {
+      color: $color-cyan;
+    }
+
+    &-green {
+      color: $color-green;
+    }
+
+    &-gray-light {
+      color: $color-gray-light;
+    }
+
+    &-gray-dark {
+      color: $color-gray-dark;
+    }
+
+    &-red {
+      color: $color-red;
+    }
+
+    &-orange {
+      color: $color-orange;
+    }
+
+    &-bold {
+      font-weight: $font-weight-bold;
+    }
+  }
+}

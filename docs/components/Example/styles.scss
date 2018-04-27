@@ -10,6 +10,11 @@
 
   .adslot-ui-code-snippet {
     max-width: 1100px;
+
+    > pre {
+      // `!important` on next line because of `react-syntax-highlighter` overriding with inline styles
+      padding: 10px !important; // sass-lint:disable-line no-important
+    }
   }
 
   h2 {

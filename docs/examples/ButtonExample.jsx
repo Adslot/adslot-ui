@@ -60,22 +60,22 @@ export const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: `<div>
-    <Button
-      bsStyle="link"
-      disabled={!this.state.canUndo}
-      reason="There's nothing to undo."
-      onClick={this.onClick}
-    >
-      Undo
-    </Button>
-    <Button
-      bsStyle="primary"
-      disabled={this.state.canUndo}
-      onClick={this.onClick}
-    >
-      Apply
-    </Button>
-  </div>`,
+  <Button
+    bsStyle="link"
+    disabled={!this.state.canUndo}
+    reason="There's nothing to undo."
+    onClick={this.onClick}
+  >
+    Undo
+  </Button>
+  <Button
+    bsStyle="primary"
+    disabled={this.state.canUndo}
+    onClick={this.onClick}
+  >
+    Apply
+  </Button>
+</div>`,
   propTypeSectionArray: [
     {
       propTypes: [
