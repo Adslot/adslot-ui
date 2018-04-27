@@ -40,7 +40,7 @@ const exampleProps = {
             <span>
               See
               <a
-                href="https://react-bootstrap.github.io/components.html#overlays-trigger-props"
+                href="https://react-bootstrap.github.io/components/overlays/#custom-overlays-props"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -56,7 +56,7 @@ const exampleProps = {
             <span>
               See
               <a
-                href="https://react-bootstrap.github.io/components.html#popover-props"
+                href="https://react-bootstrap.github.io/components/popovers/#popover-props"
                 target="_blank"
                 rel="noopener noreferrer"
               >
