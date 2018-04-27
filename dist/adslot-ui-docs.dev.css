@@ -15357,49 +15357,6 @@ strong {
 .search-result-card .card-component-content .clear-button {
   padding: 0;
 }
-.note-panel {
-  width: 750px;
-}
-
-.note-panel ~ .note-panel {
-  margin-top: 30px;
-}
-
-.note-panel pre {
-  display: inline;
-}
-
-.note-panel .text-blue {
-  color: #006dcc;
-}
-
-.note-panel .text-cyan {
-  color: #49afcd;
-}
-
-.note-panel .text-green {
-  color: #5bb75b;
-}
-
-.note-panel .text-gray-light {
-  color: #d3d3d3;
-}
-
-.note-panel .text-gray-dark {
-  color: #838383;
-}
-
-.note-panel .text-red {
-  color: #da4f49;
-}
-
-.note-panel .text-orange {
-  color: #faa732;
-}
-
-.note-panel .text-bold {
-  font-weight: 700;
-}
 @charset "UTF-8";
 .adslot-ui-proptype-table {
   max-width: 1100px;
@@ -15447,6 +15404,10 @@ strong {
 
 .adslot-ui-example-container .adslot-ui-code-snippet {
   max-width: 1100px;
+}
+
+.adslot-ui-example-container .adslot-ui-code-snippet > pre {
+  padding: 10px !important;
 }
 
 .adslot-ui-example-container h2 {
@@ -15498,6 +15459,50 @@ body {
 
 .adslot-ui-content-area > .pagetitle-component:not(:first-child) {
   margin-top: 120px;
+}
+
+.note-panel {
+  background: none #fdfdfd;
+}
+
+.note-panel ~ .note-panel {
+  margin-top: 10px;
+}
+
+.note-panel pre {
+  display: inline;
+}
+
+.note-panel .text-blue {
+  color: #006dcc;
+}
+
+.note-panel .text-cyan {
+  color: #49afcd;
+}
+
+.note-panel .text-green {
+  color: #5bb75b;
+}
+
+.note-panel .text-gray-light {
+  color: #d3d3d3;
+}
+
+.note-panel .text-gray-dark {
+  color: #838383;
+}
+
+.note-panel .text-red {
+  color: #da4f49;
+}
+
+.note-panel .text-orange {
+  color: #faa732;
+}
+
+.note-panel .text-bold {
+  font-weight: 700;
 }
 .tag-component-accent.accent-positive {
   border-color: #5bb75b;
