@@ -1,12 +1,16 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import SyntaxHighlighter, { prism } from 'react-syntax-highlighter/prism';
-import NotePanel from '../NotePanel';
+import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
+import jsx from 'react-syntax-highlighter/languages/prism/jsx';
+import coy from 'react-syntax-highlighter/styles/prism/coy';
+
 import PropTypeTable from '../PropTypeTable';
-import { Button } from '../../../src';
+import { Button, InformationBox } from '../../../src';
 
 import './styles.scss';
+
+registerLanguage('jsx', jsx);
 
 class Example extends React.PureComponent {
   render() {
@@ -19,19 +23,30 @@ class Example extends React.PureComponent {
       >
         <h2>{componentName}</h2>
 
-        {designNotes ? <NotePanel componentName={componentName} title="Design notes" notes={designNotes} /> : null}
-        {notes ? <NotePanel componentName={componentName} title="Technical notes" notes={notes} /> : null}
-
         <h3>Example</h3>
         <div className="adslot-ui-example">{children}</div>
 
         <div className="adslot-ui-code-snippet">
-          <SyntaxHighlighter language="jsx" style={prism}>
+          <SyntaxHighlighter language="jsx" style={coy}>
             {exampleCodeSnippet}
           </SyntaxHighlighter>
         </div>
-        {_.map(propTypeSectionArray, section => <PropTypeTable propTypes={section.propTypes} label={section.label} />)}
-        {_.isEmpty(propTypeSectionArray) ? <PropTypeTable isEmptyTable /> : null}
+
+        {designNotes ? (
+          <InformationBox title="Design notes" className="note-panel">
+            {designNotes}
+          </InformationBox>
+        ) : null}
+        {notes ? (
+          <InformationBox title="Technical notes" className="note-panel">
+            {notes}
+          </InformationBox>
+        ) : null}
+
+        {_.map(propTypeSectionArray, (section, index) => (
+          <PropTypeTable propTypes={section.propTypes} label={section.label} key={index} />
+        ))}
+        {_.isEmpty(propTypeSectionArray) ? <PropTypeTable /> : null}
 
         <Button bsStyle="link" href="#top">
           ↑ Back to top.

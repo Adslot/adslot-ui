@@ -2,6 +2,7 @@
 @import './icon';
 @import '../../node_modules/react-datepicker/dist/react-datepicker.css';
 
+// sass-lint:disable class-name-format
 .react-datepicker {
   $datepicker-font-family: $font-family-sans-serif;
   $datepicker-font-weight: $font-weight-light;
@@ -146,3 +147,5 @@
     }
   }
 }
+
+// sass-lint:enable class-name-format

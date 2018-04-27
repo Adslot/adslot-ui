@@ -7,8 +7,9 @@ import './styles.scss';
 
 class PropTypeTable extends React.PureComponent {
   render() {
-    const { propTypes, label, isEmptyTable } = this.props;
+    const { propTypes, label } = this.props;
     const tableTitle = label ? `PropTypes — ${label}` : 'PropTypes';
+    const isEmptyTable = _.isEmpty(propTypes);
 
     return (
       <div className="adslot-ui-proptype-table">
@@ -55,13 +56,8 @@ PropTypeTable.propTypes = {
       defaultValue: PropTypes.node,
       note: PropTypes.node,
     })
-  ).isRequired,
+  ),
   label: PropTypes.string,
-  isEmptyTable: PropTypes.bool,
-};
-
-PropTypeTable.defaultProps = {
-  isEmptyTable: false,
 };
 
 export default PropTypeTable;

@@ -37,7 +37,7 @@ $select-item-padding-horizontal: 5px;
 
 @import '../../node_modules/react-select/scss/default';
 
-
+// sass-lint:disable class-name-format
 .Select {
   $select-input-border-active: $color-border;
   font-weight: $font-weight-light;
@@ -134,3 +134,4 @@ $select-item-padding-horizontal: 5px;
   &-error { @include has-status($color-negative); }
   &-warning { @include has-status($color-warning); }
 }
+// sass-lint:enable class-name-format

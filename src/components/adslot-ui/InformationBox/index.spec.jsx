@@ -10,6 +10,7 @@ describe('InformationBoxComponent', () => {
       </InformationBox>
     );
 
+    expect(component.find('.information-box').prop('className')).to.equal('information-box');
     const titleElement = component.find('.information-box-title');
     expect(titleElement).to.have.length(1);
     expect(titleElement.text()).to.equal('render title here');
@@ -31,7 +32,7 @@ describe('InformationBoxComponent', () => {
     expect(component.find('SvgSymbol')).to.have.length(1);
   });
 
-  it('should render with empty icon when icon props is not provided', () => {
+  it('should render without an icon when icon props is not provided', () => {
     const component = shallow(
       <InformationBox title="render title here">
         <div>I am child</div>
@@ -40,8 +41,7 @@ describe('InformationBoxComponent', () => {
 
     expect(component.find('.information-box-title')).to.have.length(1);
     expect(component.find('.information-box-node').children()).to.have.length(1);
-    expect(component.find('.information-box-icon')).to.have.length(1);
-    expect(component.find('SvgSymbol')).to.have.length(0);
+    expect(component.find('.information-box-icon')).to.have.length(0);
   });
 
   it('should render without children nodes when children props is not provided', () => {
@@ -50,5 +50,11 @@ describe('InformationBoxComponent', () => {
     expect(component.find('.information-box-title')).to.have.length(1);
     expect(component.find('.information-box-icon')).to.have.length(1);
     expect(component.find('.information-box-node').children()).to.have.length(0);
+  });
+
+  it('should accept custom class names', () => {
+    const component = shallow(<InformationBox title="Class name test title" className="cx" />);
+
+    expect(component.find('.information-box').prop('className')).to.equal('information-box cx');
   });
 });
