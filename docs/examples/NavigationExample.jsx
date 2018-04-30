@@ -52,7 +52,11 @@ const exampleProps = {
           type: '',
           defaultValue: '',
           note: (
-            <a href="https://react-bootstrap.github.io/components.html#navs" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://react-bootstrap.github.io/components/navs/#navs-props"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               React Bootstrap Docs
             </a>
           ),

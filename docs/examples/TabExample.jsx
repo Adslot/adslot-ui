@@ -60,7 +60,7 @@ const exampleProps = {
         Bootstrap documentation
       </a>{' '}
       or{' '}
-      <a href="https://react-bootstrap.github.io/components.html#tabs" target="_blank" rel="noopener noreferrer">
+      <a href="https://react-bootstrap.github.io/components/tabs/" target="_blank" rel="noopener noreferrer">
         React Bootstrap documentation
       </a>.
     </p>
