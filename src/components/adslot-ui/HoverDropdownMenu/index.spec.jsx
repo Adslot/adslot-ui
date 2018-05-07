@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import { Overlay } from 'react-bootstrap';
+import { Overlay, Button } from 'react-bootstrap';
 import Avatar from 'alexandria/Avatar';
 import HoverDropdownMenu, { renderPopoverComponent } from 'adslot-ui/HoverDropdownMenu';
 import PopoverLinkItem from './PopoverLinkItem';
@@ -44,17 +44,21 @@ describe('HoverDropdownMenuComponent', () => {
   afterEach(() => sandbox.restore());
 
   it('should render with default props', () => {
-    // using mount so refs work
-    const component = mount(<HoverDropdownMenu hoverComponent={props.hoverComponent} />);
+    const component = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent} />, {
+      disableLifecycleMethods: true,
+    });
     expect(component.find(Avatar)).to.have.length(1);
     expect(component.find(Overlay)).to.have.length(0);
   });
 
   it('should render popover with list of links when `links` is not empty', () => {
-    const component = mount(
+    const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
-      </HoverDropdownMenu>
+      </HoverDropdownMenu>,
+      {
+        disableLifecycleMethods: true,
+      }
     );
 
     component.setState({
@@ -69,21 +73,30 @@ describe('HoverDropdownMenuComponent', () => {
       component
         .find(PopoverLinkItem)
         .at(0)
+        .dive()
+        .find(Button)
+        .children()
         .text()
     ).to.equal('Link 1');
     expect(
       component
         .find(PopoverLinkItem)
         .at(1)
+        .dive()
+        .find(Button)
+        .children()
         .text()
     ).to.equal('Logout');
   });
 
   it('should set state to open dropdown when hovering on the component', () => {
-    const component = mount(
+    const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
-      </HoverDropdownMenu>
+      </HoverDropdownMenu>,
+      {
+        disableLifecycleMethods: true,
+      }
     );
     const target = null;
     component.find('.hover-dropdown').simulate('mouseEnter', { target });
@@ -95,10 +108,13 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should set `state.isOpen` to false when leaving the component', done => {
-    const component = mount(
+    const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
-      </HoverDropdownMenu>
+      </HoverDropdownMenu>,
+      {
+        disableLifecycleMethods: true,
+      }
     );
     component.setState({ isOpen: true });
     component.find('.hover-dropdown').simulate('mouseLeave');
@@ -109,10 +125,13 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should not set `state.isOpen` to false when `state.mouseInPopover` is true', done => {
-    const component = mount(
+    const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
-      </HoverDropdownMenu>
+      </HoverDropdownMenu>,
+      {
+        disableLifecycleMethods: true,
+      }
     );
     component.setState({ isOpen: true, mouseInPopover: true });
     component.find('.hover-dropdown').simulate('mouseLeave');
@@ -123,10 +142,13 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should set `state.mouseInPopover` to true when user entering popover', () => {
-    const component = mount(
+    const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
-      </HoverDropdownMenu>
+      </HoverDropdownMenu>,
+      {
+        disableLifecycleMethods: true,
+      }
     );
 
     component.simulate('mouseEnter', { target: null });
@@ -138,10 +160,13 @@ describe('HoverDropdownMenuComponent', () => {
   });
 
   it('should set `state.mouseInPopover` and `state.isOpen` to false when user leaving popover', done => {
-    const component = mount(
+    const component = shallow(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => <HoverDropdownMenu.Item key={idx} {...link} />)}
-      </HoverDropdownMenu>
+      </HoverDropdownMenu>,
+      {
+        disableLifecycleMethods: true,
+      }
     );
     component.setState({ mouseInPopover: true, isOpen: true });
     component

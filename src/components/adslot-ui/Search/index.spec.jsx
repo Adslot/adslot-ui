@@ -69,12 +69,13 @@ describe('Search', () => {
       expect(props.onChange.calledOnce).to.equal(false);
     });
 
-    it('should not fire onSearch if `searchOnChange` is false', () => {
+    it('should not fire onSearch if `searchOnChange` is false', done => {
       const component = shallow(<Search {...props} searchOnChange={false} />);
       const inputEl = component.find('input');
       inputEl.simulate('change', { target: { value: 'needle' } });
       setImmediate(() => {
         expect(props.onSearch.calledOnce).to.equal(false);
+        done();
       });
     });
   });
