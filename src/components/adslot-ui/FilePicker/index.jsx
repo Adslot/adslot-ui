@@ -12,19 +12,16 @@ class FilePickerComponent extends React.Component {
     super(props);
 
     this.state = { isFileSelected: false, fileName: '' };
-
-    this.onChange = this.onChange.bind(this);
-    this.removeFile = this.removeFile.bind(this);
   }
 
-  onChange(changeEvent) {
+  onChange = changeEvent => {
     if (!this.state.isFileSelected) {
       this.setState({ isFileSelected: true, fileName: changeEvent.target.files[0].name });
       this.props.onSelect(changeEvent.target.files[0]);
     }
-  }
+  };
 
-  removeFile() {
+  removeFile = () => {
     if (this.state.isFileSelected) {
       this.fileInput.value = null;
       this.setState({ isFileSelected: false, fileName: '' });
@@ -32,7 +29,7 @@ class FilePickerComponent extends React.Component {
         this.props.onRemove();
       }
     }
-  }
+  };
 
   render() {
     const mainClass = classNames({ [`${baseClass}-highlight`]: this.props.isHighlighted }, baseClass, 'input-group');

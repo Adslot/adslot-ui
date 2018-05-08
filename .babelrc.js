@@ -1,4 +1,4 @@
-let plugins = ['transform-strict-mode'];
+let plugins = ['transform-strict-mode', 'transform-class-properties'];
 
 if (process.env.TYPE === 'development') {
   plugins = [...plugins, 'react-hot-loader/babel'];

@@ -48,6 +48,7 @@ module.exports = process.env.npm_config_coverage
             test: jsRegEx,
             include: srcPath,
             exclude: /src\/lib/,
+            enforce: 'post',
             use: {
               loader: 'istanbul-instrumenter-loader',
               options: { esModules: true },
