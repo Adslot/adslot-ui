@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import 'isomorphic-fetch';
 import { Avatar, Spinner, PageTitle } from '../../../src';
 
 import './styles.scss';
