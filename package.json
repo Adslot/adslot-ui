@@ -61,7 +61,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-strict-mode": "^6.24.1",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
     "chai": "^4.1.2",
@@ -110,7 +110,7 @@
     "react-redux": "^5.0.6",
     "react-select": "^1.2.1",
     "react-syntax-highlighter": "^7.0.0",
-    "react-test-renderer": "^16.3.1",
+    "react-test-renderer": "^16.3.2",
     "redux": "^3.7.2",
     "rimraf": "^2.6.2",
     "sass-lint": "^1.12.1",
@@ -127,8 +127,8 @@
   "dependencies": {
     "diff-match-patch": "^1.0.0",
     "lodash": "^4.17.5",
-    "react": "^15.6.2 || ^16.3.1",
-    "react-dom": "^15.6.2 || ^16.3.1"
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   },
   "engines": {
     "node": ">=6 <9"
