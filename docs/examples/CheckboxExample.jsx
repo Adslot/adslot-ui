@@ -1,41 +1,69 @@
+import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
 import { Checkbox } from '../../src';
 
+const onChange = (value, event, name) => {
+  _.noop();
+};
+
 class CheckboxExample extends React.PureComponent {
   render() {
-    return <Checkbox label="Agree to the terms and conditions." />;
+    return (
+      <Checkbox
+        name="Name goes here"
+        label="Label goes here"
+        value="Value goes here"
+        dts="data-test-selector-goes-here"
+        onChange={onChange}
+      />
+    );
   }
 }
 
 const exampleProps = {
   componentName: 'Checkbox',
-  designNotes: (
-    <p>
-      <span className="text-bold">Checkbox</span> used for making one or more selections from multiple options.
-    </p>
-  ),
-  exampleCodeSnippet: '<Checkbox label="Agree to the terms and conditions." />',
-  notes: (
-    <p>
-      See <a href="https://github.com/luqin/react-icheck">React iCheck Documentation</a>
-    </p>
-  ),
+  notes: '',
+  exampleCodeSnippet: `<Checkbox
+	name="Name goes here"
+	label="Label goes here"
+	value="Value goes here"
+	checked={true}
+	disabled={true}
+	dts="data-test-selector-goes-here"
+/>`,
   propTypeSectionArray: [
     {
+      label: '',
       propTypes: [
         {
+          propType: 'name',
+          type: 'string',
+        },
+        {
           propType: 'label',
-          type: 'node',
-          note: 'Usually fine to rely on a string but can pass HTML e.g. for a url.',
+          type: 'string',
         },
         {
           propType: 'value',
           type: 'string',
+          note: 'Required.',
+        },
+        {
+          propType: 'checked',
+          type: 'bool',
+        },
+        {
+          propType: 'disabled',
+          type: 'bool',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
         },
         {
           propType: 'onChange',
-          type: 'func',
+          type: 'function',
         },
       ],
     },
