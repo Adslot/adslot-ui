@@ -1,5 +1,4 @@
 // Export the consumable components.
-import Checkbox from 'react-icheck/lib/Checkbox';
 import Radio from 'react-icheck/lib/Radio';
 import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
@@ -52,6 +51,8 @@ import {
   Accordion,
   AlertInput,
   Carousel,
+  Checkbox,
+  CheckboxGroup,
   ConfirmModal,
   fastStatelessWrapper,
   FilePicker,
@@ -87,6 +88,7 @@ export {
   Card,
   Carousel,
   Checkbox,
+  CheckboxGroup,
   ConfirmModal,
   Dropdown,
   DatePicker,

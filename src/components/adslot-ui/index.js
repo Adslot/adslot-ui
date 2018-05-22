@@ -1,6 +1,8 @@
 import Accordion from 'adslot-ui/Accordion';
 import AlertInput from 'adslot-ui/AlertInput';
 import Carousel from 'adslot-ui/Carousel';
+import Checkbox from 'adslot-ui/Checkbox';
+import CheckboxGroup from 'adslot-ui/CheckboxGroup';
 import ConfirmModal from 'adslot-ui/ConfirmModal';
 import HelpIconPopover from 'adslot-ui/HelpIconPopover';
 import FilePicker from 'adslot-ui/FilePicker';
@@ -28,6 +30,8 @@ export {
   Accordion,
   AlertInput,
   Carousel,
+  Checkbox,
+  CheckboxGroup,
   ConfirmModal,
   fastStatelessWrapper,
   FilePicker,
