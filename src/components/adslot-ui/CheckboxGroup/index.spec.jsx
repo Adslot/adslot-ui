@@ -30,12 +30,13 @@ describe('CheckboxGroup', () => {
         <Checkbox label="The Sound of Music" value="soundofmusic" />
       </CheckboxGroup>
     );
-
     const childCheckboxes = component.find('Checkbox');
     const firstChild = childCheckboxes.at(0);
-    const event = { target: { value: 'terminator', checked: false } };
+    const event = { target: { value: 'terminator' } };
     firstChild.simulate('change', event);
-    expect(component.state().value).to.eql({ terminator: false, predator: true, soundofmusic: false });
+    process.nextTick(() => {
+      expect(component.state().value).to.eql({ terminator: false, predator: true, soundofmusic: false });
+    });
     expect(onChangeGroup.callCount).to.equal(1);
     expect(onChangeIndividual.callCount).to.equal(1);
   });
@@ -54,7 +55,7 @@ describe('CheckboxGroup', () => {
   });
 
   it('should handle change events without a custom onChange handler', () => {
-    const event = { target: { value: 'terminator', checked: true } };
+    const event = { target: { value: 'terminator' } };
     const component = shallow(
       <CheckboxGroup name="movies">
         <Checkbox label="The Terminator" value="terminator" />
@@ -64,7 +65,9 @@ describe('CheckboxGroup', () => {
     );
     const firstChild = component.find('Checkbox').at(0);
     firstChild.simulate('change', event);
-    expect(component.state().value).to.eql({ terminator: true, predator: false, soundofmusic: false });
+    process.nextTick(() => {
+      expect(component.state().value).to.eql({ terminator: true, predator: false, soundofmusic: false });
+    });
   });
 
   it('should handle props changes', () => {
