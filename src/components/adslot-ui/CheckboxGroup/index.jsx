@@ -32,9 +32,9 @@ class CheckboxGroup extends React.Component {
 
   onChangeDefault(event) {
     const checkboxValue = event.target.value;
-    const tempValue = _.cloneDeep(this.state.value);
-    this.setState(() => {
-      tempValue[checkboxValue] = !this.state.value[checkboxValue];
+    this.setState(prevState => {
+      const tempValue = _.cloneDeep(prevState.value);
+      tempValue[checkboxValue] = !tempValue[checkboxValue];
       if (this.props.onChange) {
         this.props.onChange(tempValue, event, this.props.name);
       }
