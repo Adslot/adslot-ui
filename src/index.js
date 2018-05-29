@@ -1,6 +1,4 @@
 // Export the consumable components.
-import Radio from 'react-icheck/lib/Radio';
-import RadioGroup from 'react-icheck/lib/RadioGroup';
 import Select from 'react-select';
 
 import DatePicker from 'react-datepicker';
@@ -63,6 +61,8 @@ import {
   Nav,
   PagedGrid,
   Panel,
+  Radio,
+  RadioGroup,
   Search,
   SearchBar,
   SplitPane,

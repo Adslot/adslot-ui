@@ -37,6 +37,15 @@ const exampleProps = {
       label: '',
       propTypes: [
         {
+          propType: 'id',
+          type: 'string',
+        },
+        {
+          propType: 'className',
+          type: 'string',
+          note: 'This class will be applied to the input element',
+        },
+        {
           propType: 'name',
           type: 'string',
         },
@@ -47,15 +56,16 @@ const exampleProps = {
         {
           propType: 'value',
           type: 'string',
-          note: 'Required.',
         },
         {
           propType: 'checked',
           type: 'bool',
+          defaultValue: <code>false</code>,
         },
         {
           propType: 'disabled',
           type: 'bool',
+          defaultValue: <code>false</code>,
         },
         {
           propType: 'dts',
@@ -63,7 +73,7 @@ const exampleProps = {
         },
         {
           propType: 'onChange',
-          type: 'function',
+          type: 'func',
         },
       ],
     },

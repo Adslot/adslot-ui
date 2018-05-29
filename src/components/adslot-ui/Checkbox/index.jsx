@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { expandDts } from 'lib/utils';
-
+import { expandDts } from '../../../lib/utils';
+import { checkboxPropTypes } from '../../prop-types/inputPropTypes';
 import './styles.scss';
 
 class Checkbox extends React.Component {
@@ -28,29 +27,24 @@ class Checkbox extends React.Component {
   }
 
   render() {
-    const { name, value, label, dts } = this.props;
-    const optional = {
-      id: this.props.id ? this.props.id : null,
-      className: this.props.className ? this.props.className : null,
+    const { name, value, label, dts, disabled, id, className } = this.props;
+    const checkboxInputProps = {
+      type: 'checkbox',
+      name,
+      checked: this.state.checked,
+      disabled,
+      onChange: this.onChangeDefault,
+      value,
+      id,
+      className,
     };
-    if (this.props['data-name']) {
-      optional['data-name'] = this.props['data-name'];
-    }
+
     return (
-      <div className="checkbox-component">
+      <div className="checkbox-component" {...expandDts(dts)}>
         <span className={`selection-component-icon icheckbox${this.state.checked ? ' checked' : ''}`} />
         <label>
           <div className="checkbox-component-input-container">
-            <input
-              type="checkbox"
-              name={name}
-              value={value}
-              onChange={this.onChangeDefault}
-              disabled={this.props.disabled}
-              checked={this.state.checked}
-              {...expandDts(dts)}
-              {...optional}
-            />
+            <input {...checkboxInputProps} />
           </div>
           {label ? <span>{label}</span> : null}
         </label>
@@ -59,18 +53,7 @@ class Checkbox extends React.Component {
   }
 }
 
-Checkbox.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
-  'data-name': PropTypes.string,
-  name: PropTypes.string,
-  label: PropTypes.node,
-  value: PropTypes.string,
-  dts: PropTypes.string,
-  disabled: PropTypes.bool,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func,
-};
+Checkbox.propTypes = checkboxPropTypes;
 
 Checkbox.defaultProps = {
   dts: '',

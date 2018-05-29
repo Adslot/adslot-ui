@@ -16,6 +16,7 @@ import AlertExample from '../../examples/AlertExample';
 import CheckboxExample from '../../examples/CheckboxExample';
 import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
 import RadioExample from '../../examples/RadioExample';
+import RadioGroupExample from '../../examples/RadioGroupExample';
 import SelectExample from '../../examples/SelectExample';
 import DatePickerExample from '../../examples/DatePickerExample';
 import BorderedWellExample from '../../examples/BorderedWellExample';
@@ -77,6 +78,7 @@ const componentsBySection = {
     'checkbox',
     'checkbox-group',
     'radio',
+    'radio-group',
     'select',
     'date-picker',
   ],
@@ -178,6 +180,7 @@ class PageLayout extends React.Component {
             <CheckboxExample />
             <CheckboxGroupExample />
             <RadioExample />
+            <RadioGroupExample />
             <SelectExample />
             <DatePickerExample />
 

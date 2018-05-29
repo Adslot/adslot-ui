@@ -36,12 +36,11 @@ describe('Checkbox', () => {
     expect(component.state()).to.eql({ checked: true });
   });
 
-  it('should render with id, className, and data-name', () => {
-    const component = shallow(<Checkbox id="checkboxId" className="checkboxClass" data-name="checkboxName" />);
+  it('should render with id, className', () => {
+    const component = shallow(<Checkbox id="checkboxId" className="checkboxClass" />);
     const checkboxElement = component.find('input[type="checkbox"]');
     expect(checkboxElement.hasClass('checkboxClass')).to.equal(true);
     expect(component.find('#checkboxId')).to.have.length(1);
-    expect(component.find('[data-name="checkboxName"]')).to.have.length(1);
   });
 
   it('should handle change event', () => {
