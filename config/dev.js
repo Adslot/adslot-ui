@@ -46,7 +46,15 @@ module.exports = merge(commonConfig, {
     host: HOST,
     disableHostCheck: true,
     noInfo: true,
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        {
+          // remove '/docs' from the path, since we only expose to public under /assets
+          from: /\/docs\/assets/,
+          to: context => context.parsedUrl.pathname.substring(5),
+        },
+      ],
+    },
     stats: {
       assets: false,
       chunks: false,
