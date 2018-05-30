@@ -14792,6 +14792,19 @@ strong {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
+.checkbox-component label {
+  line-height: 16px;
+}
+
+.checkbox-component span {
+  margin: 0 0 0 5px;
+}
+
+.checkbox-component input {
+  margin: 0;
+  line-height: 16px;
+  display: inline-block;
+}
 .help-icon-popover-component {
   display: inline-block;
   padding-left: 3px;
