@@ -9296,17 +9296,22 @@ var Checkbox_Checkbox = function (_React$Component) {
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
         'div',
         { className: 'checkbox-component' },
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('span', { className: 'selection-component-icon icheckbox' + (this.state.checked ? ' checked' : '') }),
         external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
           'label',
           null,
-          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('input', Checkbox__extends({
-            type: 'checkbox',
-            name: name,
-            value: value,
-            onChange: this.onChangeDefault,
-            disabled: this.props.disabled,
-            checked: this.state.checked
-          }, expandDts(dts), optional)),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+            'div',
+            { className: 'checkbox-component-input-container' },
+            external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('input', Checkbox__extends({
+              type: 'checkbox',
+              name: name,
+              value: value,
+              onChange: this.onChangeDefault,
+              disabled: this.props.disabled,
+              checked: this.state.checked
+            }, expandDts(dts), optional))
+          ),
           label ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
             'span',
             null,
