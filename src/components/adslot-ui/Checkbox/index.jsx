@@ -38,17 +38,20 @@ class Checkbox extends React.Component {
     }
     return (
       <div className="checkbox-component">
+        <span className={`selection-component-icon icheckbox${this.state.checked ? ' checked' : ''}`} />
         <label>
-          <input
-            type="checkbox"
-            name={name}
-            value={value}
-            onChange={this.onChangeDefault}
-            disabled={this.props.disabled}
-            checked={this.state.checked}
-            {...expandDts(dts)}
-            {...optional}
-          />
+          <div className="checkbox-component-input-container">
+            <input
+              type="checkbox"
+              name={name}
+              value={value}
+              onChange={this.onChangeDefault}
+              disabled={this.props.disabled}
+              checked={this.state.checked}
+              {...expandDts(dts)}
+              {...optional}
+            />
+          </div>
           {label ? <span>{label}</span> : null}
         </label>
       </div>
