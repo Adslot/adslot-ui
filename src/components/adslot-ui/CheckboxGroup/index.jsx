@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { expandDts } from '../../../lib/utils';
+import { checkboxGroupPropTypes } from '../../prop-types/inputPropTypes';
 
 const mapPropsToState = (props, state) => {
   const tempState = _.cloneDeep(state);
@@ -56,17 +57,21 @@ class CheckboxGroup extends React.Component {
   }
 
   render() {
-    const classes = `checkbox-group ${this.props.className}`;
-    return <div className={classes}>{this.renderChildren()}</div>;
+    const { id, className, dts } = this.props;
+    const componentProps = {
+      id,
+      className: _(['checkbox-group-component', className])
+        .compact()
+        .join(' '),
+    };
+    return (
+      <div {...componentProps} {...expandDts(dts)}>
+        {this.renderChildren()}
+      </div>
+    );
   }
 }
 
-CheckboxGroup.propTypes = {
-  name: PropTypes.string.isRequired,
-  value: PropTypes.arrayOf(PropTypes.string),
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  className: PropTypes.string,
-  onChange: PropTypes.func,
-};
+CheckboxGroup.propTypes = checkboxGroupPropTypes;
 
 export default CheckboxGroup;

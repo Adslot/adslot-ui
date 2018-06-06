@@ -1,47 +1,73 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Radio, RadioGroup } from '../../src';
+import Radio from 'adslot-ui/Radio';
 
 class RadioExample extends React.PureComponent {
+  onChange(event) {
+    _.noop();
+  }
+
   render() {
     return (
-      <RadioGroup name="yesNo" className="radiogroup-stacked">
-        <Radio label="Yes" value="true" />
-        <Radio label="No" value="false" />
-      </RadioGroup>
+      <Radio
+        name="Radio button name"
+        label="Radio button label"
+        dts="radio-button-data-test-selector"
+        value="Radio button value"
+        onChange={this.onChange}
+      />
     );
   }
 }
 
 const exampleProps = {
   componentName: 'Radio',
-  designNotes: (
-    <p>
-      <span className="text-bold">Radio buttons</span> used for making a single selection from multiple options. Only
-      one selection can ever be made from the radio button group at a time.
-    </p>
-  ),
-  notes: (
-    <p>
-      See <a href="https://github.com/luqin/react-icheck">React iCheck Documentation</a>
-    </p>
-  ),
-  exampleCodeSnippet: `
-  <RadioGroup name="yesNo" className="radiogroup-stacked">
-    <Radio label="Yes" value="true" />
-    <Radio label="No" value="false" />
-  </RadioGroup>`,
+  notes: '',
+  exampleCodeSnippet: `<Radio
+  name="Radio button name"
+  label="Radio button label"
+  dts="radio-button-data-test-selector"
+  value="Radio button value"
+  onChange={this.onChange}
+/>`,
   propTypeSectionArray: [
     {
       propTypes: [
         {
+          propType: 'id',
+          type: 'string',
+        },
+        {
+          propType: 'className',
+          type: 'string',
+          note: 'This class will be applied to the input element',
+        },
+        {
+          propType: 'name',
+          type: 'string',
+        },
+        {
           propType: 'label',
-          type: 'node',
-          note: 'Usually fine to rely on a string but can pass HTML e.g. for a url.',
+          type: 'string',
         },
         {
           propType: 'value',
           type: 'string',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+        {
+          propType: 'disabled',
+          type: 'bool',
+          defaultValue: <code>false</code>,
+        },
+        {
+          propType: 'checked',
+          type: 'bool',
+          defaultValue: <code>false</code>,
         },
         {
           propType: 'onChange',

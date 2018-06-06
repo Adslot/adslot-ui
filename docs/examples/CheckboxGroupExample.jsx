@@ -36,8 +36,21 @@ const exampleProps = {
       label: '',
       propTypes: [
         {
+          propType: 'id',
+          type: 'string',
+        },
+        {
+          propType: 'className',
+          type: 'string',
+        },
+        {
           propType: 'name',
           type: 'string',
+          note: (
+            <span>
+              <strong>Required.</strong> All Checkboxes within this group will have the same name
+            </span>
+          ),
         },
         {
           propType: 'value',
@@ -46,11 +59,18 @@ const exampleProps = {
         },
         {
           propType: 'children',
-          type: '<Checkbox /> elements',
+          type: 'arrayOf <Checkbox /> elements',
+          note: <strong>Required.</strong>,
         },
         {
           propType: 'onChange',
-          type: 'Function',
+          type: 'func',
+          note: 'Triggers when selection changes.',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
         },
       ],
     },
