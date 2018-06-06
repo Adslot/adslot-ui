@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from 'react-icheck/lib/Checkbox';
-import Radio from 'react-icheck/lib/Radio';
-import Empty from 'alexandria/Empty';
-import Grid from 'alexandria/Grid';
-import GridRow from 'alexandria/Grid/Row';
-import GridCell from 'alexandria/Grid/Cell';
-import SvgSymbol from 'alexandria/SvgSymbol';
+import Checkbox from '../Checkbox';
+import Radio from '../Radio';
+import Empty from '../../alexandria/Empty';
+import Grid from '../../alexandria/Grid';
+import GridRow from '../../alexandria/Grid/Row';
+import GridCell from '../../alexandria/Grid/Cell';
+import SvgSymbol from '../../alexandria/SvgSymbol';
 
 require('./styles.scss');
 
@@ -27,8 +27,8 @@ const ListPickerPureComponent = ({
   selectItem,
   selectedItems,
 }) => {
-  const handleChange = item => (event, checked) => {
-    if (checked) {
+  const handleChange = item => event => {
+    if (event.target.checked) {
       selectItem(item, allowMultiSelection);
     } else {
       deselectItem(item, allowMultiSelection);

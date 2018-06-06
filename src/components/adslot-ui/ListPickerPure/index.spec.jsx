@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
-import Checkbox from 'react-icheck/lib/Checkbox';
-import Radio from 'react-icheck/lib/Radio';
+import { Checkbox, Radio } from 'adslot-ui';
 import ListPickerPureComponent from 'adslot-ui/ListPickerPure';
 import Empty from 'alexandria/Empty';
 import Grid from 'alexandria/Grid';
@@ -233,7 +232,7 @@ describe('ListPickerPureComponent', () => {
     const unselectedCheckboxElement = gridRowElements.at(0).find(Checkbox);
     expect(unselectedCheckboxElement.prop('checked')).to.equal(false);
 
-    expect(() => unselectedCheckboxElement.simulate('change', null, true)).to.throw(
+    expect(() => unselectedCheckboxElement.simulate('change', { target: { checked: true } })).to.throw(
       'AdslotUi ListPickerPure needs a selectItem handler'
     );
   });
@@ -248,7 +247,7 @@ describe('ListPickerPureComponent', () => {
     const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
     expect(selectedCheckboxElement.prop('checked')).to.equal(true);
 
-    expect(() => selectedCheckboxElement.simulate('change', null, false)).to.throw(
+    expect(() => selectedCheckboxElement.simulate('change', { target: { checked: false } })).to.throw(
       'AdslotUi ListPickerPure needs a deselectItem handler'
     );
   });
@@ -273,7 +272,7 @@ describe('ListPickerPureComponent', () => {
     const unselectedRadioButtonElement = gridRowElements.at(0).find(Radio);
     expect(unselectedRadioButtonElement.prop('checked')).to.equal(false);
 
-    unselectedRadioButtonElement.simulate('change', null, true);
+    unselectedRadioButtonElement.simulate('change', { target: { checked: true } });
     expect(handlerCalled).to.equal(1);
     expect(isAllowMultiSelection).to.equal(false);
   });
@@ -297,7 +296,7 @@ describe('ListPickerPureComponent', () => {
     const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
     expect(selectedCheckboxElement.prop('checked')).to.equal(true);
 
-    selectedCheckboxElement.simulate('change', null, false);
+    selectedCheckboxElement.simulate('change', { target: { checked: false } });
     expect(handlerCalled).to.equal(1);
     expect(isAllowMultiSelection).to.equal(true);
   });
