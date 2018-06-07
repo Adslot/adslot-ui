@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { expandDts } from '../../../lib/utils';
 import { radioButtonPropTypes } from '../../prop-types/inputPropTypes';
@@ -35,9 +36,17 @@ class RadioButton extends React.Component {
       className,
     };
 
+    const iconClassNames = classnames([
+      'selection-component-icon',
+      {
+        checked: this.state.checked,
+        disabled,
+      },
+    ]);
+
     return (
       <div className="radio-component" {...expandDts(dts)}>
-        <span className={`selection-component-icon iradio${this.state.checked ? ' checked' : ''}`} />
+        <span className={iconClassNames} />
         <label>
           <div className="radio-component-input-container">
             <input {...radioInputProps} />

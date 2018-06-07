@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import React from 'react';
 import { expandDts } from '../../../lib/utils';
 import { checkboxPropTypes } from '../../prop-types/inputPropTypes';
@@ -14,8 +15,13 @@ class Checkbox extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { checked: props.checked };
+    this.state = {
+      checked: props.checked,
+      isHover: false,
+    };
     this.onChangeDefault = this.onChangeDefault.bind(this);
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
   }
 
   onChangeDefault(event) {
@@ -24,6 +30,14 @@ class Checkbox extends React.Component {
     if (this.props.onChange) {
       this.props.onChange(event, this.props.name);
     }
+  }
+
+  onMouseEnter() {
+    this.setState({ isHover: true });
+  }
+
+  onMouseLeave() {
+    this.setState({ isHover: false });
   }
 
   render() {
@@ -37,11 +51,22 @@ class Checkbox extends React.Component {
       value,
       id,
       className,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
     };
+
+    const iconClassNames = classnames([
+      'selection-component-icon',
+      {
+        checked: this.state.checked,
+        hover: this.state.isHover,
+        disabled,
+      },
+    ]);
 
     return (
       <div className="checkbox-component" {...expandDts(dts)}>
-        <span className={`selection-component-icon icheckbox${this.state.checked ? ' checked' : ''}`} />
+        <span className={iconClassNames} />
         <label>
           <div className="checkbox-component-input-container">
             <input {...checkboxInputProps} />

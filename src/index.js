@@ -18,7 +18,6 @@ import Tabs from 'react-bootstrap/lib/Tabs';
 import NavItem from 'react-bootstrap/lib/NavItem';
 
 import 'styles/_bootstrap-custom.scss';
-import 'styles/_icheck-custom.scss';
 import 'styles/_react-datepicker-custom.scss';
 import 'styles/_react-select-custom.scss';
 
