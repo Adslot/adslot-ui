@@ -1,15 +1,15 @@
 // these mixins are used in Checkbox and Radio component
 @import '~styles/variable';
 
-@mixin enhancedSwitchIcon {
+@mixin enhanced-switch-icon {
   background-repeat: no-repeat;
   border: 0;
   cursor: pointer;
   display: inline-block;
-  height: 16px;
+  height: $svg-icon-size;
+  width: $svg-icon-size;
   position: relative;
   vertical-align: middle;
-  width: 16px;
 
   & + span {
     margin: 0 5px;
@@ -17,7 +17,7 @@
   }
 }
 
-@mixin enhancedSwitchInputContainer {
+@mixin enhanced-switch-input-container {
   width: 16px;
   height: 18px;
   display: inline-block;

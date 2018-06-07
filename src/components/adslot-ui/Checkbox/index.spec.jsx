@@ -33,7 +33,7 @@ describe('Checkbox', () => {
     const event = { target: { checked: true } };
     checkboxElement.simulate('change', event);
     expect(onChangeHandler.callCount).to.equal(1);
-    expect(component.state()).to.eql({ checked: true });
+    expect(component.state('checked')).to.equal(true);
   });
 
   it('should render with id, className', () => {
@@ -58,7 +58,7 @@ describe('Checkbox', () => {
     const event = { target: { checked: true } };
     checkboxElement.simulate('change', event);
     expect(onChangeHandler.callCount).to.equal(1);
-    expect(component.state()).to.eql({ checked: true });
+    expect(component.state('checked')).to.equal(true);
   });
 
   it('should render without a label', () => {
@@ -76,7 +76,7 @@ describe('Checkbox', () => {
         disabled={true} // eslint-disable-line
       />
     );
-    expect(component.state()).to.eql({ checked: true });
+    expect(component.state('checked')).to.equal(true);
   });
 
   it('should handle change events without a custom onChange handler', () => {
@@ -84,18 +84,33 @@ describe('Checkbox', () => {
     const checkboxElement = component.find('input[type="checkbox"]');
     const event = { target: { checked: true } };
     checkboxElement.simulate('change', event);
-    expect(component.state()).to.eql({ checked: true });
+    expect(component.state('checked')).to.equal(true);
   });
 
   it('should handle props changes', () => {
     const component = mount(<Checkbox name="movies" value="terminator" />);
     component.setProps({ checked: true });
-    expect(component.state()).to.eql({ checked: true });
+    expect(component.state('checked')).to.equal(true);
   });
 
   it('should handle props changes when no relevant props are given', () => {
     const component = mount(<Checkbox name="movies" value="terminator" />);
     component.setProps({ foo: 'bar' });
-    expect(component.state()).to.eql({ checked: false });
+    expect(component.state('checked')).to.equal(false);
+  });
+
+  describe('when hover over the checkbox', () => {
+    it('should change `state.isHover` and render css class accordingly', () => {
+      const component = mount(<Checkbox name="movies" value="terminator" />);
+      expect(component.state('isHover')).to.equal(false);
+
+      component.find('input').simulate('mouseEnter');
+      expect(component.state('isHover')).to.equal(true);
+      expect(component.find('.selection-component-icon').hasClass('hover')).to.equal(true);
+
+      component.find('input').simulate('mouseLeave');
+      expect(component.state('isHover')).to.equal(false);
+      expect(component.find('.selection-component-icon').hasClass('hover')).to.equal(false);
+    });
   });
 });

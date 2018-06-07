@@ -16,7 +16,7 @@
   }
 
   .selection-component-icon {
-    @include enhancedSwitchIcon;
+    @include enhanced-switch-icon;
 
     &,
     &.hover {
@@ -42,6 +42,6 @@
   }
 
   .radio-component-input-container {
-    @include enhancedSwitchInputContainer;
+    @include enhanced-switch-input-container;
   }
 }
