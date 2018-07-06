@@ -1,0 +1,34 @@
+@import '~styles/variable';
+
+.count-badge {
+  display: inline-block;
+  width: $svg-icon-size;
+  height: $svg-icon-size;
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: $color-white;
+  border-style: solid;
+  background-color: $color-gray-dark;
+  color: $color-white;
+  text-align: center;
+  font-size: $font-size-tiny;
+  font-weight: $font-weight-bold;
+  box-sizing: content-box;
+  line-height: 17px;
+
+  &.status-info {
+    background-color: $color-primary;
+  }
+
+  &.status-warning {
+    background-color: $color-warning;
+  }
+
+  &.status-danger {
+    background-color: $color-negative;
+  }
+
+  &.count-badge-font-size-small {
+    font-size: $font-size-super-tiny;
+  }
+}

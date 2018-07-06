@@ -4,6 +4,7 @@ import Carousel from 'adslot-ui/Carousel';
 import Checkbox from 'adslot-ui/Checkbox';
 import CheckboxGroup from 'adslot-ui/CheckboxGroup';
 import ConfirmModal from 'adslot-ui/ConfirmModal';
+import CountBadge from 'adslot-ui/CountBadge';
 import HelpIconPopover from 'adslot-ui/HelpIconPopover';
 import FilePicker from 'adslot-ui/FilePicker';
 import FormGroup from 'adslot-ui/FormGroup';
@@ -35,6 +36,7 @@ export {
   Checkbox,
   CheckboxGroup,
   ConfirmModal,
+  CountBadge,
   fastStatelessWrapper,
   FilePicker,
   FormGroup,
