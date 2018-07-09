@@ -15,6 +15,7 @@ import TextEllipsisExample from '../../examples/TextEllipsisExample';
 import AlertExample from '../../examples/AlertExample';
 import CheckboxExample from '../../examples/CheckboxExample';
 import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
+import CountBadgeExample from '../../examples/CountBadgeExample';
 import RadioExample from '../../examples/RadioExample';
 import RadioGroupExample from '../../examples/RadioGroupExample';
 import SelectExample from '../../examples/SelectExample';
@@ -83,7 +84,7 @@ const componentsBySection = {
     'date-picker',
   ],
   'typography-and-text-layout': ['text-ellipsis'],
-  'stats-and-data': ['statistic', 'totals', 'slicey'],
+  'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
   'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff'],
@@ -179,6 +180,7 @@ class PageLayout extends React.Component {
             <UserListPickerExample />
             <CheckboxExample />
             <CheckboxGroupExample />
+            <CountBadgeExample />
             <RadioExample />
             <RadioGroupExample />
             <SelectExample />
