@@ -8,7 +8,9 @@ import App from './components/Layout';
 const renderApp = () => {
   ReactDOM.render(
     <AppContainer>
-      <App />
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </AppContainer>,
     document.getElementById('app')
   );
