@@ -7,54 +7,54 @@ import Contributors from '../Contributors';
 import SearchBar from '../SearchBar';
 import SearchResultCard from '../SearchResultCard';
 
-import ButtonExample from '../../examples/ButtonExample';
-import AlertInputExample from '../../examples/AlertInputExample';
-import FilePickerExample from '../../examples/FilePickerExample';
-import TextareaExample from '../../examples/TextareaExample';
-import TextEllipsisExample from '../../examples/TextEllipsisExample';
-import AlertExample from '../../examples/AlertExample';
-import CheckboxExample from '../../examples/CheckboxExample';
-import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
-import CountBadgeExample from '../../examples/CountBadgeExample';
-import RadioExample from '../../examples/RadioExample';
-import RadioGroupExample from '../../examples/RadioGroupExample';
-import SelectExample from '../../examples/SelectExample';
-import DatePickerExample from '../../examples/DatePickerExample';
-import BorderedWellExample from '../../examples/BorderedWellExample';
-import CardExample from '../../examples/CardExample';
-import FlexibleSpacerExample from '../../examples/FlexibleSpacerExample';
-import PageTitleExample from '../../examples/PageTitleExample';
-import SliceyExample from '../../examples/SliceyExample';
-import StatisticExample from '../../examples/StatisticExample';
-import TagExample from '../../examples/TagExample';
-import TotalsExample from '../../examples/TotalsExample';
-import AvatarExample from '../../examples/AvatarExample';
-import BreadcrumbExample from '../../examples/BreadcrumbExample';
-import TabExample from '../../examples/TabExample';
-import EmptyExample from '../../examples/EmptyExample';
-import GridExample from '../../examples/GridExample';
-import PrettyDiffExample from '../../examples/PrettyDiffExample';
-import SpinnerExample from '../../examples/SpinnerExample';
-import SvgSymbolExample from '../../examples/SvgSymbolExample';
-import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
-import TileGridExample from '../../examples/TileGridExample';
-import AccordionExample from '../../examples/AccordionExample';
-import CarouselExample from '../../examples/CarouselExample';
-import ConfirmModalExample from '../../examples/ConfirmModalExample';
-import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
-import ListPickerExample from '../../examples/ListPickerExample';
-import PagedGridExample from '../../examples/PagedGridExample';
-import PanelExample from '../../examples/PanelExample';
-import SearchExample from '../../examples/SearchExample';
-import SearchBarExample from '../../examples/SearchBarExample';
-import TreePickerExample from '../../examples/TreePickerExample';
-import UserListPickerExample from '../../examples/UserListPickerExample';
-import InformationBoxExample from '../../examples/InformationBoxExample';
-import SplitPaneExample from '../../examples/SplitPaneExample';
-import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
-import NavigationExample from '../../examples/NavigationExample';
+// import ButtonExample from '../../examples/ButtonExample';
+// import AlertInputExample from '../../examples/AlertInputExample';
+// import FilePickerExample from '../../examples/FilePickerExample';
+// import TextareaExample from '../../examples/TextareaExample';
+// import TextEllipsisExample from '../../examples/TextEllipsisExample';
+import AlertExample from '../../examples/Alert';
+// import CheckboxExample from '../../examples/CheckboxExample';
+// import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
+// import CountBadgeExample from '../../examples/CountBadgeExample';
+// import RadioExample from '../../examples/RadioExample';
+// import RadioGroupExample from '../../examples/RadioGroupExample';
+// import SelectExample from '../../examples/SelectExample';
+// import DatePickerExample from '../../examples/DatePickerExample';
+// import BorderedWellExample from '../../examples/BorderedWellExample';
+// import CardExample from '../../examples/CardExample';
+// import FlexibleSpacerExample from '../../examples/FlexibleSpacerExample';
+// import PageTitleExample from '../../examples/PageTitleExample';
+// import SliceyExample from '../../examples/SliceyExample';
+// import StatisticExample from '../../examples/StatisticExample';
+// import TagExample from '../../examples/TagExample';
+// import TotalsExample from '../../examples/TotalsExample';
+// import AvatarExample from '../../examples/AvatarExample';
+// import BreadcrumbExample from '../../examples/BreadcrumbExample';
+// import TabExample from '../../examples/TabExample';
+// import EmptyExample from '../../examples/EmptyExample';
+// import GridExample from '../../examples/GridExample';
+// import PrettyDiffExample from '../../examples/PrettyDiffExample';
+// import SpinnerExample from '../../examples/SpinnerExample';
+// import SvgSymbolExample from '../../examples/SvgSymbolExample';
+// import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
+// import TileGridExample from '../../examples/TileGridExample';
+// import AccordionExample from '../../examples/AccordionExample';
+// import CarouselExample from '../../examples/CarouselExample';
+// import ConfirmModalExample from '../../examples/ConfirmModalExample';
+// import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
+// import ListPickerExample from '../../examples/ListPickerExample';
+// import PagedGridExample from '../../examples/PagedGridExample';
+// import PanelExample from '../../examples/PanelExample';
+// import SearchExample from '../../examples/SearchExample';
+// import SearchBarExample from '../../examples/SearchBarExample';
+// import TreePickerExample from '../../examples/TreePickerExample';
+// import UserListPickerExample from '../../examples/UserListPickerExample';
+// import InformationBoxExample from '../../examples/InformationBoxExample';
+// import SplitPaneExample from '../../examples/SplitPaneExample';
+// import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
+// import NavigationExample from '../../examples/NavigationExample';
 
-import { PageTitle } from '../../../src';
+// import { PageTitle } from '../../../src';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -171,73 +171,7 @@ class PageLayout extends React.Component {
             )}
           </SidebarArea>
           <ContentArea>
-            <PageTitle title="Form Elements" />
-            <ButtonExample />
-            <AlertInputExample />
-            <FilePickerExample />
-            <TextareaExample />
-            <ListPickerExample />
-            <UserListPickerExample />
-            <CheckboxExample />
-            <CheckboxGroupExample />
-            <CountBadgeExample />
-            <RadioExample />
-            <RadioGroupExample />
-            <SelectExample />
-            <DatePickerExample />
-
-            <PageTitle title="Typography and Text Layout" />
-            <TextEllipsisExample />
-
-            <PageTitle title="Stats and Data" />
-            <StatisticExample />
-            <TotalsExample />
-            <SliceyExample />
-
-            <PageTitle title="Icons and Graphics" />
-            <SvgSymbolExample />
-            <SvgSymbolCircleExample />
-
-            <PageTitle title="Navigation" />
-            <BreadcrumbExample />
-            <TabExample />
-            <HoverDropdownMenuExample />
-            <NavigationExample />
-
-            <PageTitle title="Feedback and States" />
             <AlertExample />
-            <EmptyExample />
-            <SpinnerExample />
-            <PrettyDiffExample />
-
-            <PageTitle title="Dialogue" />
-            <HelpIconPopoverExample />
-            <AvatarExample />
-
-            <PageTitle title="Modals" />
-            <ConfirmModalExample />
-
-            <PageTitle title="Search" />
-            <SearchExample />
-            <SearchBarExample />
-            <TagExample />
-
-            <PageTitle title="Grouping" />
-            <PageTitleExample />
-            <CardExample />
-            <PanelExample />
-            <AccordionExample />
-            <BorderedWellExample />
-            <CarouselExample />
-            <GridExample />
-            <PagedGridExample />
-            <TileGridExample />
-            <FlexibleSpacerExample />
-            <SplitPaneExample />
-            <InformationBoxExample />
-
-            <PageTitle title="Tree Picker" />
-            <TreePickerExample />
           </ContentArea>
         </div>
 

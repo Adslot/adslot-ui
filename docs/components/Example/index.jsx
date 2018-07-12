@@ -14,7 +14,7 @@ registerLanguage('jsx', jsx);
 
 class Example extends React.PureComponent {
   render() {
-    const { children, componentName, notes, exampleCodeSnippet, propTypeSectionArray, designNotes } = this.props;
+    const { children, componentName, notes, exampleCodeSnippet, propTypeSectionArray, designNotes, props } = this.props;
 
     return (
       <div
@@ -47,6 +47,7 @@ class Example extends React.PureComponent {
           <PropTypeTable propTypes={section.propTypes} label={section.label} key={index} />
         ))}
         {_.isEmpty(propTypeSectionArray) ? <PropTypeTable /> : null}
+        {!_.isEmpty(props) ? <PropTypeTable props={props} /> : null}
 
         <Button bsStyle="link" href="#top">
           ↑ Back to top.
@@ -62,7 +63,8 @@ Example.propTypes = {
   notes: PropTypes.node,
   designNotes: PropTypes.node,
   exampleCodeSnippet: PropTypes.string.isRequired,
-  propTypeSectionArray: PropTypes.arrayOf(PropTypes.object).isRequired,
+  propTypeSectionArray: PropTypes.arrayOf(PropTypes.object),
+  props: PropTypes.object, // eslint-disable-line
 };
 
 export default Example;

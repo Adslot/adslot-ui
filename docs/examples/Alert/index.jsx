@@ -1,6 +1,7 @@
 import React from 'react';
-import Example from '../components/Example';
-import { Alert } from '../../src';
+import Example from '../../components/Example';
+import { Alert } from '../../../src';
+import generatedPropTypes from './generatedPropTypes.json';
 
 class AlertExample extends React.PureComponent {
   render() {
@@ -9,7 +10,7 @@ class AlertExample extends React.PureComponent {
 }
 
 const exampleProps = {
-  componentName: 'Alert',
+  componentName: generatedPropTypes.displayName,
   designNotes: (
     <div>
       <p>
@@ -32,25 +33,7 @@ const exampleProps = {
     </div>
   ),
   exampleCodeSnippet: '<Alert type="danger">Unable to save. We can\'t talk to the API, try again in a bit.</Alert>',
-  propTypeSectionArray: [
-    {
-      propTypes: [
-        {
-          propType: 'type',
-          type: "oneOf: 'success', 'info', 'warning', 'danger'",
-        },
-        {
-          propType: 'children',
-          type: 'node',
-        },
-        {
-          propType: 'dts',
-          type: 'string',
-          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
-        },
-      ],
-    },
-  ],
+  props: generatedPropTypes.props,
 };
 
 export default () => (

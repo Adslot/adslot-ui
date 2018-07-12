@@ -7,9 +7,9 @@ import './styles.scss';
 
 class PropTypeTable extends React.PureComponent {
   render() {
-    const { propTypes, label } = this.props;
+    const { label, props } = this.props;
     const tableTitle = label ? `PropTypes — ${label}` : 'PropTypes';
-    const isEmptyTable = _.isEmpty(propTypes);
+    const isEmptyTable =  _.isEmpty(props);
 
     return (
       <div className="adslot-ui-proptype-table">
@@ -21,23 +21,21 @@ class PropTypeTable extends React.PureComponent {
               <th className="col-type">Type</th>
               <th className="col-default-value">Default Value</th>
               <th className="col-notes">Notes</th>
+              <th className="col-required text-center">Required</th>
             </tr>
           </thead>
           <tbody>
-            {_.map(propTypes, ({ propType, type, defaultValue, note }) => (
-              <tr key={propType}>
-                <td>
-                  <code>{propType}</code>
-                </td>
-                <td>
-                  <code>{type}</code>
-                </td>
-                <td>
-                  <code>{defaultValue}</code>
-                </td>
-                <td>{note}</td>
+            {_.map(props, ({ type, defaultValue, description, required }, name) => {
+              const enumString = type.name === 'enum' ? ` of: ${_.map(type.value, 'value').join(', ')}` : '';
+              return <tr key={name}>
+                <td><code>{name}</code></td>
+                <td><code>{type.name}{enumString}</code></td>
+                <td><code>{defaultValue ? defaultValue.value : null}</code></td>
+                <td><i>{description}</i></td>
+                <td className="text-center">{required ? <input type="checkbox" read-only checked /> : null}</td>
               </tr>
-            ))}
+            })}
+
           </tbody>
         </table>
         {isEmptyTable ? (
@@ -49,14 +47,7 @@ class PropTypeTable extends React.PureComponent {
 }
 
 PropTypeTable.propTypes = {
-  propTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      propType: PropTypes.string.isRequired,
-      type: PropTypes.node.isRequired,
-      defaultValue: PropTypes.node,
-      note: PropTypes.node,
-    })
-  ),
+  props: PropTypes.object, // eslint-disable-line
   label: PropTypes.string,
 };
 

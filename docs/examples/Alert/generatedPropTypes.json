@@ -1,0 +1,50 @@
+{
+  "description": "",
+  "displayName": "AlexandriaAlertComponent",
+  "methods": [],
+  "props": {
+    "type": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'success'",
+            "computed": false
+          },
+          {
+            "value": "'info'",
+            "computed": false
+          },
+          {
+            "value": "'warning'",
+            "computed": false
+          },
+          {
+            "value": "'danger'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "",
+      "defaultValue": {
+        "value": "'info'",
+        "computed": false
+      }
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": ""
+    },
+    "dts": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": ""
+    }
+  }
+}
