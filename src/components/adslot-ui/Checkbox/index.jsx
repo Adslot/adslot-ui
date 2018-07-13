@@ -41,12 +41,12 @@ class Checkbox extends React.Component {
 
     return (
       <div className="checkbox-component" {...expandDts(dts)}>
-        <span className={`selection-component-icon icheckbox${this.state.checked ? ' checked' : ''}`} />
         <label>
           <div className="checkbox-component-input-container">
+            <span className={`selection-component-icon icheckbox${this.state.checked ? ' checked' : ''}`} />
             <input {...checkboxInputProps} />
           </div>
-          {label ? <span>{label}</span> : null}
+          {label ? <div className="checkbox-component-label">{label}</div> : null}
         </label>
       </div>
     );

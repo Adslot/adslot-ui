@@ -51,7 +51,7 @@ const exampleProps = {
         },
         {
           propType: 'label',
-          type: 'string',
+          type: 'node',
         },
         {
           propType: 'value',
