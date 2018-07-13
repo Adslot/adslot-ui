@@ -3,14 +3,13 @@
 .checkbox-component {
   label {
     line-height: 18px;
-    margin-left: -16px;
     font-weight: $font-weight-light;
     cursor: pointer;
+  }
 
-    span {
-      margin-left: 5px;
-      vertical-align: bottom;
-    }
+  .checkbox-component-label {
+    display: inline-block;
+    margin-left: 5px;
   }
 
   .checkbox-component-input-container {
@@ -18,19 +17,14 @@
     height: 18px;
     display: inline-block;
     position: relative;
-    vertical-align: middle;
-  }
+    vertical-align: top;
 
-  input {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background: $color-background;
-    border: 0;
-    opacity: 0;
-    cursor: pointer;
+    span {
+      vertical-align: middle;
+    }
+
+    input {
+      display: none;
+    }
   }
 }
