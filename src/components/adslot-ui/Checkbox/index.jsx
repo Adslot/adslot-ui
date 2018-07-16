@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { expandDts } from '../../../lib/utils';
 import { checkboxPropTypes } from '../../prop-types/inputPropTypes';
 import './styles.scss';
@@ -27,7 +28,7 @@ class Checkbox extends React.Component {
   }
 
   render() {
-    const { name, value, label, dts, disabled, id, className } = this.props;
+    const { name, value, label, dts, disabled, id, className, inline } = this.props;
     const checkboxInputProps = {
       type: 'checkbox',
       name,
@@ -39,8 +40,15 @@ class Checkbox extends React.Component {
       className,
     };
 
+    const componentClassName = classnames([
+      'checkbox-component',
+      {
+        'checkbox-component-inline': inline,
+      },
+    ]);
+
     return (
-      <div className="checkbox-component" {...expandDts(dts)}>
+      <div className={componentClassName} {...expandDts(dts)}>
         <label>
           <div className="checkbox-component-input-container">
             <span className={`selection-component-icon icheckbox${this.state.checked ? ' checked' : ''}`} />

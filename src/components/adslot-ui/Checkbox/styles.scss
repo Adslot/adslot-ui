@@ -1,30 +1,3 @@
-@import '~styles/variable';
+@import '~styles/mixins/inputStyles';
 
-.checkbox-component {
-  label {
-    line-height: 18px;
-    font-weight: $font-weight-light;
-    cursor: pointer;
-  }
-
-  .checkbox-component-label {
-    display: inline-block;
-    margin-left: 5px;
-  }
-
-  .checkbox-component-input-container {
-    width: 16px;
-    height: 18px;
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-
-    span {
-      vertical-align: middle;
-    }
-
-    input {
-      display: none;
-    }
-  }
-}
+@include input-style('checkbox');

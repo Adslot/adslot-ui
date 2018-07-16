@@ -15,6 +15,7 @@ export const inputPropTypes = {
 
 export const checkboxPropTypes = _.assign({}, inputPropTypes, {
   checked: PropTypes.bool,
+  inline: PropTypes.bool,
 });
 
 export const radioButtonPropTypes = checkboxPropTypes;
@@ -27,6 +28,7 @@ export const checkboxGroupPropTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   onChange: PropTypes.func,
   dts: PropTypes.string,
+  inline: PropTypes.bool,
 };
 
 export const radioGroupPropTypes = _.assign({}, checkboxGroupPropTypes, {

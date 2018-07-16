@@ -77,6 +77,11 @@ const exampleProps = {
           type: 'string',
           note: 'render `data-test-selector` onto the component. It can be useful for testing.',
         },
+        {
+          propType: 'inline',
+          type: 'bool',
+          note: 'Passing to each Radio component.',
+        },
       ],
     },
   ],

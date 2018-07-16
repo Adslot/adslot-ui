@@ -75,6 +75,11 @@ const exampleProps = {
           propType: 'onChange',
           type: 'func',
         },
+        {
+          propType: 'inline',
+          type: 'bool',
+          note: 'Set this component to be `display: inline-block`.',
+        },
       ],
     },
   ],

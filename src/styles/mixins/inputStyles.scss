@@ -1,0 +1,42 @@
+@import '~styles/variable';
+
+@mixin input-style($type) {
+  .#{$type}-component {
+    & + & {
+      margin-top: 5px;
+    }
+
+    &.#{$type}-component-inline + &.#{$type}-component-inline {
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    label {
+      line-height: 18px;
+      font-weight: $font-weight-light;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
+    .#{$type}-component-label {
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .#{$type}-component-input-container {
+      width: 16px;
+      height: 18px;
+      display: inline-block;
+      position: relative;
+      vertical-align: top;
+
+      span {
+        vertical-align: baseline;
+      }
+
+      input {
+        display: none;
+      }
+    }
+  }
+}
