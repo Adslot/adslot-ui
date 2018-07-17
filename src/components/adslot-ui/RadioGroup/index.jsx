@@ -35,6 +35,7 @@ class RadioGroup extends React.Component {
           if (child.props.onChange) child.props.onChange(...args);
           this.onChangeDefault(...args);
         },
+        inline: this.props.inline,
       });
 
       return React.cloneElement(child, childProps);

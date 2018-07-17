@@ -98,4 +98,11 @@ describe('Checkbox', () => {
     component.setProps({ foo: 'bar' });
     expect(component.state()).to.eql({ checked: false });
   });
+
+  it('should add inline class when inline prop in true', () => {
+    const component = shallow(<Checkbox name="movies" value="terminator" />);
+    expect(component.hasClass('checkbox-component-inline')).to.equal(false);
+    component.setProps({ inline: true });
+    expect(component.hasClass('checkbox-component-inline')).to.equal(true);
+  });
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { expandDts } from '../../../lib/utils';
 import { radioButtonPropTypes } from '../../prop-types/inputPropTypes';
 import './styles.scss';
@@ -23,7 +24,7 @@ class RadioButton extends React.Component {
   }
 
   render() {
-    const { name, className, label, dts, disabled, id, value } = this.props;
+    const { name, className, label, dts, disabled, id, value, inline } = this.props;
     const radioInputProps = {
       type: 'radio',
       name,
@@ -35,14 +36,21 @@ class RadioButton extends React.Component {
       className,
     };
 
+    const componentClassName = classnames([
+      'radio-component',
+      {
+        'radio-component-inline': inline,
+      },
+    ]);
+
     return (
-      <div className="radio-component" {...expandDts(dts)}>
-        <span className={`selection-component-icon iradio${this.state.checked ? ' checked' : ''}`} />
+      <div className={componentClassName} {...expandDts(dts)}>
         <label>
           <div className="radio-component-input-container">
+            <span className={`selection-component-icon iradio${this.state.checked ? ' checked' : ''}`} />
             <input {...radioInputProps} />
           </div>
-          {label ? <span>{label}</span> : null}
+          {label ? <div className="radio-component-label">{label}</div> : null}
         </label>
       </div>
     );

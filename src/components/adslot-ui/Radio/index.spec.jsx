@@ -18,6 +18,7 @@ describe('<Radio />', () => {
       disabled: false,
       checked: false,
       onChange: sinon.spy(),
+      inline: false,
     };
   });
 
@@ -77,5 +78,13 @@ describe('<Radio />', () => {
     });
     component.setProps(props);
     expect(component.state('checked')).to.equal(false);
+  });
+
+  it('should add inline class when inline prop in true', () => {
+    const component = shallow(<Radio {...props} />);
+    expect(component.hasClass('radio-component-inline')).to.equal(false);
+    props.inline = true;
+    component.setProps(props);
+    expect(component.hasClass('radio-component-inline')).to.equal(true);
   });
 });
