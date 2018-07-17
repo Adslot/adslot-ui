@@ -14792,10 +14792,20 @@ strong {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
+.checkbox-component + .checkbox-component {
+  margin-top: 5px;
+}
+
+.checkbox-component.checkbox-component-inline + .checkbox-component.checkbox-component-inline {
+  display: inline-block;
+  margin-left: 10px;
+}
+
 .checkbox-component label {
   line-height: 18px;
   font-weight: 300;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 .checkbox-component .checkbox-component-label {
@@ -14812,7 +14822,7 @@ strong {
 }
 
 .checkbox-component .checkbox-component-input-container span {
-  vertical-align: middle;
+  vertical-align: baseline;
 }
 
 .checkbox-component .checkbox-component-input-container input {
@@ -14988,29 +14998,25 @@ strong {
   line-height: 28px;
   margin: 18px 10px;
 }
+.radio-component + .radio-component {
+  margin-top: 5px;
+}
+
+.radio-component.radio-component-inline + .radio-component.radio-component-inline {
+  display: inline-block;
+  margin-left: 10px;
+}
+
 .radio-component label {
   line-height: 18px;
-  margin-left: -16px;
   font-weight: 300;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
-.radio-component label span {
+.radio-component .radio-component-label {
+  display: inline-block;
   margin-left: 5px;
-  vertical-align: bottom;
-}
-
-.radio-component input {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  border: 0;
-  opacity: 0;
-  cursor: pointer;
 }
 
 .radio-component .radio-component-input-container {
@@ -15018,7 +15024,15 @@ strong {
   height: 18px;
   display: inline-block;
   position: relative;
-  vertical-align: middle;
+  vertical-align: top;
+}
+
+.radio-component .radio-component-input-container span {
+  vertical-align: baseline;
+}
+
+.radio-component .radio-component-input-container input {
+  display: none;
 }
 .search-component {
   height: 26px;
