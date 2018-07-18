@@ -16,19 +16,16 @@
       font-weight: $font-weight-light;
       cursor: pointer;
       margin-bottom: 0;
+      display: flex;
     }
 
     .#{$type}-component-label {
-      display: inline-block;
       margin-left: 5px;
     }
 
     .#{$type}-component-input-container {
       width: 16px;
       height: 18px;
-      display: inline-block;
-      position: relative;
-      vertical-align: top;
 
       span {
         vertical-align: baseline;
