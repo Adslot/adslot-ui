@@ -14806,19 +14806,18 @@ strong {
   font-weight: 300;
   cursor: pointer;
   margin-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .checkbox-component .checkbox-component-label {
-  display: inline-block;
   margin-left: 5px;
 }
 
 .checkbox-component .checkbox-component-input-container {
   width: 16px;
   height: 18px;
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
 }
 
 .checkbox-component .checkbox-component-input-container span {
@@ -15012,19 +15011,18 @@ strong {
   font-weight: 300;
   cursor: pointer;
   margin-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .radio-component .radio-component-label {
-  display: inline-block;
   margin-left: 5px;
 }
 
 .radio-component .radio-component-input-container {
   width: 16px;
   height: 18px;
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
 }
 
 .radio-component .radio-component-input-container span {
