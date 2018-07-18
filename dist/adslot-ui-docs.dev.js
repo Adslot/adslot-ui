@@ -6809,9 +6809,9 @@ var Spinner__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Spinner_Spinner, 'Spinner', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Spinner/index.jsx');
+  __REACT_HOT_LOADER__.register(Spinner_Spinner, 'Spinner', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Spinner/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Spinner/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Spinner/index.jsx');
 }();
 
 ;
@@ -6950,11 +6950,11 @@ var Button__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(adslotButtonPropTypes, 'adslotButtonPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
+  __REACT_HOT_LOADER__.register(adslotButtonPropTypes, 'adslotButtonPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Button_Button, 'Button', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
+  __REACT_HOT_LOADER__.register(Button_Button, 'Button', '/home/jenkins/workspace/release-adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Button__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
+  __REACT_HOT_LOADER__.register(Button__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/third-party/bootstrap/Button/index.jsx');
 }();
 
 ;
@@ -6976,7 +6976,7 @@ var third_party__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(third_party__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/third-party/index.js');
+  __REACT_HOT_LOADER__.register(third_party__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/third-party/index.js');
 }();
 
 ;
@@ -7074,9 +7074,9 @@ var Alert__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Alert_Alert, 'Alert', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Alert/index.jsx');
+  __REACT_HOT_LOADER__.register(Alert_Alert, 'Alert', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Alert/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Alert__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Alert/index.jsx');
+  __REACT_HOT_LOADER__.register(Alert__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Alert/index.jsx');
 }();
 
 ;
@@ -7133,11 +7133,11 @@ var Avatar__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Avatar_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Avatar/index.jsx');
+  __REACT_HOT_LOADER__.register(Avatar_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Avatar/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Avatar_Avatar, 'Avatar', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Avatar/index.jsx');
+  __REACT_HOT_LOADER__.register(Avatar_Avatar, 'Avatar', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Avatar/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Avatar__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Avatar/index.jsx');
+  __REACT_HOT_LOADER__.register(Avatar__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Avatar/index.jsx');
 }();
 
 ;
@@ -7176,9 +7176,9 @@ var BorderedWell__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(BorderedWell_BorderedWell, 'BorderedWell', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/BorderedWell/index.jsx');
+  __REACT_HOT_LOADER__.register(BorderedWell_BorderedWell, 'BorderedWell', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/BorderedWell/index.jsx');
 
-  __REACT_HOT_LOADER__.register(BorderedWell__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/BorderedWell/index.jsx');
+  __REACT_HOT_LOADER__.register(BorderedWell__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/BorderedWell/index.jsx');
 }();
 
 ;
@@ -7237,9 +7237,9 @@ var Node__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Node_BreadcrumbNode, 'BreadcrumbNode', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Breadcrumb/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node_BreadcrumbNode, 'BreadcrumbNode', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Breadcrumb/Node/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Node__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Breadcrumb/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Breadcrumb/Node/index.jsx');
 }();
 
 ;
@@ -7314,9 +7314,9 @@ var Breadcrumb__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Breadcrumb_Breadcrumb, 'Breadcrumb', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Breadcrumb/index.jsx');
+  __REACT_HOT_LOADER__.register(Breadcrumb_Breadcrumb, 'Breadcrumb', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Breadcrumb/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Breadcrumb__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Breadcrumb/index.jsx');
+  __REACT_HOT_LOADER__.register(Breadcrumb__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Breadcrumb/index.jsx');
 }();
 
 ;
@@ -7428,11 +7428,11 @@ var Card__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Card_CardContent, 'CardContent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Card/index.jsx');
+  __REACT_HOT_LOADER__.register(Card_CardContent, 'CardContent', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Card/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Card_Card, 'Card', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Card/index.jsx');
+  __REACT_HOT_LOADER__.register(Card_Card, 'Card', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Card/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Card__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Card/index.jsx');
+  __REACT_HOT_LOADER__.register(Card__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Card/index.jsx');
 }();
 
 ;
@@ -7489,9 +7489,9 @@ var SvgSymbol__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SvgSymbol_SvgSymbol, 'SvgSymbol', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/SvgSymbol/index.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbol_SvgSymbol, 'SvgSymbol', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/SvgSymbol/index.jsx');
 
-  __REACT_HOT_LOADER__.register(SvgSymbol__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/SvgSymbol/index.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbol__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/SvgSymbol/index.jsx');
 }();
 
 ;
@@ -7539,9 +7539,9 @@ var Circle__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Circle_SvgSymbolCircle, 'SvgSymbolCircle', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/SvgSymbol/Circle/index.jsx');
+  __REACT_HOT_LOADER__.register(Circle_SvgSymbolCircle, 'SvgSymbolCircle', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/SvgSymbol/Circle/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Circle__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/SvgSymbol/Circle/index.jsx');
+  __REACT_HOT_LOADER__.register(Circle__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/SvgSymbol/Circle/index.jsx');
 }();
 
 ;
@@ -7608,9 +7608,9 @@ var Empty__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Empty_Empty, 'Empty', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Empty/index.jsx');
+  __REACT_HOT_LOADER__.register(Empty_Empty, 'Empty', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Empty/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Empty__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Empty/index.jsx');
+  __REACT_HOT_LOADER__.register(Empty__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Empty/index.jsx');
 }();
 
 ;
@@ -7639,9 +7639,9 @@ var FlexibleSpacer__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(FlexibleSpacer_FlexibleSpacer, 'FlexibleSpacer', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/FlexibleSpacer/index.jsx');
+  __REACT_HOT_LOADER__.register(FlexibleSpacer_FlexibleSpacer, 'FlexibleSpacer', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/FlexibleSpacer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(FlexibleSpacer__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/FlexibleSpacer/index.jsx');
+  __REACT_HOT_LOADER__.register(FlexibleSpacer__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/FlexibleSpacer/index.jsx');
 }();
 
 ;
@@ -7684,9 +7684,9 @@ var Grid__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Grid_Grid, 'Grid', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Grid/index.jsx');
+  __REACT_HOT_LOADER__.register(Grid_Grid, 'Grid', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Grid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Grid__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Grid/index.jsx');
+  __REACT_HOT_LOADER__.register(Grid__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Grid/index.jsx');
 }();
 
 ;
@@ -7759,9 +7759,9 @@ var Cell__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Cell_GridCell, 'GridCell', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Grid/Cell/index.jsx');
+  __REACT_HOT_LOADER__.register(Cell_GridCell, 'GridCell', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Grid/Cell/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Cell__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Grid/Cell/index.jsx');
+  __REACT_HOT_LOADER__.register(Cell__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Grid/Cell/index.jsx');
 }();
 
 ;
@@ -7828,9 +7828,9 @@ var Row__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Row_GridRow, 'GridRow', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Grid/Row/index.jsx');
+  __REACT_HOT_LOADER__.register(Row_GridRow, 'GridRow', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Grid/Row/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Row__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Grid/Row/index.jsx');
+  __REACT_HOT_LOADER__.register(Row__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Grid/Row/index.jsx');
 }();
 
 ;
@@ -7888,11 +7888,11 @@ var PageTitle__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PageTitle_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/PageTitle/index.jsx');
+  __REACT_HOT_LOADER__.register(PageTitle_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/PageTitle/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PageTitle_PageTitle, 'PageTitle', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/PageTitle/index.jsx');
+  __REACT_HOT_LOADER__.register(PageTitle_PageTitle, 'PageTitle', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/PageTitle/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PageTitle__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/PageTitle/index.jsx');
+  __REACT_HOT_LOADER__.register(PageTitle__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/PageTitle/index.jsx');
 }();
 
 ;
@@ -7964,9 +7964,9 @@ var PrettyDiff__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PrettyDiff_PrettyDiff, 'PrettyDiff', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/PrettyDiff/index.jsx');
+  __REACT_HOT_LOADER__.register(PrettyDiff_PrettyDiff, 'PrettyDiff', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/PrettyDiff/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PrettyDiff__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/PrettyDiff/index.jsx');
+  __REACT_HOT_LOADER__.register(PrettyDiff__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/PrettyDiff/index.jsx');
 }();
 
 ;
@@ -8016,9 +8016,9 @@ var Arc__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Arc_Arc, 'Arc', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/Arc/index.jsx');
+  __REACT_HOT_LOADER__.register(Arc_Arc, 'Arc', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/Arc/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Arc__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/Arc/index.jsx');
+  __REACT_HOT_LOADER__.register(Arc__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/Arc/index.jsx');
 }();
 
 ;
@@ -8047,9 +8047,9 @@ var Donut__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Donut_Donut, 'Donut', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/Donut/index.jsx');
+  __REACT_HOT_LOADER__.register(Donut_Donut, 'Donut', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/Donut/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Donut__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/Donut/index.jsx');
+  __REACT_HOT_LOADER__.register(Donut__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/Donut/index.jsx');
 }();
 
 ;
@@ -8076,17 +8076,17 @@ var dataProcessor__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(RADIUS, "RADIUS", "/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
+  __REACT_HOT_LOADER__.register(RADIUS, "RADIUS", "/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
 
-  __REACT_HOT_LOADER__.register(QUARTER, "QUARTER", "/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
+  __REACT_HOT_LOADER__.register(QUARTER, "QUARTER", "/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
 
-  __REACT_HOT_LOADER__.register(HALF, "HALF", "/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
+  __REACT_HOT_LOADER__.register(HALF, "HALF", "/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
 
-  __REACT_HOT_LOADER__.register(ROUND, "ROUND", "/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
+  __REACT_HOT_LOADER__.register(ROUND, "ROUND", "/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
 
-  __REACT_HOT_LOADER__.register(getPointX, "getPointX", "/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
+  __REACT_HOT_LOADER__.register(getPointX, "getPointX", "/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
 
-  __REACT_HOT_LOADER__.register(getPointY, "getPointY", "/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
+  __REACT_HOT_LOADER__.register(getPointY, "getPointY", "/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/dataProcessor.js");
 }();
 
 ;
@@ -8131,9 +8131,9 @@ var Marker__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Marker_Marker, 'Marker', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/Marker/index.jsx');
+  __REACT_HOT_LOADER__.register(Marker_Marker, 'Marker', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/Marker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Marker__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/Marker/index.jsx');
+  __REACT_HOT_LOADER__.register(Marker__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/Marker/index.jsx');
 }();
 
 ;
@@ -8261,17 +8261,17 @@ var Slicey__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Slicey_filterDataset, 'filterDataset', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/index.jsx');
+  __REACT_HOT_LOADER__.register(Slicey_filterDataset, 'filterDataset', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Slicey_getArcs, 'getArcs', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/index.jsx');
+  __REACT_HOT_LOADER__.register(Slicey_getArcs, 'getArcs', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Slicey_getArcElements, 'getArcElements', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/index.jsx');
+  __REACT_HOT_LOADER__.register(Slicey_getArcElements, 'getArcElements', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/index.jsx');
 
-  __REACT_HOT_LOADER__.register(getSvgProps, 'getSvgProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/index.jsx');
+  __REACT_HOT_LOADER__.register(getSvgProps, 'getSvgProps', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Slicey_Slicey, 'Slicey', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/index.jsx');
+  __REACT_HOT_LOADER__.register(Slicey_Slicey, 'Slicey', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Slicey__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Slicey/index.jsx');
+  __REACT_HOT_LOADER__.register(Slicey__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Slicey/index.jsx');
 }();
 
 ;
@@ -8332,9 +8332,9 @@ var Statistic__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Statistic_Statistic, 'Statistic', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Statistic/index.jsx');
+  __REACT_HOT_LOADER__.register(Statistic_Statistic, 'Statistic', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Statistic/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Statistic__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Statistic/index.jsx');
+  __REACT_HOT_LOADER__.register(Statistic__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Statistic/index.jsx');
 }();
 
 ;
@@ -8427,13 +8427,13 @@ var Tag__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Tag_componentClass, 'componentClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Tag/index.jsx');
+  __REACT_HOT_LOADER__.register(Tag_componentClass, 'componentClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Tag_ActionButton, 'ActionButton', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Tag/index.jsx');
+  __REACT_HOT_LOADER__.register(Tag_ActionButton, 'ActionButton', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Tag_Tag, 'Tag', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Tag/index.jsx');
+  __REACT_HOT_LOADER__.register(Tag_Tag, 'Tag', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Tag__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Tag/index.jsx');
+  __REACT_HOT_LOADER__.register(Tag__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
 }();
 
 ;
@@ -8452,7 +8452,7 @@ var idPropType__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(idPropType__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/idPropType.js');
+  __REACT_HOT_LOADER__.register(idPropType__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/idPropType.js');
 }();
 
 ;
@@ -8566,15 +8566,15 @@ var TileGrid__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(defaultWidth, 'defaultWidth', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(defaultWidth, 'defaultWidth', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(defaultMaxWidth, 'defaultMaxWidth', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(defaultMaxWidth, 'defaultMaxWidth', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TileGrid_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(TileGrid_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TileGrid_TileGrid, 'TileGrid', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(TileGrid_TileGrid, 'TileGrid', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TileGrid__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/TileGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(TileGrid__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/TileGrid/index.jsx');
 }();
 
 ;
@@ -8655,9 +8655,9 @@ var Totals__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Totals_Totals, 'Totals', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Totals/index.jsx');
+  __REACT_HOT_LOADER__.register(Totals_Totals, 'Totals', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Totals/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Totals__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/alexandria/Totals/index.jsx');
+  __REACT_HOT_LOADER__.register(Totals__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Totals/index.jsx');
 }();
 
 ;
@@ -8759,9 +8759,9 @@ var Panel__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Panel_PanelComponent, 'PanelComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Panel/index.jsx');
+  __REACT_HOT_LOADER__.register(Panel_PanelComponent, 'PanelComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Panel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Panel__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Panel/index.jsx');
+  __REACT_HOT_LOADER__.register(Panel__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Panel/index.jsx');
 }();
 
 ;
@@ -8824,11 +8824,11 @@ var Accordion__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Accordion_AccordionComponent, 'AccordionComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Accordion/index.jsx');
+  __REACT_HOT_LOADER__.register(Accordion_AccordionComponent, 'AccordionComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Accordion/index.jsx');
 
-  __REACT_HOT_LOADER__.register(accordionPanelPropTypes, 'accordionPanelPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Accordion/index.jsx');
+  __REACT_HOT_LOADER__.register(accordionPanelPropTypes, 'accordionPanelPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Accordion/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Accordion__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Accordion/index.jsx');
+  __REACT_HOT_LOADER__.register(Accordion__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Accordion/index.jsx');
 }();
 
 ;
@@ -9034,11 +9034,11 @@ var AlertInput__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(AlertInput_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/AlertInput/index.jsx');
+  __REACT_HOT_LOADER__.register(AlertInput_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/AlertInput/index.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertInput_AlertInput, 'AlertInput', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/AlertInput/index.jsx');
+  __REACT_HOT_LOADER__.register(AlertInput_AlertInput, 'AlertInput', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/AlertInput/index.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertInput__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/AlertInput/index.jsx');
+  __REACT_HOT_LOADER__.register(AlertInput__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/AlertInput/index.jsx');
 }();
 
 ;
@@ -9143,19 +9143,19 @@ var Carousel__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Carousel_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(Carousel_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(navigationDelay, 'navigationDelay', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(navigationDelay, 'navigationDelay', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(decoratorStyles, 'decoratorStyles', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(decoratorStyles, 'decoratorStyles', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Carousel_getPrevDecorator, 'getPrevDecorator', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(Carousel_getPrevDecorator, 'getPrevDecorator', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Carousel_getNextDecorator, 'getNextDecorator', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(Carousel_getNextDecorator, 'getNextDecorator', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Carousel_CarouselComponent, 'CarouselComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(Carousel_CarouselComponent, 'CarouselComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Carousel__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
+  __REACT_HOT_LOADER__.register(Carousel__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Carousel/index.jsx');
 }();
 
 ;
@@ -9288,9 +9288,9 @@ var Checkbox__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Checkbox_Checkbox, 'Checkbox', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Checkbox/index.jsx');
+  __REACT_HOT_LOADER__.register(Checkbox_Checkbox, 'Checkbox', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Checkbox/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Checkbox__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Checkbox/index.jsx');
+  __REACT_HOT_LOADER__.register(Checkbox__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Checkbox/index.jsx');
 }();
 
 ;
@@ -9417,11 +9417,11 @@ var CheckboxGroup__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CheckboxGroup_mapPropsToState, 'mapPropsToState', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroup_mapPropsToState, 'mapPropsToState', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxGroup_CheckboxGroup, 'CheckboxGroup', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroup_CheckboxGroup, 'CheckboxGroup', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxGroup__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroup__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx');
 }();
 
 ;
@@ -9520,9 +9520,9 @@ var ConfirmModal__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(ConfirmModal_ConfirmModalComponent, 'ConfirmModalComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ConfirmModal/index.jsx');
+  __REACT_HOT_LOADER__.register(ConfirmModal_ConfirmModalComponent, 'ConfirmModalComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ConfirmModal/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ConfirmModal__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ConfirmModal/index.jsx');
+  __REACT_HOT_LOADER__.register(ConfirmModal__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ConfirmModal/index.jsx');
 }();
 
 ;
@@ -9598,9 +9598,9 @@ var CountBadge__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CountBadge_CountBadge, 'CountBadge', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/CountBadge/index.jsx');
+  __REACT_HOT_LOADER__.register(CountBadge_CountBadge, 'CountBadge', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/CountBadge/index.jsx');
 
-  __REACT_HOT_LOADER__.register(CountBadge__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/CountBadge/index.jsx');
+  __REACT_HOT_LOADER__.register(CountBadge__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/CountBadge/index.jsx');
 }();
 
 ;
@@ -9658,9 +9658,9 @@ var HelpIconPopover__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(HelpIconPopover_HelpIconPopover, 'HelpIconPopover', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HelpIconPopover/index.jsx');
+  __REACT_HOT_LOADER__.register(HelpIconPopover_HelpIconPopover, 'HelpIconPopover', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HelpIconPopover/index.jsx');
 
-  __REACT_HOT_LOADER__.register(HelpIconPopover__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HelpIconPopover/index.jsx');
+  __REACT_HOT_LOADER__.register(HelpIconPopover__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HelpIconPopover/index.jsx');
 }();
 
 ;
@@ -9811,11 +9811,11 @@ var FilePicker__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(FilePicker_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/FilePicker/index.jsx');
+  __REACT_HOT_LOADER__.register(FilePicker_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/FilePicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(FilePicker_FilePickerComponent, 'FilePickerComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/FilePicker/index.jsx');
+  __REACT_HOT_LOADER__.register(FilePicker_FilePickerComponent, 'FilePickerComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/FilePicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(FilePicker__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/FilePicker/index.jsx');
+  __REACT_HOT_LOADER__.register(FilePicker__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/FilePicker/index.jsx');
 }();
 
 ;
@@ -9901,9 +9901,9 @@ var FormGroup__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(FormGroup_FormGroupComponent, 'FormGroupComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/FormGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(FormGroup_FormGroupComponent, 'FormGroupComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/FormGroup/index.jsx');
 
-  __REACT_HOT_LOADER__.register(FormGroup__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/FormGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(FormGroup__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/FormGroup/index.jsx');
 }();
 
 ;
@@ -10231,15 +10231,15 @@ var ListPicker__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(ListPicker_isSubset, 'isSubset', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPicker_isSubset, 'isSubset', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPicker_ListPickerComponent, 'ListPickerComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPicker_ListPickerComponent, 'ListPickerComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(itemProps, 'itemProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(itemProps, 'itemProps', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(linkButtonsProps, 'linkButtonsProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(linkButtonsProps, 'linkButtonsProps', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPicker__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPicker__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPicker/index.jsx');
 }();
 
 ;
@@ -10408,13 +10408,13 @@ var ListPickerPure__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(ListPickerPure_isItemSelected, 'isItemSelected', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerPure_isItemSelected, 'isItemSelected', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerPure_ListPickerPureComponent, 'ListPickerPureComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerPure_ListPickerPureComponent, 'ListPickerPureComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerPure_itemProps, 'itemProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerPure_itemProps, 'itemProps', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerPure__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerPure__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
 }();
 
 ;
@@ -10571,13 +10571,13 @@ var PagedGrid__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PagedGrid_PagedGridComponent, 'PagedGridComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(PagedGrid_PagedGridComponent, 'PagedGridComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PagedGrid_itemProps, 'itemProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(PagedGrid_itemProps, 'itemProps', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(columnProps, 'columnProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(columnProps, 'columnProps', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PagedGrid__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
+  __REACT_HOT_LOADER__.register(PagedGrid__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx');
 }();
 
 ;
@@ -10757,9 +10757,9 @@ var Search__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Search_Search, 'Search', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Search/index.jsx');
+  __REACT_HOT_LOADER__.register(Search_Search, 'Search', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Search/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Search__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Search/index.jsx');
+  __REACT_HOT_LOADER__.register(Search__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Search/index.jsx');
 }();
 
 ;
@@ -10840,9 +10840,9 @@ var SearchBar__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SearchBar_SearchBarComponent, 'SearchBarComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/SearchBar/index.jsx');
+  __REACT_HOT_LOADER__.register(SearchBar_SearchBarComponent, 'SearchBarComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/SearchBar/index.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchBar__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/SearchBar/index.jsx');
+  __REACT_HOT_LOADER__.register(SearchBar__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/SearchBar/index.jsx');
 }();
 
 ;
@@ -10893,9 +10893,9 @@ var SplitPane__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SplitPane_SplitPaneComponent, 'SplitPaneComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/SplitPane/index.jsx');
+  __REACT_HOT_LOADER__.register(SplitPane_SplitPaneComponent, 'SplitPaneComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/SplitPane/index.jsx');
 
-  __REACT_HOT_LOADER__.register(SplitPane__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/SplitPane/index.jsx');
+  __REACT_HOT_LOADER__.register(SplitPane__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/SplitPane/index.jsx');
 }();
 
 ;
@@ -10990,9 +10990,9 @@ var Textarea__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Textarea_Textarea, 'Textarea', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Textarea/index.jsx');
+  __REACT_HOT_LOADER__.register(Textarea_Textarea, 'Textarea', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Textarea/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Textarea__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Textarea/index.jsx');
+  __REACT_HOT_LOADER__.register(Textarea__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Textarea/index.jsx');
 }();
 
 ;
@@ -18092,9 +18092,9 @@ var TextEllipsis__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TextEllipsis_TextEllipsisComponent, 'TextEllipsisComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TextEllipsis/index.jsx');
+  __REACT_HOT_LOADER__.register(TextEllipsis_TextEllipsisComponent, 'TextEllipsisComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TextEllipsis/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TextEllipsis__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TextEllipsis/index.jsx');
+  __REACT_HOT_LOADER__.register(TextEllipsis__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TextEllipsis/index.jsx');
 }();
 
 ;
@@ -18166,9 +18166,9 @@ var fastStatelessWrapper__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(fastStatelessWrapper_fastStatelessWrapper, 'fastStatelessWrapper', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/fastStatelessWrapper/index.jsx');
+  __REACT_HOT_LOADER__.register(fastStatelessWrapper_fastStatelessWrapper, 'fastStatelessWrapper', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/fastStatelessWrapper/index.jsx');
 
-  __REACT_HOT_LOADER__.register(fastStatelessWrapper__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/fastStatelessWrapper/index.jsx');
+  __REACT_HOT_LOADER__.register(fastStatelessWrapper__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/fastStatelessWrapper/index.jsx');
 }();
 
 ;
@@ -18215,9 +18215,9 @@ var Expander__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Expander_TreePickerNodeExpander, 'TreePickerNodeExpander', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/Expander/index.jsx');
+  __REACT_HOT_LOADER__.register(Expander_TreePickerNodeExpander, 'TreePickerNodeExpander', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/Expander/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Expander__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/Expander/index.jsx');
+  __REACT_HOT_LOADER__.register(Expander__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/Expander/index.jsx');
 }();
 
 ;
@@ -18261,11 +18261,11 @@ var TreePickerPropTypes__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(baseNodeProps, 'baseNodeProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/TreePickerPropTypes.js');
+  __REACT_HOT_LOADER__.register(baseNodeProps, 'baseNodeProps', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/TreePickerPropTypes.js');
 
-  __REACT_HOT_LOADER__.register(mergeNodeProps, 'mergeNodeProps', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/TreePickerPropTypes.js');
+  __REACT_HOT_LOADER__.register(mergeNodeProps, 'mergeNodeProps', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/TreePickerPropTypes.js');
 
-  __REACT_HOT_LOADER__.register(TreePickerPropTypes__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/TreePickerPropTypes.js');
+  __REACT_HOT_LOADER__.register(TreePickerPropTypes__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/TreePickerPropTypes.js');
 }();
 
 ;
@@ -18471,17 +18471,17 @@ var TreePicker_Node__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Node_baseClass, 'baseClass', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node_baseClass, 'baseClass', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Node_printPathText, 'printPathText', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node_printPathText, 'printPathText', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Node_printAncestorText, 'printAncestorText', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node_printAncestorText, 'printAncestorText', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Node_pathPrefix, 'pathPrefix', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node_pathPrefix, 'pathPrefix', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Node_TreePickerNodeComponent, 'TreePickerNodeComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(Node_TreePickerNodeComponent, 'TreePickerNodeComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TreePicker_Node__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
+  __REACT_HOT_LOADER__.register(TreePicker_Node__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx');
 }();
 
 ;
@@ -18609,11 +18609,11 @@ var TreePicker_Grid__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TreePickerNodeFast, 'TreePickerNodeFast', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx');
+  __REACT_HOT_LOADER__.register(TreePickerNodeFast, 'TreePickerNodeFast', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Grid_TreePickerGridComponent, 'TreePickerGridComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx');
+  __REACT_HOT_LOADER__.register(Grid_TreePickerGridComponent, 'TreePickerGridComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TreePicker_Grid__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx');
+  __REACT_HOT_LOADER__.register(TreePicker_Grid__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx');
 }();
 
 ;
@@ -18697,9 +18697,9 @@ var Nav__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Nav_TreePickerNavComponent, 'TreePickerNavComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Nav/index.jsx');
+  __REACT_HOT_LOADER__.register(Nav_TreePickerNavComponent, 'TreePickerNavComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Nav/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Nav__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/Nav/index.jsx');
+  __REACT_HOT_LOADER__.register(Nav__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/Nav/index.jsx');
 }();
 
 ;
@@ -18889,11 +18889,11 @@ var TreePicker__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TreePicker_removeSelected, 'removeSelected', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/index.jsx');
+  __REACT_HOT_LOADER__.register(TreePicker_removeSelected, 'removeSelected', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TreePicker_TreePickerSimplePureComponent, 'TreePickerSimplePureComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/index.jsx');
+  __REACT_HOT_LOADER__.register(TreePicker_TreePickerSimplePureComponent, 'TreePickerSimplePureComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TreePicker__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/TreePicker/index.jsx');
+  __REACT_HOT_LOADER__.register(TreePicker__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/TreePicker/index.jsx');
 }();
 
 ;
@@ -19013,11 +19013,11 @@ var UserListPicker__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(UserListPicker_UserListPickerComponent, 'UserListPickerComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(UserListPicker_UserListPickerComponent, 'UserListPickerComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(userType, 'userType', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(userType, 'userType', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPicker__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx');
+  __REACT_HOT_LOADER__.register(UserListPicker__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx');
 }();
 
 ;
@@ -19116,11 +19116,11 @@ var PopoverLinkItem__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PopoverLinkItem_PopoverLinkItemComponent, 'PopoverLinkItemComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx');
+  __REACT_HOT_LOADER__.register(PopoverLinkItem_PopoverLinkItemComponent, 'PopoverLinkItemComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx');
 
-  __REACT_HOT_LOADER__.register(LINK_PROPS, 'LINK_PROPS', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx');
+  __REACT_HOT_LOADER__.register(LINK_PROPS, 'LINK_PROPS', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PopoverLinkItem__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx');
+  __REACT_HOT_LOADER__.register(PopoverLinkItem__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx');
 }();
 
 ;
@@ -19294,13 +19294,13 @@ var HoverDropdownMenu__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(POPOVER_WIDTH, 'POPOVER_WIDTH', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
+  __REACT_HOT_LOADER__.register(POPOVER_WIDTH, 'POPOVER_WIDTH', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
 
-  __REACT_HOT_LOADER__.register(HoverDropdownMenu_renderPopoverComponent, 'renderPopoverComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
+  __REACT_HOT_LOADER__.register(HoverDropdownMenu_renderPopoverComponent, 'renderPopoverComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
 
-  __REACT_HOT_LOADER__.register(HoverDropdownMenu_HoverDropdownMenuComponent, 'HoverDropdownMenuComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
+  __REACT_HOT_LOADER__.register(HoverDropdownMenu_HoverDropdownMenuComponent, 'HoverDropdownMenuComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
 
-  __REACT_HOT_LOADER__.register(HoverDropdownMenu__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
+  __REACT_HOT_LOADER__.register(HoverDropdownMenu__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx');
 }();
 
 ;
@@ -19360,9 +19360,9 @@ var InformationBox__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(InformationBox_InformationBox, 'InformationBox', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/InformationBox/index.jsx');
+  __REACT_HOT_LOADER__.register(InformationBox_InformationBox, 'InformationBox', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/InformationBox/index.jsx');
 
-  __REACT_HOT_LOADER__.register(InformationBox__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/InformationBox/index.jsx');
+  __REACT_HOT_LOADER__.register(InformationBox__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/InformationBox/index.jsx');
 }();
 
 ;
@@ -19442,9 +19442,9 @@ var Navigation__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Navigation_NavigationComponent, 'NavigationComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(Navigation_NavigationComponent, 'NavigationComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Navigation/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Navigation__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(Navigation__default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Navigation/index.jsx');
 }();
 
 ;
@@ -19937,11 +19937,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(classSuffixHelper, 'classSuffixHelper', '/Users/chao.liang/Desktop/repos/adslot-ui/src/lib/utils.js');
+  __REACT_HOT_LOADER__.register(classSuffixHelper, 'classSuffixHelper', '/home/jenkins/workspace/release-adslot-ui/src/lib/utils.js');
 
-  __REACT_HOT_LOADER__.register(expandDts, 'expandDts', '/Users/chao.liang/Desktop/repos/adslot-ui/src/lib/utils.js');
+  __REACT_HOT_LOADER__.register(expandDts, 'expandDts', '/home/jenkins/workspace/release-adslot-ui/src/lib/utils.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/lib/utils.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/lib/utils.js');
 }();
 
 ;
@@ -22726,15 +22726,15 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(inputPropTypes, 'inputPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/inputPropTypes.js');
+  __REACT_HOT_LOADER__.register(inputPropTypes, 'inputPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/inputPropTypes.js');
 
-  __REACT_HOT_LOADER__.register(checkboxPropTypes, 'checkboxPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/inputPropTypes.js');
+  __REACT_HOT_LOADER__.register(checkboxPropTypes, 'checkboxPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/inputPropTypes.js');
 
-  __REACT_HOT_LOADER__.register(radioButtonPropTypes, 'radioButtonPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/inputPropTypes.js');
+  __REACT_HOT_LOADER__.register(radioButtonPropTypes, 'radioButtonPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/inputPropTypes.js');
 
-  __REACT_HOT_LOADER__.register(checkboxGroupPropTypes, 'checkboxGroupPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/inputPropTypes.js');
+  __REACT_HOT_LOADER__.register(checkboxGroupPropTypes, 'checkboxGroupPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/inputPropTypes.js');
 
-  __REACT_HOT_LOADER__.register(radioGroupPropTypes, 'radioGroupPropTypes', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/prop-types/inputPropTypes.js');
+  __REACT_HOT_LOADER__.register(radioGroupPropTypes, 'radioGroupPropTypes', '/home/jenkins/workspace/release-adslot-ui/src/components/prop-types/inputPropTypes.js');
 }();
 
 ;
@@ -29847,9 +29847,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(RadioButton, 'RadioButton', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Radio/index.jsx');
+  __REACT_HOT_LOADER__.register(RadioButton, 'RadioButton', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Radio/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/Radio/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/Radio/index.jsx');
 }();
 
 ;
@@ -31149,9 +31149,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(RadioGroup, 'RadioGroup', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/RadioGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(RadioGroup, 'RadioGroup', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/RadioGroup/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/src/components/adslot-ui/RadioGroup/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/RadioGroup/index.jsx');
 }();
 
 ;
@@ -49881,9 +49881,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Header_HeaderGraphics, 'HeaderGraphics', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Header/index.jsx');
+  __REACT_HOT_LOADER__.register(Header_HeaderGraphics, 'HeaderGraphics', '/home/jenkins/workspace/release-adslot-ui/docs/components/Header/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Header__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Header/index.jsx');
+  __REACT_HOT_LOADER__.register(Header__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/Header/index.jsx');
 }();
 
 ;
@@ -49991,15 +49991,15 @@ var Navigation__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(initialOpenPanel, 'initialOpenPanel', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(initialOpenPanel, 'initialOpenPanel', '/home/jenkins/workspace/release-adslot-ui/docs/components/Navigation/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Navigation_contentFactory, 'contentFactory', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(Navigation_contentFactory, 'contentFactory', '/home/jenkins/workspace/release-adslot-ui/docs/components/Navigation/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Navigation_panelFactory, 'panelFactory', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(Navigation_panelFactory, 'panelFactory', '/home/jenkins/workspace/release-adslot-ui/docs/components/Navigation/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Navigation_Navigation, 'Navigation', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(Navigation_Navigation, 'Navigation', '/home/jenkins/workspace/release-adslot-ui/docs/components/Navigation/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Navigation__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Navigation/index.jsx');
+  __REACT_HOT_LOADER__.register(Navigation__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/Navigation/index.jsx');
 }();
 
 ;
@@ -50119,11 +50119,11 @@ var Contributors__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(plural, 'plural', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Contributors/index.jsx');
+  __REACT_HOT_LOADER__.register(plural, 'plural', '/home/jenkins/workspace/release-adslot-ui/docs/components/Contributors/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Contributors_Contributors, 'Contributors', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Contributors/index.jsx');
+  __REACT_HOT_LOADER__.register(Contributors_Contributors, 'Contributors', '/home/jenkins/workspace/release-adslot-ui/docs/components/Contributors/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Contributors__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Contributors/index.jsx');
+  __REACT_HOT_LOADER__.register(Contributors__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/Contributors/index.jsx');
 }();
 
 ;
@@ -50203,9 +50203,9 @@ var SearchBar__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SearchBar_SearchBarComponent, 'SearchBarComponent', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/SearchBar/index.jsx');
+  __REACT_HOT_LOADER__.register(SearchBar_SearchBarComponent, 'SearchBarComponent', '/home/jenkins/workspace/release-adslot-ui/docs/components/SearchBar/index.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchBar__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/SearchBar/index.jsx');
+  __REACT_HOT_LOADER__.register(SearchBar__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/SearchBar/index.jsx');
 }();
 
 ;
@@ -50279,9 +50279,9 @@ var SearchResultCard__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SearchResultCard_SearchResultCard, 'SearchResultCard', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/SearchResultCard/index.jsx');
+  __REACT_HOT_LOADER__.register(SearchResultCard_SearchResultCard, 'SearchResultCard', '/home/jenkins/workspace/release-adslot-ui/docs/components/SearchResultCard/index.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchResultCard__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/SearchResultCard/index.jsx');
+  __REACT_HOT_LOADER__.register(SearchResultCard__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/SearchResultCard/index.jsx');
 }();
 
 ;
@@ -50451,9 +50451,9 @@ var PropTypeTable__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PropTypeTable_PropTypeTable, 'PropTypeTable', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/PropTypeTable/index.jsx');
+  __REACT_HOT_LOADER__.register(PropTypeTable_PropTypeTable, 'PropTypeTable', '/home/jenkins/workspace/release-adslot-ui/docs/components/PropTypeTable/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PropTypeTable__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/PropTypeTable/index.jsx');
+  __REACT_HOT_LOADER__.register(PropTypeTable__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/PropTypeTable/index.jsx');
 }();
 
 ;
@@ -50581,9 +50581,9 @@ var Example__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Example_Example, 'Example', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Example/index.jsx');
+  __REACT_HOT_LOADER__.register(Example_Example, 'Example', '/home/jenkins/workspace/release-adslot-ui/docs/components/Example/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Example__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Example/index.jsx');
+  __REACT_HOT_LOADER__.register(Example__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/Example/index.jsx');
 }();
 
 ;
@@ -50835,11 +50835,11 @@ var ButtonExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(ButtonExample_ButtonExample, 'ButtonExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ButtonExample.jsx');
+  __REACT_HOT_LOADER__.register(ButtonExample_ButtonExample, 'ButtonExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ButtonExample.jsx');
 
-  __REACT_HOT_LOADER__.register(exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ButtonExample.jsx');
+  __REACT_HOT_LOADER__.register(exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ButtonExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ButtonExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ButtonExample.jsx');
+  __REACT_HOT_LOADER__.register(ButtonExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ButtonExample.jsx');
 }();
 
 ;
@@ -51050,13 +51050,13 @@ var AlertInputExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertInputExample.jsx');
+  __REACT_HOT_LOADER__.register(initialState, 'initialState', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertInputExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertInputExample_AlertInputExample, 'AlertInputExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertInputExample.jsx');
+  __REACT_HOT_LOADER__.register(AlertInputExample_AlertInputExample, 'AlertInputExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertInputExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertInputExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertInputExample.jsx');
+  __REACT_HOT_LOADER__.register(AlertInputExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertInputExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertInputExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertInputExample.jsx');
+  __REACT_HOT_LOADER__.register(AlertInputExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertInputExample.jsx');
 }();
 
 ;
@@ -51164,11 +51164,11 @@ var FilePickerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(FilePickerExample_FilePickerExample, 'FilePickerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/FilePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(FilePickerExample_FilePickerExample, 'FilePickerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/FilePickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(FilePickerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/FilePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(FilePickerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/FilePickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(FilePickerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/FilePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(FilePickerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/FilePickerExample.jsx');
 }();
 
 ;
@@ -51263,11 +51263,11 @@ var TextareaExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TextareaExample_TextareaExample, 'TextareaExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextareaExample.jsx');
+  __REACT_HOT_LOADER__.register(TextareaExample_TextareaExample, 'TextareaExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextareaExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TextareaExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextareaExample.jsx');
+  __REACT_HOT_LOADER__.register(TextareaExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextareaExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TextareaExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextareaExample.jsx');
+  __REACT_HOT_LOADER__.register(TextareaExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextareaExample.jsx');
 }();
 
 ;
@@ -51380,13 +51380,13 @@ var TextEllipsisExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(loremIpsum, 'loremIpsum', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextEllipsisExample.jsx');
+  __REACT_HOT_LOADER__.register(loremIpsum, 'loremIpsum', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextEllipsisExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TextEllipsisExample_TextEllipsisExample, 'TextEllipsisExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextEllipsisExample.jsx');
+  __REACT_HOT_LOADER__.register(TextEllipsisExample_TextEllipsisExample, 'TextEllipsisExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextEllipsisExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TextEllipsisExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextEllipsisExample.jsx');
+  __REACT_HOT_LOADER__.register(TextEllipsisExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextEllipsisExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TextEllipsisExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TextEllipsisExample.jsx');
+  __REACT_HOT_LOADER__.register(TextEllipsisExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TextEllipsisExample.jsx');
 }();
 
 ;
@@ -51531,11 +51531,11 @@ var AlertExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(AlertExample_AlertExample, 'AlertExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertExample.jsx');
+  __REACT_HOT_LOADER__.register(AlertExample_AlertExample, 'AlertExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertExample.jsx');
+  __REACT_HOT_LOADER__.register(AlertExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AlertExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AlertExample.jsx');
+  __REACT_HOT_LOADER__.register(AlertExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AlertExample.jsx');
 }();
 
 ;
@@ -51652,13 +51652,13 @@ var CheckboxExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CheckboxExample_onChange, 'onChange', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxExample_onChange, 'onChange', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxExample_CheckboxExample, 'CheckboxExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxExample_CheckboxExample, 'CheckboxExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxExample.jsx');
 }();
 
 ;
@@ -51780,15 +51780,15 @@ var CheckboxGroupExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CheckboxGroupExample_onChangeGroup, 'onChangeGroup', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroupExample_onChangeGroup, 'onChangeGroup', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxGroupExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxGroupExample_onChangeIndividual, 'onChangeIndividual', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroupExample_onChangeIndividual, 'onChangeIndividual', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxGroupExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxGroupExample_CheckboxGroupExample, 'CheckboxGroupExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroupExample_CheckboxGroupExample, 'CheckboxGroupExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxGroupExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxGroupExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroupExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxGroupExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CheckboxGroupExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CheckboxGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(CheckboxGroupExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CheckboxGroupExample.jsx');
 }();
 
 ;
@@ -51866,11 +51866,11 @@ var CountBadgeExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CountBadgeExample_CountBadgeExample, 'CountBadgeExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CountBadgeExample.jsx');
+  __REACT_HOT_LOADER__.register(CountBadgeExample_CountBadgeExample, 'CountBadgeExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CountBadgeExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CountBadgeExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CountBadgeExample.jsx');
+  __REACT_HOT_LOADER__.register(CountBadgeExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CountBadgeExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CountBadgeExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CountBadgeExample.jsx');
+  __REACT_HOT_LOADER__.register(CountBadgeExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CountBadgeExample.jsx');
 }();
 
 ;
@@ -51990,11 +51990,11 @@ var RadioExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(RadioExample_RadioExample, 'RadioExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/RadioExample.jsx');
+  __REACT_HOT_LOADER__.register(RadioExample_RadioExample, 'RadioExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/RadioExample.jsx');
 
-  __REACT_HOT_LOADER__.register(RadioExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/RadioExample.jsx');
+  __REACT_HOT_LOADER__.register(RadioExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/RadioExample.jsx');
 
-  __REACT_HOT_LOADER__.register(RadioExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/RadioExample.jsx');
+  __REACT_HOT_LOADER__.register(RadioExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/RadioExample.jsx');
 }();
 
 ;
@@ -52130,11 +52130,11 @@ var RadioGroupExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(RadioGroupExample_RadioGroupExample, 'RadioGroupExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/RadioGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(RadioGroupExample_RadioGroupExample, 'RadioGroupExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/RadioGroupExample.jsx');
 
-  __REACT_HOT_LOADER__.register(RadioGroupExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/RadioGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(RadioGroupExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/RadioGroupExample.jsx');
 
-  __REACT_HOT_LOADER__.register(RadioGroupExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/RadioGroupExample.jsx');
+  __REACT_HOT_LOADER__.register(RadioGroupExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/RadioGroupExample.jsx');
 }();
 
 ;
@@ -52231,11 +52231,11 @@ var SelectExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SelectExample_SelectExample, 'SelectExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SelectExample.jsx');
+  __REACT_HOT_LOADER__.register(SelectExample_SelectExample, 'SelectExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SelectExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SelectExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SelectExample.jsx');
+  __REACT_HOT_LOADER__.register(SelectExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SelectExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SelectExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SelectExample.jsx');
+  __REACT_HOT_LOADER__.register(SelectExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SelectExample.jsx');
 }();
 
 ;
@@ -52347,11 +52347,11 @@ var DatePickerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(DatePickerExample_DatePickerExample, 'DatePickerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/DatePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(DatePickerExample_DatePickerExample, 'DatePickerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/DatePickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(DatePickerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/DatePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(DatePickerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/DatePickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(DatePickerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/DatePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(DatePickerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/DatePickerExample.jsx');
 }();
 
 ;
@@ -52420,11 +52420,11 @@ var BorderedWellExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(BorderedWellExample_BorderedWellExample, 'BorderedWellExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BorderedWellExample.jsx');
+  __REACT_HOT_LOADER__.register(BorderedWellExample_BorderedWellExample, 'BorderedWellExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BorderedWellExample.jsx');
 
-  __REACT_HOT_LOADER__.register(BorderedWellExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BorderedWellExample.jsx');
+  __REACT_HOT_LOADER__.register(BorderedWellExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BorderedWellExample.jsx');
 
-  __REACT_HOT_LOADER__.register(BorderedWellExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BorderedWellExample.jsx');
+  __REACT_HOT_LOADER__.register(BorderedWellExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BorderedWellExample.jsx');
 }();
 
 ;
@@ -52512,11 +52512,11 @@ var CardExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CardExample_CardExample, 'CardExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CardExample.jsx');
+  __REACT_HOT_LOADER__.register(CardExample_CardExample, 'CardExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CardExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CardExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CardExample.jsx');
+  __REACT_HOT_LOADER__.register(CardExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CardExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CardExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CardExample.jsx');
+  __REACT_HOT_LOADER__.register(CardExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CardExample.jsx');
 }();
 
 ;
@@ -52577,11 +52577,11 @@ var FlexibleSpacerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(FlexibleSpacerExample_FlexibleSpacerExample, 'FlexibleSpacerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/FlexibleSpacerExample.jsx');
+  __REACT_HOT_LOADER__.register(FlexibleSpacerExample_FlexibleSpacerExample, 'FlexibleSpacerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/FlexibleSpacerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(FlexibleSpacerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/FlexibleSpacerExample.jsx');
+  __REACT_HOT_LOADER__.register(FlexibleSpacerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/FlexibleSpacerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(FlexibleSpacerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/FlexibleSpacerExample.jsx');
+  __REACT_HOT_LOADER__.register(FlexibleSpacerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/FlexibleSpacerExample.jsx');
 }();
 
 ;
@@ -52680,11 +52680,11 @@ var PageTitleExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PageTitleExample_PageTitleExample, 'PageTitleExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PageTitleExample.jsx');
+  __REACT_HOT_LOADER__.register(PageTitleExample_PageTitleExample, 'PageTitleExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PageTitleExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PageTitleExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PageTitleExample.jsx');
+  __REACT_HOT_LOADER__.register(PageTitleExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PageTitleExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PageTitleExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PageTitleExample.jsx');
+  __REACT_HOT_LOADER__.register(PageTitleExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PageTitleExample.jsx');
 }();
 
 ;
@@ -52776,11 +52776,11 @@ var SliceyExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SliceyExample_SliceyExample, 'SliceyExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SliceyExample.jsx');
+  __REACT_HOT_LOADER__.register(SliceyExample_SliceyExample, 'SliceyExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SliceyExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SliceyExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SliceyExample.jsx');
+  __REACT_HOT_LOADER__.register(SliceyExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SliceyExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SliceyExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SliceyExample.jsx');
+  __REACT_HOT_LOADER__.register(SliceyExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SliceyExample.jsx');
 }();
 
 ;
@@ -52856,11 +52856,11 @@ var StatisticExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(StatisticExample_StatisticExample, 'StatisticExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/StatisticExample.jsx');
+  __REACT_HOT_LOADER__.register(StatisticExample_StatisticExample, 'StatisticExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/StatisticExample.jsx');
 
-  __REACT_HOT_LOADER__.register(StatisticExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/StatisticExample.jsx');
+  __REACT_HOT_LOADER__.register(StatisticExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/StatisticExample.jsx');
 
-  __REACT_HOT_LOADER__.register(StatisticExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/StatisticExample.jsx');
+  __REACT_HOT_LOADER__.register(StatisticExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/StatisticExample.jsx');
 }();
 
 ;
@@ -53012,13 +53012,13 @@ var TagExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TagExample_initialState, 'initialState', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TagExample.jsx');
+  __REACT_HOT_LOADER__.register(TagExample_initialState, 'initialState', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TagExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TagExample_TagExample, 'TagExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TagExample.jsx');
+  __REACT_HOT_LOADER__.register(TagExample_TagExample, 'TagExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TagExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TagExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TagExample.jsx');
+  __REACT_HOT_LOADER__.register(TagExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TagExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TagExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TagExample.jsx');
+  __REACT_HOT_LOADER__.register(TagExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TagExample.jsx');
 }();
 
 ;
@@ -53098,11 +53098,11 @@ var TotalsExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TotalsExample_TotalsExample, 'TotalsExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TotalsExample.jsx');
+  __REACT_HOT_LOADER__.register(TotalsExample_TotalsExample, 'TotalsExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TotalsExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TotalsExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TotalsExample.jsx');
+  __REACT_HOT_LOADER__.register(TotalsExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TotalsExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TotalsExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TotalsExample.jsx');
+  __REACT_HOT_LOADER__.register(TotalsExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TotalsExample.jsx');
 }();
 
 ;
@@ -53199,11 +53199,11 @@ var AvatarExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(AvatarExample_AvatarExample, 'AvatarExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AvatarExample.jsx');
+  __REACT_HOT_LOADER__.register(AvatarExample_AvatarExample, 'AvatarExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AvatarExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AvatarExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AvatarExample.jsx');
+  __REACT_HOT_LOADER__.register(AvatarExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AvatarExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AvatarExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AvatarExample.jsx');
+  __REACT_HOT_LOADER__.register(AvatarExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AvatarExample.jsx');
 }();
 
 ;
@@ -53327,13 +53327,13 @@ var BreadcrumbExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(BreadcrumbExample_initialState, 'initialState', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BreadcrumbExample.jsx');
+  __REACT_HOT_LOADER__.register(BreadcrumbExample_initialState, 'initialState', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BreadcrumbExample.jsx');
 
-  __REACT_HOT_LOADER__.register(BreadcrumbExample_BreadcrumbExample, 'BreadcrumbExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BreadcrumbExample.jsx');
+  __REACT_HOT_LOADER__.register(BreadcrumbExample_BreadcrumbExample, 'BreadcrumbExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BreadcrumbExample.jsx');
 
-  __REACT_HOT_LOADER__.register(BreadcrumbExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BreadcrumbExample.jsx');
+  __REACT_HOT_LOADER__.register(BreadcrumbExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BreadcrumbExample.jsx');
 
-  __REACT_HOT_LOADER__.register(BreadcrumbExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/BreadcrumbExample.jsx');
+  __REACT_HOT_LOADER__.register(BreadcrumbExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/BreadcrumbExample.jsx');
 }();
 
 ;
@@ -53459,11 +53459,11 @@ var TabExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TabExample_TabExample, 'TabExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TabExample.jsx');
+  __REACT_HOT_LOADER__.register(TabExample_TabExample, 'TabExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TabExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TabExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TabExample.jsx');
+  __REACT_HOT_LOADER__.register(TabExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TabExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TabExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TabExample.jsx');
+  __REACT_HOT_LOADER__.register(TabExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TabExample.jsx');
 }();
 
 ;
@@ -53568,11 +53568,11 @@ var EmptyExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(EmptyExample_EmptyExample, 'EmptyExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/EmptyExample.jsx');
+  __REACT_HOT_LOADER__.register(EmptyExample_EmptyExample, 'EmptyExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/EmptyExample.jsx');
 
-  __REACT_HOT_LOADER__.register(EmptyExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/EmptyExample.jsx');
+  __REACT_HOT_LOADER__.register(EmptyExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/EmptyExample.jsx');
 
-  __REACT_HOT_LOADER__.register(EmptyExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/EmptyExample.jsx');
+  __REACT_HOT_LOADER__.register(EmptyExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/EmptyExample.jsx');
 }();
 
 ;
@@ -53795,13 +53795,13 @@ var GridExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(cellClicked, 'cellClicked', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/GridExample.jsx');
+  __REACT_HOT_LOADER__.register(cellClicked, 'cellClicked', '/home/jenkins/workspace/release-adslot-ui/docs/examples/GridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(GridExample_GridExample, 'GridExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/GridExample.jsx');
+  __REACT_HOT_LOADER__.register(GridExample_GridExample, 'GridExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/GridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(GridExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/GridExample.jsx');
+  __REACT_HOT_LOADER__.register(GridExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/GridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(GridExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/GridExample.jsx');
+  __REACT_HOT_LOADER__.register(GridExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/GridExample.jsx');
 }();
 
 ;
@@ -53874,11 +53874,11 @@ var PrettyDiffExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PrettyDiffExample_PrettyDiffExample, 'PrettyDiffExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PrettyDiffExample.jsx');
+  __REACT_HOT_LOADER__.register(PrettyDiffExample_PrettyDiffExample, 'PrettyDiffExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PrettyDiffExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PrettyDiffExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PrettyDiffExample.jsx');
+  __REACT_HOT_LOADER__.register(PrettyDiffExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PrettyDiffExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PrettyDiffExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PrettyDiffExample.jsx');
+  __REACT_HOT_LOADER__.register(PrettyDiffExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PrettyDiffExample.jsx');
 }();
 
 ;
@@ -53967,11 +53967,11 @@ var SpinnerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SpinnerExample_SpinnerExample, 'SpinnerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SpinnerExample.jsx');
+  __REACT_HOT_LOADER__.register(SpinnerExample_SpinnerExample, 'SpinnerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SpinnerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SpinnerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SpinnerExample.jsx');
+  __REACT_HOT_LOADER__.register(SpinnerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SpinnerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SpinnerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SpinnerExample.jsx');
+  __REACT_HOT_LOADER__.register(SpinnerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SpinnerExample.jsx');
 }();
 
 ;
@@ -54073,11 +54073,11 @@ var SvgSymbolExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SvgSymbolExample_SvgSymbolExample, 'SvgSymbolExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SvgSymbolExample.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbolExample_SvgSymbolExample, 'SvgSymbolExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SvgSymbolExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SvgSymbolExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SvgSymbolExample.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbolExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SvgSymbolExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SvgSymbolExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SvgSymbolExample.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbolExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SvgSymbolExample.jsx');
 }();
 
 ;
@@ -54159,11 +54159,11 @@ var SvgSymbolCircleExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SvgSymbolCircleExample_SvgSymbolCircleExample, 'SvgSymbolCircleExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SvgSymbolCircleExample.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbolCircleExample_SvgSymbolCircleExample, 'SvgSymbolCircleExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SvgSymbolCircleExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SvgSymbolCircleExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SvgSymbolCircleExample.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbolCircleExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SvgSymbolCircleExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SvgSymbolCircleExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SvgSymbolCircleExample.jsx');
+  __REACT_HOT_LOADER__.register(SvgSymbolCircleExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SvgSymbolCircleExample.jsx');
 }();
 
 ;
@@ -54290,13 +54290,13 @@ var TileGridExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(exampleImageLink, 'exampleImageLink', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TileGridExample.jsx');
+  __REACT_HOT_LOADER__.register(exampleImageLink, 'exampleImageLink', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TileGridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TileGridExample_TileGridExample, 'TileGridExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TileGridExample.jsx');
+  __REACT_HOT_LOADER__.register(TileGridExample_TileGridExample, 'TileGridExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TileGridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TileGridExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TileGridExample.jsx');
+  __REACT_HOT_LOADER__.register(TileGridExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TileGridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TileGridExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TileGridExample.jsx');
+  __REACT_HOT_LOADER__.register(TileGridExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TileGridExample.jsx');
 }();
 
 ;
@@ -54449,13 +54449,13 @@ var AccordionExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(AccordionExample_initialState, 'initialState', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AccordionExample.jsx');
+  __REACT_HOT_LOADER__.register(AccordionExample_initialState, 'initialState', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AccordionExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AccordionExample_AccordionExample, 'AccordionExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AccordionExample.jsx');
+  __REACT_HOT_LOADER__.register(AccordionExample_AccordionExample, 'AccordionExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AccordionExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AccordionExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AccordionExample.jsx');
+  __REACT_HOT_LOADER__.register(AccordionExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AccordionExample.jsx');
 
-  __REACT_HOT_LOADER__.register(AccordionExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/AccordionExample.jsx');
+  __REACT_HOT_LOADER__.register(AccordionExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/AccordionExample.jsx');
 }();
 
 ;
@@ -54569,11 +54569,11 @@ var CarouselExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(CarouselExample_CarouselExample, 'CarouselExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CarouselExample.jsx');
+  __REACT_HOT_LOADER__.register(CarouselExample_CarouselExample, 'CarouselExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CarouselExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CarouselExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CarouselExample.jsx');
+  __REACT_HOT_LOADER__.register(CarouselExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CarouselExample.jsx');
 
-  __REACT_HOT_LOADER__.register(CarouselExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/CarouselExample.jsx');
+  __REACT_HOT_LOADER__.register(CarouselExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/CarouselExample.jsx');
 }();
 
 ;
@@ -54690,11 +54690,11 @@ var ConfirmModalExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(ConfirmModalExample_ConfirmModalExample, 'ConfirmModalExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ConfirmModalExample.jsx');
+  __REACT_HOT_LOADER__.register(ConfirmModalExample_ConfirmModalExample, 'ConfirmModalExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ConfirmModalExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ConfirmModalExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ConfirmModalExample.jsx');
+  __REACT_HOT_LOADER__.register(ConfirmModalExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ConfirmModalExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ConfirmModalExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ConfirmModalExample.jsx');
+  __REACT_HOT_LOADER__.register(ConfirmModalExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ConfirmModalExample.jsx');
 }();
 
 ;
@@ -54813,11 +54813,11 @@ var HelpIconPopoverExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(HelpIconPopoverExample_HelpIconPopoverExample, 'HelpIconPopoverExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/HelpIconPopoverExample.jsx');
+  __REACT_HOT_LOADER__.register(HelpIconPopoverExample_HelpIconPopoverExample, 'HelpIconPopoverExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/HelpIconPopoverExample.jsx');
 
-  __REACT_HOT_LOADER__.register(HelpIconPopoverExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/HelpIconPopoverExample.jsx');
+  __REACT_HOT_LOADER__.register(HelpIconPopoverExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/HelpIconPopoverExample.jsx');
 
-  __REACT_HOT_LOADER__.register(HelpIconPopoverExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/HelpIconPopoverExample.jsx');
+  __REACT_HOT_LOADER__.register(HelpIconPopoverExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/HelpIconPopoverExample.jsx');
 }();
 
 ;
@@ -55044,27 +55044,27 @@ var ListPickerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(teamMember1, 'teamMember1', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(teamMember1, 'teamMember1', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(teamMember2, 'teamMember2', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(teamMember2, 'teamMember2', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(teamMember3, 'teamMember3', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(teamMember3, 'teamMember3', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(listPickerItems, 'listPickerItems', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(listPickerItems, 'listPickerItems', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(listPickerInitialSelection, 'listPickerInitialSelection', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(listPickerInitialSelection, 'listPickerInitialSelection', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(labelFormatter, 'labelFormatter', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(labelFormatter, 'labelFormatter', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerExample_addonFormatter, 'addonFormatter', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerExample_addonFormatter, 'addonFormatter', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(listPickerItemHeaders, 'listPickerItemHeaders', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(listPickerItemHeaders, 'listPickerItemHeaders', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerExample_ListPickerExample, 'ListPickerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerExample_ListPickerExample, 'ListPickerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(ListPickerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/ListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(ListPickerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 }();
 
 ;
@@ -55162,11 +55162,11 @@ var PagedGridExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PagedGridExample_PagedGridExample, 'PagedGridExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PagedGridExample.jsx');
+  __REACT_HOT_LOADER__.register(PagedGridExample_PagedGridExample, 'PagedGridExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PagedGridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PagedGridExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PagedGridExample.jsx');
+  __REACT_HOT_LOADER__.register(PagedGridExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PagedGridExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PagedGridExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PagedGridExample.jsx');
+  __REACT_HOT_LOADER__.register(PagedGridExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PagedGridExample.jsx');
 }();
 
 ;
@@ -55307,11 +55307,11 @@ var PanelExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PanelExample_PanelExample, 'PanelExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PanelExample.jsx');
+  __REACT_HOT_LOADER__.register(PanelExample_PanelExample, 'PanelExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PanelExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PanelExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PanelExample.jsx');
+  __REACT_HOT_LOADER__.register(PanelExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PanelExample.jsx');
 
-  __REACT_HOT_LOADER__.register(PanelExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/PanelExample.jsx');
+  __REACT_HOT_LOADER__.register(PanelExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/PanelExample.jsx');
 }();
 
 ;
@@ -55516,11 +55516,11 @@ var SearchExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SearchExample_SearchExample, 'SearchExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SearchExample.jsx');
+  __REACT_HOT_LOADER__.register(SearchExample_SearchExample, 'SearchExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SearchExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SearchExample.jsx');
+  __REACT_HOT_LOADER__.register(SearchExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SearchExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SearchExample.jsx');
+  __REACT_HOT_LOADER__.register(SearchExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SearchExample.jsx');
 }();
 
 ;
@@ -55642,11 +55642,11 @@ var SearchBarExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SearchBarExample_SearchBarExample, 'SearchBarExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SearchBarExample.jsx');
+  __REACT_HOT_LOADER__.register(SearchBarExample_SearchBarExample, 'SearchBarExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SearchBarExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchBarExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SearchBarExample.jsx');
+  __REACT_HOT_LOADER__.register(SearchBarExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SearchBarExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SearchBarExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SearchBarExample.jsx');
+  __REACT_HOT_LOADER__.register(SearchBarExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SearchBarExample.jsx');
 }();
 
 ;
@@ -56009,11 +56009,11 @@ var TreePickerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(TreePickerExample_TreePickerExample, 'TreePickerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TreePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(TreePickerExample_TreePickerExample, 'TreePickerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TreePickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TreePickerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TreePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(TreePickerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TreePickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(TreePickerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/TreePickerExample.jsx');
+  __REACT_HOT_LOADER__.register(TreePickerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/TreePickerExample.jsx');
 }();
 
 ;
@@ -56211,27 +56211,27 @@ var UserListPickerExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(avatarColor, 'avatarColor', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(avatarColor, 'avatarColor', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(emptySvgSymbol, 'emptySvgSymbol', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(emptySvgSymbol, 'emptySvgSymbol', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_teamMember1, 'teamMember1', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_teamMember1, 'teamMember1', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_teamMember2, 'teamMember2', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_teamMember2, 'teamMember2', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_teamMember3, 'teamMember3', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_teamMember3, 'teamMember3', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_listPickerItems, 'listPickerItems', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_listPickerItems, 'listPickerItems', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_listPickerInitialSelection, 'listPickerInitialSelection', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_listPickerInitialSelection, 'listPickerInitialSelection', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_listPickerItemHeaders, 'listPickerItemHeaders', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_listPickerItemHeaders, 'listPickerItemHeaders', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_UserListPickerExample, 'UserListPickerExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_UserListPickerExample, 'UserListPickerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 
-  __REACT_HOT_LOADER__.register(UserListPickerExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/UserListPickerExample.jsx');
+  __REACT_HOT_LOADER__.register(UserListPickerExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/UserListPickerExample.jsx');
 }();
 
 ;
@@ -56322,11 +56322,11 @@ var InformationBoxExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(InformationBoxExample_InformationBoxExample, 'InformationBoxExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/InformationBoxExample.jsx');
+  __REACT_HOT_LOADER__.register(InformationBoxExample_InformationBoxExample, 'InformationBoxExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/InformationBoxExample.jsx');
 
-  __REACT_HOT_LOADER__.register(InformationBoxExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/InformationBoxExample.jsx');
+  __REACT_HOT_LOADER__.register(InformationBoxExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/InformationBoxExample.jsx');
 
-  __REACT_HOT_LOADER__.register(InformationBoxExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/InformationBoxExample.jsx');
+  __REACT_HOT_LOADER__.register(InformationBoxExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/InformationBoxExample.jsx');
 }();
 
 ;
@@ -56424,11 +56424,11 @@ var SplitPaneExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(SplitPaneExample_SplitPaneExample, 'SplitPaneExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SplitPaneExample.jsx');
+  __REACT_HOT_LOADER__.register(SplitPaneExample_SplitPaneExample, 'SplitPaneExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SplitPaneExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SplitPaneExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SplitPaneExample.jsx');
+  __REACT_HOT_LOADER__.register(SplitPaneExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SplitPaneExample.jsx');
 
-  __REACT_HOT_LOADER__.register(SplitPaneExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/SplitPaneExample.jsx');
+  __REACT_HOT_LOADER__.register(SplitPaneExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/SplitPaneExample.jsx');
 }();
 
 ;
@@ -56561,11 +56561,11 @@ var HoverDropdownMenuExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(HoverDropdownMenuExample_HoverDropdownMenuExample, 'HoverDropdownMenuExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/HoverDropdownMenuExample.jsx');
+  __REACT_HOT_LOADER__.register(HoverDropdownMenuExample_HoverDropdownMenuExample, 'HoverDropdownMenuExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/HoverDropdownMenuExample.jsx');
 
-  __REACT_HOT_LOADER__.register(HoverDropdownMenuExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/HoverDropdownMenuExample.jsx');
+  __REACT_HOT_LOADER__.register(HoverDropdownMenuExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/HoverDropdownMenuExample.jsx');
 
-  __REACT_HOT_LOADER__.register(HoverDropdownMenuExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/HoverDropdownMenuExample.jsx');
+  __REACT_HOT_LOADER__.register(HoverDropdownMenuExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/HoverDropdownMenuExample.jsx');
 }();
 
 ;
@@ -56688,11 +56688,11 @@ var NavigationExample__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(NavigationExample_NavigationExample, 'NavigationExample', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/NavigationExample.jsx');
+  __REACT_HOT_LOADER__.register(NavigationExample_NavigationExample, 'NavigationExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/NavigationExample.jsx');
 
-  __REACT_HOT_LOADER__.register(NavigationExample_exampleProps, 'exampleProps', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/NavigationExample.jsx');
+  __REACT_HOT_LOADER__.register(NavigationExample_exampleProps, 'exampleProps', '/home/jenkins/workspace/release-adslot-ui/docs/examples/NavigationExample.jsx');
 
-  __REACT_HOT_LOADER__.register(NavigationExample__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/examples/NavigationExample.jsx');
+  __REACT_HOT_LOADER__.register(NavigationExample__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/examples/NavigationExample.jsx');
 }();
 
 ;
@@ -56985,17 +56985,17 @@ var Layout__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Layout_SidebarArea, 'SidebarArea', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Layout/index.jsx');
+  __REACT_HOT_LOADER__.register(Layout_SidebarArea, 'SidebarArea', '/home/jenkins/workspace/release-adslot-ui/docs/components/Layout/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Layout_ContentArea, 'ContentArea', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Layout/index.jsx');
+  __REACT_HOT_LOADER__.register(Layout_ContentArea, 'ContentArea', '/home/jenkins/workspace/release-adslot-ui/docs/components/Layout/index.jsx');
 
-  __REACT_HOT_LOADER__.register(componentsBySection, 'componentsBySection', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Layout/index.jsx');
+  __REACT_HOT_LOADER__.register(componentsBySection, 'componentsBySection', '/home/jenkins/workspace/release-adslot-ui/docs/components/Layout/index.jsx');
 
-  __REACT_HOT_LOADER__.register(componentIndexForSearch, 'componentIndexForSearch', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Layout/index.jsx');
+  __REACT_HOT_LOADER__.register(componentIndexForSearch, 'componentIndexForSearch', '/home/jenkins/workspace/release-adslot-ui/docs/components/Layout/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Layout_PageLayout, 'PageLayout', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Layout/index.jsx');
+  __REACT_HOT_LOADER__.register(Layout_PageLayout, 'PageLayout', '/home/jenkins/workspace/release-adslot-ui/docs/components/Layout/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Layout__default, 'default', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/components/Layout/index.jsx');
+  __REACT_HOT_LOADER__.register(Layout__default, 'default', '/home/jenkins/workspace/release-adslot-ui/docs/components/Layout/index.jsx');
 }();
 
 ;
@@ -57033,7 +57033,7 @@ var run__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(run_renderApp, 'renderApp', '/Users/chao.liang/Desktop/repos/adslot-ui/docs/run.jsx');
+  __REACT_HOT_LOADER__.register(run_renderApp, 'renderApp', '/home/jenkins/workspace/release-adslot-ui/docs/run.jsx');
 }();
 
 ;
