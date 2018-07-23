@@ -2,12 +2,16 @@
 
 @mixin input-style($type) {
   .#{$type}-component {
+    &.#{$type}-component-inline {
+      display: inline-block;
+    }
+
     & + & {
       margin-top: 5px;
     }
 
     &.#{$type}-component-inline + &.#{$type}-component-inline {
-      display: inline-block;
+      margin-top: 0;
       margin-left: 10px;
     }
 
