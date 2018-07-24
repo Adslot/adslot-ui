@@ -14792,12 +14792,16 @@ strong {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
+.checkbox-component.checkbox-component-inline {
+  display: inline-block;
+}
+
 .checkbox-component + .checkbox-component {
   margin-top: 5px;
 }
 
 .checkbox-component.checkbox-component-inline + .checkbox-component.checkbox-component-inline {
-  display: inline-block;
+  margin-top: 0;
   margin-left: 10px;
 }
 
@@ -14997,12 +15001,16 @@ strong {
   line-height: 28px;
   margin: 18px 10px;
 }
+.radio-component.radio-component-inline {
+  display: inline-block;
+}
+
 .radio-component + .radio-component {
   margin-top: 5px;
 }
 
 .radio-component.radio-component-inline + .radio-component.radio-component-inline {
-  display: inline-block;
+  margin-top: 0;
   margin-left: 10px;
 }
 
