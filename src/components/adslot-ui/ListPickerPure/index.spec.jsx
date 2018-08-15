@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
-import Checkbox from 'react-icheck/lib/Checkbox';
-import Radio from 'react-icheck/lib/Radio';
+import Checkbox from 'adslot-ui/Checkbox';
+import Radio from 'adslot-ui/Radio';
 import ListPickerPureComponent from 'adslot-ui/ListPickerPure';
 import Empty from 'alexandria/Empty';
 import Grid from 'alexandria/Grid';

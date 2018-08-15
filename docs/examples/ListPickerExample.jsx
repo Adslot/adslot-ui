@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'react-icheck/lib/Checkbox';
+import Checkbox from 'adslot-ui/Checkbox';
 import Example from '../components/Example';
 import { ListPicker, Button } from '../../src';
 
