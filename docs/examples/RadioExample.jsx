@@ -3,8 +3,19 @@ import Example from '../components/Example';
 import Radio from 'adslot-ui/Radio';
 
 class RadioExample extends React.PureComponent {
-  onChange(event) {
-    _.noop();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isSelected: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    this.setState(prevState => ({
+      isSelected: !prevState.isSelected,
+    }));
   }
 
   render() {
@@ -14,7 +25,8 @@ class RadioExample extends React.PureComponent {
         label="Radio button label"
         dts="radio-button-data-test-selector"
         value="Radio button value"
-        onChange={this.onChange}
+        checked={this.state.isSelected}
+        onChange={this.handleChange}
       />
     );
   }
@@ -28,7 +40,8 @@ const exampleProps = {
   label="Radio button label"
   dts="radio-button-data-test-selector"
   value="Radio button value"
-  onChange={this.onChange}
+  checked={this.state.isSelected}
+  onChange={this.handleChange}
 />`,
   propTypeSectionArray: [
     {

@@ -1,55 +1,46 @@
 import _ from 'lodash';
 import React from 'react';
+import classnames from 'classnames';
 import { expandDts } from '../../../lib/utils';
 import { checkboxGroupPropTypes } from '../../prop-types/inputPropTypes';
 
-const mapPropsToState = (props, state) => {
-  const tempState = _.cloneDeep(state);
-  if (props.value) {
-    _.forOwn(tempState.value, (value, key) => {
-      tempState.value[key] = props.value.indexOf(key) !== -1;
-    });
-  }
-  return tempState;
-};
-
 class CheckboxGroup extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return mapPropsToState(nextProps, prevState);
-  }
-
   constructor(props) {
     super(props);
-    this.state = { value: {} };
-    React.Children.map(this.props.children, child => {
-      this.state.value[child.props.value] = false;
-    });
-    if (this.props.value) {
-      this.state = mapPropsToState(this.props, this.state);
-    }
+
+    this.state = {
+      checkedValues: [...this.props.value],
+    };
+
     this.renderChildren = this.renderChildren.bind(this);
     this.onChangeDefault = this.onChangeDefault.bind(this);
   }
 
   onChangeDefault(event) {
-    const checkboxValue = event.target.value;
-    this.setState(prevState => {
-      const tempValue = _.cloneDeep(prevState.value);
-      tempValue[checkboxValue] = !tempValue[checkboxValue];
-      if (this.props.onChange) {
-        this.props.onChange(tempValue, event, this.props.name);
+    const { onChange, name } = this.props;
+    const checkboxValue = event.currentTarget.value;
+    this.setState(
+      prevState =>
+        _.includes(prevState.checkedValues, checkboxValue)
+          ? {
+              checkedValues: prevState.checkedValues.filter(value => value !== checkboxValue),
+            }
+          : {
+              checkedValues: [...prevState.checkedValues, checkboxValue],
+            },
+      () => {
+        onChange(this.state.checkedValues, name);
       }
-      return { value: tempValue };
-    });
+    );
   }
 
   renderChildren() {
     return React.Children.map(this.props.children, child =>
       React.cloneElement(child, {
         name: this.props.name,
-        checked: this.state.value[child.props.value],
+        checked: _.includes(this.state.checkedValues, child.props.value),
         onChange: (...args) => {
-          if (child.props.onChange) child.props.onChange(...args);
+          child.props.onChange(...args);
           this.onChangeDefault(...args);
         },
         inline: this.props.inline,
@@ -59,14 +50,10 @@ class CheckboxGroup extends React.Component {
 
   render() {
     const { id, className, dts } = this.props;
-    const componentProps = {
-      id,
-      className: _(['checkbox-group-component', className])
-        .compact()
-        .join(' '),
-    };
+    const classNames = classnames(['checkbox-group-component', className]);
+
     return (
-      <div {...componentProps} {...expandDts(dts)}>
+      <div id={id} className={classNames} {...expandDts(dts)}>
         {this.renderChildren()}
       </div>
     );
@@ -74,5 +61,10 @@ class CheckboxGroup extends React.Component {
 }
 
 CheckboxGroup.propTypes = checkboxGroupPropTypes;
+
+CheckboxGroup.defaultProps = {
+  value: [],
+  onChange: _.noop,
+};
 
 export default CheckboxGroup;

@@ -1,6 +1,6 @@
 import React from 'react';
 import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Checkbox } from 'adslot-ui';
 import CheckboxGroup from '.';
 
@@ -17,7 +17,7 @@ describe('CheckboxGroup', () => {
     expect(component.hasClass('custom-class')).to.equal(true);
     const childCheckboxes = component.find('Checkbox');
     expect(childCheckboxes.length).to.equal(3);
-    expect(component.state().value).to.eql({ terminator: true, predator: true, soundofmusic: false });
+    expect(component.state().checkedValues).to.eql(['terminator', 'predator']);
   });
 
   it('should handle checkbox change events', () => {
@@ -32,10 +32,8 @@ describe('CheckboxGroup', () => {
     );
 
     const childCheckboxes = component.find('Checkbox');
-    const firstChild = childCheckboxes.at(0);
-    const event = { target: { value: 'terminator', checked: false } };
-    firstChild.simulate('change', event);
-    expect(component.state().value).to.eql({ terminator: false, predator: true, soundofmusic: false });
+    childCheckboxes.at(0).simulate('change', { currentTarget: { value: 'terminator' } });
+    expect(component.state().checkedValues).to.eql(['predator']);
     expect(onChangeGroup.callCount).to.equal(1);
     expect(onChangeIndividual.callCount).to.equal(1);
   });
@@ -54,7 +52,6 @@ describe('CheckboxGroup', () => {
   });
 
   it('should handle change events without a custom onChange handler', () => {
-    const event = { target: { value: 'terminator', checked: true } };
     const component = shallow(
       <CheckboxGroup name="movies">
         <Checkbox label="The Terminator" value="terminator" />
@@ -63,31 +60,7 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>
     );
     const firstChild = component.find('Checkbox').at(0);
-    firstChild.simulate('change', event);
-    expect(component.state().value).to.eql({ terminator: true, predator: false, soundofmusic: false });
-  });
-
-  it('should handle props changes', () => {
-    const component = mount(
-      <CheckboxGroup name="movies" value={['terminator', 'predator']} className="custom-class">
-        <Checkbox label="The Terminator" value="terminator" />
-        <Checkbox label="Predator" value="predator" />
-        <Checkbox label="The Sound of Music" value="soundofmusic" />
-      </CheckboxGroup>
-    );
-    component.setProps({ value: ['terminator', 'soundofmusic'] });
-    expect(component.state().value).to.eql({ terminator: true, predator: false, soundofmusic: true });
-  });
-
-  it('should handle props changes when no value is given', () => {
-    const component = mount(
-      <CheckboxGroup name="movies" value={['terminator', 'predator']} className="custom-class">
-        <Checkbox label="The Terminator" value="terminator" />
-        <Checkbox label="Predator" value="predator" />
-        <Checkbox label="The Sound of Music" value="soundofmusic" />
-      </CheckboxGroup>
-    );
-    component.setProps({});
-    expect(component.state().value).to.eql({ terminator: true, predator: true, soundofmusic: false });
+    firstChild.simulate('change', { currentTarget: { value: 'terminator' } });
+    expect(component.state().checkedValues).to.eql(['terminator']);
   });
 });

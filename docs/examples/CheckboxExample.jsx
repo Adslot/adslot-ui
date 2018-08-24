@@ -3,11 +3,22 @@ import React from 'react';
 import Example from '../components/Example';
 import { Checkbox } from '../../src';
 
-const onChange = (value, event, name) => {
-  _.noop();
-};
-
 class CheckboxExample extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isChecked: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    this.setState(prevState => ({
+      isChecked: !prevState.isChecked,
+    }));
+  }
+
   render() {
     return (
       <Checkbox
@@ -15,7 +26,8 @@ class CheckboxExample extends React.PureComponent {
         label="Label goes here"
         value="Value goes here"
         dts="data-test-selector-goes-here"
-        onChange={onChange}
+        onChange={this.handleChange}
+        checked={this.state.isChecked}
       />
     );
   }
@@ -25,12 +37,12 @@ const exampleProps = {
   componentName: 'Checkbox',
   notes: '',
   exampleCodeSnippet: `<Checkbox
-	name="Name goes here"
-	label="Label goes here"
-	value="Value goes here"
-	checked={true}
-	disabled={true}
-	dts="data-test-selector-goes-here"
+  name="Name goes here"
+  label="Label goes here"
+  value="Value goes here"
+  dts="data-test-selector-goes-here"
+  onChange={this.handleChange}
+  checked={this.state.isChecked}
 />`,
   propTypeSectionArray: [
     {
