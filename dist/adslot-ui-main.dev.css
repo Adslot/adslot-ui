@@ -6446,6 +6446,22 @@ strong {
   position: relative;
 }
 
+.react-datepicker--time-only .react-datepicker__triangle {
+  left: 35px;
+}
+
+.react-datepicker--time-only .react-datepicker__time-container {
+  border-left: 0;
+}
+
+.react-datepicker--time-only .react-datepicker__time {
+  border-radius: 0.3rem;
+}
+
+.react-datepicker--time-only .react-datepicker__time-box {
+  border-radius: 0.3rem;
+}
+
 .react-datepicker__triangle {
   position: absolute;
   left: 50px;
@@ -6493,6 +6509,8 @@ strong {
 
 .react-datepicker__header--time {
   padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .react-datepicker__year-dropdown-container--select,
@@ -6513,6 +6531,12 @@ strong {
   font-size: 0.944rem;
 }
 
+.react-datepicker-time__header {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .react-datepicker__navigation {
   background: none;
   line-height: 1.7rem;
@@ -6524,6 +6548,10 @@ strong {
   padding: 0;
   border: 0.45rem solid transparent;
   z-index: 1;
+  height: 10px;
+  width: 10px;
+  text-indent: -999em;
+  overflow: hidden;
 }
 
 .react-datepicker__navigation--previous {
@@ -6596,6 +6624,7 @@ strong {
 .react-datepicker__time-container {
   float: right;
   border-left: 1px solid #aeaeae;
+  width: 70px;
 }
 
 .react-datepicker__time-container--with-today-button {
@@ -6615,6 +6644,8 @@ strong {
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
   width: 70px;
   overflow-x: hidden;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
@@ -6624,6 +6655,7 @@ strong {
   overflow-y: scroll;
   padding-right: 30px;
   width: 100%;
+  box-sizing: content-box;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
@@ -6879,11 +6911,14 @@ strong {
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  display: inline-block;
-  height: 0;
   outline: 0;
   padding: 0;
   vertical-align: middle;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  top: 25%;
+  right: 7px;
 }
 
 .react-datepicker__close-icon::after {
@@ -6901,9 +6936,8 @@ strong {
   margin: -8px auto 0;
   padding: 2px;
   position: absolute;
-  right: 7px;
+  right: 0px;
   text-align: center;
-  top: 50%;
 }
 
 .react-datepicker__today-button {
@@ -14806,7 +14840,7 @@ strong {
 }
 
 .checkbox-component label {
-  line-height: 18px;
+  line-height: 16px;
   font-weight: 300;
   cursor: pointer;
   margin-bottom: 0;
@@ -14821,7 +14855,7 @@ strong {
 
 .checkbox-component .checkbox-component-input-container {
   width: 16px;
-  height: 18px;
+  height: 16px;
 }
 
 .checkbox-component .checkbox-component-input-container span {
@@ -14939,6 +14973,45 @@ strong {
 .listpicker-component .empty-component {
   border-bottom: 0;
 }
+.radio-component.radio-component-inline {
+  display: inline-block;
+}
+
+.radio-component + .radio-component {
+  margin-top: 5px;
+}
+
+.radio-component.radio-component-inline + .radio-component.radio-component-inline {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.radio-component label {
+  line-height: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.radio-component .radio-component-label {
+  margin-left: 5px;
+}
+
+.radio-component .radio-component-input-container {
+  width: 16px;
+  height: 16px;
+}
+
+.radio-component .radio-component-input-container span {
+  vertical-align: baseline;
+}
+
+.radio-component .radio-component-input-container input {
+  display: none;
+}
 .listpickerpure-component {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15000,45 +15073,6 @@ strong {
   font-weight: 300;
   line-height: 28px;
   margin: 18px 10px;
-}
-.radio-component.radio-component-inline {
-  display: inline-block;
-}
-
-.radio-component + .radio-component {
-  margin-top: 5px;
-}
-
-.radio-component.radio-component-inline + .radio-component.radio-component-inline {
-  margin-top: 0;
-  margin-left: 10px;
-}
-
-.radio-component label {
-  line-height: 18px;
-  font-weight: 300;
-  cursor: pointer;
-  margin-bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.radio-component .radio-component-label {
-  margin-left: 5px;
-}
-
-.radio-component .radio-component-input-container {
-  width: 16px;
-  height: 18px;
-}
-
-.radio-component .radio-component-input-container span {
-  vertical-align: baseline;
-}
-
-.radio-component .radio-component-input-container input {
-  display: none;
 }
 .search-component {
   height: 26px;
