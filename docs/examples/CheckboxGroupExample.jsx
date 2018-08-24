@@ -3,19 +3,19 @@ import React from 'react';
 import Example from '../components/Example';
 import { CheckboxGroup, Checkbox } from '../../src';
 
-const onChangeGroup = (value, event, name) => {
-  _.noop();
-};
-
-const onChangeIndividual = (value, event, name) => {
-  _.noop();
-};
-
 class CheckboxGroupExample extends React.PureComponent {
+  handleGroupChange(checked) {
+    console.log(checked);
+  }
+
+  handleIndividualChange(event) {
+    console.log(event.target.value);
+  }
+
   render() {
     return (
-      <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={onChangeGroup}>
-        <Checkbox label="The Terminator" value="terminator" onChange={onChangeIndividual} />
+      <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={this.handleGroupChange}>
+        <Checkbox label="The Terminator" value="terminator" onChange={this.handleIndividualChange} />
         <Checkbox label="Predator" value="predator" />
         <Checkbox label="The Sound of Music" value="soundofmusic" />
       </CheckboxGroup>

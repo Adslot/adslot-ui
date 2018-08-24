@@ -1,13 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
+import classnames from 'classnames';
 import { expandDts } from '../../../lib/utils';
 import { radioGroupPropTypes } from '../../prop-types/inputPropTypes';
 
 class RadioGroup extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return nextProps.value === prevState.value ? null : { value: nextProps.value };
-  }
-
   constructor(props) {
     super(props);
 
@@ -20,10 +17,9 @@ class RadioGroup extends React.Component {
   }
 
   onChangeDefault(event) {
-    this.setState({ value: event.target.value });
-    if (this.props.onChange) {
-      this.props.onChange(event);
-    }
+    const newValue = event.currentTarget.value;
+    this.setState({ value: newValue });
+    this.props.onChange(newValue);
   }
 
   renderChildren() {
@@ -32,7 +28,7 @@ class RadioGroup extends React.Component {
         name: this.props.name,
         checked: this.state.value === child.props.value,
         onChange: (...args) => {
-          if (child.props.onChange) child.props.onChange(...args);
+          child.props.onChange(...args);
           this.onChangeDefault(...args);
         },
         inline: this.props.inline,
@@ -44,15 +40,10 @@ class RadioGroup extends React.Component {
 
   render() {
     const { dts, className, id } = this.props;
-    const componentProps = {
-      id,
-      className: _(['radio-group-component', className])
-        .compact()
-        .join(' '),
-    };
+    const classNames = classnames(['radio-group-component', className]);
 
     return (
-      <div {...componentProps} {...expandDts(dts)}>
+      <div id={id} className={classNames} {...expandDts(dts)}>
         {this.renderChildren()}
       </div>
     );
@@ -60,5 +51,9 @@ class RadioGroup extends React.Component {
 }
 
 RadioGroup.propTypes = radioGroupPropTypes;
+
+RadioGroup.defaultProps = {
+  onChange: _.noop,
+};
 
 export default RadioGroup;

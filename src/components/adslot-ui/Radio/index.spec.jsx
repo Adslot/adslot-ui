@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
@@ -37,47 +36,10 @@ describe('<Radio />', () => {
     expect(component.text()).to.equal('');
   });
 
-  it('should trigger state change and `props.onChange` when change event is triggered', () => {
+  it('should trigger `props.onChange` when the radio button is clicked', () => {
     const component = shallow(<Radio {...props} />);
-    const event = { target: { checked: true } };
-
-    expect(component.state('checked')).to.equal(false);
-
-    component.find('input').simulate('change', event);
-    expect(component.state('checked')).to.equal(true);
+    component.find('input').simulate('click');
     expect(props.onChange.calledOnce).to.equal(true);
-  });
-
-  it('should still trigger state change when `props.onChange` is not present', () => {
-    delete props.onChange;
-    const component = shallow(<Radio {...props} />);
-    const event = { target: { checked: true } };
-
-    expect(component.state('checked')).to.equal(false);
-
-    component.find('input').simulate('change', event);
-    expect(component.state('checked')).to.equal(true);
-  });
-
-  it('should override state value when `prop.value` changes', () => {
-    const component = shallow(<Radio {...props} />);
-    expect(component.state('checked')).to.equal(false);
-
-    props.checked = true;
-    component.setProps(props);
-    expect(component.state('checked')).to.equal(true);
-  });
-
-  it('should NOT override state value when other props change', () => {
-    const component = shallow(<Radio {...props} />);
-    expect(component.state('checked')).to.equal(false);
-
-    _.assign(props, {
-      name: 'some-other-name',
-      label: 'New Label',
-    });
-    component.setProps(props);
-    expect(component.state('checked')).to.equal(false);
   });
 
   it('should add inline class when inline prop in true', () => {
