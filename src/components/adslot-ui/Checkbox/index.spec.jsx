@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import Checkbox from '.';
 
@@ -16,6 +16,12 @@ describe('Checkbox', () => {
     expect(component.find('[name="movies"]')).to.have.length(1);
     expect(component.find('[value="terminator"]')).to.have.length(1);
     expect(component.find('[data-test-selector="checkbox-terminator"]')).to.have.length(1);
+  });
+
+  it('should be mounted without error', () => {
+    const component = mount(<Checkbox label="The Terminator" name="movies" value="terminator" />);
+    const checkboxElement = component.find('input[type="checkbox"]');
+    expect(checkboxElement).to.have.length(1);
   });
 
   it('should render with just label', () => {
