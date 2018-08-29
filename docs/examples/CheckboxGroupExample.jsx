@@ -8,17 +8,22 @@ class CheckboxGroupExample extends React.PureComponent {
     console.log(checked);
   }
 
-  handleIndividualChange(event) {
-    console.log(event.target.value);
-  }
-
   render() {
     return (
-      <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={this.handleGroupChange}>
-        <Checkbox label="The Terminator" value="terminator" onChange={this.handleIndividualChange} />
-        <Checkbox label="Predator" value="predator" />
-        <Checkbox label="The Sound of Music" value="soundofmusic" />
-      </CheckboxGroup>
+      <React.Fragment>
+        <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={this.handleGroupChange}>
+          <Checkbox label="The Terminator" value="terminator" />
+          <Checkbox label="Predator" value="predator" />
+          <Checkbox label="The Sound of Music" value="soundofmusic" />
+        </CheckboxGroup>
+        <br />
+        <h3>Inline CheckboxGroup</h3>
+        <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={this.handleGroupChange} inline>
+          <Checkbox label="The Terminator" value="terminator" />
+          <Checkbox label="Predator" value="predator" />
+          <Checkbox label="The Sound of Music" value="soundofmusic" />
+        </CheckboxGroup>
+      </React.Fragment>
     );
   }
 }
@@ -26,8 +31,8 @@ class CheckboxGroupExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'CheckboxGroup',
   notes: 'Contains individual checkboxes. The state of child checkboxes is held in an array.',
-  exampleCodeSnippet: `<CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={onChangeGroup}>
-  <Checkbox label="The Terminator" value="terminator" onChange={onChangeIndividual} />
+  exampleCodeSnippet: `<CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={onChangeGroup} inline={true|false}>
+  <Checkbox label="The Terminator" value="terminator" />
   <Checkbox label="Predator" value="predator" />
   <Checkbox label="The Sound of Music" value="soundofmusic" />
 </CheckboxGroup>`,

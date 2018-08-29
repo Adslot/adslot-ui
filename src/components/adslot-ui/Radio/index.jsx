@@ -32,7 +32,7 @@ class RadioButton extends React.Component {
               name={name}
               checked={checked}
               disabled={disabled}
-              onClick={this.onChangeDefault}
+              onChange={this.onChangeDefault}
               value={value}
               id={id}
               className={className}

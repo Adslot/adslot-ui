@@ -8,17 +8,22 @@ class RadioGroupExample extends React.PureComponent {
     console.log(value);
   }
 
-  handleIndividualChange(event) {
-    console.log(event.target.value);
-  }
-
   render() {
     return (
-      <RadioGroup name="hobbies" value="badminton" onChange={this.handleGroupChange} dts="radio-group-dts">
-        <Radio value="swimming" label="Swimming" dts="radio-dts" />
-        <Radio value="soccer" label="Soccer" onChange={this.handleIndividualChange} />
-        <Radio value="badminton" label="Badminton" />
-      </RadioGroup>
+      <React.Fragment>
+        <RadioGroup name="hobbies" value="badminton" onChange={this.handleGroupChange} dts="radio-group-dts">
+          <Radio value="swimming" label="Swimming" dts="radio-dts" />
+          <Radio value="soccer" label="Soccer" />
+          <Radio value="badminton" label="Badminton" />
+        </RadioGroup>
+        <br />
+        <h3>Inline RadioGroup</h3>
+        <RadioGroup name="hobbies" value="badminton" onChange={this.handleGroupChange} dts="radio-group-dts" inline>
+          <Radio value="swimming" label="Swimming" dts="radio-dts" />
+          <Radio value="soccer" label="Soccer" />
+          <Radio value="badminton" label="Badminton" />
+        </RadioGroup>
+      </React.Fragment>
     );
   }
 }
@@ -32,9 +37,9 @@ const exampleProps = {
     </p>
   ),
   notes: '',
-  exampleCodeSnippet: `<RadioGroup name="hobbies" value="badminton" onChange={this.onChangeGroup} dts="radio-group-dts">
+  exampleCodeSnippet: `<RadioGroup name="hobbies" value="badminton" onChange={this.onChangeGroup} dts="radio-group-dts" inline={true|false}>
   <Radio value="swimming" label="Swimming" dts="radio-dts" />
-  <Radio value="soccer" label="Soccer" onChange={this.onChangeIndividual} />
+  <Radio value="soccer" label="Soccer" />
   <Radio value="badminton" label="Badminton" />
 </RadioGroup>`,
   propTypeSectionArray: [
