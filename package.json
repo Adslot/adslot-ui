@@ -131,7 +131,7 @@
     "react-dom": "^16.4.2"
   },
   "engines": {
-    "node": ">=6 <9"
+    "node": "^8.11"
   },
   "browserslist": [
     "last 2 versions",
