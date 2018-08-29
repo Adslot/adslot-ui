@@ -26445,7 +26445,7 @@ var RadioButton = function (_React$Component) {
               name: name,
               checked: checked,
               disabled: disabled,
-              onClick: this.onChangeDefault,
+              onChange: this.onChangeDefault,
               value: value,
               id: id,
               className: className
@@ -50556,19 +50556,31 @@ var CheckboxGroupExample_CheckboxGroupExample = function (_React$PureComponent) 
       console.log(checked);
     }
   }, {
-    key: 'handleIndividualChange',
-    value: function handleIndividualChange(event) {
-      console.log(event.target.value);
-    }
-  }, {
     key: 'render',
     value: function render() {
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-        index_0["CheckboxGroup"],
-        { name: 'movies', value: ['terminator', 'predator'], onChange: this.handleGroupChange },
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'The Terminator', value: 'terminator', onChange: this.handleIndividualChange }),
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'Predator', value: 'predator' }),
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'The Sound of Music', value: 'soundofmusic' })
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Fragment,
+        null,
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          index_0["CheckboxGroup"],
+          { name: 'movies', value: ['terminator', 'predator'], onChange: this.handleGroupChange },
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'The Terminator', value: 'terminator' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'Predator', value: 'predator' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'The Sound of Music', value: 'soundofmusic' })
+        ),
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('br', null),
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          'h3',
+          null,
+          'Inline CheckboxGroup'
+        ),
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          index_0["CheckboxGroup"],
+          { name: 'movies', value: ['terminator', 'predator'], onChange: this.handleGroupChange, inline: true },
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'The Terminator', value: 'terminator' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'Predator', value: 'predator' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Checkbox"], { label: 'The Sound of Music', value: 'soundofmusic' })
+        )
       );
     }
   }]);
@@ -50579,7 +50591,7 @@ var CheckboxGroupExample_CheckboxGroupExample = function (_React$PureComponent) 
 var CheckboxGroupExample_exampleProps = {
   componentName: 'CheckboxGroup',
   notes: 'Contains individual checkboxes. The state of child checkboxes is held in an array.',
-  exampleCodeSnippet: '<CheckboxGroup name="movies" value={[\'terminator\', \'predator\']} onChange={onChangeGroup}>\n  <Checkbox label="The Terminator" value="terminator" onChange={onChangeIndividual} />\n  <Checkbox label="Predator" value="predator" />\n  <Checkbox label="The Sound of Music" value="soundofmusic" />\n</CheckboxGroup>',
+  exampleCodeSnippet: '<CheckboxGroup name="movies" value={[\'terminator\', \'predator\']} onChange={onChangeGroup} inline={true|false}>\n  <Checkbox label="The Terminator" value="terminator" />\n  <Checkbox label="Predator" value="predator" />\n  <Checkbox label="The Sound of Music" value="soundofmusic" />\n</CheckboxGroup>',
   propTypeSectionArray: [{
     label: '',
     propTypes: [{
@@ -50904,19 +50916,31 @@ var RadioGroupExample_RadioGroupExample = function (_React$PureComponent) {
       console.log(value);
     }
   }, {
-    key: 'handleIndividualChange',
-    value: function handleIndividualChange(event) {
-      console.log(event.target.value);
-    }
-  }, {
     key: 'render',
     value: function render() {
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-        RadioGroup["a" /* default */],
-        { name: 'hobbies', value: 'badminton', onChange: this.handleGroupChange, dts: 'radio-group-dts' },
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'swimming', label: 'Swimming', dts: 'radio-dts' }),
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'soccer', label: 'Soccer', onChange: this.handleIndividualChange }),
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'badminton', label: 'Badminton' })
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Fragment,
+        null,
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          RadioGroup["a" /* default */],
+          { name: 'hobbies', value: 'badminton', onChange: this.handleGroupChange, dts: 'radio-group-dts' },
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'swimming', label: 'Swimming', dts: 'radio-dts' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'soccer', label: 'Soccer' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'badminton', label: 'Badminton' })
+        ),
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement('br', null),
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          'h3',
+          null,
+          'Inline RadioGroup'
+        ),
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          RadioGroup["a" /* default */],
+          { name: 'hobbies', value: 'badminton', onChange: this.handleGroupChange, dts: 'radio-group-dts', inline: true },
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'swimming', label: 'Swimming', dts: 'radio-dts' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'soccer', label: 'Soccer' }),
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Radio["a" /* default */], { value: 'badminton', label: 'Badminton' })
+        )
       );
     }
   }]);
@@ -50937,7 +50961,7 @@ var RadioGroupExample_exampleProps = {
     ' used for making a single selection from multiple options. Only one selection can ever be made from the radio button group at a time.'
   ),
   notes: '',
-  exampleCodeSnippet: '<RadioGroup name="hobbies" value="badminton" onChange={this.onChangeGroup} dts="radio-group-dts">\n  <Radio value="swimming" label="Swimming" dts="radio-dts" />\n  <Radio value="soccer" label="Soccer" onChange={this.onChangeIndividual} />\n  <Radio value="badminton" label="Badminton" />\n</RadioGroup>',
+  exampleCodeSnippet: '<RadioGroup name="hobbies" value="badminton" onChange={this.onChangeGroup} dts="radio-group-dts" inline={true|false}>\n  <Radio value="swimming" label="Swimming" dts="radio-dts" />\n  <Radio value="soccer" label="Soccer" />\n  <Radio value="badminton" label="Badminton" />\n</RadioGroup>',
   propTypeSectionArray: [{
     propTypes: [{
       propType: 'id',
