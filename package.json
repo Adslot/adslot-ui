@@ -17,8 +17,8 @@
     "precommit": "npm run protect-master && lint-staged && npm run check-commit",
     "prettier": "prettier \"{src,docs,config}/**/*.{js,json,jsx}\" --write",
     "posttest": "npm run lint",
-    "postversion": "npm publish && git push --follow-tags && echo '…released.'",
-    "preversion": "echo 'Releasing…' && git checkout master && git pull && npm i",
+    "postversion": "git push -u origin $(git rev-parse --abbrev-ref HEAD) --follow-tags && npm publish && echo '…released.'",
+    "preversion": "echo 'Releasing…' && npm i",
     "profile": "webpack --env=dist --profile --json > stats.json",
     "release:major": "npm version major -m 'Release: major version %s.'",
     "release:minor": "npm version minor -m 'Release: minor version %s.'",
@@ -29,7 +29,8 @@
     "test": "scripts/test --coverage",
     "test:watch": "scripts/test --watch",
     "version": "echo '…generating dist…' && npm run dist && git add dist/*",
-    "scaffold": "./scripts/scaffold"
+    "scaffold": "./scripts/scaffold",
+    "autorelease": "node scripts/release"
   },
   "repository": {
     "type": "git",

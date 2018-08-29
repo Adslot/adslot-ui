@@ -1,0 +1,99 @@
+#!/usr/bin/env node
+
+const axios = require('axios');
+const currentTag = process.env.CURRENT_TAG;
+const latestTag = process.env.LATEST_TAG;
+const releaseBranch = process.env.RELEASE_BRANCH;
+const buildToken = process.env.BUILD_TOKEN;
+const approveToken = process.env.APPROVAL_TOKEN;
+const repo = 'adslot-ui';
+
+const buildBot = axios.create({
+  baseURL: `https://api.github.com/repos/Adslot/${repo}`,
+  headers: {
+    Authorization: `token ${buildToken}`,
+  },
+});
+
+const approveBot = axios.create({
+  baseURL: `https://api.github.com/repos/Adslot/${repo}`,
+  headers: {
+    Authorization: `token ${approveToken}`,
+  },
+});
+
+const getIncludedCommits = () => buildBot.get(`/compare/${currentTag}...${latestTag}`);
+
+const formatCommitMsg = commits =>
+  commits
+    .filter(({ commit }) => !commit.message.startsWith('Merge pull request #'))
+    .map(({ commit, sha }) => `- [${sha}] - ${commit.message}`)
+    .join('\n');
+
+const createPullRequest = body =>
+  buildBot.post('/pulls', {
+    title: latestTag,
+    head: releaseBranch,
+    base: 'master',
+    body,
+  });
+
+const draftRelease = body =>
+  buildBot.post('/releases', {
+    tag_name: latestTag,
+    name: latestTag,
+    body,
+  });
+
+let statusInterval;
+
+const approvePr = prNumber =>
+  approveBot.post(`/pulls/${prNumber}/reviews`, {
+    event: 'APPROVE',
+    body: 'Approving auto-release',
+  });
+
+const mergeWhenGreen = async prNumber => {
+  try {
+    await approveBot.put(`/pulls/${prNumber}/merge`);
+    clearInterval(statusInterval);
+
+    await approveBot.delete(`/git/refs/heads/${releaseBranch}`);
+  } catch (err) {
+    if (err.response.status === 405) {
+      console.log('Waiting for status check to complete...');
+    } else {
+      clearInterval(statusInterval);
+      throw err;
+    }
+  }
+};
+
+(async () => {
+  try {
+    const {
+      data: { commits },
+    } = await getIncludedCommits();
+
+    const message = formatCommitMsg(commits);
+
+    const bodyMessage = [
+      '### Changes',
+      '',
+      message,
+      '',
+      '### Comparison',
+      `https://github.com/Adslot/${repo}/compare/${currentTag}...${latestTag}`,
+    ].join('\n');
+
+    const { data } = await createPullRequest(bodyMessage);
+    await draftRelease(bodyMessage);
+
+    await approvePr(data.number);
+
+    statusInterval = setInterval(() => mergeWhenGreen(data.number), 1000 * 60);
+  } catch (err) {
+    console.error(err);
+    console.log('Failed!');
+  }
+})();
