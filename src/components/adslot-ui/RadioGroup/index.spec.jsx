@@ -33,7 +33,7 @@ describe('<RadioGroup />', () => {
     expect(component.find('[data-test-selector="radio-group-dts"]')).to.have.length(1);
   });
 
-  it('should update state and trigger props.onChange when selection changes', () => {
+  it('should trigger props.onChange when selection changes', () => {
     const component = shallow(
       <RadioGroup {...props}>
         <Radio label="Swimming" value="swimming" />
@@ -41,32 +41,12 @@ describe('<RadioGroup />', () => {
         <Radio label="Badminton" value="badminton" />
       </RadioGroup>
     );
-
-    expect(component.state('value')).to.equal('badminton');
     component
       .find(Radio)
       .at(0)
       .simulate('change', { currentTarget: { value: 'swimming' } });
-    expect(component.state('value')).to.equal('swimming');
     expect(props.onChange.calledOnce).to.equal(true);
-  });
-
-  it('should still update state when props.onChange is not available', () => {
-    delete props.onChange;
-    const component = shallow(
-      <RadioGroup {...props}>
-        <Radio label="Swimming" value="swimming" />
-        <Radio label="Soccer" value="soccer" />
-        <Radio label="Badminton" value="badminton" />
-      </RadioGroup>
-    );
-
-    expect(component.state('value')).to.equal('badminton');
-    component
-      .find(Radio)
-      .at(1)
-      .simulate('change', { currentTarget: { value: 'soccer' } });
-    expect(component.state('value')).to.equal('soccer');
+    expect(props.onChange.calledWith('swimming')).to.equal(true);
   });
 
   it('should call Radio props.onChange when selecting that radio button', () => {

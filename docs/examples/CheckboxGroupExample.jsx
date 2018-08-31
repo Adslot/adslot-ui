@@ -4,14 +4,23 @@ import Example from '../components/Example';
 import { CheckboxGroup, Checkbox } from '../../src';
 
 class CheckboxGroupExample extends React.PureComponent {
-  handleGroupChange(checked) {
-    console.log(checked);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      movies: ['terminator', 'predator'],
+    };
+    this.handleGroupChange = this.handleGroupChange.bind(this);
+  }
+
+  handleGroupChange(movies) {
+    this.setState({ movies });
   }
 
   render() {
     return (
       <React.Fragment>
-        <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={this.handleGroupChange}>
+        <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange}>
           <Checkbox label="The Terminator" value="terminator" />
           <Checkbox label="Predator" value="predator" />
           <Checkbox label="The Sound of Music" value="soundofmusic" />
