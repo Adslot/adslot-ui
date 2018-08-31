@@ -8,42 +8,32 @@ class CheckboxGroup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      checkedValues: [...this.props.value],
-    };
-
     this.renderChildren = this.renderChildren.bind(this);
     this.onChangeDefault = this.onChangeDefault.bind(this);
   }
 
   onChangeDefault(event) {
-    const { onChange, name } = this.props;
+    const { onChange, name, value } = this.props;
     const checkboxValue = event.currentTarget.value;
-    this.setState(
-      prevState =>
-        _.includes(prevState.checkedValues, checkboxValue)
-          ? {
-              checkedValues: prevState.checkedValues.filter(value => value !== checkboxValue),
-            }
-          : {
-              checkedValues: [...prevState.checkedValues, checkboxValue],
-            },
-      () => {
-        onChange(this.state.checkedValues, name);
-      }
-    );
+
+    const newValues = _.includes(value, checkboxValue)
+      ? value.filter(item => item !== checkboxValue)
+      : [...value, checkboxValue];
+
+    onChange(newValues, name);
   }
 
   renderChildren() {
-    return React.Children.map(this.props.children, child =>
+    const { children, value, name, inline } = this.props;
+    return React.Children.map(children, child =>
       React.cloneElement(child, {
-        name: this.props.name,
-        checked: _.includes(this.state.checkedValues, child.props.value),
+        name,
+        checked: _.includes(value, child.props.value),
         onChange: (...args) => {
           child.props.onChange(...args);
           this.onChangeDefault(...args);
         },
-        inline: this.props.inline,
+        inline,
       })
     );
   }
@@ -61,10 +51,5 @@ class CheckboxGroup extends React.Component {
 }
 
 CheckboxGroup.propTypes = checkboxGroupPropTypes;
-
-CheckboxGroup.defaultProps = {
-  value: [],
-  onChange: _.noop,
-};
 
 export default CheckboxGroup;

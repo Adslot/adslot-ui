@@ -24,13 +24,13 @@ export const checkboxGroupPropTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
-  value: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.arrayOf(PropTypes.string).isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   dts: PropTypes.string,
   inline: PropTypes.bool,
 };
 
 export const radioGroupPropTypes = _.assign({}, checkboxGroupPropTypes, {
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
 });

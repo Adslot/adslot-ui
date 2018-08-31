@@ -4,14 +4,23 @@ import RadioGroup from 'adslot-ui/RadioGroup';
 import Radio from 'adslot-ui/Radio';
 
 class RadioGroupExample extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hobbies: 'badminton',
+    };
+    this.handleGroupChange = this.handleGroupChange.bind(this);
+  }
+
   handleGroupChange(value) {
-    console.log(value);
+    this.setState({ hobbies: value });
   }
 
   render() {
     return (
       <React.Fragment>
-        <RadioGroup name="hobbies" value="badminton" onChange={this.handleGroupChange} dts="radio-group-dts">
+        <RadioGroup name="hobbies" value={this.state.hobbies} onChange={this.handleGroupChange} dts="radio-group-dts">
           <Radio value="swimming" label="Swimming" dts="radio-dts" />
           <Radio value="soccer" label="Soccer" />
           <Radio value="badminton" label="Badminton" />

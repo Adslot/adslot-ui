@@ -8,17 +8,12 @@ class RadioGroup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      value: props.value,
-    };
-
     this.onChangeDefault = this.onChangeDefault.bind(this);
     this.renderChildren = this.renderChildren.bind(this);
   }
 
   onChangeDefault(event) {
     const newValue = event.currentTarget.value;
-    this.setState({ value: newValue });
     this.props.onChange(newValue);
   }
 
@@ -26,7 +21,7 @@ class RadioGroup extends React.Component {
     return React.Children.map(this.props.children, child => {
       const childProps = _.assign({}, child.props, {
         name: this.props.name,
-        checked: this.state.value === child.props.value,
+        checked: this.props.value === child.props.value,
         onChange: (...args) => {
           child.props.onChange(...args);
           this.onChangeDefault(...args);
@@ -51,9 +46,5 @@ class RadioGroup extends React.Component {
 }
 
 RadioGroup.propTypes = radioGroupPropTypes;
-
-RadioGroup.defaultProps = {
-  onChange: _.noop,
-};
 
 export default RadioGroup;
