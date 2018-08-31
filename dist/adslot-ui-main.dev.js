@@ -9786,10 +9786,6 @@ var CheckboxGroup_CheckboxGroup = function (_React$Component) {
 
     var _this = CheckboxGroup__possibleConstructorReturn(this, (CheckboxGroup.__proto__ || Object.getPrototypeOf(CheckboxGroup)).call(this, props));
 
-    _this.state = {
-      checkedValues: [].concat(CheckboxGroup__toConsumableArray(_this.props.value))
-    };
-
     _this.renderChildren = _this.renderChildren.bind(_this);
     _this.onChangeDefault = _this.onChangeDefault.bind(_this);
     return _this;
@@ -9798,51 +9794,51 @@ var CheckboxGroup_CheckboxGroup = function (_React$Component) {
   CheckboxGroup__createClass(CheckboxGroup, [{
     key: 'onChangeDefault',
     value: function onChangeDefault(event) {
-      var _this2 = this;
-
       var _props = this.props,
           onChange = _props.onChange,
-          name = _props.name;
+          name = _props.name,
+          value = _props.value;
 
       var checkboxValue = event.currentTarget.value;
-      this.setState(function (prevState) {
-        return external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(prevState.checkedValues, checkboxValue) ? {
-          checkedValues: prevState.checkedValues.filter(function (value) {
-            return value !== checkboxValue;
-          })
-        } : {
-          checkedValues: [].concat(CheckboxGroup__toConsumableArray(prevState.checkedValues), [checkboxValue])
-        };
-      }, function () {
-        onChange(_this2.state.checkedValues, name);
-      });
+
+      var newValues = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(value, checkboxValue) ? value.filter(function (item) {
+        return item !== checkboxValue;
+      }) : [].concat(CheckboxGroup__toConsumableArray(value), [checkboxValue]);
+
+      onChange(newValues, name);
     }
   }, {
     key: 'renderChildren',
     value: function renderChildren() {
-      var _this3 = this;
+      var _this2 = this;
 
-      return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Children.map(this.props.children, function (child) {
+      var _props2 = this.props,
+          children = _props2.children,
+          value = _props2.value,
+          name = _props2.name,
+          inline = _props2.inline;
+
+      return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Children.map(children, function (child) {
         return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.cloneElement(child, {
-          name: _this3.props.name,
-          checked: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(_this3.state.checkedValues, child.props.value),
+          name: name,
+          checked: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(value, child.props.value),
           onChange: function onChange() {
             var _child$props;
 
             (_child$props = child.props).onChange.apply(_child$props, arguments);
-            _this3.onChangeDefault.apply(_this3, arguments);
+            _this2.onChangeDefault.apply(_this2, arguments);
           },
-          inline: _this3.props.inline
+          inline: inline
         });
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          id = _props2.id,
-          className = _props2.className,
-          dts = _props2.dts;
+      var _props3 = this.props,
+          id = _props3.id,
+          className = _props3.className,
+          dts = _props3.dts;
 
       var classNames = classnames_default()(['checkbox-group-component', className]);
 
@@ -9858,11 +9854,6 @@ var CheckboxGroup_CheckboxGroup = function (_React$Component) {
 }(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Component);
 
 CheckboxGroup_CheckboxGroup.propTypes = inputPropTypes["a" /* checkboxGroupPropTypes */];
-
-CheckboxGroup_CheckboxGroup.defaultProps = {
-  value: [],
-  onChange: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.noop
-};
 
 var CheckboxGroup__default = CheckboxGroup_CheckboxGroup;
 /* harmony default export */ var adslot_ui_CheckboxGroup = (CheckboxGroup__default);
@@ -22729,15 +22720,15 @@ var checkboxGroupPropTypes = {
   id: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
   className: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
   name: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
-  value: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string),
+  value: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string).isRequired,
   children: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.element).isRequired,
-  onChange: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
+  onChange: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
   dts: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
   inline: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
 };
 
 var radioGroupPropTypes = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.assign({}, checkboxGroupPropTypes, {
-  value: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
+  value: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired
 });
 ;
 
@@ -29378,10 +29369,6 @@ var RadioGroup = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (RadioGroup.__proto__ || Object.getPrototypeOf(RadioGroup)).call(this, props));
 
-    _this.state = {
-      value: props.value
-    };
-
     _this.onChangeDefault = _this.onChangeDefault.bind(_this);
     _this.renderChildren = _this.renderChildren.bind(_this);
     return _this;
@@ -29391,7 +29378,6 @@ var RadioGroup = function (_React$Component) {
     key: 'onChangeDefault',
     value: function onChangeDefault(event) {
       var newValue = event.currentTarget.value;
-      this.setState({ value: newValue });
       this.props.onChange(newValue);
     }
   }, {
@@ -29402,7 +29388,7 @@ var RadioGroup = function (_React$Component) {
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.Children.map(this.props.children, function (child) {
         var childProps = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.assign({}, child.props, {
           name: _this2.props.name,
-          checked: _this2.state.value === child.props.value,
+          checked: _this2.props.value === child.props.value,
           onChange: function onChange() {
             var _child$props;
 
@@ -29437,10 +29423,6 @@ var RadioGroup = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
 
 RadioGroup.propTypes = __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__["d" /* radioGroupPropTypes */];
-
-RadioGroup.defaultProps = {
-  onChange: __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.noop
-};
 
 var _default = RadioGroup;
 /* harmony default export */ __webpack_exports__["a"] = (_default);
