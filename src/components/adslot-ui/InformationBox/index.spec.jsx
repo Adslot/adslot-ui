@@ -1,5 +1,6 @@
 import InformationBox from 'adslot-ui/InformationBox';
 import React from 'react';
+import SvgSymbol from 'alexandria/SvgSymbol';
 import { shallow } from 'enzyme';
 
 describe('InformationBoxComponent', () => {
@@ -29,7 +30,7 @@ describe('InformationBoxComponent', () => {
     expect(titleElement).to.have.length(0);
     expect(component.find('.information-box-node')).to.have.length(1);
     expect(component.find('.information-box-icon')).to.have.length(1);
-    expect(component.find('SvgSymbol')).to.have.length(1);
+    expect(component.find(SvgSymbol)).to.have.length(1);
   });
 
   it('should render without an icon when icon props is not provided', () => {
