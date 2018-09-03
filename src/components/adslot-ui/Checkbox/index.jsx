@@ -19,8 +19,12 @@ class Checkbox extends React.Component {
   render() {
     const { name, value, label, dts, disabled, checked, id, className, inline } = this.props;
 
-    const componentClassName = classnames(['checkbox-component', { 'checkbox-component-inline': inline }]);
-    const iconClassName = classnames(['selection-component-icon', 'icheckbox', { checked }]);
+    const componentClassName = classnames([
+      'checkbox-component',
+      { 'checkbox-component-inline': inline },
+      { disabled },
+    ]);
+    const iconClassName = classnames(['selection-component-icon', 'icheckbox', { checked }, { disabled }]);
 
     return (
       <div className={componentClassName} {...expandDts(dts)}>
