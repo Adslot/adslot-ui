@@ -10742,6 +10742,14 @@ var Radio = __webpack_require__(128);
 // CONCATENATED MODULE: ./components/adslot-ui/ListPickerPure/index.jsx
 
 
+var ListPickerPure__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function ListPickerPure__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function ListPickerPure__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function ListPickerPure__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -10755,96 +10763,151 @@ var Radio = __webpack_require__(128);
 
 __webpack_require__(339);
 
-var ListPickerPure_isItemSelected = function isItemSelected(_ref) {
-  var item = _ref.item,
-      selectedItems = _ref.selectedItems;
-  return external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.some(selectedItems, { id: item.id });
-};
+var ListPickerPure_ListPickerPureComponent = function (_React$PureComponent) {
+  ListPickerPure__inherits(ListPickerPureComponent, _React$PureComponent);
 
-var ListPickerPure_ListPickerPureComponent = function ListPickerPureComponent(_ref2) {
-  var allowMultiSelection = _ref2.allowMultiSelection,
-      deselectItem = _ref2.deselectItem,
-      emptyIcon = _ref2.emptyIcon,
-      emptyMessage = _ref2.emptyMessage,
-      emptySvgSymbol = _ref2.emptySvgSymbol,
-      items = _ref2.items,
-      labelFormatter = _ref2.labelFormatter,
-      addonFormatter = _ref2.addonFormatter,
-      itemHeaders = _ref2.itemHeaders,
-      itemType = _ref2.itemType,
-      selectItem = _ref2.selectItem,
-      selectedItems = _ref2.selectedItems;
+  function ListPickerPureComponent(props) {
+    ListPickerPure__classCallCheck(this, ListPickerPureComponent);
 
-  var handleChange = function handleChange(item) {
-    return function (event, checked) {
-      if (checked) {
-        selectItem(item, allowMultiSelection);
-      } else {
-        deselectItem(item, allowMultiSelection);
-      }
+    var _this = ListPickerPure__possibleConstructorReturn(this, (ListPickerPureComponent.__proto__ || Object.getPrototypeOf(ListPickerPureComponent)).call(this, props));
+
+    _this.state = {
+      selectedItems: _this.props.selectedItems
     };
-  };
+    _this.isItemSelected = _this.isItemSelected.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.updateSelectedItems = _this.updateSelectedItems.bind(_this);
+    return _this;
+  }
 
-  var ToggleComponent = allowMultiSelection ? Checkbox["a" /* default */] : Radio["a" /* default */];
+  ListPickerPure__createClass(ListPickerPureComponent, [{
+    key: 'isItemSelected',
+    value: function isItemSelected(item) {
+      return external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.some(this.state.selectedItems, { id: item.id });
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(item) {
+      var _this2 = this;
 
-  return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-    'div',
-    { className: 'listpickerpure-component', 'data-test-selector': 'listpickerpure-component-' + external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.kebabCase(itemType) },
-    itemHeaders ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-      alexandria_Grid,
-      null,
-      external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-        Grid_Row,
-        { type: 'header' },
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-          Cell,
-          { stretch: true },
-          itemHeaders.label
-        ),
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-          Cell,
-          { classSuffixes: ['header-toggle'] },
-          itemHeaders.toggle
-        ),
-        addonFormatter ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-          Cell,
-          { classSuffixes: ['header-addon'] },
-          itemHeaders.addon
-        ) : null
-      )
-    ) : null,
-    external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-      'div',
-      { className: 'listpickerpure-component-items' },
-      external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
-        alexandria_Grid,
-        null,
-        external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.map(items, function (item) {
-          return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+      var _props = this.props,
+          deselectItem = _props.deselectItem,
+          selectItem = _props.selectItem,
+          allowMultiSelection = _props.allowMultiSelection;
+
+
+      return function () {
+        var isSelected = _this2.isItemSelected(item);
+        _this2.updateSelectedItems(item, allowMultiSelection, isSelected);
+        if (isSelected) {
+          deselectItem(item, allowMultiSelection);
+        } else {
+          selectItem(item, allowMultiSelection);
+        }
+      };
+    }
+  }, {
+    key: 'updateSelectedItems',
+    value: function updateSelectedItems(item, allowMultiSelection, isSelected) {
+      var newSelectedItemsArray = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.clone(this.state.selectedItems);
+
+      if (allowMultiSelection) {
+        if (isSelected) {
+          external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.remove(newSelectedItemsArray, { id: item.id });
+        } else {
+          newSelectedItemsArray.push(item);
+        }
+
+        this.setState({ selectedItems: newSelectedItemsArray });
+      } else {
+        this.setState({
+          selectedItems: [item]
+        });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props2 = this.props,
+          allowMultiSelection = _props2.allowMultiSelection,
+          emptyIcon = _props2.emptyIcon,
+          emptyMessage = _props2.emptyMessage,
+          emptySvgSymbol = _props2.emptySvgSymbol,
+          items = _props2.items,
+          labelFormatter = _props2.labelFormatter,
+          addonFormatter = _props2.addonFormatter,
+          itemHeaders = _props2.itemHeaders,
+          itemType = _props2.itemType;
+
+      var ToggleComponent = allowMultiSelection ? Checkbox["a" /* default */] : Radio["a" /* default */];
+
+      return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+        'div',
+        {
+          className: 'listpickerpure-component',
+          'data-test-selector': 'listpickerpure-component-' + external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.kebabCase(itemType)
+        },
+        itemHeaders ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          alexandria_Grid,
+          null,
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
             Grid_Row,
-            { key: item.id, dts: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.kebabCase(itemType) + '-' + item.id },
+            { type: 'header' },
             external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
               Cell,
-              { stretch: true, dts: 'label' },
-              labelFormatter(item)
+              { stretch: true },
+              itemHeaders.label
             ),
             external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
               Cell,
-              { classSuffixes: ['toggle'], dts: 'toggle' },
-              external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(ToggleComponent, { checked: ListPickerPure_isItemSelected({ item: item, selectedItems: selectedItems }), onChange: handleChange(item) })
+              { classSuffixes: ['header-toggle'] },
+              itemHeaders.toggle
             ),
             addonFormatter ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
               Cell,
-              { classSuffixes: ['addon'], dts: 'addon' },
-              addonFormatter(item)
+              { classSuffixes: ['header-addon'] },
+              itemHeaders.addon
             ) : null
-          );
-        }),
-        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(alexandria_Empty, { collection: items, icon: emptyIcon, svgSymbol: emptySvgSymbol, text: emptyMessage })
-      )
-    )
-  );
-};
+          )
+        ) : null,
+        external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+          'div',
+          { className: 'listpickerpure-component-items' },
+          external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+            alexandria_Grid,
+            null,
+            external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.map(items, function (item) {
+              return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+                Grid_Row,
+                { key: item.id, dts: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.kebabCase(itemType) + '-' + item.id },
+                external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+                  Cell,
+                  { stretch: true, dts: 'label' },
+                  labelFormatter(item)
+                ),
+                external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+                  Cell,
+                  { classSuffixes: ['toggle'], dts: 'toggle' },
+                  external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(ToggleComponent, { checked: _this3.isItemSelected(item), onChange: _this3.handleChange(item) })
+                ),
+                addonFormatter ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+                  Cell,
+                  { classSuffixes: ['addon'], dts: 'addon' },
+                  addonFormatter(item)
+                ) : null
+              );
+            }),
+            external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(alexandria_Empty, { collection: items, icon: emptyIcon, svgSymbol: emptySvgSymbol, text: emptyMessage })
+          )
+        )
+      );
+    }
+  }]);
+
+  return ListPickerPureComponent;
+}(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.PureComponent);
 
 ListPickerPure_ListPickerPureComponent.displayName = 'AdslotUiListPickerPureComponent';
 
@@ -10895,8 +10958,6 @@ var ListPickerPure__temp = function () {
   if (typeof __REACT_HOT_LOADER__ === 'undefined') {
     return;
   }
-
-  __REACT_HOT_LOADER__.register(ListPickerPure_isItemSelected, 'isItemSelected', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
 
   __REACT_HOT_LOADER__.register(ListPickerPure_ListPickerPureComponent, 'ListPickerPureComponent', '/home/jenkins/workspace/release-adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx');
 
@@ -26419,7 +26480,7 @@ var RadioButton = function (_React$Component) {
 
 
       var componentClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['radio-component', { 'radio-component-inline': inline }]);
-      var iconClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['selection-component-icon', 'iradio', { checked: checked }]);
+      var iconClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['selection-component-icon', 'iradio', { checked: checked }, { disabled: disabled }]);
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
@@ -26909,8 +26970,8 @@ var Checkbox = function (_React$Component) {
           inline = _props.inline;
 
 
-      var componentClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['checkbox-component', { 'checkbox-component-inline': inline }]);
-      var iconClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['selection-component-icon', 'icheckbox', { checked: checked }]);
+      var componentClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['checkbox-component', { 'checkbox-component-inline': inline }, { disabled: disabled }]);
+      var iconClassName = __WEBPACK_IMPORTED_MODULE_2_classnames___default()(['selection-component-icon', 'icheckbox', { checked: checked }, { disabled: disabled }]);
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
@@ -53744,7 +53805,7 @@ var labelFormatter = function labelFormatter(item) {
   return item.givenName + ' ' + item.surname;
 };
 var ListPickerExample_addonFormatter = function addonFormatter() {
-  return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Checkbox["a" /* default */], null);
+  return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(ListPickerExample_UncontrolledCheckbox, null);
 };
 var listPickerItemHeaders = {
   label: 'Team',
@@ -53752,25 +53813,59 @@ var listPickerItemHeaders = {
   addon: 'Secondary'
 };
 
-var ListPickerExample_ListPickerExample = function (_React$PureComponent) {
-  ListPickerExample__inherits(ListPickerExample, _React$PureComponent);
+var ListPickerExample_UncontrolledCheckbox = function (_React$PureComponent) {
+  ListPickerExample__inherits(UncontrolledCheckbox, _React$PureComponent);
+
+  function UncontrolledCheckbox() {
+    ListPickerExample__classCallCheck(this, UncontrolledCheckbox);
+
+    var _this = ListPickerExample__possibleConstructorReturn(this, (UncontrolledCheckbox.__proto__ || Object.getPrototypeOf(UncontrolledCheckbox)).call(this));
+
+    _this.state = {
+      checked: false
+    };
+    _this.handleCheck = _this.handleCheck.bind(_this);
+    return _this;
+  }
+
+  ListPickerExample__createClass(UncontrolledCheckbox, [{
+    key: 'handleCheck',
+    value: function handleCheck() {
+      this.setState(function (prevState) {
+        return { checked: !prevState.checked };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Checkbox["a" /* default */], { checked: this.state.checked, onChange: this.handleCheck });
+    }
+  }]);
+
+  return UncontrolledCheckbox;
+}(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.PureComponent);
+
+var ListPickerExample_ListPickerExample = function (_React$PureComponent2) {
+  ListPickerExample__inherits(ListPickerExample, _React$PureComponent2);
 
   function ListPickerExample() {
     ListPickerExample__classCallCheck(this, ListPickerExample);
 
-    var _this = ListPickerExample__possibleConstructorReturn(this, (ListPickerExample.__proto__ || Object.getPrototypeOf(ListPickerExample)).call(this));
+    var _this2 = ListPickerExample__possibleConstructorReturn(this, (ListPickerExample.__proto__ || Object.getPrototypeOf(ListPickerExample)).call(this));
 
-    _this.state = {
+    _this2.state = {
       showListPickerModal: false
     };
-    _this.toggleListPickerModal = _this.toggleListPickerModal.bind(_this);
-    return _this;
+    _this2.toggleListPickerModal = _this2.toggleListPickerModal.bind(_this2);
+    return _this2;
   }
 
   ListPickerExample__createClass(ListPickerExample, [{
     key: 'toggleListPickerModal',
     value: function toggleListPickerModal() {
-      this.setState({ showListPickerModal: !this.state.showListPickerModal });
+      this.setState(function (prevState) {
+        return { showListPickerModal: !prevState.showListPickerModal };
+      });
     }
   }, {
     key: 'render',
@@ -53948,6 +54043,8 @@ var ListPickerExample__temp = function () {
   __REACT_HOT_LOADER__.register(ListPickerExample_addonFormatter, 'addonFormatter', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
   __REACT_HOT_LOADER__.register(listPickerItemHeaders, 'listPickerItemHeaders', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
+
+  __REACT_HOT_LOADER__.register(ListPickerExample_UncontrolledCheckbox, 'UncontrolledCheckbox', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
   __REACT_HOT_LOADER__.register(ListPickerExample_ListPickerExample, 'ListPickerExample', '/home/jenkins/workspace/release-adslot-ui/docs/examples/ListPickerExample.jsx');
 
