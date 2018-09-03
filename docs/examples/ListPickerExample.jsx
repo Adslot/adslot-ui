@@ -14,12 +14,30 @@ const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
 const listPickerItems = [teamMember1, teamMember2, teamMember3];
 const listPickerInitialSelection = [teamMember2];
 const labelFormatter = item => `${item.givenName} ${item.surname}`;
-const addonFormatter = () => <Checkbox />;
+const addonFormatter = () => <UncontrolledCheckbox />;
 const listPickerItemHeaders = {
   label: 'Team',
   toggle: 'Primary',
   addon: 'Secondary',
 };
+
+class UncontrolledCheckbox extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      checked: false,
+    };
+    this.handleCheck = this.handleCheck.bind(this);
+  }
+
+  handleCheck() {
+    this.setState(prevState => ({ checked: !prevState.checked }));
+  }
+
+  render() {
+    return <Checkbox checked={this.state.checked} onChange={this.handleCheck} />;
+  }
+}
 
 class ListPickerExample extends React.PureComponent {
   constructor() {
@@ -31,7 +49,7 @@ class ListPickerExample extends React.PureComponent {
   }
 
   toggleListPickerModal() {
-    this.setState({ showListPickerModal: !this.state.showListPickerModal });
+    this.setState(prevState => ({ showListPickerModal: !prevState.showListPickerModal }));
   }
 
   render() {
