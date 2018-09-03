@@ -20,7 +20,7 @@ class RadioButton extends React.Component {
     const { name, className, label, dts, disabled, checked, id, value, inline } = this.props;
 
     const componentClassName = classnames(['radio-component', { 'radio-component-inline': inline }]);
-    const iconClassName = classnames(['selection-component-icon', 'iradio', { checked }]);
+    const iconClassName = classnames(['selection-component-icon', 'iradio', { checked }, { disabled }]);
 
     return (
       <div className={componentClassName} {...expandDts(dts)}>

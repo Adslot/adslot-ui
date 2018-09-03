@@ -59,4 +59,11 @@ describe('Checkbox', () => {
     component.setProps({ inline: true });
     expect(component.hasClass('checkbox-component-inline')).to.equal(true);
   });
+
+  it('should be disabled when "disable" prop is true', () => {
+    const component = shallow(<Checkbox name="movies" value="terminator" />);
+    expect(component.hasClass('disabled')).to.equal(false);
+    component.setProps({ disabled: true });
+    expect(component.hasClass('disabled')).to.equal(true);
+  });
 });
