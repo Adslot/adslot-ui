@@ -33,6 +33,7 @@ const exampleProps = {
         {
           propType: 'href',
           type: 'string',
+          note: 'accept both file path and base64 encoded string',
         },
         {
           propType: 'classSuffixes',
