@@ -12,6 +12,7 @@ const publicPath = '/docs/assets/';
 
 module.exports = merge(commonConfig, {
   entry: [
+    resolve(__dirname, './polyfill'),
     'babel-polyfill',
     // activate HMR for React (needs to be before everything except polyfills)
     'react-hot-loader/patch',

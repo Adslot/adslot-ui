@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { classSuffixHelper } from 'lib/utils';
 import './styles.scss';
 
+const base64UrlPrefix = 'data:image/svg+xml;base64,';
+
 const SvgSymbol = props => {
+  let isEncoded = false;
   const { classSuffixes, href, onClick } = props;
   const componentClass = 'svg-symbol-component';
   const suffixOptions = { clickable: props.onClick };
@@ -13,8 +16,18 @@ const SvgSymbol = props => {
     componentClass,
   });
 
-  return (
-    <svg className={`${componentClass}${classesList}`} onClick={onClick}>
+  if (href.indexOf(base64UrlPrefix) !== -1) {
+    isEncoded = true;
+  }
+
+  const className = `${componentClass}${classesList}`;
+
+  return isEncoded ? (
+    <div className={className} onClick={onClick}>
+      <img src={href} />
+    </div>
+  ) : (
+    <svg className={className} onClick={onClick}>
       <use href={href} xlinkHref={href} />
     </svg>
   );
@@ -29,6 +42,7 @@ SvgSymbol.propTypes = {
 };
 
 SvgSymbol.defaultProps = {
+  href: '',
   classSuffixes: [],
 };
 

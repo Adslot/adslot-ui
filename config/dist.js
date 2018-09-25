@@ -4,13 +4,16 @@ const webpack = require('webpack');
 const { resolve } = require('path');
 const commonConfig = require('./common');
 
+const polyfill = resolve(__dirname, './polyfill');
+
 module.exports = () => {
   const buildType = process.env.TYPE || 'development';
 
   let entries = {
-    main: resolve(__dirname, '../src'),
-    docs: resolve(__dirname, '../docs/run'),
+    main: [polyfill, resolve(__dirname, '../src')],
+    docs: [polyfill, resolve(__dirname, '../docs/run')],
   };
+
   const plugins = [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),

@@ -10,7 +10,7 @@ describe('SvgSymbol', () => {
     expect(component.type()).to.equal('svg');
 
     const useElement = component.find('use');
-    expect(useElement.prop('href')).to.equal(undefined);
+    expect(useElement.prop('href')).to.equal('');
   });
 
   it('should render with props', () => {
@@ -25,5 +25,14 @@ describe('SvgSymbol', () => {
 
     const useElement = component.find('use');
     expect(useElement.prop('href')).to.equal('/assets/other-svg-symbols.svg#checklist-incomplete');
+  });
+
+  it('should render with base64 encoded data', () => {
+    const encodedData =
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjciLz48cGF0aCBkPSJNNi4wNyA2LjA3bDMuODYgMy44Nm0wLTMuODZMNi4wNyA5LjkzIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==';
+    const component = shallow(<SvgSymbol href={encodedData} />);
+    const imgElement = component.find('img');
+    expect(imgElement).to.have.length(1);
+    expect(imgElement.prop('src')).to.equal(encodedData);
   });
 });

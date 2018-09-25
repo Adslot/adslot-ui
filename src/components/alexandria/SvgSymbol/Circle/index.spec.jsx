@@ -11,7 +11,7 @@ describe('SvgSymbolCircle', () => {
 
     const svgSymbolEl = component.find(SvgSymbol);
     expect(svgSymbolEl.prop('classSuffixes')).to.have.length(0);
-    expect(svgSymbolEl.prop('href')).to.equal(undefined);
+    expect(svgSymbolEl.prop('href')).to.equal('');
   });
 
   it('should render with props', () => {
