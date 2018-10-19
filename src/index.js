@@ -45,6 +45,7 @@ import {
 import {
   Accordion,
   AlertInput,
+  Button as FlattenButton,
   Carousel,
   Checkbox,
   CheckboxGroup,
@@ -85,6 +86,7 @@ export {
   BorderedWell,
   Breadcrumb,
   Button,
+  FlattenButton,
   Card,
   Carousel,
   Checkbox,

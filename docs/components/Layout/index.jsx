@@ -10,6 +10,7 @@ import SearchBar from '../SearchBar';
 import SearchResultCard from '../SearchResultCard';
 import MigrationNote from '../MigrationNote';
 
+import FlattenButton from '../../examples/FlattenButton';
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
 import FilePickerExample from '../../examples/FilePickerExample';
@@ -174,6 +175,7 @@ class PageLayout extends React.Component {
             <MigrationNote />
             <PageTitle title="Form Elements" />
             <ButtonExample />
+            <FlattenButton />
             <AlertInputExample />
             <FilePickerExample />
             <TextareaExample />

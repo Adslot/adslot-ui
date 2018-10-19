@@ -1,0 +1,145 @@
+@import '~styles/variable';
+
+$default-background-color: $color-white;
+$default-text-color: $color-gray-darker;
+$default-border-color: $color-gray-lighter;
+
+// Mixin Function
+@mixin bubble-keyframes($style, $bubble-color) {
+  @keyframes bubble-#{$style} {
+    0% {
+      width: 0px;
+      padding-top: 0px;
+      background: rgba($bubble-color, 0.5);
+    }
+
+    80% {
+      width: 100%;
+      padding-top: 100%;
+      background: rgba($bubble-color, 0.1);
+    }
+
+    100% {
+      width: 100%;
+      padding-top: 100%;
+      background: transparent;
+    }
+  }
+}
+
+@mixin focusWithBubble($style, $bubble-color) {
+  @include bubble-keyframes($style, $bubble-color);
+
+  &:hover,
+  &:focus {
+    &:before {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      animation: bubble-#{$style} 0.7s;
+    }
+  }
+}
+
+@mixin btn-style($style, $background-color) {
+  &[data-is-loading="false"].btn-is-#{$style}:not(.aui-component--is-disabled) {
+    .btn-label {
+      background-color: $background-color;
+      color: $color-white;
+      border: $background-color 1px solid;
+
+      &:active {
+        background-color: darken($background-color, 20%);
+      }
+
+      @include focusWithBubble('light', $color-white);
+    }
+  }
+
+  &[data-is-loading="false"].btn-is-inverse-#{$style}:not(.aui-component--is-disabled) {
+    .btn-label {
+      background-color: $default-background-color;
+      color: $background-color;
+      border: $default-border-color 1px solid;
+
+      &:active {
+        background-color: $default-border-color;
+      }
+
+      @include focusWithBubble('dark', $default-border-color);
+    }
+  }
+}
+
+// Main style
+.aui-component--btn {
+  display: inline-block;
+  position: relative;
+  font-size: $font-size-body;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  padding: 0;
+  border: none;
+  outline: none;
+  overflow: hidden;
+
+  .btn-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    min-width: 102px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 0.3rem;
+  }
+
+  @include btn-style('primary', $color-blue);
+
+  @include btn-style('alert', $color-red);
+
+  @include btn-style('success', $color-green);
+
+  &.aui-component--is-disabled {
+    .btn-label {
+      background-color: $color-gray-lighter;
+      color: $color-gray;
+      border: $color-gray-lighter 1px solid;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &[data-is-loading="false"]:not(.aui-component--is-disabled) {
+    .btn-label {
+      background-color: $default-background-color;
+      color: $default-text-color;
+      border: $default-border-color 1px solid;
+
+      &:active {
+        background-color: darken($default-background-color, 20%);
+      }
+
+      @include focusWithBubble('dark', $default-border-color);
+    }
+  }
+
+  &[data-is-loading="true"][data-is-loading="true"] {
+    .btn-label {
+      background-color: $color-gray-lighter;
+      border-color: $color-gray;
+      transition: background-color, border-color;
+      transition-timing-function: ease-in-out;
+      transition-duration: 0.5s;
+    }
+  }
+
+  &.aui-component--btn-sm {
+    .btn-label {
+      height: 24px;
+      min-width: 72px;
+    }
+  }
+}

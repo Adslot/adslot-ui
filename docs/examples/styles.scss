@@ -82,6 +82,10 @@
       width: 200px;
     }
   }
+
+  .aui-component--btn ~ .aui-component--btn {
+    margin-left: 12px;
+  }
 }
 
 .full-width {
