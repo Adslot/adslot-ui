@@ -95,7 +95,7 @@
     "karma-webpack": "^2.0.13",
     "lint-staged": "^6.1.0",
     "minimist": "^1.2.0",
-    "mocha": "^5.1.1",
+    "mocha": "^5.2.0",
     "moment": "^2.20.1",
     "node-sass": "^4.9.3",
     "nuka-carousel": "github:Adslot/nuka-carousel#3c7154d9331b0d54eddfd00fe4ff18fd9432ede7",
