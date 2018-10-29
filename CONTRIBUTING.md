@@ -20,39 +20,9 @@
 
 ## Commit conventions
 
-Our commit message format is as follows:
+Our commit message follows the conventional commit standard.
 
-```
-Tag: Short description
-
-Longer description here if necessary.
-The first line of the commit message (the summary) must have a specific format.
-This format is checked by our build tools.
-```
-
-The `Tag` is one of the following:
-
-- `Fix` - for a bug fix.
-- `New` - implemented a new feature.
-- `Update` - for a backwards-compatible enhancement.
-- `Breaking` - for a backwards-incompatible enhancement or feature.
-- `Docs` - changes to documentation only.
-- `Build` - changes to build process only.
-- `Upgrade` - for a dependency upgrade.
-- `Release` - for a release called via npm run release:*.
-
-The message summary should be a one-sentence description of the change,
-and it must be 72 characters in length or shorter.
-
-Here are some good commit message summary examples:
-
-```
-Build: Update Travis to only test Node 0.10
-Fix: Special characters in link label causing parse error
-Upgrade: through2 to 2.0.0
-```
-
-The commit message format is important because they're used to create a changelog for each release.
+See https://github.com/marionebl/commitlint/tree/master/@commitlint/config-conventional for details.
 
 ## Releasing
 
