@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import BootstrapButton from 'react-bootstrap/lib/Button';
 import BootstrapPopover from 'react-bootstrap/lib/Popover';
-import BootstrapOverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import BootstrapOverlay from 'react-bootstrap/lib/Overlay';
 import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
 import './styles.scss';
@@ -19,6 +19,19 @@ const adslotButtonPropTypes = {
 };
 
 class Button extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.buttonRef = React.createRef();
+    this.state = {
+      show: false,
+    };
+    this.handleReasonPopover = this.handleReasonPopover.bind(this);
+  }
+
+  handleReasonPopover(value) {
+    this.setState({ show: value });
+  }
+
   renderSpinner() {
     if (this.props.isLoading) {
       return (
@@ -31,24 +44,28 @@ class Button extends React.PureComponent {
     return null;
   }
 
-  renderWithReason() {
-    const popover = (
-      <BootstrapPopover id="btn-reason" className="btn-popover-reason">
-        {this.props.reason}
-      </BootstrapPopover>
-    );
+  renderReason() {
     return (
-      <BootstrapOverlayTrigger trigger={['focus', 'hover']} placement="bottom" overlay={popover}>
-        {this.renderButton()}
-      </BootstrapOverlayTrigger>
+      <BootstrapOverlay placement="bottom" show={this.state.show} target={this.buttonRef.current}>
+        <BootstrapPopover id="btn-reason" className="btn-popover-reason">
+          {this.props.reason}
+        </BootstrapPopover>
+      </BootstrapOverlay>
     );
   }
 
-  renderButton() {
-    const { inverse, children, dts, className, isLoading, disabled } = this.props;
+  render() {
+    const { inverse, children, dts, className, isLoading, disabled, reason } = this.props;
+    const shouldShowReason = !!disabled && !!reason;
     const classes = classNames('button-component', className, {
       'btn-inverse': inverse && !/btn-inverse/.test(className),
     });
+    const reasonProps = shouldShowReason
+      ? {
+          onMouseOver: () => this.handleReasonPopover(true),
+          onMouseOut: () => this.handleReasonPopover(false),
+        }
+      : {};
 
     return (
       <BootstrapButton
@@ -56,16 +73,14 @@ class Button extends React.PureComponent {
         disabled={isLoading || disabled}
         className={classes}
         {...expandDts(dts)}
+        {...reasonProps}
+        ref={this.buttonRef}
       >
         {this.renderSpinner()}
         <div className={isLoading ? 'button-component-children-container' : null}>{children}</div>
+        {this.renderReason()}
       </BootstrapButton>
     );
-  }
-
-  render() {
-    const { disabled, reason } = this.props;
-    return disabled && reason ? this.renderWithReason() : this.renderButton();
   }
 }
 
