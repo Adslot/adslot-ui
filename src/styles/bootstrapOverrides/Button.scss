@@ -32,7 +32,7 @@
 .btn-inverse {
   // :not(:disabled) is used instead of :enabled as various elements (a, div, span)
   // are styled as buttons but do not have an :enabled state
-  &:not(:disabled, [disabled='disabled']) {
+  &:not([disabled]) {
     @include button-variant($color-text-light, $color-inverse, $color-border-light);
 
     &:hover,
@@ -66,16 +66,6 @@
 .btn {
   box-shadow: 0 1px $color-border-light;
   margin-right: 5px;
-
-  // Make border the same colour as the fill.
-  &:not(.btn-inverse, .btn-borderless) {
-
-    &,
-    &:active,
-    &:hover {
-      border-color: transparent;
-    }
-  }
 
   &:last-child {
     margin-right: 0;
@@ -137,7 +127,7 @@
 }
 
 .btn-borderless {
-  &:not(:disabled) {
+  &:not([disabled]) {
     @include button-variant($color-text-light, $color-inverse, $color-white);
     box-shadow: none;
 
@@ -151,7 +141,7 @@
 }
 
 .btn-flat {
-  &:not(:disabled) {
+  &:not([disabled]) {
     @include button-variant($color-text-light, $color-inverse, $color-white);
     border: 0;
     box-shadow: none;
