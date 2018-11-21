@@ -60,6 +60,7 @@ class TagExample extends React.Component {
             key={tag.id}
             id={tag.id}
             accent={tag.accent}
+            baseClass={tag.baseClass}
             onAction={this.deleteTag}
             inverse
             actionIconSvgHref={tag.actionIconSvgHref}
@@ -105,6 +106,11 @@ const exampleProps = {
         {
           propType: 'accent',
           type: 'string',
+        },
+        {
+          propType: 'baseClass',
+          type: 'string',
+          defaultValue: 'tag-component',
         },
         {
           propType: 'inverse',
