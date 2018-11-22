@@ -7408,7 +7408,7 @@ var Spinner__temp = function () {
 
 ;
 // EXTERNAL MODULE: ./lib/utils.js
-var utils = __webpack_require__(18);
+var utils = __webpack_require__(19);
 
 // EXTERNAL MODULE: ./components/third-party/bootstrap/Button/styles.scss
 var Button_styles = __webpack_require__(257);
@@ -8974,13 +8974,15 @@ var Tag_styles_default = /*#__PURE__*/__webpack_require__.n(Tag_styles);
 // CONCATENATED MODULE: ./components/alexandria/Tag/index.jsx
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
 
-var Tag_componentClass = 'tag-component';
+
+var defaultComponentClass = 'tag-component';
 
 var Tag_ActionButton = function ActionButton(_ref) {
   var onAction = _ref.onAction,
@@ -8991,42 +8993,36 @@ var Tag_ActionButton = function ActionButton(_ref) {
     { className: 'action-button', onClick: function onClick() {
         return onAction(id);
       } },
-    external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(alexandria_SvgSymbol, { href: actionIconSvgHref })
+    actionIconSvgHref ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(alexandria_SvgSymbol, { href: actionIconSvgHref }) : external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
+      'span',
+      { className: 'action-icon' },
+      '\u2715'
+    )
   );
 };
 
 Tag_ActionButton.propTypes = {
   id: prop_types_default.a.string.isRequired,
   onAction: prop_types_default.a.func.isRequired,
-  actionIconSvgHref: prop_types_default.a.string.isRequired
+  actionIconSvgHref: prop_types_default.a.string
 };
 
 var Tag_Tag = function Tag(_ref2) {
+  var _ref3;
+
   var children = _ref2.children,
       inverse = _ref2.inverse,
       id = _ref2.id,
       onAction = _ref2.onAction,
       accent = _ref2.accent,
+      baseClass = _ref2.baseClass,
       actionIconSvgHref = _ref2.actionIconSvgHref;
 
-  var classSuffixes = [];
-  if (inverse) {
-    classSuffixes.push('inverse');
-  }
-
-  if (accent) {
-    classSuffixes.push('accent accent-' + accent);
-  }
-
-  if (onAction) {
-    classSuffixes.push('actionable');
-  }
-
-  var classes = Object(utils["a" /* classSuffixHelper */])({ classSuffixes: classSuffixes, componentClass: Tag_componentClass });
+  var classes = classnames_default()([defaultComponentClass, (_ref3 = {}, _defineProperty(_ref3, baseClass + '-inverse', inverse), _defineProperty(_ref3, baseClass + '-accent accent-' + accent, accent), _defineProperty(_ref3, defaultComponentClass + '-actionable', onAction), _defineProperty(_ref3, '' + baseClass, baseClass !== defaultComponentClass), _ref3)]);
 
   return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
     'span',
-    { className: '' + Tag_componentClass + classes, 'data-test-selector': 'tag-' + id },
+    { className: classes, 'data-test-selector': 'tag-' + id },
     children,
     onAction ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Tag_ActionButton, { onAction: onAction, id: id, actionIconSvgHref: actionIconSvgHref }) : null
   );
@@ -9038,13 +9034,15 @@ Tag_Tag.propTypes = {
   children: prop_types_default.a.node.isRequired,
   id: prop_types_default.a.string,
   accent: prop_types_default.a.string,
+  baseClass: prop_types_default.a.string,
   inverse: prop_types_default.a.bool,
   onAction: prop_types_default.a.func,
   actionIconSvgHref: prop_types_default.a.string
 };
 
 Tag_Tag.defaultProps = {
-  id: 'default'
+  id: 'default',
+  baseClass: 'tag-component'
 };
 
 var Tag__default = Tag_Tag;
@@ -9056,7 +9054,7 @@ var Tag__temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Tag_componentClass, 'componentClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
+  __REACT_HOT_LOADER__.register(defaultComponentClass, 'defaultComponentClass', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
 
   __REACT_HOT_LOADER__.register(Tag_ActionButton, 'ActionButton', '/home/jenkins/workspace/release-adslot-ui/src/components/alexandria/Tag/index.jsx');
 
@@ -9470,7 +9468,7 @@ var AlertInput_styles_default = /*#__PURE__*/__webpack_require__.n(AlertInput_st
 
 var AlertInput__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function AlertInput__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function AlertInput__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9573,9 +9571,9 @@ var AlertInput_AlertInput = function (_Component) {
           onValueChange = _props.onValueChange;
 
 
-      var className = classnames_default()(AlertInput_baseClass, (_classnames = {}, _defineProperty(_classnames, alertStatus, alertStatus), _defineProperty(_classnames, 'is-focused', this.state.isFocused), _classnames));
+      var className = classnames_default()(AlertInput_baseClass, (_classnames = {}, AlertInput__defineProperty(_classnames, alertStatus, alertStatus), AlertInput__defineProperty(_classnames, 'is-focused', this.state.isFocused), _classnames));
 
-      var popoverClassName = classnames_default()(AlertInput_baseClass + '-popover', _defineProperty({}, alertStatus, alertStatus));
+      var popoverClassName = classnames_default()(AlertInput_baseClass + '-popover', AlertInput__defineProperty({}, alertStatus, alertStatus));
 
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(
         'div',
@@ -20402,7 +20400,8 @@ function createChainedFunction() {
 
 /***/ }),
 /* 17 */,
-/* 18 */
+/* 18 */,
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20468,7 +20467,6 @@ var _temp = function () {
 ;
 
 /***/ }),
-/* 19 */,
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25195,7 +25193,7 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__styles_scss__);
@@ -25506,7 +25504,7 @@ Glyphicon.propTypes = propTypes;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__styles_scss__);
@@ -29435,7 +29433,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_183__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__ = __webpack_require__(90);
 
 
