@@ -5,10 +5,11 @@
 @import '~styles/variable';
 
 .tag-component {
-  $tag-height: 22px;
+  $tag-height: 24px;
   $tag-spacing-etalon: 5px;
   $color-tag-inverse: $color-gray-lightest;
   $color-tag-action-inverse: $color-gray;
+  $action-icon-padding: ($tag-height - $svg-icon-size) / 2;
 
   align-items: center;
   background-color: $color-text-light;
@@ -22,7 +23,8 @@
   min-height: $tag-height;
   padding: 0 $tag-spacing-etalon;
 
-  &.tag-component-inverse { // explicit .tag-component to force override of `.accent-n` inverse bg/fill colours
+  &.tag-component-inverse {
+    // explicit .tag-component to force override of `.accent-n` inverse bg/fill colours
     background-color: $color-tag-inverse;
     border-left: 4px solid;
     color: $color-text-light;
@@ -45,13 +47,14 @@
   .action-button {
     box-sizing: border-box;
     cursor: pointer;
-    display: inline-block;
     fill: $color-inverse;
     fill-opacity: .6;
     height: $tag-height;
-    padding-top: ($tag-height - $svg-icon-size) / 2;
     text-align: center;
     width: $tag-height;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
     &:hover {
       fill-opacity: 1;

@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import React from 'react';
 import sinon from 'sinon';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import Tag, { ActionButton } from '.';
 
@@ -69,5 +69,21 @@ describe('Tag', () => {
       </Tag>
     );
     expect(component.find('.child')).to.have.length(2);
+  });
+
+  it('should render a tag with base class', () => {
+    const component = shallow(<Tag baseClass="foo">You are it!</Tag>);
+    expect(component.find('span').prop('className')).to.equal('tag-component foo');
+  });
+
+  it('should render a actionable tag without svg', () => {
+    const component = mount(<Tag onAction={() => sinon.spy()}>You are it!</Tag>);
+    expect(component.find(ActionButton)).to.have.length(1);
+    expect(
+      component
+        .find('span')
+        .at(2)
+        .prop('className')
+    ).to.equal('action-icon');
   });
 });
