@@ -13,8 +13,6 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Pagination from 'react-bootstrap/lib/Pagination';
 import Popover from 'react-bootstrap/lib/Popover';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
-import Tab from 'react-bootstrap/lib/Tab';
-import Tabs from 'react-bootstrap/lib/Tabs';
 import NavItem from 'react-bootstrap/lib/NavItem';
 
 import 'styles/_bootstrap-custom.scss';
@@ -67,6 +65,8 @@ import {
   Search,
   SearchBar,
   SplitPane,
+  Tab,
+  Tabs,
   Textarea,
   TextEllipsis,
   TreePickerGrid,

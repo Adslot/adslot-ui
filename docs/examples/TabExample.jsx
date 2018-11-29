@@ -3,9 +3,25 @@ import Example from '../components/Example';
 import { Empty, SvgSymbol, FlexibleSpacer, Tabs, Tab } from '../../src';
 
 class TabExample extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeTab: 'Audience',
+    };
+
+    this.switchTab = this.switchTab.bind(this);
+  }
+
+  switchTab(tabKey) {
+    this.setState({
+      activeTab: tabKey,
+    });
+  }
+
   render() {
     return (
-      <Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
+      <Tabs activeKey={this.state.activeTab} onSelect={this.switchTab} id="audience-tab">
         <Tab
           eventKey="Audience"
           title={
@@ -55,18 +71,12 @@ const exampleProps = {
   ),
   notes: (
     <p>
-      See{' '}
-      <a href="https://getbootstrap.com/docs/3.3/components/#nav-tabs" target="_blank" rel="noopener noreferrer">
-        Bootstrap documentation
-      </a>{' '}
-      or{' '}
-      <a href="https://react-bootstrap.github.io/components/tabs/" target="_blank" rel="noopener noreferrer">
-        React Bootstrap documentation
-      </a>.
+      This is not a react-bootstrap component. However it implements the same API for switching tabs. Only the props
+      listed are supported.
     </p>
   ),
   exampleCodeSnippet: `
-  <Tabs defaultActiveKey="Audience" animation={false} id="audience-tab">
+  <Tabs activeKey={this.state.activeTab} onSelect={this.switchTab} id="audience-tab">
     <Tab
       eventKey="Audience"
       title={
@@ -74,12 +84,15 @@ const exampleProps = {
           <SvgSymbol href="./docs/assets/svg-symbols.svg#list" />
           <FlexibleSpacer />
           Audience
-        </span>}
+        </span>
+      }
     >
       <Empty
         collection={[]}
         text="No audience details."
-        svgSymbol={{ href: './docs/assets/svg-symbols.svg#checklist-incomplete' }}
+        svgSymbol={{
+          href: './docs/assets/svg-symbols.svg#checklist-incomplete',
+        }}
       />
     </Tab>
     <Tab
@@ -89,7 +102,8 @@ const exampleProps = {
           <SvgSymbol href="./docs/assets/svg-symbols.svg#calendar" />
           <FlexibleSpacer />
           Billing
-        </span>}
+        </span>
+      }
     >
       <Empty
         collection={[]}
@@ -98,7 +112,28 @@ const exampleProps = {
       />
     </Tab>
   </Tabs>`,
-  propTypeSectionArray: [],
+  propTypeSectionArray: [
+    {
+      propTypes: [
+        {
+          propType: 'defaultActiveKey',
+          type: 'oneOfType [string, number]',
+        },
+        {
+          propType: 'activeKey',
+          type: 'oneOfType [string, number]',
+        },
+        {
+          propType: 'onSelect',
+          type: 'func',
+        },
+        {
+          propType: 'id',
+          type: 'string',
+        },
+      ],
+    },
+  ],
 };
 
 export default () => (
