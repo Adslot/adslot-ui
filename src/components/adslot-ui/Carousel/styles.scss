@@ -1,34 +1,45 @@
 @import '~styles/color';
 @import '~styles/icon';
 
+@mixin button-style {
+  background-color: $color-carousel-button;
+  border: 0;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+
+  &::before {
+    background: $icon-chevron-white 50% no-repeat;
+    content: '';
+    display: block;
+    height: $icon-size-large;
+    margin: 0 auto;
+    width: $icon-size-large;
+  }
+}
+
 .carousel-component {
-  &-prev,
-  &-next {
-    background-color: $color-carousel-button;
-    border: 0;
+  .slider-control-centerleft {
     height: 100%;
-    padding: 0;
-    width: 100%;
 
-    &::before {
-      background: $icon-chevron-white 50% no-repeat;
-      content: '';
-      display: block;
-      height: $icon-size-large;
-      margin: 0 auto;
-      width: $icon-size-large;
+    .carousel-component-prev {
+      @include button-style;
+
+      &::before {
+        transform: rotate(-90deg);
+      }
     }
   }
 
-  &-prev {
-    &::before {
-      transform: rotate(-90deg);
-    }
-  }
+  .slider-control-centerright {
+    height: 100%;
 
-  &-next {
-    &::before {
-      transform: rotate(90deg);
+    .carousel-component-next {
+      @include button-style;
+
+      &::before {
+        transform: rotate(90deg);
+      }
     }
   }
 }

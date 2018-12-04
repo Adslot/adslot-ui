@@ -1,58 +1,25 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Carousel from 'nuka-carousel';
-
-require('./styles.scss');
+import './styles.scss';
 
 const baseClass = 'carousel-component';
-const navigationDelay = 600;
-const decoratorStyles = {
-  bottom: 0,
-  width: '30px',
-};
 
-export const getPrevDecorator = () => {
-  let previousSlideThrottled;
-  const component = ({ previousSlide }) => {
-    if (!previousSlideThrottled) {
-      previousSlideThrottled = _.throttle(previousSlide, navigationDelay);
-    }
-    return <button className={`${baseClass}-prev`} onClick={previousSlideThrottled} />;
-  };
-  component.propTypes = { previousSlide: PropTypes.func.isRequired };
+export const PrevButton = ({ previousSlide }) => <button className={`${baseClass}-prev`} onClick={previousSlide} />;
 
-  return {
-    component,
-    position: 'TopLeft',
-    style: decoratorStyles,
-  };
-};
-
-export const getNextDecorator = () => {
-  let nextSlideThrottled;
-  const component = ({ nextSlide }) => {
-    if (!nextSlideThrottled) {
-      nextSlideThrottled = _.throttle(nextSlide, navigationDelay);
-    }
-    return <button className={`${baseClass}-next`} onClick={nextSlideThrottled} />;
-  };
-  component.propTypes = { nextSlide: PropTypes.func.isRequired };
-
-  return {
-    component,
-    position: 'TopRight',
-    style: decoratorStyles,
-  };
-};
+export const NextButton = ({ nextSlide }) => <button className={`${baseClass}-next`} onClick={nextSlide} />;
 
 const CarouselComponent = props => {
   const { className, children } = props;
-  const decorators = [getPrevDecorator(), getNextDecorator()];
 
   return (
-    <Carousel decorators={decorators} {...props} className={classNames(baseClass, className)}>
+    <Carousel
+      {...props}
+      renderCenterLeftControls={PrevButton}
+      renderCenterRightControls={NextButton}
+      className={classNames(baseClass, className)}
+    >
       {children}
     </Carousel>
   );
@@ -61,6 +28,14 @@ const CarouselComponent = props => {
 CarouselComponent.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+};
+
+PrevButton.propTypes = {
+  previousSlide: PropTypes.func.isRequired,
+};
+
+NextButton.propTypes = {
+  nextSlide: PropTypes.func.isRequired,
 };
 
 // See Nuka Carousel docs for other options:
