@@ -85,20 +85,3 @@ To generate a profile: `npm run profile`
 
 Upload the new `stats.json` file to [Webpack Analyse Tool](http://webpack.github.io/analyse).
 
-Optimizing Performance of Stateless Components
----------------
-
-Add the following to /docs/Layout/index.jsx:
-
-```js
-import Perf from 'react-addons-perf';
-
-window.Perf = Perf;
-```
-
-- In the browser, run `Perf.start()` to start recording.
-- Interact the component in the way that feels slow.
-- Run `Perf.stop()` to stop recording.
-- Run `Perf.printWasted()` to see the nodes that are re–rendering but do not change the DOM.
-- Use fastStatelessWrapper to wrap this component, passing in the properties to check.
-- Re-test to make sure you're improving performance.
