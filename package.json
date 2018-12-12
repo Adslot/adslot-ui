@@ -110,7 +110,7 @@
     "mocha": "^5.2.0",
     "moment": "^2.20.1",
     "node-sass": "^4.9.4",
-    "nuka-carousel": "github:Adslot/nuka-carousel#3c7154d9331b0d54eddfd00fe4ff18fd9432ede7",
+    "nuka-carousel": "^4.4.3",
     "null-loader": "^0.1.1",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.1.0",
