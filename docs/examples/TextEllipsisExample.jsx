@@ -45,7 +45,8 @@ const exampleProps = {
                 rel="noopener noreferrer"
               >
                 React Bootstrap Docs
-              </a>.
+              </a>
+              .
             </span>
           ),
         },
@@ -61,7 +62,8 @@ const exampleProps = {
                 rel="noopener noreferrer"
               >
                 React Bootstrap Docs
-              </a>.
+              </a>
+              .
             </span>
           ),
         },

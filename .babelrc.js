@@ -1,10 +1,25 @@
-let plugins = ['transform-strict-mode'];
+const isDevelopment = process.env.TYPE === 'development';
+const isTest = process.env.TYPE === 'test';
 
-if (process.env.TYPE === 'development') {
-  plugins = [...plugins, 'react-hot-loader/babel'];
-}
+const plugins = [
+  '@babel/plugin-proposal-class-properties',
+  '@babel/plugin-proposal-object-rest-spread',
+  isDevelopment ? 'react-hot-loader/babel' : '',
+  isTest ? 'istanbul' : '',
+].filter(Boolean);
 
-const presets = process.env.TYPE === 'development' ? [['env', { modules: false }], 'react'] : ['env', 'react'];
+const presets = [
+  [
+    '@babel/preset-env', { useBuiltIns: 'entry' }
+  ],
+  [
+    '@babel/preset-react',
+    {
+      development: isDevelopment,
+      useBuiltIns: true,
+    },
+  ],
+];
 
 module.exports = {
   presets,

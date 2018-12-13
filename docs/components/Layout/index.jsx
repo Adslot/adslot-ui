@@ -247,7 +247,4 @@ class PageLayout extends React.Component {
   }
 }
 
-// <FormGroupExample />
-// <ListPickerPureExample />
-
 export default PageLayout;
