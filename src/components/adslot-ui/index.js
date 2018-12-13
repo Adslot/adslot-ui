@@ -17,8 +17,6 @@ import RadioGroup from 'adslot-ui/RadioGroup';
 import Search from 'adslot-ui/Search';
 import SearchBar from 'adslot-ui/SearchBar';
 import SplitPane from 'adslot-ui/SplitPane';
-import Tab from 'adslot-ui/Tab';
-import Tabs from 'adslot-ui/Tabs';
 import Textarea from 'adslot-ui/Textarea';
 import TextEllipsis from 'adslot-ui/TextEllipsis';
 import TreePickerGrid from 'adslot-ui/TreePicker/Grid';
@@ -53,8 +51,6 @@ export {
   Search,
   SearchBar,
   SplitPane,
-  Tab,
-  Tabs,
   Textarea,
   TextEllipsis,
   TreePickerGrid,
