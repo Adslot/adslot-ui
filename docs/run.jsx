@@ -1,5 +1,3 @@
-// For IE 11 compatibility
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';

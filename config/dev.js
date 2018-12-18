@@ -12,8 +12,8 @@ const publicPath = '/docs/assets/';
 
 module.exports = merge(commonConfig, {
   entry: [
+    '@babel/polyfill',
     resolve(__dirname, './polyfill'),
-    'babel-polyfill',
     // activate HMR for React (needs to be before everything except polyfills)
     'react-hot-loader/patch',
     // bundle the client for webpack-dev-server and connect to the provided endpoint
@@ -66,7 +66,7 @@ module.exports = merge(commonConfig, {
       timings: false,
       warnings: true,
     },
-    open: `http://${HOST}:${PORT}`,
+    open: true,
   },
   devtool: 'cheap-module-eval-source-map',
   plugins: [

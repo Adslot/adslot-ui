@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const _ = require('lodash');
 
 const env = { ADSLOT_TEST_FILE: '' };
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 webpackConfig.plugins.push(
   new webpack.DefinePlugin(

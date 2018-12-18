@@ -6,6 +6,7 @@ let {
   coverage, file = process.env.npm_config_file, watch
 } = require('minimist')(process.argv.slice(2));
 if (coverage) process.env.npm_config_coverage = coverage;
+process.env.TYPE = 'test';
 
 if (file) {
   const projectRoot = execSync('npm root').toString().replace('node_modules', '').trim()
@@ -16,7 +17,7 @@ if (file) {
     UNDERLINE: '\x1b[4m',
   }
   file = path.resolve(projectRoot, file);
-  console.info(`${FORMAT.UNDERLINE}Running test${FORMAT.RESET}:${FORMAT.BOLD} ${file}${FORMAT.RESET}`); 
+  console.info(`${FORMAT.UNDERLINE}Running test${FORMAT.RESET}:${FORMAT.BOLD} ${file}${FORMAT.RESET}`);
   process.env.ADSLOT_TEST_FILE = file;
   // has to be done this way as karma removed the cli option to override config
 }

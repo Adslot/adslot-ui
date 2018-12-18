@@ -1,17 +1,17 @@
 import { shallow } from 'enzyme';
 
-exports.runComponentDidMount = ({ shallowRenderer }) => {
+export const runComponentDidMount = ({ shallowRenderer }) => {
   shallowRenderer.instance().componentDidMount();
   shallowRenderer.update();
 };
 
-exports.runComponentWillReceiveProps = ({ shallowRenderer, nextProps }) => {
+export const runComponentWillReceiveProps = ({ shallowRenderer, nextProps }) => {
   shallowRenderer.instance().componentWillReceiveProps(nextProps);
   shallowRenderer.update();
 };
 
-exports.createAndMountComponent = component => {
+export const createAndMountComponent = component => {
   const shallowRenderer = shallow(component);
-  exports.runComponentDidMount({ shallowRenderer });
+  runComponentDidMount({ shallowRenderer });
   return shallowRenderer;
 };

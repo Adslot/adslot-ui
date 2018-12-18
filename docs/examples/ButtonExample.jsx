@@ -36,7 +36,8 @@ export const exampleProps = {
       or{' '}
       <a href="https://react-bootstrap.github.io/components/buttons/" target="_blank" rel="noopener noreferrer">
         React Bootstrap documentation
-      </a>.
+      </a>
+      .
     </p>
   ),
   designNotes: (
@@ -85,7 +86,8 @@ export const exampleProps = {
           defaultValue: 'default',
           note: (
             <span>
-              <br />It&apos;s uncommon to use <code>success</code>, <code>info</code>, <code>warning</code>, or{' '}
+              <br />
+              It&apos;s uncommon to use <code>success</code>, <code>info</code>, <code>warning</code>, or{' '}
               <code>danger</code>
               which are supported by Bootstrap but not us.
             </span>

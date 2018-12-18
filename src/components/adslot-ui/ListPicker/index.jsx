@@ -153,16 +153,14 @@ class ListPickerComponent extends React.Component {
         <Modal.Footer>
           {_.isEmpty(linkButtons) ? null : (
             <div className="pull-left">
-              {_.map(
-                linkButtons,
-                (linkButton, key) =>
-                  _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                    <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
-                      {linkButton.label}
-                    </Button>
-                  ) : (
-                    React.cloneElement(linkButton, { key })
-                  )
+              {_.map(linkButtons, (linkButton, key) =>
+                _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
+                  <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
+                    {linkButton.label}
+                  </Button>
+                ) : (
+                  React.cloneElement(linkButton, { key })
+                )
               )}
             </div>
           )}

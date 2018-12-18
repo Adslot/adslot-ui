@@ -43,18 +43,12 @@ const Card = ({ children, className, accent, dts }) => {
   if (accent) containerClassNames.push(`accent accent-${accent}`);
   if (className) containerClassNames.push(className);
 
-  const nestedChildren = React.Children.map(
-    children,
-    (
-      child // eslint-disable-line lodash/prefer-lodash-method
-    ) => (!_.get(child, 'props.append') ? child : null)
-  );
-  const appendedChildren = React.Children.map(
-    children,
-    (
-      child // eslint-disable-line lodash/prefer-lodash-method
-    ) => (_.get(child, 'props.append') ? child : null)
-  );
+  const nestedChildren = React.Children.map(children, (
+    child // eslint-disable-line lodash/prefer-lodash-method
+  ) => (!_.get(child, 'props.append') ? child : null));
+  const appendedChildren = React.Children.map(children, (
+    child // eslint-disable-line lodash/prefer-lodash-method
+  ) => (_.get(child, 'props.append') ? child : null));
 
   return (
     <div className={containerClassNames.join(' ')} {...expandDts(dts)}>

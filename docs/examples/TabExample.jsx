@@ -62,7 +62,8 @@ const exampleProps = {
       or{' '}
       <a href="https://react-bootstrap.github.io/components/tabs/" target="_blank" rel="noopener noreferrer">
         React Bootstrap documentation
-      </a>.
+      </a>
+      .
     </p>
   ),
   exampleCodeSnippet: `

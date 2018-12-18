@@ -14,33 +14,25 @@ export default class AlertInput extends Component {
       isFocused: false,
       isPopoverVisible: false,
     };
-    this.getRef = this.getRef.bind(this);
-    this.setRef = this.setRef.bind(this);
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    this.handleInputFocus = this.handleInputFocus.bind(this);
-    this.handleInputBlur = this.handleInputBlur.bind(this);
   }
 
-  getRef() {
-    return this.root;
-  }
+  getRef = () => this.root;
 
-  setRef(root) {
+  setRef = root => {
     this.root = root;
-  }
+  };
 
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     if (this.props.alertMessage) {
       this.setState({ isPopoverVisible: true });
     }
-  }
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({ isPopoverVisible: false });
-  }
+  };
 
-  handleInputFocus(event) {
+  handleInputFocus = event => {
     event.target.select();
     this.setState({
       isFocused: true,
@@ -50,9 +42,9 @@ export default class AlertInput extends Component {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-  }
+  };
 
-  handleInputBlur(event) {
+  handleInputBlur = event => {
     this.setState({
       isFocused: false,
       isPopoverVisible: false,
@@ -61,7 +53,7 @@ export default class AlertInput extends Component {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-  }
+  };
 
   render() {
     const {

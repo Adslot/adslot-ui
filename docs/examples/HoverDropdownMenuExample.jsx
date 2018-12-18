@@ -31,7 +31,9 @@ class HoverDropdownMenuExample extends React.PureComponent {
     return (
       <div className="hover-dropdown-example">
         <HoverDropdownMenu {...props}>
-          {_.map(links, link => <HoverDropdownMenu.Item key={link.title} {...link} />)}
+          {_.map(links, link => (
+            <HoverDropdownMenu.Item key={link.title} {...link} />
+          ))}
         </HoverDropdownMenu>
       </div>
     );
