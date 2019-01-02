@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbol from 'alexandria/SvgSymbol';
+import classnames from 'classnames';
 
 require('./styles.scss');
 
-const PanelComponent = ({ id, dts, icon, title, isCollapsed, onClick, children }) => {
-  const baseClass = 'panel-component';
-  const classesCombined = isCollapsed ? [baseClass, 'collapsed'].join(' ') : baseClass;
+const PanelComponent = ({ id, className, dts, icon, title, isCollapsed, onClick, children }) => {
+  const classesCombined = classnames(['panel-component', className, { collapsed: isCollapsed }]);
+
   const onHeaderClick = () => onClick(id);
 
   return (
@@ -22,6 +23,7 @@ const PanelComponent = ({ id, dts, icon, title, isCollapsed, onClick, children }
 
 PanelComponent.propTypes = {
   id: PropTypes.string.isRequired,
+  className: PropTypes.string,
   dts: PropTypes.string,
   icon: PropTypes.shape(SvgSymbol.propTypes),
   title: PropTypes.node.isRequired,

@@ -37,10 +37,15 @@ describe('PanelComponent', () => {
     expect(contentElement.text()).to.equal('Panel 2 content');
   });
 
+  it('should append custom class', () => {
+    const wrapper = shallow(<Panel {...panel3}>{panel3.content}</Panel>);
+    expect(wrapper.find('.panel-component.test-class-1.test-class-2')).to.have.length(1);
+  });
+
   it('should trigger onClick when clicking header', () => {
     const callback = sinon.spy();
 
-    const component = shallow(<Panel onClick={callback} {...panel3} />);
+    const component = shallow(<Panel {...panel3} onClick={callback} />);
     const headerElement = component.find('.panel-component-header');
     expect(headerElement.prop('onClick')).to.be.a('function');
     headerElement.simulate('click');

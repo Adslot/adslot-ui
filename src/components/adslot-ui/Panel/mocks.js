@@ -21,6 +21,9 @@ const panel3 = {
   id: '3',
   title: 'Panel 3',
   isCollapsed: true,
+  className: 'test-class-1 test-class-2',
+  onClick: _.noop,
+  content: 'Panel 3 content',
 };
 
 const PanelMocks = immutable({

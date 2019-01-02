@@ -67,6 +67,12 @@ const exampleProps = {
           note: '',
         },
         {
+          propType: 'className',
+          type: 'string',
+          defaultValue: '',
+          note: '',
+        },
+        {
           propType: 'dts',
           type: 'string',
           note: 'render `data-test-selector` onto the component. It can be useful for testing.',
