@@ -10,17 +10,17 @@ describe('AccordionComponent', () => {
   const { panel1, panel2, panel3 } = PanelMocks;
 
   it('should render with defaults', () => {
-    const component = shallow(<Accordion panels={[]} onPanelClick={_.noop} />);
-    const cardElement = component.find(Card.Content);
+    const wrapper = shallow(<Accordion panels={[]} onPanelClick={_.noop} />);
+    const cardElement = wrapper.find(Card.Content);
     expect(cardElement).to.have.length(1);
     expect(cardElement.children()).to.have.length(0);
   });
 
   it('should render with props', () => {
     const panels = [panel1, panel2, panel3];
-    const component = shallow(<Accordion panels={panels} onPanelClick={_.noop} dts="my-accordian" />);
+    const wrapper = shallow(<Accordion panels={panels} onPanelClick={_.noop} dts="my-accordian" />);
 
-    const cardElement = component.find(Card.Content);
+    const cardElement = wrapper.find(Card.Content);
     expect(cardElement).to.have.length(1);
 
     const panelElements = cardElement.find(Panel);
@@ -43,8 +43,8 @@ describe('AccordionComponent', () => {
   it('should pass onPanelClick down to panels', () => {
     const callback = sinon.spy();
     const panels = [panel1, panel2, panel3];
-    const component = mount(<Accordion panels={panels} onPanelClick={callback} />);
-    const panelElements = component.find(Panel);
+    const wrapper = mount(<Accordion panels={panels} onPanelClick={callback} />);
+    const panelElements = wrapper.find(Panel);
 
     panelElements
       .at(0)
@@ -66,5 +66,23 @@ describe('AccordionComponent', () => {
     expect(callback.firstCall.calledWith('1')).to.equal(true);
     expect(callback.secondCall.calledWith('2')).to.equal(true);
     expect(callback.thirdCall.calledWith('3')).to.equal(true);
+  });
+
+  it('should pass custom props down to panels', () => {
+    const panels = [panel1, panel2, { ...panel3, className: 'test-class', randomProp: 'random-prop-value' }];
+    const wrapper = mount(<Accordion panels={panels} onPanelClick={_.noop} />);
+
+    expect(
+      wrapper
+        .find(Panel)
+        .at(2)
+        .prop('className')
+    ).to.equal('test-class');
+    expect(
+      wrapper
+        .find(Panel)
+        .at(2)
+        .prop('randomProp')
+    ).to.equal('random-prop-value');
   });
 });
