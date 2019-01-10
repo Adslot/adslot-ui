@@ -22,6 +22,7 @@
   margin-right: $tag-spacing-etalon;
   min-height: $tag-height;
   padding: 0 $tag-spacing-etalon;
+  line-height: 0;
 
   &.tag-component-inverse {
     // explicit .tag-component to force override of `.accent-n` inverse bg/fill colours
