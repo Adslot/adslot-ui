@@ -9,20 +9,14 @@ const AccordionComponent = ({ dts, panels, onPanelClick }) => (
     <Card.Content fill>
       {_.map(panels, panel => {
         const panelDts = dts ? `panel-${panel.id}` : undefined;
+        const panelProps = {
+          key: panel.id,
+          onClick: onPanelClick,
+          dts: panelDts,
+          ..._.omit(panel, ['content', 'onClick']),
+        };
 
-        return (
-          <Panel
-            key={panel.id}
-            id={panel.id}
-            icon={panel.icon}
-            title={panel.title}
-            isCollapsed={panel.isCollapsed}
-            onClick={onPanelClick}
-            dts={panelDts}
-          >
-            {panel.content}
-          </Panel>
-        );
+        return <Panel {...panelProps}>{panel.content}</Panel>;
       })}
     </Card.Content>
   </Card.Container>
