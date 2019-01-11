@@ -14349,6 +14349,7 @@ strong {
   margin-right: 5px;
   min-height: 24px;
   padding: 0 5px;
+  line-height: 0;
 }
 
 .tag-component.tag-component-inverse {

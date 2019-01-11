@@ -41262,6 +41262,10 @@ var _jsxFileName = "/home/jenkins/workspace/release-adslot-ui/src/components/ads
   enterModule && enterModule(module);
 })();
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -41287,20 +41291,20 @@ var AccordionComponent = function AccordionComponent(_ref) {
     __self: this
   }, __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.map(panels, function (panel) {
     var panelDts = dts ? "panel-".concat(panel.id) : undefined;
-    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_adslot_ui_Panel__["a" /* default */], {
+
+    var panelProps = _objectSpread({
       key: panel.id,
-      id: panel.id,
-      icon: panel.icon,
-      title: panel.title,
-      isCollapsed: panel.isCollapsed,
       onClick: onPanelClick,
-      dts: panelDts,
+      dts: panelDts
+    }, __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.omit(panel, ['content', 'onClick']));
+
+    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_adslot_ui_Panel__["a" /* default */], Object.assign({}, panelProps, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 14
+        lineNumber: 19
       },
       __self: this
-    }, panel.content);
+    }), panel.content);
   })));
 };
 
