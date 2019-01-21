@@ -94,7 +94,6 @@ const exampleProps = {
         {
           propType: 'isCollapsed',
           type: 'boolean',
-          defaultValue: 'false',
           note: '',
         },
         {

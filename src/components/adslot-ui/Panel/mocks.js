@@ -4,6 +4,7 @@ import _ from 'lodash';
 const panel1 = {
   id: '1',
   title: 'Panel 1',
+  dts: 'panel-1',
   onClick: _.noop,
 };
 
@@ -24,6 +25,7 @@ const panel3 = {
   className: 'test-class-1 test-class-2',
   onClick: _.noop,
   content: 'Panel 3 content',
+  dts: 'panel-3',
 };
 
 const PanelMocks = immutable({

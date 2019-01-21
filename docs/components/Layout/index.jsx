@@ -39,6 +39,7 @@ import SvgSymbolExample from '../../examples/SvgSymbolExample';
 import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
 import TileGridExample from '../../examples/TileGridExample';
 import AccordionExample from '../../examples/AccordionExample';
+import AccordionPanelExample from '../../examples/AccordionPanelExample';
 import CarouselExample from '../../examples/CarouselExample';
 import ConfirmModalExample from '../../examples/ConfirmModalExample';
 import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
@@ -227,6 +228,7 @@ class PageLayout extends React.Component {
             <CardExample />
             <PanelExample />
             <AccordionExample />
+            <AccordionPanelExample />
             <BorderedWellExample />
             <CarouselExample />
             <GridExample />
