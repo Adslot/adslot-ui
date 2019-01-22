@@ -151,3 +151,7 @@ $state-danger-border: $color-negative-selected;
 
 // == Nav
 $grid-float-breakpoint: 0; // Stops the navigation responding to breakpoints.
+
+// === Popover
+$popover-vertical-padding: $spacing-etalon / 6;
+$popover-horizontal-padding: $spacing-etalon / 3;

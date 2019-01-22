@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Overlay from 'react-bootstrap/lib/Overlay';
-import BootstrapPopover from 'react-bootstrap/lib/Popover';
 import BootstrapButton from 'react-bootstrap/lib/Button';
-import { Button } from 'third-party';
+import { Button, Popover } from 'third-party';
 import Spinner from 'alexandria/Spinner';
 
 describe('ButtonComponent', () => {
@@ -73,7 +72,7 @@ describe('ButtonComponent', () => {
     button.simulate('mouseOver');
     expect(wrapper.find(Overlay).prop('show')).to.eql(true);
     wrapper.update();
-    expect(wrapper.find(BootstrapPopover).prop('children')).to.eql('Because');
+    expect(wrapper.find(Popover).prop('children')).to.eql('Because');
     button.simulate('mouseOut');
     expect(wrapper.find(Overlay).prop('show')).to.eql(false);
   });

@@ -4,8 +4,8 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Popover } from 'third-party';
 import BootstrapButton from 'react-bootstrap/lib/Button';
-import BootstrapPopover from 'react-bootstrap/lib/Popover';
 import BootstrapOverlay from 'react-bootstrap/lib/Overlay';
 import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
@@ -47,9 +47,9 @@ class Button extends React.PureComponent {
   renderReason() {
     return (
       <BootstrapOverlay placement="bottom" show={this.state.show} target={this.buttonRef.current}>
-        <BootstrapPopover id="btn-reason" className="btn-popover-reason">
+        <Popover id="btn-reason" className="btn-popover-reason">
           {this.props.reason}
-        </BootstrapPopover>
+        </Popover>
       </BootstrapOverlay>
     );
   }

@@ -1,5 +1,5 @@
 @import '~styles/variable';
-@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/buttons';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins/buttons';
 
 @mixin button-disabled {
   background-color: $color-disabled;

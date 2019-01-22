@@ -34,6 +34,7 @@ import TabExample from '../../examples/TabExample';
 import EmptyExample from '../../examples/EmptyExample';
 import GridExample from '../../examples/GridExample';
 import PrettyDiffExample from '../../examples/PrettyDiffExample';
+import PopoverExample from '../../examples/PopoverExample';
 import SpinnerExample from '../../examples/SpinnerExample';
 import SvgSymbolExample from '../../examples/SvgSymbolExample';
 import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
@@ -88,7 +89,7 @@ const componentsBySection = {
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
   'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff'],
-  dialogue: ['help-icon-popover', 'avatar'],
+  dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
   search: ['search', 'search-bar', 'tag'],
   grouping: [
@@ -211,6 +212,7 @@ class PageLayout extends React.Component {
             <PrettyDiffExample />
 
             <PageTitle title="Dialogue" />
+            <PopoverExample />
             <HelpIconPopoverExample />
             <AvatarExample />
 
