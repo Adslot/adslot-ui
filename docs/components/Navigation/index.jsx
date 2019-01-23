@@ -14,35 +14,29 @@ const contentFactory = navigateTo => componentName => (
   </li>
 );
 
-const panelFactory = (navigateTo, currentOpenPanel) => (section, sectionName) => ({
+const panelFactory = navigateTo => (section, sectionName) => ({
   id: sectionName,
   title: _.startCase(sectionName),
   content: <ul className="list-unstyled">{_.map(section, contentFactory(navigateTo))}</ul>,
-  isCollapsed: sectionName !== currentOpenPanel,
 });
 
 class Navigation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentOpenPanel: initialOpenPanel,
-    };
-    this.togglePanel = this.togglePanel.bind(this);
-  }
-
-  togglePanel(panelId) {
+  togglePanel = panelId => {
     const nextPanel = panelId === this.state.currentOpenPanel ? '' : panelId;
     this.setState({ currentOpenPanel: nextPanel });
-  }
+  };
 
   render() {
-    const panels = _.map(
-      this.props.componentsBySection,
-      panelFactory(this.props.navigateTo, this.state.currentOpenPanel)
-    );
+    const panels = _.map(this.props.componentsBySection, panelFactory(this.props.navigateTo));
     return (
       <div className="adslot-ui-navigation">
-        <Accordion onPanelClick={this.togglePanel} panels={panels} />
+        <Accordion defaultActivePanelIds={[initialOpenPanel]} maxExpand={1}>
+          {_.map(panels, panel => (
+            <Accordion.Panel {...panel} key={panel.id}>
+              {panel.content}
+            </Accordion.Panel>
+          ))}
+        </Accordion>
       </div>
     );
   }
