@@ -62,6 +62,15 @@
       }
     }
   }
+
+  &.popover-example {
+    .adslot-ui-example {
+      .popover {
+        position: relative;
+        margin: 20px;
+      }
+    }
+  }
 }
 
 .full-width {

@@ -17,12 +17,12 @@
     }
   }
 
-  h2 {
+  & > h2 {
     margin-bottom: $spacing-etalon;
     font-size: $font-size-header;
   }
 
-  h3 {
+  & > h3 {
     margin-bottom: 18px;
     font-size: $font-size-subheader;
   }

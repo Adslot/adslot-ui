@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Overlay, Popover } from 'react-bootstrap';
+import { Overlay } from 'react-bootstrap';
+import { Popover } from 'third-party';
 import PopoverLinkItem from './PopoverLinkItem';
 import './styles.scss';
 

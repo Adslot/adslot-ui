@@ -4,14 +4,13 @@ import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 
 // React Bootstrap
-import { Button } from 'third-party';
+import { Button, Popover } from 'third-party';
 
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Pagination from 'react-bootstrap/lib/Pagination';
-import Popover from 'react-bootstrap/lib/Popover';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 import Tab from 'react-bootstrap/lib/Tab';
 import Tabs from 'react-bootstrap/lib/Tabs';

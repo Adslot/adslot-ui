@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { OverlayTrigger, Popover } from 'react-bootstrap';
+import { OverlayTrigger } from 'react-bootstrap';
+import { Popover } from 'third-party';
 
 require('./styles.scss');
 

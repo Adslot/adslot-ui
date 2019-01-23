@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Popover from 'react-bootstrap/lib/Popover';
 import { expandDts } from 'lib/utils';
+import { Popover } from 'third-party';
 
-require('./styles.scss');
+import './styles.scss';
 
 const HelpIconPopover = ({ children, id, placement }) => {
   const popover = <Popover id={`popover-${id}`}>{children}</Popover>;

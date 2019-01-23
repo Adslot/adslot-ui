@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Overlay from 'react-bootstrap/lib/Overlay';
-import Popover from 'react-bootstrap/lib/Popover';
+import { Popover } from 'third-party';
 import './styles.scss';
 
 export const baseClass = 'alert-input-component';

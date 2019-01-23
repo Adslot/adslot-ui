@@ -15,7 +15,7 @@ class HelpIconPopoverExample extends React.PureComponent {
 }
 
 const exampleProps = {
-  componentName: 'Help Icon',
+  componentName: 'Help Icon Popover',
   designNotes: (
     <div>
       <p>
