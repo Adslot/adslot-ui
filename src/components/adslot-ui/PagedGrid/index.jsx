@@ -16,9 +16,10 @@ class PagedGridComponent extends React.Component {
     this.state = { activePage: 1 };
   }
 
-  componentWillReceiveProps() {
-    const totalPages = Math.ceil(this.props.items.length / this.props.perPage);
-    if (this.state.activePage > totalPages) this.setState({ activePage: totalPages });
+  static getDerivedStateFromProps(props, state) {
+    const totalPages = Math.ceil(props.items.length / props.perPage);
+
+    return state.activePage > totalPages ? { activePage: totalPages } : null;
   }
 
   render() {

@@ -25,13 +25,22 @@ export const renderPopoverComponent = arrowPosition => props => {
 /* eslint-enable react/prop-types */
 
 export class HoverDropdownMenuComponent extends React.Component {
+  static propTypes = {
+    arrowPosition: PropTypes.oneOf(['left', 'right']),
+    headerText: PropTypes.string,
+    hoverComponent: PropTypes.element.isRequired,
+    children: PropTypes.node,
+  };
+
+  static defaultProps = {
+    arrowPosition: 'left',
+    headerText: '',
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      isOpen: false,
-      target: null,
-      mouseInPopover: false,
-    };
+
+    this.element = React.createRef();
 
     this.closeMenu = _.debounce(() => {
       if (!this.state.mouseInPopover) {
@@ -40,33 +49,35 @@ export class HoverDropdownMenuComponent extends React.Component {
         });
       }
     }, 100);
-
-    this.openMenu = this.openMenu.bind(this);
-    this.popoverEnterHandler = this.popoverEnterHandler.bind(this);
-    this.popoverLeaveHandler = this.popoverLeaveHandler.bind(this);
   }
+
+  state = {
+    isOpen: false,
+    target: null,
+    mouseInPopover: false,
+  };
 
   componentDidMount() {
     // prevent default title popup if exists, assuming the first child is the hoverComponent
-    this.element.childNodes[0].removeAttribute('title');
+    this.element.current.childNodes[0].removeAttribute('title');
   }
 
-  openMenu(event) {
+  openMenu = event => {
     this.setState({
       isOpen: true,
       target: event.target,
       mouseInPopover: false,
     });
-  }
+  };
 
-  popoverEnterHandler() {
+  popoverEnterHandler = () => {
     this.setState({ mouseInPopover: true });
-  }
+  };
 
-  popoverLeaveHandler() {
+  popoverLeaveHandler = () => {
     this.setState({ mouseInPopover: false });
     this.closeMenu();
-  }
+  };
 
   render() {
     const { arrowPosition, headerText, hoverComponent, children } = this.props;
@@ -74,14 +85,7 @@ export class HoverDropdownMenuComponent extends React.Component {
     const HoverPopover = renderPopoverComponent(arrowPosition);
 
     return (
-      <div
-        className="hover-dropdown"
-        ref={element => {
-          this.element = element;
-        }}
-        onMouseEnter={this.openMenu}
-        onMouseLeave={this.closeMenu}
-      >
+      <div className="hover-dropdown" ref={this.element} onMouseEnter={this.openMenu} onMouseLeave={this.closeMenu}>
         {hoverComponent}
         {children && children.length > 0 ? (
           <Overlay show={this.state.isOpen} target={this.state.target} placement="bottom">
@@ -100,18 +104,6 @@ export class HoverDropdownMenuComponent extends React.Component {
     );
   }
 }
-
-HoverDropdownMenuComponent.propTypes = {
-  arrowPosition: PropTypes.oneOf(['left', 'right']),
-  headerText: PropTypes.string,
-  hoverComponent: PropTypes.element.isRequired,
-  children: PropTypes.node,
-};
-
-HoverDropdownMenuComponent.defaultProps = {
-  arrowPosition: 'left',
-  headerText: '',
-};
 
 HoverDropdownMenuComponent.Item = PopoverLinkItem;
 

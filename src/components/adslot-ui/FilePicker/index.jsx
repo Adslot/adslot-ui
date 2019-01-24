@@ -7,32 +7,56 @@ require('./styles.scss');
 
 const baseClass = 'filepicker-component';
 
-class FilePickerComponent extends React.Component {
+class FilePickerComponent extends React.PureComponent {
+  static propTypes = {
+    disabled: PropTypes.bool,
+    dts: PropTypes.string,
+    filter: PropTypes.string,
+    isHighlighted: PropTypes.bool,
+    label: PropTypes.string,
+    onRemove: PropTypes.func,
+    onSelect: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+  };
+
+  static defaultProps = {
+    isHighlighted: false,
+    label: 'Select',
+    placeholder: 'No file selected',
+    disabled: false,
+  };
+
   constructor(props) {
     super(props);
 
-    this.state = { isFileSelected: false, fileName: '' };
-
-    this.onChange = this.onChange.bind(this);
-    this.removeFile = this.removeFile.bind(this);
+    this.fileInput = React.createRef();
   }
 
-  onChange(changeEvent) {
+  state = {
+    isFileSelected: false,
+    fileName: '',
+  };
+
+  onChange = changeEvent => {
     if (!this.state.isFileSelected) {
       this.setState({ isFileSelected: true, fileName: changeEvent.target.files[0].name });
       this.props.onSelect(changeEvent.target.files[0]);
     }
-  }
+  };
 
-  removeFile() {
+  onUploadBtnClick = () => {
+    this.fileInput.current.click();
+  };
+
+  removeFile = () => {
     if (this.state.isFileSelected) {
-      this.fileInput.value = null;
+      this.fileInput.current.value = null;
       this.setState({ isFileSelected: false, fileName: '' });
       if (this.props.onRemove) {
         this.props.onRemove();
       }
     }
-  }
+  };
 
   render() {
     const mainClass = classNames({ [`${baseClass}-highlight`]: this.props.isHighlighted }, baseClass, 'input-group');
@@ -57,17 +81,13 @@ class FilePickerComponent extends React.Component {
           ) : null}
           <Button
             className="btn-inverse"
-            onClick={() => {
-              this.fileInput.click();
-            }}
+            onClick={this.onUploadBtnClick}
             disabled={this.props.disabled || isFileSelected}
           >
             <span>{this.props.label}</span>
             <input
               className="file-input"
-              ref={ref => {
-                this.fileInput = ref;
-              }}
+              ref={this.fileInput}
               type="file"
               onChange={this.onChange}
               accept={this.props.filter}
@@ -79,23 +99,5 @@ class FilePickerComponent extends React.Component {
     );
   }
 }
-
-FilePickerComponent.propTypes = {
-  disabled: PropTypes.bool,
-  dts: PropTypes.string,
-  filter: PropTypes.string,
-  isHighlighted: PropTypes.bool,
-  label: PropTypes.string,
-  onRemove: PropTypes.func,
-  onSelect: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-};
-
-FilePickerComponent.defaultProps = {
-  isHighlighted: false,
-  label: 'Select',
-  placeholder: 'No file selected',
-  disabled: false,
-};
 
 export default FilePickerComponent;
