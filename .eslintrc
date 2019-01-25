@@ -91,6 +91,7 @@
         "functions": "never"
       }
     ],
-    "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
+    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }

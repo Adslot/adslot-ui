@@ -40,8 +40,8 @@ rules:
 
   # Nesting
   force-attribute-nesting: 2
-  force-element-nesting: 2
-  force-pseudo-nesting: 2
+  force-element-nesting: 0
+  force-pseudo-nesting: 0
 
   # Name Formats
   # TODO: When inline linting is supported set as error (https://github.com/sasstools/sass-lint/pull/402) and ignore

@@ -18,17 +18,6 @@ module.exports = merge(commonConfig, {
     filename: 'app.js',
     publicPath,
   },
-  module: {
-    rules: [
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
-        ],
-      },
-    ],
-  },
   devServer: {
     hot: false, // disable HMR on the server
     contentBase: resolve(__dirname, '../src'), // match the output path
