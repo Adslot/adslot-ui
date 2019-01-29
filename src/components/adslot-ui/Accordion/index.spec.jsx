@@ -31,6 +31,17 @@ describe('AccordionComponent', () => {
     expect(cardElement.children()).to.have.length(1);
   });
 
+  it('should have default props', () => {
+    const wrapper = shallow(
+      <Accordion {...makeProps()}>
+        <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
+      </Accordion>
+    );
+    const instance = wrapper.instance();
+    expect(instance.props.defaultActivePanelIds).to.eql([]);
+    expect(instance.props.maxExpand).to.equal('max');
+  });
+
   it('should render with props', () => {
     const wrapper = shallow(
       <Accordion {...makeProps()}>

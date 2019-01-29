@@ -15,6 +15,7 @@ class AccordionComponent extends React.PureComponent {
 
   static defaultProps = {
     maxExpand: 'max',
+    defaultActivePanelIds: [],
   };
 
   state = {
