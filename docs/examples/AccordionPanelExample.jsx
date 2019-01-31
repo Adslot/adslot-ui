@@ -22,7 +22,7 @@ const exampleProps = {
   componentName: 'Accordion.Panel',
   designNotes: (
     <p>
-      See <a href="#panel-example">Panel</a>
+      This component is equivalent to <a href="#panel-example">Panel</a>
     </p>
   ),
   exampleCodeSnippet: `<Accordion.Panel
