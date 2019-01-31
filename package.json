@@ -121,7 +121,6 @@
     "puppeteer": "^1.11.0",
     "react-bootstrap": "^0.31.5",
     "react-datepicker": "github:Adslot/react-datepicker#6f912842e7dcec6a6e8ff43fd0e3e79af84a8ba6",
-    "react-hot-loader": "^4.3.12",
     "react-redux": "^5.0.6",
     "react-select": "^1.2.1",
     "react-syntax-highlighter": "^7.0.0",

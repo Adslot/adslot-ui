@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'alexandria/Card';
-import AccordionPanel from './AccordionPanel';
+import Panel from '../Panel';
 
-class AccordionComponent extends React.PureComponent {
+class Accordion extends React.PureComponent {
   static propTypes = {
     dts: PropTypes.string,
     onPanelClick: PropTypes.func,
@@ -63,7 +63,7 @@ class AccordionComponent extends React.PureComponent {
     const { id, isCollapsed } = child.props;
 
     // prevent rendering if child is not an instance of Accordion.Panel
-    if (child.type.displayName !== AccordionPanel.displayName) {
+    if (child.type !== Panel) {
       return null;
     }
 
@@ -87,6 +87,6 @@ class AccordionComponent extends React.PureComponent {
   }
 }
 
-AccordionComponent.Panel = AccordionPanel;
+Accordion.Panel = Panel;
 
-export default AccordionComponent;
+export default Accordion;

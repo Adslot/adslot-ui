@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Accordion, Checkbox, Panel } from '../../src';
+import { Accordion, Checkbox } from '../../src';
 
 class AccordionExample extends React.Component {
   state = {
@@ -74,7 +74,8 @@ const exampleProps = {
       areas of the list.
     </p>
   ),
-  exampleCodeSnippet: `<Accordion defaultActivePanelIds={['filter-by-region']} onPanelClick={this.onPanelClick} maxExpand={3}>
+  exampleCodeSnippet: `
+  <Accordion defaultActivePanelIds={['filter-by-region']} onPanelClick={this.onPanelClick} maxExpand={3}>
     <Accordion.Panel id="filter-by-region" title="Filter by region">
       <ul className="list-unstyled">
         <li>
@@ -98,7 +99,8 @@ const exampleProps = {
         </li>
       </ul>
     </Accordion.Panel>
-  </Accordion>`,
+  </Accordion>
+  `,
   propTypeSectionArray: [
     {
       propTypes: [
@@ -134,7 +136,8 @@ const exampleProps = {
           type: 'node',
           note: (
             <span>
-              Panel(s) to be rendered inside the Accordion. See <a href="#accordion-panel-example">Accordion.Panels</a>
+              Accept an array of <a href="#panel-example">{`<Panel />`}</a> or{' '}
+              <a href="#accordion-panel-example">{`<Accordion.Panel />`}</a>
             </span>
           ),
         },
