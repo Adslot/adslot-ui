@@ -120,6 +120,7 @@ const exampleProps = {
         {
           propType: 'onSelect',
           type: 'func',
+          note: `(selectedTabKey) => {...}`,
         },
         {
           propType: 'id',

@@ -1,11 +1,14 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PageTitle } from '../../../src';
+
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
 import SearchBar from '../SearchBar';
 import SearchResultCard from '../SearchResultCard';
+import MigrationNote from '../MigrationNote';
 
 import ButtonExample from '../../examples/ButtonExample';
 import AlertInputExample from '../../examples/AlertInputExample';
@@ -55,8 +58,6 @@ import InformationBoxExample from '../../examples/InformationBoxExample';
 import SplitPaneExample from '../../examples/SplitPaneExample';
 import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
 import NavigationExample from '../../examples/NavigationExample';
-
-import { PageTitle } from '../../../src';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -113,47 +114,44 @@ const componentsBySection = {
 const componentIndexForSearch = _.flatMap(componentsBySection);
 
 class PageLayout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: 'buttons',
+  state = {
+    page: 'buttons',
+    searchTerm: '',
+    searchResults: [],
+  };
+
+  navigateTo = newPage => {
+    if (newPage !== this.state.page) {
+      this.setState({ page: newPage });
+    }
+    window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
+  };
+
+  filterComponents = searchTerm => {
+    const searchTermRegExp = new RegExp(searchTerm, 'i');
+    return _(componentIndexForSearch)
+      .filter(val => searchTermRegExp.test(val))
+      .sort()
+      .value();
+  };
+
+  handleSearch = searchTerm => {
+    if (searchTerm.length === 0) {
+      this.clearSearch();
+    } else {
+      this.setState({
+        searchTerm,
+        searchResults: this.filterComponents(searchTerm),
+      });
+    }
+  };
+
+  clearSearch = () => {
+    this.setState({
       searchTerm: '',
       searchResults: [],
-    };
-
-    this.navigateTo = newPage => {
-      if (newPage !== this.state.page) {
-        this.setState({ page: newPage });
-      }
-      window.location.href = `${window.location.origin}${window.location.pathname}#${newPage}-example`;
-    };
-
-    this.filterComponents = searchTerm => {
-      const searchTermRegExp = new RegExp(searchTerm, 'i');
-      return _(componentIndexForSearch)
-        .filter(val => searchTermRegExp.test(val))
-        .sort()
-        .value();
-    };
-
-    this.handleSearch = searchTerm => {
-      if (searchTerm.length === 0) {
-        this.clearSearch();
-      } else {
-        this.setState({
-          searchTerm,
-          searchResults: this.filterComponents(searchTerm),
-        });
-      }
-    };
-
-    this.clearSearch = () => {
-      this.setState({
-        searchTerm: '',
-        searchResults: [],
-      });
-    };
-  }
+    });
+  };
 
   render() {
     return (
@@ -173,6 +171,7 @@ class PageLayout extends React.Component {
             )}
           </SidebarArea>
           <ContentArea>
+            <MigrationNote />
             <PageTitle title="Form Elements" />
             <ButtonExample />
             <AlertInputExample />
