@@ -1,0 +1,63 @@
+const defaultStyle = {
+  option: (styles, { isFocused, isSelected, isDisabled }) => {
+    let backgroundColor;
+
+    switch (true) {
+      case isSelected:
+        backgroundColor = '#f5faff';
+        break;
+      case isFocused:
+        backgroundColor = '#f9f9f9';
+        break;
+      case isDisabled:
+        return styles;
+      default:
+        backgroundColor = null;
+    }
+
+    return {
+      ...styles,
+      color: 'inherit',
+      backgroundColor,
+    };
+  },
+  indicatorSeparator: styles => ({
+    ...styles,
+    display: 'none',
+  }),
+  control: styles => ({
+    ...styles,
+    minHeight: 26,
+  }),
+  clearIndicator: styles => ({
+    ...styles,
+    padding: '0 4px 0 8px',
+  }),
+  dropdownIndicator: styles => ({
+    ...styles,
+    padding: '0 8px 0 4px',
+    img: {
+      height: 8,
+      width: 8,
+    },
+  }),
+  valueContainer: styles => ({
+    ...styles,
+    padding: '0 8px',
+  }),
+  multiValue: styles => ({
+    ...styles,
+    color: '#fff',
+    backgroundColor: '#838383',
+  }),
+  multiValueLabel: styles => ({
+    ...styles,
+    color: '#fff',
+  }),
+  multiValueRemove: styles => ({
+    ...styles,
+    ':hover': {},
+  }),
+};
+
+export default defaultStyle;
