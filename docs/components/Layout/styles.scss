@@ -29,12 +29,12 @@ body {
   flex: 1;
 
   > .pagetitle-component {
-    margin-bottom: $spacing-etalon;
+    margin: $spacing-etalon auto;
     padding-left: 0;
+  }
 
-    &:not(:first-child) {
-      margin-top: ($spacing-etalon * 4);
-    }
+  > .migration-docs {
+    font-size: $font-size-header;
   }
 }
 
