@@ -3,47 +3,110 @@ import React from 'react';
 import Example from '../components/Example';
 import { Checkbox } from '../../src';
 
-class CheckboxExample extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const handleChange = (...arg) => console.log('Checkbox changed with arguments', ...arg);
 
-    this.state = {
-      isChecked: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange() {
-    this.setState(prevState => ({
-      isChecked: !prevState.isChecked,
-    }));
-  }
-
-  render() {
-    return (
-      <Checkbox
-        name="Name goes here"
-        label="Label goes here"
-        value="Value goes here"
-        dts="data-test-selector-goes-here"
-        onChange={this.handleChange}
-        checked={this.state.isChecked}
-      />
-    );
-  }
-}
+const CheckboxExample = () => (
+  <>
+    <h4>Not selected</h4>
+    <Checkbox label="Checked: false" checked={false} inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: false <br /> <b>Disabled</b>
+        </p>
+      }
+      checked={false}
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Selected</h4>
+    <Checkbox label="Checked: true" checked inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: true <br /> <b>Disabled</b>
+        </p>
+      }
+      checked
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Partial Selected</h4>
+    <Checkbox label={`Checked: 'partial'`} checked="partial" inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: 'partial' <br /> <b>Disabled</b>
+        </p>
+      }
+      checked="partial"
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Checkboxes without labels</h4>
+    <Checkbox checked={false} inline onChange={handleChange} />
+    <Checkbox checked={false} disabled inline onChange={handleChange} />
+    <Checkbox checked inline onChange={handleChange} />
+    <Checkbox checked disabled inline onChange={handleChange} />
+    <Checkbox checked="partial" inline onChange={handleChange} />
+    <Checkbox checked="partial" disabled inline onChange={handleChange} />
+  </>
+);
 
 const exampleProps = {
   componentName: 'Checkbox',
   notes: '',
-  exampleCodeSnippet: `<Checkbox
-  name="Name goes here"
-  label="Label goes here"
-  value="Value goes here"
-  dts="data-test-selector-goes-here"
-  onChange={this.handleChange}
-  checked={this.state.isChecked}
-/>`,
+  exampleCodeSnippet: `
+  <h4>Not selected</h4>
+  <Checkbox label="Checked: false" checked={false} inline />
+  <Checkbox
+    label={
+      <p>
+        Checked: false <br /> <b>Disabled</b>
+      </p>
+    }
+    checked={false}
+    disabled
+    inline
+  />
+  <h4>Selected</h4>
+  <Checkbox label="Checked: true" checked inline />
+  <Checkbox
+    label={
+      <p>
+        Checked: true <br /> <b>Disabled</b>
+      </p>
+    }
+    checked
+    disabled
+    inline
+  />
+  <h4>Partial Selected</h4>
+  <Checkbox label={\`Checked: 'partial'\`} checked="partial" inline />
+  <Checkbox
+    label={
+      <p>
+        Checked: 'partial' <br /> <b>Disabled</b>
+      </p>
+    }
+    checked="partial"
+    disabled
+    inline
+  />
+  <h4>Checkboxes without labels</h4>
+  <Checkbox checked={false} inline />
+  <Checkbox checked={false} disabled inline />
+  <Checkbox checked inline />
+  <Checkbox checked disabled inline />
+  <Checkbox checked="partial" inline />
+  <Checkbox checked="partial" disabled inline />
+  `,
   propTypeSectionArray: [
     {
       label: '',

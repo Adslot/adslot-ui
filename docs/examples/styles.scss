@@ -71,6 +71,17 @@
       }
     }
   }
+
+  &.checkbox-example {
+    h4 {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .fix-size {
+      width: 200px;
+    }
+  }
 }
 
 .full-width {

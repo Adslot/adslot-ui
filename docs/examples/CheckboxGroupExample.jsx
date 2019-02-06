@@ -4,22 +4,25 @@ import Example from '../components/Example';
 import { CheckboxGroup, Checkbox } from '../../src';
 
 class CheckboxGroupExample extends React.PureComponent {
-  constructor(props) {
-    super(props);
+  state = {
+    movies: ['terminator', 'predator'],
+  };
 
-    this.state = {
-      movies: ['terminator', 'predator'],
-    };
-    this.handleGroupChange = this.handleGroupChange.bind(this);
-  }
-
-  handleGroupChange(movies) {
+  handleGroupChange = movies => {
     this.setState({ movies });
-  }
+  };
+
+  displayValue = () => {
+    return _.isEmpty(this.state.movies) ? <i>Empty</i> : <i>[{this.state.movies.join(' ')}]</i>;
+  };
 
   render() {
     return (
-      <React.Fragment>
+      <>
+        <h4>
+          <b>Selected Values: {this.displayValue()}</b>
+        </h4>
+        <br />
         <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange}>
           <Checkbox label="The Terminator" value="terminator" />
           <Checkbox label="Predator" value="predator" />
@@ -27,12 +30,12 @@ class CheckboxGroupExample extends React.PureComponent {
         </CheckboxGroup>
         <br />
         <h3>Inline CheckboxGroup</h3>
-        <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={this.handleGroupChange} inline>
+        <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange} inline>
           <Checkbox label="The Terminator" value="terminator" />
           <Checkbox label="Predator" value="predator" />
           <Checkbox label="The Sound of Music" value="soundofmusic" />
         </CheckboxGroup>
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -40,11 +43,19 @@ class CheckboxGroupExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'CheckboxGroup',
   notes: 'Contains individual checkboxes. The state of child checkboxes is held in an array.',
-  exampleCodeSnippet: `<CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={onChangeGroup} inline={true|false}>
-  <Checkbox label="The Terminator" value="terminator" />
-  <Checkbox label="Predator" value="predator" />
-  <Checkbox label="The Sound of Music" value="soundofmusic" />
-</CheckboxGroup>`,
+  exampleCodeSnippet: `
+  <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange}>
+    <Checkbox label="The Terminator" value="terminator" />
+    <Checkbox label="Predator" value="predator" />
+    <Checkbox label="The Sound of Music" value="soundofmusic" />
+  </CheckboxGroup>
+
+  <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange} inline>
+    <Checkbox label="The Terminator" value="terminator" />
+    <Checkbox label="Predator" value="predator" />
+    <Checkbox label="The Sound of Music" value="soundofmusic" />
+  </CheckboxGroup>
+  `,
   propTypeSectionArray: [
     {
       label: '',

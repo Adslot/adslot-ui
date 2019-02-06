@@ -30,7 +30,7 @@ module.exports = {
       // "url" loader works like "file" loader except that it embeds assets smaller than specified limit in bytes
       // as data URLs to avoid requests.
       {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
         loader: 'url-loader',
         options: {
           limit: 8192,

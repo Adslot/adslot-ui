@@ -26,17 +26,6 @@ module.exports = merge(commonConfig, {
     path: resolve(__dirname, '../dist/assets'),
     publicPath, // necessary for HMR to know where to load the hot update chunks
   },
-  module: {
-    rules: [
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
-        ],
-      },
-    ],
-  },
   devServer: {
     hot: true, // enable HMR on the server
     contentBase: resolve(__dirname, '../docs'),

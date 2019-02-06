@@ -32,14 +32,6 @@ describe('Checkbox', () => {
     expect(labelElement.text()).to.equal('Label goes here');
   });
 
-  it('should render with just onChange', () => {
-    const onChangeHandler = sinon.spy();
-    const component = shallow(<Checkbox onChange={onChangeHandler} />);
-    const checkboxElement = component.find('input[type="checkbox"]');
-    checkboxElement.simulate('change');
-    expect(onChangeHandler.callCount).to.equal(1);
-  });
-
   it('should render with id, className', () => {
     const component = shallow(<Checkbox id="checkboxId" className="checkboxClass" />);
     const checkboxElement = component.find('input[type="checkbox"]');
@@ -49,8 +41,7 @@ describe('Checkbox', () => {
 
   it('should render without a label', () => {
     const component = shallow(<Checkbox name="movies" value="terminator" />);
-    const labelElement = component.find('label');
-    expect(labelElement.text()).to.equal('');
+    expect(component.find('.checkbox-component-label')).to.have.length(0);
   });
 
   it('should add inline class when inline prop in true', () => {
@@ -65,5 +56,26 @@ describe('Checkbox', () => {
     expect(component.hasClass('disabled')).to.equal(false);
     component.setProps({ disabled: true });
     expect(component.hasClass('disabled')).to.equal(true);
+  });
+
+  it('should throw error if checked value is not accepted', () => {
+    try {
+      shallow(<Checkbox name="test" checked="test" />);
+    } catch (err) {
+      expect(err.message).to.equal("The 'checked' prop should be boolean or 'partial'");
+    }
+  });
+
+  it('should pass next state valut to the onChange function', () => {
+    const handleChange = sinon.spy();
+    const component = shallow(<Checkbox name="name" value="value" onChange={handleChange} />);
+    component.find('input').simulate('change');
+    expect(handleChange.args[0]).to.eql([true, 'name', 'value']);
+    component.setProps({ checked: true });
+    component.find('input').simulate('change');
+    expect(handleChange.args[1]).to.eql([false, 'name', 'value']);
+    component.setProps({ checked: 'partial' });
+    component.find('input').simulate('change');
+    expect(handleChange.args[2]).to.eql([false, 'name', 'value']);
   });
 });
