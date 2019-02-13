@@ -38,6 +38,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url('~styles/icons/checkbox/empty.svg');
+    flex-shrink: 0;
   }
 
   &:hover:not(.disabled):not(.checked):not(.partial-checked) .checkbox-component-icon {
