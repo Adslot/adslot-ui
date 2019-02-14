@@ -15099,6 +15099,8 @@ strong {
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggb3BhY2l0eT0iLjgiIGZpbGw9IiM4MzgzODMiIGQ9Ik0xMy45IDEuNmMuMyAwIC41LjIuNS41VjE0YzAgLjMtLjIuNS0uNS41SDIuMWMtLjMgMC0uNS0uMi0uNS0uNVYyLjFjMC0uMy4yLS41LjUtLjVoMTEuOG0wLTEuMUgyLjFDMS4yLjUuNSAxLjIuNSAyLjFWMTRjMCAuOS43IDEuNiAxLjYgMS42SDE0Yy45IDAgMS42LS43IDEuNi0xLjZWMi4xYy0uMS0uOS0uOC0xLjYtMS43LTEuNnoiLz48L3N2Zz4=);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .checkbox-component:hover:not(.disabled):not(.checked):not(.partial-checked) .checkbox-component-icon {
