@@ -7,12 +7,32 @@ import { Popover } from 'third-party';
 require('./styles.scss');
 
 class TextEllipsisComponent extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    overlayTriggerProps: PropTypes.shape(_.omit(OverlayTrigger.propTypes, ['overlay'])),
+    popoverProps: PropTypes.shape(Popover.propTypes),
+  };
+
+  static defaultProps = {
+    overlayTriggerProps: {
+      trigger: ['focus', 'hover'],
+      placement: 'top',
+    },
+    popoverProps: {
+      id: 'popover',
+      placement: 'top',
+    },
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      truncated: false,
-    };
+
+    this.container = React.createRef();
   }
+
+  state = {
+    truncated: false,
+  };
 
   componentDidMount() {
     this.setTruncate();
@@ -23,7 +43,7 @@ class TextEllipsisComponent extends Component {
   }
 
   setTruncate() {
-    const nextTruncateState = this.container.scrollWidth > this.container.clientWidth;
+    const nextTruncateState = this.container.current.scrollWidth > this.container.current.clientWidth;
     if (this.state.truncated !== nextTruncateState) {
       this.setState({
         truncated: nextTruncateState,
@@ -40,12 +60,7 @@ class TextEllipsisComponent extends Component {
 
       return (
         <OverlayTrigger {...overlayTriggerProps} overlay={tooltip}>
-          <div
-            className="text-ellipsis-component"
-            ref={ref => {
-              this.container = ref;
-            }}
-          >
+          <div className="text-ellipsis-component" ref={this.container}>
             {this.props.children}
           </div>
         </OverlayTrigger>
@@ -53,33 +68,11 @@ class TextEllipsisComponent extends Component {
     }
 
     return (
-      <div
-        className="text-ellipsis-component"
-        ref={ref => {
-          this.container = ref;
-        }}
-      >
+      <div className="text-ellipsis-component" ref={this.container}>
         {this.props.children}
       </div>
     );
   }
 }
-
-TextEllipsisComponent.propTypes = {
-  children: PropTypes.node.isRequired,
-  overlayTriggerProps: PropTypes.shape(_.omit(OverlayTrigger.propTypes, ['overlay'])),
-  popoverProps: PropTypes.shape(Popover.propTypes),
-};
-
-TextEllipsisComponent.defaultProps = {
-  overlayTriggerProps: {
-    trigger: ['focus', 'hover'],
-    placement: 'top',
-  },
-  popoverProps: {
-    id: 'popover',
-    placement: 'top',
-  },
-};
 
 export default TextEllipsisComponent;

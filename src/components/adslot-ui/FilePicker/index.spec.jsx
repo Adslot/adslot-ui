@@ -51,7 +51,7 @@ describe('FilePickerComponent', () => {
   it('should trigger click event on file input when button is clicked', () => {
     const component = mount(<FilePickerComponent onSelect={_.noop} />);
     const spy = sinon.spy();
-    component.instance().fileInput.addEventListener('click', spy, {
+    component.instance().fileInput.current.addEventListener('click', spy, {
       passive: true,
       once: true,
     });

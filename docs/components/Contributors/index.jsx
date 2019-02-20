@@ -7,25 +7,25 @@ import './styles.scss';
 
 const plural = number => `${number} contribution${number > 1 ? 's' : ''}`;
 
-class Contributors extends React.Component {
-  constructor() {
-    super();
-    this.state = { contributors: [] };
-    this.renderContributors = this.renderContributors.bind(this);
+class Contributors extends React.PureComponent {
+  state = {
+    contributors: [],
+  };
 
+  componentDidMount() {
     this.getContributors();
   }
 
-  getContributors() {
+  getContributors = () => {
     fetch('https://api.github.com/repos/Adslot/adslot-ui/contributors')
       .then(response => response.json())
       .then(contributors => {
         this.setState({ contributors });
       });
-  }
+  };
 
-  renderContributors() {
-    return _.map(this.state.contributors, (
+  renderContributors = () =>
+    _.map(this.state.contributors, (
       { login, avatar_url, contributions } // eslint-disable-line camelcase
     ) => (
       <Avatar
@@ -35,7 +35,6 @@ class Contributors extends React.Component {
         tooltip={`Thanks, ${login}, for your ${plural(contributions)}`}
       />
     ));
-  }
 
   render() {
     return (
