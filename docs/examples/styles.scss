@@ -65,9 +65,66 @@
 
   &.popover-example {
     .adslot-ui-example {
+
+      .button-example-container {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        justify-content: space-between;
+
+        .checkbox-component + .checkbox-component {
+          margin-top: 0;
+          margin-left: 5px;
+        }
+
+        .placement-checkbox,
+        .theme-checkbox,
+        .example-button,
+        .trigger-checkbox,
+        .disabled-popover {
+          display: flex;
+        }
+
+        .disabled-popover {
+          height: 28px;
+
+          .checkbox-component {
+            margin-top: 1px;
+          }
+
+          .button-component {
+            position: relative;
+            left: 5px;
+            top: -5px;
+          }
+
+        }
+      }
+
       .popover {
         position: relative;
         margin: 20px;
+      }
+
+      .auto-flip-container {
+        width: 500px;
+        height: 250px;
+        border: 1px solid $color-border-light;
+        overflow: hidden;
+        overflow-x: scroll;
+
+        .popover-example-container {
+          width: 600px;
+          position: relative;
+          top: 50px;
+          left: 250px;
+
+          > .aui--popover-element {
+            top: 10px;
+            left: 10px;
+            position: relative;
+          }
+        }
       }
     }
   }
@@ -95,7 +152,8 @@
 
       .aui--button-group {
         .svg-symbol-component {
-          display: flex;
+          position: relative;
+          top: 3px;
           fill: $color-white;
         }
 
@@ -131,4 +189,12 @@
 
 .full-width {
   width: 100%;
+}
+
+.horizontal-separator {
+  width: 12px;
+}
+
+.vertical-separator {
+  height: 12px;
 }
