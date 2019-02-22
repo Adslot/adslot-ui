@@ -1,30 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Overlay } from 'react-bootstrap';
 import { Popover } from 'third-party';
 import PopoverLinkItem from './PopoverLinkItem';
 import './styles.scss';
 
-// if change this, change the width in styles.scss too
-const POPOVER_WIDTH = 160;
-
-/* eslint-disable react/prop-types */
-export const renderPopoverComponent = arrowPosition => props => {
-  // default offset is 50%, therefore to adjust to align with the arrow, we need to move back/forth 30%
-  const popoverOffset = POPOVER_WIDTH * 0.3;
-  const popoverProps = _.assign({}, props, {
-    arrowOffsetLeft: arrowPosition === 'left' ? '20%' : '80%',
-    style: {
-      left: arrowPosition === 'left' ? props.style.left + popoverOffset : props.style.left - popoverOffset,
-    },
-  });
-
-  return <Popover {...popoverProps} />;
-};
-/* eslint-enable react/prop-types */
-
-export class HoverDropdownMenuComponent extends React.Component {
+export class HoverDropdownMenuComponent extends React.PureComponent {
   static propTypes = {
     arrowPosition: PropTypes.oneOf(['left', 'right']),
     headerText: PropTypes.string,
@@ -40,7 +21,7 @@ export class HoverDropdownMenuComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.element = React.createRef();
+    this.popperNode = null;
 
     this.closeMenu = _.debounce(() => {
       if (!this.state.mouseInPopover) {
@@ -52,53 +33,61 @@ export class HoverDropdownMenuComponent extends React.Component {
   }
 
   state = {
-    isOpen: false,
-    target: null,
+    isOpen: true,
     mouseInPopover: false,
   };
 
-  componentDidMount() {
-    // prevent default title popup if exists, assuming the first child is the hoverComponent
-    this.element.current.childNodes[0].removeAttribute('title');
+  componentDidUpdate() {
+    if (this.popperNode) {
+      this.popperNode.addEventListener('mouseenter', this.popoverEnterHandler);
+      this.popperNode.addEventListener('mouseleave', this.popoverLeaveHandler);
+    }
   }
 
-  openMenu = event => {
+  openMenu = () => {
     this.setState({
       isOpen: true,
-      target: event.target,
       mouseInPopover: false,
     });
   };
 
   popoverEnterHandler = () => {
-    this.setState({ mouseInPopover: true });
+    this.setState({
+      mouseInPopover: true,
+    });
   };
 
   popoverLeaveHandler = () => {
-    this.setState({ mouseInPopover: false });
-    this.closeMenu();
+    this.setState({ mouseInPopover: false }, this.closeMenu);
+  };
+
+  innerRefFunc = node => {
+    this.popperNode = node;
   };
 
   render() {
     const { arrowPosition, headerText, hoverComponent, children } = this.props;
 
-    const HoverPopover = renderPopoverComponent(arrowPosition);
+    const element = (
+      <div onMouseEnter={this.openMenu} onMouseLeave={this.closeMenu}>
+        {hoverComponent}
+      </div>
+    );
 
     return (
-      <div className="hover-dropdown" ref={this.element} onMouseEnter={this.openMenu} onMouseLeave={this.closeMenu}>
-        {hoverComponent}
+      <div className="hover-dropdown">
         {children && children.length > 0 ? (
-          <Overlay show={this.state.isOpen} target={this.state.target} placement="bottom">
-            <HoverPopover
-              id="hover-dropdown-popover"
-              className="hover-dropdown-popover"
-              onMouseEnter={this.popoverEnterHandler}
-              onMouseLeave={this.popoverLeaveHandler}
-              title={headerText}
-            >
-              <ul className="list-unstyled">{children}</ul>
-            </HoverPopover>
-          </Overlay>
+          <Popover
+            placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}
+            trigger="disabled"
+            isOpen={this.state.isOpen}
+            title={headerText}
+            popoverContent={<ul className="list-unstyled">{children}</ul>}
+            onMouseEnter={this.openMenu}
+            popperRef={this.innerRefFunc}
+          >
+            {element}
+          </Popover>
         ) : null}
       </div>
     );

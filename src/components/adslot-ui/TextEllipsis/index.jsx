@@ -1,26 +1,19 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { OverlayTrigger } from 'react-bootstrap';
 import { Popover } from 'third-party';
+import './styles.scss';
 
-require('./styles.scss');
-
-class TextEllipsisComponent extends Component {
+class TextEllipsisComponent extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    overlayTriggerProps: PropTypes.shape(_.omit(OverlayTrigger.propTypes, ['overlay'])),
-    popoverProps: PropTypes.shape(Popover.propTypes),
+    popoverProps: PropTypes.shape(_.pick(Popover.propTypes, ['placement', 'trigger'])),
   };
 
   static defaultProps = {
-    overlayTriggerProps: {
-      trigger: ['focus', 'hover'],
-      placement: 'top',
-    },
     popoverProps: {
-      id: 'popover',
       placement: 'top',
+      trigger: 'hover',
     },
   };
 
@@ -52,25 +45,15 @@ class TextEllipsisComponent extends Component {
   }
 
   render() {
-    const { popoverProps, overlayTriggerProps } = this.props;
+    const { popoverProps } = this.props;
     const { truncated } = this.state;
 
-    if (truncated) {
-      const tooltip = <Popover {...popoverProps}>{this.props.children}</Popover>;
-
-      return (
-        <OverlayTrigger {...overlayTriggerProps} overlay={tooltip}>
-          <div className="text-ellipsis-component" ref={this.container}>
-            {this.props.children}
-          </div>
-        </OverlayTrigger>
-      );
-    }
-
     return (
-      <div className="text-ellipsis-component" ref={this.container}>
-        {this.props.children}
-      </div>
+      <Popover {...popoverProps} isOpen={truncated} popoverContent={this.props.children}>
+        <div className="text-ellipsis-component" ref={this.container}>
+          {this.props.children}
+        </div>
+      </Popover>
     );
   }
 }

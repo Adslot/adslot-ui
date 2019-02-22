@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Overlay from 'react-bootstrap/lib/Overlay';
 import BootstrapButton from 'react-bootstrap/lib/Button';
 import { Button, Popover } from 'third-party';
 import Spinner from 'alexandria/Spinner';
@@ -57,9 +56,9 @@ describe('ButtonComponent', () => {
 
   it('should render disabled button without a reason popover if no reason given', () => {
     const wrapper = shallow(<Button disabled>Test</Button>);
-    const reasonOverlay = wrapper.find(Overlay);
-    expect(reasonOverlay).to.have.length(1);
-    expect(reasonOverlay.prop('show')).to.eql(false);
+    const popoverWrapper = wrapper.find(Popover);
+    expect(popoverWrapper).to.have.length(1);
+    expect(popoverWrapper.prop('isOpen')).to.eql(false);
   });
 
   it('should render disabled button with a reason popover', () => {
@@ -68,13 +67,13 @@ describe('ButtonComponent', () => {
         Test
       </Button>
     );
-    const button = wrapper.find(BootstrapButton);
-    button.simulate('mouseOver');
-    expect(wrapper.find(Overlay).prop('show')).to.eql(true);
+    wrapper.simulate('mouseOver');
+    const popoverWrapper = wrapper.find(Popover);
+    expect(popoverWrapper.prop('isOpen')).to.equal(true);
     wrapper.update();
-    expect(wrapper.find(Popover).prop('children')).to.eql('Because');
-    button.simulate('mouseOut');
-    expect(wrapper.find(Overlay).prop('show')).to.eql(false);
+    expect(wrapper.find(Popover).prop('popoverContent')).to.eql('Because');
+    wrapper.simulate('mouseOut');
+    expect(wrapper.find(Popover).prop('isOpen')).to.equal(false);
   });
 
   it('should render Spinner if isLoading is true', () => {

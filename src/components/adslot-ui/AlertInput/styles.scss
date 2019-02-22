@@ -3,126 +3,108 @@
 @import '~styles/font-size';
 
 .alert-input-component {
-  align-items: center;
-  background-color: $color-well;
-  border: $border-lighter;
-  border-radius: $border-radius;
-  display: flex;
-  padding: 4px 5px;
-  position: relative;
-
-  &.is-focused {
-    border-color: $color-border;
-  }
-
-  &.success {
-    border-color: $color-positive;
-  }
-
-  &.info {
-    border-color: $color-info;
-  }
-
-  &.warning {
-    border-color: $color-warning;
-  }
-
-  &.error {
-    border-color: $color-negative;
-  }
-
-  &-flex-wrapper {
-    width: 100%;
-  }
-
-  &-input {
+  &-wrapper {
+    align-items: center;
     background-color: $color-well;
-    border: 0;
-    flex: 1;
-    width: 100%;
-    padding: 0;
+    border: $border-lighter;
+    border-radius: $border-radius;
+    display: flex;
+    padding: 4px 5px;
+    position: relative;
 
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &-addon {
-    color: $color-text-addon;
-
-    &:first-child {
-      margin-right: 2px;
+    &-flex-wrapper {
+      width: 100%;
     }
 
-    &:last-child {
-      margin-left: 2px;
+    &.is-focused {
+      border-color: $color-border;
+    }
+
+    &.success {
+      border-color: $color-positive;
+    }
+
+    &.info {
+      border-color: $color-info;
+    }
+
+    &.warning {
+      border-color: $color-warning;
+    }
+
+    &.error {
+      border-color: $color-negative;
+    }
+
+    &-input {
+      background-color: $color-well;
+      border: 0;
+      flex: 1;
+      width: 100%;
+      padding: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-addon {
+      color: $color-text-addon;
+
+      &:first-child {
+        margin-right: 2px;
+      }
+
+      &:last-child {
+        margin-left: 2px;
+      }
     }
   }
 
   &-popover {
-    &.popover {
-      border-radius: 4px;
-      box-shadow: none;
-      font-size: $font-size-small;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: $font-size-small;
 
-      .popover-content {
-        color: inherit;
-        padding: 5px 10px;
-        width: auto;
+    .popover-content {
+      color: inherit;
+      padding: 5px 10px;
+      width: auto;
+    }
+
+    &.success {
+      border-color: $color-positive;
+      color: $color-positive;
+
+      > .arrow {
+        border-bottom-color: $color-positive;
       }
+    }
 
-      &.bottom {
-        $arrow-width: 16px;
-        $arrow-half-width: ($arrow-width / 2);
-        margin-top: $arrow-half-width + 1px;
+    &.info {
+      border-color: $color-info;
+      color: $color-info;
 
-        > .arrow {
-          border-width: $arrow-half-width;
-          margin-left: -$arrow-half-width;
-          top: -($arrow-width);
-
-          &::after {
-            border-width: $arrow-half-width - 1px;
-            margin-left: -($arrow-half-width - 1px);
-            top: -($arrow-half-width - 2px);
-          }
-        }
+      > .arrow {
+        border-bottom-color: $color-info;
       }
+    }
 
-      &.success {
-        border-color: $color-positive;
-        color: $color-positive;
+    &.warning {
+      border-color: $color-warning;
+      color: $color-warning;
 
-        > .arrow {
-          border-bottom-color: $color-positive;
-        }
+      > .arrow {
+        border-bottom-color: $color-warning;
       }
+    }
 
-      &.info {
-        border-color: $color-info;
-        color: $color-info;
+    &.error {
+      border-color: $color-negative;
+      color: $color-negative;
 
-        > .arrow {
-          border-bottom-color: $color-info;
-        }
-      }
-
-      &.warning {
-        border-color: $color-warning;
-        color: $color-warning;
-
-        > .arrow {
-          border-bottom-color: $color-warning;
-        }
-      }
-
-      &.error {
-        border-color: $color-negative;
-        color: $color-negative;
-
-        > .arrow {
-          border-bottom-color: $color-negative;
-        }
+      > .arrow {
+        border-bottom-color: $color-negative;
       }
     }
   }

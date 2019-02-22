@@ -2,8 +2,7 @@
 import _ from 'lodash';
 import React from 'react';
 import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
-import Overlay from 'react-bootstrap/lib/Overlay';
+import { shallow } from 'enzyme';
 import AlertInput from '.';
 
 describe('AlertInput', () => {
@@ -14,34 +13,35 @@ describe('AlertInput', () => {
 
   describe('handleMouseEnter()', () => {
     it('should set `isPopoverVisible` to true if alert message exists', () => {
-      const component = shallow(<AlertInput alertMessage="Hello" />);
-      component.simulate('mouseenter');
-      expect(component.state()).to.eql({
+      const wrapper = shallow(<AlertInput alertMessage="Hello" />);
+      wrapper.instance().handleMouseEnter();
+      expect(wrapper.state()).to.eql({
         isFocused: false,
         isPopoverVisible: true,
       });
     });
 
     it('should not set `isPopoverVisible` to true if no alert message exists', () => {
-      const component = shallow(<AlertInput />);
-      component.simulate('mouseenter');
-      expect(component.state()).to.eql(initialState);
+      const wrapper = shallow(<AlertInput />);
+      wrapper.instance().handleMouseEnter();
+      expect(wrapper.state()).to.eql(initialState);
     });
   });
 
   describe('handleMouseLeave()', () => {
     it('should set `isPopoverVisible` to false', () => {
-      const component = shallow(<AlertInput alertMessage="Hello" />);
-      component.simulate('mouseenter');
-      component.simulate('mouseleave');
-      expect(component.state()).to.eql(initialState);
+      const wrapper = shallow(<AlertInput alertMessage="Hello" />);
+      wrapper.setState({ isPopoverVisible: true });
+      wrapper.instance().handleMouseLeave();
+
+      expect(wrapper.state('isPopoverVisible')).to.equal(false);
     });
   });
 
   describe('handleInputFocus()', () => {
     it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', () => {
       const component = shallow(<AlertInput alertMessage="Hello" />);
-      const inputElement = component.find('.alert-input-component-input');
+      const inputElement = component.find('.alert-input-component-wrapper-input');
       const focusEvent = {
         target: {
           select: sinon.spy(),
@@ -57,7 +57,7 @@ describe('AlertInput', () => {
 
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
       const component = shallow(<AlertInput />);
-      const inputElement = component.find('.alert-input-component-input');
+      const inputElement = component.find('.alert-input-component-wrapper-input');
       const focusEvent = {
         target: {
           select: sinon.spy(),
@@ -79,7 +79,7 @@ describe('AlertInput', () => {
         },
       };
       const component = shallow(<AlertInput onFocus={onFocusSpy} />);
-      const inputElement = component.find('.alert-input-component-input');
+      const inputElement = component.find('.alert-input-component-wrapper-input');
 
       inputElement.simulate('focus', focusEvent);
 
@@ -95,7 +95,7 @@ describe('AlertInput', () => {
   describe('handleInputBlur ()', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
       const component = shallow(<AlertInput />);
-      const inputElement = component.find('.alert-input-component-input');
+      const inputElement = component.find('.alert-input-component-wrapper-input');
       const focusEvent = {
         target: {
           select: _.noop,
@@ -109,7 +109,7 @@ describe('AlertInput', () => {
     it('should call `onBlur` if exists', () => {
       const onBlurSpy = sinon.spy();
       const component = shallow(<AlertInput onBlur={onBlurSpy} />);
-      const inputElement = component.find('.alert-input-component-input');
+      const inputElement = component.find('.alert-input-component-wrapper-input');
       inputElement.simulate('blur');
       expect(onBlurSpy.callCount).to.equal(1);
     });
@@ -125,14 +125,14 @@ describe('AlertInput', () => {
         onValueChange: _.noop,
         onBlur: _.noop,
       };
-      const component = shallow(<AlertInput {...props} />);
-      expect(component.hasClass('alert-input-component')).to.equal(true);
-      expect(component.prop('onMouseEnter')).to.be.a('function');
-      expect(component.prop('onMouseLeave')).to.be.a('function');
-      expect(component.children()).to.have.length(2);
+      const wrapper = shallow(<AlertInput {...props} />);
+      expect(wrapper.hasClass('alert-input-component')).to.equal(true);
+      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      expect(componentWrapper.prop('onMouseEnter')).to.be.a('function');
+      expect(componentWrapper.prop('onMouseLeave')).to.be.a('function');
+      expect(componentWrapper.children()).to.have.length(1);
 
-      const inputElement = component.childAt(0).childAt(0);
-      expect(inputElement.prop('className')).to.equal('alert-input-component-input');
+      const inputElement = wrapper.find('.alert-input-component-wrapper-input');
       expect(inputElement.prop('type')).to.equal('number');
       expect(inputElement.prop('min')).to.equal(0);
       expect(inputElement.prop('placeholder')).to.equal('Type a number');
@@ -140,11 +140,6 @@ describe('AlertInput', () => {
       expect(inputElement.prop('onChange')).to.be.a('function');
       expect(inputElement.prop('onFocus')).to.be.a('function');
       expect(inputElement.prop('onBlur')).to.be.a('function');
-
-      const overlayElement = component.childAt(1);
-      expect(overlayElement.prop('show')).to.equal(false);
-      expect(overlayElement.prop('target')).to.be.a('function');
-      expect(overlayElement.prop('placement')).to.equal('bottom');
     });
 
     it('should also render with default props', () => {
@@ -160,13 +155,14 @@ describe('AlertInput', () => {
         prefixAddon: '$',
         suffixAddon: '.00',
       };
-      const component = shallow(<AlertInput {...props} />);
-      expect(component.children()).to.have.length(4);
+      const wrapper = shallow(<AlertInput {...props} />);
+      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      expect(componentWrapper.children()).to.have.length(3);
 
-      const prefixElement = component.childAt(0);
+      const prefixElement = componentWrapper.childAt(0);
       expect(prefixElement.text()).to.equal('$');
 
-      const suffixElement = component.childAt(2);
+      const suffixElement = componentWrapper.childAt(2);
       expect(suffixElement.text()).to.equal('.00');
     });
 
@@ -174,16 +170,9 @@ describe('AlertInput', () => {
       const props = {
         alertStatus: 'error',
       };
-      const component = shallow(<AlertInput {...props} />);
-      expect(component.prop('className')).to.equal('alert-input-component error');
-    });
-
-    it('should assign reference to root node', () => {
-      const component = mount(<AlertInput />);
-      const instance = component.instance();
-      const overlay = component.find(Overlay);
-      const targetFn = overlay.prop('target');
-      expect(instance.root).to.equal(targetFn());
+      const wrapper = shallow(<AlertInput {...props} />);
+      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      expect(componentWrapper.prop('className')).to.equal('alert-input-component-wrapper error');
     });
   });
 });

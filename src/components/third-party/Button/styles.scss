@@ -1,5 +1,19 @@
+@import '~styles/variable';
+
 .button-component {
   position: relative;
+
+  .popover-wrapper {
+    &[data-placement*='bottom'] {
+      margin-top: 12px;
+
+      .popover-content {
+        max-width: 140px;
+        color: $color-help;
+        font-size: $font-size-small;
+      }
+    }
+  }
 
   &-children-container {
     visibility: hidden; // preserves width and height of button
@@ -23,6 +37,14 @@
           margin-top: -3px;
         }
       }
+    }
+  }
+}
+
+body {
+  >.btn-popover-wrapper {
+    &[data-placement*='bottom'] {
+      margin-top: 12px;
     }
   }
 }

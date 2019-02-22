@@ -1,39 +1,98 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Popover } from '../../src';
+import { Button, Popover } from '../../src';
 
 class PopoverExample extends React.PureComponent {
+  renderPopoverContent = content => (
+    <div>
+      <p>static content</p>
+      <span>{content}</span>
+    </div>
+  );
+
   render() {
     return (
       <>
-        <label>Placement (left, right, bottom, top)</label>
+        <label>Placement (left(-start, -end), top(-start, -end), bottom(-start, -end), right(-start, -end))</label>
         <div style={{ display: 'flex' }}>
-          <Popover id="popover-example-left" placement="left" title="Popover Title">
-            LEFT
+          <Popover placement="left" title="Popover Title" popoverContent="Popover Left">
+            <Button>Left</Button>
           </Popover>
-          <Popover id="popover-example-right" placement="right" title="Popover Title">
-            RIGHT
+          <div className="horizontal-separator" />
+          <Popover placement="top" title="Popover Title" popoverContent="Popover Top">
+            <Button>Top</Button>
           </Popover>
-          <Popover id="popover-example-bottom" placement="bottom" title="Popover Title">
-            BOTTOM
+          <div className="horizontal-separator" />
+          <Popover placement="bottom-start" title="Popover Title" popoverContent="Popover Bottom Start">
+            <Button>Bottom-Start</Button>
           </Popover>
-          <Popover id="popover-example-top" placement="top" title="Popover Title">
-            TOP
+          <div className="horizontal-separator" />
+          <Popover placement="bottom" title="Popover Title" popoverContent="Popover Bottom">
+            <Button>Bottom</Button>
+          </Popover>
+          <div className="horizontal-separator" />
+          <Popover
+            arrowStyles={{ left: 'auto', right: 12 }}
+            placement="bottom-end"
+            title="Popover Title"
+            popoverContent="Popover Bottom End"
+          >
+            <Button>Bottom-End</Button>
+          </Popover>
+          <div className="horizontal-separator" />
+          <Popover placement="right" title="Popover Title" popoverContent="Popover Right">
+            <Button>Right</Button>
+          </Popover>
+
+          <div className="horizontal-separator" />
+          <Popover placement="top-start" title="Popover Title" popoverContent="Popover Top Start">
+            <Button>Top-Start</Button>
+          </Popover>
+          <div className="horizontal-separator" />
+          <Popover placement="top-end" title="Popover Title" popoverContent="Popover Top End">
+            <Button>Top-End</Button>
           </Popover>
         </div>
+        <div className="vertical-separator" />
         <label>Theme (light, dark, warn, error)</label>
         <div style={{ display: 'flex' }}>
-          <Popover id="popover-example-light" placement="bottom" theme="light" title="Popover Title">
-            LIGHT
+          <Popover placement="left" theme="light" title="Popover Title" popoverContent="Light theme">
+            <Button>Light</Button>
           </Popover>
-          <Popover id="popover-example-dark" placement="bottom" theme="dark" title="Popover Title">
-            DARK
+          <div className="horizontal-separator" />
+          <Popover placement="top" theme="dark" title="Popover Title" popoverContent="Dark Theme">
+            <Button>Dark</Button>
           </Popover>
-          <Popover id="popover-example-warn" placement="bottom" theme="warn" title="Popover Title">
-            WARN
+          <div className="horizontal-separator" />
+          <Popover placement="right" theme="warn" title="Popover Title" popoverContent="Warn Theme">
+            <Button>Warn</Button>
           </Popover>
-          <Popover id="popover-example-error" placement="bottom" theme="error" title="Popover Title">
-            ERROR
+          <div className="horizontal-separator" />
+          <Popover placement="bottom" theme="error" title="Popover Title" popoverContent="Error Theme">
+            <Button>Error</Button>
+          </Popover>
+        </div>
+        <div className="vertical-separator" />
+        <label>Trigger (click, hover)</label>
+        <div style={{ display: 'flex' }}>
+          <Popover
+            trigger="click"
+            placement="left"
+            theme="light"
+            title="Popover Title"
+            popoverContent={this.renderPopoverContent('some dynamic content')}
+          >
+            <Button bsStyle="primary">Click Me</Button>
+          </Popover>
+          <div className="horizontal-separator" />
+          <Popover
+            trigger="hover"
+            placement="right"
+            theme="dark"
+            title="Popover Title"
+            popoverContent={this.renderPopoverContent('some other dynamic content')}
+          >
+            <Button bsStyle="primary">Hover Me</Button>
           </Popover>
         </div>
       </>
@@ -44,46 +103,38 @@ class PopoverExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'Popover',
   exampleCodeSnippet: `
-    <Popover id="popover-example-left" placement="left" title="Popover Title">
-      LEFT
+    <Popover placement="left" title="Popover Title" popoverContent="Popover Left">
+      <Button>Left</Button>
     </Popover>
 
-    <Popover id="popover-example-right" placement="right" title="Popover Title">
-      RIGHT
+    <Popover placement="top" title="Popover Title" popoverContent="Popover Top">
+      <Button>Top</Button>
     </Popover>
 
-    <Popover id="popover-example-bottom" placement="bottom" title="Popover Title">
-      BOTTOM
+    <Popover placement="bottom-start" title="Popover Title" popoverContent="Popover Bottom">
+      <Button>Bottom-Start</Button>
     </Popover>
 
-    <Popover id="popover-example-top" placement="top" title="Popover Title">
-      TOP
+    <Popover placement="bottom" title="Popover Title" popoverContent="Popover Bottom">
+      <Button>Bottom</Button>
     </Popover>
 
-    <Popover id="popover-example-light" placement="bottom" theme="light" title="Popover Title">
-      LIGHT
+    <Popover
+      arrowStyles={{ left: 'auto', right: 12 }} 
+      placement="bottom-end" 
+      title="Popover Title" 
+      popoverContent="Popover Bottom"
+    >
+      <Button>Bottom-End</Button>
     </Popover>
 
-    <Popover id="popover-example-dark" placement="bottom" theme="dark" title="Popover Title">
-      DARK
-    </Popover>
-
-    <Popover id="popover-example-warn" placement="bottom" theme="warn" title="Popover Title">
-      WARN
-    </Popover>
-
-    <Popover id="popover-example-error" placement="bottom" theme="error" title="Popover Title">
-      ERROR
+    <Popover placement="right" title="Popover Title" popoverContent="Popover Right">
+      <Button>Right</Button>
     </Popover>
   `,
   propTypeSectionArray: [
     {
       propTypes: [
-        {
-          propType: 'id',
-          type: 'string',
-          note: 'A unique identifier for the element.',
-        },
         {
           propType: 'title',
           type: 'node',
@@ -95,25 +146,61 @@ const exampleProps = {
           note: 'Message content for this popover.',
         },
         {
-          propType: 'bsClass',
-          type: 'text',
-          defaultValue: 'popover',
-          note: `Base className. The default value is 'popover'.`,
-        },
-        {
           propType: 'className',
           type: 'text',
-          note: 'Additional className for the component',
+          note: 'Additional className for the popover content',
+        },
+        {
+          propType: 'wrapperClassName',
+          type: 'text',
+          note: 'Additional className for the popover wrapper',
+        },
+        {
+          propType: 'arrowStyles',
+          type: 'object',
+          note: 'CSS object to add additional styles to the arrow, mainly to customize the position the arrow',
         },
         {
           propType: 'placement',
-          type: 'oneOf[top, right, bottom, left]',
-          defaultValue: 'right',
+          type: 'oneOf[top, right, bottom, left, auto]',
+          defaultValue: 'auto',
         },
         {
           propType: 'theme',
           type: 'oneOf[light, dark, warn, error]',
           defaultValue: 'light',
+        },
+        {
+          propType: 'popoverContent',
+          type: 'node',
+          note: 'Popover content, can be a react element.',
+        },
+        {
+          propType: 'trigger',
+          type: 'oneOf[click, hover]',
+          defaultValue: 'hover',
+        },
+        {
+          propType: 'boundToContainer',
+          type: 'instanceof Element',
+          defaultValue: <pre>document.body</pre>,
+          note: 'Container for the popover to be mounted to',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+        {
+          propType: 'popperRef',
+          type: 'func',
+          note: (
+            <div>
+              <pre>(node) => this.ref = node;</pre>
+              <br />
+              <p>Store the ref of the popover to manipulate when needed.</p>
+            </div>
+          ),
         },
       ],
     },

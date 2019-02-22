@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Overlay from 'react-bootstrap/lib/Overlay';
 import { Popover } from 'third-party';
 import './styles.scss';
 
@@ -15,12 +15,6 @@ export default class AlertInput extends Component {
       isPopoverVisible: false,
     };
   }
-
-  getRef = () => this.root;
-
-  setRef = root => {
-    this.root = root;
-  };
 
   handleMouseEnter = () => {
     if (this.props.alertMessage) {
@@ -69,7 +63,7 @@ export default class AlertInput extends Component {
       onValueChange,
     } = this.props;
 
-    const className = classnames(baseClass, {
+    const className = classnames(`${baseClass}-wrapper`, {
       [alertStatus]: alertStatus,
       'is-focused': this.state.isFocused,
     });
@@ -79,32 +73,32 @@ export default class AlertInput extends Component {
     });
 
     return (
-      <div
-        className={className}
-        ref={this.setRef}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-      >
-        {prefixAddon ? <span className={`${baseClass}-addon`}>{prefixAddon}</span> : null}
-        <span className={`${baseClass}-flex-wrapper`}>
-          <input
-            className={`${baseClass}-input`}
-            type={type}
-            defaultValue={defaultValue}
-            value={value}
-            min={min}
-            placeholder={placeholder}
-            onChange={onValueChange}
-            onFocus={this.handleInputFocus}
-            onBlur={this.handleInputBlur}
-          />
-        </span>
-        {suffixAddon ? <span className={`${baseClass}-addon`}>{suffixAddon}</span> : null}
-        <Overlay show={this.state.isPopoverVisible} target={this.getRef} placement="bottom">
-          <Popover className={popoverClassName} id="alert-input-popover">
-            <strong>{alertMessage}</strong>
-          </Popover>
-        </Overlay>
+      <div className={baseClass}>
+        <Popover
+          isOpen={this.state.isPopoverVisible && !_.isEmpty(alertMessage)}
+          trigger="disabled"
+          popoverContent={<strong>{alertMessage}</strong>}
+          placement="bottom"
+          className={popoverClassName}
+        >
+          <div className={className} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+            {prefixAddon ? <span className={`${baseClass}-wrapper-addon`}>{prefixAddon}</span> : null}
+            <span className={`${baseClass}-wrapper-flex-wrapper`}>
+              <input
+                className={`${baseClass}-wrapper-input`}
+                type={type}
+                defaultValue={defaultValue}
+                value={value}
+                min={min}
+                placeholder={placeholder}
+                onChange={onValueChange}
+                onFocus={this.handleInputFocus}
+                onBlur={this.handleInputBlur}
+              />
+            </span>
+            {suffixAddon ? <span className={`${baseClass}-wrapper-addon`}>{suffixAddon}</span> : null}
+          </div>
+        </Popover>
       </div>
     );
   }
