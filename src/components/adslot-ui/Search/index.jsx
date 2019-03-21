@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SvgSymbol, Spinner } from 'alexandria';
-import './styles.scss';
 
 class Search extends Component {
   constructor(props) {

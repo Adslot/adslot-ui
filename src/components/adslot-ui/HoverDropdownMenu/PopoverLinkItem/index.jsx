@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
-import './styles.scss';
 
 class PopoverLinkItemComponent extends React.PureComponent {
   render() {

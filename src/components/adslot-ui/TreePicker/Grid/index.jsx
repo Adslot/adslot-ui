@@ -10,8 +10,6 @@ import SvgSymbol from 'alexandria/SvgSymbol';
 import Spinner from 'alexandria/Spinner';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 
-require('./styles.scss');
-
 export const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'disabled', 'selected']);
 
 const TreePickerGridComponent = ({

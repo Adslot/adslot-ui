@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { expandDts } from 'lib/utils';
 
-require('./styles.scss');
-
 const SplitPaneComponent = ({ children, dts, additionalClassNames }) => {
   const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);
 

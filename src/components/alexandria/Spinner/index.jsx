@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
 
 const Spinner = ({ size, colourStyle }) => (
   <div className="spinner-component">

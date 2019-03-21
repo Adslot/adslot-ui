@@ -3,7 +3,6 @@ import React from 'react';
 import classnames from 'classnames';
 import { expandDts } from '../../../lib/utils';
 import { radioButtonPropTypes } from '../../prop-types/inputPropTypes';
-import './styles.scss';
 
 class RadioButton extends React.Component {
   constructor(props) {

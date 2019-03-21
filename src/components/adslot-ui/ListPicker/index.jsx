@@ -10,8 +10,6 @@ import GridRow from 'alexandria/Grid/Row';
 import GridCell from 'alexandria/Grid/Cell';
 import SvgSymbol from 'alexandria/SvgSymbol';
 
-require('./styles.scss');
-
 const isSubset = (array, subArray) =>
   _(subArray)
     .difference(array)

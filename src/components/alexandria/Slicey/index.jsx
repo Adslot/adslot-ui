@@ -5,7 +5,6 @@ import Arc from 'alexandria/Slicey/Arc';
 import Donut from 'alexandria/Slicey/Donut';
 import Marker from 'alexandria/Slicey/Marker';
 import { ROUND, HALF, QUARTER, getPointX, getPointY } from './dataProcessor';
-import './styles.scss';
 
 const filterDataset = dataset => _.filter(dataset, ({ value }) => value > 0);
 

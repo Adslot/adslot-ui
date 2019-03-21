@@ -5,12 +5,11 @@ const plugins = [
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-object-rest-spread',
   isTest ? 'istanbul' : '',
+  ['babel-plugin-webpack-alias', { config: './webpack.config.js' }],
 ].filter(Boolean);
 
 const presets = [
-  [
-    '@babel/preset-env', { useBuiltIns: 'entry' }
-  ],
+  ['@babel/preset-env', { useBuiltIns: 'entry' }],
   [
     '@babel/preset-react',
     {

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../../lib/utils';
 
-import './styles.scss';
-
 class CountBadge extends React.PureComponent {
   render() {
     const { value, status, dts } = this.props;

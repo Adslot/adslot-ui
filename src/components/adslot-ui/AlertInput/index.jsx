@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Overlay from 'react-bootstrap/lib/Overlay';
 import { Popover } from 'third-party';
-import './styles.scss';
 
 export const baseClass = 'alert-input-component';
 

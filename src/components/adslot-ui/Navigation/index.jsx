@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { Nav } from 'react-bootstrap';
 import { expandDts } from 'lib/utils';
 
-import './styles.scss';
-
 class NavigationComponent extends React.PureComponent {
   render() {
     const { barPosition, children, dts } = this.props;

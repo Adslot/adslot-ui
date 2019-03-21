@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { Overlay } from 'react-bootstrap';
 import { Popover } from 'third-party';
 import PopoverLinkItem from './PopoverLinkItem';
-import './styles.scss';
 
-// if change this, change the width in styles.scss too
 const POPOVER_WIDTH = 160;
 
 /* eslint-disable react/prop-types */

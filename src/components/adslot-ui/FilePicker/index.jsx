@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from 'react-bootstrap/lib/Button';
 
-require('./styles.scss');
-
 const baseClass = 'filepicker-component';
 
 class FilePickerComponent extends React.PureComponent {

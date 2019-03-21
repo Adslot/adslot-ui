@@ -8,8 +8,6 @@ import FlexibleSpacer from 'alexandria/FlexibleSpacer';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import TreePickerPropTypes from '../../prop-types/TreePickerPropTypes';
 
-require('./styles.scss');
-
 export const removeSelected = ({ subtree, selectedNodes }) => {
   if (!subtree) return subtree;
 

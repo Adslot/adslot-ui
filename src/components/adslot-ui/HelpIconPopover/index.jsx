@@ -4,8 +4,6 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import { expandDts } from 'lib/utils';
 import { Popover } from 'third-party';
 
-import './styles.scss';
-
 const HelpIconPopover = ({ children, id, placement }) => {
   const popover = <Popover id={`popover-${id}`}>{children}</Popover>;
 

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Carousel from 'nuka-carousel';
-import './styles.scss';
 
 const baseClass = 'carousel-component';
 

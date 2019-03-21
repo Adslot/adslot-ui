@@ -9,7 +9,6 @@ import BootstrapButton from 'react-bootstrap/lib/Button';
 import BootstrapOverlay from 'react-bootstrap/lib/Overlay';
 import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
-import './styles.scss';
 
 const adslotButtonPropTypes = {
   inverse: PropTypes.bool,

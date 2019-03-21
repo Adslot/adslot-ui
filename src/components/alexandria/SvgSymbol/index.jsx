@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { classSuffixHelper } from 'lib/utils';
-import './styles.scss';
 
 const base64UrlPrefix = 'data:image/svg+xml;base64,';
 

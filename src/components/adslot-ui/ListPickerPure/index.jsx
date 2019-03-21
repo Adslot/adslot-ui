@@ -9,8 +9,6 @@ import GridRow from 'alexandria/Grid/Row';
 import GridCell from 'alexandria/Grid/Cell';
 import SvgSymbol from 'alexandria/SvgSymbol';
 
-require('./styles.scss');
-
 class ListPickerPureComponent extends React.PureComponent {
   constructor(props) {
     super(props);

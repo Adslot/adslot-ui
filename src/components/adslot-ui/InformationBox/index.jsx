@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbol from 'alexandria/SvgSymbol';
 
-require('./styles.scss');
-
 const InformationBox = ({ children, icon, title, className }) => (
   <div className={`information-box${className ? ` ${className}` : ''}`}>
     {icon ? (

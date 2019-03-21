@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { classSuffixHelper, expandDts } from 'lib/utils';
-import './styles.scss';
 
 const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {
   const componentClass = 'grid-component-row';

@@ -8,8 +8,6 @@ import GridRow from 'alexandria/Grid/Row';
 import GridCell from 'alexandria/Grid/Cell';
 import SvgSymbol from 'alexandria/SvgSymbol';
 
-require('./styles.scss');
-
 class PagedGridComponent extends React.Component {
   constructor() {
     super();

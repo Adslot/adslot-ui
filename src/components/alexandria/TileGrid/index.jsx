@@ -3,7 +3,6 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import idPropType from '../../prop-types/idPropType';
-import './styles.scss';
 
 const defaultWidth = 204; // 204px
 const defaultMaxWidth = 295; // 295px

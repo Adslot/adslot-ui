@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { OverlayTrigger } from 'react-bootstrap';
 import { Popover } from 'third-party';
 
-require('./styles.scss');
-
 class TextEllipsisComponent extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import classnames from 'classnames';
-import './styles.scss';
 
 class PanelComponent extends React.PureComponent {
   static propTypes = {

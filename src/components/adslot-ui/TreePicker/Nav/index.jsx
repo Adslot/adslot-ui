@@ -5,8 +5,6 @@ import Breadcrumb from 'alexandria/Breadcrumb';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 
-require('./styles.scss');
-
 const TreePickerNavComponent = ({
   breadcrumbNodes,
   breadcrumbOnClick,

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
 
 const baseClass = 'avatar-component';
 const Avatar = ({ color, givenName, tooltip, image, surname }) => (

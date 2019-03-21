@@ -8,8 +8,6 @@ import TextEllipsis from 'adslot-ui/TextEllipsis';
 import TreePickerNodeExpander from './Expander';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 
-require('./styles.scss');
-
 const baseClass = 'treepickernode-component';
 
 const printPathText = node =>
