@@ -44,7 +44,7 @@ class Tabs extends React.Component {
 
     const tabs = [];
     const content = React.Children.map(children, child => {
-      if (_.isFunction(child.type) && child.type.innerName === Tab.innerName) {
+      if (!_.isEmpty(child) && _.isFunction(child.type) && child.type.innerName === Tab.innerName) {
         const tab = React.cloneElement(child, {
           show: this.activeKey === child.props.eventKey,
         });
