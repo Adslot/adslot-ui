@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import Tabs from '.';
 import Tab from '../Tab';
@@ -70,5 +70,17 @@ describe('<Tabs />', () => {
     links.last().simulate('click', { preventDefault: _.noop });
     links.last().simulate('click', { preventDefault: _.noop });
     expect(spy.callCount).to.equal(1);
+  });
+
+  it('should not crash when child returns null', () => {
+    const wrapper = mount(
+      <Tabs defaultActiveKey="first" id="test">
+        <Tab eventKey="first" title="Fist">
+          Tab1
+        </Tab>
+        {null}
+      </Tabs>
+    );
+    expect(wrapper.find(Tabs).length).to.equal(1);
   });
 });
