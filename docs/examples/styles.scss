@@ -88,6 +88,25 @@
       margin-left: 20px;
     }
   }
+
+  &.button-group-example {
+    .adslot-ui-example {
+      display: flex;
+
+      .aui--button-group {
+        .svg-symbol-component {
+          display: flex;
+          fill: $color-white;
+        }
+
+        .btn-inverse {
+          .svg-symbol-component {
+            fill: $color-black;
+          }
+        }
+      }
+    }
+  }
 }
 
 .full-width {
