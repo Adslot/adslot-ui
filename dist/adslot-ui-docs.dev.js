@@ -13790,7 +13790,7 @@ function (_React$Component) {
           children = _this$props2.children;
       var tabs = [];
       var content = external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Children.map(children, function (child) {
-        if (external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.isFunction(child.type) && child.type.innerName === adslot_ui_Tab.innerName) {
+        if (!external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.isEmpty(child) && external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.isFunction(child.type) && child.type.innerName === adslot_ui_Tab.innerName) {
           var tab = external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.cloneElement(child, {
             show: _this3.activeKey === child.props.eventKey
           });
