@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Avatar } from '../../src';
+import { Avatar } from 'adslot-ui';
 
 class AvatarExample extends React.PureComponent {
   render() {

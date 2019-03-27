@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Popover } from '../../src';
+import { Popover } from 'adslot-ui';
 
 class PopoverExample extends React.PureComponent {
   render() {

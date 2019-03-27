@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { InformationBox } from '../../src';
+import { InformationBox } from 'adslot-ui';
 
 class InformationBoxExample extends React.PureComponent {
   render() {

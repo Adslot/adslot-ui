@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { TileGrid } from '../../src';
+import { TileGrid } from 'adslot-ui';
 
 const exampleImageLink = './docs/assets/tileGrid/example-image.jpg';
 

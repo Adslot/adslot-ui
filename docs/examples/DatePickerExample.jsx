@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Example from '../components/Example';
-import { DatePicker } from '../../src';
+import { DatePicker } from 'adslot-ui';
 
 class DatePickerExample extends React.Component {
   constructor() {

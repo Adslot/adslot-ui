@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { SvgSymbolCircle } from '../../src';
+import { SvgSymbolCircle } from 'adslot-ui';
 
 class SvgSymbolCircleExample extends React.PureComponent {
   render() {

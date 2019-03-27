@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import { Button, Tag } from '../../src';
+import { Button, Tag } from 'adslot-ui';
 
 const initialState = {
   tags: [

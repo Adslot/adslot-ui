@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { CountBadge } from '../../src';
+import { CountBadge } from 'adslot-ui';
 
 class CountBadgeExample extends React.PureComponent {
   render() {

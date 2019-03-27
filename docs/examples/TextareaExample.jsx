@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Textarea } from '../../src';
+import { Textarea } from 'adslot-ui';
 
 class TextareaExample extends React.PureComponent {
   render() {

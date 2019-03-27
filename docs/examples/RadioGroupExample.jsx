@@ -1,7 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import RadioGroup from 'adslot-ui/RadioGroup';
-import Radio from 'adslot-ui/Radio';
+import { RadioGroup, Radio } from 'adslot-ui';
 
 class RadioGroupExample extends React.PureComponent {
   constructor(props) {

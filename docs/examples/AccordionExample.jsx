@@ -1,6 +1,6 @@
 import React from 'react';
+import { Accordion, Checkbox } from 'adslot-ui';
 import Example from '../components/Example';
-import { Accordion, Checkbox } from '../../src';
 
 class AccordionExample extends React.Component {
   state = {

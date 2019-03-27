@@ -1,6 +1,6 @@
 import React from 'react';
+import { Alert } from 'adslot-ui';
 import Example from '../components/Example';
-import { Alert } from '../../src';
 
 class AlertExample extends React.PureComponent {
   render() {

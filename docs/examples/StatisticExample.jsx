@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Statistic } from '../../src';
+import { Statistic } from 'adslot-ui';
 
 class StatisticExample extends React.PureComponent {
   render() {

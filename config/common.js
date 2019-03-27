@@ -9,9 +9,10 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx'],
     alias: {
-      'third-party': `${srcPath}/components/third-party`,
-      'adslot-ui': `${srcPath}/components/adslot-ui`,
-      alexandria: `${srcPath}/components/alexandria`,
+      'third-party': `${srcPath}/third-party/`,
+      'adslot-ui': `${srcPath}/`,
+      components: `${srcPath}/components/`,
+      'common-prop-types': `${srcPath}/prop-types/`,
       lib: `${srcPath}/lib/`,
       styles: `${srcPath}/styles/`, // When importing from `.scss` files prefix with ~ like `@import ~styles/variables`
     },

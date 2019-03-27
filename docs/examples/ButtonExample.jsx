@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Button } from '../../src';
+import { Button } from 'adslot-ui';
 
 class ButtonExample extends React.PureComponent {
   constructor(props) {

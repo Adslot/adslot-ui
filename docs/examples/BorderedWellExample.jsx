@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { BorderedWell } from '../../src';
+import { BorderedWell } from 'adslot-ui';
 
 class BorderedWellExample extends React.PureComponent {
   render() {

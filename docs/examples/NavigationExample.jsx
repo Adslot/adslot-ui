@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Nav, NavItem } from '../../src';
+import { Nav, NavItem } from 'adslot-ui';
 
 class NavigationExample extends React.PureComponent {
   constructor(props) {

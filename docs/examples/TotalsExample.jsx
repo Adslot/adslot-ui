@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Totals } from '../../src';
+import { Totals } from 'adslot-ui';
 
 class TotalsExample extends React.PureComponent {
   render() {

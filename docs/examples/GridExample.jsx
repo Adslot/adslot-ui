@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Grid, GridCell, GridRow } from '../../src';
+import { Grid, GridCell, GridRow } from 'adslot-ui';
 
 const cellClicked = () => console.log('Cell clicked');
 

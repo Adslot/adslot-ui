@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Spinner } from '../../src';
+import { Spinner } from 'adslot-ui';
 
 class SpinnerExample extends React.PureComponent {
   render() {

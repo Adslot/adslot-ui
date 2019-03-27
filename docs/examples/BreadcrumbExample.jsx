@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import { Button, Breadcrumb } from '../../src';
+import { Button, Breadcrumb } from 'adslot-ui';
 
 const initialState = {
   breadcrumbNodes: [

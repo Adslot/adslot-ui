@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { PrettyDiff } from '../../src';
+import { PrettyDiff } from 'adslot-ui';
 
 class PrettyDiffExample extends React.PureComponent {
   render() {

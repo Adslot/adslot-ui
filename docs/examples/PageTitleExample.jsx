@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { PageTitle } from '../../src';
+import { PageTitle } from 'adslot-ui';
 
 class PageTitleExample extends React.PureComponent {
   render() {

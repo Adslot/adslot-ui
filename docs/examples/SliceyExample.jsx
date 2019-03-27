@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Slicey } from '../../src';
+import { Slicey } from 'adslot-ui';
 
 class SliceyExample extends React.PureComponent {
   render() {

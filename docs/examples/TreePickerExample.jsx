@@ -1,7 +1,7 @@
 import React from 'react';
 import Example from '../components/Example';
 import _ from 'lodash';
-import { TreePickerSimplePure } from '../../src';
+import { TreePickerSimplePure } from 'adslot-ui';
 
 class TreePickerExample extends React.Component {
   constructor() {

@@ -11,7 +11,6 @@ Core component library. By Adslot
 ---------------------------------
 
 A library of core components used to develop our Adslot and Symphony products.
-This includes Alexandria and third-party restyled components, e.g. Bootstrap.
 
 Technology:
 
@@ -63,20 +62,13 @@ npm run test:watch [--file=<path>] [--coverage]
 Generating New Components
 -------------------------
 
-__Adslot UI:__
-
 As simple as running the `scaffold` command which will create your new Adslot UI component from `/component-template`.
 
 ```sh
 npm run scaffold MyComponentName
 ```
 
-You'll get an `index.jsx`, `index.spec.jsx` and `styles.scss` created under `src/components/adslot-ui/MyComponentName`.
-
-__Alexandria:__
-
-We don't have a command for generating Alexandria components.
-Create a directory for the component, and put all related files in there. You can copy `/component-template` to help.
+You'll get an `index.jsx`, `index.spec.jsx` and `styles.scss` created under `src/components/MyComponentName`.
 
 Build Profiling
 ---------------

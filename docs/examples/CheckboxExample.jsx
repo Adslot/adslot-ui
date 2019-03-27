@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import { Checkbox } from '../../src';
+import { Checkbox } from 'adslot-ui';
 
 const handleChange = (...arg) => console.log('Checkbox changed with arguments', ...arg);
 

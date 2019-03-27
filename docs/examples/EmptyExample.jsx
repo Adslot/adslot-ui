@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Empty } from '../../src';
+import { Empty } from 'adslot-ui';
 
 class EmptyExample extends React.PureComponent {
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Card } from '../../src';
+import { Card } from 'adslot-ui';
 
 class CardExample extends React.PureComponent {
   render() {

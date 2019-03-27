@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Example from '../components/Example';
-import { Panel } from '../../src';
+import { Panel } from 'adslot-ui';
 
 class PanelExample extends React.Component {
   constructor() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Button, ConfirmModal } from '../../src';
+import { Button, ConfirmModal } from 'adslot-ui';
 
 class ConfirmModalExample extends React.PureComponent {
   constructor() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { PagedGrid } from '../../src';
+import { PagedGrid } from 'adslot-ui';
 
 class PagedGridExample extends React.PureComponent {
   render() {

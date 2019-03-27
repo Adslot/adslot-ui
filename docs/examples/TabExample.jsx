@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Empty, SvgSymbol, FlexibleSpacer, Tabs, Tab } from '../../src';
+import { Empty, SvgSymbol, FlexibleSpacer, Tabs, Tab } from 'adslot-ui';
 
 class TabExample extends React.Component {
   state = {
