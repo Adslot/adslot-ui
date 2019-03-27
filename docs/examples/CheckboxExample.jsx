@@ -36,7 +36,7 @@ const CheckboxExample = () => (
       onChange={handleChange}
     />
     <h4>Partial Selected</h4>
-    <Checkbox label={`Checked: 'partial'`} checked="partial" inline className="fix-size" onChange={handleChange} />
+    <Checkbox label={"Checked: 'partial'"} checked="partial" inline className="fix-size" onChange={handleChange} />
     <Checkbox
       label={
         <p>
@@ -61,51 +61,67 @@ const CheckboxExample = () => (
 
 const exampleProps = {
   componentName: 'Checkbox',
-  notes: '',
+  notes: (
+    <p>
+      This component supports 3 states <b>checked</b>, <b>partial checked</b> and <b>non-checked</b>
+    </p>
+  ),
   exampleCodeSnippet: `
+  handleChange = (nextCheckState, name, value) => {
+    // onChange logic
+    // The nextCheckState is:
+    // true => false  false => true  'partial' => false
+  }
+
   <h4>Not selected</h4>
-  <Checkbox label="Checked: false" checked={false} inline />
-  <Checkbox
-    label={
-      <p>
-        Checked: false <br /> <b>Disabled</b>
-      </p>
-    }
-    checked={false}
-    disabled
-    inline
-  />
-  <h4>Selected</h4>
-  <Checkbox label="Checked: true" checked inline />
-  <Checkbox
-    label={
-      <p>
-        Checked: true <br /> <b>Disabled</b>
-      </p>
-    }
-    checked
-    disabled
-    inline
-  />
-  <h4>Partial Selected</h4>
-  <Checkbox label={\`Checked: 'partial'\`} checked="partial" inline />
-  <Checkbox
-    label={
-      <p>
-        Checked: 'partial' <br /> <b>Disabled</b>
-      </p>
-    }
-    checked="partial"
-    disabled
-    inline
-  />
-  <h4>Checkboxes without labels</h4>
-  <Checkbox checked={false} inline />
-  <Checkbox checked={false} disabled inline />
-  <Checkbox checked inline />
-  <Checkbox checked disabled inline />
-  <Checkbox checked="partial" inline />
-  <Checkbox checked="partial" disabled inline />
+    <Checkbox label="Checked: false" checked={false} inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: false <br /> <b>Disabled</b>
+        </p>
+      }
+      checked={false}
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Selected</h4>
+    <Checkbox label="Checked: true" checked inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: true <br /> <b>Disabled</b>
+        </p>
+      }
+      checked
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Partial Selected</h4>
+    <Checkbox label={"Checked: 'partial'"} checked="partial" inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: 'partial' <br /> <b>Disabled</b>
+        </p>
+      }
+      checked="partial"
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Checkboxes without labels</h4>
+    <Checkbox checked={false} inline onChange={handleChange} />
+    <Checkbox checked={false} disabled inline onChange={handleChange} />
+    <Checkbox checked inline onChange={handleChange} />
+    <Checkbox checked disabled inline onChange={handleChange} />
+    <Checkbox checked="partial" inline onChange={handleChange} />
+    <Checkbox checked="partial" disabled inline onChange={handleChange} />
   `,
   propTypeSectionArray: [
     {
