@@ -6,26 +6,33 @@ import { Popover } from 'third-party';
 
 import './styles.scss';
 
-const HelpIconPopover = ({ children, id, placement }) => {
-  const popover = <Popover id={`popover-${id}`}>{children}</Popover>;
+const IconPopover = iconName => ({ children, id, placement, theme }) => {
+  const popover = (
+    <Popover id={`popover-${id}`} theme={theme}>
+      {children}
+    </Popover>
+  );
+  const comonentName = `${iconName}-icon-popover-component`;
 
   return (
-    <div {...expandDts(id)} className="help-icon-popover-component">
+    <div {...expandDts(id)} className={comonentName}>
       <OverlayTrigger trigger={['focus', 'hover']} placement={placement} overlay={popover}>
-        <div className="help-icon-popover-component-trigger" />
+        <div className={`${comonentName}-trigger`} />
       </OverlayTrigger>
     </div>
   );
 };
 
-HelpIconPopover.propTypes = {
+IconPopover.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  theme: PropTypes.oneOf(Popover.themes),
 };
 
-HelpIconPopover.defaultProps = {
+IconPopover.defaultProps = {
   placement: 'right',
+  theme: 'light',
 };
 
-export default HelpIconPopover;
+export default IconPopover;

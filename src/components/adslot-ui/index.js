@@ -5,7 +5,8 @@ import Checkbox from 'adslot-ui/Checkbox';
 import CheckboxGroup from 'adslot-ui/CheckboxGroup';
 import ConfirmModal from 'adslot-ui/ConfirmModal';
 import CountBadge from 'adslot-ui/CountBadge';
-import HelpIconPopover from 'adslot-ui/HelpIconPopover';
+import HelpIconPopover from 'adslot-ui/IconPopover/HelpIconPopover';
+import InfoIconPopover from 'adslot-ui/IconPopover/InfoIconPopover';
 import FilePicker from 'adslot-ui/FilePicker';
 import FormGroup from 'adslot-ui/FormGroup';
 import ListPicker from 'adslot-ui/ListPicker';
@@ -43,6 +44,7 @@ export {
   FilePicker,
   FormGroup,
   HelpIconPopover,
+  InfoIconPopover,
   ListPicker,
   ListPickerPure,
   Nav,

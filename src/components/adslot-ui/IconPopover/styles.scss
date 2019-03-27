@@ -1,0 +1,28 @@
+@import '~styles/color';
+@import '~styles/icon';
+
+$help-icon-size: 10px;
+
+@mixin icon-trigger() {
+  width: $help-icon-size;
+  height: $help-icon-size;
+  background-size: $help-icon-size;
+  margin-bottom: -1px;
+}
+
+.help-icon-popover-component,
+.info-icon-popover-component {
+  display: inline-block;
+  padding-left: 3px;
+}
+
+.help-icon-popover-component-trigger {
+  background-image: url('~styles/icons/help_icon.svg');
+  @include icon-trigger();
+}
+
+.info-icon-popover-component-trigger {
+  background-image: url('~styles/icons/info_icon.svg');
+  @include icon-trigger();
+}
+

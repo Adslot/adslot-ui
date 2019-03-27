@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import { Popover } from 'third-party';
-import HelpIconPopover from 'adslot-ui/HelpIconPopover';
+import HelpIconPopover from './HelpIconPopover';
 
 describe('HelpIconPopoverComponent', () => {
   it('should render with defaults', () => {

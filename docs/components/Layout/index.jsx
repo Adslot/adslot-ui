@@ -47,6 +47,7 @@ import AccordionPanelExample from '../../examples/AccordionPanelExample';
 import CarouselExample from '../../examples/CarouselExample';
 import ConfirmModalExample from '../../examples/ConfirmModalExample';
 import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
+import InfoIconPopoverExample from '../../examples/InfoIconPopoverExample';
 import ListPickerExample from '../../examples/ListPickerExample';
 import PagedGridExample from '../../examples/PagedGridExample';
 import PanelExample from '../../examples/PanelExample';
@@ -214,6 +215,7 @@ class PageLayout extends React.Component {
             <PageTitle title="Dialogue" />
             <PopoverExample />
             <HelpIconPopoverExample />
+            <InfoIconPopoverExample />
             <AvatarExample />
 
             <PageTitle title="Modals" />

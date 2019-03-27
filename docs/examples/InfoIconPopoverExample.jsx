@@ -1,15 +1,23 @@
 import React from 'react';
 import Example from '../components/Example';
-import { HelpIconPopover } from '../../src';
+import { InfoIconPopover } from '../../src';
 
-class HelpIconPopoverExample extends React.PureComponent {
+class InfoIconPopoverExample extends React.PureComponent {
   render() {
     return (
-      <HelpIconPopover id="help-text-example">
+      <InfoIconPopover id="info-text-example" theme="dark" placement="bottom">
+        <h5>
+          <b>Infomation Tip</b>
+        </h5>
         <p>
-          Download your <em>latest</em> report.
+          <i>Some information</i>
         </p>
-      </HelpIconPopover>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a erat nulla. Morbi sed accumsan magna, nec
+          viverra arcu. Nullam nec nisi nisl. Sed sapien risus, lacinia vel lorem ut, varius finibus libero. Praesent
+          pretium nisi sed odio pellentesque.
+        </p>
+      </InfoIconPopover>
     );
   }
 }
@@ -34,9 +42,9 @@ const exampleProps = {
     </span>
   ),
   exampleCodeSnippet: `
-  <HelpIconPopover id="help-text-example">
+  <InfoIconPopover id="help-text-example">
     <p>Download your <em>latest</em> report.</p>
-  </HelpIconPopover>`,
+  </InfoIconPopover>`,
   propTypeSectionArray: [
     {
       propTypes: [
@@ -67,6 +75,6 @@ const exampleProps = {
 
 export default () => (
   <Example {...exampleProps}>
-    <HelpIconPopoverExample />
+    <InfoIconPopoverExample />
   </Example>
 );
