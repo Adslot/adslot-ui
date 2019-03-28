@@ -82,6 +82,12 @@
       width: 200px;
     }
   }
+
+  &.status-pill-example {
+    .aui--status-pill + .aui--status-pill {
+      margin-left: 20px;
+    }
+  }
 }
 
 .full-width {
