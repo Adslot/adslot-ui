@@ -29,6 +29,7 @@ import FlexibleSpacerExample from '../../examples/FlexibleSpacerExample';
 import PageTitleExample from '../../examples/PageTitleExample';
 import SliceyExample from '../../examples/SliceyExample';
 import StatisticExample from '../../examples/StatisticExample';
+import StatusPillExample from '../../examples/StatusPillExample';
 import TagExample from '../../examples/TagExample';
 import TotalsExample from '../../examples/TotalsExample';
 import AvatarExample from '../../examples/AvatarExample';
@@ -90,7 +91,7 @@ const componentsBySection = {
   'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
-  'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff'],
+  'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff', 'status-pill'],
   dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
   search: ['search', 'search-bar', 'tag'],
@@ -210,6 +211,7 @@ class PageLayout extends React.Component {
             <EmptyExample />
             <SpinnerExample />
             <PrettyDiffExample />
+            <StatusPillExample />
 
             <PageTitle title="Dialogue" />
             <PopoverExample />

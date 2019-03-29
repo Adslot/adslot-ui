@@ -17,6 +17,7 @@ import RadioGroup from 'adslot-ui/RadioGroup';
 import Search from 'adslot-ui/Search';
 import SearchBar from 'adslot-ui/SearchBar';
 import SplitPane from 'adslot-ui/SplitPane';
+import StatusPill from 'adslot-ui/StatusPill';
 import Tab from 'adslot-ui/Tab';
 import Tabs from 'adslot-ui/Tabs';
 import Textarea from 'adslot-ui/Textarea';
@@ -53,6 +54,7 @@ export {
   Search,
   SearchBar,
   SplitPane,
+  StatusPill,
   Tab,
   Tabs,
   Textarea,

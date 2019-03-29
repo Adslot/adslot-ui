@@ -1,0 +1,76 @@
+@import '~styles/variable';
+
+$color-primary: $color-status-blue;
+$color-primary-background: rgba($color-primary, .35);
+$color-success: $color-status-green;
+$color-success-background: rgba($color-success, .35);
+$color-warning: $color-status-orange;
+$color-warning-background: rgba($color-warning, .35);
+$color-error: $color-status-red;
+$color-error-background: rgba($color-error, .35);
+$color-light: $color-status-light;
+$color-inverse-border: $color-status-light;
+
+.aui--status-pill {
+  font-size: $font-size-base;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  user-select: none;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  color: $color-gray-darker;
+
+  &.aui--status-pill-primary {
+    background-color: $color-primary-background;
+
+    &.aui--status-pill-inverse {
+      background-color: $color-background;
+      border-color: $color-inverse-border;
+      color: $color-primary;
+    }
+  }
+
+  &.aui--status-pill-success {
+    background-color: $color-success-background;
+
+    &.aui--status-pill-inverse {
+      background-color: $color-background;
+      border-color: $color-inverse-border;
+      color: $color-success;
+    }
+  }
+
+  &.aui--status-pill-warning {
+    background-color: $color-warning-background;
+
+    &.aui--status-pill-inverse {
+      background-color: $color-background;
+      border-color: $color-inverse-border;
+      color: $color-warning;
+    }
+  }
+
+  &.aui--status-pill-error {
+    background-color: $color-error-background;
+
+    &.aui--status-pill-inverse {
+      background-color: $color-background;
+      border-color: $color-inverse-border;
+      color: $color-error;
+    }
+  }
+
+  &.aui--status-pill-light {
+    background-color: $color-light;
+
+    &.aui--status-pill-inverse {
+      background-color: $color-background;
+      border-color: $color-inverse-border;
+    }
+  }
+}
