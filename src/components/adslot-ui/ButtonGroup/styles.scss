@@ -1,0 +1,49 @@
+@import '~styles/color';
+
+.aui--button-group {
+  display: flex;
+
+  .button-component {
+    margin-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    &.btn-inverse:hover,
+    &.btn-inverse:active,
+    &.btn-inverse:focus {
+      border: 1px solid $color-gray-light;
+      background-color: $color-gray-lighter;
+    }
+
+    &.btn,
+    &.btn:hover {
+      border: 1px solid $color-gray-light;
+      border-right-width: 0;
+    }
+
+    &:first-child {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    &:last-child,
+    &:last-child:hover,
+    &:last-child:active {
+      border-right-width: 1px;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
+
+  + .aui--button-group {
+    margin-left: 20px;
+  }
+
+  + button {
+    margin-right: 20px;
+  }
+}
+
+button + .aui--button-group {
+  margin-left: 20px;
+}

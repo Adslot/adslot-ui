@@ -45,6 +45,7 @@ import {
 import {
   Accordion,
   AlertInput,
+  ButtonGroup,
   Carousel,
   Checkbox,
   CheckboxGroup,
@@ -86,6 +87,7 @@ export {
   BorderedWell,
   Breadcrumb,
   Button,
+  ButtonGroup,
   Card,
   Carousel,
   Checkbox,
