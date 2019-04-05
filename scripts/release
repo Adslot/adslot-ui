@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const axios = require('axios');
+
 const currentTag = process.env.CURRENT_TAG;
 const latestTag = process.env.LATEST_TAG;
 const releaseBranch = process.env.RELEASE_BRANCH;
@@ -27,7 +28,10 @@ const getIncludedCommits = () => buildBot.get(`/compare/${currentTag}...${latest
 const formatCommitMsg = commits =>
   commits
     .filter(({ commit }) => !commit.message.startsWith('Merge pull request #'))
-    .map(({ commit, sha }) => `- [${sha}] - ${commit.message}`)
+    .map(({ commit, sha }) => {
+      const [first, ...rest] = commit.message.split('\n');
+      return `- [${sha}] ${first}\n ${rest.map(line => `\n\t${line}\n`).join('\n')}`;
+    })
     .join('\n');
 
 const createPullRequest = body =>
