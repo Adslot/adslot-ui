@@ -107,6 +107,26 @@
       }
     }
   }
+
+  &.overlay-loader-example {
+    .static-markup {
+      display: flex;
+      margin-bottom: 50px;
+      width: 300px;
+
+      .aui--overlay-loader {
+        position: inherit;
+
+        .loader {
+          position: inherit;
+        }
+
+        + .aui--overlay-loader {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 }
 
 .full-width {

@@ -77,6 +77,7 @@ import {
   UserListPicker,
   InformationBox,
   HoverDropdownMenu,
+  OverlayLoader,
 } from 'adslot-ui';
 
 export {
@@ -145,4 +146,5 @@ export {
   UserListPicker,
   InformationBox,
   HoverDropdownMenu,
+  OverlayLoader,
 };
