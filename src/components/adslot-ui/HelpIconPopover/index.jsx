@@ -6,7 +6,7 @@ import './styles.scss';
 
 const HelpIconPopover = ({ children, id, placement }) => (
   <div {...expandDts(id)} className="help-icon-popover-component">
-    <Popover trigger="hover" placement={placement} popoverContent={children}>
+    <Popover triggers={['hover']} placement={placement} popoverContent={children}>
       <div className="help-icon-popover-component-trigger" />
     </Popover>
   </div>

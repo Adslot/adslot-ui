@@ -71,7 +71,7 @@ class Button extends React.PureComponent {
           popoverContent={reason || ''}
           placement="bottom"
           isOpen={this.state.show}
-          trigger="disabled"
+          triggers={['disabled']}
         >
           {this.renderSpinner()}
           <div className={isLoading ? 'button-component-children-container' : null}>{children}</div>

@@ -76,7 +76,7 @@ export default class AlertInput extends Component {
       <div className={baseClass}>
         <Popover
           isOpen={this.state.isPopoverVisible && !_.isEmpty(alertMessage)}
-          trigger="disabled"
+          triggers={['disabled']}
           popoverContent={<strong>{alertMessage}</strong>}
           placement="bottom"
           className={popoverClassName}

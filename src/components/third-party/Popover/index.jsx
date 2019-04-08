@@ -19,7 +19,7 @@ class Popover extends React.PureComponent {
     placement: PropTypes.oneOf(popoverPlacements),
     popoverContent: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired,
-    trigger: PropTypes.oneOf(['click', 'hover', 'disabled']),
+    triggers: PropTypes.arrayOf(PropTypes.oneOf(['click', 'hover', 'focus', 'disabled'])),
     isOpen: PropTypes.bool,
     boundToContainer: PropTypes.instanceOf(Element),
     popperRef: PropTypes.func,
@@ -29,7 +29,7 @@ class Popover extends React.PureComponent {
   static defaultProps = {
     theme: 'light',
     placement: 'auto',
-    trigger: 'hover',
+    triggers: ['hover'],
     isOpen: false,
     boundToContainer: document.body, // default to bound to body
   };
@@ -39,18 +39,37 @@ class Popover extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.trigger !== 'disabled') {
+    if (!props.triggers.includes('disabled')) {
       return state;
     }
 
     return { isPopoverOpen: props.isOpen };
   }
 
-  onClick = () => (this.props.trigger === 'click' ? this.togglePopover() : null);
+  onClick = () => {
+    const { triggers } = this.props;
+    return !triggers.includes('disabled') && triggers.includes('click') ? this.togglePopover() : null;
+  };
 
-  onMouseOver = () => (this.props.trigger === 'hover' ? this.openPopover() : null);
+  onFocus = () => {
+    const { triggers } = this.props;
+    return !triggers.includes('disabled') && triggers.includes('focus') ? this.openPopover() : null;
+  };
 
-  onMouseOut = () => (this.props.trigger === 'hover' ? this.closePopover() : null);
+  onBlur = () => {
+    const { triggers } = this.props;
+    return !triggers.includes('disabled') && triggers.includes('focus') ? this.closePopover() : null;
+  };
+
+  onMouseOver = () => {
+    const { triggers } = this.props;
+    return !triggers.includes('disabled') && triggers.includes('hover') ? this.openPopover() : null;
+  };
+
+  onMouseOut = () => {
+    const { triggers } = this.props;
+    return !triggers.includes('disabled') && triggers.includes('hover') ? this.closePopover() : null;
+  };
 
   closePopover = () => this.setState({ isPopoverOpen: false });
 
@@ -103,9 +122,9 @@ class Popover extends React.PureComponent {
               ref={ref}
               onClick={this.onClick}
               onMouseOver={this.onMouseOver}
-              onFocus={_.noop}
+              onFocus={this.onFocus}
               onMouseOut={this.onMouseOut}
-              onBlur={_.noop}
+              onBlur={this.onBlur}
             >
               {children}
             </span>

@@ -9,7 +9,7 @@ describe('HelpIconPopoverComponent', () => {
     expect(wrapper.prop('data-test-selector')).to.equal('tired-help');
     const popoverWrapper = wrapper.find(Popover);
     expect(popoverWrapper.prop('placement')).to.equal('right');
-    expect(popoverWrapper.prop('trigger')).to.deep.equal('hover');
+    expect(popoverWrapper.prop('triggers')).to.deep.equal(['hover']);
     expect(popoverWrapper.prop('popoverContent')).to.equal('Have some coffee.');
   });
 

@@ -8,7 +8,7 @@ describe('Popover Component', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-      <Popover id="popover-example" theme="dark" popoverContent={<div />} trigger="click">
+      <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers={['click']}>
         Test message
       </Popover>
     );
@@ -16,9 +16,9 @@ describe('Popover Component', () => {
 
   describe('getDerivedStateFromProps()', () => {
     it('should return the new state', () => {
-      expect(Popover.getDerivedStateFromProps({ trigger: 'disabled', isOpen: true }, { isPopoverOpen: false })).to.eql({
-        isPopoverOpen: true,
-      });
+      expect(
+        Popover.getDerivedStateFromProps({ triggers: ['disabled'], isOpen: true }, { isPopoverOpen: false })
+      ).to.eql({ isPopoverOpen: true });
     });
   });
 
@@ -30,7 +30,7 @@ describe('Popover Component', () => {
     });
 
     it('should do nothing if trigger is not `click`', () => {
-      wrapper.setProps({ trigger: 'hover' });
+      wrapper.setProps({ triggers: ['hover'] });
       expect(wrapper.state('isPopoverOpen')).to.equal(false);
       wrapper.instance().onClick();
       expect(wrapper.state('isPopoverOpen')).to.equal(false);
@@ -40,7 +40,7 @@ describe('Popover Component', () => {
   describe('onMouseOver()', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <Popover id="popover-example" theme="dark" popoverContent={<div />} trigger="hover">
+        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers={['hover']}>
           Test message
         </Popover>
       );
@@ -53,7 +53,7 @@ describe('Popover Component', () => {
     });
 
     it('should do nothing if trigger is not `hover`', () => {
-      wrapper.setProps({ trigger: 'click' });
+      wrapper.setProps({ triggers: ['click'] });
       expect(wrapper.state('isPopoverOpen')).to.equal(false);
       wrapper.instance().onMouseOver();
       expect(wrapper.state('isPopoverOpen')).to.equal(false);
@@ -63,7 +63,7 @@ describe('Popover Component', () => {
   describe('onMouseOut()', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <Popover id="popover-example" theme="dark" popoverContent={<div />} trigger="hover">
+        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers={['hover']}>
           Test message
         </Popover>
       );
@@ -78,7 +78,7 @@ describe('Popover Component', () => {
     });
 
     it('should do nothing if trigger is not `hover`', () => {
-      wrapper.setProps({ trigger: 'click' });
+      wrapper.setProps({ triggers: ['click'] });
       expect(wrapper.state('isPopoverOpen')).to.equal(true);
       wrapper.instance().onMouseOut();
       expect(wrapper.state('isPopoverOpen')).to.equal(true);

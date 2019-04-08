@@ -79,7 +79,7 @@ export class HoverDropdownMenuComponent extends React.PureComponent {
         {children && children.length > 0 ? (
           <Popover
             placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}
-            trigger="disabled"
+            triggers={['disabled']}
             isOpen={this.state.isOpen}
             title={headerText}
             popoverContent={<ul className="list-unstyled">{children}</ul>}
