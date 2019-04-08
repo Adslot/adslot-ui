@@ -24,6 +24,10 @@ Our commit message follows the conventional commit standard.
 
 See https://github.com/marionebl/commitlint/tree/master/@commitlint/config-conventional for details.
 
+## Classname conventions
+
+Component classnames should be prefixed with namespace `aui--`. For example, `aui--my-component`.
+
 ## Releasing
 
 See [Release](RELEASE.md).

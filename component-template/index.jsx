@@ -11,7 +11,7 @@ import './styles.scss';
 // Stateless Pure Component (preferred)
 class xxx extends React.PureComponent {
   render() {
-    return (<div className="x-x-x">
+    return (<div className="aui--x-x-x">
       {'// Your component here :)'}
     </div>);
   }
