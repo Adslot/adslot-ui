@@ -81,10 +81,22 @@ class Popover extends React.PureComponent {
   popperRef = this.props.popperRef || React.createRef();
 
   render() {
-    const { arrowStyles, theme, title, children, className, dts, wrapperClassName, popoverContent } = this.props;
+    const { theme, title, children, className, dts, wrapperClassName, popoverContent } = this.props;
     const themeClass = _.includes(themes, theme) ? `popover-${theme}` : 'popover-light';
     const contentClassNames = classnames('aui--popover-container', className);
     const popoverClassNames = classnames('aui--popover-wrapper', themeClass, wrapperClassName);
+    let arrowStyles = {};
+    switch (true) {
+      case _.includes(['bottom-start', 'top-start'], this.props.placement):
+        arrowStyles = { left: 12 };
+        break;
+      case _.includes(['bottom-end', 'top-end'], this.props.placement):
+        arrowStyles = { left: 'auto', right: 12 };
+        break;
+      default:
+        arrowStyles = {};
+    }
+    arrowStyles = { ...arrowStyles, ...this.props.arrowStyles }; // let user override default configuration
 
     const popoverElement = this.state.isPopoverOpen
       ? ReactDOM.createPortal(

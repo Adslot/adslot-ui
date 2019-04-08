@@ -32,10 +32,10 @@ class PopoverExample extends React.PureComponent {
           </Popover>
           <div className="horizontal-separator" />
           <Popover
-            arrowStyles={{ left: 'auto', right: 12 }}
+            arrowStyles={{ left: 'auto', right: 30 }}
             placement="bottom-end"
             title="Popover Title"
-            popoverContent="Popover Bottom End"
+            popoverContent="Popover Bottom End with custom arrow position"
           >
             <Button>Bottom-End</Button>
           </Popover>
@@ -120,10 +120,10 @@ const exampleProps = {
     </Popover>
 
     <Popover
-      arrowStyles={{ left: 'auto', right: 12 }} 
-      placement="bottom-end" 
-      title="Popover Title" 
-      popoverContent="Popover Bottom"
+      arrowStyles={{ left: 'auto', right: 30 }}
+      placement="bottom-end"
+      title="Popover Title"
+      popoverContent="Popover Bottom End with custom arrow position"
     >
       <Button>Bottom-End</Button>
     </Popover>
