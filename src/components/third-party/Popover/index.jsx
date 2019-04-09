@@ -131,6 +131,7 @@ class Popover extends React.PureComponent {
         <Reference innerRef={this.referenceRef}>
           {({ ref }) => (
             <span
+              className="aui--popover-element"
               ref={ref}
               onClick={this.onClick}
               onMouseOver={this.onMouseOver}
