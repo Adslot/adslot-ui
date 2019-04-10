@@ -32,6 +32,7 @@ import HoverDropdownMenu from 'adslot-ui/HoverDropdownMenu';
 import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
 import InformationBox from 'adslot-ui/InformationBox';
 import Nav from 'adslot-ui/Navigation';
+import OverlayLoader from 'adslot-ui/OverlayLoader';
 
 export {
   Accordion,
@@ -68,4 +69,5 @@ export {
   UserListPicker,
   InformationBox,
   HoverDropdownMenu,
+  OverlayLoader,
 };

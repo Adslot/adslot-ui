@@ -60,6 +60,7 @@ import InformationBoxExample from '../../examples/InformationBoxExample';
 import SplitPaneExample from '../../examples/SplitPaneExample';
 import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
 import NavigationExample from '../../examples/NavigationExample';
+import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -93,7 +94,7 @@ const componentsBySection = {
   'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
-  'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff', 'status-pill'],
+  'feedback-and-states': ['alert', 'empty', 'spinner', 'overlay-loader', 'pretty-diff', 'status-pill'],
   dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
   search: ['search', 'search-bar', 'tag'],
@@ -213,6 +214,7 @@ class PageLayout extends React.Component {
             <AlertExample />
             <EmptyExample />
             <SpinnerExample />
+            <OverlayLoaderExample />
             <PrettyDiffExample />
             <StatusPillExample />
 
