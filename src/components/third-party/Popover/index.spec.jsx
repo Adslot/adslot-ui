@@ -40,7 +40,7 @@ describe('Popover Component', () => {
   describe('onMouseOver()', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers={['hover']}>
+        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="hover">
           Test message
         </Popover>
       );
@@ -63,7 +63,7 @@ describe('Popover Component', () => {
   describe('onMouseOut()', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers={['hover']}>
+        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="hover">
           Test message
         </Popover>
       );
@@ -81,6 +81,54 @@ describe('Popover Component', () => {
       wrapper.setProps({ triggers: ['click'] });
       expect(wrapper.state('isPopoverOpen')).to.equal(true);
       wrapper.instance().onMouseOut();
+      expect(wrapper.state('isPopoverOpen')).to.equal(true);
+    });
+  });
+
+  describe('onFocus()', () => {
+    beforeEach(() => {
+      wrapper = shallow(
+        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="focus">
+          Test message
+        </Popover>
+      );
+    });
+
+    it('should set `isPopoverOpen` state to true', () => {
+      expect(wrapper.state('isPopoverOpen')).to.equal(false);
+      wrapper.instance().onFocus();
+      expect(wrapper.state('isPopoverOpen')).to.equal(true);
+    });
+
+    it('should do nothing if trigger is not `focus`', () => {
+      wrapper.setProps({ triggers: 'click' });
+      expect(wrapper.state('isPopoverOpen')).to.equal(false);
+      wrapper.instance().onFocus();
+      expect(wrapper.state('isPopoverOpen')).to.equal(false);
+    });
+  });
+
+  describe('onBlur()', () => {
+    beforeEach(() => {
+      wrapper = shallow(
+        <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="focus">
+          Test message
+        </Popover>
+      );
+
+      wrapper.setState({ isPopoverOpen: true });
+    });
+
+    it('should set `isPopoverOpen` state to false', () => {
+      expect(wrapper.state('isPopoverOpen')).to.equal(true);
+      wrapper.instance().onBlur();
+      expect(wrapper.state('isPopoverOpen')).to.equal(false);
+    });
+
+    it('should do nothing if trigger is not `focus`', () => {
+      wrapper.setProps({ triggers: 'click' });
+      expect(wrapper.state('isPopoverOpen')).to.equal(true);
+      wrapper.instance().onBlur();
       expect(wrapper.state('isPopoverOpen')).to.equal(true);
     });
   });
@@ -177,5 +225,35 @@ describe('Popover Component', () => {
     );
 
     expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-light')).to.equal(true);
+  });
+
+  it('should render custom arrow styles if placement is `bottom-start` or `top-start`', () => {
+    wrapper = mount(
+      <div>
+        <Popover
+          id="popover-example"
+          theme="some-random-theme"
+          popoverContent={<div />}
+          placement="bottom-start"
+          isOpen
+        >
+          Test message
+        </Popover>
+      </div>
+    );
+
+    expect(wrapper.find('.popover-arrow').prop('style')).to.eql({ left: 12 });
+  });
+
+  it('should render custom arrow styles if placement is `bottom-end` or `top-end`', () => {
+    wrapper = mount(
+      <div>
+        <Popover id="popover-example" theme="some-random-theme" popoverContent={<div />} placement="bottom-end" isOpen>
+          Test message
+        </Popover>
+      </div>
+    );
+
+    expect(wrapper.find('.popover-arrow').prop('style')).to.eql({ left: 'auto', right: 12 });
   });
 });

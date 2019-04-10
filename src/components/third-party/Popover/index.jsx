@@ -8,6 +8,8 @@ import { Manager, Reference, Popper } from 'react-popper';
 import { themes, popoverPlacements } from './constants';
 import './styles.scss';
 
+const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
+
 class Popover extends React.PureComponent {
   static propTypes = {
     theme: PropTypes.oneOf(themes),
@@ -19,7 +21,7 @@ class Popover extends React.PureComponent {
     placement: PropTypes.oneOf(popoverPlacements),
     popoverContent: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired,
-    triggers: PropTypes.arrayOf(PropTypes.oneOf(['click', 'hover', 'focus', 'disabled'])),
+    triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
     isOpen: PropTypes.bool,
     boundToContainer: PropTypes.instanceOf(Element),
     popperRef: PropTypes.func,
@@ -29,7 +31,7 @@ class Popover extends React.PureComponent {
   static defaultProps = {
     theme: 'light',
     placement: 'auto',
-    triggers: ['hover'],
+    triggers: 'hover',
     isOpen: false,
     boundToContainer: document.body, // default to bound to body
   };
@@ -39,7 +41,8 @@ class Popover extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (!props.triggers.includes('disabled')) {
+    const triggers = _.flattenDeep([props.triggers]);
+    if (!triggers.includes('disabled')) {
       return state;
     }
 
@@ -47,27 +50,27 @@ class Popover extends React.PureComponent {
   }
 
   onClick = () => {
-    const { triggers } = this.props;
+    const triggers = _.flattenDeep([this.props.triggers]);
     return !triggers.includes('disabled') && triggers.includes('click') ? this.togglePopover() : null;
   };
 
   onFocus = () => {
-    const { triggers } = this.props;
+    const triggers = _.flattenDeep([this.props.triggers]);
     return !triggers.includes('disabled') && triggers.includes('focus') ? this.openPopover() : null;
   };
 
   onBlur = () => {
-    const { triggers } = this.props;
+    const triggers = _.flattenDeep([this.props.triggers]);
     return !triggers.includes('disabled') && triggers.includes('focus') ? this.closePopover() : null;
   };
 
   onMouseOver = () => {
-    const { triggers } = this.props;
+    const triggers = _.flattenDeep([this.props.triggers]);
     return !triggers.includes('disabled') && triggers.includes('hover') ? this.openPopover() : null;
   };
 
   onMouseOut = () => {
-    const { triggers } = this.props;
+    const triggers = _.flattenDeep([this.props.triggers]);
     return !triggers.includes('disabled') && triggers.includes('hover') ? this.closePopover() : null;
   };
 

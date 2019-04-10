@@ -76,7 +76,7 @@ class PopoverExample extends React.PureComponent {
         <label>Trigger (click, hover)</label>
         <div style={{ display: 'flex' }}>
           <Popover
-            triggers={['click']}
+            triggers="click"
             placement="left"
             theme="light"
             title="Popover Title"
@@ -86,7 +86,7 @@ class PopoverExample extends React.PureComponent {
           </Popover>
           <div className="horizontal-separator" />
           <Popover
-            triggers={['hover']}
+            triggers="hover"
             placement="right"
             theme="dark"
             title="Popover Title"
@@ -177,8 +177,14 @@ const exampleProps = {
         },
         {
           propType: 'triggers',
-          type: 'arrayOf oneOf[click, hover, focus, disabled]',
-          defaultValue: <pre>[hover]</pre>,
+          type: 'string|array',
+          defaultValue: <pre>hover</pre>,
+          note: (
+            <span>
+              can be an array of triggers, or a string. Accepted values are{' '}
+              <pre>['click', 'hover', 'focus', 'disabled']</pre>
+            </span>
+          ),
         },
         {
           propType: 'boundToContainer',
