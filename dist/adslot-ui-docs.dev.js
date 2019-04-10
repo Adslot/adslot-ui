@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 329);
+/******/ 	return __webpack_require__(__webpack_require__.s = 330);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -16151,7 +16151,83 @@ Navigation_NavigationComponent.defaultProps = {
   barPosition: 'bottom'
 };
 /* harmony default export */ var Navigation = (Navigation_NavigationComponent);
+// EXTERNAL MODULE: ./components/adslot-ui/OverlayLoader/styles.scss
+var OverlayLoader_styles = __webpack_require__(317);
+var OverlayLoader_styles_default = /*#__PURE__*/__webpack_require__.n(OverlayLoader_styles);
+
+// CONCATENATED MODULE: ./components/adslot-ui/OverlayLoader/index.jsx
+var OverlayLoader__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/OverlayLoader/index.jsx";
+
+ // import ReactDOM from 'react-dom';
+
+
+
+
+var OverlayLoader_OverlayLoader = function OverlayLoader(_ref) {
+  var text = _ref.text,
+      top = _ref.top,
+      heading = _ref.heading,
+      disableBackground = _ref.disableBackground;
+  return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", Object.assign({
+    className: "aui--overlay-loader ".concat(disableBackground ? 'aui--overlay-loader-disabled' : '')
+  }, disableBackground ? {
+    onClick: function onClick(event) {
+      return event.stopPropagation();
+    }
+  } : {}, {
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
+    className: "loader",
+    style: {
+      top: top
+    },
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(alexandria_Spinner, {
+    size: "medium",
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
+    className: "loader-heading",
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }, heading), text && external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
+    className: "loader-text",
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, text)));
+};
+
+OverlayLoader_OverlayLoader.defaultProps = {
+  heading: 'Loading',
+  top: 320,
+  disableBackground: false
+};
+OverlayLoader_OverlayLoader.propTypes = {
+  heading: prop_types_default.a.string,
+  text: prop_types_default.a.string,
+  top: prop_types_default.a.number,
+  disableBackground: prop_types_default.a.bool
+};
+/* harmony default export */ var adslot_ui_OverlayLoader = (OverlayLoader_OverlayLoader);
 // CONCATENATED MODULE: ./components/adslot-ui/index.js
+
 
 
 
@@ -16253,6 +16329,7 @@ Navigation_NavigationComponent.defaultProps = {
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "UserListPicker", function() { return UserListPicker; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "InformationBox", function() { return adslot_ui_InformationBox; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "HoverDropdownMenu", function() { return HoverDropdownMenu; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "OverlayLoader", function() { return adslot_ui_OverlayLoader; });
 // Export the consumable components.
 
  // React Bootstrap
@@ -34116,9 +34193,9 @@ ToggleButton.propTypes = propTypes;
 "use strict";
 
 
-var normalize = __webpack_require__(317)
-var Schema = __webpack_require__(320)
-var DefinedInfo = __webpack_require__(321)
+var normalize = __webpack_require__(318)
+var Schema = __webpack_require__(321)
+var DefinedInfo = __webpack_require__(322)
 
 module.exports = create
 
@@ -47611,6 +47688,12 @@ UncontrolledToggleButtonGroup.Button = __WEBPACK_IMPORTED_MODULE_12__ToggleButto
 
 /***/ }),
 /* 317 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47624,7 +47707,7 @@ function normalize(value) {
 
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47646,7 +47729,7 @@ function increment() {
 
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47657,11 +47740,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.registerLanguage = undefined;
 
-var _highlight = __webpack_require__(340);
+var _highlight = __webpack_require__(341);
 
 var _highlight2 = _interopRequireDefault(_highlight);
 
-var _core = __webpack_require__(342);
+var _core = __webpack_require__(343);
 
 var _core2 = _interopRequireDefault(_core);
 
@@ -47673,7 +47756,7 @@ var registerLanguage = exports.registerLanguage = function registerLanguage(_, l
 exports.default = (0, _highlight2.default)(_core2.default, {});
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47698,14 +47781,14 @@ function Schema(property, normal, space) {
 
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Info = __webpack_require__(322)
-var types = __webpack_require__(318)
+var Info = __webpack_require__(323)
+var types = __webpack_require__(319)
 
 module.exports = DefinedInfo
 
@@ -47736,7 +47819,7 @@ function check(value, mask) {
 
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47766,13 +47849,13 @@ function Info(property, attribute) {
 
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var caseSensitiveTransform = __webpack_require__(351)
+var caseSensitiveTransform = __webpack_require__(352)
 
 module.exports = caseInsensitiveTransform
 
@@ -47782,7 +47865,7 @@ function caseInsensitiveTransform(attributes, property) {
 
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, exports) {
 
 
@@ -47802,7 +47885,7 @@ exports.right = function(str){
 
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47820,7 +47903,7 @@ function decimal(character) {
 
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47830,7 +47913,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _jsx = __webpack_require__(371);
+var _jsx = __webpack_require__(372);
 
 var _jsx2 = _interopRequireDefault(_jsx);
 
@@ -47840,7 +47923,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _jsx2.default;
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48119,16 +48202,16 @@ exports.default = {
 };
 
 /***/ }),
-/* 328 */,
-/* 329 */
+/* 329 */,
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(134);
-module.exports = __webpack_require__(330);
+module.exports = __webpack_require__(331);
 
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48150,11 +48233,11 @@ var external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash_
 var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
-// EXTERNAL MODULE: ./index.js + 99 modules
+// EXTERNAL MODULE: ./index.js + 100 modules
 var index_0 = __webpack_require__(11);
 
 // EXTERNAL MODULE: ../docs/components/Header/styles.scss
-var styles = __webpack_require__(331);
+var styles = __webpack_require__(332);
 var styles_default = /*#__PURE__*/__webpack_require__.n(styles);
 
 // CONCATENATED MODULE: ../docs/components/Header/index.jsx
@@ -48239,7 +48322,7 @@ var Header_HeaderGraphics = function HeaderGraphics() {
   }, "View on GitHub"))));
 });
 // EXTERNAL MODULE: ../docs/components/Navigation/styles.scss
-var Navigation_styles = __webpack_require__(332);
+var Navigation_styles = __webpack_require__(333);
 var Navigation_styles_default = /*#__PURE__*/__webpack_require__.n(Navigation_styles);
 
 // CONCATENATED MODULE: ../docs/components/Navigation/index.jsx
@@ -48383,11 +48466,11 @@ Navigation_Navigation.propTypes = {
 };
 /* harmony default export */ var components_Navigation = (Navigation_Navigation);
 // EXTERNAL MODULE: ../node_modules/isomorphic-fetch/fetch-npm-browserify.js
-var fetch_npm_browserify = __webpack_require__(333);
+var fetch_npm_browserify = __webpack_require__(334);
 var fetch_npm_browserify_default = /*#__PURE__*/__webpack_require__.n(fetch_npm_browserify);
 
 // EXTERNAL MODULE: ../docs/components/Contributors/styles.scss
-var Contributors_styles = __webpack_require__(335);
+var Contributors_styles = __webpack_require__(336);
 var Contributors_styles_default = /*#__PURE__*/__webpack_require__.n(Contributors_styles);
 
 // CONCATENATED MODULE: ../docs/components/Contributors/index.jsx
@@ -48536,7 +48619,7 @@ function (_React$PureComponent) {
 
 /* harmony default export */ var components_Contributors = (Contributors_Contributors);
 // EXTERNAL MODULE: ../docs/components/SearchBar/styles.scss
-var SearchBar_styles = __webpack_require__(336);
+var SearchBar_styles = __webpack_require__(337);
 var SearchBar_styles_default = /*#__PURE__*/__webpack_require__.n(SearchBar_styles);
 
 // CONCATENATED MODULE: ../docs/components/SearchBar/index.jsx
@@ -48620,7 +48703,7 @@ SearchBar_SearchBarComponent.propTypes = {
 };
 /* harmony default export */ var SearchBar = (SearchBar_SearchBarComponent);
 // EXTERNAL MODULE: ../docs/components/SearchResultCard/styles.scss
-var SearchResultCard_styles = __webpack_require__(337);
+var SearchResultCard_styles = __webpack_require__(338);
 var SearchResultCard_styles_default = /*#__PURE__*/__webpack_require__.n(SearchResultCard_styles);
 
 // CONCATENATED MODULE: ../docs/components/SearchResultCard/index.jsx
@@ -48705,19 +48788,19 @@ SearchResultCard_SearchResultCard.propTypes = {
 };
 /* harmony default export */ var components_SearchResultCard = (SearchResultCard_SearchResultCard);
 // EXTERNAL MODULE: ../node_modules/react-bootstrap/lib/Collapse.js
-var Collapse = __webpack_require__(338);
+var Collapse = __webpack_require__(339);
 var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
 
 // EXTERNAL MODULE: ../node_modules/react-syntax-highlighter/prism-light.js
-var prism_light = __webpack_require__(319);
+var prism_light = __webpack_require__(320);
 var prism_light_default = /*#__PURE__*/__webpack_require__.n(prism_light);
 
 // EXTERNAL MODULE: ../node_modules/react-syntax-highlighter/languages/prism/jsx.js
-var jsx = __webpack_require__(326);
+var jsx = __webpack_require__(327);
 var jsx_default = /*#__PURE__*/__webpack_require__.n(jsx);
 
 // EXTERNAL MODULE: ../node_modules/react-syntax-highlighter/styles/prism/coy.js
-var coy = __webpack_require__(327);
+var coy = __webpack_require__(328);
 var coy_default = /*#__PURE__*/__webpack_require__.n(coy);
 
 // CONCATENATED MODULE: ../docs/components/MigrationNote/index.jsx
@@ -49036,7 +49119,7 @@ function (_React$Component) {
 
 /* harmony default export */ var components_MigrationNote = (MigrationNote_MigrationNote);
 // EXTERNAL MODULE: ../docs/components/PropTypeTable/styles.scss
-var PropTypeTable_styles = __webpack_require__(372);
+var PropTypeTable_styles = __webpack_require__(373);
 var PropTypeTable_styles_default = /*#__PURE__*/__webpack_require__.n(PropTypeTable_styles);
 
 // CONCATENATED MODULE: ../docs/components/PropTypeTable/index.jsx
@@ -49234,7 +49317,7 @@ PropTypeTable_PropTypeTable.propTypes = {
 };
 /* harmony default export */ var components_PropTypeTable = (PropTypeTable_PropTypeTable);
 // EXTERNAL MODULE: ../docs/components/Example/styles.scss
-var Example_styles = __webpack_require__(373);
+var Example_styles = __webpack_require__(374);
 var Example_styles_default = /*#__PURE__*/__webpack_require__.n(Example_styles);
 
 // CONCATENATED MODULE: ../docs/components/Example/index.jsx
@@ -58238,12 +58321,216 @@ var NavigationExample_exampleProps = {
     __self: this
   }));
 });
+// CONCATENATED MODULE: ../docs/examples/OverlayLoaderExample.jsx
+var OverlayLoaderExample__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/docs/examples/OverlayLoaderExample.jsx";
+
+function OverlayLoaderExample__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { OverlayLoaderExample__typeof = function _typeof(obj) { return typeof obj; }; } else { OverlayLoaderExample__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return OverlayLoaderExample__typeof(obj); }
+
+function OverlayLoaderExample__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function OverlayLoaderExample__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function OverlayLoaderExample__createClass(Constructor, protoProps, staticProps) { if (protoProps) OverlayLoaderExample__defineProperties(Constructor.prototype, protoProps); if (staticProps) OverlayLoaderExample__defineProperties(Constructor, staticProps); return Constructor; }
+
+function OverlayLoaderExample__possibleConstructorReturn(self, call) { if (call && (OverlayLoaderExample__typeof(call) === "object" || typeof call === "function")) { return call; } return OverlayLoaderExample__assertThisInitialized(self); }
+
+function OverlayLoaderExample__getPrototypeOf(o) { OverlayLoaderExample__getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return OverlayLoaderExample__getPrototypeOf(o); }
+
+function OverlayLoaderExample__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) OverlayLoaderExample__setPrototypeOf(subClass, superClass); }
+
+function OverlayLoaderExample__setPrototypeOf(o, p) { OverlayLoaderExample__setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return OverlayLoaderExample__setPrototypeOf(o, p); }
+
+function OverlayLoaderExample__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+var OverlayLoaderExample_OverlayLoaderExample =
+/*#__PURE__*/
+function (_React$Component) {
+  OverlayLoaderExample__inherits(OverlayLoaderExample, _React$Component);
+
+  function OverlayLoaderExample(props) {
+    var _this;
+
+    OverlayLoaderExample__classCallCheck(this, OverlayLoaderExample);
+
+    _this = OverlayLoaderExample__possibleConstructorReturn(this, OverlayLoaderExample__getPrototypeOf(OverlayLoaderExample).call(this, props));
+    _this.state = {
+      showDisabledLoader: false,
+      showLoader: false
+    };
+    _this.toggleLoader = _this.toggleLoader.bind(OverlayLoaderExample__assertThisInitialized(OverlayLoaderExample__assertThisInitialized(_this)));
+    _this.toggleDisabledLoader = _this.toggleDisabledLoader.bind(OverlayLoaderExample__assertThisInitialized(OverlayLoaderExample__assertThisInitialized(_this)));
+    _this.handleKeyPress = _this.handleKeyPress.bind(OverlayLoaderExample__assertThisInitialized(OverlayLoaderExample__assertThisInitialized(_this)));
+    return _this;
+  }
+
+  OverlayLoaderExample__createClass(OverlayLoaderExample, [{
+    key: "handleKeyPress",
+    value: function handleKeyPress(event) {
+      if (event.keyCode === 27) {
+        this.toggleDisabledLoader();
+      }
+    }
+  }, {
+    key: "toggleLoader",
+    value: function toggleLoader() {
+      this.setState(function (prevState) {
+        return {
+          showLoader: !prevState.showLoader
+        };
+      });
+    }
+  }, {
+    key: "toggleDisabledLoader",
+    value: function toggleDisabledLoader() {
+      var _this2 = this;
+
+      this.setState(function (prevState) {
+        return {
+          showDisabledLoader: !prevState.showDisabledLoader,
+          showLoader: false
+        };
+      }, function () {
+        var eventTrigger = _this2.state.showDisabledLoader ? window.addEventListener : window.removeEventListener;
+        eventTrigger('keydown', _this2.handleKeyPress);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Fragment, {
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 39
+        },
+        __self: this
+      }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("h4", {
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 40
+        },
+        __self: this
+      }, "Static markup"), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
+        className: "static-markup",
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["OverlayLoader"], {
+        text: "campaigns",
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 42
+        },
+        __self: this
+      }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["OverlayLoader"], {
+        heading: "Fetching",
+        text: "delivery data",
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 43
+        },
+        __self: this
+      })), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
+        className: "live-demo",
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 45
+        },
+        __self: this
+      }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("h4", {
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 46
+        },
+        __self: this
+      }, "Demo"), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Button"], {
+        onClick: this.toggleLoader,
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 47
+        },
+        __self: this
+      }, this.state.showLoader ? 'Hide' : 'Show', " Loader"), this.state.showLoader && external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["OverlayLoader"], {
+        heading: "Entering",
+        text: "galaxy",
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 48
+        },
+        __self: this
+      }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Button"], {
+        onClick: this.toggleDisabledLoader,
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 49
+        },
+        __self: this
+      }, this.state.showDisabledLoader ? 'Hide' : 'Show', " Loader (disabled background)"), this.state.showDisabledLoader && external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["OverlayLoader"], {
+        disableBackground: true,
+        text: "Press esc to hide",
+        __source: {
+          fileName: OverlayLoaderExample__jsxFileName,
+          lineNumber: 52
+        },
+        __self: this
+      })));
+    }
+  }]);
+
+  return OverlayLoaderExample;
+}(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.Component);
+
+var OverlayLoaderExample_exampleProps = {
+  componentName: 'Overlay Loader',
+  notes: "Fixed position loader which provides user experience for page loading or interim loading states",
+  exampleCodeSnippet: "\n    // Static Markup Loaders\n    <OverlayLoader text=\"campaigns\" />\n    <OverlayLoader heading=\"Fetching\" text=\"delivery data\" />\n\n    // Demo Loaders\n    <OverlayLoader heading=\"Entering\" text=\"galaxy\" />\n    <OverlayLoader disableBackground={true} text=\"Press esc to hide\" />\n  ",
+  propTypeSectionArray: [{
+    propTypes: [{
+      defaultValue: 'Loading',
+      propType: 'heading',
+      type: 'string'
+    }, {
+      propType: 'top',
+      type: 'number',
+      note: 'Position from top of DOM',
+      defaultValue: '320'
+    }, {
+      propType: 'text',
+      type: 'string'
+    }, {
+      propType: 'disableBackground',
+      defaultValue: 'false',
+      type: 'bool',
+      note: 'prevents event propogation'
+    }]
+  }]
+};
+/* harmony default export */ var examples_OverlayLoaderExample = (function () {
+  return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(components_Example, Object.assign({}, OverlayLoaderExample_exampleProps, {
+    __source: {
+      fileName: OverlayLoaderExample__jsxFileName,
+      lineNumber: 101
+    },
+    __self: this
+  }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(OverlayLoaderExample_OverlayLoaderExample, {
+    __source: {
+      fileName: OverlayLoaderExample__jsxFileName,
+      lineNumber: 102
+    },
+    __self: this
+  }));
+});
 // EXTERNAL MODULE: ../docs/components/Layout/styles.scss
-var Layout_styles = __webpack_require__(374);
+var Layout_styles = __webpack_require__(375);
 var Layout_styles_default = /*#__PURE__*/__webpack_require__.n(Layout_styles);
 
 // EXTERNAL MODULE: ../docs/examples/styles.scss
-var examples_styles = __webpack_require__(375);
+var examples_styles = __webpack_require__(376);
 var examples_styles_default = /*#__PURE__*/__webpack_require__.n(examples_styles);
 
 // CONCATENATED MODULE: ../docs/components/Layout/index.jsx
@@ -58332,13 +58619,14 @@ function Layout__defineProperty(obj, key, value) { if (key in obj) { Object.defi
 
 
 
+
 var Layout_SidebarArea = function SidebarArea(_ref) {
   var children = _ref.children;
   return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
     className: "adslot-ui-sidebar-area",
     __source: {
       fileName: Layout__jsxFileName,
-      lineNumber: 67
+      lineNumber: 68
     },
     __self: this
   }, children);
@@ -58350,7 +58638,7 @@ var Layout_ContentArea = function ContentArea(_ref2) {
     className: "adslot-ui-content-area",
     __source: {
       fileName: Layout__jsxFileName,
-      lineNumber: 68
+      lineNumber: 69
     },
     __self: this
   }, children);
@@ -58366,7 +58654,7 @@ var componentsBySection = {
   'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
-  'feedback-and-states': ['alert', 'empty', 'spinner', 'pretty-diff', 'status-pill'],
+  'feedback-and-states': ['alert', 'empty', 'spinner', 'overlay-loader', 'pretty-diff', 'status-pill'],
   dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
   search: ['search', 'search-bar', 'tag'],
@@ -58445,33 +58733,33 @@ function (_React$Component) {
         className: "adslot-ui-layout",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 161
+          lineNumber: 162
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Header, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 162
+          lineNumber: 163
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
         className: "adslot-ui-body",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 163
+          lineNumber: 164
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Layout_SidebarArea, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 164
+          lineNumber: 165
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(SearchBar, {
         onSearch: this.handleSearch,
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 165
+          lineNumber: 166
         },
         __self: this
       }), this.state.searchTerm.length > 0 || this.state.searchResults.length > 0 ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(components_SearchResultCard, {
@@ -58480,7 +58768,7 @@ function (_React$Component) {
         clearSearch: this.clearSearch,
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 167
+          lineNumber: 168
         },
         __self: this
       }) : external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(components_Navigation, {
@@ -58488,402 +58776,408 @@ function (_React$Component) {
         navigateTo: this.navigateTo,
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 173
+          lineNumber: 174
         },
         __self: this
       })), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Layout_ContentArea, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 176
+          lineNumber: 177
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(components_MigrationNote, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 177
+          lineNumber: 178
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Form Elements",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 178
+          lineNumber: 179
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_ButtonExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 179
+          lineNumber: 180
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_ButtonGroupExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 180
+          lineNumber: 181
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_AlertInputExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 181
+          lineNumber: 182
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_FilePickerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 182
+          lineNumber: 183
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TextareaExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 183
+          lineNumber: 184
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_ListPickerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 184
+          lineNumber: 185
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_UserListPickerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 185
+          lineNumber: 186
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_CheckboxExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 186
+          lineNumber: 187
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_CheckboxGroupExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 187
+          lineNumber: 188
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_CountBadgeExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 188
+          lineNumber: 189
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_RadioExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 189
+          lineNumber: 190
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_RadioGroupExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 190
+          lineNumber: 191
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SelectExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 191
+          lineNumber: 192
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_DatePickerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 192
+          lineNumber: 193
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Typography and Text Layout",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 194
+          lineNumber: 195
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TextEllipsisExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 195
+          lineNumber: 196
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Stats and Data",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 197
+          lineNumber: 198
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_StatisticExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 198
+          lineNumber: 199
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TotalsExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 199
+          lineNumber: 200
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SliceyExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 200
+          lineNumber: 201
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Icons and Graphics",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 202
+          lineNumber: 203
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SvgSymbolExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 203
+          lineNumber: 204
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SvgSymbolCircleExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 204
+          lineNumber: 205
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Navigation",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 206
+          lineNumber: 207
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_BreadcrumbExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 207
+          lineNumber: 208
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TabExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 208
+          lineNumber: 209
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_HoverDropdownMenuExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 209
+          lineNumber: 210
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_NavigationExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 210
+          lineNumber: 211
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Feedback and States",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 212
+          lineNumber: 213
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_AlertExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 213
+          lineNumber: 214
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_EmptyExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 214
+          lineNumber: 215
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SpinnerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 215
+          lineNumber: 216
+        },
+        __self: this
+      }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_OverlayLoaderExample, {
+        __source: {
+          fileName: Layout__jsxFileName,
+          lineNumber: 217
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_PrettyDiffExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 216
+          lineNumber: 218
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_StatusPillExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 217
+          lineNumber: 219
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Dialogue",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 219
+          lineNumber: 221
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_PopoverExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 220
+          lineNumber: 222
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_HelpIconPopoverExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 221
+          lineNumber: 223
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_AvatarExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 222
+          lineNumber: 224
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Modals",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 224
+          lineNumber: 226
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_ConfirmModalExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 225
+          lineNumber: 227
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Search",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 227
+          lineNumber: 229
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SearchExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 228
+          lineNumber: 230
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SearchBarExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 229
+          lineNumber: 231
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TagExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 230
+          lineNumber: 232
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Grouping",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 232
+          lineNumber: 234
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_PageTitleExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 233
+          lineNumber: 235
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_CardExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 234
+          lineNumber: 236
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_PanelExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 235
+          lineNumber: 237
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_AccordionExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 236
+          lineNumber: 238
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_AccordionPanelExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 237
+          lineNumber: 239
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_BorderedWellExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 238
+          lineNumber: 240
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_CarouselExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 239
+          lineNumber: 241
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_GridExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 240
+          lineNumber: 242
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_PagedGridExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 241
+          lineNumber: 243
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TileGridExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 242
+          lineNumber: 244
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_FlexibleSpacerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 243
+          lineNumber: 245
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_SplitPaneExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 244
+          lineNumber: 246
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_InformationBoxExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 245
+          lineNumber: 247
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["PageTitle"], {
         title: "Tree Picker",
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 247
+          lineNumber: 249
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(examples_TreePickerExample, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 248
+          lineNumber: 250
         },
         __self: this
       }))), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(components_Contributors, {
         __source: {
           fileName: Layout__jsxFileName,
-          lineNumber: 252
+          lineNumber: 254
         },
         __self: this
       }));
@@ -58919,12 +59213,6 @@ var run_renderApp = function renderApp() {
 run_renderApp();
 
 /***/ }),
-/* 331 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 332 */
 /***/ (function(module, exports) {
 
@@ -58932,18 +59220,24 @@ run_renderApp();
 
 /***/ }),
 /* 333 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // the whatwg-fetch polyfill installs the fetch() function
 // on the global object (window or self)
 //
 // Return that as the export for use in Webpack, Browserify etc.
-__webpack_require__(334);
+__webpack_require__(335);
 module.exports = self.fetch.bind(self);
 
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59472,12 +59766,6 @@ if (!self.fetch) {
 
 
 /***/ }),
-/* 335 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 336 */
 /***/ (function(module, exports) {
 
@@ -59491,6 +59779,12 @@ if (!self.fetch) {
 
 /***/ }),
 /* 338 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59538,7 +59832,7 @@ var _Transition = __webpack_require__(67);
 
 var _Transition2 = _interopRequireDefault(_Transition);
 
-var _capitalize = __webpack_require__(339);
+var _capitalize = __webpack_require__(340);
 
 var _capitalize2 = _interopRequireDefault(_capitalize);
 
@@ -59763,7 +60057,7 @@ exports.default = Collapse;
 module.exports = exports['default'];
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59777,7 +60071,7 @@ function capitalize(string) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59863,7 +60157,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _createElement = __webpack_require__(341);
+var _createElement = __webpack_require__(342);
 
 var _createElement2 = _interopRequireDefault(_createElement);
 
@@ -60036,7 +60330,7 @@ function getCodeTree(_ref5) {
 }
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60122,7 +60416,7 @@ function createElement(_ref) {
 }
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60147,13 +60441,13 @@ ctx.Prism = {manual: true, disableWorkerMessageHandler: true}
  * `prism-file-highlight.js`.
  * The wrapped non-leaky grammars are loaded instead of
  * Prism’s originals. */
-var h = __webpack_require__(343)
-var decode = __webpack_require__(359)
-var Prism = __webpack_require__(366)
-var markup = __webpack_require__(367)
-var css = __webpack_require__(368)
-var clike = __webpack_require__(369)
-var js = __webpack_require__(370)
+var h = __webpack_require__(344)
+var decode = __webpack_require__(360)
+var Prism = __webpack_require__(367)
+var markup = __webpack_require__(368)
+var css = __webpack_require__(369)
+var clike = __webpack_require__(370)
+var js = __webpack_require__(371)
 
 restore()
 
@@ -60326,29 +60620,13 @@ function capture() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(70)))
 
 /***/ }),
-/* 343 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(344)
-
-
-/***/ }),
 /* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var schema = __webpack_require__(345)
-var factory = __webpack_require__(354)
-
-var html = factory(schema, 'div')
-html.displayName = 'html'
-
-module.exports = html
+module.exports = __webpack_require__(345)
 
 
 /***/ }),
@@ -60358,14 +60636,13 @@ module.exports = html
 "use strict";
 
 
-var merge = __webpack_require__(346)
-var xlink = __webpack_require__(348)
-var xml = __webpack_require__(349)
-var xmlns = __webpack_require__(350)
-var aria = __webpack_require__(352)
-var html = __webpack_require__(353)
+var schema = __webpack_require__(346)
+var factory = __webpack_require__(355)
 
-module.exports = merge([xml, xlink, xmlns, aria, html])
+var html = factory(schema, 'div')
+html.displayName = 'html'
+
+module.exports = html
 
 
 /***/ }),
@@ -60375,8 +60652,25 @@ module.exports = merge([xml, xlink, xmlns, aria, html])
 "use strict";
 
 
-var xtend = __webpack_require__(347)
-var Schema = __webpack_require__(320)
+var merge = __webpack_require__(347)
+var xlink = __webpack_require__(349)
+var xml = __webpack_require__(350)
+var xmlns = __webpack_require__(351)
+var aria = __webpack_require__(353)
+var html = __webpack_require__(354)
+
+module.exports = merge([xml, xlink, xmlns, aria, html])
+
+
+/***/ }),
+/* 347 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var xtend = __webpack_require__(348)
+var Schema = __webpack_require__(321)
 
 module.exports = merge
 
@@ -60404,7 +60698,7 @@ function merge(definitions) {
 
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -60429,7 +60723,7 @@ function extend() {
 
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60457,7 +60751,7 @@ function xlinkTransform(_, prop) {
 
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60481,14 +60775,14 @@ function xmlTransform(_, prop) {
 
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var create = __webpack_require__(131)
-var caseInsensitiveTransform = __webpack_require__(323)
+var caseInsensitiveTransform = __webpack_require__(324)
 
 module.exports = create({
   space: 'xmlns',
@@ -60504,7 +60798,7 @@ module.exports = create({
 
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60518,13 +60812,13 @@ function caseSensitiveTransform(attributes, attribute) {
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var types = __webpack_require__(318)
+var types = __webpack_require__(319)
 var create = __webpack_require__(131)
 
 var booleanish = types.booleanish
@@ -60592,15 +60886,15 @@ function ariaTransform(_, prop) {
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var types = __webpack_require__(318)
+var types = __webpack_require__(319)
 var create = __webpack_require__(131)
-var caseInsensitiveTransform = __webpack_require__(323)
+var caseInsensitiveTransform = __webpack_require__(324)
 
 var boolean = types.boolean
 var overloadedBoolean = types.overloadedBoolean
@@ -60818,17 +61112,17 @@ module.exports = create({
 
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var find = __webpack_require__(355)
-var normalize = __webpack_require__(317)
-var parseSelector = __webpack_require__(356)
-var spaces = __webpack_require__(357).parse
-var commas = __webpack_require__(358).parse
+var find = __webpack_require__(356)
+var normalize = __webpack_require__(318)
+var parseSelector = __webpack_require__(357)
+var spaces = __webpack_require__(358).parse
+var commas = __webpack_require__(359).parse
 
 module.exports = factory
 
@@ -61016,15 +61310,15 @@ function style(value) {
 
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var normalize = __webpack_require__(317)
-var DefinedInfo = __webpack_require__(321)
-var Info = __webpack_require__(322)
+var normalize = __webpack_require__(318)
+var DefinedInfo = __webpack_require__(322)
+var Info = __webpack_require__(323)
 
 var data = 'data'
 
@@ -61088,7 +61382,7 @@ function camelcase($0) {
 
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61148,13 +61442,13 @@ function parse(selector, defaultTagName) {
 
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var trim = __webpack_require__(324)
+var trim = __webpack_require__(325)
 
 exports.parse = parse
 exports.stringify = stringify
@@ -61174,7 +61468,7 @@ function stringify(values) {
 
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61183,7 +61477,7 @@ function stringify(values) {
 exports.parse = parse
 exports.stringify = stringify
 
-var trim = __webpack_require__(324)
+var trim = __webpack_require__(325)
 
 var comma = ','
 var space = ' '
@@ -61236,18 +61530,18 @@ function stringify(values, options) {
 
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var legacy = __webpack_require__(360)
-var invalid = __webpack_require__(361)
-var decimal = __webpack_require__(325)
-var hexadecimal = __webpack_require__(362)
-var alphanumerical = __webpack_require__(363)
-var decodeEntity = __webpack_require__(365)
+var legacy = __webpack_require__(361)
+var invalid = __webpack_require__(362)
+var decimal = __webpack_require__(326)
+var hexadecimal = __webpack_require__(363)
+var alphanumerical = __webpack_require__(364)
+var decodeEntity = __webpack_require__(366)
 
 module.exports = parseEntities
 
@@ -61690,19 +61984,19 @@ function disallowed(code) {
 
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, exports) {
 
 module.exports = {"AElig":"Æ","AMP":"&","Aacute":"Á","Acirc":"Â","Agrave":"À","Aring":"Å","Atilde":"Ã","Auml":"Ä","COPY":"©","Ccedil":"Ç","ETH":"Ð","Eacute":"É","Ecirc":"Ê","Egrave":"È","Euml":"Ë","GT":">","Iacute":"Í","Icirc":"Î","Igrave":"Ì","Iuml":"Ï","LT":"<","Ntilde":"Ñ","Oacute":"Ó","Ocirc":"Ô","Ograve":"Ò","Oslash":"Ø","Otilde":"Õ","Ouml":"Ö","QUOT":"\"","REG":"®","THORN":"Þ","Uacute":"Ú","Ucirc":"Û","Ugrave":"Ù","Uuml":"Ü","Yacute":"Ý","aacute":"á","acirc":"â","acute":"´","aelig":"æ","agrave":"à","amp":"&","aring":"å","atilde":"ã","auml":"ä","brvbar":"¦","ccedil":"ç","cedil":"¸","cent":"¢","copy":"©","curren":"¤","deg":"°","divide":"÷","eacute":"é","ecirc":"ê","egrave":"è","eth":"ð","euml":"ë","frac12":"½","frac14":"¼","frac34":"¾","gt":">","iacute":"í","icirc":"î","iexcl":"¡","igrave":"ì","iquest":"¿","iuml":"ï","laquo":"«","lt":"<","macr":"¯","micro":"µ","middot":"·","nbsp":" ","not":"¬","ntilde":"ñ","oacute":"ó","ocirc":"ô","ograve":"ò","ordf":"ª","ordm":"º","oslash":"ø","otilde":"õ","ouml":"ö","para":"¶","plusmn":"±","pound":"£","quot":"\"","raquo":"»","reg":"®","sect":"§","shy":"­","sup1":"¹","sup2":"²","sup3":"³","szlig":"ß","thorn":"þ","times":"×","uacute":"ú","ucirc":"û","ugrave":"ù","uml":"¨","uuml":"ü","yacute":"ý","yen":"¥","yuml":"ÿ"}
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, exports) {
 
 module.exports = {"0":"�","128":"€","130":"‚","131":"ƒ","132":"„","133":"…","134":"†","135":"‡","136":"ˆ","137":"‰","138":"Š","139":"‹","140":"Œ","142":"Ž","145":"‘","146":"’","147":"“","148":"”","149":"•","150":"–","151":"—","152":"˜","153":"™","154":"š","155":"›","156":"œ","158":"ž","159":"Ÿ"}
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61724,14 +62018,14 @@ function hexadecimal(character) {
 
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var alphabetical = __webpack_require__(364)
-var decimal = __webpack_require__(325)
+var alphabetical = __webpack_require__(365)
+var decimal = __webpack_require__(326)
 
 module.exports = alphanumerical
 
@@ -61743,7 +62037,7 @@ function alphanumerical(character) {
 
 
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61764,7 +62058,7 @@ function alphabetical(character) {
 
 
 /***/ }),
-/* 365 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61799,7 +62093,7 @@ function decodeEntity(characters) {
 
 
 /***/ }),
-/* 366 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var _self = (typeof window !== 'undefined')
@@ -62363,7 +62657,7 @@ if (typeof global !== 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(70)))
 
 /***/ }),
-/* 367 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62428,7 +62722,7 @@ function markup(Prism) {
 
 
 /***/ }),
-/* 368 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62496,7 +62790,7 @@ function css(Prism) {
 
 
 /***/ }),
-/* 369 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62540,7 +62834,7 @@ function clike(Prism) {
 
 
 /***/ }),
-/* 370 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62608,7 +62902,7 @@ function javascript(Prism) {
 
 
 /***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62774,12 +63068,6 @@ function jsx(Prism) {
 
 
 /***/ }),
-/* 372 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 373 */
 /***/ (function(module, exports) {
 
@@ -62793,6 +63081,12 @@ function jsx(Prism) {
 
 /***/ }),
 /* 375 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 376 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

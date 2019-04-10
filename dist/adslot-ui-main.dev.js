@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 328);
+/******/ 	return __webpack_require__(__webpack_require__.s = 329);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -16151,7 +16151,83 @@ Navigation_NavigationComponent.defaultProps = {
   barPosition: 'bottom'
 };
 /* harmony default export */ var Navigation = (Navigation_NavigationComponent);
+// EXTERNAL MODULE: ./components/adslot-ui/OverlayLoader/styles.scss
+var OverlayLoader_styles = __webpack_require__(317);
+var OverlayLoader_styles_default = /*#__PURE__*/__webpack_require__.n(OverlayLoader_styles);
+
+// CONCATENATED MODULE: ./components/adslot-ui/OverlayLoader/index.jsx
+var OverlayLoader__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/OverlayLoader/index.jsx";
+
+ // import ReactDOM from 'react-dom';
+
+
+
+
+var OverlayLoader_OverlayLoader = function OverlayLoader(_ref) {
+  var text = _ref.text,
+      top = _ref.top,
+      heading = _ref.heading,
+      disableBackground = _ref.disableBackground;
+  return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", Object.assign({
+    className: "aui--overlay-loader ".concat(disableBackground ? 'aui--overlay-loader-disabled' : '')
+  }, disableBackground ? {
+    onClick: function onClick(event) {
+      return event.stopPropagation();
+    }
+  } : {}, {
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
+    className: "loader",
+    style: {
+      top: top
+    },
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(alexandria_Spinner, {
+    size: "medium",
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
+    className: "loader-heading",
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }, heading), text && external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
+    className: "loader-text",
+    __source: {
+      fileName: OverlayLoader__jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, text)));
+};
+
+OverlayLoader_OverlayLoader.defaultProps = {
+  heading: 'Loading',
+  top: 320,
+  disableBackground: false
+};
+OverlayLoader_OverlayLoader.propTypes = {
+  heading: prop_types_default.a.string,
+  text: prop_types_default.a.string,
+  top: prop_types_default.a.number,
+  disableBackground: prop_types_default.a.bool
+};
+/* harmony default export */ var adslot_ui_OverlayLoader = (OverlayLoader_OverlayLoader);
 // CONCATENATED MODULE: ./components/adslot-ui/index.js
+
 
 
 
@@ -16253,6 +16329,7 @@ Navigation_NavigationComponent.defaultProps = {
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "UserListPicker", function() { return UserListPicker; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "InformationBox", function() { return adslot_ui_InformationBox; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "HoverDropdownMenu", function() { return HoverDropdownMenu; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "OverlayLoader", function() { return adslot_ui_OverlayLoader; });
 // Export the consumable components.
 
  // React Bootstrap
@@ -47565,7 +47642,12 @@ UncontrolledToggleButtonGroup.Button = __WEBPACK_IMPORTED_MODULE_12__ToggleButto
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 317 */,
+/* 317 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 318 */,
 /* 319 */,
 /* 320 */,
@@ -47576,7 +47658,8 @@ UncontrolledToggleButtonGroup.Button = __WEBPACK_IMPORTED_MODULE_12__ToggleButto
 /* 325 */,
 /* 326 */,
 /* 327 */,
-/* 328 */
+/* 328 */,
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(134);

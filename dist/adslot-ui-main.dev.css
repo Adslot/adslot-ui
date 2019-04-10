@@ -90,6 +90,7 @@ body > .btn-popover-wrapper[data-placement*='bottom'] {
   margin-top: 12px;
 }
 .aui--popover-element {
+  cursor: pointer;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -15535,4 +15536,63 @@ button + .aui--button-group {
 .nav-borderless.bottom-bar > li:hover, .nav-borderless.bottom-bar > li.active {
   margin: 0;
   border-bottom-width: 3px;
+}
+.aui--overlay-loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 10px;
+  z-index: 1060;
+}
+
+.aui--overlay-loader-disabled {
+  position: fixed;
+}
+
+.aui--overlay-loader .loader {
+  position: fixed;
+  left: 50%;
+  width: 96px;
+  min-height: 132px;
+  background-color: #f9f9f9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  font-weight: 700;
+  opacity: .9;
+  line-height: 14px;
+}
+
+.aui--overlay-loader .loader .loader-heading {
+  color: #5a5a5a;
+}
+
+.aui--overlay-loader .loader .loader-text {
+  margin-top: 5px;
+  color: #ababab;
+  width: 65px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.aui--overlay-loader .loader .spinner-medium {
+  height: 40px;
+  width: 40px;
+  margin-bottom: 20px;
+  border-bottom-color: #5a5a5a;
+  border-left-color: #5a5a5a;
+  border-right-color: #5a5a5a;
+  border-width: 5px;
 }
