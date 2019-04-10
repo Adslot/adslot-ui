@@ -89,6 +89,12 @@
 body > .btn-popover-wrapper[data-placement*='bottom'] {
   margin-top: 12px;
 }
+.aui--popover-element {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 .aui--popover-wrapper {
   z-index: 1060;
   max-width: 276px;

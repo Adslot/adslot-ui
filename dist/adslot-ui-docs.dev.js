@@ -7386,7 +7386,7 @@ function (_React$PureComponent) {
         popoverContent: reason || '',
         placement: "bottom",
         isOpen: this.state.show,
-        trigger: "disabled",
+        triggers: ['disabled'],
         __source: {
           fileName: Button__jsxFileName,
           lineNumber: 68
@@ -7818,6 +7818,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var triggerPropTypes = prop_types_default.a.oneOf(['click', 'hover', 'focus', 'disabled']);
 
 var Popover_Popover =
 /*#__PURE__*/
@@ -7842,15 +7843,33 @@ function (_React$PureComponent) {
     });
 
     _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "onClick", function () {
-      return _this.props.trigger === 'click' ? _this.togglePopover() : null;
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([_this.props.triggers]);
+
+      return !triggers.includes('disabled') && triggers.includes('click') ? _this.togglePopover() : null;
+    });
+
+    _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "onFocus", function () {
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([_this.props.triggers]);
+
+      return !triggers.includes('disabled') && triggers.includes('focus') ? _this.openPopover() : null;
+    });
+
+    _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "onBlur", function () {
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([_this.props.triggers]);
+
+      return !triggers.includes('disabled') && triggers.includes('focus') ? _this.closePopover() : null;
     });
 
     _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "onMouseOver", function () {
-      return _this.props.trigger === 'hover' ? _this.openPopover() : null;
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([_this.props.triggers]);
+
+      return !triggers.includes('disabled') && triggers.includes('hover') ? _this.openPopover() : null;
     });
 
     _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "onMouseOut", function () {
-      return _this.props.trigger === 'hover' ? _this.closePopover() : null;
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([_this.props.triggers]);
+
+      return !triggers.includes('disabled') && triggers.includes('hover') ? _this.closePopover() : null;
     });
 
     _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "closePopover", function () {
@@ -7884,7 +7903,6 @@ function (_React$PureComponent) {
       var _this2 = this;
 
       var _this$props = this.props,
-          arrowStyles = _this$props.arrowStyles,
           theme = _this$props.theme,
           title = _this$props.title,
           children = _this$props.children,
@@ -7895,12 +7913,34 @@ function (_React$PureComponent) {
       var themeClass = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(themes, theme) ? "popover-".concat(theme) : 'popover-light';
       var contentClassNames = classnames_default()('aui--popover-container', className);
       var popoverClassNames = classnames_default()('aui--popover-wrapper', themeClass, wrapperClassName);
+      var arrowStyles = {};
+
+      switch (true) {
+        case external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(['bottom-start', 'top-start'], this.props.placement):
+          arrowStyles = {
+            left: 12
+          };
+          break;
+
+        case external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(['bottom-end', 'top-end'], this.props.placement):
+          arrowStyles = {
+            left: 'auto',
+            right: 12
+          };
+          break;
+
+        default:
+          arrowStyles = {};
+      }
+
+      arrowStyles = _objectSpread({}, arrowStyles, this.props.arrowStyles); // let user override default configuration
+
       var popoverElement = this.state.isPopoverOpen ? external___root___ReactDOM___commonjs2___react_dom___commonjs___react_dom___amd___react_dom___default.a.createPortal(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(esm_Popper_Popper, {
         innerRef: this.popperRef,
         placement: this.props.placement,
         __source: {
           fileName: Popover__jsxFileName,
-          lineNumber: 72
+          lineNumber: 106
         },
         __self: this
       }, function (_ref) {
@@ -7916,28 +7956,28 @@ function (_React$PureComponent) {
           "data-test-selector": dts,
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 74
+            lineNumber: 108
           },
           __self: this
         }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
           className: contentClassNames,
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 81
+            lineNumber: 115
           },
           __self: this
         }, title ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
           className: "popover-title",
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 82
+            lineNumber: 116
           },
           __self: this
         }, title) : null, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
           className: "popover-content",
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 83
+            lineNumber: 117
           },
           __self: this
         }, popoverContent)), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
@@ -7947,7 +7987,7 @@ function (_React$PureComponent) {
           style: _objectSpread({}, arrowProps.style, arrowStyles),
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 85
+            lineNumber: 119
           },
           __self: this
         }));
@@ -7955,28 +7995,29 @@ function (_React$PureComponent) {
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(esm_Manager_Manager, {
         __source: {
           fileName: Popover__jsxFileName,
-          lineNumber: 99
+          lineNumber: 133
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Reference, {
         innerRef: this.referenceRef,
         __source: {
           fileName: Popover__jsxFileName,
-          lineNumber: 100
+          lineNumber: 134
         },
         __self: this
       }, function (_ref2) {
         var ref = _ref2.ref;
         return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
+          className: "aui--popover-element",
           ref: ref,
           onClick: _this2.onClick,
           onMouseOver: _this2.onMouseOver,
-          onFocus: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.noop,
+          onFocus: _this2.onFocus,
           onMouseOut: _this2.onMouseOut,
-          onBlur: external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.noop,
+          onBlur: _this2.onBlur,
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 102
+            lineNumber: 136
           },
           __self: this
         }, children);
@@ -7985,7 +8026,9 @@ function (_React$PureComponent) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(props, state) {
-      if (props.trigger !== 'disabled') {
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([props.triggers]);
+
+      if (!triggers.includes('disabled')) {
         return state;
       }
 
@@ -8009,7 +8052,7 @@ _defineProperty(Popover_Popover, "propTypes", {
   placement: prop_types_default.a.oneOf(popoverPlacements),
   popoverContent: prop_types_default.a.node.isRequired,
   children: prop_types_default.a.node.isRequired,
-  trigger: prop_types_default.a.oneOf(['click', 'hover', 'disabled']),
+  triggers: prop_types_default.a.oneOfType([triggerPropTypes, prop_types_default.a.arrayOf(triggerPropTypes)]),
   isOpen: prop_types_default.a.bool,
   boundToContainer: prop_types_default.a.instanceOf(Element),
   popperRef: prop_types_default.a.func,
@@ -8019,7 +8062,7 @@ _defineProperty(Popover_Popover, "propTypes", {
 _defineProperty(Popover_Popover, "defaultProps", {
   theme: 'light',
   placement: 'auto',
-  trigger: 'hover',
+  triggers: 'hover',
   isOpen: false,
   boundToContainer: document.body // default to bound to body
 
@@ -9994,7 +10037,7 @@ function (_Component) {
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(third_party_Popover, {
         isOpen: this.state.isPopoverVisible && !external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.isEmpty(alertMessage),
-        trigger: "disabled",
+        triggers: ['disabled'],
         popoverContent: external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("strong", {
           __source: {
             fileName: AlertInput__jsxFileName,
@@ -12790,7 +12833,7 @@ var HelpIconPopover_HelpIconPopover = function HelpIconPopover(_ref) {
     },
     __self: this
   }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(third_party_Popover, {
-    trigger: "hover",
+    triggers: ['hover'],
     placement: placement,
     popoverContent: children,
     __source: {
@@ -15925,7 +15968,7 @@ function (_React$PureComponent) {
         __self: this
       }, children && children.length > 0 ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(third_party_Popover, {
         placement: "bottom-".concat(arrowPosition === 'left' ? 'start' : 'end'),
-        trigger: "disabled",
+        triggers: ['disabled'],
         isOpen: this.state.isOpen,
         title: headerText,
         popoverContent: external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("ul", {
@@ -54220,11 +54263,11 @@ function (_React$PureComponent) {
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Popover"], {
         arrowStyles: {
           left: 'auto',
-          right: 12
+          right: 30
         },
         placement: "bottom-end",
         title: "Popover Title",
-        popoverContent: "Popover Bottom End",
+        popoverContent: "Popover Bottom End with custom arrow position",
         __source: {
           fileName: PopoverExample__jsxFileName,
           lineNumber: 34
@@ -54432,7 +54475,7 @@ function (_React$PureComponent) {
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Popover"], {
-        trigger: "click",
+        triggers: "click",
         placement: "left",
         theme: "light",
         title: "Popover Title",
@@ -54457,7 +54500,7 @@ function (_React$PureComponent) {
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Popover"], {
-        trigger: "hover",
+        triggers: "hover",
         placement: "right",
         theme: "dark",
         title: "Popover Title",
@@ -54483,7 +54526,7 @@ function (_React$PureComponent) {
 
 var PopoverExample_exampleProps = {
   componentName: 'Popover',
-  exampleCodeSnippet: "\n    <Popover placement=\"left\" title=\"Popover Title\" popoverContent=\"Popover Left\">\n      <Button>Left</Button>\n    </Popover>\n\n    <Popover placement=\"top\" title=\"Popover Title\" popoverContent=\"Popover Top\">\n      <Button>Top</Button>\n    </Popover>\n\n    <Popover placement=\"bottom-start\" title=\"Popover Title\" popoverContent=\"Popover Bottom\">\n      <Button>Bottom-Start</Button>\n    </Popover>\n\n    <Popover placement=\"bottom\" title=\"Popover Title\" popoverContent=\"Popover Bottom\">\n      <Button>Bottom</Button>\n    </Popover>\n\n    <Popover\n      arrowStyles={{ left: 'auto', right: 12 }} \n      placement=\"bottom-end\" \n      title=\"Popover Title\" \n      popoverContent=\"Popover Bottom\"\n    >\n      <Button>Bottom-End</Button>\n    </Popover>\n\n    <Popover placement=\"right\" title=\"Popover Title\" popoverContent=\"Popover Right\">\n      <Button>Right</Button>\n    </Popover>\n  ",
+  exampleCodeSnippet: "\n    <Popover placement=\"left\" title=\"Popover Title\" popoverContent=\"Popover Left\">\n      <Button>Left</Button>\n    </Popover>\n\n    <Popover placement=\"top\" title=\"Popover Title\" popoverContent=\"Popover Top\">\n      <Button>Top</Button>\n    </Popover>\n\n    <Popover placement=\"bottom-start\" title=\"Popover Title\" popoverContent=\"Popover Bottom\">\n      <Button>Bottom-Start</Button>\n    </Popover>\n\n    <Popover placement=\"bottom\" title=\"Popover Title\" popoverContent=\"Popover Bottom\">\n      <Button>Bottom</Button>\n    </Popover>\n\n    <Popover\n      arrowStyles={{ left: 'auto', right: 30 }}\n      placement=\"bottom-end\"\n      title=\"Popover Title\"\n      popoverContent=\"Popover Bottom End with custom arrow position\"\n    >\n      <Button>Bottom-End</Button>\n    </Popover>\n\n    <Popover placement=\"right\" title=\"Popover Title\" popoverContent=\"Popover Right\">\n      <Button>Right</Button>\n    </Popover>\n  ",
   propTypeSectionArray: [{
     propTypes: [{
       propType: 'title',
@@ -54518,16 +54561,35 @@ var PopoverExample_exampleProps = {
       type: 'node',
       note: 'Popover content, can be a react element.'
     }, {
-      propType: 'trigger',
-      type: 'oneOf[click, hover]',
-      defaultValue: 'hover'
+      propType: 'triggers',
+      type: 'string|array',
+      defaultValue: external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("pre", {
+        __source: {
+          fileName: PopoverExample__jsxFileName,
+          lineNumber: 181
+        },
+        __self: this
+      }, "hover"),
+      note: external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
+        __source: {
+          fileName: PopoverExample__jsxFileName,
+          lineNumber: 183
+        },
+        __self: this
+      }, "can be an array of triggers, or a string. Accepted values are", ' ', external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("pre", {
+        __source: {
+          fileName: PopoverExample__jsxFileName,
+          lineNumber: 185
+        },
+        __self: this
+      }, "['click', 'hover', 'focus', 'disabled']"))
     }, {
       propType: 'boundToContainer',
       type: 'instanceof Element',
       defaultValue: external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("pre", {
         __source: {
           fileName: PopoverExample__jsxFileName,
-          lineNumber: 186
+          lineNumber: 192
         },
         __self: this
       }, "document.body"),
@@ -54542,25 +54604,25 @@ var PopoverExample_exampleProps = {
       note: external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
         __source: {
           fileName: PopoverExample__jsxFileName,
-          lineNumber: 198
+          lineNumber: 204
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("pre", {
         __source: {
           fileName: PopoverExample__jsxFileName,
-          lineNumber: 199
+          lineNumber: 205
         },
         __self: this
       }, "(node) => this.ref = node;"), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("br", {
         __source: {
           fileName: PopoverExample__jsxFileName,
-          lineNumber: 200
+          lineNumber: 206
         },
         __self: this
       }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("p", {
         __source: {
           fileName: PopoverExample__jsxFileName,
-          lineNumber: 201
+          lineNumber: 207
         },
         __self: this
       }, "Store the ref of the popover to manipulate when needed."))
@@ -54571,13 +54633,13 @@ var PopoverExample_exampleProps = {
   return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(components_Example, Object.assign({}, PopoverExample_exampleProps, {
     __source: {
       fileName: PopoverExample__jsxFileName,
-      lineNumber: 211
+      lineNumber: 217
     },
     __self: this
   }), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(PopoverExample_PopoverExample, {
     __source: {
       fileName: PopoverExample__jsxFileName,
-      lineNumber: 212
+      lineNumber: 218
     },
     __self: this
   }));
