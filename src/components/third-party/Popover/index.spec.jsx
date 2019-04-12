@@ -256,4 +256,15 @@ describe('Popover Component', () => {
 
     expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 'auto', right: 12 });
   });
+
+  it('should render popover when content is function', () => {
+    wrapper = mount(
+      <div>
+        <Popover id="popover-example" popoverContent={() => <div>test</div>} placement="bottom-end" isOpen>
+          Test message
+        </Popover>
+      </div>
+    );
+    expect(wrapper.find('.popover-content').text()).to.eql('test');
+  });
 });

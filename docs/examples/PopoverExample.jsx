@@ -98,14 +98,14 @@ class PopoverExample extends React.PureComponent {
 
         <label>Popover in container</label>
         <div style={{ display: 'flex' }}>
-          <div id="popover-example-container">
+          <div id="popover-boundaries" className="popover-example-container">
             <Popover
               triggers="click"
               placement="top"
               theme="light"
               title="Popover Title"
               popoverContent={this.renderPopoverContent(`But I'm bounded to the container`)}
-              getContainer={() => document.getElementById('popover-example-container')}
+              getContainer={() => document.getElementById('popover-boundaries')}
             >
               <Button bsStyle="primary">Click Me, I have Top placement</Button>
             </Popover>
