@@ -3,9 +3,9 @@
   border-color: $theme-border-color;
 
   // Arrows
-  // .popover-arrow is inner
-  // .popover-arrow::before is outer
-  .popover-arrow {
+  // .aui--popover-arrow is inner
+  // .aui--popover-arrow::before is outer
+  .aui--popover-arrow {
     &[data-placement*='top'] {
       border-top-color: $theme-border-color;
 

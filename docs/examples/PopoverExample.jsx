@@ -95,6 +95,22 @@ class PopoverExample extends React.PureComponent {
             <Button bsStyle="primary">Hover Me</Button>
           </Popover>
         </div>
+
+        <label>Popover in container</label>
+        <div style={{ display: 'flex' }}>
+          <div id="popover-example-container">
+            <Popover
+              triggers="click"
+              placement="top"
+              theme="light"
+              title="Popover Title"
+              popoverContent={this.renderPopoverContent(`But I'm bounded to the container`)}
+              getContainer={() => document.getElementById('popover-example-container')}
+            >
+              <Button bsStyle="primary">Click Me, I have Top placement</Button>
+            </Popover>
+          </div>
+        </div>
       </>
     );
   }
@@ -187,10 +203,9 @@ const exampleProps = {
           ),
         },
         {
-          propType: 'boundToContainer',
-          type: 'instanceof Element',
-          defaultValue: <pre>document.body</pre>,
-          note: 'Container for the popover to be mounted to',
+          propType: 'getContainer',
+          type: 'func',
+          note: 'function to get the container that the popover is bounded to',
         },
         {
           propType: 'dts',

@@ -69,6 +69,18 @@
         position: relative;
         margin: 20px;
       }
+
+      #popover-example-container {
+        width: 240px;
+        height: 160px;
+        border: 1px solid $color-border-light;
+
+        >.aui--popover-element {
+          top: 10px;
+          left: 10px;
+          position: relative;
+        }
+      }
     }
   }
 

@@ -23,7 +23,7 @@ class Popover extends React.PureComponent {
     children: PropTypes.node.isRequired,
     triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
     isOpen: PropTypes.bool,
-    boundToContainer: PropTypes.instanceOf(Element),
+    getContainer: PropTypes.func,
     popperRef: PropTypes.func,
     dts: PropTypes.string,
   };
@@ -33,7 +33,6 @@ class Popover extends React.PureComponent {
     placement: 'auto',
     triggers: 'hover',
     isOpen: false,
-    boundToContainer: document.body, // default to bound to body
   };
 
   state = {
@@ -74,6 +73,8 @@ class Popover extends React.PureComponent {
     return !triggers.includes('disabled') && triggers.includes('hover') ? this.closePopover() : null;
   };
 
+  getBoundedContainer = () => (this.props.getContainer ? this.props.getContainer() : document.body);
+
   closePopover = () => this.setState({ isPopoverOpen: false });
 
   openPopover = () => this.setState({ isPopoverOpen: true });
@@ -103,7 +104,16 @@ class Popover extends React.PureComponent {
 
     const popoverElement = this.state.isPopoverOpen
       ? ReactDOM.createPortal(
-          <Popper innerRef={this.popperRef} placement={this.props.placement}>
+          <Popper
+            innerRef={this.popperRef}
+            placement={this.props.placement}
+            modifiers={{
+              preventOverflow: {
+                enabled: true,
+                boundariesElement: this.getBoundedContainer(),
+              },
+            }}
+          >
             {({ ref, style, placement, arrowProps }) => (
               <div
                 className={popoverClassNames}
@@ -117,7 +127,7 @@ class Popover extends React.PureComponent {
                   <div className="popover-content">{popoverContent}</div>
                 </div>
                 <div
-                  className="popover-arrow"
+                  className="aui--popover-arrow"
                   data-placement={placement}
                   ref={arrowProps.ref}
                   style={{ ...arrowProps.style, ...arrowStyles }}
@@ -125,7 +135,7 @@ class Popover extends React.PureComponent {
               </div>
             )}
           </Popper>,
-          this.props.boundToContainer
+          this.getBoundedContainer()
         )
       : null;
 

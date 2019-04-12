@@ -242,7 +242,7 @@ describe('Popover Component', () => {
       </div>
     );
 
-    expect(wrapper.find('.popover-arrow').prop('style')).to.eql({ left: 12 });
+    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 12 });
   });
 
   it('should render custom arrow styles if placement is `bottom-end` or `top-end`', () => {
@@ -254,6 +254,6 @@ describe('Popover Component', () => {
       </div>
     );
 
-    expect(wrapper.find('.popover-arrow').prop('style')).to.eql({ left: 'auto', right: 12 });
+    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 'auto', right: 12 });
   });
 });
