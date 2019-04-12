@@ -15,11 +15,13 @@ class Popover extends React.PureComponent {
     theme: PropTypes.oneOf(themes),
     title: PropTypes.node,
     className: PropTypes.string,
-    wrapperClassName: PropTypes.string,
+    popoverClassNames: PropTypes.string,
     // arrow css styles, mainly for positioning the arrow
     arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    modifiers: Popper.modifiers,
     placement: PropTypes.oneOf(popoverPlacements),
-    popoverContent: PropTypes.node.isRequired,
+    popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
     children: PropTypes.node.isRequired,
     triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
     isOpen: PropTypes.bool,
@@ -85,10 +87,12 @@ class Popover extends React.PureComponent {
   popperRef = this.props.popperRef || React.createRef();
 
   render() {
-    const { theme, title, children, className, dts, wrapperClassName, popoverContent } = this.props;
+    const { theme, title, children, className, dts, popoverClassNames, popoverContent } = this.props;
     const themeClass = _.includes(themes, theme) ? `popover-${theme}` : 'popover-light';
-    const contentClassNames = classnames('aui--popover-container', className);
-    const popoverClassNames = classnames('aui--popover-wrapper', themeClass, wrapperClassName);
+    const elementClass = classnames('aui--popover-element', className);
+    const popoverClass = classnames('aui--popover-wrapper', themeClass, popoverClassNames);
+    const triggers = _.flattenDeep([this.props.triggers]);
+
     let arrowStyles = {};
     switch (true) {
       case _.includes(['bottom-start', 'top-start'], this.props.placement):
@@ -112,19 +116,22 @@ class Popover extends React.PureComponent {
                 enabled: true,
                 boundariesElement: this.getBoundedContainer(),
               },
+              ...this.props.modifiers,
             }}
           >
-            {({ ref, style, placement, arrowProps }) => (
+            {({ ref, style, placement, arrowProps, scheduleUpdate }) => (
               <div
-                className={popoverClassNames}
+                className={popoverClass}
                 ref={ref}
-                style={style}
+                style={{ ...style, ...this.props.wrapperStyles }}
                 data-placement={placement}
                 data-test-selector={dts}
               >
-                <div className={contentClassNames}>
+                <div className="aui--popover-container">
                   {title ? <div className="popover-title">{title}</div> : null}
-                  <div className="popover-content">{popoverContent}</div>
+                  <div className="popover-content">
+                    {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate }) : popoverContent}
+                  </div>
                 </div>
                 <div
                   className="aui--popover-arrow"
@@ -144,13 +151,17 @@ class Popover extends React.PureComponent {
         <Reference innerRef={this.referenceRef}>
           {({ ref }) => (
             <span
-              className="aui--popover-element"
+              className={elementClass}
               ref={ref}
-              onClick={this.onClick}
-              onMouseOver={this.onMouseOver}
-              onFocus={this.onFocus}
-              onMouseOut={this.onMouseOut}
-              onBlur={this.onBlur}
+              {...(triggers.includes('disabled')
+                ? {}
+                : {
+                    onClick: this.onClick,
+                    onMouseOver: this.onMouseOver,
+                    onFocus: this.onFocus,
+                    onMouseOut: this.onMouseOut,
+                    onBlur: this.onBlur,
+                  })}
             >
               {children}
             </span>
