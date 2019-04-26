@@ -7216,7 +7216,7 @@ var Spinner_styles = __webpack_require__(182);
 var styles_default = /*#__PURE__*/__webpack_require__.n(Spinner_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Spinner/index.jsx
-var _jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Spinner/index.jsx";
+var _jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Spinner/index.jsx";
 
 
 
@@ -7258,7 +7258,7 @@ var Button_styles = __webpack_require__(183);
 var Button_styles_default = /*#__PURE__*/__webpack_require__.n(Button_styles);
 
 // CONCATENATED MODULE: ./components/third-party/Button/index.jsx
-var Button__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/third-party/Button/index.jsx";
+var Button__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/third-party/Button/index.jsx";
 
 function Button__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Button__typeof = function _typeof(obj) { return typeof obj; }; } else { Button__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Button__typeof(obj); }
 
@@ -7785,7 +7785,7 @@ var Popover_styles = __webpack_require__(191);
 var Popover_styles_default = /*#__PURE__*/__webpack_require__.n(Popover_styles);
 
 // CONCATENATED MODULE: ./components/third-party/Popover/index.jsx
-var Popover__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/third-party/Popover/index.jsx";
+var Popover__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/third-party/Popover/index.jsx";
 
 function Popover__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Popover__typeof = function _typeof(obj) { return typeof obj; }; } else { Popover__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Popover__typeof(obj); }
 
@@ -7872,6 +7872,10 @@ function (_React$PureComponent) {
       return !triggers.includes('disabled') && triggers.includes('hover') ? _this.closePopover() : null;
     });
 
+    _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "getBoundedContainer", function () {
+      return _this.props.getContainer ? _this.props.getContainer() : document.body;
+    });
+
     _defineProperty(Popover__assertThisInitialized(Popover__assertThisInitialized(_this)), "closePopover", function () {
       return _this.setState({
         isPopoverOpen: false
@@ -7908,11 +7912,14 @@ function (_React$PureComponent) {
           children = _this$props.children,
           className = _this$props.className,
           dts = _this$props.dts,
-          wrapperClassName = _this$props.wrapperClassName,
+          popoverClassNames = _this$props.popoverClassNames,
           popoverContent = _this$props.popoverContent;
       var themeClass = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.includes(themes, theme) ? "popover-".concat(theme) : 'popover-light';
-      var contentClassNames = classnames_default()('aui--popover-container', className);
-      var popoverClassNames = classnames_default()('aui--popover-wrapper', themeClass, wrapperClassName);
+      var elementClass = classnames_default()('aui--popover-element', className);
+      var popoverClass = classnames_default()('aui--popover-wrapper', themeClass, popoverClassNames);
+
+      var triggers = external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.flattenDeep([this.props.triggers]);
+
       var arrowStyles = {};
 
       switch (true) {
@@ -7938,89 +7945,100 @@ function (_React$PureComponent) {
       var popoverElement = this.state.isPopoverOpen ? external___root___ReactDOM___commonjs2___react_dom___commonjs___react_dom___amd___react_dom___default.a.createPortal(external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(esm_Popper_Popper, {
         innerRef: this.popperRef,
         placement: this.props.placement,
+        modifiers: _objectSpread({
+          preventOverflow: {
+            enabled: true,
+            boundariesElement: this.getBoundedContainer()
+          }
+        }, this.props.modifiers),
         __source: {
           fileName: Popover__jsxFileName,
-          lineNumber: 106
+          lineNumber: 111
         },
         __self: this
       }, function (_ref) {
         var ref = _ref.ref,
             style = _ref.style,
             placement = _ref.placement,
-            arrowProps = _ref.arrowProps;
+            arrowProps = _ref.arrowProps,
+            scheduleUpdate = _ref.scheduleUpdate;
         return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
-          className: popoverClassNames,
+          className: popoverClass,
           ref: ref,
-          style: style,
+          style: _objectSpread({}, style, _this2.props.wrapperStyles),
           "data-placement": placement,
           "data-test-selector": dts,
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 108
+            lineNumber: 123
           },
           __self: this
         }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
-          className: contentClassNames,
+          className: "aui--popover-container",
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 115
+            lineNumber: 130
           },
           __self: this
         }, title ? external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
           className: "popover-title",
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 116
+            lineNumber: 131
           },
           __self: this
         }, title) : null, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
           className: "popover-content",
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 117
+            lineNumber: 132
           },
           __self: this
-        }, popoverContent)), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
-          className: "popover-arrow",
+        }, external___root_______commonjs2___lodash___commonjs___lodash___amd___lodash___default.a.isFunction(popoverContent) ? popoverContent({
+          scheduleUpdate: scheduleUpdate
+        }) : popoverContent)), external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("div", {
+          className: "aui--popover-arrow",
           "data-placement": placement,
           ref: arrowProps.ref,
           style: _objectSpread({}, arrowProps.style, arrowStyles),
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 119
+            lineNumber: 136
           },
           __self: this
         }));
-      }), this.props.boundToContainer) : null;
+      }), this.getBoundedContainer()) : null;
       return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(esm_Manager_Manager, {
         __source: {
           fileName: Popover__jsxFileName,
-          lineNumber: 133
+          lineNumber: 150
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(Reference, {
         innerRef: this.referenceRef,
         __source: {
           fileName: Popover__jsxFileName,
-          lineNumber: 134
+          lineNumber: 151
         },
         __self: this
       }, function (_ref2) {
         var ref = _ref2.ref;
-        return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", {
-          className: "aui--popover-element",
-          ref: ref,
+        return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", Object.assign({
+          className: elementClass,
+          ref: ref
+        }, triggers.includes('disabled') ? {} : {
           onClick: _this2.onClick,
           onMouseOver: _this2.onMouseOver,
           onFocus: _this2.onFocus,
           onMouseOut: _this2.onMouseOut,
-          onBlur: _this2.onBlur,
+          onBlur: _this2.onBlur
+        }, {
           __source: {
             fileName: Popover__jsxFileName,
-            lineNumber: 136
+            lineNumber: 153
           },
           __self: this
-        }, children);
+        }), children);
       }), popoverElement);
     }
   }], [{
@@ -8045,16 +8063,20 @@ _defineProperty(Popover_Popover, "propTypes", {
   theme: prop_types_default.a.oneOf(themes),
   title: prop_types_default.a.node,
   className: prop_types_default.a.string,
-  wrapperClassName: prop_types_default.a.string,
+  popoverClassNames: prop_types_default.a.string,
   // arrow css styles, mainly for positioning the arrow
   arrowStyles: prop_types_default.a.object,
   // eslint-disable-line react/forbid-prop-types
+  wrapperStyles: prop_types_default.a.object,
+  // eslint-disable-line react/forbid-prop-types
+  modifiers: prop_types_default.a.object,
+  // eslint-disable-line react/forbid-prop-types
   placement: prop_types_default.a.oneOf(popoverPlacements),
-  popoverContent: prop_types_default.a.node.isRequired,
+  popoverContent: prop_types_default.a.oneOfType([prop_types_default.a.node, prop_types_default.a.func]).isRequired,
   children: prop_types_default.a.node.isRequired,
   triggers: prop_types_default.a.oneOfType([triggerPropTypes, prop_types_default.a.arrayOf(triggerPropTypes)]),
   isOpen: prop_types_default.a.bool,
-  boundToContainer: prop_types_default.a.instanceOf(Element),
+  getContainer: prop_types_default.a.func,
   popperRef: prop_types_default.a.func,
   dts: prop_types_default.a.string
 });
@@ -8063,9 +8085,7 @@ _defineProperty(Popover_Popover, "defaultProps", {
   theme: 'light',
   placement: 'auto',
   triggers: 'hover',
-  isOpen: false,
-  boundToContainer: document.body // default to bound to body
-
+  isOpen: false
 });
 
 /* harmony default export */ var third_party_Popover = (Popover_Popover);
@@ -8121,7 +8141,7 @@ var Alert_styles = __webpack_require__(247);
 var Alert_styles_default = /*#__PURE__*/__webpack_require__.n(Alert_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Alert/index.jsx
-var Alert__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Alert/index.jsx";
+var Alert__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Alert/index.jsx";
 
 
 
@@ -8157,7 +8177,7 @@ var Avatar_styles = __webpack_require__(248);
 var Avatar_styles_default = /*#__PURE__*/__webpack_require__.n(Avatar_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Avatar/index.jsx
-var Avatar__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Avatar/index.jsx";
+var Avatar__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Avatar/index.jsx";
 
 
 
@@ -8211,7 +8231,7 @@ var BorderedWell_styles = __webpack_require__(249);
 var BorderedWell_styles_default = /*#__PURE__*/__webpack_require__.n(BorderedWell_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/BorderedWell/index.jsx
-var BorderedWell__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/BorderedWell/index.jsx";
+var BorderedWell__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/BorderedWell/index.jsx";
 
 
 
@@ -8238,7 +8258,7 @@ var Node_styles = __webpack_require__(250);
 var Node_styles_default = /*#__PURE__*/__webpack_require__.n(Node_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Breadcrumb/Node/index.jsx
-var Node__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Breadcrumb/Node/index.jsx";
+var Node__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Breadcrumb/Node/index.jsx";
 
 
 
@@ -8290,7 +8310,7 @@ var Breadcrumb_styles = __webpack_require__(251);
 var Breadcrumb_styles_default = /*#__PURE__*/__webpack_require__.n(Breadcrumb_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Breadcrumb/index.jsx
-var Breadcrumb__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Breadcrumb/index.jsx";
+var Breadcrumb__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Breadcrumb/index.jsx";
 
 
 
@@ -8386,7 +8406,7 @@ var Card_styles = __webpack_require__(252);
 var Card_styles_default = /*#__PURE__*/__webpack_require__.n(Card_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Card/index.jsx
-var Card__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Card/index.jsx";
+var Card__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Card/index.jsx";
 
 
 
@@ -8483,7 +8503,7 @@ var SvgSymbol_styles = __webpack_require__(253);
 var SvgSymbol_styles_default = /*#__PURE__*/__webpack_require__.n(SvgSymbol_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/SvgSymbol/index.jsx
-var SvgSymbol__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/SvgSymbol/index.jsx";
+var SvgSymbol__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/SvgSymbol/index.jsx";
 
 
 
@@ -8560,7 +8580,7 @@ var Circle_styles = __webpack_require__(254);
 var Circle_styles_default = /*#__PURE__*/__webpack_require__.n(Circle_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/SvgSymbol/Circle/index.jsx
-var Circle__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/SvgSymbol/Circle/index.jsx";
+var Circle__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/SvgSymbol/Circle/index.jsx";
 
 
 
@@ -8604,7 +8624,7 @@ var Empty_styles = __webpack_require__(255);
 var Empty_styles_default = /*#__PURE__*/__webpack_require__.n(Empty_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Empty/index.jsx
-var Empty__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Empty/index.jsx";
+var Empty__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Empty/index.jsx";
 
 
 
@@ -8674,7 +8694,7 @@ var FlexibleSpacer_styles = __webpack_require__(256);
 var FlexibleSpacer_styles_default = /*#__PURE__*/__webpack_require__.n(FlexibleSpacer_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/FlexibleSpacer/index.jsx
-var FlexibleSpacer__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/FlexibleSpacer/index.jsx";
+var FlexibleSpacer__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/FlexibleSpacer/index.jsx";
 
 
 
@@ -8696,7 +8716,7 @@ var Grid_styles = __webpack_require__(257);
 var Grid_styles_default = /*#__PURE__*/__webpack_require__.n(Grid_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Grid/index.jsx
-var Grid__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Grid/index.jsx";
+var Grid__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Grid/index.jsx";
 
 
 
@@ -8727,7 +8747,7 @@ var Cell_styles = __webpack_require__(258);
 var Cell_styles_default = /*#__PURE__*/__webpack_require__.n(Cell_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Grid/Cell/index.jsx
-var Cell__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Grid/Cell/index.jsx";
+var Cell__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Grid/Cell/index.jsx";
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -8793,7 +8813,7 @@ var Row_styles = __webpack_require__(259);
 var Row_styles_default = /*#__PURE__*/__webpack_require__.n(Row_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Grid/Row/index.jsx
-var Row__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Grid/Row/index.jsx";
+var Row__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Grid/Row/index.jsx";
 
 
 
@@ -8848,7 +8868,7 @@ var PageTitle_styles = __webpack_require__(260);
 var PageTitle_styles_default = /*#__PURE__*/__webpack_require__.n(PageTitle_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/PageTitle/index.jsx
-var PageTitle__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/PageTitle/index.jsx";
+var PageTitle__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/PageTitle/index.jsx";
 
 
 
@@ -8904,7 +8924,7 @@ var PrettyDiff_styles = __webpack_require__(262);
 var PrettyDiff_styles_default = /*#__PURE__*/__webpack_require__.n(PrettyDiff_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/PrettyDiff/index.jsx
-var PrettyDiff__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/PrettyDiff/index.jsx";
+var PrettyDiff__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/PrettyDiff/index.jsx";
 
 
 
@@ -8965,7 +8985,7 @@ var Arc_styles = __webpack_require__(263);
 var Arc_styles_default = /*#__PURE__*/__webpack_require__.n(Arc_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Slicey/Arc/index.jsx
-var Arc__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Slicey/Arc/index.jsx";
+var Arc__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Slicey/Arc/index.jsx";
 
 
 
@@ -9015,7 +9035,7 @@ var Donut_styles = __webpack_require__(264);
 var Donut_styles_default = /*#__PURE__*/__webpack_require__.n(Donut_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Slicey/Donut/index.jsx
-var Donut__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Slicey/Donut/index.jsx";
+var Donut__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Slicey/Donut/index.jsx";
 
 
 
@@ -9051,7 +9071,7 @@ var Marker_styles = __webpack_require__(265);
 var Marker_styles_default = /*#__PURE__*/__webpack_require__.n(Marker_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Slicey/Marker/index.jsx
-var Marker__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Slicey/Marker/index.jsx";
+var Marker__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Slicey/Marker/index.jsx";
 
 
 
@@ -9089,7 +9109,7 @@ var Slicey_styles = __webpack_require__(266);
 var Slicey_styles_default = /*#__PURE__*/__webpack_require__.n(Slicey_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Slicey/index.jsx
-var Slicey__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Slicey/index.jsx";
+var Slicey__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Slicey/index.jsx";
 
 
 
@@ -9247,7 +9267,7 @@ var Statistic_styles = __webpack_require__(267);
 var Statistic_styles_default = /*#__PURE__*/__webpack_require__.n(Statistic_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Statistic/index.jsx
-var Statistic__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Statistic/index.jsx";
+var Statistic__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Statistic/index.jsx";
 
 
 
@@ -9298,7 +9318,7 @@ var Tag_styles = __webpack_require__(268);
 var Tag_styles_default = /*#__PURE__*/__webpack_require__.n(Tag_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/Tag/index.jsx
-var Tag__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Tag/index.jsx";
+var Tag__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Tag/index.jsx";
 
 function Tag__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -9399,7 +9419,7 @@ var TileGrid_styles = __webpack_require__(269);
 var TileGrid_styles_default = /*#__PURE__*/__webpack_require__.n(TileGrid_styles);
 
 // CONCATENATED MODULE: ./components/alexandria/TileGrid/index.jsx
-var TileGrid__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/TileGrid/index.jsx";
+var TileGrid__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/TileGrid/index.jsx";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
@@ -9525,7 +9545,7 @@ TileGrid_TileGrid.propTypes = {
 TileGrid_TileGrid.displayName = 'AlexandriaTileGridComponent';
 /* harmony default export */ var alexandria_TileGrid = (TileGrid_TileGrid);
 // CONCATENATED MODULE: ./components/alexandria/Totals/index.jsx
-var Totals__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/alexandria/Totals/index.jsx";
+var Totals__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/alexandria/Totals/index.jsx";
 
 /* eslint-disable react/no-array-index-key */
 
@@ -9640,7 +9660,7 @@ var Panel_styles = __webpack_require__(270);
 var Panel_styles_default = /*#__PURE__*/__webpack_require__.n(Panel_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/Panel/index.jsx
-var Panel__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Panel/index.jsx";
+var Panel__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Panel/index.jsx";
 
 function Panel__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Panel__typeof = function _typeof(obj) { return typeof obj; }; } else { Panel__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Panel__typeof(obj); }
 
@@ -9756,7 +9776,7 @@ Panel__defineProperty(Panel_PanelComponent, "propTypes", {
 
 /* harmony default export */ var Panel = (Panel_PanelComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/Accordion/index.jsx
-var Accordion__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Accordion/index.jsx";
+var Accordion__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Accordion/index.jsx";
 
 function Accordion__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Accordion__typeof = function _typeof(obj) { return typeof obj; }; } else { Accordion__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Accordion__typeof(obj); }
 
@@ -9923,7 +9943,7 @@ var AlertInput_styles = __webpack_require__(271);
 var AlertInput_styles_default = /*#__PURE__*/__webpack_require__.n(AlertInput_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/AlertInput/index.jsx
-var AlertInput__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/AlertInput/index.jsx";
+var AlertInput__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/AlertInput/index.jsx";
 
 function AlertInput__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { AlertInput__typeof = function _typeof(obj) { return typeof obj; }; } else { AlertInput__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return AlertInput__typeof(obj); }
 
@@ -10127,7 +10147,7 @@ var ButtonGroup_styles = __webpack_require__(272);
 var ButtonGroup_styles_default = /*#__PURE__*/__webpack_require__.n(ButtonGroup_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/ButtonGroup/index.jsx
-var ButtonGroup__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/ButtonGroup/index.jsx";
+var ButtonGroup__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/ButtonGroup/index.jsx";
 
 function ButtonGroup__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ButtonGroup__typeof = function _typeof(obj) { return typeof obj; }; } else { ButtonGroup__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ButtonGroup__typeof(obj); }
 
@@ -12469,7 +12489,7 @@ var Carousel_styles = __webpack_require__(282);
 var Carousel_styles_default = /*#__PURE__*/__webpack_require__.n(Carousel_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/Carousel/index.jsx
-var Carousel__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Carousel/index.jsx";
+var Carousel__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Carousel/index.jsx";
 
 
 
@@ -12546,7 +12566,7 @@ var Checkbox = __webpack_require__(68);
 var inputPropTypes = __webpack_require__(64);
 
 // CONCATENATED MODULE: ./components/adslot-ui/CheckboxGroup/index.jsx
-var CheckboxGroup__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx";
+var CheckboxGroup__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/CheckboxGroup/index.jsx";
 
 function CheckboxGroup__objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { CheckboxGroup__defineProperty(target, key, source[key]); }); } return target; }
 
@@ -12630,7 +12650,7 @@ var CheckboxGroup_CheckboxGroup = function CheckboxGroup(_ref) {
 CheckboxGroup_CheckboxGroup.propTypes = inputPropTypes["b" /* checkboxGroupPropTypes */];
 /* harmony default export */ var adslot_ui_CheckboxGroup = (CheckboxGroup_CheckboxGroup);
 // CONCATENATED MODULE: ./components/adslot-ui/ConfirmModal/index.jsx
-var ConfirmModal__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/ConfirmModal/index.jsx";
+var ConfirmModal__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/ConfirmModal/index.jsx";
 
 
 
@@ -12740,7 +12760,7 @@ var CountBadge_styles = __webpack_require__(284);
 var CountBadge_styles_default = /*#__PURE__*/__webpack_require__.n(CountBadge_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/CountBadge/index.jsx
-var CountBadge__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/CountBadge/index.jsx";
+var CountBadge__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/CountBadge/index.jsx";
 
 function CountBadge__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { CountBadge__typeof = function _typeof(obj) { return typeof obj; }; } else { CountBadge__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return CountBadge__typeof(obj); }
 
@@ -12814,7 +12834,7 @@ var HelpIconPopover_styles = __webpack_require__(285);
 var HelpIconPopover_styles_default = /*#__PURE__*/__webpack_require__.n(HelpIconPopover_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/HelpIconPopover/index.jsx
-var HelpIconPopover__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/HelpIconPopover/index.jsx";
+var HelpIconPopover__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/HelpIconPopover/index.jsx";
 
 
 
@@ -12861,7 +12881,7 @@ HelpIconPopover_HelpIconPopover.defaultProps = {
 };
 /* harmony default export */ var adslot_ui_HelpIconPopover = (HelpIconPopover_HelpIconPopover);
 // CONCATENATED MODULE: ./components/adslot-ui/FilePicker/index.jsx
-var FilePicker__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/FilePicker/index.jsx";
+var FilePicker__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/FilePicker/index.jsx";
 
 function FilePicker__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { FilePicker__typeof = function _typeof(obj) { return typeof obj; }; } else { FilePicker__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return FilePicker__typeof(obj); }
 
@@ -13039,7 +13059,7 @@ FilePicker__defineProperty(FilePicker_FilePickerComponent, "defaultProps", {
 
 /* harmony default export */ var FilePicker = (FilePicker_FilePickerComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/FormGroup/index.jsx
-var FormGroup__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/FormGroup/index.jsx";
+var FormGroup__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/FormGroup/index.jsx";
 
 
 
@@ -13131,7 +13151,7 @@ FormGroup_FormGroupComponent.defaultProps = {
 };
 /* harmony default export */ var FormGroup = (FormGroup_FormGroupComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/ListPicker/index.jsx
-var ListPicker__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx";
+var ListPicker__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/ListPicker/index.jsx";
 
 function ListPicker__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ListPicker__typeof = function _typeof(obj) { return typeof obj; }; } else { ListPicker__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ListPicker__typeof(obj); }
 
@@ -13526,7 +13546,7 @@ ListPicker_ListPickerComponent.defaultProps = {
 var Radio = __webpack_require__(97);
 
 // CONCATENATED MODULE: ./components/adslot-ui/ListPickerPure/index.jsx
-var ListPickerPure__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx";
+var ListPickerPure__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/ListPickerPure/index.jsx";
 
 function ListPickerPure__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ListPickerPure__typeof = function _typeof(obj) { return typeof obj; }; } else { ListPickerPure__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ListPickerPure__typeof(obj); }
 
@@ -13800,7 +13820,7 @@ ListPickerPure_ListPickerPureComponent.defaultProps = {
 };
 /* harmony default export */ var ListPickerPure = (ListPickerPure_ListPickerPureComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/PagedGrid/index.jsx
-var PagedGrid__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx";
+var PagedGrid__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/PagedGrid/index.jsx";
 
 function PagedGrid__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { PagedGrid__typeof = function _typeof(obj) { return typeof obj; }; } else { PagedGrid__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return PagedGrid__typeof(obj); }
 
@@ -14000,7 +14020,7 @@ var Search_styles = __webpack_require__(291);
 var Search_styles_default = /*#__PURE__*/__webpack_require__.n(Search_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/Search/index.jsx
-var Search__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Search/index.jsx";
+var Search__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Search/index.jsx";
 
 function Search__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Search__typeof = function _typeof(obj) { return typeof obj; }; } else { Search__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Search__typeof(obj); }
 
@@ -14194,7 +14214,7 @@ Search_Search.defaultProps = {
 };
 /* harmony default export */ var adslot_ui_Search = (Search_Search);
 // CONCATENATED MODULE: ./components/adslot-ui/SearchBar/index.jsx
-var SearchBar__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/SearchBar/index.jsx";
+var SearchBar__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/SearchBar/index.jsx";
 
 
 
@@ -14281,7 +14301,7 @@ SearchBar_SearchBarComponent.defaultProps = {
 };
 /* harmony default export */ var SearchBar = (SearchBar_SearchBarComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/SplitPane/index.jsx
-var SplitPane__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/SplitPane/index.jsx";
+var SplitPane__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/SplitPane/index.jsx";
 
 function SplitPane__toConsumableArray(arr) { return SplitPane__arrayWithoutHoles(arr) || SplitPane__iterableToArray(arr) || SplitPane__nonIterableSpread(); }
 
@@ -14330,7 +14350,7 @@ var StatusPill_styles = __webpack_require__(294);
 var StatusPill_styles_default = /*#__PURE__*/__webpack_require__.n(StatusPill_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/StatusPill/index.jsx
-var StatusPill__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/StatusPill/index.jsx";
+var StatusPill__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/StatusPill/index.jsx";
 
 
 
@@ -14368,7 +14388,7 @@ StatusPill_StatusPill.propTypes = {
 };
 /* harmony default export */ var adslot_ui_StatusPill = (StatusPill_StatusPill);
 // CONCATENATED MODULE: ./components/adslot-ui/Tab/index.jsx
-var Tab__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Tab/index.jsx";
+var Tab__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Tab/index.jsx";
 
 /* eslint-disable react/no-unused-prop-types */
 
@@ -14404,7 +14424,7 @@ Tab_Tab.propTypes = {
 };
 /* harmony default export */ var adslot_ui_Tab = (Tab_Tab);
 // CONCATENATED MODULE: ./components/adslot-ui/Tabs/index.jsx
-var Tabs__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Tabs/index.jsx";
+var Tabs__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Tabs/index.jsx";
 
 function Tabs__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Tabs__typeof = function _typeof(obj) { return typeof obj; }; } else { Tabs__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Tabs__typeof(obj); }
 
@@ -14568,7 +14588,7 @@ Tabs_Tabs.propTypes = {
 };
 /* harmony default export */ var adslot_ui_Tabs = (Tabs_Tabs);
 // CONCATENATED MODULE: ./components/adslot-ui/Textarea/index.jsx
-var Textarea__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Textarea/index.jsx";
+var Textarea__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Textarea/index.jsx";
 
 function Textarea__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Textarea__typeof = function _typeof(obj) { return typeof obj; }; } else { Textarea__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Textarea__typeof(obj); }
 
@@ -14681,7 +14701,7 @@ var TextEllipsis_styles = __webpack_require__(295);
 var TextEllipsis_styles_default = /*#__PURE__*/__webpack_require__.n(TextEllipsis_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/TextEllipsis/index.jsx
-var TextEllipsis__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/TextEllipsis/index.jsx";
+var TextEllipsis__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/TextEllipsis/index.jsx";
 
 function TextEllipsis__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { TextEllipsis__typeof = function _typeof(obj) { return typeof obj; }; } else { TextEllipsis__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return TextEllipsis__typeof(obj); }
 
@@ -14792,7 +14812,7 @@ TextEllipsis__defineProperty(TextEllipsis_TextEllipsisComponent, "defaultProps",
 
 /* harmony default export */ var TextEllipsis = (TextEllipsis_TextEllipsisComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/fastStatelessWrapper/index.jsx
-var fastStatelessWrapper__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/fastStatelessWrapper/index.jsx";
+var fastStatelessWrapper__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/fastStatelessWrapper/index.jsx";
 
 function fastStatelessWrapper__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { fastStatelessWrapper__typeof = function _typeof(obj) { return typeof obj; }; } else { fastStatelessWrapper__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return fastStatelessWrapper__typeof(obj); }
 
@@ -14870,7 +14890,7 @@ var fastStatelessWrapper_fastStatelessWrapper = function fastStatelessWrapper(Co
 
 /* harmony default export */ var adslot_ui_fastStatelessWrapper = (fastStatelessWrapper_fastStatelessWrapper);
 // CONCATENATED MODULE: ./components/adslot-ui/TreePicker/Node/Expander/index.jsx
-var Expander__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/TreePicker/Node/Expander/index.jsx";
+var Expander__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/TreePicker/Node/Expander/index.jsx";
 
 
 
@@ -14944,7 +14964,7 @@ var mergeNodeProps = function mergeNodeProps(addedProps) {
   }))
 });
 // CONCATENATED MODULE: ./components/adslot-ui/TreePicker/Node/index.jsx
-var TreePicker_Node__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx";
+var TreePicker_Node__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/TreePicker/Node/index.jsx";
 
 function Node__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Node__typeof = function _typeof(obj) { return typeof obj; }; } else { Node__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Node__typeof(obj); }
 
@@ -15179,7 +15199,7 @@ Node_TreePickerNodeComponent.defaultProps = {
 };
 /* harmony default export */ var TreePicker_Node = (Node_TreePickerNodeComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/TreePicker/Grid/index.jsx
-var TreePicker_Grid__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx";
+var TreePicker_Grid__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/TreePicker/Grid/index.jsx";
 
 
 
@@ -15326,7 +15346,7 @@ Grid_TreePickerGridComponent.defaultProps = {
 };
 /* harmony default export */ var TreePicker_Grid = (Grid_TreePickerGridComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/TreePicker/Nav/index.jsx
-var Nav__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/TreePicker/Nav/index.jsx";
+var Nav__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/TreePicker/Nav/index.jsx";
 
 
 
@@ -15412,7 +15432,7 @@ Nav_TreePickerNavComponent.defaultProps = {
 };
 /* harmony default export */ var Nav = (Nav_TreePickerNavComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/TreePicker/index.jsx
-var TreePicker__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/TreePicker/index.jsx";
+var TreePicker__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/TreePicker/index.jsx";
 
 
 
@@ -15620,7 +15640,7 @@ TreePicker_TreePickerSimplePureComponent.defaultProps = {
 };
 /* harmony default export */ var TreePicker = (TreePicker_TreePickerSimplePureComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/UserListPicker/index.jsx
-var UserListPicker__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx";
+var UserListPicker__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/UserListPicker/index.jsx";
 
 
 
@@ -15750,7 +15770,7 @@ var PopoverLinkItem_styles = __webpack_require__(313);
 var PopoverLinkItem_styles_default = /*#__PURE__*/__webpack_require__.n(PopoverLinkItem_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx
-var PopoverLinkItem__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx";
+var PopoverLinkItem__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/PopoverLinkItem/index.jsx";
 
 function PopoverLinkItem__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { PopoverLinkItem__typeof = function _typeof(obj) { return typeof obj; }; } else { PopoverLinkItem__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return PopoverLinkItem__typeof(obj); }
 
@@ -15855,7 +15875,7 @@ var HoverDropdownMenu_styles = __webpack_require__(314);
 var HoverDropdownMenu_styles_default = /*#__PURE__*/__webpack_require__.n(HoverDropdownMenu_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/HoverDropdownMenu/index.jsx
-var HoverDropdownMenu__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx";
+var HoverDropdownMenu__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/HoverDropdownMenu/index.jsx";
 
 function HoverDropdownMenu__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { HoverDropdownMenu__typeof = function _typeof(obj) { return typeof obj; }; } else { HoverDropdownMenu__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return HoverDropdownMenu__typeof(obj); }
 
@@ -16008,7 +16028,7 @@ HoverDropdownMenu__defineProperty(HoverDropdownMenu_HoverDropdownMenuComponent, 
 HoverDropdownMenu_HoverDropdownMenuComponent.Item = PopoverLinkItem;
 /* harmony default export */ var HoverDropdownMenu = (HoverDropdownMenu_HoverDropdownMenuComponent);
 // CONCATENATED MODULE: ./components/adslot-ui/InformationBox/index.jsx
-var InformationBox__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/InformationBox/index.jsx";
+var InformationBox__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/InformationBox/index.jsx";
 
 
 
@@ -16078,7 +16098,7 @@ var Navigation_styles = __webpack_require__(316);
 var Navigation_styles_default = /*#__PURE__*/__webpack_require__.n(Navigation_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/Navigation/index.jsx
-var Navigation__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Navigation/index.jsx";
+var Navigation__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Navigation/index.jsx";
 
 function Navigation__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Navigation__typeof = function _typeof(obj) { return typeof obj; }; } else { Navigation__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Navigation__typeof(obj); }
 
@@ -16156,7 +16176,7 @@ var OverlayLoader_styles = __webpack_require__(317);
 var OverlayLoader_styles_default = /*#__PURE__*/__webpack_require__.n(OverlayLoader_styles);
 
 // CONCATENATED MODULE: ./components/adslot-ui/OverlayLoader/index.jsx
-var OverlayLoader__jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/OverlayLoader/index.jsx";
+var OverlayLoader__jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/OverlayLoader/index.jsx";
 
  // import ReactDOM from 'react-dom';
 
@@ -19904,7 +19924,7 @@ exports.default = Transition;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__styles_scss__);
-var _jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Checkbox/index.jsx";
+var _jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Checkbox/index.jsx";
 
 
 
@@ -21197,7 +21217,7 @@ function sleep(time) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__styles_scss__);
-var _jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/Radio/index.jsx";
+var _jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/Radio/index.jsx";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -34206,7 +34226,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_132__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_utils__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prop_types_inputPropTypes__ = __webpack_require__(64);
-var _jsxFileName = "/Users/tuan.nguyen/dev/adslot-ui/src/components/adslot-ui/RadioGroup/index.jsx";
+var _jsxFileName = "/home/vd/Documents/adslot-ui/src/components/adslot-ui/RadioGroup/index.jsx";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
