@@ -50,30 +50,15 @@ class Popover extends React.PureComponent {
     return { isPopoverOpen: props.isOpen };
   }
 
-  onClick = () => {
-    const triggers = _.flattenDeep([this.props.triggers]);
-    return !triggers.includes('disabled') && triggers.includes('click') ? this.togglePopover() : null;
-  };
+  onClick = () => this.togglePopover();
 
-  onFocus = () => {
-    const triggers = _.flattenDeep([this.props.triggers]);
-    return !triggers.includes('disabled') && triggers.includes('focus') ? this.openPopover() : null;
-  };
+  onFocus = () => this.openPopover();
 
-  onBlur = () => {
-    const triggers = _.flattenDeep([this.props.triggers]);
-    return !triggers.includes('disabled') && triggers.includes('focus') ? this.closePopover() : null;
-  };
+  onBlur = () => this.closePopover();
 
-  onMouseOver = () => {
-    const triggers = _.flattenDeep([this.props.triggers]);
-    return !triggers.includes('disabled') && triggers.includes('hover') ? this.openPopover() : null;
-  };
+  onMouseOver = () => this.openPopover();
 
-  onMouseOut = () => {
-    const triggers = _.flattenDeep([this.props.triggers]);
-    return !triggers.includes('disabled') && triggers.includes('hover') ? this.closePopover() : null;
-  };
+  onMouseOut = () => this.closePopover();
 
   getBoundedContainer = () => (this.props.getContainer ? this.props.getContainer() : document.body);
 
@@ -156,11 +141,11 @@ class Popover extends React.PureComponent {
               {...(triggers.includes('disabled')
                 ? {}
                 : {
-                    onClick: this.onClick,
-                    onMouseOver: this.onMouseOver,
-                    onFocus: this.onFocus,
-                    onMouseOut: this.onMouseOut,
-                    onBlur: this.onBlur,
+                    onClick: triggers.includes('click') ? this.onClick : null,
+                    onMouseOver: triggers.includes('hover') ? this.onMouseOver : null,
+                    onFocus: triggers.includes('focus') ? this.onFocus : null,
+                    onMouseOut: triggers.includes('hover') ? this.onMouseOut : null,
+                    onBlur: triggers.includes('focus') ? this.onBlur : null,
                   })}
             >
               {children}
