@@ -49,7 +49,12 @@ class TextEllipsisComponent extends React.PureComponent {
     const { truncated } = this.state;
 
     return (
-      <Popover {...popoverProps} isOpen={truncated} popoverContent={this.props.children}>
+      <Popover
+        {...popoverProps}
+        isOpen={truncated}
+        popoverContent={this.props.children}
+        className="aui--text-ellipsis-wrapper"
+      >
         <div className="text-ellipsis-component" ref={this.container}>
           {this.props.children}
         </div>
