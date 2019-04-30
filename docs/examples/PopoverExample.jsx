@@ -1,8 +1,20 @@
 import React from 'react';
 import Example from '../components/Example';
-import { Button, Popover } from '../../src';
+import _ from 'lodash';
+import { Checkbox, Button, Popover } from '../../src';
 
 class PopoverExample extends React.PureComponent {
+  state = {
+    placement: 'left',
+    theme: 'light',
+    trigger: 'hover',
+    isOpen: false,
+  };
+
+  placements = ['left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'];
+  themes = ['light', 'dark', 'warn', 'error'];
+  triggers = ['hover', 'click'];
+
   renderPopoverContent = content => (
     <div>
       <p>static content</p>
@@ -10,104 +22,105 @@ class PopoverExample extends React.PureComponent {
     </div>
   );
 
+  handlePlacements = (state, placement) => this.setState({ placement });
+  handleThemes = (state, theme) => this.setState({ theme });
+  handleTriggers = (state, trigger) => this.setState({ trigger });
+  togglePopover = () =>
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+
   render() {
+    const formattedPlacement = _.startCase(_.toLower(this.state.placement));
+    const formattedTheme = _.startCase(_.toLower(this.state.theme));
+    const formattedTrigger = _.startCase(_.toLower(this.state.trigger));
     return (
       <>
-        <label>Placement (left(-start, -end), top(-start, -end), bottom(-start, -end), right(-start, -end))</label>
-        <div style={{ display: 'flex' }}>
-          <Popover placement="left" title="Popover Title" popoverContent="Popover Left">
-            <Button>Left</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="top" title="Popover Title" popoverContent="Popover Top">
-            <Button>Top</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="bottom-start" title="Popover Title" popoverContent="Popover Bottom Start">
-            <Button>Bottom-Start</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="bottom" title="Popover Title" popoverContent="Popover Bottom">
-            <Button>Bottom</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover
-            arrowStyles={{ left: 'auto', right: 30 }}
-            placement="bottom-end"
-            title="Popover Title"
-            popoverContent="Popover Bottom End with custom arrow position"
-          >
-            <Button>Bottom-End</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="right" title="Popover Title" popoverContent="Popover Right">
-            <Button>Right</Button>
-          </Popover>
+        <div className="button-example-container">
+          <h3>Popover over element</h3>
+          <label>Placements</label>
+          <div className="placement-checkbox">
+            {_.map(this.placements, placement => (
+              <Checkbox
+                onChange={this.handlePlacements}
+                value={this.state.placement}
+                name={placement}
+                label={placement}
+                checked={this.state.placement === placement}
+              />
+            ))}
+          </div>
+          <label>Themes</label>
+          <div className="theme-checkbox">
+            {_.map(this.themes, theme => (
+              <Checkbox
+                onChange={this.handleThemes}
+                value={this.state.theme}
+                name={theme}
+                label={theme}
+                checked={this.state.theme === theme}
+              />
+            ))}
+          </div>
+          <label>Triggers</label>
+          <div className="trigger-checkbox">
+            {_.map(this.triggers, trigger => (
+              <Checkbox
+                onChange={this.handleTriggers}
+                value={this.state.trigger}
+                name={trigger}
+                label={trigger}
+                checked={this.state.trigger === trigger}
+              />
+            ))}
+          </div>
+          <div className="disabled-popover">
+            You can also&nbsp;
+            <Checkbox
+              onChange={this.handleTriggers}
+              value={'disabled'}
+              name={'disabled'}
+              label={'Disable'}
+              checked={this.state.trigger === 'disabled'}
+            />
+            &nbsp; the triggers and control the popover with external events
+            {this.state.trigger === 'disabled' && (
+              <Button onClick={this.togglePopover}>{this.state.isOpen ? 'Close' : 'Open'} Popover</Button>
+            )}
+          </div>
 
-          <div className="horizontal-separator" />
-          <Popover placement="top-start" title="Popover Title" popoverContent="Popover Top Start">
-            <Button>Top-Start</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="top-end" title="Popover Title" popoverContent="Popover Top End">
-            <Button>Top-End</Button>
-          </Popover>
+          <label>Live Demo</label>
+          <div className="example-button">
+            <Popover
+              {...(this.state.trigger === 'disabled' ? { isOpen: this.state.isOpen } : {})}
+              triggers={this.state.trigger}
+              placement={this.state.placement}
+              title="Popover Title"
+              theme={this.state.theme}
+              popoverContent={`My initial positioning is ${formattedPlacement}`}
+            >
+              <Button theme={this.state.theme} disabled={this.state.trigger === 'disabled'}>
+                {this.state.trigger === 'disabled'
+                  ? 'Trigger Disabled'
+                  : `${formattedTrigger} me for ${formattedTheme} theme and ${formattedPlacement} positioned popover`}
+              </Button>
+            </Popover>
+          </div>
         </div>
-        <div className="vertical-separator" />
-        <label>Theme (light, dark, warn, error)</label>
-        <div style={{ display: 'flex' }}>
-          <Popover placement="left" theme="light" title="Popover Title" popoverContent="Light theme">
-            <Button>Light</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="top" theme="dark" title="Popover Title" popoverContent="Dark Theme">
-            <Button>Dark</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="right" theme="warn" title="Popover Title" popoverContent="Warn Theme">
-            <Button>Warn</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover placement="bottom" theme="error" title="Popover Title" popoverContent="Error Theme">
-            <Button>Error</Button>
-          </Popover>
-        </div>
-        <div className="vertical-separator" />
-        <label>Trigger (click, hover)</label>
-        <div style={{ display: 'flex' }}>
-          <Popover
-            triggers="click"
-            placement="left"
-            theme="light"
-            title="Popover Title"
-            popoverContent={this.renderPopoverContent('some dynamic content')}
-          >
-            <Button bsStyle="primary">Click Me</Button>
-          </Popover>
-          <div className="horizontal-separator" />
-          <Popover
-            triggers="hover"
-            placement="right"
-            theme="dark"
-            title="Popover Title"
-            popoverContent={this.renderPopoverContent('some other dynamic content')}
-          >
-            <Button bsStyle="primary">Hover Me</Button>
-          </Popover>
-        </div>
-
-        <label>Popover in container</label>
-        <div style={{ display: 'flex' }}>
+        <h3>Auto flip on boundaries and stay in container</h3>
+        <label>Scroll the container</label>
+        <div className="auto-flip-container">
           <div id="popover-boundaries" className="popover-example-container">
             <Popover
-              triggers="click"
-              placement="top"
-              theme="light"
+              trigger="disabled"
+              isOpen={true}
+              placement="left"
               title="Popover Title"
-              popoverContent={this.renderPopoverContent(`But I'm bounded to the container`)}
-              getContainer={() => document.getElementById('popover-boundaries')}
+              theme="dark"
+              popoverContent={`My initial positioning is left`}
+              modifiers={{ preventOverflow: { enabled: true } }}
             >
-              <Button bsStyle="primary">Click Me, I have Top placement</Button>
+              <Button>Anchor</Button>
             </Popover>
           </div>
         </div>
@@ -119,33 +132,27 @@ class PopoverExample extends React.PureComponent {
 const exampleProps = {
   componentName: 'Popover',
   exampleCodeSnippet: `
+    // Basic usage
     <Popover placement="left" title="Popover Title" popoverContent="Popover Left">
       <Button>Left</Button>
     </Popover>
 
-    <Popover placement="top" title="Popover Title" popoverContent="Popover Top">
-      <Button>Top</Button>
-    </Popover>
-
-    <Popover placement="bottom-start" title="Popover Title" popoverContent="Popover Bottom">
-      <Button>Bottom-Start</Button>
-    </Popover>
-
-    <Popover placement="bottom" title="Popover Title" popoverContent="Popover Bottom">
-      <Button>Bottom</Button>
-    </Popover>
-
-    <Popover
-      arrowStyles={{ left: 'auto', right: 30 }}
-      placement="bottom-end"
-      title="Popover Title"
-      popoverContent="Popover Bottom End with custom arrow position"
-    >
-      <Button>Bottom-End</Button>
-    </Popover>
-
-    <Popover placement="right" title="Popover Title" popoverContent="Popover Right">
+    // Popper controlled by external events
+    <Popover triggers="disabled" isOpen={this.state.isOpen} popoverContent="Popover evnet controlled">
       <Button>Right</Button>
+    </Popover>
+
+    // Non overflowing popover
+    <Popover
+      trigger="disabled"
+      isOpen={true}
+      placement="left"
+      title="Popover Title"
+      theme="dark"
+      popoverContent="My initial positioning is left"
+      modifiers={{ preventOverflow: { enabled: true } }}
+    >
+      <Button>Anchor</Button>
     </Popover>
   `,
   propTypeSectionArray: [
@@ -164,7 +171,7 @@ const exampleProps = {
         {
           propType: 'className',
           type: 'text',
-          note: 'Additional className for the popover content',
+          note: 'Additional Class name for anchor element',
         },
         {
           propType: 'wrapperClassName',
@@ -172,13 +179,8 @@ const exampleProps = {
           note: 'Additional className for the popover wrapper',
         },
         {
-          propType: 'arrowStyles',
-          type: 'object',
-          note: 'CSS object to add additional styles to the arrow, mainly to customize the position the arrow',
-        },
-        {
           propType: 'placement',
-          type: 'oneOf[top, right, bottom, left, auto]',
+          type: 'oneOf[left, top, top-start, top-end, bottom-start, bottom, bottom-end, right, auto]',
           defaultValue: 'auto',
         },
         {
@@ -192,20 +194,14 @@ const exampleProps = {
           note: 'Popover content, can be a react element.',
         },
         {
-          propType: 'triggers',
-          type: 'string|array',
-          defaultValue: <pre>hover</pre>,
-          note: (
-            <span>
-              can be an array of triggers, or a string. Accepted values are{' '}
-              <pre>['click', 'hover', 'focus', 'disabled']</pre>
-            </span>
-          ),
+          propType: 'trigger',
+          type: 'oneOf[click, hover]',
+          defaultValue: 'hover',
         },
         {
-          propType: 'getContainer',
-          type: 'func',
-          note: 'function to get the container that the popover is bounded to',
+          propType: 'modifiers',
+          type: 'PopperJS.Modifiers',
+          note: <a href="https://popper.js.org/popper-documentation.html#modifiers">Popper Modifier Configurations</a>,
         },
         {
           propType: 'dts',
