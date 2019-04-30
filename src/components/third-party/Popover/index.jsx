@@ -141,11 +141,11 @@ class Popover extends React.PureComponent {
               {...(triggers.includes('disabled')
                 ? {}
                 : {
-                    onClick: triggers.includes('click') ? this.onClick : null,
-                    onMouseOver: triggers.includes('hover') ? this.onMouseOver : null,
-                    onFocus: triggers.includes('focus') ? this.onFocus : null,
-                    onMouseOut: triggers.includes('hover') ? this.onMouseOut : null,
-                    onBlur: triggers.includes('focus') ? this.onBlur : null,
+                    ...(triggers.includes('click') ? { onClick: this.onClick } : {}),
+                    ...(triggers.includes('hover')
+                      ? { onMouseOver: this.onMouseOver, onMouseOut: this.onMouseOut }
+                      : {}),
+                    ...(triggers.includes('focus') ? { onFocus: this.onFocus, onBlur: this.onBlur } : {}),
                   })}
             >
               {children}

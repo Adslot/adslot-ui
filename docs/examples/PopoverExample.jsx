@@ -24,7 +24,7 @@ class PopoverExample extends React.PureComponent {
 
   handlePlacements = (state, placement) => this.setState({ placement });
   handleThemes = (state, theme) => this.setState({ theme });
-  handleTriggers = (state, trigger) => this.setState({ trigger: state ? trigger : 'hover' });
+  handleTriggers = (state, trigger) => this.setState({ trigger });
   togglePopover = () =>
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
@@ -112,7 +112,7 @@ class PopoverExample extends React.PureComponent {
         <div className="auto-flip-container">
           <div id="popover-boundaries" className="popover-example-container">
             <Popover
-              trigger="disabled"
+              triggers="disabled"
               isOpen={true}
               placement="left"
               title="Popover Title"
@@ -144,7 +144,7 @@ const exampleProps = {
 
     // Non overflowing popover
     <Popover
-      trigger="disabled"
+      triggers="disabled"
       isOpen={true}
       placement="left"
       title="Popover Title"

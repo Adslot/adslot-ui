@@ -241,10 +241,6 @@ describe('Popover Component', () => {
         </Popover>
       );
       expect(wrapper.find('.aui--popover-element').prop('onClick')).to.be.a('function');
-      expect(wrapper.find('.aui--popover-element').prop('onMouseOver')).to.equal(null);
-      expect(wrapper.find('.aui--popover-element').prop('onFocus')).to.equal(null);
-      expect(wrapper.find('.aui--popover-element').prop('onMouseOut')).to.equal(null);
-      expect(wrapper.find('.aui--popover-element').prop('onBlur')).to.equal(null);
     });
 
     it('should register event handlers only for hover trigger', () => {
@@ -253,11 +249,8 @@ describe('Popover Component', () => {
           Test message
         </Popover>
       );
-      expect(wrapper.find('.aui--popover-element').prop('onClick')).to.equal(null);
       expect(wrapper.find('.aui--popover-element').prop('onMouseOver')).to.be.a('function');
-      expect(wrapper.find('.aui--popover-element').prop('onFocus')).to.equal(null);
       expect(wrapper.find('.aui--popover-element').prop('onMouseOut')).to.be.a('function');
-      expect(wrapper.find('.aui--popover-element').prop('onBlur')).to.equal(null);
     });
 
     it('should register event handlers only for focus trigger', () => {
@@ -266,10 +259,7 @@ describe('Popover Component', () => {
           Test message
         </Popover>
       );
-      expect(wrapper.find('.aui--popover-element').prop('onClick')).to.equal(null);
-      expect(wrapper.find('.aui--popover-element').prop('onMouseOver')).to.equal(null);
       expect(wrapper.find('.aui--popover-element').prop('onFocus')).to.be.a('function');
-      expect(wrapper.find('.aui--popover-element').prop('onMouseOut')).to.equal(null);
       expect(wrapper.find('.aui--popover-element').prop('onBlur')).to.be.a('function');
     });
 
@@ -285,9 +275,7 @@ describe('Popover Component', () => {
         </Popover>
       );
       expect(wrapper.find('.aui--popover-element').prop('onClick')).to.be.a('function');
-      expect(wrapper.find('.aui--popover-element').prop('onMouseOver')).to.equal(null);
       expect(wrapper.find('.aui--popover-element').prop('onFocus')).to.be.a('function');
-      expect(wrapper.find('.aui--popover-element').prop('onMouseOut')).to.equal(null);
       expect(wrapper.find('.aui--popover-element').prop('onBlur')).to.be.a('function');
     });
 
