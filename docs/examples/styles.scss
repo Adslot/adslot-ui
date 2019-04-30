@@ -65,20 +65,65 @@
 
   &.popover-example {
     .adslot-ui-example {
+
+      .button-example-container {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        justify-content: space-between;
+
+        .checkbox-component + .checkbox-component {
+          margin-top: 0;
+          margin-left: 5px;
+        }
+
+        .placement-checkbox,
+        .theme-checkbox,
+        .example-button,
+        .trigger-checkbox,
+        .disabled-popover {
+          display: flex;
+        }
+
+        .disabled-popover {
+          height: 28px;
+
+          .checkbox-component {
+            margin-top: 1px;
+          }
+
+          .button-component {
+            position: relative;
+            left: 5px;
+            top: -5px;
+          }
+
+        }
+      }
+
       .popover {
         position: relative;
         margin: 20px;
       }
 
-      .popover-example-container {
-        width: 240px;
-        height: 160px;
+      .auto-flip-container {
+        width: 500px;
+        height: 250px;
         border: 1px solid $color-border-light;
+        overflow: hidden;
+        overflow-x: scroll;
 
-        > .aui--popover-element {
-          top: 10px;
-          left: 10px;
+        .popover-example-container {
+          width: 600px;
           position: relative;
+          top: 50px;
+          left: 250px;
+
+          > .aui--popover-element {
+            top: 10px;
+            left: 10px;
+            position: relative;
+          }
         }
       }
     }
