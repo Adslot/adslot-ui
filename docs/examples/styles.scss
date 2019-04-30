@@ -152,7 +152,8 @@
 
       .aui--button-group {
         .svg-symbol-component {
-          display: flex;
+          position: relative;
+          top: 3px;
           fill: $color-white;
         }
 
