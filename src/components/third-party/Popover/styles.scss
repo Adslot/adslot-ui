@@ -1,0 +1,247 @@
+@import '~styles/variable';
+@import './popover-theme';
+
+$popover-shadow: 0 1px 0 rgba($color-shadow, .25);
+$popover-border-radius: $border-radius * 2;
+$popover-border-width: $border-width;
+
+$arrow-height: 6px;
+$arrow-width: 12px;
+$arrow-border-size: 1px;
+
+.aui--popover-element {
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.aui--popover-wrapper {
+  z-index: $zindex-popover;
+  max-width: 276px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+  border: 1px solid $color-border-lighter;
+  border-radius: 4px;
+  box-shadow: $popover-shadow;
+  padding: 0;
+  background-color: $color-background;
+
+  &[data-placement*='bottom'] {
+    margin-top: 6px;
+  }
+
+  &[data-placement*='top'] {
+    margin-bottom: 6px;
+  }
+
+  &[data-placement*='left'] {
+    margin-right: 6px;
+  }
+
+  &[data-placement*='right'] {
+    margin-left: 6px;
+  }
+
+
+  .aui--popover-arrow {
+    position: absolute;
+    border: 0 solid $color-border-light; // the color of the outer triangle
+
+    &::after {
+      content: '';
+      display: block;
+      position: relative;
+      border: 0 solid $color-background;
+    }
+
+    &[data-placement*='top'],
+    &[data-placement*='bottom'] {
+      width: $arrow-width;
+      height: $arrow-height;
+
+      &::after {
+        width: $arrow-width;
+        height: $arrow-height;
+      }
+    }
+
+    &[data-placement*='top'] {
+      margin-bottom: -$arrow-height;
+      bottom: -$arrow-border-size;
+
+      border-top-width: $arrow-height;
+      border-right-width: $arrow-width / 2;
+      border-left-width: $arrow-width / 2;
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+      border-left-color: transparent;
+
+      &::after {
+        top: -$arrow-height - $arrow-border-size;
+        right: $arrow-width / 2; // no border at triangle's base
+        border-top-width: $arrow-height;
+        border-right-width: $arrow-width / 2;
+        border-left-width: $arrow-width / 2;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+        border-left-color: transparent;
+      }
+    }
+
+    // left and right have reversed base and height of the triangle
+    &[data-placement*='left'],
+    &[data-placement*='right'] {
+      width: $arrow-height;
+      height: $arrow-width;
+
+      &::after {
+        width: $arrow-height;
+        height: $arrow-width;
+      }
+    }
+
+    &[data-placement*='left'] {
+      right: -$arrow-border-size;
+      margin-right: -$arrow-height;
+
+      border-left-width: $arrow-height;
+      border-top-width: $arrow-width / 2;
+      border-bottom-width: $arrow-width / 2;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+
+      &::after {
+        top: -$arrow-height;
+        left: -$arrow-height - $arrow-border-size;
+        border-left-width: $arrow-height;
+        border-top-width: $arrow-width / 2;
+        border-bottom-width: $arrow-width / 2;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+      }
+    }
+
+    &[data-placement*='bottom'] {
+      top: -$arrow-height - $arrow-border-size;
+      margin-bottom: -$arrow-height;
+
+      border-bottom-width: $arrow-height;
+      border-right-width: $arrow-width / 2;
+      border-left-width: $arrow-width / 2;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-left-color: transparent;
+
+      &::after {
+        top: $arrow-border-size;
+        right: $arrow-width / 2; // no border at triangle's base
+        border-bottom-width: $arrow-height;
+        border-right-width: $arrow-width / 2;
+        border-left-width: $arrow-width / 2;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-left-color: transparent;
+      }
+    }
+
+    &[data-placement*='right'] {
+      margin-left: -$arrow-height - $arrow-border-size;
+      left: 0;
+
+      border-right-width: $arrow-height;
+      border-top-width: $arrow-width / 2;
+      border-bottom-width: $arrow-width / 2;
+      border-left-color: transparent;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+
+      &::after {
+        top: -$arrow-height;
+        left: $arrow-border-size; // no border at triangle's base
+        border-right-width: $arrow-height;
+        border-top-width: $arrow-width / 2;
+        border-bottom-width: $arrow-width / 2;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  // Themes
+  // Light theme
+  &.popover-light {
+    $theme-background-color: $color-white;
+    $theme-border-color: $color-gray-lighter;
+    @include theme-popover($theme-background-color, $theme-border-color);
+    color: $color-gray-darkest;
+
+    .popover-title {
+      background-color: $color-gray-lightest;
+      border-bottom-color: $theme-border-color;
+    }
+  }
+
+  // Dark theme
+  &.popover-dark {
+    $theme-background-color: $color-gray-darker;
+    $theme-border-color: $color-gray-darker;
+    @include theme-popover($theme-background-color, $theme-border-color);
+    color: $color-white;
+
+    .popover-title {
+      background-color: lighten($theme-background-color, 10%);
+      border-bottom-color: $color-white;
+    }
+  }
+
+  // Warn theme
+  &.popover-warn {
+    $theme-background-color: $color-orange;
+    $theme-border-color: $color-orange;
+    @include theme-popover($theme-background-color, $theme-border-color);
+    color: $color-white;
+
+    .popover-title {
+      background-color: lighten($theme-background-color, 10%);
+      border-bottom-color: $color-white;
+    }
+  }
+
+  // Error theme
+  &.popover-error {
+    $theme-background-color: $color-red;
+    $theme-border-color: $color-red;
+    @include theme-popover($theme-background-color, $theme-border-color);
+    color: $color-white;
+
+    .popover-title {
+      background-color: lighten($theme-background-color, 10%);
+      border-bottom-color: $color-white;
+    }
+  }
+
+  // Title
+  .popover-title {
+    padding: 8px 14px;
+    margin: 0; // reset heading margin
+    font-size: $font-size-base;
+    border-bottom: $popover-border-width solid;
+    border-radius: ($popover-border-radius - 1) ($popover-border-radius - 1) 0 0;
+  }
+
+  // Content
+  .popover-content {
+    padding: $popover-vertical-padding $popover-horizontal-padding;
+    line-height: 1.5;
+
+    p {
+      margin-bottom: $popover-vertical-padding;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

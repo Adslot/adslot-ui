@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Popover } from 'third-party';
 import BootstrapButton from 'react-bootstrap/lib/Button';
-import BootstrapOverlay from 'react-bootstrap/lib/Overlay';
 import Spinner from 'alexandria/Spinner';
 import { expandDts } from 'lib/utils';
 import './styles.scss';
@@ -44,16 +43,6 @@ class Button extends React.PureComponent {
     return null;
   }
 
-  renderReason() {
-    return (
-      <BootstrapOverlay placement="bottom" show={this.state.show} target={this.buttonRef.current}>
-        <Popover id="btn-reason" className="btn-popover-reason">
-          {this.props.reason}
-        </Popover>
-      </BootstrapOverlay>
-    );
-  }
-
   render() {
     const { inverse, children, dts, className, isLoading, disabled, reason } = this.props;
     const shouldShowReason = !!disabled && !!reason;
@@ -76,9 +65,17 @@ class Button extends React.PureComponent {
         {...reasonProps}
         ref={this.buttonRef}
       >
-        {this.renderSpinner()}
-        <div className={isLoading ? 'button-component-children-container' : null}>{children}</div>
-        {this.renderReason()}
+        <Popover
+          className="btn-popover-reason"
+          wrapperClassName="btn-popover-wrapper"
+          popoverContent={reason || ''}
+          placement="bottom"
+          isOpen={this.state.show}
+          triggers={['disabled']}
+        >
+          {this.renderSpinner()}
+          <div className={isLoading ? 'button-component-children-container' : null}>{children}</div>
+        </Popover>
       </BootstrapButton>
     );
   }

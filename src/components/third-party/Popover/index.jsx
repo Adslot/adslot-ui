@@ -1,34 +1,162 @@
+/* eslint-disable react/jsx-indent */
 import _ from 'lodash';
+import classnames from 'classnames';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import BootstrapPopover from 'react-bootstrap/lib/Popover';
+import { Manager, Reference, Popper } from 'react-popper';
+import { themes, popoverPlacements } from './constants';
+import './styles.scss';
 
-export const themes = ['light', 'dark', 'warn', 'error'];
+const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
 
-class Popover extends React.Component {
+class Popover extends React.PureComponent {
   static propTypes = {
-    id: PropTypes.string.isRequired,
     theme: PropTypes.oneOf(themes),
+    title: PropTypes.node,
     className: PropTypes.string,
+    popoverClassNames: PropTypes.string,
+    // arrow css styles, mainly for positioning the arrow
+    arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    modifiers: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    placement: PropTypes.oneOf(popoverPlacements),
+    popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+    children: PropTypes.node.isRequired,
+    triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
+    isOpen: PropTypes.bool,
+    getContainer: PropTypes.func,
+    popperRef: PropTypes.func,
+    dts: PropTypes.string,
   };
 
+  static defaultProps = {
+    theme: 'light',
+    placement: 'auto',
+    triggers: 'hover',
+    isOpen: false,
+  };
+
+  state = {
+    isPopoverOpen: this.props.isOpen,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const triggers = _.flattenDeep([props.triggers]);
+    if (!triggers.includes('disabled')) {
+      return state;
+    }
+
+    return { isPopoverOpen: props.isOpen };
+  }
+
+  onClick = () => this.togglePopover();
+
+  onFocus = () => this.openPopover();
+
+  onBlur = () => this.closePopover();
+
+  onMouseOver = () => this.openPopover();
+
+  onMouseOut = () => this.closePopover();
+
+  getBoundedContainer = () => (this.props.getContainer ? this.props.getContainer() : document.body);
+
+  closePopover = () => this.setState({ isPopoverOpen: false });
+
+  openPopover = () => this.setState({ isPopoverOpen: true });
+
+  togglePopover = () => this.setState({ isPopoverOpen: !this.state.isPopoverOpen });
+
+  referenceRef = React.createRef();
+  popperRef = this.props.popperRef || React.createRef();
+
   render() {
-    const { theme, children, className, ...restProps } = this.props;
-
+    const { theme, title, children, className, dts, popoverClassNames, popoverContent } = this.props;
     const themeClass = _.includes(themes, theme) ? `popover-${theme}` : 'popover-light';
+    const elementClass = classnames('aui--popover-element', className);
+    const popoverClass = classnames('aui--popover-wrapper', themeClass, popoverClassNames);
+    const triggers = _.flattenDeep([this.props.triggers]);
 
-    const popoverClassName = [className, themeClass].join(' ').trim();
+    let arrowStyles = {};
+    switch (true) {
+      case _.includes(['bottom-start', 'top-start'], this.props.placement):
+        arrowStyles = { left: 12 };
+        break;
+      case _.includes(['bottom-end', 'top-end'], this.props.placement):
+        arrowStyles = { left: 'auto', right: 12 };
+        break;
+      default:
+        arrowStyles = {};
+    }
+    arrowStyles = { ...arrowStyles, ...this.props.arrowStyles }; // let user override default configuration
+
+    const popoverElement = this.state.isPopoverOpen
+      ? ReactDOM.createPortal(
+          <Popper
+            innerRef={this.popperRef}
+            placement={this.props.placement}
+            modifiers={{
+              preventOverflow: {
+                enabled: true,
+                boundariesElement: this.getBoundedContainer(),
+              },
+              ...this.props.modifiers,
+            }}
+          >
+            {({ ref, style, placement, arrowProps, scheduleUpdate }) => (
+              <div
+                className={popoverClass}
+                ref={ref}
+                style={{ ...style, ...this.props.wrapperStyles }}
+                data-placement={placement}
+                data-test-selector={dts}
+              >
+                <div className="aui--popover-container">
+                  {title ? <div className="popover-title">{title}</div> : null}
+                  <div className="popover-content">
+                    {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate }) : popoverContent}
+                  </div>
+                </div>
+                <div
+                  className="aui--popover-arrow"
+                  data-placement={placement}
+                  ref={arrowProps.ref}
+                  style={{ ...arrowProps.style, ...arrowStyles }}
+                />
+              </div>
+            )}
+          </Popper>,
+          this.getBoundedContainer()
+        )
+      : null;
 
     return (
-      <BootstrapPopover className={popoverClassName} {...restProps}>
-        {children}
-      </BootstrapPopover>
+      <Manager>
+        <Reference innerRef={this.referenceRef}>
+          {({ ref }) => (
+            <span
+              className={elementClass}
+              ref={ref}
+              {...(triggers.includes('disabled')
+                ? {}
+                : {
+                    onClick: triggers.includes('click') ? this.onClick : null,
+                    onMouseOver: triggers.includes('hover') ? this.onMouseOver : null,
+                    onFocus: triggers.includes('focus') ? this.onFocus : null,
+                    onMouseOut: triggers.includes('hover') ? this.onMouseOut : null,
+                    onBlur: triggers.includes('focus') ? this.onBlur : null,
+                  })}
+            >
+              {children}
+            </span>
+          )}
+        </Reference>
+
+        {popoverElement}
+      </Manager>
     );
   }
 }
-
-Popover.defaultProps = {
-  theme: 'light',
-};
 
 export default Popover;

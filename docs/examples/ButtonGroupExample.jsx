@@ -15,42 +15,43 @@ class ButtonGroupExample extends React.PureComponent {
       <React.Fragment>
         <ButtonGroup bsStyle="success">
           <Button>Approve</Button>
-          <OverlayTrigger
-            trigger={['click']}
-            placement="bottom"
-            overlay={<Popover id="popover-1">I am a popover on click!</Popover>}
-          >
+          <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
             <Button>
-              <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
+              <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
             </Button>
-          </OverlayTrigger>
+          </Popover>
         </ButtonGroup>
         <ButtonGroup bsStyle="danger" inverse={true}>
           <Button>Reject</Button>
-          <Button
-            onClick={() =>
-              this.setState(prevState => ({
-                isDropdownOpen: !prevState.isDropdownOpen,
-              }))
-            }
-            ref={this.buttonRef}
+          <Popover
+            triggers="disabled"
+            isOpen={this.state.isDropdownOpen}
+            id="popover-2"
+            popoverContent="I am a Overlay on click!"
+            placement="bottom"
           >
-            <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
-          </Button>
-          <Overlay show={this.state.isDropdownOpen} target={this.buttonRef.current} placement="bottom">
-            <Popover id="popover-2">I am a Overlay on click!</Popover>
-          </Overlay>
+            <Button
+              onClick={() =>
+                this.setState(prevState => ({
+                  isDropdownOpen: !prevState.isDropdownOpen,
+                }))
+              }
+              ref={this.buttonRef}
+            >
+              <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+            </Button>
+          </Popover>
         </ButtonGroup>
         <ButtonGroup bsStyle="primary">
           <Button>Sign off</Button>
           <Button onClick={() => alert('>I am a Alert on click!')}>
-            <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
+            <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
           </Button>
         </ButtonGroup>
         <ButtonGroup bsStyle="warning" inverse={true} disabled={true}>
           <Button>Disabled</Button>
           <Button>
-            <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
+            <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
           </Button>
         </ButtonGroup>
       </React.Fragment>
@@ -63,42 +64,43 @@ export const exampleProps = {
   exampleCodeSnippet: `
   <ButtonGroup bsStyle="success">
     <Button>Approve</Button>
-    <OverlayTrigger
-      trigger={['click']}
-      placement="bottom"
-      overlay={<Popover id="popover-1">I am a popover on click!</Popover>}
-    >
+    <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
       <Button>
-        <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
+        <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
       </Button>
-    </OverlayTrigger>
+    </Popover>
   </ButtonGroup>
   <ButtonGroup bsStyle="danger" inverse={true}>
     <Button>Reject</Button>
-    <Button
-      onClick={() =>
-        this.setState(prevState => ({
-          isDropdownOpen: !prevState.isDropdownOpen,
-        }))
-      }
-      ref={this.buttonRef}
+    <Popover
+      triggers="disabled"
+      isOpen={this.state.isDropdownOpen}
+      id="popover-2"
+      popoverContent="I am a Overlay on click!"
+      placement="bottom"
     >
-      <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
-    </Button>
-    <Overlay show={this.state.isDropdownOpen} target={this.buttonRef.current} placement="bottom">
-      <Popover id="popover-2">I am a Overlay on click!</Popover>
-    </Overlay>
+      <Button
+        onClick={() =>
+          this.setState(prevState => ({
+            isDropdownOpen: !prevState.isDropdownOpen,
+          }))
+        }
+        ref={this.buttonRef}
+      >
+        <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+      </Button>
+    </Popover>
   </ButtonGroup>
   <ButtonGroup bsStyle="primary">
     <Button>Sign off</Button>
     <Button onClick={() => alert('>I am a Alert on click!')}>
-      <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
+      <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
     </Button>
   </ButtonGroup>
   <ButtonGroup bsStyle="warning" inverse={true} disabled={true}>
     <Button>Disabled</Button>
     <Button>
-      <SvgSymbol href="./docs/assets/svg-symbols.svg#caret-down" />
+      <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
     </Button>
   </ButtonGroup>
   `,
