@@ -7,12 +7,15 @@ addons:
   chrome: stable
 before_install:
   - npm install -g npm@6.9.0
+install:
+  - npm install
 before_script:
   - sudo chown root /opt/google/chrome/chrome-sandbox
   - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
 script:
   - npm -v
   - commitlint-travis
+  - git diff --exit-code
   - "! grep -R --exclude-dir='*/node_modules/*' --include=package-lock.json 'http:' ."
   - npm test
   - npm run dist
