@@ -120,7 +120,7 @@
     "prop-types": "^15.6.1",
     "puppeteer": "^1.11.0",
     "react-bootstrap": "^0.31.5",
-    "react-datepicker": "github:Adslot/react-datepicker#6f912842e7dcec6a6e8ff43fd0e3e79af84a8ba6",
+    "react-datepicker": "github:Adslot/react-datepicker#2a1ebb8618e1996c321331ef01d290424272d126",
     "react-redux": "^5.0.6",
     "react-select": "^1.2.1",
     "react-syntax-highlighter": "^7.0.0",
