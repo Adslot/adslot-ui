@@ -5,10 +5,11 @@ node_js:
   - '10'
 addons:
   chrome: stable
+before_install:
+  - npm install -g npm@6.9.0
 before_script:
   - sudo chown root /opt/google/chrome/chrome-sandbox
   - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
-  - npm install -g npm@6.9.0
 script:
   - npm -v
   - commitlint-travis
