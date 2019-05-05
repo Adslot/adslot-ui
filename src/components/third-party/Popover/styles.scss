@@ -44,7 +44,7 @@ $arrow-border-size: 1px;
 
   .aui--popover-arrow {
     position: absolute;
-    border: 0 solid $color-border-light; // the color of the outer triangle
+    border: 0 solid $color-border-lighter; // the color of the outer triangle
 
     &::after {
       content: '';
@@ -174,7 +174,6 @@ $arrow-border-size: 1px;
   &.popover-light {
     $theme-background-color: $color-white;
     $theme-border-color: $color-gray-lighter;
-    @include theme-popover($theme-background-color, $theme-border-color);
     color: $color-gray-darkest;
 
     .popover-title {
