@@ -76,7 +76,7 @@
       border-color: $color-positive;
       color: $color-positive;
 
-      > .arrow {
+      > .aui--popover-arrow {
         border-bottom-color: $color-positive;
       }
     }
@@ -85,7 +85,7 @@
       border-color: $color-info;
       color: $color-info;
 
-      > .arrow {
+      > .aui--popover-arrow {
         border-bottom-color: $color-info;
       }
     }
@@ -94,7 +94,7 @@
       border-color: $color-warning;
       color: $color-warning;
 
-      > .arrow {
+      > .aui--popover-arrow {
         border-bottom-color: $color-warning;
       }
     }
@@ -103,7 +103,7 @@
       border-color: $color-negative;
       color: $color-negative;
 
-      > .arrow {
+      > .aui--popover-arrow {
         border-bottom-color: $color-negative;
       }
     }

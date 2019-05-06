@@ -79,7 +79,7 @@ export default class AlertInput extends Component {
           triggers={['disabled']}
           popoverContent={<strong>{alertMessage}</strong>}
           placement="bottom"
-          className={popoverClassName}
+          popoverClassNames={popoverClassName}
         >
           <div className={className} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
             {prefixAddon ? <span className={`${baseClass}-wrapper-addon`}>{prefixAddon}</span> : null}
