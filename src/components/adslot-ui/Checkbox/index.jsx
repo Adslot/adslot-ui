@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import classnames from 'classnames';
 import { expandDts } from '../../../lib/utils';
-import { checkboxPropTypes, checkboxCheckStates } from '../../prop-types/inputPropTypes';
+import { checkboxPropTypes } from '../../prop-types/inputPropTypes';
 import './styles.scss';
 
 const getNextState = checked => {
@@ -11,7 +11,6 @@ const getNextState = checked => {
 };
 
 const Checkbox = ({ name, value, label, dts, disabled, checked, id, className, inline, onChange, size }) => {
-  if (!_.includes(checkboxCheckStates, checked)) throw new Error("The 'checked' prop should be boolean or 'partial'");
   const componentClassName = classnames([
     'checkbox-component',
     {

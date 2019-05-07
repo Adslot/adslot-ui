@@ -58,14 +58,6 @@ describe('Checkbox', () => {
     expect(component.hasClass('disabled')).to.equal(true);
   });
 
-  it('should throw error if checked value is not accepted', () => {
-    try {
-      shallow(<Checkbox name="test" checked="test" />);
-    } catch (err) {
-      expect(err.message).to.equal("The 'checked' prop should be boolean or 'partial'");
-    }
-  });
-
   it('should pass next state valut to the onChange function', () => {
     const handleChange = sinon.spy();
     const component = shallow(<Checkbox name="name" value="value" onChange={handleChange} />);
