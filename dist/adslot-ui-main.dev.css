@@ -127,7 +127,7 @@ body > .btn-popover-wrapper[data-placement*='bottom'] {
 
 .aui--popover-wrapper .aui--popover-arrow {
   position: absolute;
-  border: 0 solid #d3d3d3;
+  border: 0 solid #e8e8e8;
 }
 
 .aui--popover-wrapper .aui--popover-arrow::after {
@@ -246,41 +246,7 @@ body > .btn-popover-wrapper[data-placement*='bottom'] {
 }
 
 .aui--popover-wrapper.popover-light {
-  background-color: #fff;
-  border-color: #e8e8e8;
   color: #333;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='top'] {
-  border-top-color: #e8e8e8;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='top']::after {
-  border-top-color: #fff;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='right'] {
-  border-right-color: #e8e8e8;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='right']::after {
-  border-right-color: #fff;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='bottom'] {
-  border-bottom-color: #e8e8e8;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='bottom']::after {
-  border-bottom-color: #fff;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='left'] {
-  border-left-color: #e8e8e8;
-}
-
-.aui--popover-wrapper.popover-light .aui--popover-arrow[data-placement*='left']::after {
-  border-left-color: #fff;
 }
 
 .aui--popover-wrapper.popover-light .popover-title {
@@ -14680,7 +14646,7 @@ strong {
   color: #5bb75b;
 }
 
-.alert-input-component-popover.success > .arrow {
+.alert-input-component-popover.success > .aui--popover-arrow {
   border-bottom-color: #5bb75b;
 }
 
@@ -14689,7 +14655,7 @@ strong {
   color: #49afcd;
 }
 
-.alert-input-component-popover.info > .arrow {
+.alert-input-component-popover.info > .aui--popover-arrow {
   border-bottom-color: #49afcd;
 }
 
@@ -14698,7 +14664,7 @@ strong {
   color: #faa732;
 }
 
-.alert-input-component-popover.warning > .arrow {
+.alert-input-component-popover.warning > .aui--popover-arrow {
   border-bottom-color: #faa732;
 }
 
@@ -14707,7 +14673,7 @@ strong {
   color: #da4f49;
 }
 
-.alert-input-component-popover.error > .arrow {
+.alert-input-component-popover.error > .aui--popover-arrow {
   border-bottom-color: #da4f49;
 }
 .aui--button-group {
