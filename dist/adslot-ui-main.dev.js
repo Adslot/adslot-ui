@@ -8016,13 +8016,15 @@ function (_React$PureComponent) {
         return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", Object.assign({
           className: elementClass,
           ref: ref
-        }, triggers.includes('disabled') ? {} : {
-          onClick: triggers.includes('click') ? _this2.onClick : null,
-          onMouseOver: triggers.includes('hover') ? _this2.onMouseOver : null,
-          onFocus: triggers.includes('focus') ? _this2.onFocus : null,
-          onMouseOut: triggers.includes('hover') ? _this2.onMouseOut : null,
-          onBlur: triggers.includes('focus') ? _this2.onBlur : null
-        }, {
+        }, triggers.includes('disabled') ? {} : _objectSpread({}, triggers.includes('click') ? {
+          onClick: _this2.onClick
+        } : {}, triggers.includes('hover') ? {
+          onMouseOver: _this2.onMouseOver,
+          onMouseOut: _this2.onMouseOut
+        } : {}, triggers.includes('focus') ? {
+          onFocus: _this2.onFocus,
+          onBlur: _this2.onBlur
+        } : {}), {
           __source: {
             fileName: Popover__jsxFileName,
             lineNumber: 138
@@ -10056,7 +10058,7 @@ function (_Component) {
           __self: this
         }, alertMessage),
         placement: "bottom",
-        className: popoverClassName,
+        popoverClassNames: popoverClassName,
         __source: {
           fileName: AlertInput__jsxFileName,
           lineNumber: 77

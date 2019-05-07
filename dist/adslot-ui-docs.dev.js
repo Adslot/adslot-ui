@@ -8016,13 +8016,15 @@ function (_React$PureComponent) {
         return external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement("span", Object.assign({
           className: elementClass,
           ref: ref
-        }, triggers.includes('disabled') ? {} : {
-          onClick: triggers.includes('click') ? _this2.onClick : null,
-          onMouseOver: triggers.includes('hover') ? _this2.onMouseOver : null,
-          onFocus: triggers.includes('focus') ? _this2.onFocus : null,
-          onMouseOut: triggers.includes('hover') ? _this2.onMouseOut : null,
-          onBlur: triggers.includes('focus') ? _this2.onBlur : null
-        }, {
+        }, triggers.includes('disabled') ? {} : _objectSpread({}, triggers.includes('click') ? {
+          onClick: _this2.onClick
+        } : {}, triggers.includes('hover') ? {
+          onMouseOver: _this2.onMouseOver,
+          onMouseOut: _this2.onMouseOut
+        } : {}, triggers.includes('focus') ? {
+          onFocus: _this2.onFocus,
+          onBlur: _this2.onBlur
+        } : {}), {
           __source: {
             fileName: Popover__jsxFileName,
             lineNumber: 138
@@ -10056,7 +10058,7 @@ function (_Component) {
           __self: this
         }, alertMessage),
         placement: "bottom",
-        className: popoverClassName,
+        popoverClassNames: popoverClassName,
         __source: {
           fileName: AlertInput__jsxFileName,
           lineNumber: 77
@@ -54266,7 +54268,7 @@ function (_React$PureComponent) {
 
     PopoverExample__defineProperty(PopoverExample__assertThisInitialized(PopoverExample__assertThisInitialized(_this)), "handleTriggers", function (state, trigger) {
       return _this.setState({
-        trigger: state ? trigger : 'hover'
+        trigger: trigger
       });
     });
 
@@ -54470,7 +54472,7 @@ function (_React$PureComponent) {
         },
         __self: this
       }, external___root___React___commonjs2___react___commonjs___react___amd___react___default.a.createElement(index_0["Popover"], {
-        trigger: "disabled",
+        triggers: "disabled",
         isOpen: true,
         placement: "left",
         title: "Popover Title",
@@ -54501,7 +54503,7 @@ function (_React$PureComponent) {
 
 var PopoverExample_exampleProps = {
   componentName: 'Popover',
-  exampleCodeSnippet: "\n    // Basic usage\n    <Popover placement=\"left\" title=\"Popover Title\" popoverContent=\"Popover Left\">\n      <Button>Left</Button>\n    </Popover>\n\n    // Popper controlled by external events\n    <Popover triggers=\"disabled\" isOpen={this.state.isOpen} popoverContent=\"Popover evnet controlled\">\n      <Button>Right</Button>\n    </Popover>\n\n    // Non overflowing popover\n    <Popover\n      trigger=\"disabled\"\n      isOpen={true}\n      placement=\"left\"\n      title=\"Popover Title\"\n      theme=\"dark\"\n      popoverContent=\"My initial positioning is left\"\n      modifiers={{ preventOverflow: { enabled: true } }}\n    >\n      <Button>Anchor</Button>\n    </Popover>\n  ",
+  exampleCodeSnippet: "\n    // Basic usage\n    <Popover placement=\"left\" title=\"Popover Title\" popoverContent=\"Popover Left\">\n      <Button>Left</Button>\n    </Popover>\n\n    // Popper controlled by external events\n    <Popover triggers=\"disabled\" isOpen={this.state.isOpen} popoverContent=\"Popover evnet controlled\">\n      <Button>Right</Button>\n    </Popover>\n\n    // Non overflowing popover\n    <Popover\n      triggers=\"disabled\"\n      isOpen={true}\n      placement=\"left\"\n      title=\"Popover Title\"\n      theme=\"dark\"\n      popoverContent=\"My initial positioning is left\"\n      modifiers={{ preventOverflow: { enabled: true } }}\n    >\n      <Button>Anchor</Button>\n    </Popover>\n  ",
   propTypeSectionArray: [{
     propTypes: [{
       propType: 'title',
