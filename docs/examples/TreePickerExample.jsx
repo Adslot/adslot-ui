@@ -235,20 +235,16 @@ const exampleProps = {
           note: 'not specified',
         },
         {
-          propType: 'searchOnChange',
-          type: 'bool',
-          defaultValue: <code>true</code>,
-          note: 'When true, search is triggered as soon as the user types in the search field',
-        },
-        {
-          propType: 'searchOnEnterKey',
+          propType: 'searchOnEnter',
           type: 'bool',
           defaultValue: <code>false</code>,
-          note: 'When true, triggers search when the user presses the Enter key',
+          note:
+            'Default behavior is to trigger onSearch as soon as the user types in the search field, if set to true, onSearch() will only be triggered when the user presses the Enter key',
         },
         {
           propType: 'searchPlaceholder',
           type: 'string',
+          defaultValue: <code>'Search'</code>,
         },
         {
           propType: 'searchValue',

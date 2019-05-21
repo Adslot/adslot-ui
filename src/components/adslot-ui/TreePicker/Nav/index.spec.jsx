@@ -34,6 +34,8 @@ describe('TreePickerNavComponent', () => {
 
     const searchElement = component.find(Search);
     expect(searchElement).to.have.length(1);
+    expect(searchElement.prop('onSearch')).to.be.a('function');
+    expect(_.isEmpty(searchElement.prop('icons'))).to.equal(true);
 
     const breadcrumbElement = component.find(Breadcrumb);
     expect(breadcrumbElement).to.have.length(1);
@@ -53,6 +55,20 @@ describe('TreePickerNavComponent', () => {
     const breadcrumbElement = component.find(Breadcrumb);
     expect(breadcrumbElement.prop('nodes')).to.equal(breadcrumbNodes);
     expect(breadcrumbElement.prop('onClick')).to.be.a('function');
+  });
+
+  it('should render icons with given svgSymbol and pass them to Search', () => {
+    const svgSymbolCancel = {
+      href: '/assets/svg-symbols.svg#cancel',
+    };
+    const svgSymbolSearch = {
+      href: '/assets/svg-symbols.svg#search',
+    };
+    const component = shallow(
+      <TreePickerNavComponent {...props} svgSymbolSearch={svgSymbolSearch} svgSymbolCancel={svgSymbolCancel} />
+    );
+    const searchElement = component.find(Search);
+    expect(searchElement.prop('icons')).to.have.keys(['search', 'close']);
   });
 
   it('should call breadcrumbOnClick when clicked on breadcrumbs node', () => {

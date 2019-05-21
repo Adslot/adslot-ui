@@ -30,6 +30,45 @@ class MigrationNote extends React.Component {
           <div>
             <h2>Migration Guide</h2>
             <hr />
+            <h3>Search Component</h3>
+            <p>
+              The new {`<Search />`} component will replace the old {`<Search />`} amd {`<SearchBar />`} component.
+            </p>
+            <p>
+              1. <b>onSearch</b> function is the only required prop. It can work as an uncontrolled component without{' '}
+              <b>value</b> and <b>onChange</b>.
+            </p>
+            <p>
+              2. New Search bar will by default trigger <b>onSearch</b> when input changes. You can set{' '}
+              <b>searchOnEnter</b> to true and <b>onSearch</b> will be triggered only when user press Enter or click the
+              search button.
+            </p>
+            <p>
+              3. <b>icons</b> needs to be provided as an object of nodes:
+            </p>
+            <SyntaxHighlighter language="jsx" style={coy}>
+              {`
+                {
+                  search: React.Node,
+                  close: React.Node,
+                  loader: React.Node
+                }
+              `}
+            </SyntaxHighlighter>
+            <p>New Search component will use its default icons if none or some of the icons are not provided.</p>
+            <p>
+              For more information check the example: <a href="#search-example">Search Example</a>
+            </p>
+            <br />
+            <h3>TreePicker Component</h3>
+            <p>
+              <b>searchOnChange</b> prop is removed and <b>searchOnEnterKey</b> prop is renamed <b>searchOnEnter</b>.
+              Tree picker is search on input by default.
+            </p>
+            <p>
+              For more information check the example: <a href="#tree-picker-example">TreePicker Example</a>
+            </p>
+            <br />
             <h3>Popover Component</h3>
             <p>
               The {`<Popover />`} component can be themed by providing one of the following values to the <b>theme</b>{' '}
