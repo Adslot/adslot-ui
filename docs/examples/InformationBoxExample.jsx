@@ -5,7 +5,7 @@ import { InformationBox } from '../../src';
 class InformationBoxExample extends React.PureComponent {
   render() {
     return (
-      <InformationBox title="This is an information" icon="./docs/assets/svg-symbols.svg#cancel">
+      <InformationBox title="This is an information" icon="./assets/svg-symbols.svg#cancel">
         Content body.
       </InformationBox>
     );

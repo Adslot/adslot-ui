@@ -4,7 +4,7 @@ import { SvgSymbol } from '../../src';
 
 class SvgSymbolExample extends React.PureComponent {
   render() {
-    return <SvgSymbol href="./docs/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={['70']} />;
+    return <SvgSymbol href="./assets/svg-symbols.svg#checklist-incomplete" classSuffixes={['70']} />;
   }
 }
 
@@ -25,8 +25,7 @@ const exampleProps = {
       </p>
     </div>
   ),
-  exampleCodeSnippet:
-    '<SvgSymbol href="./docs/assets/svg-symbols.svg#checklist-incomplete" classSuffixes={[\'70\']} />',
+  exampleCodeSnippet: '<SvgSymbol href="./assets/svg-symbols.svg#checklist-incomplete" classSuffixes={[\'70\']} />',
   propTypeSectionArray: [
     {
       propTypes: [

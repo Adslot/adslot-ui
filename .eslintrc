@@ -22,14 +22,14 @@
     },
     "import/resolver": {
       "webpack": {
-        "config": "config/dev.js"
+        "config": "config/webpack.config.dev.js"
       }
     }
   },
   "rules": {
     "id-length": [
       2,
-      { "min": 3, "max": 30, "properties": "never", "exceptions": ["_", "cb"] }
+      { "min": 2, "max": 30, "properties": "never", "exceptions": ["_", "cb"] }
     ],
     "max-params": [2, 3],
     "no-cond-assign": [2, "except-parens"],

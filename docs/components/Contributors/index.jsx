@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import 'isomorphic-fetch';
+import axios from 'axios';
 import { Avatar, Spinner, PageTitle } from '../../../src';
 
 import './styles.scss';
@@ -17,8 +17,9 @@ class Contributors extends React.PureComponent {
   }
 
   getContributors = () => {
-    fetch('https://api.github.com/repos/Adslot/adslot-ui/contributors')
-      .then(response => response.json())
+    axios
+      .get('https://api.github.com/repos/Adslot/adslot-ui/contributors')
+      .then(response => response.data)
       .then(contributors => {
         this.setState({ contributors });
       });
