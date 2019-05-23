@@ -2,7 +2,7 @@ import React from 'react';
 import Example from '../components/Example';
 import { TileGrid } from '../../src';
 
-const exampleImageLink = './docs/assets/tileGrid/example-image.jpg';
+const exampleImageLink = './assets/tileGrid/example-image.jpg';
 
 class TileGridExample extends React.PureComponent {
   constructor() {

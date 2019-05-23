@@ -1,9 +1,10 @@
 const _ = require('lodash');
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('./config/webpack.config.test');
 
 const env = { ADSLOT_TEST_FILE: '' };
 process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 
 webpackConfig.plugins.push(
   new webpack.DefinePlugin(
@@ -39,6 +40,7 @@ exports.ignoreImagesMw = (req, res, next) => {
 
 module.exports = function configureKarma(config) {
   config.set({
+    mode: 'development',
     basePath: '',
     browsers: ['ChromeHeadless'],
     colors: true,

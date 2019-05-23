@@ -22,7 +22,7 @@ const SearchResultCard = ({ navigateTo, clearSearch, searchResults }) => (
     <Empty
       collection={searchResults}
       text="No results found."
-      svgSymbol={{ href: './docs/assets/svg-symbols.svg#search' }}
+      svgSymbol={{ href: './assets/svg-symbols.svg#search' }}
     />
   </Card.Container>
 );

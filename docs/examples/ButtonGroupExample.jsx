@@ -17,7 +17,7 @@ class ButtonGroupExample extends React.PureComponent {
           <Button>Approve</Button>
           <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
             <Button>
-              <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+              <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
             </Button>
           </Popover>
         </ButtonGroup>
@@ -38,20 +38,20 @@ class ButtonGroupExample extends React.PureComponent {
               }
               ref={this.buttonRef}
             >
-              <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+              <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
             </Button>
           </Popover>
         </ButtonGroup>
         <ButtonGroup bsStyle="primary">
           <Button>Sign off</Button>
           <Button onClick={() => alert('>I am a Alert on click!')}>
-            <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+            <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
           </Button>
         </ButtonGroup>
         <ButtonGroup bsStyle="warning" inverse={true} disabled={true}>
           <Button>Disabled</Button>
           <Button>
-            <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+            <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
           </Button>
         </ButtonGroup>
       </React.Fragment>
@@ -66,7 +66,7 @@ export const exampleProps = {
     <Button>Approve</Button>
     <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
       <Button>
-        <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+        <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
       </Button>
     </Popover>
   </ButtonGroup>
@@ -87,20 +87,20 @@ export const exampleProps = {
         }
         ref={this.buttonRef}
       >
-        <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+        <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
       </Button>
     </Popover>
   </ButtonGroup>
   <ButtonGroup bsStyle="primary">
     <Button>Sign off</Button>
     <Button onClick={() => alert('>I am a Alert on click!')}>
-      <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+      <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
     </Button>
   </ButtonGroup>
   <ButtonGroup bsStyle="warning" inverse={true} disabled={true}>
     <Button>Disabled</Button>
     <Button>
-      <SvgSymbol className="svg-icon" href="./docs/assets/svg-symbols.svg#caret-down" />
+      <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
     </Button>
   </ButtonGroup>
   `,

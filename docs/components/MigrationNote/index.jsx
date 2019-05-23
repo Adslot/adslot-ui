@@ -52,7 +52,7 @@ class MigrationNote extends React.Component {
                 panels={[
                   {
                     id: '1',
-                    icon: { href: './docs/assets/svg-symbols.svg#list' },
+                    icon: { href: './assets/svg-symbols.svg#list' },
                     title: 'Filter by region',
                     isCollapsed: true,
                     content: (
@@ -77,7 +77,7 @@ class MigrationNote extends React.Component {
               <Accordion onPanelClick={this.toggleAccordionPanel}>
                 <Panel
                   id='1'
-                  icon={{ href: './docs/assets/svg-symbols.svg#list' }}
+                  icon={{ href: './assets/svg-symbols.svg#list' }}
                   title='Filter by region'
                 >
                 <ul className="list-unstyled">

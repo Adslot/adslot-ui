@@ -4,7 +4,7 @@ import { Button, UserListPicker } from '../../src';
 
 const avatarColor = () => 'cyan';
 const emptySvgSymbol = {
-  href: './docs/assets/svg-symbols.svg#checklist-incomplete',
+  href: './assets/svg-symbols.svg#checklist-incomplete',
 };
 const teamMember1 = {
   avatar: '//lorempixel.com/35/35/people/7',
