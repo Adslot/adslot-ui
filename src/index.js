@@ -77,6 +77,7 @@ import {
   InformationBox,
   HoverDropdownMenu,
   OverlayLoader,
+  ActionPanel,
 } from 'adslot-ui';
 
 export {
@@ -145,4 +146,5 @@ export {
   InformationBox,
   HoverDropdownMenu,
   OverlayLoader,
+  ActionPanel,
 };

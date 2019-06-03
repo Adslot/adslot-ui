@@ -1,0 +1,140 @@
+@import '~styles/border';
+@import '~styles/color';
+@import '~styles/font-size';
+@import '~styles/variable';
+@import '~styles/font-weight';
+@import '~styles/icon';
+
+.aui--action-panel {
+  min-width: 300px;
+  max-width: 900px;
+  min-height: 100px;
+  z-index: $zindex-popover;
+  border: $border-lighter;
+  border-radius: 2px;
+
+  &.action-modal {
+    position: fixed;
+    top: 30px;
+    background-color: $color-white ;
+    margin: 30px auto;
+    border: 0;
+  }
+
+  &.is-small {
+    width: 500px;
+  }
+
+  &.is-medium {
+    width: 700px;
+  }
+
+  &.is-large {
+    width: 1000px;
+  }
+
+  &-header {
+    height: 48px;
+    color: $color-gray-darkest;
+    padding: 12px;
+    border-bottom: $border-lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-size: $font-size-header;
+      font-weight: $font-weight-bold;
+    }
+
+    svg {
+      fill: $color-gray-darker;
+    }
+
+    .close-svg-icon {
+      padding: 0;
+      width: 26px;
+      height: 26px;
+    }
+
+    .close-button.btn {
+      background-color: transparent;
+      color: $color-inverse;
+
+      > div {
+        display: inline-flex;
+      }
+    }
+
+    .close-icon {
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('~styles/icons/close.svg');
+    }
+
+    .btn {
+      border: 0;
+      outline: 0;
+      margin: 0 0 0 6px;
+      box-shadow: none;
+      border-radius: 2px;
+      background-color: $color-white;
+      color: $color-blue;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &:focus:active,
+      &:hover:active {
+        background-color: transparent;
+      }
+    }
+
+    &.has-actions {
+      background-color: $color-blue;
+      color: $color-inverse;
+
+      .actions {
+        .btn {
+          &:hover {
+            color: $color-blue;
+          }
+
+          svg {
+            fill: $color-inverse;
+          }
+        }
+
+        .btn:hover {
+          background-color: $color-inverse;
+
+          svg {
+            fill: $color-blue;
+          }
+        }
+      }
+    }
+  }
+
+  &-body {
+    padding: 30px;
+  }
+
+  &-wrapper-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $color-gray-dark;
+    width: 100%;
+    z-index: 1040;
+    display: flex;
+    justify-content: center;
+    opacity: .9;
+  }
+}
+
+
+

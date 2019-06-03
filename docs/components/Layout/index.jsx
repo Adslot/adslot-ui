@@ -60,6 +60,7 @@ import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
 import NavigationExample from '../../examples/NavigationExample';
 import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
 import SearchExample from '../../examples/SearchExample';
+import ActionPanelExample from '../../examples/ActionPanelExample';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -97,6 +98,7 @@ const componentsBySection = {
   dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
   search: ['search', 'tag'],
+  panels: ['action-panel'],
   grouping: [
     'page-title',
     'card',
@@ -224,6 +226,9 @@ class PageLayout extends React.Component {
 
             <PageTitle title="Modals" />
             <ConfirmModalExample />
+
+            <PageTitle title="Panels" />
+            <ActionPanelExample />
 
             <PageTitle title="Search" />
             <SearchExample />
