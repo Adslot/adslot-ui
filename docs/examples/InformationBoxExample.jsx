@@ -44,6 +44,10 @@ const exampleProps = {
         },
         {
           propType: 'title',
+          type: 'node',
+        },
+        {
+          propType: 'dts',
           type: 'string',
         },
       ],

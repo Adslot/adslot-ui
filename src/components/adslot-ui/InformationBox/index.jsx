@@ -4,8 +4,8 @@ import SvgSymbol from 'alexandria/SvgSymbol';
 
 require('./styles.scss');
 
-const InformationBox = ({ children, icon, title, className }) => (
-  <div className={`information-box${className ? ` ${className}` : ''}`}>
+const InformationBox = ({ children, icon, title, className, dts }) => (
+  <div className={`information-box${className ? ` ${className}` : ''}`} data-test-selector={dts}>
     {icon ? (
       <div className="information-box-icon">
         {' '}
@@ -22,8 +22,9 @@ const InformationBox = ({ children, icon, title, className }) => (
 InformationBox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.node,
   icon: PropTypes.string,
+  dts: PropTypes.string,
 };
 
 export default InformationBox;
