@@ -20,7 +20,7 @@ class SearchBarComponent extends React.Component {
         additionalClassNames={['adslot-ui-searchbar']}
         searchString={this.state.searchBarString}
         searchPlaceholder="Search for component."
-        searchIconHref="./docs/assets/svg-symbols.svg#search"
+        searchIconHref="/assets/svg-symbols.svg#search"
         onSearchStringChange={this.handleStringChange}
         onSearch={() => this.props.onSearch(this.state.searchBarString)}
       />

@@ -25,7 +25,7 @@ class SearchBarExample extends React.Component {
       <SearchBar
         searchString={this.state.searchBarString}
         searchPlaceholder="Enter a word or phrase to find matching items."
-        searchIconHref="./docs/assets/svg-symbols.svg#search"
+        searchIconhref="./assets/svg-symbols.svg#search"
         onSearchStringChange={this.setSearchBarString}
         onSearch={this.performSearchBarSearch}
       />
@@ -40,7 +40,7 @@ const exampleProps = {
   <SearchBar
     searchString={this.state.searchBarString}
     searchPlaceholder="Enter a word or phrase to find matching items."
-    searchIconHref="./docs/assets/svg-symbols.svg#search"
+    searchIconhref="/assets/svg-symbols.svg"
     onSearchStringChange={this.setSearchBarString}
     onSearch={this.performSearchBarSearch}
   />`,

@@ -100,7 +100,7 @@ const exampleProps = {
               {JSON.stringify(
                 {
                   classSuffixes: ['gray-darker'],
-                  href: './docs/assets/svg-symbols.svg#cancel',
+                  href: './assets/svg-symbols.svg#cancel',
                 },
                 null,
                 2
@@ -120,7 +120,7 @@ const exampleProps = {
               {JSON.stringify(
                 {
                   classSuffixes: ['gray-light'],
-                  href: './docs/assets/svg-symbols.svg#search',
+                  href: '/assets/svg-symbols.svg',
                 },
                 null,
                 2

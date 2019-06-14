@@ -8,9 +8,7 @@ const plugins = [
 ].filter(Boolean);
 
 const presets = [
-  [
-    '@babel/preset-env', { useBuiltIns: 'entry' }
-  ],
+  ['@babel/preset-env', { useBuiltIns: 'usage', corejs: { version: 3 } }],
   [
     '@babel/preset-react',
     {
