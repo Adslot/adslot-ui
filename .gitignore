@@ -9,9 +9,6 @@ coverage
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
-# Source Maps
-*.map
-
 # Mac related
 .DS_Store
 
