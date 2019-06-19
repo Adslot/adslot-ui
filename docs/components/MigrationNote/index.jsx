@@ -32,19 +32,20 @@ class MigrationNote extends React.Component {
             <hr />
             <h3>Search Component</h3>
             <p>
-              The new {`<Search />`} component will replace the old {`<Search />`} amd {`<SearchBar />`} component.
+              The new {`<Search />`} component will merge old {`<Search />`} and {`<SearchBar />`} component.
             </p>
             <p>
-              1. <b>onSearch</b> function is the only required prop. It can work as an uncontrolled component without{' '}
+              1. <b>onSearch</b> function is the only required prop. It can also work as an uncontrolled component
+              without
               <b>value</b> and <b>onChange</b>.
             </p>
             <p>
-              2. New Search bar will by default trigger <b>onSearch</b> when input changes. You can set{' '}
-              <b>searchOnEnter</b> to true and <b>onSearch</b> will be triggered only when user press Enter or click the
-              search button.
+              2. New Search bar will by default trigger <b>onSearch</b> when input changes. You can set
+              <b>searchOnEnter</b> to true and <b>onSearch</b> will be triggered only when user presses Enter or click
+              the search button.
             </p>
             <p>
-              3. <b>icons</b> needs to be provided as an object of nodes:
+              3. <b>icons</b> can be provided as an object of nodes:
             </p>
             <SyntaxHighlighter language="jsx" style={coy}>
               {`
@@ -55,15 +56,15 @@ class MigrationNote extends React.Component {
                 }
               `}
             </SyntaxHighlighter>
-            <p>New Search component will use its default icons if none or some of the icons are not provided.</p>
+            <p>New Search component will use default icons if none or some of the icons are not provided.</p>
             <p>
               For more information check the example: <a href="#search-example">Search Example</a>
             </p>
             <br />
             <h3>TreePicker Component</h3>
             <p>
-              <b>searchOnChange</b> prop is removed and <b>searchOnEnterKey</b> prop is renamed <b>searchOnEnter</b>.
-              Tree picker is search on input by default.
+              <b>searchOnChange</b> prop is removed and <b>searchOnEnterKey</b> prop is renamed as <b>searchOnEnter</b>.
+              Tree picker will now search on input by default.
             </p>
             <p>
               For more information check the example: <a href="#tree-picker-example">TreePicker Example</a>
