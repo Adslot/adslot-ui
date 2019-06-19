@@ -32,7 +32,7 @@ class MigrationNote extends React.Component {
             <hr />
             <h3>Search Component</h3>
             <p>
-              The new {`<Search />`} component will replace the old {`<Search />`} amd {`<SearchBar />`} component.
+              The new {`<Search />`} component will merge old {`<Search />`} and {`<SearchBar />`} component.
             </p>
             <p>
               1. <b>onSearch</b> function is the only required prop. It can work as an uncontrolled component without{' '}
@@ -55,7 +55,7 @@ class MigrationNote extends React.Component {
                 }
               `}
             </SyntaxHighlighter>
-            <p>New Search component will use its default icons if none or some of the icons are not provided.</p>
+            <p>New Search component will use default icons if none or some of the icons are not provided.</p>
             <p>
               For more information check the example: <a href="#search-example">Search Example</a>
             </p>
