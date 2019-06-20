@@ -11196,75 +11196,89 @@ button + .aui--button-group {
     line-height: 28px;
     margin: 18px 10px; }
 
-.search-component {
+.aui--search-component {
   height: 26px;
-  line-height: 26px;
+  width: 100%;
   position: relative;
-  width: 100%; }
-  .search-component ::-webkit-search-cancel-button,
-  .search-component ::-webkit-search-decoration {
-    -webkit-appearance: none;
-            appearance: none; }
-  .search-component-input {
-    -webkit-appearance: textfield;
-    border: 1px solid #e8e8e8;
-    border-radius: 2px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    color: #333;
-    font-size: 12px;
-    height: inherit;
-    margin: 0;
-    padding: 0 0 0 10px;
-    width: inherit; }
-    .search-component-input::-webkit-input-placeholder {
-      color: #ababab;
-      font-weight: 300; }
-    .search-component-input::-moz-placeholder {
-      color: #ababab;
-      font-weight: 300; }
-    .search-component-input:-ms-input-placeholder {
-      color: #ababab;
-      font-weight: 300; }
-    .search-component-input::-ms-input-placeholder {
-      color: #ababab;
-      font-weight: 300; }
-    .search-component-input::placeholder {
-      color: #ababab;
-      font-weight: 300; }
-    .search-component-input:active, .search-component-input:focus {
-      border-color: #ababab;
-      outline: 0; }
-    .search-component-input:disabled {
-      border: 1px solid #e8e8e8;
-      color: #ababab; }
-  .search-component .svg-symbol-component {
-    -webkit-box-sizing: content-box;
-            box-sizing: content-box;
-    height: 100%;
-    padding: 0 4px;
-    position: absolute;
-    right: 0;
-    top: 1px; }
-  .search-component .spinner-component {
-    position: absolute;
-    top: 4px;
-    right: 24px; }
-
-.search-bar-component {
   display: -ms-flexbox;
   display: flex; }
-  .search-bar-component-text-input.form-control {
+  .aui--search-component .aui--search-component-input {
     -ms-flex: 1 1;
         flex: 1 1;
-    height: 32px;
-    margin-right: -3px;
-    padding: 4px 10px; }
-  .search-bar-component-button.btn {
-    line-height: 1;
-    width: 36px; }
-    .search-bar-component-button.btn > .svg-symbol-component-search-icon {
-      fill: #006dcc; }
+    padding: 0 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+    width: inherit; }
+    .aui--search-component .aui--search-component-input::-webkit-input-placeholder {
+      color: #ababab;
+      font-weight: 300; }
+    .aui--search-component .aui--search-component-input::-moz-placeholder {
+      color: #ababab;
+      font-weight: 300; }
+    .aui--search-component .aui--search-component-input:-ms-input-placeholder {
+      color: #ababab;
+      font-weight: 300; }
+    .aui--search-component .aui--search-component-input::-ms-input-placeholder {
+      color: #ababab;
+      font-weight: 300; }
+    .aui--search-component .aui--search-component-input::placeholder {
+      color: #ababab;
+      font-weight: 300; }
+    .aui--search-component .aui--search-component-input:active, .aui--search-component .aui--search-component-input:focus {
+      border-color: #ababab;
+      outline: 0; }
+      .aui--search-component .aui--search-component-input:active ~ .aui--search-component-button, .aui--search-component .aui--search-component-input:focus ~ .aui--search-component-button {
+        border-color: #ababab; }
+  .aui--search-component .aui--search-component-icon {
+    height: 100%;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 0; }
+    .aui--search-component .aui--search-component-icon.with-button {
+      right: 40px; }
+    .aui--search-component .aui--search-component-icon .search-icon,
+    .aui--search-component .aui--search-component-icon .cancel-icon {
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain; }
+    .aui--search-component .aui--search-component-icon .search-icon {
+      background-image: url(assets/search-gray.2bae3589.svg); }
+    .aui--search-component .aui--search-component-icon .cancel-icon {
+      background-image: url(assets/cancel-gray.e05e36f1.svg); }
+      .aui--search-component .aui--search-component-icon .cancel-icon:hover {
+        background-image: url(assets/cancel.8a4a8d0b.svg); }
+  .aui--search-component .aui--search-component-button {
+    margin-left: -2px;
+    border: 1px solid #e8e8e8;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    padding: 2px 7px;
+    border-radius: 0 2px 2px 0; }
+    .aui--search-component .aui--search-component-button:hover {
+      background-color: #f9f9f9; }
+    .aui--search-component .aui--search-component-button:focus {
+      outline: none; }
+    .aui--search-component .aui--search-component-button span {
+      width: 16px;
+      height: 16px; }
+    .aui--search-component .aui--search-component-button .search-icon {
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(assets/search-primary.3755a5df.svg);
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
+  .aui--search-component .aui--search-component-spinner {
+    position: absolute;
+    top: 5px;
+    right: 25px; }
 
 .splitpane-component {
   display: -ms-flexbox;
