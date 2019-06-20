@@ -52,8 +52,6 @@ import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
 import ListPickerExample from '../../examples/ListPickerExample';
 import PagedGridExample from '../../examples/PagedGridExample';
 import PanelExample from '../../examples/PanelExample';
-import SearchExample from '../../examples/SearchExample';
-import SearchBarExample from '../../examples/SearchBarExample';
 import TreePickerExample from '../../examples/TreePickerExample';
 import UserListPickerExample from '../../examples/UserListPickerExample';
 import InformationBoxExample from '../../examples/InformationBoxExample';
@@ -61,6 +59,7 @@ import SplitPaneExample from '../../examples/SplitPaneExample';
 import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
 import NavigationExample from '../../examples/NavigationExample';
 import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
+import SearchExample from '../../examples/SearchExample';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -97,7 +96,7 @@ const componentsBySection = {
   'feedback-and-states': ['alert', 'empty', 'spinner', 'overlay-loader', 'pretty-diff', 'status-pill'],
   dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
-  search: ['search', 'search-bar', 'tag'],
+  search: ['search', 'tag'],
   grouping: [
     'page-title',
     'card',
@@ -228,7 +227,6 @@ class PageLayout extends React.Component {
 
             <PageTitle title="Search" />
             <SearchExample />
-            <SearchBarExample />
             <TagExample />
 
             <PageTitle title="Grouping" />

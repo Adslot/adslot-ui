@@ -1,31 +1,18 @@
-@import '~styles/border';
-@import '~styles/color';
-@import '~styles/font-size';
-@import '~styles/font-weight';
+@import '~styles/variable';
 
-.search-component {
+.aui--search-component {
   $search-height: 26px;
 
   height: $search-height;
-  line-height: $search-height;
-  position: relative;
   width: 100%;
+  position: relative;
+  display: flex;
 
-  ::-webkit-search-cancel-button,
-  ::-webkit-search-decoration {
-    appearance: none;
-  }
-
-  &-input {
-    -webkit-appearance: textfield; // For Safari.
+  .aui--search-component-input {
+    flex: 1;
+    padding: 0 10px;
     border: $border-lighter;
     border-radius: $border-radius;
-    box-sizing: border-box;
-    color: $color-text;
-    font-size: $font-size-body;
-    height: inherit;
-    margin: 0;
-    padding: 0 0 0 10px;
     width: inherit;
 
     &::placeholder {
@@ -36,27 +23,81 @@
     &:active,
     &:focus {
       border-color: $color-border;
-      outline: 0; // Override UA
-    }
+      outline: 0;
 
-    &:disabled {
-      border: $border-lighter;
-      color: $color-text-disabled;
+      &~.aui--search-component-button {
+        border-color: $color-border;
+      }
     }
   }
 
-  .svg-symbol-component {
-    box-sizing: content-box;
+  .aui--search-component-icon {
     height: 100%;
-    padding: 0 4px;
+    padding: 5px;
     position: absolute;
     right: 0;
-    top: 1px;
+    top: 0;
+
+    &.with-button {
+      right: 40px;
+    }
+
+    .search-icon,
+    .cancel-icon {
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .search-icon {
+      background-image: url('~styles/icons/search/search-gray.svg');
+    }
+
+    .cancel-icon {
+      background-image: url('~styles/icons/search/cancel-gray.svg');
+
+      &:hover {
+        background-image: url('~styles/icons/search/cancel.svg');
+      }
+    }
   }
 
-  .spinner-component {
+  .aui--search-component-button {
+    margin-left: -2px;
+    border: $border-lighter;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: 0 $border-radius $border-radius 0;
+
+    &:hover {
+      background-color: $color-gray-white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    span {
+      width: 16px;
+      height: 16px;
+    }
+
+    .search-icon {
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('~styles/icons/search/search-primary.svg');
+      flex-shrink: 0;
+    }
+  }
+
+  .aui--search-component-spinner {
     position: absolute;
-    top: 4px;
-    right: 24px;
+    top: 5px;
+    right: 25px;
   }
 }

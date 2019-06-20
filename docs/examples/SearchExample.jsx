@@ -2,66 +2,105 @@ import React from 'react';
 import Example from '../components/Example';
 import { Search } from '../../src';
 
-class SearchExample extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      value: '',
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onSearch = this.onSearch.bind(this);
-  }
+class SearchExample extends React.PureComponent {
+  state = {
+    value: '',
+  };
 
-  onChange(value) {
+  onChange = value => {
     this.setState({
       value,
     });
-  }
+  };
 
-  onSearch() {
+  searchOnInputChange = () => {
     this.setState({
-      isLoading: true,
+      searchOnInputChangeLoading: true,
     });
-    setTimeout(() => this.setState({ isLoading: false }), 950);
-  }
+    setTimeout(() => this.setState({ searchOnInputChangeLoading: false }), 950);
+  };
+
+  searchOnEnterKey = value => {
+    this.setState({
+      searchOnEnterKeyLoading: true,
+    });
+    setTimeout(
+      () => this.setState({ searchOnEnterKeyLoading: false }, () => alert(`You are searching for '${value}'`)),
+      950
+    );
+  };
 
   render() {
     return (
-      <Search
-        value={this.state.value}
-        onChange={this.onChange}
-        onSearch={this.onSearch}
-        debounceInterval={350}
-        isLoading={this.state.isLoading}
-      />
+      <>
+        Search on input Changed
+        <Search
+          placeholder="Search on Change"
+          value={this.state.value}
+          onChange={this.onChange}
+          onSearch={this.searchOnInputChange}
+          debounceInterval={500}
+          isLoading={this.state.searchOnInputChangeLoading}
+        />
+        <br />
+        Search on Enter key pressed
+        <Search
+          placeholder="Search on ENTER"
+          isLoading={this.state.searchOnEnterKeyLoading}
+          onSearch={this.searchOnEnterKey}
+          searchOnEnter
+        />
+      </>
     );
   }
 }
 
 const exampleProps = {
   componentName: 'Search',
-  designNotes: (
-    <p>
-      Search field is more commonly used within the pickers and modals with spinner indicating search action when you
-      begin typing.
-    </p>
-  ),
+  notes:
+    'Search with search button is commonly used above the pages designed to manage filter pills and search while Search without search button is more commonly used within the pickers and modals.',
   exampleCodeSnippet: `
   <Search
-    value={this.state.value}
-    onChange={this.onChange}
-    onSearch={this.onSearch}
-    debounceInterval={350}
-    isLoading={this.state.isLoading}
+    placeholder="Search on ENTER" 
+    onSearch={this.onSearch} 
+    searchOnEnter
   />`,
   propTypeSectionArray: [
     {
+      label: '',
       propTypes: [
+        {
+          propType: 'className',
+          type: 'string',
+          defaultValue: '-',
+        },
+        {
+          propType: 'debounceInterval',
+          type: 'number',
+          defaultValue: '0',
+          note: 'Milliseconds',
+        },
         {
           propType: 'disabled',
           type: 'bool',
           defaultValue: 'false',
-          note: 'determine if the Search bar is disabled',
+          note: 'Determine whether the text area is disabled',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+          defaultValue: '-',
+          note: 'Render `data-test-selector` onto the component. It can be useful for testing',
+        },
+        {
+          propType: 'icons',
+          type: 'object',
+          defaultValue: '{}',
+          note: `{
+            search: React.Node,
+            loader: React.Node,
+            close: React.Node
+          }`,
         },
         {
           propType: 'isLoading',
@@ -71,85 +110,35 @@ const exampleProps = {
         {
           propType: 'onChange',
           type: 'func',
-          note: <code>onChange(value)</code>,
+          defaultValue: '-',
         },
         {
           propType: 'onClear',
           type: 'func',
-          note: <code>onClear(value)</code>,
+          defaultValue: '-',
         },
         {
           propType: 'onSearch',
           type: 'func',
-          note: <code>onSearch(value)</code>,
+          defaultValue: '-',
+          note: 'Required',
         },
         {
           propType: 'placeholder',
           type: 'string',
-          defaultValue: <code>&apos;&apos;</code>,
+          defaultValue: '',
         },
         {
-          propType: 'svgSymbolCancel',
-          type: (
-            <span>
-              shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
-            </span>
-          ),
-          defaultValue: (
-            <pre>
-              {JSON.stringify(
-                {
-                  classSuffixes: ['gray-darker'],
-                  href: './assets/svg-symbols.svg#cancel',
-                },
-                null,
-                2
-              )}
-            </pre>
-          ),
-        },
-        {
-          propType: 'svgSymbolSearch',
-          type: (
-            <span>
-              shapeOf <a href="#svg-symbol-component">SVG Symbol</a> prop types.
-            </span>
-          ),
-          defaultValue: (
-            <pre>
-              {JSON.stringify(
-                {
-                  classSuffixes: ['gray-light'],
-                  href: '/assets/svg-symbols.svg',
-                },
-                null,
-                2
-              )}
-            </pre>
-          ),
+          propType: 'searchOnEnter',
+          type: 'bool',
+          defaultValue: 'false',
+          note:
+            'Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)',
         },
         {
           propType: 'value',
           type: 'string',
-          defaultValue: <code>&apos;&apos;</code>,
-          note: 'As value within search component is uncontrolled we need to pass in the search value externally.',
-        },
-        {
-          propType: 'searchOnChange',
-          type: 'bool',
-          defaultValue: 'true',
-          note: 'determine if onSearch() will be fired upon text changes',
-        },
-        {
-          propType: 'searchOnEnterKey',
-          type: 'bool',
-          defaultValue: 'false',
-          note: 'determine if onSearch() will be fired upon pressing Enter key',
-        },
-        {
-          propType: 'debounceInterval',
-          type: 'number',
-          defaultValue: '0',
+          defaultValue: '',
         },
       ],
     },

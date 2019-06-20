@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import Search from 'adslot-ui/Search';
 import Breadcrumb from 'alexandria/Breadcrumb';
@@ -16,29 +17,36 @@ const TreePickerNavComponent = ({
   onClear,
   onChange,
   onSearch,
-  searchOnChange,
-  searchOnEnterKey,
+  searchOnEnter,
+  searchPlaceholder,
   searchValue,
   svgSymbolCancel,
   svgSymbolSearch,
-}) => (
-  <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
-    <Search
-      disabled={disabled}
-      debounceInterval={debounceInterval}
-      isLoading={isLoading}
-      onClear={onClear}
-      onChange={onChange}
-      onSearch={onSearch}
-      searchOnChange={searchOnChange}
-      searchOnEnterKey={searchOnEnterKey}
-      svgSymbolCancel={svgSymbolCancel}
-      svgSymbolSearch={svgSymbolSearch}
-      value={searchValue}
-    />
-    <Breadcrumb disabled={disabled} nodes={breadcrumbNodes} onClick={breadcrumbOnClick} />
-  </div>
-);
+}) => {
+  const icons = {};
+  if (svgSymbolSearch)
+    icons.search = <SvgSymbol href={svgSymbolSearch.href} classSuffixes={svgSymbolSearch.classSuffixes} />;
+  if (svgSymbolCancel)
+    icons.close = <SvgSymbol href={svgSymbolCancel.href} classSuffixes={svgSymbolCancel.classSuffixes} />;
+
+  return (
+    <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
+      <Search
+        disabled={disabled}
+        debounceInterval={debounceInterval}
+        isLoading={isLoading}
+        onClear={onClear}
+        onChange={onChange}
+        onSearch={onSearch}
+        searchOnEnter={searchOnEnter}
+        icons={icons}
+        value={searchValue}
+        placeholder={searchPlaceholder || 'Search'}
+      />
+      <Breadcrumb disabled={disabled} nodes={breadcrumbNodes} onClick={breadcrumbOnClick} />
+    </div>
+  );
+};
 
 TreePickerNavComponent.displayName = 'AdslotUiTreePickerNavComponent';
 TreePickerNavComponent.propTypes = {
@@ -50,8 +58,8 @@ TreePickerNavComponent.propTypes = {
   onClear: PropTypes.func,
   onSearch: PropTypes.func,
   debounceInterval: PropTypes.number,
-  searchOnChange: PropTypes.bool,
-  searchOnEnterKey: PropTypes.bool,
+  searchOnEnter: PropTypes.bool,
+  searchPlaceholder: PropTypes.string,
   searchValue: PropTypes.string,
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
@@ -61,8 +69,9 @@ TreePickerNavComponent.defaultProps = {
   debounceInterval: 0,
   disabled: false,
   isLoading: false,
-  searchOnChange: true,
-  searchOnEnterKey: false,
+  searchOnEnter: false,
+  searchPlaceholder: '',
+  onSearch: _.noop,
 };
 
 export default TreePickerNavComponent;

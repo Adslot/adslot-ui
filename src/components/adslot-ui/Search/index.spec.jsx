@@ -1,166 +1,205 @@
-/* eslint-disable lodash/prefer-lodash-method */
-import _ from 'lodash';
-import sinon from 'sinon';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
+import Search from 'adslot-ui/Search';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import Spinner from 'alexandria/Spinner';
-import Search from './';
 
 describe('Search', () => {
-  let sandbox = null;
-  let props = {};
+  const onSearch = sinon.spy();
+  const props = {
+    className: 'additional-class',
+    dts: 'test-dts',
+    placeholder: 'search',
+    value: 'abc',
+    onSearch,
+  };
 
-  before(() => {
-    sandbox = sinon.sandbox.create();
+  it('should render with defaults', () => {
+    const wrapper = shallow(<Search onSearch={onSearch} />);
+
+    expect(wrapper.prop('className')).to.equal('aui--search-component');
+    expect(wrapper.find(Spinner).length).to.equal(0);
+    expect(wrapper.find('button').length).to.equal(0);
+
+    const inputEle = wrapper.find('input');
+    expect(inputEle.prop('className')).to.equal('aui--search-component-input');
+    expect(inputEle.prop('placeholder')).to.equal('');
+    expect(inputEle.prop('value')).to.equal('');
+    expect(inputEle.prop('disabled')).to.equal(false);
+
+    const svgSymbolEle = wrapper.find('.search-icon');
+    expect(svgSymbolEle.length).to.equal(1);
   });
 
-  beforeEach(() => {
-    props = { onClear: _.noop, onChange: _.noop, onSearch: _.noop };
-    sandbox.spy(props, 'onClear');
-    sandbox.spy(props, 'onChange');
-    sandbox.spy(props, 'onSearch');
+  it('should render search button if searchOnEnter is true', () => {
+    const wrapper = shallow(<Search onSearch={onSearch} searchOnEnter />);
+    expect(wrapper.find('button').length).to.equal(1);
   });
 
-  afterEach(() => sandbox.restore());
+  it('should render with given props', () => {
+    const wrapper = shallow(<Search {...props} />);
 
-  it('should render using defaultProps', () => {
-    const component = shallow(<Search />);
-    expect(component.prop('className')).to.equal('search-component');
-    expect(component.find(Spinner).length).to.equal(0);
+    expect(wrapper.prop('className')).to.equal('aui--search-component additional-class');
+    expect(wrapper.prop('data-test-selector')).to.equal('test-dts');
 
-    const inputEl = component.find('input');
-    expect(inputEl.prop('className')).to.equal('search-component-input');
-    expect(inputEl.prop('disabled')).to.equal(false);
-    expect(inputEl.prop('name')).to.equal('search');
-    expect(inputEl.prop('onChange')).to.be.a('function');
-    expect(inputEl.prop('placeholder')).to.equal('Search ');
-    expect(inputEl.prop('type')).to.equal('search');
-    expect(inputEl.prop('value')).to.equal('');
-
-    const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl.prop('href')).to.equal('/assets/svg-symbols.svg#search');
-    expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-light']);
-    expect(svgSymbolEl.prop('onClick')).to.be.an('undefined');
+    const inputEle = wrapper.find('input');
+    expect(inputEle.prop('placeholder')).to.equal('search');
+    expect(inputEle.prop('value')).to.equal('abc');
   });
 
-  it('should render using a placeholder', () => {
-    const component = shallow(<Search placeholder="your feelings" />);
+  it('should disable input when disabled is true', () => {
+    const wrapper = shallow(<Search onSearch={onSearch} disabled />);
 
-    const inputEl = component.find('input');
-    expect(inputEl.prop('placeholder')).to.equal('Search your feelings');
+    const inputEle = wrapper.find('input');
+    expect(inputEle.prop('disabled')).to.equal(true);
   });
 
-  describe('onChange()', () => {
-    it('should fire onChange when the user changes the value', () => {
-      const component = shallow(<Search {...props} />);
-
-      const inputEl = component.find('input');
-      inputEl.simulate('change', { target: { value: 'needle' } });
-      expect(props.onChange.calledOnce).to.equal(true);
-      expect(props.onChange.calledWith('needle')).to.equal(true);
+  describe('Icons', () => {
+    it('should render given search icons', () => {
+      const icons = {
+        search: <SvgSymbol href="svg_path" />,
+      };
+      const wrapper = shallow(<Search icons={icons} onSearch={onSearch} />);
+      expect(wrapper.find(SvgSymbol).prop('href')).to.equal('svg_path');
     });
 
-    it('should do nothing if `disabled` flag is on', () => {
-      const component = shallow(<Search {...props} disabled />);
-
-      const inputEl = component.find('input');
-      inputEl.simulate('change', { target: { value: 'needle' } });
-      expect(props.onChange.calledOnce).to.equal(false);
+    it('should render given cancel icons', () => {
+      const icons = {
+        close: <SvgSymbol href="svg_path" />,
+      };
+      const wrapper = shallow(<Search {...props} icons={icons} />);
+      expect(wrapper.find(SvgSymbol).prop('href')).to.equal('svg_path');
     });
 
-    it('should not fire onSearch if `searchOnChange` is false', done => {
-      const component = shallow(<Search {...props} searchOnChange={false} />);
-      const inputEl = component.find('input');
-      inputEl.simulate('change', { target: { value: 'needle' } });
-      setImmediate(() => {
-        expect(props.onSearch.calledOnce).to.equal(false);
+    it('should render given loading spinner if isLoading is true', () => {
+      const icons = {
+        loader: <Spinner size="small" />,
+      };
+      const wrapper = shallow(<Search icons={icons} onSearch={onSearch} isLoading />);
+      expect(wrapper.find(Spinner).length).to.equal(1);
+    });
+  });
+
+  it('should render given icons', () => {
+    const icons = {
+      search: <SvgSymbol href="svg_path" />,
+    };
+    const wrapper = shallow(<Search icons={icons} onSearch={onSearch} />);
+    expect(wrapper.find(SvgSymbol).prop('href')).to.equal('svg_path');
+  });
+
+  describe('Clear Button', () => {
+    it('should render clear button when value is not empty and search button is not shown', () => {
+      const wrapper = shallow(<Search {...props} />);
+      const svgSymbolEle = wrapper.find('.cancel-icon');
+      expect(svgSymbolEle.length).to.equal(1);
+    });
+
+    it('should fire onClear when clear button is clicked', () => {
+      const callbacks = {
+        onClear: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} />);
+      const clearBtn = wrapper.find('span.aui--search-component-icon');
+      clearBtn.simulate('click');
+      expect(callbacks.onClear.calledOnce).to.equal(true);
+      expect(callbacks.onClear.calledWith('')).to.equal(true);
+    });
+
+    it('should fire onChange when clear button is clicked', () => {
+      const callbacks = {
+        onChange: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} />);
+      const clearBtn = wrapper.find('span.aui--search-component-icon');
+      clearBtn.simulate('click');
+      expect(callbacks.onChange.calledOnce).to.equal(true);
+      expect(callbacks.onChange.calledWith('')).to.equal(true);
+    });
+
+    it('should fire onSearch when clear button is clicked', () => {
+      const callbacks = {
+        onSearch: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} />);
+      const clearBtn = wrapper.find('span.aui--search-component-icon');
+      clearBtn.simulate('click');
+      expect(callbacks.onSearch.calledOnce).to.equal(true);
+      expect(callbacks.onSearch.calledWith('')).to.equal(true);
+    });
+
+    it('should not fire onSearch if searchOnEnter is true', () => {
+      const callbacks = {
+        onSearch: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} searchOnEnter />);
+      wrapper.instance().onClear();
+      expect(callbacks.onSearch.calledOnce).to.equal(false);
+    });
+  });
+
+  describe('Value Changed', () => {
+    it('should fire onChange and onSearch with the latest value when value changed', () => {
+      const callbacks = {
+        onChange: sinon.spy(),
+        onSearch: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} />);
+      const inputEle = wrapper.find('input');
+      inputEle.simulate('change', { target: { value: 'new-value' } });
+      expect(callbacks.onChange.calledOnce).to.equal(true);
+      expect(callbacks.onChange.calledWith('new-value')).to.equal(true);
+      expect(callbacks.onSearch.calledOnce).to.equal(true);
+      expect(callbacks.onSearch.calledWith('new-value')).to.equal(true);
+    });
+
+    it('should fire onSearch after debounceInterval', done => {
+      const callbacks = {
+        onSearch: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} debounceInterval={500} />);
+      const inputEle = wrapper.find('input');
+      inputEle.simulate('change', { target: { value: 'new-value' } });
+      setTimeout(() => {
+        expect(callbacks.onSearch.calledOnce).to.equal(true);
+        expect(callbacks.onSearch.calledWith('new-value')).to.equal(true);
         done();
-      });
+      }, 500);
+    });
+
+    it('should not fire onSearch when value changed if searchOnEnter is true', () => {
+      const callbacks = {
+        onSearch: sinon.spy(),
+      };
+      const wrapper = shallow(<Search {...props} {...callbacks} searchOnEnter />);
+      const inputEle = wrapper.find('input');
+      inputEle.simulate('change', { target: { value: 'new-value' } });
+      expect(callbacks.onSearch.calledOnce).to.equal(false);
     });
   });
 
-  it('should not fire onClear, onChange, onSearch when user clicks the icon while disabled', () => {
-    _.assign(props, {
-      disabled: true,
-      value: 'some value',
-    });
-    const component = shallow(<Search {...props} />);
-
-    const svgSymbolEl = component.find(SvgSymbol);
-    svgSymbolEl.simulate('click');
-    expect(props.onChange.called).to.equal(false);
-    expect(props.onClear.called).to.equal(false);
-    expect(props.onSearch.called).to.equal(false);
+  it('should fire onSearch when searchOnEnter is true and search button is clicked', () => {
+    const callbacks = {
+      onSearch: sinon.spy(),
+    };
+    const wrapper = shallow(<Search {...callbacks} searchOnEnter />);
+    const buttonEle = wrapper.find('button');
+    wrapper.setState({ value: 'some-value' });
+    buttonEle.simulate('click', { preventDefault: sinon.spy() });
+    expect(callbacks.onSearch.calledOnce).to.equal(true);
+    expect(callbacks.onSearch.calledWith('some-value')).to.equal(true);
   });
 
-  it('should fire onClear, onChange, onSearch once with empty string value when user clicks the icon', () => {
-    props.value = 'some value';
-    const component = shallow(<Search {...props} />);
-
-    const svgSymbolEl = component.find(SvgSymbol);
-    svgSymbolEl.simulate('click');
-    expect(props.onClear.calledOnce).to.equal(true);
-    expect(props.onClear.calledWith('')).to.equal(true);
-    expect(props.onChange.calledOnce).to.equal(true);
-    expect(props.onChange.calledWith('')).to.equal(true);
-    expect(props.onSearch.calledOnce).to.equal(true);
-    expect(props.onSearch.calledWith('')).to.equal(true);
-  });
-
-  it('should render with a value', () => {
-    props.value = 'some value';
-    const component = shallow(<Search {...props} />);
-    const inputEl = component.find('input');
-
-    expect(inputEl.prop('value')).to.equal('some value');
-  });
-
-  describe('with searchOnEnterKey prop', () => {
-    let disabledStub = null;
-
-    beforeEach(() => {
-      props.searchOnEnterKey = true;
-      props.searchOnChange = false;
-      props.disabled = false;
-      disabledStub = sandbox.stub(props, 'disabled');
-    });
-
-    it('should not call props.onSearch when disabled with enter key pressed', () => {
-      disabledStub.value(true);
-      const component = shallow(<Search {...props} />);
-      const inputEl = component.find('input');
-      inputEl.simulate('keyPress', { key: 'Enter', which: 13 });
-      expect(props.onSearch.called).to.equal(false);
-    });
-
-    it('should call props.onSearch when enter key pressed', () => {
-      disabledStub.value(false);
-      const component = shallow(<Search {...props} />);
-      const inputEl = component.find('input');
-      inputEl.simulate('keyPress', { key: 'Enter', which: 13 });
-      expect(props.onSearch.calledOnce).to.equal(true);
-    });
-
-    it('should not call props.onEnterKey when not enter key pressed', () => {
-      disabledStub.value(false);
-      const component = shallow(<Search {...props} />);
-      const inputEl = component.find('input');
-      inputEl.simulate('keyPress', { key: 'a', which: 97 });
-      expect(props.onSearch.called).to.equal(false);
-    });
-
-    it('should not fire onSearch when user clicks the icon', () => {
-      const component = shallow(<Search {...props} />);
-
-      const svgSymbolEl = component.find(SvgSymbol);
-      svgSymbolEl.simulate('click');
-      expect(props.onSearch.called).to.equal(false);
-    });
-
-    it('should render loading spinner when isLoading set to true', () => {
-      const component = shallow(<Search {...props} isLoading />);
-      expect(component.find(Spinner).length).to.equal(1);
-    });
+  it('should fire onSearch when searchOnEnter is true and ENTER key is pressed', () => {
+    const callbacks = {
+      onSearch: sinon.spy(),
+    };
+    const wrapper = shallow(<Search {...callbacks} searchOnEnter />);
+    const inputEle = wrapper.find('input');
+    inputEle.simulate('keypress', { key: 'Enter', preventDefault: sinon.spy() });
+    expect(callbacks.onSearch.calledOnce).to.equal(true);
+    inputEle.simulate('keypress', { key: 'a' });
+    expect(callbacks.onSearch.calledOnce).to.equal(true);
   });
 });
