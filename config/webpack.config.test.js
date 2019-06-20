@@ -33,6 +33,11 @@ module.exports = webpackMerge(commonConfig, {
         test: /\.(png|jpg|gif|woff|woff2|css|sass|scss|less|styl)$/,
         loader: 'null-loader', // tests don't care about images and style
       },
+      {
+        test: /\.svg$/,
+        include: paths.appSrc,
+        loader: 'file-loader',
+      },
     ],
   },
   plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],

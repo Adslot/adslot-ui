@@ -3,8 +3,8 @@
 @import '~styles/font-size';
 @import '~styles/variable';
 @import '~styles/font-weight';
-@import '~styles/icon';
 @import '~styles/animation';
+@import '~styles/mixin';
 
 .aui--action-panel {
   min-width: 300px;
@@ -67,11 +67,7 @@
     }
 
     .close-icon {
-      width: 16px;
-      height: 16px;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-image: url('~styles/icons/close.svg');
+      @include svg-icon('~styles/icons/close.svg')
     }
 
     .btn {
