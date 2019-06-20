@@ -32,6 +32,7 @@ import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
 import InformationBox from 'adslot-ui/InformationBox';
 import Nav from 'adslot-ui/Navigation';
 import OverlayLoader from 'adslot-ui/OverlayLoader';
+import ActionPanel from 'adslot-ui/ActionPanel';
 
 export {
   Accordion,
@@ -68,4 +69,5 @@ export {
   InformationBox,
   HoverDropdownMenu,
   OverlayLoader,
+  ActionPanel,
 };
