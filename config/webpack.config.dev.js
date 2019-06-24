@@ -15,9 +15,6 @@ module.exports = webpackMerge(commonConfig, {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
   devtool: 'cheap-module-source-map',
-  devServer: {
-    open: false,
-  },
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
@@ -39,12 +36,10 @@ module.exports = webpackMerge(commonConfig, {
     devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   module: {
-    strictExportPresence: true,
     rules: [
       {
         enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
         test: /\.(js|jsx)$/,
-        exclude: [/node_modules/, /(\.spec)\.(js|jsx)$/],
         include: [paths.appSrc, paths.appDemo],
         use: ['eslint-loader'],
       },
@@ -82,9 +77,9 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
-          name: 'static/media/[name].[hash:8].[ext]',
+          name: 'images/[name].[ext]',
         },
       },
     ],
@@ -98,6 +93,7 @@ module.exports = webpackMerge(commonConfig, {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: true,
       template: paths.appHtml,
     }),
     new webpack.DefinePlugin({

@@ -8,8 +8,12 @@ process.on('unhandledRejection', err => {
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const config =
-  process.env.NODE_ENV === 'dist' ? require('../config/webpack.config.dist') : require('../config/webpack.config.dev.build');
+
+let config;
+if (process.env.NODE_ENV === 'dist') config = require('../config/webpack.config.dist');
+else if (process.env.NODE_ENV === 'production') config = require('../config/webpack.config.prod');
+else config = require('../config/webpack.config.dev.build');
+
 const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
@@ -23,7 +27,7 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
-const buildPath = process.env.NODE_ENV === 'dist' ? paths.appDist : paths.appBuild;
+const buildPath = !process.env.NODE_ENV || process.env.NODE_ENV === 'dist' ? paths.appDist : paths.appBuild;
 
 // Warn and crash if required files are missingclear
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {

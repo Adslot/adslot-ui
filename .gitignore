@@ -12,5 +12,8 @@ node_modules
 # Mac related
 .DS_Store
 
+# build
+build/
+
 # Editor related
 .idea/

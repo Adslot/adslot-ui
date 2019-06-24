@@ -15,7 +15,7 @@ module.exports = webpackMerge(commonConfig, {
   devtool: 'cheap-eval-source-map',
   entry: paths.appSrc,
   output: {
-    path: paths.appBuild,
+    path: paths.appDist,
     filename: 'adslot-ui.js',
     libraryTarget: 'umd',
     library: 'AdslotUI',
@@ -64,7 +64,6 @@ module.exports = webpackMerge(commonConfig, {
       {
         enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
         test: /\.(js|jsx)$/,
-        exclude: [/node_modules/, /(\.spec)\.(js|jsx)$/],
         include: paths.appSrc,
         use: ['eslint-loader'],
       },

@@ -1,6 +1,8 @@
 const webpack = require('webpack');
+const path = require('path');
 const webpackMerge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -9,8 +11,8 @@ const paths = require('./paths');
 const postCssConfig = require('./postCssConfig');
 
 // Assert this just to be safe.
-if (process.env.NODE_ENV !== 'dist') {
-  throw new Error('Distribution builds must have NODE_ENV=dist.');
+if (process.env.NODE_ENV !== 'production') {
+  throw new Error('Production builds must have NODE_ENV=dist.');
 }
 
 // This dist is used for creating the minified .css file.
@@ -20,10 +22,15 @@ module.exports = webpackMerge(commonConfig, {
   // Don't attempt to continue if there are any errors.
   bail: true,
   devtool: false,
-  entry: { main: [paths.appDistJs] },
+  entry: paths.appDemo,
   output: {
-    path: paths.appDist,
-    filename: 'adslot-ui-[name].js',
+    // The build folder.
+    path: paths.appBuild,
+    // Generated JS file names (with nested folders).
+    // There will be one main bundle, and one file per asynchronous chunk.
+    // We don't currently advertise code splitting but Webpack supports it.
+    filename: 'static/adslot-ui-docs.prod.js',
+    publicPath: '/',
     libraryTarget: 'umd',
     library: 'AdslotUI',
   },
@@ -51,12 +58,6 @@ module.exports = webpackMerge(commonConfig, {
       commonjs2: 'react-redux',
       commonjs: 'react-redux',
       amd: 'react-redux',
-    },
-    redux: {
-      root: 'Redux',
-      commonjs2: 'redux',
-      commonjs: 'redux',
-      amd: 'redux',
     },
     moment: {
       root: 'moment',
@@ -110,7 +111,6 @@ module.exports = webpackMerge(commonConfig, {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
         loader: 'url-loader',
         options: {
-          limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
@@ -144,8 +144,28 @@ module.exports = webpackMerge(commonConfig, {
     ],
   },
   plugins: [
+    // Generates an `index.html` file with the <script> injected.
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.resolve('index.html'),
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+    }),
     new MiniCssExtractPlugin({
-      filename: 'adslot-ui-[name].css',
+      filename: 'static/adslot-ui-docs.prod.css',
     }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical

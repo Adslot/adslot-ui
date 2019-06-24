@@ -7,14 +7,14 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
-  appBuild: resolveApp('dist'),
+  appBuild: resolveApp('docs'),
   appDist: resolveApp('dist'),
-  appPublic: resolveApp('docs'),
-  appHtml: resolveApp('docs/index.html'),
-  appIndexJs: resolveApp('docs'),
+  appPublic: resolveApp('www'),
+  appHtml: resolveApp('www/index.html'),
+  appIndexJs: resolveApp('www/index.jsx'),
   appDistJs: resolveApp('src/index.js'),
   appPackageJson: resolveApp('package.json'),
-  appDemo: resolveApp('docs'),
+  appDemo: resolveApp('www'),
   appSrc: resolveApp('src'),
   appNodeModules: resolveApp('node_modules'),
 };
