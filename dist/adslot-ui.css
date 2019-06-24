@@ -11569,3 +11569,98 @@ button + .aui--button-group {
       border-right-color: #5a5a5a;
       border-width: 5px; }
 
+.aui--action-panel {
+  min-width: 300px;
+  max-width: 900px;
+  min-height: 100px;
+  z-index: 1060;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px; }
+  .aui--action-panel.action-modal {
+    position: fixed;
+    top: 30px;
+    background-color: #fff;
+    margin: 30px auto;
+    border: 0; }
+  .aui--action-panel.is-small {
+    width: 500px; }
+  .aui--action-panel.is-medium {
+    width: 700px; }
+  .aui--action-panel.is-large {
+    width: 1000px; }
+  .aui--action-panel-header {
+    height: 48px;
+    color: #333;
+    padding: 12px;
+    border-bottom: 1px solid #e8e8e8;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-align: center;
+        align-items: center; }
+    .aui--action-panel-header .title {
+      font-size: 18px;
+      font-weight: 700; }
+    .aui--action-panel-header svg {
+      fill: #5a5a5a; }
+    .aui--action-panel-header .close-svg-icon {
+      padding: 0;
+      width: 26px;
+      height: 26px; }
+    .aui--action-panel-header .close-button.btn {
+      background-color: transparent;
+      color: #fff; }
+      .aui--action-panel-header .close-button.btn > div {
+        display: -ms-inline-flexbox;
+        display: inline-flex; }
+    .aui--action-panel-header .close-icon {
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(assets/close.09525bdb.svg); }
+    .aui--action-panel-header .btn {
+      border: 0;
+      outline: 0;
+      margin: 0 0 0 6px;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      border-radius: 2px;
+      background-color: #fff;
+      color: #006dcc;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -ms-flex-align: center;
+          align-items: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+      .aui--action-panel-header .btn:focus:active, .aui--action-panel-header .btn:hover:active {
+        background-color: transparent; }
+    .aui--action-panel-header.has-actions {
+      background-color: #006dcc;
+      color: #fff; }
+      .aui--action-panel-header.has-actions .actions .btn:hover {
+        color: #006dcc; }
+      .aui--action-panel-header.has-actions .actions .btn svg {
+        fill: #fff; }
+      .aui--action-panel-header.has-actions .actions .btn:hover {
+        background-color: #fff; }
+        .aui--action-panel-header.has-actions .actions .btn:hover svg {
+          fill: #006dcc; }
+  .aui--action-panel-body {
+    padding: 30px; }
+  .aui--action-panel-wrapper-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #838383;
+    width: 100%;
+    z-index: 1040;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    opacity: .9; }
+
