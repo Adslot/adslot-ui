@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
@@ -6,12 +7,13 @@ import SvgSymbol from 'alexandria/SvgSymbol';
 import Spinner from 'alexandria/Spinner';
 
 describe('Search', () => {
-  const onSearch = sinon.spy();
+  const onSearch = _.noop;
   const props = {
     className: 'additional-class',
     dts: 'test-dts',
     placeholder: 'search',
     value: 'abc',
+    onChange: _.noop,
     onSearch,
   };
 
@@ -46,6 +48,21 @@ describe('Search', () => {
     const inputEle = wrapper.find('input');
     expect(inputEle.prop('placeholder')).to.equal('search');
     expect(inputEle.prop('value')).to.equal('abc');
+  });
+
+  it('should throw warning if value is provided without onChange', () => {
+    const originalConsoleWarn = console.warn;
+    console.warn = sinon.spy();
+
+    shallow(<Search value="foo" onSearch={onSearch} />);
+
+    expect(
+      console.warn.calledWith(
+        'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
+      )
+    ).to.equal(true);
+
+    console.warn = originalConsoleWarn;
   });
 
   it('should disable input when disabled is true', () => {
@@ -96,46 +113,38 @@ describe('Search', () => {
       expect(svgSymbolEle.length).to.equal(1);
     });
 
-    it('should fire onClear when clear button is clicked', () => {
-      const callbacks = {
-        onClear: sinon.spy(),
-      };
-      const wrapper = shallow(<Search {...props} {...callbacks} />);
-      const clearBtn = wrapper.find('span.aui--search-component-icon');
-      clearBtn.simulate('click');
-      expect(callbacks.onClear.calledOnce).to.equal(true);
-      expect(callbacks.onClear.calledWith('')).to.equal(true);
-    });
-
-    it('should fire onChange when clear button is clicked', () => {
+    it('should fire onChange, onSearch and onClear when clear button is clicked', () => {
       const callbacks = {
         onChange: sinon.spy(),
+        onSearch: sinon.spy(),
+        onClear: sinon.spy(),
       };
       const wrapper = shallow(<Search {...props} {...callbacks} />);
       const clearBtn = wrapper.find('span.aui--search-component-icon');
       clearBtn.simulate('click');
       expect(callbacks.onChange.calledOnce).to.equal(true);
       expect(callbacks.onChange.calledWith('')).to.equal(true);
-    });
-
-    it('should fire onSearch when clear button is clicked', () => {
-      const callbacks = {
-        onSearch: sinon.spy(),
-      };
-      const wrapper = shallow(<Search {...props} {...callbacks} />);
-      const clearBtn = wrapper.find('span.aui--search-component-icon');
-      clearBtn.simulate('click');
       expect(callbacks.onSearch.calledOnce).to.equal(true);
       expect(callbacks.onSearch.calledWith('')).to.equal(true);
+      expect(callbacks.onClear.calledOnce).to.equal(true);
+      expect(callbacks.onClear.calledWith('')).to.equal(true);
     });
 
     it('should not fire onSearch if searchOnEnter is true', () => {
       const callbacks = {
         onSearch: sinon.spy(),
       };
-      const wrapper = shallow(<Search {...props} {...callbacks} searchOnEnter />);
+      const wrapper = shallow(<Search {...callbacks} searchOnEnter />);
       wrapper.instance().onClear();
       expect(callbacks.onSearch.calledOnce).to.equal(false);
+    });
+
+    it('should clear its own value state if onChange is not provided', () => {
+      const wrapper = shallow(<Search onSearch={onSearch} />);
+      wrapper.setState({ value: 'foo' });
+      const clearBtn = wrapper.find('span.aui--search-component-icon');
+      clearBtn.simulate('click');
+      expect(wrapper.state('value')).to.equal('');
     });
   });
 
@@ -145,7 +154,7 @@ describe('Search', () => {
         onChange: sinon.spy(),
         onSearch: sinon.spy(),
       };
-      const wrapper = shallow(<Search {...props} {...callbacks} />);
+      const wrapper = shallow(<Search {...callbacks} />);
       const inputEle = wrapper.find('input');
       inputEle.simulate('change', { target: { value: 'new-value' } });
       expect(callbacks.onChange.calledOnce).to.equal(true);
@@ -158,7 +167,7 @@ describe('Search', () => {
       const callbacks = {
         onSearch: sinon.spy(),
       };
-      const wrapper = shallow(<Search {...props} {...callbacks} debounceInterval={500} />);
+      const wrapper = shallow(<Search {...callbacks} debounceInterval={500} />);
       const inputEle = wrapper.find('input');
       inputEle.simulate('change', { target: { value: 'new-value' } });
       setTimeout(() => {
@@ -172,10 +181,17 @@ describe('Search', () => {
       const callbacks = {
         onSearch: sinon.spy(),
       };
-      const wrapper = shallow(<Search {...props} {...callbacks} searchOnEnter />);
+      const wrapper = shallow(<Search {...callbacks} searchOnEnter />);
       const inputEle = wrapper.find('input');
       inputEle.simulate('change', { target: { value: 'new-value' } });
       expect(callbacks.onSearch.calledOnce).to.equal(false);
+    });
+
+    it('should change its own value state if onChange is not provided', () => {
+      const wrapper = shallow(<Search onSearch={onSearch} />);
+      const inputEle = wrapper.find('input');
+      inputEle.simulate('change', { target: { value: 'new-value' } });
+      expect(wrapper.state('value')).to.equal('new-value');
     });
   });
 
