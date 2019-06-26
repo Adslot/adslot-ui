@@ -1,0 +1,51 @@
+@import '~styles/variable';
+
+.adslot-ui-proptype-table {
+  max-width: 1100px;
+
+  & + & {
+    margin-top: $spacing-etalon;
+  }
+
+  table {
+
+    + .empty-component {
+      padding: 0;
+    }
+
+    tr {
+      th {
+        &.col-prop-type {
+          width: 10%;
+        }
+
+        &.col-type {
+          width: 15%;
+        }
+
+        &.col-default-value {
+          width: 25%;
+        }
+
+        &.col-notes {
+          width: 50%;
+        }
+      }
+
+      td {
+
+        &:empty {
+          &::before {
+            content: '—';
+          }
+        }
+
+        pre {
+          white-space: pre-wrap;
+        }
+
+      }
+    }
+
+  }
+}

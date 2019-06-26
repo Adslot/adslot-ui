@@ -1,0 +1,200 @@
+@import '~styles/variable';
+
+@mixin accent($id, $color-accent) {
+  .tag-component-accent {
+    &.accent-#{$id} {
+      border-color: $color-accent;
+
+      &:not(.tag-component-inverse) {
+        background-color: $color-accent;
+      }
+
+      &.tag-component-inverse {
+        color: $color-accent;
+        fill: $color-accent;
+      }
+    }
+  }
+}
+
+@include accent('positive', $color-positive);
+@include accent('pending', $color-pending);
+@include accent('negative', $color-negative);
+
+.adslot-ui-example-container {
+  &.alert-input-example {
+    .adslot-ui-example {
+      width: 140px;
+    }
+  }
+
+  &.accordion-panel-example,
+  &.card-example {
+    .adslot-ui-example {
+      width: 240px;
+    }
+  }
+
+  &.file-picker-example,
+  &.text-ellipsis-example,
+  &.textarea-example,
+  &.select-example,
+  &.panel-example {
+    .adslot-ui-example {
+      width: 380px;
+    }
+  }
+
+  &.totals-example,
+  &.empty-example,
+  &.search-example,
+  &.search-bar-example,
+  &.pretty-diff-example {
+    .adslot-ui-example {
+      width: 560px;
+    }
+  }
+
+  &.navigation-tabs-example {
+    .adslot-ui-example {
+      .dashboard-tab {
+        border-color: $color-red-dark;
+      }
+    }
+  }
+
+  &.popover-example {
+    .adslot-ui-example {
+
+      .button-example-container {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        justify-content: space-between;
+
+        .checkbox-component + .checkbox-component {
+          margin-top: 0;
+          margin-left: 5px;
+        }
+
+        .placement-checkbox,
+        .theme-checkbox,
+        .example-button,
+        .trigger-checkbox,
+        .disabled-popover {
+          display: flex;
+        }
+
+        .disabled-popover {
+          height: 28px;
+
+          .checkbox-component {
+            margin-top: 1px;
+          }
+
+          .button-component {
+            position: relative;
+            left: 5px;
+            top: -5px;
+          }
+
+        }
+      }
+
+      .popover {
+        position: relative;
+        margin: 20px;
+      }
+
+      .auto-flip-container {
+        width: 500px;
+        height: 250px;
+        border: 1px solid $color-border-light;
+        overflow: hidden;
+        overflow-x: scroll;
+
+        .popover-example-container {
+          width: 600px;
+          position: relative;
+          top: 50px;
+          left: 250px;
+
+          > .aui--popover-element {
+            top: 10px;
+            left: 10px;
+            position: relative;
+          }
+        }
+      }
+    }
+  }
+
+  &.checkbox-example {
+    h4 {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .fix-size {
+      width: 200px;
+    }
+  }
+
+  &.status-pill-example {
+    .aui--status-pill + .aui--status-pill {
+      margin-left: 20px;
+    }
+  }
+
+  &.button-group-example {
+    .adslot-ui-example {
+      display: flex;
+
+      .aui--button-group {
+        .svg-symbol-component {
+          position: relative;
+          top: 3px;
+          fill: $color-white;
+        }
+
+        .btn-inverse {
+          .svg-symbol-component {
+            fill: $color-black;
+          }
+        }
+      }
+    }
+  }
+
+  &.overlay-loader-example {
+    .static-markup {
+      display: flex;
+      margin-bottom: 50px;
+      width: 300px;
+
+      .aui--overlay-loader {
+        position: inherit;
+
+        .loader {
+          position: inherit;
+        }
+
+        + .aui--overlay-loader {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.horizontal-separator {
+  width: 12px;
+}
+
+.vertical-separator {
+  height: 12px;
+}

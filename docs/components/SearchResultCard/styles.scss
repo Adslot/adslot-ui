@@ -1,0 +1,33 @@
+@import '~styles/variable';
+
+.search-result-card {
+  width: 240px;
+
+  .card-component-content {
+    padding-top: 0;
+
+    &:first-child {
+      padding: $spacing-etalon;
+      border-bottom: $border-lighter;
+      display: flex;
+    }
+
+    &:nth-child(2) {
+      padding-top: $spacing-etalon;
+    }
+
+    &:nth-last-child(2) {
+      &:not(:first-child) {
+        padding-bottom: $spacing-etalon;
+      }
+    }
+
+    .title {
+      flex: 1;
+    }
+
+    .clear-button {
+      padding: 0;
+    }
+  }
+}
