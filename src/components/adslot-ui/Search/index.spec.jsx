@@ -7,18 +7,24 @@ import SvgSymbol from 'alexandria/SvgSymbol';
 import Spinner from 'alexandria/Spinner';
 
 describe('Search', () => {
-  const onSearch = _.noop;
+  let sandbox = null;
   const props = {
     className: 'additional-class',
     dts: 'test-dts',
     placeholder: 'search',
     value: 'abc',
     onChange: _.noop,
-    onSearch,
+    onSearch: _.noop,
   };
 
+  before(() => {
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(() => sandbox.restore());
+
   it('should render with defaults', () => {
-    const wrapper = shallow(<Search onSearch={onSearch} />);
+    const wrapper = shallow(<Search onSearch={props.onSearch} />);
 
     expect(wrapper.prop('className')).to.equal('aui--search-component');
     expect(wrapper.find(Spinner).length).to.equal(0);
@@ -35,7 +41,7 @@ describe('Search', () => {
   });
 
   it('should render search button if searchOnEnter is true', () => {
-    const wrapper = shallow(<Search onSearch={onSearch} searchOnEnter />);
+    const wrapper = shallow(<Search onSearch={props.onSearch} searchOnEnter />);
     expect(wrapper.find('button').length).to.equal(1);
   });
 
@@ -51,22 +57,19 @@ describe('Search', () => {
   });
 
   it('should throw warning if value is provided without onChange', () => {
-    const originalConsoleWarn = console.warn;
-    console.warn = sinon.spy();
+    sandbox.stub(console, 'warn');
 
-    shallow(<Search value="foo" onSearch={onSearch} />);
+    shallow(<Search value="foo" onSearch={props.onSearch} />);
 
     expect(
       console.warn.calledWith(
         'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
       )
     ).to.equal(true);
-
-    console.warn = originalConsoleWarn;
   });
 
   it('should disable input when disabled is true', () => {
-    const wrapper = shallow(<Search onSearch={onSearch} disabled />);
+    const wrapper = shallow(<Search onSearch={props.onSearch} disabled />);
 
     const inputEle = wrapper.find('input');
     expect(inputEle.prop('disabled')).to.equal(true);
@@ -77,7 +80,7 @@ describe('Search', () => {
       const icons = {
         search: <SvgSymbol href="svg_path" />,
       };
-      const wrapper = shallow(<Search icons={icons} onSearch={onSearch} />);
+      const wrapper = shallow(<Search icons={icons} onSearch={props.onSearch} />);
       expect(wrapper.find(SvgSymbol).prop('href')).to.equal('svg_path');
     });
 
@@ -93,7 +96,7 @@ describe('Search', () => {
       const icons = {
         loader: <Spinner size="small" />,
       };
-      const wrapper = shallow(<Search icons={icons} onSearch={onSearch} isLoading />);
+      const wrapper = shallow(<Search icons={icons} onSearch={props.onSearch} isLoading />);
       expect(wrapper.find(Spinner).length).to.equal(1);
     });
   });
@@ -102,7 +105,7 @@ describe('Search', () => {
     const icons = {
       search: <SvgSymbol href="svg_path" />,
     };
-    const wrapper = shallow(<Search icons={icons} onSearch={onSearch} />);
+    const wrapper = shallow(<Search icons={icons} onSearch={props.onSearch} />);
     expect(wrapper.find(SvgSymbol).prop('href')).to.equal('svg_path');
   });
 
@@ -140,7 +143,7 @@ describe('Search', () => {
     });
 
     it('should clear its own value state if onChange is not provided', () => {
-      const wrapper = shallow(<Search onSearch={onSearch} />);
+      const wrapper = shallow(<Search onSearch={props.onSearch} />);
       wrapper.setState({ value: 'foo' });
       const clearBtn = wrapper.find('span.aui--search-component-icon');
       clearBtn.simulate('click');
@@ -188,7 +191,7 @@ describe('Search', () => {
     });
 
     it('should change its own value state if onChange is not provided', () => {
-      const wrapper = shallow(<Search onSearch={onSearch} />);
+      const wrapper = shallow(<Search onSearch={props.onSearch} />);
       const inputEle = wrapper.find('input');
       inputEle.simulate('change', { target: { value: 'new-value' } });
       expect(wrapper.state('value')).to.equal('new-value');
