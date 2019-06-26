@@ -3,7 +3,7 @@ options:
 files:
   include:
     - 'src/**/*.scss'
-    - 'docs/**/*.scss'
+    - 'www/**/*.scss'
 rules:
   # Extends
   extends-before-mixins: 2

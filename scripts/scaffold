@@ -7,12 +7,12 @@ mkdir src/components/adslot-ui/"$1";
 
 # Copy the contents of the template directory into our newly created folder
 cp -r ./component-template/ $_;
-cp ./docs/examples/template.jsx ./docs/examples/"${1}Example.jsx"
+cp ./www/examples/template.jsx ./www/examples/"${1}Example.jsx"
 
 # Replace, in our new component folder, all strings that match `xxx` with our given component name
 # Replace, in our new component folder, all strings that match `x-x-x` with our given component name in kebab-case
 # .bak creates a backup file (required by mac) which we delete if command completed.
-sed -i '.bak' "s/xxx/$1/g" docs/examples/"$1"Example.jsx && rm -f docs/examples/"$1"Example.jsx.bak;
+sed -i '.bak' "s/xxx/$1/g" www/examples/"$1"Example.jsx && rm -f www/examples/"$1"Example.jsx.bak;
 sed -i '.bak' "s/xxx/$1/g" src/components/adslot-ui/"$1"/* && rm -f src/components/adslot-ui/"$1"/*.bak;
 sed -i '.bak' "s/x-x-x/$(sed -e 's/\([A-Z]\)/-\1/g' -e 's/^-//' <<< $1  | tr '[:upper:]' '[:lower:]')/g" src/components/adslot-ui/"$1"/* && rm -f src/components/adslot-ui/"$1"/*.bak;
 echo "✓ Generated '${1}'. Don't forget to add your new component to src/index.js" && exit 0;

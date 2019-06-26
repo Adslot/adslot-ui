@@ -3,7 +3,7 @@ exclude:
 files:
   - "config/**/*"
   - "src/**/*"
-  - "docs/**/*"
+  - "www/**/*"
 languages:
   - javascript
   - jsx
