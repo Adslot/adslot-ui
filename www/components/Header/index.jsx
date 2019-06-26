@@ -5,7 +5,7 @@ import './styles.scss';
 const HeaderGraphics = () => (
   <span>
     <SvgSymbol href="./assets/svg-symbols.svg#logo" />
-    {/adslot\.github\.io/.test(window.location.href) ? <img src="https://badge.fury.io/js/adslot-ui.svg" /> : null}
+    {/ui\.adslot\.com/.test(window.location.href) ? <img src="https://badge.fury.io/js/adslot-ui.svg" /> : null}
   </span>
 );
 

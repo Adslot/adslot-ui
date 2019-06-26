@@ -5,7 +5,7 @@ Adslot UI
 [![Build Status](https://travis-ci.org/Adslot/adslot-ui.svg?branch=master)](https://travis-ci.org/Adslot/adslot-ui)
 [![codecov.io](https://codecov.io/github/Adslot/adslot-ui/coverage.svg?branch=master)](https://codecov.io/github/Adslot/adslot-ui?branch=master)
 
-See the docs at [https://adslot.github.io/adslot-ui/](https://adslot.github.io/adslot-ui/)
+See the docs at [ui.adslot.com](https://ui.adslot.com)
 
 Core component library. By Adslot
 ---------------------------------
