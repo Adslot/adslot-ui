@@ -24,15 +24,23 @@ describe('ActionPanelComponent', () => {
 
     const bodyElement = wrapper.find('.aui--action-panel-body');
     expect(bodyElement).to.have.length(1);
+
+    wrapper.instance().componentWillUnmount();
+    expect(document.body.classList.contains('modal-open')).to.equal(false);
   });
 
   it('should render as a modal', () => {
     const wrapper = shallow(
       <ActionPanel {...makeProps({ isModal: true, size: 'large', actionButton: <Button>Action</Button> })} />
     );
-    expect(wrapper.prop('className')).to.equal('aui--action-panel-wrapper aui--action-panel-wrapper-backdrop');
 
+    expect(document.body.classList.contains('modal-open')).to.equal(true);
+
+    expect(wrapper.find('.aui--action-panel-modal-wrapper')).to.have.length(1);
     const actionPanelElement = wrapper.find('.aui--action-panel');
     expect(actionPanelElement.prop('className')).to.equal('aui--action-panel is-large action-modal');
+
+    wrapper.instance().componentWillUnmount();
+    expect(document.body.classList.contains('modal-open')).to.equal(false);
   });
 });

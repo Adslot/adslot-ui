@@ -4,6 +4,7 @@
 @import '~styles/variable';
 @import '~styles/font-weight';
 @import '~styles/icon';
+@import '~styles/animation';
 
 .aui--action-panel {
   min-width: 300px;
@@ -14,7 +15,6 @@
   border-radius: 2px;
 
   &.action-modal {
-    position: fixed;
     top: 30px;
     background-color: $color-white ;
     margin: 30px auto;
@@ -121,20 +121,28 @@
   &-body {
     padding: 30px;
   }
+}
 
-  &-wrapper-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background-color: $color-gray-dark;
-    width: 100%;
-    z-index: 1040;
-    display: flex;
-    justify-content: center;
-    opacity: .9;
-  }
+.aui--action-panel-backdrop {
+  position: fixed;
+  display: flex;
+  z-index: 1040;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $color-gray-dark;
+  width: 100%;
+  opacity: .9;
+  animation: fadein .2s;
 }
 
 
-
+.aui--action-panel-modal-wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 1040;
+  display: flex;
+  align-content: center;
+  top: 0;
+  left: 0;
+}
