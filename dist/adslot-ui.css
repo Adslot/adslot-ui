@@ -11569,6 +11569,18 @@ button + .aui--button-group {
       border-right-color: #5a5a5a;
       border-width: 5px; }
 
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: .9; } }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: .9; } }
+
 .aui--action-panel {
   min-width: 300px;
   max-width: 900px;
@@ -11577,7 +11589,6 @@ button + .aui--button-group {
   border: 1px solid #e8e8e8;
   border-radius: 2px; }
   .aui--action-panel.action-modal {
-    position: fixed;
     top: 30px;
     background-color: #fff;
     margin: 30px auto;
@@ -11650,17 +11661,29 @@ button + .aui--button-group {
           fill: #006dcc; }
   .aui--action-panel-body {
     padding: 30px; }
-  .aui--action-panel-wrapper-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #838383;
-    width: 100%;
-    z-index: 1040;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-    opacity: .9; }
+
+.aui--action-panel-backdrop {
+  position: fixed;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 1040;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #838383;
+  width: 100%;
+  opacity: .9;
+  -webkit-animation: fadein .2s;
+          animation: fadein .2s; }
+
+.aui--action-panel-modal-wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 1040;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  top: 0;
+  left: 0; }
 
