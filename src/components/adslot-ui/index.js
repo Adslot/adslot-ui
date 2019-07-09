@@ -31,11 +31,13 @@ import HoverDropdownMenu from 'adslot-ui/HoverDropdownMenu';
 import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
 import InformationBox from 'adslot-ui/InformationBox';
 import Nav from 'adslot-ui/Navigation';
+import VerticalNav from 'adslot-ui/VerticalNavigation';
 import OverlayLoader from 'adslot-ui/OverlayLoader';
 import ActionPanel from 'adslot-ui/ActionPanel';
 
 export {
   Accordion,
+  ActionPanel,
   AlertInput,
   ButtonGroup,
   Carousel,
@@ -69,5 +71,5 @@ export {
   InformationBox,
   HoverDropdownMenu,
   OverlayLoader,
-  ActionPanel,
+  VerticalNav,
 };

@@ -1,4 +1,5 @@
 @import '~styles/variable';
+@import '~styles/mixin';
 
 @mixin accent($id, $color-accent) {
   .tag-component-accent {
@@ -182,6 +183,53 @@
         + .aui--overlay-loader {
           margin-right: 10px;
         }
+      }
+    }
+  }
+
+  &.vertical-navigation-tabs-example {
+    .aui--vertical-navigation-component__menu-item {
+      &.aui--vertical-navigation-component__menu-item-is-active {
+        .menu-icon {
+          border-radius: 50%;
+          background-color: $color-gray-lighter;
+        }
+      }
+    }
+
+    .menu-content {
+      display: flex;
+      flex-direction: row;
+
+      &:hover {
+        .menu-icon {
+          border-radius: 50%;
+          background-color: $color-gray-lighter;
+        }
+      }
+
+      .menu-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px;
+
+        .product-details-icon {
+          @include svg-icon('~styles/icons/details.svg', 24px, 24px);
+        }
+
+        .burger-icon {
+          @include svg-icon('~styles/icons/burger.svg', 24px, 24px);
+        }
+      }
+
+      .menu-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px;
       }
     }
   }

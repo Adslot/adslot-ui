@@ -44,6 +44,7 @@ import {
 
 import {
   Accordion,
+  ActionPanel,
   AlertInput,
   ButtonGroup,
   Carousel,
@@ -77,11 +78,12 @@ import {
   InformationBox,
   HoverDropdownMenu,
   OverlayLoader,
-  ActionPanel,
+  VerticalNav,
 } from 'adslot-ui';
 
 export {
   Accordion,
+  ActionPanel,
   Alert,
   AlertInput,
   Avatar,
@@ -146,5 +148,5 @@ export {
   InformationBox,
   HoverDropdownMenu,
   OverlayLoader,
-  ActionPanel,
+  VerticalNav,
 };

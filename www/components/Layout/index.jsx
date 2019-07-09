@@ -58,6 +58,7 @@ import InformationBoxExample from '../../examples/InformationBoxExample';
 import SplitPaneExample from '../../examples/SplitPaneExample';
 import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
 import NavigationExample from '../../examples/NavigationExample';
+import VerticalNavigationExample from '../../examples/VerticalNavigationExample';
 import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
 import SearchExample from '../../examples/SearchExample';
 import ActionPanelExample from '../../examples/ActionPanelExample';
@@ -93,7 +94,7 @@ const componentsBySection = {
   'typography-and-text-layout': ['text-ellipsis'],
   'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
-  navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs'],
+  navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs', 'vertical-navigation-tabs'],
   'feedback-and-states': ['alert', 'empty', 'spinner', 'overlay-loader', 'pretty-diff', 'status-pill'],
   dialogue: ['popover', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
@@ -210,6 +211,7 @@ class PageLayout extends React.Component {
             <TabExample />
             <HoverDropdownMenuExample />
             <NavigationExample />
+            <VerticalNavigationExample />
 
             <PageTitle title="Feedback and States" />
             <AlertExample />
