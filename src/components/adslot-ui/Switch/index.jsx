@@ -43,7 +43,7 @@ class Switch extends React.Component {
           className={className}
           dts={dts}
         />
-        <span className="aui--switch-slider round"></span>
+        <span className="aui--switch-slider round" />
       </label>
     );
   }

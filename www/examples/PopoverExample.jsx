@@ -40,8 +40,9 @@ class PopoverExample extends React.PureComponent {
           <h3>Popover over element</h3>
           <label>Placements</label>
           <div className="placement-checkbox">
-            {_.map(this.placements, placement => (
+            {_.map(this.placements, (placement, index) => (
               <Checkbox
+                key={index}
                 onChange={this.handlePlacements}
                 value={this.state.placement}
                 name={placement}
@@ -52,8 +53,9 @@ class PopoverExample extends React.PureComponent {
           </div>
           <label>Themes</label>
           <div className="theme-checkbox">
-            {_.map(this.themes, theme => (
+            {_.map(this.themes, (theme, index) => (
               <Checkbox
+                key={index}
                 onChange={this.handleThemes}
                 value={this.state.theme}
                 name={theme}
@@ -64,8 +66,9 @@ class PopoverExample extends React.PureComponent {
           </div>
           <label>Triggers</label>
           <div className="trigger-checkbox">
-            {_.map(this.triggers, trigger => (
+            {_.map(this.triggers, (trigger, index) => (
               <Checkbox
+                key={index}
                 onChange={this.handleTriggers}
                 value={this.state.trigger}
                 name={trigger}

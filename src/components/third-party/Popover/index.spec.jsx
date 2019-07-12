@@ -1,4 +1,6 @@
 import React from 'react';
+import _ from 'lodash';
+import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
 import { Manager, Popper } from 'react-popper';
 import { Popover } from 'third-party';
@@ -291,5 +293,99 @@ describe('Popover Component', () => {
       expect(wrapper.find('.aui--popover-element').prop('onMouseOut')).to.equal(undefined);
       expect(wrapper.find('.aui--popover-element').prop('onBlur')).to.equal(undefined);
     });
+  });
+
+  it('should call getContainer to get boundary element if it is provided', () => {
+    const getContainer = sinon.spy(() => document.body);
+    mount(
+      <Popover popoverContent={<div />} getContainer={getContainer} isOpen>
+        Test message
+      </Popover>
+    );
+
+    expect(getContainer.called).to.equal(true);
+  });
+});
+
+describe('Popover.WithRef component', () => {
+  const virtualReferenceElement = React.createElement('div');
+
+  it('should render without error', () => {
+    const wrapper = mount(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />);
+    expect(wrapper.find(Popper)).to.have.length(1);
+  });
+
+  it('should not render if isOpen is false', () => {
+    const wrapper = shallow(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} />);
+    expect(wrapper.type()).to.equal(null);
+  });
+
+  it('should render with default props', () => {
+    const wrapper = mount(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />);
+    expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-light')).to.equal(true);
+    expect(wrapper.find(Popper).props().placement).to.equal('auto');
+  });
+
+  it('should render with given props', () => {
+    const arrowStyles = {
+      color: 'red',
+    };
+    const wrapperStyles = {
+      color: 'red',
+    };
+
+    const wrapper = mount(
+      <Popover.WithRef
+        dts="popover-example"
+        title="Big Bang"
+        theme="dark"
+        popoverClassNames="extra-class"
+        popoverContent={<div />}
+        refElement={virtualReferenceElement}
+        arrowStyles={arrowStyles}
+        wrapperStyles={wrapperStyles}
+        placement="bottom-end"
+        isOpen
+      />
+    );
+
+    expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-dark')).to.equal(true);
+    expect(wrapper.find('.aui--popover-wrapper').hasClass('extra-class')).to.equal(true);
+    expect(wrapper.find('.aui--popover-wrapper').prop('data-test-selector')).to.equal('popover-example');
+    expect(wrapper.find('.popover-title').text()).to.equal('Big Bang');
+    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql(arrowStyles);
+    expect(wrapper.find(Popper).prop('placement')).to.eql('bottom-end');
+    _.forOwn(wrapperStyles, (value, key) => {
+      expect(wrapper.find('.aui--popover-wrapper').prop('style')).to.have.property(key, value);
+    });
+  });
+
+  it('should default to light theme on invalid theme prop', () => {
+    const wrapper = mount(
+      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} theme="some-theme" isOpen />
+    );
+
+    expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-light')).to.equal(true);
+  });
+
+  it('should render popover when content is function', () => {
+    const wrapper = mount(
+      <Popover.WithRef popoverContent={() => <div>test</div>} refElement={virtualReferenceElement} isOpen />
+    );
+    expect(wrapper.find('.popover-content').text()).to.eql('test');
+  });
+
+  it('should call getContainer to get boundary element if it is provided', () => {
+    const getContainer = sinon.spy(() => document.body);
+    mount(
+      <Popover.WithRef
+        popoverContent={<div />}
+        getContainer={getContainer}
+        refElement={virtualReferenceElement}
+        isOpen
+      />
+    );
+
+    expect(getContainer.calledOnce).to.equal(true);
   });
 });

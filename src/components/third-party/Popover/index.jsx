@@ -4,8 +4,10 @@ import classnames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Manager, Reference, Popper } from 'react-popper';
+import { Manager, Reference } from 'react-popper';
 import { themes, popoverPlacements } from './constants';
+import WithRef from './WithRef';
+import Popper from './Popper';
 import './styles.scss';
 
 const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
@@ -69,7 +71,6 @@ class Popover extends React.PureComponent {
   togglePopover = () => this.setState({ isPopoverOpen: !this.state.isPopoverOpen });
 
   referenceRef = React.createRef();
-  popperRef = this.props.popperRef || React.createRef();
 
   render() {
     const { theme, title, children, className, dts, popoverClassNames, popoverContent } = this.props;
@@ -94,39 +95,17 @@ class Popover extends React.PureComponent {
     const popoverElement = this.state.isPopoverOpen
       ? ReactDOM.createPortal(
           <Popper
-            innerRef={this.popperRef}
             placement={this.props.placement}
-            modifiers={{
-              preventOverflow: {
-                enabled: true,
-                boundariesElement: this.getBoundedContainer(),
-              },
-              ...this.props.modifiers,
-            }}
-          >
-            {({ ref, style, placement, arrowProps, scheduleUpdate }) => (
-              <div
-                className={popoverClass}
-                ref={ref}
-                style={{ ...style, ...this.props.wrapperStyles }}
-                data-placement={placement}
-                data-test-selector={dts}
-              >
-                <div className="aui--popover-container">
-                  {title ? <div className="popover-title">{title}</div> : null}
-                  <div className="popover-content">
-                    {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate }) : popoverContent}
-                  </div>
-                </div>
-                <div
-                  className="aui--popover-arrow"
-                  data-placement={placement}
-                  ref={arrowProps.ref}
-                  style={{ ...arrowProps.style, ...arrowStyles }}
-                />
-              </div>
-            )}
-          </Popper>,
+            modifiers={this.props.modifiers}
+            boundariesElement={this.getBoundedContainer()}
+            popoverClass={popoverClass}
+            wrapperStyles={this.props.wrapperStyles}
+            dts={dts}
+            title={title}
+            popoverContent={popoverContent}
+            arrowStyles={arrowStyles}
+            innerRef={this.props.popperRef}
+          />,
           this.getBoundedContainer()
         )
       : null;
@@ -158,5 +137,7 @@ class Popover extends React.PureComponent {
     );
   }
 }
+
+Popover.WithRef = WithRef;
 
 export default Popover;

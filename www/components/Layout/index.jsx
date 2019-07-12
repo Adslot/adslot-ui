@@ -40,6 +40,7 @@ import EmptyExample from '../../examples/EmptyExample';
 import GridExample from '../../examples/GridExample';
 import PrettyDiffExample from '../../examples/PrettyDiffExample';
 import PopoverExample from '../../examples/PopoverExample';
+import PopoverWithRefExample from '../../examples/PopoverWithRefExample';
 import SpinnerExample from '../../examples/SpinnerExample';
 import SvgSymbolExample from '../../examples/SvgSymbolExample';
 import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
@@ -98,7 +99,7 @@ const componentsBySection = {
   'icons-and-graphics': ['svg-symbol', 'svg-symbol-circle'],
   navigation: ['breadcrumb', 'tab', 'hover-dropdown-menu', 'navigation-tabs', 'vertical-navigation-tabs'],
   'feedback-and-states': ['alert', 'empty', 'spinner', 'overlay-loader', 'pretty-diff', 'status-pill'],
-  dialogue: ['popover', 'help-icon-popover', 'avatar'],
+  dialogue: ['popover', 'popover-with-ref', 'help-icon-popover', 'avatar'],
   modals: ['confirm-modal'],
   search: ['search', 'tag'],
   panels: ['action-panel'],
@@ -225,6 +226,7 @@ class PageLayout extends React.Component {
 
             <PageTitle title="Dialogue" />
             <PopoverExample />
+            <PopoverWithRefExample />
             <HelpIconPopoverExample />
             <AvatarExample />
 
