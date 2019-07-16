@@ -13,6 +13,7 @@
   z-index: $zindex-popover;
   border: $border-lighter;
   border-radius: 2px;
+  background-color: $color-white;
 
   &.action-modal {
     top: 30px;

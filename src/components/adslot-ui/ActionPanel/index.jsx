@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
 import './styles.scss';
 
@@ -15,7 +16,8 @@ class ActionPanel extends React.PureComponent {
 
   render() {
     const { title, className, size, onClose, children, actionButton, isModal, closeIcon } = this.props;
-    return (
+
+    const actionPanel = (
       <React.Fragment>
         <div className={isModal ? 'aui--action-panel-backdrop' : 'hide'} />
         <div className={classNames('aui--action-panel-wrapper', { 'aui--action-panel-modal-wrapper': isModal })}>
@@ -38,6 +40,8 @@ class ActionPanel extends React.PureComponent {
         </div>
       </React.Fragment>
     );
+
+    return isModal ? ReactDOM.createPortal(actionPanel, document.body) : actionPanel;
   }
 }
 
