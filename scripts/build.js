@@ -41,6 +41,14 @@ function copyPublicFolder() {
   });
 }
 
+function copyDemoAssets() {
+  fs.copySync(paths.assetsPath, `${buildPath}/assets`, {
+    dereference: true,
+    filter: file => file !== paths.appHtml,
+  });
+  fs.copyFileSync(paths.cnamePath, `${buildPath}/CNAME`);
+}
+
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
   console.log('Creating an optimized build...');
@@ -89,7 +97,9 @@ measureFileSizesBeforeBuild(buildPath)
     // if you're in it, you don't end up in Trash
     if (process.env.NODE_ENV === 'dist') fs.emptyDirSync(buildPath);
     // Merge with the public folder
-    if (process.env.NODE_ENV === 'production') copyPublicFolder();
+    if (process.env.NODE_ENV === 'production') {
+      process.env.DEMO_ASSETS ? copyDemoAssets() : copyPublicFolder();
+    }
     // Start the webpack build
     return build(previousFileSizes);
   })

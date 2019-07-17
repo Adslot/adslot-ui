@@ -14,7 +14,7 @@
     "codecov": "cat coverage/coverage-final.json | codecov",
     "dist:dev": "node ./scripts/build.js",
     "dist:prod": "cross-env NODE_ENV=dist node ./scripts/build.js",
-    "dist:demo": "cross-env NODE_ENV=production node ./scripts/build.js",
+    "dist:demo": "cross-env NODE_ENV=production DEMO_ASSETS=true node ./scripts/build.js",
     "dist": "npm run clean && npm run dist:prod && npm run dist:dev && npm run dist:demo",
     "lint:sass": "sass-lint -v",
     "lint:eslint": "eslint --ext .jsx,.js ./src && eslint --ext .jsx,.js ./www",
