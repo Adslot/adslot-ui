@@ -1,8 +1,8 @@
-import { Popover, Spinner } from 'adslot-ui';
+import { Spinner } from 'adslot-ui';
 import { shallow } from 'enzyme';
 import React from 'react';
 import BootstrapButton from 'react-bootstrap/lib/Button';
-import Button from '.';
+import Button from './';
 
 describe('ButtonComponent', () => {
   it('should render Bootstrap Button', () => {
@@ -17,12 +17,12 @@ describe('ButtonComponent', () => {
 
   it('should support legacy classname btn-inverse for non-breaking change', () => {
     const wrapper = shallow(<Button className="btn-inverse">Test</Button>);
-    expect(wrapper.prop('className')).to.equal('button-component btn-inverse');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
   });
 
   it('should support className prop', () => {
     const wrapper = shallow(<Button className="all the-classes">Test</Button>);
-    expect(wrapper.prop('className')).to.equal('button-component all the-classes');
+    expect(wrapper.prop('className')).to.equal('aui--button all the-classes');
   });
 
   it('should support valid html attributes', () => {
@@ -41,12 +41,12 @@ describe('ButtonComponent', () => {
         Test
       </Button>
     );
-    expect(wrapper.prop('className')).to.equal('button-component btn-inverse');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
   });
 
   it('should render inverse button with btn-inverse class', () => {
     const wrapper = shallow(<Button inverse>Test</Button>);
-    expect(wrapper.prop('className')).to.equal('button-component btn-inverse');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
   });
 
   it('should support data-test-selectors', () => {
@@ -54,26 +54,10 @@ describe('ButtonComponent', () => {
     expect(wrapper.prop('data-test-selector')).to.equal('test-button');
   });
 
-  it('should render disabled button without a reason popover if no reason given', () => {
+  it('should render disabled button', () => {
     const wrapper = shallow(<Button disabled>Test</Button>);
-    const popoverWrapper = wrapper.find(Popover);
-    expect(popoverWrapper).to.have.length(1);
-    expect(popoverWrapper.prop('isOpen')).to.eql(false);
-  });
-
-  it('should render disabled button with a reason popover', () => {
-    const wrapper = shallow(
-      <Button disabled reason="Because">
-        Test
-      </Button>
-    );
-    wrapper.simulate('mouseOver');
-    const popoverWrapper = wrapper.find(Popover);
-    expect(popoverWrapper.prop('isOpen')).to.equal(true);
-    wrapper.update();
-    expect(wrapper.find(Popover).prop('popoverContent')).to.eql('Because');
-    wrapper.simulate('mouseOut');
-    expect(wrapper.find(Popover).prop('isOpen')).to.equal(false);
+    const buttonWrapper = wrapper.find(BootstrapButton);
+    expect(buttonWrapper).to.have.length(1);
   });
 
   it('should render Spinner if isLoading is true', () => {

@@ -561,27 +561,7 @@
     {
       "description": "",
       "displayName": "Button",
-      "methods": [
-        {
-          "name": "handleReasonPopover",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "value",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "renderSpinner",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "inverse": {
           "type": {
@@ -593,13 +573,6 @@
             "value": "false",
             "computed": false
           }
-        },
-        "reason": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": ""
         },
         "dts": {
           "type": {

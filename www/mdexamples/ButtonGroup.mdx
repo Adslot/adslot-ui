@@ -6,7 +6,6 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ```jsx live=true
 const Example = () => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-  buttonRef = React.createRef();
 
   return (
     <React.Fragment>
@@ -27,7 +26,7 @@ const Example = () => {
           popoverContent="I am a Overlay on click!"
           placement="bottom"
         >
-          <Button className="svg-icon" onClick={() => setIsDropdownOpen(!isDropdownOpen)} ref={this.buttonRef}>
+          <Button className="svg-icon" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />
           </Button>
         </Popover>
