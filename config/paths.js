@@ -17,4 +17,6 @@ module.exports = {
   appDemo: resolveApp('www'),
   appSrc: resolveApp('src'),
   appNodeModules: resolveApp('node_modules'),
+  assetsPath: resolveApp('www/assets'),
+  cnamePath: resolveApp('www/CNAME'),
 };
