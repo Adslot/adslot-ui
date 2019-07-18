@@ -1,13 +1,13 @@
 @import '~styles/variable';
 
 $color-primary: $color-status-blue;
-$color-primary-background: rgba($color-primary, .35);
+$color-primary-background: $color-status-light-blue;
 $color-success: $color-status-green;
-$color-success-background: rgba($color-success, .35);
+$color-success-background: $color-status-light-green;
 $color-warning: $color-status-orange;
-$color-warning-background: rgba($color-warning, .35);
+$color-warning-background: $color-status-light-orange;
 $color-error: $color-status-red;
-$color-error-background: rgba($color-error, .35);
+$color-error-background: $color-status-light-red;
 $color-light: $color-status-light;
 $color-inverse-border: $color-status-light;
 
