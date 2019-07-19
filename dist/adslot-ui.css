@@ -11316,25 +11316,25 @@ button + .aui--button-group {
   line-height: 1;
   color: #5a5a5a; }
   .aui--status-pill.aui--status-pill-primary {
-    background-color: rgba(0, 173, 238, 0.35); }
+    background-color: #c1e1ec; }
     .aui--status-pill.aui--status-pill-primary.aui--status-pill-inverse {
       background-color: #fff;
       border-color: #e8e8e8;
       color: #00adee; }
   .aui--status-pill.aui--status-pill-success {
-    background-color: rgba(149, 200, 61, 0.35); }
+    background-color: #c5e6dc; }
     .aui--status-pill.aui--status-pill-success.aui--status-pill-inverse {
       background-color: #fff;
       border-color: #e8e8e8;
       color: #95c83d; }
   .aui--status-pill.aui--status-pill-warning {
-    background-color: rgba(255, 153, 51, 0.35); }
+    background-color: #fec985; }
     .aui--status-pill.aui--status-pill-warning.aui--status-pill-inverse {
       background-color: #fff;
       border-color: #e8e8e8;
       color: #f93; }
   .aui--status-pill.aui--status-pill-error {
-    background-color: rgba(218, 79, 73, 0.35); }
+    background-color: #f9b7b0; }
     .aui--status-pill.aui--status-pill-error.aui--status-pill-inverse {
       background-color: #fff;
       border-color: #e8e8e8;
@@ -11587,7 +11587,8 @@ button + .aui--button-group {
   min-height: 100px;
   z-index: 1060;
   border: 1px solid #e8e8e8;
-  border-radius: 2px; }
+  border-radius: 2px;
+  background-color: #fff; }
   .aui--action-panel.action-modal {
     top: 30px;
     background-color: #fff;
@@ -11672,7 +11673,7 @@ button + .aui--button-group {
   left: 0;
   background-color: #838383;
   width: 100%;
-  opacity: .9;
+  opacity: .8;
   -webkit-animation: fadein .2s;
           animation: fadein .2s; }
 
