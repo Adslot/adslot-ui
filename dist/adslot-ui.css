@@ -11583,7 +11583,6 @@ button + .aui--button-group {
 
 .aui--action-panel {
   min-width: 300px;
-  max-width: 900px;
   min-height: 100px;
   z-index: 1060;
   border: 1px solid #e8e8e8;
