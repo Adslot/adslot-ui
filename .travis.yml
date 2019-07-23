@@ -15,6 +15,7 @@ before_script:
 script:
   - npm -v
   - commitlint-travis
+  - npm run svgo
   - git diff --exit-code
   - "! grep -R --exclude-dir='*/node_modules/*' --include=package-lock.json 'http:' ."
   - npm test
