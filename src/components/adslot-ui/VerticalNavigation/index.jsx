@@ -81,7 +81,7 @@ class VerticalNavigation extends React.Component {
         { 'aui--vertical-navigation-component__menu-item-is-active': index === activeTabIndex },
       ]);
       menuList.push(
-        <div key={`menu-item-${index}`} className={classNames} onClick={child.props.onClick}>
+        <div key={`menu-item-${_.uniqueId()}`} className={classNames} onClick={child.props.onClick}>
           {child.props.content({ isCollapsed })}
         </div>
       );
