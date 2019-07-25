@@ -10,7 +10,6 @@
   min-width: 300px;
   min-height: 100px;
   z-index: $zindex-popover;
-  border: $border-lighter;
   border-radius: 2px;
   background-color: $color-white;
 
@@ -41,6 +40,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: $border-lighter;
 
     .title {
       font-size: $font-size-header;
@@ -95,6 +95,7 @@
     &.has-actions {
       background-color: $color-blue;
       color: $color-inverse;
+      border: 0;
 
       .actions {
         .btn {
@@ -120,6 +121,8 @@
 
   &-body {
     padding: 30px;
+    border: $border-lighter;
+    border-top: 0;
   }
 }
 
