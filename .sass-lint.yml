@@ -44,9 +44,11 @@ rules:
   force-pseudo-nesting: 0
 
   # Name Formats
-  # TODO: When inline linting is supported set as error (https://github.com/sasstools/sass-lint/pull/402) and ignore
-  # in Select.scss
-  class-name-format: 1
+  class-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedbem
   function-name-format: 2
   mixin-name-format: 2
   placeholder-name-format: 2
