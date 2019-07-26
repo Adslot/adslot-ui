@@ -128,6 +128,7 @@ ListPickerPureComponent.propTypes = {
   itemHeaders: PropTypes.shape({
     label: PropTypes.node,
     toggle: PropTypes.string,
+    addon: PropTypes.string,
   }),
   items: PropTypes.arrayOf(itemProps),
   itemType: PropTypes.string,
