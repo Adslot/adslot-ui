@@ -11024,7 +11024,7 @@ button + .aui--button-group {
   .checkbox-component.checked .checkbox-component-icon {
     background-image: url(assets/checked.a52ef946.svg); }
   .checkbox-component.partial-checked .checkbox-component-icon {
-    background-image: url(assets/partial.f19aead5.svg); }
+    background-image: url(assets/partial.c06d7314.svg); }
     .checkbox-component.partial-checked .checkbox-component-icon:hover {
       background-image: url(assets/partial-hover.ff9e5b28.svg); }
   .checkbox-component.disabled {
@@ -11244,7 +11244,7 @@ button + .aui--button-group {
       background-repeat: no-repeat;
       background-size: contain; }
     .aui--search-component .aui--search-component-icon .search-icon {
-      background-image: url(assets/search-gray.2bae3589.svg); }
+      background-image: url(assets/search-gray.f5a85ef6.svg); }
     .aui--search-component .aui--search-component-icon .cancel-icon {
       background-image: url(assets/cancel-gray.e05e36f1.svg); }
       .aui--search-component .aui--search-component-icon .cancel-icon:hover {
@@ -11272,7 +11272,7 @@ button + .aui--button-group {
       height: 16px;
       background-repeat: no-repeat;
       background-size: contain;
-      background-image: url(assets/search-primary.3755a5df.svg);
+      background-image: url(assets/search-primary.0c178639.svg);
       -ms-flex-negative: 0;
           flex-shrink: 0; }
   .aui--search-component .aui--search-component-spinner {
@@ -11524,6 +11524,61 @@ button + .aui--button-group {
       margin: 0;
       border-bottom-width: 3px; }
 
+.aui--vertical-navigation-component {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row; }
+  .aui--vertical-navigation-component .aui--vertical-navigation-component__menu {
+    width: 260px;
+    font-size: 15px;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-weight: 700; }
+    .aui--vertical-navigation-component .aui--vertical-navigation-component__menu.aui--vertical-navigation-component__menu-is-collapsed {
+      width: 60px; }
+    .aui--vertical-navigation-component .aui--vertical-navigation-component__menu.aui--vertical-navigation-component__menu-is-animated {
+      -webkit-transition: width 1s ease-in-out;
+      transition: width 1s ease-in-out; }
+    .aui--vertical-navigation-component .aui--vertical-navigation-component__menu .aui--vertical-navigation-component__menu-item {
+      height: 60px;
+      padding: 10px;
+      margin-right: 6px;
+      cursor: pointer;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+          flex-direction: column;
+      -ms-flex-pack: center;
+          justify-content: center;
+      white-space: nowrap;
+      overflow: hidden; }
+      .aui--vertical-navigation-component .aui--vertical-navigation-component__menu .aui--vertical-navigation-component__menu-item .aui--vertical-navigation-component__menu-item-collapse {
+        display: -ms-flexbox;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        -ms-flex-direction: column;
+            flex-direction: column;
+        -ms-flex-pack: center;
+            justify-content: center;
+        padding: 8px; }
+        .aui--vertical-navigation-component .aui--vertical-navigation-component__menu .aui--vertical-navigation-component__menu-item .aui--vertical-navigation-component__menu-item-collapse:hover {
+          border-radius: 50%;
+          background-color: #e8e8e8; }
+      .aui--vertical-navigation-component .aui--vertical-navigation-component__menu .aui--vertical-navigation-component__menu-item .aui--vertical-navigation-component__menu-item-collapse-icon {
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(assets/burger.dd0017a8.svg); }
+  .aui--vertical-navigation-component .aui--vertical-navigation-component__content {
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
+    .aui--vertical-navigation-component .aui--vertical-navigation-component__content .aui--vertical-navigation-component__content-item {
+      display: none; }
+      .aui--vertical-navigation-component .aui--vertical-navigation-component__content .aui--vertical-navigation-component__content-item.aui--vertical-navigation-component__content-item-is-active {
+        display: block; }
+
 .aui--overlay-loader {
   width: 100%;
   height: 100%;
@@ -11585,7 +11640,6 @@ button + .aui--button-group {
   min-width: 300px;
   min-height: 100px;
   z-index: 1060;
-  border: 1px solid #e8e8e8;
   border-radius: 2px;
   background-color: #fff; }
   .aui--action-panel.action-modal {
@@ -11609,7 +11663,8 @@ button + .aui--button-group {
     -ms-flex-pack: justify;
         justify-content: space-between;
     -ms-flex-align: center;
-        align-items: center; }
+        align-items: center;
+    border: 1px solid #e8e8e8; }
     .aui--action-panel-header .title {
       font-size: 18px;
       font-weight: 700; }
@@ -11630,7 +11685,7 @@ button + .aui--button-group {
       height: 16px;
       background-repeat: no-repeat;
       background-size: contain;
-      background-image: url(assets/close.09525bdb.svg); }
+      background-image: url(assets/close.30b57a0a.svg); }
     .aui--action-panel-header .btn {
       border: 0;
       outline: 0;
@@ -11650,7 +11705,8 @@ button + .aui--button-group {
         background-color: transparent; }
     .aui--action-panel-header.has-actions {
       background-color: #006dcc;
-      color: #fff; }
+      color: #fff;
+      border: 0; }
       .aui--action-panel-header.has-actions .actions .btn:hover {
         color: #006dcc; }
       .aui--action-panel-header.has-actions .actions .btn svg {
@@ -11660,7 +11716,9 @@ button + .aui--button-group {
         .aui--action-panel-header.has-actions .actions .btn:hover svg {
           fill: #006dcc; }
   .aui--action-panel-body {
-    padding: 30px; }
+    padding: 30px;
+    border: 1px solid #e8e8e8;
+    border-top: 0; }
 
 .aui--action-panel-backdrop {
   position: fixed;
