@@ -34,6 +34,7 @@ import Nav from 'adslot-ui/Navigation';
 import VerticalNav from 'adslot-ui/VerticalNavigation';
 import OverlayLoader from 'adslot-ui/OverlayLoader';
 import ActionPanel from 'adslot-ui/ActionPanel';
+import Switch from 'adslot-ui/Switch';
 
 export {
   Accordion,
@@ -63,6 +64,7 @@ export {
   Tabs,
   Textarea,
   TextEllipsis,
+  Switch,
   TreePickerGrid,
   TreePickerNav,
   TreePickerNode,
