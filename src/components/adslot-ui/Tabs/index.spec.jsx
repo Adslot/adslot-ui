@@ -5,7 +5,21 @@ import sinon from 'sinon';
 import Tabs from '.';
 import Tab from '../Tab';
 
+class MyComponent extends React.PureComponent {
+  render() {
+    return null;
+  }
+}
+
 describe('<Tabs />', () => {
+  let sandbox;
+
+  before(() => {
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(() => sandbox.restore());
+
   it('should render with props', () => {
     const wrapper = shallow(
       <Tabs defaultActiveKey="first" id="test">
@@ -34,7 +48,7 @@ describe('<Tabs />', () => {
   });
 
   it('should work as controlled', () => {
-    const selectSpy = sinon.spy();
+    const selectSpy = sandbox.spy();
     const wrapper = shallow(
       <Tabs activeKey="first" onSelect={selectSpy} id="test">
         <Tab eventKey="first" title="Fist">
@@ -65,7 +79,7 @@ describe('<Tabs />', () => {
         </Tab>
       </Tabs>
     );
-    const spy = sinon.spy(wrapper.instance(), 'setState');
+    const spy = sandbox.spy(wrapper.instance(), 'setState');
     const links = wrapper.find('a');
     links.last().simulate('click', { preventDefault: _.noop });
     links.last().simulate('click', { preventDefault: _.noop });
@@ -82,5 +96,19 @@ describe('<Tabs />', () => {
       </Tabs>
     );
     expect(wrapper.find(Tabs).length).to.equal(1);
+  });
+
+  it('should throw error if child of <Tabs /> is not <Tab />', () => {
+    sandbox.stub(console, 'error').callsFake(message => {
+      expect(message).to.equal('<Tabs /> children must be instances of <Tab />');
+    });
+
+    mount(
+      <Tabs id="error">
+        <MyComponent />
+      </Tabs>
+    );
+
+    expect(console.error.called).to.equal(true);
   });
 });

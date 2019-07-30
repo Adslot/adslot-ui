@@ -6,6 +6,14 @@ import { Checkbox } from 'adslot-ui';
 import CheckboxGroup from '.';
 
 describe('CheckboxGroup', () => {
+  let sandbox;
+
+  before(() => {
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(() => sandbox.restore());
+
   it('should render with props', () => {
     const wrapper = shallow(
       <CheckboxGroup name="movies" value={['terminator', 'predator']} className="custom-class" onChange={sinon.spy}>
@@ -53,7 +61,7 @@ describe('CheckboxGroup', () => {
   });
 
   it('should print warning if child is not a Checkbox component', () => {
-    console.error = sinon.spy();
+    sandbox.spy(console, 'error');
     shallow(
       <CheckboxGroup name="movies" value={['test']} onChange={_.noop}>
         <div>Not a Checkbox</div>

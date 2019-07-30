@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Tab from '../Tab';
 
 class Tabs extends React.Component {
@@ -44,15 +44,18 @@ class Tabs extends React.Component {
 
     const tabs = [];
     const content = React.Children.map(children, child => {
-      if (!_.isEmpty(child) && _.isFunction(child.type) && child.type.innerName === Tab.innerName) {
-        const tab = React.cloneElement(child, {
-          show: this.activeKey === child.props.eventKey,
-        });
-        tabs.push(tab);
-
-        return tab;
+      if (_.get(child, 'type.innerName') !== Tab.innerName) {
+        console.error('<Tabs /> children must be instances of <Tab />');
+        return false;
       }
-      return child;
+
+      // child must be a Tab instance at this point
+      const tab = React.cloneElement(child, {
+        show: this.activeKey === child.props.eventKey,
+      });
+      tabs.push(tab);
+
+      return tab;
     });
 
     return (
