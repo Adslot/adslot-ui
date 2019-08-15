@@ -62,6 +62,7 @@ import VerticalNavigationExample from '../../examples/VerticalNavigationExample'
 import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
 import SearchExample from '../../examples/SearchExample';
 import ActionPanelExample from '../../examples/ActionPanelExample';
+import SwitchExample from '../../examples/SwitchExample';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -90,6 +91,7 @@ const componentsBySection = {
     'radio-group',
     'select',
     'date-picker',
+    'switch',
   ],
   'typography-and-text-layout': ['text-ellipsis'],
   'stats-and-data': ['count-badge', 'statistic', 'totals', 'slicey'],
@@ -236,6 +238,7 @@ class PageLayout extends React.Component {
             <SearchExample />
             <TagExample />
 
+            <SwitchExample />
             <PageTitle title="Grouping" />
             <PageTitleExample />
             <CardExample />

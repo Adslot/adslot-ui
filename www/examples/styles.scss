@@ -56,6 +56,16 @@
     }
   }
 
+  &.switch-example {
+    .component-heading {
+      padding-top: 20px;
+    }
+
+    .component-container {
+      padding-top: 10px;
+    }
+  }
+
   &.navigation-tabs-example {
     .adslot-ui-example {
       .dashboard-tab {
@@ -66,7 +76,6 @@
 
   &.popover-example {
     .adslot-ui-example {
-
       .button-example-container {
         display: flex;
         flex-direction: column;
@@ -98,7 +107,6 @@
             left: 5px;
             top: -5px;
           }
-
         }
       }
 
