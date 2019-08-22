@@ -1,29 +1,20 @@
-import React from 'react';
-import Example from '../components/Example';
+import React, { useState } from 'react';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { Button } from '../../src';
 
-class ButtonExample extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      canUndo: false,
-    };
-    this.onClick = () => this.setState({ canUndo: !this.state.canUndo });
-  }
-
-  render() {
-    return (
-      <div>
-        <Button bsStyle="link" disabled={!this.state.canUndo} reason="There's nothing to undo." onClick={this.onClick}>
-          Undo
-        </Button>
-        <Button bsStyle="primary" disabled={this.state.canUndo} onClick={this.onClick}>
-          Apply
-        </Button>
-      </div>
-    );
-  }
-}
+const ButtonExample = () => {
+  const [canUndo, onClick] = useState(false);
+  return (
+    <div>
+      <Button bsStyle="link" disabled={!canUndo} reason="There's nothing to undo." onClick={() => onClick(!canUndo)}>
+        Undo
+      </Button>
+      <Button bsStyle="primary" disabled={canUndo} onClick={() => onClick(!canUndo)}>
+        Apply
+      </Button>
+    </div>
+  );
+};
 
 export const exampleProps = {
   componentName: 'Button',
@@ -60,23 +51,7 @@ export const exampleProps = {
       Campaign, Save, Reject etc.
     </p>
   ),
-  exampleCodeSnippet: `<div>
-  <Button
-    bsStyle="link"
-    disabled={!this.state.canUndo}
-    reason="There's nothing to undo."
-    onClick={this.onClick}
-  >
-    Undo
-  </Button>
-  <Button
-    bsStyle="primary"
-    disabled={this.state.canUndo}
-    onClick={this.onClick}
-  >
-    Apply
-  </Button>
-</div>`,
+
   propTypeSectionArray: [
     {
       propTypes: [
@@ -130,7 +105,11 @@ export const exampleProps = {
 };
 
 export default () => (
-  <Example {...exampleProps}>
-    <ButtonExample />
-  </Example>
+  <div className="adslot-ui-example">
+    <LiveProvider code={ButtonExample} scope={{ Button, useState }} transformCode={code => console.log(code)}>
+      <LivePreview className="live-editor" />
+      <LiveEditor />
+      <LiveError />
+    </LiveProvider>
+  </div>
 );

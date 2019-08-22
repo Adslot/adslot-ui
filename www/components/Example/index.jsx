@@ -1,67 +1,62 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { useState } from 'react';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import PropTypes from 'prop-types';
-import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
-import jsx from 'react-syntax-highlighter/languages/prism/jsx';
-import coy from 'react-syntax-highlighter/styles/prism/coy';
-
+import theme from './theme';
 import PropTypeTable from '../PropTypeTable';
-import { Button, InformationBox } from '../../../src';
-
+import * as AdslotUI from '../../../src';
 import './styles.scss';
 
-registerLanguage('jsx', jsx);
+const Example = ({ children, componentName, notes, propTypeSectionArray, designNotes }) => (
+  <div
+    className={`adslot-ui-example-container ${_.kebabCase(componentName)}-example`}
+    id={`${_.kebabCase(componentName)}-example`}
+  >
+    <h2>{componentName}</h2>
 
-class Example extends React.PureComponent {
-  render() {
-    const { children, componentName, notes, exampleCodeSnippet, propTypeSectionArray, designNotes } = this.props;
-
-    return (
-      <div
-        className={`adslot-ui-example-container ${_.kebabCase(componentName)}-example`}
-        id={`${_.kebabCase(componentName)}-example`}
+    <h3>Example</h3>
+    <div className="adslot-ui-example">
+      <LiveProvider
+        code={children}
+        scope={{ ...AdslotUI, useState }}
+        theme={theme}
+        transformCode={code => {
+          console.log(code);
+        }}
       >
-        <h2>{componentName}</h2>
+        <LivePreview className="live-editor" />
+        <LiveEditor />
+        <LiveError />
+      </LiveProvider>
+    </div>
 
-        <h3>Example</h3>
-        <div className="adslot-ui-example">{children}</div>
+    {designNotes ? (
+      <AdslotUI.InformationBox title="Design notes" className="note-panel">
+        {designNotes}
+      </AdslotUI.InformationBox>
+    ) : null}
+    {notes ? (
+      <AdslotUI.InformationBox title="Technical notes" className="note-panel">
+        {notes}
+      </AdslotUI.InformationBox>
+    ) : null}
 
-        <div className="adslot-ui-code-snippet">
-          <SyntaxHighlighter language="jsx" style={coy}>
-            {exampleCodeSnippet}
-          </SyntaxHighlighter>
-        </div>
+    {_.map(propTypeSectionArray, (section, index) => (
+      <PropTypeTable propTypes={section.propTypes} label={section.label} key={index} />
+    ))}
+    {_.isEmpty(propTypeSectionArray) ? <PropTypeTable /> : null}
 
-        {designNotes ? (
-          <InformationBox title="Design notes" className="note-panel">
-            {designNotes}
-          </InformationBox>
-        ) : null}
-        {notes ? (
-          <InformationBox title="Technical notes" className="note-panel">
-            {notes}
-          </InformationBox>
-        ) : null}
-
-        {_.map(propTypeSectionArray, (section, index) => (
-          <PropTypeTable propTypes={section.propTypes} label={section.label} key={index} />
-        ))}
-        {_.isEmpty(propTypeSectionArray) ? <PropTypeTable /> : null}
-
-        <Button bsStyle="link" href="#top">
-          ↑ Back to top.
-        </Button>
-      </div>
-    );
-  }
-}
+    <AdslotUI.Button bsStyle="link" href="#top">
+      ↑ Back to top.
+    </AdslotUI.Button>
+  </div>
+);
 
 Example.propTypes = {
   children: PropTypes.element.isRequired,
   componentName: PropTypes.string.isRequired,
   notes: PropTypes.node,
   designNotes: PropTypes.node,
-  exampleCodeSnippet: PropTypes.string.isRequired,
   propTypeSectionArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

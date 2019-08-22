@@ -5,63 +5,63 @@ import { PageTitle } from '../../../src';
 
 import Header from '../Header';
 import Navigation from '../Navigation';
-import Contributors from '../Contributors';
+// import Contributors from '../Contributors';
 import SearchBar from '../SearchBar';
 import SearchResultCard from '../SearchResultCard';
-import MigrationNote from '../MigrationNote';
+// import MigrationNote from '../MigrationNote';
 
 import ButtonExample from '../../examples/ButtonExample';
-import ButtonGroupExample from '../../examples/ButtonGroupExample';
-import AlertInputExample from '../../examples/AlertInputExample';
-import FilePickerExample from '../../examples/FilePickerExample';
-import TextareaExample from '../../examples/TextareaExample';
-import TextEllipsisExample from '../../examples/TextEllipsisExample';
-import AlertExample from '../../examples/AlertExample';
-import CheckboxExample from '../../examples/CheckboxExample';
-import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
-import CountBadgeExample from '../../examples/CountBadgeExample';
-import RadioExample from '../../examples/RadioExample';
-import RadioGroupExample from '../../examples/RadioGroupExample';
-import SelectExample from '../../examples/SelectExample';
-import DatePickerExample from '../../examples/DatePickerExample';
-import BorderedWellExample from '../../examples/BorderedWellExample';
-import CardExample from '../../examples/CardExample';
-import FlexibleSpacerExample from '../../examples/FlexibleSpacerExample';
-import PageTitleExample from '../../examples/PageTitleExample';
-import SliceyExample from '../../examples/SliceyExample';
-import StatisticExample from '../../examples/StatisticExample';
-import StatusPillExample from '../../examples/StatusPillExample';
-import TagExample from '../../examples/TagExample';
-import TotalsExample from '../../examples/TotalsExample';
-import AvatarExample from '../../examples/AvatarExample';
-import BreadcrumbExample from '../../examples/BreadcrumbExample';
-import TabExample from '../../examples/TabExample';
-import EmptyExample from '../../examples/EmptyExample';
-import GridExample from '../../examples/GridExample';
-import PrettyDiffExample from '../../examples/PrettyDiffExample';
-import PopoverExample from '../../examples/PopoverExample';
-import SpinnerExample from '../../examples/SpinnerExample';
-import SvgSymbolExample from '../../examples/SvgSymbolExample';
-import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
-import TileGridExample from '../../examples/TileGridExample';
-import AccordionExample from '../../examples/AccordionExample';
-import AccordionPanelExample from '../../examples/AccordionPanelExample';
-import CarouselExample from '../../examples/CarouselExample';
-import ConfirmModalExample from '../../examples/ConfirmModalExample';
-import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
-import ListPickerExample from '../../examples/ListPickerExample';
-import PagedGridExample from '../../examples/PagedGridExample';
-import PanelExample from '../../examples/PanelExample';
-import TreePickerExample from '../../examples/TreePickerExample';
-import UserListPickerExample from '../../examples/UserListPickerExample';
-import InformationBoxExample from '../../examples/InformationBoxExample';
-import SplitPaneExample from '../../examples/SplitPaneExample';
-import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
-import NavigationExample from '../../examples/NavigationExample';
-import VerticalNavigationExample from '../../examples/VerticalNavigationExample';
-import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
-import SearchExample from '../../examples/SearchExample';
-import ActionPanelExample from '../../examples/ActionPanelExample';
+// import ButtonGroupExample from '../../examples/ButtonGroupExample';
+// import AlertInputExample from '../../examples/AlertInputExample';
+// import FilePickerExample from '../../examples/FilePickerExample';
+// import TextareaExample from '../../examples/TextareaExample';
+// import TextEllipsisExample from '../../examples/TextEllipsisExample';
+// import AlertExample from '../../examples/AlertExample';
+// import CheckboxExample from '../../examples/CheckboxExample';
+// import CheckboxGroupExample from '../../examples/CheckboxGroupExample';
+// import CountBadgeExample from '../../examples/CountBadgeExample';
+// import RadioExample from '../../examples/RadioExample';
+// import RadioGroupExample from '../../examples/RadioGroupExample';
+// import SelectExample from '../../examples/SelectExample';
+// import DatePickerExample from '../../examples/DatePickerExample';
+// import BorderedWellExample from '../../examples/BorderedWellExample';
+// import CardExample from '../../examples/CardExample';
+// import FlexibleSpacerExample from '../../examples/FlexibleSpacerExample';
+// import PageTitleExample from '../../examples/PageTitleExample';
+// import SliceyExample from '../../examples/SliceyExample';
+// import StatisticExample from '../../examples/StatisticExample';
+// import StatusPillExample from '../../examples/StatusPillExample';
+// import TagExample from '../../examples/TagExample';
+// import TotalsExample from '../../examples/TotalsExample';
+// import AvatarExample from '../../examples/AvatarExample';
+// import BreadcrumbExample from '../../examples/BreadcrumbExample';
+// import TabExample from '../../examples/TabExample';
+// import EmptyExample from '../../examples/EmptyExample';
+// import GridExample from '../../examples/GridExample';
+// import PrettyDiffExample from '../../examples/PrettyDiffExample';
+// import PopoverExample from '../../examples/PopoverExample';
+// import SpinnerExample from '../../examples/SpinnerExample';
+// import SvgSymbolExample from '../../examples/SvgSymbolExample';
+// import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
+// import TileGridExample from '../../examples/TileGridExample';
+// import AccordionExample from '../../examples/AccordionExample';
+// import AccordionPanelExample from '../../examples/AccordionPanelExample';
+// import CarouselExample from '../../examples/CarouselExample';
+// import ConfirmModalExample from '../../examples/ConfirmModalExample';
+// import HelpIconPopoverExample from '../../examples/HelpIconPopoverExample';
+// import ListPickerExample from '../../examples/ListPickerExample';
+// import PagedGridExample from '../../examples/PagedGridExample';
+// import PanelExample from '../../examples/PanelExample';
+// import TreePickerExample from '../../examples/TreePickerExample';
+// import UserListPickerExample from '../../examples/UserListPickerExample';
+// import InformationBoxExample from '../../examples/InformationBoxExample';
+// import SplitPaneExample from '../../examples/SplitPaneExample';
+// import HoverDropdownMenuExample from '../../examples/HoverDropdownMenuExample';
+// import NavigationExample from '../../examples/NavigationExample';
+// import VerticalNavigationExample from '../../examples/VerticalNavigationExample';
+// import OverlayLoaderExample from '../../examples/OverlayLoaderExample';
+// import SearchExample from '../../examples/SearchExample';
+// import ActionPanelExample from '../../examples/ActionPanelExample';
 
 import './styles.scss';
 import '../../examples/styles.scss';
@@ -177,10 +177,10 @@ class PageLayout extends React.Component {
             )}
           </SidebarArea>
           <ContentArea>
-            <MigrationNote />
-            <PageTitle title="Form Elements" />
+            {/* <MigrationNote />
+            <PageTitle title="Form Elements" /> */}
             <ButtonExample />
-            <ButtonGroupExample />
+            {/* <ButtonGroupExample />
             <AlertInputExample />
             <FilePickerExample />
             <TextareaExample />
@@ -252,11 +252,11 @@ class PageLayout extends React.Component {
             <InformationBoxExample />
 
             <PageTitle title="Tree Picker" />
-            <TreePickerExample />
+            <TreePickerExample /> */}
           </ContentArea>
         </div>
 
-        <Contributors />
+        {/* <Contributors /> */}
       </div>
     );
   }
