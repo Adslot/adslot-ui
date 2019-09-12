@@ -87,48 +87,48 @@ class MigrationNote extends React.Component {
             <b>Old way:</b>
             <SyntaxHighlighter language="jsx" style={coy}>
               {`
-              <Accordion
-                panels={[
-                  {
-                    id: '1',
-                    icon: { href: './assets/svg-symbols.svg#list' },
-                    title: 'Filter by region',
-                    isCollapsed: true,
-                    content: (
-                      <ul className="list-unstyled">
-                        <li>
-                          <Checkbox label="Australia" />
-                        </li>
-                        <li>
-                          <Checkbox label="New Zealand" />
-                        </li>
-                      </ul>
-                    ),
-                  },
-                ]}
-                onPanelClick={this.toggleAccordionPanel}
-              />
+<Accordion
+  panels={[
+    {
+      id: '1',
+      icon: { href: './assets/svg-symbols.svg#list' },
+      title: 'Filter by region',
+      isCollapsed: true,
+      content: (
+        <ul className="list-unstyled">
+          <li>
+            <Checkbox label="Australia" />
+          </li>
+          <li>
+            <Checkbox label="New Zealand" />
+          </li>
+        </ul>
+      ),
+    },
+  ]}
+  onPanelClick={this.toggleAccordionPanel}
+/>
             `}
             </SyntaxHighlighter>
             <b>New way: Each panel should be provided as a child of the Accordion component.</b>
             <SyntaxHighlighter language="jsx" style={coy}>
               {`
-              <Accordion onPanelClick={this.toggleAccordionPanel}>
-                <Panel
-                  id='1'
-                  icon={{ href: './assets/svg-symbols.svg#list' }}
-                  title='Filter by region'
-                >
-                <ul className="list-unstyled">
-                  <li>
-                    <Checkbox label="Australia" />
-                  </li>
-                  <li>
-                    <Checkbox label="New Zealand" />
-                  </li>
-                </ul>
-                </Panel>
-              </Accordion>
+<Accordion onPanelClick={this.toggleAccordionPanel}>
+  <Panel
+    id='1'
+    icon={{ href: './assets/svg-symbols.svg#list' }}
+    title='Filter by region'
+  >
+  <ul className="list-unstyled">
+    <li>
+      <Checkbox label="Australia" />
+    </li>
+    <li>
+      <Checkbox label="New Zealand" />
+    </li>
+  </ul>
+  </Panel>
+</Accordion>
             `}
             </SyntaxHighlighter>
             <h3>Tabs Component</h3>
@@ -137,6 +137,7 @@ class MigrationNote extends React.Component {
             <p>
               For more information check the example: <a href="#tab-example">Tab Example</a>
             </p>
+
             <br />
             <h3>Checkbox Component</h3>
             <p>
@@ -145,19 +146,71 @@ class MigrationNote extends React.Component {
             <p>Also the onChange function has changed</p>
             <SyntaxHighlighter language="jsx" style={coy}>
               {`
-              From: onChange = (event, name) => {...}
-              To: onChange = (nextCheckState, name, value) => {...}
+From: onChange = (event, name) => {...}
+To: onChange = (nextCheckState, name, value) => {...}
               `}
             </SyntaxHighlighter>
             <p>The nextCheckState will be:</p>
             <SyntaxHighlighter language="jsx" style={coy}>
               {`
-              true => false  false => true  'partial' => false
+true => false  false => true  'partial' => false
               `}
             </SyntaxHighlighter>
             <p>
               For more information check the example: <a href="#checkbox-example">Checkbox Example</a>
             </p>
+
+            <br />
+            <h3>Select Component</h3>
+            <p>
+              Select props now follow{' '}
+              <a href="https://react-select.com/props" target="_blank" rel="noopener noreferrer">
+                react-select v3
+              </a>
+            </p>
+            <p>Before</p>
+            <SyntaxHighlighter language="jsx" style={coy}>
+              {`
+<Select
+  clearable={false}
+  disabled={false}
+  data-test-selector="test-dts"
+  onChange={doOnChange}
+  options={options}
+  optionRenderer={renderOption}
+  placeholder="Select placeholder"
+  value={selectedValue}
+  valueRenderer={renderValue}
+/>
+              `}
+            </SyntaxHighlighter>
+            <p>After</p>
+            <SyntaxHighlighter language="jsx" style={coy}>
+              {`
+const Option = (props) => (
+  <Select.components.Option {...props}>
+    {data.text}
+  </Select.components.Option>
+);
+
+const SingleValue = (props) => (
+  <Select.components.SingleValue {...props}>
+    {data.text}
+  </Select.components.SingleValue>
+);
+
+<Select
+  isClearable={false}
+  isDisabled={false}
+  components={{ Option, SingleValue }}
+  dts="test-dts"
+  onChange={doOnChange}
+  options={options}
+  placeholder="Select placeholder"
+  value={selectedValue}
+/>
+              `}
+            </SyntaxHighlighter>
           </div>
         </Collapse>
       </>
