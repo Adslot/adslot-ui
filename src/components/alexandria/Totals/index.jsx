@@ -29,7 +29,7 @@ Totals.displayName = 'AlexandriaTotalsComponent';
 Totals.propTypes = {
   toSum: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
+      label: PropTypes.node,
       value: PropTypes.number.isRequired,
       isHidden: PropTypes.bool,
     })
