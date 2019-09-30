@@ -12,7 +12,7 @@ class PopoverExample extends React.PureComponent {
   };
 
   placements = ['left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'];
-  themes = ['light', 'dark', 'warn', 'error'];
+  themes = ['light', 'dark', 'warn', 'error', 'info', 'success'];
   triggers = ['hover', 'click'];
 
   renderPopoverContent = content => (
@@ -188,7 +188,7 @@ const exampleProps = {
         },
         {
           propType: 'theme',
-          type: 'oneOf[light, dark, warn, error]',
+          type: 'oneOf[light, dark, warn, error, info, success]',
           defaultValue: 'light',
         },
         {

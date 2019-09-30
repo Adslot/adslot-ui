@@ -221,6 +221,32 @@ $arrow-border-size: 1px;
     }
   }
 
+  // Info theme
+  &.popover-info {
+    $theme-background-color: $color-cyan;
+    $theme-border-color: $color-cyan;
+    @include theme-popover($theme-background-color, $theme-border-color);
+    color: $color-white;
+
+    .popover-title {
+      background-color: lighten($theme-background-color, 10%);
+      border-bottom-color: $color-white;
+    }
+  }
+
+  // Success theme
+  &.popover-success {
+    $theme-background-color: $color-green;
+    $theme-border-color: $color-green;
+    @include theme-popover($theme-background-color, $theme-border-color);
+    color: $color-white;
+
+    .popover-title {
+      background-color: lighten($theme-background-color, 10%);
+      border-bottom-color: $color-white;
+    }
+  }
+
   // Title
   .popover-title {
     padding: 8px 14px;

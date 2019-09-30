@@ -72,6 +72,8 @@ export default class AlertInput extends Component {
       [alertStatus]: alertStatus,
     });
 
+    const theme = alertStatus === 'warning' ? 'warn' : alertStatus;
+
     return (
       <div className={baseClass}>
         <Popover
@@ -80,6 +82,7 @@ export default class AlertInput extends Component {
           popoverContent={<strong>{alertMessage}</strong>}
           placement="bottom"
           popoverClassNames={popoverClassName}
+          theme={theme}
         >
           <div className={className} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
             {prefixAddon ? <span className={`${baseClass}-wrapper-addon`}>{prefixAddon}</span> : null}
