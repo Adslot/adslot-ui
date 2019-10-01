@@ -51,6 +51,8 @@ export default class AlertInput extends Component {
 
   render() {
     const {
+      className: customClass,
+      dts,
       defaultValue,
       value,
       type,
@@ -63,7 +65,7 @@ export default class AlertInput extends Component {
       onValueChange,
     } = this.props;
 
-    const className = classnames(`${baseClass}-wrapper`, {
+    const className = classnames(`${baseClass}-wrapper`, customClass, {
       [alertStatus]: alertStatus,
       'is-focused': this.state.isFocused,
     });
@@ -84,7 +86,12 @@ export default class AlertInput extends Component {
           popoverClassNames={popoverClassName}
           theme={theme}
         >
-          <div className={className} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          <div
+            className={className}
+            data-test-selector={dts}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+          >
             {prefixAddon ? <span className={`${baseClass}-wrapper-addon`}>{prefixAddon}</span> : null}
             <span className={`${baseClass}-wrapper-flex-wrapper`}>
               <input
@@ -108,6 +115,8 @@ export default class AlertInput extends Component {
 }
 
 AlertInput.propTypes = {
+  className: PropTypes.string,
+  dts: PropTypes.string,
   defaultValue: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   type: PropTypes.oneOf(['text', 'number']),
