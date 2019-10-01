@@ -3,7 +3,7 @@ import _ from 'lodash';
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select, { components } from 'react-select';
+import Select, { components, createFilter } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
@@ -80,6 +80,7 @@ SelectComponent.components = components;
 SelectComponent.Creatable = selectComponentBuilder(CreatableSelect);
 SelectComponent.Async = selectComponentBuilder(AsyncSelect);
 SelectComponent.AsyncCreatable = selectComponentBuilder(AsyncCreatableSelect);
+SelectComponent.createFilter = createFilter;
 
 export default SelectComponent;
 /* eslint-enable react/prop-types */
