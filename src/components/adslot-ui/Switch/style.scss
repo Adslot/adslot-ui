@@ -50,6 +50,14 @@ input:checked + .aui--switch-slider::before {
   transform: translateX(20px);
 }
 
+input:disabled + .aui--switch-slider {
+  background-color: $color-gray-light;
+}
+
+input:disabled + .aui--switch-slider::before {
+  background-color: $color-gray-dark;
+}
+
 .aui--switch-slider.round {
   border-radius: 34px;
 }
