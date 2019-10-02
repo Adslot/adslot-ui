@@ -248,7 +248,7 @@ describe('ListPickerComponent', () => {
     expect(component.prop('show')).to.equal(false);
   });
 
-  it('should call `modalApply` and `modalClose` when we click Apply', () => {
+  it('should only call `modalApply` when we click Apply', () => {
     let applyCalls = null;
     let closeCalls = 0;
     const applyMock = selectedItems => {
@@ -269,7 +269,7 @@ describe('ListPickerComponent', () => {
     const applyButtonElement = modalFooterElement.find(Button).last();
     applyButtonElement.simulate('click');
     expect(applyCalls).to.deep.equal([teamMember2]);
-    expect(closeCalls).to.equal(1);
+    expect(closeCalls).to.equal(0);
   });
 
   it('should throw when we click Apply without a handler', () => {

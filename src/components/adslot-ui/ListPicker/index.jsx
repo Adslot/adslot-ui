@@ -74,7 +74,6 @@ class ListPickerComponent extends React.Component {
 
   applyAction() {
     this.props.modalApply(this.state.selectedItems);
-    this.props.modalClose();
   }
 
   render() {
