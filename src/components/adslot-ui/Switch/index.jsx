@@ -20,7 +20,7 @@ class Switch extends React.Component {
   };
 
   render() {
-    const { defaultChecked, checked, value, onChange, className, dts } = this.props;
+    const { defaultChecked, checked, value, disabled, onChange, className, dts } = this.props;
 
     if (!_.isNil(checked) && !_.isNil(defaultChecked))
       console.warn(
@@ -39,6 +39,7 @@ class Switch extends React.Component {
           type="checkbox"
           checked={toggleInputChecked}
           value={value}
+          disabled={disabled}
           onChange={this.handleChange}
           className={className}
           dts={dts}
@@ -51,6 +52,7 @@ class Switch extends React.Component {
 
 Switch.defaultProps = {
   value: '',
+  disabled: false,
   dts: 'switch-component',
 };
 
@@ -58,6 +60,7 @@ Switch.propTypes = {
   defaultChecked: PropTypes.bool,
   checked: PropTypes.bool,
   value: PropTypes.string,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
   dts: PropTypes.string,
   className: PropTypes.string,
