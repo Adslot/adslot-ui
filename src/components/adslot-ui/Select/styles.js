@@ -25,8 +25,15 @@ const defaultStyle = {
     ...styles,
     display: 'none',
   }),
-  control: styles => ({
+  control: (styles, state) => ({
     ...styles,
+    ...(state.isFocused
+      ? {
+          boxShadow: '0 0 0 1px #cccccc',
+          ':hover': { borderColor: '#cccccc' },
+          borderColor: '#cccccc',
+        }
+      : {}),
     minHeight: 26,
   }),
   clearIndicator: styles => ({
