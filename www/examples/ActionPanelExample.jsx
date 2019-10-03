@@ -1,7 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
 import { Button, ActionPanel } from '../../src';
-import SvgSymbol from 'alexandria/SvgSymbol';
 
 class ActionPanelExample extends React.PureComponent {
   constructor() {
@@ -22,7 +21,7 @@ class ActionPanelExample extends React.PureComponent {
         <h4>Static markup</h4>
         <div>
           <ActionPanel
-            title="Action panel"
+            title="Action panel: Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             size="small"
             onClose={this.toggleActionPanel}
             children={
