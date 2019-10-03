@@ -43,6 +43,7 @@
     border: $border-lighter;
 
     .title {
+      @include ellipse;
       font-size: $font-size-header;
       font-weight: $font-weight-bold;
     }
