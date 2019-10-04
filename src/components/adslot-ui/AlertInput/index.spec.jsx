@@ -174,5 +174,17 @@ describe('AlertInput', () => {
       const componentWrapper = wrapper.find('.alert-input-component-wrapper');
       expect(componentWrapper.prop('className')).to.equal('alert-input-component-wrapper error');
     });
+
+    it('should set correct theme for popover', () => {
+      const props = {
+        alertStatus: 'error',
+      };
+      const wrapper = shallow(<AlertInput {...props} />);
+
+      expect(wrapper.find('Popover').prop('theme')).to.equal('error');
+
+      wrapper.setProps({ alertStatus: 'warning' });
+      expect(wrapper.find('Popover').prop('theme')).to.equal('warn');
+    });
   });
 });

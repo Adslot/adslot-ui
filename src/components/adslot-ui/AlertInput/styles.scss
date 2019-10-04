@@ -71,41 +71,5 @@
       padding: 5px 10px;
       width: auto;
     }
-
-    &.success {
-      border-color: $color-positive;
-      color: $color-positive;
-
-      > .aui--popover-arrow {
-        border-bottom-color: $color-positive;
-      }
-    }
-
-    &.info {
-      border-color: $color-info;
-      color: $color-info;
-
-      > .aui--popover-arrow {
-        border-bottom-color: $color-info;
-      }
-    }
-
-    &.warning {
-      border-color: $color-warning;
-      color: $color-warning;
-
-      > .aui--popover-arrow {
-        border-bottom-color: $color-warning;
-      }
-    }
-
-    &.error {
-      border-color: $color-negative;
-      color: $color-negative;
-
-      > .aui--popover-arrow {
-        border-bottom-color: $color-negative;
-      }
-    }
   }
 }

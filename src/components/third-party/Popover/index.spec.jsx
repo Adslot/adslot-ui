@@ -180,6 +180,24 @@ describe('Popover Component', () => {
       </div>
     );
     expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-error')).to.equal(true);
+
+    wrapper = mount(
+      <div>
+        <Popover id="popover-example" theme="info" popoverContent={<div />} isOpen>
+          Test message
+        </Popover>
+      </div>
+    );
+    expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-info')).to.equal(true);
+
+    wrapper = mount(
+      <div>
+        <Popover id="popover-example" theme="success" popoverContent={<div />} isOpen>
+          Test message
+        </Popover>
+      </div>
+    );
+    expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-success')).to.equal(true);
   });
 
   it('should default to light theme on invalid theme prop', () => {

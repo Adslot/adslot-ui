@@ -87,6 +87,14 @@ const exampleProps = {
     {
       propTypes: [
         {
+          propType: 'className',
+          type: 'string',
+        },
+        {
+          propType: 'dts',
+          type: 'string',
+        },
+        {
           propType: 'defaultValue',
           type: 'string',
         },
