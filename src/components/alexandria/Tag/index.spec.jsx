@@ -14,9 +14,9 @@ describe('Tag', () => {
     expect(component.find(ActionButton)).to.have.length(0);
   });
 
-  it('should take an id and apply a custom data test selector', () => {
-    const component = shallow(<Tag id="foo">You are it!</Tag>);
-    expect(component.find('span').prop('data-test-selector')).to.equal('tag-foo');
+  it('should apply a custom data test selector', () => {
+    const component = shallow(<Tag dts="foo">You are it!</Tag>);
+    expect(component.find('span').prop('data-test-selector')).to.equal('foo');
   });
 
   it('should render an inverse tag', () => {
