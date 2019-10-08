@@ -49,6 +49,7 @@ const TreePickerSimplePureComponent = ({
   svgSymbolSearch,
   displayGroupHeader,
   hideSearchOnRoot,
+  selectedTopSearch,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   let searchTextNode = emptyText || 'No items to select.';
@@ -101,6 +102,7 @@ const TreePickerSimplePureComponent = ({
       </SplitPane>
 
       <SplitPane dts={`treepicker-splitpane-selected-${_.kebabCase(itemType)}`}>
+        {selectedTopSearch}
         <TreePickerGrid
           {...{
             disabled,
@@ -156,6 +158,7 @@ TreePickerSimplePureComponent.propTypes = {
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
   displayGroupHeader: PropTypes.bool,
   hideSearchOnRoot: PropTypes.bool,
+  selectedTopSearch: PropTypes.node,
 };
 
 TreePickerSimplePureComponent.defaultProps = {

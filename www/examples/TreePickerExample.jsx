@@ -1,63 +1,81 @@
+import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import _ from 'lodash';
-import { TreePickerSimplePure } from '../../src';
+import { TreePickerSimplePure, Search } from '../../src';
 
 class TreePickerExample extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      itemType: 'segment value',
-      treePickerPureSubtree: [],
-      selectedNodes: [],
-      pickerSearchValue: '',
-      subTree: [
-        {
-          id: '0',
-          label: 'Northern Territory',
-          path: [{ id: '10', label: 'Australia' }],
-          type: 'Territory',
-        },
-        {
-          id: '1',
-          label: 'Australian Capital Territory',
-          path: [{ id: '10', label: 'Australia' }],
-          type: 'Territory',
-        },
-        {
-          id: '2',
-          label: 'Victoria',
-          path: [{ id: '10', label: 'Australia' }],
-          type: 'State',
-        },
-      ],
-    };
-    this.setPickerSearchValue = this.setPickerSearchValue.bind(this);
-  }
+  state = {
+    selectedSearchValue: '',
+    itemType: 'segment value',
+    selectedNodes: [],
+    pickerSearchValue: '',
+    subTree: [
+      {
+        id: '0',
+        label: 'Northern Territory',
+        path: [{ id: '10', label: 'Australia' }],
+        type: 'Territory',
+      },
+      {
+        id: '1',
+        label: 'Australian Capital Territory',
+        path: [{ id: '10', label: 'Australia' }],
+        type: 'Territory',
+      },
+      {
+        id: '2',
+        label: 'Victoria',
+        path: [{ id: '10', label: 'Australia' }],
+        type: 'State',
+      },
+    ],
+  };
 
-  setPickerSearchValue(newValue) {
-    this.setState({ pickerSearchValue: newValue });
-    this.setState({
-      treePickerPureSubtree: _.filter(this.state.subTree, ({ label }) => {
-        if (newValue) {
-          return _.includes(label.toLowerCase(), newValue.toLowerCase());
+  setPickerSearchValue = newValue => this.setState({ pickerSearchValue: newValue });
+
+  pickerSearchOnClear = () => this.setPickerSearchValue('');
+
+  getSelectedNodes = () => {
+    if (_.isEmpty(this.state.selectedSearchValue)) return this.state.selectedNodes;
+
+    return _.filter(this.state.selectedNodes, ({ label }) =>
+      _.includes(label.toLowerCase(), this.state.selectedSearchValue.toLowerCase())
+    );
+  };
+
+  getSubtree = () => {
+    const { pickerSearchValue, selectedSearchValue } = this.state;
+    let treePickerPureSubtree = [];
+
+    // filter out nodes that do not contain search string
+    if (!_.isEmpty(pickerSearchValue)) {
+      treePickerPureSubtree = _.filter(this.state.subTree, ({ label }) =>
+        _.includes(label.toLowerCase(), pickerSearchValue.toLowerCase())
+      );
+    }
+
+    // filter out nodes that do not contain the selected search string
+    // however keep the nodes that are not selected but do not contain the selected search string
+    if (!_.isEmpty(selectedSearchValue)) {
+      treePickerPureSubtree = _.filter(treePickerPureSubtree, ({ id, label }) => {
+        if (_.find(this.state.selectedNodes, { id })) {
+          return _.includes(label.toLowerCase(), selectedSearchValue.toLowerCase());
         }
-        return false;
-      }),
-    });
-  }
 
-  pickerSearchOnClear() {
-    this.setPickerSearchValue('');
-  }
+        return true;
+      });
+    }
+
+    return treePickerPureSubtree;
+  };
 
   render() {
     return (
       <TreePickerSimplePure
         itemType={this.state.itemType}
         hideIcon
-        selectedNodes={this.state.selectedNodes}
-        subtree={this.state.treePickerPureSubtree}
+        selectedNodes={this.getSelectedNodes()}
+        subtree={this.getSubtree()}
         emptySelectedListText={
           <div>
             <b>Choose items of interest</b>
@@ -74,6 +92,11 @@ class TreePickerExample extends React.Component {
         includeNode={node => this.setState({ selectedNodes: _.concat([], this.state.selectedNodes, node) })}
         removeNode={node => this.setState({ selectedNodes: _.reject(this.state.selectedNodes, { id: node.id }) })}
         additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
+        selectedTopSearch={
+          <div className="selected-search">
+            <Search onSearch={selectedSearchValue => this.setState({ selectedSearchValue })} />
+          </div>
+        }
       />
     );
   }
@@ -89,18 +112,25 @@ const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: `
-  <TreePickerSimplePure
-    itemType={this.state.itemType}
-    hideIcon
-    selectedNodes={[]}
-    subtree={this.state.treePickerPureSubtree}
-    emptySelectedListText={<div><b>Choose items of interest</b></div>}
-    initialStateNode={<div><b>Start by searching for items</b></div>}
-    searchValue={this.state.pickerSearchValue}
-    onChange={this.setPickerSearchValue}
-    searchOnClear={this.pickerSearchOnClear}
-    additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
-  />`,
+<TreePickerSimplePure
+  itemType={this.state.itemType}
+  hideIcon
+  selectedNodes={this.getSelectedNodes()}
+  subtree={this.getSubtree()}
+  emptySelectedListText={<div><b>Choose items of interest</b></div>}
+  initialStateNode={<div><b>Start by searching for items</b></div>}
+  searchValue={this.state.pickerSearchValue}
+  onChange={this.setPickerSearchValue}
+  searchOnClear={this.pickerSearchOnClear}
+  includeNode={node => this.setState({ selectedNodes: _.concat([], this.state.selectedNodes, node) })}
+  removeNode={node => this.setState({ selectedNodes: _.reject(this.state.selectedNodes, { id: node.id }) })}
+  additionalClassNames={this.state.pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
+  selectedTopSearch={
+    <div className="selected-search">
+      <Search onSearch={selectedSearchValue => this.setState({ selectedSearchValue })} />
+    </div>
+  }
+/>`,
   propTypeSectionArray: [
     {
       propTypes: [
@@ -287,6 +317,12 @@ const exampleProps = {
           propType: 'hideSearchOnRoot',
           type: 'bool',
           defaultValue: <code>false</code>,
+        },
+        {
+          propType: 'selectedTopSearch',
+          type: 'node',
+          note:
+            'A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component.',
         },
       ],
     },
