@@ -1,3 +1,5 @@
+const borderColour = '#ababab';
+
 const defaultStyle = {
   option: (styles, { isFocused, isSelected, isDisabled }) => {
     let backgroundColor;
@@ -29,12 +31,13 @@ const defaultStyle = {
     ...styles,
     ...(state.isFocused
       ? {
-          boxShadow: '0 0 0 1px #cccccc',
-          ':hover': { borderColor: '#cccccc' },
-          borderColor: '#cccccc',
+          boxShadow: 0,
+          ':hover': { borderColor: borderColour },
+          borderColor: borderColour,
         }
       : {}),
     minHeight: 26,
+    borderRadius: 0,
   }),
   clearIndicator: styles => ({
     ...styles,
@@ -64,6 +67,12 @@ const defaultStyle = {
   menu: styles => ({
     ...styles,
     zIndex: 1060,
+    borderRadius: 0,
+    marginTop: 4,
+  }),
+  noOptionsMessage: styles => ({
+    ...styles,
+    textAlign: 'left',
   }),
 };
 
