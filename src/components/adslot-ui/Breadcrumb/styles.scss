@@ -21,7 +21,7 @@
     }
   }
 
-  &.disabled {
+  &.breadcrumb-component--disabled {
     color: $color-text-disabled;
     pointer-events: none;
   }

@@ -4,8 +4,8 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Search from 'adslot-ui/Search';
 import TreePickerNavComponent from 'adslot-ui/TreePicker/Nav';
-import Breadcrumb from 'alexandria/Breadcrumb';
-import BreadcrumbNode from 'alexandria/Breadcrumb/Node';
+import Breadcrumb from 'adslot-ui/Breadcrumb';
+import BreadcrumbNode from 'adslot-ui/Breadcrumb/Node';
 
 describe('TreePickerNavComponent', () => {
   const testFunction = _.noop;

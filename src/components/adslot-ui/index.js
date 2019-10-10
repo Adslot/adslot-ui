@@ -1,6 +1,7 @@
 import Accordion from 'adslot-ui/Accordion';
 import AlertInput from 'adslot-ui/AlertInput';
 import ButtonGroup from 'adslot-ui/ButtonGroup';
+import Breadcrumb from 'adslot-ui/Breadcrumb';
 import Carousel from 'adslot-ui/Carousel';
 import Checkbox from 'adslot-ui/Checkbox';
 import CheckboxGroup from 'adslot-ui/CheckboxGroup';
@@ -42,6 +43,7 @@ export {
   ActionPanel,
   AlertInput,
   ButtonGroup,
+  Breadcrumb,
   Carousel,
   Checkbox,
   CheckboxGroup,

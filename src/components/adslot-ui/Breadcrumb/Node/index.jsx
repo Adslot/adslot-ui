@@ -16,7 +16,7 @@ const BreadcrumbNode = ({ isLast, node, onClick }) => {
   );
 };
 
-BreadcrumbNode.displayName = 'AlexandriaBreadcrumbNodeComponent';
+BreadcrumbNode.displayName = 'AdslotUiBreadcrumbNodeComponent';
 
 BreadcrumbNode.propTypes = {
   isLast: PropTypes.bool.isRequired,

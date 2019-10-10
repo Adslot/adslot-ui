@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import Search from 'adslot-ui/Search';
-import Breadcrumb from 'alexandria/Breadcrumb';
+import Breadcrumb from 'adslot-ui/Breadcrumb';
 import SvgSymbol from 'alexandria/SvgSymbol';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 

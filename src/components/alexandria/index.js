@@ -1,7 +1,6 @@
 import Alert from 'alexandria/Alert';
 import Avatar from 'alexandria/Avatar';
 import BorderedWell from 'alexandria/BorderedWell';
-import Breadcrumb from 'alexandria/Breadcrumb';
 import Card from 'alexandria/Card';
 import Empty from 'alexandria/Empty';
 import FlexibleSpacer from 'alexandria/FlexibleSpacer';
@@ -23,7 +22,6 @@ export {
   Alert,
   Avatar,
   BorderedWell,
-  Breadcrumb,
   Card,
   Empty,
   FlexibleSpacer,
