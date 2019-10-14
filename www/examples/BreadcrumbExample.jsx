@@ -20,7 +20,7 @@ class BreadcrumbExample extends React.Component {
   }
 
   onClickHandler(nodeId) {
-    if (nodeId === 'all') this.navigateToRootNode();
+    if (nodeId === 'another-all') this.navigateToRootNode();
     else this.navigateToNode(nodeId);
   }
 
@@ -47,7 +47,13 @@ class BreadcrumbExample extends React.Component {
         </Button>
       );
     }
-    return <Breadcrumb nodes={this.state.breadcrumbNodes} onClick={this.onClickHandler} />;
+    return (
+      <Breadcrumb
+        rootNode={{ id: 'another-all', label: 'Custom All' }}
+        nodes={this.state.breadcrumbNodes}
+        onClick={this.onClickHandler}
+      />
+    );
   }
 }
 
@@ -60,14 +66,18 @@ const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: `
-    <Breadcrumb
-      nodes={this.state.breadcrumbNodes}
-      onClick={this.onClickHandler}
-    />
-  `,
+<Breadcrumb
+  rootNode={{ id: 'another-all', label: 'Custom All' }}
+  nodes={this.state.breadcrumbNodes}
+  onClick={this.onClickHandler}
+/>`,
   propTypeSectionArray: [
     {
       propTypes: [
+        {
+          propType: 'rootNode',
+          type: '{ string: id, string: label }',
+        },
         {
           propType: 'nodes',
           type: 'arrayOf { string: id, string: label }',

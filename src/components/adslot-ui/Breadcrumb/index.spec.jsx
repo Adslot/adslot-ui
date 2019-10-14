@@ -3,7 +3,7 @@ import React from 'react';
 import _ from 'lodash';
 import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
-import BreadcrumbNode from 'alexandria/Breadcrumb/Node';
+import BreadcrumbNode from './Node';
 import Breadcrumb from '.';
 
 describe('Breadcrumb', () => {
@@ -85,7 +85,9 @@ describe('Breadcrumb', () => {
       component = mount(<Breadcrumb {...props} />);
     });
 
-    it('should have disabled class', () => expect(component.childAt(0).hasClass('disabled')).to.equal(true));
+    it('should have disabled class', () => {
+      expect(component.childAt(0).hasClass('breadcrumb-component--disabled')).to.equal(true);
+    });
 
     it('should not call props.onClick when clicked on breadcrumbs node', () => {
       const allLinkElement = component.children().first();
