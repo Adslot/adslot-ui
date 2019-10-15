@@ -8,6 +8,10 @@ describe('ButtonComponent', () => {
   it('should render Bootstrap Button', () => {
     const wrapper = shallow(<Button>Test</Button>);
     expect(wrapper.find(BootstrapButton)).to.have.length(1);
+    expect(wrapper.prop('className')).to.equal('button-component');
+    expect(wrapper.find(Spinner)).to.have.length(0);
+    wrapper.simulate('mouseOver');
+    expect(wrapper.find(Popover)).to.have.length(0);
   });
 
   it('should pass through Bootstrap Button props', () => {

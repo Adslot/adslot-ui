@@ -12,6 +12,7 @@ describe('ButtonGroupComponent', () => {
       </ButtonGroup>
     );
     expect(wrapper.find(ButtonGroup)).to.have.length(1);
+    expect(wrapper.find(Button)).to.have.length(2);
   });
 
   it('should override child Button style', () => {
@@ -81,5 +82,19 @@ describe('ButtonGroupComponent', () => {
       </ButtonGroup>
     );
     expect(wrapper.find(ButtonGroup)).to.have.length(1);
+    expect(wrapper.find(Button)).to.have.length(0);
+  });
+
+  it('should apply dts to button group', () => {
+    const wrapper = mount(
+      <ButtonGroup dts="button-group">
+        <Button dts="button-test-1">Test1</Button>
+        <Button dts="button-test-2">Test2</Button>
+      </ButtonGroup>
+    );
+    console.log(wrapper.debug());
+    expect(wrapper.find("[data-test-selector='button-group']")).to.have.length(1);
+    expect(wrapper.find(Button).find("[data-test-selector='button-test-1']")).to.have.length(1);
+    expect(wrapper.find(Button).find("[data-test-selector='bbutton-test-2']")).to.have.length(1);
   });
 });
