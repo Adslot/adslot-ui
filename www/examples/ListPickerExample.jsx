@@ -20,6 +20,14 @@ const listPickerItemHeaders = {
   toggle: 'Primary',
   addon: 'Secondary',
 };
+const itemInfo = {
+  label: 'Company Details',
+  properties: [
+    { label: 'Name', value: 'Paperworks Ltd.' },
+    { label: 'Location', value: 'Melbourne' },
+    { label: 'Department', value: 'Legal' },
+  ],
+};
 
 class UncontrolledCheckbox extends React.PureComponent {
   constructor() {
@@ -54,26 +62,51 @@ class ListPickerExample extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <ListPicker
-          allowMultiSelection={false}
-          initialSelection={listPickerInitialSelection}
-          itemHeaders={listPickerItemHeaders}
-          items={listPickerItems}
-          itemType="user"
-          labelFormatter={labelFormatter}
-          addonFormatter={addonFormatter}
-          modalClose={this.toggleListPickerModal}
-          modalApply={this.toggleListPickerModal}
-          modalDescription="Please select the user that you want."
-          modalFootnote="You can select one user."
-          modalTitle="Select User"
-          show={this.state.showListPickerModal}
-        />
-        <Button bsStyle="primary" className="btn-inverse" onClick={this.toggleListPickerModal}>
-          Request Approval
-        </Button>
-      </div>
+      <React.Fragment>
+        <h3>List Picker</h3>
+        <div>
+          <ListPicker
+            allowMultiSelection={false}
+            initialSelection={listPickerInitialSelection}
+            itemHeaders={listPickerItemHeaders}
+            items={listPickerItems}
+            itemType="user"
+            labelFormatter={labelFormatter}
+            addonFormatter={addonFormatter}
+            modalClose={this.toggleListPickerModal}
+            modalApply={this.toggleListPickerModal}
+            modalDescription="Please select the user that you want."
+            modalFootnote="You can select one user."
+            modalTitle="Select User"
+            show={this.state.showListPickerModal}
+          />
+          <Button bsStyle="primary" className="btn-inverse" onClick={this.toggleListPickerModal}>
+            Request Approval
+          </Button>
+        </div>
+        <h3>List Picker With Info Pane</h3>
+        <div>
+          <ListPicker
+            allowMultiSelection={false}
+            initialSelection={listPickerInitialSelection}
+            itemHeaders={listPickerItemHeaders}
+            items={listPickerItems}
+            itemInfo={itemInfo}
+            itemType="user"
+            labelFormatter={labelFormatter}
+            addonFormatter={addonFormatter}
+            modalClose={this.toggleListPickerModal}
+            modalApply={this.toggleListPickerModal}
+            modalDescription="Please select the user that you want."
+            modalFootnote="You can select one user."
+            modalTitle="Select User"
+            show={this.state.showListPickerModal}
+          />
+          <Button bsStyle="primary" className="btn-inverse" onClick={this.toggleListPickerModal}>
+            Request Approval
+          </Button>
+        </div>
+      </React.Fragment>
     );
   }
 }
@@ -87,21 +120,39 @@ const exampleProps = {
     </p>
   ),
   exampleCodeSnippet: `
-    <ListPicker
-      allowMultiSelection={false}
-      initialSelection={listPickerInitialSelection}
-      itemHeaders={listPickerItemHeaders}
-      items={listPickerItems}
-      itemType="user"
-      labelFormatter={labelFormatter}
-      addonFormatter={addonFormatter}
-      modalClose={this.toggleListPickerModal}
-      modalApply={this.toggleListPickerModal}
-      modalDescription="Please select the user that you want."
-      modalFootnote="You can select one user."
-      modalTitle="Select User"
-      show={this.state.showListPickerModal}
-    />
+List Picker
+<ListPicker
+  allowMultiSelection={false}
+  initialSelection={listPickerInitialSelection}
+  itemHeaders={listPickerItemHeaders}
+  items={listPickerItems}
+  itemType="user"
+  labelFormatter={labelFormatter}
+  addonFormatter={addonFormatter}
+  modalClose={this.toggleListPickerModal}
+  modalApply={this.toggleListPickerModal}
+  modalDescription="Please select the user that you want."
+  modalFootnote="You can select one user."
+  modalTitle="Select User"
+  show={this.state.showListPickerModal}
+/>
+List Picker With Info Pane
+<ListPicker
+  allowMultiSelection={false}
+  initialSelection={listPickerInitialSelection}
+  itemHeaders={listPickerItemHeaders}
+  items={listPickerItems}
+  itemInfo={itemInfo}
+  itemType="user"
+  labelFormatter={labelFormatter}
+  addonFormatter={addonFormatter}
+  modalClose={this.toggleListPickerModal}
+  modalApply={this.toggleListPickerModal}
+  modalDescription="Please select the user that you want."
+  modalFootnote="You can select one user."
+  modalTitle="Select User"
+  show={this.state.showListPickerModal}
+/>
   `,
   propTypeSectionArray: [
     {
