@@ -18,6 +18,7 @@ export const removeSelected = ({ subtree, selectedNodes }) => {
 
 const TreePickerSimplePureComponent = ({
   additionalClassNames,
+  breadcrumbRootNode,
   breadcrumbNodes,
   breadcrumbOnClick,
   debounceInterval,
@@ -65,6 +66,7 @@ const TreePickerSimplePureComponent = ({
         {hideSearchOnRoot && _.isEmpty(breadcrumbNodes) ? null : (
           <TreePickerNav
             {...{
+              breadcrumbRootNode,
               breadcrumbNodes,
               breadcrumbOnClick,
               debounceInterval,
@@ -127,6 +129,7 @@ TreePickerSimplePureComponent.displayName = 'AdslotUiTreePickerSimplePureCompone
 
 TreePickerSimplePureComponent.propTypes = {
   additionalClassNames: PropTypes.arrayOf(PropTypes.string),
+  breadcrumbRootNode: TreePickerPropTypes.breadCrumbNode,
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode.isRequired),
   breadcrumbOnClick: PropTypes.func,
   debounceInterval: PropTypes.number,
