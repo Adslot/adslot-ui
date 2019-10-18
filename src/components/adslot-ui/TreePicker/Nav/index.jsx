@@ -9,6 +9,7 @@ import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 require('./styles.scss');
 
 const TreePickerNavComponent = ({
+  breadcrumbRootNode,
   breadcrumbNodes,
   breadcrumbOnClick,
   debounceInterval,
@@ -29,6 +30,13 @@ const TreePickerNavComponent = ({
   if (svgSymbolCancel)
     icons.close = <SvgSymbol href={svgSymbolCancel.href} classSuffixes={svgSymbolCancel.classSuffixes} />;
 
+  const breadcrumbProps = {
+    disabled,
+    nodes: breadcrumbNodes,
+    onClick: breadcrumbOnClick,
+    rootNode: breadcrumbRootNode,
+  };
+
   return (
     <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
       <Search
@@ -43,13 +51,14 @@ const TreePickerNavComponent = ({
         value={searchValue}
         placeholder={searchPlaceholder || 'Search'}
       />
-      <Breadcrumb disabled={disabled} nodes={breadcrumbNodes} onClick={breadcrumbOnClick} />
+      <Breadcrumb {...breadcrumbProps} />
     </div>
   );
 };
 
 TreePickerNavComponent.displayName = 'AdslotUiTreePickerNavComponent';
 TreePickerNavComponent.propTypes = {
+  breadcrumbRootNode: TreePickerPropTypes.breadCrumbNode,
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,

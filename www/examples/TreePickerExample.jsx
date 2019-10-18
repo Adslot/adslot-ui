@@ -140,6 +140,11 @@ const exampleProps = {
           note: 'Class Names for SplitPane component',
         },
         {
+          propType: 'breadcrumbRootNode',
+          type: '{ id: string/number, label: string }',
+          note: 'Optional. This prop allows customization of the Breadcrumb root node',
+        },
+        {
           propType: 'breadcrumbNodes',
           type: 'arrayOf { id: string/number, label: string }',
           note: `returns node id. This prop is not required,
