@@ -40,7 +40,13 @@ class SwitchExample extends React.PureComponent {
           </div>
         </div>
         <div>
-          <div className="component-heading">Disabled Switch</div>
+          <div className="component-heading">Disabled Un-Checked Switch</div>
+          <div className="component-container">
+            <Switch disabled />
+          </div>
+        </div>
+        <div>
+          <div className="component-heading">Disabled Checked Switch</div>
           <div className="component-container">
             <Switch checked disabled />
           </div>
@@ -57,6 +63,7 @@ const exampleProps = {
     <Switch defaultValue />
     <Switch defaultChecked onChange={(nextState) => func(nextState)} />
     <Switch checked onChange={(nextState) => func(nextState)} />
+    <Switch disabled />
     <Switch checked disabled />
   `,
   propTypeSectionArray: [
