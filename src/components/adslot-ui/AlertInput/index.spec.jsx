@@ -166,6 +166,27 @@ describe('AlertInput', () => {
       expect(suffixElement.text()).to.equal('.00');
     });
 
+    it('should render with disabled input', () => {
+      const props = {
+        value: 10000,
+        disabled: true,
+        prefixAddon: '$',
+        suffixAddon: '.00',
+      };
+      const wrapper = shallow(<AlertInput {...props} />);
+
+      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      expect(componentWrapper.children()).to.have.length(3);
+
+      const prefixElement = componentWrapper.childAt(0);
+      expect(prefixElement.text()).to.equal('$');
+
+      const suffixElement = componentWrapper.childAt(2);
+      expect(suffixElement.text()).to.equal('.00');
+
+      expect(wrapper.find('.alert-input-component--disabled')).to.have.lengthOf(1);
+    });
+
     it('should render with alert status', () => {
       const props = {
         alertStatus: 'error',

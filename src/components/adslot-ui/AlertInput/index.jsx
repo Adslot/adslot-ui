@@ -54,6 +54,7 @@ export default class AlertInput extends Component {
       className: customClass,
       dts,
       defaultValue,
+      disabled,
       value,
       type,
       min,
@@ -87,7 +88,7 @@ export default class AlertInput extends Component {
           theme={theme}
         >
           <div
-            className={className}
+            className={classnames(className, { [`${baseClass}--disabled`]: disabled })}
             data-test-selector={dts}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
@@ -102,6 +103,7 @@ export default class AlertInput extends Component {
                 min={min}
                 placeholder={placeholder}
                 onChange={onValueChange}
+                disabled={disabled}
                 onFocus={this.handleInputFocus}
                 onBlur={this.handleInputBlur}
               />
@@ -118,6 +120,7 @@ AlertInput.propTypes = {
   className: PropTypes.string,
   dts: PropTypes.string,
   defaultValue: PropTypes.string,
+  disabled: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   type: PropTypes.oneOf(['text', 'number']),
   min: PropTypes.number,
@@ -133,4 +136,5 @@ AlertInput.propTypes = {
 
 AlertInput.defaultProps = {
   type: 'text',
+  disabled: false,
 };

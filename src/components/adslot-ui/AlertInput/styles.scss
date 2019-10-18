@@ -61,6 +61,22 @@
     }
   }
 
+  &--disabled {
+    background-color: $color-gray-lighter;
+
+    .alert-input-component-wrapper {
+      &-input {
+        &:disabled {
+          background-color: $color-gray-lighter;
+        }
+      }
+
+      &-addon {
+        color: $color-gray;
+      }
+    }
+  }
+
   &-popover {
     border-radius: 4px;
     box-shadow: none;

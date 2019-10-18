@@ -99,6 +99,11 @@ const exampleProps = {
           type: 'string',
         },
         {
+          propType: 'disabled',
+          type: 'bool',
+          defaultValue: 'false',
+        },
+        {
           propType: 'value',
           type: 'string|number',
         },
