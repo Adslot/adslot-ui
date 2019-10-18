@@ -1,11 +1,6 @@
 @import '~styles/color';
 @import '~styles/variable';
 
-$color-switch-background-off: $color-light-red;
-$color-switch-background-on: $color-light-green;
-$color-switch-circle-off: $color-dark-red;
-$color-switch-circle-on: $color-dark-green;
-
 .aui--switch-label {
   position: relative;
   display: inline-block;
@@ -26,8 +21,11 @@ $color-switch-circle-on: $color-dark-green;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $color-switch-background-off;
+  background-color: $color-white;
   transition: .4s;
+  border-style: solid;
+  border-color: $color-gray;
+  border-width: thin;
 }
 
 .aui--switch-slider::before {
@@ -35,27 +33,28 @@ $color-switch-circle-on: $color-dark-green;
   content: '';
   height: 12px;
   width: 12px;
-  margin-left: 4px;
-  margin-top: 4px;
-  background-color: $color-switch-circle-off;
+  margin-left: 3px;
+  margin-top: 3px;
+  background-color: $color-blue;
   transition: .4s;
 }
 
-input:checked + .aui--switch-slider {
-  background-color: $color-light-green;
-}
+input {
+  &:checked + .aui--switch-slider {
+    background-color: $color-blue-light;
+  }
 
-input:checked + .aui--switch-slider::before {
-  background-color: $color-dark-green;
-  transform: translateX(20px);
-}
+  &:checked + .aui--switch-slider::before {
+    transform: translateX(20px);
+  }
 
-input:disabled + .aui--switch-slider {
-  background-color: $color-gray-light;
-}
+  &:disabled + .aui--switch-slider {
+    background-color: $color-gray-light;
+  }
 
-input:disabled + .aui--switch-slider::before {
-  background-color: $color-gray-dark;
+  &:disabled + .aui--switch-slider::before {
+    background-color: $color-gray-dark;
+  }
 }
 
 .aui--switch-slider.round {
@@ -65,4 +64,3 @@ input:disabled + .aui--switch-slider::before {
 .aui--switch-slider.round::before {
   border-radius: 50%;
 }
-
