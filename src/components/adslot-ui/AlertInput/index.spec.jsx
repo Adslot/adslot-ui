@@ -143,11 +143,10 @@ describe('AlertInput', () => {
     });
 
     it('should also render with default props', () => {
-      expect(
-        shallow(<AlertInput />)
-          .find('input')
-          .prop('type')
-      ).to.equal('text');
+      const wrapper = shallow(<AlertInput />);
+
+      expect(wrapper.find('input').prop('type')).to.equal('text');
+      expect(wrapper.find('Popover').prop('placement')).to.equal('bottom');
     });
 
     it('should render with addons', () => {
@@ -206,6 +205,15 @@ describe('AlertInput', () => {
 
       wrapper.setProps({ alertStatus: 'warning' });
       expect(wrapper.find('Popover').prop('theme')).to.equal('warn');
+    });
+
+    it('should set correct popoverPlacement position for popover', () => {
+      const props = {
+        popoverPlacement: 'left',
+      };
+
+      const wrapper = shallow(<AlertInput {...props} />);
+      expect(wrapper.find('Popover').prop('placement')).to.equal('left');
     });
   });
 });
