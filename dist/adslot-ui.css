@@ -10000,28 +10000,6 @@ strong {
   background-color: #fff;
   border: 1px solid #e8e8e8; }
 
-.breadcrumbnode-component-link {
-  cursor: pointer; }
-  .breadcrumbnode-component-link:hover, .breadcrumbnode-component-link:active {
-    color: #0492ba;
-    text-decoration: underline; }
-
-.breadcrumb-component {
-  color: #49afcd;
-  cursor: default;
-  font-size: 12px;
-  font-weight: 300;
-  height: 10px;
-  line-height: 10px; }
-  .breadcrumb-component-link {
-    cursor: pointer; }
-    .breadcrumb-component-link:hover, .breadcrumb-component-link:active {
-      color: #0492ba;
-      text-decoration: underline; }
-  .breadcrumb-component.disabled {
-    color: #ababab;
-    pointer-events: none; }
-
 .card-component {
   font-size: 12px;
   margin-bottom: 28px;
@@ -10518,6 +10496,13 @@ strong {
     .alert-input-component-wrapper-addon:last-child {
       margin-left: 2px; }
 
+.alert-input-component--disabled {
+  background-color: #e8e8e8; }
+  .alert-input-component--disabled .alert-input-component-wrapper-input:disabled {
+    background-color: #e8e8e8; }
+  .alert-input-component--disabled .alert-input-component-wrapper-addon {
+    color: #ababab; }
+
 .alert-input-component-popover {
   border-radius: 4px;
   -webkit-box-shadow: none;
@@ -10556,6 +10541,28 @@ strong {
 
 button + .aui--button-group {
   margin-left: 20px; }
+
+.breadcrumbnode-component-link {
+  cursor: pointer; }
+  .breadcrumbnode-component-link:hover, .breadcrumbnode-component-link:active {
+    color: #0492ba;
+    text-decoration: underline; }
+
+.breadcrumb-component {
+  color: #49afcd;
+  cursor: default;
+  font-size: 12px;
+  font-weight: 300;
+  height: 10px;
+  line-height: 10px; }
+  .breadcrumb-component-link {
+    cursor: pointer; }
+    .breadcrumb-component-link:hover, .breadcrumb-component-link:active {
+      color: #0492ba;
+      text-decoration: underline; }
+  .breadcrumb-component.breadcrumb-component--disabled {
+    color: #ababab;
+    pointer-events: none; }
 
 .carousel-component .slider-control-centerleft {
   height: 100%; }
@@ -11374,26 +11381,28 @@ button + .aui--button-group {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f8dcdb;
+  background-color: #fff;
   -webkit-transition: .4s;
-  transition: .4s; }
+  transition: .4s;
+  border-style: solid;
+  border-color: #ababab;
+  border-width: thin; }
 
 .aui--switch-slider::before {
   position: absolute;
   content: '';
   height: 12px;
   width: 12px;
-  margin-left: 4px;
-  margin-top: 4px;
-  background-color: #da4f49;
+  margin-left: 3px;
+  margin-top: 3px;
+  background-color: #006dcc;
   -webkit-transition: .4s;
   transition: .4s; }
 
 input:checked + .aui--switch-slider {
-  background-color: #def1de; }
+  background-color: #e0f0ff; }
 
 input:checked + .aui--switch-slider::before {
-  background-color: #5bb75b;
   -webkit-transform: translateX(20px);
           transform: translateX(20px); }
 
