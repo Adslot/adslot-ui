@@ -141,6 +141,11 @@ const exampleProps = {
           ),
         },
         {
+          propType: 'popoverPlacement',
+          type: "oneOf: 'left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'",
+          defaultValue: 'bottom',
+        },
+        {
           propType: 'alertMessage',
           type: 'string',
         },

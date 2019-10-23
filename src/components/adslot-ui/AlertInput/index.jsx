@@ -54,6 +54,7 @@ export default class AlertInput extends Component {
       className: customClass,
       dts,
       defaultValue,
+      popoverPlacement,
       disabled,
       value,
       type,
@@ -83,7 +84,7 @@ export default class AlertInput extends Component {
           isOpen={this.state.isPopoverVisible && !_.isEmpty(alertMessage)}
           triggers={['disabled']}
           popoverContent={<strong>{alertMessage}</strong>}
-          placement="bottom"
+          placement={popoverPlacement}
           popoverClassNames={popoverClassName}
           theme={theme}
         >
@@ -128,6 +129,16 @@ AlertInput.propTypes = {
   prefixAddon: PropTypes.node,
   suffixAddon: PropTypes.node,
   alertStatus: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
+  popoverPlacement: PropTypes.oneOf([
+    'left',
+    'top',
+    'top-start',
+    'top-end',
+    'bottom-start',
+    'bottom',
+    'bottom-end',
+    'right',
+  ]),
   alertMessage: PropTypes.string,
   onValueChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -137,4 +148,5 @@ AlertInput.propTypes = {
 AlertInput.defaultProps = {
   type: 'text',
   disabled: false,
+  popoverPlacement: 'bottom',
 };
