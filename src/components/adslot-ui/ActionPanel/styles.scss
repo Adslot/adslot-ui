@@ -36,6 +36,7 @@
     height: 48px;
     color: $color-gray-darkest;
     padding: 12px;
+    padding-left: 18px;
     border-bottom: $border-lighter;
     display: flex;
     justify-content: space-between;
@@ -97,7 +98,11 @@
       .actions {
         .btn {
           &:hover {
-            color: $color-blue;
+            color: $color-blue;    
+          }
+
+          &.close-button:hover {
+            color: $color-gray-darker;
           }
 
           svg {
