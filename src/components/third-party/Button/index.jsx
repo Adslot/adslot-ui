@@ -12,7 +12,7 @@ import './styles.scss';
 
 const adslotButtonPropTypes = {
   inverse: PropTypes.bool,
-  reason: PropTypes.string,
+  reason: PropTypes.node,
   dts: PropTypes.string,
   isLoading: PropTypes.bool,
 };
