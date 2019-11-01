@@ -18,7 +18,7 @@ ActionButton.propTypes = {
   actionIconSvgHref: PropTypes.string,
 };
 
-const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIconSvgHref }) => {
+const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIconSvgHref, dts: customDts }) => {
   const classes = classnames([
     defaultComponentClass,
     {
@@ -28,9 +28,10 @@ const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIconSvg
       [`${baseClass}`]: baseClass !== defaultComponentClass,
     },
   ]);
+  const dts = customDts || `tag-${id}`;
 
   return (
-    <span className={classes} data-test-selector={`tag-${id}`}>
+    <span className={classes} data-test-selector={dts}>
       {children}
       {onAction ? <ActionButton {...{ onAction, id, actionIconSvgHref }} /> : null}
     </span>
@@ -47,6 +48,7 @@ Tag.propTypes = {
   inverse: PropTypes.bool,
   onAction: PropTypes.func,
   actionIconSvgHref: PropTypes.string,
+  dts: PropTypes.string,
 };
 
 Tag.defaultProps = {

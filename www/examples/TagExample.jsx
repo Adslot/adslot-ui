@@ -104,6 +104,12 @@ const exampleProps = {
           defaultValue: 'default',
         },
         {
+          propType: 'dts',
+          type: 'string',
+          defaultValue: 'tag-{id}',
+          note: 'render `data-test-selector` onto the component. It can be useful for testing.',
+        },
+        {
           propType: 'accent',
           type: 'string',
         },
