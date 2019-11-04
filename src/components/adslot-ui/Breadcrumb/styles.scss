@@ -1,13 +1,11 @@
 @import '~styles/color';
 @import '~styles/font-size';
-@import '~styles/font-weight';
 
 .breadcrumb-component {
   $breadcrumb-height: 10px;
   color: $color-link;
   cursor: default;
   font-size: $font-size-body;
-  font-weight: $font-weight-light;
   height: $breadcrumb-height;
   line-height: $breadcrumb-height;
 

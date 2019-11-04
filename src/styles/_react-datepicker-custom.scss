@@ -5,7 +5,6 @@
 // sass-lint:disable class-name-format
 .react-datepicker {
   $datepicker-font-family: $font-family-sans-serif;
-  $datepicker-font-weight: $font-weight-light;
   $datepicker-font-size: $font-size-base;
   $datepicker-icon-size: 24px;
   $datepicker-border-color: $color-border-light;
@@ -19,7 +18,6 @@
   box-shadow: 0 2px 0 $color-modal-shadow;
   font-family: $datepicker-font-family;
   font-size: $datepicker-font-size;
-  font-weight: $datepicker-font-weight;
   padding: 8px;
 
   &__header {
@@ -58,7 +56,7 @@
 
   &__current-month {
     color: $color-text-form;
-    font-weight: $datepicker-font-weight;
+    font-weight: $font-weight-normal;
     font-size: $datepicker-font-size;
     margin-top: -7px;
   }
