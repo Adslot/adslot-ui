@@ -42,8 +42,8 @@ class ButtonGroupExample extends React.PureComponent {
             </Button>
           </Popover>
         </ButtonGroup>
-        <ButtonGroup bsStyle="primary">
-          <Button>Sign off</Button>
+        <ButtonGroup bsStyle="primary" dts="button-group">
+          <Button dts="button-sign-off">Sign off</Button>
           <Button onClick={() => alert('>I am a Alert on click!')}>
             <SvgSymbol className="svg-icon" href="./assets/svg-symbols.svg#caret-down" />
           </Button>
