@@ -7,7 +7,7 @@
   $modal-header-footer-left-padding: 15px;
   $modal-footer-padding: 6px;
 
-  font-weight: $font-weight-light;
+  font-weight: $font-weight-normal;
 
   &-title {
     font-weight: $font-weight-bold;
@@ -56,7 +56,7 @@
     }
 
     > label {
-      font-weight: $font-weight-light;
+      font-weight: $font-weight-normal;
       color: $color-text-label;
       margin-bottom: 0;
       line-height: $modal-header-footer-height - ($modal-footer-padding * 2);

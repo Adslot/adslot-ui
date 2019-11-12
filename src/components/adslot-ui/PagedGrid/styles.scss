@@ -1,5 +1,4 @@
 @import '~styles/border';
-@import '~styles/font-weight';
 
 .pagedgrid-component {
   .grid-component-cell {
@@ -18,7 +17,6 @@
 
     &-info {
       display: inline-block;
-      font-weight: $font-weight-light;
       line-height: 28px;
       margin: 18px 10px;
     }
