@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import fastStatelessWrapper from 'adslot-ui/fastStatelessWrapper';
 import TreePickerNode from 'adslot-ui/TreePicker/Node';
 import Empty from 'alexandria/Empty';
 import Grid from 'alexandria/Grid';
@@ -11,8 +10,6 @@ import Spinner from 'alexandria/Spinner';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 
 require('./styles.scss');
-
-export const TreePickerNodeFast = fastStatelessWrapper(TreePickerNode, ['node.id', 'disabled', 'selected']);
 
 const TreePickerGridComponent = ({
   disabled,
@@ -48,7 +45,7 @@ const TreePickerGridComponent = ({
               </div>
             ) : null}
             {_.map(groupedNodes, node => (
-              <TreePickerNodeFast
+              <TreePickerNode
                 key={node.id}
                 {...{
                   disabled,

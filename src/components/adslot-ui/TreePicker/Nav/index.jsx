@@ -21,6 +21,7 @@ const TreePickerNavComponent = ({
   searchOnEnter,
   searchPlaceholder,
   searchValue,
+  showSearch,
   svgSymbolCancel,
   svgSymbolSearch,
 }) => {
@@ -39,18 +40,20 @@ const TreePickerNavComponent = ({
 
   return (
     <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
-      <Search
-        disabled={disabled}
-        debounceInterval={debounceInterval}
-        isLoading={isLoading}
-        onClear={onClear}
-        onChange={onChange}
-        onSearch={onSearch}
-        searchOnEnter={searchOnEnter}
-        icons={icons}
-        value={searchValue}
-        placeholder={searchPlaceholder || 'Search'}
-      />
+      {showSearch && (
+        <Search
+          disabled={disabled}
+          debounceInterval={debounceInterval}
+          isLoading={isLoading}
+          onClear={onClear}
+          onChange={onChange}
+          onSearch={onSearch}
+          searchOnEnter={searchOnEnter}
+          icons={icons}
+          value={searchValue}
+          placeholder={searchPlaceholder || 'Search'}
+        />
+      )}
       <Breadcrumb {...breadcrumbProps} />
     </div>
   );
@@ -70,6 +73,7 @@ TreePickerNavComponent.propTypes = {
   searchOnEnter: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   searchValue: PropTypes.string,
+  showSearch: PropTypes.bool,
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
 };
@@ -80,6 +84,7 @@ TreePickerNavComponent.defaultProps = {
   isLoading: false,
   searchOnEnter: false,
   searchPlaceholder: '',
+  showSearch: true,
   onSearch: _.noop,
 };
 

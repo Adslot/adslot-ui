@@ -45,6 +45,7 @@ const TreePickerSimplePureComponent = ({
   searchPlaceholder,
   searchValue,
   selectedNodes,
+  showSearch,
   subtree,
   svgSymbolCancel,
   svgSymbolSearch,
@@ -78,6 +79,7 @@ const TreePickerSimplePureComponent = ({
               searchOnEnter,
               searchPlaceholder,
               searchValue,
+              showSearch,
               svgSymbolCancel,
               svgSymbolSearch,
             }}
@@ -156,6 +158,7 @@ TreePickerSimplePureComponent.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchValue: PropTypes.string,
   selectedNodes: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired).isRequired,
+  showSearch: PropTypes.bool,
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
   svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
   svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
@@ -171,6 +174,7 @@ TreePickerSimplePureComponent.defaultProps = {
   displayGroupHeader: true,
   isLoading: false,
   searchOnEnter: false,
+  showSearch: true,
   hideSearchOnRoot: false,
 };
 

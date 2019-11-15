@@ -291,6 +291,12 @@ const exampleProps = {
           note: 'required',
         },
         {
+          propType: 'showSearch',
+          type: 'bool',
+          defaultValue: <code>true</code>,
+          note: 'Show or hide the search field on the selection pane',
+        },
+        {
           propType: 'subtree',
           type: 'arrayOf Treepicker Nodes',
           note: `A list of available unselected nodes. This prop is not required,

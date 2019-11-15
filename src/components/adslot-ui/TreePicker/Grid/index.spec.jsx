@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import { shallow } from 'enzyme';
-import TreePickerGrid, { TreePickerNodeFast } from 'adslot-ui/TreePicker/Grid';
+import TreePickerGrid from 'adslot-ui/TreePicker/Grid';
+import TreePickerNode from 'adslot-ui/TreePicker/Node';
 import { Empty, Grid, Spinner } from 'alexandria';
 import TreePickerMocks from 'adslot-ui/TreePicker/mocks';
 
@@ -84,7 +85,7 @@ describe('TreePickerGridComponent', () => {
             .text()
         ).to.equal(node.id);
 
-        const nodeElement = groupElement.find(TreePickerNodeFast);
+        const nodeElement = groupElement.find(TreePickerNode);
         expect(nodeElement.prop('expandNode')).to.equal(props.expandNode);
         expect(nodeElement.prop('includeNode')).to.equal(props.includeNode);
         expect(nodeElement.prop('removeNode')).to.equal(props.removeNode);
