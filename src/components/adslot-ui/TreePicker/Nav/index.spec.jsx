@@ -7,17 +7,20 @@ import TreePickerNavComponent from 'adslot-ui/TreePicker/Nav';
 import Breadcrumb from 'adslot-ui/Breadcrumb';
 import BreadcrumbNode from 'adslot-ui/Breadcrumb/Node';
 
+const testFunction = _.noop;
+const breadcrumbNodes = [{ id: 'a', label: 'UK' }, { id: 'b', label: 'London' }];
+
+const mockProps = overrides => ({
+  breadcrumbNodes,
+  breadcrumbOnClick: testFunction,
+  onChange: testFunction,
+  onClear: testFunction,
+  searchValue: 'needle',
+  disabled: false,
+  ...overrides,
+});
+
 describe('TreePickerNavComponent', () => {
-  const testFunction = _.noop;
-  const breadcrumbNodes = [{ id: 'a', label: 'UK' }, { id: 'b', label: 'London' }];
-  const props = {
-    breadcrumbNodes,
-    breadcrumbOnClick: testFunction,
-    onChange: testFunction,
-    onClear: testFunction,
-    searchValue: 'needle',
-    disabled: false,
-  };
   let sandbox = null;
 
   before(() => {
@@ -42,7 +45,7 @@ describe('TreePickerNavComponent', () => {
   });
 
   it('should render with props', () => {
-    const component = shallow(<TreePickerNavComponent {...props} />);
+    const component = shallow(<TreePickerNavComponent {...mockProps()} />);
     expect(component.hasClass('treepickernav-component')).to.equal(true);
     expect(component.hasClass('disabled')).to.equal(false);
     expect(component.children()).to.have.length(2);
@@ -65,13 +68,14 @@ describe('TreePickerNavComponent', () => {
       href: '/assets/svg-symbols.svg#search',
     };
     const component = shallow(
-      <TreePickerNavComponent {...props} svgSymbolSearch={svgSymbolSearch} svgSymbolCancel={svgSymbolCancel} />
+      <TreePickerNavComponent {...mockProps()} svgSymbolSearch={svgSymbolSearch} svgSymbolCancel={svgSymbolCancel} />
     );
     const searchElement = component.find(Search);
     expect(searchElement.prop('icons')).to.have.keys(['search', 'close']);
   });
 
   it('should call breadcrumbOnClick when clicked on breadcrumbs node', () => {
+    const props = mockProps();
     sandbox.spy(props, 'breadcrumbOnClick');
     const component = mount(<TreePickerNavComponent {...props} />);
     const breadcrumbElement = component.find(Breadcrumb);
@@ -81,16 +85,21 @@ describe('TreePickerNavComponent', () => {
     expect(props.breadcrumbOnClick.calledOnce).to.equal(true);
   });
 
+  it('should hide the search when showSearch is false', () => {
+    const component = mount(<TreePickerNavComponent {...mockProps({ showSearch: false })} />);
+    expect(component.find(Search)).to.have.length(0);
+  });
+
   describe('disabled', () => {
     let component = null;
     let breadcrumbElement = null;
     let breadcrumbNodeElement = null;
-    let disabledProps = null;
+    let props = null;
 
     beforeEach(() => {
-      disabledProps = _.assign({}, props, { disabled: true });
+      props = mockProps({ disabled: true });
       sandbox.spy(props, 'breadcrumbOnClick');
-      component = mount(<TreePickerNavComponent {...disabledProps} />);
+      component = mount(<TreePickerNavComponent {...props} />);
       breadcrumbElement = component.find(Breadcrumb);
       breadcrumbNodeElement = breadcrumbElement.find(BreadcrumbNode);
     });

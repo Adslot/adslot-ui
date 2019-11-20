@@ -26,30 +26,24 @@ const printAncestorText = node =>
 
 const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
 
-class TreePickerNodeComponent extends React.Component {
-  constructor(props) {
-    if (_.isUndefined(props.node.path) && _.isUndefined(props.node.ancestors)) {
-      throw new Error(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors' for ${props.node}`);
-    }
+class TreePickerNodeComponent extends React.PureComponent {
+  state = {
+    isLoading: false,
+  };
 
-    super(props);
+  setLoadingAndExpandNode = () => {
+    this.setState({ isLoading: true }, () => this.props.expandNode(this.props.node));
+  };
 
-    this.state = {
-      isLoading: false,
-    };
-    this.setLoadingAndExpandNode = this.setLoadingAndExpandNode.bind(this);
-    this.includeNodeBound = this.props.includeNode.bind(this, this.props.node);
-    this.removeNodeBound = this.props.removeNode.bind(this, this.props.node);
-    if (this.props.expandNode) this.expandNodeBound = this.props.expandNode.bind(this, this.props.node);
-  }
+  handleRemove = () => this.props.removeNode(this.props.node);
 
-  setLoadingAndExpandNode() {
-    this.setState({ isLoading: true }, this.expandNodeBound);
-  }
+  handleInclude = () => this.props.includeNode(this.props.node);
 
   render() {
     const { disabled, itemType, node, expandNode, nodeRenderer, selected, valueFormatter } = this.props;
-
+    if (_.isUndefined(node.path) && _.isUndefined(node.ancestors)) {
+      throw new Error(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors' for ${node}`);
+    }
     const isChildNode = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors));
     const isExpandable = expandNode && node.isExpandable;
 
@@ -70,7 +64,7 @@ class TreePickerNodeComponent extends React.Component {
                 block
                 bsSize="xsmall"
                 className="btn-inverse"
-                onClick={this.removeNodeBound}
+                onClick={this.handleRemove}
                 disabled={disabled || node.isSelectable === false}
               >
                 −
@@ -100,7 +94,7 @@ class TreePickerNodeComponent extends React.Component {
                 block
                 bsSize="xsmall"
                 className="btn-inverse"
-                onClick={this.includeNodeBound}
+                onClick={this.handleInclude}
                 disabled={disabled || node.isSelectable === false || this.state.isLoading}
               >
                 +
@@ -135,6 +129,7 @@ TreePickerNodeComponent.defaultProps = {
   removeNode: node => {
     throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);
   },
+  expandNode: _.noop,
   selected: false,
   valueFormatter: value => value,
   nodeRenderer: node => node.label,
