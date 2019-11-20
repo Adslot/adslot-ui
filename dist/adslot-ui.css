@@ -71,7 +71,6 @@ body > .btn-popover-wrapper[data-placement*='bottom'] {
   z-index: 1060;
   max-width: 276px;
   font-size: 12px;
-  font-weight: 300;
   border: 1px solid #e8e8e8;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
@@ -4597,7 +4596,7 @@ button.close {
 .checkbox label,
 .radio label,
 .radiogroup-stacked label {
-  font-weight: 300;
+  font-weight: 400;
   padding-top: 1px; }
 
 .checkbox .icheckbox,
@@ -4632,7 +4631,7 @@ input[type="radio"] {
 
 .icheckbox + span,
 .iradio + span {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .icheckbox:not(.disabled) + span,
 .iradio:not(.disabled) + span {
@@ -4652,7 +4651,7 @@ input[type="radio"] {
   font-weight: 700; }
 
 .form-group .checkbox label {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .form-control, .form-control:focus {
   -webkit-box-shadow: none;
@@ -4662,7 +4661,7 @@ input[type="radio"] {
   outline: 0; }
 
 .form-control, .form-control-static {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .form-btn-footer {
   text-align: right; }
@@ -4678,7 +4677,7 @@ label {
   color: #5a5a5a; }
 
 .input-group-addon {
-  font-weight: 300;
+  font-weight: 400;
   padding: 4px 5px; }
   .input-group-addon:first-child {
     padding-left: 0; }
@@ -4687,7 +4686,7 @@ label {
 
 .help-block {
   color: #ababab;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 8px; }
 
 .form-horizontal .control-label .help-block {
@@ -4697,7 +4696,7 @@ label {
   padding: 30px 30px 0; }
 
 .modal {
-  font-weight: 300; }
+  font-weight: 400; }
   .modal-title {
     font-weight: 700; }
   .modal-content {
@@ -4726,7 +4725,7 @@ label {
     .modal-footer > .pull-left {
       float: left; }
     .modal-footer > label {
-      font-weight: 300;
+      font-weight: 400;
       color: #838383;
       margin-bottom: 0;
       line-height: 28px; }
@@ -4757,7 +4756,7 @@ label {
       color: #838383;
       cursor: pointer;
       display: inline-block;
-      font-weight: 300;
+      font-weight: 400;
       margin-right: 0;
       padding: 8px 15px 7px;
       text-shadow: none;
@@ -9674,7 +9673,7 @@ button.close {
 .checkbox label,
 .radio label,
 .radiogroup-stacked label {
-  font-weight: 300;
+  font-weight: 400;
   padding-top: 1px; }
 
 .checkbox .icheckbox,
@@ -9709,7 +9708,7 @@ input[type="radio"] {
 
 .icheckbox + span,
 .iradio + span {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .icheckbox:not(.disabled) + span,
 .iradio:not(.disabled) + span {
@@ -9729,7 +9728,7 @@ input[type="radio"] {
   font-weight: 700; }
 
 .form-group .checkbox label {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .form-control, .form-control:focus {
   -webkit-box-shadow: none;
@@ -9739,7 +9738,7 @@ input[type="radio"] {
   outline: 0; }
 
 .form-control, .form-control-static {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .form-btn-footer {
   text-align: right; }
@@ -9755,7 +9754,7 @@ label {
   color: #5a5a5a; }
 
 .input-group-addon {
-  font-weight: 300;
+  font-weight: 400;
   padding: 4px 5px; }
   .input-group-addon:first-child {
     padding-left: 0; }
@@ -9764,7 +9763,7 @@ label {
 
 .help-block {
   color: #ababab;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 8px; }
 
 .form-horizontal .control-label .help-block {
@@ -9774,7 +9773,7 @@ label {
   padding: 30px 30px 0; }
 
 .modal {
-  font-weight: 300; }
+  font-weight: 400; }
   .modal-title {
     font-weight: 700; }
   .modal-content {
@@ -9803,7 +9802,7 @@ label {
     .modal-footer > .pull-left {
       float: left; }
     .modal-footer > label {
-      font-weight: 300;
+      font-weight: 400;
       color: #838383;
       margin-bottom: 0;
       line-height: 28px; }
@@ -9834,7 +9833,7 @@ label {
       color: #838383;
       cursor: pointer;
       display: inline-block;
-      font-weight: 300;
+      font-weight: 400;
       margin-right: 0;
       padding: 8px 15px 7px;
       text-shadow: none;
@@ -9872,11 +9871,9 @@ strong {
   -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
           box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
   font-family: Roboto, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  padding: 8px; }
+  font-size: 12px; }
   .react-datepicker__header {
-    background-color: #fff;
+    background-color: #f9f9f9;
     border-bottom: 0; }
   .react-datepicker, .react-datepicker__day, .react-datepicker__day-name {
     color: #5a5a5a; }
@@ -9891,15 +9888,19 @@ strong {
         border-radius: 2px; }
     .react-datepicker__day--in-range, .react-datepicker__day__day--in-range, .react-datepicker__day-name__day--in-range {
       color: #fff; }
+  .react-datepicker__day, .react-datepicker__day-name {
+    width: 22.8px;
+    line-height: 22.8px;
+    margin: 1.992px; }
+  .react-datepicker__month {
+    margin: 8.4px; }
   .react-datepicker__current-month {
     color: #5a5a5a;
-    font-weight: 300;
-    font-size: 12px;
-    margin-top: -7px; }
+    font-size: 12px; }
   .react-datepicker__navigation {
+    width: 24px;
     height: 24px;
-    top: 5px;
-    width: 24px; }
+    top: 4.8px; }
   .react-datepicker__navigation--next {
     border: 0;
     right: 7px; }
@@ -9949,6 +9950,12 @@ strong {
       padding-right: 4px; }
       .react-datepicker__input-container input::-ms-clear {
         display: none; }
+
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle, .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+  border-bottom-color: #f9f9f9; }
+
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+  border-bottom-color: #d3d3d3; }
 
 .alert-component {
   color: #fff;
@@ -10038,7 +10045,6 @@ strong {
     padding: 20px 20px 0; }
     .card-component-content.append {
       color: #ababab;
-      font-weight: 300;
       padding: 5px 1px 0; }
     .card-component-content.stretch {
       padding-left: 0;
@@ -10152,7 +10158,6 @@ strong {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   font-size: 12px;
-  font-weight: 300;
   line-height: 1.5;
   vertical-align: top;
   width: 100%; }
@@ -10265,7 +10270,7 @@ strong {
     font-weight: 700; }
   .statistic-component-label {
     color: #838383;
-    font-weight: 300; }
+    font-weight: 400; }
   .statistic-component + .statistic-component {
     margin-top: 5px; }
   .statistic-component.inline .statistic-component-label,
@@ -10285,7 +10290,6 @@ strong {
   display: -ms-inline-flexbox;
   display: inline-flex;
   font-size: 12px;
-  font-weight: 300;
   margin-right: 5px;
   min-height: 24px;
   padding: 0 5px;
@@ -10433,8 +10437,6 @@ strong {
       position: relative;
       width: 22px;
       fill: #333; }
-  .panel-component-content {
-    font-weight: 300; }
   .panel-component-header, .panel-component-content {
     padding: 20px; }
   .panel-component.collapsed {
@@ -10552,7 +10554,6 @@ button + .aui--button-group {
   color: #49afcd;
   cursor: default;
   font-size: 12px;
-  font-weight: 300;
   height: 10px;
   line-height: 10px; }
   .breadcrumb-component-link {
@@ -10607,7 +10608,7 @@ button + .aui--button-group {
   display: block; }
   .checkbox-component label {
     cursor: pointer;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 0;
     display: -ms-flexbox;
     display: flex; }
@@ -10747,7 +10748,7 @@ button + .aui--button-group {
 
 .radio-component label {
   line-height: 16px;
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
   margin-bottom: 0;
   display: -ms-flexbox;
@@ -10800,7 +10801,6 @@ button + .aui--button-group {
       justify-content: flex-end; }
   .pagedgrid-component-pagination-info {
     display: inline-block;
-    font-weight: 300;
     line-height: 28px;
     margin: 18px 10px; }
 
@@ -10818,20 +10818,15 @@ button + .aui--button-group {
     border-radius: 2px;
     width: inherit; }
     .aui--search-component .aui--search-component-input::-webkit-input-placeholder {
-      color: #ababab;
-      font-weight: 300; }
+      color: #ababab; }
     .aui--search-component .aui--search-component-input::-moz-placeholder {
-      color: #ababab;
-      font-weight: 300; }
+      color: #ababab; }
     .aui--search-component .aui--search-component-input:-ms-input-placeholder {
-      color: #ababab;
-      font-weight: 300; }
+      color: #ababab; }
     .aui--search-component .aui--search-component-input::-ms-input-placeholder {
-      color: #ababab;
-      font-weight: 300; }
+      color: #ababab; }
     .aui--search-component .aui--search-component-input::placeholder {
-      color: #ababab;
-      font-weight: 300; }
+      color: #ababab; }
     .aui--search-component .aui--search-component-input:active, .aui--search-component .aui--search-component-input:focus {
       border-color: #ababab;
       outline: 0; }
@@ -11090,7 +11085,6 @@ button + .aui--button-group {
   -ms-flex-direction: row;
       flex-direction: row;
   font-size: 12px;
-  font-weight: 300;
   padding: 0;
   height: 50px; }
   .nav-borderless > li {
@@ -11272,6 +11266,7 @@ button + .aui--button-group {
     height: 48px;
     color: #333;
     padding: 12px;
+    padding-left: 18px;
     border-bottom: 1px solid #e8e8e8;
     display: -ms-flexbox;
     display: flex;
@@ -11327,6 +11322,8 @@ button + .aui--button-group {
       border: 0; }
       .aui--action-panel-header.has-actions .actions .btn:hover {
         color: #006dcc; }
+      .aui--action-panel-header.has-actions .actions .btn.close-button:hover {
+        color: #5a5a5a; }
       .aui--action-panel-header.has-actions .actions .btn svg {
         fill: #fff; }
       .aui--action-panel-header.has-actions .actions .btn:hover {
