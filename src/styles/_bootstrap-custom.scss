@@ -64,6 +64,10 @@
 @import './bootstrapOverrides/Modal';
 @import './bootstrapOverrides/Nav';
 
+body {
+  color: $color-gray-darker;
+}
+
 b,
 strong {
   font-weight: $font-weight-bold;
