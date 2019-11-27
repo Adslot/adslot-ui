@@ -129,7 +129,6 @@ TreePickerNodeComponent.defaultProps = {
   removeNode: node => {
     throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);
   },
-  expandNode: _.noop,
   selected: false,
   valueFormatter: value => value,
   nodeRenderer: node => node.label,

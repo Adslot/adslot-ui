@@ -215,6 +215,19 @@ describe('TreePickerNodeComponent', () => {
     expect(props.expandNode.callCount).to.eql(0);
   });
 
+  it('should not show the expander element when the node is expandable and no expandNode is given', () => {
+    const props = {
+      node: _.defaults({ isExpandable: true }, cbrNode),
+      itemType,
+    };
+
+    const component = shallow(<TreePickerNode {...props} />);
+    const rowElement = component.find({
+      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
+    });
+    expect(rowElement.find(TreePickerNodeExpander)).to.have.length(0);
+  });
+
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
     const includeNode = node => nodes.push(node);
