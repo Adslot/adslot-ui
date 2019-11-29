@@ -4785,6 +4785,9 @@ label {
   .nav-tabs .flexible-wrapper-inline > .flexible-spacer-component {
     min-width: 8px; }
 
+body {
+  color: #5a5a5a; }
+
 b,
 strong {
   font-weight: 700; }
@@ -9861,6 +9864,9 @@ label {
       border-right: 1px solid #e8e8e8; }
   .nav-tabs .flexible-wrapper-inline > .flexible-spacer-component {
     min-width: 8px; }
+
+body {
+  color: #5a5a5a; }
 
 b,
 strong {
