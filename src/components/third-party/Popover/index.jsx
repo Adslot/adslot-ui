@@ -72,25 +72,14 @@ class Popover extends React.PureComponent {
 
   referenceRef = React.createRef();
 
+  elementRef = React.createRef();
+
   render() {
     const { theme, title, children, className, dts, popoverClassNames, popoverContent } = this.props;
     const themeClass = _.includes(themes, theme) ? `popover-${theme}` : 'popover-light';
     const elementClass = classnames('aui--popover-element', className);
     const popoverClass = classnames('aui--popover-wrapper', themeClass, popoverClassNames);
     const triggers = _.flattenDeep([this.props.triggers]);
-
-    let arrowStyles = {};
-    switch (true) {
-      case _.includes(['bottom-start', 'top-start'], this.props.placement):
-        arrowStyles = { left: 12 };
-        break;
-      case _.includes(['bottom-end', 'top-end'], this.props.placement):
-        arrowStyles = { left: 'auto', right: 12 };
-        break;
-      default:
-        arrowStyles = {};
-    }
-    arrowStyles = { ...arrowStyles, ...this.props.arrowStyles }; // let user override default configuration
 
     const popoverElement = this.state.isPopoverOpen
       ? ReactDOM.createPortal(
@@ -103,8 +92,9 @@ class Popover extends React.PureComponent {
             dts={dts}
             title={title}
             popoverContent={popoverContent}
-            arrowStyles={arrowStyles}
+            arrowStyles={this.props.arrowStyles}
             innerRef={this.props.popperRef}
+            refElement={this.elementRef.current}
           />,
           this.getBoundedContainer()
         )
@@ -113,10 +103,10 @@ class Popover extends React.PureComponent {
     return (
       <Manager>
         <Reference innerRef={this.referenceRef}>
-          {({ ref }) => (
+          {() => (
             <span
               className={elementClass}
-              ref={ref}
+              ref={this.elementRef}
               {...(triggers.includes('disabled')
                 ? {}
                 : {

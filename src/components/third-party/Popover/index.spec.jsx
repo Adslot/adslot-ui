@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
 import { Manager, Popper } from 'react-popper';
 import { Popover } from 'third-party';
+import { renderArrowStyles } from './Popper';
 
 describe('Popover Component', () => {
   let wrapper;
@@ -212,36 +213,6 @@ describe('Popover Component', () => {
     expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-light')).to.equal(true);
   });
 
-  it('should render custom arrow styles if placement is `bottom-start` or `top-start`', () => {
-    wrapper = mount(
-      <div>
-        <Popover
-          id="popover-example"
-          theme="some-random-theme"
-          popoverContent={<div />}
-          placement="bottom-start"
-          isOpen
-        >
-          Test message
-        </Popover>
-      </div>
-    );
-
-    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 12 });
-  });
-
-  it('should render custom arrow styles if placement is `bottom-end` or `top-end`', () => {
-    wrapper = mount(
-      <div>
-        <Popover id="popover-example" theme="some-random-theme" popoverContent={<div />} placement="bottom-end" isOpen>
-          Test message
-        </Popover>
-      </div>
-    );
-
-    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 'auto', right: 12 });
-  });
-
   it('should render popover when content is function', () => {
     wrapper = mount(
       <div>
@@ -326,7 +297,18 @@ describe('Popover Component', () => {
 });
 
 describe('Popover.WithRef component', () => {
-  const virtualReferenceElement = React.createElement('div');
+  let virtualReferenceElement;
+
+  before(() => {
+    virtualReferenceElement = document.createElement('div');
+    virtualReferenceElement.style.height = '100px';
+    virtualReferenceElement.style.width = '100px';
+    document.body.appendChild(virtualReferenceElement);
+  });
+
+  after(() => {
+    document.body.removeChild(virtualReferenceElement);
+  });
 
   it('should render without error', () => {
     const wrapper = mount(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />);
@@ -371,11 +353,26 @@ describe('Popover.WithRef component', () => {
     expect(wrapper.find('.aui--popover-wrapper').hasClass('extra-class')).to.equal(true);
     expect(wrapper.find('.aui--popover-wrapper').prop('data-test-selector')).to.equal('popover-example');
     expect(wrapper.find('.popover-title').text()).to.equal('Big Bang');
-    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql(arrowStyles);
+    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 'auto', right: 12, ...arrowStyles });
     expect(wrapper.find(Popper).prop('placement')).to.eql('bottom-end');
     _.forOwn(wrapperStyles, (value, key) => {
       expect(wrapper.find('.aui--popover-wrapper').prop('style')).to.have.property(key, value);
     });
+  });
+
+  it('should add custom styles to `-start` placement', () => {
+    const arrowStyles = { color: 'ref' };
+    const wrapper = mount(
+      <Popover.WithRef
+        popoverClassNames="extra-class"
+        popoverContent={<div />}
+        refElement={virtualReferenceElement}
+        arrowStyles={arrowStyles}
+        placement="bottom-start"
+        isOpen
+      />
+    );
+    expect(wrapper.find('.aui--popover-arrow').prop('style')).to.eql({ left: 12, ...arrowStyles });
   });
 
   it('should default to light theme on invalid theme prop', () => {
@@ -405,5 +402,75 @@ describe('Popover.WithRef component', () => {
     );
 
     expect(getContainer.calledOnce).to.equal(true);
+  });
+});
+
+describe('renderArrowStyles()', () => {
+  const defaultArrowStyles = { color: 'red' };
+  let anchorEl;
+
+  before(() => {
+    anchorEl = document.createElement('div');
+    anchorEl.style.height = '100px';
+    anchorEl.style.width = '100px';
+    document.body.appendChild(anchorEl);
+  });
+
+  after(() => {
+    document.body.removeChild(anchorEl);
+  });
+
+  it('should add styles for `bottom-start` and `top-start` placements', () => {
+    expect(renderArrowStyles('bottom-start', defaultArrowStyles, anchorEl)).to.eql({
+      left: 12,
+      ...defaultArrowStyles,
+    });
+    expect(renderArrowStyles('top-start', defaultArrowStyles, anchorEl)).to.eql({
+      left: 12,
+      ...defaultArrowStyles,
+    });
+  });
+
+  it('should add styles for `bottom-end` and `top-end` placements', () => {
+    expect(renderArrowStyles('bottom-end', defaultArrowStyles, anchorEl)).to.eql({
+      left: 'auto',
+      right: 12,
+      ...defaultArrowStyles,
+    });
+    expect(renderArrowStyles('top-end', defaultArrowStyles, anchorEl)).to.eql({
+      left: 'auto',
+      right: 12,
+      ...defaultArrowStyles,
+    });
+  });
+
+  it('should add styles for `left-start` and `right-start` placements', () => {
+    expect(renderArrowStyles('left-start', defaultArrowStyles, anchorEl)).to.eql({
+      top: 12,
+      ...defaultArrowStyles,
+    });
+    expect(renderArrowStyles('right-start', defaultArrowStyles, anchorEl)).to.eql({
+      top: 12,
+      ...defaultArrowStyles,
+    });
+
+    // do nothing if container does not exist
+    expect(renderArrowStyles('left-start', defaultArrowStyles)).to.eql(defaultArrowStyles);
+  });
+
+  it('should add styles for `left-end` and `right-end` placements', () => {
+    expect(renderArrowStyles('left-end', defaultArrowStyles, anchorEl)).to.eql({
+      top: 'auto',
+      bottom: 12,
+      ...defaultArrowStyles,
+    });
+    expect(renderArrowStyles('right-end', defaultArrowStyles, anchorEl)).to.eql({
+      top: 'auto',
+      bottom: 12,
+      ...defaultArrowStyles,
+    });
+
+    // do nothing if container does not exist
+    expect(renderArrowStyles('left-end', defaultArrowStyles)).to.eql(defaultArrowStyles);
   });
 });

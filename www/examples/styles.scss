@@ -87,15 +87,8 @@
           margin-left: 5px;
         }
 
-        .placement-checkbox,
-        .theme-checkbox,
-        .example-button,
-        .trigger-checkbox,
         .disabled-popover {
           display: flex;
-        }
-
-        .disabled-popover {
           height: 28px;
 
           .checkbox-component {
@@ -135,6 +128,18 @@
           }
         }
       }
+    }
+  }
+
+  &.popover-with-ref-example {
+    .external-anchor {
+      margin-top: 100px;
+      width: 100px;
+      height: 100px;
+      border: $border-lighter;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 

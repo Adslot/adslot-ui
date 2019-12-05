@@ -1,7 +1,8 @@
+import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
-import _ from 'lodash';
-import { Checkbox, Button, Popover } from '../../src';
+import { Checkbox, Radio, RadioGroup, Button, Popover } from '../../src';
+import { popoverPlacements, themes } from '../../src/components/third-party/Popover/constants';
 
 class PopoverExample extends React.PureComponent {
   state = {
@@ -11,8 +12,6 @@ class PopoverExample extends React.PureComponent {
     isOpen: false,
   };
 
-  placements = ['left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'];
-  themes = ['light', 'dark', 'warn', 'error', 'info', 'success'];
   triggers = ['hover', 'click'];
 
   renderPopoverContent = content => (
@@ -22,9 +21,9 @@ class PopoverExample extends React.PureComponent {
     </div>
   );
 
-  handlePlacements = (state, placement) => this.setState({ placement });
-  handleThemes = (state, theme) => this.setState({ theme });
-  handleTriggers = (state, trigger) => this.setState({ trigger });
+  handlePlacement = placement => this.setState({ placement });
+  handleTheme = theme => this.setState({ theme });
+  handleTrigger = trigger => this.setState({ trigger });
   togglePopover = () =>
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
@@ -39,54 +38,36 @@ class PopoverExample extends React.PureComponent {
         <div className="button-example-container">
           <h3>Popover over element</h3>
           <label>Placements</label>
-          <div className="placement-checkbox">
-            {_.map(this.placements, (placement, index) => (
-              <Checkbox
-                key={index}
-                onChange={this.handlePlacements}
-                value={this.state.placement}
-                name={placement}
-                label={placement}
-                checked={this.state.placement === placement}
-              />
+          <RadioGroup inline name="placement" value={this.state.placement} onChange={this.handlePlacement}>
+            {popoverPlacements.map(placement => (
+              <Radio key={placement} value={placement} label={placement} />
             ))}
-          </div>
+          </RadioGroup>
+
           <label>Themes</label>
-          <div className="theme-checkbox">
-            {_.map(this.themes, (theme, index) => (
-              <Checkbox
-                key={index}
-                onChange={this.handleThemes}
-                value={this.state.theme}
-                name={theme}
-                label={theme}
-                checked={this.state.theme === theme}
-              />
+          <RadioGroup inline name="theme" value={this.state.theme} onChange={this.handleTheme}>
+            {themes.map(theme => (
+              <Radio key={theme} value={theme} label={theme} />
             ))}
-          </div>
+          </RadioGroup>
+
           <label>Triggers</label>
-          <div className="trigger-checkbox">
-            {_.map(this.triggers, (trigger, index) => (
-              <Checkbox
-                key={index}
-                onChange={this.handleTriggers}
-                value={this.state.trigger}
-                name={trigger}
-                label={trigger}
-                checked={this.state.trigger === trigger}
-              />
+          <RadioGroup inline name="trigger" value={this.state.trigger} onChange={this.handleTrigger}>
+            {this.triggers.map(trigger => (
+              <Radio key={trigger} value={trigger} label={trigger} />
             ))}
-          </div>
+          </RadioGroup>
+
           <div className="disabled-popover">
             You can also&nbsp;
             <Checkbox
-              onChange={this.handleTriggers}
-              value={'disabled'}
-              name={'disabled'}
-              label={'Disable'}
+              onChange={() => this.handleTrigger('disabled')}
+              value="disabled"
+              name="disabled"
+              label="Disable"
               checked={this.state.trigger === 'disabled'}
             />
-            &nbsp; the triggers and control the popover with external events
+            &nbsp;the triggers and control the popover with external events
             {this.state.trigger === 'disabled' && (
               <Button onClick={this.togglePopover}>{this.state.isOpen ? 'Close' : 'Open'} Popover</Button>
             )}

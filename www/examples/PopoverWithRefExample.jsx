@@ -1,15 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Example from '../components/Example';
-import _ from 'lodash';
-import { Button, Popover } from '../../src';
+import { Button, Popover, RadioGroup, Radio } from '../../src';
+import { popoverPlacements } from '../../src/components/third-party/Popover/constants';
 
 class PopoverWithRefExample extends React.PureComponent {
   state = {
     isOpen: false,
+    placement: 'left',
   };
 
   myRef = React.createRef();
+
+  handlePlacement = placement => this.setState({ placement });
 
   togglePopover = () =>
     this.setState(prevState => ({
@@ -18,28 +20,35 @@ class PopoverWithRefExample extends React.PureComponent {
 
   render() {
     return (
-      <>
+      <React.Fragment>
+        <label>Placements</label>
+        <RadioGroup inline name="placement" value={this.state.placement} onChange={this.handlePlacement}>
+          {popoverPlacements.map(placement => (
+            <Radio key={placement} value={placement} label={placement} />
+          ))}
+        </RadioGroup>
+
         <Button onClick={this.togglePopover}>Toggle Popover</Button>
-        <div style={{ marginTop: 20 }} ref={this.myRef}>
+        <div className="external-anchor" ref={this.myRef}>
           Anchor
         </div>
         {this.state.isOpen && (
           <Popover.WithRef
             refElement={this.myRef.current}
-            placement="left"
+            placement={this.state.placement}
             title="Popover title"
             theme="dark"
             popoverContent="My initial positioning is left"
             isOpen={this.state.isOpen}
           />
         )}
-      </>
+      </React.Fragment>
     );
   }
 }
 
 const exampleProps = {
-  componentName: 'Popover With External Ref',
+  componentName: 'Popover With Ref',
   exampleCodeSnippet: `
     <Button onClick={this.togglePopover}>Toggle Popover</Button>
     <div ref={this.myRef}>Anchor</div>
