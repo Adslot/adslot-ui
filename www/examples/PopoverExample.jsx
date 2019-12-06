@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import Example from '../components/Example';
 import { Checkbox, Radio, RadioGroup, Button, Popover } from '../../src';
-import { popoverPlacements, themes } from '../../src/components/third-party/Popover/constants';
+import { popoverPlacements, themes } from '../../src/components/Popover/constants';
 
 class PopoverExample extends React.PureComponent {
   state = {

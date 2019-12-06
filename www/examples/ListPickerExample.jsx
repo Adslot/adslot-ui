@@ -1,7 +1,6 @@
 import React from 'react';
-import Checkbox from 'adslot-ui/Checkbox';
+import { Checkbox, ListPicker, Button } from 'adslot-ui';
 import Example from '../components/Example';
-import { ListPicker, Button } from '../../src';
 
 const teamMember1 = {
   avatar: '//lorempixel.com/35/35/people/7',

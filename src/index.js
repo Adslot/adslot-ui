@@ -1,9 +1,5 @@
 // Export the consumable components.
 import DatePicker from 'react-datepicker';
-
-// React Bootstrap
-import { Button, Popover } from 'third-party';
-
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -16,69 +12,66 @@ import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
 import 'styles/_react-datepicker-custom.scss';
 
-import {
-  Alert,
-  Avatar,
-  BorderedWell,
-  Card,
-  Empty,
-  FlexibleSpacer,
-  Grid,
-  GridCell,
-  GridRow,
-  PageTitle,
-  PrettyDiff,
-  Slicey,
-  Spinner,
-  Statistic,
-  SvgSymbol,
-  SvgSymbolCircle,
-  Tag,
-  TileGrid,
-  Totals,
-} from 'alexandria';
-
-import {
-  Accordion,
-  ActionPanel,
-  AlertInput,
-  ButtonGroup,
-  Breadcrumb,
-  Carousel,
-  Checkbox,
-  CheckboxGroup,
-  ConfirmModal,
-  CountBadge,
-  fastStatelessWrapper,
-  FilePicker,
-  FormGroup,
-  HelpIconPopover,
-  ListPicker,
-  ListPickerPure,
-  Nav,
-  PagedGrid,
-  Panel,
-  Radio,
-  RadioGroup,
-  Search,
-  Select,
-  SplitPane,
-  StatusPill,
-  Switch,
-  Tab,
-  Tabs,
-  Textarea,
-  TextEllipsis,
-  TreePickerGrid,
-  TreePickerNav,
-  TreePickerNode,
-  TreePickerSimplePure,
-  UserListPicker,
-  InformationBox,
-  HoverDropdownMenu,
-  OverlayLoader,
-  VerticalNav,
-} from 'adslot-ui';
+import Button from './components/Button';
+import Popover from './components/Popover';
+import Alert from './components/Alert';
+import Avatar from './components/Avatar';
+import BorderedWell from './components/BorderedWell';
+import Card from './components/Card';
+import Empty from './components/Empty';
+import FlexibleSpacer from './components/FlexibleSpacer';
+import Grid from './components/Grid';
+import GridCell from './components/Grid/Cell';
+import GridRow from './components/Grid/Row';
+import PageTitle from './components/PageTitle';
+import PrettyDiff from './components/PrettyDiff';
+import Slicey from './components/Slicey';
+import Spinner from './components/Spinner';
+import Statistic from './components/Statistic';
+import SvgSymbol from './components/SvgSymbol';
+import SvgSymbolCircle from './components/SvgSymbol/Circle';
+import Tag from './components/Tag';
+import TileGrid from './components/TileGrid';
+import Totals from './components/Totals';
+import Accordion from './components/Accordion';
+import ActionPanel from './components/ActionPanel';
+import AlertInput from './components/AlertInput';
+import ButtonGroup from './components/ButtonGroup';
+import Breadcrumb from './components/Breadcrumb';
+import Carousel from './components/Carousel';
+import Checkbox from './components/Checkbox';
+import CheckboxGroup from './components/CheckboxGroup';
+import ConfirmModal from './components/ConfirmModal';
+import CountBadge from './components/CountBadge';
+import fastStatelessWrapper from './components/fastStatelessWrapper';
+import FilePicker from './components/FilePicker';
+import FormGroup from './components/FormGroup';
+import HelpIconPopover from './components/HelpIconPopover';
+import ListPicker from './components/ListPicker';
+import ListPickerPure from './components/ListPickerPure';
+import Nav from './components/Navigation';
+import PagedGrid from './components/PagedGrid';
+import Panel from './components/Panel';
+import Radio from './components/Radio';
+import RadioGroup from './components/RadioGroup';
+import Search from './components/Search';
+import Select from './components/Select';
+import SplitPane from './components/SplitPane';
+import StatusPill from './components/StatusPill';
+import Switch from './components/Switch';
+import Tab from './components/Tab';
+import Tabs from './components/Tabs';
+import Textarea from './components/Textarea';
+import TextEllipsis from './components/TextEllipsis';
+import TreePickerGrid from './components/TreePicker/Grid';
+import TreePickerNav from './components/TreePicker/Nav';
+import TreePickerNode from './components/TreePicker/Node';
+import TreePickerSimplePure from './components/TreePicker';
+import UserListPicker from './components/UserListPicker';
+import InformationBox from './components/InformationBox';
+import HoverDropdownMenu from './components/HoverDropdownMenu';
+import OverlayLoader from './components/OverlayLoader';
+import VerticalNav from './components/VerticalNavigation';
 
 export {
   Accordion,
