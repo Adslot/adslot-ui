@@ -1,6 +1,6 @@
-@import './bootstrap-custom';
-@import './icon';
-@import '../../node_modules/react-datepicker/dist/react-datepicker.css';
+@import '../../styles/bootstrap-custom';
+@import '../../styles/icon';
+@import '../../../node_modules/react-datepicker/dist/react-datepicker.css';
 
 // sass-lint:disable class-name-format
 .react-datepicker {
@@ -150,6 +150,13 @@
       &::-ms-clear {
         display: none;
       }
+    }
+  }
+
+  &__close-icon {
+    &::after {
+      background-color: $color-gray-darker;
+      right: 15px;
     }
   }
 }
