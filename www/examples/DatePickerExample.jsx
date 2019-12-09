@@ -32,7 +32,7 @@ class DatePickerExample extends React.PureComponent {
           selected={this.state.startDate}
           onChange={this.setSelectedDate}
           placeholderText="Select Date"
-          disableInlineEditing="true"
+          disableInlineEditing={true}
           isClearable="true"
         />
       </div>

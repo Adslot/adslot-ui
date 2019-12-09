@@ -10,7 +10,7 @@ describe('DatePicker', () => {
   });
 
   it('should render with onChangeRaw when disableInlineEditing = true', () => {
-    const component = shallow(<DatePicker className="test" disableInlineEditing="true" />);
+    const component = shallow(<DatePicker className="test" disableInlineEditing={true} />);
     expect(component.prop('className')).to.equal('test');
     expect(component.props().hasOwnProperty('handleDateChangeRaw')).toBe(true);
   });
