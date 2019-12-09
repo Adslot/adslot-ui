@@ -1,7 +1,7 @@
 import React from 'react';
 import Example from '../components/Example';
 import { Button, Popover, RadioGroup, Radio } from '../../src';
-import { popoverPlacements } from '../../src/components/third-party/Popover/constants';
+import { popoverPlacements } from '../../src/components/Popover/constants';
 
 class PopoverWithRefExample extends React.PureComponent {
   state = {

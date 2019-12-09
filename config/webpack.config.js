@@ -19,9 +19,7 @@ module.exports = {
     extensions: ['.js', '.json', '.jsx'],
 
     alias: {
-      'third-party': `${paths.appSrc}/components/third-party`,
-      'adslot-ui': `${paths.appSrc}/components/adslot-ui`,
-      alexandria: `${paths.appSrc}/components/alexandria`,
+      'adslot-ui': `${paths.appSrc}`,
       lib: `${paths.appSrc}/lib/`,
       styles: `${paths.appSrc}/styles/`,
     },

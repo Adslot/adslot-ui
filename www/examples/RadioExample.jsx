@@ -1,6 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
-import Radio from 'adslot-ui/Radio';
+import { Radio } from 'adslot-ui';
 
 class RadioExample extends React.PureComponent {
   constructor(props) {
