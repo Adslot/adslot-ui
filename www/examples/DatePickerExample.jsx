@@ -1,9 +1,9 @@
 import React from 'react';
-import moment from 'moment';
 import Example from '../components/Example';
 import { DatePicker } from '../../src';
+import moment from 'moment';
 
-class DatePickerExample extends React.Component {
+class DatePickerExample extends React.PureComponent {
   constructor() {
     super();
     this.state = { startDate: moment() };
@@ -16,13 +16,26 @@ class DatePickerExample extends React.Component {
 
   render() {
     return (
-      <DatePicker
-        className="form-control"
-        dateFormat="DD MMM YYYY"
-        selected={this.state.startDate}
-        onChange={this.setSelectedDate}
-        placeholderText="Date e.g. 03 Sep 2016"
-      />
+      <div>
+        <h3>DatePicker</h3>
+        <DatePicker
+          className="form-control"
+          dateFormat="DD MMM YYYY"
+          selected={this.state.startDate}
+          onChange={this.setSelectedDate}
+          placeholderText="Select Date"
+        />
+        <h3>DatePicker with inline editing disabled</h3>
+        <DatePicker
+          className="form-control"
+          dateFormat="DD MMM YYYY"
+          selected={this.state.startDate}
+          onChange={this.setSelectedDate}
+          placeholderText="Select Date"
+          disableInlineEditing="true"
+          isClearable="true"
+        />
+      </div>
     );
   }
 }
@@ -41,14 +54,26 @@ const exampleProps = {
     </div>
   ),
   exampleCodeSnippet: `
-  <DatePicker
+    <DatePicker
     className="form-control"
     dateFormat="DD MMM YYYY"
     selected={this.state.startDate}
     onChange={this.setSelectedDate}
     placeholderText="Date e.g. 03 Sep 2016"
-  />`,
-  propTypeSectionArray: [],
+    />`,
+  propTypeSectionArray: [
+    {
+      label: '',
+      propTypes: [
+        {
+          propType: 'disableInlineEditing',
+          type: 'bool',
+          note: 'A flag to determine whether date picker inline editing is available or not.',
+          defaultValue: 'false',
+        },
+      ],
+    },
+  ],
 };
 
 export default () => (
