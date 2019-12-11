@@ -1,12 +1,12 @@
 import React from 'react';
 import Example from '../components/Example';
-import { DatePicker } from '../../src';
+import { DatePicker, Checkbox } from '../../src';
 import moment from 'moment';
 
 class DatePickerExample extends React.PureComponent {
   constructor() {
     super();
-    this.state = { startDate: moment() };
+    this.state = { startDate: moment(), disableInlineEditChecked: false, isClearableChecked: false };
     this.setSelectedDate = this.setSelectedDate.bind(this);
   }
 
@@ -14,26 +14,25 @@ class DatePickerExample extends React.PureComponent {
     this.setState({ startDate: newValue });
   }
 
+  handleDisableInlineEditCheckboxChange = event => this.setState({ disableInlineEditChecked: event.target.checked });
+
   render() {
     return (
       <div>
-        <h3>DatePicker</h3>
-        <DatePicker
-          className="form-control"
-          dateFormat="DD MMM YYYY"
-          selected={this.state.startDate}
-          onChange={this.setSelectedDate}
-          placeholderText="Select Date"
+        <Checkbox
+          label="Disable inline editing"
+          checked={false}
+          inline
+          onChange={this.handleDisableInlineEditCheckboxChange}
         />
-        <h3>DatePicker with inline editing disabled</h3>
         <DatePicker
           className="form-control"
           dateFormat="DD MMM YYYY"
           selected={this.state.startDate}
           onChange={this.setSelectedDate}
           placeholderText="Select Date"
-          disableInlineEditing={true}
-          isClearable="true"
+          disableInlineEditing={this.state.disableInlineEditChecked}
+          isClearable={true}
         />
       </div>
     );
@@ -55,11 +54,11 @@ const exampleProps = {
   ),
   exampleCodeSnippet: `
     <DatePicker
-    className="form-control"
-    dateFormat="DD MMM YYYY"
-    selected={this.state.startDate}
-    onChange={this.setSelectedDate}
-    placeholderText="Date e.g. 03 Sep 2016"
+      className="form-control"
+      dateFormat="DD MMM YYYY"
+      selected={this.state.startDate}
+      onChange={this.setSelectedDate}
+      placeholderText="Date e.g. 03 Sep 2016"
     />`,
   propTypeSectionArray: [
     {
