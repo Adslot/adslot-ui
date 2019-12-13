@@ -87,7 +87,7 @@ const exampleProps = {
         },
         {
           propType: 'title',
-          type: 'string',
+          type: 'node',
           defaultValue: '',
           note: '',
         },
