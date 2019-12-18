@@ -6,7 +6,7 @@ node_js:
 addons:
   chrome: stable
 before_install:
-  - npm install -g npm@6.9.0
+  - npm install -g npm@6.13.4
 install:
   - npm install
 before_script:
