@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 import AlertInput from '.';
+import Popover from '../Popover';
 
 describe('AlertInput', () => {
   const initialState = {
@@ -41,7 +42,7 @@ describe('AlertInput', () => {
   describe('handleInputFocus()', () => {
     it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', () => {
       const component = shallow(<AlertInput alertMessage="Hello" />);
-      const inputElement = component.find('.alert-input-component-wrapper-input');
+      const inputElement = component.find('.aui--alert-input__input');
       const focusEvent = {
         target: {
           select: sinon.spy(),
@@ -57,7 +58,7 @@ describe('AlertInput', () => {
 
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
       const component = shallow(<AlertInput />);
-      const inputElement = component.find('.alert-input-component-wrapper-input');
+      const inputElement = component.find('.aui--alert-input__input');
       const focusEvent = {
         target: {
           select: sinon.spy(),
@@ -79,7 +80,7 @@ describe('AlertInput', () => {
         },
       };
       const component = shallow(<AlertInput onFocus={onFocusSpy} />);
-      const inputElement = component.find('.alert-input-component-wrapper-input');
+      const inputElement = component.find('.aui--alert-input__input');
 
       inputElement.simulate('focus', focusEvent);
 
@@ -95,7 +96,7 @@ describe('AlertInput', () => {
   describe('handleInputBlur ()', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
       const component = shallow(<AlertInput />);
-      const inputElement = component.find('.alert-input-component-wrapper-input');
+      const inputElement = component.find('.aui--alert-input__input');
       const focusEvent = {
         target: {
           select: _.noop,
@@ -109,7 +110,7 @@ describe('AlertInput', () => {
     it('should call `onBlur` if exists', () => {
       const onBlurSpy = sinon.spy();
       const component = shallow(<AlertInput onBlur={onBlurSpy} />);
-      const inputElement = component.find('.alert-input-component-wrapper-input');
+      const inputElement = component.find('.aui--alert-input__input');
       inputElement.simulate('blur');
       expect(onBlurSpy.callCount).to.equal(1);
     });
@@ -126,13 +127,13 @@ describe('AlertInput', () => {
         onBlur: _.noop,
       };
       const wrapper = shallow(<AlertInput {...props} />);
-      expect(wrapper.hasClass('alert-input-component')).to.equal(true);
-      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      expect(wrapper.find('.aui--alert-input')).to.have.length(1);
+      const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.prop('onMouseEnter')).to.be.a('function');
       expect(componentWrapper.prop('onMouseLeave')).to.be.a('function');
       expect(componentWrapper.children()).to.have.length(1);
 
-      const inputElement = wrapper.find('.alert-input-component-wrapper-input');
+      const inputElement = wrapper.find('.aui--alert-input__input');
       expect(inputElement.prop('type')).to.equal('number');
       expect(inputElement.prop('min')).to.equal(0);
       expect(inputElement.prop('placeholder')).to.equal('Type a number');
@@ -143,10 +144,11 @@ describe('AlertInput', () => {
     });
 
     it('should also render with default props', () => {
-      const wrapper = shallow(<AlertInput />);
+      const wrapper = shallow(<AlertInput alertMessage="test" />);
+      wrapper.setState({ isPopoverVisible: true });
 
-      expect(wrapper.find('input').prop('type')).to.equal('text');
-      expect(wrapper.find('Popover').prop('placement')).to.equal('bottom');
+      expect(wrapper.find('.aui--alert-input').hasClass('success')).to.equal(true);
+      expect(wrapper.find(Popover.WithRef).prop('placement')).to.equal('bottom');
     });
 
     it('should render with addons', () => {
@@ -155,7 +157,7 @@ describe('AlertInput', () => {
         suffixAddon: '.00',
       };
       const wrapper = shallow(<AlertInput {...props} />);
-      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.children()).to.have.length(3);
 
       const prefixElement = componentWrapper.childAt(0);
@@ -174,7 +176,7 @@ describe('AlertInput', () => {
       };
       const wrapper = shallow(<AlertInput {...props} />);
 
-      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
+      const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.children()).to.have.length(3);
 
       const prefixElement = componentWrapper.childAt(0);
@@ -183,7 +185,7 @@ describe('AlertInput', () => {
       const suffixElement = componentWrapper.childAt(2);
       expect(suffixElement.text()).to.equal('.00');
 
-      expect(wrapper.find('.alert-input-component--disabled')).to.have.lengthOf(1);
+      expect(wrapper.find('.aui--alert-input--disabled')).to.have.lengthOf(1);
     });
 
     it('should render with alert status', () => {
@@ -191,29 +193,34 @@ describe('AlertInput', () => {
         alertStatus: 'error',
       };
       const wrapper = shallow(<AlertInput {...props} />);
-      const componentWrapper = wrapper.find('.alert-input-component-wrapper');
-      expect(componentWrapper.prop('className')).to.equal('alert-input-component-wrapper error');
+      const componentWrapper = wrapper.find('.aui--alert-input');
+      expect(componentWrapper.prop('className')).to.equal('aui--alert-input error');
     });
 
     it('should set correct theme for popover', () => {
       const props = {
         alertStatus: 'error',
+        alertMessage: 'something is wrong',
       };
       const wrapper = shallow(<AlertInput {...props} />);
+      wrapper.setState({ isPopoverVisible: true });
 
-      expect(wrapper.find('Popover').prop('theme')).to.equal('error');
+      expect(wrapper.find(Popover.WithRef).prop('theme')).to.equal('error');
 
       wrapper.setProps({ alertStatus: 'warning' });
-      expect(wrapper.find('Popover').prop('theme')).to.equal('warn');
+      expect(wrapper.find(Popover.WithRef).prop('theme')).to.equal('warn');
     });
 
     it('should set correct popoverPlacement position for popover', () => {
       const props = {
         popoverPlacement: 'left',
+        alertMessage: 'something is wrong',
       };
-
       const wrapper = shallow(<AlertInput {...props} />);
-      expect(wrapper.find('Popover').prop('placement')).to.equal('left');
+      wrapper.setState({ isPopoverVisible: true });
+
+      expect(wrapper.find(Popover.WithRef).prop('placement')).to.equal('left');
     });
   });
 });
+/* eslint-enable lodash/prefer-lodash-method */

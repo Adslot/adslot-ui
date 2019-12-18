@@ -1,91 +1,82 @@
-@import '~styles/border';
-@import '~styles/color';
-@import '~styles/font-size';
+@import '~styles/variable';
 
-.alert-input-component {
-  &-wrapper {
-    align-items: center;
+.aui--alert-input {
+  display: flex;
+  align-items: center;
+  background-color: $color-well;
+  border: $border-lighter;
+  border-radius: $border-radius;
+  padding: 4px 5px;
+  position: relative;
+
+  &.aui--alert-input--focused {
+    border-color: $color-border;
+  }
+
+  .aui--alert-input__input {
+    flex-grow: 1;
     background-color: $color-well;
-    border: $border-lighter;
-    border-radius: $border-radius;
-    display: flex;
-    padding: 4px 5px;
-    position: relative;
+    border: 0;
+    width: 100%;
+    padding: 0;
 
-    &-flex-wrapper {
-      width: 100%;
-    }
-
-    &.is-focused {
-      border-color: $color-border;
-    }
-
-    &.success {
-      border-color: $color-positive;
-    }
-
-    &.info {
-      border-color: $color-info;
-    }
-
-    &.warning {
-      border-color: $color-warning;
-    }
-
-    &.error {
-      border-color: $color-negative;
-    }
-
-    &-input {
-      background-color: $color-well;
-      border: 0;
-      flex: 1;
-      width: 100%;
-      padding: 0;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    &-addon {
-      color: $color-text-addon;
-
-      &:first-child {
-        margin-right: 2px;
-      }
-
-      &:last-child {
-        margin-left: 2px;
-      }
+    &:focus {
+      outline: none;
     }
   }
 
-  &--disabled {
+  &.success {
+    border-color: $color-positive;
+  }
+
+  &.info {
+    border-color: $color-info;
+  }
+
+  &.warning {
+    border-color: $color-warning;
+  }
+
+  &.error {
+    border-color: $color-negative;
+  }
+
+  .aui--alert-input__addon {
+    color: $color-text-addon;
+
+    &:first-child {
+      margin-right: 2px;
+    }
+
+    &:last-child {
+      margin-left: 2px;
+    }
+  }
+
+  &.aui--alert-input--disabled {
     background-color: $color-gray-lighter;
 
-    .alert-input-component-wrapper {
-      &-input {
-        &:disabled {
-          background-color: $color-gray-lighter;
-        }
+    .aui--alert-input__input {
+      &:disabled {
+        background-color: $color-gray-lighter;
       }
+    }
 
-      &-addon {
-        color: $color-gray;
-      }
+    .aui--alert-input__addon {
+      color: $color-gray;
     }
   }
+}
 
-  &-popover {
-    border-radius: 4px;
-    box-shadow: none;
-    font-size: $font-size-small;
+.aui--alert-input__popover {
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: $font-size-small;
 
-    .popover-content {
-      color: inherit;
-      padding: 5px 10px;
-      width: auto;
-    }
+  .popover-content {
+    color: inherit;
+    padding: 5px 10px;
+    width: auto;
+    font-weight: $font-weight-bold;
   }
 }
