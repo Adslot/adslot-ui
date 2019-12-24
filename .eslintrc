@@ -27,16 +27,10 @@
     }
   },
   "rules": {
-    "id-length": [
-      2,
-      { "min": 2, "max": 30, "properties": "never", "exceptions": ["_", "cb"] }
-    ],
+    "id-length": [2, { "min": 2, "max": 30, "properties": "never", "exceptions": ["_", "cb"] }],
     "max-params": [2, 3],
     "no-cond-assign": [2, "except-parens"],
-    "no-mixed-operators": [
-      "error",
-      { "groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]] }
-    ],
+    "no-mixed-operators": ["error", { "groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]] }],
     "quote-props": 0,
     "import/no-extraneous-dependencies": 0,
     "react/prefer-stateless-function": 0,
@@ -93,6 +87,15 @@
       }
     ],
     "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight", "to"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ],
+    "import/no-named-as-default": 0
   }
 }
