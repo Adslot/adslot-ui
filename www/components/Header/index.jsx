@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, PageTitle, SvgSymbol } from '../../../src';
 import './styles.scss';
 
 const HeaderGraphics = () => (
   <span>
-    <SvgSymbol href="./assets/svg-symbols.svg#logo" />
+    <Link to="/">
+      <SvgSymbol href="./assets/svg-symbols.svg#logo" />
+    </Link>
     {/ui\.adslot\.com/.test(window.location.href) ? <img src="https://badge.fury.io/js/adslot-ui.svg" /> : null}
   </span>
 );

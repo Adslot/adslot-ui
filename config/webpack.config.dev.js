@@ -38,6 +38,11 @@ module.exports = webpackMerge(commonConfig, {
   module: {
     rules: [
       {
+        test: /\.(md|mdx)?$/,
+        include: [paths.appSrc, paths.appDemo],
+        use: ['babel-loader', '@mdx-js/loader'],
+      },
+      {
         enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
         test: /\.(js|jsx)$/,
         include: [paths.appSrc, paths.appDemo],

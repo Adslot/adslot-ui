@@ -2,7 +2,7 @@ import React from 'react';
 import Example from '../components/Example';
 import { Button } from '../../src';
 
-class ButtonExample extends React.PureComponent {
+const ButtonExample = `class ButtonExample extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class ButtonExample extends React.PureComponent {
       </div>
     );
   }
-}
+}`;
 
 export const exampleProps = {
   componentName: 'Button',
@@ -129,8 +129,4 @@ export const exampleProps = {
   ],
 };
 
-export default () => (
-  <Example {...exampleProps}>
-    <ButtonExample />
-  </Example>
-);
+export default () => <Example {...exampleProps}>{ButtonExample}</Example>;

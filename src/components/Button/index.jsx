@@ -81,7 +81,7 @@ class Button extends React.PureComponent {
   }
 }
 
-Button.propTypes = _.assign({}, adslotButtonPropTypes, BootstrapButton.propTypes);
+Button.propTypes = { ...adslotButtonPropTypes, ...BootstrapButton.propTypes };
 
 Button.defaultProps = {
   inverse: false,
