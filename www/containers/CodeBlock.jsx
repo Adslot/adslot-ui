@@ -15,8 +15,12 @@ export default ({ children, className, live }) => {
         noInline={children.includes('render(')}
         scope={{ ...AdslotUI, mdx }}
         theme={theme}
+        className="test"
       >
-        <LivePreview style={{ marginTop: '20px' }} />
+        <h4 style={{ marginTop: '20px' }}>
+          <b>Example</b>
+        </h4>
+        <LivePreview style={{ marginTop: '10px' }} />
         <LiveError className="aui--docs-code-error" />
         <h4 style={{ marginTop: '40px' }}>Try editing the livecode below:</h4>
         <LiveEditor />

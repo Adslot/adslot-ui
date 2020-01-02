@@ -1,21 +1,25 @@
 import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
 
 ## Button
-
-<br />
-
-### Example
 
 ```jsx live=true
 <div>
   <Button bsStyle="success">Undo</Button>
   <Button bsStyle="primary">Apply</Button>
+  <Button bsStyle="info">Help</Button>
+  <Button bsStyle="danger" inverse>
+    Error
+  </Button>
+  <Button bsStyle="warning" isLoading>
+    Loading
+  </Button>
 </div>
 ```
 
 ### Design Notes
 
-<p>
+<DesignNotes>
   Primary buttons display filled with a colour and inverted white text eg.{' '}
   <span className="text-blue text-bold">Blue</span>, <span className="text-green text-bold">Green</span> and used
   commonly for Sign off, Save, Apply, Approve etc.
@@ -31,6 +35,6 @@ import Props from '../containers/Props.jsx';
   action. Use the same colour for the border and text eg. <span className="text-blue text-bold">Blue</span>,{' '}
   <span className="text-green text-bold">Green</span>, <span className="text-red text-bold">Red</span> eg. Cancel
   Campaign, Save, Reject etc.
-</p>
+</DesignNotes>
 
 <Props componentName="Button" />

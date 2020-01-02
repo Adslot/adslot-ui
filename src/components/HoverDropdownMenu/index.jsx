@@ -7,7 +7,13 @@ import './styles.scss';
 
 export class HoverDropdownMenuComponent extends React.PureComponent {
   static propTypes = {
+    /**
+     * Determine the placement of the popover
+     */
     arrowPosition: PropTypes.oneOf(['left', 'right']),
+    /**
+     * If set to empty string, header will not be rendered.
+     */
     headerText: PropTypes.string,
     hoverComponent: PropTypes.element.isRequired,
     children: PropTypes.node,

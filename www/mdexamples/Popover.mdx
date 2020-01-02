@@ -1,0 +1,104 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+import { popoverPlacements, themes } from '../../src/components/Popover/constants';
+
+## Popover
+
+```jsx live=true
+<div style={{ width: 150, display: 'flex', justifyContent: 'space-between' }}>
+  <Popover placement="right" title="Popover Title" theme="dark" popoverContent="My initial positioning is right">
+    <Button bsStyle="info">Hover Me</Button>
+  </Popover>
+  <Popover
+    placement="bottom"
+    triggers="click"
+    title="Popover Title"
+    theme="success"
+    popoverContent="My initial positioning is bottom"
+  >
+    <Button bsStyle="success">Click Me</Button>
+  </Popover>
+</div>
+```
+
+<br />
+
+## Popover.WithRef
+
+<h4>There might be use cases where the element which will display the popover will be decided on the fly.</h4>
+
+<h4>We support the implementation of dynamic popovers via <b>Popover.WithRef</b></h4>
+
+```jsx live=true
+const myRef = React.createRef(null);
+
+const Example = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const togglePopover = () => setIsOpen(!isOpen);
+
+  return (
+    <React.Fragment>
+      <Button onClick={togglePopover}>Toggle Popover</Button>
+      <div
+        style={{
+          width: 100,
+          border: '1px solid black',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        ref={myRef}
+      >
+        External Anchor
+      </div>
+      {isOpen && (
+        <Popover.WithRef
+          refElement={myRef.current}
+          placement="right"
+          title="Popover title"
+          theme="dark"
+          popoverContent="My initial positioning is right"
+          isOpen={isOpen}
+        />
+      )}
+    </React.Fragment>
+  );
+};
+render(
+  <div style={{ display: 'flex', width: 300, justifyContent: 'space-between' }}>
+    <Example />
+  </div>
+);
+```
+
+<br />
+<br />
+
+<h4>Popover autoflips when overflowing container</h4>
+
+```jsx live=true
+<div
+  style={{
+    width: '500px',
+    height: '250px',
+    border: '1px solid black',
+    overflow: 'hidden',
+    overflowX: 'scroll',
+  }}
+>
+  <div style={{ width: '600px', position: 'relative', top: '100px', left: '250px' }}>
+    <Popover
+      triggers="click"
+      placement="left"
+      title="Popover Title"
+      theme="dark"
+      popoverContent={`My initial positioning is left`}
+      modifiers={{ preventOverflow: { enabled: true } }}
+    >
+      <Button>Click me and scroll container</Button>
+    </Popover>
+  </div>
+</div>
+```
+
+<Props componentName="Popover" />

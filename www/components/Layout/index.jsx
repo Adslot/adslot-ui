@@ -6,7 +6,7 @@ import { PageTitle } from '../../../src';
 import Header from '../Header';
 import Navigation from '../Navigation';
 import Contributors from '../Contributors';
-import SearchBar from '../SearchBar';
+import SearchBar from '../../containers/components/SearchBar';
 import SearchResultCard from '../SearchResultCard';
 import MigrationNote from '../MigrationNote';
 
