@@ -4,8 +4,22 @@ import PropTypes from 'prop-types';
 import HtmlParser from 'react-html-parser';
 import props from './props.json';
 
-const Props = ({ componentName }) => {
-  const componentProps = props[`src/components/${componentName}/index.jsx`];
+const componentNameMapper = {
+  Tag: 'TagComponent',
+};
+
+const Props = ({ componentName, customMapper }) => {
+  const componentExports = customMapper
+    ? customMapper(props)
+    : props[`src/components/${componentName}/index.jsx`] || [];
+  const componentProps =
+    componentExports.length === 1
+      ? componentExports[0]
+      : componentExports.find(
+          component =>
+            component.displayName === componentName || component.displayName === componentNameMapper[componentName]
+        );
+
   if (componentProps) {
     return (
       <React.Fragment>
@@ -51,5 +65,6 @@ const Props = ({ componentName }) => {
 
 Props.propTypes = {
   componentName: PropTypes.string,
+  customMapper: PropTypes.func,
 };
 export default Props;

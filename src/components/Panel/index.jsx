@@ -9,6 +9,9 @@ class PanelComponent extends React.PureComponent {
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
     dts: PropTypes.string,
+    /**
+     * shapeOf <a href="/svg-symbol">SVG Symbol</a> prop types.
+     */
     icon: PropTypes.shape(SvgSymbol.propTypes),
     title: PropTypes.node.isRequired,
     isCollapsed: PropTypes.bool,

@@ -1,56 +1,57 @@
 import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
 
 ## Accordion
 
-<br />
-
-### Example
-
 ```jsx live=true
-<Accordion defaultActivePanelIds={['filter-by-region']} maxExpand={3}>
-  <Accordion.Panel id="filter-by-region" title="Filter by region">
-    <ul className="list-unstyled">
-      <li>
-        <Checkbox label="Australia" />
-      </li>
-      <li>
-        <Checkbox label="New Zealand" />
-      </li>
-    </ul>
-  </Accordion.Panel>
-  <Accordion.Panel id="filter-by-device" title="Filter by device">
-    <ul className="list-unstyled">
-      <li>
-        <Checkbox label="Desktop" />
-      </li>
-      <li>
-        <Checkbox label="Mobile" />
-      </li>
-      <li>
-        <Checkbox label="Tablet" />
-      </li>
-    </ul>
-  </Accordion.Panel>
-  <Accordion.Panel id="filter-1" title="Filter 1">
-    Filter 1
-  </Accordion.Panel>
-  <Accordion.Panel id="filter-2" title="Filter 2">
-    Filter 2
-  </Accordion.Panel>
-  <Accordion.Panel id="filter-3" title="Filter 3">
-    Filter 3
-  </Accordion.Panel>
-  <Accordion.Panel id="filter-4" title="Filter 4">
-    Filter 4
-  </Accordion.Panel>
-</Accordion>
+const Example = () => (
+  <Accordion defaultActivePanelIds={['filter-by-region']} maxExpand={3}>
+    <Accordion.Panel id="filter-by-region" title="Filter by region">
+      <ul className="list-unstyled">
+        <li>
+          <Checkbox label="Australia" />
+        </li>
+        <li>
+          <Checkbox label="New Zealand" />
+        </li>
+      </ul>
+    </Accordion.Panel>
+    <Accordion.Panel id="filter-by-device" title="Filter by device">
+      <ul className="list-unstyled">
+        <li>
+          <Checkbox label="Desktop" />
+        </li>
+        <li>
+          <Checkbox label="Mobile" />
+        </li>
+        <li>
+          <Checkbox label="Tablet" />
+        </li>
+      </ul>
+    </Accordion.Panel>
+    <Accordion.Panel id="filter-1" title="Filter By Continent">
+      Filter 1
+    </Accordion.Panel>
+    <Accordion.Panel id="filter-2" title="Filter By Country">
+      Filter 2
+    </Accordion.Panel>
+  </Accordion>
+);
+
+render(
+  <div style={{ width: 400 }}>
+    <Example />
+  </div>
+);
 ```
 
 ### Design Notes
 
-<p>
+<DesignNotes>
   The accordion menu is commonly used to group long list of filter options. Allowing the user to expand and close areas
   of the list.
-</p>
+</DesignNotes>
+
+`Accordion.Panel` component is equivalent to <a href="/panel">Panel</a>
 
 <Props componentName="Accordion" />

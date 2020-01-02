@@ -23,7 +23,7 @@ class Accordion extends React.PureComponent {
     children: PropTypes.node,
     defaultActivePanelIds: PropTypes.arrayOf(PropTypes.string),
     /**
-     * Determine how many Panels can be expanded, accepted value is a positive number, or <code>max<code> to have no restriction
+     * Determine how many Panels can be expanded, accepted value is a positive number, or <code>max</code> to have no restriction
      */
     maxExpand: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['max'])]),
   };
