@@ -1,0 +1,23 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Paged Grid
+
+```jsx live=true
+<PagedGrid
+  columns={[
+    { key: 'id', label: 'ID' },
+    { key: 'givenName', label: 'Given Name', stretch: true },
+    { key: 'surname', label: 'Surname', stretch: true },
+  ]}
+  items={[
+    { givenName: 'John', id: 1, surname: 'Smith' },
+    { givenName: 'Jane', id: 2, surname: 'Doe' },
+    { givenName: 'Jack', id: 3, surname: 'White' },
+  ]}
+  verticalCellBorder
+  perPage={2}
+/>
+```
+
+<Props componentName="PagedGrid" />

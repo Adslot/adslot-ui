@@ -15,7 +15,17 @@ export default class AlertInput extends React.PureComponent {
     disabled: PropTypes.bool,
     prefixAddon: PropTypes.node,
     suffixAddon: PropTypes.node,
+    /**
+     * <span>
+     *   As <code>success</code> is assumed, and help is always displayed independently, the accepted pattern is to
+     *  only use <code>warning</code> and <code>error</code> feedback states with this component. Otherwise leave
+     *  type undefined for <code>success</code>.
+     * </span>
+     */
     alertStatus: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
+    /**
+     * 'left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'
+     */
     popoverPlacement: PropTypes.oneOf(popoverPlacements),
     alertMessage: PropTypes.string,
     onValueChange: PropTypes.func,

@@ -12,6 +12,9 @@ const Alert = ({ type, children, dts }) => (
 Alert.displayName = 'AlertComponent';
 
 Alert.propTypes = {
+  /**
+   * ['success', 'info', 'warning', 'danger']
+   */
   type: PropTypes.oneOf(['success', 'info', 'warning', 'danger']),
   children: PropTypes.node.isRequired,
   dts: PropTypes.string,

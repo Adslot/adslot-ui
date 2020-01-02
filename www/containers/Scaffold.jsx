@@ -1,8 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SearchBar from '../components/SearchBar';
 import Header from '../components/Header';
-import Components from './Components';
+import SidePanel from './SidePanel';
 import routes from './routes';
 
 export default function Scaffold() {
@@ -11,8 +10,7 @@ export default function Scaffold() {
       <Header />
       <div className="adslot-ui-body">
         <div className="adslot-ui-sidebar-area">
-          <SearchBar />
-          <Components />
+          <SidePanel />
         </div>
         <div className="adslot-ui-content-area">
           <Switch>
