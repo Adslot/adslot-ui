@@ -165,7 +165,7 @@
     "react-popper": "^1.3.3"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "browserslist": [
     "last 2 versions",
