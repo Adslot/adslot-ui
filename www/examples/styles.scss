@@ -25,7 +25,19 @@
 .adslot-ui-example-container {
   &.alert-input-example {
     .adslot-ui-example {
-      width: 140px;
+      display: flex;
+      flex-direction: column;
+      width: 270px;
+
+      .flexible-spacer-component {
+        height: 12px;
+        border: 0;
+      }
+
+      .adslot-ui-example__options {
+        display: flex;
+        margin-bottom: 6px;
+      }
     }
   }
 
