@@ -1,7 +1,7 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SvgSymbolCircle } from 'adslot-ui';
+import { SvgSymbol } from 'adslot-ui';
 import Empty from '.';
 
 describe('Empty', () => {
@@ -9,8 +9,8 @@ describe('Empty', () => {
     const component = shallow(<Empty />);
     expect(component.prop('className')).to.equal('empty-component');
 
-    const svgSymbolEl = component.find(SvgSymbolCircle);
-    expect(svgSymbolEl.prop('href')).to.equal(undefined);
+    const svgSymbolEl = component.find(SvgSymbol);
+    expect(svgSymbolEl.prop('href')).to.equal('');
     expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-darker', '70', 'circle']);
 
     const textElement = component.find('.empty-component-text');
@@ -35,7 +35,7 @@ describe('Empty', () => {
     const component = shallow(<Empty {...props} />);
     expect(component.prop('className')).to.equal('empty-component');
 
-    const svgSymbolEl = component.find(SvgSymbolCircle);
+    const svgSymbolEl = component.find(SvgSymbol);
     expect(svgSymbolEl.prop('href')).to.equal('//wherever.svg#id');
     expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['class']);
 
@@ -48,7 +48,7 @@ describe('Empty', () => {
     const component = shallow(<Empty {...{ svgSymbol }} />);
     expect(component.prop('className')).to.equal('empty-component');
 
-    const svgSymbolEl = component.find(SvgSymbolCircle);
+    const svgSymbolEl = component.find(SvgSymbol);
     expect(svgSymbolEl.prop('href')).to.equal('//wherever.svg#id');
     expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-darker', '70', 'circle']);
   });
@@ -57,7 +57,7 @@ describe('Empty', () => {
     const svgSymbol = { href: '//wherever.svg#id' };
     const component = shallow(<Empty {...{ svgSymbol, hideIcon: true }} />);
     expect(component.prop('className')).to.equal('empty-component');
-    const svgSymbolEl = component.find(SvgSymbolCircle);
+    const svgSymbolEl = component.find(SvgSymbol);
     expect(svgSymbolEl).to.have.length(0);
   });
 });
