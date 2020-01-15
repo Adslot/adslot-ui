@@ -42,7 +42,13 @@ module.exports = function configureKarma(config) {
   config.set({
     mode: 'development',
     basePath: '',
-    browsers: ['ChromeHeadless'],
+    browsers: !_.isEmpty(process.env.KARMA_BROWSERS) ? process.env.KARMA_BROWSERS.split(',') : ['ChromeHeadless'],
+    customLaunchers: {
+      HeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--disable-setuid-sandbox'],
+      },
+    },
     colors: true,
     files: [
       'config/load-tests.js',
