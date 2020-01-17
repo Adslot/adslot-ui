@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const emoji = require('remark-emoji');
 const webpackMerge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -71,7 +72,15 @@ module.exports = webpackMerge(commonConfig, {
       {
         test: /\.(md|mdx)?$/,
         include: [paths.appSrc, paths.appDemo],
-        use: ['babel-loader', '@mdx-js/loader'],
+        use: [
+          { loader: 'babel-loader' },
+          {
+            loader: '@mdx-js/loader',
+            options: {
+              remarkPlugins: [emoji],
+            },
+          },
+        ],
       },
       {
         enforce: 'pre', // Lint before babel transpiles; fail fast on syntax

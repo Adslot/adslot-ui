@@ -30,7 +30,6 @@ import OverlayLoaderExample from '../mdexamples/OverlayLoader.mdx';
 import PageTitleExample from '../mdexamples/PageTitle.mdx';
 import PagedGridExample from '../mdexamples/PagedGrid.mdx';
 import PopoverExample from '../mdexamples/Popover.mdx';
-import GettingStarted from '../components/GettingStarted.md';
 import RadioExample from '../mdexamples/Radio.mdx';
 import RadioGroupExample from '../mdexamples/RadioGroup.mdx';
 import SearchExample from '../mdexamples/Search.mdx';
@@ -53,6 +52,8 @@ import UserListPickerExample from '../mdexamples/UserListPicker.mdx';
 import VerticalNavigationExample from '../mdexamples/VerticalNavigation.mdx';
 import Introduction from '../mdexamples/Introduction.mdx';
 import DesignGuide from '../mdexamples/DesignGuide.mdx';
+import Installation from '../components/GettingStarted/Installation.md';
+import Contributing from '../components/GettingStarted/Contributing.md';
 
 const routes = [
   {
@@ -63,7 +64,7 @@ const routes = [
   },
   {
     path: '/installation',
-    component: GettingStarted,
+    component: Installation,
     title: 'Installation',
     group: 'Getting Started',
   },
@@ -71,6 +72,12 @@ const routes = [
     path: '/design-guide',
     component: DesignGuide,
     title: 'Design Guide',
+    group: 'Getting Started',
+  },
+  {
+    path: '/contributing',
+    component: Contributing,
+    title: 'Contributing',
     group: 'Getting Started',
   },
   {
