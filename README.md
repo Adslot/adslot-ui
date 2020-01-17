@@ -24,7 +24,7 @@ Technology:
 Development
 -----------
 
-- Take a look at our [Contributing](CONTRIBUTING.md) guidelines
+- Take a look at our [Contributing](https://ui.adslot.com/contributing) guidelines
 
 - Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
 

@@ -1,7 +1,8 @@
 # Contributing
 
 ## Guidelines
-:octocat: Make sure there's an issue open for any work you take on and intend to submit as a pull request - it helps core members review your concept and direction early and is a good way to discuss what you're planning to do.
+
+:cat: Make sure there's an issue open for any work you take on and intend to submit as a pull request - it helps core members review your concept and direction early and is a good way to discuss what you're planning to do.
 
 :scroll: Please follow our established coding conventions (with regards to formatting, etc), please see our [style guides](#style-guides) below.
 
@@ -28,16 +29,8 @@ See https://github.com/marionebl/commitlint/tree/master/@commitlint/config-conve
 
 Component classnames should be prefixed with namespace `aui--`. For example, `aui--my-component`.
 
-## Releasing
+## Issue review
 
-See [Release](RELEASE.md).
+If you have an idea about an awesome component, or encountering a bug, please raise an issue on our github <a href="https://github.com/Adslot/adslot-ui/issues" target="_blank_">repository</a>.
 
-#### TL;DR
-
-Releases need to have the variable `RELEASE=true` pre-pended to the command like so:
-
-```
-RELEASE=true npm run release:minor
-```
-
-This will ensure that the distribution gets bundled but the pre-commit hooks will not bail because you're committing to master.
+The internal Adslot team reviews the issue board twice every month, and we will label the issues accordingly. You can pick any issues that have the appropriate tags.
