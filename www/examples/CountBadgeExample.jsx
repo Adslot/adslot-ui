@@ -24,7 +24,7 @@ const exampleProps = {
         },
         {
           propType: 'status',
-          type: "oneOf: 'default', 'info', 'warning', 'danger'",
+          type: "oneOf: 'default', 'info', 'warning', 'danger', 'light'",
           defaultValue: 'default',
           note: '"default" and no value given have the same effect',
         },

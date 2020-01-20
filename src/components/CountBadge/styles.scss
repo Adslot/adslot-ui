@@ -28,6 +28,10 @@
     background-color: $color-negative;
   }
 
+  &.status-light {
+    background-color: $color-gray;
+  }
+
   &.count-badge-font-size-small {
     font-size: $font-size-super-tiny;
   }
