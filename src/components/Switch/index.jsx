@@ -53,10 +53,21 @@ Switch.defaultProps = {
 };
 
 Switch.propTypes = {
+  /**
+   * 	switch value, if the value is un-controlled
+   */
   defaultChecked: PropTypes.bool,
+  /**
+   * 	switch value, if the value is controlled
+   */
   checked: PropTypes.bool,
   value: PropTypes.string,
   disabled: PropTypes.bool,
+  /**
+   * 	This function is called when value is changed
+   *  <br/>
+   *  const onChange = (nextState) => ...
+   */
   onChange: PropTypes.func,
   dts: PropTypes.string,
   className: PropTypes.string,

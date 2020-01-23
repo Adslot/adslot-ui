@@ -1,0 +1,98 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Select
+
+```jsx live=true
+const countryOptions = [
+  { value: 'au', label: 'Australia' },
+  { value: 'ca', label: 'Canada' },
+  { value: 'jp', label: 'Japan', disabled: true },
+  { value: 'uk', label: 'United Kingdom' },
+];
+
+const Example = () => {
+  const [selected, setSelected] = React.useState('');
+
+  const onChangeHandler = value => {
+    setSelected(value);
+  };
+
+  return (
+    <div style={{ width: '400px' }}>
+      <h4>Single Select</h4>
+      <Select
+        isClearable={false}
+        name="countriesSelect"
+        noOptionsMessage={() => "Sorry, couldn't find that country."}
+        options={countryOptions}
+        placeholder="Countries"
+        value={selected}
+        onChange={onChangeHandler}
+        dts="test-dts"
+      />
+      <h4>Multiple Select</h4>
+      <Select
+        isMulti
+        name="countriesMultiSelect"
+        noOptionsMessage={() => "Sorry, couldn't find that country."}
+        options={countryOptions}
+        placeholder="Countries"
+        value={selected}
+        onChange={onChangeHandler}
+      />
+      <h4>Creatable option</h4>
+      <Select.Creatable
+        isMulti
+        name="countriesCreatableSelect"
+        options={countryOptions}
+        onChange={onChangeHandler}
+        value={selected}
+      />
+    </div>
+  );
+};
+
+render(Example);
+```
+
+<DesignNotes>
+  <span className="text-bold">Select</span> When a single selection from more than 3 options is required the select drop
+  down should be used.
+
+  <div style={{ paddingTop: 5 }}>
+    See <a href="https://github.com/JedWatson/react-select">React Select Documentation</a>
+  </div>
+</DesignNotes>
+
+<Props
+  componentName="SelectComponent"
+  customMapper={() => [
+    {
+      description: '',
+      displayName: 'SelectComponent',
+      methods: [],
+      props: {
+        dts: {
+          type: {
+            name: 'string',
+          },
+          required: false,
+          description: 'Render `data-test-selector` onto the component. It can be useful for testing',
+        },
+        isInModal: {
+          type: {
+            name: 'bool',
+          },
+          required: false,
+          description:
+            'can be used to display Select component in Modal, allow select options to overflow the modal container',
+          defaultValue: {
+            value: 'false',
+            computed: false,
+          },
+        },
+      },
+    },
+  ]}
+/>
