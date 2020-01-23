@@ -22,6 +22,18 @@ import PageTitleExample from '../mdexamples/PageTitle.mdx';
 import PagedGridExample from '../mdexamples/PagedGrid.mdx';
 import PopoverExample from '../mdexamples/Popover.mdx';
 import GettingStarted from '../components/GettingStarted.md';
+import RadioExample from '../mdexamples/Radio.mdx';
+import RadioGroupExample from '../mdexamples/RadioGroup.mdx';
+import SearchExample from '../mdexamples/Search.mdx';
+import SelectExample from '../mdexamples/Select.mdx';
+import SliceyExample from '../mdexamples/Slicey.mdx';
+import SpinnerExample from '../mdexamples/Spinner.mdx';
+import SplitPaneExample from '../mdexamples/SplitPane.mdx';
+import StatisticExample from '../mdexamples/Statistic.mdx';
+import StatusPillExample from '../mdexamples/StatusPill.mdx';
+import SvgSymbolExample from '../mdexamples/SvgSymbol.mdx';
+import SvgSymbolCircleExample from '../mdexamples/SvgSymbolCircle.mdx';
+import SwitchExample from '../mdexamples/Switch.mdx';
 
 const routes = [
   {
@@ -166,6 +178,78 @@ const routes = [
     path: '/popover',
     component: PopoverExample,
     title: 'Popover',
+    group: 'Components',
+  },
+  {
+    path: '/radio',
+    component: RadioExample,
+    title: 'Radio',
+    group: 'Components',
+  },
+  {
+    path: '/radio-group',
+    component: RadioGroupExample,
+    title: 'Radio Group',
+    group: 'Components',
+  },
+  {
+    path: '/search',
+    component: SearchExample,
+    title: 'Search',
+    group: 'Components',
+  },
+  {
+    path: '/select',
+    component: SelectExample,
+    title: 'Select',
+    group: 'Components',
+  },
+  {
+    path: '/slicey',
+    component: SliceyExample,
+    title: 'Slicey',
+    group: 'Components',
+  },
+  {
+    path: '/spinner',
+    component: SpinnerExample,
+    title: 'Spinner',
+    group: 'Components',
+  },
+  {
+    path: '/split-pane',
+    component: SplitPaneExample,
+    title: 'Split Pane',
+    group: 'Components',
+  },
+  {
+    path: '/statistic',
+    component: StatisticExample,
+    title: 'Statistic',
+    group: 'Components',
+  },
+  {
+    path: '/status-pill',
+    component: StatusPillExample,
+    title: 'Status Pill',
+    group: 'Components',
+  },
+  {
+    path: '/svg-symbol',
+    component: SvgSymbolExample,
+    title: 'Svg Symbol',
+    group: 'Components',
+  },
+  {
+    path: '/svg-symbol-circle',
+    component: SvgSymbolCircleExample,
+    title: 'Svg Symbol Circle',
+    group: 'Components',
+  },
+  {
+    path: '/switch',
+    component: SwitchExample,
+    title: 'Switch',
     group: 'Components',
   },
 ];

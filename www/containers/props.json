@@ -2920,7 +2920,7 @@
             "name": "number"
           },
           "required": false,
-          "description": "",
+          "description": "Milliseconds",
           "defaultValue": {
             "value": "0",
             "computed": false
@@ -2931,7 +2931,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Determine whether the text area is disabled",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -2942,7 +2942,7 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "Render `data-test-selector` onto the component. It can be useful for testing"
         },
         "icons": {
           "type": {
@@ -2963,7 +2963,7 @@
             }
           },
           "required": false,
-          "description": "",
+          "description": "{ search: React.Node, loader: React.Node, close: React.Node }",
           "defaultValue": {
             "value": "{}",
             "computed": false
@@ -2999,7 +2999,7 @@
             "name": "func"
           },
           "required": true,
-          "description": ""
+          "description": "Required"
         },
         "placeholder": {
           "type": {
@@ -3017,7 +3017,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -3151,7 +3151,7 @@
             }
           },
           "required": false,
-          "description": ""
+          "description": "Slicey will represent all values as percentage of the pie based on the sum of all values.\nLabel will provide a className to each slice as <code>.arc-component-{'${label}'}</code>."
         },
         "diameter": {
           "type": {
@@ -3169,14 +3169,14 @@
             "name": "bool"
           },
           "required": false,
-          "description": ""
+          "description": "Add a line across the radius at a set fraction of the whole e.g. .25 for ¼."
         },
         "marker": {
           "type": {
             "name": "number"
           },
           "required": false,
-          "description": ""
+          "description": "Set to true if you wish the pie chart to have a hollow hole in the centre, like a donut :9"
         }
       }
     }
@@ -3206,7 +3206,7 @@
             ]
           },
           "required": false,
-          "description": "",
+          "description": "oneOf: 'large', medium', 'small'",
           "defaultValue": {
             "value": "'large'",
             "computed": false
@@ -3258,7 +3258,7 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "render `data-test-selector` onto the component. It can be useful for testing."
         }
       }
     }
@@ -3274,7 +3274,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Horizontal layout as opposed to stacked.",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -3285,14 +3285,14 @@
             "name": "string"
           },
           "required": true,
-          "description": ""
+          "description": "Preferred TitleCase (aka. PascalCase, StartCase)"
         },
         "value": {
           "type": {
             "name": "string"
           },
           "required": true,
-          "description": ""
+          "description": "Where value is a number consider human readable strings e.g 'Million' instead of 000,000."
         }
       }
     }
@@ -3308,7 +3308,7 @@
             "name": "string"
           },
           "required": true,
-          "description": ""
+          "description": "Text inside status pill"
         },
         "displayStyle": {
           "type": {
@@ -3337,7 +3337,7 @@
             ]
           },
           "required": false,
-          "description": "",
+          "description": "one of [\"primary\", \"success\", \"warning\", \"error\", \"light\"]",
           "defaultValue": {
             "value": "styles[0]",
             "computed": true
@@ -3348,7 +3348,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Status pill with inverse style",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -3359,7 +3359,7 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "Generate \"data-test-selector\" on the status pill"
         }
       }
     }
@@ -3413,7 +3413,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "accept both file path and base64 encoded string",
           "defaultValue": {
             "value": "''",
             "computed": false
@@ -3453,14 +3453,14 @@
             "name": "bool"
           },
           "required": false,
-          "description": ""
+          "description": "switch value, if the value is un-controlled"
         },
         "checked": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": ""
+          "description": "switch value, if the value is controlled"
         },
         "value": {
           "type": {
@@ -3489,7 +3489,7 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "This function is called when value is changed \n <br/> \n const onChange = (nextState) => ...)"
         },
         "dts": {
           "type": {

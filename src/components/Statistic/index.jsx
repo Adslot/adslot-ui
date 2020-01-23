@@ -18,8 +18,17 @@ const Statistic = ({ label, value, inline }) => {
 Statistic.displayName = 'StatisticComponent';
 
 Statistic.propTypes = {
+  /**
+   * 	Horizontal layout as opposed to stacked.
+   */
   inline: PropTypes.bool,
+  /**
+   * Preferred TitleCase (aka. PascalCase, StartCase)
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * Where value is a number consider human readable strings e.g 'Million' instead of 000,000.
+   */
   value: PropTypes.string.isRequired,
 };
 
