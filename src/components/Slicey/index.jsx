@@ -79,6 +79,10 @@ const Slicey = ({ dataset, diameter, donut, marker }) => {
 Slicey.displayName = 'SliceyComponent';
 
 Slicey.propTypes = {
+  /**
+   * Slicey will represent all values as percentage of the pie based on the sum of all values.
+   * Label will provide a className to each slice as <code>.arc-component-{'${label}'}</code>.
+   */
   dataset: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -86,7 +90,13 @@ Slicey.propTypes = {
     })
   ),
   diameter: PropTypes.number,
+  /**
+   * Add a line across the radius at a set fraction of the whole e.g. .25 for ¼.
+   */
   donut: PropTypes.bool,
+  /**
+   * Set to true if you wish the pie chart to have a hollow hole in the centre, like a donut :9
+   */
   marker: PropTypes.number,
 };
 

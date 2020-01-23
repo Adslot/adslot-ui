@@ -1,0 +1,25 @@
+import Props from '../containers/Props.jsx';
+
+## Radio
+
+```jsx live=true
+const Example = () => {
+  const [isSelected, setIsSelected] = React.useState(false);
+  const handleChange = () => setIsSelected(!isSelected);
+
+  return (
+    <Radio
+      name="Radio button name"
+      label="Radio button label"
+      dts="radio-button-data-test-selector"
+      value="Radio button value"
+      checked={isSelected}
+      onChange={handleChange}
+    />
+  );
+};
+
+render(Example);
+```
+
+<Props componentName="Radio" />

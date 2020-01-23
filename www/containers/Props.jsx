@@ -6,12 +6,16 @@ import props from './props.json';
 
 const componentNameMapper = {
   Tag: 'TagComponent',
+  Slicey: 'SliceyComponent',
 };
 
 const Props = ({ componentName, customMapper }) => {
   const componentExports = customMapper
     ? customMapper(props)
     : props[`src/components/${componentName}/index.jsx`] || [];
+
+  console.warn(props, componentExports);
+
   const componentProps =
     componentExports.length === 1
       ? componentExports[0]

@@ -1,0 +1,27 @@
+import Props from '../containers/Props.jsx';
+
+## Status Pill
+
+```jsx live=true
+<>
+  <label>Status pills</label>
+  <div>
+    <StatusPill status="Primary" />
+    <StatusPill status="Success" displayStyle="success" />
+    <StatusPill status="Warning" displayStyle="warning" />
+    <StatusPill status="Error" displayStyle="error" />
+    <StatusPill status="Light" displayStyle="light" />
+  </div>
+  <br />
+  <label>Inverse status pills</label>
+  <div>
+    <StatusPill status="Primary" inverse />
+    <StatusPill status="Success" displayStyle="success" inverse />
+    <StatusPill status="Warning" displayStyle="warning" inverse />
+    <StatusPill status="Error" displayStyle="error" inverse />
+    <StatusPill status="Light" displayStyle="light" inverse />
+  </div>
+</>
+```
+
+<Props componentName="StatusPill" />

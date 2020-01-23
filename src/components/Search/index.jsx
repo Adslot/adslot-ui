@@ -116,9 +116,21 @@ class Search extends React.PureComponent {
 
 Search.propTypes = {
   className: PropTypes.string,
+  /**
+   * 	Milliseconds
+   */
   debounceInterval: PropTypes.number,
+  /**
+   * 	Determine whether the text area is disabled
+   */
   disabled: PropTypes.bool,
+  /**
+   * 	Render `data-test-selector` onto the component. It can be useful for testing
+   */
   dts: PropTypes.string,
+  /**
+   * 	{ search: React.Node, loader: React.Node, close: React.Node }
+   */
   icons: PropTypes.shape({
     search: PropTypes.node,
     loader: PropTypes.node,
@@ -127,8 +139,14 @@ Search.propTypes = {
   isLoading: PropTypes.bool,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
+  /**
+   * 	Required
+   */
   onSearch: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  /**
+   * 	Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)
+   */
   searchOnEnter: PropTypes.bool,
   value: PropTypes.string,
 };
