@@ -11,6 +11,15 @@ import BreadcrumbExample from '../mdexamples/Breadcrumb.mdx';
 import ButtonGroupExample from '../mdexamples/ButtonGroup.mdx';
 import CardExample from '../mdexamples/Card.mdx';
 import CarouselExample from '../mdexamples/Carousel.mdx';
+import CheckboxExample from '../mdexamples/Checkbox.mdx';
+import CheckboxGroupExample from '../mdexamples/CheckboxGroup.mdx';
+import ConfirmModalExample from '../mdexamples/ConfirmModal.mdx';
+import CountBadgeExample from '../mdexamples/CountBadge.mdx';
+import DatePickerExample from '../mdexamples/DatePicker.mdx';
+import EmptyExample from '../mdexamples/Empty.mdx';
+import FilePickerExample from '../mdexamples/FilePicker.mdx';
+import FlexibleSpacer from '../mdexamples/FlexibleSpacer.mdx';
+import GridExample from '../mdexamples/Grid.mdx';
 import HelpIconPopoverExample from '../mdexamples/HelpIconPopover.mdx';
 import PrettyDiffExample from '../mdexamples/PrettyDiff.mdx';
 import HoverDropdownMenuExample from '../mdexamples/HoverDropdownMenu.mdx';
@@ -118,6 +127,60 @@ const routes = [
     path: '/carousel',
     component: CarouselExample,
     title: 'Carousel',
+    group: 'Components',
+  },
+  {
+    path: '/checkbox',
+    component: CheckboxExample,
+    title: 'Checkbox',
+    group: 'Components',
+  },
+  {
+    path: '/checkbox-group',
+    component: CheckboxGroupExample,
+    title: 'Checkbox Group',
+    group: 'Components',
+  },
+  {
+    path: '/confirm-modal',
+    component: ConfirmModalExample,
+    title: 'Confirm Modal',
+    group: 'Components',
+  },
+  {
+    path: '/count-badge',
+    component: CountBadgeExample,
+    title: 'Count Badge',
+    group: 'Components',
+  },
+  {
+    path: '/date-picker',
+    component: DatePickerExample,
+    title: 'Date Picker',
+    group: 'Components',
+  },
+  {
+    path: '/empty',
+    component: EmptyExample,
+    title: 'Empty',
+    group: 'Components',
+  },
+  {
+    path: '/file-picker',
+    component: FilePickerExample,
+    title: 'File Picker',
+    group: 'Components',
+  },
+  {
+    path: '/flexible-spacer',
+    component: FlexibleSpacer,
+    title: 'Flexible Spacer',
+    group: 'Components',
+  },
+  {
+    path: '/grid',
+    component: GridExample,
+    title: 'Grid',
     group: 'Components',
   },
   {

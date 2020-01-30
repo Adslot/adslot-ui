@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import classnames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import { radioButtonPropTypes } from '../../prop-types/inputPropTypes';
 import './styles.scss';
 
 const RadioButton = ({ id, value, name, className, label, disabled, checked, onChange, inline, dts }) => {
@@ -31,7 +31,18 @@ const RadioButton = ({ id, value, name, className, label, disabled, checked, onC
   );
 };
 
-RadioButton.propTypes = radioButtonPropTypes;
+RadioButton.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.node,
+  value: PropTypes.string,
+  dts: PropTypes.string,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  inline: PropTypes.bool,
+  checked: PropTypes.bool,
+};
 
 RadioButton.defaultProps = {
   dts: '',

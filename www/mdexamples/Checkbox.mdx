@@ -1,0 +1,76 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Checkbox
+
+```jsx live=true
+const handleChange = (...arg) => console.log('Checkbox changed with arguments', ...arg);
+
+const Example = () => (
+  <>
+    <h4>Not selected</h4>
+    <Checkbox label="Checked: false" checked={false} inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: false <br /> <b>Disabled</b>
+        </p>
+      }
+      checked={false}
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Selected</h4>
+    <Checkbox label="Checked: true" checked inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: true <br /> <b>Disabled</b>
+        </p>
+      }
+      checked
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Partial Selected</h4>
+    <Checkbox label={"Checked: 'partial'"} checked="partial" inline className="fix-size" onChange={handleChange} />
+    <Checkbox
+      label={
+        <p>
+          Checked: 'partial' <br /> <b>Disabled</b>
+        </p>
+      }
+      checked="partial"
+      disabled
+      inline
+      className="fix-size"
+      onChange={handleChange}
+    />
+    <h4>Checkboxes without labels</h4>
+    <Checkbox checked={false} inline onChange={handleChange} />
+    <Checkbox checked={false} disabled inline onChange={handleChange} />
+    <Checkbox checked inline onChange={handleChange} />
+    <Checkbox checked disabled inline onChange={handleChange} />
+    <Checkbox checked="partial" inline onChange={handleChange} />
+    <Checkbox checked="partial" disabled inline onChange={handleChange} />
+  </>
+);
+
+render(
+  <div style={{ width: 400 }}>
+    <Example />
+  </div>
+);
+```
+
+### Design Notes
+
+<DesignNotes>
+  This component supports 3 states <b>checked</b>, <b>partial checked</b> and <b>non-checked</b>
+</DesignNotes>
+
+<Props componentName="Checkbox" />

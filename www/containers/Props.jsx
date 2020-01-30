@@ -69,4 +69,5 @@ Props.propTypes = {
   componentName: PropTypes.string,
   customMapper: PropTypes.func,
 };
+
 export default Props;

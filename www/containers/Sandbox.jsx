@@ -10,7 +10,7 @@ const Sandbox = ({ component, title }) => {
     const parameters = getParameters({
       files: {
         'index.jsx': {
-          content: `import React from 'react'; 
+          content: `import React from 'react';
 import ReactDOM from 'react-dom';
 import Example from './example';
 import 'adslot-ui/dist/adslot-ui-main.css';
