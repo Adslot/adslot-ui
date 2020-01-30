@@ -11,7 +11,13 @@ const Grid = ({ children, dts }) => (
 
 Grid.displayName = 'GridComponent';
 Grid.propTypes = {
+  /**
+   * the children to be rendered
+   */
   children: PropTypes.node,
+  /**
+   * data-test-selector of the grid
+   */
   dts: PropTypes.string,
 };
 

@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox';
 import { expandDts } from '../../lib/utils';
-import { checkboxGroupPropTypes } from '../../prop-types/inputPropTypes';
 
 const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onChange }) => {
   const handleCheckboxChange = (nextCheckboxState, checkboxName, checkboxValue) => {
@@ -41,6 +41,33 @@ const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onCh
   );
 };
 
-CheckboxGroup.propTypes = checkboxGroupPropTypes;
+CheckboxGroup.propTypes = {
+  /**
+   * id for the checkboxGroup input
+   */
+  id: PropTypes.string,
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  /**
+   * string array of checked values
+   */
+  value: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]
+   */
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  /**
+   * function called when checkBox onChange event is fired
+   */
+  onChange: PropTypes.func.isRequired,
+  /**
+   * data-test-selector for the checkboxGroup component
+   */
+  dts: PropTypes.string,
+  /**
+   * determines if checkbox-component-inline class is applied or not
+   */
+  inline: PropTypes.bool,
+};
 
 export default CheckboxGroup;

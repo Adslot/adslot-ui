@@ -1,0 +1,30 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Empty
+
+```jsx live=true
+class EmptyExample extends React.PureComponent {
+  render() {
+    return (
+      <div>
+        <Empty
+          collection={[]}
+          text="No items selected"
+          svgSymbol={{
+            href: './assets/svg-symbols.svg#checklist-incomplete',
+          }}
+        />
+      </div>
+    );
+  }
+}
+
+render(
+  <div style={{ width: 400 }}>
+    <EmptyExample />
+  </div>
+);
+```
+
+<Props componentName="Empty" />

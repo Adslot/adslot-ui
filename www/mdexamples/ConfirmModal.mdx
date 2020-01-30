@@ -1,0 +1,43 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Checkbox
+
+```jsx live=true
+class ConfirmModalExample extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      showConfirmModal: false,
+    };
+    this.toggleConfirmModal = this.toggleConfirmModal.bind(this);
+  }
+
+  toggleConfirmModal() {
+    this.setState({ showConfirmModal: !this.state.showConfirmModal });
+  }
+
+  render() {
+    return (
+      <div>
+        <ConfirmModal
+          modalApply={this.toggleConfirmModal}
+          modalClose={this.toggleConfirmModal}
+          show={this.state.showConfirmModal}
+        />
+        <Button bsStyle="primary" onClick={this.toggleConfirmModal}>
+          Sign Off
+        </Button>
+      </div>
+    );
+  }
+}
+
+render(
+  <div style={{ width: 400 }}>
+    <ConfirmModalExample />
+  </div>
+);
+```
+
+<Props componentName="ConfirmModal" />

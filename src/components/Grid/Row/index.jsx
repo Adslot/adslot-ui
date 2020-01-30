@@ -21,11 +21,29 @@ const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, 
 GridRow.displayName = 'GridRowComponent';
 
 GridRow.propTypes = {
+  /**
+   * the children to be rendered
+   */
   children: PropTypes.node,
+  /**
+   * determines if horizontalBorder is to be rendered
+   */
   horizontalBorder: PropTypes.bool,
+  /**
+   * determines if the row is short or long
+   */
   short: PropTypes.bool,
+  /**
+   * determines the type of griRow: oneOf(['body', 'header', 'subfooter', 'footer'])
+   */
   type: PropTypes.oneOf(['body', 'header', 'subfooter', 'footer']),
+  /**
+   * determines if verticalCellBorder should be displayed
+   */
   verticalCellBorder: PropTypes.bool,
+  /**
+   * data-test-selector of the grid
+   */
   dts: PropTypes.string,
 };
 
