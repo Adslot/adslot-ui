@@ -43,6 +43,14 @@ import StatusPillExample from '../mdexamples/StatusPill.mdx';
 import SvgSymbolExample from '../mdexamples/SvgSymbol.mdx';
 import SvgSymbolCircleExample from '../mdexamples/SvgSymbolCircle.mdx';
 import SwitchExample from '../mdexamples/Switch.mdx';
+import TabExample from '../mdexamples/Tab.mdx';
+import TextEllipsisExample from '../mdexamples/TextEllipsis.mdx';
+import TextareaExample from '../mdexamples/Textarea.mdx';
+import TileGridExample from '../mdexamples/TileGrid.mdx';
+import TotalsExample from '../mdexamples/Totals.mdx';
+import TreePickerExample from '../mdexamples/TreePicker.mdx';
+import UserListPickerExample from '../mdexamples/UserListPicker.mdx';
+import VerticalNavigationExample from '../mdexamples/VerticalNavigation.mdx';
 
 const routes = [
   {
@@ -208,7 +216,7 @@ const routes = [
     group: 'Components',
   },
   {
-    path: '/listpicker',
+    path: '/list-picker',
     component: ListPickerExample,
     title: 'List Picker',
     group: 'Components',
@@ -313,6 +321,54 @@ const routes = [
     path: '/switch',
     component: SwitchExample,
     title: 'Switch',
+    group: 'Components',
+  },
+  {
+    path: '/tab',
+    component: TabExample,
+    title: 'Tab',
+    group: 'Components',
+  },
+  {
+    path: '/text-ellipsis',
+    component: TextEllipsisExample,
+    title: 'Text Ellipsis',
+    group: 'Components',
+  },
+  {
+    path: '/textarea',
+    component: TextareaExample,
+    title: 'Textarea',
+    group: 'Components',
+  },
+  {
+    path: '/tile-grid',
+    component: TileGridExample,
+    title: 'Tile Grid',
+    group: 'Components',
+  },
+  {
+    path: '/totals',
+    component: TotalsExample,
+    title: 'Totals',
+    group: 'Components',
+  },
+  {
+    path: '/tree-picker',
+    component: TreePickerExample,
+    title: 'Tree Picker',
+    group: 'Components',
+  },
+  {
+    path: '/user-list-picker',
+    component: UserListPickerExample,
+    title: 'User List Picker',
+    group: 'Components',
+  },
+  {
+    path: '/vertical-navigation',
+    component: VerticalNavigationExample,
+    title: 'Vertical Navigation',
     group: 'Components',
   },
 ];

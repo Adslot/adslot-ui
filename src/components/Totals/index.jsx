@@ -25,6 +25,9 @@ const Totals = ({ toSum, valueFormatter }) => (
 Totals.displayName = 'TotalsComponent';
 
 Totals.propTypes = {
+  /**
+   * { label: PropTypes.node, value: PropTypes.number.isRequired, isHidden: PropTypes.bool }
+   */
   toSum: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node,

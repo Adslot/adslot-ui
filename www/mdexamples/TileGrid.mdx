@@ -1,0 +1,105 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Tile Grid
+
+```jsx live=true
+<div style={{ maxWidth: 940 }}>
+  <TileGrid
+    title="Browse by category"
+    items={[
+      { id: '0', classSuffix: 'news', title: 'News', imgLink: './assets/tileGrid/example-image.jpg' },
+      {
+        id: '1',
+        classSuffix: 'sport',
+        title: 'Sport',
+        imgLink: './assets/tileGrid/example-image.jpg',
+        imgAlign: 'center',
+      },
+      {
+        id: '2',
+        classSuffix: 'health',
+        title: 'Health & Fitness',
+        imgLink: './assets/tileGrid/example-image.jpg',
+        imgAlign: 'right',
+      },
+      { id: '3', classSuffix: 'tech', title: 'Technology & Computing' },
+    ]}
+    onItemClick={() => {}}
+    distributed
+  />
+</div>
+```
+
+### TileGrid
+
+<Props componentName="TileGrid" />
+
+### Item Object
+
+<Props
+  customMapper={() => [
+    {
+      description: '',
+      displayName: '',
+      methods: [],
+      props: {
+        id: {
+          type: {
+            name: 'string | number',
+          },
+          required: true,
+          description: '',
+        },
+        classSuffix: {
+          type: {
+            name: 'string',
+          },
+          required: true,
+        },
+        title: {
+          type: {
+            name: 'string',
+          },
+          required: true,
+        },
+        imgLink: {
+          type: {
+            name: 'string',
+          },
+          description: 'Address link used for background image of each tile',
+        },
+        width: {
+          type: {
+            name: 'number',
+          },
+          description: 'Defining width of each tile. (In pixels)',
+          defaultValue: {
+            value: '204',
+            computed: false,
+          },
+        },
+        maxWidth: {
+          type: {
+            name: 'number',
+          },
+          description: 'Defining max-width of each tile. (In pixels)',
+          defaultValue: {
+            value: '295',
+            computed: false,
+          },
+        },
+        imgAlign: {
+          type: {
+            name: '["left", "right", "center"]',
+          },
+          description: 'Used for defining the position of background image. (Only working if imgLink is defined)',
+          defaultValue: {
+            value: 'left',
+            computed: false,
+          },
+        },
+      },
+    },
+  ]}
+/>
