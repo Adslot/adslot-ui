@@ -62,6 +62,9 @@ TileGrid.defaultProps = {
 
 TileGrid.propTypes = {
   title: PropTypes.string.isRequired,
+  /**
+   * 	The shape of item object is defined below
+   */
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: idPropType.isRequired,
@@ -74,6 +77,9 @@ TileGrid.propTypes = {
     })
   ).isRequired,
   onItemClick: PropTypes.func.isRequired,
+  /**
+   * 	If distributed is true, each tile in this component will have a distributed width.
+   */
   distributed: PropTypes.bool,
 };
 

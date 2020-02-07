@@ -9,7 +9,15 @@ const MenuItem = ({ children }) => children;
 class VerticalNavigation extends React.Component {
   static propTypes = {
     isCollapsed: PropTypes.bool,
+    /**
+     * event handler for clicking on the collapse/expand button
+     * </br>
+     * const onClick = () => ...
+     */
     onClick: PropTypes.func,
+    /**
+     * 	render `data-test-selector` onto the component. It can be useful for testing.
+     */
     dts: PropTypes.string,
     className: PropTypes.string,
   };
