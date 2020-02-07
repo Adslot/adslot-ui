@@ -893,45 +893,118 @@
       "displayName": "Checkbox",
       "methods": [],
       "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "id for the checkbox input"
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "name for the checkbox input"
+        },
+        "label": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "checkBox label for the checkbox input"
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "checkBox input value"
+        },
         "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector for the checkbox component",
           "defaultValue": {
             "value": "''",
             "computed": false
-          },
-          "required": false
+          }
         },
         "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the checkbox is disabled",
           "defaultValue": {
             "value": "false",
             "computed": false
-          },
-          "required": false
-        },
-        "checked": {
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "required": false
+          }
         },
         "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when checkBox onChange event is fired",
           "defaultValue": {
             "value": "_.noop",
             "computed": true
+          }
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
           },
-          "required": false
+          "required": false,
+          "description": "determines if checkbox-component-inline class is applied or not"
+        },
+        "checked": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "true",
+                "computed": false
+              },
+              {
+                "value": "false",
+                "computed": false
+              },
+              {
+                "value": "'partial'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "checked status of the input checkBox: oneOf([true, false, 'partial']",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         },
         "size": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "16",
             "computed": false
-          },
-          "required": false
+          }
         }
-      },
-      "composes": [
-        "../../prop-types/inputPropTypes"
-      ]
+      }
     }
   ],
   "src/components/CheckboxGroup/index.jsx": [
@@ -939,9 +1012,78 @@
       "description": "",
       "displayName": "CheckboxGroup",
       "methods": [],
-      "composes": [
-        "../../prop-types/inputPropTypes"
-      ]
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "id for the checkboxGroup input"
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": true,
+          "description": "string array of checked values"
+        },
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "node"
+                }
+              },
+              {
+                "name": "node"
+              }
+            ]
+          },
+          "required": true,
+          "description": "checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]"
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "function called when checkBox onChange event is fired"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector for the checkboxGroup component"
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if checkbox-component-inline class is applied or not"
+        }
+      }
     }
   ],
   "src/components/ConfirmModal/index.jsx": [
@@ -955,7 +1097,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "determines the label of cancel button",
           "defaultValue": {
             "value": "'Cancel'",
             "computed": false
@@ -966,7 +1108,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "determines the label of confirm button",
           "defaultValue": {
             "value": "'Confirm'",
             "computed": false
@@ -977,7 +1119,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "",
+          "description": "function called when modalApply event is fired",
           "defaultValue": {
             "value": "() => {\n  throw new Error('AdslotUi ConfirmModal needs a modalApply handler');\n}",
             "computed": false
@@ -988,14 +1130,14 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "function called when modalClose event is fired"
         },
         "modalDescription": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "description of the modal",
           "defaultValue": {
             "value": "'Are you sure?'",
             "computed": false
@@ -1006,14 +1148,14 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "title of the modal"
         },
         "show": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if the modal needs to be shown or not",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -1033,14 +1175,14 @@
             "name": "number"
           },
           "required": true,
-          "description": ""
+          "description": "determines the number that is rendered inside the counter badge"
         },
         "status": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "determines the appearance of the counter badge: oneOf(['info', 'warning', 'danger', 'light'])",
           "defaultValue": {
             "value": "'default'",
             "computed": false
@@ -1051,7 +1193,7 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "data-test-selector for the counter badge component"
         }
       }
     }
@@ -1156,7 +1298,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if the filePicker is disabled",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -1167,21 +1309,21 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "data-test-selector of the filePicker"
         },
         "filter": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "determines what file types the user can pick from the file input dialog box"
         },
         "isHighlighted": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if the filePicker is highlighted or not",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -1192,7 +1334,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "the label to be displayed",
           "defaultValue": {
             "value": "'Select'",
             "computed": false
@@ -1203,21 +1345,21 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "function called when onRemove event is fired"
         },
         "onSelect": {
           "type": {
             "name": "func"
           },
           "required": true,
-          "description": ""
+          "description": "function called when onSelect event is fired"
         },
         "placeholder": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "determines the placeholder when no date is selected",
           "defaultValue": {
             "value": "'No file selected'",
             "computed": false
@@ -1313,14 +1455,14 @@
             }
           },
           "required": false,
-          "description": ""
+          "description": "list of addOn classNames as array of strings"
         },
         "children": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "the children to be rendered"
         },
         "classSuffixes": {
           "type": {
@@ -1341,21 +1483,21 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "data-test-selector of the gridCell"
         },
         "onClick": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "function that will be called when gridCell is clicked"
         },
         "stretch": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if gridCell should be stretched",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -1375,14 +1517,14 @@
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "the children to be rendered"
         },
         "horizontalBorder": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if horizontalBorder is to be rendered",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -1393,7 +1535,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if the row is short or long",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -1422,7 +1564,7 @@
             ]
           },
           "required": false,
-          "description": "",
+          "description": "determines the type of griRow: oneOf(['body', 'header', 'subfooter', 'footer'])",
           "defaultValue": {
             "value": "'body'",
             "computed": false
@@ -1433,7 +1575,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "determines if verticalCellBorder should be displayed",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -1444,7 +1586,7 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "data-test-selector of the grid"
         }
       }
     }
@@ -1460,14 +1602,14 @@
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "the children to be rendered"
         },
         "dts": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "data-test-selector of the grid"
         }
       }
     }
@@ -2782,38 +2924,93 @@
       "displayName": "RadioButton",
       "methods": [],
       "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "label": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
         "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "''",
             "computed": false
-          },
-          "required": false
+          }
         },
         "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "false",
             "computed": false
-          },
-          "required": false
-        },
-        "checked": {
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "required": false
+          }
         },
         "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "_.noop",
             "computed": true
+          }
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
           },
-          "required": false
+          "required": false,
+          "description": ""
+        },
+        "checked": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         }
-      },
-      "composes": [
-        "../../prop-types/inputPropTypes"
-      ]
+      }
     }
   ],
   "src/components/RadioGroup/index.jsx": [
@@ -2841,9 +3038,75 @@
           "returns": null
         }
       ],
-      "composes": [
-        "../../prop-types/inputPropTypes"
-      ]
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "node"
+                }
+              },
+              {
+                "name": "node"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
     }
   ],
   "src/components/Search/index.jsx": [
@@ -3489,7 +3752,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "This function is called when value is changed \n <br/> \n const onChange = (nextState) => ...)"
+          "description": "This function is called when value is changed\n <br/>\n const onChange = (nextState) => ..."
         },
         "dts": {
           "type": {

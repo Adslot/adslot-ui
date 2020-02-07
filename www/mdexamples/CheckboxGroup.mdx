@@ -1,0 +1,51 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## CheckboxGroup
+
+```jsx live=true
+class CheckboxGroupExample extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      movies: ['terminator', 'predator'],
+    };
+  }
+
+  handleGroupChange(movies) {
+    console.log(movies);
+    this.setState({ movies });
+  }
+
+  displayValue() {
+    return _.isEmpty(this.state.movies) ? <i>Empty</i> : <i>[{this.state.movies.join(' ')}]</i>;
+  }
+
+  render() {
+    return (
+      <>
+        <h4>
+          <b>Selected Values: {this.displayValue.bind(this)()}</b>
+        </h4>
+        <br />
+        <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange.bind(this)}>
+          <Checkbox label="The Terminator" value="terminator" />
+          <Checkbox label="Predator" value="predator" />
+          <Checkbox label="The Sound of Music" value="soundofmusic" />
+        </CheckboxGroup>
+        <br />
+        <h3>Inline CheckboxGroup</h3>
+        <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange.bind(this)} inline>
+          <Checkbox label="The Terminator" value="terminator" />
+          <Checkbox label="Predator" value="predator" />
+          <Checkbox label="The Sound of Music" value="soundofmusic" />
+        </CheckboxGroup>
+      </>
+    );
+  }
+}
+
+render(<CheckboxGroupExample />);
+```
+
+<Props componentName="CheckboxGroup" />

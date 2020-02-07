@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import { checkboxPropTypes } from '../../prop-types/inputPropTypes';
 import './styles.scss';
 
 const getNextState = checked => {
@@ -48,7 +48,47 @@ const Checkbox = ({ name, value, label, dts, disabled, checked, id, className, i
   );
 };
 
-Checkbox.propTypes = checkboxPropTypes;
+Checkbox.propTypes = {
+  /**
+   * id for the checkbox input
+   */
+  id: PropTypes.string,
+  className: PropTypes.string,
+  /**
+   * name for the checkbox input
+   */
+  name: PropTypes.string,
+  /**
+   * checkBox label for the checkbox input
+   */
+  label: PropTypes.node,
+  /**
+   * checkBox input value
+   */
+  value: PropTypes.string,
+  /**
+   * data-test-selector for the checkbox component
+   */
+  dts: PropTypes.string,
+  /**
+   * determines if the checkbox is disabled
+   */
+  disabled: PropTypes.bool,
+  /**
+   * function called when checkBox onChange event is fired
+   */
+  onChange: PropTypes.func,
+  /**
+   * determines if checkbox-component-inline class is applied or not
+   */
+  inline: PropTypes.bool,
+  /**
+   * checked status of the input checkBox: oneOf([true, false, 'partial']
+   */
+  checked: PropTypes.oneOf([true, false, 'partial']),
+  size: PropTypes.number,
+};
+
 Checkbox.defaultProps = {
   dts: '',
   disabled: false,

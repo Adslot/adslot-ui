@@ -27,11 +27,26 @@ const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNa
 GridCell.displayName = 'GridCellComponent';
 
 GridCell.propTypes = {
+  /**
+   * list of addOn classNames as array of strings
+   */
   addonClassNames: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * the children to be rendered
+   */
   children: PropTypes.node,
   classSuffixes: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * data-test-selector of the gridCell
+   */
   dts: PropTypes.string,
+  /**
+   * function that will be called when gridCell is clicked
+   */
   onClick: PropTypes.func,
+  /**
+   * determines if gridCell should be stretched
+   */
   stretch: PropTypes.bool,
 };
 

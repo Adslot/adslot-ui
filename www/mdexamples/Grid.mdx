@@ -1,0 +1,59 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Grid
+
+```jsx live=true
+const cellClicked = () => console.log('Cell clicked');
+
+class GridExample extends React.PureComponent {
+  render() {
+    return (
+      <Grid>
+        <GridRow type="header">
+          <GridCell>Header</GridCell>
+          <GridCell>Header</GridCell>
+          <GridCell>Header</GridCell>
+        </GridRow>
+        <GridRow verticalCellBorder>
+          <GridCell stretch>Body</GridCell>
+          <GridCell>Content</GridCell>
+          <GridCell>Content</GridCell>
+        </GridRow>
+        <GridRow>
+          <GridCell>Body</GridCell>
+          <GridCell>Content</GridCell>
+          <GridCell onClick={cellClicked}>This Cell logs clicks.</GridCell>
+        </GridRow>
+        <GridRow>
+          <GridCell addonClassNames={['full-width']}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus suscipit velit quis tempor.
+          </GridCell>
+        </GridRow>
+        <GridRow type="subfooter">
+          <GridCell>Subfooter</GridCell>
+        </GridRow>
+        <GridRow type="footer">
+          <GridCell>Footer</GridCell>
+        </GridRow>
+      </Grid>
+    );
+  }
+}
+
+render(
+  <div style={{ width: 600 }}>
+    <GridExample />
+  </div>
+);
+```
+
+<Props componentName="Grid" />
+
+### Grid.Row
+
+<Props customMapper={props => props[`src/components/Grid/Row/index.jsx`]} />
+
+### Grid.Cell
+
+<Props customMapper={props => props[`src/components/Grid/Cell/index.jsx`]} />
