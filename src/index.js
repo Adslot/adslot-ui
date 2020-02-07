@@ -1,5 +1,4 @@
 // Export the consumable components.
-import DatePicker from 'react-datepicker';
 import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -10,7 +9,6 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
-import 'styles/_react-datepicker-custom.scss';
 
 import Button from './components/Button';
 import Popover from './components/Popover';
@@ -43,6 +41,7 @@ import Checkbox from './components/Checkbox';
 import CheckboxGroup from './components/CheckboxGroup';
 import ConfirmModal from './components/ConfirmModal';
 import CountBadge from './components/CountBadge';
+import DatePicker from './components/DatePicker';
 import fastStatelessWrapper from './components/fastStatelessWrapper';
 import FilePicker from './components/FilePicker';
 import FormGroup from './components/FormGroup';
