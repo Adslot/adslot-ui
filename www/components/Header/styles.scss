@@ -4,13 +4,43 @@
   > .pagetitle-component {
     background: $color-background;
 
-    .svg-symbol-component {
-      width: 156px;
-      height: 30px;
+    .header-link {
+      color: $color-black;
+      font-size: 24px;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      margin-right: 15px;
     }
 
-    img {
-      margin-bottom: 10px;
+    .header-right-pane {
+      display: flex;
+      width: 300px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .adslot-icon {
+      height: 32px;
+      width: 32px;
+    }
+
+    .svg-symbol-component-contributors {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.adslot-ui-contributors-panel {
+  .aui--action-panel-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .aui--popover-element {
+      margin: 10px;
     }
   }
 }

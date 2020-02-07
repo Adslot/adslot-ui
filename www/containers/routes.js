@@ -51,12 +51,26 @@ import TotalsExample from '../mdexamples/Totals.mdx';
 import TreePickerExample from '../mdexamples/TreePicker.mdx';
 import UserListPickerExample from '../mdexamples/UserListPicker.mdx';
 import VerticalNavigationExample from '../mdexamples/VerticalNavigation.mdx';
+import Introduction from '../mdexamples/Introduction.mdx';
+import DesignGuide from '../mdexamples/DesignGuide.mdx';
 
 const routes = [
   {
     path: '/',
+    component: Introduction,
+    title: 'Introduction',
+    group: 'Getting Started',
+  },
+  {
+    path: '/installation',
     component: GettingStarted,
     title: 'Installation',
+    group: 'Getting Started',
+  },
+  {
+    path: '/design-guide',
+    component: DesignGuide,
+    title: 'Design Guide',
     group: 'Getting Started',
   },
   {
