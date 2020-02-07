@@ -68,7 +68,8 @@ body {
 .adslot-ui-content-area {
   margin-left: $spacing-etalon * 9;
   padding-top: $spacing-etalon;
-  width: 100%;
+  max-width: 1200px;
+  padding-bottom: 100px;
 
   // button group example
   .svg-icon {
@@ -148,5 +149,35 @@ body {
         margin-right: 10px;
       }
     }
+  }
+
+  .intro-page-box {
+    height: 150px;
+    border-radius: 5%;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    .information-box-text {
+      padding-left: 0;
+    }
+
+    .svg-symbol-component-box-icon {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .intro-page-box-heading {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .intro-page-box-description {
+    width: 350px;
+    margin-bottom: 15px;
   }
 }
