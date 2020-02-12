@@ -89,8 +89,17 @@ class Tabs extends React.PureComponent {
 Tabs.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  /**
+   * string or number
+   */
   defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * string or number
+   */
   activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * (selectedTabKey) => {...}
+   */
   onSelect: PropTypes.func,
 };
 

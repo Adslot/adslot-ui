@@ -3801,7 +3801,7 @@
             ]
           },
           "required": true,
-          "description": ""
+          "description": "string or number"
         },
         "title": {
           "type": {
@@ -3898,7 +3898,7 @@
             ]
           },
           "required": false,
-          "description": ""
+          "description": "string or number"
         },
         "activeKey": {
           "type": {
@@ -3913,14 +3913,14 @@
             ]
           },
           "required": false,
-          "description": ""
+          "description": "string or number"
         },
         "onSelect": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "(selectedTabKey) => {...}"
         }
       }
     }
@@ -4054,7 +4054,7 @@
             "computed": true
           },
           "required": false,
-          "description": "",
+          "description": "Can use `placement` and `trigger` props from <a href=\"/popover\">Popover</a> to control popover.",
           "defaultValue": {
             "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
             "computed": false
@@ -4176,7 +4176,7 @@
             }
           },
           "required": true,
-          "description": ""
+          "description": "The shape of item object is defined below"
         },
         "onItemClick": {
           "type": {
@@ -4190,7 +4190,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "If distributed is true, each tile in this component will have a distributed width.",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -4227,7 +4227,7 @@
             }
           },
           "required": false,
-          "description": "",
+          "description": "{ label: PropTypes.node, value: PropTypes.number.isRequired, isHidden: PropTypes.bool }",
           "defaultValue": {
             "value": "[]",
             "computed": false
@@ -4697,7 +4697,7 @@
             }
           },
           "required": false,
-          "description": ""
+          "description": "Class Names for SplitPane component"
         },
         "breadcrumbRootNode": {
           "type": {
@@ -4705,7 +4705,7 @@
             "raw": "TreePickerPropTypes.breadCrumbNode"
           },
           "required": false,
-          "description": ""
+          "description": "Optional. This prop allows customization of the Breadcrumb root node. { id: PropTypes.sting | PropTypes.number, label: PropTypes.string}"
         },
         "breadcrumbNodes": {
           "type": {
@@ -4716,21 +4716,21 @@
             }
           },
           "required": false,
-          "description": ""
+          "description": "Returns node id. This prop is not required, but an empty array is not allowed. At least one element is required in the array."
         },
         "breadcrumbOnClick": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "This propType creates a list of breadcrumb node"
         },
         "debounceInterval": {
           "type": {
             "name": "number"
           },
           "required": false,
-          "description": "",
+          "description": "Interval time on search",
           "defaultValue": {
             "value": "0",
             "computed": false
@@ -4741,7 +4741,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Disables treepicker including search bar",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -4752,7 +4752,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": ""
+          "description": "Disables treepicker's grid item"
         },
         "emptySvgSymbol": {
           "type": {
@@ -4761,7 +4761,7 @@
             "computed": true
           },
           "required": false,
-          "description": ""
+          "description": "Displays this svg symbol when there will be no item on both left or right Grid"
         },
         "emptySelectedListSvgSymbol": {
           "type": {
@@ -4770,56 +4770,56 @@
             "computed": true
           },
           "required": false,
-          "description": ""
+          "description": "Displays this svg symbol when there will be no item on right Grid(Selected list)"
         },
         "emptyText": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "Displays this text when there will be no item on left Grid. Prefer type 'string', but rich text can be used here"
         },
         "emptySelectedListText": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "Displays this text when there will be no item on right Grid(Selected list). Prefer type 'string', but rich text can be used here."
         },
         "expandNode": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "Triggers when clicking any item in the left Grid"
         },
         "groupFormatter": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "This function use to transform keys of the list item in the left Grid"
         },
         "hideIcon": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": ""
+          "description": "Hides icon when displays empty symbol"
         },
         "includeNode": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "Click event on '+' button of each list Item"
         },
         "initialStateNode": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "Same as emptyText"
         },
         "initialStateSymbol": {
           "type": {
@@ -4828,14 +4828,14 @@
             "computed": true
           },
           "required": false,
-          "description": ""
+          "description": "Same as emptySymbol"
         },
         "itemType": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "Uses for specific className",
           "defaultValue": {
             "value": "'node'",
             "computed": false
@@ -4857,7 +4857,7 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "Uses for rendering custom node"
         },
         "removeNode": {
           "type": {
@@ -4871,28 +4871,28 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "Triggers when search input changes"
         },
         "onClear": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "Triggers when the user clicks the clear button on search input"
         },
         "onSearch": {
           "type": {
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "Please see <a href='/search'>Search</a>"
         },
         "searchOnEnter": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Please see <a href='/search'>Search</a>",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -4903,7 +4903,11 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "",
+          "defaultValue": {
+            "value": "'Search'",
+            "computed": false
+          }
         },
         "searchValue": {
           "type": {
@@ -4927,7 +4931,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Show or hide the search field on the selection pane",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -4941,7 +4945,7 @@
             }
           },
           "required": false,
-          "description": ""
+          "description": "A list of available unselected nodes. This prop is not required, but an empty array is not allowed. At least one element is required in the array."
         },
         "svgSymbolCancel": {
           "type": {
@@ -4966,7 +4970,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "e.g: Default Group",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -4988,7 +4992,7 @@
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component."
         }
       }
     }
@@ -5015,7 +5019,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "",
+          "description": "avatarColor({ avatar, givenName, id, surname })",
           "defaultValue": {
             "value": "_.noop",
             "computed": true
@@ -5046,7 +5050,7 @@
             "computed": true
           },
           "required": false,
-          "description": ""
+          "description": "Shape of <a href=\"/svg-symbol\">SVG Symbol</a> prop types."
         },
         "initialSelection": {
           "type": {
@@ -5057,7 +5061,7 @@
             }
           },
           "required": false,
-          "description": "",
+          "description": "Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }",
           "defaultValue": {
             "value": "[]",
             "computed": false
@@ -5133,7 +5137,7 @@
             }
           },
           "required": false,
-          "description": "",
+          "description": "Shape of { label: PropTypes.string, toggle: PropTypes.string }",
           "defaultValue": {
             "value": "{ label: 'Team', toggle: 'Member' }",
             "computed": false
@@ -5148,7 +5152,7 @@
             }
           },
           "required": false,
-          "description": "",
+          "description": "Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }",
           "defaultValue": {
             "value": "[]",
             "computed": false
@@ -5216,14 +5220,14 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "event handler for clicking on the collapse/expand button\n</br>\nconst onClick = () => ..."
         },
         "dts": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "render `data-test-selector` onto the component. It can be useful for testing."
         },
         "className": {
           "type": {

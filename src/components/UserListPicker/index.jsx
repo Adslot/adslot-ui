@@ -60,20 +60,35 @@ const userType = PropTypes.shape({
 
 UserListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool,
+  /**
+   * avatarColor({ avatar, givenName, id, surname })
+   */
   avatarColor: PropTypes.func,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
+  /**
+   * 	Shape of <a href="/svg-symbol">SVG Symbol</a> prop types.
+   */
   emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  /**
+   *  Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }
+   */
   initialSelection: PropTypes.arrayOf(userType),
   modalApply: PropTypes.func,
   modalDescription: PropTypes.string,
   modalClose: PropTypes.func,
   modalTitle: PropTypes.string,
   show: PropTypes.bool,
+  /**
+   *  Shape of { label: PropTypes.string, toggle: PropTypes.string }
+   */
   userHeaders: PropTypes.shape({
     label: PropTypes.string,
     toggle: PropTypes.string,
   }),
+  /**
+   * Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }
+   */
   users: PropTypes.arrayOf(userType),
 };
 
