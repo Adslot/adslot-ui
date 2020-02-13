@@ -29,7 +29,7 @@ export class SidePanel extends Component {
               // eslint-disable-next-line
               <Accordion.Panel id={key} title={key} key={key}>
                 {_(components)
-                  .orderBy('title')
+                  .orderBy(key === 'Getting Started' ? null : 'title')
                   .pickBy(entry => new RegExp(searchText, 'gi').test(entry.title))
                   .map(component => (
                     <div
