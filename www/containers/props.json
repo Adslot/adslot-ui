@@ -1198,6 +1198,39 @@
       }
     }
   ],
+  "src/components/DatePicker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "DatePicker",
+      "methods": [
+        {
+          "name": "handleDateChangeRaw",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "disableInlineEditing": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
   "src/components/Empty/index.jsx": [
     {
       "description": "",

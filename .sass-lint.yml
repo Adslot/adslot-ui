@@ -65,7 +65,7 @@ rules:
   leading-zero: 2
   nesting-depth: [2, max-depth: 4]
   property-sort-order: 0
-  property-units: [2, global: ['px', 's']]
+  property-units: [2, global: ['px', 's', 'vw', 'vh']]
   quotes: 2
   shorthand-values: 2
   url-quotes: 2
