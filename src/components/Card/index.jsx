@@ -61,6 +61,9 @@ const Card = ({ children, className, accent, dts }) => {
 Card.displayName = 'CardComponent';
 
 Card.propTypes = {
+  /**
+   * arrayOf Card.Content
+   */
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   accent: PropTypes.string,

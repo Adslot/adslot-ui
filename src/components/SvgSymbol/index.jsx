@@ -37,6 +37,9 @@ SvgSymbol.displayName = 'SvgSymbolComponent';
 
 SvgSymbol.propTypes = {
   classSuffixes: PropTypes.arrayOf(PropTypes.string.isRequired),
+  /**
+   * accept both file path and base64 encoded string
+   */
   href: PropTypes.string,
   onClick: PropTypes.func,
 };

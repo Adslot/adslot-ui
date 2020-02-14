@@ -25,9 +25,21 @@ StatusPill.defaultProps = {
 };
 
 StatusPill.propTypes = {
+  /**
+   * 	Text inside status pill
+   */
   status: PropTypes.string.isRequired,
+  /**
+   * one of ["primary", "success", "warning", "error", "light"]
+   */
   displayStyle: PropTypes.oneOf(styles),
+  /**
+   * Status pill with inverse style
+   */
   inverse: PropTypes.bool,
+  /**
+   * 	Generate "data-test-selector" on the status pill
+   */
   dts: PropTypes.string,
 };
 

@@ -13,6 +13,9 @@ Tab.innerName = 'au_tab';
 
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
+  /**
+   * string or number
+   */
   eventKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.node.isRequired,
   tabClassName: PropTypes.string,

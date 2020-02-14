@@ -7,6 +7,9 @@ import './styles.scss';
 class TextEllipsisComponent extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    /**
+     * Can use `placement` and `trigger` props from <a href="/popover">Popover</a> to control popover.
+     */
     popoverProps: PropTypes.shape(_.pick(Popover.propTypes, ['placement', 'trigger'])),
   };
 

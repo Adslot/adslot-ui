@@ -1,20 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import SyntaxHighlighter, { registerLanguage } from 'react-syntax-highlighter/prism-light';
-import jsx from 'react-syntax-highlighter/languages/prism/jsx';
-import coy from 'react-syntax-highlighter/styles/prism/coy';
-
+import CodeBlock from '../../containers/CodeBlock';
 import PropTypeTable from '../PropTypeTable';
 import { Button, InformationBox } from '../../../src';
 
 import './styles.scss';
 
-registerLanguage('jsx', jsx);
-
 class Example extends React.PureComponent {
   render() {
-    const { children, componentName, notes, exampleCodeSnippet, propTypeSectionArray, designNotes } = this.props;
+    const { children, componentName, notes, propTypeSectionArray, designNotes } = this.props;
 
     return (
       <div
@@ -24,12 +19,8 @@ class Example extends React.PureComponent {
         <h2>{componentName}</h2>
 
         <h3>Example</h3>
-        <div className="adslot-ui-example">{children}</div>
-
-        <div className="adslot-ui-code-snippet">
-          <SyntaxHighlighter language="jsx" style={coy}>
-            {exampleCodeSnippet}
-          </SyntaxHighlighter>
+        <div className="adslot-ui-example">
+          <CodeBlock live>{children}</CodeBlock>
         </div>
 
         {designNotes ? (
@@ -61,7 +52,6 @@ Example.propTypes = {
   componentName: PropTypes.string.isRequired,
   notes: PropTypes.node,
   designNotes: PropTypes.node,
-  exampleCodeSnippet: PropTypes.string.isRequired,
   propTypeSectionArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

@@ -1,0 +1,55 @@
+import Props from '../containers/Props.jsx';
+
+## Switch
+
+```jsx live=true
+const Example = () => {
+  const [isToggleOn, setIsToggleOn] = React.useState(true);
+  const onChange = newValue => setIsToggleOn(newValue);
+
+  return (
+    <>
+      <div>
+        <div style={{ paddingTop: 20 }}>Un-Controlled Switch without defaultChecked</div>
+        <div style={{ paddingTop: 10 }}>
+          <Switch />
+        </div>
+      </div>
+      <div>
+        <div style={{ paddingTop: 20 }}>Un-Controlled Switch with defaultChecked</div>
+        <div style={{ paddingTop: 10 }}>
+          <Switch defaultChecked={true} />
+        </div>
+      </div>
+      <div>
+        <div style={{ paddingTop: 20 }}>Un-Controlled Switch with defaultChecked with onChange</div>
+        <div style={{ paddingTop: 10 }}>
+          <Switch defaultChecked={false} onChange={_.noop} />
+        </div>
+      </div>
+      <div>
+        <div style={{ paddingTop: 20 }}>Controlled Switch</div>
+        <div style={{ paddingTop: 10 }}>
+          <Switch checked={isToggleOn} onChange={onChange} />
+        </div>
+      </div>
+      <div>
+        <div style={{ paddingTop: 20 }}>Disabled Un-Checked Switch</div>
+        <div style={{ paddingTop: 10 }}>
+          <Switch disabled />
+        </div>
+      </div>
+      <div>
+        <div style={{ paddingTop: 20 }}>Disabled Checked Switch</div>
+        <div style={{ paddingTop: 10 }}>
+          <Switch checked disabled />
+        </div>
+      </div>
+    </>
+  );
+};
+
+render(Example);
+```
+
+<Props componentName="Switch" />

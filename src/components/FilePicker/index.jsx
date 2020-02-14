@@ -8,13 +8,37 @@ const baseClass = 'filepicker-component';
 
 class FilePickerComponent extends React.PureComponent {
   static propTypes = {
+    /**
+     * determines if the filePicker is disabled
+     */
     disabled: PropTypes.bool,
+    /**
+     * data-test-selector of the filePicker
+     */
     dts: PropTypes.string,
+    /**
+     * determines what file types the user can pick from the file input dialog box
+     */
     filter: PropTypes.string,
+    /**
+     * determines if the filePicker is highlighted or not
+     */
     isHighlighted: PropTypes.bool,
+    /**
+     * the label to be displayed
+     */
     label: PropTypes.string,
+    /**
+     * function called when onRemove event is fired
+     */
     onRemove: PropTypes.func,
+    /**
+     * function called when onSelect event is fired
+     */
     onSelect: PropTypes.func.isRequired,
+    /**
+     * determines the placeholder when no date is selected
+     */
     placeholder: PropTypes.string,
   };
 

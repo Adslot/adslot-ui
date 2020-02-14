@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import classnames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import { radioGroupPropTypes } from '../../prop-types/inputPropTypes';
 
 class RadioGroup extends React.PureComponent {
   onChangeDefault = event => {
@@ -37,6 +37,15 @@ class RadioGroup extends React.PureComponent {
   }
 }
 
-RadioGroup.propTypes = radioGroupPropTypes;
+RadioGroup.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  dts: PropTypes.string,
+  inline: PropTypes.bool,
+};
 
 export default RadioGroup;

@@ -9,6 +9,9 @@ const Spinner = ({ size, colourStyle }) => (
 );
 
 Spinner.propTypes = {
+  /**
+   * oneOf: 'large', medium', 'small'
+   */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   colourStyle: PropTypes.string,
 };

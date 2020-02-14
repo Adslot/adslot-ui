@@ -1,0 +1,5275 @@
+{
+  "src/components/Accordion/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Accordion",
+      "methods": [
+        {
+          "name": "onPanelClick",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "panelId",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "validateProps",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "renderPanelFromChildren",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "child",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "render `data-test-selector` onto the component. It can be useful for testing."
+        },
+        "onPanelClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "onPanelClick(panelId) takes in a single parameter which is the id of the clicked panel."
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "<span>\n Accept an array of <a href=\"/panel-example\">Panel</a> or\n <a href=\"/accordion-panel-example\">Accordion.Panel</a>\n </span>"
+        },
+        "defaultActivePanelIds": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "maxExpand": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "number"
+              },
+              {
+                "name": "enum",
+                "value": [
+                  {
+                    "value": "'max'",
+                    "computed": false
+                  }
+                ]
+              }
+            ]
+          },
+          "required": false,
+          "description": "Determine how many Panels can be expanded, accepted value is a positive number, or <code>max</code> to have no restriction",
+          "defaultValue": {
+            "value": "'max'",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/ActionPanel/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ActionPanel",
+      "methods": [],
+      "props": {
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'small'",
+                "computed": false
+              },
+              {
+                "value": "'medium'",
+                "computed": false
+              },
+              {
+                "value": "'large'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'large'",
+            "computed": false
+          }
+        },
+        "onClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "actionButton": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "null",
+            "computed": false
+          }
+        },
+        "closeIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "<div className=\"close-icon\" />",
+            "computed": false
+          }
+        },
+        "isModal": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Alert/index.jsx": [
+    {
+      "description": "",
+      "displayName": "AlertComponent",
+      "methods": [],
+      "props": {
+        "type": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'info'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'danger'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "['success', 'info', 'warning', 'danger']",
+          "defaultValue": {
+            "value": "'info'",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/AlertInput/index.jsx": [
+    {
+      "description": "",
+      "displayName": "AlertInput",
+      "methods": [
+        {
+          "name": "handleMouseEnter",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleMouseLeave",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleInputFocus",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleInputBlur",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "prefixAddon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "suffixAddon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "alertStatus": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'info'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'error'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "<span>\n  As <code>success</code> is assumed, and help is always displayed independently, the accepted pattern is to\n only use <code>warning</code> and <code>error</code> feedback states with this component. Otherwise leave\n type undefined for <code>success</code>.\n</span>",
+          "defaultValue": {
+            "value": "'success'",
+            "computed": false
+          }
+        },
+        "popoverPlacement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": "'left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'",
+          "defaultValue": {
+            "value": "'bottom'",
+            "computed": false
+          }
+        },
+        "alertMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onValueChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onBlur": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onFocus": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Avatar/index.jsx": [
+    {
+      "description": "",
+      "displayName": "AvatarComponent",
+      "methods": [],
+      "props": {
+        "color": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "givenName": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "tooltip": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "image": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "surname": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/BorderedWell/index.jsx": [
+    {
+      "description": "",
+      "displayName": "BorderedWellComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Breadcrumb/Node/index.jsx": [
+    {
+      "description": "",
+      "displayName": "BreadcrumbNodeComponent",
+      "methods": [],
+      "props": {
+        "isLast": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "node": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "id": {
+                "name": "string",
+                "required": true
+              },
+              "label": {
+                "name": "string",
+                "required": true
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Breadcrumb/index.jsx": [
+    {
+      "description": "",
+      "displayName": "BreadcrumbComponent",
+      "methods": [],
+      "props": {
+        "rootNode": {
+          "type": {
+            "name": "custom",
+            "raw": "BreadcrumbNode.propTypes.node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "{ id: 'all', label: 'All' }",
+            "computed": false
+          }
+        },
+        "nodes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "node"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "newActiveId => {\n  throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);\n}",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Button/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Button",
+      "methods": [
+        {
+          "name": "handleReasonPopover",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "value",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "renderSpinner",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "inverse": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "reason": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      },
+      "composes": [
+        "react-bootstrap/lib/Button"
+      ]
+    }
+  ],
+  "src/components/ButtonGroup/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ButtonGroup",
+      "methods": [
+        {
+          "name": "injectProps",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "children",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "bsStyle": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "inverse": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "bsSize": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Card/index.jsx": [
+    {
+      "description": "",
+      "displayName": "CardContentComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fill": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "stretch": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "append": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "CardComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": "arrayOf Card.Content"
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "accent": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Carousel/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PrevButton",
+      "methods": [],
+      "props": {
+        "previousSlide": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "NextButton",
+      "methods": [],
+      "props": {
+        "nextSlide": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "CarouselComponent",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "autoplay": {
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          },
+          "required": false
+        },
+        "autoplayInterval": {
+          "defaultValue": {
+            "value": "10000",
+            "computed": false
+          },
+          "required": false
+        },
+        "cellAlign": {
+          "defaultValue": {
+            "value": "'center'",
+            "computed": false
+          },
+          "required": false
+        },
+        "cellSpacing": {
+          "defaultValue": {
+            "value": "15",
+            "computed": false
+          },
+          "required": false
+        },
+        "slidesToShow": {
+          "defaultValue": {
+            "value": "2",
+            "computed": false
+          },
+          "required": false
+        },
+        "slideWidth": {
+          "defaultValue": {
+            "value": "'447.5px'",
+            "computed": false
+          },
+          "required": false
+        },
+        "wrapAround": {
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          },
+          "required": false
+        }
+      }
+    }
+  ],
+  "src/components/Checkbox/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Checkbox",
+      "methods": [],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "id for the checkbox input"
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "name for the checkbox input"
+        },
+        "label": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "checkBox label for the checkbox input"
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "checkBox input value"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector for the checkbox component",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the checkbox is disabled",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when checkBox onChange event is fired",
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          }
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if checkbox-component-inline class is applied or not"
+        },
+        "checked": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "true",
+                "computed": false
+              },
+              {
+                "value": "false",
+                "computed": false
+              },
+              {
+                "value": "'partial'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "checked status of the input checkBox: oneOf([true, false, 'partial']",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "size": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "16",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/CheckboxGroup/index.jsx": [
+    {
+      "description": "",
+      "displayName": "CheckboxGroup",
+      "methods": [],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "id for the checkboxGroup input"
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": true,
+          "description": "string array of checked values"
+        },
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "node"
+                }
+              },
+              {
+                "name": "node"
+              }
+            ]
+          },
+          "required": true,
+          "description": "checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]"
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "function called when checkBox onChange event is fired"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector for the checkboxGroup component"
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if checkbox-component-inline class is applied or not"
+        }
+      }
+    }
+  ],
+  "src/components/ConfirmModal/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ConfirmModalComponent",
+      "methods": [],
+      "props": {
+        "buttonCancelLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "determines the label of cancel button",
+          "defaultValue": {
+            "value": "'Cancel'",
+            "computed": false
+          }
+        },
+        "buttonConfirmLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "determines the label of confirm button",
+          "defaultValue": {
+            "value": "'Confirm'",
+            "computed": false
+          }
+        },
+        "modalApply": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when modalApply event is fired",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi ConfirmModal needs a modalApply handler');\n}",
+            "computed": false
+          }
+        },
+        "modalClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when modalClose event is fired"
+        },
+        "modalDescription": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "description of the modal",
+          "defaultValue": {
+            "value": "'Are you sure?'",
+            "computed": false
+          }
+        },
+        "modalTitle": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "title of the modal"
+        },
+        "show": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the modal needs to be shown or not",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/CountBadge/index.jsx": [
+    {
+      "description": "",
+      "displayName": "CountBadge",
+      "methods": [],
+      "props": {
+        "value": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": "determines the number that is rendered inside the counter badge"
+        },
+        "status": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "determines the appearance of the counter badge: oneOf(['info', 'warning', 'danger', 'light'])",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector for the counter badge component"
+        }
+      }
+    }
+  ],
+  "src/components/DatePicker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "DatePicker",
+      "methods": [
+        {
+          "name": "handleDateChangeRaw",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "disableInlineEditing": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Empty/index.jsx": [
+    {
+      "description": "",
+      "displayName": "EmptyComponent",
+      "methods": [],
+      "props": {
+        "collection": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "array"
+              },
+              {
+                "name": "object"
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
+        "svgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "{\n  classSuffixes: ['gray-darker', '70', 'circle'],\n}",
+            "computed": false
+          }
+        },
+        "text": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Nothing to show.'",
+            "computed": false
+          }
+        },
+        "hideIcon": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/FilePicker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "FilePickerComponent",
+      "methods": [
+        {
+          "name": "onChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "changeEvent",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "onUploadBtnClick",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "removeFile",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the filePicker is disabled",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector of the filePicker"
+        },
+        "filter": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "determines what file types the user can pick from the file input dialog box"
+        },
+        "isHighlighted": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the filePicker is highlighted or not",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "label": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "the label to be displayed",
+          "defaultValue": {
+            "value": "'Select'",
+            "computed": false
+          }
+        },
+        "onRemove": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when onRemove event is fired"
+        },
+        "onSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "function called when onSelect event is fired"
+        },
+        "placeholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "determines the placeholder when no date is selected",
+          "defaultValue": {
+            "value": "'No file selected'",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/FlexibleSpacer/index.jsx": [
+    {
+      "description": "",
+      "displayName": "FlexibleSpacerComponent",
+      "methods": []
+    }
+  ],
+  "src/components/FormGroup/index.jsx": [
+    {
+      "description": "",
+      "displayName": "FormGroupComponent",
+      "methods": [],
+      "props": {
+        "addon": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "helpText": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "label": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placeholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Grid/Cell/index.jsx": [
+    {
+      "description": "",
+      "displayName": "GridCellComponent",
+      "methods": [],
+      "props": {
+        "addonClassNames": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "list of addOn classNames as array of strings"
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "the children to be rendered"
+        },
+        "classSuffixes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector of the gridCell"
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function that will be called when gridCell is clicked"
+        },
+        "stretch": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if gridCell should be stretched",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Grid/Row/index.jsx": [
+    {
+      "description": "",
+      "displayName": "GridRowComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "the children to be rendered"
+        },
+        "horizontalBorder": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if horizontalBorder is to be rendered",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "short": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the row is short or long",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "type": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'body'",
+                "computed": false
+              },
+              {
+                "value": "'header'",
+                "computed": false
+              },
+              {
+                "value": "'subfooter'",
+                "computed": false
+              },
+              {
+                "value": "'footer'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "determines the type of griRow: oneOf(['body', 'header', 'subfooter', 'footer'])",
+          "defaultValue": {
+            "value": "'body'",
+            "computed": false
+          }
+        },
+        "verticalCellBorder": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if verticalCellBorder should be displayed",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector of the grid"
+        }
+      }
+    }
+  ],
+  "src/components/Grid/index.jsx": [
+    {
+      "description": "",
+      "displayName": "GridComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "the children to be rendered"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector of the grid"
+        }
+      }
+    }
+  ],
+  "src/components/HelpIconPopover/index.jsx": [
+    {
+      "description": "",
+      "displayName": "HelpIconPopover",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'top'",
+                "computed": false
+              },
+              {
+                "value": "'right'",
+                "computed": false
+              },
+              {
+                "value": "'bottom'",
+                "computed": false
+              },
+              {
+                "value": "'left'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'right'",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/HoverDropdownMenu/PopoverLinkItem/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PopoverLinkItemComponent",
+      "methods": [],
+      "props": {
+        "target": {
+          "defaultValue": {
+            "value": "'_self'",
+            "computed": false
+          },
+          "required": false
+        },
+        "isEnabled": {
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          },
+          "required": false
+        },
+        "onClick": {
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          },
+          "required": false
+        }
+      },
+      "composes": [
+        "lodash"
+      ]
+    }
+  ],
+  "src/components/HoverDropdownMenu/index.jsx": [
+    {
+      "description": "",
+      "displayName": "HoverDropdownMenuComponent",
+      "methods": [
+        {
+          "name": "openMenu",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "popoverEnterHandler",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "popoverLeaveHandler",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "innerRefFunc",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "node",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "arrowPosition": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'left'",
+                "computed": false
+              },
+              {
+                "value": "'right'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "Determine the placement of the popover",
+          "defaultValue": {
+            "value": "'left'",
+            "computed": false
+          }
+        },
+        "headerText": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "If set to empty string, header will not be rendered.",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "hoverComponent": {
+          "type": {
+            "name": "element"
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/InformationBox/index.jsx": [
+    {
+      "description": "",
+      "displayName": "InformationBox",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "title": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/ListPicker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ListPickerComponent",
+      "methods": [
+        {
+          "name": "getApplyButtonState",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "selectedItems",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "loadData",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "selectItem",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "item",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "deselectItem",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "item",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "cancelAction",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "applyAction",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "allowEmptySelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "allowMultiSelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "emptyIcon": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptyMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptySvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "initialSelection": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "itemProps"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "itemHeaders": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "label": {
+                "name": "string",
+                "required": false
+              },
+              "toggle": {
+                "name": "string",
+                "required": false
+              },
+              "addon": {
+                "name": "string",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "itemInfo": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "label": {
+                "name": "string",
+                "required": true
+              },
+              "properties": {
+                "name": "arrayOf",
+                "value": {
+                  "name": "shape",
+                  "value": {
+                    "label": {
+                      "name": "string",
+                      "required": true
+                    },
+                    "value": {
+                      "name": "string",
+                      "required": false
+                    }
+                  }
+                },
+                "required": true
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "items": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "itemProps"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "itemType": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'item'",
+            "computed": false
+          }
+        },
+        "labelFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "addonFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "linkButtons": {
+          "type": {
+            "name": "custom",
+            "raw": "linkButtonsProps"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "modalApply": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi ListPicker needs a modalApply handler');\n}",
+            "computed": false
+          }
+        },
+        "modalDescription": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modalClassName": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'listpicker-component'",
+            "computed": false
+          }
+        },
+        "modalClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi ListPicker needs a modalClose handler');\n}",
+            "computed": false
+          }
+        },
+        "modalFootnote": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modalTitle": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Select Items'",
+            "computed": false
+          }
+        },
+        "show": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/ListPickerPure/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ListPickerPureComponent",
+      "methods": [
+        {
+          "name": "isItemSelected",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "item",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "item",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "updateSelectedItems",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "item",
+              "type": null
+            },
+            {
+              "name": "allowMultiSelection",
+              "type": null
+            },
+            {
+              "name": "isSelected",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "allowMultiSelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "deselectItem": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');\n}",
+            "computed": false
+          }
+        },
+        "emptyIcon": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptyMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'No items to select.'",
+            "computed": false
+          }
+        },
+        "emptySvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "labelFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "item => item.label",
+            "computed": false
+          }
+        },
+        "addonFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "itemHeaders": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "label": {
+                "name": "node",
+                "required": false
+              },
+              "toggle": {
+                "name": "string",
+                "required": false
+              },
+              "addon": {
+                "name": "string",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "items": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "itemProps"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "itemType": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'item'",
+            "computed": false
+          }
+        },
+        "selectItem": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi ListPickerPure needs a selectItem handler');\n}",
+            "computed": false
+          }
+        },
+        "selectedItems": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "itemProps"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Navigation/index.jsx": [
+    {
+      "description": "",
+      "displayName": "NavigationComponent",
+      "methods": [],
+      "props": {
+        "barPosition": {
+          "defaultValue": {
+            "value": "'bottom'",
+            "computed": false
+          },
+          "required": false
+        }
+      },
+      "composes": [
+        "lodash"
+      ]
+    }
+  ],
+  "src/components/OverlayLoader/index.jsx": [
+    {
+      "description": "",
+      "displayName": "OverlayLoader",
+      "methods": [],
+      "props": {
+        "heading": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Loading'",
+            "computed": false
+          }
+        },
+        "text": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "top": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "320",
+            "computed": false
+          }
+        },
+        "disableBackground": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/PageTitle/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PageTitleComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "isFooter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "title": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/PagedGrid/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PagedGridComponent",
+      "methods": [],
+      "props": {
+        "columns": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "columnProps"
+            }
+          },
+          "required": true,
+          "description": ""
+        },
+        "emptyIcon": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptyMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptySvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "items": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "itemProps"
+            }
+          },
+          "required": true,
+          "description": ""
+        },
+        "perPage": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
+        },
+        "verticalCellBorder": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Panel/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PanelComponent",
+      "methods": [
+        {
+          "name": "onHeaderClick",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": "shapeOf <a href=\"/svg-symbol\">SVG Symbol</a> prop types."
+        },
+        "title": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "isCollapsed": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Popover/Popper.jsx": [
+    {
+      "description": "",
+      "displayName": "Popper",
+      "methods": [],
+      "props": {
+        "arrowStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "boundariesElement": {
+          "type": {
+            "name": "instanceOf",
+            "value": "Element"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "innerRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modifiers": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popoverClass": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popoverContent": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "func"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "refElement": {
+          "type": {
+            "name": "instanceOf",
+            "value": "Element"
+          },
+          "required": false,
+          "description": ""
+        },
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "wrapperStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Popover/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Popover",
+      "methods": [
+        {
+          "name": "onClick",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "onFocus",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "onBlur",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "onMouseOver",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "onMouseOut",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "getBoundedContainer",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "closePopover",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "openPopover",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "togglePopover",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "theme": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "themes"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'light'",
+            "computed": false
+          }
+        },
+        "title": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popoverClassNames": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "arrowStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "wrapperStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modifiers": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'auto'",
+            "computed": false
+          }
+        },
+        "popoverContent": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "func"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "triggers": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "custom",
+                "raw": "triggerPropTypes"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "custom",
+                  "raw": "triggerPropTypes"
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'hover'",
+            "computed": false
+          }
+        },
+        "isOpen": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "getContainer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popperRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/PrettyDiff/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PrettyDiffComponent",
+      "methods": [],
+      "props": {
+        "newText": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "oldText": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Radio/index.jsx": [
+    {
+      "description": "",
+      "displayName": "RadioButton",
+      "methods": [],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "label": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          }
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "checked": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/RadioGroup/index.jsx": [
+    {
+      "description": "",
+      "displayName": "RadioGroup",
+      "methods": [
+        {
+          "name": "onChangeDefault",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "renderChildren",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "node"
+                }
+              },
+              {
+                "name": "node"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Search/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Search",
+      "methods": [
+        {
+          "name": "onChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "onClear",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "onKeyPress",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "onSearch",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "searchValue",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "onSearchButtonClick",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "debounceInterval": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Milliseconds",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Determine whether the text area is disabled",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Render `data-test-selector` onto the component. It can be useful for testing"
+        },
+        "icons": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "search": {
+                "name": "node",
+                "required": false
+              },
+              "loader": {
+                "name": "node",
+                "required": false
+              },
+              "close": {
+                "name": "node",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": "{ search: React.Node, loader: React.Node, close: React.Node }",
+          "defaultValue": {
+            "value": "{}",
+            "computed": false
+          }
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onSearch": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "Required"
+        },
+        "placeholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "searchOnEnter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Select/index.jsx": [
+    {
+      "description": "",
+      "displayName": "DropdownIndicator",
+      "methods": []
+    },
+    {
+      "description": "",
+      "displayName": "ClearIndicator",
+      "methods": []
+    }
+  ],
+  "src/components/Slicey/Arc/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SliceyArcComponent",
+      "methods": [],
+      "props": {
+        "data": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "label": {
+                "name": "string",
+                "required": true
+              },
+              "id": {
+                "name": "number",
+                "required": true
+              },
+              "largeArcFlag": {
+                "name": "number",
+                "required": true
+              },
+              "x1": {
+                "name": "number",
+                "required": true
+              },
+              "y1": {
+                "name": "number",
+                "required": true
+              },
+              "x2": {
+                "name": "number",
+                "required": true
+              },
+              "y2": {
+                "name": "number",
+                "required": true
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Slicey/Donut/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SliceyDonutComponent",
+      "methods": []
+    }
+  ],
+  "src/components/Slicey/Marker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SliceyMarkerComponent",
+      "methods": [],
+      "props": {
+        "fraction": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Slicey/index.jsx": [
+    {
+      "description": "",
+      "displayName": "getArcElements",
+      "methods": []
+    },
+    {
+      "description": "",
+      "displayName": "SliceyComponent",
+      "methods": [],
+      "props": {
+        "dataset": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "shape",
+              "value": {
+                "label": {
+                  "name": "string",
+                  "required": true
+                },
+                "value": {
+                  "name": "number",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": false,
+          "description": "Slicey will represent all values as percentage of the pie based on the sum of all values.\nLabel will provide a className to each slice as <code>.arc-component-{'${label}'}</code>."
+        },
+        "diameter": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "100",
+            "computed": false
+          }
+        },
+        "donut": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Add a line across the radius at a set fraction of the whole e.g. .25 for ¼."
+        },
+        "marker": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Set to true if you wish the pie chart to have a hollow hole in the centre, like a donut :9"
+        }
+      }
+    }
+  ],
+  "src/components/Spinner/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Spinner",
+      "methods": [],
+      "props": {
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'small'",
+                "computed": false
+              },
+              {
+                "value": "'medium'",
+                "computed": false
+              },
+              {
+                "value": "'large'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "oneOf: 'large', medium', 'small'",
+          "defaultValue": {
+            "value": "'large'",
+            "computed": false
+          }
+        },
+        "colourStyle": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/SplitPane/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SplitPaneComponent",
+      "methods": [],
+      "props": {
+        "additionalClassNames": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "render `data-test-selector` onto the component. It can be useful for testing."
+        }
+      }
+    }
+  ],
+  "src/components/Statistic/index.jsx": [
+    {
+      "description": "",
+      "displayName": "StatisticComponent",
+      "methods": [],
+      "props": {
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Horizontal layout as opposed to stacked.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "label": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": "Preferred TitleCase (aka. PascalCase, StartCase)"
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": "Where value is a number consider human readable strings e.g 'Million' instead of 000,000."
+        }
+      }
+    }
+  ],
+  "src/components/StatusPill/index.jsx": [
+    {
+      "description": "",
+      "displayName": "StatusPill",
+      "methods": [],
+      "props": {
+        "status": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": "Text inside status pill"
+        },
+        "displayStyle": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'primary'",
+                "computed": false
+              },
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'error'",
+                "computed": false
+              },
+              {
+                "value": "'light'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "one of [\"primary\", \"success\", \"warning\", \"error\", \"light\"]",
+          "defaultValue": {
+            "value": "styles[0]",
+            "computed": true
+          }
+        },
+        "inverse": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Status pill with inverse style",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Generate \"data-test-selector\" on the status pill"
+        }
+      }
+    }
+  ],
+  "src/components/SvgSymbol/Circle/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SvgSymbolCircleComponent",
+      "methods": [],
+      "props": {
+        "classSuffixes": {
+          "type": {
+            "name": "custom",
+            "raw": "SvgSymbol.propTypes.classSuffixes"
+          },
+          "required": false,
+          "description": ""
+        },
+        "href": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/SvgSymbol/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SvgSymbolComponent",
+      "methods": [],
+      "props": {
+        "classSuffixes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "href": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "accept both file path and base64 encoded string",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Switch/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Switch",
+      "methods": [
+        {
+          "name": "handleChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "defaultChecked": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "switch value, if the value is un-controlled"
+        },
+        "checked": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "switch value, if the value is controlled"
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "This function is called when value is changed\n <br/>\n const onChange = (nextState) => ..."
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'switch-component'",
+            "computed": false
+          }
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Tab/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Tab",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "eventKey": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": true,
+          "description": "string or number"
+        },
+        "title": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "tabClassName": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "show": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Tabs/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Tabs",
+      "methods": [
+        {
+          "name": "isControlled",
+          "docblock": null,
+          "modifiers": [
+            "get"
+          ],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "activeKey",
+          "docblock": null,
+          "modifiers": [
+            "get"
+          ],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "switchTab",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "key",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "defaultActiveKey": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "string or number"
+        },
+        "activeKey": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "string or number"
+        },
+        "onSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "(selectedTabKey) => {...}"
+        }
+      }
+    }
+  ],
+  "src/components/Tag/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ActionButton",
+      "methods": [],
+      "props": {
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onAction": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "actionIconSvgHref": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "TagComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
+        },
+        "accent": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "baseClass": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'tag-component'",
+            "computed": false
+          }
+        },
+        "inverse": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onAction": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "actionIconSvgHref": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TextEllipsis/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TextEllipsisComponent",
+      "methods": [
+        {
+          "name": "setTruncate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "popoverProps": {
+          "type": {
+            "name": "shape",
+            "value": "_.pick(Popover.propTypes, ['placement', 'trigger'])",
+            "computed": true
+          },
+          "required": false,
+          "description": "Can use `placement` and `trigger` props from <a href=\"/popover\">Popover</a> to control popover.",
+          "defaultValue": {
+            "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Textarea/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Textarea",
+      "methods": [
+        {
+          "name": "handleChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "maxLength": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": ""
+        },
+        "statusClass": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TileGrid/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TileGridComponent",
+      "methods": [],
+      "props": {
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "items": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "shape",
+              "value": {
+                "id": {
+                  "name": "custom",
+                  "raw": "idPropType.isRequired",
+                  "required": true
+                },
+                "classSuffix": {
+                  "name": "string",
+                  "required": true
+                },
+                "title": {
+                  "name": "string",
+                  "required": true
+                },
+                "imgLink": {
+                  "name": "string",
+                  "required": false
+                },
+                "width": {
+                  "name": "number",
+                  "required": false
+                },
+                "maxWidth": {
+                  "name": "number",
+                  "required": false
+                },
+                "imgAlign": {
+                  "name": "enum",
+                  "value": [
+                    {
+                      "value": "'left'",
+                      "computed": false
+                    },
+                    {
+                      "value": "'right'",
+                      "computed": false
+                    },
+                    {
+                      "value": "'center'",
+                      "computed": false
+                    }
+                  ],
+                  "required": false
+                }
+              }
+            }
+          },
+          "required": true,
+          "description": "The shape of item object is defined below"
+        },
+        "onItemClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "distributed": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If distributed is true, each tile in this component will have a distributed width.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/Totals/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TotalsComponent",
+      "methods": [],
+      "props": {
+        "toSum": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "shape",
+              "value": {
+                "label": {
+                  "name": "node",
+                  "required": false
+                },
+                "value": {
+                  "name": "number",
+                  "required": true
+                },
+                "isHidden": {
+                  "name": "bool",
+                  "required": false
+                }
+              }
+            }
+          },
+          "required": false,
+          "description": "{ label: PropTypes.node, value: PropTypes.number.isRequired, isHidden: PropTypes.bool }",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "valueFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "value => `${value}`",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Grid/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerGridComponent",
+      "methods": [],
+      "props": {
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "emptySvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptyText": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "expandNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "groupFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => 'Default Group'",
+            "computed": false
+          }
+        },
+        "hideIcon": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "includeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "itemType": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "nodes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "node"
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "nodeRenderer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "removeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "selected": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "valueFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "displayGroupHeader": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Nav/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerNavComponent",
+      "methods": [],
+      "props": {
+        "breadcrumbRootNode": {
+          "type": {
+            "name": "custom",
+            "raw": "TreePickerPropTypes.breadCrumbNode"
+          },
+          "required": false,
+          "description": ""
+        },
+        "breadcrumbNodes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "TreePickerPropTypes.breadCrumbNode"
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "breadcrumbOnClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onSearch": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          }
+        },
+        "debounceInterval": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        },
+        "searchOnEnter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "searchPlaceholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "searchValue": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "showSearch": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "svgSymbolCancel": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "svgSymbolSearch": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Node/Expander/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerNodeExpander",
+      "methods": [],
+      "props": {
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Node/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerNodeComponent",
+      "methods": [
+        {
+          "name": "setLoadingAndExpandNode",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleRemove",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleInclude",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "expandNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "includeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
+            "computed": false
+          }
+        },
+        "itemType": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "node": {
+          "type": {
+            "name": "custom",
+            "raw": "TreePickerPropTypes.node.isRequired"
+          },
+          "required": false,
+          "description": ""
+        },
+        "nodeRenderer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "node => node.label",
+            "computed": false
+          }
+        },
+        "removeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
+            "computed": false
+          }
+        },
+        "selected": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "valueFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "value => value",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerSimplePureComponent",
+      "methods": [],
+      "props": {
+        "additionalClassNames": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "Class Names for SplitPane component"
+        },
+        "breadcrumbRootNode": {
+          "type": {
+            "name": "custom",
+            "raw": "TreePickerPropTypes.breadCrumbNode"
+          },
+          "required": false,
+          "description": "Optional. This prop allows customization of the Breadcrumb root node. { id: PropTypes.sting | PropTypes.number, label: PropTypes.string}"
+        },
+        "breadcrumbNodes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "TreePickerPropTypes.breadCrumbNode.isRequired"
+            }
+          },
+          "required": false,
+          "description": "Returns node id. This prop is not required, but an empty array is not allowed. At least one element is required in the array."
+        },
+        "breadcrumbOnClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "This propType creates a list of breadcrumb node"
+        },
+        "debounceInterval": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Interval time on search",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Disables treepicker including search bar",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "disableInclude": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Disables treepicker's grid item"
+        },
+        "emptySvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": "Displays this svg symbol when there will be no item on both left or right Grid"
+        },
+        "emptySelectedListSvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": "Displays this svg symbol when there will be no item on right Grid(Selected list)"
+        },
+        "emptyText": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Displays this text when there will be no item on left Grid. Prefer type 'string', but rich text can be used here"
+        },
+        "emptySelectedListText": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Displays this text when there will be no item on right Grid(Selected list). Prefer type 'string', but rich text can be used here."
+        },
+        "expandNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Triggers when clicking any item in the left Grid"
+        },
+        "groupFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "This function use to transform keys of the list item in the left Grid"
+        },
+        "hideIcon": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Hides icon when displays empty symbol"
+        },
+        "includeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Click event on '+' button of each list Item"
+        },
+        "initialStateNode": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Same as emptyText"
+        },
+        "initialStateSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": "Same as emptySymbol"
+        },
+        "itemType": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Uses for specific className",
+          "defaultValue": {
+            "value": "'node'",
+            "computed": false
+          }
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "nodeRenderer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Uses for rendering custom node"
+        },
+        "removeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Triggers when search input changes"
+        },
+        "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Triggers when the user clicks the clear button on search input"
+        },
+        "onSearch": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Please see <a href='/search'>Search</a>"
+        },
+        "searchOnEnter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Please see <a href='/search'>Search</a>",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "searchPlaceholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Search'",
+            "computed": false
+          }
+        },
+        "searchValue": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "selectedNodes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "node"
+            }
+          },
+          "required": true,
+          "description": ""
+        },
+        "showSearch": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Show or hide the search field on the selection pane",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "subtree": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "node"
+            }
+          },
+          "required": false,
+          "description": "A list of available unselected nodes. This prop is not required, but an empty array is not allowed. At least one element is required in the array."
+        },
+        "svgSymbolCancel": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "svgSymbolSearch": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": ""
+        },
+        "displayGroupHeader": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "e.g: Default Group",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "hideSearchOnRoot": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "selectedTopSearch": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component."
+        }
+      }
+    }
+  ],
+  "src/components/UserListPicker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ListPickerComponent",
+      "methods": [],
+      "props": {
+        "allowEmptySelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "avatarColor": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "avatarColor({ avatar, givenName, id, surname })",
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          }
+        },
+        "emptyIcon": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "emptyMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'No users.'",
+            "computed": false
+          }
+        },
+        "emptySvgSymbol": {
+          "type": {
+            "name": "shape",
+            "value": "SvgSymbol.propTypes",
+            "computed": true
+          },
+          "required": false,
+          "description": "Shape of <a href=\"/svg-symbol\">SVG Symbol</a> prop types."
+        },
+        "initialSelection": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "userType"
+            }
+          },
+          "required": false,
+          "description": "Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "modalApply": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi UserListPicker needs a modalApply handler');\n}",
+            "computed": false
+          }
+        },
+        "modalDescription": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Select users.'",
+            "computed": false
+          }
+        },
+        "modalClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "() => {\n  throw new Error('AdslotUi UserListPicker needs a modalClose handler');\n}",
+            "computed": false
+          }
+        },
+        "modalTitle": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Select Users'",
+            "computed": false
+          }
+        },
+        "show": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "userHeaders": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "label": {
+                "name": "string",
+                "required": false
+              },
+              "toggle": {
+                "name": "string",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": "Shape of { label: PropTypes.string, toggle: PropTypes.string }",
+          "defaultValue": {
+            "value": "{ label: 'Team', toggle: 'Member' }",
+            "computed": false
+          }
+        },
+        "users": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "userType"
+            }
+          },
+          "required": false,
+          "description": "Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "src/components/VerticalNavigation/index.jsx": [
+    {
+      "description": "",
+      "displayName": "VerticalNavigation",
+      "methods": [
+        {
+          "name": "getActiveTabIndex",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "children",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "renderContent",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "{ children }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "renderMenu",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "{ children, isCollapsed }",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "isCollapsed": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "event handler for clicking on the collapse/expand button\n</br>\nconst onClick = () => ..."
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "render `data-test-selector` onto the component. It can be useful for testing."
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ]
+}

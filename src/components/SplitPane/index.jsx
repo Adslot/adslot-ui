@@ -19,6 +19,9 @@ SplitPaneComponent.displayName = 'SplitPaneComponent';
 SplitPaneComponent.propTypes = {
   additionalClassNames: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,
+  /**
+   * 	render `data-test-selector` onto the component. It can be useful for testing.
+   */
   dts: PropTypes.string,
 };
 

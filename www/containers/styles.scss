@@ -1,0 +1,195 @@
+@import '~styles/variable';
+
+body {
+  font-family: $font-family-sans-serif;
+  margin: 0;
+}
+
+@mixin accent($id, $color-accent) {
+  .tag-component-accent {
+    &.accent-#{$id} {
+      border-color: $color-accent;
+
+      &:not(.tag-component-inverse) {
+        background-color: $color-accent;
+      }
+
+      &.tag-component-inverse {
+        color: $color-accent;
+        fill: $color-accent;
+      }
+    }
+  }
+}
+
+@include accent('positive', $color-positive);
+@include accent('pending', $color-pending);
+@include accent('negative', $color-negative);
+
+.adslot-ui-layout {
+  .adslot-ui-header {
+    position: fixed;
+    width: 100%;
+    z-index: $zindex-popover - 40;
+  }
+
+  .adslot-ui-body {
+    display: flex;
+    flex-direction: row;
+    padding: 72px 12px 0;
+  }
+}
+
+.adslot-ui-sidebar-area {
+  margin-right: $spacing-etalon;
+  flex: 0 1 1;
+  border-right: 1px solid $color-gray-lighter;
+  width: 240px;
+  padding: 12px;
+  z-index: $zindex-popover - 40;
+  height: calc(100% - 72px); // header margin
+  position: fixed;
+  overflow: scroll;
+
+  .panel-component-content {
+    padding: 10px 0;
+
+    .aui--docs-panel-list {
+      padding: 10px 20px;
+      cursor: pointer;
+
+      &.is-active {
+        background-color: $color-gray-lighter;
+      }
+    }
+  }
+}
+
+.adslot-ui-content-area {
+  margin-left: $spacing-etalon * 9;
+  padding-top: $spacing-etalon;
+  max-width: 1200px;
+  padding-bottom: 100px;
+
+  // button group example
+  .svg-icon {
+    .aui--popover-element {
+      &.btn-popover-reason {
+        display: flex;
+
+        > div {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .aui--docs-code-error {
+    border: 1px solid;
+    padding: 10px;
+    background: $color-status-light-red;
+    color: $color-red;
+  }
+
+  .aui--docs-note-panel,
+  .aui--docs-ui-proptype-table {
+    margin-top: 10px;
+  }
+
+  .aui--docs-note-panel {
+    .text {
+      &-blue {
+        color: $color-blue;
+      }
+
+      &-cyan {
+        color: $color-cyan;
+      }
+
+      &-green {
+        color: $color-green;
+      }
+
+      &-gray-light {
+        color: $color-gray-light;
+      }
+
+      &-gray-dark {
+        color: $color-gray-dark;
+      }
+
+      &-red {
+        color: $color-red;
+      }
+
+      &-orange {
+        color: $color-orange;
+      }
+
+      &-bold {
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  .aui--docs-static-markup {
+    display: flex;
+    margin-bottom: 50px;
+    width: 300px;
+
+    .aui--overlay-loader {
+      z-index: 1;
+      position: inherit;
+
+      .loader {
+        position: inherit;
+      }
+
+      + .aui--overlay-loader {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .intro-page-box {
+    height: 150px;
+    border-radius: 5%;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    .information-box-text {
+      padding-left: 0;
+    }
+
+    .svg-symbol-component-box-icon {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .intro-page-box-heading {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .intro-page-box-description {
+    width: 350px;
+    margin-bottom: 15px;
+  }
+
+  .page-not-found {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .svg-symbol-component-not-found-icon {
+      height: 160px;
+      width: 160px;
+    }
+  }
+}

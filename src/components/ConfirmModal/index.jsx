@@ -48,12 +48,33 @@ const ConfirmModalComponent = ({
 ConfirmModalComponent.displayName = 'ConfirmModalComponent';
 
 ConfirmModalComponent.propTypes = {
+  /**
+   * determines the label of cancel button
+   */
   buttonCancelLabel: PropTypes.string,
+  /**
+   * determines the label of confirm button
+   */
   buttonConfirmLabel: PropTypes.string,
+  /**
+   * function called when modalApply event is fired
+   */
   modalApply: PropTypes.func,
+  /**
+   * function called when modalClose event is fired
+   */
   modalClose: PropTypes.func,
+  /**
+   * description of the modal
+   */
   modalDescription: PropTypes.string,
+  /**
+   * title of the modal
+   */
   modalTitle: PropTypes.string,
+  /**
+   * determines if the modal needs to be shown or not
+   */
   show: PropTypes.bool,
 };
 

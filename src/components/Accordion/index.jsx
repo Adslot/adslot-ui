@@ -6,10 +6,25 @@ import Panel from '../Panel';
 
 class Accordion extends React.PureComponent {
   static propTypes = {
+    /**
+     * render `data-test-selector` onto the component. It can be useful for testing.
+     */
     dts: PropTypes.string,
+    /**
+     * onPanelClick(panelId) takes in a single parameter which is the id of the clicked panel.
+     */
     onPanelClick: PropTypes.func,
+    /**
+     * <span>
+     *  Accept an array of <a href="/panel-example">Panel</a> or
+     *  <a href="/accordion-panel-example">Accordion.Panel</a>
+     *  </span>
+     */
     children: PropTypes.node,
     defaultActivePanelIds: PropTypes.arrayOf(PropTypes.string),
+    /**
+     * Determine how many Panels can be expanded, accepted value is a positive number, or <code>max</code> to have no restriction
+     */
     maxExpand: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['max'])]),
   };
 
