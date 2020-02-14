@@ -1,6 +1,6 @@
 ## Installation
 
-Adslot-ui is available as an <a href="https://www.npmjs.com/package/adslot-ui" target="_blank">npm package</a>.
+Adslot UI is available as an <a href="https://www.npmjs.com/package/adslot-ui" target="_blank">npm package</a>.
 
 ### npm
 To install and save in your `package.json` dependencies, run:
