@@ -17,6 +17,22 @@
     width: $icon-size;
   }
 
+  &.is-error {
+    background-color: $color-negative-light;
+  }
+
+  &.is-warning {
+    background-color: $color-warning-light;
+  }
+
+  &.is-info {
+    background-color: $color-info-light;
+  }
+
+  &.is-success {
+    background-color: $color-positive-light;
+  }
+
   &-metadata {
     color: $color-text-light;
 

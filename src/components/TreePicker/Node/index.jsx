@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import GridCell from '../../Grid/Cell';
@@ -54,8 +55,13 @@ class TreePickerNodeComponent extends React.PureComponent {
 
     const labelCellProps = isExpandable && !this.state.isLoading ? { onClick: this.setLoadingAndExpandNode } : {};
 
+    const classNames = classnames(baseClass, {
+      'child-node': isChildNode,
+      [`is-${node.accent}`]: node.accent,
+    });
+
     return (
-      <div className={isChildNode ? `${baseClass} child-node` : `${baseClass}`}>
+      <div className={classNames}>
         <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
           {selected ? (
             <GridCell classSuffixes={['button']} dts="button-remove">
