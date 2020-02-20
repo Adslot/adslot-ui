@@ -1,49 +1,50 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import ReactDOM from 'react-dom';
 import './styles.scss';
 
-class ActionPanel extends React.PureComponent {
-  componentDidMount() {
-    if (this.props.isModal) document.body.classList.add('modal-open');
-  }
+const ActionPanel = React.forwardRef((props, ref) => {
+  const { title, className, size, onClose, children, actionButton, isModal, closeIcon } = props;
 
-  componentWillUnmount() {
-    if (this.props.isModal) document.body.classList.remove('modal-open');
-  }
+  const addBodyClass = classname => document.body.classList.add(classname);
+  const removeBodyClass = classname => document.body.classList.remove(classname);
 
-  render() {
-    const { title, className, size, onClose, children, actionButton, isModal, closeIcon } = this.props;
+  useEffect(() => {
+    if (isModal) addBodyClass('modal-open');
 
-    const actionPanel = (
-      <React.Fragment>
-        <div className={isModal ? 'aui--action-panel-backdrop' : 'hide'} />
-        <div className={classNames('aui--action-panel-wrapper', { 'aui--action-panel-modal-wrapper': isModal })}>
-          <div className={classNames('aui--action-panel', className, `is-${size}`, { 'action-modal': isModal })}>
-            <div className={classNames('aui--action-panel-header', { 'has-actions': actionButton })}>
-              <span className="title">{title}</span>
-              <span className="actions">
-                <Button
-                  onClick={onClose}
-                  className={classNames('close-button', { 'close-svg-icon': !actionButton })}
-                  dts="header-close-button"
-                >
-                  {actionButton ? 'Cancel' : closeIcon}
-                </Button>
-                {actionButton}
-              </span>
-            </div>
-            <div className="aui--action-panel-body">{children}</div>
+    return () => {
+      if (isModal) removeBodyClass('modal-open');
+    };
+  }, []);
+
+  const actionPanel = (
+    <div ref={ref}>
+      <div className={isModal ? 'aui--action-panel-backdrop' : 'hide'} />
+      <div className={classNames('aui--action-panel-wrapper', { 'aui--action-panel-modal-wrapper': isModal })}>
+        <div className={classNames('aui--action-panel', className, `is-${size}`, { 'action-modal': isModal })}>
+          <div className={classNames('aui--action-panel-header', { 'has-actions': actionButton })}>
+            <span className="title">{title}</span>
+            <span className="actions">
+              <Button
+                onClick={onClose}
+                className={classNames('close-button', { 'close-svg-icon': !actionButton })}
+                dts="header-close-button"
+              >
+                {actionButton ? 'Cancel' : closeIcon}
+              </Button>
+              {actionButton}
+            </span>
           </div>
+          <div className="aui--action-panel-body">{children}</div>
         </div>
-      </React.Fragment>
-    );
+      </div>
+    </div>
+  );
 
-    return isModal ? ReactDOM.createPortal(actionPanel, document.body) : actionPanel;
-  }
-}
+  return isModal ? ReactDOM.createPortal(actionPanel, document.body) : actionPanel;
+});
 
 ActionPanel.propTypes = {
   title: PropTypes.string.isRequired,
