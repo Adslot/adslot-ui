@@ -17,6 +17,7 @@ export default {
       ancestors: PropTypes.arrayOf(PropTypes.shape(baseNodeProps).isRequired),
       type: PropTypes.string.isRequired,
       value: PropTypes.number,
+      accent: PropTypes.oneOf(['warning', 'success', 'info', 'error']),
     })
   ),
   breadCrumbNode: PropTypes.shape(baseNodeProps),

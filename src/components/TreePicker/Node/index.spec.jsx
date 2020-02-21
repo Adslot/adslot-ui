@@ -111,6 +111,19 @@ describe('TreePickerNodeComponent', () => {
     expect(labelElement.text()).to.equal('Test value: Australian Capital Territory');
   });
 
+  it('should have correct accent color', () => {
+    expect(
+      shallow(
+        <TreePickerNode itemType={itemType} node={{ ...actNode, accent: 'error' }} nodeRenderer={nodeRenderer} />
+      ).props().className
+    ).match(/is-error/);
+    expect(
+      shallow(
+        <TreePickerNode itemType={itemType} node={{ ...actNode, accent: 'warning' }} nodeRenderer={nodeRenderer} />
+      ).props().className
+    ).match(/is-warning/);
+  });
+
   it('should render unselectable nodes with an include button', () => {
     const component = shallow(<TreePickerNode itemType={itemType} node={actNode} />);
 
