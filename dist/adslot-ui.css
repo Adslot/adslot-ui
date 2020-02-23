@@ -11218,6 +11218,18 @@ input:disabled + .aui--switch-slider::before {
   height: 16px;
   width: 16px; }
 
+.treepickernode-component.is-error {
+  background-color: #fbedec; }
+
+.treepickernode-component.is-warning {
+  background-color: #fef6ea; }
+
+.treepickernode-component.is-info {
+  background-color: #e0f0ff; }
+
+.treepickernode-component.is-success {
+  background-color: #eaf8ea; }
+
 .treepickernode-component-metadata {
   color: #838383; }
   .treepickernode-component-metadata::before {
