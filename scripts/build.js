@@ -46,7 +46,7 @@ function copyDemoAssets() {
     dereference: true,
     filter: file => file !== paths.appHtml,
   });
-  fs.copyFileSync(paths.cnamePath, `${buildPath}/CNAME`);
+  fs.copyFileSync(paths.redirectPath, `${buildPath}/_redirects`);
 }
 
 // Create the production build and print the deployment instructions.
