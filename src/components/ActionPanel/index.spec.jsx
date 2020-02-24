@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { ActionPanel } from 'adslot-ui';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 
@@ -25,14 +26,17 @@ describe('ActionPanelComponent', () => {
     const bodyElement = wrapper.find('.aui--action-panel-body');
     expect(bodyElement).to.have.length(1);
 
-    wrapper.instance().componentWillUnmount();
+    wrapper.unmount();
     expect(document.body.classList.contains('modal-open')).to.equal(false);
   });
 
   it('should render as a modal', () => {
-    const wrapper = shallow(
-      <ActionPanel {...makeProps({ isModal: true, size: 'large', actionButton: <Button>Action</Button> })} />
-    );
+    let wrapper;
+    act(() => {
+      wrapper = mount(
+        <ActionPanel {...makeProps({ isModal: true, size: 'large', actionButton: <Button>Action</Button> })} />
+      );
+    });
 
     expect(document.body.classList.contains('modal-open')).to.equal(true);
 
@@ -40,7 +44,21 @@ describe('ActionPanelComponent', () => {
     const actionPanelElement = wrapper.find('.aui--action-panel');
     expect(actionPanelElement.prop('className')).to.equal('aui--action-panel is-large action-modal');
 
-    wrapper.instance().componentWillUnmount();
+    wrapper.unmount();
+    expect(document.body.classList.contains('modal-open')).to.equal(false);
+  });
+
+  it('should not render modal when isModal is false', () => {
+    let wrapper;
+    act(() => {
+      wrapper = mount(
+        <ActionPanel {...makeProps({ isModal: false, size: 'large', actionButton: <Button>Action</Button> })} />
+      );
+    });
+
+    expect(document.body.classList.contains('modal-open')).to.equal(false);
+
+    wrapper.unmount();
     expect(document.body.classList.contains('modal-open')).to.equal(false);
   });
 });
