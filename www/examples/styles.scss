@@ -41,6 +41,16 @@
     }
   }
 
+  &.button-example {
+    .adslot-ui-example {
+      display: flex;
+
+      .aui--popover-element {
+        margin-right: 12px;
+      }
+    }
+  }
+
   &.accordion-panel-example,
   &.card-example {
     .adslot-ui-example {
@@ -107,7 +117,7 @@
             margin-top: 1px;
           }
 
-          .button-component {
+          .aui--button {
             position: relative;
             left: 5px;
             top: -5px;

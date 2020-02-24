@@ -13,14 +13,11 @@ class ButtonExample extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <Button bsStyle="link" disabled={!this.state.canUndo} reason="There's nothing to undo." onClick={this.onClick}>
-          Undo
-        </Button>
+      <React.Fragment>
         <Button bsStyle="primary" disabled={this.state.canUndo} onClick={this.onClick}>
           Apply
         </Button>
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -60,23 +57,10 @@ export const exampleProps = {
       Campaign, Save, Reject etc.
     </p>
   ),
-  exampleCodeSnippet: `<div>
-  <Button
-    bsStyle="link"
-    disabled={!this.state.canUndo}
-    reason="There's nothing to undo."
-    onClick={this.onClick}
-  >
-    Undo
-  </Button>
-  <Button
-    bsStyle="primary"
-    disabled={this.state.canUndo}
-    onClick={this.onClick}
-  >
-    Apply
-  </Button>
-</div>`,
+  exampleCodeSnippet: `<Button bsStyle="primary" disabled={this.state.canUndo} onClick={this.onClick}>
+  Apply
+</Button>
+`,
   propTypeSectionArray: [
     {
       propTypes: [
@@ -98,11 +82,6 @@ export const exampleProps = {
           type: 'bool',
           note: 'Renders an inverse button. Can be used with bsStyle to create primary inverse buttons.',
           defaultValue: 'false',
-        },
-        {
-          propType: 'reason',
-          type: 'string',
-          note: 'Used in tandem with the disabled prop to present a popover explaining why the button is disabled.',
         },
         {
           propType: 'onClick',

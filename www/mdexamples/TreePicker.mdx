@@ -83,7 +83,7 @@ const Example = () => {
         onChange={setPickerSearchValue}
         searchOnClear={() => setPickerSearchValue('')}
         includeNode={node => setSelectedNodes(_.concat([], selectedNodes, node))}
-        removeNode={node => setSelectedNodes(_.reject(this.state.selectedNodes, { id: node.id }))}
+        removeNode={node => setSelectedNodes(_.reject(selectedNodes, { id: node.id }))}
         additionalClassNames={pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
         selectedTopSearch={
           <div className="selected-search">
