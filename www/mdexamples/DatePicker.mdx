@@ -1,33 +1,26 @@
+import Props from '../containers/Props.jsx';
 import DesignNotes from '../containers/DesignNotes.jsx';
 
 ## Date Picker
 
 ```jsx live=true
-class DatePickerExample extends React.Component {
-  constructor() {
-    super();
-    this.state = { startDate: moment() };
-    this.setSelectedDate = this.setSelectedDate.bind(this);
-  }
+const Example = () => {
+  const [startDate, setStartDate] = React.useState(moment());
+  const handleChange = startDate => setStartDate(startDate);
 
-  setSelectedDate(newValue) {
-    this.setState({ startDate: newValue });
-  }
+  return (
+    <DatePicker
+      className="form-control"
+      dateFormat="DD MMM YYYY"
+      selected={startDate}
+      onChange={handleChange}
+      placeholderText="Date e.g. 03 Sep 2016"
+      disableInlineEditing={false}
+    />
+  );
+};
 
-  render() {
-    return (
-      <DatePicker
-        className="form-control"
-        dateFormat="DD MMM YYYY"
-        selected={this.state.startDate}
-        onChange={this.setSelectedDate}
-        placeholderText="Date e.g. 03 Sep 2016"
-      />
-    );
-  }
-}
-
-render(<DatePickerExample />);
+render(Example);
 ```
 
 <DesignNotes>
@@ -36,3 +29,4 @@ render(<DatePickerExample />);
   </div>
   * For a Date Range Picker use two Date Pickers with minDate and maxDate props for validation
 </DesignNotes>
+<Props componentName="DatePicker" />
