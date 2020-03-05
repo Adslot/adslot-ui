@@ -27,7 +27,6 @@ import Slicey from './components/Slicey';
 import Spinner from './components/Spinner';
 import Statistic from './components/Statistic';
 import SvgSymbol from './components/SvgSymbol';
-import SvgSymbolCircle from './components/SvgSymbol/Circle';
 import Tag from './components/Tag';
 import TileGrid from './components/TileGrid';
 import Totals from './components/Totals';
@@ -123,7 +122,6 @@ export {
   Statistic,
   StatusPill,
   SvgSymbol,
-  SvgSymbolCircle,
   Switch,
   Tab,
   Tabs,

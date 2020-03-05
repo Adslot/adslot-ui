@@ -43,7 +43,6 @@ import PopoverExample from '../../examples/PopoverExample';
 import PopoverWithRefExample from '../../examples/PopoverWithRefExample';
 import SpinnerExample from '../../examples/SpinnerExample';
 import SvgSymbolExample from '../../examples/SvgSymbolExample';
-import SvgSymbolCircleExample from '../../examples/SvgSymbolCircleExample';
 import TileGridExample from '../../examples/TileGridExample';
 import AccordionExample from '../../examples/AccordionExample';
 import AccordionPanelExample from '../../examples/AccordionPanelExample';
@@ -207,7 +206,6 @@ class PageLayout extends React.Component {
 
             <PageTitle title="Icons and Graphics" />
             <SvgSymbolExample />
-            <SvgSymbolCircleExample />
 
             <PageTitle title="Navigation" />
             <BreadcrumbExample />

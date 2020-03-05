@@ -7,30 +7,37 @@ const base64UrlPrefix = 'data:image/svg+xml;base64,';
 
 const SvgSymbol = props => {
   let isEncoded = false;
-  const { classSuffixes, href, onClick } = props;
-  const componentClass = 'svg-symbol-component';
+  const { classSuffixes, href, onClick, isCircle } = props;
   const suffixOptions = { clickable: props.onClick };
-  const classesList = classSuffixHelper({
+  const symbolBaseClass = 'aui--svg-symbol-component';
+  const circleBaseClass = 'aui--svg-symbol-component-circle';
+
+  const symbolClassesList = `${symbolBaseClass} ${classSuffixHelper({
     classSuffixes,
     suffixOptions,
-    componentClass,
-  });
+    componentClass: symbolBaseClass,
+  })}`;
+
+  const circleClassesList = `${circleBaseClass} ${classSuffixHelper({
+    classSuffixes,
+    componentClass: circleBaseClass,
+  })}`;
 
   if (href.indexOf(base64UrlPrefix) !== -1) {
     isEncoded = true;
   }
 
-  const className = `${componentClass}${classesList}`;
-
-  return isEncoded ? (
-    <div className={className} onClick={onClick}>
+  const symbol = isEncoded ? (
+    <div className={symbolClassesList} onClick={onClick}>
       <img src={href} />
     </div>
   ) : (
-    <svg className={className} onClick={onClick}>
+    <svg className={symbolClassesList} onClick={onClick}>
       <use href={href} xlinkHref={href} />
     </svg>
   );
+
+  return isCircle ? <div className={circleClassesList}>{symbol}</div> : symbol;
 };
 
 SvgSymbol.displayName = 'SvgSymbolComponent';
@@ -42,11 +49,13 @@ SvgSymbol.propTypes = {
    */
   href: PropTypes.string,
   onClick: PropTypes.func,
+  isCircle: PropTypes.bool,
 };
 
 SvgSymbol.defaultProps = {
   href: '',
   classSuffixes: [],
+  isCircle: false,
 };
 
 export default SvgSymbol;

@@ -3632,30 +3632,6 @@
       }
     }
   ],
-  "src/components/SvgSymbol/Circle/index.jsx": [
-    {
-      "description": "",
-      "displayName": "SvgSymbolCircleComponent",
-      "methods": [],
-      "props": {
-        "classSuffixes": {
-          "type": {
-            "name": "custom",
-            "raw": "SvgSymbol.propTypes.classSuffixes"
-          },
-          "required": false,
-          "description": ""
-        },
-        "href": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
   "src/components/SvgSymbol/index.jsx": [
     {
       "description": "",
@@ -3693,6 +3669,17 @@
           },
           "required": false,
           "description": ""
+        },
+        "isCircle": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         }
       }
     }
