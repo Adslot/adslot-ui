@@ -52,6 +52,7 @@ import UserListPickerExample from '../mdexamples/UserListPicker.mdx';
 import VerticalNavigationExample from '../mdexamples/VerticalNavigation.mdx';
 import Introduction from '../mdexamples/Introduction.mdx';
 import DesignGuide from '../mdexamples/DesignGuide.mdx';
+import SearchListExample from '../mdexamples/SearchList.mdx';
 import Installation from '../components/GettingStarted/Installation.md';
 import Contributing from '../components/GettingStarted/Contributing.md';
 
@@ -390,6 +391,12 @@ const routes = [
     path: '/vertical-navigation',
     component: VerticalNavigationExample,
     title: 'Vertical Navigation',
+    group: 'Components',
+  },
+  {
+    path: '/search-list',
+    component: SearchListExample,
+    title: 'Search List',
     group: 'Components',
   },
 ];

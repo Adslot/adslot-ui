@@ -71,6 +71,7 @@ import InformationBox from './components/InformationBox';
 import HoverDropdownMenu from './components/HoverDropdownMenu';
 import OverlayLoader from './components/OverlayLoader';
 import VerticalNav from './components/VerticalNavigation';
+import SearchList from './components/SearchList';
 
 export {
   Accordion,
@@ -116,6 +117,7 @@ export {
   Radio,
   RadioGroup,
   Search,
+  SearchList,
   Select,
   Slicey,
   Spinner,
