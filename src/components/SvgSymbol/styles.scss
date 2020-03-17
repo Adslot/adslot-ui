@@ -1,7 +1,9 @@
+@import '~styles/border';
 @import '~styles/color';
+@import '~styles/function';
 @import '~styles/variable';
 
-.svg-symbol-component {
+.aui--svg-symbol-component {
   @mixin size($diameter) {
     &-#{$diameter} {
       height: $diameter + px;
@@ -15,13 +17,13 @@
     }
   }
 
-  // Sizes. Classes look like `.svg-symbol-component-70`.
+  // Sizes. Classes look like `.aui--svg-symbol-component-70`.
   @include size(16);
   @include size(70);
   @include size(200);
   @include size(250);
 
-  // Colours. Classes look like `.svg-symbol-component-gray-light`.
+  // Colours. Classes look like `.aui--svg-symbol-component-gray-light`.
   @include fill('color-disabled', $color-gray-light);
   @include fill('cyan-dark', $color-cyan-dark);
   @include fill('gray', $color-gray);
@@ -40,4 +42,44 @@
     cursor: pointer;
     pointer-events: auto;
   }
+}
+
+.aui--svg-symbol-component-circle {
+  @mixin svg-size($diameter) {
+    $inner-diameter: ceil(sqrt(.5) * $diameter);
+    height: $inner-diameter;
+    margin: (($diameter - $inner-diameter) / 2);
+    width: $inner-diameter;
+  }
+
+  background-color: $color-gray-lightest;
+  border-radius: $border-radius-circle;
+  display: inline-block;
+
+  // Default size
+  height: $svg-icon-size;
+  width: $svg-icon-size;
+
+  &-inverse {
+    background-color: $color-inverse;
+  }
+
+  .aui--svg-symbol-component {
+    @include svg-size($svg-icon-size);
+  }
+
+  @mixin circle-size($diameter) {
+    &-#{strip-units($diameter)} {
+      height: $diameter;
+      width: $diameter;
+    }
+
+    .aui--svg-symbol-component-#{strip-units($diameter)} {
+      @include svg-size($diameter);
+    }
+  }
+
+  // Sizes specified unitless in classSuffixes ['70']
+  @include circle-size(70px);
+  @include circle-size(50px);
 }

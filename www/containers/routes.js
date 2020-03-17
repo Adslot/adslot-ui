@@ -40,7 +40,6 @@ import SplitPaneExample from '../mdexamples/SplitPane.mdx';
 import StatisticExample from '../mdexamples/Statistic.mdx';
 import StatusPillExample from '../mdexamples/StatusPill.mdx';
 import SvgSymbolExample from '../mdexamples/SvgSymbol.mdx';
-import SvgSymbolCircleExample from '../mdexamples/SvgSymbolCircle.mdx';
 import SwitchExample from '../mdexamples/Switch.mdx';
 import TabExample from '../mdexamples/Tab.mdx';
 import TextEllipsisExample from '../mdexamples/TextEllipsis.mdx';
@@ -330,12 +329,6 @@ const routes = [
     path: '/svg-symbol',
     component: SvgSymbolExample,
     title: 'Svg Symbol',
-    group: 'Components',
-  },
-  {
-    path: '/svg-symbol-circle',
-    component: SvgSymbolCircleExample,
-    title: 'Svg Symbol Circle',
     group: 'Components',
   },
   {

@@ -187,14 +187,14 @@
       display: flex;
 
       .aui--button-group {
-        .svg-symbol-component {
+        .aui--svg-symbol-component {
           position: relative;
           top: 3px;
           fill: $color-white;
         }
 
         .btn-inverse {
-          .svg-symbol-component {
+          .aui--svg-symbol-component {
             fill: $color-black;
           }
         }
