@@ -1,0 +1,34 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Help Icon Popover
+
+```jsx live=true
+<>
+  <span>Hover the help icon</span>
+  <HelpIconPopover id="help-text-example">
+    <p>
+      Download your <em>latest</em> report.
+    </p>
+  </HelpIconPopover>
+</>
+```
+
+### Design Notes
+
+<DesignNotes>
+  <div>
+    <p>
+      Help icon is commonly used to deliver information on an area. On hover a popover will present the user with
+      information about eg. cell, form section etc.
+    </p>
+    <p>
+      <label>Example:</label> Cell and Form section.
+    </p>
+    <span>
+      Help text icon and popoover of rich-text. Useful in modals, accordions and page headers. For forms, use stacked{' '}
+      help-block text.
+    </span>
+  </div>
+</DesignNotes>
+<Props componentName="HelpIconPopover" />

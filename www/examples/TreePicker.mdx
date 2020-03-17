@@ -1,0 +1,106 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Tree Picker
+
+```jsx live=true
+const itemType = 'segment value';
+
+const Example = () => {
+  const [selectedSearchValue, setSelectedSearchValue] = React.useState('');
+  const [selectedNodes, setSelectedNodes] = React.useState([]);
+  const [pickerSearchValue, setPickerSearchValue] = React.useState('');
+  const [subTree, setSubTree] = React.useState([
+    {
+      id: '0',
+      label: 'Northern Territory',
+      path: [{ id: '10', label: 'Australia' }],
+      type: 'Territory',
+    },
+    {
+      id: '1',
+      label: 'Australian Capital Territory',
+      path: [{ id: '10', label: 'Australia' }],
+      type: 'Territory',
+    },
+    {
+      id: '2',
+      label: 'Victoria',
+      path: [{ id: '10', label: 'Australia' }],
+      type: 'State',
+    },
+  ]);
+
+  const getSelectedNodes = () => {
+    if (_.isEmpty(selectedSearchValue)) return selectedNodes;
+
+    return _.filter(selectedNodes, ({ label }) => _.includes(label.toLowerCase(), selectedSearchValue.toLowerCase()));
+  };
+
+  const getSubtree = () => {
+    let treePickerPureSubtree = [];
+
+    // filter out nodes that do not contain search string
+    if (!_.isEmpty(pickerSearchValue)) {
+      treePickerPureSubtree = _.filter(subTree, ({ label }) =>
+        _.includes(label.toLowerCase(), pickerSearchValue.toLowerCase())
+      );
+    }
+
+    // filter out nodes that do not contain the selected search string
+    // however keep the nodes that are not selected but do not contain the selected search string
+    if (!_.isEmpty(selectedSearchValue)) {
+      treePickerPureSubtree = _.filter(treePickerPureSubtree, ({ id, label }) => {
+        if (_.find(selectedNodes, { id })) {
+          return _.includes(label.toLowerCase(), selectedSearchValue.toLowerCase());
+        }
+
+        return true;
+      });
+    }
+
+    return treePickerPureSubtree;
+  };
+
+  return (
+    <div style={{ maxWidth: 940 }}>
+      <TreePickerSimplePure
+        itemType={itemType}
+        hideIcon
+        selectedNodes={getSelectedNodes()}
+        subtree={getSubtree()}
+        emptySelectedListText={
+          <div>
+            <b>Choose items of interest</b>
+          </div>
+        }
+        initialStateNode={
+          <div>
+            <b>Start by searching for items</b>
+          </div>
+        }
+        searchValue={pickerSearchValue}
+        onChange={setPickerSearchValue}
+        searchOnClear={() => setPickerSearchValue('')}
+        includeNode={node => setSelectedNodes(_.concat([], selectedNodes, node))}
+        removeNode={node => setSelectedNodes(_.reject(selectedNodes, { id: node.id }))}
+        additionalClassNames={pickerSearchValue ? undefined : ['background-highlighted', 'test-class']}
+        selectedTopSearch={
+          <div className="selected-search">
+            <Search onSearch={selectedSearchValue => setSelectedSearchValue(selectedSearchValue)} />
+          </div>
+        }
+      />
+    </div>
+  );
+};
+
+render(Example);
+```
+
+<DesignNotes>
+  Tree pickers are useful for users when we require to configure from large list, allowing users to clearly see the
+  result of their action in the right panel. This split view allows the user to quickly edit, review and save their
+  selection.
+</DesignNotes>
+<Props componentName="TreePicker" />

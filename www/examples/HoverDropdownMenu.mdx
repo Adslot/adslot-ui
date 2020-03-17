@@ -1,0 +1,56 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Hover Dropdown Menu
+
+```jsx live=true
+class Example extends React.PureComponent {
+  render() {
+    const links = [
+      {
+        title: 'Adslot.com',
+        url: 'http://www.adslot.com',
+        target: '_self',
+        isEnabled: true,
+        onClick: _.noop,
+      },
+      {
+        title: 'Logout',
+        url: '#',
+        target: '_modal',
+        isEnabled: true,
+        onClick: _.noop,
+      },
+    ];
+
+    const props = {
+      arrowPosition: 'left',
+      headerText: 'Hello, John Smith',
+      hoverComponent: <Avatar givenName="John" surname="Smith" />,
+    };
+
+    return (
+      <>
+        <h5>Hover the avatar below</h5>
+        <HoverDropdownMenu {...props}>
+          {_.map(links, link => (
+            <HoverDropdownMenu.Item key={link.title} {...link} />
+          ))}
+        </HoverDropdownMenu>
+      </>
+    );
+  }
+}
+
+render(Example);
+```
+
+### Design Notes
+
+<DesignNotes>
+  <div>
+    <p>Hover dropdown menu aids in helping the user discover selectable options on rollover.</p>
+    <label>Example: Profile menu</label>
+  </div>
+</DesignNotes>
+<Props componentName="HoverDropdownMenu" />

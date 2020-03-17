@@ -1,0 +1,59 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Breadcrumb
+
+```jsx live=true
+const initialState = [
+  { id: 'db4e2cda-ffad-4763-a016-03619ccfd7c2', label: 'Australia' },
+  { id: 'b1b8222c-172b-46f6-bc91-5b92ea9adcd5', label: 'Victoria' },
+  { id: '9398d812-9e01-4a8b-9d3e-bc946218070b', label: 'Melbourne' },
+];
+
+const Example = () => {
+  const [breadcrumbNodes, setBreadcrumbNodes] = React.useState(initialState);
+
+  function onClickHandler(nodeId) {
+    if (nodeId === 'another-all') navigateToRootNode();
+    else navigateToNode(nodeId);
+  }
+
+  function navigateToRootNode() {
+    setBreadcrumbNodes([]);
+  }
+
+  function resetState() {
+    setBreadcrumbNodes(initialState);
+  }
+
+  function navigateToNode(nodeId) {
+    const nodeIndex = _.findIndex(breadcrumbNodes, { id: nodeId });
+    setBreadcrumbNodes([].concat(breadcrumbNodes.slice(0, nodeIndex + 1)));
+  }
+
+  if (_.isEmpty(breadcrumbNodes)) {
+    return (
+      <Button className="btn-inverse" onClick={resetState}>
+        Reset breadcrumb example
+      </Button>
+    );
+  }
+  return (
+    <Breadcrumb
+      rootNode={{ id: 'another-all', label: 'Custom All' }}
+      nodes={breadcrumbNodes}
+      onClick={onClickHandler}
+    />
+  );
+};
+
+render(Example);
+```
+
+<DesignNotes>
+  <p>
+    Bread crumbs allow the user to return to the previous or parent folder. Currently used in deep nested content within
+    our <a href="/tree-picker-example">Tree Pickers</a>.
+  </p>
+</DesignNotes>
+<Props componentName="Breadcrumb" />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
-import Header from '../components/Header';
+import Header from './components/Header';
 import SidePanel from './SidePanel';
 import routes from './routes';
 import NotFound from './NotFound';

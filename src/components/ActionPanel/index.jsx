@@ -46,6 +46,8 @@ const ActionPanel = React.forwardRef((props, ref) => {
   return isModal ? ReactDOM.createPortal(actionPanel, document.body) : actionPanel;
 });
 
+ActionPanel.displayName = 'ActionPanel';
+
 ActionPanel.propTypes = {
   title: PropTypes.string.isRequired,
   className: PropTypes.string,
