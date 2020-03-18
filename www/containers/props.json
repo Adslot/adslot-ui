@@ -103,6 +103,7 @@
   "src/components/ActionPanel/index.jsx": [
     {
       "description": "",
+      "displayName": "ActionPanel",
       "methods": [],
       "props": {
         "title": {

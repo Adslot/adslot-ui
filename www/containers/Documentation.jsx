@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import PropTypeTable from '../components/PropTypeTable';
+import PropTypeTable from './components/PropTypeTable';
 import { InformationBox } from '../../src';
 import './styles.scss';
 import CodeBlock from './CodeBlock';

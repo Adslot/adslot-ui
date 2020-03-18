@@ -1,0 +1,32 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Panel
+
+```jsx live=true
+const Example = () => {
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+  onPanelClick = () => setIsCollapsed(!isCollapsed);
+
+  return (
+    <div style={{ width: '300px' }}>
+      <Panel id="my-panel" title="Read more about integration" isCollapsed={isCollapsed} onClick={onPanelClick}>
+        <p>
+          Lorem ipsum amet dolore voluptate veniam nulla dolore nulla adipisicing irure adipisicing qui fugiat veniam.
+          Ullamco reprehenderit cillum irure esse ad eu dolor laboris.
+        </p>
+        <p>Consequat commodo consequat eiusmod sit mollit elit ex nostrud consectetur.</p>
+      </Panel>
+    </div>
+  );
+};
+
+render(Example);
+```
+
+<DesignNotes>
+  Panel is an expandable information panel which can be used in a group (accordion). Panel can be commonly used on its
+  own.
+</DesignNotes>
+<Props componentName="Panel" />
