@@ -16,14 +16,14 @@ export class SidePanel extends Component {
   };
 
   render() {
-    const activeGroup = routes.find(route => route.path === this.props.location.pathname);
+    const groupedRoutes = _.groupBy(routes, 'group');
+    const activeGroup = _.keys(groupedRoutes);
     const { searchText } = this.state;
     return (
       <React.Fragment>
         <SearchBar onSearch={this.onSearch} />
-        <Accordion defaultActivePanelIds={activeGroup ? [activeGroup.group] : []}>
-          {_(routes)
-            .groupBy('group')
+        <Accordion defaultActivePanelIds={activeGroup}>
+          {_(groupedRoutes)
             .pickBy(components => _.some(_.map(components, entry => new RegExp(searchText, 'gi').test(entry.title))))
             .map((components, key) => (
               // eslint-disable-next-line

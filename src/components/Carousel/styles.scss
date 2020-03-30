@@ -1,45 +1,58 @@
 @import '~styles/color';
 @import '~styles/icon';
+@import '~styles/mixin';
 
-@mixin button-style {
-  background-color: $color-carousel-button;
-  border: 0;
-  height: 100%;
-  padding: 0;
-  width: 100%;
+.slick-dots {
+  position: relative;
+  top: -35px;
 
-  &::before {
-    background: $icon-chevron-white 50% no-repeat;
-    content: '';
-    display: block;
-    height: $icon-size-large;
-    margin: 0 auto;
-    width: $icon-size-large;
+  li {
+    margin: 0;
   }
 }
 
-.carousel-component {
-  .slider-control-centerleft {
-    height: 100%;
+.slick-track {
+  display: flex;
+  align-items: baseline;
 
-    .carousel-component-prev {
-      @include button-style;
+  div,
+  span {
+    outline: none;
+  }
+}
 
-      &::before {
-        transform: rotate(-90deg);
-      }
-    }
+.slick-next {
+  right: 45px;
+  transform: rotate(-90deg);
+}
+
+.slick-prev {
+  left: 35px;
+  transform: rotate(90deg);
+}
+
+.slick-prev,
+.slick-next {
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  top: 40%;
+  background: $color-white;
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 15px 13px;
+  opacity: .6;
+
+  &:hover {
+    opacity: 1;
+    background: $color-white;
   }
 
-  .slider-control-centerright {
-    height: 100%;
+  &:focus {
+    background: $color-white;
+  }
 
-    .carousel-component-next {
-      @include button-style;
-
-      &::before {
-        transform: rotate(90deg);
-      }
-    }
+  &::before {
+    content: url('~styles/icons/chevron-down.svg');
   }
 }
