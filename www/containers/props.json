@@ -763,34 +763,6 @@
   "src/components/Carousel/index.jsx": [
     {
       "description": "",
-      "displayName": "PrevButton",
-      "methods": [],
-      "props": {
-        "previousSlide": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    },
-    {
-      "description": "",
-      "displayName": "NextButton",
-      "methods": [],
-      "props": {
-        "nextSlide": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    },
-    {
-      "description": "",
       "displayName": "CarouselComponent",
       "methods": [],
       "props": {
@@ -809,53 +781,59 @@
           "description": ""
         },
         "autoplay": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "true",
             "computed": false
+          }
+        },
+        "variableWidth": {
+          "type": {
+            "name": "bool"
           },
-          "required": false
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
         },
         "autoplayInterval": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "10000",
             "computed": false
-          },
-          "required": false
-        },
-        "cellAlign": {
-          "defaultValue": {
-            "value": "'center'",
-            "computed": false
-          },
-          "required": false
-        },
-        "cellSpacing": {
-          "defaultValue": {
-            "value": "15",
-            "computed": false
-          },
-          "required": false
+          }
         },
         "slidesToShow": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "2",
             "computed": false
-          },
-          "required": false
+          }
         },
-        "slideWidth": {
-          "defaultValue": {
-            "value": "'447.5px'",
-            "computed": false
+        "dots": {
+          "type": {
+            "name": "bool"
           },
-          "required": false
-        },
-        "wrapAround": {
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "true",
             "computed": false
-          },
-          "required": false
+          }
         }
       }
     }
