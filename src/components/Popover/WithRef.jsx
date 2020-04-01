@@ -28,21 +28,25 @@ const WithRef = ({
 
   if (!isOpen) return null;
 
-  return ReactDOM.createPortal(
-    <Popper
-      refElement={refElement}
-      placement={placement}
-      modifiers={modifiers}
-      boundariesElement={boundariesElement}
-      popoverClass={popoverClass}
-      wrapperStyles={wrapperStyles}
-      dts={dts}
-      title={title}
-      popoverContent={popoverContent}
-      arrowStyles={arrowStyles}
-      innerRef={popperRef}
-    />,
-    boundariesElement
+  return (
+    <React.Fragment>
+      {ReactDOM.createPortal(
+        <Popper
+          refElement={refElement}
+          placement={placement}
+          modifiers={modifiers}
+          boundariesElement={boundariesElement}
+          popoverClass={popoverClass}
+          wrapperStyles={wrapperStyles}
+          dts={dts}
+          title={title}
+          popoverContent={popoverContent}
+          arrowStyles={arrowStyles}
+          innerRef={popperRef}
+        />,
+        boundariesElement
+      )}
+    </React.Fragment>
   );
 };
 

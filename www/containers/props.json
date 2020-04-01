@@ -2652,6 +2652,127 @@
       }
     }
   ],
+  "src/components/Popover/WithRef.jsx": [
+    {
+      "description": "",
+      "displayName": "WithRef",
+      "methods": [],
+      "props": {
+        "refElement": {
+          "type": {
+            "name": "instanceOf",
+            "value": "Element"
+          },
+          "required": true,
+          "description": ""
+        },
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "theme": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "themes"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'light'",
+            "computed": false
+          }
+        },
+        "popoverClassNames": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "getContainer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "arrowStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "wrapperStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modifiers": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'auto'",
+            "computed": false
+          }
+        },
+        "popoverContent": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "func"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "isOpen": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popperRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
   "src/components/Popover/index.jsx": [
     {
       "description": "",
