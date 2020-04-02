@@ -1,4 +1,4 @@
-import { ListPickerPure, SplitPane, Grid, GridCell, GridRow } from 'adslot-ui';
+import { ListPickerPure, SplitPane, Grid, GridCell, GridRow, SvgSymbol } from 'adslot-ui';
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
@@ -57,7 +57,7 @@ describe('ListPickerComponent', () => {
     const initialSelection = getInitialSelection();
     const props = {
       emptyMessage: 'No users.',
-      emptySvgSymbol: { href: '/some.svg#id' },
+      emptySvgSymbol: <SvgSymbol href="/some.svg#id" />,
       initialSelection,
       items: users,
       itemHeaders: userHeaders,
@@ -89,9 +89,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal(initialSelection);
     expect(listPickerPureElement.prop('deselectItem')).to.be.a('function');
-    expect(listPickerPureElement.prop('emptySvgSymbol')).to.deep.equal({
-      href: '/some.svg#id',
-    });
+    expect(listPickerPureElement.prop('emptySvgSymbol')).to.be.an('object');
     expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
@@ -302,7 +300,7 @@ describe('ListPickerComponent', () => {
     beforeEach(() => {
       props = {
         emptyMessage: 'No users.',
-        emptySvgSymbol: { href: '/some.svg#id' },
+        emptySvgSymbol: <SvgSymbol href="/some.svg#id" />,
         initialSelection,
         items: users,
         itemHeaders: userHeaders,

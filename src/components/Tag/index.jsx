@@ -1,4 +1,3 @@
-import { SvgSymbol } from 'adslot-ui';
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -6,19 +5,19 @@ import './styles.scss';
 
 const defaultComponentClass = 'tag-component';
 
-export const ActionButton = ({ onAction, id, actionIconSvgHref }) => (
+export const ActionButton = ({ onAction, id, actionIcon }) => (
   <span className="action-button" onClick={() => onAction(id)}>
-    {actionIconSvgHref ? <SvgSymbol href={actionIconSvgHref} /> : <span className="action-icon">&#x2715;</span>}
+    {actionIcon || <span className="action-icon">&#x2715;</span>}
   </span>
 );
 
 ActionButton.propTypes = {
   id: PropTypes.string.isRequired,
   onAction: PropTypes.func.isRequired,
-  actionIconSvgHref: PropTypes.string,
+  actionIcon: PropTypes.node,
 };
 
-const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIconSvgHref, dts: customDts }) => {
+const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIcon, dts: customDts }) => {
   const classes = classnames([
     defaultComponentClass,
     {
@@ -33,7 +32,7 @@ const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIconSvg
   return (
     <span className={classes} data-test-selector={dts}>
       {children}
-      {onAction ? <ActionButton {...{ onAction, id, actionIconSvgHref }} /> : null}
+      {onAction ? <ActionButton {...{ onAction, id, actionIcon }} /> : null}
     </span>
   );
 };
@@ -47,7 +46,7 @@ Tag.propTypes = {
   baseClass: PropTypes.string,
   inverse: PropTypes.bool,
   onAction: PropTypes.func,
-  actionIconSvgHref: PropTypes.string,
+  actionIcon: PropTypes.node,
   dts: PropTypes.string,
 };
 

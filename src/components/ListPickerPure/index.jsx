@@ -7,7 +7,6 @@ import Empty from '../Empty';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
 class ListPickerPureComponent extends React.PureComponent {
@@ -121,7 +120,7 @@ ListPickerPureComponent.propTypes = {
   deselectItem: PropTypes.func,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySvgSymbol: PropTypes.node,
   labelFormatter: PropTypes.func,
   addonFormatter: PropTypes.func,
   itemHeaders: PropTypes.shape({

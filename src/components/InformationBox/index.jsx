@@ -1,17 +1,11 @@
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
 const InformationBox = ({ children, icon, title, className, dts }) => (
   <div className={classnames('information-box', className)} data-test-selector={dts}>
-    {icon ? (
-      <div className="information-box-icon">
-        {' '}
-        <SvgSymbol classSuffixes={['70']} href={icon} />
-      </div>
-    ) : null}
+    {icon ? <div className="information-box-icon"> {icon}</div> : null}
     <div className="information-box-text">
       {title ? <label className="information-box-title">{title}</label> : null}
       <div className="information-box-node">{children}</div>
@@ -23,7 +17,7 @@ InformationBox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   title: PropTypes.node,
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   dts: PropTypes.string,
 };
 

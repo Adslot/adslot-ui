@@ -5,9 +5,7 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 
 ```jsx live=true
 const avatarColor = () => 'cyan';
-const emptySvgSymbol = {
-  href: './assets/svg-symbols.svg#checklist-incomplete',
-};
+const emptySvgSymbol = <SvgSymbol href="./assets/svg-symbols.svg#checklist-incomplete" />;
 const teamMember1 = {
   avatar: '//lorempixel.com/35/35/people/7',
   givenName: 'John',

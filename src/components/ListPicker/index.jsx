@@ -9,7 +9,6 @@ import FlexibleSpacer from '../FlexibleSpacer';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
 const isSubset = (array, subArray) =>
@@ -201,7 +200,7 @@ ListPickerComponent.propTypes = {
   allowMultiSelection: PropTypes.bool,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySvgSymbol: PropTypes.node,
   initialSelection: PropTypes.arrayOf(itemProps),
   itemHeaders: PropTypes.shape({
     label: PropTypes.string,

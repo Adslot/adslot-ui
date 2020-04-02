@@ -4,7 +4,10 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ## Information Box
 
 ```jsx live=true
-<InformationBox title="This is an information" icon="./assets/svg-symbols.svg#cancel">
+<InformationBox
+  title="This is an information"
+  icon={<SvgSymbol classSuffixes={['70']} href="./assets/svg-symbols.svg#cancel" />}
+>
   Content body.
 </InformationBox>
 ```

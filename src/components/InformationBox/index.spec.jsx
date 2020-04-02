@@ -4,9 +4,11 @@ import React from 'react';
 import InformationBox from '.';
 
 describe('InformationBoxComponent', () => {
+  const icon = <SvgSymbol href="assets/img#done" />;
+
   it('should render with props', () => {
     const component = shallow(
-      <InformationBox title="render title here" icon="assets/img#done">
+      <InformationBox title="render title here" icon={icon}>
         <div>I am child</div>
       </InformationBox>
     );
@@ -21,7 +23,7 @@ describe('InformationBoxComponent', () => {
 
   it('should render without a title when title props is not provided', () => {
     const component = shallow(
-      <InformationBox icon="assets/img#done">
+      <InformationBox icon={icon}>
         <div>I am child</div>
       </InformationBox>
     );
@@ -46,7 +48,7 @@ describe('InformationBoxComponent', () => {
   });
 
   it('should render without children nodes when children props is not provided', () => {
-    const component = shallow(<InformationBox title="render title here" icon="assets/img#done" />);
+    const component = shallow(<InformationBox title="render title here" icon={icon} />);
 
     expect(component.find('.information-box-title')).to.have.length(1);
     expect(component.find('.information-box-icon')).to.have.length(1);

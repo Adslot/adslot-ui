@@ -11,9 +11,13 @@ class EmptyExample extends React.PureComponent {
         <Empty
           collection={[]}
           text="No items selected"
-          svgSymbol={{
-            href: './assets/svg-symbols.svg#checklist-incomplete',
-          }}
+          icon={
+            <SvgSymbol
+              classSuffixes={['gray-darker', '70']}
+              href="./assets/svg-symbols.svg#checklist-incomplete"
+              isCircle
+            />
+          }
         />
       </div>
     );

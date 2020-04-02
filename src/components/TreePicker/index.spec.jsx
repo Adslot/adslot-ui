@@ -11,14 +11,15 @@ const checkElement = expectedProps => (element, propsList) =>
   _.forEach(propsList, propName => expect(element.prop(propName)).to.equal(expectedProps[propName]));
 
 describe('TreePickerSimplePureComponent', () => {
-  const { actNode, initialSelection, itemType, ntNode, qldNode, saNode, svgSymbol } = TreePickerMocks;
+  const { actNode, initialSelection, itemType, ntNode, qldNode, saNode } = TreePickerMocks;
+  const svgSymbol = <div />;
 
   const props = {
     breadcrumbNodes: [saNode],
     breadcrumbOnClick: _.noop,
     emptySvgSymbol: svgSymbol,
     initialStateNode: 'Begin searching.',
-    initialStateSymbol: TreePickerMocks.svgSymbol,
+    initialStateSymbol: svgSymbol,
     expandNode: _.noop,
     includeNode: _.noop,
     itemType,
@@ -114,7 +115,7 @@ describe('TreePickerSimplePureComponent', () => {
       searchValue: 'Victoria',
       initialSelection: [],
       emptySelectedListText: 'Nothing to show',
-      emptySelectedListSvgSymbol: TreePickerMocks.svgSymbol,
+      emptySelectedListSvgSymbol: svgSymbol,
     });
 
     const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);

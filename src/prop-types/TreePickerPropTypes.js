@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import SvgSymbol from '../components/SvgSymbol';
 import idPropType from './idPropType';
 
 const baseNodeProps = {
@@ -23,8 +22,8 @@ export default {
   breadCrumbNode: PropTypes.shape(baseNodeProps),
   rootType: PropTypes.shape(
     mergeNodeProps({
-      emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
-      svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+      emptySvgSymbol: PropTypes.node,
+      svgSymbol: PropTypes.node,
       hidden: PropTypes.bool,
       isRequired: PropTypes.bool.isRequired,
     })

@@ -1,18 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
-const Empty = ({ collection, svgSymbol, text, hideIcon }) => {
-  const classSuffixes = _.isEmpty(svgSymbol.classSuffixes)
-    ? Empty.defaultProps.svgSymbol.classSuffixes
-    : svgSymbol.classSuffixes;
-
+const Empty = ({ collection, text, icon }) => {
   if (_.isEmpty(collection)) {
     return (
       <div className="empty-component">
-        {hideIcon ? null : <SvgSymbol href={svgSymbol.href} classSuffixes={classSuffixes} />}
+        {icon}
         <div className="empty-component-text">{text}</div>
       </div>
     );
@@ -25,17 +20,12 @@ Empty.displayName = 'EmptyComponent';
 
 Empty.propTypes = {
   collection: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.object]),
-  svgSymbol: PropTypes.shape(SvgSymbol.propTypes),
   text: PropTypes.node, // can be string or, if you want rich formatting, a node
-  hideIcon: PropTypes.bool,
+  icon: PropTypes.node,
 };
 
 Empty.defaultProps = {
-  svgSymbol: {
-    classSuffixes: ['gray-darker', '70', 'circle'],
-  },
   text: 'Nothing to show.',
-  hideIcon: false,
 };
 
 export default Empty;
