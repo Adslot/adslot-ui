@@ -30,7 +30,7 @@
     "release:minor": "npm version minor -m 'build: release minor version %s'",
     "release:patch": "npm version patch -m 'build: release patch version %s'",
     "start": "npm run generate-docs && node scripts/start.js",
-    "test": "scripts/test --coverage",
+    "test": "node ./scripts/test --coverage",
     "test:watch": "scripts/test --watch",
     "version": "echo '…generating dist…' && npm run dist && git add dist/",
     "autorelease": "node scripts/release"

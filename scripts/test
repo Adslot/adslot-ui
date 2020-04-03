@@ -23,7 +23,7 @@ if (file) {
 }
 
 // npm run test[:watch] --file=path [--coverage]
-let cmd = 'KARMA_BROWSERS="${npm_config_browsers}" karma start';
+let cmd = 'cross-env KARMA_BROWSERS="${npm_config_browsers}" karma start';
 if (watch) cmd += ' --autoWatch=true --singleRun=false';
 if (process.env.npm_config_browsers) cmd += ' --browsers='+ process.env.npm_config_browsers;
 try {
