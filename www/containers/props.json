@@ -460,46 +460,6 @@
       }
     }
   ],
-  "src/components/Breadcrumb/Node/index.jsx": [
-    {
-      "description": "",
-      "displayName": "BreadcrumbNodeComponent",
-      "methods": [],
-      "props": {
-        "isLast": {
-          "type": {
-            "name": "bool"
-          },
-          "required": true,
-          "description": ""
-        },
-        "node": {
-          "type": {
-            "name": "shape",
-            "value": {
-              "id": {
-                "name": "string",
-                "required": true
-              },
-              "label": {
-                "name": "string",
-                "required": true
-              }
-            }
-          },
-          "required": false,
-          "description": ""
-        },
-        "onClick": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    }
-  ],
   "src/components/Breadcrumb/index.jsx": [
     {
       "description": "",
@@ -553,6 +513,46 @@
             "value": "false",
             "computed": false
           }
+        }
+      }
+    }
+  ],
+  "src/components/Breadcrumb/Node/index.jsx": [
+    {
+      "description": "",
+      "displayName": "BreadcrumbNodeComponent",
+      "methods": [],
+      "props": {
+        "isLast": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "node": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "id": {
+                "name": "string",
+                "required": true
+              },
+              "label": {
+                "name": "string",
+                "required": true
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -1473,6 +1473,29 @@
       }
     }
   ],
+  "src/components/Grid/index.jsx": [
+    {
+      "description": "",
+      "displayName": "GridComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "the children to be rendered"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector of the grid"
+        }
+      }
+    }
+  ],
   "src/components/Grid/Row/index.jsx": [
     {
       "description": "",
@@ -1558,29 +1581,6 @@
       }
     }
   ],
-  "src/components/Grid/index.jsx": [
-    {
-      "description": "",
-      "displayName": "GridComponent",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "the children to be rendered"
-        },
-        "dts": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "data-test-selector of the grid"
-        }
-      }
-    }
-  ],
   "src/components/HelpIconPopover/index.jsx": [
     {
       "description": "",
@@ -1631,39 +1631,6 @@
           }
         }
       }
-    }
-  ],
-  "src/components/HoverDropdownMenu/PopoverLinkItem/index.jsx": [
-    {
-      "description": "",
-      "displayName": "PopoverLinkItemComponent",
-      "methods": [],
-      "props": {
-        "target": {
-          "defaultValue": {
-            "value": "'_self'",
-            "computed": false
-          },
-          "required": false
-        },
-        "isEnabled": {
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          },
-          "required": false
-        },
-        "onClick": {
-          "defaultValue": {
-            "value": "_.noop",
-            "computed": true
-          },
-          "required": false
-        }
-      },
-      "composes": [
-        "lodash"
-      ]
     }
   ],
   "src/components/HoverDropdownMenu/index.jsx": [
@@ -1753,6 +1720,39 @@
           "description": ""
         }
       }
+    }
+  ],
+  "src/components/HoverDropdownMenu/PopoverLinkItem/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PopoverLinkItemComponent",
+      "methods": [],
+      "props": {
+        "target": {
+          "defaultValue": {
+            "value": "'_self'",
+            "computed": false
+          },
+          "required": false
+        },
+        "isEnabled": {
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          },
+          "required": false
+        },
+        "onClick": {
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          },
+          "required": false
+        }
+      },
+      "composes": [
+        "lodash"
+      ]
     }
   ],
   "src/components/InformationBox/index.jsx": [
@@ -2356,40 +2356,6 @@
       }
     }
   ],
-  "src/components/PageTitle/index.jsx": [
-    {
-      "description": "",
-      "displayName": "PageTitleComponent",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": ""
-        },
-        "isFooter": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "title": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
   "src/components/PagedGrid/index.jsx": [
     {
       "description": "",
@@ -2449,6 +2415,40 @@
         "verticalCellBorder": {
           "type": {
             "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/PageTitle/index.jsx": [
+    {
+      "description": "",
+      "displayName": "PageTitleComponent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "isFooter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "title": {
+          "type": {
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -2522,225 +2522,6 @@
         "children": {
           "type": {
             "name": "node"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "src/components/Popover/Popper.jsx": [
-    {
-      "description": "",
-      "displayName": "Popper",
-      "methods": [],
-      "props": {
-        "arrowStyles": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "boundariesElement": {
-          "type": {
-            "name": "instanceOf",
-            "value": "Element"
-          },
-          "required": false,
-          "description": ""
-        },
-        "dts": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "innerRef": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "modifiers": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "placement": {
-          "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "popoverPlacements"
-          },
-          "required": false,
-          "description": ""
-        },
-        "popoverClass": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "popoverContent": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "node"
-              },
-              {
-                "name": "func"
-              }
-            ]
-          },
-          "required": true,
-          "description": ""
-        },
-        "refElement": {
-          "type": {
-            "name": "instanceOf",
-            "value": "Element"
-          },
-          "required": false,
-          "description": ""
-        },
-        "title": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "wrapperStyles": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "src/components/Popover/WithRef.jsx": [
-    {
-      "description": "",
-      "displayName": "WithRef",
-      "methods": [],
-      "props": {
-        "refElement": {
-          "type": {
-            "name": "instanceOf",
-            "value": "Element"
-          },
-          "required": true,
-          "description": ""
-        },
-        "title": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "theme": {
-          "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "themes"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'light'",
-            "computed": false
-          }
-        },
-        "popoverClassNames": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "getContainer": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "arrowStyles": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "wrapperStyles": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "modifiers": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "placement": {
-          "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "popoverPlacements"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'auto'",
-            "computed": false
-          }
-        },
-        "popoverContent": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "node"
-              },
-              {
-                "name": "func"
-              }
-            ]
-          },
-          "required": true,
-          "description": ""
-        },
-        "isOpen": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": ""
-        },
-        "dts": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "popperRef": {
-          "type": {
-            "name": "func"
           },
           "required": false,
           "description": ""
@@ -2960,6 +2741,225 @@
         "dts": {
           "type": {
             "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Popover/Popper.jsx": [
+    {
+      "description": "",
+      "displayName": "Popper",
+      "methods": [],
+      "props": {
+        "arrowStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "boundariesElement": {
+          "type": {
+            "name": "instanceOf",
+            "value": "Element"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "innerRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modifiers": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popoverClass": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popoverContent": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "func"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "refElement": {
+          "type": {
+            "name": "instanceOf",
+            "value": "Element"
+          },
+          "required": false,
+          "description": ""
+        },
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "wrapperStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/Popover/WithRef.jsx": [
+    {
+      "description": "",
+      "displayName": "WithRef",
+      "methods": [],
+      "props": {
+        "refElement": {
+          "type": {
+            "name": "instanceOf",
+            "value": "Element"
+          },
+          "required": true,
+          "description": ""
+        },
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "theme": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "themes"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'light'",
+            "computed": false
+          }
+        },
+        "popoverClassNames": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "getContainer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "arrowStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "wrapperStyles": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modifiers": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'auto'",
+            "computed": false
+          }
+        },
+        "popoverContent": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "func"
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "isOpen": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "popperRef": {
+          "type": {
+            "name": "func"
           },
           "required": false,
           "description": ""
@@ -3445,26 +3445,6 @@
       "methods": []
     }
   ],
-  "src/components/Slicey/Marker/index.jsx": [
-    {
-      "description": "",
-      "displayName": "SliceyMarkerComponent",
-      "methods": [],
-      "props": {
-        "fraction": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "0",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
   "src/components/Slicey/index.jsx": [
     {
       "description": "",
@@ -3520,6 +3500,26 @@
           },
           "required": false,
           "description": "Set to true if you wish the pie chart to have a hollow hole in the centre, like a donut :9"
+        }
+      }
+    }
+  ],
+  "src/components/Slicey/Marker/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SliceyMarkerComponent",
+      "methods": [],
+      "props": {
+        "fraction": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
         }
       }
     }
@@ -4093,43 +4093,6 @@
       }
     }
   ],
-  "src/components/TextEllipsis/index.jsx": [
-    {
-      "description": "",
-      "displayName": "TextEllipsisComponent",
-      "methods": [
-        {
-          "name": "setTruncate",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": true,
-          "description": ""
-        },
-        "popoverProps": {
-          "type": {
-            "name": "shape",
-            "value": "_.pick(Popover.propTypes, ['placement', 'trigger'])",
-            "computed": true
-          },
-          "required": false,
-          "description": "Can use `placement` and `trigger` props from <a href=\"/popover\">Popover</a> to control popover.",
-          "defaultValue": {
-            "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
   "src/components/Textarea/index.jsx": [
     {
       "description": "",
@@ -4173,6 +4136,43 @@
           },
           "required": false,
           "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TextEllipsis/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TextEllipsisComponent",
+      "methods": [
+        {
+          "name": "setTruncate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "popoverProps": {
+          "type": {
+            "name": "shape",
+            "value": "_.pick(Popover.propTypes, ['placement', 'trigger'])",
+            "computed": true
+          },
+          "required": false,
+          "description": "Can use `placement` and `trigger` props from <a href=\"/popover\">Popover</a> to control popover.",
+          "defaultValue": {
+            "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
+            "computed": false
+          }
         }
       }
     }
@@ -4445,299 +4445,6 @@
           "description": "",
           "defaultValue": {
             "value": "true",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
-  "src/components/TreePicker/Nav/index.jsx": [
-    {
-      "description": "",
-      "displayName": "TreePickerNavComponent",
-      "methods": [],
-      "props": {
-        "breadcrumbRootNode": {
-          "type": {
-            "name": "custom",
-            "raw": "TreePickerPropTypes.breadCrumbNode"
-          },
-          "required": false,
-          "description": ""
-        },
-        "breadcrumbNodes": {
-          "type": {
-            "name": "arrayOf",
-            "value": {
-              "name": "custom",
-              "raw": "TreePickerPropTypes.breadCrumbNode"
-            }
-          },
-          "required": false,
-          "description": ""
-        },
-        "breadcrumbOnClick": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "disabled": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "isLoading": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "onClear": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "onSearch": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "_.noop",
-            "computed": true
-          }
-        },
-        "debounceInterval": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "0",
-            "computed": false
-          }
-        },
-        "searchOnEnter": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "searchPlaceholder": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "''",
-            "computed": false
-          }
-        },
-        "searchValue": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "showSearch": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          }
-        },
-        "svgSymbolCancel": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": ""
-        },
-        "svgSymbolSearch": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "src/components/TreePicker/Node/Expander/index.jsx": [
-    {
-      "description": "",
-      "displayName": "TreePickerNodeExpander",
-      "methods": [],
-      "props": {
-        "isLoading": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "onClick": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "src/components/TreePicker/Node/index.jsx": [
-    {
-      "description": "",
-      "displayName": "TreePickerNodeComponent",
-      "methods": [
-        {
-          "name": "setLoadingAndExpandNode",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "handleRemove",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "handleInclude",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
-      "props": {
-        "disabled": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "expandNode": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "includeNode": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
-            "computed": false
-          }
-        },
-        "itemType": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
-        },
-        "node": {
-          "type": {
-            "name": "custom",
-            "raw": "TreePickerPropTypes.node.isRequired"
-          },
-          "required": false,
-          "description": ""
-        },
-        "nodeRenderer": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "node => node.label",
-            "computed": false
-          }
-        },
-        "removeNode": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
-            "computed": false
-          }
-        },
-        "selected": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "valueFormatter": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "value => value",
             "computed": false
           }
         }
@@ -5044,6 +4751,299 @@
           },
           "required": false,
           "description": "A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component."
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Nav/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerNavComponent",
+      "methods": [],
+      "props": {
+        "breadcrumbRootNode": {
+          "type": {
+            "name": "custom",
+            "raw": "TreePickerPropTypes.breadCrumbNode"
+          },
+          "required": false,
+          "description": ""
+        },
+        "breadcrumbNodes": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "custom",
+              "raw": "TreePickerPropTypes.breadCrumbNode"
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "breadcrumbOnClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onSearch": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "_.noop",
+            "computed": true
+          }
+        },
+        "debounceInterval": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        },
+        "searchOnEnter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "searchPlaceholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
+        },
+        "searchValue": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "showSearch": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "svgSymbolCancel": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "svgSymbolSearch": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Node/Expander/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerNodeExpander",
+      "methods": [],
+      "props": {
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/TreePicker/Node/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TreePickerNodeComponent",
+      "methods": [
+        {
+          "name": "setLoadingAndExpandNode",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleRemove",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleInclude",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "expandNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "includeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
+            "computed": false
+          }
+        },
+        "itemType": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "node": {
+          "type": {
+            "name": "custom",
+            "raw": "TreePickerPropTypes.node.isRequired"
+          },
+          "required": false,
+          "description": ""
+        },
+        "nodeRenderer": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "node => node.label",
+            "computed": false
+          }
+        },
+        "removeNode": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
+            "computed": false
+          }
+        },
+        "selected": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "valueFormatter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "value => value",
+            "computed": false
+          }
         }
       }
     }
