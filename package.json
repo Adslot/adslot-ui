@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "protect-master": "./scripts/protect-master",
-    "generate-docs": "./scripts/generate-docs",
+    "generate-docs": "node ./scripts/generateDocs.js",
     "clean": "rimraf dist/* docs/*",
     "codecov": "cat coverage/coverage-final.json | codecov",
     "dist:dev": "node ./scripts/build.js",
@@ -107,6 +107,7 @@
     "eslint-plugin-lodash": "^2.6.1",
     "eslint-plugin-react": "^7.6.1",
     "file-loader": "^4.1.0",
+    "glob": "^7.1.6",
     "gonzales-pe": "^4.2.4",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.1",
