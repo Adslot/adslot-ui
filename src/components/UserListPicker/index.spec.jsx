@@ -22,9 +22,10 @@ describe('UserListPickerComponent', () => {
   });
 
   it('should render with props', () => {
+    const svgSymbol = <div />;
     const props = {
       allowEmptySelection: true,
-      emptySvgSymbol: { href: '/some.svg#id' },
+      emptySvgSymbol: svgSymbol,
       initialSelection: getInitialSelection(),
       userHeaders,
       users,
@@ -34,9 +35,7 @@ describe('UserListPickerComponent', () => {
     const component = shallow(<UserListPicker {...props} />);
     expect(component.type()).to.equal(ListPicker);
 
-    expect(component.prop('emptySvgSymbol')).to.deep.equal({
-      href: '/some.svg#id',
-    });
+    expect(component.prop('emptySvgSymbol')).to.equal(svgSymbol);
     expect(component.prop('initialSelection')).to.deep.equal(getInitialSelection());
     expect(component.prop('itemHeaders')).to.deep.equal(userHeaders);
     expect(component.prop('itemType')).to.equal('user');

@@ -7,7 +7,8 @@ import TreePickerNode from '../Node';
 import TreePickerMocks from '../mocks';
 
 describe('TreePickerGridComponent', () => {
-  const { itemType, qldNode, saNode, svgSymbol, nodeRenderer, valueFormatter } = TreePickerMocks;
+  const { itemType, qldNode, saNode, nodeRenderer, valueFormatter } = TreePickerMocks;
+  const svgSymbol = <div />;
 
   it('should render with props', () => {
     const props = {

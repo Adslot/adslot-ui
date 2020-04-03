@@ -5,7 +5,6 @@ import SplitPane from '../SplitPane';
 import TreePickerGrid from './Grid';
 import TreePickerNav from './Nav';
 import FlexibleSpacer from '../FlexibleSpacer';
-import SvgSymbol from '../SvgSymbol';
 import TreePickerPropTypes from '../../prop-types/TreePickerPropTypes';
 import './styles.scss';
 
@@ -160,11 +159,11 @@ TreePickerSimplePureComponent.propTypes = {
   /**
    * 	Displays this svg symbol when there will be no item on both left or right Grid
    */
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySvgSymbol: PropTypes.node,
   /**
    * 	Displays this svg symbol when there will be no item on right Grid(Selected list)
    */
-  emptySelectedListSvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySelectedListSvgSymbol: PropTypes.node,
   /**
    * 	Displays this text when there will be no item on left Grid. Prefer type 'string', but rich text can be used here
    */
@@ -196,7 +195,7 @@ TreePickerSimplePureComponent.propTypes = {
   /**
    * 	Same as emptySymbol
    */
-  initialStateSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  initialStateSymbol: PropTypes.node,
   /**
    * 	Uses for specific className
    */
@@ -234,8 +233,8 @@ TreePickerSimplePureComponent.propTypes = {
    *  A list of available unselected nodes. This prop is not required, but an empty array is not allowed. At least one element is required in the array.
    */
   subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
-  svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
-  svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
+  svgSymbolCancel: PropTypes.node,
+  svgSymbolSearch: PropTypes.node,
   /**
    * 	e.g: Default Group
    */

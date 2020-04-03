@@ -9,10 +9,6 @@ describe('Empty', () => {
     const component = shallow(<Empty />);
     expect(component.prop('className')).to.equal('empty-component');
 
-    const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl.prop('href')).to.equal('');
-    expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-darker', '70', 'circle']);
-
     const textElement = component.find('.empty-component-text');
     expect(textElement.text()).to.equal('Nothing to show.');
   });
@@ -30,8 +26,8 @@ describe('Empty', () => {
   });
 
   it('should render with custom SVG symbol', () => {
-    const svgSymbol = { href: '//wherever.svg#id', classSuffixes: ['class'] };
-    const props = { svgSymbol, text: 'Where is everybody?' };
+    const svgSymbol = <SvgSymbol href="//wherever.svg#id" classSuffixes={['class']} />;
+    const props = { icon: svgSymbol, text: 'Where is everybody?' };
     const component = shallow(<Empty {...props} />);
     expect(component.prop('className')).to.equal('empty-component');
 
@@ -41,23 +37,5 @@ describe('Empty', () => {
 
     const textElement = component.find('.empty-component-text');
     expect(textElement.text()).to.equal('Where is everybody?');
-  });
-
-  it('should render with custom SVG symbol, using default classSuffixes', () => {
-    const svgSymbol = { href: '//wherever.svg#id' };
-    const component = shallow(<Empty {...{ svgSymbol }} />);
-    expect(component.prop('className')).to.equal('empty-component');
-
-    const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl.prop('href')).to.equal('//wherever.svg#id');
-    expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['gray-darker', '70', 'circle']);
-  });
-
-  it('should not render with SVG symbol, when hideIcon is set to true', () => {
-    const svgSymbol = { href: '//wherever.svg#id' };
-    const component = shallow(<Empty {...{ svgSymbol, hideIcon: true }} />);
-    expect(component.prop('className')).to.equal('empty-component');
-    const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl).to.have.length(0);
   });
 });

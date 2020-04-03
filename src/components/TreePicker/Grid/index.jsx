@@ -5,7 +5,6 @@ import TreePickerNode from '../Node';
 import Empty from '../../Empty';
 import Grid from '../../Grid';
 import GridRow from '../../Grid/Row';
-import SvgSymbol from '../../SvgSymbol';
 import Spinner from '../../Spinner';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 import './styles.scss';
@@ -73,7 +72,7 @@ TreePickerGridComponent.displayName = 'TreePickerGridComponent';
 
 TreePickerGridComponent.propTypes = {
   disabled: PropTypes.bool,
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySvgSymbol: PropTypes.node,
   emptyText: PropTypes.node.isRequired,
   expandNode: PropTypes.func,
   groupFormatter: PropTypes.func,

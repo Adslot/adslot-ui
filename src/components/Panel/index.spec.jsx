@@ -22,14 +22,17 @@ describe('PanelComponent', () => {
   });
 
   it('should render with props', () => {
-    const component = shallow(<Panel {...panel2}>{panel2.content}</Panel>);
+    const icon = <SvgSymbol href="/assets/svg-symbols.svg#list" />;
+    const component = shallow(
+      <Panel {...panel2} icon={icon}>
+        {panel2.content}
+      </Panel>
+    );
     expect(component.prop('className')).to.equal('panel-component collapsed');
     expect(component.prop('data-test-selector')).to.equal('panel-two');
 
     const headerElement = component.find('.panel-component-header');
-    const icon = headerElement.find(SvgSymbol);
-    expect(icon).to.have.length(1);
-    expect(icon.prop('href')).to.equal('/assets/svg-symbols.svg#list');
+    expect(headerElement.find(SvgSymbol)).to.have.length(1);
 
     const contentElement = component.find('.panel-component-content');
     expect(contentElement).to.have.length(1);

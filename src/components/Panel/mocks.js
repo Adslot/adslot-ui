@@ -10,7 +10,6 @@ const panel1 = {
 
 const panel2 = {
   id: '2',
-  icon: { href: '/assets/svg-symbols.svg#list' },
   title: 'Panel 2',
   isCollapsed: true,
   onClick: _.noop,

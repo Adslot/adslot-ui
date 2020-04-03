@@ -5,27 +5,6 @@ const baseItem = {
   value: 10000,
 };
 
-const svgSymbol = { href: '/assets/svg-symbols#search' };
-
-const rootTypes = [
-  {
-    label: 'Geography',
-    id: 'a',
-    svgSymbol,
-    emptySvgSymbol: { href: '/some.svg#id' },
-    isRequired: true,
-  },
-  { label: 'Audiences', id: 'b', svgSymbol, isRequired: false },
-  { label: 'Segments', id: 'c', svgSymbol, isRequired: true },
-  {
-    label: 'Hidden Segments',
-    id: 'd',
-    svgSymbol,
-    isRequired: false,
-    hidden: true,
-  },
-];
-
 const auPath = { id: 'au', label: 'AU', path: [] };
 const actPath = { id: 'au-act', label: 'ACT', path: [auPath] };
 
@@ -105,7 +84,6 @@ const itemType = 'example item type';
 const TreePickerMocks = immutable({
   actNode,
   ntNode,
-  rootTypes,
   baseItem,
   cbrNode,
   cbrNodeAlreadySelected,
@@ -115,7 +93,6 @@ const TreePickerMocks = immutable({
   nodeRenderer,
   qldNode,
   saNode,
-  svgSymbol,
   valueFormatter,
 });
 

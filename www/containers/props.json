@@ -1206,19 +1206,6 @@
           "required": false,
           "description": ""
         },
-        "svgSymbol": {
-          "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "{\n  classSuffixes: ['gray-darker', '70', 'circle'],\n}",
-            "computed": false
-          }
-        },
         "text": {
           "type": {
             "name": "node"
@@ -1230,16 +1217,12 @@
             "computed": false
           }
         },
-        "hideIcon": {
+        "icon": {
           "type": {
-            "name": "bool"
+            "name": "node"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
+          "description": ""
         }
       }
     }
@@ -1801,7 +1784,7 @@
         },
         "icon": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -1918,9 +1901,7 @@
         },
         "emptySvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -2208,9 +2189,7 @@
         },
         "emptySvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -2444,9 +2423,7 @@
         },
         "emptySvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -2516,12 +2493,10 @@
         },
         "icon": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
-          "description": "shapeOf <a href=\"/svg-symbol\">SVG Symbol</a> prop types."
+          "description": ""
         },
         "title": {
           "type": {
@@ -4037,9 +4012,9 @@
           "required": true,
           "description": ""
         },
-        "actionIconSvgHref": {
+        "actionIcon": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -4101,9 +4076,9 @@
           "required": false,
           "description": ""
         },
-        "actionIconSvgHref": {
+        "actionIcon": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -4358,9 +4333,7 @@
         },
         "emptySvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -4610,18 +4583,14 @@
         },
         "svgSymbolCancel": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
         },
         "svgSymbolSearch": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -4848,18 +4817,14 @@
         },
         "emptySvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": "Displays this svg symbol when there will be no item on both left or right Grid"
         },
         "emptySelectedListSvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": "Displays this svg symbol when there will be no item on right Grid(Selected list)"
@@ -4915,9 +4880,7 @@
         },
         "initialStateSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": "Same as emptySymbol"
@@ -5041,18 +5004,14 @@
         },
         "svgSymbolCancel": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
         },
         "svgSymbolSearch": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
           "description": ""
@@ -5137,12 +5096,10 @@
         },
         "emptySvgSymbol": {
           "type": {
-            "name": "shape",
-            "value": "SvgSymbol.propTypes",
-            "computed": true
+            "name": "node"
           },
           "required": false,
-          "description": "Shape of <a href=\"/svg-symbol\">SVG Symbol</a> prop types."
+          "description": ""
         },
         "initialSelection": {
           "type": {

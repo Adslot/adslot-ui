@@ -3,7 +3,6 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import Search from '../../Search';
 import Breadcrumb from '../../Breadcrumb';
-import SvgSymbol from '../../SvgSymbol';
 import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
 import './styles.scss';
 
@@ -25,10 +24,8 @@ const TreePickerNavComponent = ({
   svgSymbolSearch,
 }) => {
   const icons = {};
-  if (svgSymbolSearch)
-    icons.search = <SvgSymbol href={svgSymbolSearch.href} classSuffixes={svgSymbolSearch.classSuffixes} />;
-  if (svgSymbolCancel)
-    icons.close = <SvgSymbol href={svgSymbolCancel.href} classSuffixes={svgSymbolCancel.classSuffixes} />;
+  if (svgSymbolSearch) icons.search = svgSymbolSearch;
+  if (svgSymbolCancel) icons.close = svgSymbolCancel;
 
   const breadcrumbProps = {
     disabled,
@@ -73,8 +70,8 @@ TreePickerNavComponent.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchValue: PropTypes.string,
   showSearch: PropTypes.bool,
-  svgSymbolCancel: PropTypes.shape(SvgSymbol.propTypes),
-  svgSymbolSearch: PropTypes.shape(SvgSymbol.propTypes),
+  svgSymbolCancel: PropTypes.node,
+  svgSymbolSearch: PropTypes.node,
 };
 
 TreePickerNavComponent.defaultProps = {

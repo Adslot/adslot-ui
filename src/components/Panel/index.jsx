@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
 class PanelComponent extends React.PureComponent {
@@ -9,10 +8,7 @@ class PanelComponent extends React.PureComponent {
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
     dts: PropTypes.string,
-    /**
-     * shapeOf <a href="/svg-symbol">SVG Symbol</a> prop types.
-     */
-    icon: PropTypes.shape(SvgSymbol.propTypes),
+    icon: PropTypes.node,
     title: PropTypes.node.isRequired,
     isCollapsed: PropTypes.bool,
     onClick: PropTypes.func,
@@ -28,7 +24,7 @@ class PanelComponent extends React.PureComponent {
     return (
       <div className={classesCombined} data-test-selector={dts}>
         <div className="panel-component-header clearfix" onClick={this.onHeaderClick}>
-          {icon ? <SvgSymbol href={icon.href} /> : null}
+          {icon}
           {title}
         </div>
         <div className="panel-component-content">{children}</div>

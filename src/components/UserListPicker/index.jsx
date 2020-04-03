@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ListPicker from '../ListPicker';
 import Avatar from '../Avatar';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
 const UserListPickerComponent = ({
@@ -66,10 +65,7 @@ UserListPickerComponent.propTypes = {
   avatarColor: PropTypes.func,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
-  /**
-   * 	Shape of <a href="/svg-symbol">SVG Symbol</a> prop types.
-   */
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySvgSymbol: PropTypes.node,
   /**
    *  Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }
    */

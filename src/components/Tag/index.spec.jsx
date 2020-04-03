@@ -52,7 +52,8 @@ describe('Tag', () => {
 
   it('should render action buttons', () => {
     const onAction = sinon.spy();
-    const component = shallow(<ActionButton onAction={onAction} actionIconSvgHref="foo" id="Bar" />);
+    const actionIcon = <SvgSymbol href="foo" />;
+    const component = shallow(<ActionButton onAction={onAction} actionIcon={actionIcon} id="Bar" />);
 
     expect(component.prop('className')).to.equal('action-button');
     component.simulate('click');

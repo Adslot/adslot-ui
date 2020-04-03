@@ -6,7 +6,6 @@ import Empty from '../Empty';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
-import SvgSymbol from '../SvgSymbol';
 import './styles.scss';
 
 class PagedGridComponent extends React.PureComponent {
@@ -84,7 +83,7 @@ PagedGridComponent.propTypes = {
   columns: PropTypes.arrayOf(columnProps).isRequired,
   emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
-  emptySvgSymbol: PropTypes.shape(SvgSymbol.propTypes),
+  emptySvgSymbol: PropTypes.node,
   items: PropTypes.arrayOf(itemProps).isRequired,
   perPage: PropTypes.number.isRequired,
   verticalCellBorder: PropTypes.bool,
