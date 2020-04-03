@@ -33,7 +33,6 @@
     "test": "scripts/test --coverage",
     "test:watch": "scripts/test --watch",
     "version": "echo '…generating dist…' && npm run dist && git add dist/",
-    "scaffold": "./scripts/scaffold",
     "autorelease": "node scripts/release"
   },
   "repository": {
