@@ -62,17 +62,6 @@ npm run test:watch [--file=<path>] [--coverage]
 npm run svgo
 ```
 
-Generating New Components
--------------------------
-
-As simple as running the `scaffold` command which will create your new Adslot UI component from `/component-template`.
-
-```sh
-npm run scaffold MyComponentName
-```
-
-You'll get an `index.jsx`, `index.spec.jsx` and `styles.scss` created under `src/components/MyComponentName`.
-
 Build Profiling
 ---------------
 
