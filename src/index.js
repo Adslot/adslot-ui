@@ -70,6 +70,7 @@ import InformationBox from './components/InformationBox';
 import HoverDropdownMenu from './components/HoverDropdownMenu';
 import OverlayLoader from './components/OverlayLoader';
 import VerticalNav from './components/VerticalNavigation';
+import RichTextEditor from './components/RichTextEditor';
 
 export {
   Accordion,
@@ -139,4 +140,5 @@ export {
   HoverDropdownMenu,
   OverlayLoader,
   VerticalNav,
+  RichTextEditor,
 };

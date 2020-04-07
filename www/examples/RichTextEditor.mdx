@@ -1,0 +1,87 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Rich Text Editor
+
+Rich Text Editor allows you to apply advance formating to your plain text.
+
+<br />
+
+Rich Text Editor also ships three util methods which helps users to create an editor state:
+
+1. To convert the editor state to html:
+
+```jsx
+stateToHTML(input: EditorState): string
+```
+
+2. To convert html into editor state
+
+```jsx
+stateFromHTML(input: string): EditorState
+```
+
+3. Create an empty editor state when you would like to control the editor state value
+
+```jsx
+createEmpty(): EditorState
+```
+
+<br />
+
+You have flexibility to create an controlled or uncontrolled editor based on your requirement.
+
+### Uncontrolled
+
+```jsx live=true
+const Example = () => {
+  const [state, setState] = React.useState(' ');
+  return (
+    <>
+      <div style={{ width: '600px' }}>
+        <RichTextEditor onChange={output => setState(RichTextEditor.stateToHTML(output))} />
+      </div>
+
+      <div style={{ marginTop: 30, width: '600px' }}>
+        <p>HTML Output:</p>
+        <code>{state}</code>
+      </div>
+    </>
+  );
+};
+
+render(Example);
+```
+
+### Controlled
+
+```jsx live=true
+const Example = () => {
+  const [state, setState] = React.useState(
+    RichTextEditor.stateFromHTML(
+      `<p>test</p> <p>asdasdasdasd</p> <ul> <li>test</li> </ul> <ol> <li>test</li> <li>123</li> </ol>`
+    )
+  );
+  return (
+    <>
+      <div style={{ width: '600px' }}>
+        <RichTextEditor value={state} onChange={setState} />
+      </div>
+
+      <div style={{ marginTop: 30, width: '600px' }}>
+        <p>HTML Output:</p>
+        <code>{RichTextEditor.stateToHTML(state)}</code>
+      </div>
+    </>
+  );
+};
+
+render(Example);
+```
+
+<DesignNotes>
+  Adslot UI's rich text editor is based on the basic version of <a href="https://draftjs.org/">draft-js</a>. It allows
+  basic formatting controls and output html from rich text.
+</DesignNotes>
+
+<Props componentName="RichTextEditor" />
