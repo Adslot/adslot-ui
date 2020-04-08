@@ -19,7 +19,7 @@ class PagedGridComponent extends React.PureComponent {
 
   render() {
     const { activePage } = this.state;
-    const { columns, emptyIcon, emptyMessage, emptySvgSymbol, items, perPage, verticalCellBorder } = this.props;
+    const { columns, emptyMessage, emptySvgSymbol, items, perPage, verticalCellBorder } = this.props;
     const pageItems = _(items)
       .clone()
       .splice((this.state.activePage - 1) * perPage, perPage);
@@ -48,7 +48,7 @@ class PagedGridComponent extends React.PureComponent {
               ))}
             </GridRow>
           ))}
-          <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
+          <Empty collection={items} icon={emptySvgSymbol} text={emptyMessage} />
         </Grid>
         {totalPages > 1 ? (
           <div className="pagedgrid-component-pagination">
@@ -81,7 +81,6 @@ const columnProps = PropTypes.shape({
 
 PagedGridComponent.propTypes = {
   columns: PropTypes.arrayOf(columnProps).isRequired,
-  emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.node,
   items: PropTypes.arrayOf(itemProps).isRequired,

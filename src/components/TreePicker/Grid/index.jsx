@@ -62,7 +62,7 @@ const TreePickerGridComponent = ({
         ))
       )}
       {nodes && !isLoading ? (
-        <Empty collection={nodes} hideIcon={hideIcon} svgSymbol={emptySvgSymbol} text={emptyText} />
+        <Empty collection={nodes} hideIcon={hideIcon} icon={emptySvgSymbol} text={emptyText} />
       ) : null}
     </Grid>
   );

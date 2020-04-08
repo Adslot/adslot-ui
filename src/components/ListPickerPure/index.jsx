@@ -59,7 +59,6 @@ class ListPickerPureComponent extends React.PureComponent {
   render() {
     const {
       allowMultiSelection,
-      emptyIcon,
       emptyMessage,
       emptySvgSymbol,
       items,
@@ -101,7 +100,7 @@ class ListPickerPureComponent extends React.PureComponent {
                 ) : null}
               </GridRow>
             ))}
-            <Empty collection={items} icon={emptyIcon} svgSymbol={emptySvgSymbol} text={emptyMessage} />
+            <Empty collection={items} icon={emptySvgSymbol} text={emptyMessage} />
           </Grid>
         </div>
       </div>
@@ -118,7 +117,6 @@ const itemProps = PropTypes.shape({
 ListPickerPureComponent.propTypes = {
   allowMultiSelection: PropTypes.bool,
   deselectItem: PropTypes.func,
-  emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.node,
   labelFormatter: PropTypes.func,

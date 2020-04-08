@@ -111,8 +111,9 @@ describe('ListPickerComponent', () => {
       properties: [{ label: 'Name', value: 'Jill Smith' }, { label: 'Age', value: '21' }],
     };
     const initialSelection = getInitialSelection();
+    const emptySvgSymbol = <div />;
     const props = {
-      emptyIcon: '/some.png',
+      emptySvgSymbol,
       emptyMessage: 'No users.',
       initialSelection,
       items: users,
@@ -184,7 +185,7 @@ describe('ListPickerComponent', () => {
     expect(listPickerPureElement.prop('selectedItems')).to.not.equal(initialSelection);
     expect(listPickerPureElement.prop('selectedItems')).to.deep.equal(initialSelection);
     expect(listPickerPureElement.prop('deselectItem')).to.be.a('function');
-    expect(listPickerPureElement.prop('emptyIcon')).to.equal('/some.png');
+    expect(listPickerPureElement.prop('emptySvgSymbol')).to.equal(emptySvgSymbol);
     expect(listPickerPureElement.prop('emptyMessage')).to.equal('No users.');
     expect(listPickerPureElement.prop('labelFormatter')).to.be.a('function');
     expect(listPickerPureElement.prop('itemHeaders')).to.deep.equal(userHeaders);
