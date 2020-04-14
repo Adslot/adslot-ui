@@ -49,6 +49,11 @@ describe('ButtonComponent', () => {
     expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
   });
 
+  it('should render large button with btn-large class', () => {
+    const wrapper = shallow(<Button size="large">Test</Button>);
+    expect(wrapper.prop('className')).to.equal('aui--button btn-large');
+  });
+
   it('should support data-test-selectors', () => {
     const wrapper = shallow(<Button dts="test-button">Test</Button>);
     expect(wrapper.prop('data-test-selector')).to.equal('test-button');

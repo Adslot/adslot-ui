@@ -28,7 +28,7 @@ StatusPill.propTypes = {
   /**
    * 	Text inside status pill
    */
-  status: PropTypes.string.isRequired,
+  status: PropTypes.node.isRequired,
   /**
    * one of ["primary", "success", "warning", "error", "light"]
    */
