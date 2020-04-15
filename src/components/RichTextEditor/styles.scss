@@ -1,0 +1,49 @@
+@import '~styles/color';
+
+.aui--editor-root {
+  border: 1px solid $color-gray-lighter;
+  min-height: 245px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+
+  .aui--editor-container {
+    padding: 20px;
+
+    // sass-lint:disable class-name-format
+    .public-DraftEditorPlaceholder-hasFocus {
+      display: none;
+    }
+  }
+
+  .aui--editor-toolbar {
+    padding: 10px 20px;
+    background-color: $color-gray-white;
+
+    .aui--toolbar-button {
+      box-shadow: none;
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: 6px;
+      font-size: 12px;
+      align-items: center;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover,
+      &.active {
+        background-color: $color-white;
+        border-color: $color-gray-lighter;
+        box-shadow: 0 1px $color-gray-light;
+      }
+
+      img {
+        height: 16px;
+      }
+    }
+  }
+}

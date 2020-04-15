@@ -53,6 +53,7 @@ import Introduction from '../examples/Introduction.mdx';
 import DesignGuide from '../examples/DesignGuide.mdx';
 import Installation from './components/GettingStarted/Installation.md';
 import Contributing from './components/GettingStarted/Contributing.md';
+import RichTextEditorExample from '../examples/RichTextEditor.mdx';
 
 const routes = [
   {
@@ -383,6 +384,12 @@ const routes = [
     path: '/vertical-navigation',
     component: VerticalNavigationExample,
     title: 'Vertical Navigation',
+    group: 'Components',
+  },
+  {
+    path: '/rich-text-editor',
+    component: RichTextEditorExample,
+    title: 'Rich Text Editor',
     group: 'Components',
   },
 ];

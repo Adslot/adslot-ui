@@ -6,7 +6,13 @@ const reactDocgen = require('react-docgen');
 const glob = require('glob');
 
 const sourcePath = path.join(__dirname, '..');
-const filesToIgnore = ['fastStatelessWrapper', 'mocks.jsx', 'spec.jsx'];
+const filesToIgnore = [
+  'fastStatelessWrapper',
+  'mocks.jsx',
+  'spec.jsx',
+  'BlockStyleButtons',
+  'InlineStyleButtons',
+];
 const outputFilePath = path.join(__dirname, '../www/containers/props.json');
 
 (async () => {

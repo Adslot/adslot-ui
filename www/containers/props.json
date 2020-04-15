@@ -3210,6 +3210,75 @@
       }
     }
   ],
+  "src/components/RichTextEditor/index.jsx": [
+    {
+      "description": "",
+      "displayName": "RichTextEditor",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "initialState": {
+          "type": {
+            "name": "instanceOf",
+            "value": "EditorState"
+          },
+          "required": false,
+          "description": "Editor State"
+        },
+        "value": {
+          "type": {
+            "name": "instanceOf",
+            "value": "EditorState"
+          },
+          "required": false,
+          "description": "Editor State: Instance of <a href=\"https://draftjs.org/docs/api-reference-editor-state\">draft-js editor state</a>"
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/RichTextEditor/ToolbarButton.jsx": [
+    {
+      "description": "",
+      "displayName": "ToolbarButton",
+      "methods": [],
+      "props": {
+        "onToggle": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "label": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "active": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
   "src/components/Search/index.jsx": [
     {
       "description": "",
