@@ -108,7 +108,7 @@
       "props": {
         "title": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": true,
           "description": ""
@@ -1906,13 +1906,6 @@
             "computed": false
           }
         },
-        "emptyIcon": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
         "emptyMessage": {
           "type": {
             "name": "string"
@@ -2190,13 +2183,6 @@
             "computed": false
           }
         },
-        "emptyIcon": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
         "emptyMessage": {
           "type": {
             "name": "string"
@@ -2392,13 +2378,6 @@
             }
           },
           "required": true,
-          "description": ""
-        },
-        "emptyIcon": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
           "description": ""
         },
         "emptyMessage": {
@@ -3223,7 +3202,7 @@
           "required": false,
           "description": ""
         },
-        "initialState": {
+        "initialValue": {
           "type": {
             "name": "instanceOf",
             "value": "EditorState"

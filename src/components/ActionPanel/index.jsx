@@ -25,7 +25,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
       <div className={classNames('aui--action-panel-wrapper', { 'aui--action-panel-modal-wrapper': isModal })}>
         <div className={classNames('aui--action-panel', className, `is-${size}`, { 'action-modal': isModal })}>
           <div className={classNames('aui--action-panel-header', { 'has-actions': actionButton })}>
-            <span className="title">{title}</span>
+            <div className="title">{title}</div>
             <span className="actions">
               <Button
                 onClick={onClose}
@@ -49,7 +49,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
 ActionPanel.displayName = 'ActionPanel';
 
 ActionPanel.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   className: PropTypes.string,
   // large is intended to be used in a modal
   size: PropTypes.oneOf(['small', 'medium', 'large']),
