@@ -79,7 +79,6 @@ class ListPickerComponent extends React.PureComponent {
     const { selectedItems, disableApplyButton } = this.state;
     const {
       allowMultiSelection,
-      emptyIcon,
       emptyMessage,
       emptySvgSymbol,
       labelFormatter,
@@ -99,7 +98,6 @@ class ListPickerComponent extends React.PureComponent {
     const listPickerPureElement = (
       <ListPickerPure
         allowMultiSelection={allowMultiSelection}
-        emptyIcon={emptyIcon}
         emptyMessage={emptyMessage}
         emptySvgSymbol={emptySvgSymbol}
         deselectItem={this.deselectItem}
@@ -198,7 +196,6 @@ const linkButtonsProps = PropTypes.arrayOf(
 ListPickerComponent.propTypes = {
   allowEmptySelection: PropTypes.bool,
   allowMultiSelection: PropTypes.bool,
-  emptyIcon: PropTypes.string,
   emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.node,
   initialSelection: PropTypes.arrayOf(itemProps),

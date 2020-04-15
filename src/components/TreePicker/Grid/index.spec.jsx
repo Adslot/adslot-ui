@@ -44,7 +44,7 @@ describe('TreePickerGridComponent', () => {
     const emptyElement = gridElement.find(Empty);
     expect(emptyElement).to.have.length(1);
     expect(emptyElement.prop('collection')).to.equal(props.nodes);
-    expect(emptyElement.prop('svgSymbol')).to.equal(props.emptySvgSymbol);
+    expect(emptyElement.prop('icon')).to.equal(props.emptySvgSymbol);
     expect(emptyElement.prop('text')).to.equal(props.emptyText);
   });
 
@@ -96,7 +96,7 @@ describe('TreePickerGridComponent', () => {
       const emptyElement = gridElement.find(Empty);
       expect(emptyElement).to.have.length(1);
       expect(emptyElement.prop('collection')).to.equal(props.nodes);
-      expect(emptyElement.prop('svgSymbol')).to.equal(props.emptySvgSymbol);
+      expect(emptyElement.prop('icon')).to.equal(props.emptySvgSymbol);
       expect(emptyElement.prop('text')).to.equal(props.emptyText);
     });
 
