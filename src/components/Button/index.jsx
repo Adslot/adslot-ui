@@ -10,16 +10,21 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const adslotButtonPropTypes = {
+  /**
+   * PropTypes.oneOf(['small', 'large'])
+   */
+  size: PropTypes.oneOf(['small', 'large']),
   inverse: PropTypes.bool,
   dts: PropTypes.string,
   isLoading: PropTypes.bool,
 };
 
 const Button = props => {
-  const { inverse, children, dts, className, isLoading, disabled } = props;
+  const { inverse, size, children, dts, className, isLoading, disabled } = props;
   const baseClass = 'aui--button';
   const classes = classNames(baseClass, className, {
     'btn-inverse': inverse && !/btn-inverse/.test(className),
+    'btn-large': size === 'large',
   });
 
   const renderSpinner = () =>
@@ -47,6 +52,7 @@ Button.propTypes = { ...adslotButtonPropTypes, ...BootstrapButton.propTypes };
 Button.defaultProps = {
   inverse: false,
   isLoading: false,
+  size: 'small',
 };
 
 export default Button;

@@ -7,6 +7,11 @@
     visibility: hidden; // preserves width and height of button
   }
 
+  &.btn-large {
+    width: 264px;
+    height: 42px;
+  }
+
   .spinner-container {
     position: absolute;
     right: 0;

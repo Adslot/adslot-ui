@@ -563,6 +563,27 @@
       "displayName": "Button",
       "methods": [],
       "props": {
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'small'",
+                "computed": false
+              },
+              {
+                "value": "'large'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "PropTypes.oneOf(['small', 'large'])",
+          "defaultValue": {
+            "value": "'small'",
+            "computed": false
+          }
+        },
         "inverse": {
           "type": {
             "name": "bool"
@@ -3648,7 +3669,7 @@
       "props": {
         "status": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": true,
           "description": "Text inside status pill"
