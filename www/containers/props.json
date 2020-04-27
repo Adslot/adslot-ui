@@ -4254,9 +4254,9 @@
       "props": {
         "title": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
-          "required": true,
+          "required": false,
           "description": ""
         },
         "items": {
@@ -4275,7 +4275,7 @@
                   "required": true
                 },
                 "title": {
-                  "name": "string",
+                  "name": "node",
                   "required": true
                 },
                 "imgLink": {

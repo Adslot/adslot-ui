@@ -51,7 +51,7 @@ const Props = ({ componentName, customMapper }) => {
                     <code>{HtmlParser(_.get(prop, 'required', ''))}</code>
                   </td>
                   <td>
-                    <code>{HtmlParser(_.get(prop, 'defaultValue.value', ''))}</code>
+                    <code>{_.get(prop, 'defaultValue.value', '')}</code>
                   </td>
                   <td>{HtmlParser(prop.description)}</td>
                 </tr>

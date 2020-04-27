@@ -7,7 +7,6 @@ import TileGrid from '.';
 
 describe('TileGrid', () => {
   const props = {
-    title: 'Lorem ipsum',
     items: [{ id: '0', classSuffix: 'alpha', title: 'Alpha' }, { id: '1', classSuffix: 'beta', title: 'Beta' }],
     onItemClick: _.noop,
   };
@@ -17,12 +16,20 @@ describe('TileGrid', () => {
     expect(component.prop('className')).to.equal('tile-grid-component');
 
     const title = component.find('.tile-grid-component-title');
-    expect(title).to.have.length(1);
-    expect(title.text()).to.equal('Lorem ipsum');
+    expect(title).to.have.length(0);
 
     const list = component.find('.tile-grid-component-list');
     expect(list).to.have.length(1);
     expect(list.children()).to.have.length(0);
+  });
+
+  it('renders title if props contain it', () => {
+    const newProps = _.assign(props, { title: 'Lorem ipsum' });
+    const component = shallow(<TileGrid {...newProps} items={[]} />);
+
+    const title = component.find('.tile-grid-component-title');
+    expect(title).to.have.length(1);
+    expect(title.text()).to.equal('Lorem ipsum');
   });
 
   it('renders with items', () => {

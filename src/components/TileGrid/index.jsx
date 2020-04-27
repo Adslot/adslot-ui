@@ -50,7 +50,7 @@ const TileGrid = ({ title, items, onItemClick, distributed }) => {
 
   return (
     <div className={baseClass}>
-      <strong className={`${baseClass}-title`}>{title}</strong>
+      {title ? <strong className={`${baseClass}-title`}>{title}</strong> : null}
       <ul className={`${baseClass}-list`}>{cardList}</ul>
     </div>
   );
@@ -61,7 +61,7 @@ TileGrid.defaultProps = {
 };
 
 TileGrid.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node,
   /**
    * 	The shape of item object is defined below
    */
@@ -69,7 +69,7 @@ TileGrid.propTypes = {
     PropTypes.shape({
       id: idPropType.isRequired,
       classSuffix: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      title: PropTypes.node.isRequired,
       imgLink: PropTypes.string,
       width: PropTypes.number,
       maxWidth: PropTypes.number,
