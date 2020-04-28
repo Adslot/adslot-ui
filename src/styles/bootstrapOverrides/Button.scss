@@ -1,4 +1,5 @@
 @import '~styles/variable';
+@import '~styles/mixin';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins/buttons';
 
 @mixin button-disabled {
@@ -15,10 +16,9 @@
 @mixin button-inverse($color) {
   $transformed-color: hsl(hue($color), saturation($color), 90%);
 
-  @include button-variant($color, $color-inverse, $color);
+  @include aui--button-variant($color, $color-inverse, $color);
 
   &:active,
-  &:focus,
   &:hover {
     &,
     &:active {
@@ -27,13 +27,12 @@
   }
 }
 
-
 // Use `.btn-inverse` and add a normal style like `info` to add colours.
 .btn-inverse {
   // :not(:disabled) is used instead of :enabled as various elements (a, div, span)
   // are styled as buttons but do not have an :enabled state
   &:not([disabled]) {
-    @include button-variant($color-text-light, $color-inverse, $color-border-light);
+    @include aui--button-variant($color-text-light, $color-inverse, $color-border-light);
 
     &:hover,
     &:active,
@@ -76,18 +75,45 @@
     transform: translateY(1px);
   }
 
+  &.btn-default {
+    @include aui--button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+  }
+
+  &.btn-primary {
+    @include aui--button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  }
+
+  &.btn-success {
+    @include aui--button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+  }
+
+  &.btn-info {
+    @include aui--button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+  }
+
+  &.btn-warning {
+    @include aui--button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+  }
+
+  &.btn-danger {
+    @include aui--button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+  }
+
   &.disabled,
   &[disabled],
   [disabled] & {
     @include button-disabled;
 
-    &:hover {
-      @include button-disabled;
-    }
-
     &,
+    &:hover,
+    &:focus,
     &:active {
-      @include reset-shadow-and-transform;
+      @include button-disabled;
+
+      &:hover {
+        @include button-disabled;
+        @include reset-shadow-and-transform;
+      }
     }
   }
 
@@ -99,14 +125,14 @@
 }
 
 // disable lint on next line as we need to force extra specificity to ensure disabled styles take precedence
-.btn.btn-link { // sass-lint:disable-line force-element-nesting
+.btn.btn-link {
+  // sass-lint:disable-line force-element-nesting
   cursor: pointer;
 
   &,
   &:active {
     @include reset-shadow-and-transform;
   }
-
 
   &:disabled,
   &[disabled] {
@@ -122,7 +148,7 @@
 
 .btn-borderless {
   &:not([disabled]) {
-    @include button-variant($color-text-light, $color-inverse, $color-white);
+    @include aui--button-variant($color-text-light, $color-inverse, $color-white);
     box-shadow: none;
 
     &:hover,
@@ -136,7 +162,7 @@
 
 .btn-flat {
   &:not([disabled]) {
-    @include button-variant($color-text-light, $color-inverse, $color-white);
+    @include aui--button-variant($color-text-light, $color-inverse, $color-white);
     border: 0;
     box-shadow: none;
 
