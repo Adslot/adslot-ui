@@ -17,10 +17,14 @@ const adslotButtonPropTypes = {
   inverse: PropTypes.bool,
   dts: PropTypes.string,
   isLoading: PropTypes.bool,
+  /**
+   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+   */
+  bsStyle: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
 };
 
 const Button = props => {
-  const { inverse, size, children, dts, className, isLoading, disabled } = props;
+  const { bsStyle, inverse, size, children, dts, className, isLoading, disabled } = props;
   const baseClass = 'aui--button';
   const classes = classNames(baseClass, className, {
     'btn-inverse': inverse && !/btn-inverse/.test(className),
@@ -36,6 +40,7 @@ const Button = props => {
 
   return (
     <BootstrapButton
+      bsStyle={bsStyle}
       {..._.omit(props, _.keys(adslotButtonPropTypes))}
       disabled={isLoading || disabled}
       className={classes}

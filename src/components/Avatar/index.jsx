@@ -18,7 +18,10 @@ const Avatar = ({ color, givenName, tooltip, image, surname }) => (
 Avatar.displayName = 'AvatarComponent';
 
 Avatar.propTypes = {
-  color: PropTypes.string,
+  /**
+   * PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan'])
+   */
+  color: PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan']),
   givenName: PropTypes.string,
   tooltip: PropTypes.string,
   image: PropTypes.string,

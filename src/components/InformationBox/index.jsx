@@ -3,12 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const InformationBox = ({ children, icon, title, className, dts }) => (
-  <div className={classnames('information-box', className)} data-test-selector={dts}>
-    {icon ? <div className="information-box-icon"> {icon}</div> : null}
-    <div className="information-box-text">
-      {title ? <label className="information-box-title">{title}</label> : null}
-      <div className="information-box-node">{children}</div>
+const styles = ['primary', 'success', 'warning', 'error', 'light'];
+
+const InformationBox = ({ children, icon, title, className, theme, dts }) => (
+  <div
+    className={classnames('aui--information-box', `aui--information-box-${theme}`, className)}
+    data-test-selector={dts}
+  >
+    {icon ? <div className="aui--information-box-icon"> {icon}</div> : null}
+    <div className="aui--information-box-text">
+      {title ? <label className="aui--information-box-title">{title}</label> : null}
+      <div className="aui--information-box-node">{children}</div>
     </div>
   </div>
 );
@@ -16,9 +21,14 @@ const InformationBox = ({ children, icon, title, className, dts }) => (
 InformationBox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  theme: PropTypes.oneOf(styles),
   title: PropTypes.node,
   icon: PropTypes.node,
   dts: PropTypes.string,
+};
+
+InformationBox.defaultProps = {
+  theme: 'light',
 };
 
 export default InformationBox;

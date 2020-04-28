@@ -1,13 +1,32 @@
 @import '~styles/color';
 @import '~styles/variable';
 
-.information-box {
-  background-color: $color-background-highlighted;
+.aui--information-box {
   padding: $spacing-etalon;
   color: $color-text-label;
   display: inline-flex;
   align-items: center;
   width: 100%;
+
+  &.aui--information-box-primary {
+    background-color: $color-infobox-primary;
+  }
+
+  &.aui--information-box-success {
+    background-color: $color-infobox-success;
+  }
+
+  &.aui--information-box-warning {
+    background-color: $color-infobox-warning;
+  }
+
+  &.aui--information-box-error {
+    background-color: $color-infobox-error;
+  }
+
+  &.aui--information-box-light {
+    background-color: $color-infobox-light;
+  }
 
   &-text {
     padding-left: 20px;
@@ -22,8 +41,7 @@
 
   &-icon {
     $information-box-icon-size: 70px;
-
-    background-color: $color-background;
+    background-color: transparent;
     width: $information-box-icon-size;
     height: $information-box-icon-size;
     border-radius: $border-radius-circle;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
   <img src="./assets/banner.jpg" style={{ maxWidth: '100%' }} />
 </div>
 
-<div style={{ display: 'flex', marginTop: 30, justifyContent: 'space-between' }}>
+<div style={{ display: 'grid', gridColumnGap: 10, marginTop: 30, gridTemplateColumns: '1fr 1fr auto' }}>
   <div>
     <InformationBox className="intro-page-box">
       <SvgSymbol href="./assets/svg-symbols.svg#code-guide" classSuffixes={['box-icon']} />

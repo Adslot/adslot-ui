@@ -14,6 +14,9 @@ const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']
 
 class Popover extends React.PureComponent {
   static propTypes = {
+    /**
+     * PropTypes.oneOf(['light', 'dark', 'warn', 'error', 'info', 'success'])
+     */
     theme: PropTypes.oneOf(themes),
     title: PropTypes.node,
     className: PropTypes.string,
