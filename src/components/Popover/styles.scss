@@ -40,7 +40,6 @@ $arrow-border-size: 1px;
     margin-left: 6px;
   }
 
-
   .aui--popover-arrow {
     position: absolute;
     border: 0 solid $color-border-lighter; // the color of the outer triangle
@@ -50,6 +49,18 @@ $arrow-border-size: 1px;
       display: block;
       position: relative;
       border: 0 solid $color-background;
+    }
+
+    // Overwrite react-popper inline transform style
+    &[data-placement='right-start'],
+    &[data-placement='right-end'],
+    &[data-placement='left-start'],
+    &[data-placement='left-end'],
+    &[data-placement='top-start'],
+    &[data-placement='top-end'],
+    &[data-placement='bottom-start'],
+    &[data-placement='bottom-end'] {
+      transform: none !important; // sass-lint:disable-line no-important
     }
 
     &[data-placement*='top'],

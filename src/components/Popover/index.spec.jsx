@@ -279,9 +279,7 @@ describe('<Popover.WithRef />', () => {
       <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />
     );
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-light');
-    expect(getByTestId('popover-wrapper')).toHaveStyle(
-      'position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;'
-    );
+    expect(getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: 0px; left: 0px;');
   });
 
   it('should render with given props', () => {
@@ -312,9 +310,7 @@ describe('<Popover.WithRef />', () => {
     expect(getByTestId('popover-wrapper')).toHaveAttribute('data-test-selector', 'popover-example');
     expect(getByTestId('popover-title')).toHaveTextContent('Big Bang');
     expect(getByTestId('popover-arrow')).toHaveStyle('color: red;');
-    expect(getByTestId('popover-wrapper')).toHaveStyle(
-      'position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none; color: red;'
-    );
+    expect(getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: 0px; left: 0px; color: red;');
   });
 
   it('should default to light theme on invalid theme prop', () => {

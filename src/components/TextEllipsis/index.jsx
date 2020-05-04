@@ -30,10 +30,6 @@ class TextEllipsisComponent extends React.PureComponent {
     truncated: false,
   };
 
-  componentDidMount() {
-    this.setTruncate();
-  }
-
   componentDidUpdate() {
     this.setTruncate();
   }
