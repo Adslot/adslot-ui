@@ -1,7 +1,14 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, act } from '@testing-library/react';
 import TextEllipsis from '.';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+});
 afterEach(cleanup);
 
 describe('<TextEllipsis />', () => {
@@ -36,13 +43,19 @@ describe('<TextEllipsis />', () => {
         configurable: true,
       },
     });
-    const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
-      container: divContainer,
-    });
 
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    console.error = jest.fn();
+
+    act(() => {
+      const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
+        container: divContainer,
+      });
+      jest.runAllTimers();
+
+      expect(queryAllByTestId('popover-element')).toHaveLength(1);
+      expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    });
   });
 
   it('should render with popover when text length is more than max length', () => {
@@ -57,12 +70,15 @@ describe('<TextEllipsis />', () => {
       },
     });
 
-    const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
-      container: divContainer,
-    });
+    act(() => {
+      const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
+        container: divContainer,
+      });
+      jest.runAllTimers();
 
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+      expect(queryAllByTestId('popover-element')).toHaveLength(1);
+      expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    });
   });
 
   it('should generate popover if text changes from short to long', () => {

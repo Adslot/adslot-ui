@@ -1851,42 +1851,8 @@
   "src/components/HoverDropdownMenu/index.jsx": [
     {
       "description": "",
-      "displayName": "HoverDropdownMenuComponent",
-      "methods": [
-        {
-          "name": "openMenu",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "popoverEnterHandler",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "popoverLeaveHandler",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "innerRefFunc",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "node",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "displayName": "HoverDropdownMenu",
+      "methods": [],
       "props": {
         "arrowPosition": {
           "type": {
@@ -3155,71 +3121,7 @@
     {
       "description": "",
       "displayName": "Popover",
-      "methods": [
-        {
-          "name": "onClick",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "onFocus",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "onBlur",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "onMouseOver",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "onMouseOut",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "getBoundedContainer",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "closePopover",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "openPopover",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "togglePopover",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "theme": {
           "type": {
@@ -3228,7 +3130,7 @@
             "value": "themes"
           },
           "required": false,
-          "description": "PropTypes.oneOf(['light', 'dark', 'warn', 'error', 'info', 'success'])",
+          "description": "",
           "defaultValue": {
             "value": "'light'",
             "computed": false
@@ -3260,7 +3162,7 @@
             "name": "object"
           },
           "required": false,
-          "description": ""
+          "description": "arrow css styles, mainly for positioning the arrow"
         },
         "wrapperStyles": {
           "type": {
@@ -3271,7 +3173,18 @@
         },
         "modifiers": {
           "type": {
-            "name": "object"
+            "name": "union",
+            "value": [
+              {
+                "name": "object"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "object"
+                }
+              }
+            ]
           },
           "required": false,
           "description": ""
@@ -3383,14 +3296,6 @@
           "required": false,
           "description": ""
         },
-        "boundariesElement": {
-          "type": {
-            "name": "instanceOf",
-            "value": "Element"
-          },
-          "required": false,
-          "description": ""
-        },
         "dts": {
           "type": {
             "name": "string"
@@ -3398,19 +3303,27 @@
           "required": false,
           "description": ""
         },
-        "innerRef": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
         "modifiers": {
           "type": {
-            "name": "object"
+            "name": "union",
+            "value": [
+              {
+                "name": "object"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "object"
+                }
+              }
+            ]
           },
           "required": false,
-          "description": ""
+          "description": "",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
         },
         "placement": {
           "type": {
@@ -3451,35 +3364,12 @@
           "required": false,
           "description": ""
         },
-        "title": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "wrapperStyles": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "src/components/Popover/WithRef.jsx": [
-    {
-      "description": "",
-      "displayName": "WithRef",
-      "methods": [],
-      "props": {
-        "refElement": {
+        "boundariesElement": {
           "type": {
             "name": "instanceOf",
             "value": "Element"
           },
-          "required": true,
+          "required": false,
           "description": ""
         },
         "title": {
@@ -3489,92 +3379,9 @@
           "required": false,
           "description": ""
         },
-        "theme": {
-          "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "themes"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'light'",
-            "computed": false
-          }
-        },
-        "popoverClassNames": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "getContainer": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "arrowStyles": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
         "wrapperStyles": {
           "type": {
             "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "modifiers": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": ""
-        },
-        "placement": {
-          "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "popoverPlacements"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'auto'",
-            "computed": false
-          }
-        },
-        "popoverContent": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "node"
-              },
-              {
-                "name": "func"
-              }
-            ]
-          },
-          "required": true,
-          "description": ""
-        },
-        "isOpen": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": ""
-        },
-        "dts": {
-          "type": {
-            "name": "string"
           },
           "required": false,
           "description": ""

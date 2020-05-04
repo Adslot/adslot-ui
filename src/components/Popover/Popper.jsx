@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Popper as ReactPopper } from 'react-popper';
+import { usePopper } from 'react-popper';
 import { popoverPlacements } from './constants';
 
 // default arrow position in pixel from the corresponding popover edge
@@ -47,78 +47,88 @@ export const renderArrowStyles = (placement, arrowStyles, container = null) => {
 
 const Popper = ({
   arrowStyles,
-  boundariesElement,
   dts,
-  innerRef,
-  modifiers,
   placement: popperPlacement,
   popoverClass,
   popoverContent,
-  refElement,
   title,
   wrapperStyles,
+  refElement,
+  modifiers = [],
+  popperRef,
 }) => {
-  const calculatedArrowStyles = renderArrowStyles(popperPlacement, arrowStyles, refElement);
+  const [popperElement, setPopperElement] = React.useState(null);
+  const [arrowElement, setArrowElement] = React.useState(null);
 
-  return (
-    <ReactPopper
-      {...(refElement ? { referenceElement: refElement } : {})}
-      innerRef={innerRef}
-      placement={popperPlacement}
-      modifiers={{
-        preventOverflow: {
-          enabled: true,
-          boundariesElement,
+  React.useEffect(() => {
+    if (popperElement && popperRef) popperRef(popperElement);
+  }, [popperRef, popperElement]);
+
+  const { styles, attributes, update } = usePopper(refElement, popperElement, {
+    modifiers: [
+      { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 6],
         },
-        ...modifiers,
-      }}
+      },
+      {
+        name: 'flip',
+        options: {
+          altBoundary: true,
+        },
+      },
+    ].concat(modifiers),
+    placement: popperPlacement,
+    wrapperStyles,
+  });
+
+  const calculatedArrowStyles = renderArrowStyles(popperPlacement, arrowStyles, popperElement);
+  return (
+    <div
+      data-testid="popover-wrapper"
+      placement={popperPlacement} // for test only
+      className={popoverClass}
+      ref={setPopperElement}
+      style={{ ...styles.popper, ...wrapperStyles }}
+      {...attributes.popper}
+      data-test-selector={dts}
     >
-      {({ ref, style, placement, arrowProps, scheduleUpdate }) => (
-        <div
-          data-testid="popover-wrapper"
-          placement={popperPlacement} // for test only
-          className={popoverClass}
-          ref={ref}
-          style={{ ...style, ...wrapperStyles }}
-          data-placement={placement}
-          data-test-selector={dts}
-        >
-          <div data-testid="popover-container" className="aui--popover-container">
-            {title ? (
-              <div data-testid="popover-title" className="popover-title">
-                {title}
-              </div>
-            ) : null}
-            <div data-testid="popover-content" className="popover-content">
-              {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate }) : popoverContent}
-            </div>
+      <div data-testid="popover-container" className="aui--popover-container">
+        {title ? (
+          <div data-testid="popover-title" className="popover-title">
+            {title}
           </div>
-          <div
-            data-testid="popover-arrow"
-            placement={popperPlacement} // for test only
-            className="aui--popover-arrow"
-            data-placement={placement}
-            ref={arrowProps.ref}
-            style={{ ...arrowProps.style, ...calculatedArrowStyles }}
-          />
+        ) : null}
+        <div data-testid="popover-content" className="popover-content">
+          {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate: update }) : popoverContent}
         </div>
-      )}
-    </ReactPopper>
+      </div>
+      <div
+        data-testid="popover-arrow"
+        className="aui--popover-arrow"
+        data-placement={_.get(attributes, 'popper.data-popper-placement', popperPlacement)}
+        {...attributes.arrow}
+        ref={setArrowElement}
+        style={{ ...styles.arrow, ...calculatedArrowStyles }}
+      />
+    </div>
   );
 };
 
 Popper.propTypes = {
   arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  boundariesElement: PropTypes.instanceOf(Element),
   dts: PropTypes.string,
-  innerRef: PropTypes.func,
-  modifiers: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
   placement: PropTypes.oneOf(popoverPlacements),
   popoverClass: PropTypes.string,
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   refElement: PropTypes.instanceOf(Element),
+  boundariesElement: PropTypes.instanceOf(Element),
   title: PropTypes.string,
   wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  popperRef: PropTypes.func,
 };
 
 export default Popper;

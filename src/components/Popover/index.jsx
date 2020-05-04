@@ -2,146 +2,105 @@
 import _ from 'lodash';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Manager, Reference } from 'react-popper';
+import React, { useState } from 'react';
 import { themes, popoverPlacements } from './constants';
 import WithRef from './WithRef';
-import Popper from './Popper';
 import './styles.scss';
 
 const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
 
-class Popover extends React.PureComponent {
-  static propTypes = {
-    /**
-     * PropTypes.oneOf(['light', 'dark', 'warn', 'error', 'info', 'success'])
-     */
-    theme: PropTypes.oneOf(themes),
-    title: PropTypes.node,
-    className: PropTypes.string,
-    popoverClassNames: PropTypes.string,
-    // arrow css styles, mainly for positioning the arrow
-    arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    modifiers: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    placement: PropTypes.oneOf(popoverPlacements),
-    popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-    children: PropTypes.node.isRequired,
-    triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
-    isOpen: PropTypes.bool,
-    getContainer: PropTypes.func,
-    popperRef: PropTypes.func,
-    dts: PropTypes.string,
-  };
+const Popover = props => {
+  const { isOpen } = props;
+  const [isPopoverOpen, setIsPopoverOpen] = useState(isOpen);
 
-  static defaultProps = {
-    theme: 'light',
-    placement: 'auto',
-    triggers: 'hover',
-    isOpen: false,
-  };
+  React.useEffect(() => {
+    setIsPopoverOpen(isOpen);
+  }, [setIsPopoverOpen, isOpen]);
 
-  state = {
-    isPopoverOpen: this.props.isOpen,
-    // isPopoverOpen: false,
-    // isForcedOpen: false,
-  };
+  const closePopover = React.useCallback(() => setIsPopoverOpen(false), [setIsPopoverOpen]);
 
-  static getDerivedStateFromProps(props, state) {
-    const triggers = _.flattenDeep([props.triggers]);
-    if (!triggers.includes('disabled')) {
-      return state;
-    }
+  const openPopover = React.useCallback(() => setIsPopoverOpen(true), [setIsPopoverOpen]);
 
-    return { isPopoverOpen: props.isOpen };
-  }
+  const togglePopover = React.useCallback(() => setIsPopoverOpen(!isPopoverOpen), [setIsPopoverOpen, isPopoverOpen]);
 
-  // props isOpen is not working now, maybe refactor for
-  // componentDidMount() {
-  //   this.setState({ isForcedOpen: this.props.isOpen });
-  // }
+  const onClick = () => togglePopover();
 
-  // componentDidUpdate() {
-  //   this.setState({ isForcedOpen: this.props.isOpen });
-  // }
+  const onFocus = () => openPopover();
 
-  onClick = () => this.togglePopover();
+  const onBlur = () => closePopover();
 
-  onFocus = () => this.openPopover();
+  const onMouseOver = () => openPopover();
 
-  onBlur = () => this.closePopover();
+  const onMouseOut = () => closePopover();
 
-  onMouseOver = () => this.openPopover();
+  const { title, children, className, dts, popoverContent, popperRef } = props;
+  const elementClass = classnames('aui--popover-element', className);
+  const triggers = _.flattenDeep([props.triggers]);
 
-  onMouseOut = () => this.closePopover();
+  const [elementRef, setReferenceElement] = useState(null);
 
-  getBoundedContainer = () => (this.props.getContainer ? this.props.getContainer() : document.body);
+  return (
+    <>
+      <span
+        data-testid="popover-element"
+        className={elementClass}
+        ref={setReferenceElement}
+        {...(triggers.includes('disabled')
+          ? {}
+          : {
+              ...(triggers.includes('click') ? { onClick } : {}),
+              ...(triggers.includes('hover') ? { onMouseOver, onMouseOut } : {}),
+              ...(triggers.includes('focus') ? { onFocus, onBlur } : {}),
+            })}
+      >
+        {children}
+      </span>
+      <WithRef
+        popoverClassNames={props.popoverClassNames}
+        wrapperStyles={props.wrapperStyles}
+        dts={dts}
+        title={title}
+        theme={props.theme}
+        popoverContent={popoverContent}
+        refElement={elementRef}
+        getContainer={props.getContainer}
+        arrowStyles={props.arrowStyles}
+        placement={props.placement}
+        modifiers={props.modifiers}
+        isOpen={isPopoverOpen}
+        popperRef={popperRef}
+      />
+    </>
+  );
+};
 
-  closePopover = () => this.setState({ isPopoverOpen: false });
+Popover.propTypes = {
+  theme: PropTypes.oneOf(themes),
+  title: PropTypes.node,
+  className: PropTypes.string,
+  popoverClassNames: PropTypes.string,
+  /**
+   *  arrow css styles, mainly for positioning the arrow
+   */
+  arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
+  placement: PropTypes.oneOf(popoverPlacements),
+  popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  children: PropTypes.node.isRequired,
+  triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
+  isOpen: PropTypes.bool,
+  getContainer: PropTypes.func,
+  popperRef: PropTypes.func,
+  dts: PropTypes.string,
+};
 
-  openPopover = () => this.setState({ isPopoverOpen: true });
-
-  togglePopover = () => this.setState(prevState => ({ isPopoverOpen: !prevState.isPopoverOpen }));
-
-  referenceRef = React.createRef();
-
-  elementRef = React.createRef();
-
-  render() {
-    const { theme, title, children, className, dts, popoverClassNames, popoverContent } = this.props;
-    const themeClass = _.includes(themes, theme) ? `popover-${theme}` : 'popover-light';
-    const elementClass = classnames('aui--popover-element', className);
-    const popoverClass = classnames('aui--popover-wrapper', themeClass, popoverClassNames);
-    const triggers = _.flattenDeep([this.props.triggers]);
-
-    const popoverElement = this.state.isPopoverOpen // || this.state.isForcedOpen
-      ? ReactDOM.createPortal(
-          <Popper
-            placement={this.props.placement}
-            modifiers={this.props.modifiers}
-            boundariesElement={this.getBoundedContainer()}
-            popoverClass={popoverClass}
-            wrapperStyles={this.props.wrapperStyles}
-            dts={dts}
-            title={title}
-            popoverContent={popoverContent}
-            arrowStyles={this.props.arrowStyles}
-            innerRef={this.props.popperRef}
-            refElement={this.elementRef.current}
-          />,
-          this.getBoundedContainer()
-        )
-      : null;
-
-    return (
-      <Manager>
-        <Reference innerRef={this.referenceRef}>
-          {() => (
-            <span
-              data-testid="popover-element"
-              className={elementClass}
-              ref={this.elementRef}
-              {...(triggers.includes('disabled')
-                ? {}
-                : {
-                    ...(triggers.includes('click') ? { onClick: this.onClick } : {}),
-                    ...(triggers.includes('hover')
-                      ? { onMouseOver: this.onMouseOver, onMouseOut: this.onMouseOut }
-                      : {}),
-                    ...(triggers.includes('focus') ? { onFocus: this.onFocus, onBlur: this.onBlur } : {}),
-                  })}
-            >
-              {children}
-            </span>
-          )}
-        </Reference>
-
-        {popoverElement}
-      </Manager>
-    );
-  }
-}
+Popover.defaultProps = {
+  theme: 'light',
+  placement: 'auto',
+  triggers: 'hover',
+  isOpen: false,
+};
 
 Popover.WithRef = WithRef;
 

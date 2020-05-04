@@ -1,7 +1,22 @@
 import React from 'react';
-import { createEvent, render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
+import {
+  createEvent,
+  render,
+  cleanup,
+  fireEvent,
+  queryByAttribute,
+  queryAllByAttribute,
+  act,
+} from '@testing-library/react';
 import AlertInput from '.';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+});
 afterEach(cleanup);
 
 const getByClass = queryByAttribute.bind(null, 'class');
@@ -15,10 +30,12 @@ describe('<AlertInput />', () => {
       expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
 
       fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+
       expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
       expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
 
       fireEvent.mouseLeave(getByTestId('alert-input-wrapper'));
+
       expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
       expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
     });
@@ -42,6 +59,7 @@ describe('<AlertInput />', () => {
     it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', () => {
       const { container, getByTestId } = render(<AlertInput alertMessage="Hello" />);
       const onSelect = jest.fn();
+      console.error = jest.fn();
 
       fireEvent(
         getByClass(container, 'aui--alert-input__input'),
@@ -58,58 +76,80 @@ describe('<AlertInput />', () => {
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
       const { container, getByTestId, queryAllByTestId } = render(<AlertInput />);
       const onSelect = jest.fn();
+      console.error = jest.fn();
 
-      fireEvent(
-        getByClass(container, 'aui--alert-input__input'),
-        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
-          target: { select: onSelect },
-        })
-      );
+      act(() => {
+        fireEvent(
+          getByClass(container, 'aui--alert-input__input'),
+          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+            target: { select: onSelect },
+          })
+        );
+        jest.runAllTimers();
+      });
 
       expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
       expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
       expect(onSelect).toHaveBeenCalledTimes(1);
     });
-  });
-  it('should call prop `onFocus` if exists', () => {
-    const onFocus = jest.fn();
-    const onSelect = jest.fn();
-    const { container, getByTestId, queryAllByTestId } = render(<AlertInput onFocus={onFocus} />);
 
-    fireEvent(
-      getByClass(container, 'aui--alert-input__input'),
-      createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
-        target: { select: onSelect },
-      })
-    );
+    it('should call prop `onFocus` if exists', () => {
+      const onFocus = jest.fn();
+      const onSelect = jest.fn();
+      console.error = jest.fn();
+      const { container, getByTestId, queryAllByTestId } = render(<AlertInput onFocus={onFocus} />);
 
-    expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
-    expect(onSelect).toHaveBeenCalledTimes(1);
-    expect(onFocus).toHaveBeenCalledTimes(1);
+      act(() => {
+        fireEvent(
+          getByClass(container, 'aui--alert-input__input'),
+          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+            target: { select: onSelect },
+          })
+        );
+        jest.runAllTimers();
+      });
+
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('handleInputBlur ()', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
       const onSelect = jest.fn();
+      console.error = jest.fn();
       const { container, getByTestId, queryAllByTestId } = render(<AlertInput />);
-      fireEvent(
-        getByClass(container, 'aui--alert-input__input'),
-        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
-          target: { select: onSelect },
-        })
-      );
+      act(() => {
+        fireEvent(
+          getByClass(container, 'aui--alert-input__input'),
+          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+            target: { select: onSelect },
+          })
+        );
+        jest.runAllTimers();
+      });
 
-      fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+      act(() => {
+        fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+        jest.runAllTimers();
+      });
+
       expect(getByTestId('alert-input-wrapper')).not.toHaveClass('aui--alert-input--focused');
       expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
     });
 
     it('should call `onBlur` if exists', () => {
       const onBlur = jest.fn();
+      console.error = jest.fn();
       const { container } = render(<AlertInput onBlur={onBlur} />);
 
-      fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+      act(() => {
+        fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+        jest.runAllTimers();
+      });
+
       expect(onBlur).toHaveBeenCalledTimes(1);
     });
   });
@@ -141,7 +181,11 @@ describe('<AlertInput />', () => {
 
     it('should also render with default props', () => {
       const { getByTestId, queryAllByTestId } = render(<AlertInput alertMessage="test" />);
-      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      console.error = jest.fn();
+      act(() => {
+        fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+        jest.runAllTimers();
+      });
 
       expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
       expect(getByTestId('alert-input-wrapper')).toHaveClass('success');

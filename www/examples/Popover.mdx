@@ -93,7 +93,13 @@ render(
       title="Popover Title"
       theme="dark"
       popoverContent={`My initial positioning is left`}
-      modifiers={{ preventOverflow: { enabled: true } }}
+      modifiers={{
+        name: 'preventOverflow',
+        options: {
+          altAxis: true,
+          altBoundary: true,
+        },
+      }}
     >
       <Button>Click me and scroll container</Button>
     </Popover>
