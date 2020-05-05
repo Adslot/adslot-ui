@@ -186,7 +186,7 @@
     "lodash": ">= 4.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "browserslist": [
     "last 2 versions",
