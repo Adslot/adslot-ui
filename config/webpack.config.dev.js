@@ -3,8 +3,8 @@ const emoji = require('remark-emoji');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const commonConfig = require('./webpack.config');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const commonConfig = require('./webpack.config');
 const paths = require('./paths');
 const postCssConfig = require('./postCssConfig');
 
@@ -50,12 +50,6 @@ module.exports = webpackMerge(commonConfig, {
             },
           },
         ],
-      },
-      {
-        enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
-        test: /\.(js|jsx)$/,
-        include: [paths.appSrc, paths.appDemo],
-        use: ['eslint-loader'],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,

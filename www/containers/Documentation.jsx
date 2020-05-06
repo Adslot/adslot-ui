@@ -18,7 +18,6 @@ class Documentation extends React.PureComponent {
         <h2>{componentName}</h2>
 
         <CodeBlock live>{children}</CodeBlock>
-        {/* <Sandbox component={children} title={componentName} /> */}
 
         {designNotes ? (
           <InformationBox title="Design notes" className="aui--docs-note-panel">
@@ -32,6 +31,7 @@ class Documentation extends React.PureComponent {
         ) : null}
 
         {_.map(propTypeSectionArray, (section, index) => (
+          // eslint-disable-next-line
           <PropTypeTable propTypes={section.propTypes} label={section.label} key={index} />
         ))}
         {_.isEmpty(propTypeSectionArray) ? <PropTypeTable /> : null}

@@ -29,7 +29,7 @@ const SvgSymbol = props => {
 
   const symbol = isEncoded ? (
     <div className={symbolClassesList} onClick={onClick}>
-      <img src={href} />
+      <img src={href} alt="svg-symbol" />
     </div>
   ) : (
     <svg className={symbolClassesList} onClick={onClick}>

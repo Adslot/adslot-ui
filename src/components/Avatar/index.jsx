@@ -9,7 +9,7 @@ const Avatar = ({ color, givenName, tooltip, image, surname }) => (
     className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
     title={tooltip !== undefined ? tooltip : `${givenName || ''} ${surname || ''}`}
   >
-    {image ? <img className={`${baseClass}-image`} src={image} role="presentation" /> : null}
+    {image ? <img className={`${baseClass}-image`} src={image} alt="presentation" /> : null}
 
     <div className="avatar-component-initials">{`${_.head(givenName) || ''}${_.head(surname) || ''}`}</div>
   </div>

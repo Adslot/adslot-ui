@@ -1,101 +1,15 @@
 {
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "modules": true,
-      "jsx": true
-    }
-  },
-  "env": {
-    "browser": true,
-    "es6": true,
-    "mocha": true
-  },
+  "root": true,
   "globals": {
     "expect": false
   },
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["lodash", "react"],
+  "extends": "adslot",
   "settings": {
     "lodash": {
       "version": 4
-    },
-    "import/resolver": {
-      "webpack": {
-        "config": "config/webpack.config.dev.js"
-      }
     }
   },
   "rules": {
-    "id-length": [2, { "min": 2, "max": 30, "properties": "never", "exceptions": ["_", "cb"] }],
-    "max-params": [2, 3],
-    "no-cond-assign": [2, "except-parens"],
-    "no-mixed-operators": ["error", { "groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]] }],
-    "quote-props": 0,
-    "import/no-extraneous-dependencies": 0,
-    "react/prefer-stateless-function": 0,
-    "react/self-closing-comp": ["error", { "component": true, "html": false }],
-    "react/default-props-match-prop-types": 0,
-    "jsx-a11y/label-has-for": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/alt-text": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "lodash/callback-binding": 2,
-    "lodash/chain-style": [2, "as-needed"],
-    "lodash/collection-return": 2,
-    "lodash/identity-shorthand": [2, "always"],
-    "lodash/matches-prop-shorthand": [2, "always"],
-    "lodash/matches-shorthand": [2, "always", 3],
-    "lodash/no-commit": 2,
-    "lodash/no-double-unwrap": 2,
-    "lodash/no-extra-args": 2,
-    "lodash/chaining": [2, "always"],
-    "lodash/path-style": [2, "string"],
-    "lodash/prefer-compact": 2,
-    "lodash/prefer-constant": 0,
-    "lodash/prefer-filter": [2, 3],
-    "lodash/prefer-get": [2, 3],
-    "lodash/prefer-lodash-chain": 2,
-    "lodash/prefer-lodash-method": 0,
-    "lodash/prefer-lodash-typecheck": 2,
-    "lodash/prefer-map": 2,
-    "lodash/prefer-matches": [2, 3],
-    "lodash/prefer-noop": 2,
-    "lodash/prefer-reject": [2, 3],
-    "lodash/prefer-startswith": 2,
-    "lodash/prefer-thru": 2,
-    "lodash/prefer-times": 2,
-    "lodash/prefer-wrapper-method": 2,
-    "lodash/preferred-alias": 2,
-    "lodash/prop-shorthand": [2, "always"],
-    "lodash/unwrap": 2,
-    "react/require-default-props": 0,
-    "react/jsx-closing-tag-location": 0,
-    "react/jsx-wrap-multilines": 0,
-    "arrow-parens": 0,
-    "function-paren-newline": 0,
-    "no-plusplus": 0,
-    "prefer-destructuring": 0,
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "never"
-      }
-    ],
-    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        "components": ["Link"],
-        "specialLink": ["hrefLeft", "hrefRight", "to"],
-        "aspects": ["noHref", "invalidHref", "preferButton"]
-      }
-    ],
-    "import/no-named-as-default": 0
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }

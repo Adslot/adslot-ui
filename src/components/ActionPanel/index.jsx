@@ -17,7 +17,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
     return () => {
       if (isModal) removeBodyClass('modal-open');
     };
-  }, []);
+  }, [isModal]);
 
   const actionPanel = (
     <div ref={ref}>
