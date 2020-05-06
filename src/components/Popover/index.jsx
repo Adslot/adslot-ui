@@ -68,7 +68,7 @@ class Popover extends React.PureComponent {
 
   openPopover = () => this.setState({ isPopoverOpen: true });
 
-  togglePopover = () => this.setState({ isPopoverOpen: !this.state.isPopoverOpen });
+  togglePopover = () => this.setState(prevState => ({ isPopoverOpen: !prevState.isPopoverOpen }));
 
   referenceRef = React.createRef();
 

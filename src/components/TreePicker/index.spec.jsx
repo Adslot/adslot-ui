@@ -8,7 +8,7 @@ import TreePickerSimplePure, { removeSelected } from '.';
 import TreePickerMocks from './mocks';
 
 const checkElement = expectedProps => (element, propsList) =>
-  _.forEach(propsList, propName => expect(element.prop(propName)).to.equal(expectedProps[propName]));
+  _.map(propsList, propName => expect(element.prop(propName)).to.equal(expectedProps[propName]));
 
 describe('TreePickerSimplePureComponent', () => {
   const { actNode, initialSelection, itemType, ntNode, qldNode, saNode } = TreePickerMocks;

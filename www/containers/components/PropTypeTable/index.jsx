@@ -7,6 +7,7 @@ import './styles.scss';
 
 class PropTypeTable extends React.PureComponent {
   render() {
+    // eslint-disable-next-line
     const { propTypes, label } = this.props;
     const tableTitle = label ? `PropTypes — ${label}` : 'PropTypes';
     const isEmptyTable = _.isEmpty(propTypes);

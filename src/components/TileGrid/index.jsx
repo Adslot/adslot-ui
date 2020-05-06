@@ -38,7 +38,7 @@ const TileGrid = ({ title, items, onItemClick, distributed }) => {
       <li key={item.id} className={itemClassNames.join(' ')} style={itemStyle}>
         {item.imgLink ? (
           <div className={imgWrapperClassNames.join(' ')}>
-            <img src={item.imgLink} />
+            <img src={item.imgLink} alt="item-link" />
           </div>
         ) : null}
         <a className={`${baseClass}-item-link`} onClick={() => onItemClick(item.id)}>
