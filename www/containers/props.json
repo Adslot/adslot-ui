@@ -408,10 +408,32 @@
       "props": {
         "color": {
           "type": {
-            "name": "string"
+            "name": "enum",
+            "value": [
+              {
+                "value": "'blue'",
+                "computed": false
+              },
+              {
+                "value": "'green'",
+                "computed": false
+              },
+              {
+                "value": "'red'",
+                "computed": false
+              },
+              {
+                "value": "'orange'",
+                "computed": false
+              },
+              {
+                "value": "'cyan'",
+                "computed": false
+              }
+            ]
           },
           "required": false,
-          "description": ""
+          "description": "PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan'])"
         },
         "givenName": {
           "type": {
@@ -612,6 +634,39 @@
             "value": "false",
             "computed": false
           }
+        },
+        "bsStyle": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'primary'",
+                "computed": false
+              },
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'info'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'danger'",
+                "computed": false
+              },
+              {
+                "value": "'link'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
         }
       },
       "composes": [
@@ -654,10 +709,36 @@
         },
         "bsStyle": {
           "type": {
-            "name": "string"
+            "name": "enum",
+            "value": [
+              {
+                "value": "'primary'",
+                "computed": false
+              },
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'info'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'danger'",
+                "computed": false
+              },
+              {
+                "value": "'link'",
+                "computed": false
+              }
+            ]
           },
           "required": false,
-          "description": ""
+          "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
         },
         "inverse": {
           "type": {
@@ -1796,6 +1877,39 @@
           "required": false,
           "description": ""
         },
+        "theme": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'primary'",
+                "computed": false
+              },
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'error'",
+                "computed": false
+              },
+              {
+                "value": "'light'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'light'",
+            "computed": false
+          }
+        },
         "title": {
           "type": {
             "name": "node"
@@ -2606,7 +2720,7 @@
             "value": "themes"
           },
           "required": false,
-          "description": "",
+          "description": "PropTypes.oneOf(['light', 'dark', 'warn', 'error', 'info', 'success'])",
           "defaultValue": {
             "value": "'light'",
             "computed": false

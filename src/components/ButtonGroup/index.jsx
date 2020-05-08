@@ -9,7 +9,10 @@ class ButtonGroup extends React.PureComponent {
   static propTypes = {
     dts: PropTypes.string,
     children: PropTypes.node,
-    bsStyle: PropTypes.string,
+    /**
+     * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+     */
+    bsStyle: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
     inverse: PropTypes.bool,
     disabled: PropTypes.bool,
     bsSize: PropTypes.string,
