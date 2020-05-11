@@ -25,7 +25,7 @@
     "svgo": "svgo --recursive --multipass --folder=src --config=svgo-config.yml",
     "posttest": "npm run lint",
     "postversion": "git push -u origin $(git rev-parse --abbrev-ref HEAD) --follow-tags && npm publish && echo '…released.'",
-    "preversion": "echo 'Releasing…' && npm ci",
+    "preversion": "echo 'Releasing…' && ADBLOCK=true DISABLE_OPENCOLLECTIVE=true npm ci",
     "release:major": "npm version major -m 'build: release major version %s'",
     "release:minor": "npm version minor -m 'build: release minor version %s'",
     "release:patch": "npm version patch -m 'build: release patch version %s'",
