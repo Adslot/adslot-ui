@@ -67,6 +67,7 @@ import TreePickerNode from './components/TreePicker/Node';
 import TreePickerSimplePure from './components/TreePicker';
 import UserListPicker from './components/UserListPicker';
 import InformationBox from './components/InformationBox';
+import ImageCropper from './components/ImageCropper';
 import HoverDropdownMenu from './components/HoverDropdownMenu';
 import OverlayLoader from './components/OverlayLoader';
 import VerticalNav from './components/VerticalNavigation';
@@ -137,6 +138,7 @@ export {
   TreePickerSimplePure,
   UserListPicker,
   InformationBox,
+  ImageCropper,
   HoverDropdownMenu,
   OverlayLoader,
   VerticalNav,
