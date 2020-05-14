@@ -29,6 +29,10 @@ const Button = props => {
   const classes = classNames(baseClass, className, {
     'btn-inverse': inverse && !/btn-inverse/.test(className),
     'btn-large': size === 'large',
+    'aui--btn-default':
+      (!bsStyle || bsStyle === 'default') &&
+      (!className ||
+        ['btn-default', 'btn-inverse', 'btn-default btn-inverse', 'btn-inverse btn-default'].includes(className)),
   });
 
   const renderSpinner = () =>

@@ -15,7 +15,7 @@
 
   &.action-modal {
     top: 30px;
-    background-color: $color-white ;
+    background-color: $color-white;
     margin: 30px auto;
     border: 0;
   }
@@ -69,7 +69,7 @@
     }
 
     .close-icon {
-      @include svg-icon('~styles/icons/close.svg')
+      @include svg-icon('~styles/icons/close.svg');
     }
 
     .btn {
@@ -79,10 +79,13 @@
       box-shadow: none;
       border-radius: 2px;
       background-color: $color-white;
-      color: $color-blue;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
+      &.aui--button {
+        color: $color-blue;
+      }
 
       &:focus:active,
       &:hover:active {
@@ -140,7 +143,6 @@
   opacity: .8;
   animation: fadein .2s;
 }
-
 
 .aui--action-panel-modal-wrapper {
   position: fixed;
