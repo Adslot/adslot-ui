@@ -40,8 +40,15 @@
       background-color: $color-background-highlighted;
     }
 
-    &.btn-default {
+    &.aui--btn-default {
       @include button-inverse($color-gray-dark);
+      border-color: $color-gray-light;
+
+      &:hover,
+      &:active,
+      &:hover:active {
+        border-color: $color-gray-light;
+      }
     }
 
     &.btn-primary {
@@ -79,7 +86,7 @@
     transform: translateY(1px);
   }
 
-  &.btn-default {
+  &.aui--btn-default {
     @include aui--button-variant($color-gray-dark, $btn-default-bg, $color-gray-light);
   }
 
@@ -132,6 +139,7 @@
 .btn.btn-link {
   // sass-lint:disable-line force-element-nesting
   cursor: pointer;
+  border-color: transparent;
 
   &,
   &:active {
@@ -148,6 +156,10 @@
   &:active {
     background-color: transparent;
   }
+
+  &:active:hover {
+    border-color: $color-gray-light;
+  }
 }
 
 .btn-borderless {
@@ -156,7 +168,7 @@
     box-shadow: none;
 
     &:hover,
-    &:focus {
+    &:active {
       background-color: $color-white;
       border-color: $color-border-light;
       box-shadow: 0 1px $color-border-light;

@@ -17,7 +17,7 @@ describe('ButtonComponent', () => {
 
   it('should support legacy classname btn-inverse for non-breaking change', () => {
     const wrapper = shallow(<Button className="btn-inverse">Test</Button>);
-    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse aui--btn-default');
   });
 
   it('should support className prop', () => {
@@ -41,17 +41,17 @@ describe('ButtonComponent', () => {
         Test
       </Button>
     );
-    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse aui--btn-default');
   });
 
   it('should render inverse button with btn-inverse class', () => {
     const wrapper = shallow(<Button inverse>Test</Button>);
-    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-inverse aui--btn-default');
   });
 
   it('should render large button with btn-large class', () => {
     const wrapper = shallow(<Button size="large">Test</Button>);
-    expect(wrapper.prop('className')).to.equal('aui--button btn-large');
+    expect(wrapper.prop('className')).to.equal('aui--button btn-large aui--btn-default');
   });
 
   it('should support data-test-selectors', () => {
@@ -78,5 +78,10 @@ describe('ButtonComponent', () => {
     );
     const spinnerEl = wrapper.find(Spinner);
     expect(spinnerEl.prop('size')).to.equal('medium');
+  });
+
+  it('should not render classname with "aui--btn-default" when the style has been explicitly defined', () => {
+    const wrapper = shallow(<Button className="btn-primary btn-inverse btn-default">Button</Button>);
+    expect(wrapper.prop('className')).to.not.have.string('aui--btn-default');
   });
 });
