@@ -24,6 +24,7 @@ import HelpIconPopoverExample from '../examples/HelpIconPopover.mdx';
 import PrettyDiffExample from '../examples/PrettyDiff.mdx';
 import HoverDropdownMenuExample from '../examples/HoverDropdownMenu.mdx';
 import InformationBoxExample from '../examples/InformationBox.mdx';
+import ImageCropperExample from '../examples/ImageCropper.mdx';
 import ListPickerExample from '../examples/ListPicker.mdx';
 import NavigationExample from '../examples/Navigation.mdx';
 import OverlayLoaderExample from '../examples/OverlayLoader.mdx';
@@ -234,6 +235,12 @@ const routes = [
     path: '/information-box',
     component: InformationBoxExample,
     title: 'Information Box',
+    group: 'Components',
+  },
+  {
+    path: '/image-cropper',
+    component: ImageCropperExample,
+    title: 'Image Cropper',
     group: 'Components',
   },
   {

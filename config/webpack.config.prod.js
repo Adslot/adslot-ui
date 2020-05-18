@@ -104,7 +104,7 @@ module.exports = webpackMerge(commonConfig, {
         },
       },
       {
-        test: /\.scss$/,
+        test: /\.((c|sc)ss)$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {

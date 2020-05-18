@@ -1857,6 +1857,57 @@
       ]
     }
   ],
+  "src/components/ImageCropper/index.jsx": [
+    {
+      "description": "",
+      "displayName": "ImageCropper",
+      "methods": [],
+      "props": {
+        "src": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "alt": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onCrop": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onCancel": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "width": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": ""
+        },
+        "height": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
   "src/components/InformationBox/index.jsx": [
     {
       "description": "",
