@@ -1863,6 +1863,17 @@
       "displayName": "ImageCropper",
       "methods": [],
       "props": {
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Image Upload'",
+            "computed": false
+          }
+        },
         "src": {
           "type": {
             "name": "string"
