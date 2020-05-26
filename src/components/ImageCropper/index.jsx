@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
@@ -7,7 +7,7 @@ import ActionPanel from '../ActionPanel';
 import './styles.scss';
 
 // https://github.com/fengyuanchen/cropperjs/blob/v2/README.md
-const mapOptions = {
+const defaultOptions = {
   dragMode: 'move',
   viewMode: 2,
   guides: false,
@@ -17,19 +17,32 @@ const mapOptions = {
   toggleDragModeOnDblclick: false,
 };
 
-const ImageCropper = ({ title, src, alt, onCancel, onCrop, width, height }) => {
+const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, height, aspectRatio }, ref) => {
   const cropperRef = React.useRef();
   const imageRef = React.useRef();
   const [isSaving, setIsSaving] = useState(false);
 
   React.useEffect(() => {
-    cropperRef.current = new Cropper(imageRef.current, mapOptions);
+    if (!cropperRef.current) return;
+    cropperRef.current.setAspectRatio(aspectRatio);
+  }, [cropperRef, aspectRatio]);
+
+  React.useEffect(() => {
+    cropperRef.current = new Cropper(imageRef.current, {
+      aspectRatio,
+      ...defaultOptions,
+    });
 
     return () => {
       setIsSaving(false);
       cropperRef.current.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    getCropper: () => cropperRef,
+  }));
 
   const uploadButton = (
     <Button
@@ -53,7 +66,7 @@ const ImageCropper = ({ title, src, alt, onCancel, onCrop, width, height }) => {
       </div>
     </ActionPanel>
   );
-};
+});
 
 ImageCropper.propTypes = {
   title: PropTypes.string,
@@ -63,6 +76,7 @@ ImageCropper.propTypes = {
   onCancel: PropTypes.func.isRequired,
   width: PropTypes.number,
   height: PropTypes.number,
+  aspectRatio: PropTypes.number,
 };
 
 ImageCropper.defaultProps = {

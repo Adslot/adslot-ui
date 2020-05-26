@@ -19,7 +19,15 @@ describe('ImageCropperComponent', () => {
 
   it('should render with props', () => {
     const component = shallow(
-      <ImageCropper src="example.svg" alt="example" onCrop={_.noop} onCancel={_.noop} width={400} height={400} />
+      <ImageCropper
+        src="example.svg"
+        alt="example"
+        onCrop={_.noop}
+        onCancel={_.noop}
+        width={400}
+        height={400}
+        aspectRatio={5 / 2}
+      />
     );
     expect(component.find(ActionPanel).prop('title')).to.equal('Image Upload');
 
@@ -46,5 +54,31 @@ describe('ImageCropperComponent', () => {
     const component = mount(<ImageCropper src="example.svg" onCrop={_.noop} onCancel={_.noop} />);
     component.unmount();
     expect(setStateSpy.calledOnceWith(false)).to.equal(true);
+  });
+
+  it('should set correct aspect ratio on cropper', () => {
+    const spySetAspectRatio = sandbox.spy();
+    const TestComponent = ({ aspectRatio }) => {
+      const cropperRef = React.useRef();
+      React.useEffect(() => {
+        const newAspectRatio = cropperRef.current.getCropper().current.options.aspectRatio;
+        spySetAspectRatio(newAspectRatio);
+      }, [aspectRatio]);
+      return (
+        <ImageCropper
+          ref={cropperRef}
+          src="../../../www/assets/adslot-avatar.png"
+          onCrop={_.noop}
+          onCancel={_.noop}
+          aspectRatio={aspectRatio}
+        />
+      );
+    };
+    const component = mount(<TestComponent aspectRatio={5 / 2} />);
+    expect(spySetAspectRatio.args[0][0]).to.equal(5 / 2);
+
+    component.setProps({ aspectRatio: 4 / 2 });
+    component.update();
+    expect(spySetAspectRatio.args[1][0]).to.equal(4 / 2);
   });
 });
