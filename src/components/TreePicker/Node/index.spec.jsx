@@ -1,229 +1,160 @@
 import _ from 'lodash';
-import { GridRow, GridCell, TextEllipsis } from 'adslot-ui';
-import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
 import TreePickerNode from '.';
-import TreePickerNodeExpander from './Expander';
 import TreePickerMocks from '../mocks';
 
-describe('TreePickerNodeComponent', () => {
+afterEach(cleanup);
+
+const getByClass = queryByAttribute.bind(null, 'class');
+const queryAllByClass = queryAllByAttribute.bind(null, 'class');
+const queryAllByDts = queryAllByAttribute.bind(null, 'data-test-selector');
+
+describe('<TreePickerNode />', () => {
   const { cbrNode, cbrNodeAlreadySelected, actNode, maleNode, itemType, nodeRenderer } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
-    expect(component.prop('className')).to.equal('treepickernode-component child-node');
-    expect(component.type()).to.equal('div');
+    const { container, getByTestId, queryAllByTestId, getByText, queryAllByText } = render(
+      <TreePickerNode itemType={itemType} node={cbrNode} />
+    );
 
-    const rowElement = component.find(GridRow);
-    expect(rowElement.prop('dts')).to.equal(`${_.kebabCase(itemType)}-${cbrNode.id}`);
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
-    expect(component.find(Button)).to.have.length(1);
+    expect(getByTestId('treepicker-node-wrapper')).toHaveClass('treepickernode-component child-node');
 
-    const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.find(TextEllipsis)).to.have.length(1);
-    const ellipsisElement = labelWrapperCellElement.find(TextEllipsis);
-    expect(
-      ellipsisElement
-        .children()
-        .first()
-        .text()
-    ).to.equal('Canberra');
+    expect(getByTestId('grid-row-wrapper')).toHaveAttribute(
+      'data-test-selector',
+      `${_.kebabCase(itemType)}-${cbrNode.id}`
+    );
 
-    const metaDataElement = component.find('.treepickernode-component-metadata');
-    expect(metaDataElement).to.have.length(1);
-    expect(metaDataElement.children()).to.have.length(4);
-    expect(
-      metaDataElement
-        .children()
-        .at(0)
-        .text()
-    ).to.equal('(');
-    expect(
-      metaDataElement
-        .children()
-        .at(1)
-        .text()
-    ).to.equal('City in ');
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3);
+    expect(queryAllByTestId('grid-cell-wrapper')[2]).toContainElement(getByText('+'));
+    expect(getByText('+').tagName).toBe('BUTTON');
+    expect(queryAllByText('+')).toHaveLength(1);
 
-    const pathElement = metaDataElement.children().at(2);
-    expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
-    expect(pathElement.children().text()).to.equal('ACT, AU');
-    expect(
-      metaDataElement
-        .children()
-        .at(3)
-        .text()
-    ).to.equal(')');
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByTestId('text-ellipsis'));
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(getByTestId('text-ellipsis')).toHaveTextContent('Canberra');
 
-    const valueCellElement = cellElements.at(1);
-    expect(valueCellElement.children().text()).to.equal('2000');
+    expect(getByClass(container, 'treepickernode-component-metadata')).toBeTruthy();
+    expect(getByClass(container, 'treepickernode-component-metadata')).toHaveTextContent('(City in ACT, AU)');
+    expect(getByText('ACT, AU')).toHaveClass('treepickernode-component-path');
 
-    const buttonLastCellElement = cellElements.last();
-    expect(buttonLastCellElement.prop('classSuffixes')).to.deep.equal(['button']);
-
-    const buttonElement = buttonLastCellElement.find(Button);
-    expect(buttonElement.prop('onClick')).to.be.a('function');
-    expect(buttonElement.prop('disabled')).to.equal(false);
-    expect(buttonElement.children().text()).to.equal('+');
+    expect(getByText('2000')).toHaveClass('grid-component-cell');
+    expect(queryAllByTestId('grid-cell-wrapper')[2]).toHaveClass('grid-component-cell-button');
   });
 
   it('should render metadata of nodes already selected containing ancestory data', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNodeAlreadySelected} />);
+    const { container, getByText } = render(<TreePickerNode itemType={itemType} node={cbrNodeAlreadySelected} />);
 
-    const metaDataElement = component.find('.treepickernode-component-metadata');
-    expect(metaDataElement).to.have.length(1);
-
-    expect(metaDataElement.children()).to.have.length(4);
-    expect(
-      metaDataElement
-        .children()
-        .at(0)
-        .text()
-    ).to.equal('(');
-    expect(
-      metaDataElement
-        .children()
-        .at(1)
-        .text()
-    ).to.equal('City in ');
-
-    const pathElement = metaDataElement.children().at(2);
-    expect(pathElement.prop('className')).to.equal('treepickernode-component-path');
-    expect(pathElement.children().text()).to.equal('ACT, AU');
-    expect(
-      metaDataElement
-        .children()
-        .at(3)
-        .text()
-    ).to.equal(')');
+    expect(queryAllByClass(container, 'treepickernode-component-metadata')).toHaveLength(1);
+    expect(getByClass(container, 'treepickernode-component-metadata')).toHaveTextContent('(City in ACT, AU)');
+    expect(getByText('ACT, AU')).toHaveClass('treepickernode-component-path');
   });
 
   it('should render node via nodeRenderer', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={actNode} nodeRenderer={nodeRenderer} />);
+    const { getByTestId, getByText } = render(
+      <TreePickerNode itemType={itemType} node={actNode} nodeRenderer={nodeRenderer} />
+    );
 
-    const rowElement = component.find(GridRow);
-    const cellElements = rowElement.find(GridCell);
-    const labelWrapperCellElement = cellElements.first().find(TextEllipsis);
-    const labelElement = labelWrapperCellElement.children().first();
-    expect(labelElement.text()).to.equal('Test value: Australian Capital Territory');
+    expect(getByTestId('text-ellipsis')).toContainElement(getByText('Test value: Australian Capital Territory'));
   });
 
   it('should have correct accent color', () => {
-    expect(
-      shallow(
-        <TreePickerNode itemType={itemType} node={{ ...actNode, accent: 'error' }} nodeRenderer={nodeRenderer} />
-      ).props().className
-    ).match(/is-error/);
-    expect(
-      shallow(
-        <TreePickerNode itemType={itemType} node={{ ...actNode, accent: 'warning' }} nodeRenderer={nodeRenderer} />
-      ).props().className
-    ).match(/is-warning/);
+    const { getByTestId, rerender } = render(
+      <TreePickerNode itemType={itemType} node={{ ...actNode, accent: 'error' }} nodeRenderer={nodeRenderer} />
+    );
+
+    expect(getByTestId('treepicker-node-wrapper')).toHaveClass('is-error');
+    rerender(
+      <TreePickerNode itemType={itemType} node={{ ...actNode, accent: 'warning' }} nodeRenderer={nodeRenderer} />
+    );
+    expect(getByTestId('treepicker-node-wrapper')).toHaveClass('is-warning');
   });
 
   it('should render unselectable nodes with an include button', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={actNode} />);
+    const { queryAllByTestId, getByText, queryAllByText } = render(
+      <TreePickerNode itemType={itemType} node={actNode} />
+    );
 
-    const rowElement = component.find(GridRow);
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell and value cell
-    expect(component.find(Button)).to.have.length(1);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell and value cell
+    expect(getByText('+').tagName).toBe('BUTTON');
+    expect(queryAllByText('+')).toHaveLength(1);
   });
 
   it('should render the button first when selected is true', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
+    const { queryAllByTestId, getByText, queryAllByText } = render(
+      <TreePickerNode itemType={itemType} node={cbrNode} selected />
+    );
 
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
-    expect(component.find(Button)).to.have.length(1);
-
-    const buttonFirstCellElement = cellElements.first();
-    expect(buttonFirstCellElement.prop('classSuffixes')).to.deep.equal(['button']);
-    expect(buttonFirstCellElement.prop('dts')).to.deep.equal('button-remove');
-
-    const buttonElement = buttonFirstCellElement.find(Button);
-    expect(buttonElement.prop('onClick')).to.be.a('function');
-    expect(buttonElement.children().text()).to.equal('−');
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveAttribute('data-test-selector', 'button-remove');
+    expect(getByText('−').tagName).toBe('BUTTON');
+    expect(queryAllByText('−')).toHaveLength(1);
   });
 
   it('should render button as disabled when disabled is true', () => {
-    const testFunction = sinon.spy();
-    const component = mount(
+    const testFunction = jest.fn();
+    const { getByText } = render(
       <TreePickerNode itemType={itemType} node={cbrNode} removeNode={testFunction} selected disabled />
     );
-    const buttonElement = component.find(Button);
-    expect(buttonElement.prop('disabled')).to.equal(true);
-    buttonElement.simulate('click');
-    expect(testFunction.callCount).to.equal(0);
+    expect(getByText('−')).toBeDisabled();
+
+    fireEvent.click(getByText('−'));
+    expect(testFunction).toHaveBeenCalledTimes(0);
   });
 
   it('should filter value when provided', () => {
     const valueFormatter = value => `€${value / 100}`;
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} valueFormatter={valueFormatter} />);
+    const { queryAllByTestId } = render(
+      <TreePickerNode itemType={itemType} node={cbrNode} valueFormatter={valueFormatter} />
+    );
 
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const valueCellElement = rowElement.prop('children')[3];
-    expect(valueCellElement.props.children).to.equal('€20');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).toHaveTextContent('€20');
   });
 
   it('should hide value when no value Number', () => {
     const node = _.clone(cbrNode);
     delete node.value;
     const props = { itemType, node };
-    const component = shallow(<TreePickerNode {...props} />);
+    const { queryAllByTestId } = render(<TreePickerNode {...props} />);
 
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    expect(rowElement.prop('children')).to.have.length(5);
-    const valueCellElement = rowElement.prop('children')[3];
-    expect(valueCellElement).to.be.a('null');
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(2);
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveTextContent('Canberra(City in ACT, AU)');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).toHaveTextContent('+');
   });
 
   it('should not have the child node class for root nodes', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={maleNode} />);
-    expect(component.prop('className')).to.equal('treepickernode-component');
+    const { getByTestId } = render(<TreePickerNode itemType={itemType} node={maleNode} />);
+    expect(getByTestId('treepicker-node-wrapper')).toHaveClass('treepickernode-component');
   });
 
   it('should have the child node class for child nodes', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
-    expect(component.prop('className')).to.equal('treepickernode-component child-node');
+    const { getByTestId } = render(<TreePickerNode itemType={itemType} node={cbrNode} />);
+    expect(getByTestId('treepicker-node-wrapper')).toHaveClass('treepickernode-component child-node');
   });
 
   it('should fire expandNode when clicking on the label cell', () => {
-    const spy = sinon.spy();
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} expandNode={spy} />);
+    const mockExpand = jest.fn();
+    const { queryAllByTestId } = render(<TreePickerNode itemType={itemType} node={cbrNode} expandNode={mockExpand} />);
 
-    const labelElement = component.find({ dts: 'label' });
-    labelElement.simulate('click');
-    expect(spy.callCount).to.equal(1);
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveAttribute('data-test-selector', 'label');
+
+    fireEvent.click(queryAllByTestId('grid-cell-wrapper')[0]);
+    expect(mockExpand).toHaveBeenCalledTimes(1);
   });
 
   it('should not show the expander element when the node is not expandable', () => {
     const props = {
-      expandNode: sinon.spy(),
+      mockExpand: jest.fn(),
       node: _.defaults({ isExpandable: false }, cbrNode),
       itemType,
     };
 
-    const component = shallow(<TreePickerNode {...props} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
-    expect(rowElement.find(TreePickerNodeExpander)).to.have.length(0);
-    const labelWrapperCellElement = cellElements.first();
-    labelWrapperCellElement.simulate('click');
-    expect(props.expandNode.callCount).to.eql(0);
+    const { queryAllByTestId } = render(<TreePickerNode {...props} />);
+
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell, value cell and include button cell
+
+    fireEvent.click(queryAllByTestId('grid-cell-wrapper')[0]);
+    expect(props.mockExpand).toHaveBeenCalledTimes(0);
   });
 
   it('should not show the expander element when the node is expandable and no expandNode is given', () => {
@@ -232,42 +163,33 @@ describe('TreePickerNodeComponent', () => {
       itemType,
     };
 
-    const component = shallow(<TreePickerNode {...props} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    expect(rowElement.find(TreePickerNodeExpander)).to.have.length(0);
+    const { container } = render(<TreePickerNode {...props} />);
+    expect(queryAllByDts(container, 'expander')).toHaveLength(0);
   });
 
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
     const includeNode = node => nodes.push(node);
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} includeNode={includeNode} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
+    const { queryAllByTestId, getByText } = render(
+      <TreePickerNode itemType={itemType} node={cbrNode} includeNode={includeNode} />
+    );
 
-    const buttonLastCellElement = cellElements.last();
-    const buttonElement = buttonLastCellElement.find(Button);
-    buttonElement.simulate('click');
-    expect(nodes).to.deep.equal([cbrNode]);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell, value cell and include button cell
+    fireEvent.click(getByText('+'));
+    expect(nodes).toEqual([cbrNode]);
   });
 
   it('should error on click of `include` button without includeNode handler', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
+    console.error = err => {
+      throw new Error(err);
+    };
 
-    const buttonLastCellElement = cellElements.last();
-    const buttonElement = buttonLastCellElement.find(Button);
+    const { queryAllByTestId, getByText } = render(<TreePickerNode itemType={itemType} node={cbrNode} />);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell, value cell and include button cell
+
     expect(() => {
-      buttonElement.simulate('click');
-    }).to.throw('AdslotUi TreePickerNode needs an includeNode handler');
+      fireEvent.click(getByText('+'));
+    }).toThrow('AdslotUi TreePickerNode needs an includeNode handler');
   });
 
   it('should render a provided node with an empty breadcrumb array', () => {
@@ -278,32 +200,16 @@ describe('TreePickerNodeComponent', () => {
       value: 400,
       path: [],
     };
-    const component = shallow(<TreePickerNode itemType={itemType} node={node} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${node.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
+    const { queryAllByTestId, getByTestId, container } = render(<TreePickerNode itemType={itemType} node={node} />);
 
-    const labelWrapperCellElement = cellElements.first();
-    expect(labelWrapperCellElement.children()).to.have.length(1);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell, value cell and include button cell
 
-    const ellipsisElement = labelWrapperCellElement
-      .children()
-      .first()
-      .find(TextEllipsis);
-    expect(
-      ellipsisElement
-        .children()
-        .first()
-        .text()
-    ).to.equal('Cameroon');
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByTestId('text-ellipsis'));
+    expect(getByTestId('text-ellipsis')).toHaveTextContent('Cameroon');
 
-    const metaDataElement = component.find('.treepickernode-component-metadata');
-    expect(metaDataElement).to.have.length(0);
+    expect(queryAllByClass(container, 'treepickernode-component-metadata')).toHaveLength(0);
 
-    const valueCellElement = cellElements.at(1);
-    expect(valueCellElement.children().text()).to.equal('400');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).toHaveTextContent('400');
   });
 
   it('should render a provided node with an empty type', () => {
@@ -314,93 +220,63 @@ describe('TreePickerNodeComponent', () => {
       value: 400,
       path: [{ id: '30', label: 'Cars' }],
     };
-    const component = shallow(<TreePickerNode itemType={itemType} node={node} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${node.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // meta data cell, value cell and include button cell
+    const { getByTestId, queryAllByTestId, container } = render(<TreePickerNode itemType={itemType} node={node} />);
 
-    const ellipsisElement = cellElements.first().find(TextEllipsis);
-    expect(ellipsisElement.children()).to.have.length(2);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell, value cell and include button cell
+    expect(getByTestId('text-ellipsis').children).toHaveLength(2);
+    expect(getByTestId('text-ellipsis')).toHaveTextContent('Toyota(Cars)');
+    expect(getByClass(container, 'treepickernode-component-metadata')).toHaveTextContent('Cars');
 
-    const labelElement = ellipsisElement.children().first();
-    expect(labelElement.text()).to.equal('Toyota');
-
-    const metaDataElement = component.find('.treepickernode-component-metadata');
-    expect(metaDataElement).to.have.length(1);
-    expect(metaDataElement.children()).to.have.length(3);
-    expect(
-      metaDataElement
-        .children()
-        .at(0)
-        .text()
-    ).to.equal('(');
-    expect(
-      metaDataElement
-        .children()
-        .at(1)
-        .text()
-    ).to.equal('Cars');
-    expect(
-      metaDataElement
-        .children()
-        .at(2)
-        .text()
-    ).to.equal(')');
-
-    const valueCellElement = cellElements.at(1);
-    expect(valueCellElement.children().text()).to.equal('400');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).toHaveTextContent('400');
   });
 
   it('should fire removeNode when clicking on the `remove` button', () => {
     const nodes = [cbrNode];
     const removeNode = node => _.remove(nodes, { id: node.id });
     const props = { itemType, node: cbrNode, removeNode, selected: true };
-    const component = shallow(<TreePickerNode {...props} />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
+    const { queryAllByTestId, getByText, queryAllByText } = render(<TreePickerNode {...props} />);
 
-    const buttonLastCellElement = cellElements.first();
-    const buttonElement = buttonLastCellElement.find(Button);
-    expect(buttonElement.children().text()).to.equal('−');
-    expect(nodes).to.deep.equal([cbrNode]);
-    buttonElement.simulate('click');
-    expect(nodes).to.deep.equal([]);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByText('−'));
+    expect(getByText('−').tagName).toBe('BUTTON');
+    expect(queryAllByText('−')).toHaveLength(1);
+
+    expect(nodes).toEqual([cbrNode]);
+    fireEvent.click(getByText('−'));
+    expect(nodes).toEqual([]);
   });
 
   it('should error on click of `remove` button without removeNode handler', () => {
-    const component = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
-    const rowElement = component.find({
-      dts: `${_.kebabCase(itemType)}-${cbrNode.id}`,
-    });
-    const cellElements = rowElement.find(GridCell);
-    expect(cellElements).to.have.length(3); // remove button cell, meta data cell and value cell
+    console.error = err => {
+      throw new Error(err);
+    };
 
-    const buttonLastCellElement = cellElements.first();
-    const buttonElement = buttonLastCellElement.find(Button);
+    const { queryAllByTestId, getByText } = render(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
+
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
+
     expect(() => {
-      buttonElement.simulate('click');
-    }).to.throw('AdslotUi TreePickerNode needs a removeNode handler');
+      fireEvent.click(getByText('−'));
+    }).toThrow('AdslotUi TreePickerNode needs a removeNode handler');
   });
 
   it('should accept both strings and numbers as node ids', () => {
-    const stringIdNode = shallow(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
-    const numberIdNode = shallow(<TreePickerNode itemType={itemType} node={maleNode} />);
+    const { getByTestId, rerender } = render(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
 
-    expect(cbrNode.id).to.equal('au-act-cbr');
-    expect(maleNode.id).to.equal(4);
-    expect(stringIdNode.find(GridRow).prop('dts')).to.equal('example-item-type-au-act-cbr');
-    expect(numberIdNode.find(GridRow).prop('dts')).to.equal('example-item-type-4');
+    expect(getByTestId('grid-row-wrapper')).toHaveAttribute('data-test-selector', 'example-item-type-au-act-cbr');
+
+    rerender(<TreePickerNode itemType={itemType} node={maleNode} />);
+
+    expect(getByTestId('grid-row-wrapper')).toHaveAttribute('data-test-selector', 'example-item-type-4');
   });
 
   it('should throw error message when props does not contain `path` or `ancestors`', () => {
+    console.error = err => {
+      throw new Error(err);
+    };
     const nodeWithoutPathAndAncestors = _.omit(cbrNode, ['path', 'ancestors']);
-    expect(() => {
-      shallow(<TreePickerNode itemType={itemType} node={nodeWithoutPathAndAncestors} />);
-    }).to.throw(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors'`);
+    expect(() => render(<TreePickerNode itemType={itemType} node={nodeWithoutPathAndAncestors} />)).toThrow(
+      `AdslotUi TreePickerNode needs property 'path' or property 'ancestors'`
+    );
   });
 });

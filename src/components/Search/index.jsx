@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { Spinner } from 'adslot-ui';
+import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import Spinner from '../Spinner';
 import './styles.scss';
 
 const Search = ({
@@ -71,14 +71,19 @@ const Search = ({
       'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
     );
 
-  const searchIcon = icons.search ? icons.search : <div className="search-icon" />;
-  const closeIcon = icons.close ? icons.close : <div className="cancel-icon" />;
+  const searchIcon = icons.search ? icons.search : <div data-testid="search-icon" className="search-icon" />;
+  const closeIcon = icons.close ? icons.close : <div data-testid="search-icon" className="cancel-icon" />;
   const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
   const isValueEmpty = _.isEmpty(value) && _.isEmpty(inputValue);
 
   return (
-    <div className={classnames('aui--search-component', className)} data-test-selector={dts}>
+    <div
+      data-testid="search-wrapper"
+      className={classnames('aui--search-component', className)}
+      data-test-selector={dts}
+    >
       <input
+        data-testid="search-input"
         autoComplete="off"
         className="aui--search-component-input"
         disabled={disabled}
@@ -97,11 +102,15 @@ const Search = ({
         </span>
       )}
       {searchOnEnter ? (
-        <button className="aui--search-component-button" onClick={onSearchButtonClick}>
+        <button data-testid="search-button" className="aui--search-component-button" onClick={onSearchButtonClick}>
           {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
         </button>
       ) : (
-        <span className="aui--search-component-icon" {...(isValueEmpty ? {} : { onClick: onInputClear })}>
+        <span
+          data-testid="search-icon-wrapper"
+          className="aui--search-component-icon"
+          {...(isValueEmpty ? {} : { onClick: onInputClear })}
+        >
           {isValueEmpty ? searchIcon : closeIcon}
         </span>
       )}

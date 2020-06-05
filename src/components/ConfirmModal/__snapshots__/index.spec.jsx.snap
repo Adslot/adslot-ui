@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConfirmModal /> should show modal when \`show\` is true 1`] = `
+<div
+  class="confirm-modal-component fade in modal"
+  data-testid="confirm-modal-wrapper"
+  role="dialog"
+  style="display: block; padding-right: 0px;"
+  tabindex="-1"
+>
+  <div
+    class="modal-sm modal-dialog"
+  >
+    <div
+      class="modal-content"
+      role="document"
+    >
+      <div
+        class="modal-body"
+        data-testid="confirm-modal-body"
+      >
+        <p>
+          Are you sure?
+        </p>
+      </div>
+      <div
+        class="modal-footer"
+        data-testid="confirm-modal-footer"
+      >
+        <button
+          class="btn btn-primary"
+          data-test-selector="confirm-modal-confirm"
+          data-testid="confirm-modal-confirm"
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

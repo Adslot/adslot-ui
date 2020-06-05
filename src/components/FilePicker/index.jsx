@@ -86,8 +86,9 @@ class FilePickerComponent extends React.PureComponent {
     const { isFileSelected, fileName } = this.state;
 
     return (
-      <div className={mainClass}>
+      <div data-testid="file-picker-wrapper" className={mainClass}>
         <input
+          data-testid="file-picker-form-control"
           className="form-control"
           type="text"
           disabled
@@ -98,17 +99,19 @@ class FilePickerComponent extends React.PureComponent {
         />
         <div className="input-group-btn">
           {isFileSelected ? (
-            <Button className="remove-file" onClick={this.removeFile}>
+            <Button data-testid="file-picker-remove-button" className="remove-file" onClick={this.removeFile}>
               ×
             </Button>
           ) : null}
           <Button
+            data-testid="file-picker-input-button"
             className="btn-inverse"
             onClick={this.onUploadBtnClick}
             disabled={this.props.disabled || isFileSelected}
           >
-            <span>{this.props.label}</span>
+            <span data-testid="file-picker-input-button-label">{this.props.label}</span>
             <input
+              data-testid="file-picker-input-button-input"
               className="file-input"
               ref={this.fileInput}
               type="file"

@@ -37,7 +37,7 @@ const TreePickerNavComponent = ({
   const className = classnames('treepickernav-component', { disabled });
 
   return (
-    <div className={className} data-test-selector="treepicker-nav-search">
+    <div className={className} data-test-selector="treepicker-nav-search" data-testid="treepicker-nav-wrapper">
       {showSearch && (
         <Search
           disabled={disabled}

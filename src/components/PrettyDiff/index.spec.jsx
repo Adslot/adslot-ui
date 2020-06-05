@@ -1,28 +1,37 @@
-/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import PrettyDiff from '.';
 
-describe('PrettyDiff', () => {
+afterEach(cleanup);
+
+describe('<PrettyDiff />', () => {
   const diffStrings = ['<the quick fox>', '<the slow fox jumped>'];
 
   it('should render with spans having different classes', () => {
-    const component = shallow(<PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />);
-    expect(component.prop('className')).to.equal('pretty-diff-component');
+    const { getByTestId, queryAllByTestId } = render(<PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />);
+    expect(getByTestId('pretty-diff-wrapper')).toHaveClass('pretty-diff-component');
 
-    const equalSpans = component.find('.pretty-diff-component-equal');
-    expect(equalSpans).to.have.length(3);
-    expect(equalSpans.first().text()).to.equal('<the ');
-    expect(equalSpans.at(1).text()).to.equal(' fox');
-    expect(equalSpans.last().text()).to.equal('>');
+    expect(queryAllByTestId('pretty-diff-component-equal')).toHaveLength(3);
 
-    const deleteSpans = component.find('.pretty-diff-component-delete');
-    expect(deleteSpans).to.have.length(1);
-    expect(deleteSpans.first().text()).to.equal('quick');
+    queryAllByTestId('pretty-diff-component-equal').forEach(span =>
+      expect(span).toHaveClass('pretty-diff-component-equal')
+    );
+    expect(queryAllByTestId('pretty-diff-component-equal')[0]).toHaveTextContent('<the ', { normalizeSpaces: false });
+    expect(queryAllByTestId('pretty-diff-component-equal')[1]).toHaveTextContent(' fox', { normalizeSpaces: false });
+    expect(queryAllByTestId('pretty-diff-component-equal')[2]).toHaveTextContent('>');
 
-    const insertSpans = component.find('.pretty-diff-component-insert');
-    expect(insertSpans).to.have.length(2);
-    expect(insertSpans.first().text()).to.equal('slow');
-    expect(insertSpans.last().text()).to.equal(' jumped');
+    expect(queryAllByTestId('pretty-diff-component-delete')).toHaveLength(1);
+    expect(queryAllByTestId('pretty-diff-component-delete')[0]).toHaveClass('pretty-diff-component-delete');
+    expect(queryAllByTestId('pretty-diff-component-delete')[0]).toHaveTextContent('quick');
+
+    expect(queryAllByTestId('pretty-diff-component-insert')).toHaveLength(2);
+    expect(queryAllByTestId('pretty-diff-component-insert')[0]).toHaveClass('pretty-diff-component-insert');
+    queryAllByTestId('pretty-diff-component-insert').forEach(span =>
+      expect(span).toHaveClass('pretty-diff-component-insert')
+    );
+    expect(queryAllByTestId('pretty-diff-component-insert')[0]).toHaveTextContent('slow');
+    expect(queryAllByTestId('pretty-diff-component-insert')[1]).toHaveTextContent(' jumped', {
+      normalizeSpaces: false,
+    });
   });
 });

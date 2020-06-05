@@ -5,12 +5,16 @@ import './styles.scss';
 const BreadcrumbNode = ({ isLast, node, onClick }) => {
   const baseClass = 'breadcrumbnode-component';
   if (isLast) {
-    return <span className={baseClass}>{node.label}</span>;
+    return (
+      <span data-testid="breadcrumb-node-wrapper" className={baseClass}>
+        {node.label}
+      </span>
+    );
   }
 
   const onClickNode = () => onClick(node.id);
   return (
-    <span className={`${baseClass} ${baseClass}-link`} onClick={onClickNode}>
+    <span data-testid="breadcrumb-node-wrapper" className={`${baseClass} ${baseClass}-link`} onClick={onClickNode}>
       {node.label}
     </span>
   );

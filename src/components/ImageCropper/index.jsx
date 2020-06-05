@@ -50,8 +50,12 @@ const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, hei
 
   return (
     <ActionPanel title={title} onClose={onCancel} actionButton={uploadButton}>
-      <div className="image-cropper" style={{ width: width || '100%', height: height || '100%' }}>
-        <img src={src} ref={imageRef} alt={alt} />
+      <div
+        data-testid="image-cropper"
+        className="image-cropper"
+        style={{ width: width || '100%', height: height || '100%' }}
+      >
+        <img data-testid="image-cropper-img" src={src} ref={imageRef} alt={alt} />
       </div>
     </ActionPanel>
   );

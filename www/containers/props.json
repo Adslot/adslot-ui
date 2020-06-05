@@ -4506,8 +4506,15 @@
               "name": "shape",
               "value": {
                 "id": {
-                  "name": "custom",
-                  "raw": "idPropType.isRequired",
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    }
+                  ],
                   "required": true
                 },
                 "classSuffix": {

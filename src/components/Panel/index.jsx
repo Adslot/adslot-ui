@@ -22,12 +22,14 @@ class PanelComponent extends React.PureComponent {
     const classesCombined = classnames(['panel-component', { collapsed: isCollapsed }, className]);
 
     return (
-      <div className={classesCombined} data-test-selector={dts}>
-        <div className="panel-component-header clearfix" onClick={this.onHeaderClick}>
+      <div data-testid="panel-wrapper" className={classesCombined} data-test-selector={dts}>
+        <div data-testid="panel-header" className="panel-component-header clearfix" onClick={this.onHeaderClick}>
           {icon}
           {title}
         </div>
-        <div className="panel-component-content">{children}</div>
+        <div data-testid="panel-content" className="panel-component-content">
+          {children}
+        </div>
       </div>
     );
   }

@@ -1,21 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import Donut from '.';
 
-describe('Donut', () => {
-  let component;
+afterEach(cleanup);
 
-  beforeEach(() => {
-    component = shallow(<Donut />);
-  });
-
+describe('<Donut />', () => {
   it('should have its component name as default className', () => {
-    expect(component.prop('className')).to.equal('donut-component');
+    const { getByTestId } = render(
+      <svg>
+        <Donut />
+      </svg>
+    );
+    expect(getByTestId('slicey-donut-wrapper')).toHaveClass('donut-component');
   });
 
   it('should have a radius of .45 of the unit circle and an origin of 0,0', () => {
-    expect(component.prop('r')).to.equal('.45');
-    expect(component.prop('cx')).to.equal('0');
-    expect(component.prop('cy')).to.equal('0');
+    const { getByTestId } = render(
+      <svg>
+        <Donut />
+      </svg>
+    );
+    expect(getByTestId('slicey-donut-wrapper')).toHaveAttribute('r', '.45');
+    expect(getByTestId('slicey-donut-wrapper')).toHaveAttribute('cx', '0');
+    expect(getByTestId('slicey-donut-wrapper')).toHaveAttribute('cy', '0');
   });
 });

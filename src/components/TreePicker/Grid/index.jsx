@@ -36,7 +36,11 @@ const TreePickerGridComponent = ({
         </div>
       ) : (
         _.map(nodesByGroupLabel, (groupedNodes, label) => (
-          <div className="treepickergrid-component-group" key={_.kebabCase(label)}>
+          <div
+            data-testid="treepicker-grid-node-wrapper"
+            className="treepickergrid-component-group"
+            key={_.kebabCase(label)}
+          >
             {displayGroupHeader ? (
               <div className="treepickergrid-component-group-label">
                 <GridRow dts={`group-label-${_.kebabCase(label)}`}>{label}</GridRow>

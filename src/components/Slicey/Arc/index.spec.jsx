@@ -1,11 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import Arc from '.';
 
-describe('Arc', () => {
+afterEach(cleanup);
+
+describe('<Arc />', () => {
   it('should have its component name as default className', () => {
-    const component = shallow(<Arc />);
-    expect(component.prop('className')).to.equal('arc-component');
+    const { getByTestId } = render(
+      <svg>
+        <Arc />
+      </svg>
+    );
+    expect(getByTestId('slicey-arc-wrapper')).toHaveClass('arc-component');
   });
 
   it('should render an arc for given data', () => {
@@ -20,9 +26,12 @@ describe('Arc', () => {
         y2: 0.47,
       },
     };
-    const component = shallow(<Arc {...props} />);
-    expect(component.prop('className')).to.equal('arc-component something-great');
-    expect(component.type()).to.equal('path');
-    expect(component.prop('d')).to.equal('M0,0 L3.06,-0.5 A0.5,0.5 0 0,1 0.14,0.47 z');
+    const { getByTestId } = render(
+      <svg>
+        <Arc {...props} />
+      </svg>
+    );
+    expect(getByTestId('slicey-arc-wrapper')).toHaveClass('arc-component something-great');
+    expect(getByTestId('slicey-arc-wrapper')).toHaveAttribute('d', 'M0,0 L3.06,-0.5 A0.5,0.5 0 0,1 0.14,0.47 z');
   });
 });

@@ -1,13 +1,13 @@
-import { Popover } from 'adslot-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { expandDts } from '../../lib/utils';
+import Popover from '../Popover';
 import './styles.scss';
 
 const HelpIconPopover = ({ children, id, placement }) => (
-  <div {...expandDts(id)} className="help-icon-popover-component">
+  <div {...expandDts(id)} data-testid="help-icon-popover-wrapper" className="help-icon-popover-component">
     <Popover triggers={['hover']} placement={placement} popoverContent={children}>
-      <div className="help-icon-popover-component-trigger" />
+      <div data-testid="help-icon-popover-trigger" className="help-icon-popover-component-trigger" />
     </Popover>
   </div>
 );

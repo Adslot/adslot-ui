@@ -1,55 +1,51 @@
-/* eslint-disable lodash/prefer-lodash-method */
-import { shallow } from 'enzyme';
 import React from 'react';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import Textarea from '.';
 
-describe('Textarea', () => {
+afterEach(cleanup);
+
+describe('<Textarea />', () => {
   it('should render a textarea element', () => {
-    const component = shallow(<Textarea />);
-    const textarea = component.find('textarea');
-    expect(textarea).to.have.length(1);
+    const { queryAllByTestId } = render(<Textarea />);
+    expect(queryAllByTestId('textarea-area')).toHaveLength(1);
   });
 
   it('should render a countdown span when maxLength is specified', () => {
-    const component = shallow(<Textarea maxLength={120} statusClass="someclass" />);
-    expect(component.find('span').text()).to.equal('120 characters remaining');
-    expect(component.find('span').hasClass('someclass')).to.equal(true);
+    const { getByTestId } = render(<Textarea maxLength={120} statusClass="someclass" />);
+    expect(getByTestId('textarea-span')).toHaveTextContent('120 characters remaining');
+    expect(getByTestId('textarea-span')).toHaveClass('someclass');
   });
 
   it('should give additional className to the textarea', () => {
-    const component = shallow(<Textarea maxLength={120} className="someclass" />);
-    expect(component.find('textarea').hasClass('form-control someclass')).to.equal(true);
+    const { getByTestId } = render(<Textarea maxLength={120} className="someclass" />);
+    expect(getByTestId('textarea-area')).toHaveClass('form-control someclass');
   });
 
   it('should trigger onChange handler', () => {
-    const props = { onChange: sinon.spy(), maxLength: 120 };
-    const component = shallow(<Textarea {...props} />);
-    component.find('textarea').simulate('change', { target: { value: 'abcde' } });
-    expect(props.onChange.callCount).to.equal(1);
+    const props = { onChange: jest.fn(), maxLength: 120 };
+    const { getByTestId } = render(<Textarea {...props} />);
+    fireEvent.change(getByTestId('textarea-area'), { target: { value: 'abcde' } });
+    expect(props.onChange).toHaveBeenCalledTimes(1);
   });
 
   it('should update the remaining character count on textarea change', () => {
-    const setStateSpy = sinon.spy(Textarea.prototype, 'setState');
-    const component = shallow(<Textarea maxLength={120} />);
-    component.find('textarea').simulate('change', { target: { value: 'abcde' } });
-    expect(setStateSpy.callCount).to.equal(1);
-    expect(component.state('charCountRemaining')).to.equal(115);
-    setStateSpy.restore();
+    const { getByTestId } = render(<Textarea maxLength={120} />);
+    expect(getByTestId('textarea-span')).toHaveTextContent('120 characters remaining');
+    fireEvent.change(getByTestId('textarea-area'), { target: { value: 'abcde' } });
+    expect(getByTestId('textarea-span')).toHaveTextContent('115 characters remaining');
   });
 
   it('should not update the remaining character count when maxLength is not specified', () => {
-    const setStateSpy = sinon.spy(Textarea.prototype, 'setState');
-    const component = shallow(<Textarea />);
-    component.find('textarea').simulate('change', { target: { value: 'abcde' } });
-    expect(setStateSpy.callCount).to.equal(0);
-    setStateSpy.restore();
+    const { getByTestId, queryAllByTestId } = render(<Textarea />);
+    expect(queryAllByTestId('textarea-span')).toHaveLength(0);
+    fireEvent.change(getByTestId('textarea-area'), { target: { value: 'abcde' } });
+    expect(queryAllByTestId('textarea-span')).toHaveLength(0);
   });
 
   it('should pass on additional props to textarea element', () => {
-    const component = shallow(<Textarea placeholder="hello" maxLength={120} />);
-    const textarea = component.find('textarea');
-    expect(textarea.prop('maxLength')).to.equal(120);
-    expect(textarea.prop('placeholder')).to.equal('hello');
+    const { getByTestId } = render(<Textarea placeholder="hello" maxLength={120} />);
+
+    expect(getByTestId('textarea-area')).toHaveAttribute('maxLength', '120');
+    expect(getByTestId('textarea-area')).toHaveAttribute('placeholder', 'hello');
   });
 });

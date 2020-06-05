@@ -1,181 +1,170 @@
 import React from 'react';
-import sinon from 'sinon';
 import { toast } from 'react-toastify';
-import { shallow, mount } from 'enzyme';
+import { act, render, cleanup, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
 import Toast from '.';
 import { ToastMessage } from './ToastNotification';
 
+const getByClass = queryByAttribute.bind(null, 'class');
+const queryAllByClass = queryAllByAttribute.bind(null, 'class');
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+});
+afterEach(cleanup);
+
 describe('Toast.notify', () => {
   it('should render notification as expected', () => {
-    const toastSpy = sinon.spy(toast, 'info');
+    const toastSpy = jest.spyOn(toast, 'info');
 
-    mount(<Toast.Container />);
+    render(<Toast.Container />);
     Toast.notify({
       title: 'test',
       theme: 'test',
-      message: 'Tested Toast',
+      message: 'Testing Toast',
     });
 
-    expect(toastSpy.callCount).to.equal(1);
-    toastSpy.restore();
+    expect(toastSpy).toHaveBeenCalledTimes(1);
+    toastSpy.mockRestore();
   });
 });
 
 describe('<ToastMessage />', () => {
   it('should render toast message as expected', () => {
-    const component = mount(
+    const { queryAllByText, container } = render(
       <ToastMessage toastClass="aui--toast-title aui--toast-title-info" title="Test" message="Test Message" />
     );
 
-    expect(component.find('.aui--toast-title.aui--toast-title-info')).to.have.length(1);
-    expect(component.find('.aui--toast-body-message')).to.have.length(1);
-    expect(component.prop('title')).to.equal('Test');
-    expect(component.prop('message')).to.equal('Test Message');
+    expect(queryAllByClass(container, 'aui--toast-body-message')).toHaveLength(1);
+    expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveLength(1);
+    expect(queryAllByText('Test')).toHaveLength(1);
+    expect(queryAllByText('Test Message')).toHaveLength(1);
   });
 });
 
 describe('<Toast.Container />', () => {
   it('should render Toast.Container without error', () => {
-    const component = mount(<Toast.Container />);
+    const { container } = render(<Toast.Container />);
 
-    expect(component.find('.aui--toast-container')).to.have.length(1);
-    expect(component.find('.aui--toast-container').prop('position')).to.equal('bottom-left');
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(
+      queryAllByClass(
+        container,
+        'Toastify__toast-container Toastify__toast-container--bottom-left aui--toast-container'
+      )
+    ).toHaveLength(1);
   });
 });
 
 describe('<Toast.Notification />', () => {
   it('should render default info type', () => {
-    const component = mount(
+    const { container, rerender, queryAllByText } = render(
       <div>
         <Toast.Container />
-        <Toast.Notification message="<span>Default toast</span>" />
       </div>
     );
-    expect(
-      component
-        .children()
-        .last()
-        .prop('theme')
-    ).to.equal('info');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('title')
-    ).to.equal('');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('message')
-    ).to.equal('<span>Default toast</span>');
+    rerender(
+      <div>
+        <Toast.Container />
+        <Toast.Notification message={<span>Default toast</span>} />
+      </div>
+    );
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveLength(1);
+    expect(getByClass(container, 'aui--toast-title aui--toast-title-info')).toBeEmpty();
+    expect(queryAllByText('Default toast')).toHaveLength(1);
   });
 
   it('should render success type', () => {
-    const component = shallow(
+    const { container, rerender, queryAllByText } = render(
       <div>
         <Toast.Container />
-        <Toast.Notification theme="success" message="<span>Success toast</span>" title="SUCCESS" />
       </div>
     );
-    expect(
-      component
-        .children()
-        .last()
-        .prop('theme')
-    ).to.equal('success');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('title')
-    ).to.equal('SUCCESS');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('message')
-    ).to.equal('<span>Success toast</span>');
+    rerender(
+      <div>
+        <Toast.Container />
+        <Toast.Notification theme="success" message={<span>Success toast</span>} title="SUCCESS" />
+      </div>
+    );
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-success')).toHaveLength(1);
+    expect(getByClass(container, 'aui--toast-title aui--toast-title-success')).toHaveTextContent('SUCCESS');
+    expect(queryAllByText('Success toast')).toHaveLength(1);
   });
 
   it('should render alert type', () => {
-    const component = shallow(
+    const { container, rerender, queryAllByText } = render(
       <div>
         <Toast.Container />
-        <Toast.Notification theme="alert" message="<span>Alert toast</span>" title="ALERT" />
       </div>
     );
-    expect(
-      component
-        .children()
-        .last()
-        .prop('theme')
-    ).to.equal('alert');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('title')
-    ).to.equal('ALERT');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('message')
-    ).to.equal('<span>Alert toast</span>');
+    rerender(
+      <div>
+        <Toast.Container />
+        <Toast.Notification theme="alert" message={<span>Alert toast</span>} title="ALERT" />
+      </div>
+    );
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-alert')).toHaveLength(1);
+    expect(getByClass(container, 'aui--toast-title aui--toast-title-alert')).toHaveTextContent('ALERT');
+    expect(queryAllByText('Alert toast')).toHaveLength(1);
   });
 
   it('should render attention type', () => {
-    const component = shallow(
+    const { container, rerender, queryAllByText } = render(
       <div>
         <Toast.Container />
-        <Toast.Notification theme="attention" message="<span>Attention toast</span>" title="ATTENTION" />
       </div>
     );
-    expect(
-      component
-        .children()
-        .last()
-        .prop('theme')
-    ).to.equal('attention');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('title')
-    ).to.equal('ATTENTION');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('message')
-    ).to.equal('<span>Attention toast</span>');
+    rerender(
+      <div>
+        <Toast.Container />
+        <Toast.Notification theme="attention" message={<span>Attention toast</span>} title="ATTENTION" />
+      </div>
+    );
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-attention')).toHaveLength(1);
+    expect(getByClass(container, 'aui--toast-title aui--toast-title-attention')).toHaveTextContent('ATTENTION');
+    expect(queryAllByText('Attention toast')).toHaveLength(1);
   });
 
   it('should render info type', () => {
-    const component = shallow(
+    const { container, rerender, queryAllByText } = render(
       <div>
         <Toast.Container />
-        <Toast.Notification theme="info" message="<span>Info toast</span>" title="INFO" />
       </div>
     );
-    expect(
-      component
-        .children()
-        .last()
-        .prop('theme')
-    ).to.equal('info');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('title')
-    ).to.equal('INFO');
-    expect(
-      component
-        .children()
-        .last()
-        .prop('message')
-    ).to.equal('<span>Info toast</span>');
+    rerender(
+      <div>
+        <Toast.Container />
+        <Toast.Notification theme="info" message={<span>Info toast</span>} title="INFO" />
+      </div>
+    );
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveLength(1);
+    expect(getByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveTextContent('INFO');
+    expect(queryAllByText('Info toast')).toHaveLength(1);
   });
 });

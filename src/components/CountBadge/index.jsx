@@ -7,7 +7,7 @@ const CountBadge = ({ value, status, dts }) => {
   const fontSize = value > 99 ? 'small' : 'normal';
   const classNames = `count-badge status-${status} count-badge-font-size-${fontSize}`;
   return (
-    <div className={classNames} {...expandDts(dts)}>
+    <div data-testid="count-badge-wrapper" className={classNames} {...expandDts(dts)}>
       {value}
     </div>
   );

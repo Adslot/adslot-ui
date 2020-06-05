@@ -32,6 +32,7 @@ class Switch extends React.PureComponent {
     return (
       <label className="aui--switch-label">
         <input
+          data-testid="switch-checkbox"
           type="checkbox"
           checked={toggleInputChecked}
           value={value}

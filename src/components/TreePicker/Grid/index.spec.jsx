@@ -1,51 +1,46 @@
 import _ from 'lodash';
-import { Empty, Grid, Spinner } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render, cleanup, queryByAttribute } from '@testing-library/react';
 import TreePickerGrid from '.';
-import TreePickerNode from '../Node';
 import TreePickerMocks from '../mocks';
 
-describe('TreePickerGridComponent', () => {
+afterEach(cleanup);
+
+const getByClass = queryByAttribute.bind(null, 'class');
+
+describe('<TreePickerGrid />', () => {
   const { itemType, qldNode, saNode, nodeRenderer, valueFormatter } = TreePickerMocks;
-  const svgSymbol = <div />;
+  const svgSymbol = <div className="testing-empty-svg-symbol" />;
 
   it('should render with props', () => {
     const props = {
       emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
-      expandNode: _.noop,
-      includeNode: _.noop,
+      expandNode: jest.fn(),
+      includeNode: jest.fn(),
       itemType,
       nodes: [qldNode, saNode],
       nodeRenderer,
-      removeNode: _.noop,
+      removeNode: jest.fn(),
       selected: false,
       valueFormatter,
       displayGroupHeader: true,
+      isLoading: false,
     };
-    const component = shallow(<TreePickerGrid {...props} />);
-    const gridElement = component.find(Grid);
-    expect(gridElement).to.have.length(1);
-    expect(gridElement.children()).to.have.length(2); // Group node and an Empty.
 
-    const groupElement = gridElement.find('.treepickergrid-component-group');
-    expect(groupElement).to.have.length(1);
-    expect(groupElement.children()).to.have.length(3); // Group label and two nodes
+    const { getByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+    expect(getByTestId('grid-wrapper').children).toHaveLength(2);
 
-    _.forEach(props.nodes, (node, index) => {
-      const nodeElement = groupElement.childAt(index + 1); // since index = 0 is the group label
-      expect(nodeElement.prop('expandNode')).to.equal(props.expandNode);
-      expect(nodeElement.prop('includeNode')).to.equal(props.includeNode);
-      expect(nodeElement.prop('removeNode')).to.equal(props.removeNode);
-      expect(nodeElement.prop('node')).to.equal(node);
-    });
+    expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(1);
+    expect(getByTestId('treepicker-grid-node-wrapper')).toHaveClass('treepickergrid-component-group');
+    expect(getByTestId('treepicker-grid-node-wrapper').children).toHaveLength(3);
 
-    const emptyElement = gridElement.find(Empty);
-    expect(emptyElement).to.have.length(1);
-    expect(emptyElement.prop('collection')).to.equal(props.nodes);
-    expect(emptyElement.prop('icon')).to.equal(props.emptySvgSymbol);
-    expect(emptyElement.prop('text')).to.equal(props.emptyText);
+    expect(getByTestId('grid-wrapper')).toContainElement(getByTestId('treepicker-grid-node-wrapper'));
+    expect(getByTestId('treepicker-grid-node-wrapper')).toHaveClass('treepickergrid-component-group');
+
+    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
+    expect(getByTestId('grid-wrapper')).toContainElement(getByTestId('empty-wrapper'));
   });
 
   describe('should render with groups', () => {
@@ -55,49 +50,35 @@ describe('TreePickerGridComponent', () => {
       props = {
         emptySvgSymbol: svgSymbol,
         emptyText: 'Empty!',
-        expandNode: _.noop,
+        expandNode: jest.fn(),
         groupFormatter: node => node.id,
-        includeNode: _.noop,
+        includeNode: jest.fn(),
         itemType,
         nodes: [qldNode, saNode],
         nodeRenderer,
-        removeNode: _.noop,
+        removeNode: jest.fn(),
         selected: false,
         valueFormatter,
+        isLoading: false,
       };
     });
 
     it('should render with groups by default', () => {
-      const component = shallow(<TreePickerGrid {...props} />);
-      const gridElement = component.find(Grid);
-      expect(gridElement).to.have.length(1);
-      expect(gridElement.children()).to.have.length(3); // Two group node and an Empty.
-
-      const groupElements = gridElement.find('.treepickergrid-component-group');
-      expect(groupElements).to.have.length(2);
+      const { getByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
+      expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+      expect(getByTestId('grid-wrapper').children).toHaveLength(3);
+      expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(2);
+      queryAllByTestId('treepicker-grid-node-wrapper').forEach(group =>
+        expect(group).toHaveClass('treepickergrid-component-group')
+      );
 
       _.forEach(props.nodes, (node, index) => {
-        const groupElement = groupElements.at(index);
-        const labelElement = groupElement.find('.treepickergrid-component-group-label');
-        expect(
-          labelElement
-            .children()
-            .children()
-            .text()
-        ).to.equal(node.id);
+        const currentNode = queryAllByTestId('treepicker-grid-node-wrapper')[index];
+        const groupLabel = getByClass(currentNode, 'treepickergrid-component-group-label');
 
-        const nodeElement = groupElement.find(TreePickerNode);
-        expect(nodeElement.prop('expandNode')).to.equal(props.expandNode);
-        expect(nodeElement.prop('includeNode')).to.equal(props.includeNode);
-        expect(nodeElement.prop('removeNode')).to.equal(props.removeNode);
-        expect(nodeElement.prop('node')).to.equal(node);
+        expect(currentNode).toContainElement(groupLabel);
+        expect(groupLabel).toHaveTextContent(node.id);
       });
-
-      const emptyElement = gridElement.find(Empty);
-      expect(emptyElement).to.have.length(1);
-      expect(emptyElement.prop('collection')).to.equal(props.nodes);
-      expect(emptyElement.prop('icon')).to.equal(props.emptySvgSymbol);
-      expect(emptyElement.prop('text')).to.equal(props.emptyText);
     });
 
     it('should render with no group header when displayGroupHeader is false', () => {
@@ -105,13 +86,12 @@ describe('TreePickerGridComponent', () => {
         nodes: [qldNode],
         displayGroupHeader: false,
       });
-      const component = shallow(<TreePickerGrid {...props} />);
-      const gridElement = component.find(Grid);
-      expect(gridElement).to.have.length(1);
-      expect(gridElement.children()).to.have.length(2); // One group node and an Empty.
-      const groupElement = gridElement.find('.treepickergrid-component-group');
-      expect(groupElement).to.have.length(1);
-      expect(groupElement.children()).to.have.length(1);
+      const { getByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
+      expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+      expect(getByTestId('grid-wrapper').children).toHaveLength(2);
+      expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(1);
+      expect(getByTestId('treepicker-grid-node-wrapper')).toHaveClass('treepickergrid-component-group');
+      expect(getByTestId('treepicker-grid-node-wrapper').children).toHaveLength(1);
     });
   });
 
@@ -119,40 +99,36 @@ describe('TreePickerGridComponent', () => {
     const props = {
       emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
-      expandNode: _.noop,
+      expandNode: jest.fn(),
       groupFormatter: node => node.randomAttr,
-      includeNode: _.noop,
+      includeNode: jest.fn(),
       itemType,
       nodes: [qldNode],
       nodeRenderer,
-      removeNode: _.noop,
+      removeNode: jest.fn(),
       selected: false,
       valueFormatter,
+      isLoading: false,
     };
-    const component = shallow(<TreePickerGrid {...props} />);
-    const gridElement = component.find(Grid);
-    const emptyElement = gridElement.find(Empty);
-
-    expect(emptyElement).to.have.length(1);
+    const { queryAllByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
   });
 
   it('should not display empty with an undefined nodes list', () => {
     const props = {
       emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
-      expandNode: _.noop,
-      includeNode: _.noop,
+      expandNode: jest.fn(),
+      includeNode: jest.fn(),
       itemType,
       nodes: undefined,
-      removeNode: _.noop,
+      removeNode: jest.fn(),
       selected: false,
       valueFormatter,
+      isLoading: false,
     };
-    const component = shallow(<TreePickerGrid {...props} />);
-    const gridElement = component.find(Grid);
-    const emptyElement = gridElement.find(Empty);
-
-    expect(emptyElement).to.have.length(0);
+    const { queryAllByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryAllByTestId('empty-wrapper')).toHaveLength(0);
   });
 
   it('should display a loading state instead of empty state when isLoading is set to true', () => {
@@ -162,8 +138,8 @@ describe('TreePickerGridComponent', () => {
       emptyText: 'nothing here',
       isLoading: true,
     };
-    const component = shallow(<TreePickerGrid {...props} />);
-    expect(component.find(Spinner)).to.have.length(1);
+    const { queryAllByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
   });
 
   it('should display a loading state instead of nodes when isLoading is set to true', () => {
@@ -174,7 +150,7 @@ describe('TreePickerGridComponent', () => {
       nodes: [qldNode],
     };
 
-    const component = shallow(<TreePickerGrid {...props} isLoading />);
-    expect(component.find(Spinner)).to.have.length(1);
+    const { queryAllByTestId } = render(<TreePickerGrid {...props} isLoading />);
+    expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
   });
 });

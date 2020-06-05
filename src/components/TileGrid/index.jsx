@@ -3,7 +3,6 @@ import _ from 'lodash';
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import idPropType from '../../prop-types/idPropType';
 import './styles.scss';
 
 const defaultWidth = 204; // 204px
@@ -37,13 +36,17 @@ const TileGrid = ({ title, items, onItemClick, distributed }) => {
       : { width: item.width || defaultWidth };
 
     return (
-      <li key={item.id} className={itemClassNames} style={itemStyle}>
+      <li data-testid="tile-grid-list-item" key={item.id} className={itemClassNames} style={itemStyle}>
         {item.imgLink ? (
-          <div className={imgWrapperClassNames.join(' ')}>
+          <div data-testid="tile-grid-list-item-img-wrapper" className={imgWrapperClassNames.join(' ')}>
             <img src={item.imgLink} alt="item-link" />
           </div>
         ) : null}
-        <a className={`${baseClass}-item-link`} onClick={() => onItemClick(item.id)}>
+        <a
+          data-testid="tile-grid-list-item-link"
+          className={`${baseClass}-item-link`}
+          onClick={() => onItemClick(item.id)}
+        >
           {item.title}
         </a>
       </li>
@@ -51,9 +54,15 @@ const TileGrid = ({ title, items, onItemClick, distributed }) => {
   });
 
   return (
-    <div className={baseClass}>
-      {title ? <strong className={`${baseClass}-title`}>{title}</strong> : null}
-      <ul className={`${baseClass}-list`}>{cardList}</ul>
+    <div data-testid="tile-grid-wrapper" className={baseClass}>
+      {title ? (
+        <strong data-testid="tile-grid-title" className={`${baseClass}-title`}>
+          {title}
+        </strong>
+      ) : null}
+      <ul data-testid="tile-grid-list" className={`${baseClass}-list`}>
+        {cardList}
+      </ul>
     </div>
   );
 };
@@ -69,7 +78,7 @@ TileGrid.propTypes = {
    */
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: idPropType.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       classSuffix: PropTypes.string.isRequired,
       title: PropTypes.node.isRequired,
       imgLink: PropTypes.string,

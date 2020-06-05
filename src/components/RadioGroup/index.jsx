@@ -30,7 +30,7 @@ class RadioGroup extends React.PureComponent {
     const classNames = classnames(['radio-group-component', className]);
 
     return (
-      <div id={id} className={classNames} {...expandDts(dts)}>
+      <div data-testid="radio-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
         {this.renderChildren()}
       </div>
     );

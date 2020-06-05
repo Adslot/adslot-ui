@@ -24,7 +24,7 @@ class PopoverLinkItemComponent extends React.PureComponent {
     }
 
     return (
-      <li className="popover-link-item">
+      <li data-testid="popover-link-item-wrapper" className="popover-link-item">
         <Button {...buttonProps}>{title}</Button>
       </li>
     );

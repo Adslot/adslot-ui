@@ -22,22 +22,38 @@ const ConfirmModalComponent = ({
   };
 
   return (
-    <Modal className="confirm-modal-component" show={show} bsSize="small" keyboard={false}>
+    <Modal
+      data-testid="confirm-modal-wrapper"
+      className="confirm-modal-component"
+      show={show}
+      bsSize="small"
+      keyboard={false}
+    >
       {modalTitle ? (
-        <Modal.Header>
-          <Modal.Title>{modalTitle}</Modal.Title>
+        <Modal.Header data-testid="confirm-modal-header">
+          <Modal.Title data-testid="confirm-modal-title">{modalTitle}</Modal.Title>
         </Modal.Header>
       ) : null}
-      <Modal.Body>
+      <Modal.Body data-testid="confirm-modal-body">
         <p>{modalDescription}</p>
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer data-testid="confirm-modal-footer">
         {modalClose ? (
-          <Button className="btn-inverse" onClick={cancelAction} data-test-selector="confirm-modal-cancel">
+          <Button
+            data-testid="confirm-modal-cancel"
+            className="btn-inverse"
+            onClick={cancelAction}
+            data-test-selector="confirm-modal-cancel"
+          >
             {buttonCancelLabel}
           </Button>
         ) : null}
-        <Button bsStyle="primary" onClick={applyAction} data-test-selector="confirm-modal-confirm">
+        <Button
+          data-testid="confirm-modal-confirm"
+          bsStyle="primary"
+          onClick={applyAction}
+          data-test-selector="confirm-modal-confirm"
+        >
           {buttonConfirmLabel}
         </Button>
       </Modal.Footer>

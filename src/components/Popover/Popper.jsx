@@ -19,6 +19,8 @@ export const renderArrowStyles = (placement, arrowStyles, container = null) => {
   const verticalPosition =
     _.get(container, 'clientHeight') >= DEFAULT_ARROW_POSITION * 2 ? DEFAULT_ARROW_POSITION : null;
 
+  // console.log(horizontalPosition);
+  // console.log(_.get(container, 'clientWidth'));
   let calculatedArrowStyles = {};
   switch (true) {
     case _.includes(['bottom-start', 'top-start'], placement) && !_.isNull(horizontalPosition):
@@ -73,19 +75,27 @@ const Popper = ({
     >
       {({ ref, style, placement, arrowProps, scheduleUpdate }) => (
         <div
+          data-testid="popover-wrapper"
+          placement={popperPlacement} // for test only
           className={popoverClass}
           ref={ref}
           style={{ ...style, ...wrapperStyles }}
           data-placement={placement}
           data-test-selector={dts}
         >
-          <div className="aui--popover-container">
-            {title ? <div className="popover-title">{title}</div> : null}
-            <div className="popover-content">
+          <div data-testid="popover-container" className="aui--popover-container">
+            {title ? (
+              <div data-testid="popover-title" className="popover-title">
+                {title}
+              </div>
+            ) : null}
+            <div data-testid="popover-content" className="popover-content">
               {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate }) : popoverContent}
             </div>
           </div>
           <div
+            data-testid="popover-arrow"
+            placement={popperPlacement} // for test only
             className="aui--popover-arrow"
             data-placement={placement}
             ref={arrowProps.ref}

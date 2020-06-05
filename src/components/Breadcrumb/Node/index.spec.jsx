@@ -1,46 +1,49 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import BreadcrumbNode from '.';
 
-describe('BreadcrumbNode', () => {
+afterEach(cleanup);
+
+describe('<BreadcrumbNode />', () => {
   let node;
   let onClick;
 
   beforeEach(() => {
     node = { id: 'a', label: 'Canada' };
-    onClick = () => null;
+    onClick = jest.fn();
   });
 
   it('should render a link node', () => {
     const props = { isLast: false, onClick, node };
-    const component = shallow(<BreadcrumbNode {...props} />);
+    const { getByTestId } = render(<BreadcrumbNode {...props} />);
 
-    expect(component.type()).to.equal('span');
-    expect(component.prop('className')).to.equal('breadcrumbnode-component breadcrumbnode-component-link');
-    expect(component.prop('onClick')).to.be.a('function');
-    expect(component.text()).to.equal('Canada');
+    expect(getByTestId('breadcrumb-node-wrapper')).toHaveClass(
+      'breadcrumbnode-component breadcrumbnode-component-link'
+    );
+    expect(getByTestId('breadcrumb-node-wrapper')).toHaveTextContent('Canada');
   });
 
   it('should render a last node', () => {
     const props = { isLast: true, onClick, node };
-    const component = shallow(<BreadcrumbNode {...props} />);
+    const { getByTestId } = render(<BreadcrumbNode {...props} />);
 
-    expect(component.type()).to.equal('span');
-    expect(component.prop('className')).to.equal('breadcrumbnode-component');
-    expect(component.prop('onClick')).to.be.an('undefined');
-    expect(component.text()).to.equal('Canada');
+    expect(getByTestId('breadcrumb-node-wrapper')).toHaveClass('breadcrumbnode-component');
+    expect(getByTestId('breadcrumb-node-wrapper')).toHaveTextContent('Canada');
+    fireEvent.click(getByTestId('breadcrumb-node-wrapper'));
+    expect(onClick).toHaveBeenCalledTimes(0);
   });
 
   it('should trigger onClick when clicking a node', () => {
-    const idsRemoved = [];
-    const onClickMock = newActiveId => idsRemoved.push(newActiveId);
-    const props = { isLast: false, onClick: onClickMock, node };
-    const component = shallow(<BreadcrumbNode {...props} />);
+    const props = { isLast: false, onClick: onClick, node };
+    const { getByTestId } = render(<BreadcrumbNode {...props} />);
 
-    expect(component.prop('className')).to.equal('breadcrumbnode-component breadcrumbnode-component-link');
-    expect(component.text()).to.equal(node.label);
+    expect(getByTestId('breadcrumb-node-wrapper')).toHaveClass(
+      'breadcrumbnode-component breadcrumbnode-component-link'
+    );
+    expect(getByTestId('breadcrumb-node-wrapper')).toHaveTextContent(node.label);
 
-    component.simulate('click');
-    expect(idsRemoved).to.deep.equal(['a']);
+    fireEvent.click(getByTestId('breadcrumb-node-wrapper'));
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledWith('a');
   });
 });

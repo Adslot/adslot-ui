@@ -19,7 +19,7 @@ class DatePicker extends React.PureComponent {
     const datePickerProps = disableInlineEditing ? { onChangeRaw: this.handleDateChangeRaw } : {};
 
     return (
-      <div className="aui--date-picker" data-test-selector={this.props.dts}>
+      <div data-testid="date-picker-wrapper" className="aui--date-picker" data-test-selector={this.props.dts}>
         <ReactDatePicker {..._.omit(this.props, _.keys(adslotDatePickerPropTypes))} {...datePickerProps} />
       </div>
     );

@@ -58,7 +58,7 @@ class TextEllipsisComponent extends React.PureComponent {
         popoverContent={this.props.children}
         className="aui--text-ellipsis-wrapper"
       >
-        <div className="text-ellipsis-component" ref={this.container}>
+        <div data-testid="text-ellipsis" className="text-ellipsis-component" ref={this.container}>
           {this.props.children}
         </div>
       </Popover>

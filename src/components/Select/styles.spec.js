@@ -6,7 +6,7 @@ describe('Select custom styles', () => {
       const base = { color: 'red' };
       const state = { isFocused: false };
 
-      expect(styles.control(base, state)).to.eql({
+      expect(styles.control(base, state)).toEqual({
         color: 'red',
         minHeight: 26,
         borderRadius: 0,
@@ -22,7 +22,7 @@ describe('Select custom styles', () => {
       };
       const state = { isFocused: true };
 
-      expect(styles.control(base, state)).to.eql({
+      expect(styles.control(base, state)).toEqual({
         color: 'red',
         minHeight: 26,
         borderRadius: 0,
@@ -41,7 +41,7 @@ describe('Select custom styles', () => {
         marginTop: 8,
       };
 
-      expect(styles.menu(base)).to.eql({
+      expect(styles.menu(base)).toEqual({
         zIndex: 1060,
         borderRadius: 0,
         marginTop: 4,
@@ -53,7 +53,7 @@ describe('Select custom styles', () => {
     it('should override styles', () => {
       const base = { textAlign: 'center' };
 
-      expect(styles.noOptionsMessage(base)).to.eql({ textAlign: 'left' });
+      expect(styles.noOptionsMessage(base)).toEqual({ textAlign: 'left' });
     });
   });
 });

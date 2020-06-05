@@ -1,32 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import CountBadge from '.';
 
-describe('CountBadge', () => {
+afterEach(cleanup);
+
+describe('<CountBadge />', () => {
   it('should render with defaults', () => {
-    const component = shallow(<CountBadge value={1} dts="count-badge-one" />);
-    expect(component.find('[data-test-selector="count-badge-one"]').text()).to.equal('1');
-    expect(component.hasClass('status-default')).to.equal(true);
-    expect(component.hasClass('count-badge-font-size-normal')).to.equal(true);
+    const { getByTestId } = render(<CountBadge value={1} dts="count-badge-one" />);
+    expect(getByTestId('count-badge-wrapper')).toHaveAttribute('data-test-selector', 'count-badge-one');
+    expect(getByTestId('count-badge-wrapper')).toHaveTextContent('1');
+    expect(getByTestId('count-badge-wrapper')).toHaveClass('status-default');
+    expect(getByTestId('count-badge-wrapper')).toHaveClass('count-badge-font-size-normal');
   });
 
   it('should render with status info', () => {
-    const component = shallow(<CountBadge value={2} dts="count-badge-two" status="info" />);
-    expect(component.hasClass('status-info')).to.equal(true);
+    const { getByTestId } = render(<CountBadge value={2} dts="count-badge-two" status="info" />);
+    expect(getByTestId('count-badge-wrapper')).toHaveClass('status-info');
   });
 
   it('should render with status warning', () => {
-    const component = shallow(<CountBadge value={2} dts="count-badge-three" status="warning" />);
-    expect(component.hasClass('status-warning')).to.equal(true);
+    const { getByTestId } = render(<CountBadge value={2} dts="count-badge-three" status="warning" />);
+    expect(getByTestId('count-badge-wrapper')).toHaveClass('status-warning');
   });
 
   it('should render with status danger', () => {
-    const component = shallow(<CountBadge value={2} dts="count-badge-four" status="danger" />);
-    expect(component.hasClass('status-danger')).to.equal(true);
+    const { getByTestId } = render(<CountBadge value={2} dts="count-badge-four" status="danger" />);
+    expect(getByTestId('count-badge-wrapper')).toHaveClass('status-danger');
   });
 
   it('should render with a smaller font size if the value is greater than 99', () => {
-    const component = shallow(<CountBadge value={100} dts="count-badge-five" status="info" />);
-    expect(component.hasClass('count-badge-font-size-small')).to.equal(true);
+    const { getByTestId } = render(<CountBadge value={100} dts="count-badge-five" status="info" />);
+    expect(getByTestId('count-badge-wrapper')).toHaveClass('count-badge-font-size-small');
   });
 });

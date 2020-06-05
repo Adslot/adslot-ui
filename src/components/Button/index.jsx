@@ -37,13 +37,14 @@ const Button = props => {
 
   const renderSpinner = () =>
     isLoading ? (
-      <div className="spinner-container">
+      <div data-testid="button-spinner-wrapper" className="spinner-container">
         <Spinner size={_.includes(['lg', 'large'], props.bsSize) ? 'medium' : 'small'} />
       </div>
     ) : null;
 
   return (
     <BootstrapButton
+      data-testid="bootstrap-button-wrapper"
       bsStyle={bsStyle}
       {..._.omit(props, _.keys(adslotButtonPropTypes))}
       disabled={isLoading || disabled}

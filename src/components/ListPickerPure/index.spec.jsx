@@ -1,11 +1,16 @@
 import _ from 'lodash';
-import { Checkbox, Radio, Empty, Grid, GridCell, GridRow } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
-import ListPickerPureComponent from '.';
+import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
+import Empty from '../Empty';
+import ListPickerPure from '.';
 import ListPickerMocks from '../ListPicker/mocks';
 
-describe('ListPickerPureComponent', () => {
+const getByDts = queryByAttribute.bind(null, 'data-test-selector');
+const queryAllByDts = queryAllByAttribute.bind(null, 'data-test-selector');
+
+afterEach(cleanup);
+
+describe('<ListPickerPure />', () => {
   const {
     getInitialSelection,
     labelFormatter,
@@ -21,16 +26,18 @@ describe('ListPickerPureComponent', () => {
   Object.freeze(selectedItems);
 
   it('should render with defaults', () => {
-    const component = shallow(<ListPickerPureComponent />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-item');
+    const { getByTestId, queryAllByTestId } = render(<ListPickerPure />);
 
-    const gridElements = component.find(Grid);
-    expect(gridElements).to.have.length(1);
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
+      'data-test-selector',
+      'listpickerpure-component-item'
+    );
+    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
 
-    const emptyElement = gridElements.find(Empty);
-    expect(emptyElement.prop('collection')).to.have.length(0);
-    expect(emptyElement.prop('text')).to.equal('No items to select.');
+    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
+    expect(getByTestId('empty-wrapper')).not.toBeEmpty();
+    expect(getByTestId('empty-wrapper')).toHaveTextContent('No items to select.');
   });
 
   it('should render with props', () => {
@@ -41,43 +48,41 @@ describe('ListPickerPureComponent', () => {
       labelFormatter,
       selectedItems,
     };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-user');
+    const { container, getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
 
-    const headerGridElement = component.find(Grid).first();
-    const gridHeaderElement = headerGridElement.find(GridRow);
-    expect(gridHeaderElement.prop('type')).to.equal('header');
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
+      'data-test-selector',
+      'listpickerpure-component-user'
+    );
 
-    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
-    expect(
-      gridHeaderCellElements
-        .first()
-        .children()
-        .text()
-    ).to.equal('Team');
-    expect(
-      gridHeaderCellElements
-        .last()
-        .children()
-        .text()
-    ).to.equal('Member');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
+    expect(getByText('Team')).toHaveClass('grid-component-cell');
+    expect(getByText('Member')).toHaveClass('grid-component-cell');
 
-    const gridElement = component.find(Grid).last();
-    const gridRowElements = gridElement.find(GridRow);
-    gridRowElements.forEach((gridRowElement, index) => {
-      const gridRowCellElements = gridRowElement.find(GridCell);
-      const gridRowCellLeftElement = gridRowCellElements.first();
-      expect(gridRowCellLeftElement.prop('stretch')).to.equal(true);
-      expect(gridRowCellLeftElement.prop('dts')).to.equal('label');
+    queryAllByTestId('grid-row-wrapper').forEach(each => expect(each).toHaveClass('grid-component-row'));
+    expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('John Smith'));
+    expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Jane Doe'));
+    expect(queryAllByTestId('grid-row-wrapper')[3]).toContainElement(getByText('Jack White'));
 
-      const gridRowCellLeftText = gridRowCellLeftElement.children().text();
-      expect(gridRowCellLeftText).to.equal(labelFormatter(users[index]));
+    expect(getByText('John Smith')).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('John Smith')).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Jane Doe')).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Jane Doe')).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Jack White')).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Jack White')).toHaveClass('grid-component-cell-stretch');
 
-      const gridRowCellRightElement = gridRowCellElements.last();
-      expect(gridRowCellRightElement.prop('dts')).to.equal('toggle');
-      const gridRowCellToggleElement = gridRowCellRightElement.find(Checkbox);
-      expect(gridRowCellToggleElement.prop('checked')).to.equal(_.some(selectedItems, { id: users[index].id }));
+    expect(getByDts(container, 'user-1')).toHaveTextContent('John Smith');
+    expect(getByDts(container, 'user-2')).toHaveTextContent('Jane Doe');
+    expect(getByDts(container, 'user-3')).toHaveTextContent('Jack White');
+
+    expect(queryAllByDts(container, 'toggle')).toHaveLength(3);
+    queryAllByDts(container, 'toggle').forEach((each, index) => {
+      expect(each).toContainElement(queryAllByTestId('checkbox-wrapper')[index]);
+      if (_.some(selectedItems, { id: users[index].id }))
+        expect(queryAllByTestId('checkbox-input')[index]).toBeChecked();
     });
   });
 
@@ -89,45 +94,29 @@ describe('ListPickerPureComponent', () => {
       labelFormatter,
       selectedItems: selectedItemsWithUuid,
     };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
 
-    const headerGridElement = component.find(Grid).first();
-    const gridHeaderElement = headerGridElement.find(GridRow);
-    expect(gridHeaderElement.prop('type')).to.equal('header');
+    const { container, getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
 
-    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
-    expect(
-      gridHeaderCellElements
-        .first()
-        .children()
-        .text()
-    ).to.equal('Team');
-    expect(
-      gridHeaderCellElements
-        .last()
-        .children()
-        .text()
-    ).to.equal('Member');
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    const gridElement = component.find(Grid).last();
-    const gridRowElements = gridElement.find(GridRow);
-    gridRowElements.forEach((gridRowElement, index) => {
-      const gridRowCellElements = gridRowElement.find(GridCell);
-      const gridRowCellLeftElement = gridRowCellElements.first();
-      expect(gridRowCellLeftElement.prop('stretch')).to.equal(true);
-      expect(gridRowCellLeftElement.prop('dts')).to.equal('label');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
 
-      const gridRowCellLeftText = gridRowCellLeftElement.children().text();
-      expect(gridRowCellLeftText).to.equal(labelFormatter(usersWithUuid[index]));
+    queryAllByTestId('grid-row-wrapper').forEach(each => expect(each).toHaveClass('grid-component-row'));
+    expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('Jones Cheng'));
+    expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Joe Huang'));
 
-      const gridRowCellRightElement = gridRowCellElements.last();
-      expect(gridRowCellRightElement.prop('dts')).to.equal('toggle');
-      const gridRowCellToggleElement = gridRowCellRightElement.find(Checkbox);
-      const isUserChecked = _.some(selectedItemsWithUuid, {
-        id: usersWithUuid[index].id,
-      });
-      expect(gridRowCellToggleElement.prop('checked')).to.equal(isUserChecked);
+    expect(getByText('Jones Cheng')).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Jones Cheng')).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Joe Huang')).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Joe Huang')).toHaveClass('grid-component-cell-stretch');
+
+    expect(queryAllByDts(container, 'toggle')).toHaveLength(2);
+    queryAllByDts(container, 'toggle').forEach((each, index) => {
+      expect(each).toContainElement(queryAllByTestId('checkbox-wrapper')[index]);
+      if (_.some(selectedItemsWithUuid, { id: usersWithUuid[index].id }))
+        expect(queryAllByTestId('checkbox-input')[index]).toBeChecked();
     });
   });
 
@@ -143,26 +132,19 @@ describe('ListPickerPureComponent', () => {
       selectedItems,
       addonFormatter,
     };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
+    const { container, getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    const headerGridElement = component.find(Grid).first();
-    const gridHeaderElement = headerGridElement.find(GridRow);
-    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
-    expect(
-      gridHeaderCellElements
-        .last()
-        .children()
-        .text()
-    ).to.equal('Required');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Required'));
+    expect(getByText('Required')).toHaveClass('grid-component-cell grid-component-cell-header-addon');
 
-    const gridElement = component.find(Grid).last();
-    const gridRowElements = gridElement.find(GridRow);
-    gridRowElements.forEach(gridRowElement => {
-      const gridRowCellRightElement = gridRowElement.find(GridCell).last();
-      expect(gridRowCellRightElement.prop('dts')).to.equal('addon');
-      const gridRowCellAddonElement = gridRowCellRightElement.find(Empty);
-      expect(gridRowCellAddonElement.length).to.equal(1);
+    expect(queryAllByDts(container, 'addon')).toHaveLength(3);
+    queryAllByDts(container, 'addon').forEach(each => {
+      expect(each).toHaveClass('grid-component-cell-addon');
+      expect(each).toHaveTextContent('Nothing to show.');
     });
   });
 
@@ -174,76 +156,64 @@ describe('ListPickerPureComponent', () => {
       labelFormatter,
       selectedItems,
     };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
-    expect(component.prop('data-test-selector')).to.equal('listpickerpure-component-group-user');
+    const { getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
 
-    const headerGridElement = component.find(Grid).first();
-    const gridHeaderElement = headerGridElement.find(GridRow);
-    const gridHeaderCellElements = gridHeaderElement.find(GridCell);
-    expect(
-      gridHeaderCellElements
-        .first()
-        .find('.left-sub-label')
-        .text()
-    ).to.equal('Group');
-    expect(
-      gridHeaderCellElements
-        .first()
-        .find('.right-sub-label')
-        .text()
-    ).to.equal('Team');
-    expect(
-      gridHeaderCellElements
-        .last()
-        .children()
-        .text()
-    ).to.equal('Member');
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
+      'data-test-selector',
+      'listpickerpure-component-group-user'
+    );
+
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Group'));
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
   });
 
   it('should render radio buttons with `allowMultiSelection` as false', () => {
     const props = { allowMultiSelection: false, items: users, selectedItems };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
+    const { container, getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
-    const gridElement = component.find(Grid);
-    const gridRowElements = gridElement.find(GridRow);
-    gridRowElements.forEach((gridRowElement, index) => {
-      const gridRowCellElements = gridRowElement.find(GridCell);
-      const gridRowCellRightElement = gridRowCellElements.last();
-      expect(gridRowCellRightElement.prop('dts')).to.equal('toggle');
-      const gridRowCellToggleElement = gridRowCellRightElement.find(Radio);
-      expect(gridRowCellToggleElement).to.have.length(1);
-      expect(gridRowCellToggleElement.prop('checked')).to.equal(_.some(selectedItems, { id: users[index].id }));
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+
+    expect(getByDts(container, 'item-1')).toContainElement(queryAllByDts(container, 'toggle')[0]);
+    expect(getByDts(container, 'item-2')).toContainElement(queryAllByDts(container, 'toggle')[1]);
+    expect(getByDts(container, 'item-3')).toContainElement(queryAllByDts(container, 'toggle')[2]);
+
+    queryAllByDts(container, 'toggle').forEach((each, index) => {
+      expect(each).toContainElement(queryAllByTestId('radio-wrapper')[index]);
+      if (_.some(selectedItems, { id: users[index].id })) expect(queryAllByTestId('radio-input')[index]).toBeChecked();
     });
   });
 
   it('should throw when we select without a `selectItem` handler', () => {
+    console.error = err => {
+      throw new Error(err);
+    };
     const props = { items: users, selectedItems };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
+    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
-    const gridElement = component.find(Grid);
-    const gridRowElements = gridElement.find(GridRow);
-    const unselectedCheckboxElement = gridRowElements.at(0).find(Checkbox);
-    expect(unselectedCheckboxElement.prop('checked')).to.equal(false);
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    expect(() => unselectedCheckboxElement.simulate('change', null, true)).to.throw(
+    expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();
+
+    expect(() => fireEvent.click(queryAllByTestId('checkbox-input')[0])).toThrow(
       'AdslotUi ListPickerPure needs a selectItem handler'
     );
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
+    console.error = err => {
+      throw new Error(err);
+    };
     const props = { items: users, selectedItems };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
+    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
-    const gridElement = component.find(Grid);
-    const gridRowElements = gridElement.find(GridRow);
-    const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
-    expect(selectedCheckboxElement.prop('checked')).to.equal(true);
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    expect(() => selectedCheckboxElement.simulate('change', null, false)).to.throw(
+    expect(queryAllByTestId('checkbox-input')[1]).toBeChecked();
+
+    expect(() => fireEvent.click(queryAllByTestId('checkbox-input')[1])).toThrow(
       'AdslotUi ListPickerPure needs a deselectItem handler'
     );
   });
@@ -260,17 +230,14 @@ describe('ListPickerPureComponent', () => {
         isAllowMultiSelection = allowMultiSelection;
       },
     };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
+    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
-    const gridElement = component.find(Grid);
-    const gridRowElements = gridElement.find(GridRow);
-    const unselectedRadioButtonElement = gridRowElements.at(0).find(Radio);
-    expect(unselectedRadioButtonElement.prop('checked')).to.equal(false);
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(queryAllByTestId('radio-input')[0]).not.toBeChecked();
 
-    unselectedRadioButtonElement.simulate('change', null, true);
-    expect(handlerCalled).to.equal(1);
-    expect(isAllowMultiSelection).to.equal(false);
+    fireEvent.click(queryAllByTestId('radio-input')[0]);
+    expect(handlerCalled).toEqual(1);
+    expect(isAllowMultiSelection).toEqual(false);
   });
 
   it('should call `deselectItem` handler when we deselect', () => {
@@ -284,16 +251,13 @@ describe('ListPickerPureComponent', () => {
         isAllowMultiSelection = allowMultiSelection;
       },
     };
-    const component = shallow(<ListPickerPureComponent {...props} />);
-    expect(component.prop('className')).to.equal('listpickerpure-component');
+    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
-    const gridElement = component.find(Grid);
-    const gridRowElements = gridElement.find(GridRow);
-    const selectedCheckboxElement = gridRowElements.at(1).find(Checkbox);
-    expect(selectedCheckboxElement.prop('checked')).to.equal(true);
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(queryAllByTestId('checkbox-input')[1]).toBeChecked();
 
-    selectedCheckboxElement.simulate('change', null, false);
-    expect(handlerCalled).to.equal(1);
-    expect(isAllowMultiSelection).to.equal(true);
+    fireEvent.click(queryAllByTestId('checkbox-input')[1]);
+    expect(handlerCalled).toEqual(1);
+    expect(isAllowMultiSelection).toEqual(true);
   });
 });

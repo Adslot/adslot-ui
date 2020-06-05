@@ -1,92 +1,67 @@
-import _ from 'lodash';
-import { mount } from 'enzyme';
 import React from 'react';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import Switch from '.';
 
-describe('Switch', () => {
-  let sandbox = null;
+afterEach(cleanup);
 
-  before(() => {
-    sandbox = sinon.createSandbox();
-  });
-
-  afterEach(() => {
-    sandbox.restore();
-  });
-
+describe('<Switch />', () => {
   it('should correctly render defaults', () => {
-    const wrapper = mount(<Switch />);
-    const inputElement = wrapper.find('input');
+    const { getByTestId, queryAllByTestId } = render(<Switch />);
 
-    expect(inputElement).to.have.lengthOf(1);
-
-    const inputElementProps = inputElement.props();
-    expect(inputElementProps.checked).to.equal(false);
-    expect(inputElementProps['data-test-selector']).to.equal('switch-component');
+    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(getByTestId('switch-checkbox')).not.toBeChecked();
+    expect(getByTestId('switch-checkbox')).toHaveAttribute('data-test-selector', 'switch-component');
   });
 
   it('should correctly render controlled Switch', () => {
-    const wrapper = mount(<Switch checked onChange={_.noop} />);
-    const inputElement = wrapper.find('input');
-
-    expect(inputElement).to.have.lengthOf(1);
-    expect(inputElement.props().checked).to.equal(true);
+    const { getByTestId, queryAllByTestId } = render(<Switch checked onChange={jest.fn()} />);
+    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(getByTestId('switch-checkbox')).toBeChecked();
   });
 
   it('should throw warning if checked is provided without onChange', () => {
-    sandbox.stub(console, 'warn');
-    mount(<Switch checked />);
+    console.warn = jest.fn();
+    render(<Switch checked />);
 
-    expect(
-      console.warn.calledWith(
-        'Failed prop type: You have provided a `checked` prop to Switch Component without an `onChange` handler. This will render a read-only field.'
-      )
-    ).to.equal(true);
+    expect(console.warn).toHaveBeenCalledWith(
+      'Failed prop type: You have provided a `checked` prop to Switch Component without an `onChange` handler. This will render a read-only field.'
+    );
   });
 
   it('should throw warning if both defaultChecked and checked are provided', () => {
-    sandbox.stub(console, 'warn');
-    mount(<Switch defaultChecked checked onChange={_.noop} />);
+    console.warn = jest.fn();
 
-    expect(
-      console.warn.calledWith(
-        'Failed prop type: Contains an input of type checkbox with both `checked` and `defaultChecked` props. Input elements must be either controlled or uncontrolled'
-      )
-    ).to.equal(true);
+    render(<Switch defaultChecked checked onChange={jest.fn()} />);
+
+    expect(console.warn).toHaveBeenCalledWith(
+      'Failed prop type: Contains an input of type checkbox with both `checked` and `defaultChecked` props. Input elements must be either controlled or uncontrolled'
+    );
   });
 
   it('should correctly call onChange for controlled Switch', () => {
-    const onChangeSpy = sinon.spy();
+    const onChange = jest.fn();
+    const { getByTestId, queryAllByTestId } = render(<Switch checked onChange={onChange} />);
+    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(getByTestId('switch-checkbox')).toBeChecked();
 
-    const wrapper = mount(<Switch checked onChange={onChangeSpy} />);
-    const inputElement = wrapper.find('input');
-
-    expect(inputElement).to.have.lengthOf(1);
-    expect(inputElement.props().checked).to.equal(true);
-
-    inputElement.simulate('change');
-
-    expect(onChangeSpy.calledOnce).to.equal(true);
+    fireEvent.click(getByTestId('switch-checkbox'));
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   it('should correctly change switch checked for uncontrolled Switch', () => {
-    const wrapper = mount(<Switch defaultChecked={false} />);
+    const { getByTestId, queryAllByTestId } = render(<Switch defaultChecked={false} />);
 
-    const inputElement = wrapper.find('input');
-    expect(inputElement).to.have.lengthOf(1);
-    expect(inputElement.props().checked).to.equal(false);
+    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(getByTestId('switch-checkbox')).not.toBeChecked();
 
-    inputElement.simulate('change', { target: { checked: true } });
-    wrapper.update();
-    expect(wrapper.find('input').props().checked).to.equal(true);
+    fireEvent.change(getByTestId('switch-checkbox'), { target: { checked: true } });
+    expect(getByTestId('switch-checkbox')).toBeChecked();
   });
 
   it('should correctly apply className', () => {
-    const wrapper = mount(<Switch className="some-class" />);
+    const { getByTestId, queryAllByTestId } = render(<Switch className="some-class" />);
 
-    const inputElement = wrapper.find('input');
-    expect(inputElement).to.have.lengthOf(1);
-    expect(inputElement.props().className).to.equal('some-class');
+    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(getByTestId('switch-checkbox')).toHaveClass('some-class');
   });
 });

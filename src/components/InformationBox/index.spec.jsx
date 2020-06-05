@@ -1,75 +1,83 @@
-import { SvgSymbol } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render, cleanup } from '@testing-library/react';
 import InformationBox from '.';
+import SvgSymbol from '../SvgSymbol';
 
-describe('InformationBoxComponent', () => {
+afterEach(cleanup);
+
+describe('<InformationBox />', () => {
   const icon = <SvgSymbol href="assets/img#done" />;
 
   it('should render with props', () => {
-    const component = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <InformationBox title="render title here" icon={icon}>
         <div>I am child</div>
       </InformationBox>
     );
 
-    expect(component.find('.aui--information-box').prop('className')).to.equal(
-      'aui--information-box aui--information-box-light'
-    );
-    const titleElement = component.find('.aui--information-box-title');
-    expect(titleElement).to.have.length(1);
-    expect(titleElement.text()).to.equal('render title here');
-    expect(component.find('.aui--information-box-node')).to.have.length(1);
-    expect(component.find('.aui--information-box-icon')).to.have.length(1);
+    expect(getByTestId('information-box-wrapper')).toHaveClass('aui--information-box aui--information-box-light');
+
+    expect(getByTestId('information-box-title')).toHaveClass('aui--information-box-title');
+    expect(queryAllByTestId('information-box-title')).toHaveLength(1);
+    expect(getByTestId('information-box-title')).toHaveTextContent('render title here');
+
+    expect(queryAllByTestId('information-box-icon')).toHaveLength(1);
+    expect(getByTestId('information-box-icon')).toHaveClass('aui--information-box-icon');
+    expect(queryAllByTestId('information-box-node')).toHaveLength(1);
+    expect(getByTestId('information-box-node')).toHaveClass('aui--information-box-node');
   });
 
   it('should render without a title when title props is not provided', () => {
-    const component = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <InformationBox icon={icon}>
         <div>I am child</div>
       </InformationBox>
     );
 
-    const titleElement = component.find('.aui--information-box-title');
-    expect(titleElement).to.have.length(0);
-    expect(component.find('.aui--information-box-node')).to.have.length(1);
-    expect(component.find('.aui--information-box-icon')).to.have.length(1);
-    expect(component.find(SvgSymbol)).to.have.length(1);
+    expect(queryAllByTestId('information-box-title')).toHaveLength(0);
+
+    expect(queryAllByTestId('information-box-icon')).toHaveLength(1);
+    expect(getByTestId('information-box-icon')).toHaveClass('aui--information-box-icon');
+
+    expect(queryAllByTestId('information-box-node')).toHaveLength(1);
+    expect(getByTestId('information-box-node')).toHaveClass('aui--information-box-node');
+
+    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(1);
   });
 
   it('should render without an icon when icon props is not provided', () => {
-    const component = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <InformationBox title="render title here">
-        <div>I am child</div>
+        <div data-testid="information-box-test-children">I am child</div>
       </InformationBox>
     );
 
-    expect(component.find('.aui--information-box-title')).to.have.length(1);
-    expect(component.find('.aui--information-box-node').children()).to.have.length(1);
-    expect(component.find('.aui--information-box-icon')).to.have.length(0);
+    expect(getByTestId('information-box-title')).toHaveClass('aui--information-box-title');
+    expect(queryAllByTestId('information-box-title')).toHaveLength(1);
+
+    expect(queryAllByTestId('information-box-test-children')).toHaveLength(1);
+    expect(queryAllByTestId('information-box-icon')).toHaveLength(0);
   });
 
   it('should render without children nodes when children props is not provided', () => {
-    const component = shallow(<InformationBox title="render title here" icon={icon} />);
+    const { getByTestId, queryAllByTestId } = render(<InformationBox title="render title here" icon={icon} />);
 
-    expect(component.find('.aui--information-box-title')).to.have.length(1);
-    expect(component.find('.aui--information-box-icon')).to.have.length(1);
-    expect(component.find('.aui--information-box-node').children()).to.have.length(0);
+    expect(getByTestId('information-box-title')).toHaveClass('aui--information-box-title');
+    expect(queryAllByTestId('information-box-title')).toHaveLength(1);
+    expect(getByTestId('information-box-icon')).toHaveClass('aui--information-box-icon');
+    expect(queryAllByTestId('information-box-icon')).toHaveLength(1);
+    expect(queryAllByTestId('information-box-node')).toHaveLength(1);
+    expect(getByTestId('information-box-node')).toHaveClass('aui--information-box-node');
+    expect(getByTestId('information-box-node')).toBeEmpty();
   });
 
   it('should accept custom class names', () => {
-    const component = shallow(<InformationBox title="Class name test title" className="cx" />);
-
-    expect(component.find('.aui--information-box').prop('className')).to.equal(
-      'aui--information-box aui--information-box-light cx'
-    );
+    const { getByTestId } = render(<InformationBox title="Class name test title" className="cx" />);
+    expect(getByTestId('information-box-wrapper')).toHaveClass('aui--information-box aui--information-box-light cx');
   });
 
   it('should accept custom theme', () => {
-    const component = shallow(<InformationBox title="Class name test title" theme="primary" />);
-
-    expect(component.find('.aui--information-box').prop('className')).to.equal(
-      'aui--information-box aui--information-box-primary'
-    );
+    const { getByTestId } = render(<InformationBox title="Class name test title" theme="primary" />);
+    expect(getByTestId('information-box-wrapper')).toHaveClass('aui--information-box aui--information-box-primary');
   });
 });

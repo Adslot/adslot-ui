@@ -40,7 +40,7 @@ const RichTextEditor = ({ className, value, initialValue, onChange }) => {
   };
 
   return (
-    <div className={classNames} onClick={focusEditor}>
+    <div data-testid="rich-text-editor-wrapper" className={classNames} onClick={focusEditor}>
       <div className="aui--editor-container">
         <Editor
           editorState={value || editorState}

@@ -1,42 +1,43 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import Alert from '.';
 
-describe('Alert', () => {
+afterEach(cleanup);
+
+describe('<Alert />', () => {
   it('should render default info type', () => {
-    const component = shallow(
+    const { getByTestId } = render(
       <Alert>
         <div />
       </Alert>
     );
-    expect(component.prop('className')).to.equal('alert-component alert-component-info');
-    expect(component.children().type()).to.equal('div');
+    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-info');
+    expect(getByTestId('alert-wrapper').firstChild).toMatchInlineSnapshot(`<div />`);
   });
-
   it('should render success type', () => {
-    const component = shallow(
+    const { getByTestId } = render(
       <Alert type="success">
         <div />
       </Alert>
     );
-    expect(component.prop('className')).to.equal('alert-component alert-component-success');
+    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-success');
   });
 
   it('should render warning type', () => {
-    const component = shallow(
+    const { getByTestId } = render(
       <Alert type="warning">
         <div />
       </Alert>
     );
-    expect(component.prop('className')).to.equal('alert-component alert-component-warning');
+    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-warning');
   });
 
   it('should render danger type', () => {
-    const component = shallow(
+    const { getByTestId } = render(
       <Alert type="danger">
         <div />
       </Alert>
     );
-    expect(component.prop('className')).to.equal('alert-component alert-component-danger');
+    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-danger');
   });
 });

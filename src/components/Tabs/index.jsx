@@ -59,15 +59,17 @@ class Tabs extends React.PureComponent {
     });
 
     return (
-      <div id={id}>
+      <div data-testid="tablist-wrapper" id={id}>
         <ul role="tablist" className="nav nav-tabs">
           {tabs.map(tab => (
             <li
+              data-testid="tablist-item"
               role="presentation"
               className={classnames({ active: tab.props.show, disabled: tab.props.disabled }, tab.props.tabClassName)}
               key={tab.props.eventKey}
             >
               <a
+                data-testid="tablist-a-tag"
                 id={`${id}-tab-${tab.props.eventKey}`}
                 role="tab"
                 tabIndex={-1}

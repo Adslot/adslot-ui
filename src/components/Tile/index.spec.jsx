@@ -1,8 +1,12 @@
 import _ from 'lodash';
 import React from 'react';
-import sinon from 'sinon';
-import { mount, shallow } from 'enzyme';
+import { render, cleanup, queryByAttribute, queryAllByAttribute, fireEvent } from '@testing-library/react';
 import Tile from '.';
+
+afterEach(cleanup);
+
+const getByClass = queryByAttribute.bind(null, 'class');
+const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
 const makeProps = override =>
   _.merge(
@@ -14,40 +18,44 @@ const makeProps = override =>
 
 describe('<Tile />', () => {
   it('should have default style', () => {
-    const wrapper = mount(<Tile {...makeProps()} />);
-    expect(wrapper.find('.aui--tile')).to.have.length(1);
-    expect(wrapper.find('.aui--tile-title')).to.have.length(1);
-    expect(wrapper.find('.aui--tile-title').text()).to.equal('');
-    expect(wrapper.find('.aui--tile-logo')).to.have.length(1);
-    expect(wrapper.find('.aui--tile-logo').children()).to.have.length(0);
+    const { container } = render(<Tile {...makeProps()} />);
+
+    expect(queryAllByClass(container, 'aui--tile')).toHaveLength(1);
+    expect(queryAllByClass(container, 'aui--tile-title')).toHaveLength(1);
+    expect(getByClass(container, 'aui--tile-title')).toHaveTextContent('');
+    expect(queryAllByClass(container, 'aui--tile-logo')).toHaveLength(1);
+    expect(getByClass(container, 'aui--tile-logo')).toHaveTextContent('');
   });
 
   it('should allow title prop', () => {
-    const wrapper = shallow(<Tile {...makeProps({ title: 'test-title' })} />);
-    expect(wrapper.find('.aui--tile-title')).to.have.length(1);
-    expect(wrapper.find('.aui--tile-title').text()).to.equal('test-title');
+    const { container } = render(<Tile {...makeProps({ title: 'test-title' })} />);
+
+    expect(queryAllByClass(container, 'aui--tile-title')).toHaveLength(1);
+    expect(getByClass(container, 'aui--tile-title')).toHaveTextContent('test-title');
   });
 
   it('should allow imgLink prop', () => {
-    const wrapper = shallow(<Tile {...makeProps({ imgLink: 'fake-url' })} />);
-    expect(wrapper.find('.aui--tile-logo')).to.have.length(1);
-    expect(wrapper.find('.aui--tile-logo').children()).to.have.length(1);
+    const { container, getByAltText, queryAllByAltText } = render(<Tile {...makeProps({ imgLink: 'fake-url' })} />);
+
+    expect(queryAllByClass(container, 'aui--tile-logo')).toHaveLength(1);
+    expect(queryAllByAltText('tile-logo', getByClass(container, 'aui--tile-logo'))).toHaveLength(1);
+    expect(getByAltText('tile-logo')).toHaveAttribute('src', 'fake-url');
   });
 
   it('should allow className prop', () => {
-    const wrapper = shallow(<Tile {...makeProps({ className: 'test' })} />);
-    expect(wrapper.find('.aui--tile.test')).to.have.length(1);
+    const { container } = render(<Tile {...makeProps({ className: 'test' })} />);
+    expect(queryAllByClass(container, 'aui--tile test')).toHaveLength(1);
   });
 
   it('should allow onClick prop', () => {
-    const onClickMock = sinon.spy();
-    const wrapper = shallow(<Tile {...makeProps({ onClick: onClickMock })} />);
-    wrapper.simulate('click');
-    expect(onClickMock.callCount).to.equal(1);
+    const onClickMock = jest.fn();
+    const { container } = render(<Tile {...makeProps({ onClick: onClickMock })} />);
+    fireEvent.click(getByClass(container, 'aui--tile'));
+    expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
   it('should support custom dts', () => {
-    const wrapper = shallow(<Tile {...makeProps({ dts: 'test-dts' })} />);
-    expect(wrapper.props()['data-test-selector']).to.equal('test-dts');
+    const { container } = render(<Tile {...makeProps({ dts: 'test-dts' })} />);
+    expect(getByClass(container, 'aui--tile')).toHaveAttribute('data-test-selector', 'test-dts');
   });
 });

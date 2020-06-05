@@ -1,9 +1,10 @@
-import { Popover } from 'adslot-ui';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render, cleanup } from '@testing-library/react';
 import TextEllipsis from '.';
 
-describe('TextEllipsisComponent', () => {
+afterEach(cleanup);
+
+describe('<TextEllipsis />', () => {
   let divContainer = null;
 
   beforeEach(() => {
@@ -13,79 +14,99 @@ describe('TextEllipsisComponent', () => {
   });
 
   it('should render with defaults', () => {
-    const wrapper = mount(<TextEllipsis>Sample text</TextEllipsis>);
-    expect(wrapper.find('.text-ellipsis-component')).to.have.length(1);
-    expect(wrapper.instance().props.popoverProps).to.eql({
-      placement: 'top',
-      trigger: 'hover',
-    });
+    const { getByTestId, queryAllByTestId } = render(<TextEllipsis>Sample text</TextEllipsis>);
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(getByTestId('popover-element')).toHaveClass('aui--text-ellipsis-wrapper');
+
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(getByTestId('text-ellipsis')).toHaveClass('text-ellipsis-component');
+    expect(getByTestId('text-ellipsis')).toHaveTextContent('Sample text');
   });
 
   it('should render with no popover when text length is less than max length', () => {
-    divContainer.setAttribute('style', 'width: 100px;');
-    const wrapper = mount(<TextEllipsis>this is a test</TextEllipsis>, {
-      attachTo: divContainer,
+    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 100 });
+    const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
+      container: divContainer,
     });
-    expect(wrapper.find(Popover).prop('isOpen')).to.equal(false);
+
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
   });
 
   it('should render with popover when text length is more than max length', () => {
-    divContainer.setAttribute('style', 'width: 1px;');
-    const wrapper = mount(<TextEllipsis>this is a test</TextEllipsis>, {
-      attachTo: divContainer,
+    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 20 });
+
+    const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
+      container: divContainer,
     });
-    expect(wrapper.find(Popover).prop('isOpen')).to.equal(true);
+
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
   });
 
-  describe('componentDidUpdate()', () => {
-    it('should generate popover if text changes from short to long', () => {
-      divContainer.setAttribute('style', 'width: 30px;');
-      const wrapper = mount(<TextEllipsis>x</TextEllipsis>, {
-        attachTo: divContainer,
-      });
-      expect(wrapper.find(Popover).prop('isOpen')).to.equal(false);
+  it('should generate popover if text changes from short to long', () => {
+    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 20 });
 
-      wrapper.setProps({
-        children: 'long text: The quick brown fox jumps over the lazy dog',
-      });
-      wrapper.update();
-      expect(wrapper.find(Popover).prop('isOpen')).to.equal(true);
+    const { queryAllByTestId, rerender } = render(<TextEllipsis>x</TextEllipsis>, {
+      container: divContainer,
     });
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
 
-    it('should remove popover if text changes from long to short', () => {
-      divContainer.setAttribute('style', 'width: 20px;');
-      const wrapper = mount(<TextEllipsis>this is a test 1234567</TextEllipsis>, { attachTo: divContainer });
-      expect(wrapper.find(Popover).prop('isOpen')).to.equal(true);
-
-      wrapper.setProps({ children: 'x' });
-      wrapper.update();
-      expect(wrapper.find(Popover).prop('isOpen')).to.equal(false);
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 100 });
+    rerender(<TextEllipsis>long text: The quick brown fox jumps over the lazy dog</TextEllipsis>, {
+      container: divContainer,
     });
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+  });
+
+  it('should remove popover if text changes from long to short', () => {
+    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 100 });
+
+    const { queryAllByTestId, rerender } = render(
+      <TextEllipsis>long text: The quick brown fox jumps over the lazy dog</TextEllipsis>,
+      {
+        container: divContainer,
+      }
+    );
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 20 });
+    rerender(<TextEllipsis>x</TextEllipsis>, {
+      container: divContainer,
+    });
+    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
   });
 
   describe('should also work on complex children', () => {
     it('when size is small', () => {
-      divContainer.setAttribute('style', 'width: 2000px;');
-      const wrapper = mount(
+      Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 2000 });
+      render(
         <TextEllipsis>
           this is a text
           <span>this is another text</span>
         </TextEllipsis>,
-        { attachTo: divContainer }
+        { container: divContainer }
       );
-      expect(wrapper.find(Popover).prop('isOpen')).to.equal(false);
     });
 
     it('when size is big', () => {
-      divContainer.setAttribute('style', 'width: 20px;');
-      const wrapper = mount(
+      Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 20 });
+      render(
         <TextEllipsis>
           this is a text
           <span>this is another text</span>
         </TextEllipsis>,
-        { attachTo: divContainer }
+        { container: divContainer }
       );
-      expect(wrapper.find(Popover).prop('isOpen')).to.equal(true);
     });
   });
 });

@@ -8,7 +8,7 @@ const SplitPaneComponent = ({ children, dts, additionalClassNames }) => {
   const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);
 
   return (
-    <div className={splitPaneClass} {...expandDts(dts)}>
+    <div data-testid="split-panel-wrapper" className={splitPaneClass} {...expandDts(dts)}>
       {children}
     </div>
   );

@@ -69,7 +69,7 @@ class VerticalNavigation extends React.Component {
       ]);
 
       return (
-        <div className={contentClassnames} data-test-selector={child.props.dts}>
+        <div aria-label="render-content" className={contentClassnames} data-test-selector={child.props.dts}>
           {child}
         </div>
       );
@@ -94,7 +94,13 @@ class VerticalNavigation extends React.Component {
         { 'aui--vertical-navigation-component__menu-item-is-active': index === activeTabIndex },
       ]);
       menuList.push(
-        <div key={`menu-item-${_.uniqueId()}`} className={classNames} onClick={child.props.onClick}>
+        <div
+          aria-label="render-menu"
+          data-testid="vertical-nav-menu-item"
+          key={`menu-item-${_.uniqueId()}`}
+          className={classNames}
+          onClick={child.props.onClick}
+        >
           {child.props.content({ isCollapsed })}
         </div>
       );
@@ -116,12 +122,22 @@ class VerticalNavigation extends React.Component {
     ]);
 
     return (
-      <div className={componentClasses} data-test-selector={dts}>
-        <div className={menuClasses}>
+      <div data-testid="vertical-nav-wrapper" className={componentClasses} data-test-selector={dts}>
+        <div data-testid="vertical-nav-menu" className={menuClasses}>
           {collapsable ? (
-            <div className="aui--vertical-navigation-component__menu-item" onClick={this.props.onClick}>
-              <div className="aui--vertical-navigation-component__menu-item-collapse">
-                <div className="aui--vertical-navigation-component__menu-item-collapse-icon" />
+            <div
+              data-testid="vertical-nav-menu-item"
+              className="aui--vertical-navigation-component__menu-item"
+              onClick={this.props.onClick}
+            >
+              <div
+                data-testid="vertical-nav-menu-item-collapse"
+                className="aui--vertical-navigation-component__menu-item-collapse"
+              >
+                <div
+                  data-testid="vertical-nav-menu-item-collapse-icon"
+                  className="aui--vertical-navigation-component__menu-item-collapse-icon"
+                />
               </div>
             </div>
           ) : null}

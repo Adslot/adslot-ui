@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select /> should render select options in body if props.isInModal is true 1`] = `
+<div>
+  <div
+    class="select-component css-2b097c-container"
+  >
+    <div
+      class="select-component__control css-oeuhkd-control"
+    >
+      <div
+        class="select-component__value-container css-9evde0"
+      >
+        <div
+          class="select-component__placeholder css-1wa3eu0-placeholder"
+        >
+          Select...
+        </div>
+        <div
+          class="css-w8afj7-Input"
+        >
+          <div
+            class="select-component__input"
+            style="display: inline-block;"
+          >
+            <input
+              aria-autocomplete="list"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              id="react-select-7-input"
+              spellcheck="false"
+              style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+            <div
+              style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="select-component__indicators css-1g48xl4-IndicatorsContainer"
+      >
+        <span
+          class="select-component__indicator-separator css-43ykx9-indicatorSeparator"
+        />
+        <div
+          aria-hidden="true"
+          class="select-component__indicator select-component__dropdown-indicator css-171ess4-indicatorContainer"
+        >
+          <div
+            class="caret-icon"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

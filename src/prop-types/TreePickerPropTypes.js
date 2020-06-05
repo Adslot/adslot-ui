@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import idPropType from './idPropType';
+
+export const idPropType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
 
 const baseNodeProps = {
   id: idPropType.isRequired,

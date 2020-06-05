@@ -12,7 +12,13 @@ const NavigationComponent = props => {
   const navProps = _.omit(props, ['barPosition']);
 
   return (
-    <Nav {...navProps} {...expandDts(dts)} bsClass="nav-borderless" className={classes}>
+    <Nav
+      {...navProps}
+      {...expandDts(dts)}
+      data-testid="navigation-wrapper"
+      bsClass="nav-borderless"
+      className={classes}
+    >
       {children}
     </Nav>
   );

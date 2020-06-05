@@ -112,7 +112,7 @@ class ListPickerComponent extends React.PureComponent {
     );
 
     return (
-      <Modal className={modalClassName} show={show} bsSize="large" keyboard={false}>
+      <Modal className={modalClassName} show={show} bsSize="large" keyboard={false} data-testid="listpicker-wrapper">
         <Modal.Header>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>

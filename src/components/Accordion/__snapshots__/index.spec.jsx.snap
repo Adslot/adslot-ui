@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Accordion /> should have default props 1`] = `
+<div
+  class="card-component"
+  data-test-selector="my-accordion"
+  data-testid="card-container-wrapper"
+>
+  <div
+    class="card-component-content-container"
+    data-testid="card-content-container-wrapper"
+  >
+    <div
+      class="card-component-content fill"
+      data-testid="card-content-wrapper"
+    >
+      <div
+        class="panel-component collapsed"
+        data-test-selector="panel-1"
+        data-testid="panel-wrapper"
+      >
+        <div
+          class="panel-component-header clearfix"
+          data-testid="panel-header"
+        >
+          Panel 1
+        </div>
+        <div
+          class="panel-component-content"
+          data-testid="panel-content"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

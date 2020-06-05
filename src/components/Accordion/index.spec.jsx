@@ -1,18 +1,25 @@
 import _ from 'lodash';
-import { Accordion, Card } from 'adslot-ui';
-import { mount, shallow } from 'enzyme';
 import React from 'react';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+
+import Accordion from '.';
 import PanelMocks from '../Panel/mocks';
 
-describe('AccordionComponent', () => {
+beforeEach(() => {
+  jest.spyOn(console, 'error').mockImplementation(_.noop);
+});
+
+afterEach(() => console.error.mockRestore());
+afterEach(cleanup);
+
+describe('<Accordion />', () => {
   const { panel1, panel2, panel3 } = PanelMocks;
 
   const makeProps = override =>
     _.merge(
       {
         dts: 'my-accordion',
-        onPanelClick: sinon.stub(),
+        onPanelClick: jest.fn(),
         defaultActivePanelIds: [],
         maxExpand: 'max',
       },
@@ -20,29 +27,28 @@ describe('AccordionComponent', () => {
     );
 
   it('should render with defaults', () => {
-    const wrapper = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <Accordion {...makeProps()}>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
       </Accordion>
     );
-    const cardElement = wrapper.find(Card.Content);
-    expect(cardElement).to.have.length(1);
-    expect(cardElement.children()).to.have.length(1);
+    expect(queryAllByTestId('card-container-wrapper')).toHaveLength(1);
+    expect(getByTestId('card-container-wrapper')).toHaveAttribute('data-test-selector', 'my-accordion');
+    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(getByTestId('card-content-wrapper')).toHaveTextContent('Panel 1');
   });
 
   it('should have default props', () => {
-    const wrapper = shallow(
+    const { getByTestId } = render(
       <Accordion {...makeProps()}>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
       </Accordion>
     );
-    const instance = wrapper.instance();
-    expect(instance.props.defaultActivePanelIds).to.eql([]);
-    expect(instance.props.maxExpand).to.equal('max');
+    expect(getByTestId('card-container-wrapper')).toMatchSnapshot();
   });
 
   it('should render with props', () => {
-    const wrapper = shallow(
+    const { queryAllByTestId } = render(
       <Accordion {...makeProps()}>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
         <Accordion.Panel {...panel2}>{panel2.content}</Accordion.Panel>
@@ -50,95 +56,47 @@ describe('AccordionComponent', () => {
       </Accordion>
     );
 
-    const cardElement = wrapper.find(Card.Content);
-    expect(cardElement).to.have.length(1);
+    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryAllByTestId('panel-wrapper')).toHaveLength(3);
 
-    const panelElements = cardElement.find(Accordion.Panel);
-    expect(panelElements).to.have.length(3);
-
-    const panelElement1 = panelElements.at(0);
-    expect(panelElement1.prop('id')).to.equal('1');
-    expect(panelElement1.prop('onClick')).to.be.a('function');
-
-    const panelElement2 = panelElements.at(1);
-    expect(panelElement2.prop('id')).to.equal('2');
-    expect(panelElement2.prop('onClick')).to.be.a('function');
-
-    const panelElement3 = panelElements.at(2);
-    expect(panelElement3.prop('id')).to.equal('3');
-    expect(panelElement3.prop('onClick')).to.be.a('function');
-    expect(panelElement3.prop('dts')).to.equal('panel-3'); // should generate a dts from panel id
+    // generate a dts from panel id
+    expect(queryAllByTestId('panel-wrapper')[0]).toHaveAttribute('data-test-selector', 'panel-1');
+    expect(queryAllByTestId('panel-wrapper')[0]).toHaveTextContent('Panel 1');
+    expect(queryAllByTestId('panel-wrapper')[1]).toHaveAttribute('data-test-selector', 'panel-2');
+    expect(queryAllByTestId('panel-wrapper')[1]).toHaveTextContent('Panel 2');
+    expect(queryAllByTestId('panel-wrapper')[2]).toHaveAttribute('data-test-selector', 'panel-3');
+    expect(queryAllByTestId('panel-wrapper')[2]).toHaveTextContent('Panel 3');
   });
 
   it('should pass onPanelClick down to panels', () => {
     const props = makeProps();
-    const wrapper = mount(
+    const { queryAllByTestId } = render(
       <Accordion {...props}>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
         <Accordion.Panel {...panel2}>{panel2.content}</Accordion.Panel>
         <Accordion.Panel {...panel3}>{panel3.content}</Accordion.Panel>
       </Accordion>
     );
-    const panelElements = wrapper.find(Accordion.Panel);
+    expect(queryAllByTestId('panel-wrapper')).toHaveLength(3);
 
-    panelElements
-      .at(0)
-      .find('.panel-component-header')
-      .simulate('click');
-    panelElements
-      .at(1)
-      .find('.panel-component-header')
-      .simulate('click');
-    panelElements
-      .at(2)
-      .find('.panel-component-header')
-      .simulate('click');
+    fireEvent.click(queryAllByTestId('panel-header')[0]);
+    expect(props.onPanelClick).toHaveBeenCalledTimes(1);
+    expect(props.onPanelClick).toHaveBeenLastCalledWith('1');
 
-    expect(props.onPanelClick.callCount).to.equal(3);
-    expect(props.onPanelClick.firstCall.calledWith('1')).to.equal(true);
-    expect(props.onPanelClick.secondCall.calledWith('2')).to.equal(true);
-    expect(props.onPanelClick.thirdCall.calledWith('3')).to.equal(true);
-  });
+    fireEvent.click(queryAllByTestId('panel-header')[1]);
+    expect(props.onPanelClick).toHaveBeenCalledTimes(2);
+    expect(props.onPanelClick).toHaveBeenLastCalledWith('2');
 
-  it('should remove active panel id from active list when clicking on an expanded panel', () => {
-    const wrapper = mount(
-      <Accordion {...makeProps({ defaultActivePanelIds: ['1'] })}>
-        <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
-        <Accordion.Panel {...panel2}>{panel2.content}</Accordion.Panel>
-        <Accordion.Panel {...panel3}>{panel3.content}</Accordion.Panel>
-      </Accordion>
-    );
-    wrapper
-      .find(Accordion.Panel)
-      .at(0)
-      .find('.panel-component-header')
-      .simulate('click');
-
-    expect(wrapper.state()).to.eql({ activePanelIds: [] });
-  });
-
-  it('should replace active panel id when props.maxExpand is less than current opened Panels count', () => {
-    const wrapper = mount(
-      <Accordion {...makeProps({ defaultActivePanelIds: ['1', '2'], maxExpand: 1 })}>
-        <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
-        <Accordion.Panel {...panel2}>{panel2.content}</Accordion.Panel>
-        <Accordion.Panel {...panel3}>{panel3.content}</Accordion.Panel>
-      </Accordion>
-    );
-    wrapper
-      .find(Accordion.Panel)
-      .at(1)
-      .find('.panel-component-header')
-      .simulate('click');
-
-    expect(wrapper.state()).to.eql({ activePanelIds: ['2'] });
+    fireEvent.click(queryAllByTestId('panel-header')[2]);
+    expect(props.onPanelClick).toHaveBeenCalledTimes(3);
+    expect(props.onPanelClick).toHaveBeenLastCalledWith('3');
   });
 
   it('should respect isCollapsed in Panel children', () => {
     const props = makeProps();
     delete props.onPanelClick;
 
-    const wrapper = mount(
+    const { queryAllByTestId } = render(
       <Accordion {...props}>
         <Accordion.Panel {...panel1} isCollapsed>
           {panel1.content}
@@ -147,44 +105,28 @@ describe('AccordionComponent', () => {
         <Accordion.Panel {...panel3}>{panel3.content}</Accordion.Panel>
       </Accordion>
     );
-    wrapper
-      .find(Accordion.Panel)
-      .at(0)
-      .find('.panel-component-header')
-      .simulate('click');
-
-    expect(
-      wrapper
-        .find(Accordion.Panel)
-        .at(0)
-        .prop('isCollapsed')
-    ).to.equal(true);
+    fireEvent.click(queryAllByTestId('panel-header')[0]);
+    expect(queryAllByTestId('panel-wrapper')[0]).toHaveClass('collapsed');
   });
 
   it('should throw error if props.maxExpand has invalid value', () => {
-    const wrapper = shallow(
-      <Accordion {...makeProps()}>
-        <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
-      </Accordion>
-    );
-
-    try {
-      wrapper.setProps({ maxExpand: -1 });
-      wrapper.instance().validateProps();
-      throw new Error('should not reach');
-    } catch (err) {
-      expect(err.message).to.equal("maxExpand must be a positive number or 'max'");
-    }
+    expect(() =>
+      render(
+        <Accordion {...makeProps({ maxExpand: -1 })}>
+          <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
+        </Accordion>
+      )
+    ).toThrowError(new Error("maxExpand must be a positive number or 'max'"));
   });
 
   it('should ignore children that are not an instance of Accordion.Panel', () => {
-    const wrapper = mount(
+    const { queryAllByTestId } = render(
       <Accordion {...makeProps()}>
-        <div className="should-not-render">test</div>
+        <div data-testid="should-not-render">test</div>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
       </Accordion>
     );
 
-    expect(wrapper.find('.should-not-render')).to.have.length(0);
+    expect(queryAllByTestId('should-not-render')).toHaveLength(0);
   });
 });

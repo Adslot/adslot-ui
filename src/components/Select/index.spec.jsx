@@ -1,7 +1,11 @@
-import { mount } from 'enzyme';
 import React from 'react';
-import Select, { components } from 'react-select';
-import SelectComponent from '.';
+import { render, cleanup, fireEvent, queryAllByAttribute } from '@testing-library/react';
+import Select from '.';
+
+afterEach(cleanup);
+
+const queryAllByDts = queryAllByAttribute.bind(null, 'data-test-selector');
+const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
 const defaultOptions = [
   { value: 'au', label: 'Australia' },
@@ -10,79 +14,84 @@ const defaultOptions = [
   { value: 'uk', label: 'United Kingdom' },
 ];
 
-describe('SelectComponent', () => {
+describe('<Select />', () => {
   it('should have base class', () => {
-    const wrapper = mount(<SelectComponent />);
-    expect(wrapper.find('div.select-component')).to.have.length(1);
+    const { queryAllByText } = render(<Select />);
+    expect(queryAllByText('Select...')).toHaveLength(1);
   });
 
   it('should have custom option background', () => {
-    const wrapper = mount(
-      <SelectComponent options={defaultOptions} isOptionDisabled={({ value }) => value === 'jp'} menuIsOpen />
+    const { getByText, queryAllByText } = render(
+      <Select options={defaultOptions} isOptionDisabled={({ value }) => value === 'jp'} menuIsOpen />
     );
 
-    expect(wrapper.find('div.select-component__menu-list')).to.have.length(1);
-    const options = wrapper.find('div.select-component__option');
-    expect(options).to.have.length(4);
-    options.at(0).prop('onClick')();
-    options.at(1).prop('onMouseOver')();
-    wrapper.update();
-    expect(
-      wrapper
-        .find(components.Option)
-        .at(0)
-        .prop('isSelected')
-    ).to.equal(true);
-    expect(
-      wrapper
-        .find(components.Option)
-        .at(1)
-        .prop('isFocused')
-    ).to.equal(true);
-    expect(
-      wrapper
-        .find(components.Option)
-        .at(2)
-        .prop('isDisabled')
-    ).to.equal(true);
+    expect(queryAllByText('Select...')).toHaveLength(1);
+    expect(queryAllByText('Australia')).toHaveLength(1);
+    expect(getByText('Australia')).toHaveClass('select-component__option');
+    expect(queryAllByText('Canada')).toHaveLength(1);
+    expect(getByText('Canada')).toHaveClass('select-component__option');
+    expect(queryAllByText('Japan')).toHaveLength(1);
+    expect(getByText('Japan')).toHaveClass('select-component__option');
+    expect(queryAllByText('United Kingdom')).toHaveLength(1);
+    expect(getByText('United Kingdom')).toHaveClass('select-component__option');
+
+    fireEvent.click(getByText('Australia'));
+    expect(queryAllByText('Australia')).toHaveLength(2);
+    expect(queryAllByText('Australia')[0]).toHaveClass('select-component__single-value');
+    expect(queryAllByText('Australia')[1]).toHaveClass(
+      'select-component__option select-component__option--is-focused select-component__option--is-selected'
+    );
+
+    fireEvent.mouseOver(getByText('Canada'));
+    expect(queryAllByText('Australia')[1]).not.toHaveClass('select-component__option--is-focused');
+    expect(getByText('Canada')).toHaveClass('select-component__option--is-focused');
+
+    expect(getByText('Japan')).toHaveClass('select-component__option--is-disabled');
   });
 
   it('should show cross icon for clear opration', () => {
-    const wrapper = mount(<SelectComponent options={defaultOptions} menuIsOpen isClearable />);
-    wrapper
-      .find('.select-component__option')
-      .at(0)
-      .prop('onClick')();
-    wrapper.update();
-    expect(wrapper.find('div.select-component__indicator.select-component__clear-indicator')).to.have.length(1);
+    const { getByText, queryAllByText } = render(<Select options={defaultOptions} menuIsOpen isClearable />);
+    fireEvent.click(getByText('Australia'));
+
+    expect(queryAllByText('✕')).toHaveLength(1);
+    expect(getByText('✕')).toHaveClass('select-component__indicator select-component__clear-indicator');
   });
 
   it('should handle multi selections', () => {
-    const wrapper = mount(
-      <SelectComponent options={defaultOptions} defaultValue={[defaultOptions[0], defaultOptions[1]]} isMulti />
+    const { container, getByText, queryAllByText } = render(
+      <Select options={defaultOptions} defaultValue={[defaultOptions[0], defaultOptions[1]]} isMulti />
     );
-    const selectedPills = wrapper.find('.select-component__multi-value__label');
-    expect(selectedPills).to.have.length(2);
-    expect(selectedPills.map(pill => pill.text())).to.eql(['Australia', 'Canada']);
+
+    expect(queryAllByClass(container, 'css-11547y4 select-component__multi-value__label')).toHaveLength(2);
+    expect(queryAllByText('Australia')).toHaveLength(1);
+    expect(getByText('Australia')).toHaveClass('select-component__multi-value__label');
+    expect(queryAllByText('Canada')).toHaveLength(1);
+    expect(getByText('Canada')).toHaveClass('select-component__multi-value__label');
   });
 
   it('should have custom SelectContainer if dts is passed in', () => {
-    const wrapper = mount(<SelectComponent options={defaultOptions} dts="test-dts" />);
-    expect(wrapper.find(Select).prop('components')).to.have.all.keys(
-      'DropdownIndicator',
-      'ClearIndicator',
-      'SelectContainer'
+    const { container, rerender, getByText, queryAllByText } = render(
+      <Select options={defaultOptions} dts="test-dts" />
     );
+
+    expect(queryAllByDts(container, 'test-dts')).toHaveLength(1);
+    expect(queryAllByClass(container, 'select-component__value-container css-9evde0')).toHaveLength(1);
+    expect(
+      queryAllByClass(
+        container,
+        'select-component__indicator select-component__dropdown-indicator css-171ess4-indicatorContainer'
+      )
+    ).toHaveLength(1);
+
+    rerender(<Select options={defaultOptions} menuIsOpen isClearable dts="test-dts" />);
+    fireEvent.click(getByText('Australia'));
+
+    expect(queryAllByText('✕')).toHaveLength(1);
+    expect(getByText('✕')).toHaveClass('select-component__indicator select-component__clear-indicator');
   });
 
   it('should render select options in body if props.isInModal is true', () => {
-    const wrapper = mount(<SelectComponent options={defaultOptions} isInModal />);
-    expect(wrapper.find(Select).prop('menuPortalTarget')).to.eql(document.body);
-    expect(
-      wrapper
-        .find(Select)
-        .prop('styles')
-        .menuPortal()
-    ).to.deep.include({ zIndex: 9999 });
+    const { container } = render(<Select options={defaultOptions} isInModal />);
+    expect(container).toMatchSnapshot();
   });
 });
