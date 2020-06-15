@@ -55,6 +55,7 @@ import DesignGuide from '../examples/DesignGuide.mdx';
 import Installation from './components/GettingStarted/Installation.md';
 import Contributing from './components/GettingStarted/Contributing.md';
 import RichTextEditorExample from '../examples/RichTextEditor.mdx';
+import ToastExample from '../examples/Toast.mdx';
 
 const routes = [
   {
@@ -367,6 +368,12 @@ const routes = [
     path: '/tile-grid',
     component: TileGridExample,
     title: 'Tile Grid',
+    group: 'Components',
+  },
+  {
+    path: '/toast',
+    component: ToastExample,
+    title: 'Toast',
     group: 'Components',
   },
   {
