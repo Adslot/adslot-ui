@@ -1,6 +1,6 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import _ from 'lodash';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 import AlertInput from '.';
@@ -14,7 +14,7 @@ describe('AlertInput', () => {
 
   describe('handleMouseEnter()', () => {
     it('should set `isPopoverVisible` to true if alert message exists', () => {
-      const wrapper = shallow(<AlertInput alertMessage="Hello" />);
+      const wrapper = mount(<AlertInput alertMessage="Hello" />);
       wrapper.instance().handleMouseEnter();
       expect(wrapper.state()).to.eql({
         isFocused: false,
@@ -23,7 +23,7 @@ describe('AlertInput', () => {
     });
 
     it('should not set `isPopoverVisible` to true if no alert message exists', () => {
-      const wrapper = shallow(<AlertInput />);
+      const wrapper = mount(<AlertInput />);
       wrapper.instance().handleMouseEnter();
       expect(wrapper.state()).to.eql(initialState);
     });
@@ -31,7 +31,7 @@ describe('AlertInput', () => {
 
   describe('handleMouseLeave()', () => {
     it('should set `isPopoverVisible` to false', () => {
-      const wrapper = shallow(<AlertInput alertMessage="Hello" />);
+      const wrapper = mount(<AlertInput alertMessage="Hello" />);
       wrapper.setState({ isPopoverVisible: true });
       wrapper.instance().handleMouseLeave();
 
@@ -41,7 +41,7 @@ describe('AlertInput', () => {
 
   describe('handleInputFocus()', () => {
     it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', () => {
-      const component = shallow(<AlertInput alertMessage="Hello" />);
+      const component = mount(<AlertInput alertMessage="Hello" />);
       const inputElement = component.find('.aui--alert-input__input');
       const focusEvent = {
         target: {
@@ -57,7 +57,7 @@ describe('AlertInput', () => {
     });
 
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
-      const component = shallow(<AlertInput />);
+      const component = mount(<AlertInput />);
       const inputElement = component.find('.aui--alert-input__input');
       const focusEvent = {
         target: {
@@ -79,7 +79,7 @@ describe('AlertInput', () => {
           select: sinon.spy(),
         },
       };
-      const component = shallow(<AlertInput onFocus={onFocusSpy} />);
+      const component = mount(<AlertInput onFocus={onFocusSpy} />);
       const inputElement = component.find('.aui--alert-input__input');
 
       inputElement.simulate('focus', focusEvent);
@@ -95,7 +95,7 @@ describe('AlertInput', () => {
 
   describe('handleInputBlur ()', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
-      const component = shallow(<AlertInput />);
+      const component = mount(<AlertInput />);
       const inputElement = component.find('.aui--alert-input__input');
       const focusEvent = {
         target: {
@@ -109,7 +109,7 @@ describe('AlertInput', () => {
 
     it('should call `onBlur` if exists', () => {
       const onBlurSpy = sinon.spy();
-      const component = shallow(<AlertInput onBlur={onBlurSpy} />);
+      const component = mount(<AlertInput onBlur={onBlurSpy} />);
       const inputElement = component.find('.aui--alert-input__input');
       inputElement.simulate('blur');
       expect(onBlurSpy.callCount).to.equal(1);
@@ -126,7 +126,7 @@ describe('AlertInput', () => {
         onValueChange: _.noop,
         onBlur: _.noop,
       };
-      const wrapper = shallow(<AlertInput {...props} />);
+      const wrapper = mount(<AlertInput {...props} />);
       expect(wrapper.find('.aui--alert-input')).to.have.length(1);
       const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.prop('onMouseEnter')).to.be.a('function');
@@ -144,7 +144,7 @@ describe('AlertInput', () => {
     });
 
     it('should also render with default props', () => {
-      const wrapper = shallow(<AlertInput alertMessage="test" />);
+      const wrapper = mount(<AlertInput alertMessage="test" />);
       wrapper.setState({ isPopoverVisible: true });
 
       expect(wrapper.find('.aui--alert-input').hasClass('success')).to.equal(true);
@@ -156,7 +156,7 @@ describe('AlertInput', () => {
         prefixAddon: '$',
         suffixAddon: '.00',
       };
-      const wrapper = shallow(<AlertInput {...props} />);
+      const wrapper = mount(<AlertInput {...props} />);
       const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.children()).to.have.length(3);
 
@@ -174,7 +174,7 @@ describe('AlertInput', () => {
         prefixAddon: '$',
         suffixAddon: '.00',
       };
-      const wrapper = shallow(<AlertInput {...props} />);
+      const wrapper = mount(<AlertInput {...props} />);
 
       const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.children()).to.have.length(3);
@@ -192,7 +192,7 @@ describe('AlertInput', () => {
       const props = {
         alertStatus: 'error',
       };
-      const wrapper = shallow(<AlertInput {...props} />);
+      const wrapper = mount(<AlertInput {...props} />);
       const componentWrapper = wrapper.find('.aui--alert-input');
       expect(componentWrapper.prop('className')).to.equal('aui--alert-input error');
     });
@@ -202,7 +202,7 @@ describe('AlertInput', () => {
         alertStatus: 'error',
         alertMessage: 'something is wrong',
       };
-      const wrapper = shallow(<AlertInput {...props} />);
+      const wrapper = mount(<AlertInput {...props} />);
       wrapper.setState({ isPopoverVisible: true });
 
       expect(wrapper.find(Popover.WithRef).prop('theme')).to.equal('error');
@@ -216,7 +216,7 @@ describe('AlertInput', () => {
         popoverPlacement: 'left',
         alertMessage: 'something is wrong',
       };
-      const wrapper = shallow(<AlertInput {...props} />);
+      const wrapper = mount(<AlertInput {...props} />);
       wrapper.setState({ isPopoverVisible: true });
 
       expect(wrapper.find(Popover.WithRef).prop('placement')).to.equal('left');

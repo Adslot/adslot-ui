@@ -49,6 +49,7 @@ describe('<Tabs />', () => {
 
   it('should work as controlled', () => {
     const selectSpy = sandbox.spy();
+    const errorStub = sandbox.stub(console, 'error');
     const wrapper = shallow(
       <Tabs activeKey="first" onSelect={selectSpy} id="test">
         <Tab eventKey="first" title="Fist">
@@ -66,6 +67,7 @@ describe('<Tabs />', () => {
     links.last().simulate('click', { preventDefault: _.noop });
     expect(selectSpy.callCount).to.equal(1);
     expect(selectSpy.calledWith('last')).to.equal(true);
+    expect(errorStub.calledOnceWith('<Tabs /> children must be instances of <Tab />')).to.equal(true);
   });
 
   it('should not re render when key is the same', () => {
@@ -87,6 +89,7 @@ describe('<Tabs />', () => {
   });
 
   it('should not crash when child returns null', () => {
+    const errorStub = sandbox.stub(console, 'error');
     const wrapper = mount(
       <Tabs defaultActiveKey="first" id="test">
         <Tab eventKey="first" title="Fist">
@@ -96,6 +99,7 @@ describe('<Tabs />', () => {
       </Tabs>
     );
     expect(wrapper.find(Tabs).length).to.equal(1);
+    expect(errorStub.calledOnceWith('<Tabs /> children must be instances of <Tab />')).to.equal(true);
   });
 
   it('should throw error if child of <Tabs /> is not <Tab />', () => {

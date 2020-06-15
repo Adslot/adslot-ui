@@ -61,7 +61,7 @@ describe('CheckboxGroup', () => {
   });
 
   it('should print warning if child is not a Checkbox component', () => {
-    sandbox.spy(console, 'error');
+    sandbox.stub(console, 'error');
     shallow(
       <CheckboxGroup name="movies" value={['test']} onChange={_.noop}>
         <div>Not a Checkbox</div>

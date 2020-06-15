@@ -8,6 +8,11 @@ import { renderArrowStyles } from './Popper';
 
 describe('Popover Component', () => {
   let wrapper;
+  let sandbox;
+
+  before(() => {
+    sandbox = sinon.createSandbox();
+  });
 
   beforeEach(() => {
     wrapper = shallow(
@@ -15,6 +20,10 @@ describe('Popover Component', () => {
         Test message
       </Popover>
     );
+  });
+
+  afterEach(() => {
+    sandbox.restore();
   });
 
   describe('getDerivedStateFromProps()', () => {
@@ -202,6 +211,8 @@ describe('Popover Component', () => {
   });
 
   it('should default to light theme on invalid theme prop', () => {
+    const errorStub = sandbox.stub(console, 'error');
+
     wrapper = mount(
       <div>
         <Popover id="popover-example" theme="some-random-theme" popoverContent={<div />} isOpen>
@@ -211,6 +222,11 @@ describe('Popover Component', () => {
     );
 
     expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-light')).to.equal(true);
+    expect(
+      errorStub.calledOnceWith(
+        'Warning: Failed prop type: Invalid prop `theme` of value `some-random-theme` supplied to `Popover`, expected one of ["light","dark","warn","error","info","success"].\n    in Popover'
+      )
+    ).to.equal(true);
   });
 
   it('should render popover when content is function', () => {
@@ -285,7 +301,7 @@ describe('Popover Component', () => {
   });
 
   it('should call getContainer to get boundary element if it is provided', () => {
-    const getContainer = sinon.spy(() => document.body);
+    const getContainer = sandbox.spy(() => document.body);
     mount(
       <Popover popoverContent={<div />} getContainer={getContainer} isOpen>
         Test message
@@ -298,8 +314,10 @@ describe('Popover Component', () => {
 
 describe('Popover.WithRef component', () => {
   let virtualReferenceElement;
+  let sandbox;
 
   before(() => {
+    sandbox = sinon.createSandbox();
     virtualReferenceElement = document.createElement('div');
     virtualReferenceElement.style.height = '100px';
     virtualReferenceElement.style.width = '100px';
@@ -307,6 +325,7 @@ describe('Popover.WithRef component', () => {
   });
 
   after(() => {
+    sandbox.restore();
     document.body.removeChild(virtualReferenceElement);
   });
 
@@ -376,11 +395,17 @@ describe('Popover.WithRef component', () => {
   });
 
   it('should default to light theme on invalid theme prop', () => {
+    const errorStub = sandbox.stub(console, 'error');
     const wrapper = mount(
-      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} theme="some-theme" isOpen />
+      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} theme="some-random-theme" isOpen />
     );
 
     expect(wrapper.find('.aui--popover-wrapper').hasClass('popover-light')).to.equal(true);
+    expect(
+      errorStub.calledOnceWith(
+        'Warning: Failed prop type: Invalid prop `theme` of value `some-random-theme` supplied to `WithRef`, expected one of ["light","dark","warn","error","info","success"].\n    in WithRef'
+      )
+    ).to.equal(true);
   });
 
   it('should render popover when content is function', () => {
@@ -391,7 +416,7 @@ describe('Popover.WithRef component', () => {
   });
 
   it('should call getContainer to get boundary element if it is provided', () => {
-    const getContainer = sinon.spy(() => document.body);
+    const getContainer = sandbox.spy(() => document.body);
     mount(
       <Popover.WithRef
         popoverContent={<div />}

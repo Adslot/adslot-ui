@@ -30,9 +30,13 @@ describe('<RichTextEditor />', () => {
   });
 
   it('should warn when value is passed and onChange is not', () => {
-    const warnSpy = sandbox.spy(console, 'warn');
+    const warnStub = sandbox.stub(console, 'warn');
     mount(<RichTextEditor value={RichTextEditor.createEmpty()} />);
-    expect(warnSpy.called).to.equal(true);
+    expect(
+      warnStub.calledOnceWith(
+        'Failed prop type: You have provided a `value` prop to RichTextEditor component without an `onChange` handler. This will render a read-only field.'
+      )
+    ).to.equal(true);
   });
 
   it('should set initial state correctly', () => {
