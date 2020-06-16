@@ -42,7 +42,7 @@ describe('Tag', () => {
 
   it('should render an actionable tag', () => {
     const component = shallow(
-      <Tag onAction={_.noop} actionIconSvgHref="foo">
+      <Tag onAction={_.noop} actionIconSvgHref="foo.svg">
         You are it!
       </Tag>
     );
@@ -52,19 +52,19 @@ describe('Tag', () => {
 
   it('should render action buttons', () => {
     const onAction = sinon.spy();
-    const actionIcon = <SvgSymbol href="foo" />;
+    const actionIcon = <SvgSymbol href="foo.svg" />;
     const component = shallow(<ActionButton onAction={onAction} actionIcon={actionIcon} id="Bar" />);
 
     expect(component.prop('className')).to.equal('action-button');
     component.simulate('click');
     expect(onAction.calledOnce).to.equal(true);
     expect(onAction.calledWith('Bar')).to.equal(true);
-    expect(component.find(SvgSymbol).prop('href')).to.equal('foo');
+    expect(component.find(SvgSymbol).prop('href')).to.equal('foo.svg');
   });
 
   it('should render children nodes', () => {
     const component = shallow(
-      <Tag onAction={_.noop} actionIconSvgHref="foo">
+      <Tag onAction={_.noop} actionIconSvgHref="foo.svg">
         <div className="child" />
         <div className="child" />
       </Tag>

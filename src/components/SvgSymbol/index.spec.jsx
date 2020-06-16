@@ -48,22 +48,22 @@ describe('SvgSymbol', () => {
   });
 
   it('should render with props including isCircle', () => {
-    const component = mount(<SvgSymbol isCircle href="foo#bar" classSuffixes={['70']} />);
+    const component = mount(<SvgSymbol isCircle href="foo.svg#bar" classSuffixes={['70']} />);
     const wrapper = component.find('.aui--svg-symbol-component-circle.aui--svg-symbol-component-circle-70');
     expect(wrapper).to.have.length(1);
 
     const children = component.find('.aui--svg-symbol-component.aui--svg-symbol-component-70');
     expect(children).to.have.length(1);
-    expect(children.find('use').prop('href')).to.equal('foo#bar');
+    expect(children.find('use').prop('href')).to.equal('foo.svg#bar');
   });
 
   it('should not render circle background with false isCircle', () => {
-    const component = mount(<SvgSymbol isCircle={false} href="foo#bar" classSuffixes={['70']} />);
+    const component = mount(<SvgSymbol isCircle={false} href="foo.svg#bar" classSuffixes={['70']} />);
     const wrapper = component.find('.aui--svg-symbol-component-circle.aui--svg-symbol-component-circle-70');
     expect(wrapper).to.have.length(0);
 
     const children = component.find('.aui--svg-symbol-component.aui--svg-symbol-component-70');
     expect(children).to.have.length(1);
-    expect(children.find('use').prop('href')).to.equal('foo#bar');
+    expect(children.find('use').prop('href')).to.equal('foo.svg#bar');
   });
 });

@@ -146,10 +146,6 @@
       background-repeat: no-repeat;
       cursor: pointer;
       padding-right: 4px;
-
-      &::-ms-clear {
-        display: none;
-      }
     }
   }
 

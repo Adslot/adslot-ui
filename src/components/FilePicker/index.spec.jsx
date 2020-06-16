@@ -91,12 +91,12 @@ describe('FilePickerComponent', () => {
   it('should call `onRemove` when remove file button is clicked', done => {
     const component = mount(<FilePickerComponent onSelect={_.noop} onRemove={done} />);
 
-    component.instance().fileInput = {
-      files: [{ name: 'selected file' }],
-    };
+    component.instance().fileInput = { current: { value: 'file name' } };
     component.update();
     component.setState({ isFileSelected: true });
 
     component.find('button.remove-file').simulate('click');
+
+    expect(component.instance().fileInput).to.equal(null);
   });
 });

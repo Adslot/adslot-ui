@@ -16,7 +16,7 @@ describe('ListPickerComponent', () => {
   };
 
   it('should render with defaults', () => {
-    const component = createAndMountComponent(<ListPickerComponent itemInfo={{}} />);
+    const component = createAndMountComponent(<ListPickerComponent itemInfo={{ label: 'Label', properties: [] }} />);
     expect(component.prop('className')).to.equal('listpicker-component');
     expect(component.type()).to.equal(Modal);
     expect(component.prop('show')).to.equal(false);
