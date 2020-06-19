@@ -1,0 +1,86 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Toast
+
+```jsx live=true
+const Example = () => {
+  const [notification, triggerNotification] = React.useState(0);
+
+  const showInfoToast = () => (
+    <Toast.Notification title="INFO" theme="info" message={<span>This is an info notification</span>} />
+  );
+
+  return (
+    <React.Fragment>
+      <Toast.Container />
+      <Button onClick={() => triggerNotification(notification + 1)}>Show Info Toast</Button>
+      {notification ? showInfoToast() : null}
+    </React.Fragment>
+  );
+};
+render(Example);
+```
+
+<DesignNotes>
+  <div>
+    <p>
+      Toasts are used to provide action-based feedback. The Toast.Container can be defined at the highest app layer,
+      while the Toast.Notification can be used multiple times to create multiple notifications. The themes show
+      different colours like:
+    </p>
+    <p>
+      <span className="text-green">Success</span>
+      <br />
+      <span className="text-orange">Alert</span>
+      <br />
+      <span className="text-red">Attention</span>
+      <br />
+      <span className="text-cyan">Info</span>
+    </p>
+  </div>
+
+  <div style={{ paddingTop: 5 }}>
+    See <a href="https://fkhadra.github.io/react-toastify">React Toastify Documentation</a> for more info.
+  </div>
+</DesignNotes>
+
+### Toast.Notification Component
+
+<Props
+  customMapper={() => [
+    {
+      description: '',
+      displayName: '',
+      methods: [],
+      props: {
+        title: {
+          type: {
+            name: 'string',
+          },
+          description: '',
+          defaultValue: {
+            value: '',
+            computed: false,
+          },
+        },
+        theme: {
+          type: {
+            name: 'string',
+          },
+          description: "PropTypes.oneOf(['success', 'info', 'alert', 'attention'])",
+          defaultValue: {
+            value: 'info',
+            computed: false,
+          },
+        },
+        message: {
+          type: {
+            name: 'node',
+          },
+          required: true,
+        },
+      },
+    },
+  ]}
+/>

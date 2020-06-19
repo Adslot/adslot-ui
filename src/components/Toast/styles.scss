@@ -1,0 +1,50 @@
+@import '~styles/color';
+
+.aui--toast-container {
+  min-width: 252px;
+  max-width: 504px;
+
+  .aui--toast-notification-body {
+    background-color: $color-black-blockout;
+    border-radius: 4px;
+    margin: 0;
+    margin-top: 18px;
+    padding: 0;
+
+    .aui--toast-body-message {
+      font-size: 14px;
+      color: $color-white;
+      margin: 18px;
+
+      .aui--toast-title {
+        font-weight: 700;
+        font-size: 15px;
+        margin-right: 12px;
+
+        &-info {
+          color: $color-cyan;
+        }
+
+        &-success {
+          color: $color-status-green;
+        }
+
+        &-alert {
+          color: $color-orange;
+        }
+
+        &-attention {
+          color: $color-red;
+        }
+      }
+    }
+
+    // sass-lint:disable class-name-format
+    .Toastify__close-button {
+      color: $color-white;
+      padding-top: 22.5px;
+      padding-right: 18px;
+      opacity: 1;
+    }
+  }
+}

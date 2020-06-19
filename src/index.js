@@ -72,6 +72,7 @@ import HoverDropdownMenu from './components/HoverDropdownMenu';
 import OverlayLoader from './components/OverlayLoader';
 import VerticalNav from './components/VerticalNavigation';
 import RichTextEditor from './components/RichTextEditor';
+import Toast from './components/Toast';
 
 export {
   Accordion,
@@ -143,4 +144,5 @@ export {
   OverlayLoader,
   VerticalNav,
   RichTextEditor,
+  Toast,
 };

@@ -9,7 +9,6 @@
   ],
   "license": "MIT",
   "scripts": {
-    "protect-master": "./scripts/protect-master",
     "generate-docs": "node ./scripts/generateDocs.js",
     "clean": "rimraf dist/* docs/*",
     "codecov": "cat coverage/coverage-final.json | codecov",
@@ -58,7 +57,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run protect-master && lint-staged",
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -170,6 +169,7 @@
     "react-popper": "^1.3.3",
     "react-router-dom": "^5.1.2",
     "react-slick": "^0.25.2",
+    "react-toastify": "^6.0.5",
     "slick-carousel": "^1.8.1"
   },
   "peerDependencies": {
