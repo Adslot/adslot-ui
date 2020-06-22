@@ -5911,8 +5911,8 @@ button + .aui--button-group {
 .slick-track {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: baseline;
-      align-items: baseline; }
+  -ms-flex-align: center;
+      align-items: center; }
   .slick-track div,
   .slick-track span {
     outline: none; }
@@ -13028,4 +13028,257 @@ input:disabled + .aui--switch-slider::before {
       padding-top: 22.5px;
       padding-right: 18px;
       opacity: 1; }
+
+.aui--small-tile {
+  width: 200px;
+  height: 120px;
+  background: #e8e8e8 50%;
+  border-radius: 3px;
+  position: relative; }
+  .aui--small-tile-logo {
+    min-height: 84px;
+    padding: 18px;
+    border-radius: inherit;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex; }
+    .aui--small-tile-logo img {
+      width: 164px;
+      height: 84px; }
+  .aui--small-tile-title {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); }
+    .aui--small-tile-title:hover, .aui--small-tile-title:focus {
+      color: #fff;
+      text-decoration: none; }
+      .aui--small-tile-title:hover::after, .aui--small-tile-title:focus::after {
+        background-color: #838383;
+        border-radius: 5px;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1; }
+
+.aui--standard-tile {
+  width: 200px;
+  height: 275px;
+  position: relative; }
+  .aui--standard-tile .card-component-content-container {
+    padding: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+    .aui--standard-tile .card-component-content-container .card-component-content {
+      padding: 0;
+      padding-left: 18px;
+      padding-right: 18px; }
+    .aui--standard-tile .card-component-content-container .card-component-content:first-child {
+      padding-top: 18px; }
+  .aui--standard-tile-clickable {
+    height: 275px;
+    cursor: pointer; }
+  .aui--standard-tile-on-hover {
+    cursor: pointer;
+    height: 275px;
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .aui--standard-tile-on-hover:hover, .aui--standard-tile-on-hover:focus {
+      text-decoration: none; }
+      .aui--standard-tile-on-hover:hover::after, .aui--standard-tile-on-hover:focus::after {
+        background-color: #838383;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1; }
+      .aui--standard-tile-on-hover:hover .aui--standard-tile-hover-content, .aui--standard-tile-on-hover:focus .aui--standard-tile-hover-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 18px; }
+  .aui--standard-tile-hover-content {
+    display: none; }
+  .aui--standard-tile-logo {
+    min-height: 84px;
+    padding: 6px;
+    border-radius: inherit;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex; }
+    .aui--standard-tile-logo img {
+      width: 152px;
+      height: 72px; }
+  .aui--standard-tile-tags {
+    min-height: 46px;
+    padding-top: 18px; }
+  .aui--standard-tile-title {
+    min-height: 18px;
+    padding-top: 5px;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #333;
+    font-size: 15px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .aui--standard-tile-subtitle {
+    min-height: 18px;
+    padding-bottom: 5px;
+    color: #ababab;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .aui--standard-tile .card-component-content.aui--standard-tile-content {
+    padding: 18px 18px 0;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+
+.aui--large-tile {
+  margin: 0;
+  width: 350px;
+  height: 440px;
+  position: relative; }
+  .aui--large-tile .card-component-content-container {
+    padding: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+    .aui--large-tile .card-component-content-container .card-component-content {
+      padding: 0; }
+    .aui--large-tile .card-component-content-container .card-component-content:not(:first-child) {
+      padding-left: 18px;
+      padding-right: 18px; }
+  .aui--large-tile-clickable {
+    height: 440px;
+    cursor: pointer; }
+  .aui--large-tile-on-hover {
+    height: 440px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .aui--large-tile-on-hover:hover, .aui--large-tile-on-hover:focus {
+      text-decoration: none; }
+      .aui--large-tile-on-hover:hover::after, .aui--large-tile-on-hover:focus::after {
+        background-color: #838383;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1; }
+      .aui--large-tile-on-hover:hover .aui--large-tile-hover-content, .aui--large-tile-on-hover:focus .aui--large-tile-hover-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 18px; }
+  .aui--large-tile-hover-content {
+    display: none; }
+  .aui--large-tile-logo {
+    border-radius: inherit;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex; }
+    .aui--large-tile-logo img {
+      width: 350px;
+      height: 250px; }
+  .aui--large-tile-tags {
+    min-height: 18px;
+    padding-top: 18px; }
+  .aui--large-tile-title {
+    min-height: 18px;
+    padding-top: 5px;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #333;
+    font-size: 15px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .aui--large-tile-subtitle {
+    min-height: 18px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100%;
+    color: #ababab;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .aui--large-tile .card-component-content.aui--large-tile-content {
+    padding: 18px 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+
+.aui--pill {
+  font-size: 12px;
+  display: inline-block;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 700;
+  line-height: 1;
+  color: #5a5a5a;
+  background-color: #fff;
+  border-color: #e8e8e8; }
+  .aui--pill-children {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    line-height: 16px; }
+  .aui--pill-clickable:hover, .aui--pill-clickable:focus {
+    background-color: #f3f3f3;
+    cursor: pointer; }
 

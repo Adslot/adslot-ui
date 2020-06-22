@@ -4429,6 +4429,13 @@
       }
     }
   ],
+  "src/components/Tile/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TileComponent",
+      "methods": []
+    }
+  ],
   "src/components/TileGrid/index.jsx": [
     {
       "description": "",
@@ -4521,7 +4528,7 @@
   "src/components/Toast/index.jsx": [
     {
       "description": "",
-      "displayName": "toastContainerComponent",
+      "displayName": "ToastComponent",
       "methods": []
     }
   ],

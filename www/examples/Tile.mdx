@@ -1,0 +1,101 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Tile
+
+```jsx live=true
+const Example = () => {
+  const item1 = {
+    id: '0',
+    classSuffix: 'news',
+    title: '',
+    logo: './assets/tile/logo-placeholder-164*84.png',
+    onClick: () => {},
+  };
+  const item2 = {
+    id: '1',
+    classSuffix: 'sport',
+    title: 'Sport',
+    onClick: () => {},
+  };
+  const item3 = {
+    id: '2',
+    classSuffix: 'calendar',
+    title: (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: '16px' }}>
+        <SvgSymbol href="./assets/svg-symbols.svg#calendar" />
+        <div style={{ marginLeft: 5 }}>Calendar</div>
+      </div>
+    ),
+    onClick: () => {},
+  };
+  const item4 = {
+    id: '3',
+    classSuffix: 'product',
+    title: 'Lorem ipsum dolor sit amet',
+    subTitle: 'consectetur adipiscing elit',
+    logo: './assets/tile/logo-placeholder-152*72.png',
+    onTileClick: () => {},
+    tags: [{ id: 'tag-0', name: 'site', classSuffix: '', onTagClick: () => {} }],
+    content: <div>$45.00 CPD</div>,
+  };
+  const item5 = {
+    id: '4',
+    classSuffix: 'product',
+    title: 'Lorem ipsum dolor sit amet',
+    subTitle: 'consectetur adipiscing elit',
+    logo: './assets/tile/logo-placeholder-152*72.png',
+    onTileClick: () => {},
+    onTileHover: <Button>Hello</Button>,
+    tags: [{ id: 'tag-0', name: 'site', classSuffix: '', onTagClick: () => {} }],
+    content: <div>$45.00 CPD</div>,
+  };
+  const item6 = {
+    id: '5',
+    classSuffix: 'product',
+    title: 'Lorem ipsum dolor sit amet',
+    logo: './assets/tile/logo-placeholder-350*250.png',
+    onTileClick: () => {},
+    onTileHover: <Button>Foo</Button>,
+    tags: [{ id: 'tag-0', name: 'site', classSuffix: '', onTagClick: () => {} }],
+    content: (
+      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus suscipit velit quis tempor.</div>
+    ),
+  };
+
+  return (
+    <div>
+      <React.Fragment>
+        <h3>Tile.Small</h3>
+        <Carousel autoplay={false} style={{ width: '55vw' }} dots={false}>
+          <Tile.Small item={item1} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          <Tile.Small item={item2} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          <Tile.Small item={item3} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          <Tile.Small item={item1} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          <Tile.Small item={item2} style={{ paddingRight: 10, width: 220, height: 300 }} />
+        </Carousel>
+      </React.Fragment>
+
+      <React.Fragment>
+        <h3>Tile.Standard</h3>
+        <div style={{ margin: '20px 0 20px 0' }}>
+          <Carousel autoplay={false} style={{ width: '55vw' }} dots={false}>
+            <Tile.Standard item={item4} style={{ paddingRight: 10, width: 220, height: 300 }} />
+            <Tile.Standard item={item5} style={{ paddingRight: 10, width: 220, height: 300 }} />
+            <Tile.Standard item={item4} style={{ paddingRight: 10, width: 220, height: 300 }} />
+            <Tile.Standard item={item5} style={{ paddingRight: 10, width: 220, height: 300 }} />
+            <Tile.Standard item={item4} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          </Carousel>
+        </div>
+        <div>
+          <h3>Tile.Large</h3>
+          <Tile.Large item={item6} />
+        </div>
+      </React.Fragment>
+    </div>
+  );
+};
+render(Example);
+```
+
+<Props componentName="StandardTile" />

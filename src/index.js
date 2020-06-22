@@ -73,6 +73,8 @@ import OverlayLoader from './components/OverlayLoader';
 import VerticalNav from './components/VerticalNavigation';
 import RichTextEditor from './components/RichTextEditor';
 import Toast from './components/Toast';
+import Tile from './components/Tile';
+import Pill from './components/Pill';
 
 export {
   Accordion,
@@ -145,4 +147,6 @@ export {
   VerticalNav,
   RichTextEditor,
   Toast,
+  Tile,
+  Pill,
 };

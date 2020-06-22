@@ -45,6 +45,7 @@ import SwitchExample from '../examples/Switch.mdx';
 import TabExample from '../examples/Tab.mdx';
 import TextEllipsisExample from '../examples/TextEllipsis.mdx';
 import TextareaExample from '../examples/Textarea.mdx';
+import TileExample from '../examples/Tile.mdx';
 import TileGridExample from '../examples/TileGrid.mdx';
 import TotalsExample from '../examples/Totals.mdx';
 import TreePickerExample from '../examples/TreePicker.mdx';
@@ -56,6 +57,7 @@ import Installation from './components/GettingStarted/Installation.md';
 import Contributing from './components/GettingStarted/Contributing.md';
 import RichTextEditorExample from '../examples/RichTextEditor.mdx';
 import ToastExample from '../examples/Toast.mdx';
+import PillExample from '../examples/Pill.mdx';
 
 const routes = [
   {
@@ -365,6 +367,12 @@ const routes = [
     group: 'Components',
   },
   {
+    path: '/tile',
+    component: TileExample,
+    title: 'Tile',
+    group: 'Components',
+  },
+  {
     path: '/tile-grid',
     component: TileGridExample,
     title: 'Tile Grid',
@@ -404,6 +412,12 @@ const routes = [
     path: '/rich-text-editor',
     component: RichTextEditorExample,
     title: 'Rich Text Editor',
+    group: 'Components',
+  },
+  {
+    path: '/pill',
+    component: PillExample,
+    title: 'Pill',
     group: 'Components',
   },
 ];

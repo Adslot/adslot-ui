@@ -1,0 +1,316 @@
+@import '~styles/color';
+@import '~styles/border';
+@import '~styles/font-size';
+@import '~styles/font-weight';
+
+$small-tile-width: 200px;
+$small-tile-height: 120px;
+$small-tile-padding: 18px;
+
+$standard-tile-width: $small-tile-width;
+$standard-tile-height: 275px;
+$standard-tile-padding: 18px;
+$standard-tile-logo-width: $small-tile-width;
+$standard-tile-logo-height: $small-tile-height;
+$standard-tile-logo-padding: 24px;
+$standard-tile-logo-inner-padding: $standard-tile-logo-padding - $standard-tile-padding;
+
+$large-tile-width: 350px;
+$large-tile-height: 440px;
+$large-tile-padding: 18px;
+$large-tile-logo-width: $large-tile-width;
+$large-tile-logo-height: 250px;
+$large-tile-logo-padding: 60px;
+$large-tile-logo-inner-padding: $large-tile-logo-padding - $large-tile-padding;
+
+.aui--small-tile {
+  width: $small-tile-width;
+  height: $small-tile-height;
+  background: $color-placeholder 50%;
+  border-radius: $border-radius-tile;
+  position: relative;
+
+  &-logo {
+    min-height: 84px;
+    padding: $small-tile-padding;
+    border-radius: inherit;
+    overflow: hidden;
+    display: flex;
+
+    img {
+      // 164 * 84
+      width: $small-tile-width - 2 * $small-tile-padding;
+      height: $small-tile-height - 2 * $small-tile-padding;
+    }
+  }
+
+  &-title {
+    $text-shadow: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    color: $color-text-inverse;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-header;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    padding: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px $text-shadow; // increase contrast of text against background
+
+    &:hover,
+    &:focus {
+      color: $color-text-inverse;
+      text-decoration: none;
+
+      &::after {
+        background-color: $color-overlay;
+        border-radius: $border-radius-heavy;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.aui--standard-tile {
+  width: $standard-tile-width;
+  height: $standard-tile-height;
+  position: relative;
+
+  .card-component-content-container {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    .card-component-content {
+      padding: 0;
+      padding-left: $standard-tile-padding;
+      padding-right: $standard-tile-padding;
+    }
+
+    .card-component-content:first-child {
+      padding-top: $standard-tile-padding;
+    }
+  }
+
+  &-clickable {
+    height: $standard-tile-height;
+    cursor: pointer;
+  }
+
+  &-on-hover {
+    cursor: pointer;
+    height: $standard-tile-height;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      &::after {
+        background-color: $color-overlay;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+
+      .aui--standard-tile-hover-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        padding: $standard-tile-padding;
+      }
+    }
+  }
+
+  &-hover-content {
+    display: none;
+  }
+
+  &-logo {
+    min-height: 84px;
+    padding: $standard-tile-logo-inner-padding;
+    border-radius: inherit;
+    overflow: hidden;
+    display: flex;
+
+    img {
+      // 152 * 72
+      width: $standard-tile-logo-width - 2 * $standard-tile-logo-padding;
+      height: $standard-tile-logo-height - 2 * $standard-tile-logo-padding;
+    }
+  }
+
+  &-tags {
+    min-height: 46px;
+    padding-top: $standard-tile-padding;
+  }
+
+  &-title {
+    min-height: 18px;
+    padding-top: 5px;
+    $text-shadow: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    color: $color-text;
+    font-size: $font-size-subheader;
+    font-weight: $font-weight-bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-subtitle {
+    min-height: 18px;
+    padding-bottom: 5px;
+
+    color: $color-gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-component-content.aui--standard-tile-content {
+    padding: $standard-tile-padding $standard-tile-padding 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.aui--large-tile {
+  margin: 0;
+  width: $large-tile-width;
+  height: $large-tile-height;
+  position: relative;
+
+  .card-component-content-container {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    .card-component-content {
+      padding: 0;
+    }
+
+    .card-component-content:not(:first-child) {
+      padding-left: $large-tile-padding;
+      padding-right: $large-tile-padding;
+    }
+  }
+
+  &-clickable {
+    height: $large-tile-height;
+    cursor: pointer;
+  }
+
+  &-on-hover {
+    height: $large-tile-height;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      &::after {
+        background-color: $color-overlay;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+
+      .aui--large-tile-hover-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        display: flex;
+        padding: $large-tile-padding;
+      }
+    }
+  }
+
+  &-hover-content {
+    display: none;
+  }
+
+  &-logo {
+    border-radius: inherit;
+    overflow: hidden;
+    display: flex;
+
+    img {
+      // 350 * 250
+      width: $large-tile-logo-width;
+      height: $large-tile-logo-height;
+    }
+  }
+
+  &-tags {
+    min-height: 18px;
+    padding-top: $large-tile-padding;
+  }
+
+  &-title {
+    min-height: 18px;
+    padding-top: 5px;
+    $text-shadow: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    color: $color-text;
+    font-size: $font-size-subheader;
+    font-weight: $font-weight-bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-subtitle {
+    min-height: 18px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100%;
+    color: $color-gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-component-content.aui--large-tile-content {
+    padding: $large-tile-padding 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

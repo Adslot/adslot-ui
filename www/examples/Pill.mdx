@@ -1,0 +1,25 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Pill
+
+```jsx live=true
+const Example = () => {
+  return (
+    <React.Fragment>
+      <div style={{ display: 'flex' }}>
+        <Pill id="calendar" classSuffix="example-1" onClick={() => {}}>
+          <SvgSymbol href="./assets/svg-symbols.svg#calendar" />
+          <div style={{ marginLeft: 5 }}>Calendar</div>
+        </Pill>
+        <Pill id="site" classSuffix="example-2">
+          <div>Site</div>
+        </Pill>
+      </div>
+    </React.Fragment>
+  );
+};
+render(Example);
+```
+
+<Props componentName="Pill" />

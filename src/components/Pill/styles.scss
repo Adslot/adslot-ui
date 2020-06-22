@@ -1,0 +1,32 @@
+@import '~styles/variable';
+
+.aui--pill {
+  font-size: $font-size-base;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  user-select: none;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  color: $color-gray-darker;
+  background-color: $color-background;
+  border-color: $color-status-light;
+
+  &-children {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 16px;
+  }
+
+  &-clickable {
+    &:hover,
+    &:focus {
+      background-color: $color-background-highlighted;
+      cursor: pointer;
+    }
+  }
+}
