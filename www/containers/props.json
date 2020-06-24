@@ -1915,6 +1915,13 @@
           },
           "required": false,
           "description": ""
+        },
+        "aspectRatio": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
