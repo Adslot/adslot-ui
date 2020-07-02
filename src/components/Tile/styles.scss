@@ -1,0 +1,71 @@
+@import '~styles/color';
+@import '~styles/border';
+@import '~styles/font-size';
+@import '~styles/font-weight';
+
+$tile-width: 200px;
+$tile-height: 120px;
+$tile-padding: 18px;
+
+.aui--tile {
+  width: $tile-width;
+  height: $tile-height;
+  background: $color-placeholder 50%;
+  border-radius: $border-radius-tile;
+  position: relative;
+
+  &-logo {
+    min-height: 84px;
+    padding: $tile-padding;
+    border-radius: inherit;
+    overflow: hidden;
+    display: flex;
+
+    img {
+      // 164 * 84
+      width: $tile-width - 2 * $tile-padding;
+      height: $tile-height - 2 * $tile-padding;
+    }
+  }
+
+  &-title {
+    $text-shadow: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    color: $color-text-inverse;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-header;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    padding: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px $text-shadow; // increase contrast of text against background
+
+    &:hover,
+    &:focus {
+      color: $color-text-inverse;
+      text-decoration: none;
+
+      &::after {
+        background-color: $color-overlay;
+        border-radius: $border-radius-heavy;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+    }
+  }
+}

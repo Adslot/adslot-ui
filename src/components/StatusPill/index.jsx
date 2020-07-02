@@ -1,22 +1,22 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { expandDts } from '../../lib/utils';
+import Pill from '../Pill';
 import './styles.scss';
 
 const styles = ['primary', 'success', 'warning', 'error', 'light'];
 
 const StatusPill = ({ displayStyle, status, inverse, dts }) => (
-  <div
+  <Pill
     className={classnames([
       'aui--status-pill',
       `aui--status-pill-${displayStyle}`,
       { 'aui--status-pill-inverse': inverse },
     ])}
-    {...expandDts(dts)}
+    dts={dts}
   >
     {status}
-  </div>
+  </Pill>
 );
 
 StatusPill.defaultProps = {

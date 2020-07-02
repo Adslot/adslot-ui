@@ -25,6 +25,10 @@ $color-inverse-border: $color-status-light;
   line-height: 1;
   color: $color-gray-darker;
 
+  .aui--pill-children {
+    line-height: normal;
+  }
+
   &.aui--status-pill-primary {
     background-color: $color-primary-background;
 
