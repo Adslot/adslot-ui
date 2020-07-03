@@ -83,4 +83,6 @@ ImageCropper.defaultProps = {
   title: 'Image Upload',
 };
 
+ImageCropper.displayName = 'ImageCropper';
+
 export default ImageCropper;
