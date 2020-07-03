@@ -4518,11 +4518,111 @@
       }
     }
   ],
-  "src/components/Toast/index.jsx": [
+  "src/components/Toast/ToastContainer.jsx": [
     {
       "description": "",
-      "displayName": "toastContainerComponent",
-      "methods": []
+      "displayName": "ToastContainerComponent",
+      "methods": [],
+      "props": {
+        "position": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "toastPlacements"
+          },
+          "required": false,
+          "description": "PropTypes.oneOf(['top-right', 'top-center', 'top-left', 'bottom-right', 'bottom-center', 'bottom-left'])",
+          "defaultValue": {
+            "value": "'bottom-left'",
+            "computed": false
+          }
+        },
+        "autoClose": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "number"
+              },
+              {
+                "name": "bool"
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "5000",
+            "computed": false
+          }
+        },
+        "hideProgressBar": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "newestOnTop": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "closeOnClick": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "rtl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "draggable": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "pauseOnHover": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        }
+      }
     }
   ],
   "src/components/Totals/index.jsx": [
