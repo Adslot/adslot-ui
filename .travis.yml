@@ -18,8 +18,9 @@ script:
   - git diff --exit-code
   - "! grep -R --exclude-dir='*/node_modules/*' --include=package-lock.json 'http:' ."
   - npm test
+  - curl -s "https://api.travis-ci.org/v3/job/$TRAVIS_JOB_ID/log.txt" -o /tmp/travis.output
   - |
-    if curl -s "https://api.travis-ci.org/v3/job/$TRAVIS_JOB_ID/log.txt" | grep -E "ERROR:|ERROR: 'Warning|WARN:|WARN \[web-server\]"; then
+    if grep -E "ERROR:|ERROR: 'Warning|WARN:|WARN \[web-server\]" /tmp/travis.output; then
       echo "Test run output contains one or more warnings/errors. Please check and fix them."
       exit 1
     fi
