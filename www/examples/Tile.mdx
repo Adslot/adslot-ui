@@ -1,0 +1,45 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Tile
+
+```jsx live=true
+const Example = () => {
+  const item1 = {
+    className: 'news',
+    title: '',
+    logo: './assets/tile/logo-placeholder-164*84.png',
+    onClick: () => {},
+  };
+  const item2 = {
+    className: 'sport',
+    title: 'Sport',
+    onClick: () => {},
+  };
+  const item3 = {
+    className: 'calendar',
+    title: (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: '16px' }}>
+        <SvgSymbol href="./assets/svg-symbols.svg#calendar" />
+        <div style={{ marginLeft: 5 }}>Calendar</div>
+      </div>
+    ),
+    onClick: () => {},
+  };
+
+  return (
+    <div>
+      <React.Fragment>
+        <Carousel autoplay={false} style={{ width: '55vw' }} dots={false}>
+          <Tile {...item1} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          <Tile {...item2} style={{ paddingRight: 10, width: 220, height: 300 }} />
+          <Tile {...item3} style={{ paddingRight: 10, width: 220, height: 300 }} />
+        </Carousel>
+      </React.Fragment>
+    </div>
+  );
+};
+render(Example);
+```
+
+<Props componentName="Tile" />

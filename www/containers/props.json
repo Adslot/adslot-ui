@@ -2712,6 +2712,54 @@
       }
     }
   ],
+  "src/components/Pill/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Pill",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": "Content inside pill"
+        },
+        "className": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "string"
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "Custom classnames"
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Custome onClick event"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Generate \"data-test-selector\" on the pill"
+        }
+      }
+    }
+  ],
   "src/components/Popover/index.jsx": [
     {
       "description": "",
@@ -3376,7 +3424,38 @@
     {
       "description": "",
       "displayName": "RichTextEditor",
-      "methods": [],
+      "methods": [
+        {
+          "name": "stateToHTML",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "stateFromHTML",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
       "props": {
         "className": {
           "type": {
@@ -4425,6 +4504,50 @@
             "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
             "computed": false
           }
+        }
+      }
+    }
+  ],
+  "src/components/Tile/index.jsx": [
+    {
+      "description": "",
+      "displayName": "TileComponent",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Custom classnames"
+        },
+        "title": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Tile title"
+        },
+        "imgLink": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Use Logo as a tile"
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Custome onClick event"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Generate \"data-test-selector\" on the pill"
         }
       }
     }

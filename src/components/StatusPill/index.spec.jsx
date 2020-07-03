@@ -20,6 +20,6 @@ describe('<StatusPill />', () => {
 
   it('should support custom dts', () => {
     const wrapper = shallow(<StatusPill status="test" dts="test-dts" />);
-    expect(wrapper.props()['data-test-selector']).to.equal('test-dts');
+    expect(wrapper.props()['dts']).to.equal('test-dts');
   });
 });

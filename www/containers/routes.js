@@ -56,6 +56,8 @@ import Installation from './components/GettingStarted/Installation.md';
 import Contributing from './components/GettingStarted/Contributing.md';
 import RichTextEditorExample from '../examples/RichTextEditor.mdx';
 import ToastExample from '../examples/Toast.mdx';
+import PillExample from '../examples/Pill.mdx';
+import TileExample from '../examples/Tile.mdx';
 
 const routes = [
   {
@@ -221,6 +223,12 @@ const routes = [
     group: 'Components',
   },
   {
+    path: '/pill',
+    component: PillExample,
+    title: 'Pill',
+    group: 'Components',
+  },
+  {
     path: '/pretty-diff',
     component: PrettyDiffExample,
     title: 'Pretty Diff',
@@ -362,6 +370,12 @@ const routes = [
     path: '/textarea',
     component: TextareaExample,
     title: 'Textarea',
+    group: 'Components',
+  },
+  {
+    path: '/tile',
+    component: TileExample,
+    title: 'Tile',
     group: 'Components',
   },
   {
