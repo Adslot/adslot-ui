@@ -5911,8 +5911,8 @@ button + .aui--button-group {
 .slick-track {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: baseline;
-      align-items: baseline; }
+  -ms-flex-align: center;
+      align-items: center; }
   .slick-track div,
   .slick-track span {
     outline: none; }
@@ -11565,6 +11565,36 @@ strong {
   background-size: contain;
   background-image: url(assets/caret.9c412e40.svg); }
 
+.select-component .css-oeuhkd-control {
+  border-color: #e8e8e8;
+  border-radius: 2px; }
+
+.aui--pill {
+  font-size: 12px;
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 700;
+  line-height: 1;
+  color: #5a5a5a;
+  background-color: #fff; }
+  .aui--pill-children {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    line-height: 16px; }
+  .aui--pill-clickable:hover, .aui--pill-clickable:focus {
+    background-color: #f3f3f3;
+    cursor: pointer; }
+
 .aui--status-pill {
   font-size: 12px;
   display: inline-block;
@@ -11583,6 +11613,8 @@ strong {
   font-weight: 700;
   line-height: 1;
   color: #5a5a5a; }
+  .aui--status-pill .aui--pill-children {
+    line-height: normal; }
   .aui--status-pill.aui--status-pill-primary {
     background-color: #c1e1ec; }
     .aui--status-pill.aui--status-pill-primary.aui--status-pill-inverse {
@@ -13028,4 +13060,58 @@ input:disabled + .aui--switch-slider::before {
       padding-top: 22.5px;
       padding-right: 18px;
       opacity: 1; }
+
+.aui--tile {
+  width: 200px;
+  height: 120px;
+  background: #e8e8e8 50%;
+  border-radius: 3px;
+  position: relative; }
+  .aui--tile-logo {
+    min-height: 84px;
+    padding: 18px;
+    border-radius: inherit;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex; }
+    .aui--tile-logo img {
+      width: 164px;
+      height: 84px; }
+  .aui--tile-title {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); }
+    .aui--tile-title:hover, .aui--tile-title:focus {
+      color: #fff;
+      text-decoration: none; }
+      .aui--tile-title:hover::after, .aui--tile-title:focus::after {
+        background-color: #838383;
+        border-radius: 5px;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1; }
 
