@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import _ from 'lodash';
+import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import idPropType from '../../prop-types/idPropType';
@@ -11,8 +12,9 @@ const baseClass = 'tile-grid-component';
 
 const TileGrid = ({ title, items, onItemClick, distributed }) => {
   const cardList = _.map(items, item => {
-    const itemClassNames = [`${baseClass}-item`, `${baseClass}-item-${item.classSuffix}`];
-    if (distributed) itemClassNames.push(`${baseClass}-item-distributed`);
+    const itemClassNames = classnames(`${baseClass}-item`, `${baseClass}-item-${item.classSuffix}`, {
+      [`${baseClass}-item-distributed`]: distributed,
+    });
 
     const imgWrapperClassNames = [`${baseClass}-item-img-wrapper`];
 
@@ -35,7 +37,7 @@ const TileGrid = ({ title, items, onItemClick, distributed }) => {
       : { width: item.width || defaultWidth };
 
     return (
-      <li key={item.id} className={itemClassNames.join(' ')} style={itemStyle}>
+      <li key={item.id} className={itemClassNames} style={itemStyle}>
         {item.imgLink ? (
           <div className={imgWrapperClassNames.join(' ')}>
             <img src={item.imgLink} alt="item-link" />

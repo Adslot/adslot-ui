@@ -64,7 +64,7 @@ class Tabs extends React.PureComponent {
           {tabs.map(tab => (
             <li
               role="presentation"
-              className={classnames(tab.props.tabClassName, { active: tab.props.show, disabled: tab.props.disabled })}
+              className={classnames({ active: tab.props.show, disabled: tab.props.disabled }, tab.props.tabClassName)}
               key={tab.props.eventKey}
             >
               <a

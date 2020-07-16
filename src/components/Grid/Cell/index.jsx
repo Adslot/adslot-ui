@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts, classSuffixHelper } from '../../../lib/utils';
@@ -13,8 +14,7 @@ const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNa
     },
     componentClass,
   });
-  const baseClassNames = `${componentClass}${classesList}`;
-  const className = addonClassNames ? [baseClassNames, ...addonClassNames].join(' ') : baseClassNames;
+  const className = classnames(`${componentClass}${classesList}`, ...addonClassNames);
   const extraProps = onClick ? { onClick } : {};
 
   return (
@@ -51,6 +51,7 @@ GridCell.propTypes = {
 };
 
 GridCell.defaultProps = {
+  addonClassNames: [],
   classSuffixes: [],
   stretch: false,
 };

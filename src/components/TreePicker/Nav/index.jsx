@@ -1,5 +1,6 @@
-import React from 'react';
 import _ from 'lodash';
+import classnames from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Search from '../../Search';
 import Breadcrumb from '../../Breadcrumb';
@@ -33,9 +34,10 @@ const TreePickerNavComponent = ({
     onClick: breadcrumbOnClick,
     rootNode: breadcrumbRootNode,
   };
+  const className = classnames('treepickernav-component', { disabled });
 
   return (
-    <div className={`treepickernav-component ${disabled ? 'disabled' : ''}`} data-test-selector="treepicker-nav-search">
+    <div className={className} data-test-selector="treepicker-nav-search">
       {showSearch && (
         <Search
           disabled={disabled}

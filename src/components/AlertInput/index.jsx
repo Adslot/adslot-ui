@@ -90,11 +90,15 @@ export default class AlertInput extends React.PureComponent {
       onValueChange,
     } = this.props;
 
-    const className = classnames(baseClass, this.props.className, {
-      [alertStatus]: alertStatus,
-      [`${baseClass}--focused`]: this.state.isFocused,
-      [`${baseClass}--disabled`]: disabled,
-    });
+    const className = classnames(
+      baseClass,
+      {
+        [alertStatus]: alertStatus,
+        [`${baseClass}--focused`]: this.state.isFocused,
+        [`${baseClass}--disabled`]: disabled,
+      },
+      this.props.className
+    );
     const theme = alertStatus === 'warning' ? 'warn' : alertStatus;
     const shouldPopoverOpen = this.state.isPopoverVisible && !_.isEmpty(alertMessage);
 
