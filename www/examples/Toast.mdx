@@ -5,17 +5,24 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 
 ```jsx live=true
 const Example = () => {
-  const [notification, triggerNotification] = React.useState(0);
-
-  const showInfoToast = () => (
-    <Toast.Notification title="INFO" theme="info" message={<span>This is an info notification</span>} />
-  );
+  const [notification, triggerNotification] = React.useState(false);
 
   return (
     <React.Fragment>
       <Toast.Container />
-      <Button onClick={() => triggerNotification(notification + 1)}>Show Info Toast</Button>
-      {notification ? showInfoToast() : null}
+      <Button onClick={() => triggerNotification(!notification)}>Show Info Toast</Button>
+      <Button
+        onClick={() =>
+          Toast.notify({
+            title: 'Hello',
+            theme: 'success',
+            message: <span>Hello Toast</span>,
+          })
+        }
+      >
+        Show Hello Toast
+      </Button>
+      <Toast.Notification title="INFO" theme="info" message={<span>This is an info notification</span>} />
     </React.Fragment>
   );
 };
