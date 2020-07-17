@@ -1,20 +1,14 @@
 import _ from 'lodash';
+import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const CardContent = ({ children, className, stretch, fill, append, dts }) => {
-  const baseClass = 'card-component-content';
-  const contentClassNames = [baseClass];
-
-  if (stretch) contentClassNames.push('stretch');
-  if (fill) contentClassNames.push('fill');
-  if (append) contentClassNames.push('append');
-  if (className) contentClassNames.push(className);
-
+  const contentClassNames = classnames('card-component-content', { stretch, fill, append }, className);
   return (
-    <div className={contentClassNames.join(' ')} {...expandDts(dts)}>
+    <div className={contentClassNames} {...expandDts(dts)}>
       {children}
     </div>
   );
@@ -39,9 +33,7 @@ CardContent.defaultProps = {
 
 const Card = ({ children, className, accent, dts }) => {
   const baseClass = 'card-component';
-  const containerClassNames = [baseClass];
-  if (accent) containerClassNames.push(`accent accent-${accent}`);
-  if (className) containerClassNames.push(className);
+  const containerClassNames = classnames(baseClass, { [`accent accent-${accent}`]: accent }, className);
 
   const nestedChildren = React.Children.map(children, (
     child // eslint-disable-line lodash/prefer-lodash-method
@@ -51,7 +43,7 @@ const Card = ({ children, className, accent, dts }) => {
   ) => (_.get(child, 'props.append') ? child : null));
 
   return (
-    <div className={containerClassNames.join(' ')} {...expandDts(dts)}>
+    <div className={containerClassNames} {...expandDts(dts)}>
       <div className={`${baseClass}-content-container`}>{nestedChildren}</div>
       {appendedChildren}
     </div>

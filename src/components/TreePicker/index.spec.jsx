@@ -40,7 +40,7 @@ describe('TreePickerSimplePureComponent', () => {
 
   it('should render with props', () => {
     const component = shallow(<TreePickerSimplePure {...props} />);
-    expect(component.prop('className')).to.equal('treepickersimplepure-component ');
+    expect(component.prop('className')).to.equal('treepickersimplepure-component');
 
     expect(component.find(SplitPane)).to.have.length(2);
     expect(component.children().every(SplitPane)).to.equal(true);

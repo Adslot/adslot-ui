@@ -19,7 +19,7 @@ class PanelComponent extends React.PureComponent {
 
   render() {
     const { className, children, dts, icon, isCollapsed, title } = this.props;
-    const classesCombined = classnames(['panel-component', className, { collapsed: isCollapsed }]);
+    const classesCombined = classnames(['panel-component', { collapsed: isCollapsed }, className]);
 
     return (
       <div className={classesCombined} data-test-selector={dts}>

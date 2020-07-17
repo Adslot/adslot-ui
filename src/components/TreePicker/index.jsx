@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SplitPane from '../SplitPane';
@@ -55,9 +56,10 @@ const TreePickerSimplePureComponent = ({
   let searchTextNode = emptyText || 'No items to select.';
   searchTextNode = initialStateNode && _.isEmpty(searchValue) ? initialStateNode : searchTextNode;
   const emptySymbol = initialStateSymbol && _.isEmpty(searchValue) ? initialStateSymbol : emptySvgSymbol;
+  const className = classnames('treepickersimplepure-component', { disabled });
 
   return (
-    <div className={`treepickersimplepure-component ${disabled ? 'disabled' : ''}`}>
+    <div className={className}>
       <SplitPane
         additionalClassNames={additionalClassNames}
         dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}

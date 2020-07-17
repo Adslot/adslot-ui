@@ -23,7 +23,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
     <div ref={ref}>
       <div className={isModal ? 'aui--action-panel-backdrop' : 'hide'} />
       <div className={classNames('aui--action-panel-wrapper', { 'aui--action-panel-modal-wrapper': isModal })}>
-        <div className={classNames('aui--action-panel', className, `is-${size}`, { 'action-modal': isModal })}>
+        <div className={classNames('aui--action-panel', `is-${size}`, { 'action-modal': isModal }, className)}>
           <div className={classNames('aui--action-panel-header', { 'has-actions': actionButton })}>
             <div className="title">{title}</div>
             <span className="actions">
