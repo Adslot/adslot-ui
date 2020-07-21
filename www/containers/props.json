@@ -1524,7 +1524,11 @@
             }
           },
           "required": false,
-          "description": "list of addOn classNames as array of strings"
+          "description": "list of addOn classNames as array of strings",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
         },
         "children": {
           "type": {
@@ -3424,38 +3428,7 @@
     {
       "description": "",
       "displayName": "RichTextEditor",
-      "methods": [
-        {
-          "name": "stateToHTML",
-          "docblock": null,
-          "modifiers": [
-            "static"
-          ],
-          "params": [
-            {
-              "name": "input",
-              "optional": false,
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "stateFromHTML",
-          "docblock": null,
-          "modifiers": [
-            "static"
-          ],
-          "params": [
-            {
-              "name": "input",
-              "optional": false,
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "className": {
           "type": {
