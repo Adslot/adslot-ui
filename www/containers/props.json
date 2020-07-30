@@ -3497,63 +3497,7 @@
     {
       "description": "",
       "displayName": "Search",
-      "methods": [
-        {
-          "name": "onChange",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "onClear",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "onKeyPress",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "onSearch",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "searchValue",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "onSearchButtonClick",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "className": {
           "type": {
@@ -3626,6 +3570,13 @@
             "value": "false",
             "computed": false
           }
+        },
+        "onBlur": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
         },
         "onChange": {
           "type": {

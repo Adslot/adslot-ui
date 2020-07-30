@@ -73,6 +73,18 @@ describe('Search', () => {
     expect(inputEle.prop('disabled')).to.equal(true);
   });
 
+  it('should trigger `onBlur` when blur the search input', () => {
+    const onBlur = sinon.spy();
+    const wrapper = shallow(<Search {...props} onBlur={onBlur} />);
+
+    const inputEle = wrapper.find('input');
+    expect(onBlur.calledOnce).to.equal(false);
+
+    inputEle.simulate('blur');
+    wrapper.update();
+    expect(onBlur.calledOnce).to.equal(true);
+  });
+
   describe('Icons', () => {
     it('should render given search icons', () => {
       const icons = {
@@ -136,16 +148,21 @@ describe('Search', () => {
         onSearch: sinon.spy(),
       };
       const wrapper = shallow(<Search {...callbacks} searchOnEnter />);
-      wrapper.instance().onClear();
+
+      const inputEle = wrapper.find('input');
+      inputEle.simulate('change', { target: { value: 'new-value' } });
+
       expect(callbacks.onSearch.calledOnce).to.equal(false);
     });
 
     it('should clear its own value state if onChange is not provided', () => {
       const wrapper = shallow(<Search onSearch={props.onSearch} />);
-      wrapper.setState({ value: 'foo' });
+
+      const inputEle = wrapper.find('input');
+      inputEle.simulate('change', { target: { value: 'foo' } });
       const clearBtn = wrapper.find('span.aui--search-component-icon');
       clearBtn.simulate('click');
-      expect(wrapper.state('value')).to.equal('');
+      expect(inputEle.prop('value')).to.equal('');
     });
   });
 
@@ -191,8 +208,12 @@ describe('Search', () => {
     it('should change its own value state if onChange is not provided', () => {
       const wrapper = shallow(<Search onSearch={props.onSearch} />);
       const inputEle = wrapper.find('input');
+
       inputEle.simulate('change', { target: { value: 'new-value' } });
-      expect(wrapper.state('value')).to.equal('new-value');
+      wrapper.update();
+
+      const newInputEle = wrapper.find('input');
+      expect(newInputEle.prop('value')).to.equal('new-value');
     });
   });
 
@@ -201,8 +222,14 @@ describe('Search', () => {
       onSearch: sinon.spy(),
     };
     const wrapper = shallow(<Search {...callbacks} searchOnEnter />);
+
+    const inputEle = wrapper.find('input');
+    inputEle.simulate('change', { target: { value: 'some-value' } });
+    wrapper.update();
+
     const buttonEle = wrapper.find('button');
-    wrapper.setState({ value: 'some-value' });
+    const newInputEle = wrapper.find('input');
+    expect(newInputEle.prop('value')).to.equal('some-value');
     buttonEle.simulate('click', { preventDefault: sinon.spy() });
     expect(callbacks.onSearch.calledOnce).to.equal(true);
     expect(callbacks.onSearch.calledWith('some-value')).to.equal(true);
