@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
@@ -17,10 +17,9 @@ const defaultOptions = {
   toggleDragModeOnDblclick: false,
 };
 
-const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, height, aspectRatio }, ref) => {
+const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, height, aspectRatio, isSaving }, ref) => {
   const cropperRef = React.useRef();
   const imageRef = React.useRef();
-  const [isSaving, setIsSaving] = useState(false);
 
   React.useEffect(() => {
     if (!cropperRef.current) return;
@@ -34,7 +33,6 @@ const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, hei
     });
 
     return () => {
-      setIsSaving(false);
       cropperRef.current.destroy();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,16 +43,7 @@ const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, hei
   }));
 
   const uploadButton = (
-    <Button
-      bsStyle="primary"
-      onClick={async () => {
-        setIsSaving(true);
-        await onCrop(cropperRef.current.getData());
-        setIsSaving(false);
-      }}
-      isLoading={isSaving}
-      inverse
-    >
+    <Button bsStyle="primary" onClick={() => onCrop(cropperRef.current.getData())} isLoading={isSaving} inverse>
       Upload
     </Button>
   );
@@ -77,10 +66,12 @@ ImageCropper.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   aspectRatio: PropTypes.number,
+  isSaving: PropTypes.bool,
 };
 
 ImageCropper.defaultProps = {
   title: 'Image Upload',
+  isSaving: false,
 };
 
 ImageCropper.displayName = 'ImageCropper';

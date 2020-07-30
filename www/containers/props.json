@@ -1926,6 +1926,17 @@
           },
           "required": false,
           "description": ""
+        },
+        "isSaving": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         }
       }
     }

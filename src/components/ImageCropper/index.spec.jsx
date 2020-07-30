@@ -49,11 +49,25 @@ describe('ImageCropperComponent', () => {
   });
 
   it('should destroy cropperRef if component will unmount', () => {
-    const setStateSpy = sandbox.spy();
-    sandbox.stub(React, 'useState').callsFake(init => [init, setStateSpy]);
-    const component = mount(<ImageCropper src="example.svg" onCrop={_.noop} onCancel={_.noop} />);
+    const spyCropperDestroy = sandbox.spy();
+    const TestComponent = ({ aspectRatio }) => {
+      const cropperRef = React.useRef();
+      React.useEffect(() => {
+        cropperRef.current.getCropper().current.destroy = spyCropperDestroy;
+      }, []);
+      return (
+        <ImageCropper
+          ref={cropperRef}
+          src="../../../www/assets/adslot-avatar.png"
+          onCrop={_.noop}
+          onCancel={_.noop}
+          aspectRatio={aspectRatio}
+        />
+      );
+    };
+    const component = mount(<TestComponent />);
     component.unmount();
-    expect(setStateSpy.calledOnceWith(false)).to.equal(true);
+    expect(spyCropperDestroy.calledOnce).to.equal(true);
   });
 
   it('should set correct aspect ratio on cropper', () => {
