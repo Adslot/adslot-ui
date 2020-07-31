@@ -8,9 +8,14 @@ const Example = () => {
   const [value, setValue] = React.useState('');
   const [searchOnInputChangeLoading, setSearchOnInputChangeLoading] = React.useState(false);
   const [searchOnEnterKeyLoading, setSearchOnEnterKeyLoading] = React.useState(false);
+  const [searchInput, showSearchInput] = React.useState(false);
 
   const onChange = value => {
     setValue(value);
+  };
+
+  const onBlur = () => {
+    showSearchInput(false);
   };
 
   const searchOnInputChange = () => {
@@ -45,6 +50,21 @@ const Example = () => {
         onSearch={searchOnEnterKey}
         searchOnEnter
       />
+      <br />
+      Expandable Search Bar
+      {searchInput ? (
+        <Search
+          placeholder="Search on ENTER"
+          isLoading={searchOnEnterKeyLoading}
+          onSearch={searchOnEnterKey}
+          onBlur={onBlur}
+          searchOnEnter
+        />
+      ) : (
+        <Button className="btn btn-borderless" onClick={() => showSearchInput(true)}>
+          <SvgSymbol href="./assets/svg-symbols.svg#search" />
+        </Button>
+      )}
     </div>
   );
 };

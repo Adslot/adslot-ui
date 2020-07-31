@@ -5,114 +5,109 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './styles.scss';
 
-class Search extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    };
+const Search = ({
+  className,
+  debounceInterval,
+  disabled,
+  dts,
+  icons,
+  isLoading,
+  onBlur,
+  onChange,
+  onClear,
+  onSearch,
+  placeholder,
+  searchOnEnter,
+  value,
+}) => {
+  const [inputValue, setInputValue] = React.useState('');
 
-    this.onChange = this.onChange.bind(this);
-    this.onClear = this.onClear.bind(this);
-    this.onKeyPress = this.onKeyPress.bind(this);
-    this.onSearch = this.onSearch.bind(this);
-    this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
-    this.debounceOnSearch = _.debounce(props.onSearch, props.debounceInterval);
-  }
-
-  onChange(event) {
+  const onInputChange = event => {
     const eventValue = _.get(event, 'target.value');
-    const { onChange, searchOnEnter } = this.props;
     if (onChange) {
       onChange(eventValue);
     } else {
-      this.setState({ value: eventValue });
+      setInputValue(eventValue);
     }
     if (!searchOnEnter) {
-      this.onSearch(eventValue);
+      onInputSearch(eventValue);
     }
-  }
+  };
 
-  onClear() {
-    const { onChange, searchOnEnter, onClear } = this.props;
+  const onInputClear = () => {
     const emptyValue = '';
 
     if (onChange) {
       onChange(emptyValue);
     } else {
-      this.setState({ value: '' });
+      setInputValue('');
     }
-    if (!searchOnEnter) this.onSearch(emptyValue);
+    if (!searchOnEnter) onInputSearch(emptyValue);
     if (onClear) onClear(emptyValue);
-  }
+  };
 
-  onKeyPress(event) {
-    const { searchOnEnter } = this.props;
+  const onKeyPress = event => {
     if (searchOnEnter && event.key === 'Enter') {
       event.preventDefault();
-      this.onSearch(_.get(event, 'target.value'));
+      onInputSearch(_.get(event, 'target.value'));
     }
-  }
+  };
 
-  onSearch(searchValue) {
-    const { onSearch, debounceInterval } = this.props;
-    const search = debounceInterval ? this.debounceOnSearch : onSearch;
+  const onInputSearch = searchValue => {
+    const search = debounceInterval ? _.debounce(onSearch, debounceInterval) : onSearch;
     search(searchValue);
-  }
+  };
 
-  onSearchButtonClick(event) {
+  const onSearchButtonClick = event => {
     event.preventDefault();
-    const searchValue = this.props.value || this.state.value;
-    this.onSearch(searchValue);
-  }
+    const searchValue = value || inputValue;
+    onInputSearch(searchValue);
+  };
 
-  render() {
-    const { className, disabled, dts, icons, isLoading, onChange, placeholder, searchOnEnter, value } = this.props;
+  const currentInputValue = value || inputValue;
 
-    const inputValue = value || this.state.value;
-
-    if (value && !onChange)
-      console.warn(
-        'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
-      );
-
-    const searchIcon = icons.search ? icons.search : <div className="search-icon" />;
-    const closeIcon = icons.close ? icons.close : <div className="cancel-icon" />;
-    const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
-    const isValueEmpty = _.isEmpty(value) && _.isEmpty(this.state.value);
-
-    return (
-      <div className={classnames('aui--search-component', className)} data-test-selector={dts}>
-        <input
-          autoComplete="off"
-          className="aui--search-component-input"
-          disabled={disabled}
-          name="search"
-          onChange={this.onChange}
-          onKeyPress={this.onKeyPress}
-          placeholder={placeholder}
-          type="search"
-          value={inputValue}
-        />
-        {isLoading && !searchOnEnter && <span className="aui--search-component-spinner">{loaderIcon}</span>}
-        {searchOnEnter && !isValueEmpty && (
-          <span className="aui--search-component-icon with-button" onClick={this.onClear}>
-            {closeIcon}
-          </span>
-        )}
-        {searchOnEnter ? (
-          <button className="aui--search-component-button" onClick={this.onSearchButtonClick}>
-            {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
-          </button>
-        ) : (
-          <span className="aui--search-component-icon" {...(isValueEmpty ? {} : { onClick: this.onClear })}>
-            {isValueEmpty ? searchIcon : closeIcon}
-          </span>
-        )}
-      </div>
+  if (value && !onChange)
+    console.warn(
+      'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
     );
-  }
-}
+
+  const searchIcon = icons.search ? icons.search : <div className="search-icon" />;
+  const closeIcon = icons.close ? icons.close : <div className="cancel-icon" />;
+  const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
+  const isValueEmpty = _.isEmpty(value) && _.isEmpty(inputValue);
+
+  return (
+    <div className={classnames('aui--search-component', className)} data-test-selector={dts}>
+      <input
+        autoComplete="off"
+        className="aui--search-component-input"
+        disabled={disabled}
+        name="search"
+        onChange={onInputChange}
+        onKeyPress={onKeyPress}
+        placeholder={placeholder}
+        type="search"
+        value={currentInputValue}
+        onBlur={onBlur}
+      />
+      {isLoading && !searchOnEnter && <span className="aui--search-component-spinner">{loaderIcon}</span>}
+      {searchOnEnter && !isValueEmpty && (
+        <span className="aui--search-component-icon with-button" onClick={onInputClear}>
+          {closeIcon}
+        </span>
+      )}
+      {searchOnEnter ? (
+        <button className="aui--search-component-button" onClick={onSearchButtonClick}>
+          {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
+        </button>
+      ) : (
+        <span className="aui--search-component-icon" {...(isValueEmpty ? {} : { onClick: onInputClear })}>
+          {isValueEmpty ? searchIcon : closeIcon}
+        </span>
+      )}
+    </div>
+  );
+};
 
 Search.propTypes = {
   className: PropTypes.string,
@@ -137,6 +132,7 @@ Search.propTypes = {
     close: PropTypes.node,
   }),
   isLoading: PropTypes.bool,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   /**
