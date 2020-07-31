@@ -1,8 +1,49 @@
 import React from 'react';
+import sinon from 'sinon';
+import { toast } from 'react-toastify';
 import { shallow, mount } from 'enzyme';
 import Toast from '.';
+import { ToastMessage } from './ToastNotification';
 
-describe('Toast', () => {
+describe('Toast.notify', () => {
+  it('should render notification as expected', () => {
+    const toastSpy = sinon.spy(toast, 'info');
+
+    mount(<Toast.Container />);
+    Toast.notify({
+      title: 'test',
+      theme: 'test',
+      message: 'Tested Toast',
+    });
+
+    expect(toastSpy.callCount).to.equal(1);
+    toastSpy.restore();
+  });
+});
+
+describe('<ToastMessage />', () => {
+  it('should render toast message as expected', () => {
+    const component = mount(
+      <ToastMessage toastClass="aui--toast-title aui--toast-title-info" title="Test" message="Test Message" />
+    );
+
+    expect(component.find('.aui--toast-title.aui--toast-title-info')).to.have.length(1);
+    expect(component.find('.aui--toast-body-message')).to.have.length(1);
+    expect(component.prop('title')).to.equal('Test');
+    expect(component.prop('message')).to.equal('Test Message');
+  });
+});
+
+describe('<Toast.Container />', () => {
+  it('should render Toast.Container without error', () => {
+    const component = mount(<Toast.Container />);
+
+    expect(component.find('.aui--toast-container')).to.have.length(1);
+    expect(component.find('.aui--toast-container').prop('position')).to.equal('bottom-left');
+  });
+});
+
+describe('<Toast.Notification />', () => {
   it('should render default info type', () => {
     const component = mount(
       <div>

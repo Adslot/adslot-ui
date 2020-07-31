@@ -39,4 +39,4 @@ ToastContainerComponent.defaultProps = {
   pauseOnHover: true,
 };
 
-export default React.memo(ToastContainerComponent);
+export default ToastContainerComponent;
