@@ -5428,7 +5428,9 @@ strong {
     border-bottom: 1px solid #e8e8e8;
     line-height: 22px; }
     .panel-component-header::before {
-      background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M1 8.6l6.8-4.9h.3L15 8.6v3.7L8 8.1l-7 4.2V8.6z'/%3E%3C/svg%3E") no-repeat;
+      background: url(assets/chevron-down.54994c94.svg);
+      -webkit-transform: rotate(180deg);
+              transform: rotate(180deg);
       content: ' ';
       float: right;
       height: 16px;
@@ -5453,8 +5455,8 @@ strong {
     .panel-component.collapsed .panel-component-header {
       border-bottom: 0; }
       .panel-component.collapsed .panel-component-header::before {
-        -webkit-transform: rotate(180deg);
-                transform: rotate(180deg); }
+        -webkit-transform: rotate(0);
+                transform: rotate(0); }
     .panel-component.collapsed .panel-component-content {
       display: none; }
   .panel-component hr {
