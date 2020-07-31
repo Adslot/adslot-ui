@@ -8,15 +8,15 @@ import './styles.scss';
 
 const baseClass = 'aui--carousel-component';
 
-const CarouselComponent = props => {
+const CarouselComponent = React.forwardRef((props, ref) => {
   const { className, children } = props;
 
   return (
-    <Slider {...props} className={classNames(baseClass, className)}>
+    <Slider {...props} ref={ref} className={classNames(baseClass, className)}>
       {children}
     </Slider>
   );
-};
+});
 
 CarouselComponent.propTypes = {
   className: PropTypes.string,
