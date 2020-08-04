@@ -12,6 +12,10 @@
     height: 42px;
   }
 
+  &.btn-inverse:not([disabled]).btn-primary {
+    border-color: $color-border-light;
+  }
+
   .spinner-container {
     position: absolute;
     right: 0;
