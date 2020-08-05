@@ -865,7 +865,6 @@
   "src/components/Carousel/index.jsx": [
     {
       "description": "",
-      "displayName": "CarouselComponent",
       "methods": [],
       "props": {
         "className": {
