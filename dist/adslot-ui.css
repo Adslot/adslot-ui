@@ -4706,6 +4706,8 @@ strong {
   .aui--button.btn-large {
     width: 264px;
     height: 42px; }
+  .aui--button.btn-inverse:not([disabled]).btn-primary {
+    border-color: #d3d3d3; }
   .aui--button .spinner-container {
     position: absolute;
     right: 0;
