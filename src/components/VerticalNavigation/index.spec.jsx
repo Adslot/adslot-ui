@@ -5,6 +5,7 @@ import VerticalNav from '.';
 
 describe('VerticalNavComponent', () => {
   const makeProps = override => ({
+    collapsable: true,
     isCollapsed: false,
     onClick: sinon.spy(),
     dts: 'test-dts',
@@ -45,6 +46,9 @@ describe('VerticalNavComponent', () => {
     expect(menuItems.at(0).find('.aui--vertical-navigation-component__menu-item-collapse')).to.have.length(1);
     expect(menuItems.at(1).text()).to.equal('Tab 1');
     expect(menuItems.at(2).text()).to.equal('Tab 2');
+
+    expect(wrapper.find('.aui--vertical-navigation-component__menu-item-collapse')).to.have.length(1);
+    expect(wrapper.find('.aui--vertical-navigation-component__menu-item-collapse-icon')).to.have.length(1);
   });
 
   it('should dispaly warnings if child element does not have `content` prop', () => {
@@ -63,6 +67,23 @@ describe('VerticalNavComponent', () => {
     /* eslint-enable no-console */
   });
 
+  it('should not render the collapse icon if props.collapsable is false', () => {
+    const menuLabel1 = () => <div>Tab 1</div>;
+    const menuLabel2 = () => <div>Tab 2</div>;
+    const wrapper = mount(
+      <VerticalNav {...makeProps({ collapsable: false })}>
+        <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel1, isActive: true })}>
+          Content 1
+        </VerticalNav.MenuItem>
+        <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel2 })}>Content 1</VerticalNav.MenuItem>
+      </VerticalNav>
+    );
+
+    const menu = wrapper.find('.aui--vertical-navigation-component__menu');
+    expect(menu.find('.aui--vertical-navigation-component__menu-item-collapse')).to.have.length(0);
+    expect(menu.find('.aui--vertical-navigation-component__menu-item-collapse-icon')).to.have.length(0);
+  });
+
   it('should only update menu if props.isCollapsed is changed', () => {
     const menuLabel1 = () => <div>Tab 1</div>;
     const menuLabel2 = () => <div>Tab 2</div>;
@@ -74,7 +95,6 @@ describe('VerticalNavComponent', () => {
         <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel2 })}>Content 1</VerticalNav.MenuItem>
       </VerticalNav>
     );
-
     const renderMenuSpy = sandbox.spy(wrapper.instance(), 'renderMenu');
     const renderContentSpy = sandbox.spy(wrapper.instance(), 'renderContent');
     wrapper.setProps({ isCollapsed: true });
