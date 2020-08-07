@@ -55,7 +55,7 @@ const Example = () => {
   };
 
   return (
-    <VerticalNav isCollapsed={isCollapsed} onClick={handleCollapse}>
+    <VerticalNav collapsable={true} isCollapsed={isCollapsed} onClick={handleCollapse}>
       <VerticalNav.MenuItem
         onClick={handleMenuClick('Tab 1')}
         isActive={activeTab === 'Tab 1'}

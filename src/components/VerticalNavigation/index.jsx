@@ -8,6 +8,10 @@ const MenuItem = ({ children }) => children;
 
 class VerticalNavigation extends React.Component {
   static propTypes = {
+    /**
+     * 	control whether the MenuItem can be folded into a collapse icon (hamburger)
+     */
+    collapsable: PropTypes.bool,
     isCollapsed: PropTypes.bool,
     /**
      * event handler for clicking on the collapse/expand button
@@ -23,6 +27,7 @@ class VerticalNavigation extends React.Component {
   };
 
   static defaultProps = {
+    collapsable: true,
     isCollapsed: false,
   };
 
@@ -99,7 +104,7 @@ class VerticalNavigation extends React.Component {
   };
 
   render() {
-    const { className, dts, isCollapsed } = this.props;
+    const { className, dts, collapsable, isCollapsed } = this.props;
     const componentClasses = classnames('aui--vertical-navigation-component', className);
 
     const menuClasses = classnames([
@@ -113,11 +118,13 @@ class VerticalNavigation extends React.Component {
     return (
       <div className={componentClasses} data-test-selector={dts}>
         <div className={menuClasses}>
-          <div className="aui--vertical-navigation-component__menu-item" onClick={this.props.onClick}>
-            <div className="aui--vertical-navigation-component__menu-item-collapse">
-              <div className="aui--vertical-navigation-component__menu-item-collapse-icon" />
+          {collapsable ? (
+            <div className="aui--vertical-navigation-component__menu-item" onClick={this.props.onClick}>
+              <div className="aui--vertical-navigation-component__menu-item-collapse">
+                <div className="aui--vertical-navigation-component__menu-item-collapse-icon" />
+              </div>
             </div>
-          </div>
+          ) : null}
           {this.menuList}
         </div>
         <div className="aui--vertical-navigation-component__content">{this.contentList}</div>

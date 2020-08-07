@@ -5676,6 +5676,17 @@
         }
       ],
       "props": {
+        "collapsable": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "control whether the MenuItem can be folded into a collapse icon (hamburger)",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
         "isCollapsed": {
           "type": {
             "name": "bool"
