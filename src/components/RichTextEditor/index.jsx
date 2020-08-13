@@ -8,7 +8,7 @@ import InlineStyleButtons from './InlineStyleButtons';
 import BlockStyleButtons from './BlockStyleButtons';
 import './styles.scss';
 
-const RichTextEditor = ({ className, value, initialValue, onChange }) => {
+const RichTextEditor = ({ className, value, initialValue, onChange, placeholder }) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
 
@@ -46,7 +46,7 @@ const RichTextEditor = ({ className, value, initialValue, onChange }) => {
           editorState={value || editorState}
           handleKeyCommand={handleKeyCommand}
           onChange={handleOnChange}
-          placeholder="Tell a story..."
+          placeholder={placeholder}
           ref={editor}
           spellCheck
         />
@@ -61,11 +61,16 @@ const RichTextEditor = ({ className, value, initialValue, onChange }) => {
 
 RichTextEditor.propTypes = {
   className: PropTypes.string,
+  placeholder: PropTypes.string,
   /** Editor State */
   initialValue: PropTypes.instanceOf(EditorState),
   /** Editor State: Instance of <a href="https://draftjs.org/docs/api-reference-editor-state">draft-js editor state</a> */
   value: PropTypes.instanceOf(EditorState),
   onChange: PropTypes.func,
+};
+
+RichTextEditor.defaultProps = {
+  placeholder: 'Tell a story...',
 };
 
 RichTextEditor.createEmpty = EditorState.createEmpty;

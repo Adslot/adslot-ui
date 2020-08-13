@@ -3447,6 +3447,17 @@
           "required": false,
           "description": ""
         },
+        "placeholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'Tell a story...'",
+            "computed": false
+          }
+        },
         "initialValue": {
           "type": {
             "name": "instanceOf",
