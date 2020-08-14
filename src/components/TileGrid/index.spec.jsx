@@ -1,79 +1,74 @@
-/* eslint-disable lodash/prefer-lodash-method */
 import _ from 'lodash';
 import React from 'react';
-import { shallow } from 'enzyme';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import TileGrid from '.';
 
-describe('TileGrid', () => {
+afterEach(cleanup);
+
+describe('<TileGrid />', () => {
   const props = {
     items: [{ id: '0', classSuffix: 'alpha', title: 'Alpha' }, { id: '1', classSuffix: 'beta', title: 'Beta' }],
-    onItemClick: _.noop,
+    onItemClick: jest.fn(),
   };
 
   it('renders with basic props', () => {
-    const component = shallow(<TileGrid {...props} items={[]} />);
-    expect(component.prop('className')).to.equal('tile-grid-component');
+    const { getByTestId, queryAllByTestId } = render(<TileGrid {...props} items={[]} />);
 
-    const title = component.find('.tile-grid-component-title');
-    expect(title).to.have.length(0);
+    expect(getByTestId('tile-grid-wrapper')).toHaveClass('tile-grid-component');
+    expect(queryAllByTestId('tile-grid-title')).toHaveLength(0);
 
-    const list = component.find('.tile-grid-component-list');
-    expect(list).to.have.length(1);
-    expect(list.children()).to.have.length(0);
+    expect(queryAllByTestId('tile-grid-list')).toHaveLength(1);
+    expect(getByTestId('tile-grid-list')).toHaveClass('tile-grid-component-list');
+    expect(getByTestId('tile-grid-list')).toBeEmpty();
   });
 
   it('renders title if props contain it', () => {
     const newProps = _.assign(props, { title: 'Lorem ipsum' });
-    const component = shallow(<TileGrid {...newProps} items={[]} />);
+    const { getByTestId, queryAllByTestId } = render(<TileGrid {...newProps} items={[]} />);
 
-    const title = component.find('.tile-grid-component-title');
-    expect(title).to.have.length(1);
-    expect(title.text()).to.equal('Lorem ipsum');
+    expect(queryAllByTestId('tile-grid-title')).toHaveLength(1);
+    expect(getByTestId('tile-grid-title')).toHaveClass('tile-grid-component-title');
+    expect(getByTestId('tile-grid-title')).toHaveTextContent('Lorem ipsum');
   });
 
   it('renders with items', () => {
-    const component = shallow(<TileGrid {...props} />);
-    const list = component.find('.tile-grid-component-list');
-    expect(list.children()).to.have.length(2);
+    const { queryAllByTestId } = render(<TileGrid {...props} />);
+    expect(queryAllByTestId('tile-grid-list-item')).toHaveLength(2);
+    expect(queryAllByTestId('tile-grid-list-item')[0]).toHaveClass(
+      'tile-grid-component-item tile-grid-component-item-alpha'
+    );
+    expect(queryAllByTestId('tile-grid-list-item')[1]).toHaveClass(
+      'tile-grid-component-item tile-grid-component-item-beta'
+    );
 
-    const firstTileItem = list.childAt(0);
-    expect(firstTileItem.prop('className')).to.equal('tile-grid-component-item tile-grid-component-item-alpha');
+    expect(queryAllByTestId('tile-grid-list-item-link')).toHaveLength(2);
+    expect(queryAllByTestId('tile-grid-list-item-link')[0]).toHaveClass('tile-grid-component-item-link');
+    expect(queryAllByTestId('tile-grid-list-item-link')[0]).toHaveTextContent('Alpha');
 
-    const firstTileLink = firstTileItem.find('.tile-grid-component-item-link');
-    expect(firstTileLink).to.have.length(1);
-    expect(firstTileLink.prop('onClick')).to.be.a('function');
-    expect(firstTileLink.text()).to.equal('Alpha');
-
-    const secondTileItem = list.childAt(1);
-    expect(secondTileItem.prop('className')).to.equal('tile-grid-component-item tile-grid-component-item-beta');
-
-    const secondTileLink = secondTileItem.find('.tile-grid-component-item-link');
-    expect(secondTileLink).to.have.length(1);
-    expect(secondTileLink.prop('onClick')).to.be.a('function');
-    expect(secondTileLink.text()).to.equal('Beta');
+    expect(queryAllByTestId('tile-grid-list-item-link')[1]).toHaveClass('tile-grid-component-item-link');
+    expect(queryAllByTestId('tile-grid-list-item-link')[1]).toHaveTextContent('Beta');
   });
 
   it('handles tile clicks', () => {
-    const onItemClickSpy = sinon.spy();
-    const component = shallow(<TileGrid {...props} onItemClick={onItemClickSpy} />);
-    const tileLinks = component.find('.tile-grid-component-item-link');
-    const firstTileLink = tileLinks.at(0);
-    firstTileLink.simulate('click');
-    expect(onItemClickSpy.callCount).to.equal(1);
-    expect(onItemClickSpy.calledWith('0')).to.equal(true);
+    const onItemClick = jest.fn();
+    const { queryAllByTestId } = render(<TileGrid {...props} onItemClick={onItemClick} />);
 
-    const secondTileLink = tileLinks.at(1);
-    secondTileLink.simulate('click');
-    expect(onItemClickSpy.callCount).to.equal(2);
-    expect(onItemClickSpy.calledWith('1')).to.equal(true);
+    fireEvent.click(queryAllByTestId('tile-grid-list-item-link')[0]);
+    expect(onItemClick).toHaveBeenCalledTimes(1);
+    expect(onItemClick).toHaveBeenCalledWith('0');
+
+    fireEvent.click(queryAllByTestId('tile-grid-list-item-link')[1]);
+    expect(onItemClick).toHaveBeenCalledTimes(2);
+    expect(onItemClick).toHaveBeenLastCalledWith('1');
   });
 
   it('should handle evenly distributed', () => {
     props.distributed = true;
-    const component = shallow(<TileGrid {...props} />);
-    const tileList = component.find('.tile-grid-component-item-distributed');
-    expect(tileList).to.have.length(2);
+    const { queryAllByTestId } = render(<TileGrid {...props} />);
+    expect(queryAllByTestId('tile-grid-list-item')).toHaveLength(2);
+    queryAllByTestId('tile-grid-list-item').forEach(item =>
+      expect(item).toHaveClass('tile-grid-component-item-distributed')
+    );
   });
 
   it('should add image for background if imgLink is provided', () => {
@@ -82,26 +77,30 @@ describe('TileGrid', () => {
       { id: '1', classSuffix: 'beta', title: 'Beta', imgLink: '/linkBeta.jpg' },
     ];
     props.items = itemsWithLink;
-    const component = shallow(<TileGrid {...props} />);
-    const tileList = component.find('.tile-grid-component-item-img-wrapper');
-    expect(tileList).to.have.length(2);
+    const { queryAllByTestId } = render(<TileGrid {...props} />);
+    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(2);
+    queryAllByTestId('tile-grid-list-item-img-wrapper').forEach(item =>
+      expect(item).toHaveClass('tile-grid-component-item-img-wrapper')
+    );
   });
 
   it('should handle image position', () => {
     const itemsWithLinkAndPosition = [
       { id: '0', classSuffix: 'one', title: 'One', imgLink: '/linkOne.jpg', imgAlign: 'left' },
       { id: '1', classSuffix: 'two', title: 'Two', imgLink: '/linkTwo.jpg', imgAlign: 'center' },
-      { id: '1', classSuffix: 'three', title: 'Three', imgLink: '/linkThree.jpg', imgAlign: 'right' },
+      { id: '2', classSuffix: 'three', title: 'Three', imgLink: '/linkThree.jpg', imgAlign: 'right' },
     ];
     props.items = itemsWithLinkAndPosition;
-    const component = shallow(<TileGrid {...props} />);
-    const tileList = component.find('.tile-grid-component-item-img-wrapper');
-    expect(tileList).to.have.length(3);
-    const leftAlignedTile = component.find('.tile-grid-component-item-img-wrapper-left');
-    expect(leftAlignedTile).to.have.length(1);
-    const centerAlignedTile = component.find('.tile-grid-component-item-img-wrapper-center');
-    expect(centerAlignedTile).to.have.length(1);
-    const rightAlignedTile = component.find('.tile-grid-component-item-img-wrapper-right');
-    expect(rightAlignedTile).to.have.length(1);
+    const { queryAllByTestId } = render(<TileGrid {...props} />);
+    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(3);
+    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')[0]).toHaveClass(
+      'tile-grid-component-item-img-wrapper-left'
+    );
+    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')[1]).toHaveClass(
+      'tile-grid-component-item-img-wrapper-center'
+    );
+    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')[2]).toHaveClass(
+      'tile-grid-component-item-img-wrapper-right'
+    );
   });
 });

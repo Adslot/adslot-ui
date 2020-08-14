@@ -2,7 +2,7 @@ import _ from 'lodash';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FlexibleSpacer } from 'adslot-ui';
+import FlexibleSpacer from '../FlexibleSpacer';
 import './styles.scss';
 
 const baseClass = 'pagetitle-component';
@@ -10,9 +10,9 @@ const baseClass = 'pagetitle-component';
 const PageTitle = ({ children, isFooter, title }) => {
   const className = classnames(baseClass, { [`${baseClass}-is-footer`]: isFooter });
   return (
-    <div className={className} id={_.kebabCase(title)}>
+    <div data-testid="page-title-wrapper" className={className} id={_.kebabCase(title)}>
       {children ? (
-        <span className="flexible-wrapper-inline">
+        <span data-testid="page-title-inline" className="flexible-wrapper-inline">
           {title}
           <FlexibleSpacer />
           {children}

@@ -1,41 +1,38 @@
-/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import { shallow } from 'enzyme';
-import { SvgSymbol } from 'adslot-ui';
+import { render, cleanup } from '@testing-library/react';
+import SvgSymbol from '../SvgSymbol';
 import Empty from '.';
 
-describe('Empty', () => {
-  it('should render with defaults', () => {
-    const component = shallow(<Empty />);
-    expect(component.prop('className')).to.equal('empty-component');
+afterEach(cleanup);
 
-    const textElement = component.find('.empty-component-text');
-    expect(textElement.text()).to.equal('Nothing to show.');
+describe('<Empty />', () => {
+  it('should render with defaults', () => {
+    const { getByTestId } = render(<Empty />);
+    expect(getByTestId('empty-wrapper')).toHaveClass('empty-component');
+    expect(getByTestId('empty-text')).toHaveClass('empty-component-text');
+    expect(getByTestId('empty-text')).toHaveTextContent('Nothing to show.');
   });
 
   it('should render an empty div when passed a non-empty collection Array', () => {
-    const component = shallow(<Empty collection={[1]} />);
-    expect(component.prop('className')).to.be.an('undefined');
-    expect(component.children()).to.have.length(0);
+    const { container, getByTestId } = render(<Empty collection={[1]} />);
+    const snapshot = getByTestId('empty-wrapper');
+    expect(container.firstChild).toMatchObject(snapshot);
   });
 
   it('should render an empty div when passed a non-empty collection Object', () => {
-    const component = shallow(<Empty collection={{ foo: 1 }} />);
-    expect(component.prop('className')).to.be.an('undefined');
-    expect(component.children()).to.have.length(0);
+    const { container, getByTestId } = render(<Empty collection={{ foo: 1 }} />);
+    const snapshot = getByTestId('empty-wrapper');
+    expect(container.firstChild).toMatchObject(snapshot);
   });
 
   it('should render with custom SVG symbol', () => {
     const svgSymbol = <SvgSymbol href="//wherever.svg#id" classSuffixes={['class']} />;
     const props = { icon: svgSymbol, text: 'Where is everybody?' };
-    const component = shallow(<Empty {...props} />);
-    expect(component.prop('className')).to.equal('empty-component');
-
-    const svgSymbolEl = component.find(SvgSymbol);
-    expect(svgSymbolEl.prop('href')).to.equal('//wherever.svg#id');
-    expect(svgSymbolEl.prop('classSuffixes')).to.deep.equal(['class']);
-
-    const textElement = component.find('.empty-component-text');
-    expect(textElement.text()).to.equal('Where is everybody?');
+    const { getByTestId } = render(<Empty {...props} />);
+    expect(getByTestId('empty-wrapper')).toHaveClass('empty-component');
+    expect(getByTestId('empty-text')).toHaveClass('empty-component-text');
+    expect(getByTestId('empty-text')).toHaveTextContent('Where is everybody?');
+    expect(getByTestId('svg-symbol-wrapper')).toHaveClass('aui--svg-symbol-component-class');
+    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', '//wherever.svg#id');
   });
 });

@@ -3,7 +3,8 @@
   "globals": {
     "expect": false
   },
-  "extends": "adslot",
+  "plugins": ["jest-dom"],
+  "extends": ["adslot", "plugin:jest-dom/recommended"],
   "settings": {
     "lodash": {
       "version": 4

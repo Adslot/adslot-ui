@@ -1,17 +1,12 @@
 import _ from 'lodash';
-import { shallow } from 'enzyme';
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import PopoverLinkItem from './';
 
-describe('PopoverLinkItemComponent', () => {
-  let props = {};
-  let sandbox = null;
+afterEach(cleanup);
 
-  before(() => {
-    sandbox = sinon.createSandbox();
-  });
+describe('<PopoverLinkItem />', () => {
+  let props = {};
 
   beforeEach(() => {
     props = {
@@ -19,35 +14,32 @@ describe('PopoverLinkItemComponent', () => {
       url: 'www.some.url.com',
       target: '_self',
       isEnabled: true,
-      onClick: _.noop,
+      onClick: jest.fn(),
     };
-
-    sandbox.spy(props, 'onClick');
   });
 
-  afterEach(() => sandbox.restore());
-
   it('should render with default props', () => {
-    const component = shallow(<PopoverLinkItem {...props} />);
-    expect(component.find('li')).to.have.length(1);
-    expect(component.find(Button).props().href).to.equal('www.some.url.com');
+    const { getByText, queryAllByTestId } = render(<PopoverLinkItem {...props} />);
+    expect(queryAllByTestId('popover-link-item-wrapper')).toHaveLength(1);
+    expect(getByText('Link 1')).toHaveAttribute('href', 'www.some.url.com');
   });
 
   it('should trigger `props.onClick` when clicking on the component', () => {
-    const component = shallow(<PopoverLinkItem {...props} />);
-    component.find(Button).simulate('click');
-    expect(props.onClick.calledOnce).to.equal(true);
+    jest.spyOn(console, 'error').mockImplementation(_.noop);
+    const { getByText } = render(<PopoverLinkItem {...props} />);
+    fireEvent.click(getByText('Link 1'));
+    expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should not have href props on `PopoverLinkItem` when `target` is _modal', () => {
     props.target = '_modal';
-    const component = shallow(<PopoverLinkItem {...props} />);
-    expect(component.find(Button).props().href).to.equal(undefined);
+    const { getByText } = render(<PopoverLinkItem {...props} />);
+    expect(getByText('Link 1')).not.toHaveAttribute('href');
   });
 
   it('should add `rel` to anchor props when target is "_blank"', () => {
     props.target = '_blank';
-    const component = shallow(<PopoverLinkItem {...props} />);
-    expect(component.find(Button).props().rel).to.equal('noopener noreferrer');
+    const { getByText } = render(<PopoverLinkItem {...props} />);
+    expect(getByText('Link 1')).toHaveAttribute('rel', 'noopener noreferrer');
   });
 });

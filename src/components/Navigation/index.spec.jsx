@@ -1,10 +1,11 @@
-import { shallow } from 'enzyme';
 import React from 'react';
-import Nav from 'react-bootstrap/lib/Nav';
+import { render, cleanup } from '@testing-library/react';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Navigation from '.';
 
-describe('NavigationComponent', () => {
+afterEach(cleanup);
+
+describe('<Navigation />', () => {
   let props;
 
   beforeEach(() => {
@@ -15,14 +16,14 @@ describe('NavigationComponent', () => {
   });
 
   it('should render with props', () => {
-    const component = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <Navigation {...props}>
         <NavItem>test</NavItem>
       </Navigation>
     );
 
-    expect(component.find(Nav)).to.have.length(1);
-    expect(component.find(Nav).prop('className')).to.equals('bottom-bar');
-    expect(component.find(Nav).prop('bsClass')).to.equal('nav-borderless');
+    expect(queryAllByTestId('navigation-wrapper')).toHaveLength(1);
+    expect(getByTestId('navigation-wrapper')).toHaveClass('bottom-bar');
+    expect(getByTestId('navigation-wrapper')).toHaveClass('nav-borderless');
   });
 });

@@ -25,9 +25,10 @@ const Checkbox = ({ name, value, label, dts, disabled, checked, id, className, i
   const handleChange = () => onChange(getNextState(checked), name, value);
 
   return (
-    <div className={componentClassName} {...expandDts(dts)}>
+    <div data-testid="checkbox-wrapper" className={componentClassName} {...expandDts(dts)}>
       <label>
         <input
+          data-testid="checkbox-input"
           type="checkbox"
           name={name}
           checked={checked}
@@ -39,7 +40,7 @@ const Checkbox = ({ name, value, label, dts, disabled, checked, id, className, i
         />
         <div className="checkbox-component-icon" style={{ width: size, height: size }} />
         {label ? (
-          <div className="checkbox-component-label" style={{ lineHeight: `${size}px` }}>
+          <div data-testid="checkbox-label" className="checkbox-component-label" style={{ lineHeight: `${size}px` }}>
             {label}
           </div>
         ) : null}

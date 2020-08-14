@@ -31,6 +31,12 @@ class TreePickerNodeComponent extends React.PureComponent {
     isLoading: false,
   };
 
+  componentDidMount() {
+    if (_.isUndefined(this.props.node.path) && _.isUndefined(this.props.node.ancestors)) {
+      throw new Error(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors' for ${this.props.node}`);
+    }
+  }
+
   setLoadingAndExpandNode = () => {
     this.setState({ isLoading: true }, () => this.props.expandNode(this.props.node));
   };
@@ -41,9 +47,6 @@ class TreePickerNodeComponent extends React.PureComponent {
 
   render() {
     const { disabled, itemType, node, expandNode, nodeRenderer, selected, valueFormatter } = this.props;
-    if (_.isUndefined(node.path) && _.isUndefined(node.ancestors)) {
-      throw new Error(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors' for ${node}`);
-    }
     const isChildNode = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors));
     const isExpandable = expandNode && node.isExpandable;
 
@@ -61,7 +64,7 @@ class TreePickerNodeComponent extends React.PureComponent {
     });
 
     return (
-      <div className={classNames}>
+      <div data-testid="treepicker-node-wrapper" className={classNames}>
         <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
           {selected ? (
             <GridCell classSuffixes={['button']} dts="button-remove">

@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Tab = ({ children, show }) => (
-  <div role="tabpanel" aria-hidden={show} className={classnames(['tab-pane', 'fade', { active: show, in: show }])}>
+  <div
+    data-testid="tab-wrapper"
+    role="tabpanel"
+    aria-hidden={show}
+    className={classnames(['tab-pane', 'fade', { active: show, in: show }])}
+  >
     {children}
   </div>
 );

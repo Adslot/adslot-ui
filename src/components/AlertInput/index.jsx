@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { Popover } from 'adslot-ui';
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Popover from '../Popover';
 import { popoverPlacements } from '../Popover/constants';
 import './styles.scss';
 
@@ -115,6 +115,7 @@ export default class AlertInput extends React.PureComponent {
     return (
       <React.Fragment>
         <div
+          data-testid="alert-input-wrapper"
           ref={this.componentRef}
           className={className}
           data-test-selector={dts}

@@ -6,14 +6,16 @@ import './styles.scss';
 const Empty = ({ collection, text, icon }) => {
   if (_.isEmpty(collection)) {
     return (
-      <div className="empty-component">
+      <div data-testid="empty-wrapper" className="empty-component">
         {icon}
-        <div className="empty-component-text">{text}</div>
+        <div data-testid="empty-text" className="empty-component-text">
+          {text}
+        </div>
       </div>
     );
   }
 
-  return <div />;
+  return <div data-testid="empty-wrapper" />;
 };
 
 Empty.displayName = 'EmptyComponent';

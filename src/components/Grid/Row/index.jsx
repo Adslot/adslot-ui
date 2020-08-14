@@ -12,7 +12,7 @@ const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, 
   });
 
   return (
-    <div className={`${componentClass}${classesList}`} {...expandDts(dts)}>
+    <div data-testid="grid-row-wrapper" className={`${componentClass}${classesList}`} {...expandDts(dts)}>
       {children}
     </div>
   );

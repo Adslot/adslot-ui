@@ -1,57 +1,59 @@
 import React from 'react';
-import sinon from 'sinon';
-import { shallow } from 'enzyme';
-import { Panel, SvgSymbol } from 'adslot-ui';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import Panel from '.';
+import SvgSymbol from '../SvgSymbol';
 import PanelMocks from './mocks';
 
-describe('PanelComponent', () => {
+afterEach(cleanup);
+
+describe('<Panel />', () => {
   const { panel1, panel2, panel3 } = PanelMocks;
 
   it('should render with defaults', () => {
-    const component = shallow(<Panel {...panel1} />);
-    expect(component.prop('className')).to.equal('panel-component');
+    const { getByTestId, queryAllByTestId } = render(<Panel {...panel1} />);
+    expect(getByTestId('panel-wrapper')).toHaveClass('panel-component');
 
-    const headerElement = component.find('.panel-component-header');
-    expect(headerElement).to.have.length(1);
-    expect(headerElement.text()).to.equal('Panel 1');
-    expect(headerElement.prop('onClick')).to.be.a('function');
+    expect(queryAllByTestId('panel-header')).toHaveLength(1);
+    expect(getByTestId('panel-header')).toHaveClass('panel-component-header');
+    expect(getByTestId('panel-header')).toHaveTextContent('Panel 1');
 
-    const contentElement = component.find('.panel-component-content');
-    expect(contentElement).to.have.length(1);
-    expect(contentElement.children()).to.have.length(0);
+    expect(queryAllByTestId('panel-content')).toHaveLength(1);
+    expect(getByTestId('panel-content')).toHaveClass('panel-component-content');
+    expect(getByTestId('panel-content')).toBeEmpty();
   });
 
   it('should render with props', () => {
     const icon = <SvgSymbol href="/assets/svg-symbols.svg#list" />;
-    const component = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <Panel {...panel2} icon={icon}>
         {panel2.content}
       </Panel>
     );
-    expect(component.prop('className')).to.equal('panel-component collapsed');
-    expect(component.prop('data-test-selector')).to.equal('panel-two');
+    expect(getByTestId('panel-wrapper')).toHaveClass('panel-component collapsed');
+    expect(getByTestId('panel-wrapper')).toHaveAttribute('data-test-selector', 'panel-2');
 
-    const headerElement = component.find('.panel-component-header');
-    expect(headerElement.find(SvgSymbol)).to.have.length(1);
+    expect(queryAllByTestId('panel-header')).toHaveLength(1);
+    expect(getByTestId('panel-header')).toHaveClass('panel-component-header');
 
-    const contentElement = component.find('.panel-component-content');
-    expect(contentElement).to.have.length(1);
-    expect(contentElement.text()).to.equal('Panel 2 content');
+    expect(queryAllByTestId('panel-content')).toHaveLength(1);
+    expect(getByTestId('panel-content')).toHaveClass('panel-component-content');
+    expect(getByTestId('panel-content')).toHaveTextContent('Panel 2 content');
   });
 
   it('should append custom class', () => {
-    const wrapper = shallow(<Panel {...panel3}>{panel3.content}</Panel>);
-    expect(wrapper.find('.panel-component.test-class-1.test-class-2')).to.have.length(1);
+    const { getByTestId } = render(<Panel {...panel3}>{panel3.content}</Panel>);
+    expect(getByTestId('panel-wrapper')).toHaveClass('panel-component test-class-1 test-class-2');
   });
 
   it('should trigger onClick when clicking header', () => {
-    const callback = sinon.spy();
+    const callback = jest.fn();
+    const { getByTestId, queryAllByTestId } = render(<Panel {...panel3} onClick={callback} />);
 
-    const component = shallow(<Panel {...panel3} onClick={callback} />);
-    const headerElement = component.find('.panel-component-header');
-    expect(headerElement.prop('onClick')).to.be.a('function');
-    headerElement.simulate('click');
-    expect(callback.calledOnce).to.equal(true);
-    expect(callback.calledWith('3')).to.equal(true);
+    expect(queryAllByTestId('panel-header')).toHaveLength(1);
+    expect(getByTestId('panel-header')).toHaveClass('panel-component-header');
+
+    fireEvent.click(getByTestId('panel-header'));
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith('3');
   });
 });

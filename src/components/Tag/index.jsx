@@ -6,8 +6,12 @@ import './styles.scss';
 const defaultComponentClass = 'tag-component';
 
 export const ActionButton = ({ onAction, id, actionIcon }) => (
-  <span className="action-button" onClick={() => onAction(id)}>
-    {actionIcon || <span className="action-icon">&#x2715;</span>}
+  <span data-testid="tag-action-button" className="action-button" onClick={() => onAction(id)}>
+    {actionIcon || (
+      <span data-testid="tag-action-icon" className="action-icon">
+        &#x2715;
+      </span>
+    )}
   </span>
 );
 
@@ -30,7 +34,7 @@ const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIcon, d
   const dts = customDts || `tag-${id}`;
 
   return (
-    <span className={classes} data-test-selector={dts}>
+    <span data-testid="tag-wrapper" className={classes} data-test-selector={dts}>
       {children}
       {onAction ? <ActionButton {...{ onAction, id, actionIcon }} /> : null}
     </span>

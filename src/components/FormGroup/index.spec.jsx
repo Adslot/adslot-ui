@@ -1,71 +1,66 @@
-import { shallow } from 'enzyme';
 import React from 'react';
-import FormGroupComponent from '.';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import FormGroup from '.';
 
-describe('FormGroupComponent', () => {
+afterEach(cleanup);
+
+describe('<FormGroup />', () => {
   const helpText = "Help me if you can I'm feeling down.";
   const label = 'Sweet Caroline';
+
   it('should render with required props', () => {
-    const component = shallow(<FormGroupComponent helpText={helpText} label={label} placeholder="baz" />);
-    expect(component.prop('className')).to.equal('form-group');
+    const { getByTestId, queryAllByTestId } = render(
+      <FormGroup helpText={helpText} label={label} placeholder="baz" onChange={jest.fn()} />
+    );
 
-    const labelElement = component.find('label');
-    expect(labelElement).to.have.length(1);
-    expect(labelElement.prop('htmlFor')).to.equal('sweet-caroline');
-    expect(labelElement.prop('className')).to.equal('control-label col-xs-3');
-    expect(labelElement.text()).to.equal('Sweet Caroline');
+    expect(getByTestId('form-group-wrapper')).toHaveClass('form-group');
 
-    const columnElement = component.find('.col-xs-5');
-    expect(columnElement).to.have.length(1);
+    expect(queryAllByTestId('form-group-label')).toHaveLength(1);
+    expect(getByTestId('form-group-label')).toHaveAttribute('for', 'sweet-caroline');
+    expect(getByTestId('form-group-label')).toHaveClass('control-label col-xs-3');
+    expect(getByTestId('form-group-label')).toHaveTextContent('Sweet Caroline');
 
-    const inputGroupElement = columnElement.find('.input-group');
-    expect(inputGroupElement).to.have.length(1);
-    expect(inputGroupElement.prop('className')).to.equal('input-group col-xs-12');
+    expect(queryAllByTestId('form-group-input-group-wrapper')).toHaveLength(1);
+    expect(getByTestId('form-group-input-group-wrapper')).toHaveClass('col-xs-5');
 
-    const inputElement = inputGroupElement.find('input');
-    expect(inputElement).to.have.length(1);
-    expect(inputElement.prop('type')).to.equal('text');
-    expect(inputElement.prop('className')).to.equal('form-control');
-    expect(inputElement.prop('id')).to.equal('sweet-caroline');
-    expect(inputElement.prop('placeholder')).to.equal('baz');
-    expect(inputElement.prop('value')).to.equal('');
+    expect(queryAllByTestId('form-group-input-group')).toHaveLength(1);
+    expect(getByTestId('form-group-input-group')).toHaveClass('input-group col-xs-12');
 
-    const helpBlockElement = component.find('.help-block');
-    expect(helpBlockElement.is('p')).to.equal(true);
-    expect(helpBlockElement).to.have.length(1);
-    expect(helpBlockElement.text()).to.equal(helpText);
+    expect(queryAllByTestId('form-group-input')).toHaveLength(1);
+    expect(getByTestId('form-group-input')).toHaveClass('form-control');
+    expect(getByTestId('form-group-input')).toHaveAttribute('type', 'text');
+    expect(getByTestId('form-group-input')).toHaveAttribute('id', 'sweet-caroline');
+    expect(getByTestId('form-group-input')).toHaveAttribute('placeholder', 'baz');
+    expect(getByTestId('form-group-input')).toHaveAttribute('value', '');
+
+    expect(getByTestId('form-group-help')).toHaveClass('help-block');
+    expect(queryAllByTestId('form-group-help')).toHaveLength(1);
+    expect(getByTestId('form-group-help')).toHaveTextContent(helpText);
   });
 
   it('should render with an addon and a value', () => {
-    const onChangeMock = () => null;
-    const component = shallow(
-      <FormGroupComponent
-        addon="$"
-        helpText={helpText}
-        label={label}
-        onChange={onChangeMock}
-        placeholder="5.00"
-        value="10.00"
-      />
+    const onChangeMock = jest.fn();
+    const { getByTestId, queryAllByTestId } = render(
+      <FormGroup addon="$" helpText={helpText} label={label} onChange={onChangeMock} placeholder="5.00" value="10.00" />
     );
-    expect(component.prop('className')).to.equal('form-group');
 
-    const inputGroupElement = component.find('.input-group');
+    expect(getByTestId('form-group-wrapper')).toHaveClass('form-group');
+    expect(getByTestId('form-group-input-group')).toContainElement(getByTestId('form-group-input'));
+    expect(queryAllByTestId('form-group-input')).toHaveLength(1);
+    expect(getByTestId('form-group-input')).toHaveClass('form-control');
+    expect(getByTestId('form-group-input')).toHaveAttribute('type', 'text');
+    expect(getByTestId('form-group-input')).toHaveAttribute('id', 'sweet-caroline');
+    expect(getByTestId('form-group-input')).toHaveAttribute('placeholder', '5.00');
+    expect(getByTestId('form-group-input')).toHaveAttribute('value', '10.00');
 
-    const inputElement = inputGroupElement.find('input');
-    expect(inputElement).to.have.length(1);
-    expect(inputElement.prop('type')).to.equal('text');
-    expect(inputElement.prop('className')).to.equal('form-control');
-    expect(inputElement.prop('id')).to.equal('sweet-caroline');
-    expect(inputElement.prop('onChange')).to.equal(onChangeMock);
-    expect(inputElement.prop('placeholder')).to.equal('5.00');
-    expect(inputElement.prop('value')).to.equal('10.00');
+    fireEvent.change(getByTestId('form-group-input'), { target: { value: 'a' } });
+    expect(onChangeMock).toHaveBeenCalledTimes(1);
   });
 
   it('should render as disabled', () => {
-    const onChangeMock = () => null;
-    const component = shallow(
-      <FormGroupComponent
+    const onChangeMock = jest.fn();
+    const { getByTestId, queryAllByTestId } = render(
+      <FormGroup
         disabled
         helpText={helpText}
         label={label}
@@ -75,10 +70,7 @@ describe('FormGroupComponent', () => {
       />
     );
 
-    const inputGroupElement = component.find('.input-group');
-
-    const inputElement = inputGroupElement.find('input');
-    expect(inputElement).to.have.length(1);
-    expect(inputElement.prop('disabled')).to.equal(true);
+    expect(queryAllByTestId('form-group-input')).toHaveLength(1);
+    expect(getByTestId('form-group-input')).toBeDisabled();
   });
 });

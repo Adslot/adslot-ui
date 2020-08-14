@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'adslot-ui';
 import classnames from 'classnames';
+import Button from '../Button';
 
 const ToolbarButton = ({ onToggle, label, active }) => {
   const className = classnames('aui--toolbar-button', {

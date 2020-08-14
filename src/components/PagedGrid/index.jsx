@@ -26,7 +26,7 @@ class PagedGridComponent extends React.PureComponent {
     const totalPages = Math.ceil(items.length / perPage);
 
     return (
-      <div className="pagedgrid-component">
+      <div data-testid="paged-grid-wrapper" className="pagedgrid-component">
         <Grid>
           <GridRow type="header" verticalCellBorder={verticalCellBorder}>
             {_.map(columns, column => (
@@ -52,10 +52,11 @@ class PagedGridComponent extends React.PureComponent {
         </Grid>
         {totalPages > 1 ? (
           <div className="pagedgrid-component-pagination">
-            <span className="pagedgrid-component-pagination-info">
+            <span data-testid="paged-grid-pagination-info" className="pagedgrid-component-pagination-info">
               {(activePage - 1) * perPage + 1}–{Math.min(activePage * perPage, items.length)} of {items.length}
             </span>
             <Pagination
+              data-testid="paged-grid-pagination"
               activePage={activePage}
               items={totalPages}
               next

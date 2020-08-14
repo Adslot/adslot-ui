@@ -9,7 +9,9 @@ const Marker = ({ fraction }) => {
     return `${getPointX(pointOnCircle)},${getPointY(pointOnCircle)} 0,0`;
   };
 
-  return <polyline className="marker-component" points={getMarkerPoints(fraction)} />;
+  return (
+    <polyline data-testid="slicey-marker-wrapper" className="marker-component" points={getMarkerPoints(fraction)} />
+  );
 };
 
 Marker.displayName = 'SliceyMarkerComponent';

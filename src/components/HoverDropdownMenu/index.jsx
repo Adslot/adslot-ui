@@ -75,13 +75,13 @@ export class HoverDropdownMenuComponent extends React.PureComponent {
     const { arrowPosition, headerText, hoverComponent, children } = this.props;
 
     const element = (
-      <div onMouseEnter={this.openMenu} onMouseLeave={this.closeMenu}>
+      <div data-testid="hover-dropdown-element" onMouseEnter={this.openMenu} onMouseLeave={this.closeMenu}>
         {hoverComponent}
       </div>
     );
 
     return (
-      <div className="hover-dropdown">
+      <div data-testid="hover-dropdown-wrapper" className="hover-dropdown">
         {children && children.length > 0 ? (
           <Popover
             placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}

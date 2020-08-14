@@ -4,7 +4,7 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const Grid = ({ children, dts }) => (
-  <div className="grid-component" {...expandDts(dts)}>
+  <div data-testid="grid-wrapper" className="grid-component" {...expandDts(dts)}>
     {children}
   </div>
 );

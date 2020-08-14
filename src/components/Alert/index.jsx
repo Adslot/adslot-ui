@@ -4,7 +4,7 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const Alert = ({ type, children, dts }) => (
-  <div className={`alert-component alert-component-${type}`} {...expandDts(dts)}>
+  <div data-testid="alert-wrapper" className={`alert-component alert-component-${type}`} {...expandDts(dts)}>
     {children}
   </div>
 );

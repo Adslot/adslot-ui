@@ -39,7 +39,15 @@ const getArcElements = filteredDataset => {
     return _.map(getArcs(filteredDataset), arc => <Arc key={arc.id} data={arc} />);
   }
 
-  return <circle className={`arc-component ${_.kebabCase(filteredDataset[0].label)}`} r=".5" cx="0" cy="0" />;
+  return (
+    <circle
+      data-testid="slicey-circle"
+      className={`arc-component ${_.kebabCase(filteredDataset[0].label)}`}
+      r=".5"
+      cx="0"
+      cy="0"
+    />
+  );
 };
 
 const getSvgProps = diameter => ({
@@ -58,8 +66,8 @@ const Slicey = ({ dataset, diameter, donut, marker }) => {
 
   if (_.isEmpty(filteredDataset)) {
     return (
-      <svg {...getSvgProps(diameter)}>
-        <circle className="slicey-empty" r=".5" cx="0" cy="0" />
+      <svg data-testid="slicey-wrapper" {...getSvgProps(diameter)}>
+        <circle data-testid="slicey-circle" className="slicey-empty" r=".5" cx="0" cy="0" />
         {markerEl}
         {donutEl}
       </svg>
@@ -67,8 +75,8 @@ const Slicey = ({ dataset, diameter, donut, marker }) => {
   }
 
   return (
-    <svg {...getSvgProps(diameter)}>
-      <circle className="slicey-background" r=".49" cx="0" cy="0" />
+    <svg data-testid="slicey-wrapper" {...getSvgProps(diameter)}>
+      <circle data-testid="slicey-circle" className="slicey-background" r=".49" cx="0" cy="0" />
       {getArcElements(filteredDataset)}
       {markerEl}
       {donutEl}

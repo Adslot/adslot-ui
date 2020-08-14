@@ -8,9 +8,13 @@ const Statistic = ({ label, value, inline }) => {
   if (inline) statisticClassNames.push('inline');
 
   return (
-    <label className={statisticClassNames.join(' ')}>
-      <div className={`${baseClass}-value`}>{value}</div>
-      <div className={`${baseClass}-label`}>{label}</div>
+    <label data-testid="statistic-wrapper" className={statisticClassNames.join(' ')}>
+      <div data-testid="statistic-value" className={`${baseClass}-value`}>
+        {value}
+      </div>
+      <div data-testid="statistic-label" className={`${baseClass}-label`}>
+        {label}
+      </div>
     </label>
   );
 };

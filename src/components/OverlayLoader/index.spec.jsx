@@ -1,26 +1,32 @@
-import { mount, shallow } from 'enzyme';
 import React from 'react';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import OverlayLoader from '.';
 
-describe('Overlay Loader Component', () => {
+afterEach(cleanup);
+
+describe('<OverlayLoader />', () => {
   it('should render Overlay Loader', () => {
-    const wrapper = shallow(<OverlayLoader text="foo" />);
-    expect(wrapper.find('.aui--overlay-loader')).to.have.length(1);
-    expect(wrapper.find('.loader-heading').text()).to.equal('Loading');
+    const { getByTestId, queryAllByTestId } = render(<OverlayLoader text="foo" />);
+    expect(getByTestId('overlay-loader-wrapper')).toHaveClass('aui--overlay-loader');
+    expect(queryAllByTestId('overlay-loader-wrapper')).toHaveLength(1);
+
+    expect(getByTestId('overlay-loader-heading')).toHaveClass('loader-heading');
+    expect(getByTestId('overlay-loader-heading')).toHaveTextContent('Loading');
   });
 
   it('should stop event propogation when disabled background', () => {
-    const eventStub = sinon.stub();
-    const wrapper = mount(
-      <div onClick={() => eventStub} className="my-div">
+    const onClick = jest.fn();
+    const { getByTestId, queryAllByTestId } = render(
+      <div data-testid="overlay-loader-test-wrapper" onClick={() => onClick} className="my-div">
         <OverlayLoader text="foo" disableBackground />
       </div>
     );
-    expect(wrapper.find(OverlayLoader)).to.have.length(1);
-    expect(wrapper.find('.loader-heading').text()).to.equal('Loading');
-    wrapper.find('.my-div').simulate('click');
-    wrapper.find(OverlayLoader).simulate('click');
-    expect(eventStub.called).to.equal(false);
+    expect(queryAllByTestId('overlay-loader-wrapper')).toHaveLength(1);
+    expect(getByTestId('overlay-loader-heading')).toHaveClass('loader-heading');
+    expect(getByTestId('overlay-loader-heading')).toHaveTextContent('Loading');
+
+    fireEvent.click(getByTestId('overlay-loader-test-wrapper'));
+    fireEvent.click(getByTestId('overlay-loader-wrapper'));
+    expect(onClick).toHaveBeenCalledTimes(0);
   });
 });

@@ -1,11 +1,12 @@
 import _ from 'lodash';
-import { ActionPanel } from 'adslot-ui';
-import { shallow, mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
 import React from 'react';
+import { act, render, cleanup } from '@testing-library/react';
 import Button from 'react-bootstrap/lib/Button';
+import ActionPanel from '.';
 
-describe('ActionPanelComponent', () => {
+afterEach(cleanup);
+
+describe('<ActionPanel />', () => {
   const makeProps = override =>
     _.merge(
       {
@@ -18,47 +19,43 @@ describe('ActionPanelComponent', () => {
     );
 
   it('should render with defaults', () => {
-    const wrapper = shallow(<ActionPanel {...makeProps()} />);
-    const headerElement = wrapper.find('.aui--action-panel-header');
-    expect(headerElement).to.have.length(1);
-    expect(headerElement.find('.title').text()).to.equal('Action Panel');
+    const { getByTestId, queryAllByTestId } = render(<ActionPanel {...makeProps()} />);
+    expect(queryAllByTestId('action-panel-header')).toHaveLength(1);
+    expect(getByTestId('action-panel-header')).toHaveClass('aui--action-panel-header');
+    expect(getByTestId('action-panel-title')).toHaveClass('title');
+    expect(getByTestId('action-panel-title')).toHaveTextContent('Action Panel');
 
-    const bodyElement = wrapper.find('.aui--action-panel-body');
-    expect(bodyElement).to.have.length(1);
+    expect(queryAllByTestId('action-panel-body')).toHaveLength(1);
+    expect(getByTestId('action-panel-body')).toHaveClass('aui--action-panel-body');
 
-    wrapper.unmount();
-    expect(document.body.classList.contains('modal-open')).to.equal(false);
+    expect(document.body).not.toHaveClass('modal-open');
   });
 
   it('should render as a modal', () => {
     let wrapper;
     act(() => {
-      wrapper = mount(
+      wrapper = render(
         <ActionPanel {...makeProps({ isModal: true, size: 'large', actionButton: <Button>Action</Button> })} />
       );
     });
 
-    expect(document.body.classList.contains('modal-open')).to.equal(true);
-
-    expect(wrapper.find('.aui--action-panel-modal-wrapper')).to.have.length(1);
-    const actionPanelElement = wrapper.find('.aui--action-panel');
-    expect(actionPanelElement.prop('className')).to.equal('aui--action-panel is-large action-modal');
-
+    expect(document.body).toHaveClass('modal-open');
+    expect(wrapper.queryAllByTestId('action-panel-modal-wrapper')).toHaveLength(1);
+    expect(wrapper.getByTestId('action-panel-wrapper')).toHaveClass('aui--action-panel is-large action-modal');
     wrapper.unmount();
-    expect(document.body.classList.contains('modal-open')).to.equal(false);
+    expect(document.body).not.toHaveClass('modal-open');
   });
 
   it('should not render modal when isModal is false', () => {
     let wrapper;
     act(() => {
-      wrapper = mount(
+      wrapper = render(
         <ActionPanel {...makeProps({ isModal: false, size: 'large', actionButton: <Button>Action</Button> })} />
       );
     });
-
-    expect(document.body.classList.contains('modal-open')).to.equal(false);
+    expect(document.body).not.toHaveClass('modal-open');
 
     wrapper.unmount();
-    expect(document.body.classList.contains('modal-open')).to.equal(false);
+    expect(document.body).not.toHaveClass('modal-open');
   });
 });

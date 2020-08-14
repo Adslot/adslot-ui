@@ -1,8 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import _ from 'lodash';
-import { Grid, GridCell, GridRow } from 'adslot-ui';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '../Grid';
+import GridCell from '../Grid/Cell';
+import GridRow from '../Grid/Row';
 
 const Totals = ({ toSum, valueFormatter }) => (
   <Grid>

@@ -18,7 +18,7 @@ const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNa
   const extraProps = onClick ? { onClick } : {};
 
   return (
-    <div className={className} {...extraProps} {...expandDts(dts)}>
+    <div data-testid="grid-cell-wrapper" className={className} {...extraProps} {...expandDts(dts)}>
       {children}
     </div>
   );

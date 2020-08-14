@@ -44,6 +44,8 @@ class Popover extends React.PureComponent {
 
   state = {
     isPopoverOpen: this.props.isOpen,
+    // isPopoverOpen: false,
+    // isForcedOpen: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -54,6 +56,15 @@ class Popover extends React.PureComponent {
 
     return { isPopoverOpen: props.isOpen };
   }
+
+  // props isOpen is not working now, maybe refactor for
+  // componentDidMount() {
+  //   this.setState({ isForcedOpen: this.props.isOpen });
+  // }
+
+  // componentDidUpdate() {
+  //   this.setState({ isForcedOpen: this.props.isOpen });
+  // }
 
   onClick = () => this.togglePopover();
 
@@ -84,7 +95,7 @@ class Popover extends React.PureComponent {
     const popoverClass = classnames('aui--popover-wrapper', themeClass, popoverClassNames);
     const triggers = _.flattenDeep([this.props.triggers]);
 
-    const popoverElement = this.state.isPopoverOpen
+    const popoverElement = this.state.isPopoverOpen // || this.state.isForcedOpen
       ? ReactDOM.createPortal(
           <Popper
             placement={this.props.placement}
@@ -108,6 +119,7 @@ class Popover extends React.PureComponent {
         <Reference innerRef={this.referenceRef}>
           {() => (
             <span
+              data-testid="popover-element"
               className={elementClass}
               ref={this.elementRef}
               {...(triggers.includes('disabled')

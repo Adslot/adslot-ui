@@ -8,7 +8,7 @@ import './styles.scss';
 const CardContent = ({ children, className, stretch, fill, append, dts }) => {
   const contentClassNames = classnames('card-component-content', { stretch, fill, append }, className);
   return (
-    <div className={contentClassNames} {...expandDts(dts)}>
+    <div data-testid="card-content-wrapper" className={contentClassNames} {...expandDts(dts)}>
       {children}
     </div>
   );
@@ -43,8 +43,10 @@ const Card = ({ children, className, accent, dts }) => {
   ) => (_.get(child, 'props.append') ? child : null));
 
   return (
-    <div className={containerClassNames} {...expandDts(dts)}>
-      <div className={`${baseClass}-content-container`}>{nestedChildren}</div>
+    <div data-testid="card-container-wrapper" className={containerClassNames} {...expandDts(dts)}>
+      <div data-testid="card-content-container-wrapper" className={`${baseClass}-content-container`}>
+        {nestedChildren}
+      </div>
       {appendedChildren}
     </div>
   );

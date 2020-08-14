@@ -1,18 +1,16 @@
 import _ from 'lodash';
-import { FlexibleSpacer, SplitPane } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
-import TreePickerNav from './Nav';
-import TreePickerGrid from './Grid';
+import { render, cleanup, queryByAttribute } from '@testing-library/react';
 import TreePickerSimplePure, { removeSelected } from '.';
 import TreePickerMocks from './mocks';
 
-const checkElement = expectedProps => (element, propsList) =>
-  _.map(propsList, propName => expect(element.prop(propName)).to.equal(expectedProps[propName]));
+afterEach(cleanup);
 
-describe('TreePickerSimplePureComponent', () => {
+const getByDts = queryByAttribute.bind(null, 'data-test-selector');
+
+describe('<TreePicker />', () => {
   const { actNode, initialSelection, itemType, ntNode, qldNode, saNode } = TreePickerMocks;
-  const svgSymbol = <div />;
+  const svgSymbol = <div className="testing-svg-symbol" />;
 
   const props = {
     breadcrumbNodes: [saNode],
@@ -39,118 +37,25 @@ describe('TreePickerSimplePureComponent', () => {
   };
 
   it('should render with props', () => {
-    const component = shallow(<TreePickerSimplePure {...props} />);
-    expect(component.prop('className')).to.equal('treepickersimplepure-component');
+    const { container, getByTestId, queryAllByTestId } = render(<TreePickerSimplePure {...props} />);
+    expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component');
 
-    expect(component.find(SplitPane)).to.have.length(2);
-    expect(component.children().every(SplitPane)).to.equal(true);
-    expect(
-      component
-        .find(TreePickerGrid)
-        .first()
-        .prop('Begin searching.')
-    );
+    expect(queryAllByTestId('split-panel-wrapper')).toHaveLength(2);
 
-    const navElement = component.find(TreePickerNav);
-    expect(navElement).to.have.length(1);
+    getByTestId('treepicker-wrapper').children.forEach(child => expect(child).toHaveClass('splitpane-component'));
 
-    const checkElementProps = checkElement(props);
-    checkElementProps(navElement, [
-      'breadcrumbNodes',
-      'breadcrumbOnClick',
-      'onClear',
-      'onChange',
-      'onSearch',
-      'searchOnEnter',
-      'searchPlaceholder',
-      'searchValue',
-      'svgSymbolCancel',
-      'svgSymbolSearch',
-    ]);
+    expect(queryAllByTestId('treepicker-nav-wrapper')).toHaveLength(1);
 
-    const leftPaneElement = component.find({
-      dts: `treepicker-splitpane-available-${_.kebabCase(itemType)}`,
-    });
-    expect(leftPaneElement.find(FlexibleSpacer)).to.have.length(1);
-
-    const rightPaneElement = component.find({
-      dts: `treepicker-splitpane-selected-${_.kebabCase(itemType)}`,
-    });
-    expect(rightPaneElement.find(FlexibleSpacer)).to.have.length(1);
-  });
-
-  it('should render with given empty state node', () => {
-    const loaderStateProps = _.assign({}, props, {
-      emptyText: 'Loading...',
-      searchValue: 'Victoria',
-      initialSelection: [],
-    });
-
-    const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
-    expect(
-      component
-        .find(TreePickerGrid)
-        .first()
-        .prop('Loading...')
-    );
-  });
-
-  it('should render with default empty state props', () => {
-    const emptyStateProps = _.assign({}, props, {
-      searchValue: 'Victoria',
-      initialSelection: [],
-    });
-
-    const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);
-    expect(
-      component
-        .find(TreePickerGrid)
-        .first()
-        .prop('No items to select.')
-    );
-  });
-
-  it('should render with given empty text and svg icon for the selected side', () => {
-    const emptyStateProps = _.assign({}, props, {
-      searchValue: 'Victoria',
-      initialSelection: [],
-      emptySelectedListText: 'Nothing to show',
-      emptySelectedListSvgSymbol: svgSymbol,
-    });
-
-    const component = shallow(<TreePickerSimplePure {...emptyStateProps} />);
-    expect(
-      component
-        .find(TreePickerGrid)
-        .first()
-        .prop('No items to select.')
-    );
-    expect(
-      component
-        .find(TreePickerGrid)
-        .last()
-        .prop('Nothing to show')
-    );
-  });
-
-  it('should render with given empty selected state node', () => {
-    const loaderStateProps = _.assign({}, props, {
-      initialSelectedStateNode: 'Select...',
-      selectedNodes: [],
-    });
-
-    const component = shallow(<TreePickerSimplePure {...loaderStateProps} />);
-    expect(
-      component
-        .find(TreePickerGrid)
-        .last()
-        .prop('Select...')
-    );
+    expect(queryAllByTestId('flexible-spacer-wrapper')).toHaveLength(2);
+    const leftSplitPane = getByDts(container, `treepicker-splitpane-available-${_.kebabCase(itemType)}`);
+    const rightSplitPane = getByDts(container, `treepicker-splitpane-selected-${_.kebabCase(itemType)}`);
+    expect(leftSplitPane).toContainElement(queryAllByTestId('flexible-spacer-wrapper')[0]);
+    expect(rightSplitPane).toContainElement(queryAllByTestId('flexible-spacer-wrapper')[1]);
   });
 
   it('should have disabled class included when disabled set to true', () => {
-    const component = shallow(<TreePickerSimplePure disabled {...props} />);
-    expect(component.prop('className')).to.equal('treepickersimplepure-component disabled');
+    const { getByTestId } = render(<TreePickerSimplePure disabled {...props} />);
+    expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component disabled');
   });
 
   it('should not render TreePickerNav when hideSearchOnRoot is true and on root level ', () => {
@@ -158,18 +63,16 @@ describe('TreePickerSimplePureComponent', () => {
       hideSearchOnRoot: true,
       breadcrumbNodes: [],
     });
-    const component = shallow(<TreePickerSimplePure {...hideSearchOnRootProps} />);
-    const navElement = component.find(TreePickerNav);
-    expect(navElement).to.have.length(0);
+    const { queryAllByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+    expect(queryAllByTestId('treepicker-nav-wrapper')).toHaveLength(0);
   });
 
   it('should render TreePickerNav when hideSearchOnRoot is true and not on root level', () => {
     const hideSearchOnRootProps = _.assign({}, props, {
       hideSearchOnRoot: true,
     });
-    const component = shallow(<TreePickerSimplePure {...hideSearchOnRootProps} />);
-    const navElement = component.find(TreePickerNav);
-    expect(navElement).to.have.length(1);
+    const { queryAllByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+    expect(queryAllByTestId('treepicker-nav-wrapper')).toHaveLength(1);
   });
 
   describe('removeSelected', () => {
@@ -177,21 +80,21 @@ describe('TreePickerSimplePureComponent', () => {
       const subtree = [{ id: 1 }, { id: 2 }, { id: 3 }];
       const selectedNodes = [{ id: 1 }, { id: 3 }];
 
-      expect(removeSelected({ subtree, selectedNodes })).to.deep.equal([{ id: 2 }]);
+      expect(removeSelected({ subtree, selectedNodes })).toEqual([{ id: 2 }]);
     });
 
     it('should return an empty array when passed an empty subtree', () => {
       const subtree = [];
       const selectedNodes = [{ id: 1 }, { id: 3 }];
 
-      expect(removeSelected({ subtree, selectedNodes })).to.deep.equal([]);
+      expect(removeSelected({ subtree, selectedNodes })).toEqual([]);
     });
 
     it('should return undefined when passed an undefined subtree', () => {
       const subtree = undefined;
       const selectedNodes = [{ id: 1 }, { id: 3 }];
 
-      expect(removeSelected({ subtree, selectedNodes })).to.equal(undefined);
+      expect(removeSelected({ subtree, selectedNodes })).toEqual(undefined);
     });
   });
 });

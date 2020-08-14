@@ -1,102 +1,98 @@
-import _ from 'lodash';
-import { shallow, mount } from 'enzyme';
-import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import FilePickerComponent from '.';
 
-describe('FilePickerComponent', () => {
+afterEach(cleanup);
+
+describe('<FilePicker />', () => {
   it('should render with defaults', () => {
-    const component = shallow(<FilePickerComponent onSelect={_.noop} />);
-    expect(component.prop('className')).to.equal('filepicker-component input-group');
+    const { getByTestId } = render(<FilePickerComponent onSelect={jest.fn()} />);
+    expect(getByTestId('file-picker-wrapper')).toHaveClass('filepicker-component input-group');
 
-    const fileElement = component.find('.form-control');
-    expect(fileElement.prop('placeholder')).to.equal('No file selected');
-    expect(fileElement.prop('title')).to.equal('');
+    expect(getByTestId('file-picker-form-control')).toHaveClass('form-control');
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('placeholder', 'No file selected');
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
 
-    const selectButtonElement = component.find(Button);
-    expect(
-      selectButtonElement
-        .children()
-        .find('span')
-        .text()
-    ).to.equal('Select');
-
-    const fileInputElement = component.find('.file-input');
-    expect(fileInputElement.prop('type')).to.equal('file');
-    expect(fileInputElement.prop('data-test-selector')).to.be.an('undefined');
+    expect(getByTestId('file-picker-input-button-label')).toHaveTextContent('Select');
+    expect(getByTestId('file-picker-input-button-input')).toHaveAttribute('type', 'file');
   });
 
   it('should show remove button and call `onSelect` when file selected', () => {
-    const onSelect = sinon.spy();
+    const onSelect = jest.fn();
+    const { getByTestId, queryAllByTestId } = render(
+      <FilePickerComponent onSelect={onSelect} dts="test-file-picker-input" />
+    );
 
-    // mount is needed for refs
-    const component = mount(<FilePickerComponent onSelect={onSelect} dts="test-file-picker-input" />);
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('placeholder', 'No file selected');
 
-    expect(component.find('.form-control').prop('title')).to.equal('');
-    expect(component.state('isFileSelected')).to.equal(false);
-    expect(component.find('button.remove-file')).to.have.length(0);
+    expect(queryAllByTestId('file-picker-remove-button')).toHaveLength(0);
+    expect(getByTestId('file-picker-input-button')).toBeEnabled();
 
-    const fileInput = component.find('[data-test-selector="test-file-picker-input"]');
+    expect(getByTestId('file-picker-input-button-input')).toHaveAttribute(
+      'data-test-selector',
+      'test-file-picker-input'
+    );
 
-    expect(component.find('.form-control').prop('placeholder')).to.equal('No file selected');
-    fileInput.simulate('change', { target: { files: [{ name: 'selected file' }] } });
+    fireEvent.change(getByTestId('file-picker-input-button-input'), { target: { files: [{ name: 'selected file' }] } });
+    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(onSelect).toHaveBeenCalledWith({ name: 'selected file' });
 
-    expect(component.state('isFileSelected')).to.equal(true);
-    expect(onSelect.calledWith({ name: 'selected file' })).to.equal(true);
-    expect(component.find('button.remove-file')).to.have.length(1);
-    expect(component.find('.form-control').prop('title')).to.equal('selected file');
+    expect(queryAllByTestId('file-picker-remove-button')).toHaveLength(1);
+    expect(getByTestId('file-picker-input-button')).toBeDisabled();
+
+    // onChange() should do nothing if isFileSelected is true
+    fireEvent.change(getByTestId('file-picker-input-button-input'));
+    expect(onSelect).toHaveBeenCalledTimes(1);
+
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', 'selected file');
   });
 
-  it('should trigger click event on file input when button is clicked', () => {
-    const component = mount(<FilePickerComponent onSelect={_.noop} />);
-    const spy = sinon.spy();
-    component.instance().fileInput.current.addEventListener('click', spy, {
-      passive: true,
-      once: true,
-    });
-    component.find(Button).simulate('click');
-    expect(spy.callCount).to.equal(1);
-  });
+  it('should upload a file when input-button is clicked', () => {
+    const onSelect = jest.fn();
+    const file = new File(['test'], 'test.png', { type: 'image/png' });
+    const { getByTestId } = render(<FilePickerComponent onSelect={onSelect} />);
 
-  it('onChange() should do nothing if isFileSelected is true', () => {
-    const component = mount(<FilePickerComponent onSelect={_.noop} />);
-    expect(component.setState({ isFileSelected: true }));
-    sinon.spy(component, 'setState');
-    component.instance().onChange();
-    expect(component.setState.called).to.equal(false);
-  });
+    userEvent.upload(getByTestId('file-picker-input-button-input'), file);
+    expect(onSelect).toHaveBeenCalledTimes(1);
 
-  it('removeFile() should do nothing if isFileSelected is false', () => {
-    const component = mount(<FilePickerComponent onSelect={_.noop} />);
-    expect(component.state('isFileSelected')).to.equal(false);
-    sinon.spy(component, 'setState');
-    component.instance().removeFile();
-    expect(component.setState.called).to.equal(false);
+    expect(getByTestId('file-picker-input-button-input').files[0]).toStrictEqual(file);
+    expect(getByTestId('file-picker-input-button-input').files.item(0)).toStrictEqual(file);
+    expect(getByTestId('file-picker-input-button-input').files).toHaveLength(1);
+
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', 'test.png');
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('value', 'test.png');
   });
 
   it('should remove file selected when remove file button is clicked', () => {
-    const component = mount(<FilePickerComponent onSelect={_.noop} />);
+    const onSelect = jest.fn();
+    const file = new File(['test'], 'test.png', { type: 'image/png' });
+    const { getByTestId } = render(<FilePickerComponent onSelect={onSelect} />);
 
-    component.setState({ isFileSelected: true, fileName: 'selected file' });
-    component.update();
+    userEvent.upload(getByTestId('file-picker-input-button-input'), file);
+    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', 'test.png');
 
-    expect(component.find('.form-control').prop('title')).to.equal('selected file');
+    fireEvent.click(getByTestId('file-picker-remove-button'));
 
-    component.find('button.remove-file').simulate('click');
-
-    expect(component.find('.form-control').prop('title')).to.equal('');
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('value', '');
   });
 
-  it('should call `onRemove` when remove file button is clicked', done => {
-    const component = mount(<FilePickerComponent onSelect={_.noop} onRemove={done} />);
+  it('should call `onRemove` when remove file button is clicked', () => {
+    const onSelect = jest.fn();
+    const onRemove = jest.fn();
+    const file = new File(['test'], 'test.png', { type: 'image/png' });
+    const { getByTestId } = render(<FilePickerComponent onSelect={onSelect} onRemove={onRemove} />);
 
-    component.instance().fileInput = { current: { value: 'file name' } };
-    component.update();
-    component.setState({ isFileSelected: true });
+    userEvent.upload(getByTestId('file-picker-input-button-input'), file);
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', 'test.png');
+    expect(onRemove).not.toHaveBeenCalled();
 
-    component.find('button.remove-file').simulate('click');
+    fireEvent.click(getByTestId('file-picker-remove-button'));
 
-    expect(component.instance().fileInput).to.equal(null);
+    expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
+    expect(onRemove).toHaveBeenCalledTimes(1);
   });
 });

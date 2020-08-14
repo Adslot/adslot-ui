@@ -35,7 +35,7 @@ const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onCh
   const classNames = classnames(['checkbox-group-component', className]);
 
   return (
-    <div id={id} className={classNames} {...expandDts(dts)}>
+    <div data-testid="checkbox-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
       {renderChildren()}
     </div>
   );

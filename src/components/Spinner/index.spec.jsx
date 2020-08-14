@@ -1,16 +1,18 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import Spinner from '.';
 
-describe('Spinner', () => {
+afterEach(cleanup);
+
+describe('<Spinner />', () => {
   it('should render with defaults', () => {
-    const component = shallow(<Spinner />);
-    expect(component.prop('className')).to.equal('spinner-component');
-    expect(component.childAt(0).prop('className')).to.equal('spinner spinner-large spinner-colour-style-default');
+    const { getByTestId } = render(<Spinner />);
+    expect(getByTestId('spinner-wrapper')).toHaveClass('spinner-component');
+    expect(getByTestId('spinner')).toHaveClass('spinner spinner-large spinner-colour-style-default');
   });
 
   it('should render small with primary style', () => {
-    const component = shallow(<Spinner size="small" colourStyle="primary" />);
-    expect(component.childAt(0).prop('className')).to.equal('spinner spinner-small spinner-colour-style-primary');
+    const { getByTestId } = render(<Spinner size="small" colourStyle="primary" />);
+    expect(getByTestId('spinner')).toHaveClass('spinner spinner-small spinner-colour-style-primary');
   });
 });

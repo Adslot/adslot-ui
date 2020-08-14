@@ -6,14 +6,15 @@ const FormGroupComponent = ({ addon, disabled, helpText, label, onChange, placeh
   const addonElement = addon ? <div className="input-group-addon">{addon}</div> : null;
   const inputId = _.kebabCase(label);
   return (
-    <div className="form-group">
-      <label htmlFor={inputId} className="control-label col-xs-3">
+    <div data-testid="form-group-wrapper" className="form-group">
+      <label data-testid="form-group-label" htmlFor={inputId} className="control-label col-xs-3">
         {label}
       </label>
-      <div className="col-xs-5">
-        <div className="input-group col-xs-12">
+      <div data-testid="form-group-input-group-wrapper" className="col-xs-5">
+        <div data-testid="form-group-input-group" className="input-group col-xs-12">
           {addonElement}
           <input
+            data-testid="form-group-input"
             className="form-control"
             disabled={disabled}
             id={inputId}
@@ -23,7 +24,9 @@ const FormGroupComponent = ({ addon, disabled, helpText, label, onChange, placeh
             value={value}
           />
         </div>
-        <p className="help-block">{helpText}</p>
+        <p data-testid="form-group-help" className="help-block">
+          {helpText}
+        </p>
       </div>
     </div>
   );

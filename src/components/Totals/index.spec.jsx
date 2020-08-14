@@ -1,28 +1,26 @@
-/* eslint-disable lodash/prefer-lodash-method */
-import { Grid, GridCell, GridRow } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render, cleanup } from '@testing-library/react';
 import Totals from '.';
 
-describe('Totals', () => {
+afterEach(cleanup);
+
+describe('<Totals />', () => {
   it('should render with defaults', () => {
-    const component = shallow(<Totals />);
-    expect(component.type()).to.equal(Grid);
-    expect(component.children()).to.have.length(1);
+    const { getByTestId, queryAllByTestId } = render(<Totals />);
+    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+    expect(getByTestId('grid-wrapper')).not.toBeEmpty();
 
-    const totalRow = component.children().first();
-    expect(totalRow.type()).to.equal(GridRow);
-    expect(totalRow.prop('short')).to.equal(true);
-    expect(totalRow.prop('horizontalBorder')).to.equal(false);
-    expect(totalRow.prop('type')).to.equal('footer');
+    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(1);
+    expect(getByTestId('grid-row-wrapper')).toHaveClass('grid-component-row-short');
+    expect(getByTestId('grid-row-wrapper')).toHaveClass('grid-component-row-footer');
+    expect(getByTestId('grid-row-wrapper')).not.toHaveClass('grid-component-row-horizontal-border');
 
-    const totalLabelEl = totalRow.find(GridCell).first();
-    expect(totalLabelEl.prop('stretch')).to.equal(true);
-    expect(totalLabelEl.children().text()).to.equal('Total');
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(2);
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveClass('grid-component-cell-stretch');
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveTextContent('Total');
 
-    const totalValueEl = totalRow.find(GridCell).last();
-    expect(totalValueEl.prop('stretch')).to.equal(false);
-    expect(totalValueEl.children().text()).to.equal('0');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).not.toHaveClass('grid-component-cell-stretch');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).toHaveTextContent('0');
   });
 
   it('should render with props', () => {
@@ -34,43 +32,31 @@ describe('Totals', () => {
       ],
       valueFormatter: value => `€${(value / 100).toFixed(2)}`,
     };
-    const component = shallow(<Totals {...props} />);
+    const { queryAllByTestId } = render(<Totals {...props} />);
+    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
 
-    expect(component.type()).to.equal(Grid);
-    const rows = component.find(GridRow);
+    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(3);
+    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-short');
+    expect(queryAllByTestId('grid-row-wrapper')[0]).not.toHaveClass('grid-component-row-horizontal-border');
 
-    const firstRow = rows.at(0);
-    expect(firstRow.prop('short')).to.equal(true);
-    expect(firstRow.prop('horizontalBorder')).to.equal(false);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(6);
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveClass('grid-component-cell-stretch');
+    expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveTextContent('Custom Paint for Yo Whip');
+    expect(queryAllByTestId('grid-cell-wrapper')[1]).toHaveTextContent('€2000.00');
 
-    let labelEl = firstRow.find(GridCell).first();
-    expect(labelEl.prop('stretch')).to.equal(true);
-    expect(labelEl.children().text()).to.equal('Custom Paint for Yo Whip');
+    expect(queryAllByTestId('grid-row-wrapper')[1]).toHaveClass('grid-component-row-short');
+    expect(queryAllByTestId('grid-row-wrapper')[1]).not.toHaveClass('grid-component-row-horizontal-border');
 
-    let valueEl = firstRow.find(GridCell).last();
-    expect(valueEl.children().text()).to.equal('€2000.00');
+    expect(queryAllByTestId('grid-cell-wrapper')[2]).toHaveClass('grid-component-cell-stretch');
+    expect(queryAllByTestId('grid-cell-wrapper')[2]).toHaveTextContent('Selected');
+    expect(queryAllByTestId('grid-cell-wrapper')[3]).toHaveTextContent('€500.00');
 
-    const secondRow = rows.at(1);
-    expect(secondRow.prop('short')).to.equal(true);
-    expect(secondRow.prop('horizontalBorder')).to.equal(false);
+    expect(queryAllByTestId('grid-row-wrapper')[2]).toHaveClass('grid-component-row-short');
+    expect(queryAllByTestId('grid-row-wrapper')[2]).not.toHaveClass('grid-component-row-horizontal-border');
+    expect(queryAllByTestId('grid-row-wrapper')[2]).toHaveClass('grid-component-row-footer');
 
-    labelEl = secondRow.find(GridCell).first();
-    expect(labelEl.prop('stretch')).to.equal(true);
-    expect(labelEl.children().text()).to.equal('Selected');
-
-    valueEl = secondRow.find(GridCell).last();
-    expect(valueEl.children().text()).to.equal('€500.00');
-
-    const totalRow = rows.at(2);
-    expect(totalRow.prop('short')).to.equal(true);
-    expect(totalRow.prop('horizontalBorder')).to.equal(false);
-    expect(totalRow.prop('type')).to.equal('footer');
-
-    labelEl = totalRow.find(GridCell).first();
-    expect(labelEl.prop('stretch')).to.equal(true);
-    expect(labelEl.children().text()).to.equal('Total');
-
-    valueEl = totalRow.find(GridCell).last();
-    expect(valueEl.children().text()).to.equal('€2501.00');
+    expect(queryAllByTestId('grid-cell-wrapper')[4]).toHaveClass('grid-component-cell-stretch');
+    expect(queryAllByTestId('grid-cell-wrapper')[4]).toHaveTextContent('Total');
+    expect(queryAllByTestId('grid-cell-wrapper')[5]).toHaveTextContent('€2501.00');
   });
 });

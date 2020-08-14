@@ -5,11 +5,13 @@ import './styles.scss';
 
 const Arc = ({ data }) => {
   if (!data) {
-    return <path className="arc-component" />;
+    return <path data-testid="slicey-arc-wrapper" className="arc-component" />;
   }
 
   const dataString = `M0,0 L${data.x1},${data.y1} A0.5,0.5 0 ${data.largeArcFlag},1 ${data.x2},${data.y2} z`;
-  return <path className={`arc-component ${_.kebabCase(data.label)}`} d={dataString} />;
+  return (
+    <path data-testid="slicey-arc-wrapper" className={`arc-component ${_.kebabCase(data.label)}`} d={dataString} />
+  );
 };
 
 Arc.displayName = 'SliceyArcComponent';

@@ -53,7 +53,7 @@ class ButtonGroup extends React.PureComponent {
     const content = this.injectProps(children);
 
     return (
-      <div {...expandDts(dts)} className="aui--button-group">
+      <div {...expandDts(dts)} data-testid="button-group-wrapper" className="aui--button-group">
         {content}
       </div>
     );

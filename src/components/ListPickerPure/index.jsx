@@ -71,6 +71,7 @@ class ListPickerPureComponent extends React.PureComponent {
 
     return (
       <div
+        data-testid="listpickerpure-wrapper"
         className="listpickerpure-component"
         data-test-selector={`listpickerpure-component-${_.kebabCase(itemType)}`}
       >

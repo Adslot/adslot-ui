@@ -1,33 +1,35 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render, cleanup } from '@testing-library/react';
 import SplitPaneComponent from '.';
 
-describe('SplitPaneComponent', () => {
+afterEach(cleanup);
+
+describe('<SplitPane />', () => {
   it('should have its component name as default className and no data-test-selector', () => {
-    const component = shallow(<SplitPaneComponent />);
-    expect(component.prop('className')).to.equal('splitpane-component');
-    expect(component.prop('data-test-selector')).to.be.an('undefined');
+    const { getByTestId } = render(<SplitPaneComponent />);
+    expect(getByTestId('split-panel-wrapper')).toHaveClass('splitpane-component');
+    expect(getByTestId('split-panel-wrapper')).not.toHaveAttribute('data-test-selector');
   });
 
   it('should have its component name as default className with additional classes', () => {
     const splitPaneClass = ['background-highlighted', 'test-class'];
-    const component = shallow(<SplitPaneComponent additionalClassNames={splitPaneClass} />);
-    expect(component.prop('className')).to.equal('splitpane-component background-highlighted test-class');
-    expect(component.prop('data-test-selector')).to.be.an('undefined');
+    const { getByTestId } = render(<SplitPaneComponent additionalClassNames={splitPaneClass} />);
+    expect(getByTestId('split-panel-wrapper')).toHaveClass('splitpane-component background-highlighted test-class');
+    expect(getByTestId('split-panel-wrapper')).not.toHaveAttribute('data-test-selector');
   });
 
   it('should transclude children', () => {
-    const component = shallow(
+    const { getByTestId } = render(
       <SplitPaneComponent>
         <div />
       </SplitPaneComponent>
     );
-    expect(component.prop('className')).to.equal('splitpane-component');
-    expect(component.children().type()).to.equal('div');
+    expect(getByTestId('split-panel-wrapper')).toHaveClass('splitpane-component');
+    expect(getByTestId('split-panel-wrapper').firstChild).toMatchInlineSnapshot(`<div />`);
   });
 
   it('should set data-test-selector', () => {
-    const component = shallow(<SplitPaneComponent dts="please-select-me" />);
-    expect(component.prop('data-test-selector')).to.equal('please-select-me');
+    const { getByTestId } = render(<SplitPaneComponent dts="please-select-me" />);
+    expect(getByTestId('split-panel-wrapper')).toHaveAttribute('data-test-selector', 'please-select-me');
   });
 });

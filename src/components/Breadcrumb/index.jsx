@@ -11,15 +11,18 @@ const Breadcrumb = ({ rootNode, nodes, onClick, disabled }) => {
   const onClickFunc = newActiveId => !disabled && onClick(newActiveId);
 
   if (nodes.length === 0) {
-    return <div className={className} />;
+    return <div data-testid="breadcrumb-wrapper" className={className} />;
   }
 
   return (
-    <div className={className}>
+    <div data-testid="breadcrumb-wrapper" className={className}>
       <BreadcrumbNode isLast={false} node={rootNode} onClick={onClickFunc} />
       {_.map(nodes, (node, index) => (
-        <span className={`${baseClass}-node`} key={node.id}>
-          <span className={`${baseClass}-node-divider`}> &gt; </span>
+        <span data-testid="breadcrumb-node" className={`${baseClass}-node`} key={node.id}>
+          <span data-testid="breadcrumb-node-divider" className={`${baseClass}-node-divider`}>
+            {' '}
+            &gt;{' '}
+          </span>
           <BreadcrumbNode isLast={index === nodes.length - 1} node={node} onClick={onClickFunc} />
         </span>
       ))}

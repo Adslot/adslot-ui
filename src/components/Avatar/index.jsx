@@ -6,12 +6,15 @@ import './styles.scss';
 const baseClass = 'avatar-component';
 const Avatar = ({ color, givenName, tooltip, image, surname }) => (
   <div
+    data-testid="avatar-wrapper"
     className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
     title={tooltip !== undefined ? tooltip : `${givenName || ''} ${surname || ''}`}
   >
-    {image ? <img className={`${baseClass}-image`} src={image} alt="presentation" /> : null}
+    {image ? <img data-testid="avatar-image" className={`${baseClass}-image`} src={image} alt="presentation" /> : null}
 
-    <div className="avatar-component-initials">{`${_.head(givenName) || ''}${_.head(surname) || ''}`}</div>
+    <div data-testid="avatar-initials" className="avatar-component-initials">{`${_.head(givenName) || ''}${_.head(
+      surname
+    ) || ''}`}</div>
   </div>
 );
 

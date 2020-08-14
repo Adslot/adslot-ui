@@ -1,69 +1,60 @@
-/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import { shallow } from 'enzyme';
-import Arc from './Arc';
-import Donut from './Donut';
-import Marker from './Marker';
+import { render, cleanup } from '@testing-library/react';
 import Slicey from '.';
 
-describe('Slicey', () => {
-  let dataset;
+afterEach(cleanup);
 
-  beforeEach(() => {
-    dataset = [{ label: 'positive', value: 5 }, { label: 'negative', value: 3 }];
-  });
+describe('<Slicey />', () => {
+  const dataset = [{ label: 'positive', value: 5 }, { label: 'negative', value: 3 }];
 
   it('should render an empty state', () => {
-    const component = shallow(<Slicey />);
-    expect(component.prop('className')).to.equal('slicey-component');
-    expect(component.prop('height')).to.equal(100);
-    expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
-    expect(component.prop('width')).to.equal(100);
+    const { getByTestId, queryAllByTestId } = render(<Slicey />);
+    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(component.find('.slicey-background')).to.have.length(0);
-    expect(component.find('.slicey-empty')).to.have.length(1);
-    expect(component.find(Arc)).to.have.length(0);
-    expect(component.find(Marker)).to.have.length(0);
-    expect(component.find(Donut)).to.have.length(0);
+    expect(getByTestId('slicey-circle')).toHaveClass('slicey-empty');
+    expect(getByTestId('slicey-circle')).not.toHaveClass('slicey-background');
+
+    expect(queryAllByTestId('slicey-arc-wrapper')).toHaveLength(0);
+    expect(queryAllByTestId('slicey-marker-wrapper')).toHaveLength(0);
+    expect(queryAllByTestId('slicey-donut-wrapper')).toHaveLength(0);
   });
 
   it('should render a given dataset', () => {
     const props = { dataset };
-    const component = shallow(<Slicey {...props} />);
-    expect(component.prop('className')).to.equal('slicey-component');
-    expect(component.prop('height')).to.equal(100);
-    expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
-    expect(component.prop('width')).to.equal(100);
-    expect(component.type()).to.equal('svg');
+    const { getByTestId, queryAllByTestId } = render(<Slicey {...props} />);
+    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(component.children()).to.have.length(3);
+    expect(queryAllByTestId('slicey-circle')).toHaveLength(1);
+    expect(getByTestId('slicey-circle')).not.toHaveClass('slicey-empty');
+    expect(getByTestId('slicey-circle')).toHaveClass('slicey-background');
 
-    expect(component.find('.slicey-background')).to.have.length(1);
-    expect(component.find('.slicey-empty')).to.have.length(0);
-    expect(component.find(Arc)).to.have.length(2);
-    expect(component.find(Marker)).to.have.length(0);
-    expect(component.find(Donut)).to.have.length(0);
+    expect(queryAllByTestId('slicey-arc-wrapper')).toHaveLength(2);
+    expect(queryAllByTestId('slicey-marker-wrapper')).toHaveLength(0);
+    expect(queryAllByTestId('slicey-donut-wrapper')).toHaveLength(0);
   });
 
   it('should render a circle if there is only one arc to draw', () => {
     const props = { dataset: [{ label: 'positive', value: 5 }] };
-    const component = shallow(<Slicey {...props} />);
-    expect(component.prop('className')).to.equal('slicey-component');
-    expect(component.prop('height')).to.equal(100);
-    expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
-    expect(component.prop('width')).to.equal(100);
-    expect(component.type()).to.equal('svg');
+    const { getByTestId, queryAllByTestId } = render(<Slicey {...props} />);
+    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(component.children()).to.have.length(2);
+    expect(queryAllByTestId('slicey-circle')).toHaveLength(2);
+    expect(queryAllByTestId('slicey-circle')[1]).toHaveClass('arc-component positive');
+    expect(queryAllByTestId('slicey-circle')[0]).not.toHaveClass('slicey-empty');
+    expect(queryAllByTestId('slicey-circle')[0]).toHaveClass('slicey-background');
 
-    const arcCircle = component.find('circle').last();
-    expect(arcCircle.prop('className')).to.equal('arc-component positive');
-
-    expect(component.find('.slicey-background')).to.have.length(1);
-    expect(component.find('.slicey-empty')).to.have.length(0);
-    expect(component.find(Arc)).to.have.length(0);
-    expect(component.find(Marker)).to.have.length(0);
-    expect(component.find(Donut)).to.have.length(0);
+    expect(queryAllByTestId('slicey-arc-wrapper')).toHaveLength(0);
+    expect(queryAllByTestId('slicey-marker-wrapper')).toHaveLength(0);
+    expect(queryAllByTestId('slicey-donut-wrapper')).toHaveLength(0);
   });
 
   it('should render a marker on a donut with a custom diameter', () => {
@@ -73,22 +64,22 @@ describe('Slicey', () => {
       donut: true,
       diameter: 50,
     };
-    const component = shallow(<Slicey {...props} />);
-    expect(component.prop('className')).to.equal('slicey-component');
-    expect(component.prop('height')).to.equal(50);
-    expect(component.prop('viewBox')).to.equal('-0.5 -0.5 1 1');
-    expect(component.prop('width')).to.equal(50);
-    expect(component.type()).to.equal('svg');
+    const { getByTestId, queryAllByTestId } = render(<Slicey {...props} />);
 
-    expect(component.children()).to.have.length(5);
+    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '50');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '50');
+    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(component.find('.slicey-background')).to.have.length(1);
-    expect(component.find('.slicey-empty')).to.have.length(0);
-    expect(component.find(Arc)).to.have.length(2);
+    expect(queryAllByTestId('slicey-circle')).toHaveLength(1);
+    expect(getByTestId('slicey-circle')).not.toHaveClass('slicey-empty');
+    expect(getByTestId('slicey-circle')).toHaveClass('slicey-background');
 
-    const marker = component.find(Marker);
-    expect(marker.prop('fraction')).to.equal(0.5);
+    expect(queryAllByTestId('slicey-arc-wrapper')).toHaveLength(2);
 
-    expect(component.find(Donut)).to.have.length(1);
+    expect(queryAllByTestId('slicey-marker-wrapper')).toHaveLength(1);
+    expect(getByTestId('slicey-marker-wrapper')).toHaveAttribute('points', '3.061616997868383e-17,0.5 0,0');
+
+    expect(queryAllByTestId('slicey-donut-wrapper')).toHaveLength(1);
   });
 });

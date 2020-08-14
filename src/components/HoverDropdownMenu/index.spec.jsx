@@ -1,20 +1,14 @@
 import _ from 'lodash';
-import { Avatar, Popover } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent, act } from '@testing-library/react';
+import Avatar from '../Avatar';
 import HoverDropdownMenu from '.';
-import PopoverLinkItem from './PopoverLinkItem';
 
-describe('HoverDropdownMenuComponent', () => {
+afterEach(cleanup);
+
+describe('<HoverDropdownMenu />', () => {
   let links = [];
   let props = {};
-  let sandbox = null;
-
-  before(() => {
-    sandbox = sinon.createSandbox();
-  });
 
   beforeEach(() => {
     links = [
@@ -35,169 +29,62 @@ describe('HoverDropdownMenuComponent', () => {
     props = {
       headerText: 'test header',
       hoverComponent: <Avatar givenName="John" surname="Smith" tooltip="test tooltip" />,
-      onLinkClick: _.noop,
+      onLinkClick: jest.fn(),
     };
-
-    sandbox.spy(props, 'onLinkClick');
-  });
-
-  afterEach(() => sandbox.restore());
-
-  describe('componentDidUpdate()', () => {
-    it('should add event handlers to popperNode', () => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      const instance = wrapper.instance();
-      instance.popperNode = document.createElement('div');
-      sandbox.spy(instance.popperNode, 'addEventListener');
-
-      instance.componentDidUpdate();
-      expect(instance.popperNode.addEventListener.callCount).to.equal(2);
-      expect(instance.popperNode.addEventListener.args[0]).to.eql(['mouseenter', instance.popoverEnterHandler]);
-      expect(instance.popperNode.addEventListener.args[1]).to.eql(['mouseleave', instance.popoverLeaveHandler]);
-    });
-  });
-
-  describe('openMenu()', () => {
-    it('should update state', () => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      wrapper.instance().openMenu();
-
-      expect(wrapper.state()).to.eql({
-        isOpen: true,
-        mouseInPopover: false,
-      });
-    });
-  });
-
-  describe('popoverEnterHandler()', () => {
-    it('should set `mouseInPopover` to true', () => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      wrapper.instance().popoverEnterHandler();
-
-      expect(wrapper.state()).to.eql({ isOpen: true, mouseInPopover: true });
-    });
-  });
-
-  describe('popoverLeaveHandler()', () => {
-    it('should set `mouseInPopover` to false', () => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      wrapper.instance().popoverLeaveHandler();
-
-      expect(wrapper.state()).to.eql({ isOpen: true, mouseInPopover: false });
-    });
-  });
-
-  describe('innerRefFunc()', () => {
-    it('should assign popperNode', () => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      const element = document.createElement('div');
-      wrapper.instance().innerRefFunc(element);
-
-      expect(wrapper.instance().popperNode).to.eql(element);
-    });
-  });
-
-  describe('closeMenu()', () => {
-    it('should set state.isOpen to false', done => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      wrapper.setState({ isOpen: true });
-
-      wrapper.instance().closeMenu();
-      setTimeout(() => {
-        expect(wrapper.state('isOpen')).to.equal(false);
-        done();
-      }, 200);
-    });
-
-    it('should not do anything if mouse is in popover', done => {
-      const wrapper = shallow(<HoverDropdownMenu hoverComponent={props.hoverComponent}>something</HoverDropdownMenu>);
-      wrapper.setState({ isOpen: true, mouseInPopover: true });
-
-      wrapper.instance().closeMenu();
-      setTimeout(() => {
-        expect(wrapper.state('isOpen')).to.equal(true);
-        done();
-      }, 200);
-    });
   });
 
   it('should render with default props', () => {
-    const wrapper = shallow(
+    const { queryAllByTestId } = render(
       <HoverDropdownMenu hoverComponent={props.hoverComponent} arrowPosition="right">
         something
-      </HoverDropdownMenu>,
-      {
-        disableLifecycleMethods: true,
-      }
+      </HoverDropdownMenu>
     );
-    expect(wrapper.find(Avatar)).to.have.length(1);
-    expect(wrapper.find(Popover)).to.have.length(1);
+
+    expect(queryAllByTestId('avatar-wrapper')).toHaveLength(1);
+    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
   });
 
   it('should render popover with list of links when `links` is not empty', () => {
-    const wrapper = shallow(
+    const { getByTestId, queryAllByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
           <HoverDropdownMenu.Item key={idx} {...link} />
         ))}
-      </HoverDropdownMenu>,
-      {
-        disableLifecycleMethods: true,
-      }
+      </HoverDropdownMenu>
     );
 
-    wrapper.setState({
-      isOpen: true,
-      mouseInPopover: false,
-    });
-    wrapper.update();
-
-    const popoverWrapper = wrapper.find(Popover);
-    expect(popoverWrapper.prop('isOpen')).to.equal(true);
-
-    const popoverContentWrapper = shallow(popoverWrapper.prop('popoverContent'));
-    expect(popoverContentWrapper.find(PopoverLinkItem)).to.have.length(2);
-    expect(
-      popoverContentWrapper
-        .find(PopoverLinkItem)
-        .at(0)
-        .dive()
-        .find(Button)
-        .children()
-        .text()
-    ).to.equal('Link 1');
-    expect(
-      popoverContentWrapper
-        .find(PopoverLinkItem)
-        .at(1)
-        .dive()
-        .find(Button)
-        .children()
-        .text()
-    ).to.equal('Logout');
+    fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryAllByTestId('popover-link-item-wrapper')).toHaveLength(2);
+    queryAllByTestId('popover-link-item-wrapper').forEach(item => expect(item).toHaveClass('popover-link-item'));
+    expect(queryAllByTestId('popover-link-item-wrapper')[0]).toHaveTextContent('Link 1');
+    expect(queryAllByTestId('popover-link-item-wrapper')[1]).toHaveTextContent('Logout');
   });
 
-  it('should not set `state.isOpen` to false when `state.mouseInPopover` is true', done => {
-    const component = shallow(
+  it('should trigger popover open or close when mouse enter or leave HoverDropdownMenu.Item', done => {
+    const { getByTestId, queryAllByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
           <HoverDropdownMenu.Item key={idx} {...link} />
         ))}
-      </HoverDropdownMenu>,
-      {
-        disableLifecycleMethods: true,
-      }
+      </HoverDropdownMenu>
     );
-    component.setState({ isOpen: true, mouseInPopover: true });
-    component.find('.hover-dropdown').simulate('mouseLeave');
+    fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+
+    act(() => {
+      fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
+    });
     setTimeout(() => {
-      expect(component.state('isOpen')).to.equal(true);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
       done();
     }, 200);
   });
 
   it('should not render anything if there is no children', () => {
-    const wrapper = shallow(<HoverDropdownMenu hoverComponent={<div />} />);
-    expect(wrapper.find(Popover)).to.have.length(0);
+    const { queryAllByTestId } = render(<HoverDropdownMenu hoverComponent={<div />} />);
+    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
   });
 });

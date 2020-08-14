@@ -10,11 +10,12 @@ const RadioButton = ({ id, value, name, className, label, disabled, checked, onC
   const iconClassName = classnames(['selection-component-icon', 'iradio', { checked }, { disabled }]);
 
   return (
-    <div className={componentClassName} {...expandDts(dts)}>
+    <div data-testid="radio-wrapper" className={componentClassName} {...expandDts(dts)}>
       <label>
         <div className="radio-component-input-container">
           <span className={iconClassName} />
           <input
+            data-testid="radio-input"
             type="radio"
             name={name}
             checked={checked}

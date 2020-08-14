@@ -59,7 +59,7 @@ const TreePickerSimplePureComponent = ({
   const className = classnames('treepickersimplepure-component', { disabled });
 
   return (
-    <div className={className}>
+    <div data-testid="treepicker-wrapper" className={className}>
       <SplitPane
         additionalClassNames={additionalClassNames}
         dts={`treepicker-splitpane-available-${_.kebabCase(itemType)}`}

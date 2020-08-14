@@ -1,16 +1,15 @@
-/* eslint-disable lodash/prefer-lodash-method */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
 import SvgSymbol from '.';
 
-describe('SvgSymbol', () => {
-  it('should render with href', () => {
-    const component = shallow(<SvgSymbol />);
-    expect(component.find('.aui--svg-symbol-component')).to.have.length(1);
-    expect(component.type()).to.equal('svg');
+afterEach(cleanup);
 
-    const useElement = component.find('use');
-    expect(useElement.prop('href')).to.equal('');
+describe('<SvgSymbol />', () => {
+  it('should render with href', () => {
+    const { getByTestId, queryAllByTestId } = render(<SvgSymbol />);
+    expect(getByTestId('svg-symbol-wrapper')).toHaveClass('aui--svg-symbol-component');
+    expect(queryAllByTestId('svg-symbol-img')).toHaveLength(0);
+    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', '');
   });
 
   it('should render with props', () => {
@@ -19,51 +18,47 @@ describe('SvgSymbol', () => {
       href: '/assets/other-svg-symbols.svg#checklist-incomplete',
     };
 
-    const component = shallow(<SvgSymbol {...props} />);
-    expect(
-      component.find('.aui--svg-symbol-component.aui--svg-symbol-component-16.aui--svg-symbol-component-red')
-    ).to.have.length(1);
-
-    const useElement = component.find('use');
-    expect(useElement.prop('href')).to.equal('/assets/other-svg-symbols.svg#checklist-incomplete');
+    const { getByTestId } = render(<SvgSymbol {...props} />);
+    expect(getByTestId('svg-symbol-wrapper')).toHaveClass(
+      'aui--svg-symbol-component aui--svg-symbol-component-16 aui--svg-symbol-component-red'
+    );
+    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', '/assets/other-svg-symbols.svg#checklist-incomplete');
   });
 
   it('should render with base64 encoded data', () => {
     const encodedData =
       'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjciLz48cGF0aCBkPSJNNi4wNyA2LjA3bDMuODYgMy44Nm0wLTMuODZMNi4wNyA5LjkzIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==';
-    const component = shallow(<SvgSymbol href={encodedData} isCircle={false} />);
-    const imgElement = component.find('img');
-    expect(imgElement).to.have.length(1);
-    expect(imgElement.prop('src')).to.equal(encodedData);
+    const { getByTestId, queryAllByTestId } = render(<SvgSymbol href={encodedData} isCircle={false} />);
+    expect(queryAllByTestId('svg-symbol-img')).toHaveLength(1);
+    expect(getByTestId('svg-symbol-img')).toHaveAttribute('src', encodedData);
   });
 
   it('should render with isCircle', () => {
-    const component = mount(<SvgSymbol isCircle />);
-    const wrapper = component.find('.aui--svg-symbol-component-circle');
-    expect(wrapper).to.have.length(1);
-
-    const children = component.find('.aui--svg-symbol-component');
-    expect(children).to.have.length(1);
-    expect(children.find('use').prop('href')).to.equal('');
+    const { getByTestId, queryAllByTestId } = render(<SvgSymbol isCircle />);
+    expect(queryAllByTestId('svg-symbol-is-circle')).toHaveLength(1);
+    expect(getByTestId('svg-symbol-is-circle')).toHaveClass('aui--svg-symbol-component-circle');
+    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(1);
+    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', '');
   });
 
   it('should render with props including isCircle', () => {
-    const component = mount(<SvgSymbol isCircle href="foo.svg#bar" classSuffixes={['70']} />);
-    const wrapper = component.find('.aui--svg-symbol-component-circle.aui--svg-symbol-component-circle-70');
-    expect(wrapper).to.have.length(1);
-
-    const children = component.find('.aui--svg-symbol-component.aui--svg-symbol-component-70');
-    expect(children).to.have.length(1);
-    expect(children.find('use').prop('href')).to.equal('foo.svg#bar');
+    const { getByTestId, queryAllByTestId } = render(<SvgSymbol isCircle href="foo#bar" classSuffixes={['70']} />);
+    expect(queryAllByTestId('svg-symbol-is-circle')).toHaveLength(1);
+    expect(getByTestId('svg-symbol-is-circle')).toHaveClass(
+      'aui--svg-symbol-component-circle aui--svg-symbol-component-circle-70'
+    );
+    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(1);
+    expect(getByTestId('svg-symbol-wrapper')).toHaveClass('aui--svg-symbol-component aui--svg-symbol-component-70');
+    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', 'foo#bar');
   });
 
   it('should not render circle background with false isCircle', () => {
-    const component = mount(<SvgSymbol isCircle={false} href="foo.svg#bar" classSuffixes={['70']} />);
-    const wrapper = component.find('.aui--svg-symbol-component-circle.aui--svg-symbol-component-circle-70');
-    expect(wrapper).to.have.length(0);
-
-    const children = component.find('.aui--svg-symbol-component.aui--svg-symbol-component-70');
-    expect(children).to.have.length(1);
-    expect(children.find('use').prop('href')).to.equal('foo.svg#bar');
+    const { getByTestId, queryAllByTestId } = render(
+      <SvgSymbol isCircle={false} href="foo#bar" classSuffixes={['70']} />
+    );
+    expect(queryAllByTestId('svg-symbol-is-circle')).toHaveLength(0);
+    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(1);
+    expect(getByTestId('svg-symbol-wrapper')).toHaveClass('aui--svg-symbol-component aui--svg-symbol-component-70');
+    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', 'foo#bar');
   });
 });

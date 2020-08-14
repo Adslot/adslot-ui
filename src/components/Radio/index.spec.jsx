@@ -1,7 +1,8 @@
-import { shallow, mount } from 'enzyme';
 import React from 'react';
-import sinon from 'sinon';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import Radio from '.';
+
+afterEach(cleanup);
 
 describe('<Radio />', () => {
   let props;
@@ -16,43 +17,38 @@ describe('<Radio />', () => {
       className: 'radio-class',
       disabled: false,
       checked: false,
-      onChange: sinon.spy(),
+      onChange: jest.fn(),
       inline: false,
     };
   });
 
   it('should render with props', () => {
-    const component = shallow(<Radio {...props} />);
-    expect(component.find('input[type="radio"]')).to.have.length(1);
-    expect(component.text()).to.equal('Radio 1');
-    expect(component.find('[name="radio-name"]')).to.have.length(1);
-    expect(component.find('[value="radio-value"]')).to.have.length(1);
-    expect(component.find('[data-test-selector="radio-dts"]')).to.have.length(1);
-  });
-
-  it('should be mounted without error', () => {
-    const component = mount(<Radio {...props} />);
-    expect(component.find('input[type="radio"]')).to.have.length(1);
-    expect(component.text()).to.equal('Radio 1');
+    const { getByTestId } = render(<Radio {...props} />);
+    expect(getByTestId('radio-wrapper')).toHaveTextContent('Radio 1');
+    expect(getByTestId('radio-wrapper')).toHaveAttribute('data-test-selector', 'radio-dts');
+    expect(getByTestId('radio-input')).toHaveAttribute('type', 'radio');
+    expect(getByTestId('radio-input')).toHaveAttribute('name', 'radio-name');
+    expect(getByTestId('radio-input')).toHaveAttribute('value', 'radio-value');
   });
 
   it('should not render label if props.label is undefined', () => {
     delete props.label;
-    const component = shallow(<Radio {...props} />);
-    expect(component.text()).to.equal('');
+    const { getByTestId } = render(<Radio {...props} />);
+    expect(getByTestId('radio-wrapper')).toHaveTextContent('');
   });
 
   it('should trigger `props.onChange` when the radio button is clicked', () => {
-    const component = shallow(<Radio {...props} />);
-    component.find('input').simulate('change');
-    expect(props.onChange.calledOnce).to.equal(true);
+    const { getByTestId } = render(<Radio {...props} />);
+    fireEvent.click(getByTestId('radio-input'));
+    expect(props.onChange).toHaveBeenCalledTimes(1);
   });
 
   it('should add inline class when inline prop in true', () => {
-    const component = shallow(<Radio {...props} />);
-    expect(component.hasClass('radio-component-inline')).to.equal(false);
+    const { getByTestId, rerender } = render(<Radio {...props} />);
+    expect(getByTestId('radio-wrapper')).not.toHaveClass('radio-component-inline');
     props.inline = true;
-    component.setProps(props);
-    expect(component.hasClass('radio-component-inline')).to.equal(true);
+
+    rerender(<Radio {...props} />);
+    expect(getByTestId('radio-wrapper')).toHaveClass('radio-component-inline');
   });
 });

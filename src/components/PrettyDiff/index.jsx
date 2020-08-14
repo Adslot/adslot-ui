@@ -20,9 +20,9 @@ const PrettyDiff = ({ newText, oldText }) => {
   };
 
   return (
-    <div className="pretty-diff-component">
+    <div data-testid="pretty-diff-wrapper" className="pretty-diff-component">
       {_.map(diffs, (diff, index) => (
-        <span key={index} className={getTextClass(diff[0])}>
+        <span data-testid={getTextClass(diff[0])} key={index} className={getTextClass(diff[0])}>
           {diff[1]}
         </span>
       ))}

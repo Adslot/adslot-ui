@@ -28,16 +28,22 @@ const SvgSymbol = props => {
   }
 
   const symbol = isEncoded ? (
-    <div className={symbolClassesList} onClick={onClick}>
-      <img src={href} alt="svg-symbol" />
+    <div data-testid="svg-symbol-wrapper" className={symbolClassesList} onClick={onClick}>
+      <img data-testid="svg-symbol-img" src={href} alt="svg-symbol" />
     </div>
   ) : (
-    <svg className={symbolClassesList} onClick={onClick}>
-      <use href={href} xlinkHref={href} />
+    <svg data-testid="svg-symbol-wrapper" className={symbolClassesList} onClick={onClick}>
+      <use data-testid="svg-symbol-use" href={href} xlinkHref={href} />
     </svg>
   );
 
-  return isCircle ? <div className={circleClassesList}>{symbol}</div> : symbol;
+  return isCircle ? (
+    <div data-testid="svg-symbol-is-circle" className={circleClassesList}>
+      {symbol}
+    </div>
+  ) : (
+    symbol
+  );
 };
 
 SvgSymbol.displayName = 'SvgSymbolComponent';

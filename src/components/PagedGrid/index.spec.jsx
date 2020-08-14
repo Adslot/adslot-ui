@@ -1,29 +1,24 @@
-import { GridCell, GridRow } from 'adslot-ui';
-import { shallow } from 'enzyme';
 import React from 'react';
-import Pagination from 'react-bootstrap/lib/Pagination';
-import PagedGridComponent from '.';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import PagedGrid from '.';
 
-describe('PagedGridComponent', () => {
+afterEach(cleanup);
+
+describe('<PagedGrid />', () => {
   it('should render with no items', () => {
     const props = {
       columns: [{ key: 'name', label: 'Name' }],
       items: [],
       perPage: 1,
     };
-    const component = shallow(<PagedGridComponent {...props} />);
-    expect(component.prop('className')).to.equal('pagedgrid-component');
+    const { getByTestId, queryAllByTestId } = render(<PagedGrid {...props} />);
+    expect(getByTestId('paged-grid-wrapper')).toHaveClass('pagedgrid-component');
 
-    const gridRowElements = component.find(GridRow);
-    expect(gridRowElements).to.have.length(1);
+    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(1);
+    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(1);
+    expect(getByTestId('grid-cell-wrapper')).toHaveTextContent('Name');
 
-    const gridRowHeader = gridRowElements.first();
-    const gridRowHeaderCellElements = gridRowHeader.find(GridCell);
-    expect(gridRowHeaderCellElements).to.have.length(1);
-    expect(gridRowHeaderCellElements.children().text()).to.equal('Name');
-
-    const paginationElement = component.find(Pagination);
-    expect(paginationElement).to.have.length(0);
+    expect(queryAllByTestId('paged-grid-pagination')).toHaveLength(0);
   });
 
   it('should render with items', () => {
@@ -32,13 +27,12 @@ describe('PagedGridComponent', () => {
       items: [{ name: 'item1', id: 1 }, { name: 'item2', id: 2 }],
       perPage: 1,
     };
-    const component = shallow(<PagedGridComponent {...props} />);
-    const gridRowElements = component.find(GridRow);
-    expect(gridRowElements).to.have.length(2);
-    gridRowElements.forEach(gridRowElement => expect(gridRowElement.prop('verticalCellBorder')).to.equal(false));
-
-    const paginationElement = component.find(Pagination);
-    expect(paginationElement).to.have.length(1);
+    const { queryAllByTestId } = render(<PagedGrid {...props} />);
+    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(2);
+    queryAllByTestId('grid-row-wrapper').forEach(gridRow =>
+      expect(gridRow).not.toHaveClass('grid-component-row-vertical-cell-border')
+    );
+    expect(queryAllByTestId('paged-grid-pagination')).toHaveLength(1);
   });
 
   it('should update grid when new page selected or items updated', () => {
@@ -48,29 +42,24 @@ describe('PagedGridComponent', () => {
       perPage: 1,
       verticalCellBorder: true,
     };
-    const component = shallow(<PagedGridComponent {...props} />);
-    const gridRowElements = component.find(GridRow);
-    expect(gridRowElements).to.have.length(2);
-    gridRowElements.forEach(gridRowElement => expect(gridRowElement.prop('verticalCellBorder')).to.equal(true));
+    const { queryAllByTestId, getByTestId, getByText, rerender } = render(<PagedGrid {...props} />);
+    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(2);
+    queryAllByTestId('grid-row-wrapper').forEach(gridRow =>
+      expect(gridRow).toHaveClass('grid-component-row-vertical-cell-border')
+    );
+    expect(getByTestId('paged-grid-pagination-info')).toHaveClass('pagedgrid-component-pagination-info');
+    expect(getByTestId('paged-grid-pagination-info')).toHaveTextContent('1–1 of 3');
 
-    let paginationInfoElement = component.find('.pagedgrid-component-pagination-info');
-    expect(paginationInfoElement.text()).to.equal('1–1 of 3');
-
-    const paginationElement = component.find(Pagination);
-    paginationElement.simulate('select', 3);
-
-    paginationInfoElement = component.find('.pagedgrid-component-pagination-info');
-    expect(paginationInfoElement.text()).to.equal('3–3 of 3');
+    fireEvent.click(getByText('3'));
+    expect(getByTestId('paged-grid-pagination-info')).toHaveTextContent('3–3 of 3');
 
     // Update items (no changes)
-    component.setProps(props);
-    paginationInfoElement = component.find('.pagedgrid-component-pagination-info');
-    expect(paginationInfoElement.text()).to.equal('3–3 of 3');
+    rerender(<PagedGrid {...props} />);
+    expect(getByTestId('paged-grid-pagination-info')).toHaveTextContent('3–3 of 3');
 
     // Update items (one removed)
     props.items.shift();
-    component.setProps(props);
-    paginationInfoElement = component.find('.pagedgrid-component-pagination-info');
-    expect(paginationInfoElement.text()).to.equal('2–2 of 2');
+    rerender(<PagedGrid {...props} />);
+    expect(getByTestId('paged-grid-pagination-info')).toHaveTextContent('2–2 of 2');
   });
 });

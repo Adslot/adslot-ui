@@ -1,118 +1,116 @@
-/* eslint-disable lodash/prefer-lodash-method */
-import _ from 'lodash';
-import { mount } from 'enzyme';
 import React from 'react';
-import sinon from 'sinon';
+import { createEvent, render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
 import AlertInput from '.';
-import Popover from '../Popover';
 
-describe('AlertInput', () => {
-  const initialState = {
-    isFocused: false,
-    isPopoverVisible: false,
-  };
+afterEach(cleanup);
 
-  describe('handleMouseEnter()', () => {
-    it('should set `isPopoverVisible` to true if alert message exists', () => {
-      const wrapper = mount(<AlertInput alertMessage="Hello" />);
-      wrapper.instance().handleMouseEnter();
-      expect(wrapper.state()).to.eql({
-        isFocused: false,
-        isPopoverVisible: true,
-      });
+const getByClass = queryByAttribute.bind(null, 'class');
+const queryAllByClass = queryAllByAttribute.bind(null, 'class');
+
+describe('<AlertInput />', () => {
+  describe('handleMouseEnter() and handleMouseLeave()', () => {
+    it('should set `isPopoverVisible` to true/false if alert message exists', () => {
+      const { getByTestId, queryAllByTestId } = render(<AlertInput alertMessage="Hello" />);
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+
+      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+
+      fireEvent.mouseLeave(getByTestId('alert-input-wrapper'));
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
     });
 
     it('should not set `isPopoverVisible` to true if no alert message exists', () => {
-      const wrapper = mount(<AlertInput />);
-      wrapper.instance().handleMouseEnter();
-      expect(wrapper.state()).to.eql(initialState);
-    });
-  });
+      const { getByTestId, queryAllByTestId } = render(<AlertInput />);
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
 
-  describe('handleMouseLeave()', () => {
-    it('should set `isPopoverVisible` to false', () => {
-      const wrapper = mount(<AlertInput alertMessage="Hello" />);
-      wrapper.setState({ isPopoverVisible: true });
-      wrapper.instance().handleMouseLeave();
+      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
 
-      expect(wrapper.state('isPopoverVisible')).to.equal(false);
+      fireEvent.mouseLeave(getByTestId('alert-input-wrapper'));
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
     });
   });
 
   describe('handleInputFocus()', () => {
     it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', () => {
-      const component = mount(<AlertInput alertMessage="Hello" />);
-      const inputElement = component.find('.aui--alert-input__input');
-      const focusEvent = {
-        target: {
-          select: sinon.spy(),
-        },
-      };
-      inputElement.simulate('focus', focusEvent);
-      expect(component.state()).to.eql({
-        isFocused: true,
-        isPopoverVisible: true,
-      });
-      expect(focusEvent.target.select.callCount).to.equal(1);
+      const { container, getByTestId } = render(<AlertInput alertMessage="Hello" />);
+      const onSelect = jest.fn();
+
+      fireEvent(
+        getByClass(container, 'aui--alert-input__input'),
+        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          target: { select: onSelect },
+        })
+      );
+
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
+      expect(getByTestId('popover-wrapper')).toHaveClass('aui--popover-wrapper aui--alert-input__popover');
+      expect(onSelect).toHaveBeenCalledTimes(1);
     });
 
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
-      const component = mount(<AlertInput />);
-      const inputElement = component.find('.aui--alert-input__input');
-      const focusEvent = {
-        target: {
-          select: sinon.spy(),
-        },
-      };
-      inputElement.simulate('focus', focusEvent);
-      expect(component.state()).to.eql({
-        isFocused: true,
-        isPopoverVisible: false,
-      });
-      expect(focusEvent.target.select.callCount).to.equal(1);
+      const { container, getByTestId, queryAllByTestId } = render(<AlertInput />);
+      const onSelect = jest.fn();
+
+      fireEvent(
+        getByClass(container, 'aui--alert-input__input'),
+        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          target: { select: onSelect },
+        })
+      );
+
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(onSelect).toHaveBeenCalledTimes(1);
     });
+  });
+  it('should call prop `onFocus` if exists', () => {
+    const onFocus = jest.fn();
+    const onSelect = jest.fn();
+    const { container, getByTestId, queryAllByTestId } = render(<AlertInput onFocus={onFocus} />);
 
-    it('should call prop `onFocus` if exists', () => {
-      const onFocusSpy = sinon.spy();
-      const focusEvent = {
-        target: {
-          select: sinon.spy(),
-        },
-      };
-      const component = mount(<AlertInput onFocus={onFocusSpy} />);
-      const inputElement = component.find('.aui--alert-input__input');
+    fireEvent(
+      getByClass(container, 'aui--alert-input__input'),
+      createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+        target: { select: onSelect },
+      })
+    );
 
-      inputElement.simulate('focus', focusEvent);
-
-      expect(component.state()).to.eql({
-        isFocused: true,
-        isPopoverVisible: false,
-      });
-      expect(focusEvent.target.select.callCount).to.equal(1);
-      expect(onFocusSpy.callCount).to.equal(1);
-    });
+    expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
+    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(onFocus).toHaveBeenCalledTimes(1);
   });
 
   describe('handleInputBlur ()', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
-      const component = mount(<AlertInput />);
-      const inputElement = component.find('.aui--alert-input__input');
-      const focusEvent = {
-        target: {
-          select: _.noop,
-        },
-      };
-      inputElement.simulate('focus', focusEvent);
-      inputElement.simulate('blur');
-      expect(component.state()).to.eql(initialState);
+      const onSelect = jest.fn();
+      const { container, getByTestId, queryAllByTestId } = render(<AlertInput />);
+      fireEvent(
+        getByClass(container, 'aui--alert-input__input'),
+        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          target: { select: onSelect },
+        })
+      );
+
+      fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+      expect(getByTestId('alert-input-wrapper')).not.toHaveClass('aui--alert-input--focused');
+      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
     });
 
     it('should call `onBlur` if exists', () => {
-      const onBlurSpy = sinon.spy();
-      const component = mount(<AlertInput onBlur={onBlurSpy} />);
-      const inputElement = component.find('.aui--alert-input__input');
-      inputElement.simulate('blur');
-      expect(onBlurSpy.callCount).to.equal(1);
+      const onBlur = jest.fn();
+      const { container } = render(<AlertInput onBlur={onBlur} />);
+
+      fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+      expect(onBlur).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -123,32 +121,31 @@ describe('AlertInput', () => {
         type: 'number',
         min: 0,
         placeholder: 'Type a number',
-        onValueChange: _.noop,
-        onBlur: _.noop,
+        onValueChange: jest.fn(),
+        onBlur: jest.fn(),
       };
-      const wrapper = mount(<AlertInput {...props} />);
-      expect(wrapper.find('.aui--alert-input')).to.have.length(1);
-      const componentWrapper = wrapper.find('.aui--alert-input');
-      expect(componentWrapper.prop('onMouseEnter')).to.be.a('function');
-      expect(componentWrapper.prop('onMouseLeave')).to.be.a('function');
-      expect(componentWrapper.children()).to.have.length(1);
+      const { getByTestId, queryAllByTestId, getByPlaceholderText, queryAllByPlaceholderText } = render(
+        <AlertInput {...props} />
+      );
 
-      const inputElement = wrapper.find('.aui--alert-input__input');
-      expect(inputElement.prop('type')).to.equal('number');
-      expect(inputElement.prop('min')).to.equal(0);
-      expect(inputElement.prop('placeholder')).to.equal('Type a number');
-      expect(inputElement.prop('value')).to.equal(100);
-      expect(inputElement.prop('onChange')).to.be.a('function');
-      expect(inputElement.prop('onFocus')).to.be.a('function');
-      expect(inputElement.prop('onBlur')).to.be.a('function');
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input');
+      expect(getByTestId('alert-input-wrapper')).not.toBeEmpty();
+
+      expect(queryAllByPlaceholderText('Type a number')).toHaveLength(1);
+      expect(getByPlaceholderText('Type a number')).toHaveClass('aui--alert-input__input');
+      expect(getByPlaceholderText('Type a number')).toHaveAttribute('min', '0');
+      expect(getByPlaceholderText('Type a number')).toHaveAttribute('type', 'number');
+      expect(getByPlaceholderText('Type a number')).toHaveAttribute('value', '100');
     });
 
     it('should also render with default props', () => {
-      const wrapper = mount(<AlertInput alertMessage="test" />);
-      wrapper.setState({ isPopoverVisible: true });
+      const { getByTestId, queryAllByTestId } = render(<AlertInput alertMessage="test" />);
+      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
 
-      expect(wrapper.find('.aui--alert-input').hasClass('success')).to.equal(true);
-      expect(wrapper.find(Popover.WithRef).prop('placement')).to.equal('bottom');
+      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('success');
+      expect(getByTestId('popover-wrapper')).toHaveAttribute('placement', 'bottom');
     });
 
     it('should render with addons', () => {
@@ -156,15 +153,12 @@ describe('AlertInput', () => {
         prefixAddon: '$',
         suffixAddon: '.00',
       };
-      const wrapper = mount(<AlertInput {...props} />);
-      const componentWrapper = wrapper.find('.aui--alert-input');
-      expect(componentWrapper.children()).to.have.length(3);
+      const { getByTestId, getByText } = render(<AlertInput {...props} />);
 
-      const prefixElement = componentWrapper.childAt(0);
-      expect(prefixElement.text()).to.equal('$');
-
-      const suffixElement = componentWrapper.childAt(2);
-      expect(suffixElement.text()).to.equal('.00');
+      expect(queryAllByClass(getByTestId('alert-input-wrapper'), 'aui--alert-input__addon')).toHaveLength(2);
+      expect(queryAllByClass(getByTestId('alert-input-wrapper'), 'aui--alert-input__input')).toHaveLength(1);
+      expect(getByText('$')).toHaveClass('aui--alert-input__addon');
+      expect(getByText('.00')).toHaveClass('aui--alert-input__addon');
     });
 
     it('should render with disabled input', () => {
@@ -174,41 +168,35 @@ describe('AlertInput', () => {
         prefixAddon: '$',
         suffixAddon: '.00',
       };
-      const wrapper = mount(<AlertInput {...props} />);
+      const { getByTestId, getByText } = render(<AlertInput {...props} />);
 
-      const componentWrapper = wrapper.find('.aui--alert-input');
-      expect(componentWrapper.children()).to.have.length(3);
-
-      const prefixElement = componentWrapper.childAt(0);
-      expect(prefixElement.text()).to.equal('$');
-
-      const suffixElement = componentWrapper.childAt(2);
-      expect(suffixElement.text()).to.equal('.00');
-
-      expect(wrapper.find('.aui--alert-input--disabled')).to.have.lengthOf(1);
+      expect(queryAllByClass(getByTestId('alert-input-wrapper'), 'aui--alert-input__addon')).toHaveLength(2);
+      expect(queryAllByClass(getByTestId('alert-input-wrapper'), 'aui--alert-input__input')).toHaveLength(1);
+      expect(getByText('$')).toHaveClass('aui--alert-input__addon');
+      expect(getByText('.00')).toHaveClass('aui--alert-input__addon');
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--disabled');
     });
 
     it('should render with alert status', () => {
       const props = {
         alertStatus: 'error',
       };
-      const wrapper = mount(<AlertInput {...props} />);
-      const componentWrapper = wrapper.find('.aui--alert-input');
-      expect(componentWrapper.prop('className')).to.equal('aui--alert-input error');
+      const { getByTestId } = render(<AlertInput {...props} />);
+      expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input error');
     });
 
     it('should set correct theme for popover', () => {
-      const props = {
+      let props = {
         alertStatus: 'error',
         alertMessage: 'something is wrong',
       };
-      const wrapper = mount(<AlertInput {...props} />);
-      wrapper.setState({ isPopoverVisible: true });
+      const { getByTestId, rerender } = render(<AlertInput {...props} />);
+      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      expect(getByTestId('popover-wrapper')).toHaveClass('popover-error');
 
-      expect(wrapper.find(Popover.WithRef).prop('theme')).to.equal('error');
-
-      wrapper.setProps({ alertStatus: 'warning' });
-      expect(wrapper.find(Popover.WithRef).prop('theme')).to.equal('warn');
+      props.alertStatus = 'warning';
+      rerender(<AlertInput {...props} />);
+      expect(getByTestId('popover-wrapper')).toHaveClass('popover-warn');
     });
 
     it('should set correct popoverPlacement position for popover', () => {
@@ -216,11 +204,9 @@ describe('AlertInput', () => {
         popoverPlacement: 'left',
         alertMessage: 'something is wrong',
       };
-      const wrapper = mount(<AlertInput {...props} />);
-      wrapper.setState({ isPopoverVisible: true });
-
-      expect(wrapper.find(Popover.WithRef).prop('placement')).to.equal('left');
+      const { getByTestId } = render(<AlertInput {...props} />);
+      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      expect(getByTestId('popover-wrapper')).toHaveAttribute('placement', 'left');
     });
   });
 });
-/* eslint-enable lodash/prefer-lodash-method */

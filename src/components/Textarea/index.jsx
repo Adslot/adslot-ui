@@ -30,11 +30,13 @@ class Textarea extends React.PureComponent {
     const classNames = classnames('form-control', restProps.className);
 
     return _.isNil(maxLength) ? (
-      <textarea {...restProps} className={classNames} />
+      <textarea data-testid="textarea-area" {...restProps} className={classNames} />
     ) : (
       <div>
-        <textarea {...restProps} className={classNames} onChange={this.handleChange} />
-        <span className={statusClass}>{this.state.charCountRemaining} characters remaining</span>
+        <textarea {...restProps} data-testid="textarea-area" className={classNames} onChange={this.handleChange} />
+        <span data-testid="textarea-span" className={statusClass}>
+          {this.state.charCountRemaining} characters remaining
+        </span>
       </div>
     );
   }
