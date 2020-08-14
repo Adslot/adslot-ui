@@ -39,7 +39,10 @@ const Example = () => {
   return (
     <>
       <div style={{ width: '600px' }}>
-        <RichTextEditor onChange={output => setState(RichTextEditor.stateToHTML(output))} />
+        <RichTextEditor
+          onChange={output => setState(RichTextEditor.stateToHTML(output))}
+          placeholder="Custom placeholder"
+        />
       </div>
 
       <div style={{ marginTop: 30, width: '600px' }}>

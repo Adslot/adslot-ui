@@ -102,8 +102,9 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
+          limit: 10000,
           name: 'assets/[name].[hash:8].[ext]',
         },
       },

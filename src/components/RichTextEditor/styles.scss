@@ -16,6 +16,10 @@
     .public-DraftEditorPlaceholder-hasFocus {
       display: none;
     }
+
+    .public-DraftEditorPlaceholder-inner {
+      color: $color-text-placeholder;
+    }
   }
 
   .aui--editor-toolbar {
