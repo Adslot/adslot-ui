@@ -40,13 +40,12 @@
 
       &:hover,
       &.active {
-        background-color: $color-white;
+        background-color: $color-gray-lighter;
         border-color: $color-gray-lighter;
-        box-shadow: 0 1px $color-gray-light;
       }
 
       img {
-        height: 16px;
+        height: 20px;
       }
     }
   }
