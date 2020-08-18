@@ -5,118 +5,124 @@ import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
 import './styles.scss';
 
-const Search = ({
-  className,
-  debounceInterval,
-  disabled,
-  dts,
-  icons,
-  isLoading,
-  onBlur,
-  onChange,
-  onClear,
-  onSearch,
-  placeholder,
-  searchOnEnter,
-  value,
-}) => {
-  const [inputValue, setInputValue] = React.useState('');
+const Search = React.forwardRef(
+  (
+    {
+      className,
+      debounceInterval,
+      disabled,
+      dts,
+      icons,
+      isLoading,
+      onBlur,
+      onChange,
+      onClear,
+      onSearch,
+      placeholder,
+      searchOnEnter,
+      value,
+    },
+    ref
+  ) => {
+    const [inputValue, setInputValue] = React.useState('');
 
-  const onInputChange = event => {
-    const eventValue = _.get(event, 'target.value');
-    if (onChange) {
-      onChange(eventValue);
-    } else {
-      setInputValue(eventValue);
-    }
-    if (!searchOnEnter) {
-      onInputSearch(eventValue);
-    }
-  };
+    const onInputChange = event => {
+      const eventValue = _.get(event, 'target.value');
+      if (onChange) {
+        onChange(eventValue);
+      } else {
+        setInputValue(eventValue);
+      }
+      if (!searchOnEnter) {
+        onInputSearch(eventValue);
+      }
+    };
 
-  const onInputClear = () => {
-    const emptyValue = '';
+    const onInputClear = () => {
+      const emptyValue = '';
 
-    if (onChange) {
-      onChange(emptyValue);
-    } else {
-      setInputValue('');
-    }
-    if (!searchOnEnter) onInputSearch(emptyValue);
-    if (onClear) onClear(emptyValue);
-  };
+      if (onChange) {
+        onChange(emptyValue);
+      } else {
+        setInputValue('');
+      }
+      if (!searchOnEnter) onInputSearch(emptyValue);
+      if (onClear) onClear(emptyValue);
+    };
 
-  const onKeyPress = event => {
-    if (searchOnEnter && event.key === 'Enter') {
+    const onKeyPress = event => {
+      if (searchOnEnter && event.key === 'Enter') {
+        event.preventDefault();
+        onInputSearch(_.get(event, 'target.value'));
+      }
+    };
+
+    const onInputSearch = searchValue => {
+      const search = debounceInterval ? _.debounce(onSearch, debounceInterval) : onSearch;
+      search(searchValue);
+    };
+
+    const onSearchButtonClick = event => {
       event.preventDefault();
-      onInputSearch(_.get(event, 'target.value'));
-    }
-  };
+      const searchValue = value || inputValue;
+      onInputSearch(searchValue);
+    };
 
-  const onInputSearch = searchValue => {
-    const search = debounceInterval ? _.debounce(onSearch, debounceInterval) : onSearch;
-    search(searchValue);
-  };
+    const currentInputValue = value || inputValue;
 
-  const onSearchButtonClick = event => {
-    event.preventDefault();
-    const searchValue = value || inputValue;
-    onInputSearch(searchValue);
-  };
+    if (value && !onChange)
+      console.warn(
+        'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
+      );
 
-  const currentInputValue = value || inputValue;
+    const searchIcon = icons.search ? icons.search : <div data-testid="search-icon" className="search-icon" />;
+    const closeIcon = icons.close ? icons.close : <div data-testid="close-icon" className="cancel-icon" />;
+    const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
+    const isValueEmpty = _.isEmpty(value) && _.isEmpty(inputValue);
 
-  if (value && !onChange)
-    console.warn(
-      'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
+    return (
+      <div
+        data-testid="search-wrapper"
+        className={classnames('aui--search-component', className)}
+        data-test-selector={dts}
+      >
+        <input
+          ref={ref}
+          data-testid="search-input"
+          autoComplete="off"
+          className="aui--search-component-input"
+          disabled={disabled}
+          name="search"
+          onChange={onInputChange}
+          onKeyPress={onKeyPress}
+          placeholder={placeholder}
+          type="search"
+          value={currentInputValue}
+          onBlur={onBlur}
+        />
+        {isLoading && !searchOnEnter && <span className="aui--search-component-spinner">{loaderIcon}</span>}
+        {searchOnEnter && !isValueEmpty && (
+          <span className="aui--search-component-icon with-button" onClick={onInputClear}>
+            {closeIcon}
+          </span>
+        )}
+        {searchOnEnter ? (
+          <button data-testid="search-button" className="aui--search-component-button" onClick={onSearchButtonClick}>
+            {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
+          </button>
+        ) : (
+          <span
+            data-testid="search-icon-wrapper"
+            className="aui--search-component-icon"
+            {...(isValueEmpty ? {} : { onClick: onInputClear })}
+          >
+            {isValueEmpty ? searchIcon : closeIcon}
+          </span>
+        )}
+      </div>
     );
-
-  const searchIcon = icons.search ? icons.search : <div data-testid="search-icon" className="search-icon" />;
-  const closeIcon = icons.close ? icons.close : <div data-testid="search-icon" className="cancel-icon" />;
-  const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
-  const isValueEmpty = _.isEmpty(value) && _.isEmpty(inputValue);
-
-  return (
-    <div
-      data-testid="search-wrapper"
-      className={classnames('aui--search-component', className)}
-      data-test-selector={dts}
-    >
-      <input
-        data-testid="search-input"
-        autoComplete="off"
-        className="aui--search-component-input"
-        disabled={disabled}
-        name="search"
-        onChange={onInputChange}
-        onKeyPress={onKeyPress}
-        placeholder={placeholder}
-        type="search"
-        value={currentInputValue}
-        onBlur={onBlur}
-      />
-      {isLoading && !searchOnEnter && <span className="aui--search-component-spinner">{loaderIcon}</span>}
-      {searchOnEnter && !isValueEmpty && (
-        <span className="aui--search-component-icon with-button" onClick={onInputClear}>
-          {closeIcon}
-        </span>
-      )}
-      {searchOnEnter ? (
-        <button data-testid="search-button" className="aui--search-component-button" onClick={onSearchButtonClick}>
-          {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
-        </button>
-      ) : (
-        <span
-          data-testid="search-icon-wrapper"
-          className="aui--search-component-icon"
-          {...(isValueEmpty ? {} : { onClick: onInputClear })}
-        >
-          {isValueEmpty ? searchIcon : closeIcon}
-        </span>
-      )}
-    </div>
-  );
-};
+  }
+);
 
 Search.propTypes = {
   className: PropTypes.string,

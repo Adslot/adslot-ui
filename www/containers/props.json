@@ -3517,7 +3517,6 @@
   "src/components/Search/index.jsx": [
     {
       "description": "",
-      "displayName": "Search",
       "methods": [],
       "props": {
         "className": {

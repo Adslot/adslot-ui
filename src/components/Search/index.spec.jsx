@@ -34,8 +34,20 @@ describe('<Search />', () => {
   });
 
   it('should render search button if searchOnEnter is true', () => {
-    const { queryAllByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter />);
+    const { queryAllByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter />);
     expect(queryAllByTestId('search-button')).toHaveLength(1);
+    expect(queryAllByTestId('search-icon')).toHaveLength(1);
+    expect(getByTestId('search-button')).toContainElement(getByTestId('search-icon'));
+    expect(getByTestId('search-icon')).toHaveClass('search-icon');
+  });
+
+  it('should render search button if searchOnEnter and isLoading are true', () => {
+    const { queryAllByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter isLoading />);
+    expect(queryAllByTestId('search-button')).toHaveLength(1);
+    expect(queryAllByTestId('search-icon')).toHaveLength(0);
+    expect(queryAllByTestId('spinner')).toHaveLength(1);
+    expect(getByTestId('search-button')).toContainElement(getByTestId('spinner'));
+    expect(getByTestId('spinner')).toHaveClass('spinner-small');
   });
 
   it('should render with given props', () => {
@@ -111,8 +123,8 @@ describe('<Search />', () => {
   describe('Clear Button', () => {
     it('should render clear button when value is not empty and search button is not shown', () => {
       const { getByTestId, queryAllByTestId } = render(<Search {...props} />);
-      expect(queryAllByTestId('search-icon')).toHaveLength(1);
-      expect(getByTestId('search-icon')).toHaveClass('cancel-icon');
+      expect(queryAllByTestId('close-icon')).toHaveLength(1);
+      expect(getByTestId('close-icon')).toHaveClass('cancel-icon');
     });
 
     it('should fire onChange, onSearch and onClear when clear button is clicked', () => {
@@ -141,6 +153,23 @@ describe('<Search />', () => {
       const { getByTestId } = render(<Search {...callbacks} searchOnEnter />);
       fireEvent.change(getByTestId('search-input'), { target: { value: 'a' } });
       expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
+
+      fireEvent.click(getByTestId('close-icon'));
+      expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
+    });
+
+    it('should fire onSearch when clicking "X" icon if searchOnEnter is false', () => {
+      const callbacks = {
+        onSearch: jest.fn(),
+      };
+
+      const { getByTestId } = render(<Search {...callbacks} />);
+      fireEvent.change(getByTestId('search-input'), { target: { value: 'a' } });
+      expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
+
+      fireEvent.click(getByTestId('close-icon'));
+      expect(callbacks.onSearch).toHaveBeenCalledTimes(2);
+      expect(callbacks.onSearch).toHaveBeenNthCalledWith(2, '');
     });
 
     it('should clear its own value state if onChange is not provided', () => {
@@ -148,9 +177,9 @@ describe('<Search />', () => {
       fireEvent.change(getByTestId('search-input'), { target: { value: 'foo' } });
       expect(getByTestId('search-input')).toHaveAttribute('value', 'foo');
 
-      expect(queryAllByTestId('search-icon')).toHaveLength(1);
-      expect(getByTestId('search-icon')).toHaveClass('cancel-icon');
-      fireEvent.click(getByTestId('search-icon'));
+      expect(queryAllByTestId('close-icon')).toHaveLength(1);
+      expect(getByTestId('close-icon')).toHaveClass('cancel-icon');
+      fireEvent.click(getByTestId('close-icon'));
       expect(getByTestId('search-input')).toHaveAttribute('value', '');
     });
   });
