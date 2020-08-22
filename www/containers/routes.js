@@ -34,6 +34,7 @@ import PopoverExample from '../examples/Popover.mdx';
 import RadioExample from '../examples/Radio.mdx';
 import RadioGroupExample from '../examples/RadioGroup.mdx';
 import SearchExample from '../examples/Search.mdx';
+import SearchableCheckListExample from '../examples/SearchableCheckList.mdx';
 import SelectExample from '../examples/Select.mdx';
 import SliceyExample from '../examples/Slicey.mdx';
 import SpinnerExample from '../examples/Spinner.mdx';
@@ -304,6 +305,12 @@ const routes = [
     path: '/search',
     component: SearchExample,
     title: 'Search',
+    group: 'Components',
+  },
+  {
+    path: '/searchableCheckList',
+    component: SearchableCheckListExample,
+    title: 'Searchable Checklist',
     group: 'Components',
   },
   {

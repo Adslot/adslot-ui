@@ -3655,6 +3655,95 @@
       }
     }
   ],
+  "src/components/SearchableCheckList/index.jsx": [
+    {
+      "description": "",
+      "displayName": "SearchableCheckList",
+      "methods": [],
+      "props": {
+        "context": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "singularLabel": {
+                "name": "string",
+                "required": true
+              },
+              "pluralLabel": {
+                "name": "string",
+                "required": true
+              }
+            }
+          },
+          "required": true,
+          "description": "Context of the list displayed: {singularLabel: PropTypes.string, pluralLabel: PropTypes.string}"
+        },
+        "items": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "shape",
+              "value": {
+                "value": {
+                  "name": "string",
+                  "required": true
+                },
+                "label": {
+                  "name": "string",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": false,
+          "description": "List of items: { value: PropTypes.string, label: PropTypes.string }"
+        },
+        "selectedItemsKeys": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          "required": false,
+          "description": "List of checked items value",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          }
+        },
+        "placeholder": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Search placeholder",
+          "defaultValue": {
+            "value": "'Search'",
+            "computed": false
+          }
+        },
+        "displayCount": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Number of checkbox items to render",
+          "defaultValue": {
+            "value": "6",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
   "src/components/Select/index.jsx": [
     {
       "description": "",

@@ -1,0 +1,31 @@
+@import '~styles/mixin';
+@import '~styles/variable';
+
+.aui--searchable-checklist {
+  .aui--searchable-list-container {
+    display: inline-block;
+
+    .title {
+      font-weight: $font-weight-bold;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      margin-bottom: 10px;
+    }
+
+    .main-checkbox {
+      margin-bottom: 6px;
+    }
+
+    .items-container {
+      max-height: 125px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      color: $color-gray;
+    }
+  }
+}

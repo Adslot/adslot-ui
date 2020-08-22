@@ -53,6 +53,7 @@ import Panel from './components/Panel';
 import Radio from './components/Radio';
 import RadioGroup from './components/RadioGroup';
 import Search from './components/Search';
+import SearchableCheckList from './components/SearchableCheckList';
 import Select from './components/Select';
 import SplitPane from './components/SplitPane';
 import StatusPill from './components/StatusPill';
@@ -121,6 +122,7 @@ export {
   RadioGroup,
   Search,
   Select,
+  SearchableCheckList,
   Slicey,
   Spinner,
   SplitPane,
