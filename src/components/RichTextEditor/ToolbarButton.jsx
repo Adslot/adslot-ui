@@ -8,8 +8,17 @@ const ToolbarButton = ({ onToggle, label, active }) => {
     active,
   });
 
+  const mouseDownHandler = React.useCallback(
+    event => {
+      event.preventDefault();
+      event.stopPropagation();
+      return onToggle();
+    },
+    [onToggle]
+  );
+
   return (
-    <Button className={className} onMouseDown={onToggle}>
+    <Button className={className} onMouseDown={mouseDownHandler}>
       {label}
     </Button>
   );
