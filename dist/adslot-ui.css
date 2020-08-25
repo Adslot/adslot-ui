@@ -11566,6 +11566,22 @@ strong {
     top: 5px;
     right: 25px; }
 
+.aui--searchable-checklist .aui--searchable-list-container {
+  display: inline-block; }
+  .aui--searchable-checklist .aui--searchable-list-container .title {
+    font-weight: 700;
+    margin-bottom: 10px; }
+  .aui--searchable-checklist .aui--searchable-list-container .search-box {
+    margin-bottom: 10px; }
+  .aui--searchable-checklist .aui--searchable-list-container .main-checkbox {
+    margin-bottom: 6px; }
+  .aui--searchable-checklist .aui--searchable-list-container .items-container {
+    max-height: 125px;
+    overflow-y: auto;
+    margin-bottom: 10px; }
+  .aui--searchable-checklist .aui--searchable-list-container .footer {
+    color: #ababab; }
+
 .select-component .caret-icon {
   width: 8px;
   height: 8px;
@@ -12229,7 +12245,9 @@ input:disabled + .aui--switch-slider::before {
       justify-content: space-between;
   overflow: hidden; }
   .aui--editor-root .aui--editor-container {
-    padding: 20px; }
+    padding: 20px;
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
     .aui--editor-root .aui--editor-container .public-DraftEditorPlaceholder-hasFocus {
       display: none; }
     .aui--editor-root .aui--editor-container .public-DraftEditorPlaceholder-inner {
