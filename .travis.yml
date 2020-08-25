@@ -16,7 +16,7 @@ script:
   - commitlint-travis
   - npm run svgo
   - git diff --exit-code
-  - "! grep -R --exclude-dir='*/node_modules/*' --include=package-lock.json 'http:' ."
+  - "! grep -R --exclude-dir='*/node_modules/*' --include=package-lock.json -E '(http:|nexus.corp.adslot.com/repository/adslot-npm)' ."
   - npm test
   - curl -s "https://api.travis-ci.org/v3/job/$TRAVIS_JOB_ID/log.txt" -o /tmp/travis.output
   - |
