@@ -29,7 +29,7 @@ describe('<RichTextEditor />', () => {
     const { container } = render(<RichTextEditor />);
     expect(queryAllByClass(container, 'public-DraftEditorPlaceholder-root')).toHaveLength(1);
 
-    fireEvent.click(getByClass(container, 'aui--editor-root'));
+    fireEvent.click(getByClass(container, 'aui--editor-container'));
     expect(
       queryAllByClass(container, 'public-DraftEditorPlaceholder-root public-DraftEditorPlaceholder-hasFocus')
     ).toHaveLength(1);
@@ -97,7 +97,7 @@ describe('<RichTextEditor />', () => {
     expect(queryAllByTestId('bootstrap-button-wrapper')).toHaveLength(5);
     expect(queryAllByTestId('bootstrap-button-wrapper')[1]).toContainElement(getByAltText('italics'));
 
-    fireEvent.click(queryAllByTestId('bootstrap-button-wrapper')[1]);
+    fireEvent.mouseDown(queryAllByTestId('bootstrap-button-wrapper')[1]);
 
     expect(onChange).toHaveBeenCalledTimes(1);
   });
@@ -110,7 +110,7 @@ describe('<RichTextEditor />', () => {
     expect(queryAllByTestId('bootstrap-button-wrapper')).toHaveLength(5);
     expect(queryAllByTestId('bootstrap-button-wrapper')[4]).toContainElement(getByAltText('number'));
 
-    fireEvent.click(queryAllByTestId('bootstrap-button-wrapper')[4]);
+    fireEvent.mouseDown(queryAllByTestId('bootstrap-button-wrapper')[4]);
 
     expect(onChange).toHaveBeenCalledTimes(1);
   });

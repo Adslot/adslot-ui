@@ -11,6 +11,7 @@
 
   .aui--editor-container {
     padding: 20px;
+    flex-grow: 1;
 
     // sass-lint:disable class-name-format
     .public-DraftEditorPlaceholder-hasFocus {
