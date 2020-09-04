@@ -159,11 +159,11 @@ TreePickerSimplePureComponent.propTypes = {
    */
   disableInclude: PropTypes.bool,
   /**
-   * 	Displays this svg symbol when there will be no item on both left or right Grid
+   * 	The svg symbol used when there will be no item on both left or right Grid
    */
   emptySvgSymbol: PropTypes.node,
   /**
-   * 	Displays this svg symbol when there will be no item on right Grid(Selected list)
+   * 	The svg symbol used when there will be no item on right Grid (Selected list)
    */
   emptySelectedListSvgSymbol: PropTypes.node,
   /**
@@ -183,7 +183,7 @@ TreePickerSimplePureComponent.propTypes = {
    */
   groupFormatter: PropTypes.func,
   /**
-   * 	Hides icon when displays empty symbol
+   * 	Hides the empty icon on right Grid (Selected list). Given emptySvgSymbol and hideIcon together, the empty symbol will be only displayed on the left grid.
    */
   hideIcon: PropTypes.bool,
   /**

@@ -69,6 +69,13 @@ const Example = () => {
         hideIcon
         selectedNodes={getSelectedNodes()}
         subtree={getSubtree()}
+        emptySvgSymbol={
+          <SvgSymbol
+            classSuffixes={['gray-darker', '70']}
+            href="./assets/svg-symbols.svg#checklist-incomplete"
+            isCircle
+          />
+        }
         emptySelectedListText={
           <div>
             <b>Choose items of interest</b>

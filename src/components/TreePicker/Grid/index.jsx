@@ -27,6 +27,8 @@ const TreePickerGridComponent = ({
   displayGroupHeader,
 }) => {
   const nodesByGroupLabel = _.groupBy(nodes, groupFormatter);
+  const emptySvgIcon = hideIcon ? null : emptySvgSymbol;
+
   return (
     <Grid>
       {isLoading ? (
@@ -65,9 +67,7 @@ const TreePickerGridComponent = ({
           </div>
         ))
       )}
-      {nodes && !isLoading ? (
-        <Empty collection={nodes} hideIcon={hideIcon} icon={emptySvgSymbol} text={emptyText} />
-      ) : null}
+      {nodes && !isLoading ? <Empty collection={nodes} icon={emptySvgIcon} text={emptyText} /> : null}
     </Grid>
   );
 };
