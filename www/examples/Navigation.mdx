@@ -4,17 +4,19 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ## Navigation
 
 ```jsx live=true
-const Example = () => {
-  const [activeKey, setActiveKey] = React.useState(0);
-  onSelect = key => setActiveKey(key);
-
-  return (
-    <Nav activeKey={activeKey} onSelect={onSelect}>
-      <NavItem eventKey={0}>Dashboard</NavItem>
-      <NavItem eventKey={1}>Reports</NavItem>
-    </Nav>
-  );
-};
+const Example = () => (
+  <Nav activeKey={0} onSelect={_.noop}>
+    <NavItem key={0} eventKey={0}>
+      Dashboard
+    </NavItem>
+    <NavItem key={1} eventKey={1}>
+      Reports
+    </NavItem>
+    <NavItem key={2} eventKey={2} disabled>
+      Invoicing
+    </NavItem>
+  </Nav>
+);
 
 render(Example);
 ```

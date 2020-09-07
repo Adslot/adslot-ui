@@ -5,7 +5,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Pagination from 'react-bootstrap/lib/Pagination';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
-import NavItem from 'react-bootstrap/lib/NavItem';
 
 import 'styles/_bootstrap-custom.scss';
 import 'styles/_icheck-custom.scss';
@@ -48,6 +47,7 @@ import HelpIconPopover from './components/HelpIconPopover';
 import ListPicker from './components/ListPicker';
 import ListPickerPure from './components/ListPickerPure';
 import Nav from './components/Navigation';
+import { NavItem } from './components/Navigation';
 import PagedGrid from './components/PagedGrid';
 import Panel from './components/Panel';
 import Radio from './components/Radio';

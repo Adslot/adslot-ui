@@ -2495,20 +2495,168 @@
   "src/components/Navigation/index.jsx": [
     {
       "description": "",
-      "displayName": "NavigationComponent",
+      "displayName": "Navigation",
       "methods": [],
       "props": {
+        "stacked": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "NavItems are be positioned horizontally or vertically.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "A callback fired when any children is selected.\ne.g. onSelect = {(eventKey) => console.log(eventKey)}\nwhere the eventKey is the unique key of each child."
+        },
+        "activeKey": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "A key for the current active item"
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
         "barPosition": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'top'",
+                "computed": false
+              },
+              {
+                "value": "'bottom'",
+                "computed": false
+              },
+              {
+                "value": "'none'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "define the position (styling) of the active item bar",
           "defaultValue": {
             "value": "'bottom'",
             "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
           },
-          "required": false
+          "required": false,
+          "description": "render `data-test-selector` onto the component. It can be useful for testing."
         }
-      },
-      "composes": [
-        "lodash"
-      ]
+      }
+    },
+    {
+      "description": "",
+      "displayName": "NavItem",
+      "methods": [],
+      "props": {
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Disable one menu item."
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "activeKey": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "setActiveKey": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "eventKey": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "A key for each item, and can be used in onSelect"
+        },
+        "href": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Define the href of the <a />"
+        }
+      }
     }
   ],
   "src/components/OverlayLoader/index.jsx": [

@@ -1,6 +1,5 @@
 @import '~styles/variable';
 
-
 .nav-borderless {
   $border-width: 3px;
   display: flex;
@@ -21,6 +20,8 @@
     border-style: solid;
     border-color: $color-background;
     border-width: 0;
+    justify-content: center;
+    align-items: center;
 
     &:hover,
     &.active {
@@ -39,11 +40,17 @@
 
     &.disabled {
       cursor: default;
+      color: $color-text-disabled;
 
       a {
+        cursor: default;
         color: $color-text-disabled;
       }
     }
+  }
+
+  &.stacked {
+    flex-direction: column;
   }
 
   &.top-bar {
