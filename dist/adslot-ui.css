@@ -5923,12 +5923,12 @@ button + .aui--button-group {
     outline: none; }
 
 .slick-next {
-  right: 45px;
+  right: 2%;
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg); }
 
 .slick-prev {
-  left: 35px;
+  left: 2%;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg); }
 
