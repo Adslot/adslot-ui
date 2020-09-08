@@ -56,7 +56,7 @@ npm run test [-- --no-coverage]
 
 # Run tests and rebuild on file changes.
 
-npm run test:watch [--file=<path>] [--coverage]
+npm run test:watch [-- <path>] [--coverage]
 
 # Optimize SVG before you commit
 npm run svgo

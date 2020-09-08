@@ -10,7 +10,7 @@ const getByClass = queryByAttribute.bind(null, 'class');
 
 describe('<TreePickerGrid />', () => {
   const { itemType, qldNode, saNode, nodeRenderer, valueFormatter } = TreePickerMocks;
-  const svgSymbol = <div className="testing-empty-svg-symbol" />;
+  const svgSymbol = <div className="testing-empty-svg-symbol" data-testid="testing-svg-symbol" />;
 
   it('should render with props', () => {
     const props = {
@@ -152,5 +152,31 @@ describe('<TreePickerGrid />', () => {
 
     const { queryAllByTestId } = render(<TreePickerGrid {...props} isLoading />);
     expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
+  });
+
+  it('should hide the emptySvgSymbol of the tree picker grid as expected', () => {
+    const props = {
+      emptySvgSymbol: svgSymbol,
+      emptyText: 'Empty!',
+      nodes: [],
+      expandNode: jest.fn(),
+      includeNode: jest.fn(),
+      itemType,
+      nodeRenderer,
+      removeNode: jest.fn(),
+      selected: false,
+      valueFormatter,
+      displayGroupHeader: true,
+      isLoading: false,
+    };
+
+    const { getByTestId, queryAllByTestId, rerender } = render(<TreePickerGrid {...props} />);
+    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
+    expect(queryAllByTestId('testing-svg-symbol')).toHaveLength(1);
+    expect(getByTestId('empty-wrapper')).toContainElement(getByTestId('testing-svg-symbol'));
+
+    rerender(<TreePickerGrid {...props} hideIcon />);
+
+    expect(queryAllByTestId('testing-svg-symbol')).toHaveLength(0);
   });
 });

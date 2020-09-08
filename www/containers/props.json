@@ -5056,14 +5056,14 @@
             "name": "node"
           },
           "required": false,
-          "description": "Displays this svg symbol when there will be no item on both left or right Grid"
+          "description": "The svg symbol used when there will be no item on both left or right Grid"
         },
         "emptySelectedListSvgSymbol": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": "Displays this svg symbol when there will be no item on right Grid(Selected list)"
+          "description": "The svg symbol used when there will be no item on right Grid (Selected list)"
         },
         "emptyText": {
           "type": {
@@ -5098,7 +5098,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "Hides icon when displays empty symbol"
+          "description": "Hides the empty icon on right Grid (Selected list). Given emptySvgSymbol and hideIcon together, the empty symbol will be only displayed on the left grid."
         },
         "includeNode": {
           "type": {

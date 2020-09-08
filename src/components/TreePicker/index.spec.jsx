@@ -53,6 +53,20 @@ describe('<TreePicker />', () => {
     expect(rightSplitPane).toContainElement(queryAllByTestId('flexible-spacer-wrapper')[1]);
   });
 
+  it('should render empty text as expected', () => {
+    const newProps = _.assign({}, props, { subtree: [] });
+
+    const { getByText, queryAllByText, rerender } = render(<TreePickerSimplePure {...newProps} />);
+
+    expect(queryAllByText('Begin searching.')).toHaveLength(1);
+    expect(getByText('Begin searching.')).toHaveClass('empty-component-text');
+
+    rerender(<TreePickerSimplePure {...newProps} searchValue="keyword" />);
+    expect(queryAllByText('Begin searching.')).toHaveLength(0);
+    expect(queryAllByText('No items to select.')).toHaveLength(1);
+    expect(getByText('No items to select.')).toHaveClass('empty-component-text');
+  });
+
   it('should have disabled class included when disabled set to true', () => {
     const { getByTestId } = render(<TreePickerSimplePure disabled {...props} />);
     expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component disabled');
