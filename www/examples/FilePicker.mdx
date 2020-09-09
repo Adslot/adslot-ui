@@ -4,12 +4,20 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ## File Picker
 
 ```jsx live=true
-class FilePickerExample extends React.PureComponent {
-  render() {
-    const onSelect = _.noop;
-    return <FilePicker onSelect={onSelect} />;
-  }
-}
+const FilePickerExample = () => {
+  const onSelect = _.noop;
+  const [fileName, setFileName] = React.useState('');
+
+  return (
+    <>
+      Uncontrolled:
+      <FilePicker onSelect={onSelect} />
+      <br />
+      Controlled:
+      <FilePicker onSelect={onSelect} value={fileName} onChange={fileName => setFileName(fileName)} />
+    </>
+  );
+};
 
 render(
   <div style={{ width: 400 }}>
