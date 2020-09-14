@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import BreadcrumbNode from './Node';
 import './styles.scss';
 
-const Breadcrumb = ({ rootNode, nodes, onClick, disabled }) => {
-  const baseClass = 'breadcrumb-component';
-  const className = classnames([baseClass, { [`${baseClass}--disabled`]: disabled }]);
+const Breadcrumb = ({ rootNode, divider, nodes, onClick, disabled }) => {
+  const baseClass = 'aui--breadcrumb';
+  const className = classnames(baseClass, { [`${baseClass}--disabled`]: disabled });
   const onClickFunc = newActiveId => !disabled && onClick(newActiveId);
 
   if (nodes.length === 0) {
@@ -18,28 +18,28 @@ const Breadcrumb = ({ rootNode, nodes, onClick, disabled }) => {
     <div data-testid="breadcrumb-wrapper" className={className}>
       <BreadcrumbNode isLast={false} node={rootNode} onClick={onClickFunc} />
       {_.map(nodes, (node, index) => (
-        <span data-testid="breadcrumb-node" className={`${baseClass}-node`} key={node.id}>
-          <span data-testid="breadcrumb-node-divider" className={`${baseClass}-node-divider`}>
-            {' '}
-            &gt;{' '}
-          </span>
+        <React.Fragment key={node.id}>
+          <div data-testid="breadcrumb-node-divider" className={`${baseClass}-node-divider`}>
+            {divider}
+          </div>
           <BreadcrumbNode isLast={index === nodes.length - 1} node={node} onClick={onClickFunc} />
-        </span>
+        </React.Fragment>
       ))}
     </div>
   );
 };
 
-Breadcrumb.displayName = 'BreadcrumbComponent';
-
 Breadcrumb.propTypes = {
   rootNode: BreadcrumbNode.propTypes.node,
+  divider: PropTypes.node,
   nodes: PropTypes.arrayOf(BreadcrumbNode.propTypes.node),
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };
+
 Breadcrumb.defaultProps = {
   rootNode: { id: 'all', label: 'All' },
+  divider: '>',
   nodes: [],
   onClick: newActiveId => {
     throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);

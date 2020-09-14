@@ -1,25 +1,22 @@
 @import '~styles/color';
 @import '~styles/font-size';
 
-.breadcrumb-component {
+.aui--breadcrumb {
   $breadcrumb-height: 10px;
+
   color: $color-link;
   cursor: default;
   font-size: $font-size-body;
   height: $breadcrumb-height;
   line-height: $breadcrumb-height;
+  display: flex;
 
-  &-link {
-    cursor: pointer;
-
-    &:hover,
-    &:active {
-      color: $color-link-hover;
-      text-decoration: underline;
-    }
+  .aui--breadcrumb-node-divider {
+    margin-left: 2px;
+    margin-right: 2px;
   }
 
-  &.breadcrumb-component--disabled {
+  &.aui--breadcrumb--disabled {
     color: $color-text-disabled;
     pointer-events: none;
   }
