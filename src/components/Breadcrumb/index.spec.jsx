@@ -14,31 +14,28 @@ describe('<Breadcrumb />', () => {
   it('should render empty with the component className when no nodes', () => {
     const { getByTestId, queryAllByTestId } = render(<Breadcrumb />);
 
-    expect(getByTestId('breadcrumb-wrapper')).toHaveClass('breadcrumb-component');
-    expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('disabled');
+    expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
+    expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
     expect(queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(0);
   });
 
   it('should render nodes', () => {
-    const { getByTestId, queryAllByTestId } = render(<Breadcrumb nodes={nodes} />);
+    const { getByTestId, queryAllByTestId } = render(<Breadcrumb nodes={nodes} divider="/" />);
 
-    expect(getByTestId('breadcrumb-wrapper')).toHaveClass('breadcrumb-component');
-    expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('disabled');
+    expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
+    expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
     expect(queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(4);
     expect(queryAllByTestId('breadcrumb-node-wrapper')[0]).toHaveTextContent('All');
 
-    expect(queryAllByTestId('breadcrumb-node')).toHaveLength(nodes.length);
-    queryAllByTestId('breadcrumb-node').forEach(node => expect(node).toHaveClass('breadcrumb-component-node'));
-
     expect(queryAllByTestId('breadcrumb-node-divider')).toHaveLength(nodes.length);
     queryAllByTestId('breadcrumb-node-divider').forEach(node =>
-      expect(node).toHaveTextContent(' > ', { normalizeSpaces: false })
+      expect(node).toHaveTextContent('/', { normalizeSpaces: false })
     );
 
     queryAllByTestId('breadcrumb-node-wrapper').forEach((node, index) => {
-      expect(node).toHaveClass('breadcrumbnode-component');
-      if (index === nodes.length) expect(node).not.toHaveClass('breadcrumbnode-component-link');
-      if (index !== nodes.length) expect(node).toHaveClass('breadcrumbnode-component-link');
+      expect(node).toHaveClass('aui--breadcrumb-node');
+      if (index === nodes.length) expect(node).not.toHaveClass('aui--breadcrumb-node-link');
+      if (index !== nodes.length) expect(node).toHaveClass('aui--breadcrumb-node-link');
     });
   });
 
@@ -68,7 +65,7 @@ describe('<Breadcrumb />', () => {
 
     it('should have disabled class', () => {
       const { getByTestId } = render(<Breadcrumb {...props} />);
-      expect(getByTestId('breadcrumb-wrapper')).toHaveClass('breadcrumb-component--disabled');
+      expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb--disabled');
     });
 
     it('should not have any breadcrumb node', () => {

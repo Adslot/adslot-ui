@@ -485,7 +485,7 @@
   "src/components/Breadcrumb/index.jsx": [
     {
       "description": "",
-      "displayName": "BreadcrumbComponent",
+      "displayName": "Breadcrumb",
       "methods": [],
       "props": {
         "rootNode": {
@@ -497,6 +497,17 @@
           "description": "",
           "defaultValue": {
             "value": "{ id: 'all', label: 'All' }",
+            "computed": false
+          }
+        },
+        "divider": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'>'",
             "computed": false
           }
         },
@@ -542,7 +553,7 @@
   "src/components/Breadcrumb/Node/index.jsx": [
     {
       "description": "",
-      "displayName": "BreadcrumbNodeComponent",
+      "displayName": "BreadcrumbNode",
       "methods": [],
       "props": {
         "isLast": {
