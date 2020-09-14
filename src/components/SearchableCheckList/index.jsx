@@ -12,7 +12,7 @@ const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, 
   const eligibleItems = searchText
     ? _(items)
         .map(item => {
-          return item.value.indexOf(searchText) !== -1 ? item : null;
+          return item.label.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ? item : null;
         })
         .compact()
         .value()
