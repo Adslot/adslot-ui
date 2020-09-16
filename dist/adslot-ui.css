@@ -5684,24 +5684,24 @@ strong {
 button + .aui--button-group {
   margin-left: 20px; }
 
-.breadcrumbnode-component-link {
+.aui--breadcrumb-node-link {
   cursor: pointer; }
-  .breadcrumbnode-component-link:hover, .breadcrumbnode-component-link:active {
+  .aui--breadcrumb-node-link:hover, .aui--breadcrumb-node-link:active {
     color: #0492ba;
     text-decoration: underline; }
 
-.breadcrumb-component {
+.aui--breadcrumb {
   color: #49afcd;
   cursor: default;
   font-size: 12px;
   height: 10px;
-  line-height: 10px; }
-  .breadcrumb-component-link {
-    cursor: pointer; }
-    .breadcrumb-component-link:hover, .breadcrumb-component-link:active {
-      color: #0492ba;
-      text-decoration: underline; }
-  .breadcrumb-component.breadcrumb-component--disabled {
+  line-height: 10px;
+  display: -ms-flexbox;
+  display: flex; }
+  .aui--breadcrumb .aui--breadcrumb-node-divider {
+    margin-left: 2px;
+    margin-right: 2px; }
+  .aui--breadcrumb.aui--breadcrumb--disabled {
     color: #ababab;
     pointer-events: none; }
 
@@ -11441,7 +11441,11 @@ strong {
     outline: none;
     border-style: solid;
     border-color: #fff;
-    border-width: 0; }
+    border-width: 0;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
     .nav-borderless > li:hover, .nav-borderless > li.active {
       border-color: #1950a3; }
     .nav-borderless > li > a {
@@ -11456,9 +11460,14 @@ strong {
       -ms-flex-align: center;
           align-items: center; }
     .nav-borderless > li.disabled {
-      cursor: default; }
+      cursor: default;
+      color: #ababab; }
       .nav-borderless > li.disabled a {
+        cursor: default;
         color: #ababab; }
+  .nav-borderless.stacked {
+    -ms-flex-direction: column;
+        flex-direction: column; }
   .nav-borderless.top-bar > li {
     margin-top: 3px; }
     .nav-borderless.top-bar > li:hover, .nav-borderless.top-bar > li.active {
@@ -11785,7 +11794,7 @@ input:disabled + .aui--switch-slider::before {
   padding: 10px; }
   .treepickernav-component > div + div {
     margin-top: 10px; }
-  .treepickernav-component > .breadcrumb-component {
+  .treepickernav-component > .aui--breadcrumb {
     padding-left: 2px; }
 
 .treepickersimplepure-component {
