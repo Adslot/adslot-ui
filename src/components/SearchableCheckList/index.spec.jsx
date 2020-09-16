@@ -4,15 +4,15 @@ import { render, cleanup, fireEvent, queryAllByAttribute } from '@testing-librar
 import SearchableCheckList from '.';
 
 const items = [
-  { value: 'absolute-power', label: 'Absolute Power' },
-  { value: 'almost-famous', label: 'Almost Famous' },
-  { value: '25th-hour', label: '25th Hour' },
-  { value: '12-angry-men', label: '12 Angry Men' },
-  { value: '3-idiots', label: '3 Idiots' },
-  { value: 'shrek', label: 'Shrek' },
-  { value: 'spy-hard', label: 'Spy Hard' },
-  { value: 'pacific-rim', label: 'Pacific Rim' },
-  { value: 'paranormal-activity', label: 'Paranormal Activity' },
+  { value: '01', label: 'Absolute Power' },
+  { value: '02', label: 'Almost Famous' },
+  { value: '03', label: '25th Hour' },
+  { value: '04', label: '12 Angry Men' },
+  { value: '05', label: '3 Idiots' },
+  { value: '06', label: 'Shrek' },
+  { value: '07', label: 'Spy Hard' },
+  { value: '08', label: 'Pacific Rim' },
+  { value: '09', label: 'Paranormal Activity' },
 ];
 
 const context = { singularLabel: 'Publisher', pluralLabel: 'Publishers' };
@@ -84,12 +84,7 @@ describe('<SearchableChecklist />', () => {
 
   it('should correctly render with partial selection', () => {
     const { container, queryAllByTestId } = render(
-      <SearchableCheckList
-        context={context}
-        items={items}
-        selectedItemsKeys={['absolute-power', 'shrek']}
-        onChange={_.noop}
-      />
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01', '06']} onChange={_.noop} />
     );
 
     // main checkbox should be partially checked
@@ -133,6 +128,25 @@ describe('<SearchableChecklist />', () => {
 
   it('should correctly filter checkboxes on search', () => {
     const { queryAllByTestId } = render(
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01', '06']} onChange={_.noop} />
+    );
+
+    let checkBoxesWrapper = queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(7);
+
+    let searchInputWrapper = queryAllByTestId('search-input');
+    expect(searchInputWrapper).toHaveLength(1);
+
+    fireEvent.change(searchInputWrapper[0], { target: { value: 'Par' } });
+    checkBoxesWrapper = queryAllByTestId('checkbox-input');
+
+    // 1 main checkbox and 1 for Paranormal Activity
+    expect(checkBoxesWrapper).toHaveLength(2);
+    expect(checkBoxesWrapper[1]).toHaveAttribute('value', '09');
+  });
+
+  it('should correctly filter items without case sensitivity', () => {
+    const { queryAllByTestId } = render(
       <SearchableCheckList
         context={context}
         items={items}
@@ -152,19 +166,14 @@ describe('<SearchableChecklist />', () => {
 
     // 1 main checkbox and 1 for Paranormal Activity
     expect(checkBoxesWrapper).toHaveLength(2);
-    expect(checkBoxesWrapper[1]).toHaveAttribute('value', 'paranormal-activity');
+    expect(checkBoxesWrapper[1]).toHaveAttribute('value', '09');
   });
 
   it('should correctly call onChange when a single item is checked', () => {
     const onChange = jest.fn();
 
     const { queryAllByTestId } = render(
-      <SearchableCheckList
-        context={context}
-        items={items}
-        selectedItemsKeys={['absolute-power', 'shrek']}
-        onChange={onChange}
-      />
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01', '06']} onChange={onChange} />
     );
 
     let checkBoxesWrapper = queryAllByTestId('checkbox-input');
@@ -175,7 +184,7 @@ describe('<SearchableChecklist />', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
 
     // Existing 2 selections + 1 new selection
-    expect(onChange).toHaveBeenCalledWith(['absolute-power', 'shrek', '25th-hour']);
+    expect(onChange).toHaveBeenCalledWith(['01', '06', '03']);
   });
 
   it('should correctly call onChange when main checkbox is checked', () => {
