@@ -5,14 +5,21 @@ node_js:
 addons:
   chrome: stable
 before_install:
-  - npm install -g npm@6.14.6
+  - |
+    requiredNpmVersion="6.14.6"
+    currentNpmVersion=$(npm -v)
+
+    # Install required npm version if it does not match
+    if [ "$currentNpmVersion" != "$requiredNpmVersion" ]; then
+      echo -e "Installing required npm version..\n"
+      npm install -g npm@$requiredNpmVersion
+    fi
 install:
   - npm install
 before_script:
   - sudo chown root /opt/google/chrome/chrome-sandbox
   - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
 script:
-  - npm -v
   - commitlint-travis
   - npm run svgo
   - git diff --exit-code
