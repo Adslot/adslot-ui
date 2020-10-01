@@ -1,16 +1,10 @@
-sudo: required
 language: node_js
 node_js:
   - '12'
-addons:
-  chrome: stable
 before_install:
   - npm install -g npm@6.14.6
 install:
   - npm install
-before_script:
-  - sudo chown root /opt/google/chrome/chrome-sandbox
-  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
 script:
   - npm -v
   - commitlint-travis
