@@ -48,8 +48,6 @@ const UserListPickerComponent = ({
   );
 };
 
-UserListPickerComponent.displayName = 'ListPickerComponent';
-
 const userType = PropTypes.shape({
   avatar: PropTypes.string,
   givenName: PropTypes.string,

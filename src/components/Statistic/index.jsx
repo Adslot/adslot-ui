@@ -19,8 +19,6 @@ const Statistic = ({ label, value, inline }) => {
   );
 };
 
-Statistic.displayName = 'StatisticComponent';
-
 Statistic.propTypes = {
   /**
    * 	Horizontal layout as opposed to stacked.

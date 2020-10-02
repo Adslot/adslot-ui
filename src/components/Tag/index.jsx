@@ -41,8 +41,6 @@ const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIcon, d
   );
 };
 
-Tag.displayName = 'TagComponent';
-
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string,

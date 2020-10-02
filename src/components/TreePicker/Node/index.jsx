@@ -115,8 +115,6 @@ class TreePickerNodeComponent extends React.PureComponent {
   }
 }
 
-TreePickerNodeComponent.displayName = 'TreePickerNodeComponent';
-
 TreePickerNodeComponent.propTypes = {
   disabled: PropTypes.bool,
   expandNode: PropTypes.func,

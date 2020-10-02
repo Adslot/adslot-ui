@@ -24,8 +24,6 @@ const PageTitle = ({ children, isFooter, title }) => {
   );
 };
 
-PageTitle.displayName = 'PageTitleComponent';
-
 PageTitle.propTypes = {
   children: PropTypes.node,
   isFooter: PropTypes.bool,

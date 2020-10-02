@@ -3,6 +3,4 @@ import './styles.scss';
 
 const Donut = () => <circle data-testid="slicey-donut-wrapper" className="donut-component" r=".45" cx="0" cy="0" />;
 
-Donut.displayName = 'SliceyDonutComponent';
-
 export default Donut;

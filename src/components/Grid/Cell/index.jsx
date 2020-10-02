@@ -24,8 +24,6 @@ const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNa
   );
 };
 
-GridCell.displayName = 'GridCellComponent';
-
 GridCell.propTypes = {
   /**
    * list of addOn classNames as array of strings

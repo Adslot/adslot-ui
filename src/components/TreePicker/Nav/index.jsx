@@ -57,7 +57,6 @@ const TreePickerNavComponent = ({
   );
 };
 
-TreePickerNavComponent.displayName = 'TreePickerNavComponent';
 TreePickerNavComponent.propTypes = {
   breadcrumbRootNode: TreePickerPropTypes.breadCrumbNode,
   breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),

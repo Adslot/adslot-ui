@@ -61,8 +61,6 @@ const ConfirmModalComponent = ({
   );
 };
 
-ConfirmModalComponent.displayName = 'ConfirmModalComponent';
-
 ConfirmModalComponent.propTypes = {
   /**
    * determines the label of cancel button

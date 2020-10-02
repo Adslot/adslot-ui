@@ -177,8 +177,6 @@ class ListPickerComponent extends React.PureComponent {
   }
 }
 
-ListPickerComponent.displayName = 'ListPickerComponent';
-
 const itemProps = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });

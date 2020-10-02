@@ -8,8 +8,6 @@ const BorderedWell = ({ children }) => (
   </div>
 );
 
-BorderedWell.displayName = 'BorderedWellComponent';
-
 BorderedWell.propTypes = {
   children: PropTypes.node,
 };
