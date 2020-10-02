@@ -3,7 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
 const reactDocgen = require('react-docgen');
+const displayNameHandler = require('react-docgen-displayname-handler').default;
 const glob = require('glob');
+
+const handlers = reactDocgen.defaultHandlers.concat(displayNameHandler);
 
 const sourcePath = path.join(__dirname, '..');
 const filesToIgnore = ['fastStatelessWrapper', 'mocks.jsx', 'spec.jsx', 'BlockStyleButtons', 'InlineStyleButtons'];
@@ -20,7 +23,8 @@ const outputFilePath = path.join(__dirname, '../www/containers/props.json');
     try {
       result[filePath] = reactDocgen.parse(
         fs.readFileSync(absolutePath),
-        reactDocgen.resolver.findAllComponentDefinitions
+        reactDocgen.resolver.findAllComponentDefinitions,
+        handlers
       );
     } catch (err) {
       // Check: https://github.com/reactjs/react-docgen/issues/336

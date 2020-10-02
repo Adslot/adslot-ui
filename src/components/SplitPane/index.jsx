@@ -14,8 +14,6 @@ const SplitPaneComponent = ({ children, dts, additionalClassNames }) => {
   );
 };
 
-SplitPaneComponent.displayName = 'SplitPaneComponent';
-
 SplitPaneComponent.propTypes = {
   additionalClassNames: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,

@@ -30,8 +30,6 @@ const PrettyDiff = ({ newText, oldText }) => {
   );
 };
 
-PrettyDiff.displayName = 'PrettyDiffComponent';
-
 PrettyDiff.propTypes = {
   newText: PropTypes.string,
   oldText: PropTypes.string,

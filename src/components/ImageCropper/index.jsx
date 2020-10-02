@@ -78,6 +78,4 @@ ImageCropper.defaultProps = {
   isSaving: false,
 };
 
-ImageCropper.displayName = 'ImageCropper';
-
 export default ImageCropper;

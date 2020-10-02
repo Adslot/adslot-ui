@@ -18,8 +18,6 @@ const Empty = ({ collection, text, icon }) => {
   return <div data-testid="empty-wrapper" />;
 };
 
-Empty.displayName = 'EmptyComponent';
-
 Empty.propTypes = {
   collection: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.object]),
   text: PropTypes.node, // can be string or, if you want rich formatting, a node

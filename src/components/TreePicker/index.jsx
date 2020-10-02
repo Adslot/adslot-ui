@@ -127,8 +127,6 @@ const TreePickerSimplePureComponent = ({
   );
 };
 
-TreePickerSimplePureComponent.displayName = 'TreePickerSimplePureComponent';
-
 TreePickerSimplePureComponent.propTypes = {
   /**
    * 	Class Names for SplitPane component

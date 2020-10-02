@@ -72,8 +72,6 @@ const TreePickerGridComponent = ({
   );
 };
 
-TreePickerGridComponent.displayName = 'TreePickerGridComponent';
-
 TreePickerGridComponent.propTypes = {
   disabled: PropTypes.bool,
   emptySvgSymbol: PropTypes.node,

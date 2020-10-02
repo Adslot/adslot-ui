@@ -39,6 +39,4 @@ Tile.propTypes = {
   dts: PropTypes.string,
 };
 
-Tile.displayName = 'TileComponent';
-
 export default Tile;

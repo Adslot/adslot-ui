@@ -9,8 +9,6 @@ const Alert = ({ type, children, dts }) => (
   </div>
 );
 
-Alert.displayName = 'AlertComponent';
-
 Alert.propTypes = {
   /**
    * ['success', 'info', 'warning', 'danger']

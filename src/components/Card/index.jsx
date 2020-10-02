@@ -14,8 +14,6 @@ const CardContent = ({ children, className, stretch, fill, append, dts }) => {
   );
 };
 
-CardContent.displayName = 'CardContentComponent';
-
 CardContent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
@@ -51,8 +49,6 @@ const Card = ({ children, className, accent, dts }) => {
     </div>
   );
 };
-
-Card.displayName = 'CardComponent';
 
 Card.propTypes = {
   /**

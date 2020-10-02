@@ -84,8 +84,6 @@ const Slicey = ({ dataset, diameter, donut, marker }) => {
   );
 };
 
-Slicey.displayName = 'SliceyComponent';
-
 Slicey.propTypes = {
   /**
    * Slicey will represent all values as percentage of the pie based on the sum of all values.
