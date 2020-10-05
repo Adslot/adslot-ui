@@ -92,7 +92,7 @@
     "bootstrap-sass": "^3.4.1",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "classnames": "^2.2.6",
-    "codecov": "^3.6.5",
+    "codecov": "^3.7.2",
     "core-js": "^3.1.4",
     "cross-env": "^5.2.0",
     "css-loader": "^3.1.0",
