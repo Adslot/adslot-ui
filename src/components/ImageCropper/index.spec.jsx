@@ -25,7 +25,7 @@ describe('<ImageCropper />', () => {
 
     // console.error would be fixed after updating react/react-dom/react-test-renderer to ^16.9.0
     act(() => {
-      fireEvent.click(getByTestId('bootstrap-button-wrapper'));
+      fireEvent.click(getByTestId('button-wrapper'));
     });
 
     expect(onCrop).toHaveBeenCalledTimes(1);

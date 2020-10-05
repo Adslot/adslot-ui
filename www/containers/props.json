@@ -678,11 +678,15 @@
           },
           "required": false,
           "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
         }
-      },
-      "composes": [
-        "react-bootstrap/lib/Button"
-      ]
+      }
     }
   ],
   "src/components/ButtonGroup/index.jsx": [
