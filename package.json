@@ -11,7 +11,7 @@
   "scripts": {
     "generate-docs": "node ./scripts/generateDocs.js",
     "clean": "rimraf dist/* docs/*",
-    "codecov": "cat coverage/coverage-final.json | codecov",
+    "codecov": "cat coverage/coverage-final.json | codecov --disable=gcov",
     "dist:dev": "node ./scripts/build.js",
     "dist:prod": "cross-env NODE_ENV=dist node ./scripts/build.js",
     "dist:demo": "cross-env NODE_ENV=production DEMO_ASSETS=true node ./scripts/build.js",
@@ -92,7 +92,7 @@
     "bootstrap-sass": "^3.4.1",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "classnames": "^2.2.6",
-    "codecov": "^3.6.5",
+    "codecov": "^3.7.2",
     "core-js": "^3.1.4",
     "cross-env": "^5.2.0",
     "css-loader": "^3.1.0",
