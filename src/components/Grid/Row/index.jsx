@@ -18,8 +18,6 @@ const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, 
   );
 };
 
-GridRow.displayName = 'GridRowComponent';
-
 GridRow.propTypes = {
   /**
    * the children to be rendered

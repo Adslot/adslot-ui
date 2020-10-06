@@ -103,8 +103,8 @@
   "src/components/ActionPanel/index.jsx": [
     {
       "description": "",
-      "displayName": "ActionPanel",
       "methods": [],
+      "displayName": "ActionPanel",
       "props": {
         "title": {
           "type": {
@@ -198,7 +198,7 @@
   "src/components/Alert/index.jsx": [
     {
       "description": "",
-      "displayName": "AlertComponent",
+      "displayName": "Alert",
       "methods": [],
       "props": {
         "type": {
@@ -403,7 +403,7 @@
   "src/components/Avatar/index.jsx": [
     {
       "description": "",
-      "displayName": "AvatarComponent",
+      "displayName": "Avatar",
       "methods": [],
       "props": {
         "color": {
@@ -469,7 +469,7 @@
   "src/components/BorderedWell/index.jsx": [
     {
       "description": "",
-      "displayName": "BorderedWellComponent",
+      "displayName": "BorderedWell",
       "methods": [],
       "props": {
         "children": {
@@ -778,7 +778,7 @@
   "src/components/Card/index.jsx": [
     {
       "description": "",
-      "displayName": "CardContentComponent",
+      "displayName": "CardContent",
       "methods": [],
       "props": {
         "children": {
@@ -839,7 +839,7 @@
     },
     {
       "description": "",
-      "displayName": "CardComponent",
+      "displayName": "Card",
       "methods": [],
       "props": {
         "children": {
@@ -877,6 +877,7 @@
     {
       "description": "",
       "methods": [],
+      "displayName": "CarouselComponent",
       "props": {
         "className": {
           "type": {
@@ -1297,7 +1298,7 @@
   "src/components/Empty/index.jsx": [
     {
       "description": "",
-      "displayName": "EmptyComponent",
+      "displayName": "Empty",
       "methods": [],
       "props": {
         "collection": {
@@ -1450,7 +1451,7 @@
   "src/components/FlexibleSpacer/index.jsx": [
     {
       "description": "",
-      "displayName": "FlexibleSpacerComponent",
+      "displayName": "FlexibleSpacer",
       "methods": []
     }
   ],
@@ -1523,7 +1524,7 @@
   "src/components/Grid/Cell/index.jsx": [
     {
       "description": "",
-      "displayName": "GridCellComponent",
+      "displayName": "GridCell",
       "methods": [],
       "props": {
         "addonClassNames": {
@@ -1592,7 +1593,7 @@
   "src/components/Grid/index.jsx": [
     {
       "description": "",
-      "displayName": "GridComponent",
+      "displayName": "Grid",
       "methods": [],
       "props": {
         "children": {
@@ -1615,7 +1616,7 @@
   "src/components/Grid/Row/index.jsx": [
     {
       "description": "",
-      "displayName": "GridRowComponent",
+      "displayName": "GridRow",
       "methods": [],
       "props": {
         "children": {
@@ -1874,8 +1875,8 @@
   "src/components/ImageCropper/index.jsx": [
     {
       "description": "",
-      "displayName": "ImageCropper",
       "methods": [],
+      "displayName": "ImageCropper",
       "props": {
         "title": {
           "type": {
@@ -2781,7 +2782,7 @@
   "src/components/PageTitle/index.jsx": [
     {
       "description": "",
-      "displayName": "PageTitleComponent",
+      "displayName": "PageTitle",
       "methods": [],
       "props": {
         "children": {
@@ -3374,7 +3375,7 @@
   "src/components/PrettyDiff/index.jsx": [
     {
       "description": "",
-      "displayName": "PrettyDiffComponent",
+      "displayName": "PrettyDiff",
       "methods": [],
       "props": {
         "newText": {
@@ -3677,6 +3678,7 @@
     {
       "description": "",
       "methods": [],
+      "displayName": "Search",
       "props": {
         "className": {
           "type": {
@@ -3918,7 +3920,7 @@
   "src/components/Slicey/Arc/index.jsx": [
     {
       "description": "",
-      "displayName": "SliceyArcComponent",
+      "displayName": "Arc",
       "methods": [],
       "props": {
         "data": {
@@ -3964,7 +3966,7 @@
   "src/components/Slicey/Donut/index.jsx": [
     {
       "description": "",
-      "displayName": "SliceyDonutComponent",
+      "displayName": "Donut",
       "methods": []
     }
   ],
@@ -3976,7 +3978,7 @@
     },
     {
       "description": "",
-      "displayName": "SliceyComponent",
+      "displayName": "Slicey",
       "methods": [],
       "props": {
         "dataset": {
@@ -4030,7 +4032,7 @@
   "src/components/Slicey/Marker/index.jsx": [
     {
       "description": "",
-      "displayName": "SliceyMarkerComponent",
+      "displayName": "Marker",
       "methods": [],
       "props": {
         "fraction": {
@@ -4132,7 +4134,7 @@
   "src/components/Statistic/index.jsx": [
     {
       "description": "",
-      "displayName": "StatisticComponent",
+      "displayName": "Statistic",
       "methods": [],
       "props": {
         "inline": {
@@ -4233,7 +4235,7 @@
   "src/components/SvgSymbol/index.jsx": [
     {
       "description": "",
-      "displayName": "SvgSymbolComponent",
+      "displayName": "SvgSymbol",
       "methods": [],
       "props": {
         "classSuffixes": {
@@ -4546,7 +4548,7 @@
     },
     {
       "description": "",
-      "displayName": "TagComponent",
+      "displayName": "Tag",
       "methods": [],
       "props": {
         "children": {
@@ -4703,7 +4705,7 @@
   "src/components/Tile/index.jsx": [
     {
       "description": "",
-      "displayName": "TileComponent",
+      "displayName": "Tile",
       "methods": [],
       "props": {
         "className": {
@@ -4747,7 +4749,7 @@
   "src/components/TileGrid/index.jsx": [
     {
       "description": "",
-      "displayName": "TileGridComponent",
+      "displayName": "TileGrid",
       "methods": [],
       "props": {
         "title": {
@@ -4957,7 +4959,7 @@
   "src/components/Totals/index.jsx": [
     {
       "description": "",
-      "displayName": "TotalsComponent",
+      "displayName": "Totals",
       "methods": [],
       "props": {
         "toSum": {
@@ -5739,7 +5741,7 @@
   "src/components/UserListPicker/index.jsx": [
     {
       "description": "",
-      "displayName": "ListPickerComponent",
+      "displayName": "UserListPickerComponent",
       "methods": [],
       "props": {
         "allowEmptySelection": {

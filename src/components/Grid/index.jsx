@@ -9,7 +9,6 @@ const Grid = ({ children, dts }) => (
   </div>
 );
 
-Grid.displayName = 'GridComponent';
 Grid.propTypes = {
   /**
    * the children to be rendered

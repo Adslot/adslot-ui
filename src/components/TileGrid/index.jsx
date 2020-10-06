@@ -94,6 +94,4 @@ TileGrid.propTypes = {
   distributed: PropTypes.bool,
 };
 
-TileGrid.displayName = 'TileGridComponent';
-
 export default TileGrid;

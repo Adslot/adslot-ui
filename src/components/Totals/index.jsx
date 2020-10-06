@@ -24,8 +24,6 @@ const Totals = ({ toSum, valueFormatter }) => (
   </Grid>
 );
 
-Totals.displayName = 'TotalsComponent';
-
 Totals.propTypes = {
   /**
    * { label: PropTypes.node, value: PropTypes.number.isRequired, isHidden: PropTypes.bool }

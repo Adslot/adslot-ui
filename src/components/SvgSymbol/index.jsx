@@ -46,8 +46,6 @@ const SvgSymbol = props => {
   );
 };
 
-SvgSymbol.displayName = 'SvgSymbolComponent';
-
 SvgSymbol.propTypes = {
   classSuffixes: PropTypes.arrayOf(PropTypes.string.isRequired),
   /**

@@ -14,8 +14,6 @@ const Arc = ({ data }) => {
   );
 };
 
-Arc.displayName = 'SliceyArcComponent';
-
 Arc.propTypes = {
   data: PropTypes.shape({
     label: PropTypes.string.isRequired,

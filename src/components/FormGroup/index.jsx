@@ -32,8 +32,6 @@ const FormGroupComponent = ({ addon, disabled, helpText, label, onChange, placeh
   );
 };
 
-FormGroupComponent.displayName = 'FormGroupComponent';
-
 FormGroupComponent.propTypes = {
   addon: PropTypes.string,
   disabled: PropTypes.bool,

@@ -128,6 +128,7 @@
     "react-datepicker": "github:Adslot/react-datepicker#2a1ebb8618e1996c321331ef01d290424272d126",
     "react-dev-utils": "^10.2.1",
     "react-docgen": "^5.0.0",
+    "react-docgen-displayname-handler": "^3.0.2",
     "react-html-parser": "^2.0.2",
     "react-live": "^2.2.2",
     "react-redux": "^7.1.0",

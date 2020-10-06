@@ -14,8 +14,6 @@ const Marker = ({ fraction }) => {
   );
 };
 
-Marker.displayName = 'SliceyMarkerComponent';
-
 Marker.propTypes = {
   fraction: PropTypes.number,
 };
