@@ -23,8 +23,8 @@ describe('<ButtonGroup />', () => {
         <Button inverse={false}>Test2</Button>
       </ButtonGroup>
     );
-    expect(queryAllByTestId('bootstrap-button-wrapper')[0]).toHaveClass('btn-link');
-    expect(queryAllByTestId('bootstrap-button-wrapper')[1]).toHaveClass('btn-inverse');
+    expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('btn-link');
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveClass('btn-inverse');
   });
 
   it('should disable child buttons', () => {
@@ -34,8 +34,8 @@ describe('<ButtonGroup />', () => {
         <Button inverse={false}>Test2</Button>
       </ButtonGroup>
     );
-    expect(queryAllByTestId('bootstrap-button-wrapper')[0]).toBeDisabled();
-    expect(queryAllByTestId('bootstrap-button-wrapper')[1]).toBeDisabled();
+    expect(queryAllByTestId('button-wrapper')[0]).toBeDisabled();
+    expect(queryAllByTestId('button-wrapper')[1]).toBeDisabled();
   });
 
   it('should inject props to Button at any nested level', () => {
@@ -47,7 +47,7 @@ describe('<ButtonGroup />', () => {
         </div>
       </ButtonGroup>
     );
-    expect(getByTestId('bootstrap-button-wrapper')).toBeDisabled();
+    expect(getByTestId('button-wrapper')).toBeDisabled();
   });
 
   it('should not crash when child is null', () => {

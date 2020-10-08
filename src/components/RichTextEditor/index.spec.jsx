@@ -94,10 +94,10 @@ describe('<RichTextEditor />', () => {
     const newState = RichTextEditor.stateFromHTML('123');
     const { queryAllByTestId, getByAltText } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
-    expect(queryAllByTestId('bootstrap-button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('bootstrap-button-wrapper')[1]).toContainElement(getByAltText('italics'));
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
+    expect(queryAllByTestId('button-wrapper')[1]).toContainElement(getByAltText('italics'));
 
-    fireEvent.mouseDown(queryAllByTestId('bootstrap-button-wrapper')[1]);
+    fireEvent.mouseDown(queryAllByTestId('button-wrapper')[1]);
 
     expect(onChange).toHaveBeenCalledTimes(1);
   });
@@ -107,10 +107,10 @@ describe('<RichTextEditor />', () => {
     const newState = RichTextEditor.stateFromHTML('123');
     const { queryAllByTestId, getByAltText } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
-    expect(queryAllByTestId('bootstrap-button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('bootstrap-button-wrapper')[4]).toContainElement(getByAltText('number'));
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
+    expect(queryAllByTestId('button-wrapper')[4]).toContainElement(getByAltText('number'));
 
-    fireEvent.mouseDown(queryAllByTestId('bootstrap-button-wrapper')[4]);
+    fireEvent.mouseDown(queryAllByTestId('button-wrapper')[4]);
 
     expect(onChange).toHaveBeenCalledTimes(1);
   });

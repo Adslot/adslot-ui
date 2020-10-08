@@ -1,7 +1,145 @@
 @import '~styles/variable';
 
+@mixin button-disabled {
+  background-color: $color-gray-lighter;
+  border-color: $color-gray-lighter;
+  color: $color-gray-dark;
+  opacity: .65;
+  box-shadow: none;
+}
+
+@mixin reset-shadow-and-transform {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+@mixin transform-active {
+  transform: translateY(1px);
+}
+
+@mixin button-default {
+  box-shadow: 0 1px $color-gray-light;
+  margin-right: 5px;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 700;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  line-height: 1.5;
+  border-radius: 2px;
+  background-color: $color-white;
+  border-color: $color-gray-light;
+  color: $color-gray-dark;
+}
+
 .aui--button {
+  @include button-default;
   position: relative;
+
+  &:active {
+    @include transform-active;
+  }
+
+  &:focus {
+    background-color: $color-white;
+    border-color: $color-gray-light;
+    color: $color-gray-dark;
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $color-button-default-hover-background;
+    border-color: $color-button-default-hover-border;
+  }
+
+  &.btn-primary {
+    background-color: $color-button-primary-background;
+    border-color: $color-button-primary-border;
+    color: $color-white;
+
+    &.btn-inverse
+
+    &:focus {
+      background-color: $color-button-primary-background;
+      border-color: $color-button-primary-border;
+      color: $color-white;
+      outline: none;
+    }
+  }
+
+  &.btn-success {
+    background-color: $color-button-success-background;
+    border-color: $color-button-success-border;
+    color: $color-white;
+
+    &:focus {
+      background-color: $color-button-success-background;
+      border-color: $color-button-success-border;
+      color: $color-white;
+      outline: none;
+    }
+  }
+
+  &.btn-info {
+    background-color: $color-button-info-background;
+    border-color: $color-button-info-border;
+    color: $color-white;
+
+    &:focus {
+      background-color: $color-button-info-background;
+      border-color: $color-button-info-border;
+      color: $color-white;
+      outline: none;
+    }
+  }
+
+  &.btn-warning {
+    background-color: $color-button-warning-background;
+    border-color: $color-button-warning-border;
+    color: $color-white;
+
+    &:focus {
+      background-color: $color-button-warning-background;
+      border-color: $color-button-warning-border;
+      color: $color-white;
+      outline: none;
+    }
+  }
+
+  &.btn-danger {
+    background-color: $color-button-danger-background;
+    border-color: $color-button-danger-border;
+    color: $color-white;
+
+    &:focus {
+      background-color: $color-button-danger-background;
+      border-color: $color-button-danger-border;
+      color: $color-white;
+      outline: none;
+    }
+  }
+
+  &.btn-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: $color-button-link-color;
+    box-shadow: none;
+    border-radius: 0;
+    font-weight: 400;
+
+    &:active {
+      @include reset-shadow-and-transform;
+    }
+
+    &:focus {
+      background-color: transparent;
+      border-color: transparent;
+      color: $color-blue-dark;
+      box-shadow: none;
+      text-decoration: underline;
+      outline: none;
+    }
+  }
 
   &-children-container {
     visibility: hidden; // preserves width and height of button
@@ -14,6 +152,24 @@
 
   &.btn-inverse:not([disabled]).btn-primary {
     border-color: $color-border-light;
+  }
+
+  &.disabled,
+  &[disabled],
+  [disabled] & {
+    @include button-disabled;
+
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      @include button-disabled;
+
+      &:hover {
+        @include button-disabled;
+        @include reset-shadow-and-transform;
+      }
+    }
   }
 
   .spinner-container {

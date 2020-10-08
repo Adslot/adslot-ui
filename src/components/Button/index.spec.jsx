@@ -5,34 +5,30 @@ import Button from './';
 afterEach(cleanup);
 
 describe('<Button />', () => {
-  it('should render Bootstrap Button', () => {
+  it('should render Button', () => {
     const { queryAllByTestId } = render(<Button>Test</Button>);
-    expect(queryAllByTestId('bootstrap-button-wrapper')).toHaveLength(1);
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(1);
   });
 
-  it('should pass through Bootstrap Button props', () => {
+  it('should support legacy Bootstrap Button props for non-breaking change', () => {
     const { getByTestId } = render(<Button bsStyle="link">Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveClass('btn-link');
+    expect(getByTestId('button-wrapper')).toHaveClass('btn-link');
   });
 
   it('should support legacy classname btn-inverse for non-breaking change', () => {
     const { getByTestId } = render(<Button className="btn-inverse">Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
   });
 
   it('should support className prop', () => {
     const { getByTestId } = render(<Button className="all the-classes">Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveClass('aui--button all the-classes');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button all the-classes');
   });
 
   it('should support valid html attributes', () => {
-    const { getByTestId } = render(
-      <Button id="button-id" data-item-name="someDataValue">
-        Test
-      </Button>
-    );
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveAttribute('id', 'button-id');
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveAttribute('data-item-name', 'someDataValue');
+    const { getByTestId } = render(<Button id="button-id">Test</Button>);
+
+    expect(getByTestId('button-wrapper')).toHaveAttribute('id', 'button-id');
   });
 
   it('should not duplicate btn-inverse class if both legacy and new are used', () => {
@@ -41,27 +37,27 @@ describe('<Button />', () => {
         Test
       </Button>
     );
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
   });
 
   it('should render inverse button with btn-inverse class', () => {
     const { getByTestId } = render(<Button inverse>Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
   });
 
   it('should render large button with btn-large class', () => {
     const { getByTestId } = render(<Button size="large">Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveClass('aui--button btn-large aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-large aui--btn-default');
   });
 
   it('should support data-test-selectors', () => {
     const { getByTestId } = render(<Button dts="test-button">Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toHaveAttribute('data-test-selector', 'test-button');
+    expect(getByTestId('button-wrapper')).toHaveAttribute('data-test-selector', 'test-button');
   });
 
   it('should render disabled button', () => {
     const { getByTestId } = render(<Button disabled>Test</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).toBeDisabled();
+    expect(getByTestId('button-wrapper')).toBeDisabled();
   });
 
   it('should render Spinner if isLoading is true', () => {
@@ -76,6 +72,6 @@ describe('<Button />', () => {
 
   it('should render classname with "aui--btn-default" when the style has been explicitly defined', () => {
     const { getByTestId } = render(<Button className="btn-primary btn-inverse btn-default">Button</Button>);
-    expect(getByTestId('bootstrap-button-wrapper')).not.toHaveClass('aui--btn-default');
+    expect(getByTestId('button-wrapper')).not.toHaveClass('aui--btn-default');
   });
 });
