@@ -679,6 +679,31 @@
           "required": false,
           "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
         },
+        "bsSize": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'lg'",
+                "computed": false
+              },
+              {
+                "value": "'large'",
+                "computed": false
+              },
+              {
+                "value": "'sm'",
+                "computed": false
+              },
+              {
+                "value": "'small'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
         "className": {
           "type": {
             "name": "string"

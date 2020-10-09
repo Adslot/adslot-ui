@@ -18,18 +18,20 @@
 }
 
 @mixin button-default {
-  box-shadow: 0 1px $color-gray-light;
-  margin-right: 5px;
   display: inline-block;
   margin-bottom: 0;
   font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
   border: 1px solid transparent;
   padding: 4px 8px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 2px;
-  background-color: $color-white;
-  border-color: $color-gray-light;
-  color: $color-gray-dark;
+  box-shadow: 0 1px $color-gray-light;
+  margin-right: 5px;
 }
 
 .aui--button {
@@ -50,6 +52,25 @@
   &:hover {
     background-color: $color-button-default-hover-background;
     border-color: $color-button-default-hover-border;
+  }
+
+  &.aui--btn-default {
+    background-color: $color-white;
+    border-color: $color-gray-light;
+    color: $color-gray-dark;
+
+    &:hover {
+      color: $color-gray-dark;
+      background-color: $color-button-default-hover-background;
+      border-color: $color-button-default-hover-border;
+    }
+
+    &:active {
+      @include transform-active;
+      color: $color-gray-dark;
+      background-color: $color-button-default-hover-background;
+      border-color: $color-button-default-hover-border;
+    }
   }
 
   &.btn-primary {

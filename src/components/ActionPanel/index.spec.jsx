@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { act, render, cleanup } from '@testing-library/react';
-import Button from 'react-bootstrap/lib/Button';
+import Button from '../Button';
 import ActionPanel from '.';
 
 afterEach(cleanup);

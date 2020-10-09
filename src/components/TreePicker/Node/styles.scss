@@ -46,12 +46,13 @@
     padding-bottom: $cell-button-vertical-padding;
     padding-top: $cell-button-vertical-padding;
 
-    .btn-xs {
+    .button-xs {
       $button-size: 20px;
       font-size: 15px;
       height: $button-size;
       line-height: 14px; // Inner Cell Height
       width: $button-size;
+      padding: 2px 4px;
     }
   }
 

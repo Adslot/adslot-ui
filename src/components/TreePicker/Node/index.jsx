@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
+import Button from '../../Button';
 import GridCell from '../../Grid/Cell';
 import GridRow from '../../Grid/Row';
 import TextEllipsis from '../../TextEllipsis';
@@ -69,9 +69,7 @@ class TreePickerNodeComponent extends React.PureComponent {
           {selected ? (
             <GridCell classSuffixes={['button']} dts="button-remove">
               <Button
-                block
-                bsSize="xsmall"
-                className="btn-inverse"
+                className="btn-inverse button-xs"
                 onClick={this.handleRemove}
                 disabled={disabled || node.isSelectable === false}
               >
@@ -99,9 +97,7 @@ class TreePickerNodeComponent extends React.PureComponent {
           {!selected ? (
             <GridCell classSuffixes={['button']} dts="button-add">
               <Button
-                block
-                bsSize="xsmall"
-                className="btn-inverse"
+                className="btn-inverse button-xs"
                 onClick={this.handleInclude}
                 disabled={disabled || node.isSelectable === false || this.state.isLoading}
               >
