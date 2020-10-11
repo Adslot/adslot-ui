@@ -51,6 +51,15 @@ const Example = () => {
         searchOnEnter
       />
       <br />
+      Search on Enter key pressed without a button
+      <Search
+        placeholder="Search on ENTER"
+        isLoading={searchOnEnterKeyLoading}
+        onSearch={searchOnEnterKey}
+        searchOnEnter
+        showSearchButton={false}
+      />
+      <br />
       Expandable Search Bar
       {searchInput ? (
         <Search

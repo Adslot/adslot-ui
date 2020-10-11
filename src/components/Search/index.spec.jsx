@@ -33,7 +33,7 @@ describe('<Search />', () => {
     expect(getByTestId('search-icon')).toHaveClass('search-icon');
   });
 
-  it('should render search button if searchOnEnter is true', () => {
+  it('should render a search button if searchOnEnter and showSearchButton are true', () => {
     const { queryAllByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter />);
     expect(queryAllByTestId('search-button')).toHaveLength(1);
     expect(queryAllByTestId('search-icon')).toHaveLength(1);
@@ -41,7 +41,7 @@ describe('<Search />', () => {
     expect(getByTestId('search-icon')).toHaveClass('search-icon');
   });
 
-  it('should render search button if searchOnEnter and isLoading are true', () => {
+  it('should render a spinner if searchOnEnter and isLoading are true', () => {
     const { queryAllByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter isLoading />);
     expect(queryAllByTestId('search-button')).toHaveLength(1);
     expect(queryAllByTestId('search-icon')).toHaveLength(0);
