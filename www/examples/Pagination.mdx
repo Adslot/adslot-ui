@@ -1,0 +1,35 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Pagination
+
+```jsx live=true
+const Example = () => {
+  const [activePage, setActivePage] = React.useState(1);
+  const onSelect = pageNumber => setActivePage(pageNumber);
+
+  const props = {
+    pageCount: 10,
+    activePage,
+    onSelect,
+    next: true,
+    prev: true,
+  };
+
+  return (
+    <div style={{ width: '300px' }}>
+      <p>Current page is {activePage}</p>
+      <Pagination {...props} />
+    </div>
+  );
+};
+
+render(Example);
+```
+
+<DesignNotes>
+  <div>
+    <p>The Pagination component enables the user to select a specific page from a range of pages.</p>
+  </div>
+</DesignNotes>
+<Props componentName="Pagination" />

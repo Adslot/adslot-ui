@@ -3,7 +3,6 @@ import Dropdown from 'react-bootstrap/lib/Dropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Pagination from 'react-bootstrap/lib/Pagination';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 
 import 'styles/_bootstrap-custom.scss';
@@ -76,6 +75,7 @@ import RichTextEditor from './components/RichTextEditor';
 import Toast from './components/Toast';
 import Tile from './components/Tile';
 import Pill from './components/Pill';
+import Pagination from './components/Pagination';
 
 export {
   Accordion,

@@ -32,7 +32,7 @@ describe('<PagedGrid />', () => {
     queryAllByTestId('grid-row-wrapper').forEach(gridRow =>
       expect(gridRow).not.toHaveClass('grid-component-row-vertical-cell-border')
     );
-    expect(queryAllByTestId('paged-grid-pagination')).toHaveLength(1);
+    expect(queryAllByTestId('pagination-wrapper')).toHaveLength(1);
   });
 
   it('should update grid when new page selected or items updated', () => {

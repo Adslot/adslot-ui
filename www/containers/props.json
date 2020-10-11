@@ -2842,6 +2842,69 @@
       }
     }
   ],
+  "src/components/Pagination/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Pagination",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "activePage": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "The default active page, between 1 to the page count",
+          "defaultValue": {
+            "value": "1",
+            "computed": false
+          }
+        },
+        "pageCount": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": "The max page count"
+        },
+        "onSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "A callback function for when clicking on previous, next and pagination items"
+        },
+        "prev": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "The Prev Button is displayed or not",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "next": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "The Next buton is displayed or not",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
   "src/components/Panel/index.jsx": [
     {
       "description": "",

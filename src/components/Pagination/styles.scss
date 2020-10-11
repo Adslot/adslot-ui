@@ -1,0 +1,44 @@
+@import '~styles/color';
+@import '~styles/mixin';
+
+.aui--pagination {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-separator {
+    width: 12.5px;
+    height: 24px;
+    margin: 0 5px;
+  }
+
+  &-sides {
+    .previous-icon {
+      @include svg-icon('~styles/icons/point-left.svg');
+    }
+
+    .next-icon {
+      @include svg-icon('~styles/icons/point-right.svg');
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+
+    &.btn-borderless:not([disabled]) {
+      &:hover,
+      &:active {
+        box-shadow: none;
+      }
+    }
+
+    &.btn-inverse:not([disabled]):focus {
+      background-color: $color-white;
+    }
+  }
+}
