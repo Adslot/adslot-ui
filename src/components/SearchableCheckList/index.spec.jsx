@@ -202,4 +202,36 @@ describe('<SearchableChecklist />', () => {
     // All items checked
     expect(onChange).toHaveBeenCalledWith(_.map(items, 'value'));
   });
+
+  it('should correctly call onChange when main checkbox is checked', () => {
+    const onChange = jest.fn();
+
+    const { queryAllByTestId } = render(<SearchableCheckList context={context} items={items} onChange={onChange} />);
+
+    const checkBoxesWrapper = queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(7);
+
+    expect(onChange).toHaveBeenCalledTimes(0);
+    fireEvent.click(checkBoxesWrapper[0]);
+    expect(onChange).toHaveBeenCalledTimes(1);
+
+    // All items checked
+    expect(onChange).toHaveBeenCalledWith(_.map(items, 'value'));
+  });
+
+  it('should call onChange with `[]` when selected items are fixed', () => {
+    const onChange = jest.fn();
+
+    const { queryAllByTestId } = render(
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01']} onChange={onChange} />
+    );
+
+    const checkBoxesWrapper = queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(7);
+
+    expect(onChange).toHaveBeenCalledTimes(0);
+    fireEvent.click(checkBoxesWrapper[0]);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith([]);
+  });
 });
