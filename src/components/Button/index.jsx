@@ -11,15 +11,17 @@ import './styles.scss';
 const Button = props => {
   const { bsStyle, inverse, size, children, dts, className, isLoading, disabled } = props;
   const baseClass = 'aui--button';
-  const classes = classNames(baseClass, className, {
-    'btn-inverse': inverse && !/btn-inverse/.test(className),
-    'btn-large': size === 'large',
-    'aui--btn-default':
-      (!bsStyle || bsStyle === 'default') &&
-      (!className ||
-        ['btn-default', 'btn-inverse', 'btn-default btn-inverse', 'btn-inverse btn-default'].includes(className)),
-    [`btn-${bsStyle}`]: !_.isEmpty(bsStyle),
-  });
+
+  const classes = classNames(
+    baseClass,
+    {
+      'btn-inverse': inverse,
+      'aui--btn-default': !bsStyle,
+      'btn-large': size === 'large',
+      [`btn-${bsStyle}`]: !_.isEmpty(bsStyle),
+    },
+    className
+  );
 
   const renderSpinner = () =>
     isLoading ? (

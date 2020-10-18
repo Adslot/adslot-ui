@@ -70,8 +70,8 @@ describe('<Button />', () => {
     expect(getByTestId('spinner')).toHaveClass('spinner-medium');
   });
 
-  it('should render classname with "aui--btn-default" when the style has been explicitly defined', () => {
-    const { getByTestId } = render(<Button className="btn-primary btn-inverse btn-default">Button</Button>);
+  it('should not render classname with "aui--btn-default" when the style has been explicitly defined', () => {
+    const { getByTestId } = render(<Button bsStyle="primary">Button</Button>);
     expect(getByTestId('button-wrapper')).not.toHaveClass('aui--btn-default');
   });
 });

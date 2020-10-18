@@ -105,7 +105,7 @@ class FilePickerComponent extends React.PureComponent {
           ) : null}
           <Button
             data-testid="file-picker-input-button"
-            className="btn-inverse"
+            inverse
             onClick={this.onUploadBtnClick}
             disabled={this.props.disabled || isFileSelected}
           >

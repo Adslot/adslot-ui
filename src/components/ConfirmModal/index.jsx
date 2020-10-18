@@ -41,7 +41,7 @@ const ConfirmModalComponent = ({
         {modalClose ? (
           <Button
             data-testid="confirm-modal-cancel"
-            className="btn-inverse"
+            inverse
             onClick={cancelAction}
             data-test-selector="confirm-modal-cancel"
           >

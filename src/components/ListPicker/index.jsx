@@ -151,7 +151,7 @@ class ListPickerComponent extends React.PureComponent {
             <div className="pull-left">
               {_.map(linkButtons, (linkButton, key) =>
                 _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                  <Button key={linkButton.label} className="btn-inverse" href={linkButton.href}>
+                  <Button key={linkButton.label} inverse href={linkButton.href}>
                     {linkButton.label}
                   </Button>
                 ) : (
@@ -160,7 +160,7 @@ class ListPickerComponent extends React.PureComponent {
               )}
             </div>
           )}
-          <Button className="btn-inverse" onClick={this.cancelAction} data-test-selector="listpicker-cancel-button">
+          <Button inverse onClick={this.cancelAction} data-test-selector="listpicker-cancel-button">
             Cancel
           </Button>
           <Button
