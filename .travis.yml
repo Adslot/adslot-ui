@@ -21,7 +21,7 @@ script:
   - npm test
   - curl -s "https://api.travis-ci.org/v3/job/$TRAVIS_JOB_ID/log.txt" -o /tmp/travis.output
   - |
-    if grep -E "Error:|ERROR:|ERROR: 'Warning|WARN:|WARN \[web-server\]" /tmp/travis.output; then
+    if grep -E "console.error|Error:|ERROR:|ERROR: 'Warning|Warning:|WARN:|WARN \[web-server\]" /tmp/travis.output; then
       echo "Test run output contains one or more warnings/errors. Please check and fix them."
       exit 1
     fi
