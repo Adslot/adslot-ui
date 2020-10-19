@@ -23,7 +23,7 @@ CarouselComponent.propTypes = {
   children: PropTypes.node,
   autoplay: PropTypes.bool,
   variableWidth: PropTypes.bool,
-  autoplayInterval: PropTypes.number,
+  autoplaySpeed: PropTypes.number,
   slidesToShow: PropTypes.number,
   dots: PropTypes.bool,
 };
@@ -31,7 +31,7 @@ CarouselComponent.propTypes = {
 CarouselComponent.defaultProps = {
   autoplay: true,
   variableWidth: true,
-  autoplayInterval: 10000,
+  autoplaySpeed: 10000,
   slidesToShow: 2,
   dots: true,
 };

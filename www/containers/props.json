@@ -919,7 +919,7 @@
             "computed": false
           }
         },
-        "autoplayInterval": {
+        "autoplaySpeed": {
           "type": {
             "name": "number"
           },
