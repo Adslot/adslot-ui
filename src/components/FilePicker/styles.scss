@@ -1,6 +1,6 @@
 @import '~styles/color';
 
-.filepicker-component {
+.aui--filepicker-component {
   &-highlight {
     border: 1px solid $color-border-error;
     border-radius: 2px;
@@ -15,15 +15,23 @@
     margin-right: 0;
   }
 
+  .select-file.btn {
+    box-shadow: none;
+    padding-bottom: 4px;
+    z-index: 3;
+  }
+
   .file-input {
     display: none;
   }
-}
 
-.has-error {
-  .filepicker-component {
-    .form-control {
-      border: 0; // Error style is applied to .filepicker-component-highlight
+  .form-control {
+    border: 0;
+    cursor: not-allowed;
+
+    &.clickable {
+      cursor: pointer;
     }
   }
 }
+

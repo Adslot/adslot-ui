@@ -8,7 +8,7 @@ import InlineStyleButtons from './InlineStyleButtons';
 import BlockStyleButtons from './BlockStyleButtons';
 import './styles.scss';
 
-const RichTextEditor = ({ className, value, initialValue, onChange, placeholder }) => {
+const RichTextEditor = ({ className, value, initialValue, onChange, placeholder, dts }) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
 
@@ -40,7 +40,7 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder 
   };
 
   return (
-    <div data-testid="rich-text-editor-wrapper" className={classNames}>
+    <div data-testid="rich-text-editor-wrapper" className={classNames} data-test-selector={dts}>
       <div className="aui--editor-container" onClick={focusEditor}>
         <Editor
           editorState={value || editorState}
@@ -67,6 +67,10 @@ RichTextEditor.propTypes = {
   /** Editor State: Instance of <a href="https://draftjs.org/docs/api-reference-editor-state">draft-js editor state</a> */
   value: PropTypes.instanceOf(EditorState),
   onChange: PropTypes.func,
+  /**
+   * data-test-selector of the rich text editor
+   */
+  dts: PropTypes.string,
 };
 
 RichTextEditor.defaultProps = {

@@ -1348,34 +1348,7 @@
     {
       "description": "",
       "displayName": "FilePickerComponent",
-      "methods": [
-        {
-          "name": "onChange",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "changeEvent",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "onUploadBtnClick",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "removeFile",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "disabled": {
           "type": {
@@ -1418,7 +1391,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "the label to be displayed",
+          "description": "label on button",
           "defaultValue": {
             "value": "'Select'",
             "computed": false
@@ -1437,6 +1410,27 @@
           },
           "required": true,
           "description": "function called when onSelect event is fired"
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when user click the file name"
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "function called when the file name changes"
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "file name on input"
         },
         "placeholder": {
           "type": {
@@ -3644,6 +3638,13 @@
           },
           "required": false,
           "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector of the rich text editor"
         }
       }
     }
