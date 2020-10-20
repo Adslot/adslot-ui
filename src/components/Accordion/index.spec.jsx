@@ -68,6 +68,46 @@ describe('<Accordion />', () => {
     expect(queryAllByTestId('panel-wrapper')[2]).toHaveTextContent('Panel 3');
   });
 
+  it('should expand or collapse any panels', () => {
+    const { queryAllByTestId } = render(
+      <Accordion {...makeProps()}>
+        <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
+        <Accordion.Panel {...panel2}>{panel2.content}</Accordion.Panel>
+        <Accordion.Panel {...panel3}>{panel3.content}</Accordion.Panel>
+      </Accordion>
+    );
+
+    fireEvent.click(queryAllByTestId('panel-header')[0]);
+    expect(queryAllByTestId('panel-wrapper')[0]).not.toHaveClass('collapsed');
+    fireEvent.click(queryAllByTestId('panel-header')[0]);
+    expect(queryAllByTestId('panel-wrapper')[0]).toHaveClass('collapsed');
+  });
+
+  it('should expand or collapse any panels with a restriction of `maxExpand`', () => {
+    const panel = id => ({
+      id,
+      title: `Panel ${id}`,
+      dts: `panel-${id}`,
+      onClick: _.noop,
+    });
+
+    const { queryAllByTestId } = render(
+      <Accordion {...makeProps({ maxExpand: 1 })}>
+        <Accordion.Panel {...panel(1)}>{panel1.content}</Accordion.Panel>
+        <Accordion.Panel {...panel(2)}>{panel2.content}</Accordion.Panel>
+        <Accordion.Panel {...panel(3)}>{panel3.content}</Accordion.Panel>
+      </Accordion>
+    );
+
+    fireEvent.click(queryAllByTestId('panel-header')[0]);
+    expect(queryAllByTestId('panel-wrapper')[0]).not.toHaveClass('collapsed');
+    expect(queryAllByTestId('panel-wrapper')[1]).toHaveClass('collapsed');
+
+    fireEvent.click(queryAllByTestId('panel-header')[1]);
+    expect(queryAllByTestId('panel-wrapper')[0]).toHaveClass('collapsed');
+    expect(queryAllByTestId('panel-wrapper')[1]).not.toHaveClass('collapsed');
+  });
+
   it('should pass onPanelClick down to panels', () => {
     const props = makeProps();
     const { queryAllByTestId } = render(

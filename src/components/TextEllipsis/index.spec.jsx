@@ -24,8 +24,18 @@ describe('<TextEllipsis />', () => {
   });
 
   it('should render with no popover when text length is less than max length', () => {
-    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
-    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 100 });
+    // This getter does not exist on the HTMLElement.prototype in JSDOM, so we
+    // must mock it on the global.
+    Object.defineProperties(window.HTMLElement.prototype, {
+      clientWidth: {
+        get: () => 50,
+        configurable: true,
+      },
+      scrollWidth: {
+        get: () => 100,
+        configurable: true,
+      },
+    });
     const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
       container: divContainer,
     });
@@ -36,8 +46,16 @@ describe('<TextEllipsis />', () => {
   });
 
   it('should render with popover when text length is more than max length', () => {
-    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
-    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 20 });
+    Object.defineProperties(window.HTMLElement.prototype, {
+      clientWidth: {
+        get: () => 50,
+        configurable: true,
+      },
+      scrollWidth: {
+        get: () => 20,
+        configurable: true,
+      },
+    });
 
     const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
       container: divContainer,
@@ -48,8 +66,16 @@ describe('<TextEllipsis />', () => {
   });
 
   it('should generate popover if text changes from short to long', () => {
-    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
-    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 20 });
+    Object.defineProperties(window.HTMLElement.prototype, {
+      clientWidth: {
+        get: () => 50,
+        configurable: true,
+      },
+      scrollWidth: {
+        get: () => 20,
+        configurable: true,
+      },
+    });
 
     const { queryAllByTestId, rerender } = render(<TextEllipsis>x</TextEllipsis>, {
       container: divContainer,
@@ -57,7 +83,7 @@ describe('<TextEllipsis />', () => {
     expect(queryAllByTestId('popover-element')).toHaveLength(1);
     expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
 
-    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 100 });
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, get: () => 100 });
     rerender(<TextEllipsis>long text: The quick brown fox jumps over the lazy dog</TextEllipsis>, {
       container: divContainer,
     });
@@ -66,8 +92,16 @@ describe('<TextEllipsis />', () => {
   });
 
   it('should remove popover if text changes from long to short', () => {
-    Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 50 });
-    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 100 });
+    Object.defineProperties(window.HTMLElement.prototype, {
+      clientWidth: {
+        get: () => 50,
+        configurable: true,
+      },
+      scrollWidth: {
+        get: () => 100,
+        configurable: true,
+      },
+    });
 
     const { queryAllByTestId, rerender } = render(
       <TextEllipsis>long text: The quick brown fox jumps over the lazy dog</TextEllipsis>,
@@ -78,7 +112,7 @@ describe('<TextEllipsis />', () => {
     expect(queryAllByTestId('popover-element')).toHaveLength(1);
     expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
 
-    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, value: 20 });
+    Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, get: () => 20 });
     rerender(<TextEllipsis>x</TextEllipsis>, {
       container: divContainer,
     });
@@ -88,7 +122,12 @@ describe('<TextEllipsis />', () => {
 
   describe('should also work on complex children', () => {
     it('when size is small', () => {
-      Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 2000 });
+      Object.defineProperties(window.HTMLElement.prototype, {
+        clientWidth: {
+          get: () => 2000,
+          configurable: true,
+        },
+      });
       render(
         <TextEllipsis>
           this is a text
@@ -99,7 +138,12 @@ describe('<TextEllipsis />', () => {
     });
 
     it('when size is big', () => {
-      Object.defineProperty(divContainer, 'clientWidth', { configurable: true, value: 20 });
+      Object.defineProperties(window.HTMLElement.prototype, {
+        clientWidth: {
+          get: () => 20,
+          configurable: true,
+        },
+      });
       render(
         <TextEllipsis>
           this is a text

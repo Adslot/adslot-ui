@@ -57,6 +57,33 @@ describe('<Tabs />', () => {
     expect(onTabSelect).toHaveBeenCalledWith('last');
   });
 
+  it('should switch tabs given a `defaultActiveKey`', () => {
+    const { queryAllByTestId } = render(
+      <Tabs defaultActiveKey="first" onSelect={true} id="test">
+        <Tab eventKey="first" title="Fist">
+          Tab1
+        </Tab>
+        <Tab eventKey="last" title="Second">
+          Tab2
+        </Tab>
+        <div>other</div>
+      </Tabs>
+    );
+
+    expect(queryAllByTestId('tablist-item')[0]).toHaveClass('active');
+    expect(queryAllByTestId('tablist-item')[1]).not.toHaveClass('active');
+    expect(queryAllByTestId('tablist-a-tag')).toHaveLength(2);
+
+    fireEvent.click(queryAllByTestId('tablist-a-tag')[1]);
+
+    expect(queryAllByTestId('tablist-item')[0]).not.toHaveClass('active');
+    expect(queryAllByTestId('tablist-item')[1]).toHaveClass('active');
+
+    fireEvent.click(queryAllByTestId('tablist-a-tag')[1]);
+    expect(queryAllByTestId('tablist-item')[0]).not.toHaveClass('active');
+    expect(queryAllByTestId('tablist-item')[1]).toHaveClass('active');
+  });
+
   it('should not crash when child returns null', () => {
     const { queryAllByTestId } = render(
       <Tabs defaultActiveKey="first" id="test">

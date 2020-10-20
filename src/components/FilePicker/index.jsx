@@ -72,12 +72,10 @@ class FilePickerComponent extends React.PureComponent {
   };
 
   removeFile = () => {
-    if (this.state.isFileSelected) {
-      this.fileInput.current.value = null;
-      this.setState({ isFileSelected: false, fileName: '' });
-      if (this.props.onRemove) {
-        this.props.onRemove();
-      }
+    this.fileInput.current.value = null;
+    this.setState({ isFileSelected: false, fileName: '' });
+    if (this.props.onRemove) {
+      this.props.onRemove();
     }
   };
 

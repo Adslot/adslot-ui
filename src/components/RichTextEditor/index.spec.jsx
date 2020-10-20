@@ -89,6 +89,21 @@ describe('<RichTextEditor />', () => {
     expect(RichUtils.handleKeyCommand.mock.calls[0][1]).toEqual('backspace');
   });
 
+  it('should correctly handle the new state of key commands', () => {
+    jest.spyOn(RichUtils, 'handleKeyCommand');
+    const onChange = jest.fn();
+    const newState = RichTextEditor.stateFromHTML('123');
+    const { container } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+
+    const editorNode = container.querySelector('.public-DraftEditor-content');
+    fireEvent.focus(editorNode);
+
+    fireEvent.keyDown(editorNode, { key: 'b', keyCode: 66, which: 66, ctrlKey: true });
+    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(RichUtils.handleKeyCommand).toHaveBeenCalledTimes(1);
+    expect(RichUtils.handleKeyCommand.mock.calls[0][1]).toEqual('bold');
+  });
+
   it('should toggle italics', () => {
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
