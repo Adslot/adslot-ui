@@ -21,11 +21,11 @@ describe('<ImageCropper />', () => {
 
   it('should call onCrop when user upload button is clicked', () => {
     const onCrop = jest.fn();
-    const { getByTestId } = render(<ImageCropper src="example.svg" onCrop={onCrop} onCancel={jest.fn()} />);
+    const { queryAllByTestId } = render(<ImageCropper src="example.svg" onCrop={onCrop} onCancel={jest.fn()} />);
 
     // console.error would be fixed after updating react/react-dom/react-test-renderer to ^16.9.0
     act(() => {
-      fireEvent.click(getByTestId('button-wrapper'));
+      fireEvent.click(queryAllByTestId('button-wrapper')[1]);
     });
 
     expect(onCrop).toHaveBeenCalledTimes(1);

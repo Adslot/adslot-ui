@@ -35,13 +35,13 @@ describe('<ListPicker />', () => {
     expect(getByTestId('empty-wrapper')).toContainElement(getByTestId('empty-text'));
     expect(getByTestId('empty-text')).toHaveTextContent('No items to select.');
 
-    expect(getByText('Cancel')).toHaveClass('btn-inverse');
-    expect(getByText('Cancel').tagName).toEqual('BUTTON');
-    expect(getByText('Cancel').parentElement).toHaveClass('modal-footer');
-    expect(getByText('Apply')).toHaveClass('btn btn-primary');
-    expect(getByText('Apply').tagName).toEqual('BUTTON');
-    expect(getByText('Apply').parentElement).toHaveClass('modal-footer');
-    expect(getByText('Apply')).not.toBeDisabled;
+    expect(getByText('Cancel').parentElement).toHaveClass('btn-inverse');
+    expect(getByText('Cancel').parentElement.tagName).toEqual('BUTTON');
+    expect(getByText('Cancel').parentElement.parentElement).toHaveClass('modal-footer');
+    expect(getByText('Apply').parentElement).toHaveClass('aui--button btn-primary');
+    expect(getByText('Apply').parentElement.tagName).toEqual('BUTTON');
+    expect(getByText('Apply').parentElement.parentElement).toHaveClass('modal-footer');
+    expect(getByText('Apply').parentElement).not.toBeDisabled;
   });
 
   it('should render with props', () => {
@@ -84,9 +84,9 @@ describe('<ListPicker />', () => {
     expect(queryAllByTestId('checkbox-input')[1]).toBeChecked(); // selectedItems
     expect(queryAllByTestId('checkbox-input')[2]).not.toBeChecked();
 
-    expect(getByText('Create User')).toHaveAttribute('href', '#');
-    expect(getByText('Create User')).toHaveClass('btn-inverse');
-    expect(getByText('Create User').parentElement.parentElement).toHaveClass('modal-footer');
+    expect(getByText('Create User').parentElement).toHaveAttribute('href', '#');
+    expect(getByText('Create User').parentElement).toHaveClass('btn-inverse');
+    expect(getByText('Create User').parentElement.parentElement.parentElement).toHaveClass('modal-footer');
 
     expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
@@ -171,8 +171,8 @@ describe('<ListPicker />', () => {
   it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
     const props = { allowEmptySelection: false, items: users };
     const { getByText } = render(<ListPickerComponent {...props} show />);
-    expect(getByText('Apply').parentElement).toHaveClass('modal-footer');
-    expect(getByText('Apply')).toBeDisabled();
+    expect(getByText('Apply').parentElement.parentElement).toHaveClass('modal-footer');
+    expect(getByText('Apply').parentElement).toBeDisabled();
   });
 
   it('should change `selectedItems` state after a `selectItem` action', () => {
@@ -255,7 +255,7 @@ describe('<ListPicker />', () => {
     };
     const { getByText } = render(<ListPickerComponent {...props} show />);
 
-    fireEvent.click(getByText('Apply'));
+    fireEvent.click(getByText('Apply').parentElement);
     expect(applyMock).toHaveBeenCalledWith([teamMember2]);
     expect(closeMock).toHaveBeenCalledTimes(0);
   });
@@ -273,7 +273,7 @@ describe('<ListPicker />', () => {
     const closeMock = jest.fn();
 
     const { getByText } = render(<ListPickerComponent modalClose={closeMock} show />);
-    fireEvent.click(getByText('Cancel'));
+    fireEvent.click(getByText('Cancel').parentElement);
     expect(closeMock).toHaveBeenCalledTimes(1);
   });
 
@@ -282,7 +282,9 @@ describe('<ListPicker />', () => {
       throw new Error(err);
     };
     const { getByText } = render(<ListPickerComponent show />);
-    expect(() => fireEvent.click(getByText('Cancel'))).toThrow('AdslotUi ListPicker needs a modalClose handler');
+    expect(() => fireEvent.click(getByText('Cancel').parentElement)).toThrow(
+      'AdslotUi ListPicker needs a modalClose handler'
+    );
   });
 
   describe('linkButtons', () => {
@@ -321,9 +323,8 @@ describe('<ListPicker />', () => {
       expect(getByTestId('testing-radio').tagName).toEqual('INPUT');
       expect(getByTestId('testing-radio')).toHaveAttribute('type', 'radio');
 
-      expect(getByText('Create User')).toHaveClass('btn-inverse');
-      expect(getByText('Create User')).toHaveAttribute('role', 'button');
-      expect(getByText('Create User')).toHaveAttribute('href', '#');
+      expect(getByText('Create User').parentElement).toHaveClass('btn-inverse');
+      expect(getByText('Create User').parentElement).toHaveAttribute('href', '#');
     });
   });
 });

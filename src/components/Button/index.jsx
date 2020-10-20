@@ -9,22 +9,26 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const Button = props => {
-  const { bsStyle, inverse, size, children, dts, className, isLoading, disabled } = props;
+  const { bsStyle, bsSize, inverse, size, children, dts, className, isLoading, disabled } = props;
   const baseClass = 'aui--button';
-  const classes = classNames(baseClass, className, {
-    'btn-inverse': inverse && !/btn-inverse/.test(className),
-    'btn-large': size === 'large',
-    'aui--btn-default':
-      (!bsStyle || bsStyle === 'default') &&
-      (!className ||
-        ['btn-default', 'btn-inverse', 'btn-default btn-inverse', 'btn-inverse btn-default'].includes(className)),
-    [`btn-${bsStyle}`]: !_.isEmpty(bsStyle),
-  });
+  const classes = classNames(
+    baseClass,
+    {
+      'btn-inverse': inverse && !/btn-inverse/.test(className),
+      'btn-large': size === 'large' || _.includes(['lg', 'large'], bsSize),
+      'aui--btn-default':
+        (!bsStyle || bsStyle === 'default') &&
+        (!className ||
+          ['btn-default', 'btn-inverse', 'btn-default btn-inverse', 'btn-inverse btn-default'].includes(className)),
+      [`btn-${bsStyle}`]: !_.isEmpty(bsStyle),
+    },
+    className
+  );
 
   const renderSpinner = () =>
     isLoading ? (
       <div data-testid="button-spinner-wrapper" className="spinner-container">
-        <Spinner size={_.includes(['lg', 'large'], props.bsSize) ? 'medium' : 'small'} />
+        <Spinner size={_.includes(['lg', 'large'], bsSize) ? 'medium' : 'small'} />
       </div>
     ) : null;
 
@@ -54,6 +58,7 @@ const adslotButtonPropTypes = {
    * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
    */
   bsStyle: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
+  bsSize: PropTypes.oneOf(['lg', 'large', 'sm', 'small']),
   className: PropTypes.string,
 };
 

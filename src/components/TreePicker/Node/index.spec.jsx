@@ -27,7 +27,7 @@ describe('<TreePickerNode />', () => {
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3);
     expect(queryAllByTestId('grid-cell-wrapper')[2]).toContainElement(getByText('+'));
-    expect(getByText('+').tagName).toBe('BUTTON');
+    expect(getByText('+').parentElement.tagName).toBe('BUTTON');
     expect(queryAllByText('+')).toHaveLength(1);
 
     expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByTestId('text-ellipsis'));
@@ -76,7 +76,7 @@ describe('<TreePickerNode />', () => {
     );
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell and value cell
-    expect(getByText('+').tagName).toBe('BUTTON');
+    expect(getByText('+').parentElement.tagName).toBe('BUTTON');
     expect(queryAllByText('+')).toHaveLength(1);
   });
 
@@ -87,7 +87,7 @@ describe('<TreePickerNode />', () => {
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
     expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveAttribute('data-test-selector', 'button-remove');
-    expect(getByText('−').tagName).toBe('BUTTON');
+    expect(getByText('−').parentElement.tagName).toBe('BUTTON');
     expect(queryAllByText('−')).toHaveLength(1);
   });
 
@@ -238,7 +238,7 @@ describe('<TreePickerNode />', () => {
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
     expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByText('−'));
-    expect(getByText('−').tagName).toBe('BUTTON');
+    expect(getByText('−').parentElement.tagName).toBe('BUTTON');
     expect(queryAllByText('−')).toHaveLength(1);
 
     expect(nodes).toEqual([cbrNode]);

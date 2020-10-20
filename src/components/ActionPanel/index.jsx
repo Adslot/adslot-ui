@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import Button from 'react-bootstrap/lib/Button';
 import ReactDOM from 'react-dom';
+import Button from '../Button';
 import './styles.scss';
 
 const ActionPanel = React.forwardRef((props, ref) => {
