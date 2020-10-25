@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Button from '../Button';
 import Spinner from '../Spinner';
 import './styles.scss';
 
@@ -21,6 +22,7 @@ const Search = React.forwardRef(
       placeholder,
       searchOnEnter,
       value,
+      showSearchButton,
     },
     ref
   ) => {
@@ -101,15 +103,22 @@ const Search = React.forwardRef(
           onBlur={onBlur}
         />
         {isLoading && !searchOnEnter && <span className="aui--search-component-spinner">{loaderIcon}</span>}
-        {searchOnEnter && !isValueEmpty && (
-          <span className="aui--search-component-icon with-button" onClick={onInputClear}>
-            {closeIcon}
-          </span>
-        )}
-        {searchOnEnter ? (
-          <button data-testid="search-button" className="aui--search-component-button" onClick={onSearchButtonClick}>
-            {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
-          </button>
+
+        {searchOnEnter && showSearchButton ? (
+          <>
+            {!isValueEmpty && (
+              <span className="aui--search-component-icon with-button" onClick={onInputClear}>
+                {closeIcon}
+              </span>
+            )}
+            <Button
+              data-testid="search-button"
+              className="aui--button aui--search-component-button"
+              onClick={onSearchButtonClick}
+            >
+              {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
+            </Button>
+          </>
         ) : (
           <span
             data-testid="search-icon-wrapper"
@@ -160,6 +169,10 @@ Search.propTypes = {
    */
   searchOnEnter: PropTypes.bool,
   value: PropTypes.string,
+  /**
+   * 	Determines whether displaying the search button or not
+   */
+  showSearchButton: PropTypes.bool,
 };
 
 Search.defaultProps = {
@@ -170,6 +183,7 @@ Search.defaultProps = {
   placeholder: '',
   value: '',
   icons: {},
+  showSearchButton: true,
 };
 
 export default Search;

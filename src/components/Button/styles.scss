@@ -6,6 +6,7 @@
   color: $color-gray-dark;
   opacity: .65;
   box-shadow: none;
+  cursor: not-allowed;
 }
 
 @mixin reset-shadow-and-transform {
@@ -78,9 +79,7 @@
     border-color: $color-button-primary-border;
     color: $color-white;
 
-    &.btn-inverse
-
-    &:focus {
+    &.btn-inverse &:focus {
       background-color: $color-button-primary-background;
       border-color: $color-button-primary-border;
       color: $color-white;
@@ -118,6 +117,7 @@
     background-color: $color-button-warning-background;
     border-color: $color-button-warning-border;
     color: $color-white;
+    cursor: not-allowed;
 
     &:focus {
       background-color: $color-button-warning-background;

@@ -3841,6 +3841,17 @@
             "value": "''",
             "computed": false
           }
+        },
+        "showSearchButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Determines whether displaying the search button or not",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
         }
       }
     }
