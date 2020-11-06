@@ -76,7 +76,6 @@
     "@babel/preset-react": "^7.10.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@commitlint/travis-cli": "^8.1.0",
     "@mdx-js/loader": "^1.5.3",
     "@mdx-js/react": "^1.5.3",
     "@testing-library/jest-dom": "^5.8.0",
