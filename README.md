@@ -1,10 +1,10 @@
 # Adslot UI
 
 [![npm version](https://badge.fury.io/js/adslot-ui.svg)](https://badge.fury.io/js/adslot-ui)
-![Build Status](https://github.com/Adslot/adslot-ui/workflows/build/badge.svg)
-![Coverage Status](https://github.com/Adslot/adslot-ui/workflows/coverage/badge.svg)
-![Linting Status](https://github.com/Adslot/adslot-ui/workflows/linting/badge.svg)
-![Optimisation Status](https://github.com/Adslot/adslot-ui/workflows/optimisation/badge.svg)
+![Build Status](https://github.com/Adslot/adslot-ui/workflows/Build/badge.svg)
+![Coverage Status](https://github.com/Adslot/adslot-ui/workflows/Coverage/badge.svg)
+![Linting Status](https://github.com/Adslot/adslot-ui/workflows/Linting/badge.svg)
+![Optimisation Status](https://github.com/Adslot/adslot-ui/workflows/Optimisation/badge.svg)
 [![codecov.io](https://codecov.io/github/Adslot/adslot-ui/coverage.svg?branch=master)](https://codecov.io/github/Adslot/adslot-ui?branch=master)
 
 See the docs at [ui.adslot.com](https://ui.adslot.com)
