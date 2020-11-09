@@ -1,0 +1,72 @@
+name: Optimisation
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node-version}}
+      - run: npm -v
+      - run: npm ci
+      - name: Run svgo and check for missed optimisations
+        run: |
+          npm run svgo
+          git diff --exit-code
+      - name: Notify Slack channel
+        if: always() && job.status != 'success' && github.ref == 'refs/heads/master'
+        env:
+          GITHUB_WORKFLOW: ${{env.GITHUB_WORKFLOW}}
+          GITHUB_RUN_NUMBER: ${{env.GITHUB_RUN_NUMBER}}
+          GITHUB_SHA: ${{env.GITHUB_SHA}}
+          GITHUB_REPOSITORY: ${{env.GITHUB_REPOSITORY}}
+          GITHUB_REF: ${{env.GITHUB_REF}}
+        run: |
+          GIT_SHA_SHORT=$(git rev-parse --short ${GITHUB_SHA})
+          NOTIFICATION_TEXT="${GITHUB_WORKFLOW} [${{matrix.node-version}}] #${GITHUB_RUN_NUMBER} (${GIT_SHA_SHORT}) of ${GITHUB_REPOSITORY}@${GITHUB_REF}"
+          SUCCESS_NOTIFICATION="${NOTIFICATION_TEXT} successful"
+          SUCCESS_COLOR="good"
+          FAILURE_NOTIFICATION="${NOTIFICATION_TEXT} failed"
+          FAILURE_COLOR="danger"
+          CANCELLED_NOTIFICATION="${NOTIFICATION_TEXT} cancelled"
+          CANCELLED_COLOR="warning"
+
+          if [[ ${{job.status}} == "success" ]]; then
+            TEXT=$SUCCESS_NOTIFICATION
+            COLOR=$SUCCESS_COLOR
+          elif [[ ${{job.status}} == "failure" ]]; then
+            TEXT=$FAILURE_NOTIFICATION
+            COLOR=$FAILURE_COLOR
+          elif [[ ${{job.status}} == "cancelled" ]]; then
+            TEXT=$CANCELLED_NOTIFICATION
+            COLOR=$CANCELLED_COLOR
+          fi
+
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            --url ${{secrets.SLACK_WEBHOOK}} \
+            -d @- << EOF
+            {
+              "attachments": [
+                {
+                  "color": "${COLOR}",
+                  "text": "${TEXT}"
+                }
+              ]
+            }
+            EOF

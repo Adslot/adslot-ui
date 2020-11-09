@@ -1,14 +1,15 @@
-Adslot UI
-=========
+# Adslot UI
 
 [![npm version](https://badge.fury.io/js/adslot-ui.svg)](https://badge.fury.io/js/adslot-ui)
-[![Build Status](https://travis-ci.org/Adslot/adslot-ui.svg?branch=master)](https://travis-ci.org/Adslot/adslot-ui)
+![Build Status](https://github.com/Adslot/adslot-ui/workflows/build/badge.svg)
+![Coverage Status](https://github.com/Adslot/adslot-ui/workflows/coverage/badge.svg)
+![Linting Status](https://github.com/Adslot/adslot-ui/workflows/linting/badge.svg)
+![Optimisation Status](https://github.com/Adslot/adslot-ui/workflows/optimisation/badge.svg)
 [![codecov.io](https://codecov.io/github/Adslot/adslot-ui/coverage.svg?branch=master)](https://codecov.io/github/Adslot/adslot-ui?branch=master)
 
 See the docs at [ui.adslot.com](https://ui.adslot.com)
 
-Core component library. By Adslot
----------------------------------
+## Core component library. By Adslot
 
 A library of core components used to develop our Adslot and Symphony products.
 
@@ -21,8 +22,7 @@ Technology:
 - [ESLint](http://eslint.org)
 - [Autoprefixer](https://github.com/postcss/autoprefixer)
 
-Development
------------
+## Development
 
 - Take a look at our [Contributing](https://ui.adslot.com/contributing) guidelines
 
@@ -30,8 +30,7 @@ Development
 
 - Install NPM dependencies: `npm i`
 
-Commands
---------
+## Commands
 
 ```sh
 # Start for development
@@ -62,15 +61,13 @@ npm run test:watch [-- <path>] [--coverage]
 npm run svgo
 ```
 
-Build Profiling
----------------
+## Build Profiling
 
 To generate a profile: `npm run profile`
 
 Upload the new `stats.json` file to [Webpack Analyse Tool](http://webpack.github.io/analyse).
 
-Optimizing Performance of Stateless Components
----------------
+## Optimizing Performance of Stateless Components
 
 Add the following to /docs/Layout/index.jsx:
 
