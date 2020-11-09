@@ -59,6 +59,7 @@ import RichTextEditorExample from '../examples/RichTextEditor.mdx';
 import ToastExample from '../examples/Toast.mdx';
 import PillExample from '../examples/Pill.mdx';
 import TileExample from '../examples/Tile.mdx';
+import PaginationExample from '../examples/Pagination.mdx';
 
 const routes = [
   {
@@ -281,6 +282,12 @@ const routes = [
     path: '/paged-grid',
     component: PagedGridExample,
     title: 'Paged Grid',
+    group: 'Components',
+  },
+  {
+    path: '/pagination',
+    component: PaginationExample,
+    title: 'Pagination',
     group: 'Components',
   },
   {

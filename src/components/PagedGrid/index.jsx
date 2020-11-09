@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Pagination from 'react-bootstrap/lib/Pagination';
+import Pagination from '../Pagination';
 import Empty from '../Empty';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
@@ -56,9 +56,8 @@ class PagedGridComponent extends React.PureComponent {
               {(activePage - 1) * perPage + 1}–{Math.min(activePage * perPage, items.length)} of {items.length}
             </span>
             <Pagination
-              data-testid="paged-grid-pagination"
               activePage={activePage}
-              items={totalPages}
+              pageCount={totalPages}
               next
               onSelect={selectedPage => this.setState({ activePage: selectedPage })}
               prev
