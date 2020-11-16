@@ -5,26 +5,33 @@
 
 $tile-width: 200px;
 $tile-height: 120px;
-$tile-padding: 18px;
+$tile-side-padding: 30px;
+$tile-horizontal-padding: 15px;
+$tile-image-width: 140px; // leave 2px for border
+$tile-image-height: 88px; // leave 2px for border
 
 .aui--tile {
   width: $tile-width;
   height: $tile-height;
-  background: $color-placeholder 50%;
-  border-radius: $border-radius-tile;
   position: relative;
+  border: 1px solid $color-gray-lighter;
+  background-color: $color-white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-heavy;
 
   &-logo {
-    min-height: 84px;
-    padding: $tile-padding;
-    border-radius: inherit;
+    padding: 0;
     overflow: hidden;
-    display: flex;
+    max-width: $tile-image-width;
+    max-height: $tile-image-height;
 
     img {
-      // 164 * 84
-      width: $tile-width - 2 * $tile-padding;
-      height: $tile-height - 2 * $tile-padding;
+      // 140 * 88
+      max-width: $tile-image-width;
+      max-height: $tile-image-height;
     }
   }
 
@@ -33,7 +40,7 @@ $tile-padding: 18px;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    color: $color-text-inverse;
+    color: $color-gray-darker;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -50,7 +57,7 @@ $tile-padding: 18px;
 
     &:hover,
     &:focus {
-      color: $color-text-inverse;
+      color: $color-gray-darker;
       text-decoration: none;
 
       &::after {
