@@ -596,60 +596,39 @@
       "displayName": "Button",
       "methods": [],
       "props": {
-        "size": {
+        "bsSize": {
           "type": {
             "name": "enum",
             "value": [
               {
-                "value": "'small'",
+                "value": "'lg'",
                 "computed": false
               },
               {
                 "value": "'large'",
                 "computed": false
+              },
+              {
+                "value": "'sm'",
+                "computed": false
+              },
+              {
+                "value": "'small'",
+                "computed": false
               }
             ]
           },
           "required": false,
-          "description": "PropTypes.oneOf(['small', 'large'])",
-          "defaultValue": {
-            "value": "'small'",
-            "computed": false
-          }
-        },
-        "inverse": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "dts": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "isLoading": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
+          "description": "PropTypes.oneOf(['lg', 'large', 'sm', 'small'])"
         },
         "bsStyle": {
           "type": {
             "name": "enum",
             "value": [
+              {
+                "value": "'default'",
+                "computed": false
+              },
               {
                 "value": "'primary'",
                 "computed": false
@@ -679,37 +658,69 @@
           "required": false,
           "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
         },
-        "bsSize": {
-          "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'lg'",
-                "computed": false
-              },
-              {
-                "value": "'large'",
-                "computed": false
-              },
-              {
-                "value": "'sm'",
-                "computed": false
-              },
-              {
-                "value": "'small'",
-                "computed": false
-              }
-            ]
-          },
-          "required": false,
-          "description": ""
-        },
         "className": {
           "type": {
             "name": "string"
           },
           "required": false,
           "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "href": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "inverse": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'small'",
+                "computed": false
+              },
+              {
+                "value": "'large'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "PropTypes.oneOf(['small', 'large'])",
+          "defaultValue": {
+            "value": "'small'",
+            "computed": false
+          }
         }
       }
     }

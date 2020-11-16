@@ -9,7 +9,7 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const Button = props => {
-  const { bsStyle, bsSize, inverse, size, children, dts, className, isLoading, disabled } = props;
+  const { bsSize, bsStyle, children, className, disabled, dts, href, inverse, isLoading, size } = props;
   const baseClass = 'aui--button';
   const classes = classNames(
     baseClass,
@@ -32,6 +32,15 @@ const Button = props => {
       </div>
     ) : null;
 
+  const renderChildren = () =>
+    href ? (
+      <a data-testid="button-anchor" className="aui--button-anchor" href={href}>
+        {children}
+      </a>
+    ) : (
+      children
+    );
+
   return (
     <button
       data-testid="button-wrapper"
@@ -41,25 +50,31 @@ const Button = props => {
       {..._.omit(props, _.keys(adslotButtonPropTypes))}
     >
       {renderSpinner()}
-      <div className={isLoading ? 'aui--button-children-container' : null}>{children}</div>
+      <div className={classNames('aui--button-children-container', { 'is-loading': isLoading, 'has-anchor': href })}>
+        {renderChildren()}
+      </div>
     </button>
   );
 };
 
 const adslotButtonPropTypes = {
   /**
-   * PropTypes.oneOf(['small', 'large'])
+   * PropTypes.oneOf(['lg', 'large', 'sm', 'small'])
    */
-  size: PropTypes.oneOf(['small', 'large']),
-  inverse: PropTypes.bool,
-  dts: PropTypes.string,
-  isLoading: PropTypes.bool,
+  bsSize: PropTypes.oneOf(['lg', 'large', 'sm', 'small']),
   /**
    * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
    */
-  bsStyle: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
-  bsSize: PropTypes.oneOf(['lg', 'large', 'sm', 'small']),
+  bsStyle: PropTypes.oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger', 'link']),
   className: PropTypes.string,
+  dts: PropTypes.string,
+  href: PropTypes.string,
+  inverse: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  /**
+   * PropTypes.oneOf(['small', 'large'])
+   */
+  size: PropTypes.oneOf(['small', 'large']),
 };
 
 Button.propTypes = { ...adslotButtonPropTypes };
