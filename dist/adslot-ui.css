@@ -4623,7 +4623,7 @@ strong {
   vertical-align: middle;
   background-image: none;
   border: 1px solid transparent;
-  padding: 4px 8px;
+  padding: 0;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 2px;
@@ -4656,6 +4656,11 @@ strong {
       color: #838383;
       background-color: #e6e6e6;
       border-color: #b4b4b4; }
+    .aui--button.aui--btn-default:focus {
+      background-color: #fff;
+      border-color: #d3d3d3;
+      color: #838383;
+      outline: none; }
   .aui--button.btn-primary {
     background-color: #006dcc;
     border-color: #005fb3;
@@ -4724,7 +4729,19 @@ strong {
       text-decoration: underline;
       outline: none; }
   .aui--button-children-container {
-    visibility: hidden; }
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 4px 8px; }
+    .aui--button-children-container.is-loading {
+      visibility: hidden; }
+    .aui--button-children-container.has-anchor {
+      padding: 0; }
   .aui--button.btn-large {
     width: 264px;
     height: 42px; }
@@ -4766,12 +4783,25 @@ strong {
         box-shadow: none;
         -webkit-transform: translateY(0);
                 transform: translateY(0); }
+  .aui--button .aui--button-anchor {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: inherit; }
   .aui--button .spinner-container {
     position: absolute;
     right: 0;
     left: 0;
     margin-right: auto;
-    margin-left: auto; }
+    margin-left: auto;
+    padding: 4px 8px; }
     .aui--button .spinner-container .spinner-component .spinner-small {
       margin-top: 1px; }
     .aui--button .spinner-container .spinner-component .spinner-medium {
@@ -13114,25 +13144,31 @@ input:disabled + .aui--switch-slider::before {
 .aui--tile {
   width: 200px;
   height: 120px;
-  background: #e8e8e8 50%;
-  border-radius: 3px;
-  position: relative; }
+  position: relative;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  padding: 15px 30px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  border-radius: 5px; }
   .aui--tile-logo {
-    min-height: 84px;
-    padding: 18px;
-    border-radius: inherit;
+    padding: 0;
     overflow: hidden;
-    display: -ms-flexbox;
-    display: flex; }
+    max-width: 140px;
+    max-height: 88px; }
     .aui--tile-logo img {
-      width: 164px;
-      height: 84px; }
+      max-width: 140px;
+      max-height: 88px; }
   .aui--tile-title {
     width: 100%;
     height: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    color: #fff;
+    color: #5a5a5a;
     cursor: pointer;
     display: -ms-flexbox;
     display: flex;
@@ -13150,7 +13186,7 @@ input:disabled + .aui--switch-slider::before {
     text-transform: uppercase;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); }
     .aui--tile-title:hover, .aui--tile-title:focus {
-      color: #fff;
+      color: #5a5a5a;
       text-decoration: none; }
       .aui--tile-title:hover::after, .aui--tile-title:focus::after {
         background-color: #838383;
