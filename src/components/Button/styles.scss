@@ -27,7 +27,7 @@
   vertical-align: middle;
   background-image: none;
   border: 1px solid transparent;
-  padding: 4px 8px;
+  padding: 0;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 2px;
@@ -71,6 +71,13 @@
       color: $color-gray-dark;
       background-color: $color-button-default-hover-background;
       border-color: $color-button-default-hover-border;
+    }
+
+    &:focus {
+      background-color: $color-white;
+      border-color: $color-gray-light;
+      color: $color-gray-dark;
+      outline: none;
     }
   }
 
@@ -163,7 +170,20 @@
   }
 
   &-children-container {
-    visibility: hidden; // preserves width and height of button
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 4px 8px;
+
+    &.is-loading {
+      visibility: hidden; // preserves width and height of button
+    }
+
+    &.has-anchor {
+      padding: 0;
+    }
   }
 
   &.btn-large {
@@ -193,12 +213,24 @@
     }
   }
 
+  .aui--button-anchor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: inherit;
+  }
+
   .spinner-container {
     position: absolute;
     right: 0;
     left: 0;
     margin-right: auto;
     margin-left: auto;
+    padding: 4px 8px;
 
     // workaround for vertical centering
     .spinner-component {

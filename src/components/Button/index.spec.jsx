@@ -11,8 +11,14 @@ describe('<Button />', () => {
   });
 
   it('should support legacy Bootstrap Button props for non-breaking change', () => {
-    const { getByTestId } = render(<Button bsStyle="link">Test</Button>);
+    const { getByTestId } = render(
+      <Button bsStyle="link" href="example.com">
+        Test
+      </Button>
+    );
+
     expect(getByTestId('button-wrapper')).toHaveClass('btn-link');
+    expect(getByTestId('button-anchor')).toHaveAttribute('href', 'example.com');
   });
 
   it('should support legacy classname btn-inverse for non-breaking change', () => {

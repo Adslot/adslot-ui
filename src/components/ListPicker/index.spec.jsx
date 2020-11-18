@@ -84,9 +84,11 @@ describe('<ListPicker />', () => {
     expect(queryAllByTestId('checkbox-input')[1]).toBeChecked(); // selectedItems
     expect(queryAllByTestId('checkbox-input')[2]).not.toBeChecked();
 
-    expect(getByText('Create User').parentElement).toHaveAttribute('href', '#');
-    expect(getByText('Create User').parentElement).toHaveClass('btn-inverse');
-    expect(getByText('Create User').parentElement.parentElement.parentElement).toHaveClass('modal-footer');
+    expect(getByText('Create User')).toHaveAttribute('href', '#');
+    expect(getByText('Create User').parentElement.parentElement).toHaveClass('btn-inverse');
+    expect(getByText('Create User').parentElement.parentElement.parentElement.parentElement).toHaveClass(
+      'modal-footer'
+    );
 
     expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
@@ -323,8 +325,8 @@ describe('<ListPicker />', () => {
       expect(getByTestId('testing-radio').tagName).toEqual('INPUT');
       expect(getByTestId('testing-radio')).toHaveAttribute('type', 'radio');
 
-      expect(getByText('Create User').parentElement).toHaveClass('btn-inverse');
-      expect(getByText('Create User').parentElement).toHaveAttribute('href', '#');
+      expect(getByText('Create User').parentElement.parentElement).toHaveClass('btn-inverse');
+      expect(getByText('Create User')).toHaveAttribute('href', '#');
     });
   });
 });

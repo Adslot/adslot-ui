@@ -32,7 +32,9 @@ exports[`<ConfirmModal /> should show modal when \`show\` is true 1`] = `
           data-test-selector="confirm-modal-confirm"
           data-testid="confirm-modal-confirm"
         >
-          <div>
+          <div
+            class="aui--button-children-container"
+          >
             Confirm
           </div>
         </button>
