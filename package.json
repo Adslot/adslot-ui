@@ -157,6 +157,7 @@
     "draft-js": "^0.11.5",
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
+    "html-to-text": "^6.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
     "react": "^16.8.6",
