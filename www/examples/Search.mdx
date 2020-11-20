@@ -61,6 +61,7 @@ const Example = () => {
       />
       <br />
       Expandable Search Bar
+      <br />
       {searchInput ? (
         <Search
           placeholder="Search on ENTER"
@@ -70,7 +71,7 @@ const Example = () => {
           searchOnEnter
         />
       ) : (
-        <Button className="btn btn-borderless" onClick={() => showSearchInput(true)}>
+        <Button className="btn-borderless" onClick={() => showSearchInput(true)}>
           <SvgSymbol href="./assets/svg-symbols.svg#search" />
         </Button>
       )}

@@ -7,7 +7,7 @@
     padding: 1px;
   }
 
-  .remove-file  {
+  .remove-file {
     background-color: $color-disabled;
     border: 0;
     box-shadow: none;
@@ -17,6 +17,14 @@
 
   .file-input {
     display: none;
+  }
+
+  .aui--button {
+    box-shadow: none;
+
+    &:focus {
+      background-color: inherit;
+    }
   }
 }
 
