@@ -39,11 +39,11 @@
     }
 
     &.disabled {
-      cursor: default;
+      cursor: not-allowed;
       color: $color-text-disabled;
 
       a {
-        cursor: default;
+        cursor: not-allowed;
         color: $color-text-disabled;
       }
     }
@@ -73,6 +73,13 @@
       &.active {
         margin: 0;
         border-bottom-width: $border-width;
+      }
+
+      &.disabled {
+        &:hover,
+        &.active {
+          border-bottom-color: transparent;
+        }
       }
     }
   }

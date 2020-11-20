@@ -21,6 +21,7 @@ const Button = props => {
         (!className ||
           ['btn-default', 'btn-inverse', 'btn-default btn-inverse', 'btn-inverse btn-default'].includes(className)),
       [`btn-${bsStyle}`]: !_.isEmpty(bsStyle),
+      'has-anchor': href,
     },
     className
   );
@@ -50,7 +51,7 @@ const Button = props => {
       {..._.omit(props, _.keys(adslotButtonPropTypes))}
     >
       {renderSpinner()}
-      <div className={classNames('aui--button-children-container', { 'is-loading': isLoading, 'has-anchor': href })}>
+      <div className={classNames('aui--button-children-container', { 'is-loading': isLoading })}>
         {renderChildren()}
       </div>
     </button>
