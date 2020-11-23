@@ -2039,7 +2039,7 @@
             ]
           },
           "required": false,
-          "description": "",
+          "description": "oneOf: 'primary', 'success', 'warning', 'error', 'light'",
           "defaultValue": {
             "value": "'light'",
             "computed": false
@@ -4029,6 +4029,90 @@
       "description": "",
       "displayName": "ClearIndicator",
       "methods": []
+    }
+  ],
+  "src/components/Skeleton/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Skeleton",
+      "methods": [],
+      "props": {
+        "animated": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "className": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "string"
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "Custom classnames"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Generate \"data-test-selector\""
+        },
+        "height": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "variant": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'rect'",
+                "computed": false
+              },
+              {
+                "value": "'circle'",
+                "computed": false
+              },
+              {
+                "value": "'text'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "oneOf: 'rect', 'circle', 'text'",
+          "defaultValue": {
+            "value": "'text'",
+            "computed": false
+          }
+        },
+        "width": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
     }
   ],
   "src/components/Slicey/Arc/index.jsx": [

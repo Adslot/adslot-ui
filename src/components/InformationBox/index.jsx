@@ -32,6 +32,9 @@ const InformationBox = ({ children, icon, title, className, theme, dts }) => (
 InformationBox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * oneOf: 'primary', 'success', 'warning', 'error', 'light'
+   */
   theme: PropTypes.oneOf(styles),
   title: PropTypes.node,
   icon: PropTypes.node,

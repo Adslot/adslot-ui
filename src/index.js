@@ -76,6 +76,7 @@ import Toast from './components/Toast';
 import Tile from './components/Tile';
 import Pill from './components/Pill';
 import Pagination from './components/Pagination';
+import Skeleton from './components/Skeleton';
 
 export {
   Accordion,
@@ -151,4 +152,5 @@ export {
   Toast,
   Tile,
   Pill,
+  Skeleton,
 };
