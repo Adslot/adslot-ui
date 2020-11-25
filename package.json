@@ -123,7 +123,7 @@
     "prism-react-renderer": "^1.0.2",
     "prop-types": "^15.7.2",
     "react-bootstrap": "^0.31.5",
-    "react-datepicker": "github:Adslot/react-datepicker#2a1ebb8618e1996c321331ef01d290424272d126",
+    "react-datepicker": "^3.3.0",
     "react-dev-utils": "^10.2.1",
     "react-docgen": "^5.0.0",
     "react-docgen-displayname-handler": "^3.0.2",
