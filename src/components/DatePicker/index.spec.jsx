@@ -53,4 +53,41 @@ describe('<DatePicker />', () => {
     fireEvent.change(datePickerInput, { target: { value: '11 Oct 2021' } });
     expect(datePickerInput).toHaveValue('11 Oct 2020');
   });
+
+  it('should support Date object value', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <DatePicker
+        className="test"
+        dateFormat="DD MMM YYYY"
+        onChange={onChange}
+        selected={new Date('2020-10-11')}
+        dts="test"
+      />
+    );
+
+    const datePickerInput = getByClass(container, 'test');
+
+    fireEvent.change(datePickerInput, { target: { value: '12 Oct 2020' } });
+    expect(datePickerInput).toHaveValue('12 Oct 2020');
+  });
+
+  it('should disable momentjs format', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <DatePicker
+        className="test"
+        dateFormat="dd MMM yyyy"
+        onChange={onChange}
+        selected={moment('11 Oct 2020', 'DD MMM YYYY')}
+        dts="test"
+        disableMomentFormat
+      />
+    );
+
+    const datePickerInput = getByClass(container, 'test');
+
+    fireEvent.change(datePickerInput, { target: { value: '12 Oct 2020' } });
+    expect(datePickerInput).toHaveValue('12 Oct 2020');
+  });
 });
