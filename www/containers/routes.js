@@ -61,6 +61,7 @@ import PillExample from '../examples/Pill.mdx';
 import TileExample from '../examples/Tile.mdx';
 import PaginationExample from '../examples/Pagination.mdx';
 import SkeletonExample from '../examples/Skeleton.mdx';
+import ParagraphExample from '../examples/Paragraph.mdx';
 
 const routes = [
   {
@@ -439,6 +440,12 @@ const routes = [
     path: '/skeleton',
     component: SkeletonExample,
     title: 'Skeleton',
+    group: 'Components',
+  },
+  {
+    path: '/paragraph',
+    component: ParagraphExample,
+    title: 'Paragraph',
     group: 'Components',
   },
 ];

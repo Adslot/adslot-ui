@@ -1,0 +1,39 @@
+@import '~styles/color';
+
+.aui--paragraph {
+  margin: 0;
+  font-size: 14px;
+  white-space: pre-line;
+
+  .expandable-content {
+    overflow: hidden;
+
+    &.expanded {
+      max-height: 800px;
+      opacity: 1;
+      transition: 1s ease;
+    }
+
+    &.collapsed {
+      max-height: 0;
+      opacity: 0;
+      transition: .4s ease;
+    }
+  }
+
+  &-read-more {
+    padding: 4px 0;
+
+    &.aui--button.btn-link {
+      &:focus {
+        color: $color-button-link-color;
+        text-decoration: none;
+      }
+
+      &:hover,
+      :hover:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}

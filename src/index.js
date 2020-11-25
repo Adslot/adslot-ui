@@ -77,6 +77,7 @@ import Tile from './components/Tile';
 import Pill from './components/Pill';
 import Pagination from './components/Pagination';
 import Skeleton from './components/Skeleton';
+import Paragraph from './components/Paragraph';
 
 export {
   Accordion,
@@ -153,4 +154,5 @@ export {
   Tile,
   Pill,
   Skeleton,
+  Paragraph,
 };

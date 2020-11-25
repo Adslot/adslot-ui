@@ -2989,6 +2989,69 @@
       }
     }
   ],
+  "src/components/Paragraph/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Paragraph",
+      "methods": [],
+      "props": {
+        "briefWordCount": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "The maximum of word count for brief content",
+          "defaultValue": {
+            "value": "255",
+            "computed": false
+          }
+        },
+        "content": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Content inside paragraph"
+        },
+        "className": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "string"
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "Custom classnames"
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Generate \"data-test-selector\" on the paragraph"
+        },
+        "isHtml": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Define if the content is HTML type or not",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
   "src/components/Pill/index.jsx": [
     {
       "description": "",
