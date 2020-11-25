@@ -60,6 +60,7 @@ import ToastExample from '../examples/Toast.mdx';
 import PillExample from '../examples/Pill.mdx';
 import TileExample from '../examples/Tile.mdx';
 import PaginationExample from '../examples/Pagination.mdx';
+import SkeletonExample from '../examples/Skeleton.mdx';
 
 const routes = [
   {
@@ -432,6 +433,12 @@ const routes = [
     path: '/rich-text-editor',
     component: RichTextEditorExample,
     title: 'Rich Text Editor',
+    group: 'Components',
+  },
+  {
+    path: '/skeleton',
+    component: SkeletonExample,
+    title: 'Skeleton',
     group: 'Components',
   },
 ];

@@ -1,0 +1,33 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Skeleton
+
+```jsx live=true
+const Example = () => {
+  return (
+    <React.Fragment>
+      <h4>Animated Text (Default)</h4>
+      <Skeleton />
+      <h4>Half-row Text</h4>
+      <Skeleton width="50%" />
+      <h4>Circle (Avatar)</h4>
+      <Skeleton variant="circle" />
+      <h4>Rectangle</h4>
+      <Skeleton variant="rect" width="210px" height="118px" />
+      <br />
+      <h4>Static skeleton</h4>
+      <Skeleton animated={false} />
+    </React.Fragment>
+  );
+};
+render(Example);
+```
+
+<DesignNotes>
+  <p>
+    <span className="text-bold">Skeleton</span> provides a layout for loading state with a aesthetic placeholder and animation.
+  </p>
+  <p>It could be used when loading data like text, images and avatar.</p>
+</DesignNotes>
+<Props componentName="Skeleton" />
