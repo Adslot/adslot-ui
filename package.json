@@ -131,7 +131,6 @@
     "react-live": "^2.2.2",
     "react-redux": "^7.1.0",
     "react-select": "^3.0.4",
-    "react-syntax-highlighter": "^7.0.0",
     "react-test-renderer": "^16.8.6",
     "redux": "^4.0.4",
     "remark-emoji": "^2.0.2",
