@@ -40,7 +40,7 @@
       background-color: $color-background-highlighted;
     }
 
-    &.aui--btn-default {
+    &.btn-default {
       @include button-inverse($color-gray-dark);
       border-color: $color-gray-light;
 
@@ -86,7 +86,7 @@
     transform: translateY(1px);
   }
 
-  &.aui--btn-default {
+  &.btn-default {
     @include aui--button-variant($color-gray-dark, $btn-default-bg, $color-gray-light);
   }
 

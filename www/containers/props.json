@@ -656,7 +656,11 @@
             ]
           },
           "required": false,
-          "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
+          "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
         },
         "className": {
           "type": {

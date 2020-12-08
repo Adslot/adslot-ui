@@ -64,7 +64,7 @@
     border-color: $color-button-default-hover-border;
   }
 
-  &.aui--btn-default {
+  &.btn-default {
     background-color: $color-white;
     border-color: $color-gray-light;
     color: $color-gray-dark;
@@ -156,7 +156,8 @@
     }
   }
 
-  &.btn-link {
+  &.btn-link,
+  &.btn-link.btn-default {
     background-color: transparent;
     border-color: transparent;
     color: $color-button-link-color;
