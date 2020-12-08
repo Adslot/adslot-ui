@@ -683,6 +683,35 @@
           "required": false,
           "description": ""
         },
+        "target": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'_blank'",
+                "computed": false
+              },
+              {
+                "value": "'_self'",
+                "computed": false
+              },
+              {
+                "value": "'_parent'",
+                "computed": false
+              },
+              {
+                "value": "'_top'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "The target attribute specifies where to open the linked document when there is a defined 'href',\nPropTypes.oneOf(['_blank', '_self', '_parent', '_top'])",
+          "defaultValue": {
+            "value": "'_self'",
+            "computed": false
+          }
+        },
         "inverse": {
           "type": {
             "name": "bool"
