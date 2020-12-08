@@ -23,7 +23,7 @@ describe('<Button />', () => {
 
   it('should support legacy classname btn-inverse for non-breaking change', () => {
     const { getByTestId } = render(<Button className="btn-inverse">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
   });
 
   it('should support className prop', () => {
@@ -43,17 +43,17 @@ describe('<Button />', () => {
         Test
       </Button>
     );
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
   });
 
   it('should render inverse button with btn-inverse class', () => {
     const { getByTestId } = render(<Button inverse>Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
   });
 
   it('should render large button with btn-large class', () => {
     const { getByTestId } = render(<Button size="large">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-large aui--btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-large btn-default');
   });
 
   it('should support data-test-selectors', () => {
@@ -74,10 +74,5 @@ describe('<Button />', () => {
   it('should only allow bsSize medium or small on Spinner', () => {
     const { getByTestId } = render(<Button isLoading bsSize="lg" />);
     expect(getByTestId('spinner')).toHaveClass('spinner-medium');
-  });
-
-  it('should render classname with "aui--btn-default" when the style has been explicitly defined', () => {
-    const { getByTestId } = render(<Button className="btn-primary btn-inverse btn-default">Button</Button>);
-    expect(getByTestId('button-wrapper')).not.toHaveClass('aui--btn-default');
   });
 });

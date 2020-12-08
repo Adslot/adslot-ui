@@ -16,10 +16,6 @@ const Button = props => {
     {
       'btn-inverse': inverse && !/btn-inverse/.test(className),
       'btn-large': size === 'large' || _.includes(['lg', 'large'], bsSize),
-      'aui--btn-default':
-        (!bsStyle || bsStyle === 'default') &&
-        (!className ||
-          ['btn-default', 'btn-inverse', 'btn-default btn-inverse', 'btn-inverse btn-default'].includes(className)),
       [`btn-${bsStyle}`]: !_.isEmpty(bsStyle),
       'has-anchor': href,
     },
@@ -84,6 +80,7 @@ Button.defaultProps = {
   inverse: false,
   isLoading: false,
   size: 'small',
+  bsStyle: 'default',
 };
 
 export default Button;
