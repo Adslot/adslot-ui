@@ -9,7 +9,7 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const Button = props => {
-  const { bsSize, bsStyle, children, className, disabled, dts, href, inverse, isLoading, size, target } = props;
+  const { bsSize, bsStyle, children, className, disabled, dts, href, inverse, isLoading, size, target, type } = props;
   const baseClass = 'aui--button';
   const classes = classNames(
     baseClass,
@@ -49,6 +49,7 @@ const Button = props => {
       data-testid="button-wrapper"
       disabled={isLoading || disabled}
       className={classes}
+      type={type}
       {...expandDts(dts)}
       {..._.omit(props, _.keys(adslotButtonPropTypes))}
     >
@@ -83,6 +84,10 @@ const adslotButtonPropTypes = {
    * PropTypes.oneOf(['small', 'large'])
    */
   size: PropTypes.oneOf(['small', 'large']),
+  /**
+   * PropTypes.oneOf(['button', 'reset', 'submit'])
+   */
+  type: PropTypes.oneOf(['button', 'reset', 'submit']),
 };
 
 Button.propTypes = { ...adslotButtonPropTypes };
@@ -93,6 +98,7 @@ Button.defaultProps = {
   size: 'small',
   bsStyle: 'default',
   target: '_self',
+  type: 'button',
 };
 
 export default Button;
