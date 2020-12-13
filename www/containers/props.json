@@ -754,6 +754,31 @@
             "value": "'small'",
             "computed": false
           }
+        },
+        "type": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'button'",
+                "computed": false
+              },
+              {
+                "value": "'reset'",
+                "computed": false
+              },
+              {
+                "value": "'submit'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "PropTypes.oneOf(['button', 'reset', 'submit'])",
+          "defaultValue": {
+            "value": "'button'",
+            "computed": false
+          }
         }
       }
     }
