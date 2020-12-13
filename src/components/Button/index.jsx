@@ -9,7 +9,7 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 const Button = props => {
-  const { bsSize, bsStyle, children, className, disabled, dts, href, inverse, isLoading, size } = props;
+  const { bsSize, bsStyle, children, className, disabled, dts, href, inverse, isLoading, size, target } = props;
   const baseClass = 'aui--button';
   const classes = classNames(
     baseClass,
@@ -31,7 +31,13 @@ const Button = props => {
 
   const renderChildren = () =>
     href ? (
-      <a data-testid="button-anchor" className="aui--button-anchor" href={href}>
+      <a
+        data-testid="button-anchor"
+        className="aui--button-anchor"
+        href={href}
+        target={target}
+        rel="noopener noreferrer"
+      >
         {children}
       </a>
     ) : (
@@ -66,6 +72,11 @@ const adslotButtonPropTypes = {
   className: PropTypes.string,
   dts: PropTypes.string,
   href: PropTypes.string,
+  /**
+   * The target attribute specifies where to open the linked document when there is a defined 'href',
+   * PropTypes.oneOf(['_blank', '_self', '_parent', '_top'])
+   */
+  target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),
   inverse: PropTypes.bool,
   isLoading: PropTypes.bool,
   /**
@@ -81,6 +92,7 @@ Button.defaultProps = {
   isLoading: false,
   size: 'small',
   bsStyle: 'default',
+  target: '_self',
 };
 
 export default Button;
