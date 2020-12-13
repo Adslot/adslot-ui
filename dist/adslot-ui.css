@@ -3865,36 +3865,36 @@ button.close {
     background-color: #838383; }
   .btn-inverse:not([disabled]):hover, .btn-inverse:not([disabled]):active, .btn-inverse:not([disabled]):focus {
     background-color: #f3f3f3; }
-  .btn-inverse:not([disabled]).aui--btn-default {
+  .btn-inverse:not([disabled]).btn-default {
     color: #838383;
     background-color: #fff;
     border-color: #838383;
     border-color: #d3d3d3; }
-    .btn-inverse:not([disabled]).aui--btn-default:hover {
+    .btn-inverse:not([disabled]).btn-default:hover {
       color: #838383;
       background-color: #e6e6e6;
       border-color: #646464; }
-    .btn-inverse:not([disabled]).aui--btn-default:active, .btn-inverse:not([disabled]).aui--btn-default.active,
-    .open > .btn-inverse:not([disabled]).aui--btn-default.dropdown-toggle {
+    .btn-inverse:not([disabled]).btn-default:active, .btn-inverse:not([disabled]).btn-default.active,
+    .open > .btn-inverse:not([disabled]).btn-default.dropdown-toggle {
       color: #838383;
       background-color: #e6e6e6;
       background-image: none;
       border-color: #646464; }
-      .btn-inverse:not([disabled]).aui--btn-default:active:hover, .btn-inverse:not([disabled]).aui--btn-default.active:hover,
-      .open > .btn-inverse:not([disabled]).aui--btn-default.dropdown-toggle:hover {
+      .btn-inverse:not([disabled]).btn-default:active:hover, .btn-inverse:not([disabled]).btn-default.active:hover,
+      .open > .btn-inverse:not([disabled]).btn-default.dropdown-toggle:hover {
         color: #838383;
         background-color: #d4d4d4;
         border-color: #434343; }
-    .btn-inverse:not([disabled]).aui--btn-default.disabled:hover,
-    .btn-inverse:not([disabled]).aui--btn-default[disabled] .btn-inverse:not([disabled]).aui--btn-default:hover {
+    .btn-inverse:not([disabled]).btn-default.disabled:hover,
+    .btn-inverse:not([disabled]).btn-default[disabled] .btn-inverse:not([disabled]).btn-default:hover {
       background-color: #fff;
       border-color: #838383; }
-    .btn-inverse:not([disabled]).aui--btn-default .badge {
+    .btn-inverse:not([disabled]).btn-default .badge {
       color: #fff;
       background-color: #838383; }
-    .btn-inverse:not([disabled]).aui--btn-default:active, .btn-inverse:not([disabled]).aui--btn-default:active:active, .btn-inverse:not([disabled]).aui--btn-default:hover, .btn-inverse:not([disabled]).aui--btn-default:hover:active {
+    .btn-inverse:not([disabled]).btn-default:active, .btn-inverse:not([disabled]).btn-default:active:active, .btn-inverse:not([disabled]).btn-default:hover, .btn-inverse:not([disabled]).btn-default:hover:active {
       background-color: #e6e6e6; }
-    .btn-inverse:not([disabled]).aui--btn-default:hover, .btn-inverse:not([disabled]).aui--btn-default:active, .btn-inverse:not([disabled]).aui--btn-default:hover:active {
+    .btn-inverse:not([disabled]).btn-default:hover, .btn-inverse:not([disabled]).btn-default:active, .btn-inverse:not([disabled]).btn-default:hover:active {
       border-color: #d3d3d3; }
   .btn-inverse:not([disabled]).btn-primary {
     color: #006dcc;
@@ -4048,30 +4048,30 @@ button.close {
             box-shadow: none;
     -webkit-transform: translateY(1px);
             transform: translateY(1px); }
-  .btn.aui--btn-default {
+  .btn.btn-default {
     color: #838383;
     background-color: #fff;
     border-color: #d3d3d3; }
-    .btn.aui--btn-default:hover {
+    .btn.btn-default:hover {
       color: #838383;
       background-color: #e6e6e6;
       border-color: #b4b4b4; }
-    .btn.aui--btn-default:active, .btn.aui--btn-default.active,
-    .open > .btn.aui--btn-default.dropdown-toggle {
+    .btn.btn-default:active, .btn.btn-default.active,
+    .open > .btn.btn-default.dropdown-toggle {
       color: #838383;
       background-color: #e6e6e6;
       background-image: none;
       border-color: #b4b4b4; }
-      .btn.aui--btn-default:active:hover, .btn.aui--btn-default.active:hover,
-      .open > .btn.aui--btn-default.dropdown-toggle:hover {
+      .btn.btn-default:active:hover, .btn.btn-default.active:hover,
+      .open > .btn.btn-default.dropdown-toggle:hover {
         color: #838383;
         background-color: #d4d4d4;
         border-color: #939393; }
-    .btn.aui--btn-default.disabled:hover,
-    .btn.aui--btn-default[disabled] .btn.aui--btn-default:hover {
+    .btn.btn-default.disabled:hover,
+    .btn.btn-default[disabled] .btn.btn-default:hover {
       background-color: #fff;
       border-color: #d3d3d3; }
-    .btn.aui--btn-default .badge {
+    .btn.btn-default .badge {
       color: #fff;
       background-color: #838383; }
   .btn.btn-primary {
@@ -4647,21 +4647,21 @@ strong {
   .aui--button:hover {
     background-color: #e6e6e6;
     border-color: #b4b4b4; }
-  .aui--button.aui--btn-default {
+  .aui--button.btn-default {
     background-color: #fff;
     border-color: #d3d3d3;
     color: #838383; }
-    .aui--button.aui--btn-default:hover {
+    .aui--button.btn-default:hover {
       color: #838383;
       background-color: #e6e6e6;
       border-color: #b4b4b4; }
-    .aui--button.aui--btn-default:active {
+    .aui--button.btn-default:active {
       -webkit-transform: translateY(1px);
               transform: translateY(1px);
       color: #838383;
       background-color: #e6e6e6;
       border-color: #b4b4b4; }
-    .aui--button.aui--btn-default:focus {
+    .aui--button.btn-default:focus {
       background-color: #fff;
       border-color: #d3d3d3;
       color: #838383;
@@ -4712,7 +4712,7 @@ strong {
       border-color: #d43f3a;
       color: #fff;
       outline: none; }
-  .aui--button.btn-link {
+  .aui--button.btn-link, .aui--button.btn-link.btn-default {
     background-color: transparent;
     border-color: transparent;
     color: #337ab7;
@@ -4720,12 +4720,12 @@ strong {
             box-shadow: none;
     border-radius: 0;
     font-weight: 400; }
-    .aui--button.btn-link:active {
+    .aui--button.btn-link:active, .aui--button.btn-link.btn-default:active {
       -webkit-box-shadow: none;
               box-shadow: none;
       -webkit-transform: translateY(0);
               transform: translateY(0); }
-    .aui--button.btn-link:focus {
+    .aui--button.btn-link:focus, .aui--button.btn-link.btn-default:focus {
       background-color: transparent;
       border-color: transparent;
       color: #1950a3;
@@ -10539,36 +10539,36 @@ button.close {
     background-color: #838383; }
   .btn-inverse:not([disabled]):hover, .btn-inverse:not([disabled]):active, .btn-inverse:not([disabled]):focus {
     background-color: #f3f3f3; }
-  .btn-inverse:not([disabled]).aui--btn-default {
+  .btn-inverse:not([disabled]).btn-default {
     color: #838383;
     background-color: #fff;
     border-color: #838383;
     border-color: #d3d3d3; }
-    .btn-inverse:not([disabled]).aui--btn-default:hover {
+    .btn-inverse:not([disabled]).btn-default:hover {
       color: #838383;
       background-color: #e6e6e6;
       border-color: #646464; }
-    .btn-inverse:not([disabled]).aui--btn-default:active, .btn-inverse:not([disabled]).aui--btn-default.active,
-    .open > .btn-inverse:not([disabled]).aui--btn-default.dropdown-toggle {
+    .btn-inverse:not([disabled]).btn-default:active, .btn-inverse:not([disabled]).btn-default.active,
+    .open > .btn-inverse:not([disabled]).btn-default.dropdown-toggle {
       color: #838383;
       background-color: #e6e6e6;
       background-image: none;
       border-color: #646464; }
-      .btn-inverse:not([disabled]).aui--btn-default:active:hover, .btn-inverse:not([disabled]).aui--btn-default.active:hover,
-      .open > .btn-inverse:not([disabled]).aui--btn-default.dropdown-toggle:hover {
+      .btn-inverse:not([disabled]).btn-default:active:hover, .btn-inverse:not([disabled]).btn-default.active:hover,
+      .open > .btn-inverse:not([disabled]).btn-default.dropdown-toggle:hover {
         color: #838383;
         background-color: #d4d4d4;
         border-color: #434343; }
-    .btn-inverse:not([disabled]).aui--btn-default.disabled:hover,
-    .btn-inverse:not([disabled]).aui--btn-default[disabled] .btn-inverse:not([disabled]).aui--btn-default:hover {
+    .btn-inverse:not([disabled]).btn-default.disabled:hover,
+    .btn-inverse:not([disabled]).btn-default[disabled] .btn-inverse:not([disabled]).btn-default:hover {
       background-color: #fff;
       border-color: #838383; }
-    .btn-inverse:not([disabled]).aui--btn-default .badge {
+    .btn-inverse:not([disabled]).btn-default .badge {
       color: #fff;
       background-color: #838383; }
-    .btn-inverse:not([disabled]).aui--btn-default:active, .btn-inverse:not([disabled]).aui--btn-default:active:active, .btn-inverse:not([disabled]).aui--btn-default:hover, .btn-inverse:not([disabled]).aui--btn-default:hover:active {
+    .btn-inverse:not([disabled]).btn-default:active, .btn-inverse:not([disabled]).btn-default:active:active, .btn-inverse:not([disabled]).btn-default:hover, .btn-inverse:not([disabled]).btn-default:hover:active {
       background-color: #e6e6e6; }
-    .btn-inverse:not([disabled]).aui--btn-default:hover, .btn-inverse:not([disabled]).aui--btn-default:active, .btn-inverse:not([disabled]).aui--btn-default:hover:active {
+    .btn-inverse:not([disabled]).btn-default:hover, .btn-inverse:not([disabled]).btn-default:active, .btn-inverse:not([disabled]).btn-default:hover:active {
       border-color: #d3d3d3; }
   .btn-inverse:not([disabled]).btn-primary {
     color: #006dcc;
@@ -10722,30 +10722,30 @@ button.close {
             box-shadow: none;
     -webkit-transform: translateY(1px);
             transform: translateY(1px); }
-  .btn.aui--btn-default {
+  .btn.btn-default {
     color: #838383;
     background-color: #fff;
     border-color: #d3d3d3; }
-    .btn.aui--btn-default:hover {
+    .btn.btn-default:hover {
       color: #838383;
       background-color: #e6e6e6;
       border-color: #b4b4b4; }
-    .btn.aui--btn-default:active, .btn.aui--btn-default.active,
-    .open > .btn.aui--btn-default.dropdown-toggle {
+    .btn.btn-default:active, .btn.btn-default.active,
+    .open > .btn.btn-default.dropdown-toggle {
       color: #838383;
       background-color: #e6e6e6;
       background-image: none;
       border-color: #b4b4b4; }
-      .btn.aui--btn-default:active:hover, .btn.aui--btn-default.active:hover,
-      .open > .btn.aui--btn-default.dropdown-toggle:hover {
+      .btn.btn-default:active:hover, .btn.btn-default.active:hover,
+      .open > .btn.btn-default.dropdown-toggle:hover {
         color: #838383;
         background-color: #d4d4d4;
         border-color: #939393; }
-    .btn.aui--btn-default.disabled:hover,
-    .btn.aui--btn-default[disabled] .btn.aui--btn-default:hover {
+    .btn.btn-default.disabled:hover,
+    .btn.btn-default[disabled] .btn.btn-default:hover {
       background-color: #fff;
       border-color: #d3d3d3; }
-    .btn.aui--btn-default .badge {
+    .btn.btn-default .badge {
       color: #fff;
       background-color: #838383; }
   .btn.btn-primary {
