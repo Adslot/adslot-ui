@@ -53,6 +53,7 @@
 
     &.btn-primary {
       @include button-inverse($color-primary);
+      border-color: $color-border-light;
     }
 
     &.btn-success {
@@ -73,6 +74,7 @@
   }
 }
 
+.aui--button,
 .btn {
   box-shadow: 0 1px $color-border-light;
   margin-right: 5px;
@@ -136,7 +138,7 @@
 }
 
 // disable lint on next line as we need to force extra specificity to ensure disabled styles take precedence
-.btn.btn-link {
+.aui--button.btn-link {
   // sass-lint:disable-line force-element-nesting
   cursor: pointer;
   border-color: transparent;
@@ -162,7 +164,8 @@
   }
 }
 
-.btn-borderless {
+.btn-borderless,
+.btn-default.btn-borderless {
   &:not([disabled]) {
     @include aui--button-variant($color-text-light, $color-inverse, $color-white);
     box-shadow: none;
@@ -190,7 +193,7 @@
 }
 
 .btn-xs,
-.btn-group-xs > .btn {
+.btn-group-xs > .aui--button {
   font-size: $font-size-tiny;
 
   &:active {
@@ -205,7 +208,7 @@
 }
 
 .input-group-btn {
-  > .btn {
+  > .aui--button {
     padding-bottom: $padding-base-vertical - 1px;
   }
 }
