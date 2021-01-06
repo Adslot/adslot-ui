@@ -44,16 +44,12 @@ describe('<NavItem />', () => {
   });
 
   it('should trigger `setActiveKey` and `onSelect` when clicking the nav item', () => {
-    const setActiveKey = jest.fn();
     const onSelect = jest.fn();
     const { getByTestId, queryAllByTestId } = render(
-      <NavItem activeKey={0} eventKey={'event-key'} setActiveKey={setActiveKey} onSelect={onSelect} />
+      <NavItem activeKey={0} eventKey={'event-key'} onSelect={onSelect} />
     );
     expect(queryAllByTestId('nav-item-component')).toHaveLength(1);
     fireEvent.click(getByTestId('nav-item-component'));
-
-    expect(setActiveKey).toHaveBeenCalledTimes(1);
-    expect(setActiveKey).toHaveBeenCalledWith('event-key');
 
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onSelect).toHaveBeenCalledWith('event-key');
@@ -161,17 +157,9 @@ describe('<Nav />', () => {
     expect(queryAllByTestId('nav-component')).toHaveLength(1);
     expect(queryAllByTestId('nav-item-component')).toHaveLength(3);
 
-    expect(getByText('Dashboard')).toHaveClass('active');
-    expect(getByText('Reports')).not.toHaveClass('active');
-    expect(getByText('Invoicing')).not.toHaveClass('active');
-
     fireEvent.click(getByText('Reports'));
 
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onSelect).toHaveBeenCalledWith(1);
-
-    expect(getByText('Dashboard')).not.toHaveClass('active');
-    expect(getByText('Reports')).toHaveClass('active');
-    expect(getByText('Invoicing')).not.toHaveClass('active');
   });
 });
