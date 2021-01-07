@@ -14,15 +14,13 @@
 }
 
 @mixin button-inverse($color) {
-  $transformed-color: hsl(hue($color), saturation($color), 90%);
-
-  @include aui--button-variant($color, $color-inverse, $color);
+  @include aui--button-variant($color, $color-inverse, $color-gray-light);
 
   &:active,
   &:hover {
     &,
     &:active {
-      background-color: $transformed-color;
+      background-color: $color-gray-lighter;
     }
   }
 }
@@ -41,7 +39,7 @@
     }
 
     &.btn-default {
-      @include button-inverse($color-gray-dark);
+      @include button-inverse($color-gray-darker);
       border-color: $color-gray-light;
 
       &:hover,
@@ -89,7 +87,7 @@
   }
 
   &.btn-default {
-    @include aui--button-variant($color-gray-dark, $btn-default-bg, $color-gray-light);
+    @include aui--button-variant($color-gray-darker, $btn-default-bg, $color-gray-light);
   }
 
   &.btn-primary {
@@ -167,7 +165,7 @@
 .btn-borderless,
 .btn-default.btn-borderless {
   &:not([disabled]) {
-    @include aui--button-variant($color-text-light, $color-inverse, $color-white);
+    @include aui--button-variant($color-gray-darker, $color-inverse, $color-white);
     box-shadow: none;
 
     &:hover,
