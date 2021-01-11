@@ -7,10 +7,9 @@ import './styles.scss';
 
 const Nav = ({ stacked, className, onSelect, activeKey, barPosition, children, dts }) => {
   let navItems = [];
-  const [currentKey, setActiveKey] = React.useState(activeKey);
 
   React.Children.forEach(children, child => {
-    navItems.push(React.cloneElement(child, { onSelect, activeKey: currentKey, setActiveKey }));
+    navItems.push(React.cloneElement(child, { onSelect, activeKey: activeKey }));
   });
 
   return (
@@ -25,9 +24,8 @@ const Nav = ({ stacked, className, onSelect, activeKey, barPosition, children, d
   );
 };
 
-export const NavItem = ({ className, disabled, activeKey, setActiveKey, eventKey, href, onSelect, children }) => {
+export const NavItem = ({ className, disabled, activeKey, eventKey, href, onSelect, children }) => {
   const onItemClick = () => {
-    setActiveKey(eventKey);
     onSelect(eventKey);
   };
 
@@ -85,7 +83,6 @@ NavItem.propTypes = {
   onSelect: PropTypes.func,
   activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   children: PropTypes.node,
-  setActiveKey: PropTypes.func,
   /**
    * A key for each item, and can be used in onSelect
    */

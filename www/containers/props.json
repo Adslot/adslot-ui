@@ -2737,13 +2737,6 @@
           "required": false,
           "description": ""
         },
-        "setActiveKey": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
         "eventKey": {
           "type": {
             "name": "union",
