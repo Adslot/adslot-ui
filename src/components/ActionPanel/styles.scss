@@ -83,11 +83,6 @@
       align-items: center;
       justify-content: center;
       color: $color-blue;
-
-      &:focus:active,
-      &:hover:active {
-        background-color: transparent;
-      }
     }
 
     &.has-actions {
@@ -97,12 +92,19 @@
 
       .actions {
         .aui--button {
-          &:hover {
-            color: $color-blue;
+          &.close-button:hover {
+            color: $color-gray-dark;
+            background-color: $color-white;
           }
 
-          &.close-button:hover {
-            color: $color-gray-darker;
+          &:not(.close-button) {
+            color: $color-blue;
+            background-color: $color-white;
+          }
+
+          &:active,
+          &:active:hover {
+            background-color: $color-gray-lighter;
           }
 
           svg {
