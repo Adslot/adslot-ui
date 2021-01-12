@@ -55,7 +55,7 @@
   &:focus {
     background-color: $color-white;
     border-color: $color-gray-light;
-    color: $color-gray-dark;
+    color: $color-gray-darker;
     outline: none;
   }
 
@@ -67,7 +67,7 @@
   &.btn-default {
     background-color: $color-white;
     border-color: $color-gray-light;
-    color: $color-gray-dark;
+    color: $color-gray-darker;
 
     &:hover {
       color: $color-gray-dark;
@@ -77,7 +77,7 @@
 
     &:active {
       @include transform-active;
-      color: $color-gray-dark;
+      color: $color-gray-darker;
       background-color: $color-button-default-hover-background;
       border-color: $color-button-default-hover-border;
     }
@@ -85,7 +85,7 @@
     &:focus {
       background-color: $color-white;
       border-color: $color-gray-light;
-      color: $color-gray-dark;
+      color: $color-gray-darker;
       outline: none;
     }
   }
