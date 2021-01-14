@@ -110,7 +110,7 @@
     border-color: $color-button-success-border;
     color: $color-white;
 
-    &:focus {
+    &.btn-inverse &:focus {
       background-color: $color-button-success-background;
       border-color: $color-button-success-border;
       color: $color-white;
@@ -124,7 +124,7 @@
     border-color: $color-button-info-border;
     color: $color-white;
 
-    &:focus {
+    &.btn-inverse &:focus {
       background-color: $color-button-info-background;
       border-color: $color-button-info-border;
       color: $color-white;
@@ -139,7 +139,7 @@
     color: $color-white;
     cursor: not-allowed;
 
-    &:focus {
+    &.btn-inverse &:focus {
       background-color: $color-button-warning-background;
       border-color: $color-button-warning-border;
       color: $color-white;
@@ -153,7 +153,7 @@
     border-color: $color-button-danger-border;
     color: $color-white;
 
-    &:focus {
+    &.btn-inverse &:focus {
       background-color: $color-button-danger-background;
       border-color: $color-button-danger-border;
       color: $color-white;
