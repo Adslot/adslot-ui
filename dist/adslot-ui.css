@@ -4841,7 +4841,7 @@ strong {
     background-color: #5cb85c;
     border-color: #4cae4c;
     color: #fff; }
-    .aui--button.btn-success:focus, .aui--button.btn-default.btn-success:focus {
+    .aui--button.btn-success.btn-inverse .aui--button.btn-success:focus, .aui--button.btn-default.btn-success.btn-inverse .aui--button.btn-success:focus, .aui--button.btn-success.btn-inverse .aui--button.btn-default.btn-success:focus, .aui--button.btn-default.btn-success.btn-inverse .aui--button.btn-default.btn-success:focus {
       background-color: #5cb85c;
       border-color: #4cae4c;
       color: #fff;
@@ -4850,7 +4850,7 @@ strong {
     background-color: #49afcd;
     border-color: #36a5c6;
     color: #fff; }
-    .aui--button.btn-info:focus, .aui--button.btn-default.btn-info:focus {
+    .aui--button.btn-info.btn-inverse .aui--button.btn-info:focus, .aui--button.btn-default.btn-info.btn-inverse .aui--button.btn-info:focus, .aui--button.btn-info.btn-inverse .aui--button.btn-default.btn-info:focus, .aui--button.btn-default.btn-info.btn-inverse .aui--button.btn-default.btn-info:focus {
       background-color: #49afcd;
       border-color: #36a5c6;
       color: #fff;
@@ -4860,7 +4860,7 @@ strong {
     border-color: #eea236;
     color: #fff;
     cursor: not-allowed; }
-    .aui--button.btn-warning:focus, .aui--button.btn-default.btn-warning:focus {
+    .aui--button.btn-warning.btn-inverse .aui--button.btn-warning:focus, .aui--button.btn-default.btn-warning.btn-inverse .aui--button.btn-warning:focus, .aui--button.btn-warning.btn-inverse .aui--button.btn-default.btn-warning:focus, .aui--button.btn-default.btn-warning.btn-inverse .aui--button.btn-default.btn-warning:focus {
       background-color: #f0ad4e;
       border-color: #eea236;
       color: #fff;
@@ -4869,7 +4869,7 @@ strong {
     background-color: #d9534f;
     border-color: #d43f3a;
     color: #fff; }
-    .aui--button.btn-danger:focus, .aui--button.btn-default.btn-danger:focus {
+    .aui--button.btn-danger.btn-inverse .aui--button.btn-danger:focus, .aui--button.btn-default.btn-danger.btn-inverse .aui--button.btn-danger:focus, .aui--button.btn-danger.btn-inverse .aui--button.btn-default.btn-danger:focus, .aui--button.btn-default.btn-danger.btn-inverse .aui--button.btn-default.btn-danger:focus {
       background-color: #d9534f;
       border-color: #d43f3a;
       color: #fff;
