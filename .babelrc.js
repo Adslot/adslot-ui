@@ -13,7 +13,20 @@ const presets = [
   ],
 ];
 
+const env = {
+  production: {
+    plugins: ['babel-plugin-jsx-remove-data-test-id'],
+  },
+  development: {
+    plugins: ['babel-plugin-jsx-remove-data-test-id'],
+  },
+  test: {
+    plugins: [],
+  },
+};
+
 module.exports = {
   presets,
   plugins,
+  env,
 };
