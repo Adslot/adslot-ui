@@ -1,7 +1,7 @@
 const path = require('path');
 const emoji = require('remark-emoji');
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge: webpackMerge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const commonConfig = require('./webpack.config');
@@ -22,13 +22,13 @@ module.exports = webpackMerge(commonConfig, {
   entry: ['webpack-dev-server/client?/', 'webpack/hot/dev-server', paths.appIndexJs],
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
-    path: paths.appBuild,
+    path: console.log(paths.appBuild) || paths.appBuild,
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    filename: 'static/js/[id].bundle.js',
     // There are also additional JS chunk files if you use code splitting.
     chunkFilename: 'static/js/[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
@@ -36,8 +36,15 @@ module.exports = webpackMerge(commonConfig, {
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
+  cache: { type: 'filesystem' },
   module: {
     rules: [
+      {
+        enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
+        test: /\.(js|jsx)$/,
+        include: paths.appSrc,
+        use: ['eslint-loader'],
+      },
       {
         test: /\.(md|mdx)?$/,
         include: [paths.appSrc, paths.appDemo],
@@ -53,9 +60,9 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 8 * 1024 },
         },
       },
       {
@@ -85,9 +92,9 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: 'url-loader',
-        options: {
-          name: 'images/[name].[ext]',
+        type: 'asset',
+        generator: {
+          filename: 'static/media/[name].[hash:8][ext]',
         },
       },
     ],
@@ -97,7 +104,7 @@ module.exports = webpackMerge(commonConfig, {
       chunks: 'all',
       name: 'vendors',
     },
-    runtimeChunk: true,
+    runtimeChunk: 'single',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -119,5 +126,6 @@ module.exports = webpackMerge(commonConfig, {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.ProgressPlugin(),
   ],
 });

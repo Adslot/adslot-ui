@@ -1,6 +1,7 @@
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
 const postCssConfig = require('./postCssConfig');
@@ -12,7 +13,7 @@ module.exports = webpackMerge(commonConfig, {
   mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
-  devtool: 'cheap-eval-source-map',
+  devtool: 'eval-source-map',
   entry: paths.appSrc,
   output: {
     path: paths.appDist,
@@ -62,16 +63,10 @@ module.exports = webpackMerge(commonConfig, {
     strictExportPresence: true,
     rules: [
       {
-        enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
-        test: /\.(js|jsx)$/,
-        include: paths.appSrc,
-        use: ['eslint-loader'],
-      },
-      {
         test: /\.(eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 8 * 1024 },
         },
       },
       {
@@ -102,10 +97,12 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'assets/[name].[hash:8].[ext]',
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 10000 },
+        },
+        generator: {
+          filename: 'static/media/[name].[hash:8][ext]',
         },
       },
     ],
@@ -120,5 +117,6 @@ module.exports = webpackMerge(commonConfig, {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new ESLintPlugin(),
   ],
 });

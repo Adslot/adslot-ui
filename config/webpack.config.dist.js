@@ -1,10 +1,11 @@
 const emoji = require('remark-emoji');
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
 const postCssConfig = require('./postCssConfig');
@@ -82,16 +83,10 @@ module.exports = webpackMerge(commonConfig, {
         ],
       },
       {
-        enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
-        test: /\.(js|jsx)$/,
-        include: [paths.appSrc, paths.appDemo],
-        use: ['eslint-loader'],
-      },
-      {
         test: /\.(eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 8 * 1024 },
         },
       },
       {
@@ -122,10 +117,12 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]',
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 10000 },
+        },
+        generator: {
+          filename: 'static/media/[name].[hash:8][ext]',
         },
       },
     ],
@@ -133,9 +130,8 @@ module.exports = webpackMerge(commonConfig, {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        sourceMap: false,
-        cache: true,
         parallel: true,
+        extractComments: false,
         terserOptions: {
           ecma: 8,
           compress: {
@@ -149,10 +145,29 @@ module.exports = webpackMerge(commonConfig, {
           },
         },
       }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
-          parser: safePostCssParser,
-          map: false,
+      new CssMinimizerPlugin({
+        minify: (data, inputMap, minimizerOptions) => {
+          const cssnano = require('cssnano');
+          const safe = require('postcss-safe-parser');
+
+          const [[filename, input]] = Object.entries(data);
+
+          const postcssOptions = {
+            from: filename,
+            to: filename,
+            map: false,
+            parser: safe,
+          };
+
+          return cssnano()
+            .process(input, postcssOptions)
+            .then(result => {
+              return {
+                code: result.css,
+                map: result.map,
+                warnings: result.warnings(),
+              };
+            });
         },
       }),
     ],
@@ -167,5 +182,6 @@ module.exports = webpackMerge(commonConfig, {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new ESLintPlugin(),
   ],
 });

@@ -1,6 +1,0 @@
-plugins:
-  - convertStyleToAttrs: true
-  - removeAttrs:
-      attrs: 'id'
-  - inlineStyles:
-      onlyMatchedOnce: false

@@ -1,7 +1,7 @@
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -37,14 +37,14 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 function copyPublicFolder() {
   fs.copySync(paths.appPublic, buildPath, {
     dereference: true,
-    filter: file => file !== paths.appHtml,
+    filter: (file) => file !== paths.appHtml,
   });
 }
 
 function copyDemoAssets() {
   fs.copySync(paths.assetsPath, `${buildPath}/assets`, {
     dereference: true,
-    filter: file => file !== paths.appHtml,
+    filter: (file) => file !== paths.appHtml,
   });
   fs.copyFileSync(paths.redirectPath, `${buildPath}/_redirects`);
 }
@@ -59,7 +59,14 @@ function build(previousFileSizes) {
       if (err) {
         return reject(err);
       }
-      const messages = formatWebpackMessages(stats.toJson({}, true));
+
+      // https://github.com/facebook/create-react-app/issues/9880#issuecomment-746131468
+      const rawMessages = stats.toJson({ moduleTrace: false }, true);
+      const messages = formatWebpackMessages({
+        errors: rawMessages.errors.map((e) => e.message),
+        warnings: rawMessages.warnings.map((e) => e.message),
+      });
+
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
         // of the same problem, but confuse the reader with noise.
@@ -92,7 +99,7 @@ function build(previousFileSizes) {
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(buildPath)
-  .then(previousFileSizes => {
+  .then((previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     if (process.env.NODE_ENV === 'dist') fs.emptyDirSync(buildPath);
@@ -129,7 +136,7 @@ measureFileSizesBeforeBuild(buildPath)
 
       if (process.env.NODE_ENV !== 'production' || process.env.NODE_ENV !== 'dist') return;
     },
-    err => {
+    (err) => {
       console.log(chalk.red('Failed to compile.\n'));
       printBuildError(err);
       process.exit(1);

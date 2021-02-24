@@ -21,7 +21,7 @@
     "lint:prettier": "prettier-check '{src,www,config}/**/*.{js,json,jsx,mdx}'",
     "lint": "npm run lint:eslint && npm run lint:sass && npm run lint:prettier",
     "prettier": "prettier \"{src,www,config}/**/*.{js,json,jsx,mdx}\" --write",
-    "svgo": "svgo --recursive --multipass --folder=src --config=svgo-config.yml",
+    "svgo": "svgo --recursive --multipass --folder=src --config=svgo-config.js",
     "postversion": "git push -u origin $(git rev-parse --abbrev-ref HEAD) --follow-tags && npm publish && echo '…released.'",
     "preversion": "echo 'Releasing…' && ADBLOCK=true DISABLE_OPENCOLLECTIVE=true npm ci",
     "release:major": "npm version major -m 'build: release major version %s'",
