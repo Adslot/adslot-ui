@@ -47,8 +47,7 @@ a:hover {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; }
+  text-decoration: underline dotted; }
 
 b,
 strong {
@@ -6887,8 +6886,7 @@ a:hover {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; }
+  text-decoration: underline dotted; }
 
 b,
 strong {
@@ -11898,8 +11896,6 @@ strong {
       color: #ababab; }
     .aui--search-component .aui--search-component-input:-ms-input-placeholder {
       color: #ababab; }
-    .aui--search-component .aui--search-component-input::-ms-input-placeholder {
-      color: #ababab; }
     .aui--search-component .aui--search-component-input::placeholder {
       color: #ababab; }
     .aui--search-component .aui--search-component-input:active, .aui--search-component .aui--search-component-input:focus {
@@ -12247,13 +12243,13 @@ input:disabled + .aui--switch-slider::before {
     overflow: hidden; }
 
 /*!
- * Cropper.js v1.5.6
+ * Cropper.js v1.5.11
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2019-10-04T04:33:44.164Z
+ * Date: 2021-02-17T11:53:21.992Z
  */
 .cropper-container {
   direction: ltr;
@@ -12731,7 +12727,7 @@ input:disabled + .aui--switch-slider::before {
           box-sizing: border-box;
   margin-bottom: 1rem;
   padding: 8px;
-  border-radius: 1px;
+  border-radius: 4px;
   -webkit-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 15px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   display: -ms-flexbox;
@@ -12769,8 +12765,13 @@ input:disabled + .aui--switch-slider::before {
 
 .Toastify__toast-body {
   margin: auto 0;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto; }
+  padding: 6px; }
+
+.Toastify--animate {
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-duration: 0.7s;
+          animation-duration: 0.7s; }
 
 @media only screen and (max-width: 480px) {
   .Toastify__toast {
