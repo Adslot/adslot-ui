@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
@@ -12,7 +12,7 @@ module.exports = webpackMerge(commonConfig, {
   mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
-  devtool: 'cheap-eval-source-map',
+  devtool: 'eval-source-map',
   entry: paths.appSrc,
   output: {
     path: paths.appDist,
