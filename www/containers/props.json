@@ -4973,6 +4973,13 @@
           },
           "required": false,
           "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
