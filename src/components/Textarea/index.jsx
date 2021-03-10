@@ -7,8 +7,11 @@ class Textarea extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    const valueString = _.toString(this.props.value);
+
+    const charCountRemaining = this.props.maxLength - valueString.length;
     this.state = {
-      charCountRemaining: this.props.maxLength,
+      charCountRemaining,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -46,6 +49,7 @@ Textarea.propTypes = {
   maxLength: PropTypes.number,
   statusClass: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 Textarea.defaultProps = {

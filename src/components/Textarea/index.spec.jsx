@@ -16,6 +16,12 @@ describe('<Textarea />', () => {
     expect(getByTestId('textarea-span')).toHaveClass('someclass');
   });
 
+  it('should render a countdown span when maxLength is specified with a value', () => {
+    const { getByTestId } = render(<Textarea maxLength={120} statusClass="someclass" value="test" />);
+    expect(getByTestId('textarea-span')).toHaveTextContent('116 characters remaining');
+    expect(getByTestId('textarea-span')).toHaveClass('someclass');
+  });
+
   it('should give additional className to the textarea', () => {
     const { getByTestId } = render(<Textarea maxLength={120} className="someclass" />);
     expect(getByTestId('textarea-area')).toHaveClass('form-control someclass');
