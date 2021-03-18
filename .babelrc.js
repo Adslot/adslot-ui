@@ -20,6 +20,9 @@ const env = {
   development: {
     plugins: ['babel-plugin-jsx-remove-data-test-id'],
   },
+  dist: {
+    plugins: ['babel-plugin-jsx-remove-data-test-id'],
+  },
   test: {
     plugins: [],
   },

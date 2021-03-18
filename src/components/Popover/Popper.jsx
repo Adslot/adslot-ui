@@ -19,8 +19,6 @@ export const renderArrowStyles = (placement, arrowStyles, container = null) => {
   const verticalPosition =
     _.get(container, 'clientHeight') >= DEFAULT_ARROW_POSITION * 2 ? DEFAULT_ARROW_POSITION : null;
 
-  // console.log(horizontalPosition);
-  // console.log(_.get(container, 'clientWidth'));
   let calculatedArrowStyles = {};
   switch (true) {
     case _.includes(['bottom-start', 'top-start'], placement) && !_.isNull(horizontalPosition):
@@ -64,22 +62,25 @@ const Popper = ({
     if (popperElement && popperRef) popperRef(popperElement);
   }, [popperRef, popperElement]);
 
+  // react-popper not using subsequent settings to overwrite preceding ones
+  const defaultModifiers = [{ name: 'arrow', options: { element: arrowElement } }];
+  if (!_.find(modifiers, { name: 'offset' }))
+    defaultModifiers.push({
+      name: 'offset',
+      options: {
+        offset: [0, 6],
+      },
+    });
+  if (!_.find(modifiers, { name: 'flip' }))
+    defaultModifiers.push({
+      name: 'flip',
+      options: {
+        altBoundary: true,
+      },
+    });
+
   const { styles, attributes, update } = usePopper(refElement, popperElement, {
-    modifiers: [
-      { name: 'arrow', options: { element: arrowElement } },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 6],
-        },
-      },
-      {
-        name: 'flip',
-        options: {
-          altBoundary: true,
-        },
-      },
-    ].concat(modifiers),
+    modifiers: defaultModifiers.concat(modifiers),
     placement: popperPlacement,
     wrapperStyles,
   });
@@ -102,7 +103,7 @@ const Popper = ({
           </div>
         ) : null}
         <div data-testid="popover-content" className="popover-content">
-          {_.isFunction(popoverContent) ? popoverContent({ scheduleUpdate: update }) : popoverContent}
+          {_.isFunction(popoverContent) ? popoverContent({ update }) : popoverContent}
         </div>
       </div>
       <div
