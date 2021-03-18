@@ -5,101 +5,75 @@ import Popover from '../Popover';
 import PopoverLinkItem from './PopoverLinkItem';
 import './styles.scss';
 
-export class HoverDropdownMenuComponent extends React.PureComponent {
-  static propTypes = {
-    /**
-     * Determine the placement of the popover
-     */
-    arrowPosition: PropTypes.oneOf(['left', 'right']),
-    /**
-     * If set to empty string, header will not be rendered.
-     */
-    headerText: PropTypes.string,
-    hoverComponent: PropTypes.element.isRequired,
-    children: PropTypes.node,
-  };
+const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children }) => {
+  const [popperNode, setPopperNode] = React.useState(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [mouseInPopover, setMouseInPopover] = React.useState(false);
 
-  static defaultProps = {
-    arrowPosition: 'left',
-    headerText: '',
-  };
+  const closeMenu = _.debounce(() => {
+    setIsOpen(false);
+  }, 100);
 
-  constructor(props) {
-    super(props);
+  const popoverEnterHandler = React.useCallback(() => setMouseInPopover(true), [setMouseInPopover]);
+  const popoverLeaveHandler = React.useCallback(() => {
+    setMouseInPopover(false);
+    closeMenu();
+  }, [setMouseInPopover, closeMenu]);
 
-    this.popperNode = null;
-
-    this.closeMenu = _.debounce(() => {
-      if (!this.state.mouseInPopover) {
-        this.setState({
-          isOpen: false,
-        });
-      }
-    }, 100);
-  }
-
-  state = {
-    isOpen: true,
-    mouseInPopover: false,
-  };
-
-  componentDidUpdate() {
-    if (this.popperNode) {
-      this.popperNode.addEventListener('mouseenter', this.popoverEnterHandler);
-      this.popperNode.addEventListener('mouseleave', this.popoverLeaveHandler);
+  React.useEffect(() => {
+    if (popperNode) {
+      popperNode.addEventListener('mouseenter', popoverEnterHandler);
+      popperNode.addEventListener('mouseleave', popoverLeaveHandler);
     }
-  }
+  }, [popperNode, popoverEnterHandler, popoverLeaveHandler]);
 
-  openMenu = () => {
-    this.setState({
-      isOpen: true,
-      mouseInPopover: false,
-    });
+  const openMenu = () => {
+    setIsOpen(true);
+    setMouseInPopover(false);
   };
 
-  popoverEnterHandler = () => {
-    this.setState({
-      mouseInPopover: true,
-    });
-  };
+  const element = (
+    <div data-testid="hover-dropdown-element" onMouseEnter={openMenu} onMouseLeave={closeMenu}>
+      {hoverComponent}
+    </div>
+  );
 
-  popoverLeaveHandler = () => {
-    this.setState({ mouseInPopover: false }, this.closeMenu);
-  };
+  return (
+    <div data-testid="hover-dropdown-wrapper" className="hover-dropdown">
+      {children && children.length > 0 ? (
+        <Popover
+          placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}
+          triggers={['disabled']}
+          isOpen={isOpen || mouseInPopover}
+          title={headerText}
+          popoverContent={<ul className="list-unstyled">{children}</ul>}
+          popperRef={setPopperNode}
+        >
+          {element}
+        </Popover>
+      ) : null}
+    </div>
+  );
+};
 
-  innerRefFunc = node => {
-    this.popperNode = node;
-  };
+HoverDropdownMenu.propTypes = {
+  /**
+   * Determine the placement of the popover
+   */
+  arrowPosition: PropTypes.oneOf(['left', 'right']),
+  /**
+   * If set to empty string, header will not be rendered.
+   */
+  headerText: PropTypes.string,
+  hoverComponent: PropTypes.element.isRequired,
+  children: PropTypes.node,
+};
 
-  render() {
-    const { arrowPosition, headerText, hoverComponent, children } = this.props;
+HoverDropdownMenu.defaultProps = {
+  arrowPosition: 'left',
+  headerText: '',
+};
 
-    const element = (
-      <div data-testid="hover-dropdown-element" onMouseEnter={this.openMenu} onMouseLeave={this.closeMenu}>
-        {hoverComponent}
-      </div>
-    );
+HoverDropdownMenu.Item = PopoverLinkItem;
 
-    return (
-      <div data-testid="hover-dropdown-wrapper" className="hover-dropdown">
-        {children && children.length > 0 ? (
-          <Popover
-            placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}
-            triggers={['disabled']}
-            isOpen={this.state.isOpen}
-            title={headerText}
-            popoverContent={<ul className="list-unstyled">{children}</ul>}
-            onMouseEnter={this.openMenu}
-            popperRef={this.innerRefFunc}
-          >
-            {element}
-          </Popover>
-        ) : null}
-      </div>
-    );
-  }
-}
-
-HoverDropdownMenuComponent.Item = PopoverLinkItem;
-
-export default HoverDropdownMenuComponent;
+export default HoverDropdownMenu;

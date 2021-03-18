@@ -28,42 +28,38 @@ const WithRef = ({
 
   if (!isOpen) return null;
 
-  return (
-    <React.Fragment>
-      {ReactDOM.createPortal(
-        <Popper
-          refElement={refElement}
-          placement={placement}
-          modifiers={modifiers}
-          boundariesElement={boundariesElement}
-          popoverClass={popoverClass}
-          wrapperStyles={wrapperStyles}
-          dts={dts}
-          title={title}
-          popoverContent={popoverContent}
-          arrowStyles={arrowStyles}
-          innerRef={popperRef}
-        />,
-        boundariesElement
-      )}
-    </React.Fragment>
+  return ReactDOM.createPortal(
+    <Popper
+      refElement={refElement}
+      popoverClass={popoverClass}
+      wrapperStyles={wrapperStyles}
+      dts={dts}
+      title={title}
+      popoverContent={popoverContent}
+      boundariesElement={boundariesElement}
+      arrowStyles={arrowStyles}
+      placement={placement}
+      modifiers={modifiers}
+      popperRef={popperRef}
+    />,
+    boundariesElement
   );
 };
 
 WithRef.propTypes = {
-  refElement: PropTypes.instanceOf(Element).isRequired,
+  refElement: PropTypes.instanceOf(Element),
   title: PropTypes.string,
   theme: PropTypes.oneOf(themes),
   popoverClassNames: PropTypes.string,
   getContainer: PropTypes.func,
   arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  modifiers: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
   placement: PropTypes.oneOf(popoverPlacements),
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   isOpen: PropTypes.bool,
-  dts: PropTypes.string,
   popperRef: PropTypes.func,
+  dts: PropTypes.string,
 };
 
 WithRef.defaultProps = {
@@ -71,4 +67,4 @@ WithRef.defaultProps = {
   placement: 'auto',
 };
 
-export default WithRef;
+export default React.memo(WithRef);
