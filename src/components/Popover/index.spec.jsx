@@ -174,6 +174,36 @@ describe('<Popover />', () => {
     expect(getByTestId('popover-test-content')).toHaveTextContent('test');
   });
 
+  it('should set up modifiers for a popover', () => {
+    const { getByTestId } = render(
+      <div>
+        <Popover
+          id="popover-example"
+          popoverContent={() => <div data-testid="popover-test-content">test</div>}
+          placement="bottom"
+          modifiers={[
+            {
+              name: 'offset',
+              options: {
+                offset: [0, 8],
+              },
+            },
+            {
+              name: 'flip',
+              options: {
+                altBoundary: false,
+              },
+            },
+          ]}
+          isOpen
+        >
+          Test message
+        </Popover>
+      </div>
+    );
+    expect(getByTestId('popover-test-content')).toHaveTextContent('test');
+  });
+
   describe('triggers', () => {
     it('should register event handlers for multiple triggers', () => {
       const { getByTestId, queryAllByTestId } = render(
