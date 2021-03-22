@@ -3202,6 +3202,19 @@
             "computed": false
           }
         },
+        "strategy": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverStrategies"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'absolute'",
+            "computed": false
+          }
+        },
         "popoverContent": {
           "type": {
             "name": "union",
@@ -3330,6 +3343,15 @@
             "name": "enum",
             "computed": true,
             "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": ""
+        },
+        "strategy": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverStrategies"
           },
           "required": false,
           "description": ""

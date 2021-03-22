@@ -3,7 +3,7 @@ import _ from 'lodash';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { themes, popoverPlacements } from './constants';
+import { themes, popoverPlacements, popoverStrategies } from './constants';
 import WithRef from './WithRef';
 import './styles.scss';
 
@@ -66,6 +66,7 @@ const Popover = props => {
         getContainer={props.getContainer}
         arrowStyles={props.arrowStyles}
         placement={props.placement}
+        strategy={props.strategy}
         modifiers={props.modifiers}
         isOpen={isPopoverOpen}
         popperRef={popperRef}
@@ -86,6 +87,7 @@ Popover.propTypes = {
   wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
   placement: PropTypes.oneOf(popoverPlacements),
+  strategy: PropTypes.oneOf(popoverStrategies),
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   children: PropTypes.node.isRequired,
   triggers: PropTypes.oneOfType([triggerPropTypes, PropTypes.arrayOf(triggerPropTypes)]),
@@ -98,6 +100,7 @@ Popover.propTypes = {
 Popover.defaultProps = {
   theme: 'light',
   placement: 'auto',
+  strategy: 'absolute',
   triggers: 'hover',
   isOpen: false,
 };
