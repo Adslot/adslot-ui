@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Popper from './Popper';
-import { themes, popoverPlacements } from './constants';
+import { themes, popoverPlacements, popoverStrategies } from './constants';
 import './styles.scss';
 
 const WithRef = ({
@@ -17,6 +17,7 @@ const WithRef = ({
   modifiers,
   wrapperStyles,
   placement,
+  strategy,
   isOpen,
   arrowStyles,
   getContainer,
@@ -39,6 +40,7 @@ const WithRef = ({
       boundariesElement={boundariesElement}
       arrowStyles={arrowStyles}
       placement={placement}
+      strategy={strategy}
       modifiers={modifiers}
       popperRef={popperRef}
     />,
@@ -56,6 +58,7 @@ WithRef.propTypes = {
   wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
   placement: PropTypes.oneOf(popoverPlacements),
+  strategy: PropTypes.oneOf(popoverStrategies),
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   isOpen: PropTypes.bool,
   popperRef: PropTypes.func,

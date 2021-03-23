@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { usePopper } from 'react-popper';
-import { popoverPlacements } from './constants';
+import { popoverPlacements, popoverStrategies } from './constants';
 
 // default arrow position in pixel from the corresponding popover edge
 const DEFAULT_ARROW_POSITION = 12;
@@ -47,6 +47,7 @@ const Popper = ({
   arrowStyles,
   dts,
   placement: popperPlacement,
+  strategy,
   popoverClass,
   popoverContent,
   title,
@@ -82,7 +83,8 @@ const Popper = ({
   const { styles, attributes, update } = usePopper(refElement, popperElement, {
     modifiers: defaultModifiers.concat(modifiers),
     placement: popperPlacement,
-    wrapperStyles,
+    strategy,
+    ...wrapperStyles,
   });
 
   const calculatedArrowStyles = renderArrowStyles(popperPlacement, arrowStyles, popperElement);
@@ -123,6 +125,7 @@ Popper.propTypes = {
   dts: PropTypes.string,
   modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
   placement: PropTypes.oneOf(popoverPlacements),
+  strategy: PropTypes.oneOf(popoverStrategies),
   popoverClass: PropTypes.string,
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   refElement: PropTypes.instanceOf(Element),
