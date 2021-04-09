@@ -8,11 +8,20 @@ describe('<Spinner />', () => {
   it('should render with defaults', () => {
     const { getByTestId } = render(<Spinner />);
     expect(getByTestId('spinner-wrapper')).toHaveClass('spinner-component');
-    expect(getByTestId('spinner')).toHaveClass('spinner spinner-large spinner-colour-style-default');
+    expect(getByTestId('spinner')).toHaveClass('spinner');
+    expect(getByTestId('spinner')).toHaveClass('spinner-large');
   });
 
-  it('should render small with primary style', () => {
-    const { getByTestId } = render(<Spinner size="small" colourStyle="primary" />);
-    expect(getByTestId('spinner')).toHaveClass('spinner spinner-small spinner-colour-style-primary');
+  it('should render with custom className', () => {
+    const { getByTestId } = render(<Spinner className="custom-spinner-style" />);
+    expect(getByTestId('spinner-wrapper')).toHaveClass('custom-spinner-style');
+  });
+
+  it('should render different size of spinner', () => {
+    const { getByTestId, rerender } = render(<Spinner size="small" />);
+    expect(getByTestId('spinner')).toHaveClass('spinner-small');
+
+    rerender(<Spinner size="medium" />);
+    expect(getByTestId('spinner')).toHaveClass('spinner-medium');
   });
 });
