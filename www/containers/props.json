@@ -4196,6 +4196,13 @@
       "displayName": "Spinner",
       "methods": [],
       "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
         "size": {
           "type": {
             "name": "enum",
@@ -4215,20 +4222,9 @@
             ]
           },
           "required": false,
-          "description": "oneOf: 'large', medium', 'small'",
+          "description": "Size of the spinner should be one of: 'large' (40x40px), 'medium' (30x30px), 'small' (16x16px)",
           "defaultValue": {
             "value": "'large'",
-            "computed": false
-          }
-        },
-        "colourStyle": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'default'",
             "computed": false
           }
         }

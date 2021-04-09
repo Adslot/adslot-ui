@@ -11,6 +11,10 @@
     animation: rotation 1.1s infinite linear;
     border-radius: 100%;
     border-style: solid;
+    border-bottom-color: $color-spinner;
+    border-left-color: $color-spinner;
+    border-right-color: $color-spinner;
+    border-top-color: $color-spinner-light;
     display: inline-block;
 
     &-small {
@@ -21,21 +25,14 @@
 
     &-medium {
       border-width: 3px;
-      height: 24px;
-      width: 24px;
+      height: 30px;
+      width: 30px;
     }
 
     &-large {
-      border-width: 6px;
-      height: 60px;
-      width: 60px;
-    }
-
-    &-colour-style-default {
-      border-bottom-color: $color-spinner;
-      border-left-color: $color-spinner;
-      border-right-color: $color-spinner;
-      border-top-color: $color-spinner-light;
+      border-width: 3px;
+      height: 40px;
+      width: 40px;
     }
 
     @keyframes rotation {
