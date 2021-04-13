@@ -19,8 +19,6 @@ module.exports = {
     extensions: ['.js', '.json', '.jsx'],
 
     alias: {
-      'adslot-ui': `${paths.appSrc}`,
-      lib: `${paths.appSrc}/lib/`,
       styles: `${paths.appSrc}/styles/`,
     },
   },

@@ -1,6 +1,6 @@
 import React from 'react';
-import { SvgSymbol } from 'adslot-ui';
 import { Link } from 'react-router-dom';
+import { SvgSymbol } from '../../src';
 
 const NotFound = () => (
   <div className="page-not-found">

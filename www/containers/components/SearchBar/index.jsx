@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Search } from 'adslot-ui';
+import { Search } from '../../../../src';
 import './styles.scss';
 
 const SearchBarComponent = ({ onSearch }) => (

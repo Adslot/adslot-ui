@@ -5,8 +5,8 @@ import Modal from 'react-bootstrap/lib/Modal';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import ProgressBar from 'react-bootstrap/lib/ProgressBar';
 
-import 'styles/_bootstrap-custom.scss';
-import 'styles/_icheck-custom.scss';
+import './styles/_bootstrap-custom.scss';
+import './styles/_icheck-custom.scss';
 
 import Button from './components/Button';
 import Popover from './components/Popover';
