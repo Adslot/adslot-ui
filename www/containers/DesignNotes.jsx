@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InformationBox } from 'adslot-ui';
+import { InformationBox } from '../../src';
 
 function DesignNotes({ children }) {
   return (

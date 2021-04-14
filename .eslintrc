@@ -8,6 +8,11 @@
   "settings": {
     "lodash": {
       "version": 4
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
     }
   },
   "rules": {
