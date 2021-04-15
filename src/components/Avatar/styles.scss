@@ -21,9 +21,14 @@ $diameter: 35px;
   vertical-align: middle;
   width: $diameter;
 
+  &-image-placeholder {
+    background-color: transparent;
+  }
+
   &-image {
     border-radius: $border-radius-circle;
     height: 100%;
+    width: 100%;
     left: 0;
     position: absolute;
     top: 0;

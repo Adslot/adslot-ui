@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
@@ -7,7 +8,11 @@ const baseClass = 'avatar-component';
 const Avatar = ({ color, givenName, tooltip, image, surname }) => (
   <div
     data-testid="avatar-wrapper"
-    className={color ? `${baseClass} ${baseClass}-${color}` : baseClass}
+    className={classnames([
+      baseClass,
+      { [`${baseClass}-${color}`]: color && !image },
+      { [`${baseClass}-image-placeholder`]: image },
+    ])}
     title={tooltip !== undefined ? tooltip : `${givenName || ''} ${surname || ''}`}
   >
     {image ? <img data-testid="avatar-image" className={`${baseClass}-image`} src={image} alt="presentation" /> : null}

@@ -4,10 +4,10 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ## User List Picker
 
 ```jsx live=true
-const avatarColor = () => 'cyan';
+const avatarColor = user => (user.avatar ? '' : 'cyan');
 const emptySvgSymbol = <SvgSymbol href="./assets/svg-symbols.svg#checklist-incomplete" />;
 const teamMember1 = {
-  avatar: '//lorempixel.com/35/35/people/7',
+  avatar: '../assets/user-avatar.jpeg',
   givenName: 'John',
   id: 1,
   surname: 'Smith',
