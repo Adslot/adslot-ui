@@ -4741,6 +4741,10 @@ strong {
           animation: rotation 1.1s infinite linear;
   border-radius: 100%;
   border-style: solid;
+  border-bottom-color: #838383;
+  border-left-color: #838383;
+  border-right-color: #838383;
+  border-top-color: #d3d3d3;
   display: inline-block; }
   .spinner-component .spinner-small {
     border-width: 2px;
@@ -4748,17 +4752,12 @@ strong {
     width: 16px; }
   .spinner-component .spinner-medium {
     border-width: 3px;
-    height: 24px;
-    width: 24px; }
+    height: 30px;
+    width: 30px; }
   .spinner-component .spinner-large {
-    border-width: 6px;
-    height: 60px;
-    width: 60px; }
-  .spinner-component .spinner-colour-style-default {
-    border-bottom-color: #838383;
-    border-left-color: #838383;
-    border-right-color: #838383;
-    border-top-color: #d3d3d3; }
+    border-width: 3px;
+    height: 40px;
+    width: 40px; }
 
 @-webkit-keyframes rotation {
   from {
@@ -5248,9 +5247,12 @@ strong {
   text-transform: uppercase;
   vertical-align: middle;
   width: 35px; }
+  .avatar-component-image-placeholder {
+    background-color: transparent; }
   .avatar-component-image {
     border-radius: 50%;
     height: 100%;
+    width: 100%;
     left: 0;
     position: absolute;
     top: 0; }
