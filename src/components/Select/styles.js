@@ -1,4 +1,4 @@
-const borderColour = '#ababab';
+const borderColor = '#ababab';
 
 const defaultStyle = {
   option: (styles, { isFocused, isSelected, isDisabled }) => {
@@ -32,8 +32,8 @@ const defaultStyle = {
     ...(state.isFocused
       ? {
           boxShadow: 0,
-          ':hover': { borderColor: borderColour },
-          borderColor: borderColour,
+          ':hover': { borderColor },
+          borderColor,
         }
       : {}),
     minHeight: 26,

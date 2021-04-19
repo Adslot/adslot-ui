@@ -23,7 +23,7 @@
   @include size(200);
   @include size(250);
 
-  // Colours. Classes look like `.aui--svg-symbol-component-gray-light`.
+  // Colors. Classes look like `.aui--svg-symbol-component-gray-light`.
   @include fill('color-disabled', $color-gray-light);
   @include fill('cyan-dark', $color-cyan-dark);
   @include fill('gray', $color-gray);
