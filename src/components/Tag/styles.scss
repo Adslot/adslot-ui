@@ -24,7 +24,7 @@
   line-height: 0;
 
   &.tag-component-inverse {
-    // explicit .tag-component to force override of `.accent-n` inverse bg/fill colours
+    // explicit .tag-component to force override of `.accent-n` inverse bg/fill colors
     background-color: $color-tag-inverse;
     border-left: 4px solid;
     color: $color-text-light;
