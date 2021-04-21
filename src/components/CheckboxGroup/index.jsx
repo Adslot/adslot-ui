@@ -51,7 +51,7 @@ CheckboxGroup.propTypes = {
   /**
    * string array of checked values
    */
-  value: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   /**
    * checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]
    */
