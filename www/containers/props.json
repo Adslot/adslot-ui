@@ -1200,7 +1200,15 @@
           "type": {
             "name": "arrayOf",
             "value": {
-              "name": "string"
+              "name": "union",
+              "value": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "number"
+                }
+              ]
             }
           },
           "required": true,
