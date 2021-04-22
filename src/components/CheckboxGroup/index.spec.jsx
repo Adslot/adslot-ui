@@ -1,8 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-
 import Checkbox from '../Checkbox';
-
 import CheckboxGroup from '.';
 
 afterEach(cleanup);
@@ -59,5 +57,23 @@ describe('<CheckboxGroup />', () => {
       </CheckboxGroup>
     );
     expect(console.error).toHaveBeenCalledWith("ERROR: CheckboxGroup's children should be an array of Checkbox");
+  });
+
+  it('should return null if there is no children', () => {
+    const { queryAllByTestId } = render(<CheckboxGroup name="movies" value={['test']} onChange={jest.fn()} />);
+    expect(queryAllByTestId('checkbox-group-wrapper')).toHaveLength(0);
+  });
+
+  it('should return null if there is a boolean child', () => {
+    console.error = jest.fn();
+    const { queryAllByTestId } = render(
+      <CheckboxGroup name="movies" value={['test']} onChange={jest.fn()}>
+        {false && <Checkbox label="The Terminator" value="terminator" />}
+        <Checkbox label="Predator" value="predator" />
+      </CheckboxGroup>
+    );
+
+    expect(queryAllByTestId('checkbox-group-wrapper')).toHaveLength(1);
+    expect(console.error).toHaveBeenCalledTimes(0);
   });
 });

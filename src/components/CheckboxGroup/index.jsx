@@ -16,6 +16,8 @@ const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onCh
 
   const renderChildren = () =>
     React.Children.map(children, child => {
+      if (!child) return null;
+
       if (child.type === Checkbox) {
         const childProps = {
           ...child.props,
@@ -34,11 +36,11 @@ const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onCh
     });
   const classNames = classnames(['checkbox-group-component', className]);
 
-  return (
+  return children ? (
     <div data-testid="checkbox-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
       {renderChildren()}
     </div>
-  );
+  ) : null;
 };
 
 CheckboxGroup.propTypes = {
