@@ -1862,6 +1862,13 @@
       "displayName": "HoverDropdownMenu",
       "methods": [],
       "props": {
+        "popoverClassNames": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "allow more styling for popover"
+        },
         "arrowPosition": {
           "type": {
             "name": "enum",
@@ -1872,6 +1879,10 @@
               },
               {
                 "value": "'right'",
+                "computed": false
+              },
+              {
+                "value": "'none'",
                 "computed": false
               }
             ]
@@ -1896,7 +1907,7 @@
         },
         "hoverComponent": {
           "type": {
-            "name": "element"
+            "name": "node"
           },
           "required": true,
           "description": ""

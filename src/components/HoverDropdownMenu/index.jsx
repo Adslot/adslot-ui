@@ -5,7 +5,7 @@ import Popover from '../Popover';
 import PopoverLinkItem from './PopoverLinkItem';
 import './styles.scss';
 
-const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children }) => {
+const HoverDropdownMenu = ({ arrowPosition, headerText, popoverClassNames, hoverComponent, children }) => {
   const [popperNode, setPopperNode] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [mouseInPopover, setMouseInPopover] = React.useState(false);
@@ -38,16 +38,32 @@ const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children
     </div>
   );
 
+  let placement;
+  switch (arrowPosition) {
+    case 'left':
+      placement = 'bottom-start';
+      break;
+    case 'right':
+      placement = 'bottom-end';
+      break;
+    case 'none':
+    default:
+      placement = 'bottom';
+      break;
+  }
+
   return (
     <div data-testid="hover-dropdown-wrapper" className="hover-dropdown">
-      {children && children.length > 0 ? (
+      {children ? (
         <Popover
-          placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}
+          popoverClassNames={popoverClassNames}
+          placement={placement}
           triggers={['disabled']}
           isOpen={isOpen || mouseInPopover}
           title={headerText}
           popoverContent={<ul className="list-unstyled">{children}</ul>}
           popperRef={setPopperNode}
+          arrowStyles={arrowPosition === 'none' ? { display: 'none' } : null}
         >
           {element}
         </Popover>
@@ -58,14 +74,18 @@ const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children
 
 HoverDropdownMenu.propTypes = {
   /**
+   * allow more styling for popover
+   */
+  popoverClassNames: PropTypes.string,
+  /**
    * Determine the placement of the popover
    */
-  arrowPosition: PropTypes.oneOf(['left', 'right']),
+  arrowPosition: PropTypes.oneOf(['left', 'right', 'none']),
   /**
    * If set to empty string, header will not be rendered.
    */
   headerText: PropTypes.string,
-  hoverComponent: PropTypes.element.isRequired,
+  hoverComponent: PropTypes.node.isRequired,
   children: PropTypes.node,
 };
 
