@@ -9,7 +9,7 @@ const Example = () => {
 
   return (
     <React.Fragment>
-      <ButtonGroup bsStyle="success">
+      <ButtonGroup theme="success">
         <Button>Approve</Button>
         <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
           <Button className="svg-icon">
@@ -17,7 +17,7 @@ const Example = () => {
           </Button>
         </Popover>
       </ButtonGroup>
-      <ButtonGroup bsStyle="danger" inverse={true}>
+      <ButtonGroup theme="danger" inverse={true}>
         <Button>Reject</Button>
         <Popover
           triggers="disabled"
@@ -31,13 +31,13 @@ const Example = () => {
           </Button>
         </Popover>
       </ButtonGroup>
-      <ButtonGroup bsStyle="primary">
+      <ButtonGroup theme="primary">
         <Button>Sign off</Button>
         <Button className="svg-icon" onClick={() => alert('>I am a Alert on click!')}>
           <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />
         </Button>
       </ButtonGroup>
-      <ButtonGroup bsStyle="warning" inverse={true} disabled={true}>
+      <ButtonGroup theme="warning" inverse={true} disabled={true}>
         <Button>Disabled</Button>
         <Button className="svg-icon">
           <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />

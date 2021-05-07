@@ -69,7 +69,8 @@ class TreePickerNodeComponent extends React.PureComponent {
           {selected ? (
             <GridCell classSuffixes={['button']} dts="button-remove">
               <Button
-                className="btn-inverse button-xs"
+                className="button-xs"
+                inverse
                 onClick={this.handleRemove}
                 disabled={disabled || node.isSelectable === false}
               >
@@ -97,7 +98,8 @@ class TreePickerNodeComponent extends React.PureComponent {
           {!selected ? (
             <GridCell classSuffixes={['button']} dts="button-add">
               <Button
-                className="btn-inverse button-xs"
+                className="button-xs"
+                inverse
                 onClick={this.handleInclude}
                 disabled={disabled || node.isSelectable === false || this.state.isLoading}
               >

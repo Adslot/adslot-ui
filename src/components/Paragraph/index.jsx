@@ -40,7 +40,7 @@ const Paragraph = ({ briefWordCount, content, className, dts, isHtml }) => {
       {paragraphWordCount > briefWordCount && (
         <Button
           data-testid="paragraph-read-more-button"
-          bsStyle="link"
+          theme="link"
           className={`${baseClass}-read-more`}
           onClick={toggleReadMore}
         >
