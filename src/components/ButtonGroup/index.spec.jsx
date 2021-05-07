@@ -18,8 +18,8 @@ describe('<ButtonGroup />', () => {
 
   it('should override child Button style', () => {
     const { queryAllByTestId } = render(
-      <ButtonGroup bsStyle="link" inverse>
-        <Button bsStyle="primary">Test1</Button>
+      <ButtonGroup theme="link" inverse>
+        <Button theme="primary">Test1</Button>
         <Button inverse={false}>Test2</Button>
       </ButtonGroup>
     );
@@ -30,7 +30,7 @@ describe('<ButtonGroup />', () => {
   it('should disable child buttons', () => {
     const { queryAllByTestId } = render(
       <ButtonGroup disabled>
-        <Button bsStyle="primary">Test1</Button>
+        <Button theme="primary">Test1</Button>
         <Button inverse={false}>Test2</Button>
       </ButtonGroup>
     );
@@ -40,10 +40,10 @@ describe('<ButtonGroup />', () => {
 
   it('should inject props to Button at any nested level', () => {
     const { getByTestId } = render(
-      <ButtonGroup disabled bsSize="large">
+      <ButtonGroup disabled size="large">
         <div>
           <div>foo</div>
-          <Button bsStyle="primary">Test1</Button>
+          <Button theme="primary">Test1</Button>
         </div>
       </ButtonGroup>
     );

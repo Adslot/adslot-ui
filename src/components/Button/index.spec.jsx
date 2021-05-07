@@ -10,22 +10,6 @@ describe('<Button />', () => {
     expect(queryAllByTestId('button-wrapper')).toHaveLength(1);
   });
 
-  it('should support legacy Bootstrap Button props for non-breaking change', () => {
-    const { getByTestId } = render(
-      <Button bsStyle="link" href="example.com">
-        Test
-      </Button>
-    );
-
-    expect(getByTestId('button-wrapper')).toHaveClass('btn-link');
-    expect(getByTestId('button-anchor')).toHaveAttribute('href', 'example.com');
-  });
-
-  it('should support legacy classname btn-inverse for non-breaking change', () => {
-    const { getByTestId } = render(<Button className="btn-inverse">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
-  });
-
   it('should support className prop', () => {
     const { getByTestId } = render(<Button className="all the-classes">Test</Button>);
     expect(getByTestId('button-wrapper')).toHaveClass('aui--button all the-classes');
@@ -37,16 +21,12 @@ describe('<Button />', () => {
     expect(getByTestId('button-wrapper')).toHaveAttribute('id', 'button-id');
   });
 
-  it('should not duplicate btn-inverse class if both legacy and new are used', () => {
-    const { getByTestId } = render(
-      <Button inverse className="btn-inverse">
-        Test
-      </Button>
-    );
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
+  it('should not render inverse button with btn-inverse class (have to use inverse props instead)', () => {
+    const { getByTestId } = render(<Button className="btn-inverse">Test</Button>);
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-default');
   });
 
-  it('should render inverse button with btn-inverse class', () => {
+  it('should render inverse button with inverse props', () => {
     const { getByTestId } = render(<Button inverse>Test</Button>);
     expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
   });
@@ -71,8 +51,8 @@ describe('<Button />', () => {
     expect(queryAllByTestId('button-spinner-wrapper')).toHaveLength(1);
   });
 
-  it('should only allow bsSize medium or small on Spinner', () => {
-    const { getByTestId } = render(<Button isLoading bsSize="lg" />);
+  it('should only allow size medium or small on Spinner', () => {
+    const { getByTestId } = render(<Button isLoading size="large" />);
     expect(getByTestId('spinner')).toHaveClass('spinner-medium');
   });
 });

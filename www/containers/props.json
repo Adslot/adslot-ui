@@ -596,32 +596,7 @@
       "displayName": "Button",
       "methods": [],
       "props": {
-        "bsSize": {
-          "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'lg'",
-                "computed": false
-              },
-              {
-                "value": "'large'",
-                "computed": false
-              },
-              {
-                "value": "'sm'",
-                "computed": false
-              },
-              {
-                "value": "'small'",
-                "computed": false
-              }
-            ]
-          },
-          "required": false,
-          "description": "PropTypes.oneOf(['lg', 'large', 'sm', 'small'])"
-        },
-        "bsStyle": {
+        "theme": {
           "type": {
             "name": "enum",
             "value": [
@@ -816,7 +791,7 @@
           "required": false,
           "description": ""
         },
-        "bsStyle": {
+        "theme": {
           "type": {
             "name": "enum",
             "value": [
@@ -863,7 +838,7 @@
           "required": false,
           "description": ""
         },
-        "bsSize": {
+        "size": {
           "type": {
             "name": "string"
           },

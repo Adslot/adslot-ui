@@ -12,20 +12,20 @@ class ButtonGroup extends React.PureComponent {
     /**
      * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
      */
-    bsStyle: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
+    theme: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
     inverse: PropTypes.bool,
     disabled: PropTypes.bool,
-    bsSize: PropTypes.string,
+    size: PropTypes.string,
   };
 
   injectProps(children) {
     return React.Children.map(children, child => {
       if (React.isValidElement(child)) {
         const buttonProps = {
-          ...(this.props.bsStyle ? { bsStyle: this.props.bsStyle } : {}),
+          ...(this.props.theme ? { theme: this.props.theme } : {}),
           ...(!_.isNil(this.props.inverse) ? { inverse: this.props.inverse } : {}),
           ...(!_.isNil(this.props.disabled) ? { disabled: this.props.disabled } : {}),
-          ...(this.props.bsSize ? { bsSize: this.props.bsSize } : {}),
+          ...(this.props.size ? { size: this.props.size } : {}),
         };
 
         const childNodes = React.Children.map(child.props.children, childNode =>

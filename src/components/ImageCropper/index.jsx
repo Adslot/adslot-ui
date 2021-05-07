@@ -43,7 +43,7 @@ const ImageCropper = forwardRef(({ title, src, alt, onCancel, onCrop, width, hei
   }));
 
   const uploadButton = (
-    <Button bsStyle="primary" onClick={() => onCrop(cropperRef.current.getData())} isLoading={isSaving} inverse>
+    <Button theme="primary" onClick={() => onCrop(cropperRef.current.getData())} isLoading={isSaving} inverse>
       Upload
     </Button>
   );

@@ -5,20 +5,22 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 
 ```jsx live=true
 <div>
-  <Button bsStyle="success">Undo</Button>
-  <Button bsStyle="primary">Apply</Button>
+  <Button theme="success">Undo</Button>
+  <Button theme="primary">Apply</Button>
   <Button className="btn-primary">Primary</Button>
-  <Button className="btn-primary btn-inverse">Inverse</Button>
-  <Button bsStyle="info">Help</Button>
-  <Button bsStyle="danger" inverse>
+  <Button inverse className="btn-primary">
+    Inverse
+  </Button>
+  <Button theme="info">Help</Button>
+  <Button theme="danger" inverse>
     Error
   </Button>
-  <Button bsStyle="default">Default</Button>
-  <Button bsStyle="default" className="some class">
+  <Button theme="default">Default</Button>
+  <Button bsSthemetyle="default" className="some class">
     Default with Class
   </Button>
   <Button disabled>Disabled</Button>
-  <Button bsStyle="warning" isLoading>
+  <Button theme="warning" isLoading>
     Loading
   </Button>
   <Button className="btn-borderless">Borderless</Button>
