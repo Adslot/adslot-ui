@@ -78,7 +78,17 @@ class TreePickerNodeComponent extends React.PureComponent {
             </GridCell>
           ) : null}
           <GridCell stretch {...labelCellProps} dts="label">
-            <TextEllipsis>
+            <TextEllipsis
+              popoverProps={{
+                strategy: 'fixed',
+                placement: 'bottom',
+                modifiers: [
+                  { name: 'flip', enabled: false },
+                  { name: 'preventOverflow', enabled: false },
+                  { name: 'hide', enabled: false },
+                ],
+              }}
+            >
               <span>{nodeRenderer(node)}</span>
               {!_.isEmpty(pathElement) ? (
                 <span className={`${baseClass}-metadata`}>
