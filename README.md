@@ -1,4 +1,4 @@
-# Adslot UI
+# Adslot UI 
 
 [![npm version](https://badge.fury.io/js/adslot-ui.svg)](https://badge.fury.io/js/adslot-ui)
 ![Build Status](https://github.com/Adslot/adslot-ui/workflows/Build/badge.svg)
