@@ -49,7 +49,9 @@ const ActionPanel = React.forwardRef((props, ref) => {
             </span>
           </div>
           <div data-testid="action-panel-body" className="aui--action-panel-body">
-            {children}
+            <div data-testid="action-panel-body-content" className="aui--action-panel-body-content">
+              {children}
+            </div>
           </div>
         </div>
       </div>

@@ -9,8 +9,10 @@
 .aui--action-panel {
   min-width: 300px;
   min-height: 100px;
+  max-height: 90vh;
   z-index: $zindex-popover;
   border-radius: 2px;
+  border: 1px solid #e8e8e8;
   background-color: $color-white;
 
   &.action-modal {
@@ -41,7 +43,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: $border-lighter;
 
     .title {
       @include ellipse;
@@ -124,9 +125,14 @@
   }
 
   &-body {
-    padding: 30px;
-    border: $border-lighter;
-    border-top: 0;
+    margin: 30px 0 30px 30px;
+    padding-right: 30px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    &-content {
+      max-height: 70vh;
+    }
   }
 }
 
