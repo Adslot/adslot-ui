@@ -30,6 +30,10 @@ class TextEllipsisComponent extends React.PureComponent {
     truncated: false,
   };
 
+  componentDidMount() {
+    this.setTruncate();
+  }
+
   componentDidUpdate() {
     this.setTruncate();
   }
@@ -50,7 +54,7 @@ class TextEllipsisComponent extends React.PureComponent {
     return (
       <Popover
         {...popoverProps}
-        isOpen={truncated}
+        {...(truncated === false ? { triggers: 'disabled' } : {})}
         popoverContent={this.props.children}
         className="aui--text-ellipsis-wrapper"
       >

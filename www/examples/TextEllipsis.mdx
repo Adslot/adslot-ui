@@ -4,12 +4,21 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ## Text Ellipsis
 
 ```jsx live=true
-<div style={{ width: 300 }}>
-  <TextEllipsis>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  </TextEllipsis>
+<div>
+  <div style={{ width: 500 }}>
+    <TextEllipsis>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </TextEllipsis>
+  </div>
+
+  <br />
+  <br />
+
+  <div style={{ width: 500 }}>
+    <TextEllipsis>no popover for short text</TextEllipsis>
+  </div>
 </div>
 ```
 
