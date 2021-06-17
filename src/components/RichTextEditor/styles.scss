@@ -21,11 +21,25 @@
     .public-DraftEditorPlaceholder-inner {
       color: $color-text-placeholder;
     }
+
+    .mention {
+      color: $color-blue;
+      text-decoration: none;
+    }
+
+    .DraftEditor-root + div {
+      height: 150px;
+      padding: 5px 0;
+      overflow-y: auto;
+    }
   }
 
   .aui--editor-toolbar {
     padding: 10px 20px;
     background-color: $color-gray-white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     .aui--toolbar-button {
       box-shadow: none;
@@ -45,9 +59,49 @@
         border-color: $color-gray-lighter;
       }
 
-      img {
+      img,
+      div {
         height: 20px;
+        width: 20px;
       }
+    }
+  }
+}
+
+.aui--mention-entry {
+  background-color: $color-white;
+  width: 350px;
+
+  &__is-focused {
+    background: $color-blue-light;
+    cursor: pointer;
+  }
+
+  .mention-entry--container {
+    display: flex;
+    align-items: center;
+
+    &__left {
+      margin: 5px 20px;
+    }
+
+    .mention-entry--title,
+    .mention-entry--name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mention-entry--title {
+      font-size: 10px;
+      color: $color-gray;
+    }
+
+    .mention-entry--avatar {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
     }
   }
 }
