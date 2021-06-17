@@ -1,5 +1,13 @@
 import React from 'react';
-import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute, act } from '@testing-library/react';
+import {
+  render,
+  cleanup,
+  fireEvent,
+  queryByAttribute,
+  queryAllByAttribute,
+  act,
+  waitFor,
+} from '@testing-library/react';
 import { createEvent } from '@testing-library/dom';
 import { RichUtils } from 'draft-js';
 import RichTextEditor from '.';
@@ -16,6 +24,14 @@ const createPasteEvent = html => {
     },
   };
 };
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+});
 
 afterEach(cleanup);
 
@@ -221,6 +237,183 @@ describe('<RichTextEditor />', () => {
       expect(queryAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
 
       console.error.mockRestore();
+    });
+
+    it("should render the avatar with user's initials", () => {
+      console.error = jest.fn(); // Todo: fix popover warning with react v17 upgrade
+
+      const contacts = [
+        {
+          name: 'Matthew',
+          title: 'Senior Software Engineer',
+          avatar: '../assets/user-avatar.jpeg',
+        },
+        {
+          name: 'Julian Krispel-Samsel',
+          title: 'United Kingdom',
+          avatar: '../assets/adslot-avatar.png',
+        },
+      ];
+      const onChange = jest.fn();
+      const { getByTestId, getByText } = render(<RichTextEditor contacts={contacts} onChange={onChange} />);
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('rich-text-editor-advanced-buttons').children[0]);
+      });
+
+      expect(getByText('M')).toHaveClass('avatar-component-initials');
+      expect(getByText('JK')).toHaveClass('avatar-component-initials');
+    });
+  });
+
+  describe('file upload feature', () => {
+    it('should render file upload button as one of advanced buttons', () => {
+      const onFileSelect = jest.fn(() => 'fake-path');
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+      const { queryAllByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      expect(queryAllByTestId('rich-text-editor-wrapper')).toHaveLength(1);
+      expect(queryAllByTestId('file-download-button')).toHaveLength(1);
+    });
+
+    it('should be able to select a pdf file when clicking file upload button', () => {
+      const onFileSelect = jest.fn(() => 'fake-path');
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+
+      const { getByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'));
+      });
+
+      expect(onFileSelect).toHaveBeenCalledTimes(0);
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'), {
+          target: { files: [{ name: 'selected file' }] },
+        });
+      });
+
+      expect(onFileSelect).toHaveBeenCalledTimes(1);
+    });
+
+    it('should render file preview list and file sticker close button after file uploaded', async () => {
+      const onFileSelect = jest.fn(() => 'fake-path');
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+
+      const { getByTestId, queryAllByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'), {
+          target: { files: [{ name: 'selected file' }] },
+        });
+      });
+
+      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(1));
+
+      act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
+      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(1);
+      act(() => fireEvent.mouseLeave(getByTestId('file-sticker')));
+      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(0);
+    });
+
+    it('should render file preview list and file sticker close button after file uploaded', async () => {
+      const onFileSelect = jest.fn(() => 'fake-path');
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+
+      const { getByTestId, queryAllByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'), {
+          target: { files: [{ name: 'selected file' }] },
+        });
+      });
+
+      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(1));
+
+      act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
+      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(1);
+      act(() => fireEvent.mouseLeave(getByTestId('file-sticker')));
+      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(0);
+    });
+
+    it('should remove file sticker when clicking close button on it', async () => {
+      const onFileSelect = jest.fn(() => 'fake-path');
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+
+      const { getByTestId, queryAllByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'), {
+          target: { files: [{ name: 'selected file' }] },
+        });
+      });
+
+      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(1));
+
+      act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
+      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(1);
+
+      act(() => fireEvent.click(getByTestId('file-sticker-close-button')));
+      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(0));
+    });
+
+    it('should show a spinner on the file sticker if no path is returned', () => {
+      const onFileSelect = jest.fn(() => false);
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+
+      const { getByTestId, queryAllByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'), {
+          target: { files: [{ name: 'image.png' }] },
+        });
+      });
+
+      expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
+    });
+
+    it('should render an image for image file using it path', async () => {
+      const onFileSelect = jest.fn(() => 'fake-path');
+      const onFileRemove = jest.fn();
+      const onChange = jest.fn();
+
+      const { getByTestId, queryAllByTestId } = render(
+        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
+      );
+
+      act(() => {
+        fireEvent.mouseDown(getByTestId('file-download-button'));
+        fireEvent.change(getByTestId('file-download-input'), {
+          target: { files: [{ name: 'image.png' }] },
+        });
+      });
+
+      await waitFor(() => expect(queryAllByTestId('file-sticker-image')).toHaveLength(1));
     });
   });
 });

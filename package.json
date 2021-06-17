@@ -162,7 +162,8 @@
     "react-router-dom": "^5.1.2",
     "react-slick": "^0.25.2",
     "react-toastify": "^6.0.5",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "moment": ">= 1.0",

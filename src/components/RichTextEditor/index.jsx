@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 import { Modifier, EditorState, RichUtils } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import { stateToHTML } from 'draft-js-export-html';
@@ -11,9 +12,21 @@ import InlineStyleButtons from './InlineStyleButtons';
 import BlockStyleButtons from './BlockStyleButtons';
 import AdvancedButtons from './AdvancedButtons';
 import MentionEntry from './MentionEntry';
+import FilePreviewList from './FilePreviewList';
 import './styles.scss';
 
-const RichTextEditor = ({ className, value, initialValue, onChange, placeholder, contacts, onAddContact }) => {
+const RichTextEditor = ({
+  className,
+  value,
+  initialValue,
+  onChange,
+  placeholder,
+  contacts,
+  onAddContact,
+  onFileSelect,
+  onFileRemove,
+  fileFilter,
+}) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
 
@@ -27,12 +40,22 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder,
   const [editorState, setEditorState] = React.useState(initialValue || EditorState.createEmpty());
   const [isMentionListOpen, setIsMentionListOpen] = React.useState(false);
   const [mentions, setMentions] = React.useState(contacts);
+  const [files, setFiles] = React.useState({});
 
   const { MentionSuggestions: MentionList, plugins: editorPlugins } = React.useMemo(() => {
     const mentionPlugin = createMentionPlugin({
       entityMutability: 'IMMUTABLE',
       mentionPrefix: '@',
       supportWhitespace: true,
+      popperOptions: {
+        placement: 'bottom-start',
+        strategy: 'fixed',
+        modifiers: [
+          { name: 'flip', enabled: false },
+          { name: 'preventOverflow', enabled: false },
+          { name: 'hide', enabled: false },
+        ],
+      },
       theme: {
         mention: 'mention', // give className to the mention
       },
@@ -83,6 +106,26 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder,
     [contacts]
   );
 
+  const handleFileUpload = async file => {
+    const id = v4();
+    setFiles(prevState => ({ ...prevState, [id]: { id, name: file.name, path: '', isUploading: true } }));
+
+    const path = await onFileSelect(file, id);
+
+    if (path) {
+      setFiles(prevState => ({ ...prevState, [id]: { id, name: file.name, path: path, isUploading: false } }));
+    }
+  };
+
+  const handleFileRemove = async file => {
+    await onFileRemove(file);
+    setFiles(prevState => {
+      const state = { ...prevState };
+      delete state[file.id];
+      return state;
+    });
+  };
+
   return (
     <div data-testid="rich-text-editor-wrapper" className={classNames}>
       <div className="aui--editor-container" onClick={focusEditor}>
@@ -107,6 +150,7 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder,
           />
         )}
       </div>
+      <FilePreviewList files={files} onFileRemove={handleFileRemove} />
       <div className="aui--editor-toolbar">
         <div className="aui--editor-style-buttons">
           <InlineStyleButtons editorState={value || editorState} onToggle={handleOnChange} />
@@ -119,6 +163,9 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder,
               if (isMentionListOpen) return;
               handleOnChange(insertText('@'));
             }}
+            fileUploadEnabled={_.isFunction(onFileSelect) && _.isFunction(onFileRemove)}
+            fileFilter={fileFilter}
+            onFileUpload={handleFileUpload}
           />
         </div>
       </div>
@@ -136,16 +183,20 @@ RichTextEditor.propTypes = {
   onChange: PropTypes.func,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      name: PropTypes.string.isRequired,
       title: PropTypes.string,
       avatar: PropTypes.string,
     })
   ),
   onAddContact: PropTypes.func,
+  onFileSelect: PropTypes.func,
+  onFileRemove: PropTypes.func,
+  fileFilter: PropTypes.string,
 };
 
 RichTextEditor.defaultProps = {
   placeholder: 'Tell a story...',
+  fileFilter: '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.psd,.csv,.zip,.7z',
 };
 
 RichTextEditor.createEmpty = EditorState.createEmpty;
