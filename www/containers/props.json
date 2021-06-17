@@ -3631,7 +3631,115 @@
     {
       "description": "",
       "displayName": "AdvancedButtons",
-      "methods": []
+      "methods": [],
+      "props": {
+        "mentionEnabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onMentionToggle": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fileUploadEnabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onFileUpload": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onFileRemove": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fileFilter": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/RichTextEditor/FilePreviewList.jsx": [
+    {
+      "description": "",
+      "displayName": "FilePreviewList",
+      "methods": [],
+      "props": {
+        "files": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onFileRemove": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/RichTextEditor/FileSticker.jsx": [
+    {
+      "description": "",
+      "displayName": "FileSticker",
+      "methods": [],
+      "props": {
+        "file": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "id": {
+                "name": "string",
+                "required": true
+              },
+              "name": {
+                "name": "string",
+                "required": true
+              },
+              "path": {
+                "name": "string",
+                "required": false
+              },
+              "isUploading": {
+                "name": "bool",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "onFileRemove": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
     }
   ],
   "src/components/RichTextEditor/index.jsx": [
@@ -3720,7 +3828,7 @@
               "value": {
                 "name": {
                   "name": "string",
-                  "required": false
+                  "required": true
                 },
                 "title": {
                   "name": "string",
@@ -3742,6 +3850,31 @@
           },
           "required": false,
           "description": ""
+        },
+        "onFileSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onFileRemove": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fileFilter": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.psd,.csv,.zip,.7z'",
+            "computed": false
+          }
         }
       }
     }
