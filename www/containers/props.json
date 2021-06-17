@@ -429,11 +429,15 @@
               {
                 "value": "'cyan'",
                 "computed": false
+              },
+              {
+                "value": "'black'",
+                "computed": false
               }
             ]
           },
           "required": false,
-          "description": "PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan'])"
+          "description": "PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan', 'black'])"
         },
         "givenName": {
           "type": {
@@ -3623,6 +3627,13 @@
       }
     }
   ],
+  "src/components/RichTextEditor/AdvancedButtons.jsx": [
+    {
+      "description": "",
+      "displayName": "AdvancedButtons",
+      "methods": []
+    }
+  ],
   "src/components/RichTextEditor/index.jsx": [
     {
       "description": "",
@@ -3669,6 +3680,102 @@
           },
           "required": false,
           "description": ""
+        },
+        "contacts": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "shape",
+              "value": {
+                "name": {
+                  "name": "string",
+                  "required": false
+                },
+                "title": {
+                  "name": "string",
+                  "required": false
+                },
+                "avatar": {
+                  "name": "string",
+                  "required": false
+                }
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "onAddContact": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/RichTextEditor/MentionEntry.jsx": [
+    {
+      "description": "",
+      "displayName": "MentionEntry",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "mention": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "name": {
+                "name": "string",
+                "required": false
+              },
+              "title": {
+                "name": "string",
+                "required": false
+              },
+              "avatar": {
+                "name": "string",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "onMouseDown": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onMouseUp": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onMouseEnter": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "isFocused": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -3697,7 +3804,7 @@
           "type": {
             "name": "bool"
           },
-          "required": true,
+          "required": false,
           "description": ""
         }
       }

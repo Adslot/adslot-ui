@@ -27,7 +27,7 @@ const ToolbarButton = ({ onToggle, label, active }) => {
 ToolbarButton.propTypes = {
   onToggle: PropTypes.func.isRequired,
   label: PropTypes.node.isRequired,
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
 };
 
 export default ToolbarButton;
