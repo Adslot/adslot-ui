@@ -1,4 +1,5 @@
 @import '~styles/color';
+@import '~styles/icon';
 
 .aui--editor-root {
   border: 1px solid $color-gray-lighter;
@@ -31,6 +32,7 @@
       height: 150px;
       padding: 5px 0;
       overflow-y: auto;
+      z-index: 10;
     }
   }
 
@@ -48,6 +50,19 @@
       padding: 6px;
       font-size: 12px;
       align-items: center;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      .file-download-button {
+        background-image: $icon-paper-clip;
+        width: 18px;
+        height: 18px;
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
 
       &:focus {
         outline: none;
@@ -103,5 +118,74 @@
       height: 30px;
       border-radius: 50%;
     }
+  }
+}
+
+.aui--file-preview-list {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+
+  .aui--file-sticker {
+    position: relative;
+  }
+
+  .aui--file-sticker-image {
+    width: 60px;
+    margin: 0 0 10px 10px;
+  }
+
+  .aui--file-sticker-file {
+    margin: 0 0 10px 10px;
+    width: 200px;
+    height: 60px;
+    border: 1px solid $color-gray-light;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-name {
+      width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 10px;
+    }
+
+    &-icon {
+      background-image: $icon-file;
+      width: 50px;
+      height: 50px;
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  .aui--file-sticker-close-button {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    background-color: $color-gray-darker;
+    background-image: $icon-cross-inverse;
+    width: 22px;
+    height: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: $color-white 2px solid;
+    z-index: 10;
+  }
+
+  .aui--file-sticker-spinner {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    border: $color-white 2px solid;
+    background-color: $color-white;
   }
 }
