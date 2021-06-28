@@ -116,7 +116,7 @@
     "postcss-safe-parser": "^4.0.1",
     "prettier": "^1.18.2",
     "prettier-check": "^2.0.0",
-    "prism-react-renderer": "^1.2.0",
+    "prism-react-renderer": "^1.2.1",
     "prop-types": "^15.7.2",
     "react-bootstrap": "^0.31.5",
     "react-datepicker": "github:Adslot/react-datepicker#2a1ebb8618e1996c321331ef01d290424272d126",
