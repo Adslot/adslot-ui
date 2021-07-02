@@ -74,6 +74,39 @@ render(
 
 <br />
 <br />
+<h4>Use Popover triggers as an alternative to Popover.WithRef.</h4>
+<h4>Code will be leaner with the following way.</h4>
+
+```jsx live=true
+const Example = () => {
+  const [safeMode, setSafeMode] = React.useState(true);
+  const toggleSafeMode = () => setSafeMode(!safeMode);
+
+  return (
+    <React.Fragment>
+      <Button onClick={toggleSafeMode}>{`Turn ${safeMode ? 'off' : 'on'} Safe Mode`}</Button>
+      <Popover
+        isOpen={safeMode}
+        triggers={safeMode ? ['hover'] : ['disabled']}
+        placement="right"
+        theme="dark"
+        popoverContent="Safe mode, not able to launch"
+      >
+        <Button disabled={safeMode}>Launch</Button>
+      </Popover>
+    </React.Fragment>
+  );
+};
+
+render(
+  <div style={{ display: 'flex', width: 300, justifyContent: 'space-between' }}>
+    <Example />
+  </div>
+);
+```
+
+<br />
+<br />
 <h4>Popover autoflips when overflowing container</h4>
 
 ```jsx live=true
