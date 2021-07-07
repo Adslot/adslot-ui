@@ -25,9 +25,9 @@ const Avatar = ({ color, givenName, tooltip, image, surname }) => (
 
 Avatar.propTypes = {
   /**
-   * PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan'])
+   * PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan', 'black'])
    */
-  color: PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan']),
+  color: PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan', 'black']),
   givenName: PropTypes.string,
   tooltip: PropTypes.string,
   image: PropTypes.string,
