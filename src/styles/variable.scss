@@ -79,6 +79,11 @@ $modal-backdrop-bg: $color-gray-darker;
 $modal-backdrop-opacity: .8;
 $modal-content-border-color: transparent;
 
+// == ActionPanel
+$action-panel-backdrop-opacity: .8;
+$action-panel-header-height: 48px;
+$action-panel-margin: 30px;
+
 // == Tables
 $table-bg-accent: $color-gray-white; // for striping;
 $table-bg-hover: $color-gray-white; // for hover;

@@ -18,6 +18,11 @@
     background-color: $color-white;
     margin: 30px auto;
     border: 0;
+
+    .aui--action-panel-body {
+      max-height: calc(100vh - var(--action-panel-margin-top) - var(--action-panel-margin-bottom) - var(--action-panel-header-height));
+      overflow: auto;
+    }
   }
 
   &.is-small {
@@ -33,7 +38,7 @@
   }
 
   &-header {
-    height: 48px;
+    height: $action-panel-header-height;
     color: $color-gray-darkest;
     padding: 12px;
     padding-left: 18px;
@@ -139,7 +144,7 @@
   left: 0;
   background-color: $color-gray-dark;
   width: 100%;
-  opacity: .8;
+  opacity: $action-panel-backdrop-opacity;
   animation: fadein .2s;
 }
 
@@ -151,4 +156,5 @@
   align-content: center;
   top: 0;
   left: 0;
+  animation: fadein .2s;
 }

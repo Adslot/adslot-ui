@@ -1,9 +1,11 @@
+@import '~styles/variable';
+
 @keyframes fadein {
   from {
     opacity: 0;
   }
 
   to {
-    opacity: .9;
+    opacity: $action-panel-backdrop-opacity;
   }
 }
