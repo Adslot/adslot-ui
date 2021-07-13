@@ -103,8 +103,8 @@
   "src/components/ActionPanel/index.jsx": [
     {
       "description": "",
-      "methods": [],
       "displayName": "ActionPanel",
+      "methods": [],
       "props": {
         "title": {
           "type": {
@@ -953,8 +953,8 @@
   "src/components/Carousel/index.jsx": [
     {
       "description": "",
-      "methods": [],
       "displayName": "CarouselComponent",
+      "methods": [],
       "props": {
         "className": {
           "type": {
@@ -1926,8 +1926,8 @@
   "src/components/ImageCropper/index.jsx": [
     {
       "description": "",
-      "methods": [],
       "displayName": "ImageCropper",
+      "methods": [],
       "props": {
         "title": {
           "type": {
@@ -2098,7 +2098,7 @@
           "returns": null
         },
         {
-          "name": "loadData",
+          "name": "defaultState",
           "docblock": null,
           "modifiers": [],
           "params": [],
@@ -3631,7 +3631,38 @@
     {
       "description": "",
       "displayName": "RichTextEditor",
-      "methods": [],
+      "methods": [
+        {
+          "name": "stateToHTML",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "stateFromHTML",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
       "props": {
         "className": {
           "type": {
@@ -3710,8 +3741,8 @@
   "src/components/Search/index.jsx": [
     {
       "description": "",
-      "methods": [],
       "displayName": "Search",
+      "methods": [],
       "props": {
         "className": {
           "type": {

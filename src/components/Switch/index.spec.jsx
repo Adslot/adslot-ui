@@ -6,16 +6,16 @@ afterEach(cleanup);
 
 describe('<Switch />', () => {
   it('should correctly render defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<Switch />);
+    const { getByTestId, queryByTestId } = render(<Switch />);
 
-    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
     expect(getByTestId('switch-checkbox')).not.toBeChecked();
     expect(getByTestId('switch-checkbox')).toHaveAttribute('data-test-selector', 'switch-component');
   });
 
   it('should correctly render controlled Switch', () => {
-    const { getByTestId, queryAllByTestId } = render(<Switch checked onChange={jest.fn()} />);
-    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Switch checked onChange={jest.fn()} />);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
     expect(getByTestId('switch-checkbox')).toBeChecked();
   });
 
@@ -40,8 +40,8 @@ describe('<Switch />', () => {
 
   it('should correctly call onChange for controlled Switch', () => {
     const onChange = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(<Switch checked onChange={onChange} />);
-    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Switch checked onChange={onChange} />);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
     expect(getByTestId('switch-checkbox')).toBeChecked();
 
     fireEvent.click(getByTestId('switch-checkbox'));
@@ -49,9 +49,9 @@ describe('<Switch />', () => {
   });
 
   it('should correctly change switch checked for uncontrolled Switch', () => {
-    const { getByTestId, queryAllByTestId } = render(<Switch defaultChecked={false} />);
+    const { getByTestId, queryByTestId } = render(<Switch defaultChecked={false} />);
 
-    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
     expect(getByTestId('switch-checkbox')).not.toBeChecked();
 
     fireEvent.change(getByTestId('switch-checkbox'), { target: { checked: true } });
@@ -59,9 +59,9 @@ describe('<Switch />', () => {
   });
 
   it('should correctly apply className', () => {
-    const { getByTestId, queryAllByTestId } = render(<Switch className="some-class" />);
+    const { getByTestId, queryByTestId } = render(<Switch className="some-class" />);
 
-    expect(queryAllByTestId('switch-checkbox')).toHaveLength(1);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
     expect(getByTestId('switch-checkbox')).toHaveClass('some-class');
   });
 });

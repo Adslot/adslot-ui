@@ -15,7 +15,7 @@ describe('<GridRow />', () => {
   it('should render with defaults', () => {
     const { getByTestId } = render(<GridRow />);
     expect(getByTestId('grid-row-wrapper')).toHaveClass(getClassNames(['body', 'horizontal-border']));
-    expect(getByTestId('grid-row-wrapper')).toBeEmpty();
+    expect(getByTestId('grid-row-wrapper')).toBeEmptyDOMElement();
     expect(getByTestId('grid-row-wrapper')).not.toHaveAttribute('data-test-selector');
   });
 

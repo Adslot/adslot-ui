@@ -25,33 +25,33 @@ const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 describe('<AlertInput />', () => {
   describe('handleMouseEnter() and handleMouseLeave()', () => {
     it('should set `isPopoverVisible` to true/false if alert message exists', () => {
-      const { getByTestId, queryAllByTestId } = render(<AlertInput alertMessage="Hello" />);
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      const { getByTestId, queryByTestId } = render(<AlertInput alertMessage="Hello" />);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
 
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
       fireEvent.mouseLeave(getByTestId('alert-input-wrapper'));
 
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
 
     it('should not set `isPopoverVisible` to true if no alert message exists', () => {
-      const { getByTestId, queryAllByTestId } = render(<AlertInput />);
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      const { getByTestId, queryByTestId } = render(<AlertInput />);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.mouseLeave(getByTestId('alert-input-wrapper'));
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
@@ -74,7 +74,7 @@ describe('<AlertInput />', () => {
     });
 
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
-      const { container, getByTestId, queryAllByTestId } = render(<AlertInput />);
+      const { container, getByTestId, queryByTestId } = render(<AlertInput />);
       const onSelect = jest.fn();
       console.error = jest.fn();
 
@@ -89,7 +89,7 @@ describe('<AlertInput />', () => {
       });
 
       expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
       expect(onSelect).toHaveBeenCalledTimes(1);
     });
 
@@ -97,7 +97,7 @@ describe('<AlertInput />', () => {
       const onFocus = jest.fn();
       const onSelect = jest.fn();
       console.error = jest.fn();
-      const { container, getByTestId, queryAllByTestId } = render(<AlertInput onFocus={onFocus} />);
+      const { container, getByTestId, queryByTestId } = render(<AlertInput onFocus={onFocus} />);
 
       act(() => {
         fireEvent(
@@ -110,7 +110,7 @@ describe('<AlertInput />', () => {
       });
 
       expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
       expect(onSelect).toHaveBeenCalledTimes(1);
       expect(onFocus).toHaveBeenCalledTimes(1);
     });
@@ -120,7 +120,7 @@ describe('<AlertInput />', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
       const onSelect = jest.fn();
       console.error = jest.fn();
-      const { container, getByTestId, queryAllByTestId } = render(<AlertInput />);
+      const { container, getByTestId, queryByTestId } = render(<AlertInput />);
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
@@ -137,7 +137,7 @@ describe('<AlertInput />', () => {
       });
 
       expect(getByTestId('alert-input-wrapper')).not.toHaveClass('aui--alert-input--focused');
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
 
     it('should call `onBlur` if exists', () => {
@@ -164,30 +164,30 @@ describe('<AlertInput />', () => {
         onValueChange: jest.fn(),
         onBlur: jest.fn(),
       };
-      const { getByTestId, queryAllByTestId, getByPlaceholderText, queryAllByPlaceholderText } = render(
+      const { getByTestId, queryByTestId, getByPlaceholderText, queryByPlaceholderText } = render(
         <AlertInput {...props} />
       );
 
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
       expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input');
-      expect(getByTestId('alert-input-wrapper')).not.toBeEmpty();
+      expect(getByTestId('alert-input-wrapper')).not.toBeEmptyDOMElement();
 
-      expect(queryAllByPlaceholderText('Type a number')).toHaveLength(1);
+      expect(queryByPlaceholderText('Type a number')).toBeInTheDocument();
       expect(getByPlaceholderText('Type a number')).toHaveClass('aui--alert-input__input');
       expect(getByPlaceholderText('Type a number')).toHaveAttribute('min', '0');
       expect(getByPlaceholderText('Type a number')).toHaveAttribute('type', 'number');
-      expect(getByPlaceholderText('Type a number')).toHaveAttribute('value', '100');
+      expect(getByPlaceholderText('Type a number')).toHaveValue(100);
     });
 
     it('should also render with default props', () => {
-      const { getByTestId, queryAllByTestId } = render(<AlertInput alertMessage="test" />);
+      const { getByTestId, queryByTestId } = render(<AlertInput alertMessage="test" />);
       console.error = jest.fn();
       act(() => {
         fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
         jest.runAllTimers();
       });
 
-      expect(queryAllByTestId('alert-input-wrapper')).toHaveLength(1);
+      expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
       expect(getByTestId('alert-input-wrapper')).toHaveClass('success');
       expect(getByTestId('popover-wrapper')).toHaveAttribute('placement', 'bottom');
     });

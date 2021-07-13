@@ -8,7 +8,7 @@ describe('<Grid />', () => {
   it('should have its component name as default className', () => {
     const { getByTestId } = render(<Grid />);
     expect(getByTestId('grid-wrapper')).toHaveClass('grid-component');
-    expect(getByTestId('grid-wrapper')).toBeEmpty();
+    expect(getByTestId('grid-wrapper')).toBeEmptyDOMElement();
   });
 
   it('should pass through children', () => {

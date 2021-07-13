@@ -6,20 +6,21 @@ afterEach(cleanup);
 
 describe('<Checkbox />', () => {
   it('should render with props', () => {
-    const { getByTestId, queryAllByTestId } = render(
-      <Checkbox label="The Terminator" name="movies" value="terminator" dts="checkbox-terminator" />
+    const { getByTestId, queryByTestId } = render(
+      <form>
+        <Checkbox label="The Terminator" name="movies" checked dts="checkbox-terminator" />
+      </form>
     );
-    expect(queryAllByTestId('checkbox-input')).toHaveLength(1);
-    expect(getByTestId('checkbox-input')).not.toBeChecked();
+    expect(queryByTestId('checkbox-input')).toBeInTheDocument();
+    expect(getByTestId('checkbox-input')).toBeChecked();
     expect(getByTestId('checkbox-input')).toHaveAttribute('name', 'movies');
-    expect(getByTestId('checkbox-input')).toHaveAttribute('value', 'terminator');
     expect(getByTestId('checkbox-wrapper')).toHaveAttribute('data-test-selector', 'checkbox-terminator');
     expect(getByTestId('checkbox-label')).toHaveTextContent('The Terminator');
   });
 
   it('should render with just label', () => {
-    const { getByTestId, queryAllByTestId } = render(<Checkbox label="Label goes here" />);
-    expect(queryAllByTestId('checkbox-input')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Checkbox label="Label goes here" />);
+    expect(queryByTestId('checkbox-input')).toBeInTheDocument();
     expect(getByTestId('checkbox-label')).toHaveTextContent('Label goes here');
   });
 
@@ -30,8 +31,8 @@ describe('<Checkbox />', () => {
   });
 
   it('should render without a label', () => {
-    const { queryAllByTestId } = render(<Checkbox name="movies" value="terminator" />);
-    expect(queryAllByTestId('checkbox-label')).toHaveLength(0);
+    const { queryByTestId } = render(<Checkbox name="movies" value="terminator" />);
+    expect(queryByTestId('checkbox-label')).not.toBeInTheDocument();
   });
 
   it('should add inline class when inline prop in true', () => {

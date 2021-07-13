@@ -16,23 +16,23 @@ const defaultOptions = [
 
 describe('<Select />', () => {
   it('should have base class', () => {
-    const { queryAllByText } = render(<Select />);
-    expect(queryAllByText('Select...')).toHaveLength(1);
+    const { queryByText } = render(<Select />);
+    expect(queryByText('Select...')).toBeInTheDocument();
   });
 
   it('should have custom option background', () => {
-    const { getByText, queryAllByText } = render(
+    const { getByText, queryByText, queryAllByText } = render(
       <Select options={defaultOptions} isOptionDisabled={({ value }) => value === 'jp'} menuIsOpen />
     );
 
-    expect(queryAllByText('Select...')).toHaveLength(1);
-    expect(queryAllByText('Australia')).toHaveLength(1);
+    expect(queryByText('Select...')).toBeInTheDocument();
+    expect(queryByText('Australia')).toBeInTheDocument();
     expect(getByText('Australia')).toHaveClass('select-component__option');
-    expect(queryAllByText('Canada')).toHaveLength(1);
+    expect(queryByText('Canada')).toBeInTheDocument();
     expect(getByText('Canada')).toHaveClass('select-component__option');
-    expect(queryAllByText('Japan')).toHaveLength(1);
+    expect(queryByText('Japan')).toBeInTheDocument();
     expect(getByText('Japan')).toHaveClass('select-component__option');
-    expect(queryAllByText('United Kingdom')).toHaveLength(1);
+    expect(queryByText('United Kingdom')).toBeInTheDocument();
     expect(getByText('United Kingdom')).toHaveClass('select-component__option');
 
     fireEvent.click(getByText('Australia'));
@@ -50,32 +50,30 @@ describe('<Select />', () => {
   });
 
   it('should show cross icon for clear opration', () => {
-    const { getByText, queryAllByText } = render(<Select options={defaultOptions} menuIsOpen isClearable />);
+    const { getByText, queryByText } = render(<Select options={defaultOptions} menuIsOpen isClearable />);
     fireEvent.click(getByText('Australia'));
 
-    expect(queryAllByText('✕')).toHaveLength(1);
+    expect(queryByText('✕')).toBeInTheDocument();
     expect(getByText('✕')).toHaveClass('select-component__indicator select-component__clear-indicator');
   });
 
   it('should handle multi selections', () => {
-    const { container, getByText, queryAllByText } = render(
+    const { container, getByText, queryByText } = render(
       <Select options={defaultOptions} defaultValue={[defaultOptions[0], defaultOptions[1]]} isMulti />
     );
 
     expect(queryAllByClass(container, 'css-11547y4 select-component__multi-value__label')).toHaveLength(2);
-    expect(queryAllByText('Australia')).toHaveLength(1);
+    expect(queryByText('Australia')).toBeInTheDocument();
     expect(getByText('Australia')).toHaveClass('select-component__multi-value__label');
-    expect(queryAllByText('Canada')).toHaveLength(1);
+    expect(queryByText('Canada')).toBeInTheDocument();
     expect(getByText('Canada')).toHaveClass('select-component__multi-value__label');
   });
 
   it('should have custom SelectContainer if dts is passed in', () => {
-    const { container, rerender, getByText, queryAllByText } = render(
-      <Select options={defaultOptions} dts="test-dts" />
-    );
+    const { container, rerender, getByText, queryByText } = render(<Select options={defaultOptions} dts="test-dts" />);
 
     expect(queryAllByDts(container, 'test-dts')).toHaveLength(1);
-    expect(queryAllByClass(container, 'select-component__value-container css-9evde0')).toHaveLength(1);
+    expect(queryAllByClass(container, 'select-component__value-container css-lw5t2n-ValueContainer')).toHaveLength(1);
     expect(
       queryAllByClass(
         container,
@@ -86,7 +84,7 @@ describe('<Select />', () => {
     rerender(<Select options={defaultOptions} menuIsOpen isClearable dts="test-dts" />);
     fireEvent.click(getByText('Australia'));
 
-    expect(queryAllByText('✕')).toHaveLength(1);
+    expect(queryByText('✕')).toBeInTheDocument();
     expect(getByText('✕')).toHaveClass('select-component__indicator select-component__clear-indicator');
   });
 

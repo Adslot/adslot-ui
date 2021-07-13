@@ -7,13 +7,13 @@ afterEach(cleanup);
 
 describe('<ButtonGroup />', () => {
   it('should render Button Group', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <ButtonGroup>
         <Button>Test1</Button>
         <Button>Test2</Button>
       </ButtonGroup>
     );
-    expect(queryAllByTestId('button-group-wrapper')).toHaveLength(1);
+    expect(queryByTestId('button-group-wrapper')).toBeInTheDocument();
   });
 
   it('should override child Button style', () => {
@@ -51,12 +51,12 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should not crash when child is null', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <ButtonGroup disabled>
         <div />
         {null}
       </ButtonGroup>
     );
-    expect(queryAllByTestId('button-group-wrapper')).toHaveLength(1);
+    expect(queryByTestId('button-group-wrapper')).toBeInTheDocument();
   });
 });

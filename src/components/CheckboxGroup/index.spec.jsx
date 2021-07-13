@@ -60,20 +60,20 @@ describe('<CheckboxGroup />', () => {
   });
 
   it('should return null if there is no children', () => {
-    const { queryAllByTestId } = render(<CheckboxGroup name="movies" value={['test']} onChange={jest.fn()} />);
-    expect(queryAllByTestId('checkbox-group-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<CheckboxGroup name="movies" value={['test']} onChange={jest.fn()} />);
+    expect(queryByTestId('checkbox-group-wrapper')).not.toBeInTheDocument();
   });
 
   it('should return null if there is a boolean child', () => {
     console.error = jest.fn();
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <CheckboxGroup name="movies" value={['test']} onChange={jest.fn()}>
         {false && <Checkbox label="The Terminator" value="terminator" />}
         <Checkbox label="Predator" value="predator" />
       </CheckboxGroup>
     );
 
-    expect(queryAllByTestId('checkbox-group-wrapper')).toHaveLength(1);
+    expect(queryByTestId('checkbox-group-wrapper')).toBeInTheDocument();
     expect(console.error).toHaveBeenCalledTimes(0);
   });
 });

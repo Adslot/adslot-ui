@@ -6,16 +6,16 @@ afterEach(cleanup);
 
 describe('<ConfirmModal />', () => {
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<ConfirmModal show />);
+    const { getByTestId, queryByTestId } = render(<ConfirmModal show />);
 
     expect(getByTestId('confirm-modal-wrapper')).toHaveClass('confirm-modal-component');
     expect(getByTestId('confirm-modal-wrapper')).toHaveClass('modal');
 
-    expect(queryAllByTestId('confirm-modal-header')).toHaveLength(0);
-    expect(queryAllByTestId('confirm-modal-body')).toHaveLength(1);
+    expect(queryByTestId('confirm-modal-header')).not.toBeInTheDocument();
+    expect(queryByTestId('confirm-modal-body')).toBeInTheDocument();
     expect(getByTestId('confirm-modal-body')).toHaveTextContent('Are you sure?');
 
-    expect(queryAllByTestId('confirm-modal-footer')).toHaveLength(1);
+    expect(queryByTestId('confirm-modal-footer')).toBeInTheDocument();
     expect(getByTestId('confirm-modal-confirm')).toHaveClass('btn-primary');
     expect(getByTestId('confirm-modal-confirm')).toHaveAttribute('data-test-selector', 'confirm-modal-confirm');
     expect(getByTestId('confirm-modal-confirm')).toHaveTextContent('Confirm');
@@ -30,16 +30,16 @@ describe('<ConfirmModal />', () => {
       modalDescription: 'If sure, please click confirm.',
       modalTitle: 'Please Confirm',
     };
-    const { getByTestId, queryAllByTestId } = render(<ConfirmModal {...props} />);
+    const { getByTestId, queryByTestId } = render(<ConfirmModal {...props} />);
     expect(getByTestId('confirm-modal-wrapper')).toHaveClass('confirm-modal-component');
-    expect(queryAllByTestId('confirm-modal-header')).toHaveLength(1);
-    expect(queryAllByTestId('confirm-modal-title')).toHaveLength(1);
+    expect(queryByTestId('confirm-modal-header')).toBeInTheDocument();
+    expect(queryByTestId('confirm-modal-title')).toBeInTheDocument();
     expect(getByTestId('confirm-modal-title')).toHaveTextContent('Please Confirm');
 
-    expect(queryAllByTestId('confirm-modal-body')).toHaveLength(1);
+    expect(queryByTestId('confirm-modal-body')).toBeInTheDocument();
     expect(getByTestId('confirm-modal-body')).toHaveTextContent('If sure, please click confirm.');
 
-    expect(queryAllByTestId('confirm-modal-footer')).toHaveLength(1);
+    expect(queryByTestId('confirm-modal-footer')).toBeInTheDocument();
 
     expect(getByTestId('confirm-modal-cancel')).toHaveClass('btn-inverse');
     expect(getByTestId('confirm-modal-cancel')).toHaveAttribute('data-test-selector', 'confirm-modal-cancel');
@@ -56,8 +56,8 @@ describe('<ConfirmModal />', () => {
   });
 
   it('should hide modal when `show` is false', () => {
-    const { queryAllByTestId } = render(<ConfirmModal show={false} />);
-    expect(queryAllByTestId('confirm-modal-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<ConfirmModal show={false} />);
+    expect(queryByTestId('confirm-modal-wrapper')).not.toBeInTheDocument();
   });
 
   it('should call `modalApply` and `modalClose` when we click Apply', () => {

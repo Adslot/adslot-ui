@@ -34,14 +34,14 @@ describe('Toast.notify', () => {
 
 describe('<ToastMessage />', () => {
   it('should render toast message as expected', () => {
-    const { queryAllByText, container } = render(
+    const { queryByText, container } = render(
       <ToastMessage toastClass="aui--toast-title aui--toast-title-info" title="Test" message="Test Message" />
     );
 
     expect(queryAllByClass(container, 'aui--toast-body-message')).toHaveLength(1);
     expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveLength(1);
-    expect(queryAllByText('Test')).toHaveLength(1);
-    expect(queryAllByText('Test Message')).toHaveLength(1);
+    expect(queryByText('Test')).toBeInTheDocument();
+    expect(queryByText('Test Message')).toBeInTheDocument();
   });
 });
 
@@ -64,7 +64,7 @@ describe('<Toast.Container />', () => {
 
 describe('<Toast.Notification />', () => {
   it('should render default info type', () => {
-    const { container, rerender, queryAllByText } = render(
+    const { container, rerender, queryByText } = render(
       <div>
         <Toast.Container />
       </div>
@@ -80,12 +80,12 @@ describe('<Toast.Notification />', () => {
     });
 
     expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveLength(1);
-    expect(getByClass(container, 'aui--toast-title aui--toast-title-info')).toBeEmpty();
-    expect(queryAllByText('Default toast')).toHaveLength(1);
+    expect(getByClass(container, 'aui--toast-title aui--toast-title-info')).toBeEmptyDOMElement();
+    expect(queryByText('Default toast')).toBeInTheDocument();
   });
 
   it('should render success type', () => {
-    const { container, rerender, queryAllByText } = render(
+    const { container, rerender, queryByText } = render(
       <div>
         <Toast.Container />
       </div>
@@ -102,11 +102,11 @@ describe('<Toast.Notification />', () => {
 
     expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-success')).toHaveLength(1);
     expect(getByClass(container, 'aui--toast-title aui--toast-title-success')).toHaveTextContent('SUCCESS');
-    expect(queryAllByText('Success toast')).toHaveLength(1);
+    expect(queryByText('Success toast')).toBeInTheDocument();
   });
 
   it('should render alert type', () => {
-    const { container, rerender, queryAllByText } = render(
+    const { container, rerender, queryByText } = render(
       <div>
         <Toast.Container />
       </div>
@@ -123,11 +123,11 @@ describe('<Toast.Notification />', () => {
 
     expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-alert')).toHaveLength(1);
     expect(getByClass(container, 'aui--toast-title aui--toast-title-alert')).toHaveTextContent('ALERT');
-    expect(queryAllByText('Alert toast')).toHaveLength(1);
+    expect(queryByText('Alert toast')).toBeInTheDocument();
   });
 
   it('should render attention type', () => {
-    const { container, rerender, queryAllByText } = render(
+    const { container, rerender, queryByText } = render(
       <div>
         <Toast.Container />
       </div>
@@ -144,11 +144,11 @@ describe('<Toast.Notification />', () => {
 
     expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-attention')).toHaveLength(1);
     expect(getByClass(container, 'aui--toast-title aui--toast-title-attention')).toHaveTextContent('ATTENTION');
-    expect(queryAllByText('Attention toast')).toHaveLength(1);
+    expect(queryByText('Attention toast')).toBeInTheDocument();
   });
 
   it('should render info type', () => {
-    const { container, rerender, queryAllByText } = render(
+    const { container, rerender, queryByText } = render(
       <div>
         <Toast.Container />
       </div>
@@ -165,6 +165,6 @@ describe('<Toast.Notification />', () => {
 
     expect(queryAllByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveLength(1);
     expect(getByClass(container, 'aui--toast-title aui--toast-title-info')).toHaveTextContent('INFO');
-    expect(queryAllByText('Info toast')).toHaveLength(1);
+    expect(queryByText('Info toast')).toBeInTheDocument();
   });
 });

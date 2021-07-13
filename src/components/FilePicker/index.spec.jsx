@@ -20,14 +20,14 @@ describe('<FilePicker />', () => {
 
   it('should show remove button and call `onSelect` when file selected', () => {
     const onSelect = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <FilePickerComponent onSelect={onSelect} dts="test-file-picker-input" />
     );
 
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('placeholder', 'No file selected');
 
-    expect(queryAllByTestId('file-picker-remove-button')).toHaveLength(0);
+    expect(queryByTestId('file-picker-remove-button')).not.toBeInTheDocument();
     expect(getByTestId('file-picker-input-button')).toBeEnabled();
 
     expect(getByTestId('file-picker-input-button-input')).toHaveAttribute(
@@ -39,7 +39,7 @@ describe('<FilePicker />', () => {
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onSelect).toHaveBeenCalledWith({ name: 'selected file' });
 
-    expect(queryAllByTestId('file-picker-remove-button')).toHaveLength(1);
+    expect(queryByTestId('file-picker-remove-button')).toBeInTheDocument();
     expect(getByTestId('file-picker-input-button')).toBeDisabled();
 
     // onChange() should do nothing if isFileSelected is true
@@ -62,7 +62,7 @@ describe('<FilePicker />', () => {
     expect(getByTestId('file-picker-input-button-input').files).toHaveLength(1);
 
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', 'test.png');
-    expect(getByTestId('file-picker-form-control')).toHaveAttribute('value', 'test.png');
+    expect(getByTestId('file-picker-form-control')).toHaveValue('test.png');
   });
 
   it('should remove file selected when remove file button is clicked', () => {
@@ -77,7 +77,7 @@ describe('<FilePicker />', () => {
     fireEvent.click(getByTestId('file-picker-remove-button'));
 
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
-    expect(getByTestId('file-picker-form-control')).toHaveAttribute('value', '');
+    expect(getByTestId('file-picker-form-control')).toHaveValue('');
   });
 
   it('should call `onRemove` when remove file button is clicked', () => {

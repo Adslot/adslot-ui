@@ -41,19 +41,19 @@ describe('<HoverDropdownMenu />', () => {
   });
 
   it('should render with default props', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <HoverDropdownMenu hoverComponent={props.hoverComponent} arrowPosition="right">
         something
       </HoverDropdownMenu>
     );
 
-    expect(queryAllByTestId('avatar-wrapper')).toHaveLength(1);
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    expect(queryByTestId('avatar-wrapper')).toBeInTheDocument();
+    expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render popover with list of links when `links` is not empty', async () => {
     console.error = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
           <HoverDropdownMenu.Item key={idx} {...link} />
@@ -66,7 +66,7 @@ describe('<HoverDropdownMenu />', () => {
       jest.runAllTimers();
     });
 
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     expect(queryAllByTestId('popover-link-item-wrapper')).toHaveLength(2);
     queryAllByTestId('popover-link-item-wrapper').forEach(item => expect(item).toHaveClass('popover-link-item'));
     expect(queryAllByTestId('popover-link-item-wrapper')[0]).toHaveTextContent('Link 1');
@@ -75,7 +75,7 @@ describe('<HoverDropdownMenu />', () => {
 
   it('should trigger popover open or close when mouse enter or leave HoverDropdownMenu ref element', () => {
     console.error = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
           <HoverDropdownMenu.Item key={idx} {...link} />
@@ -86,23 +86,23 @@ describe('<HoverDropdownMenu />', () => {
       fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
   });
 
   it('should trigger popover open or close when mouse enter or leave HoverDropdownMenu items', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
           <HoverDropdownMenu.Item key={idx} {...link} />
@@ -114,39 +114,39 @@ describe('<HoverDropdownMenu />', () => {
       fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
       fireEvent.mouseEnter(getByTestId('popover-wrapper'));
       jest.advanceTimersByTime(50);
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseLeave(getByTestId('popover-wrapper'));
       fireEvent.mouseEnter(getByTestId('popover-title'));
       jest.advanceTimersByTime(50);
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseLeave(getByTestId('popover-title'));
       fireEvent.mouseEnter(queryAllByTestId('popover-link-item-wrapper')[0]);
-      jest.advanceTimersByTime(50);
+      jest.advanceTimersByTime(49);
     });
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseLeave(getByTestId('popover-wrapper'));
       jest.runAllTimers();
     });
 
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
   });
 
   it('should not render anything if there is no children', () => {
-    const { queryAllByTestId } = render(<HoverDropdownMenu hoverComponent={<div />} />);
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<HoverDropdownMenu hoverComponent={<div />} />);
+    expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
   });
 });

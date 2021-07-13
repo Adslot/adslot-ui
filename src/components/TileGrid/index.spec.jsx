@@ -12,21 +12,21 @@ describe('<TileGrid />', () => {
   };
 
   it('renders with basic props', () => {
-    const { getByTestId, queryAllByTestId } = render(<TileGrid {...props} items={[]} />);
+    const { getByTestId, queryByTestId } = render(<TileGrid {...props} items={[]} />);
 
     expect(getByTestId('tile-grid-wrapper')).toHaveClass('tile-grid-component');
-    expect(queryAllByTestId('tile-grid-title')).toHaveLength(0);
+    expect(queryByTestId('tile-grid-title')).not.toBeInTheDocument();
 
-    expect(queryAllByTestId('tile-grid-list')).toHaveLength(1);
+    expect(queryByTestId('tile-grid-list')).toBeInTheDocument();
     expect(getByTestId('tile-grid-list')).toHaveClass('tile-grid-component-list');
-    expect(getByTestId('tile-grid-list')).toBeEmpty();
+    expect(getByTestId('tile-grid-list')).toBeEmptyDOMElement();
   });
 
   it('renders title if props contain it', () => {
     const newProps = _.assign(props, { title: 'Lorem ipsum' });
-    const { getByTestId, queryAllByTestId } = render(<TileGrid {...newProps} items={[]} />);
+    const { getByTestId, queryByTestId } = render(<TileGrid {...newProps} items={[]} />);
 
-    expect(queryAllByTestId('tile-grid-title')).toHaveLength(1);
+    expect(queryByTestId('tile-grid-title')).toBeInTheDocument();
     expect(getByTestId('tile-grid-title')).toHaveClass('tile-grid-component-title');
     expect(getByTestId('tile-grid-title')).toHaveTextContent('Lorem ipsum');
   });

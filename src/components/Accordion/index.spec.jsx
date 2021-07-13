@@ -27,14 +27,14 @@ describe('<Accordion />', () => {
     );
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { queryByTestId, getByTestId } = render(
       <Accordion {...makeProps()}>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
       </Accordion>
     );
-    expect(queryAllByTestId('card-container-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-container-wrapper')).toBeInTheDocument();
     expect(getByTestId('card-container-wrapper')).toHaveAttribute('data-test-selector', 'my-accordion');
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
     expect(getByTestId('card-content-wrapper')).toHaveTextContent('Panel 1');
   });
 
@@ -48,7 +48,7 @@ describe('<Accordion />', () => {
   });
 
   it('should render with props', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId, queryAllByTestId } = render(
       <Accordion {...makeProps()}>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
         <Accordion.Panel {...panel2}>{panel2.content}</Accordion.Panel>
@@ -56,7 +56,7 @@ describe('<Accordion />', () => {
       </Accordion>
     );
 
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
     expect(queryAllByTestId('panel-wrapper')).toHaveLength(3);
 
     // generate a dts from panel id
@@ -160,13 +160,13 @@ describe('<Accordion />', () => {
   });
 
   it('should ignore children that are not an instance of Accordion.Panel', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Accordion {...makeProps()}>
         <div data-testid="should-not-render">test</div>
         <Accordion.Panel {...panel1}>{panel1.content}</Accordion.Panel>
       </Accordion>
     );
 
-    expect(queryAllByTestId('should-not-render')).toHaveLength(0);
+    expect(queryByTestId('should-not-render')).not.toBeInTheDocument();
   });
 });

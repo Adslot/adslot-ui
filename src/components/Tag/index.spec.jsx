@@ -7,10 +7,10 @@ afterEach(cleanup);
 
 describe('<Tag />', () => {
   it('should render a default tag', () => {
-    const { getByTestId, queryAllByTestId } = render(<Tag>You are it!</Tag>);
+    const { getByTestId, queryByTestId } = render(<Tag>You are it!</Tag>);
     expect(getByTestId('tag-wrapper')).toHaveClass('tag-component');
     expect(getByTestId('tag-wrapper')).toHaveAttribute('data-test-selector', 'tag-default');
-    expect(queryAllByTestId('tag-action-button')).toHaveLength(0);
+    expect(queryByTestId('tag-action-button')).not.toBeInTheDocument();
   });
 
   it('should apply a custom data test selector', () => {
@@ -41,12 +41,12 @@ describe('<Tag />', () => {
 
   it('should render an actionable tag', () => {
     const onTagAction = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <Tag onAction={onTagAction} actionIconSvgHref="foo">
         You are it!
       </Tag>
     );
-    expect(queryAllByTestId('tag-action-button')).toHaveLength(1);
+    expect(queryByTestId('tag-action-button')).toBeInTheDocument();
     expect(getByTestId('tag-wrapper')).toHaveClass('tag-component tag-component-actionable');
   });
 
@@ -79,8 +79,8 @@ describe('<Tag />', () => {
   });
 
   it('should render a actionable tag without svg', () => {
-    const { getByTestId, queryAllByTestId } = render(<Tag onAction={jest.fn()}>You are it!</Tag>);
-    expect(queryAllByTestId('tag-action-button')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Tag onAction={jest.fn()}>You are it!</Tag>);
+    expect(queryByTestId('tag-action-button')).toBeInTheDocument();
     expect(getByTestId('tag-action-icon')).toHaveClass('action-icon');
   });
 });

@@ -11,7 +11,7 @@ describe('<PagedGrid />', () => {
       pageCount: 10,
       onSelect: jest.fn(),
     };
-    const { getByTestId, queryAllByTestId } = render(<Pagination {...props} />);
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(<Pagination {...props} />);
 
     expect(getByTestId('pagination-wrapper')).toHaveClass('aui--pagination');
 
@@ -24,7 +24,7 @@ describe('<PagedGrid />', () => {
     expect(queryAllByTestId('button-wrapper')[3]).toHaveTextContent('10');
     expect(queryAllByTestId('button-wrapper')[4]).toHaveClass('aui--pagination-sides');
 
-    expect(queryAllByTestId('pagination-right-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('pagination-right-ellipsis')).toBeInTheDocument();
   });
 
   it('should show active pagination button as specified', () => {
@@ -104,14 +104,14 @@ describe('<PagedGrid />', () => {
       pageCount: 10,
       onSelect: jest.fn(),
     };
-    const { queryAllByTestId } = render(<Pagination {...props} />);
+    const { queryByTestId, queryAllByTestId } = render(<Pagination {...props} />);
 
     expect(queryAllByTestId('button-wrapper')).toHaveLength(7);
     expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('aui--pagination-sides');
     expect(queryAllByTestId('button-wrapper')[6]).toHaveClass('aui--pagination-sides');
 
-    expect(queryAllByTestId('pagination-left-ellipsis')).toHaveLength(1);
-    expect(queryAllByTestId('pagination-right-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('pagination-left-ellipsis')).toBeInTheDocument();
+    expect(queryByTestId('pagination-right-ellipsis')).toBeInTheDocument();
 
     fireEvent.click(queryAllByTestId('button-wrapper')[0]);
     expect(props.onSelect).toHaveBeenCalledTimes(1);

@@ -6,8 +6,8 @@ afterEach(cleanup);
 
 describe('<Button />', () => {
   it('should render Button', () => {
-    const { queryAllByTestId } = render(<Button>Test</Button>);
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<Button>Test</Button>);
+    expect(queryByTestId('button-wrapper')).toBeInTheDocument();
   });
 
   it('should support className prop', () => {
@@ -47,8 +47,8 @@ describe('<Button />', () => {
   });
 
   it('should render Spinner if isLoading is true', () => {
-    const { queryAllByTestId } = render(<Button isLoading />);
-    expect(queryAllByTestId('button-spinner-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<Button isLoading />);
+    expect(queryByTestId('button-spinner-wrapper')).toBeInTheDocument();
   });
 
   it('should only allow size medium or small on Spinner', () => {

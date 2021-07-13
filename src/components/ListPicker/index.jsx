@@ -19,17 +19,13 @@ const isSubset = (array, subArray) =>
 class ListPickerComponent extends React.PureComponent {
   constructor(props) {
     super(props);
-    ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'loadData', 'selectItem'].forEach(
+    ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'defaultState', 'selectItem'].forEach(
       methodName => {
         this[methodName] = this[methodName].bind(this);
       }
     );
 
-    this.state = {};
-  }
-
-  componentDidMount() {
-    this.loadData();
+    this.state = this.defaultState();
   }
 
   getApplyButtonState(selectedItems) {
@@ -38,12 +34,12 @@ class ListPickerComponent extends React.PureComponent {
     return _.isEmpty(selectedItems);
   }
 
-  loadData() {
+  defaultState() {
     const selectedItems = _.clone(this.props.initialSelection);
-    this.setState({
+    return {
       selectedItems,
       disableApplyButton: this.getApplyButtonState(selectedItems),
-    });
+    };
   }
 
   selectItem(item) {
@@ -68,7 +64,7 @@ class ListPickerComponent extends React.PureComponent {
 
   cancelAction() {
     this.props.modalClose();
-    this.loadData();
+    this.setState(this.defaultState());
   }
 
   applyAction() {

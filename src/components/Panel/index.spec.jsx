@@ -10,21 +10,21 @@ describe('<Panel />', () => {
   const { panel1, panel2, panel3 } = PanelMocks;
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<Panel {...panel1} />);
+    const { getByTestId, queryByTestId } = render(<Panel {...panel1} />);
     expect(getByTestId('panel-wrapper')).toHaveClass('panel-component');
 
-    expect(queryAllByTestId('panel-header')).toHaveLength(1);
+    expect(queryByTestId('panel-header')).toBeInTheDocument();
     expect(getByTestId('panel-header')).toHaveClass('panel-component-header');
     expect(getByTestId('panel-header')).toHaveTextContent('Panel 1');
 
-    expect(queryAllByTestId('panel-content')).toHaveLength(1);
+    expect(queryByTestId('panel-content')).toBeInTheDocument();
     expect(getByTestId('panel-content')).toHaveClass('panel-component-content');
-    expect(getByTestId('panel-content')).toBeEmpty();
+    expect(getByTestId('panel-content')).toBeEmptyDOMElement();
   });
 
   it('should render with props', () => {
     const icon = <SvgSymbol href="/assets/svg-symbols.svg#list" />;
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <Panel {...panel2} icon={icon}>
         {panel2.content}
       </Panel>
@@ -32,10 +32,10 @@ describe('<Panel />', () => {
     expect(getByTestId('panel-wrapper')).toHaveClass('panel-component collapsed');
     expect(getByTestId('panel-wrapper')).toHaveAttribute('data-test-selector', 'panel-2');
 
-    expect(queryAllByTestId('panel-header')).toHaveLength(1);
+    expect(queryByTestId('panel-header')).toBeInTheDocument();
     expect(getByTestId('panel-header')).toHaveClass('panel-component-header');
 
-    expect(queryAllByTestId('panel-content')).toHaveLength(1);
+    expect(queryByTestId('panel-content')).toBeInTheDocument();
     expect(getByTestId('panel-content')).toHaveClass('panel-component-content');
     expect(getByTestId('panel-content')).toHaveTextContent('Panel 2 content');
   });
@@ -47,9 +47,9 @@ describe('<Panel />', () => {
 
   it('should trigger onClick when clicking header', () => {
     const callback = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(<Panel {...panel3} onClick={callback} />);
+    const { getByTestId, queryByTestId } = render(<Panel {...panel3} onClick={callback} />);
 
-    expect(queryAllByTestId('panel-header')).toHaveLength(1);
+    expect(queryByTestId('panel-header')).toBeInTheDocument();
     expect(getByTestId('panel-header')).toHaveClass('panel-component-header');
 
     fireEvent.click(getByTestId('panel-header'));

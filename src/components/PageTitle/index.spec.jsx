@@ -8,13 +8,13 @@ describe('<PageTitle />', () => {
   it('should have its component name as default className', () => {
     const { getByTestId } = render(<PageTitle />);
     expect(getByTestId('page-title-wrapper')).toHaveClass('pagetitle-component');
-    expect(getByTestId('page-title-wrapper')).toBeEmpty();
+    expect(getByTestId('page-title-wrapper')).toBeEmptyDOMElement();
   });
 
   it('should render its title', () => {
     const { getByTestId } = render(<PageTitle title="Foo" />);
     expect(getByTestId('page-title-wrapper')).toHaveClass('pagetitle-component');
-    expect(getByTestId('page-title-wrapper')).not.toBeEmpty();
+    expect(getByTestId('page-title-wrapper')).not.toBeEmptyDOMElement();
     expect(getByTestId('page-title-wrapper')).toHaveTextContent('Foo');
   });
 
@@ -24,12 +24,12 @@ describe('<PageTitle />', () => {
         Party town
       </div>
     );
-    const { getByTestId, queryAllByTestId } = render(<PageTitle title="Foo">{children}</PageTitle>);
+    const { getByTestId, queryByTestId } = render(<PageTitle title="Foo">{children}</PageTitle>);
 
     expect(getByTestId('page-title-wrapper')).toHaveClass('pagetitle-component');
     expect(getByTestId('page-title-inline')).toHaveClass('flexible-wrapper-inline');
-    expect(queryAllByTestId('flexible-spacer-wrapper')).toHaveLength(1);
-    expect(queryAllByTestId('page-title-children')).toHaveLength(1);
+    expect(queryByTestId('flexible-spacer-wrapper')).toBeInTheDocument();
+    expect(queryByTestId('page-title-children')).toBeInTheDocument();
     expect(getByTestId('page-title-children')).toHaveClass('test-class');
     expect(getByTestId('page-title-inline')).toHaveTextContent('Party town');
   });
@@ -38,6 +38,6 @@ describe('<PageTitle />', () => {
     const { getByTestId } = render(<PageTitle isFooter />);
 
     expect(getByTestId('page-title-wrapper')).toHaveClass('pagetitle-component pagetitle-component-is-footer');
-    expect(getByTestId('page-title-wrapper')).toBeEmpty();
+    expect(getByTestId('page-title-wrapper')).toBeEmptyDOMElement();
   });
 });

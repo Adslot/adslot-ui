@@ -6,8 +6,8 @@ afterEach(cleanup);
 
 describe('<Textarea />', () => {
   it('should render a textarea element', () => {
-    const { queryAllByTestId } = render(<Textarea />);
-    expect(queryAllByTestId('textarea-area')).toHaveLength(1);
+    const { queryByTestId } = render(<Textarea />);
+    expect(queryByTestId('textarea-area')).toBeInTheDocument();
   });
 
   it('should render a countdown span when maxLength is specified', () => {
@@ -42,10 +42,10 @@ describe('<Textarea />', () => {
   });
 
   it('should not update the remaining character count when maxLength is not specified', () => {
-    const { getByTestId, queryAllByTestId } = render(<Textarea />);
-    expect(queryAllByTestId('textarea-span')).toHaveLength(0);
+    const { getByTestId, queryByTestId } = render(<Textarea />);
+    expect(queryByTestId('textarea-span')).not.toBeInTheDocument();
     fireEvent.change(getByTestId('textarea-area'), { target: { value: 'abcde' } });
-    expect(queryAllByTestId('textarea-span')).toHaveLength(0);
+    expect(queryByTestId('textarea-span')).not.toBeInTheDocument();
   });
 
   it('should pass on additional props to textarea element', () => {

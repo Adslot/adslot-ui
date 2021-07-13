@@ -26,17 +26,17 @@ describe('<ListPickerPure />', () => {
   Object.freeze(selectedItems);
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<ListPickerPure />);
+    const { getByTestId, queryByTestId } = render(<ListPickerPure />);
 
     expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
     expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
       'listpickerpure-component-item'
     );
-    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+    expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
 
-    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
-    expect(getByTestId('empty-wrapper')).not.toBeEmpty();
+    expect(queryByTestId('empty-wrapper')).toBeInTheDocument();
+    expect(getByTestId('empty-wrapper')).not.toBeEmptyDOMElement();
     expect(getByTestId('empty-wrapper')).toHaveTextContent('No items to select.');
   });
 

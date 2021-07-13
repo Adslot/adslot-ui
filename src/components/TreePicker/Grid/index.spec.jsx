@@ -28,18 +28,18 @@ describe('<TreePickerGrid />', () => {
       isLoading: false,
     };
 
-    const { getByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
-    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
     expect(getByTestId('grid-wrapper').children).toHaveLength(2);
 
-    expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(1);
+    expect(queryByTestId('treepicker-grid-node-wrapper')).toBeInTheDocument();
     expect(getByTestId('treepicker-grid-node-wrapper')).toHaveClass('treepickergrid-component-group');
     expect(getByTestId('treepicker-grid-node-wrapper').children).toHaveLength(3);
 
     expect(getByTestId('grid-wrapper')).toContainElement(getByTestId('treepicker-grid-node-wrapper'));
     expect(getByTestId('treepicker-grid-node-wrapper')).toHaveClass('treepickergrid-component-group');
 
-    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
+    expect(queryByTestId('empty-wrapper')).toBeInTheDocument();
     expect(getByTestId('grid-wrapper')).toContainElement(getByTestId('empty-wrapper'));
   });
 
@@ -64,8 +64,8 @@ describe('<TreePickerGrid />', () => {
     });
 
     it('should render with groups by default', () => {
-      const { getByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
-      expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+      const { getByTestId, queryByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
+      expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
       expect(getByTestId('grid-wrapper').children).toHaveLength(3);
       expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(2);
       queryAllByTestId('treepicker-grid-node-wrapper').forEach(group =>
@@ -86,10 +86,10 @@ describe('<TreePickerGrid />', () => {
         nodes: [qldNode],
         displayGroupHeader: false,
       });
-      const { getByTestId, queryAllByTestId } = render(<TreePickerGrid {...props} />);
-      expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+      const { getByTestId, queryByTestId } = render(<TreePickerGrid {...props} />);
+      expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
       expect(getByTestId('grid-wrapper').children).toHaveLength(2);
-      expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(1);
+      expect(queryByTestId('treepicker-grid-node-wrapper')).toBeInTheDocument();
       expect(getByTestId('treepicker-grid-node-wrapper')).toHaveClass('treepickergrid-component-group');
       expect(getByTestId('treepicker-grid-node-wrapper').children).toHaveLength(1);
     });
@@ -110,8 +110,8 @@ describe('<TreePickerGrid />', () => {
       valueFormatter,
       isLoading: false,
     };
-    const { queryAllByTestId } = render(<TreePickerGrid {...props} />);
-    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryByTestId('empty-wrapper')).toBeInTheDocument();
   });
 
   it('should not display empty with an undefined nodes list', () => {
@@ -127,8 +127,8 @@ describe('<TreePickerGrid />', () => {
       valueFormatter,
       isLoading: false,
     };
-    const { queryAllByTestId } = render(<TreePickerGrid {...props} />);
-    expect(queryAllByTestId('empty-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryByTestId('empty-wrapper')).not.toBeInTheDocument();
   });
 
   it('should display a loading state instead of empty state when isLoading is set to true', () => {
@@ -138,8 +138,8 @@ describe('<TreePickerGrid />', () => {
       emptyText: 'nothing here',
       isLoading: true,
     };
-    const { queryAllByTestId } = render(<TreePickerGrid {...props} />);
-    expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<TreePickerGrid {...props} />);
+    expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
   });
 
   it('should display a loading state instead of nodes when isLoading is set to true', () => {
@@ -150,8 +150,8 @@ describe('<TreePickerGrid />', () => {
       nodes: [qldNode],
     };
 
-    const { queryAllByTestId } = render(<TreePickerGrid {...props} isLoading />);
-    expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<TreePickerGrid {...props} isLoading />);
+    expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
   });
 
   it('should hide the emptySvgSymbol of the tree picker grid as expected', () => {
@@ -170,13 +170,13 @@ describe('<TreePickerGrid />', () => {
       isLoading: false,
     };
 
-    const { getByTestId, queryAllByTestId, rerender } = render(<TreePickerGrid {...props} />);
-    expect(queryAllByTestId('empty-wrapper')).toHaveLength(1);
-    expect(queryAllByTestId('testing-svg-symbol')).toHaveLength(1);
+    const { getByTestId, queryByTestId, rerender } = render(<TreePickerGrid {...props} />);
+    expect(queryByTestId('empty-wrapper')).toBeInTheDocument();
+    expect(queryByTestId('testing-svg-symbol')).toBeInTheDocument();
     expect(getByTestId('empty-wrapper')).toContainElement(getByTestId('testing-svg-symbol'));
 
     rerender(<TreePickerGrid {...props} hideIcon />);
 
-    expect(queryAllByTestId('testing-svg-symbol')).toHaveLength(0);
+    expect(queryByTestId('testing-svg-symbol')).not.toBeInTheDocument();
   });
 });

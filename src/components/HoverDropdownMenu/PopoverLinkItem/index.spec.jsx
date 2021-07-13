@@ -19,8 +19,8 @@ describe('<PopoverLinkItem />', () => {
   });
 
   it('should render with default props', () => {
-    const { getByText, queryAllByTestId } = render(<PopoverLinkItem {...props} />);
-    expect(queryAllByTestId('popover-link-item-wrapper')).toHaveLength(1);
+    const { getByText, queryByTestId } = render(<PopoverLinkItem {...props} />);
+    expect(queryByTestId('popover-link-item-wrapper')).toBeInTheDocument();
     expect(getByText('Link 1')).toHaveAttribute('href', 'www.some.url.com');
   });
 

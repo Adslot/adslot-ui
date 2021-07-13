@@ -9,21 +9,21 @@ describe('<UserListPicker />', () => {
   const { getInitialSelection, userHeaders, users } = ListPickerMocks;
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId, getByText } = render(<UserListPicker show />);
+    const { getByTestId, queryByTestId, getByText } = render(<UserListPicker show />);
 
-    expect(queryAllByTestId('listpicker-wrapper')).toHaveLength(1);
+    expect(queryByTestId('listpicker-wrapper')).toBeInTheDocument();
     expect(getByTestId('listpicker-wrapper')).toHaveClass('userlistpicker-component');
 
     expect(getByText('Select Users')).toHaveClass('modal-title');
     expect(getByText('Select users.').tagName).toEqual('P');
     expect(getByText('Select users.').parentElement).toHaveClass('modal-body');
 
-    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(1);
+    expect(queryByTestId('grid-row-wrapper')).toBeInTheDocument();
     expect(getByTestId('grid-row-wrapper')).toHaveClass('grid-component-row-header');
     expect(getByTestId('grid-row-wrapper')).toHaveTextContent('TeamMember');
 
-    expect(queryAllByTestId('checkbox-input')).toHaveLength(0);
-    expect(queryAllByTestId('radio-input')).toHaveLength(0);
+    expect(queryByTestId('checkbox-input')).not.toBeInTheDocument();
+    expect(queryByTestId('radio-input')).not.toBeInTheDocument();
 
     expect(getByTestId('empty-text')).toHaveTextContent('No users.');
   });
@@ -39,9 +39,9 @@ describe('<UserListPicker />', () => {
       modalDescription: 'Select team members that you want.',
       modalTitle: 'Select Team Members',
     };
-    const { getByTestId, queryAllByTestId, getByText } = render(<UserListPicker {...props} show />);
+    const { getByTestId, queryByTestId, queryAllByTestId, getByText } = render(<UserListPicker {...props} show />);
 
-    expect(queryAllByTestId('listpicker-wrapper')).toHaveLength(1);
+    expect(queryByTestId('listpicker-wrapper')).toBeInTheDocument();
     expect(getByTestId('listpicker-wrapper')).toHaveClass('userlistpicker-component');
 
     expect(getByText('Select Team Members')).toHaveClass('modal-title');
@@ -80,14 +80,14 @@ describe('<UserListPicker />', () => {
     expect(getByText('John Smith').parentElement).toHaveClass('userlistpicker-component-user-label');
 
     expect(queryAllByTestId('checkbox-input')).toHaveLength(3);
-    expect(queryAllByTestId('radio-input')).toHaveLength(0);
+    expect(queryByTestId('radio-input')).not.toBeInTheDocument();
 
     expect(queryAllByTestId('checkbox-input')).toHaveLength(3);
     expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();
     expect(queryAllByTestId('checkbox-input')[1]).toBeChecked(); // selectedItems
     expect(queryAllByTestId('checkbox-input')[2]).not.toBeChecked();
 
-    expect(queryAllByTestId('empty-text')).toHaveLength(0);
+    expect(queryByTestId('empty-text')).not.toBeInTheDocument();
   });
 
   it('should throw when we do not supply apply handler', () => {
@@ -96,11 +96,11 @@ describe('<UserListPicker />', () => {
     };
     const { queryAllByTestId, getByText } = render(<UserListPicker users={users} show />);
 
-    expect(getByText('Apply')).toBeDisabled();
+    expect(getByText('Apply').closest('button')).toBeDisabled();
 
     fireEvent.click(queryAllByTestId('checkbox-input')[1]);
 
-    expect(getByText('Apply')).toBeEnabled();
+    expect(getByText('Apply').closest('button')).toBeEnabled();
     expect(() => fireEvent.click(getByText('Apply'))).toThrow('AdslotUi UserListPicker needs a modalApply handler');
   });
 

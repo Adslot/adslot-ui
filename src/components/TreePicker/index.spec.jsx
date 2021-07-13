@@ -37,14 +37,14 @@ describe('<TreePicker />', () => {
   };
 
   it('should render with props', () => {
-    const { container, getByTestId, queryAllByTestId } = render(<TreePickerSimplePure {...props} />);
+    const { container, getByTestId, queryByTestId, queryAllByTestId } = render(<TreePickerSimplePure {...props} />);
     expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component');
 
     expect(queryAllByTestId('split-panel-wrapper')).toHaveLength(2);
 
     getByTestId('treepicker-wrapper').children.forEach(child => expect(child).toHaveClass('splitpane-component'));
 
-    expect(queryAllByTestId('treepicker-nav-wrapper')).toHaveLength(1);
+    expect(queryByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
 
     expect(queryAllByTestId('flexible-spacer-wrapper')).toHaveLength(2);
     const leftSplitPane = getByDts(container, `treepicker-splitpane-available-${_.kebabCase(itemType)}`);
@@ -56,14 +56,14 @@ describe('<TreePicker />', () => {
   it('should render empty text as expected', () => {
     const newProps = _.assign({}, props, { subtree: [] });
 
-    const { getByText, queryAllByText, rerender } = render(<TreePickerSimplePure {...newProps} />);
+    const { getByText, queryByText, rerender } = render(<TreePickerSimplePure {...newProps} />);
 
-    expect(queryAllByText('Begin searching.')).toHaveLength(1);
+    expect(queryByText('Begin searching.')).toBeInTheDocument();
     expect(getByText('Begin searching.')).toHaveClass('empty-component-text');
 
     rerender(<TreePickerSimplePure {...newProps} searchValue="keyword" />);
-    expect(queryAllByText('Begin searching.')).toHaveLength(0);
-    expect(queryAllByText('No items to select.')).toHaveLength(1);
+    expect(queryByText('Begin searching.')).not.toBeInTheDocument();
+    expect(queryByText('No items to select.')).toBeInTheDocument();
     expect(getByText('No items to select.')).toHaveClass('empty-component-text');
   });
 
@@ -77,16 +77,16 @@ describe('<TreePicker />', () => {
       hideSearchOnRoot: true,
       breadcrumbNodes: [],
     });
-    const { queryAllByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
-    expect(queryAllByTestId('treepicker-nav-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+    expect(queryByTestId('treepicker-nav-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render TreePickerNav when hideSearchOnRoot is true and not on root level', () => {
     const hideSearchOnRootProps = _.assign({}, props, {
       hideSearchOnRoot: true,
     });
-    const { queryAllByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
-    expect(queryAllByTestId('treepicker-nav-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+    expect(queryByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
   });
 
   describe('removeSelected', () => {

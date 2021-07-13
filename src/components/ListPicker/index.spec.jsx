@@ -59,7 +59,7 @@ describe('<ListPicker />', () => {
       modalFootnote: 'You can select multiple users.',
       modalTitle: 'Select Users',
     };
-    const { getByTestId, queryAllByTestId, getByText, rerender } = render(
+    const { getByTestId, queryByTestId, queryAllByTestId, getByText, rerender } = render(
       <ListPickerComponent {...props} items={items} show />
     );
 
@@ -98,10 +98,10 @@ describe('<ListPicker />', () => {
     expect(getByText('Team')).toHaveClass('grid-component-cell-stretch'); // itemHeaders: userHeaders
     expect(getByText('Member')).toHaveClass('grid-component-cell-header-toggle');
 
-    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(0);
+    expect(queryByTestId('svg-symbol-wrapper')).not.toBeInTheDocument();
 
     rerender(<ListPickerComponent {...props} show />);
-    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(1);
+    expect(queryByTestId('svg-symbol-wrapper')).toBeInTheDocument();
     expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', '/some.svg#id'); // emptySvgSymbol
     expect(getByTestId('empty-text')).toHaveTextContent('No users.'); //emptyMessage
   });
@@ -201,13 +201,13 @@ describe('<ListPicker />', () => {
       labelFormatter,
       items: users,
     };
-    const { queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+    const { queryByTestId, queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
 
     expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
     expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
     expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'item-3');
 
-    expect(queryAllByTestId('checkbox-input')).toHaveLength(0);
+    expect(queryByTestId('checkbox-input')).not.toBeInTheDocument();
     expect(queryAllByTestId('radio-input')).toHaveLength(3);
 
     expect(queryAllByTestId('radio-input')[0]).not.toBeChecked();
@@ -237,13 +237,13 @@ describe('<ListPicker />', () => {
   });
 
   it('should show modal when `show` is true', () => {
-    const { queryAllByTestId } = render(<ListPickerComponent show />);
-    expect(queryAllByTestId('listpicker-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<ListPickerComponent show />);
+    expect(queryByTestId('listpicker-wrapper')).toBeInTheDocument();
   });
 
   it('should hide modal when `show` is false', () => {
-    const { queryAllByTestId } = render(<ListPickerComponent show={false} />);
-    expect(queryAllByTestId('listpicker-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<ListPickerComponent show={false} />);
+    expect(queryByTestId('listpicker-wrapper')).not.toBeInTheDocument();
   });
 
   it('should only call `modalApply` when we click Apply', () => {
@@ -311,17 +311,17 @@ describe('<ListPicker />', () => {
 
     it('should render as node', () => {
       props.linkButtons = [<Radio data-testid="testing-radio" />];
-      const { getByTestId, queryAllByTestId } = render(<ListPickerComponent {...props} show />);
-      expect(queryAllByTestId('testing-radio')).toHaveLength(1);
+      const { getByTestId, queryByTestId } = render(<ListPickerComponent {...props} show />);
+      expect(queryByTestId('testing-radio')).toBeInTheDocument();
       expect(getByTestId('testing-radio').tagName).toEqual('INPUT');
       expect(getByTestId('testing-radio')).toHaveAttribute('type', 'radio');
     });
 
     it('should render as mixed nodes and buttons', () => {
       props.linkButtons = [{ label: 'Create User', href: '#' }, <Radio data-testid="testing-radio" />];
-      const { getByTestId, queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+      const { getByTestId, queryByTestId, getByText } = render(<ListPickerComponent {...props} show />);
 
-      expect(queryAllByTestId('testing-radio')).toHaveLength(1);
+      expect(queryByTestId('testing-radio')).toBeInTheDocument();
       expect(getByTestId('testing-radio').tagName).toEqual('INPUT');
       expect(getByTestId('testing-radio')).toHaveAttribute('type', 'radio');
 

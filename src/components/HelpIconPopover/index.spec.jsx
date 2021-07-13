@@ -14,19 +14,17 @@ afterEach(cleanup);
 describe('<HelpIconPopover />', () => {
   it('should render with defaults', () => {
     console.error = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(
-      <HelpIconPopover id="tired-help">Have some coffee.</HelpIconPopover>
-    );
+    const { getByTestId, queryByTestId } = render(<HelpIconPopover id="tired-help">Have some coffee.</HelpIconPopover>);
     expect(getByTestId('help-icon-popover-wrapper')).toHaveAttribute('data-test-selector', 'tired-help');
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    expect(queryByTestId('popover-element')).toBeInTheDocument();
+    expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
     act(() => {
       fireEvent.mouseEnter(getByTestId('help-icon-popover-trigger'));
       jest.runAllTimers();
     });
 
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     expect(getByTestId('popover-content')).toHaveTextContent('Have some coffee.');
   });
 

@@ -9,7 +9,7 @@ describe('<InformationBox />', () => {
   const icon = <SvgSymbol href="assets/img#done" />;
 
   it('should render with props', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <InformationBox title="render title here" icon={icon}>
         <div>I am child</div>
       </InformationBox>
@@ -18,57 +18,57 @@ describe('<InformationBox />', () => {
     expect(getByTestId('information-box-wrapper')).toHaveClass('aui--information-box aui--information-box-light');
 
     expect(getByTestId('information-box-title')).toHaveClass('aui--information-box-title');
-    expect(queryAllByTestId('information-box-title')).toHaveLength(1);
+    expect(queryByTestId('information-box-title')).toBeInTheDocument();
     expect(getByTestId('information-box-title')).toHaveTextContent('render title here');
 
-    expect(queryAllByTestId('information-box-icon')).toHaveLength(1);
+    expect(queryByTestId('information-box-icon')).toBeInTheDocument();
     expect(getByTestId('information-box-icon')).toHaveClass('aui--information-box-icon');
-    expect(queryAllByTestId('information-box-node')).toHaveLength(1);
+    expect(queryByTestId('information-box-node')).toBeInTheDocument();
     expect(getByTestId('information-box-node')).toHaveClass('aui--information-box-node');
   });
 
   it('should render without a title when title props is not provided', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <InformationBox icon={icon}>
         <div>I am child</div>
       </InformationBox>
     );
 
-    expect(queryAllByTestId('information-box-title')).toHaveLength(0);
+    expect(queryByTestId('information-box-title')).not.toBeInTheDocument();
 
-    expect(queryAllByTestId('information-box-icon')).toHaveLength(1);
+    expect(queryByTestId('information-box-icon')).toBeInTheDocument();
     expect(getByTestId('information-box-icon')).toHaveClass('aui--information-box-icon');
 
-    expect(queryAllByTestId('information-box-node')).toHaveLength(1);
+    expect(queryByTestId('information-box-node')).toBeInTheDocument();
     expect(getByTestId('information-box-node')).toHaveClass('aui--information-box-node');
 
-    expect(queryAllByTestId('svg-symbol-wrapper')).toHaveLength(1);
+    expect(queryByTestId('svg-symbol-wrapper')).toBeInTheDocument();
   });
 
   it('should render without an icon when icon props is not provided', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <InformationBox title="render title here">
         <div data-testid="information-box-test-children">I am child</div>
       </InformationBox>
     );
 
     expect(getByTestId('information-box-title')).toHaveClass('aui--information-box-title');
-    expect(queryAllByTestId('information-box-title')).toHaveLength(1);
+    expect(queryByTestId('information-box-title')).toBeInTheDocument();
 
-    expect(queryAllByTestId('information-box-test-children')).toHaveLength(1);
-    expect(queryAllByTestId('information-box-icon')).toHaveLength(0);
+    expect(queryByTestId('information-box-test-children')).toBeInTheDocument();
+    expect(queryByTestId('information-box-icon')).not.toBeInTheDocument();
   });
 
   it('should render without children nodes when children props is not provided', () => {
-    const { getByTestId, queryAllByTestId } = render(<InformationBox title="render title here" icon={icon} />);
+    const { getByTestId, queryByTestId } = render(<InformationBox title="render title here" icon={icon} />);
 
     expect(getByTestId('information-box-title')).toHaveClass('aui--information-box-title');
-    expect(queryAllByTestId('information-box-title')).toHaveLength(1);
+    expect(queryByTestId('information-box-title')).toBeInTheDocument();
     expect(getByTestId('information-box-icon')).toHaveClass('aui--information-box-icon');
-    expect(queryAllByTestId('information-box-icon')).toHaveLength(1);
-    expect(queryAllByTestId('information-box-node')).toHaveLength(1);
+    expect(queryByTestId('information-box-icon')).toBeInTheDocument();
+    expect(queryByTestId('information-box-node')).toBeInTheDocument();
     expect(getByTestId('information-box-node')).toHaveClass('aui--information-box-node');
-    expect(getByTestId('information-box-node')).toBeEmpty();
+    expect(getByTestId('information-box-node')).toBeEmptyDOMElement();
   });
 
   it('should accept custom class names', () => {
