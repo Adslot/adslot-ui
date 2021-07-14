@@ -1,3 +1,5 @@
+const svgoConfig = require('./svgo-config');
+
 const isDevelopment = process.env.TYPE === 'development';
 
 const presets = [
@@ -11,18 +13,33 @@ const presets = [
   ],
 ];
 
+const inlineSvgPlugin = [
+  'inline-react-svg',
+  {
+    svgo: svgoConfig,
+  },
+];
+
 const env = {
   production: {
-    plugins: ['babel-plugin-jsx-remove-data-test-id'],
+    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin],
   },
   development: {
-    plugins: ['babel-plugin-jsx-remove-data-test-id'],
+    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin],
   },
   dist: {
-    plugins: ['babel-plugin-jsx-remove-data-test-id'],
+    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin],
   },
   test: {
-    plugins: [],
+    plugins: [inlineSvgPlugin],
+  },
+  esm: {
+    presets: [['@babel/preset-env', { useBuiltIns: false, modules: false }]],
+    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin, ['transform-remove-imports', { test: '\\.(scss|css)$' }]],
+  },
+  cjs: {
+    presets: [['@babel/preset-env', { useBuiltIns: false, modules: 'cjs' }]],
+    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin, ['transform-remove-imports', { test: '\\.(scss|css)$' }]],
   },
 };
 
