@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modifier, EditorState, RichUtils } from 'draft-js';
+import { Modifier, EditorState, convertToRaw, RichUtils } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
@@ -9,7 +9,8 @@ import createMentionPlugin, { defaultSuggestionsFilter } from '@draft-js-plugins
 import cc from 'classnames';
 import InlineStyleButtons from './InlineStyleButtons';
 import BlockStyleButtons from './BlockStyleButtons';
-import AdvancedButtons from './AdvancedButtons';
+import MentionAction from './MentionAction';
+import FileUploadAction from './FileUploadAction';
 import MentionEntry from './MentionEntry';
 import FilePreviewList from './FilePreviewList';
 import './styles.scss';
@@ -20,8 +21,7 @@ const RichTextEditor = ({
   initialValue,
   onChange,
   placeholder,
-  contacts,
-  onAddContact,
+  mentions,
   onFileSelect,
   onFileRemove,
   fileFilter,
@@ -37,9 +37,10 @@ const RichTextEditor = ({
 
   const [editorState, setEditorState] = React.useState(initialValue || EditorState.createEmpty());
   const [isMentionListOpen, setIsMentionListOpen] = React.useState(false);
-  const [mentions, setMentions] = React.useState(contacts);
+  const [suggestions, setSuggestions] = React.useState(mentions);
   const [files, setFiles] = React.useState({});
 
+  // https://www.draft-js-plugins.com/plugin/mention
   const { MentionSuggestions: MentionList, plugins: editorPlugins } = React.useMemo(() => {
     const mentionPlugin = createMentionPlugin({
       entityMutability: 'IMMUTABLE',
@@ -93,31 +94,31 @@ const RichTextEditor = ({
     return false;
   };
 
-  const handleMentionListOpen = React.useCallback(open => {
+  const handleMentionListOpen = React.useCallback((open) => {
     setIsMentionListOpen(open);
   }, []);
 
   const handleMentionSearchChange = React.useCallback(
-    search => {
-      setMentions(defaultSuggestionsFilter(search.value, contacts));
+    (search) => {
+      setSuggestions(defaultSuggestionsFilter(search.value, mentions));
     },
-    [contacts]
+    [mentions]
   );
 
-  const handleFileUpload = async file => {
+  const handleFileUpload = async (file) => {
     const id = _.uniqueId('file_');
-    setFiles(prevState => ({ ...prevState, [id]: { id, name: file.name, path: '', isUploading: true } }));
+    setFiles((prevState) => ({ ...prevState, [id]: { id, name: file.name, path: '', isUploading: true } }));
 
     const path = await onFileSelect(file, id);
 
     if (path) {
-      setFiles(prevState => ({ ...prevState, [id]: { id, name: file.name, path: path, isUploading: false } }));
+      setFiles((prevState) => ({ ...prevState, [id]: { id, name: file.name, path: path, isUploading: false } }));
     }
   };
 
-  const handleFileRemove = async file => {
+  const handleFileRemove = async (file) => {
     await onFileRemove(file);
-    setFiles(prevState => {
+    setFiles((prevState) => {
       const state = { ...prevState };
       delete state[file.id];
       return state;
@@ -137,13 +138,12 @@ const RichTextEditor = ({
           ref={editor}
           spellCheck
         />
-        {!_.isEmpty(contacts) && (
+        {!_.isEmpty(mentions) && (
           <MentionList
             open={isMentionListOpen}
             onOpenChange={handleMentionListOpen}
-            suggestions={mentions}
+            suggestions={suggestions}
             onSearchChange={handleMentionSearchChange}
-            onAddMention={onAddContact}
             entryComponent={MentionEntry}
           />
         )}
@@ -155,16 +155,17 @@ const RichTextEditor = ({
           <BlockStyleButtons editorState={value || editorState} onToggle={handleOnChange} />
         </div>
         <div data-testid="rich-text-editor-advanced-buttons" className="aui--editor-advanced-buttons">
-          <AdvancedButtons
-            mentionEnabled={!_.isEmpty(contacts)}
-            onMentionToggle={() => {
-              if (isMentionListOpen) return;
-              handleOnChange(insertText('@'));
-            }}
-            fileUploadEnabled={_.isFunction(onFileSelect) && _.isFunction(onFileRemove)}
-            fileFilter={fileFilter}
-            onFileUpload={handleFileUpload}
-          />
+          {!_.isEmpty(mentions) && (
+            <MentionAction
+              onToggle={() => {
+                if (isMentionListOpen) return;
+                handleOnChange(insertText('@'));
+              }}
+            />
+          )}
+          {_.isFunction(onFileSelect) && _.isFunction(onFileRemove) && (
+            <FileUploadAction fileFilter={fileFilter} onFileUpload={handleFileUpload} />
+          )}
         </div>
       </div>
     </div>
@@ -179,14 +180,13 @@ RichTextEditor.propTypes = {
   /** Editor State: Instance of <a href="https://draftjs.org/docs/api-reference-editor-state">draft-js editor state</a> */
   value: PropTypes.instanceOf(EditorState),
   onChange: PropTypes.func,
-  contacts: PropTypes.arrayOf(
+  mentions: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       title: PropTypes.string,
       avatar: PropTypes.string,
     })
   ),
-  onAddContact: PropTypes.func,
   onFileSelect: PropTypes.func,
   onFileRemove: PropTypes.func,
   fileFilter: PropTypes.string,
@@ -201,5 +201,7 @@ RichTextEditor.createEmpty = EditorState.createEmpty;
 RichTextEditor.createWithText = EditorState.createWithText;
 RichTextEditor.stateToHTML = (input) => stateToHTML(input.getCurrentContent());
 RichTextEditor.stateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
+RichTextEditor.stateToPlainText = (input) => input.getCurrentContent().getPlainText();
+RichTextEditor.stateToEntityList = (input) => convertToRaw(input.getCurrentContent()).entityMap;
 
 export default RichTextEditor;

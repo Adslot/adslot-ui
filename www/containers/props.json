@@ -536,7 +536,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "newActiveId => {\n  throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);\n}",
+            "value": "(newActiveId) => {\n  throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);\n}",
             "computed": false
           }
         },
@@ -2468,7 +2468,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "item => item.label",
+            "value": "(item) => item.label",
             "computed": false
           }
         },
@@ -3627,57 +3627,6 @@
       }
     }
   ],
-  "src/components/RichTextEditor/AdvancedButtons.jsx": [
-    {
-      "description": "",
-      "displayName": "AdvancedButtons",
-      "methods": [],
-      "props": {
-        "mentionEnabled": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": ""
-        },
-        "onMentionToggle": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "fileUploadEnabled": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": ""
-        },
-        "onFileUpload": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "onFileRemove": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": ""
-        },
-        "fileFilter": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
   "src/components/RichTextEditor/FilePreviewList.jsx": [
     {
       "description": "",
@@ -3742,6 +3691,29 @@
       }
     }
   ],
+  "src/components/RichTextEditor/FileUploadAction.jsx": [
+    {
+      "description": "",
+      "displayName": "FileUploadAction",
+      "methods": [],
+      "props": {
+        "onFileUpload": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fileFilter": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
   "src/components/RichTextEditor/index.jsx": [
     {
       "description": "",
@@ -3764,6 +3736,36 @@
         },
         {
           "name": "stateFromHTML",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "stateToPlainText",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "stateToEntityList",
           "docblock": null,
           "modifiers": [
             "static"
@@ -3820,7 +3822,7 @@
           "required": false,
           "description": ""
         },
-        "contacts": {
+        "mentions": {
           "type": {
             "name": "arrayOf",
             "value": {
@@ -3840,13 +3842,6 @@
                 }
               }
             }
-          },
-          "required": false,
-          "description": ""
-        },
-        "onAddContact": {
-          "type": {
-            "name": "func"
           },
           "required": false,
           "description": ""
@@ -3875,6 +3870,22 @@
             "value": "'.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.psd,.csv,.zip,.7z'",
             "computed": false
           }
+        }
+      }
+    }
+  ],
+  "src/components/RichTextEditor/MentionAction.jsx": [
+    {
+      "description": "",
+      "displayName": "MentionAction",
+      "methods": [],
+      "props": {
+        "onToggle": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -5395,7 +5406,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "value => `${value}`",
+            "value": "(value) => `${value}`",
             "computed": false
           }
         }
@@ -6070,7 +6081,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
+            "value": "(node) => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
             "computed": false
           }
         },
@@ -6096,7 +6107,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "node => node.label",
+            "value": "(node) => node.label",
             "computed": false
           }
         },
@@ -6107,7 +6118,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
+            "value": "(node) => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
             "computed": false
           }
         },
@@ -6129,7 +6140,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "value => value",
+            "value": "(value) => value",
             "computed": false
           }
         }
