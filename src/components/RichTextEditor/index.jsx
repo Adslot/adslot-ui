@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modifier, EditorState, RichUtils } from 'draft-js';
+import { Modifier, EditorState, convertToRaw, RichUtils } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
@@ -21,7 +21,6 @@ const RichTextEditor = ({
   onChange,
   placeholder,
   contacts,
-  onAddContact,
   onFileSelect,
   onFileRemove,
   fileFilter,
@@ -93,31 +92,31 @@ const RichTextEditor = ({
     return false;
   };
 
-  const handleMentionListOpen = React.useCallback(open => {
+  const handleMentionListOpen = React.useCallback((open) => {
     setIsMentionListOpen(open);
   }, []);
 
   const handleMentionSearchChange = React.useCallback(
-    search => {
+    (search) => {
       setMentions(defaultSuggestionsFilter(search.value, contacts));
     },
     [contacts]
   );
 
-  const handleFileUpload = async file => {
+  const handleFileUpload = async (file) => {
     const id = _.uniqueId('file_');
-    setFiles(prevState => ({ ...prevState, [id]: { id, name: file.name, path: '', isUploading: true } }));
+    setFiles((prevState) => ({ ...prevState, [id]: { id, name: file.name, path: '', isUploading: true } }));
 
     const path = await onFileSelect(file, id);
 
     if (path) {
-      setFiles(prevState => ({ ...prevState, [id]: { id, name: file.name, path: path, isUploading: false } }));
+      setFiles((prevState) => ({ ...prevState, [id]: { id, name: file.name, path: path, isUploading: false } }));
     }
   };
 
-  const handleFileRemove = async file => {
+  const handleFileRemove = async (file) => {
     await onFileRemove(file);
-    setFiles(prevState => {
+    setFiles((prevState) => {
       const state = { ...prevState };
       delete state[file.id];
       return state;
@@ -143,7 +142,6 @@ const RichTextEditor = ({
             onOpenChange={handleMentionListOpen}
             suggestions={mentions}
             onSearchChange={handleMentionSearchChange}
-            onAddMention={onAddContact}
             entryComponent={MentionEntry}
           />
         )}
@@ -186,7 +184,6 @@ RichTextEditor.propTypes = {
       avatar: PropTypes.string,
     })
   ),
-  onAddContact: PropTypes.func,
   onFileSelect: PropTypes.func,
   onFileRemove: PropTypes.func,
   fileFilter: PropTypes.string,
@@ -201,5 +198,7 @@ RichTextEditor.createEmpty = EditorState.createEmpty;
 RichTextEditor.createWithText = EditorState.createWithText;
 RichTextEditor.stateToHTML = (input) => stateToHTML(input.getCurrentContent());
 RichTextEditor.stateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
+RichTextEditor.stateToPlainText = (input) => input.getCurrentContent().getPlainText();
+RichTextEditor.stateToEntityList = (input) => convertToRaw(input.getCurrentContent()).entityMap;
 
 export default RichTextEditor;

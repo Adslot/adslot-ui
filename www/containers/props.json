@@ -536,7 +536,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "newActiveId => {\n  throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);\n}",
+            "value": "(newActiveId) => {\n  throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);\n}",
             "computed": false
           }
         },
@@ -2468,7 +2468,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "item => item.label",
+            "value": "(item) => item.label",
             "computed": false
           }
         },
@@ -3776,6 +3776,36 @@
             }
           ],
           "returns": null
+        },
+        {
+          "name": "stateToPlainText",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "stateToEntityList",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "input",
+              "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
         }
       ],
       "props": {
@@ -3840,13 +3870,6 @@
                 }
               }
             }
-          },
-          "required": false,
-          "description": ""
-        },
-        "onAddContact": {
-          "type": {
-            "name": "func"
           },
           "required": false,
           "description": ""
@@ -5395,7 +5418,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "value => `${value}`",
+            "value": "(value) => `${value}`",
             "computed": false
           }
         }
@@ -6070,7 +6093,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
+            "value": "(node) => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
             "computed": false
           }
         },
@@ -6096,7 +6119,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "node => node.label",
+            "value": "(node) => node.label",
             "computed": false
           }
         },
@@ -6107,7 +6130,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "node => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
+            "value": "(node) => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
             "computed": false
           }
         },
@@ -6129,7 +6152,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "value => value",
+            "value": "(value) => value",
             "computed": false
           }
         }

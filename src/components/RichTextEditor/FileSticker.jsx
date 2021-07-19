@@ -7,7 +7,7 @@ const FileSticker = ({ onFileRemove, file }) => {
   const { name, path, isUploading } = file;
   const isImage = /\.(jpe?g|png)$/i.test(name);
 
-  const onStickerRemove = e => {
+  const onStickerRemove = (e) => {
     e.preventDefault();
     e.stopPropagation();
 

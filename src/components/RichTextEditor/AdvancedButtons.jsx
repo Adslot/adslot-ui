@@ -5,7 +5,7 @@ import ToolbarButton from './ToolbarButton';
 const AdvancedButtons = ({ mentionEnabled, onMentionToggle, fileUploadEnabled, onFileUpload, fileFilter }) => {
   const fileInputRef = React.createRef();
 
-  const onFileChange = e => {
+  const onFileChange = (e) => {
     if (e.target.files[0]) onFileUpload(e.target.files[0]);
   };
 

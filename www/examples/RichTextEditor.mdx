@@ -116,8 +116,26 @@ const Example = () => {
       </div>
 
       <div style={{ marginTop: 30, width: '600px' }}>
-        <p>HTML Output:</p>
-        <code>{RichTextEditor.stateToHTML(state)}</code>
+        <p>Contacts List:</p>
+        <>
+          {_(RichTextEditor.stateToEntityList(state))
+            .filter({ type: 'mention' })
+            .map(
+              (
+                {
+                  data: {
+                    mention: { name, title },
+                  },
+                },
+                index
+              ) => (
+                <div key={index}>
+                  {index + 1}: {name} {title ? `, ${title}` : ''}
+                </div>
+              )
+            )
+            .value()}
+        </>
       </div>
     </>
   );
@@ -134,7 +152,7 @@ const Example = () => {
 
   const onFileSelect = () => '../assets/tile/adslot-logo-1.png';
 
-  const onFileRemove = file => {};
+  const onFileRemove = (file) => {};
 
   return (
     <>
@@ -143,8 +161,8 @@ const Example = () => {
       </div>
 
       <div style={{ marginTop: 30, width: '600px' }}>
-        <p>HTML Output:</p>
-        <code>{RichTextEditor.stateToHTML(state)}</code>
+        <p>PlainText Output:</p>
+        <code>{RichTextEditor.stateToPlainText(state)}</code>
       </div>
     </>
   );

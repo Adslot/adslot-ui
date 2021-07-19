@@ -85,6 +85,8 @@ describe('<RichTextEditor />', () => {
     fireEvent(editorNode, pasteEvent);
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(RichTextEditor.stateToHTML(onChange.mock.calls[1][0])).toEqual('<p><strong>123</strong></p>');
+    expect(RichTextEditor.stateToPlainText(onChange.mock.calls[1][0])).toEqual('123');
+    expect(RichTextEditor.stateToEntityList(onChange.mock.calls[1][0])).toEqual({});
   });
 
   it('should correctly handle key commands', () => {
@@ -163,10 +165,10 @@ describe('<RichTextEditor />', () => {
         },
       ];
       const onChange = jest.fn();
-      const { queryAllByTestId, queryAllByText } = render(<RichTextEditor contacts={contacts} onChange={onChange} />);
+      const { queryByTestId, queryByText } = render(<RichTextEditor contacts={contacts} onChange={onChange} />);
 
-      expect(queryAllByTestId('rich-text-editor-wrapper')).toHaveLength(1);
-      expect(queryAllByText('@')).toHaveLength(1);
+      expect(queryByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
+      expect(queryByText('@')).toBeInTheDocument();
     });
 
     it('should pop up the mention list when user input a @ to the editor', () => {
@@ -186,11 +188,11 @@ describe('<RichTextEditor />', () => {
       ];
       const onChange = jest.fn();
       const newState = RichTextEditor.stateFromHTML('@');
-      const { queryAllByTestId, container } = render(
+      const { queryByTestId, queryAllByTestId, container } = render(
         <RichTextEditor initialValue={newState} contacts={contacts} onChange={onChange} />
       );
 
-      expect(queryAllByTestId('rich-text-editor-mention-entry')).toHaveLength(0);
+      expect(queryByTestId('rich-text-editor-mention-entry')).not.toBeInTheDocument();
 
       const editorNode = container.querySelector('.public-DraftEditor-content');
 
@@ -269,15 +271,16 @@ describe('<RichTextEditor />', () => {
       const onFileSelect = jest.fn(() => 'fake-path');
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
-      const { queryAllByTestId } = render(
+      const { queryByTestId } = render(
         <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
       );
 
-      expect(queryAllByTestId('rich-text-editor-wrapper')).toHaveLength(1);
-      expect(queryAllByTestId('file-download-button')).toHaveLength(1);
+      expect(queryByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
+      expect(queryByTestId('file-download-button')).toBeInTheDocument();
     });
 
     it('should be able to select a pdf file when clicking file upload button', () => {
+      console.error = jest.fn(); // Todo: fix popover warning with react v17 upgrade
       const onFileSelect = jest.fn(() => 'fake-path');
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
@@ -301,6 +304,7 @@ describe('<RichTextEditor />', () => {
       });
 
       expect(onFileSelect).toHaveBeenCalledTimes(1);
+      console.error.mockRestore();
     });
 
     it('should render file preview list and file sticker close button after file uploaded', async () => {
@@ -308,7 +312,7 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
       );
 
@@ -319,12 +323,12 @@ describe('<RichTextEditor />', () => {
         });
       });
 
-      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(1));
+      await waitFor(() => expect(queryByTestId('file-preview-list')).toBeInTheDocument());
 
       act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
-      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(1);
+      expect(queryByTestId('file-sticker-close-button')).toBeInTheDocument();
       act(() => fireEvent.mouseLeave(getByTestId('file-sticker')));
-      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(0);
+      expect(queryByTestId('file-sticker-close-button')).not.toBeInTheDocument();
     });
 
     it('should render file preview list and file sticker close button after file uploaded', async () => {
@@ -332,7 +336,7 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
       );
 
@@ -343,12 +347,12 @@ describe('<RichTextEditor />', () => {
         });
       });
 
-      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(1));
+      await waitFor(() => expect(queryByTestId('file-preview-list')).toBeInTheDocument());
 
       act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
-      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(1);
+      expect(queryByTestId('file-sticker-close-button')).toBeInTheDocument();
       act(() => fireEvent.mouseLeave(getByTestId('file-sticker')));
-      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(0);
+      expect(queryByTestId('file-sticker-close-button')).not.toBeInTheDocument();
     });
 
     it('should remove file sticker when clicking close button on it', async () => {
@@ -356,7 +360,7 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
       );
 
@@ -367,13 +371,13 @@ describe('<RichTextEditor />', () => {
         });
       });
 
-      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(1));
+      await waitFor(() => expect(queryByTestId('file-preview-list')).toBeInTheDocument());
 
       act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
-      expect(queryAllByTestId('file-sticker-close-button')).toHaveLength(1);
+      expect(queryByTestId('file-sticker-close-button')).toBeInTheDocument();
 
       act(() => fireEvent.click(getByTestId('file-sticker-close-button')));
-      await waitFor(() => expect(queryAllByTestId('file-preview-list')).toHaveLength(0));
+      await waitFor(() => expect(queryByTestId('file-preview-list')).not.toBeInTheDocument());
     });
 
     it('should show a spinner on the file sticker if no path is returned', () => {
@@ -381,7 +385,7 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
       );
 
@@ -392,7 +396,7 @@ describe('<RichTextEditor />', () => {
         });
       });
 
-      expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
+      expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
     });
 
     it('should render an image for image file using it path', async () => {
@@ -400,7 +404,7 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
       );
 
@@ -411,7 +415,7 @@ describe('<RichTextEditor />', () => {
         });
       });
 
-      await waitFor(() => expect(queryAllByTestId('file-sticker-image')).toHaveLength(1));
+      await waitFor(() => expect(queryByTestId('file-sticker-image')).toBeInTheDocument());
     });
   });
 });
