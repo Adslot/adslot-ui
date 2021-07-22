@@ -24,11 +24,26 @@ Technology:
 
 ## Development
 
-- Take a look at our [Contributing](https://ui.adslot.com/contributing) guidelines
+To get started, take a look at our [Contributing](https://ui.adslot.com/contributing) guidelines
+
+### Native
 
 - Clone the repo: `git clone git@github.com:Adslot/adslot-ui.git`
+- Install NPM dependencies: `npm run deps`
 
-- Install NPM dependencies: `npm i`
+### Visual Studio Code Remote - Containers
+
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install [Visual Studio Code](https://code.visualstudio.com/)
+- Install [Visual Studio Code Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension in your VS Code.
+- Start VS Code and run `Remote-Containers: Clone Repository in Container Volume...` from the Command Palette.
+- Authenticate with your GitHub account.
+- Enter `adslot/adslot-ui` in the input box that appears and press `Enter`.
+- VS Code window (instance) will reload, clone the source code of this project, and start building the dev container. A progress notifications provides status updates.
+- After the build completes, VS Code will automatically connect to the container. You can now work with the repository source code in this independent environment as you would if you had cloned the code locally.
+
+Notes:
+- Due to bind mount performance issues on Windows and macOS, the steps above uses the [Clone Repository in Container Volume](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) method. Other options can be found [here](https://code.visualstudio.com/docs/remote/containers).
 
 ## Commands
 

@@ -11,6 +11,7 @@
   "scripts": {
     "generate-docs": "node ./scripts/generateDocs.js",
     "clean": "rimraf dist/* docs/*",
+    "deps": "ADBLOCK=true DISABLE_OPENCOLLECTIVE=true npm ci",
     "dist:dev": "node ./scripts/build.js",
     "dist:prod": "cross-env NODE_ENV=dist node ./scripts/build.js",
     "dist:demo": "cross-env NODE_ENV=production DEMO_ASSETS=true node ./scripts/build.js",
