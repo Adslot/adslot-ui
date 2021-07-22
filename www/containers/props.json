@@ -429,11 +429,15 @@
               {
                 "value": "'cyan'",
                 "computed": false
+              },
+              {
+                "value": "'black'",
+                "computed": false
               }
             ]
           },
           "required": false,
-          "description": "PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan'])"
+          "description": "PropTypes.oneOf(['blue', 'green', 'red', 'orange', 'cyan', 'black'])"
         },
         "givenName": {
           "type": {
