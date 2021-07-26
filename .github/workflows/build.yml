@@ -1,4 +1,4 @@
-name: Build
+name: Build and Deploy
 
 on:
   push:
@@ -22,6 +22,14 @@ jobs:
       - run: npm -v
       - run: npm ci
       - run: npm run dist
+      - name: Deploy docs to Netlify
+        run: |
+          # Truncate branch name at 37 characters per alias requirement: https://cli.netlify.com/commands/deploy/
+          BRANCH_NAME=${{github.head_ref}}
+          BRANCH_NAME=${BRANCH_NAME:0:37}
+
+          NETLIFY_AUTH_TOKEN=${{secrets.NETLIFY_AUTH_TOKEN}} NETLIFY_SITE_ID=${{secrets.NETLIFY_SITE_ID}} \
+            npx netlify-cli deploy --dir=docs --message="${BRANCH_NAME}" --alias="${BRANCH_NAME}"
       - name: Notify Slack channel
         if: always() && job.status != 'success' && github.ref == 'refs/heads/master'
         env:
