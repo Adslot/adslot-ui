@@ -52,6 +52,7 @@
       @include ellipse;
       font-size: $font-size-header;
       font-weight: $font-weight-bold;
+      color: $color-gray-darker;
     }
 
     svg {
@@ -94,6 +95,10 @@
       background-color: $color-blue;
       color: $color-inverse;
       border: 0;
+
+      .title {
+        color: $color-inverse;
+      }
 
       .actions {
         .aui--button {
