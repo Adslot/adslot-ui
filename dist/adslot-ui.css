@@ -47,8 +47,7 @@ a:hover {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; }
+  text-decoration: underline dotted; }
 
 b,
 strong {
@@ -5732,13 +5731,13 @@ strong {
   from {
     opacity: 0; }
   to {
-    opacity: .9; } }
+    opacity: 0.8; } }
 
 @keyframes fadein {
   from {
     opacity: 0; }
   to {
-    opacity: .9; } }
+    opacity: 0.8; } }
 
 .aui--action-panel {
   min-width: 300px;
@@ -5751,6 +5750,9 @@ strong {
     background-color: #fff;
     margin: 30px auto;
     border: 0; }
+    .aui--action-panel.action-modal .aui--action-panel-body {
+      max-height: calc(100vh - 60px - 48px);
+      overflow: auto; }
   .aui--action-panel.is-small {
     width: 500px; }
   .aui--action-panel.is-medium {
@@ -5775,7 +5777,8 @@ strong {
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 18px;
-      font-weight: 700; }
+      font-weight: 700;
+      color: #5a5a5a; }
     .aui--action-panel-header svg {
       fill: #5a5a5a; }
     .aui--action-panel-header .close-svg-icon {
@@ -5813,6 +5816,8 @@ strong {
       background-color: #006dcc;
       color: #fff;
       border: 0; }
+      .aui--action-panel-header.has-actions .title {
+        color: #fff; }
       .aui--action-panel-header.has-actions .actions .aui--button.close-button:hover {
         color: #838383;
         background-color: #fff; }
@@ -5842,7 +5847,7 @@ strong {
   left: 0;
   background-color: #838383;
   width: 100%;
-  opacity: .8;
+  opacity: 0.8;
   -webkit-animation: fadein .2s;
           animation: fadein .2s; }
 
@@ -5855,7 +5860,9 @@ strong {
   -ms-flex-line-pack: center;
       align-content: center;
   top: 0;
-  left: 0; }
+  left: 0;
+  -webkit-animation: fadein .2s;
+          animation: fadein .2s; }
 
 .aui--alert-input {
   display: -ms-flexbox;
@@ -6894,8 +6901,7 @@ a:hover {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; }
+  text-decoration: underline dotted; }
 
 b,
 strong {
@@ -11904,8 +11910,6 @@ strong {
     .aui--search-component .aui--search-component-input::-moz-placeholder {
       color: #ababab; }
     .aui--search-component .aui--search-component-input:-ms-input-placeholder {
-      color: #ababab; }
-    .aui--search-component .aui--search-component-input::-ms-input-placeholder {
       color: #ababab; }
     .aui--search-component .aui--search-component-input::placeholder {
       color: #ababab; }
