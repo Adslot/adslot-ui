@@ -20,7 +20,7 @@
     border: 0;
 
     .aui--action-panel-body {
-      max-height: calc(100vh - var(--action-panel-margin-top) - var(--action-panel-margin-bottom) - var(--action-panel-header-height));
+      max-height: calc(100vh - #{$action-panel-margin * 2} - #{$action-panel-header-height});
       overflow: auto;
     }
   }
