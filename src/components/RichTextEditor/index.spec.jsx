@@ -21,8 +21,8 @@ afterEach(cleanup);
 
 describe('<RichTextEditor />', () => {
   it('should render rich text editor', () => {
-    const { queryAllByTestId } = render(<RichTextEditor />);
-    expect(queryAllByTestId('rich-text-editor-wrapper')).toHaveLength(1);
+    const { queryByTestId } = render(<RichTextEditor />);
+    expect(queryByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
   });
 
   it('should hide placeholder on focus editor on click', () => {
@@ -53,7 +53,6 @@ describe('<RichTextEditor />', () => {
     const editorNode = container.querySelector('.public-DraftEditor-content');
     const eventProperties = createPasteEvent('<b>123</b>');
     const pasteEvent = createEvent.paste(editorNode, eventProperties);
-    pasteEvent.clipboardData = eventProperties.clipboardData;
 
     fireEvent(editorNode, pasteEvent);
     expect(getByClass(container, 'DraftEditor-root')).toHaveTextContent('123');
@@ -65,7 +64,6 @@ describe('<RichTextEditor />', () => {
     const editorNode = container.querySelector('.public-DraftEditor-content');
     const eventProperties = createPasteEvent('<strong>123</strong>');
     const pasteEvent = createEvent.paste(editorNode, eventProperties);
-    pasteEvent.clipboardData = eventProperties.clipboardData;
 
     fireEvent(editorNode, pasteEvent);
     expect(onChange).toHaveBeenCalledTimes(1);

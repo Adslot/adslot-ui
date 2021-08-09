@@ -7,10 +7,10 @@ afterEach(cleanup);
 
 describe('<ImageCropper />', () => {
   it('should render with props', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <ImageCropper src="example.svg" alt="example" onCrop={jest.fn()} onCancel={jest.fn()} width={400} height={400} />
     );
-    expect(queryAllByTestId('action-panel-wrapper')).toHaveLength(1);
+    expect(queryByTestId('action-panel-wrapper')).toBeInTheDocument();
     expect(getByTestId('action-panel-title')).toHaveTextContent('Image Upload');
 
     expect(getByTestId('image-cropper')).toHaveStyle('width: 400px; height: 400px;');

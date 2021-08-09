@@ -14,7 +14,7 @@ describe('<TreePickerNode />', () => {
   const { cbrNode, cbrNodeAlreadySelected, actNode, maleNode, itemType, nodeRenderer } = TreePickerMocks;
 
   it('should render a node with defaults', () => {
-    const { container, getByTestId, queryAllByTestId, getByText, queryAllByText } = render(
+    const { container, getByTestId, queryByTestId, queryAllByTestId, getByText, queryByText } = render(
       <TreePickerNode itemType={itemType} node={cbrNode} />
     );
 
@@ -28,10 +28,10 @@ describe('<TreePickerNode />', () => {
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3);
     expect(queryAllByTestId('grid-cell-wrapper')[2]).toContainElement(getByText('+'));
     expect(getByText('+').parentElement.tagName).toBe('BUTTON');
-    expect(queryAllByText('+')).toHaveLength(1);
+    expect(queryByText('+')).toBeInTheDocument();
 
     expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByTestId('text-ellipsis'));
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
     expect(getByTestId('text-ellipsis')).toHaveTextContent('Canberra');
 
     expect(getByClass(container, 'treepickernode-component-metadata')).toBeTruthy();
@@ -71,24 +71,22 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should render unselectable nodes with an include button', () => {
-    const { queryAllByTestId, getByText, queryAllByText } = render(
-      <TreePickerNode itemType={itemType} node={actNode} />
-    );
+    const { queryAllByTestId, getByText, queryByText } = render(<TreePickerNode itemType={itemType} node={actNode} />);
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell and value cell
     expect(getByText('+').parentElement.tagName).toBe('BUTTON');
-    expect(queryAllByText('+')).toHaveLength(1);
+    expect(queryByText('+')).toBeInTheDocument();
   });
 
   it('should render the button first when selected is true', () => {
-    const { queryAllByTestId, getByText, queryAllByText } = render(
+    const { queryAllByTestId, getByText, queryByText } = render(
       <TreePickerNode itemType={itemType} node={cbrNode} selected />
     );
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
     expect(queryAllByTestId('grid-cell-wrapper')[0]).toHaveAttribute('data-test-selector', 'button-remove');
     expect(getByText('−').parentElement.tagName).toBe('BUTTON');
-    expect(queryAllByText('−')).toHaveLength(1);
+    expect(queryByText('−')).toBeInTheDocument();
   });
 
   it('should render button as disabled when disabled is true', () => {
@@ -96,7 +94,7 @@ describe('<TreePickerNode />', () => {
     const { getByText } = render(
       <TreePickerNode itemType={itemType} node={cbrNode} removeNode={testFunction} selected disabled />
     );
-    expect(getByText('−')).toBeDisabled();
+    expect(getByText('−').closest('button')).toBeDisabled();
 
     fireEvent.click(getByText('−'));
     expect(testFunction).toHaveBeenCalledTimes(0);
@@ -234,12 +232,12 @@ describe('<TreePickerNode />', () => {
     const nodes = [cbrNode];
     const removeNode = node => _.remove(nodes, { id: node.id });
     const props = { itemType, node: cbrNode, removeNode, selected: true };
-    const { queryAllByTestId, getByText, queryAllByText } = render(<TreePickerNode {...props} />);
+    const { queryAllByTestId, getByText, queryByText } = render(<TreePickerNode {...props} />);
 
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // remove button cell, meta data cell and value cell
     expect(queryAllByTestId('grid-cell-wrapper')[0]).toContainElement(getByText('−'));
     expect(getByText('−').parentElement.tagName).toBe('BUTTON');
-    expect(queryAllByText('−')).toHaveLength(1);
+    expect(queryByText('−')).toBeInTheDocument();
 
     expect(nodes).toEqual([cbrNode]);
     fireEvent.click(getByText('−'));

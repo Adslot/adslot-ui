@@ -25,36 +25,36 @@ describe('<Paragraph />', () => {
   `;
 
   it('should render with plain content', () => {
-    const { getByTestId, queryAllByTestId } = render(<Paragraph content={plainText} briefWordCount={15} />);
-    expect(queryAllByTestId('paragraph-wrapper')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Paragraph content={plainText} briefWordCount={15} />);
+    expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
     expect(getByTestId('paragraph-brief')).toHaveTextContent('Lorem ipsum...');
 
-    expect(queryAllByTestId('paragraph-expandable-content')).toHaveLength(1);
-    expect(queryAllByTestId('paragraph-read-more-button')).toHaveLength(1);
+    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
+    expect(queryByTestId('paragraph-read-more-button')).toBeInTheDocument();
   });
 
   it('should render with isHtml', () => {
-    const { getByTestId, queryAllByTestId } = render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
-    expect(queryAllByTestId('paragraph-wrapper')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
+    expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
     expect(getByTestId('paragraph-brief')).toHaveTextContent('Lorem ipsum...');
 
-    expect(queryAllByTestId('paragraph-expandable-content')).toHaveLength(1);
-    expect(queryAllByTestId('paragraph-read-more-button')).toHaveLength(1);
+    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
+    expect(queryByTestId('paragraph-read-more-button')).toBeInTheDocument();
   });
 
   it('should be able to click read more button to expand paragraph', () => {
-    const { getByTestId, queryAllByTestId } = render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
-    expect(queryAllByTestId('paragraph-wrapper')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
+    expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
 
-    expect(queryAllByTestId('paragraph-brief')).toHaveLength(1);
-    expect(queryAllByTestId('paragraph-expandable-content')).toHaveLength(1);
+    expect(queryByTestId('paragraph-brief')).toBeInTheDocument();
+    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
     expect(getByTestId('paragraph-expandable-content')).toHaveClass('expandable-content collapsed');
 
-    expect(queryAllByTestId('paragraph-read-more-button')).toHaveLength(1);
+    expect(queryByTestId('paragraph-read-more-button')).toBeInTheDocument();
     fireEvent.click(getByTestId('paragraph-read-more-button'));
 
-    expect(queryAllByTestId('paragraph-brief')).toHaveLength(0);
-    expect(queryAllByTestId('paragraph-expandable-content')).toHaveLength(1);
+    expect(queryByTestId('paragraph-brief')).not.toBeInTheDocument();
+    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
     expect(getByTestId('paragraph-expandable-content')).toHaveClass('expandable-content expanded');
   });
 });

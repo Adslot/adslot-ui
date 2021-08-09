@@ -22,16 +22,16 @@ describe('<SearchableChecklist />', () => {
   afterEach(cleanup);
 
   it('should correctly render with default values', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
       <SearchableCheckList context={context} items={items} onChange={_.noop} />
     );
 
     expect(getByTestId('searchable-list-title')).toHaveTextContent('Publishers');
 
-    const searchInputWrapper = queryAllByTestId('search-input');
-    expect(searchInputWrapper).toHaveLength(1);
-    expect(searchInputWrapper[0]).toHaveAttribute('value', '');
-    expect(searchInputWrapper[0]).toHaveAttribute('placeholder', 'Search');
+    const searchInputWrapper = queryByTestId('search-input');
+    expect(searchInputWrapper).toBeInTheDocument();
+    expect(searchInputWrapper).toHaveValue('');
+    expect(searchInputWrapper).toHaveAttribute('placeholder', 'Search');
 
     // 1 main checkBox and 6 item checkboxes
     const checkBoxesWrapper = queryAllByTestId('checkbox-input');
@@ -54,7 +54,7 @@ describe('<SearchableChecklist />', () => {
   });
 
   it('should correctly render custom placeholder', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <SearchableCheckList
         context={context}
         items={items}
@@ -64,13 +64,13 @@ describe('<SearchableChecklist />', () => {
       />
     );
 
-    const searchInputWrapper = queryAllByTestId('search-input');
-    expect(searchInputWrapper).toHaveLength(1);
-    expect(searchInputWrapper[0]).toHaveAttribute('placeholder', 'Start Searching...');
+    const searchInputWrapper = queryByTestId('search-input');
+    expect(searchInputWrapper).toBeInTheDocument();
+    expect(searchInputWrapper).toHaveAttribute('placeholder', 'Start Searching...');
   });
 
   it('should correctly render with displayCount covering all items', () => {
-    const { queryAllByTestId } = render(
+    const { queryAllByTestId, queryByTestId } = render(
       <SearchableCheckList context={context} items={items} displayCount={15} onChange={_.noop} />
     );
 
@@ -79,7 +79,7 @@ describe('<SearchableChecklist />', () => {
     expect(checkBoxesWrapper).toHaveLength(10);
 
     // No footer when all items are rendered
-    expect(queryAllByTestId('footer-section')).toHaveLength(0);
+    expect(queryByTestId('footer-section')).not.toBeInTheDocument();
   });
 
   it('should correctly render with partial selection', () => {
@@ -127,46 +127,41 @@ describe('<SearchableChecklist />', () => {
   });
 
   it('should correctly filter checkboxes on search', () => {
-    const { queryAllByTestId } = render(
-      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01', '06']} onChange={_.noop} />
+    const { queryByTestId, queryAllByTestId } = render(
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01', '06', '09']} onChange={_.noop} />
     );
 
     let checkBoxesWrapper = queryAllByTestId('checkbox-input');
     expect(checkBoxesWrapper).toHaveLength(7);
 
-    let searchInputWrapper = queryAllByTestId('search-input');
-    expect(searchInputWrapper).toHaveLength(1);
+    let searchInputWrapper = queryByTestId('search-input');
+    expect(searchInputWrapper).toBeInTheDocument();
 
-    fireEvent.change(searchInputWrapper[0], { target: { value: 'Par' } });
+    fireEvent.change(searchInputWrapper, { target: { value: 'Par' } });
     checkBoxesWrapper = queryAllByTestId('checkbox-input');
 
     // 1 main checkbox and 1 for Paranormal Activity
     expect(checkBoxesWrapper).toHaveLength(2);
-    expect(checkBoxesWrapper[1]).toHaveAttribute('value', '09');
+    expect(checkBoxesWrapper[1]).toBeChecked();
   });
 
   it('should correctly filter items without case sensitivity', () => {
-    const { queryAllByTestId } = render(
-      <SearchableCheckList
-        context={context}
-        items={items}
-        selectedItemsKeys={['absolute-power', 'shrek']}
-        onChange={_.noop}
-      />
+    const { queryByTestId, queryAllByTestId } = render(
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['09']} onChange={_.noop} />
     );
 
     let checkBoxesWrapper = queryAllByTestId('checkbox-input');
     expect(checkBoxesWrapper).toHaveLength(7);
 
-    let searchInputWrapper = queryAllByTestId('search-input');
-    expect(searchInputWrapper).toHaveLength(1);
+    let searchInputWrapper = queryByTestId('search-input');
+    expect(searchInputWrapper).toBeInTheDocument();
 
-    fireEvent.change(searchInputWrapper[0], { target: { value: 'par' } });
+    fireEvent.change(queryAllByTestId('search-input')[0], { target: { value: 'par' } });
     checkBoxesWrapper = queryAllByTestId('checkbox-input');
 
     // 1 main checkbox and 1 for Paranormal Activity
     expect(checkBoxesWrapper).toHaveLength(2);
-    expect(checkBoxesWrapper[1]).toHaveAttribute('value', '09');
+    expect(checkBoxesWrapper[1]).toBeChecked();
   });
 
   it('should correctly call onChange when a single item is checked', () => {

@@ -18,34 +18,34 @@ describe('<Search />', () => {
   };
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<Search onSearch={props.onSearch} />);
+    const { getByTestId, queryByTestId } = render(<Search onSearch={props.onSearch} />);
 
     expect(getByTestId('search-wrapper')).toHaveClass('aui--search-component');
-    expect(queryAllByTestId('spinner-wrapper')).toHaveLength(0);
-    expect(queryAllByTestId('search-button')).toHaveLength(0);
+    expect(queryByTestId('spinner-wrapper')).not.toBeInTheDocument();
+    expect(queryByTestId('search-button')).not.toBeInTheDocument();
 
     expect(getByTestId('search-input')).toHaveClass('aui--search-component-input');
     expect(getByTestId('search-input')).toHaveAttribute('placeholder', '');
-    expect(getByTestId('search-input')).toHaveAttribute('value', '');
+    expect(getByTestId('search-input')).toHaveValue('');
     expect(getByTestId('search-input')).toBeEnabled();
 
-    expect(queryAllByTestId('search-icon')).toHaveLength(1);
+    expect(queryByTestId('search-icon')).toBeInTheDocument();
     expect(getByTestId('search-icon')).toHaveClass('search-icon');
   });
 
   it('should render a search button if searchOnEnter and showSearchButton are true', () => {
-    const { queryAllByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter />);
-    expect(queryAllByTestId('search-button')).toHaveLength(1);
-    expect(queryAllByTestId('search-icon')).toHaveLength(1);
+    const { queryByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter />);
+    expect(queryByTestId('search-button')).toBeInTheDocument();
+    expect(queryByTestId('search-icon')).toBeInTheDocument();
     expect(getByTestId('search-button')).toContainElement(getByTestId('search-icon'));
     expect(getByTestId('search-icon')).toHaveClass('search-icon');
   });
 
   it('should render a spinner if searchOnEnter and isLoading are true', () => {
-    const { queryAllByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter isLoading />);
-    expect(queryAllByTestId('search-button')).toHaveLength(1);
-    expect(queryAllByTestId('search-icon')).toHaveLength(0);
-    expect(queryAllByTestId('spinner')).toHaveLength(1);
+    const { queryByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter isLoading />);
+    expect(queryByTestId('search-button')).toBeInTheDocument();
+    expect(queryByTestId('search-icon')).not.toBeInTheDocument();
+    expect(queryByTestId('spinner')).toBeInTheDocument();
     expect(getByTestId('search-button')).toContainElement(getByTestId('spinner'));
     expect(getByTestId('spinner')).toHaveClass('spinner-small');
   });
@@ -57,7 +57,7 @@ describe('<Search />', () => {
     expect(getByTestId('search-wrapper')).toHaveAttribute('data-test-selector', 'test-dts');
 
     expect(getByTestId('search-input')).toHaveAttribute('placeholder', 'search');
-    expect(getByTestId('search-input')).toHaveAttribute('value', 'abc');
+    expect(getByTestId('search-input')).toHaveValue('abc');
   });
 
   it('should throw warning if value is provided without onChange', () => {
@@ -107,8 +107,8 @@ describe('<Search />', () => {
       const icons = {
         loader: <Spinner size="small" />,
       };
-      const { queryAllByTestId } = render(<Search icons={icons} onSearch={props.onSearch} isLoading />);
-      expect(queryAllByTestId('spinner-wrapper')).toHaveLength(1);
+      const { queryByTestId } = render(<Search icons={icons} onSearch={props.onSearch} isLoading />);
+      expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
     });
   });
 
@@ -122,8 +122,8 @@ describe('<Search />', () => {
 
   describe('Clear Button', () => {
     it('should render clear button when value is not empty and search button is not shown', () => {
-      const { getByTestId, queryAllByTestId } = render(<Search {...props} />);
-      expect(queryAllByTestId('close-icon')).toHaveLength(1);
+      const { getByTestId, queryByTestId } = render(<Search {...props} />);
+      expect(queryByTestId('close-icon')).toBeInTheDocument();
       expect(getByTestId('close-icon')).toHaveClass('cancel-icon');
     });
 
@@ -173,14 +173,14 @@ describe('<Search />', () => {
     });
 
     it('should clear its own value state if onChange is not provided', () => {
-      const { getByTestId, queryAllByTestId } = render(<Search onSearch={props.onSearch} />);
+      const { getByTestId, queryByTestId } = render(<Search onSearch={props.onSearch} />);
       fireEvent.change(getByTestId('search-input'), { target: { value: 'foo' } });
-      expect(getByTestId('search-input')).toHaveAttribute('value', 'foo');
+      expect(getByTestId('search-input')).toHaveValue('foo');
 
-      expect(queryAllByTestId('close-icon')).toHaveLength(1);
+      expect(queryByTestId('close-icon')).toBeInTheDocument();
       expect(getByTestId('close-icon')).toHaveClass('cancel-icon');
       fireEvent.click(getByTestId('close-icon'));
-      expect(getByTestId('search-input')).toHaveAttribute('value', '');
+      expect(getByTestId('search-input')).toHaveValue('');
     });
   });
 
@@ -226,7 +226,7 @@ describe('<Search />', () => {
     it('should change its own value state if onChange is not provided', () => {
       const { getByTestId } = render(<Search onSearch={props.onSearch} />);
       fireEvent.change(getByTestId('search-input'), { target: { value: 'new-value' } });
-      expect(getByTestId('search-input')).toHaveAttribute('value', 'new-value');
+      expect(getByTestId('search-input')).toHaveValue('new-value');
     });
 
     it('should fire onSearch when searchOnEnter is true and search button is clicked', () => {

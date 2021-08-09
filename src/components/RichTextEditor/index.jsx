@@ -11,7 +11,6 @@ import './styles.scss';
 const RichTextEditor = ({ className, value, initialValue, onChange, placeholder }) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
-
   if (value && !onChange)
     console.warn(
       'Failed prop type: You have provided a `value` prop to RichTextEditor component without an `onChange` handler. This will render a read-only field.'
@@ -74,6 +73,7 @@ RichTextEditor.defaultProps = {
 };
 
 RichTextEditor.createEmpty = EditorState.createEmpty;
+RichTextEditor.createWithText = EditorState.createWithText;
 RichTextEditor.stateToHTML = input => stateToHTML(input.getCurrentContent());
 RichTextEditor.stateFromHTML = input => EditorState.createWithContent(stateFromHTML(input));
 

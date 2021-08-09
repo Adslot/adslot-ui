@@ -19,13 +19,13 @@ describe('<ActionPanel />', () => {
     );
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<ActionPanel {...makeProps()} />);
-    expect(queryAllByTestId('action-panel-header')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<ActionPanel {...makeProps()} />);
+    expect(queryByTestId('action-panel-header')).toBeInTheDocument();
     expect(getByTestId('action-panel-header')).toHaveClass('aui--action-panel-header');
     expect(getByTestId('action-panel-title')).toHaveClass('title');
     expect(getByTestId('action-panel-title')).toHaveTextContent('Action Panel');
 
-    expect(queryAllByTestId('action-panel-body')).toHaveLength(1);
+    expect(queryByTestId('action-panel-body')).toBeInTheDocument();
     expect(getByTestId('action-panel-body')).toHaveClass('aui--action-panel-body');
 
     expect(document.body).not.toHaveClass('modal-open');
@@ -40,7 +40,7 @@ describe('<ActionPanel />', () => {
     });
 
     expect(document.body).toHaveClass('modal-open');
-    expect(wrapper.queryAllByTestId('action-panel-modal-wrapper')).toHaveLength(1);
+    expect(wrapper.queryByTestId('action-panel-modal-wrapper')).toBeInTheDocument();
     expect(wrapper.getByTestId('action-panel-wrapper')).toHaveClass('aui--action-panel is-large action-modal');
     wrapper.unmount();
     expect(document.body).not.toHaveClass('modal-open');

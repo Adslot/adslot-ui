@@ -8,68 +8,68 @@ afterEach(cleanup);
 describe('<Popover />', () => {
   describe('onClick()', () => {
     it('should trigger popover open', () => {
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers={['click']}>
           Test message
         </Popover>
       );
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.click(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
       fireEvent.click(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
   describe('onMouseOver() and onMouseOut()', () => {
     it('should trigger popover open or close', () => {
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="hover">
           Test message
         </Popover>
       );
 
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.mouseOver(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
       fireEvent.mouseOut(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
   describe('onFocus() and onBlur()', () => {
     it('should trigger popover open or close', () => {
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="focus">
           Test message
         </Popover>
       );
 
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.focus(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
       fireEvent.blur(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
   it('should render without error', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <div>
         <Popover className="test-class" popoverContent={<div />} title="Some title" isOpen>
           <label className="message">Test message</label>
@@ -77,7 +77,7 @@ describe('<Popover />', () => {
       </div>
     );
 
-    expect(queryAllByTestId('popover-element')).toHaveLength(1); //Manager
+    expect(queryByTestId('popover-element')).toBeInTheDocument(); //Manager
     expect(getByTestId('popover-element')).toHaveTextContent('Test message');
     expect(getByTestId('popover-wrapper')).toHaveTextContent('Some title'); //Popper
 
@@ -206,7 +206,7 @@ describe('<Popover />', () => {
 
   describe('triggers', () => {
     it('should register event handlers for multiple triggers', () => {
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <Popover
           id="popover-example"
           popoverContent={() => <div>test</div>}
@@ -216,50 +216,50 @@ describe('<Popover />', () => {
           Test message
         </Popover>
       );
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.click(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
       fireEvent.blur(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.focus(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     });
 
     it('should not include any event handler if trigger is disabled', () => {
-      const { getByTestId, queryAllByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <Popover id="popover-example" popoverContent={() => <div>test</div>} placement="bottom-end" triggers="disabled">
           Test message
         </Popover>
       );
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.click(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.blur(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.focus(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.mouseOver(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
       fireEvent.mouseOut(getByTestId('popover-element'));
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
@@ -290,18 +290,16 @@ describe('<Popover.WithRef />', () => {
   });
 
   it('should render without error', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />
     );
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(1);
+    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
   });
 
   it('should not render if isOpen is false', () => {
-    const { queryAllByTestId } = render(
-      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} />
-    );
-    expect(queryAllByTestId('popover-element')).toHaveLength(0);
-    expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} />);
+    expect(queryByTestId('popover-element')).not.toBeInTheDocument();
+    expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render with default props', () => {

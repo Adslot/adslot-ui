@@ -12,11 +12,11 @@ describe('<Breadcrumb />', () => {
   });
 
   it('should render empty with the component className when no nodes', () => {
-    const { getByTestId, queryAllByTestId } = render(<Breadcrumb />);
+    const { getByTestId, queryByTestId } = render(<Breadcrumb />);
 
     expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
     expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
-    expect(queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(0);
+    expect(queryByTestId('breadcrumb-node-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render nodes', () => {
@@ -69,9 +69,9 @@ describe('<Breadcrumb />', () => {
     });
 
     it('should not have any breadcrumb node', () => {
-      const { queryAllByTestId } = render(<Breadcrumb {...props} />);
-      expect(queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(0);
-      expect(queryAllByTestId('breadcrumb-node')).toHaveLength(0);
+      const { queryByTestId } = render(<Breadcrumb {...props} />);
+      expect(queryByTestId('breadcrumb-node-wrapper')).not.toBeInTheDocument();
+      expect(queryByTestId('breadcrumb-node')).not.toBeInTheDocument();
     });
   });
 });

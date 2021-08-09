@@ -8,7 +8,7 @@ describe('<BorderedWell />', () => {
   it('should have its component name as default className', () => {
     const { getByTestId } = render(<BorderedWell />);
     expect(getByTestId('borderedwell-wrapper')).toHaveClass('borderedwell-component');
-    expect(getByTestId('borderedwell-wrapper')).toBeEmpty();
+    expect(getByTestId('borderedwell-wrapper')).toBeEmptyDOMElement();
   });
 
   it('should pass through children', () => {
@@ -17,9 +17,9 @@ describe('<BorderedWell />', () => {
         Party town
       </div>
     );
-    const { getByTestId, queryAllByTestId } = render(<BorderedWell>{children}</BorderedWell>);
+    const { getByTestId, queryByTestId } = render(<BorderedWell>{children}</BorderedWell>);
     expect(getByTestId('borderedwell-wrapper')).toHaveClass('borderedwell-component');
-    expect(queryAllByTestId('borderedwell-wrapper')).toHaveLength(1);
+    expect(queryByTestId('borderedwell-wrapper')).toBeInTheDocument();
     expect(getByTestId('borderedwell-children')).toHaveClass('test-class');
     expect(getByTestId('borderedwell-children')).toHaveTextContent('Party town');
   });

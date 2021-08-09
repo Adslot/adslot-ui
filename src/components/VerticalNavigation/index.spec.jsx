@@ -25,14 +25,14 @@ describe('<VerticalNav />', () => {
     const menuLabel1 = () => <div>Tab 1</div>;
     const menuLabel2 = () => <div>Tab 2</div>;
 
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
       <VerticalNav {...makeProps()}>
         <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel1 })}>Content 1</VerticalNav.MenuItem>
         <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel2 })}>Content 1</VerticalNav.MenuItem>
       </VerticalNav>
     );
 
-    expect(queryAllByTestId('vertical-nav-wrapper')).toHaveLength(1);
+    expect(queryByTestId('vertical-nav-wrapper')).toBeInTheDocument();
     expect(getByTestId('vertical-nav-wrapper')).toHaveClass('aui--vertical-navigation-component custom-class');
     expect(queryAllByTestId('vertical-nav-menu-item')).toHaveLength(3); // 1 collapse, 2 menu items
     queryAllByTestId('vertical-nav-menu-item').forEach(item =>
@@ -40,7 +40,7 @@ describe('<VerticalNav />', () => {
     );
 
     expect(queryAllByTestId('vertical-nav-menu-item')).toHaveLength(3); // 1 collapse, 2 menu items
-    expect(queryAllByTestId('vertical-nav-menu-item-collapse')).toHaveLength(1);
+    expect(queryByTestId('vertical-nav-menu-item-collapse')).toBeInTheDocument();
     expect(queryAllByTestId('vertical-nav-menu-item')[0]).toContainElement(
       getByTestId('vertical-nav-menu-item-collapse')
     );
@@ -48,7 +48,7 @@ describe('<VerticalNav />', () => {
     expect(queryAllByTestId('vertical-nav-menu-item')[1]).toHaveTextContent('Tab 1');
     expect(queryAllByTestId('vertical-nav-menu-item')[2]).toHaveTextContent('Tab 2');
 
-    expect(queryAllByTestId('vertical-nav-menu-item-collapse-icon')).toHaveLength(1);
+    expect(queryByTestId('vertical-nav-menu-item-collapse-icon')).toBeInTheDocument();
     expect(getByTestId('vertical-nav-menu-item-collapse')).toContainElement(
       getByTestId('vertical-nav-menu-item-collapse-icon')
     );
@@ -56,14 +56,14 @@ describe('<VerticalNav />', () => {
 
   it('should dispaly warnings if child element does not have `content` prop', () => {
     console.warn = jest.fn();
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <VerticalNav {...makeProps()}>
         <div>Some random element</div>
       </VerticalNav>
     );
 
     // only renders collapse item
-    expect(queryAllByTestId('vertical-nav-menu-item')).toHaveLength(1);
+    expect(queryByTestId('vertical-nav-menu-item')).toBeInTheDocument();
     /* eslint-disable no-console */
     expect(console.warn).toHaveBeenCalledTimes(2);
     expect(console.warn).toHaveBeenLastCalledWith('Navigation does not render MenuItem that have no content prop.');
@@ -74,15 +74,15 @@ describe('<VerticalNav />', () => {
     const menuLabel1 = () => <div>Tab 1</div>;
     const menuLabel2 = () => <div>Tab 2</div>;
 
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <VerticalNav {...makeProps({ collapsable: false })}>
         <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel1 })}>Content 1</VerticalNav.MenuItem>
         <VerticalNav.MenuItem {...makeMenuItemProps({ content: menuLabel2 })}>Content 1</VerticalNav.MenuItem>
       </VerticalNav>
     );
 
-    expect(queryAllByTestId('vertical-nav-menu-item-collapse')).toHaveLength(0);
-    expect(queryAllByTestId('vertical-nav-menu-item-collapse-icon')).toHaveLength(0);
+    expect(queryByTestId('vertical-nav-menu-item-collapse')).not.toBeInTheDocument();
+    expect(queryByTestId('vertical-nav-menu-item-collapse-icon')).not.toBeInTheDocument();
   });
 
   it('should only update menu if props.isCollapsed is changed', () => {

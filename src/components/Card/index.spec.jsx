@@ -11,18 +11,18 @@ describe('<Card.Container />', () => {
         Test Text
       </div>
     );
-    const { getByTestId, queryAllByTestId } = render(<Card.Container>{children}</Card.Container>);
+    const { getByTestId, queryByTestId } = render(<Card.Container>{children}</Card.Container>);
 
     expect(getByTestId('card-container-wrapper')).toHaveClass('card-component');
-    expect(queryAllByTestId('card-container-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-container-wrapper')).toBeInTheDocument();
     expect(getByTestId('card-container-test-children')).toHaveClass('test-class');
     expect(getByTestId('card-container-test-children')).toHaveTextContent('Test Text');
   });
 
   it('should render with classNames', () => {
-    const { getByTestId, queryAllByTestId } = render(<Card.Container className="red blue">Test Text</Card.Container>);
+    const { getByTestId, queryByTestId } = render(<Card.Container className="red blue">Test Text</Card.Container>);
     expect(getByTestId('card-container-wrapper')).toHaveClass('card-component red blue');
-    expect(queryAllByTestId('card-container-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-container-wrapper')).toBeInTheDocument();
   });
 
   it('should render with accent', () => {
@@ -57,40 +57,40 @@ describe('<Card.Content />', () => {
       </div>
     );
 
-    const { getByTestId, queryAllByTestId } = render(<Card.Content>{children}</Card.Content>);
+    const { getByTestId, queryByTestId } = render(<Card.Content>{children}</Card.Content>);
 
     expect(getByTestId('card-content-wrapper')).toHaveClass('card-component-content');
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
     expect(getByTestId('card-content-test-children')).toHaveClass('test-class');
     expect(getByTestId('card-content-test-children')).toHaveTextContent('Test Text');
   });
 
   it('should render with "stretch" class', () => {
-    const { getByTestId, queryAllByTestId } = render(<Card.Content stretch>Test Text</Card.Content>);
+    const { getByTestId, queryByTestId } = render(<Card.Content stretch>Test Text</Card.Content>);
     expect(getByTestId('card-content-wrapper')).toHaveClass('card-component-content stretch');
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
   });
 
   it('should render with "fill" class', () => {
-    const { getByTestId, queryAllByTestId } = render(<Card.Content fill>Test Text</Card.Content>);
+    const { getByTestId, queryByTestId } = render(<Card.Content fill>Test Text</Card.Content>);
     expect(getByTestId('card-content-wrapper')).toHaveClass('card-component-content fill');
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
   });
 
   it('should render with appended content', () => {
-    const { getByTestId, queryAllByTestId } = render(<Card.Content append>Test Text</Card.Content>);
+    const { getByTestId, queryByTestId } = render(<Card.Content append>Test Text</Card.Content>);
     expect(getByTestId('card-content-wrapper')).toHaveClass('card-component-content append');
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
   });
 
   it('should render with custom classNames', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <Card.Content fill className="some classes">
         Test Text
       </Card.Content>
     );
     expect(getByTestId('card-content-wrapper')).toHaveClass('card-component-content fill some classes');
-    expect(queryAllByTestId('card-content-wrapper')).toHaveLength(1);
+    expect(queryByTestId('card-content-wrapper')).toBeInTheDocument();
   });
 
   it('should apply data-test-selector', () => {

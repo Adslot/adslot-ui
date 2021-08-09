@@ -23,30 +23,32 @@ const mockProps = overrides => ({
 
 describe('<TreePickerNav />', () => {
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId, container } = render(<TreePickerNavComponent />);
+    const { getByTestId, queryByTestId, container } = render(<TreePickerNavComponent />);
 
     expect(queryAllByClass(container, 'treepickernav-component')).toHaveLength(1);
     expect(getByClass(container, 'treepickernav-component')).not.toHaveClass('disabled');
 
     expect(getByClass(container, 'treepickernav-component')).toContainElement(getByTestId('search-wrapper'));
-    expect(queryAllByTestId('search-wrapper')).toHaveLength(1);
+    expect(queryByTestId('search-wrapper')).toBeInTheDocument();
 
     expect(getByClass(container, 'treepickernav-component')).toContainElement(getByTestId('breadcrumb-wrapper'));
-    expect(queryAllByTestId('breadcrumb-wrapper')).toHaveLength(1);
+    expect(queryByTestId('breadcrumb-wrapper')).toBeInTheDocument();
   });
 
   it('should render with props', () => {
-    const { getByTestId, queryAllByTestId, container } = render(<TreePickerNavComponent {...mockProps()} />);
+    const { getByTestId, queryByTestId, queryAllByTestId, container } = render(
+      <TreePickerNavComponent {...mockProps()} />
+    );
 
     expect(queryAllByClass(container, 'treepickernav-component')).toHaveLength(1);
     expect(getByClass(container, 'treepickernav-component')).not.toHaveClass('disabled');
 
     expect(getByClass(container, 'treepickernav-component')).toContainElement(getByTestId('search-wrapper'));
-    expect(queryAllByTestId('search-wrapper')).toHaveLength(1);
-    expect(getByTestId('search-input')).toHaveAttribute('value', 'needle');
+    expect(queryByTestId('search-wrapper')).toBeInTheDocument();
+    expect(getByTestId('search-input')).toHaveValue('needle');
 
     expect(getByClass(container, 'treepickernav-component')).toContainElement(getByTestId('breadcrumb-wrapper'));
-    expect(queryAllByTestId('breadcrumb-wrapper')).toHaveLength(1);
+    expect(queryByTestId('breadcrumb-wrapper')).toBeInTheDocument();
     expect(queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(3);
   });
 
@@ -73,8 +75,8 @@ describe('<TreePickerNav />', () => {
   });
 
   it('should hide the search when showSearch is false', () => {
-    const { queryAllByTestId } = render(<TreePickerNavComponent {...mockProps({ showSearch: false })} />);
-    expect(queryAllByTestId('search-wrapper')).toHaveLength(0);
+    const { queryByTestId } = render(<TreePickerNavComponent {...mockProps({ showSearch: false })} />);
+    expect(queryByTestId('search-wrapper')).not.toBeInTheDocument();
   });
 
   describe('disabled', () => {

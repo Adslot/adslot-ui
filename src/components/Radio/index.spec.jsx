@@ -23,12 +23,12 @@ describe('<Radio />', () => {
   });
 
   it('should render with props', () => {
-    const { getByTestId } = render(<Radio {...props} />);
+    const { getByTestId } = render(<Radio {...props} checked />);
     expect(getByTestId('radio-wrapper')).toHaveTextContent('Radio 1');
     expect(getByTestId('radio-wrapper')).toHaveAttribute('data-test-selector', 'radio-dts');
     expect(getByTestId('radio-input')).toHaveAttribute('type', 'radio');
     expect(getByTestId('radio-input')).toHaveAttribute('name', 'radio-name');
-    expect(getByTestId('radio-input')).toHaveAttribute('value', 'radio-value');
+    expect(getByTestId('radio-input')).toBeChecked();
   });
 
   it('should not render label if props.label is undefined', () => {

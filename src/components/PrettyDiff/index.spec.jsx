@@ -8,7 +8,9 @@ describe('<PrettyDiff />', () => {
   const diffStrings = ['<the quick fox>', '<the slow fox jumped>'];
 
   it('should render with spans having different classes', () => {
-    const { getByTestId, queryAllByTestId } = render(<PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />);
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
+      <PrettyDiff newText={diffStrings[1]} oldText={diffStrings[0]} />
+    );
     expect(getByTestId('pretty-diff-wrapper')).toHaveClass('pretty-diff-component');
 
     expect(queryAllByTestId('pretty-diff-component-equal')).toHaveLength(3);
@@ -20,7 +22,7 @@ describe('<PrettyDiff />', () => {
     expect(queryAllByTestId('pretty-diff-component-equal')[1]).toHaveTextContent(' fox', { normalizeSpaces: false });
     expect(queryAllByTestId('pretty-diff-component-equal')[2]).toHaveTextContent('>');
 
-    expect(queryAllByTestId('pretty-diff-component-delete')).toHaveLength(1);
+    expect(queryByTestId('pretty-diff-component-delete')).toBeInTheDocument();
     expect(queryAllByTestId('pretty-diff-component-delete')[0]).toHaveClass('pretty-diff-component-delete');
     expect(queryAllByTestId('pretty-diff-component-delete')[0]).toHaveTextContent('quick');
 

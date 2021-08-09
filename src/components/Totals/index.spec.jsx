@@ -6,11 +6,11 @@ afterEach(cleanup);
 
 describe('<Totals />', () => {
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<Totals />);
-    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
-    expect(getByTestId('grid-wrapper')).not.toBeEmpty();
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(<Totals />);
+    expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
+    expect(getByTestId('grid-wrapper')).not.toBeEmptyDOMElement();
 
-    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(1);
+    expect(queryByTestId('grid-row-wrapper')).toBeInTheDocument();
     expect(getByTestId('grid-row-wrapper')).toHaveClass('grid-component-row-short');
     expect(getByTestId('grid-row-wrapper')).toHaveClass('grid-component-row-footer');
     expect(getByTestId('grid-row-wrapper')).not.toHaveClass('grid-component-row-horizontal-border');
@@ -32,8 +32,8 @@ describe('<Totals />', () => {
       ],
       valueFormatter: value => `€${(value / 100).toFixed(2)}`,
     };
-    const { queryAllByTestId } = render(<Totals {...props} />);
-    expect(queryAllByTestId('grid-wrapper')).toHaveLength(1);
+    const { queryByTestId, queryAllByTestId } = render(<Totals {...props} />);
+    expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
 
     expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(3);
     expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-short');

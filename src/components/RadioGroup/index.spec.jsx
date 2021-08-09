@@ -20,14 +20,14 @@ describe('<RadioGroup />', () => {
   });
 
   it('should render with props', () => {
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
       <RadioGroup {...props}>
         <Radio label="Swimming" value="swimming" />
         <Radio label="Soccer" value="soccer" />
         <Radio label="Badminton" value="badminton" />
       </RadioGroup>
     );
-    expect(queryAllByTestId('radio-group-wrapper')).toHaveLength(1);
+    expect(queryByTestId('radio-group-wrapper')).toBeInTheDocument();
     expect(getByTestId('radio-group-wrapper')).toHaveAttribute('id', 'radio-group-id');
     expect(getByTestId('radio-group-wrapper')).toHaveAttribute('data-test-selector', 'radio-group-dts');
     expect(queryAllByTestId('radio-wrapper')).toHaveLength(3);

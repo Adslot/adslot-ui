@@ -6,9 +6,9 @@ afterEach(cleanup);
 
 describe('<OverlayLoader />', () => {
   it('should render Overlay Loader', () => {
-    const { getByTestId, queryAllByTestId } = render(<OverlayLoader text="foo" />);
+    const { getByTestId, queryByTestId } = render(<OverlayLoader text="foo" />);
     expect(getByTestId('overlay-loader-wrapper')).toHaveClass('aui--overlay-loader');
-    expect(queryAllByTestId('overlay-loader-wrapper')).toHaveLength(1);
+    expect(queryByTestId('overlay-loader-wrapper')).toBeInTheDocument();
 
     expect(getByTestId('overlay-loader-heading')).toHaveClass('loader-heading');
     expect(getByTestId('overlay-loader-heading')).toHaveTextContent('Loading');
@@ -16,12 +16,12 @@ describe('<OverlayLoader />', () => {
 
   it('should stop event propogation when disabled background', () => {
     const onClick = jest.fn();
-    const { getByTestId, queryAllByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <div data-testid="overlay-loader-test-wrapper" onClick={() => onClick} className="my-div">
         <OverlayLoader text="foo" disableBackground />
       </div>
     );
-    expect(queryAllByTestId('overlay-loader-wrapper')).toHaveLength(1);
+    expect(queryByTestId('overlay-loader-wrapper')).toBeInTheDocument();
     expect(getByTestId('overlay-loader-heading')).toHaveClass('loader-heading');
     expect(getByTestId('overlay-loader-heading')).toHaveTextContent('Loading');
 

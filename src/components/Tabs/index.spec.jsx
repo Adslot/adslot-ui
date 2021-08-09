@@ -24,7 +24,7 @@ describe('<Tabs />', () => {
     );
 
     expect(queryAllByTestId('tablist-a-tag')).toHaveLength(2);
-    expect(queryAllByTestId('tablist-a-tag')[1]).toHaveAttribute('style', 'pointer-events: none;');
+    expect(queryAllByTestId('tablist-a-tag')[1]).toHaveStyle('pointer-events: none;');
 
     expect(queryAllByTestId('tablist-item')[0]).toHaveClass('active');
     expect(queryAllByTestId('tablist-item')[1]).toHaveClass('disabled');
@@ -85,7 +85,7 @@ describe('<Tabs />', () => {
   });
 
   it('should not crash when child returns null', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Tabs defaultActiveKey="first" id="test">
         <Tab eventKey="first" title="Fist">
           Tab1
@@ -93,7 +93,7 @@ describe('<Tabs />', () => {
         {null}
       </Tabs>
     );
-    expect(queryAllByTestId('tablist-wrapper')).toHaveLength(1);
+    expect(queryByTestId('tablist-wrapper')).toBeInTheDocument();
   });
 
   it('should throw error if child of <Tabs /> is not <Tab />', () => {

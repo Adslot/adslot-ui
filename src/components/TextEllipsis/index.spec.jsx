@@ -21,11 +21,11 @@ describe('<TextEllipsis />', () => {
   });
 
   it('should render with defaults', () => {
-    const { getByTestId, queryAllByTestId } = render(<TextEllipsis>Sample text</TextEllipsis>);
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
+    const { getByTestId, queryByTestId } = render(<TextEllipsis>Sample text</TextEllipsis>);
+    expect(queryByTestId('popover-element')).toBeInTheDocument();
     expect(getByTestId('popover-element')).toHaveClass('aui--text-ellipsis-wrapper');
 
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
     expect(getByTestId('text-ellipsis')).toHaveClass('text-ellipsis-component');
     expect(getByTestId('text-ellipsis')).toHaveTextContent('Sample text');
   });
@@ -47,14 +47,14 @@ describe('<TextEllipsis />', () => {
     console.error = jest.fn();
 
     act(() => {
-      const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
+      const { queryByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
         container: divContainer,
       });
       jest.runAllTimers();
 
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
-      expect(queryAllByTestId('popover-wrapper')).toHaveLength(0);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
@@ -71,13 +71,13 @@ describe('<TextEllipsis />', () => {
     });
 
     act(() => {
-      const { queryAllByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
+      const { queryByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
         container: divContainer,
       });
       jest.runAllTimers();
 
-      expect(queryAllByTestId('popover-element')).toHaveLength(1);
-      expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
     });
   });
 
@@ -93,18 +93,18 @@ describe('<TextEllipsis />', () => {
       },
     });
 
-    const { queryAllByTestId, rerender } = render(<TextEllipsis>x</TextEllipsis>, {
+    const { queryByTestId, rerender } = render(<TextEllipsis>x</TextEllipsis>, {
       container: divContainer,
     });
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('popover-element')).toBeInTheDocument();
+    expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
 
     Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, get: () => 100 });
     rerender(<TextEllipsis>long text: The quick brown fox jumps over the lazy dog</TextEllipsis>, {
       container: divContainer,
     });
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('popover-element')).toBeInTheDocument();
+    expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
   });
 
   it('should remove popover if text changes from long to short', () => {
@@ -119,21 +119,21 @@ describe('<TextEllipsis />', () => {
       },
     });
 
-    const { queryAllByTestId, rerender } = render(
+    const { queryByTestId, rerender } = render(
       <TextEllipsis>long text: The quick brown fox jumps over the lazy dog</TextEllipsis>,
       {
         container: divContainer,
       }
     );
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('popover-element')).toBeInTheDocument();
+    expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
 
     Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, get: () => 20 });
     rerender(<TextEllipsis>x</TextEllipsis>, {
       container: divContainer,
     });
-    expect(queryAllByTestId('popover-element')).toHaveLength(1);
-    expect(queryAllByTestId('text-ellipsis')).toHaveLength(1);
+    expect(queryByTestId('popover-element')).toBeInTheDocument();
+    expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
   });
 
   describe('should also work on complex children', () => {

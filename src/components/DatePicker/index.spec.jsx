@@ -13,7 +13,7 @@ describe('<DatePicker />', () => {
 
     expect(getByTestId('date-picker-wrapper')).toHaveClass('aui--date-picker');
     expect(getByTestId('date-picker-wrapper')).toHaveAttribute('data-test-selector', 'test');
-    expect(getByTestId('date-picker-wrapper')).not.toBeEmpty();
+    expect(getByTestId('date-picker-wrapper')).not.toBeEmptyDOMElement();
   });
 
   it('should handle input change', () => {
@@ -32,7 +32,7 @@ describe('<DatePicker />', () => {
     const datePickerInput = getByClass(container, 'test');
 
     fireEvent.change(datePickerInput, { target: { value: '11 Oct 2021' } });
-    expect(datePickerInput).toHaveAttribute('value', '11 Oct 2021');
+    expect(datePickerInput).toHaveValue('11 Oct 2021');
   });
 
   it('should prevent inline editing when `disableInlineEditing`', () => {
@@ -51,6 +51,6 @@ describe('<DatePicker />', () => {
     const datePickerInput = getByClass(container, 'test');
 
     fireEvent.change(datePickerInput, { target: { value: '11 Oct 2021' } });
-    expect(datePickerInput).toHaveAttribute('value', '11 Oct 2020');
+    expect(datePickerInput).toHaveValue('11 Oct 2020');
   });
 });

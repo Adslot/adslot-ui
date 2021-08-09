@@ -11,14 +11,14 @@ describe('<PagedGrid />', () => {
       items: [],
       perPage: 1,
     };
-    const { getByTestId, queryAllByTestId } = render(<PagedGrid {...props} />);
+    const { getByTestId, queryByTestId } = render(<PagedGrid {...props} />);
     expect(getByTestId('paged-grid-wrapper')).toHaveClass('pagedgrid-component');
 
-    expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(1);
-    expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(1);
+    expect(queryByTestId('grid-row-wrapper')).toBeInTheDocument();
+    expect(queryByTestId('grid-cell-wrapper')).toBeInTheDocument();
     expect(getByTestId('grid-cell-wrapper')).toHaveTextContent('Name');
 
-    expect(queryAllByTestId('paged-grid-pagination')).toHaveLength(0);
+    expect(queryByTestId('paged-grid-pagination')).not.toBeInTheDocument();
   });
 
   it('should render with items', () => {
@@ -27,12 +27,12 @@ describe('<PagedGrid />', () => {
       items: [{ name: 'item1', id: 1 }, { name: 'item2', id: 2 }],
       perPage: 1,
     };
-    const { queryAllByTestId } = render(<PagedGrid {...props} />);
+    const { queryByTestId, queryAllByTestId } = render(<PagedGrid {...props} />);
     expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(2);
     queryAllByTestId('grid-row-wrapper').forEach(gridRow =>
       expect(gridRow).not.toHaveClass('grid-component-row-vertical-cell-border')
     );
-    expect(queryAllByTestId('pagination-wrapper')).toHaveLength(1);
+    expect(queryByTestId('pagination-wrapper')).toBeInTheDocument();
   });
 
   it('should update grid when new page selected or items updated', () => {
