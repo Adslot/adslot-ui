@@ -1,6 +1,6 @@
 {
   "name": "adslot-ui",
-  "version": "28.0.1",
+  "version": "28.0.2",
   "description": "Core component library. By Adslot",
   "main": "dist/adslot-ui-main.js",
   "files": [
