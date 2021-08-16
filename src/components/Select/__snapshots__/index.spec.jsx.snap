@@ -5,17 +5,11 @@ exports[`<Select /> should render select options in body if props.isInModal is t
   <div
     class="select-component css-2b097c-container"
   >
-    <span
-      aria-atomic="false"
-      aria-live="polite"
-      aria-relevant="additions text"
-      class="css-1f43avz-a11yText-A11yText"
-    />
     <div
       class="select-component__control css-oeuhkd-control"
     >
       <div
-        class="select-component__value-container css-lw5t2n-ValueContainer"
+        class="select-component__value-container css-9evde0"
       >
         <div
           class="select-component__placeholder css-1wa3eu0-placeholder"
