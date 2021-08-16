@@ -32,11 +32,19 @@ class Example extends React.PureComponent {
     return (
       <>
         <h5>Hover the avatar below</h5>
-        <HoverDropdownMenu {...props}>
-          {_.map(links, link => (
-            <HoverDropdownMenu.Item key={link.title} {...link} />
-          ))}
-        </HoverDropdownMenu>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <HoverDropdownMenu {...props}>
+            {_.map(links, link => (
+              <HoverDropdownMenu.Item key={link.title} {...link} />
+            ))}
+          </HoverDropdownMenu>
+
+          <div style={{ width: '12px' }} />
+
+          <HoverDropdownMenu hoverComponent="Single menu item" arrowPosition="none">
+            <HoverDropdownMenu.Item {...links[0]} />
+          </HoverDropdownMenu>
+        </div>
       </>
     );
   }

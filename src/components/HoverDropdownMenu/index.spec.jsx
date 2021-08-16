@@ -149,4 +149,23 @@ describe('<HoverDropdownMenu />', () => {
     const { queryByTestId } = render(<HoverDropdownMenu hoverComponent={<div />} />);
     expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
   });
+
+  it('should not render arrow if arrow position is none', () => {
+    const { getByTestId, queryAllByTestId } = render(
+      <HoverDropdownMenu {...props} arrowPosition="none">
+        {_.map(links, (link, idx) => (
+          <HoverDropdownMenu.Item key={idx} {...link} />
+        ))}
+      </HoverDropdownMenu>
+    );
+
+    act(() => {
+      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+      jest.runAllTimers();
+    });
+    expect(queryAllByTestId('popover-wrapper')[0].querySelector('.aui--popover-arrow')).toHaveAttribute(
+      'style',
+      'display: none;'
+    );
+  });
 });
