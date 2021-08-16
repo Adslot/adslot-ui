@@ -73,7 +73,7 @@ describe('<Select />', () => {
     const { container, rerender, getByText, queryByText } = render(<Select options={defaultOptions} dts="test-dts" />);
 
     expect(queryAllByDts(container, 'test-dts')).toHaveLength(1);
-    expect(queryAllByClass(container, 'select-component__value-container css-lw5t2n-ValueContainer')).toHaveLength(1);
+    expect(queryAllByClass(container, 'select-component__value-container css-9evde0')).toHaveLength(1);
     expect(
       queryAllByClass(
         container,
