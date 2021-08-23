@@ -7,7 +7,7 @@ import { toastPlacements } from './constants';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.scss';
 
-const getToastClass = theme => classnames('aui--toast-title', { [`aui--toast-title-${theme}`]: theme });
+const getToastClass = (theme) => classnames('aui--toast-title', { [`aui--toast-title-${theme}`]: theme });
 
 export const ToastMessage = ({ toastClass, title, message }) => (
   <React.Fragment>
@@ -18,9 +18,10 @@ export const ToastMessage = ({ toastClass, title, message }) => (
   </React.Fragment>
 );
 
-const options = props => _.omit({ className: 'aui--toast-notification-body', ...props }, ['title', 'theme', 'message']);
+const options = (props) =>
+  _.omit({ className: 'aui--toast-notification-body', ...props }, ['title', 'theme', 'message']);
 
-const ToastNotificationComponent = props => {
+const ToastNotificationComponent = (props) => {
   const { theme, title, message } = props;
 
   const toastClass = getToastClass(theme);

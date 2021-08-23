@@ -9,7 +9,7 @@ import './styles.scss';
 
 const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
 
-const Popover = props => {
+const Popover = (props) => {
   const { isOpen } = props;
   const [isPopoverOpen, setIsPopoverOpen] = useState(isOpen);
 

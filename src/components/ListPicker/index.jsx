@@ -11,16 +11,13 @@ import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
 import './styles.scss';
 
-const isSubset = (array, subArray) =>
-  _(subArray)
-    .difference(array)
-    .isEmpty();
+const isSubset = (array, subArray) => _(subArray).difference(array).isEmpty();
 
 class ListPickerComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'defaultState', 'selectItem'].forEach(
-      methodName => {
+      (methodName) => {
         this[methodName] = this[methodName].bind(this);
       }
     );
@@ -123,7 +120,7 @@ class ListPickerComponent extends React.PureComponent {
                   <GridRow type="header">
                     <GridCell>{itemInfo.label}</GridCell>
                   </GridRow>
-                  {_.map(itemInfo.properties, property => (
+                  {_.map(itemInfo.properties, (property) => (
                     <GridRow key={property.label} horizontalBorder={false}>
                       <GridCell classSuffixes={['label']}>{property.label}</GridCell>
                       <GridCell classSuffixes={['value']} dts={_.kebabCase(property.label)} stretch>

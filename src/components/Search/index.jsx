@@ -28,7 +28,7 @@ const Search = React.forwardRef(
   ) => {
     const [inputValue, setInputValue] = React.useState('');
 
-    const onInputChange = event => {
+    const onInputChange = (event) => {
       const eventValue = _.get(event, 'target.value');
       if (onChange) {
         onChange(eventValue);
@@ -52,19 +52,19 @@ const Search = React.forwardRef(
       if (onClear) onClear(emptyValue);
     };
 
-    const onKeyPress = event => {
+    const onKeyPress = (event) => {
       if (searchOnEnter && event.key === 'Enter') {
         event.preventDefault();
         onInputSearch(_.get(event, 'target.value'));
       }
     };
 
-    const onInputSearch = searchValue => {
+    const onInputSearch = (searchValue) => {
       const search = debounceInterval ? _.debounce(onSearch, debounceInterval) : onSearch;
       search(searchValue);
     };
 
-    const onSearchButtonClick = event => {
+    const onSearchButtonClick = (event) => {
       event.preventDefault();
       const searchValue = value || inputValue;
       onInputSearch(searchValue);

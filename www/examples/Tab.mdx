@@ -6,7 +6,7 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ```jsx live=true
 const Example = () => {
   const [activeTab, setActiveTab] = React.useState('Audience');
-  const switchTab = tabKey => setActiveTab(tabKey);
+  const switchTab = (tabKey) => setActiveTab(tabKey);
 
   return (
     <Tabs activeKey={activeTab} onSelect={switchTab} id="audience-tab">

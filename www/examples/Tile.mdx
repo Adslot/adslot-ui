@@ -34,7 +34,7 @@ const Example = () => {
     <div>
       <React.Fragment>
         <Carousel autoplay={false} style={{ width: '55vw' }} dots={false}>
-          {_.map(items, item => (
+          {_.map(items, (item) => (
             <Tile {...item} style={{ paddingRight: 10, width: 220, height: 300 }} />
           ))}
         </Carousel>

@@ -2,30 +2,32 @@ import React from 'react';
 import axios from 'axios';
 import { ActionPanel, Avatar, Spinner, Popover, SvgSymbol } from '../../../../src';
 
-const plural = number => `${number} contribution${number > 1 ? 's' : ''}`;
+const plural = (number) => `${number} contribution${number > 1 ? 's' : ''}`;
 
 const Contributors = () => {
   const [contributors, setContributors] = React.useState([]);
   const getContributors = () => {
     axios
       .get('https://api.github.com/repos/Adslot/adslot-ui/contributors')
-      .then(response => response.data)
-      .then(data => setContributors(data));
+      .then((response) => response.data)
+      .then((data) => setContributors(data));
   };
 
   React.useEffect(getContributors, []);
 
   const renderContributors = () =>
-    contributors.map((
-      { login, avatar_url, contributions } // eslint-disable-line camelcase
-    ) => (
-      <Popover key={login} popoverContent={`Thanks, ${login}, for your ${plural(contributions)}`}>
-        <Avatar
-          givenName={login}
-          image={avatar_url} // eslint-disable-line camelcase
-        />
-      </Popover>
-    ));
+    contributors.map(
+      (
+        { login, avatar_url, contributions } // eslint-disable-line camelcase
+      ) => (
+        <Popover key={login} popoverContent={`Thanks, ${login}, for your ${plural(contributions)}`}>
+          <Avatar
+            givenName={login}
+            image={avatar_url} // eslint-disable-line camelcase
+          />
+        </Popover>
+      )
+    );
 
   const [showContributors, setShowContributors] = React.useState(false);
 

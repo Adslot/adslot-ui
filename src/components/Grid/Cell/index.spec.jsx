@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 describe('<GridCell />', () => {
   const componentClass = 'grid-component-cell';
-  const getClassNames = classSuffixes => {
+  const getClassNames = (classSuffixes) => {
     const classNames = classSuffixHelper({ classSuffixes, componentClass });
     return `${componentClass}${classNames}`;
   };

@@ -5,7 +5,10 @@ import Slicey from '.';
 afterEach(cleanup);
 
 describe('<Slicey />', () => {
-  const dataset = [{ label: 'positive', value: 5 }, { label: 'negative', value: 3 }];
+  const dataset = [
+    { label: 'positive', value: 5 },
+    { label: 'negative', value: 3 },
+  ];
 
   it('should render an empty state', () => {
     const { getByTestId, queryByTestId } = render(<Slicey />);

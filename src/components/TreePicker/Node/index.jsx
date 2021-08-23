@@ -12,17 +12,9 @@ import './styles.scss';
 
 const baseClass = 'treepickernode-component';
 
-const printPathText = node =>
-  _(node.path)
-    .map('label')
-    .clone()
-    .reverse()
-    .join(', ');
+const printPathText = (node) => _(node.path).map('label').clone().reverse().join(', ');
 
-const printAncestorText = node =>
-  _(node.ancestors)
-    .map('label')
-    .join(', ');
+const printAncestorText = (node) => _(node.ancestors).map('label').join(', ');
 
 const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
 
@@ -137,15 +129,15 @@ TreePickerNodeComponent.propTypes = {
 
 TreePickerNodeComponent.defaultProps = {
   disabled: false,
-  includeNode: node => {
+  includeNode: (node) => {
     throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);
   },
-  removeNode: node => {
+  removeNode: (node) => {
     throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);
   },
   selected: false,
-  valueFormatter: value => value,
-  nodeRenderer: node => node.label,
+  valueFormatter: (value) => value,
+  nodeRenderer: (node) => node.label,
 };
 
 export default TreePickerNodeComponent;

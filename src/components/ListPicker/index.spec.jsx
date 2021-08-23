@@ -109,7 +109,10 @@ describe('<ListPicker />', () => {
   it('should render with props for split pane', () => {
     const itemInfo = {
       label: 'User Details',
-      properties: [{ label: 'Name', value: 'Jill Smith' }, { label: 'Age', value: '21' }],
+      properties: [
+        { label: 'Name', value: 'Jill Smith' },
+        { label: 'Age', value: '21' },
+      ],
     };
     const initialSelection = getInitialSelection();
     const emptySvgSymbol = <div data-testid="testing-empty-svgsymbol" />;
@@ -263,7 +266,7 @@ describe('<ListPicker />', () => {
   });
 
   it('should throw when we click Apply without a handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const { getByText } = render(<ListPickerComponent show />);
@@ -280,7 +283,7 @@ describe('<ListPicker />', () => {
   });
 
   it('should throw when we click Close without a handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const { getByText } = render(<ListPickerComponent show />);

@@ -7,8 +7,8 @@ import CodeBlock from './CodeBlock';
 import './styles.scss';
 
 const components = {
-  pre: props => <div {...props} />,
-  code: props => <CodeBlock {...props} />,
+  pre: (props) => <div {...props} />,
+  code: (props) => <CodeBlock {...props} />,
 };
 
 export class App extends Component {

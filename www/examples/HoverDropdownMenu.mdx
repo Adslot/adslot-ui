@@ -33,7 +33,7 @@ class Example extends React.PureComponent {
       <>
         <h5>Hover the avatar below</h5>
         <HoverDropdownMenu {...props}>
-          {_.map(links, link => (
+          {_.map(links, (link) => (
             <HoverDropdownMenu.Item key={link.title} {...link} />
           ))}
         </HoverDropdownMenu>

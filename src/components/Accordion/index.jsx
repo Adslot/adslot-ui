@@ -40,15 +40,15 @@ class Accordion extends React.PureComponent {
         : _.slice(this.props.defaultActivePanelIds, 0, this.props.maxExpand),
   };
 
-  onPanelClick = panelId => {
+  onPanelClick = (panelId) => {
     const { maxExpand } = this.props;
 
     if (_.includes(this.state.activePanelIds, panelId)) {
       // remove panelId out of the active list
-      this.setState(prevState => ({ activePanelIds: _.without(prevState.activePanelIds, panelId) }));
+      this.setState((prevState) => ({ activePanelIds: _.without(prevState.activePanelIds, panelId) }));
     } else {
       // drop panels from the beginning if max opened panels count is reached
-      this.setState(prevState => {
+      this.setState((prevState) => {
         let newActivePanelIds = [...prevState.activePanelIds, panelId];
         if (maxExpand !== 'max' && newActivePanelIds.length > maxExpand) {
           newActivePanelIds = _.drop(newActivePanelIds, newActivePanelIds.length - maxExpand);
@@ -76,7 +76,7 @@ class Accordion extends React.PureComponent {
     }
   }
 
-  renderPanelFromChildren = child => {
+  renderPanelFromChildren = (child) => {
     const { id, isCollapsed } = child.props;
 
     // prevent rendering if child is not an instance of Accordion.Panel

@@ -7,9 +7,9 @@ import Marker from './Marker';
 import { ROUND, HALF, QUARTER, getPointX, getPointY } from './dataProcessor';
 import './styles.scss';
 
-const filterDataset = dataset => _.filter(dataset, ({ value }) => value > 0);
+const filterDataset = (dataset) => _.filter(dataset, ({ value }) => value > 0);
 
-const getArcs = datasetForArcs => {
+const getArcs = (datasetForArcs) => {
   const total = _.sumBy(datasetForArcs, 'value');
 
   const arcs = new Array(datasetForArcs.length);
@@ -34,9 +34,9 @@ const getArcs = datasetForArcs => {
 };
 
 // IE Can't draw a complete circle as an arc, so swap it to a circle element.
-const getArcElements = filteredDataset => {
+const getArcElements = (filteredDataset) => {
   if (filteredDataset.length > 1) {
-    return _.map(getArcs(filteredDataset), arc => <Arc key={arc.id} data={arc} />);
+    return _.map(getArcs(filteredDataset), (arc) => <Arc key={arc.id} data={arc} />);
   }
 
   return (
@@ -50,7 +50,7 @@ const getArcElements = filteredDataset => {
   );
 };
 
-const getSvgProps = diameter => ({
+const getSvgProps = (diameter) => ({
   className: 'slicey-component',
   height: diameter,
   width: diameter,

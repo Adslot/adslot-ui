@@ -1,19 +1,10 @@
 {
   "root": true,
-  "globals": {
-    "expect": false
-  },
-  "parser": "@babel/eslint-parser",
   "plugins": ["jest-dom"],
   "extends": ["adslot", "plugin:jest-dom/recommended"],
   "settings": {
     "lodash": {
       "version": 4
-    },
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx"]
-      }
     }
   },
   "rules": {

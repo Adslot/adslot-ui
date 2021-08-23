@@ -86,7 +86,7 @@ class ListPickerPureComponent extends React.PureComponent {
         ) : null}
         <div className="listpickerpure-component-items">
           <Grid>
-            {_.map(items, item => (
+            {_.map(items, (item) => (
               <GridRow key={item.id} dts={`${_.kebabCase(itemType)}-${item.id}`}>
                 <GridCell stretch dts="label">
                   {labelFormatter(item)}
@@ -137,7 +137,7 @@ ListPickerPureComponent.defaultProps = {
     throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');
   },
   emptyMessage: 'No items to select.',
-  labelFormatter: item => item.label,
+  labelFormatter: (item) => item.label,
   items: [],
   itemType: 'item',
   selectItem: () => {

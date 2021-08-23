@@ -19,7 +19,7 @@ class ButtonGroup extends React.PureComponent {
   };
 
   injectProps(children) {
-    return React.Children.map(children, child => {
+    return React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         const buttonProps = {
           ...(this.props.theme ? { theme: this.props.theme } : {}),
@@ -28,7 +28,7 @@ class ButtonGroup extends React.PureComponent {
           ...(this.props.size ? { size: this.props.size } : {}),
         };
 
-        const childNodes = React.Children.map(child.props.children, childNode =>
+        const childNodes = React.Children.map(child.props.children, (childNode) =>
           React.isValidElement(childNode)
             ? React.cloneElement(childNode, {
                 ...childNode.props,

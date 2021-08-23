@@ -15,7 +15,7 @@ afterEach(cleanup);
 describe('<Accordion />', () => {
   const { panel1, panel2, panel3 } = PanelMocks;
 
-  const makeProps = override =>
+  const makeProps = (override) =>
     _.merge(
       {
         dts: 'my-accordion',
@@ -84,7 +84,7 @@ describe('<Accordion />', () => {
   });
 
   it('should expand or collapse any panels with a restriction of `maxExpand`', () => {
-    const panel = id => ({
+    const panel = (id) => ({
       id,
       title: `Panel ${id}`,
       dts: `panel-${id}`,

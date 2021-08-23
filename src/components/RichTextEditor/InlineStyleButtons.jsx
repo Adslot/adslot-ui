@@ -11,14 +11,14 @@ const INLINE_STYLES = [
   { label: <img src={underlineIcon} alt="underline" />, style: 'UNDERLINE' },
 ];
 
-const InlineStyleButtons = props => {
+const InlineStyleButtons = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
 
-  const onToggle = style => {
+  const onToggle = (style) => {
     props.onToggle(RichUtils.toggleInlineStyle(props.editorState, style));
   };
 
-  return INLINE_STYLES.map(type => (
+  return INLINE_STYLES.map((type) => (
     <ToolbarButton
       key={type.style}
       active={currentStyle.has(type.style)}

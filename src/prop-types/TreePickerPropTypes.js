@@ -7,7 +7,7 @@ const baseNodeProps = {
   label: PropTypes.string.isRequired,
 };
 
-const mergeNodeProps = addedProps => Object.assign({}, baseNodeProps, addedProps);
+const mergeNodeProps = (addedProps) => Object.assign({}, baseNodeProps, addedProps);
 
 export default {
   node: PropTypes.shape(

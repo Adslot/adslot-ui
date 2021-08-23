@@ -17,9 +17,9 @@ const Avatar = ({ color, givenName, tooltip, image, surname }) => (
   >
     {image ? <img data-testid="avatar-image" className={`${baseClass}-image`} src={image} alt="presentation" /> : null}
 
-    <div data-testid="avatar-initials" className="avatar-component-initials">{`${_.head(givenName) || ''}${_.head(
-      surname
-    ) || ''}`}</div>
+    <div data-testid="avatar-initials" className="avatar-component-initials">{`${_.head(givenName) || ''}${
+      _.head(surname) || ''
+    }`}</div>
   </div>
 );
 

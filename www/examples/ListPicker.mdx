@@ -16,7 +16,7 @@ const UncontrolledCheckbox = () => {
   return <Checkbox checked={checked} onChange={() => setChecked(!checked)} />;
 };
 
-const labelFormatter = item => `${item.givenName} ${item.surname}`;
+const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 const addonFormatter = () => <UncontrolledCheckbox />;
 
 const listPickerItemHeaders = {

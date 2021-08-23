@@ -8,7 +8,7 @@ import './styles.scss';
 const Breadcrumb = ({ rootNode, divider, nodes, onClick, disabled }) => {
   const baseClass = 'aui--breadcrumb';
   const className = classnames(baseClass, { [`${baseClass}--disabled`]: disabled });
-  const onClickFunc = newActiveId => !disabled && onClick(newActiveId);
+  const onClickFunc = (newActiveId) => !disabled && onClick(newActiveId);
 
   if (nodes.length === 0) {
     return <div data-testid="breadcrumb-wrapper" className={className} />;
@@ -41,7 +41,7 @@ Breadcrumb.defaultProps = {
   rootNode: { id: 'all', label: 'All' },
   divider: '>',
   nodes: [],
-  onClick: newActiveId => {
+  onClick: (newActiveId) => {
     throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);
   },
   disabled: false,

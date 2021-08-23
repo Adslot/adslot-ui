@@ -40,7 +40,7 @@ Totals.propTypes = {
 
 Totals.defaultProps = {
   toSum: [],
-  valueFormatter: value => `${value}`,
+  valueFormatter: (value) => `${value}`,
 };
 
 export default Totals;

@@ -161,7 +161,7 @@ module.exports = webpackMerge(commonConfig, {
 
           return cssnano()
             .process(input, postcssOptions)
-            .then(result => {
+            .then((result) => {
               return {
                 code: result.css,
                 map: result.map,

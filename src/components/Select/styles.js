@@ -23,7 +23,7 @@ const defaultStyle = {
       backgroundColor,
     };
   },
-  indicatorSeparator: styles => ({
+  indicatorSeparator: (styles) => ({
     ...styles,
     display: 'none',
   }),
@@ -39,38 +39,38 @@ const defaultStyle = {
     minHeight: 26,
     borderRadius: 0,
   }),
-  clearIndicator: styles => ({
+  clearIndicator: (styles) => ({
     ...styles,
     padding: '0 4px 0 8px',
   }),
-  dropdownIndicator: styles => ({
+  dropdownIndicator: (styles) => ({
     ...styles,
     padding: '0 8px 0 4px',
   }),
-  valueContainer: styles => ({
+  valueContainer: (styles) => ({
     ...styles,
     padding: '0 8px',
   }),
-  multiValue: styles => ({
+  multiValue: (styles) => ({
     ...styles,
     color: '#fff',
     backgroundColor: '#838383',
   }),
-  multiValueLabel: styles => ({
+  multiValueLabel: (styles) => ({
     ...styles,
     color: '#fff',
   }),
-  multiValueRemove: styles => ({
+  multiValueRemove: (styles) => ({
     ...styles,
     ':hover': {},
   }),
-  menu: styles => ({
+  menu: (styles) => ({
     ...styles,
     zIndex: 1060,
     borderRadius: 0,
     marginTop: 4,
   }),
-  noOptionsMessage: styles => ({
+  noOptionsMessage: (styles) => ({
     ...styles,
     textAlign: 'left',
   }),

@@ -7,11 +7,14 @@ const getByClass = queryByAttribute.bind(null, 'class');
 const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
 const testFunction = _.noop;
-const breadcrumbNodes = [{ id: 'a', label: 'UK' }, { id: 'b', label: 'London' }];
+const breadcrumbNodes = [
+  { id: 'a', label: 'UK' },
+  { id: 'b', label: 'London' },
+];
 
 afterEach(cleanup);
 
-const mockProps = overrides => ({
+const mockProps = (overrides) => ({
   breadcrumbNodes,
   breadcrumbOnClick: testFunction,
   onChange: testFunction,

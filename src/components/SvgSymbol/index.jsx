@@ -5,7 +5,7 @@ import './styles.scss';
 
 const base64UrlPrefix = 'data:image/svg+xml;base64,';
 
-const SvgSymbol = props => {
+const SvgSymbol = (props) => {
   let isEncoded = false;
   const { classSuffixes, href, onClick, isCircle } = props;
   const suffixOptions = { clickable: props.onClick };

@@ -10,7 +10,7 @@ const Example = () => {
   const [searchOnEnterKeyLoading, setSearchOnEnterKeyLoading] = React.useState(false);
   const [searchInput, showSearchInput] = React.useState(false);
 
-  const onChange = value => {
+  const onChange = (value) => {
     setValue(value);
   };
 
@@ -23,7 +23,7 @@ const Example = () => {
     setTimeout(() => setSearchOnInputChangeLoading(false), 950);
   };
 
-  const searchOnEnterKey = value => {
+  const searchOnEnterKey = (value) => {
     setSearchOnEnterKeyLoading(true);
     setTimeout(() => {
       setSearchOnEnterKeyLoading(false);

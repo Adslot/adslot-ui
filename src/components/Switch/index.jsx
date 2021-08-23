@@ -6,7 +6,7 @@ import './styles.scss';
 class Switch extends React.PureComponent {
   state = { checked: this.props.defaultChecked || false };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { onChange, checked } = this.props;
     const targetCheckedValue = _.get(event, 'target.checked');
 

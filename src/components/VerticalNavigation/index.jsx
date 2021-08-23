@@ -49,7 +49,7 @@ class VerticalNavigation extends React.Component {
     return true;
   }
 
-  getActiveTabIndex = children => {
+  getActiveTabIndex = (children) => {
     const activeIndex = _.findIndex(children, 'props.isActive');
     return activeIndex === -1 ? 0 : activeIndex;
   };

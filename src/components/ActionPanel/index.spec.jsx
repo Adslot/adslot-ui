@@ -7,7 +7,7 @@ import ActionPanel from '.';
 afterEach(cleanup);
 
 describe('<ActionPanel />', () => {
-  const makeProps = override =>
+  const makeProps = (override) =>
     _.merge(
       {
         title: 'Action Panel',

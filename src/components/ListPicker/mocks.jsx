@@ -1,7 +1,7 @@
 import immutable from 'seamless-immutable';
 import React from 'react';
 
-const labelFormatter = item => `${item.givenName} ${item.surname}`;
+const labelFormatter = (item) => `${item.givenName} ${item.surname}`;
 
 const teamMember1 = { givenName: 'John', id: 1, surname: 'Smith' };
 

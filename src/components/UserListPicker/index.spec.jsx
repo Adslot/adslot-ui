@@ -91,7 +91,7 @@ describe('<UserListPicker />', () => {
   });
 
   it('should throw when we do not supply apply handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const { queryAllByTestId, getByText } = render(<UserListPicker users={users} show />);
@@ -105,7 +105,7 @@ describe('<UserListPicker />', () => {
   });
 
   it('should throw when we do not supply close handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const { getByText } = render(<UserListPicker show />);

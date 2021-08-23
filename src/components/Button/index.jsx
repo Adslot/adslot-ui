@@ -8,7 +8,7 @@ import Spinner from '../Spinner';
 import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
-const Button = props => {
+const Button = (props) => {
   const { theme, children, className, disabled, dts, href, inverse, isLoading, size, target, type } = props;
   const baseClass = 'aui--button';
   const classes = classNames(
