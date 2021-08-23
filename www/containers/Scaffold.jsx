@@ -24,7 +24,7 @@ export default function Scaffold() {
         </div>
         <div className="adslot-ui-content-area">
           <Switch>
-            {Object.keys(routes).map(key => (
+            {Object.keys(routes).map((key) => (
               <Route key={key} path={routes[key].path} exact component={routes[key].component} />
             ))}
             <Route component={NotFound} />

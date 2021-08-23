@@ -18,7 +18,7 @@ const Props = ({ componentName, customMapper }) => {
     componentExports.length === 1
       ? componentExports[0]
       : componentExports.find(
-          component =>
+          (component) =>
             component.displayName === componentName || component.displayName === componentNameMapper[componentName]
         );
 

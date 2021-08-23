@@ -15,7 +15,7 @@ describe('<PrettyDiff />', () => {
 
     expect(queryAllByTestId('pretty-diff-component-equal')).toHaveLength(3);
 
-    queryAllByTestId('pretty-diff-component-equal').forEach(span =>
+    queryAllByTestId('pretty-diff-component-equal').forEach((span) =>
       expect(span).toHaveClass('pretty-diff-component-equal')
     );
     expect(queryAllByTestId('pretty-diff-component-equal')[0]).toHaveTextContent('<the ', { normalizeSpaces: false });
@@ -28,7 +28,7 @@ describe('<PrettyDiff />', () => {
 
     expect(queryAllByTestId('pretty-diff-component-insert')).toHaveLength(2);
     expect(queryAllByTestId('pretty-diff-component-insert')[0]).toHaveClass('pretty-diff-component-insert');
-    queryAllByTestId('pretty-diff-component-insert').forEach(span =>
+    queryAllByTestId('pretty-diff-component-insert').forEach((span) =>
       expect(span).toHaveClass('pretty-diff-component-insert')
     );
     expect(queryAllByTestId('pretty-diff-component-insert')[0]).toHaveTextContent('slow');

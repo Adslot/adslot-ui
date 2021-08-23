@@ -5,7 +5,7 @@ import { toastPlacements } from './constants';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.scss';
 
-const ToastContainerComponent = props => <ToastContainer className="aui--toast-container" {...props} />;
+const ToastContainerComponent = (props) => <ToastContainer className="aui--toast-container" {...props} />;
 
 ToastContainerComponent.propTypes = {
   /**

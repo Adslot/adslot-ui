@@ -29,15 +29,15 @@ class PagedGridComponent extends React.PureComponent {
       <div data-testid="paged-grid-wrapper" className="pagedgrid-component">
         <Grid>
           <GridRow type="header" verticalCellBorder={verticalCellBorder}>
-            {_.map(columns, column => (
+            {_.map(columns, (column) => (
               <GridCell key={column.key} classSuffixes={[_.kebabCase(column.key)]} stretch={column.stretch}>
                 {column.label}
               </GridCell>
             ))}
           </GridRow>
-          {_.map(pageItems, item => (
+          {_.map(pageItems, (item) => (
             <GridRow key={item.id} verticalCellBorder={verticalCellBorder}>
-              {_.map(columns, column => (
+              {_.map(columns, (column) => (
                 <GridCell
                   key={`${item.id}-${column.key}`}
                   classSuffixes={[_.kebabCase(column.key)]}
@@ -59,7 +59,7 @@ class PagedGridComponent extends React.PureComponent {
               activePage={activePage}
               pageCount={totalPages}
               next
-              onSelect={selectedPage => this.setState({ activePage: selectedPage })}
+              onSelect={(selectedPage) => this.setState({ activePage: selectedPage })}
               prev
             />
           </div>

@@ -23,7 +23,7 @@ describe('<Carousel />', () => {
         <img data-testid="carousel-image-wrapper" src="path/to/image-2.jpg" alt="2" />
       </Carousel>
     );
-    getAllByTestId('carousel-image-wrapper').forEach(each => expect(container).toContainElement(each));
+    getAllByTestId('carousel-image-wrapper').forEach((each) => expect(container).toContainElement(each));
     getAllByTestId('carousel-image-wrapper').forEach((each, index) =>
       expect(each).toHaveAttribute('src', `path/to/image-${index + 1}.jpg`)
     );

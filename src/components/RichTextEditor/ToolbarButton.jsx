@@ -9,7 +9,7 @@ const ToolbarButton = ({ onToggle, label, active }) => {
   });
 
   const mouseDownHandler = React.useCallback(
-    event => {
+    (event) => {
       event.preventDefault();
       event.stopPropagation();
       return onToggle();

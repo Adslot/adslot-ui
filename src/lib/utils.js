@@ -17,12 +17,12 @@ export const classSuffixHelper = ({ classSuffixes, suffixOptions, componentClass
 
   if (_.isEmpty(internalSuffixes)) return '';
 
-  return _.map(internalSuffixes, suffix => ` ${componentClass}-${suffix}`).join('');
+  return _.map(internalSuffixes, (suffix) => ` ${componentClass}-${suffix}`).join('');
 };
 
 // A DTS is an attribute which attaches a selector to a component so E2Es can locate and navigate through the DOM.
 // expandDts converts a string to an object for ES6 expansion as <img {...expandDts(dtsString)} />
-export const expandDts = dtsString => (dtsString ? { 'data-test-selector': dtsString } : {});
+export const expandDts = (dtsString) => (dtsString ? { 'data-test-selector': dtsString } : {});
 
 export default {
   classSuffixHelper,

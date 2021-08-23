@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 describe('<GridRow />', () => {
   const componentClass = 'grid-component-row';
-  const getClassNames = classSuffixes => {
+  const getClassNames = (classSuffixes) => {
     const classNames = classSuffixHelper({ classSuffixes, componentClass });
     return `${componentClass}${classNames}`;
   };

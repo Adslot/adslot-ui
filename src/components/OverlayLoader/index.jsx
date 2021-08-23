@@ -7,7 +7,7 @@ const OverlayLoader = ({ text, top, heading, disableBackground }) => (
   <div
     data-testid="overlay-loader-wrapper"
     className={`aui--overlay-loader ${disableBackground ? 'aui--overlay-loader-disabled' : ''}`}
-    {...(disableBackground ? { onClick: event => event.stopPropagation() } : {})}
+    {...(disableBackground ? { onClick: (event) => event.stopPropagation() } : {})}
   >
     <div className="loader" style={{ top }}>
       <Spinner size="medium" />

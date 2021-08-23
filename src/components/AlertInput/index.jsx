@@ -55,7 +55,7 @@ export default class AlertInput extends React.PureComponent {
     this.setState({ isPopoverVisible: false });
   };
 
-  handleInputFocus = event => {
+  handleInputFocus = (event) => {
     event.target.select();
     this.setState({
       isFocused: true,
@@ -67,7 +67,7 @@ export default class AlertInput extends React.PureComponent {
     }
   };
 
-  handleInputBlur = event => {
+  handleInputBlur = (event) => {
     this.setState({
       isFocused: false,
       isPopoverVisible: false,
@@ -79,16 +79,8 @@ export default class AlertInput extends React.PureComponent {
   };
 
   render() {
-    const {
-      dts,
-      popoverPlacement,
-      disabled,
-      prefixAddon,
-      suffixAddon,
-      alertStatus,
-      alertMessage,
-      onValueChange,
-    } = this.props;
+    const { dts, popoverPlacement, disabled, prefixAddon, suffixAddon, alertStatus, alertMessage, onValueChange } =
+      this.props;
 
     const className = classnames(
       baseClass,

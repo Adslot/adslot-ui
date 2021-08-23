@@ -72,7 +72,7 @@ describe('<ConfirmModal />', () => {
 
   it('should throw when we click Apply without a handler', () => {
     const { getByTestId } = render(<ConfirmModal show />);
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     expect(() => fireEvent.click(getByTestId('confirm-modal-confirm'))).toThrow(

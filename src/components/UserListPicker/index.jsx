@@ -20,7 +20,7 @@ const UserListPickerComponent = ({
   userHeaders,
   users,
 }) => {
-  const labelFormatter = user => (
+  const labelFormatter = (user) => (
     <div className="userlistpicker-component-user-label">
       <Avatar image={user.avatar} color={avatarColor(user)} givenName={user.givenName} surname={user.surname} />
       <span>{`${user.givenName} ${user.surname}`}</span>

@@ -200,7 +200,7 @@ describe('<Search />', () => {
       expect(callbacks.onSearch).toHaveBeenCalledWith('new-value');
     });
 
-    it('should fire onSearch after debounceInterval', done => {
+    it('should fire onSearch after debounceInterval', (done) => {
       const callbacks = {
         onSearch: jest.fn(),
       };

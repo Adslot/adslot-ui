@@ -9,7 +9,7 @@ const adslotDatePickerPropTypes = {
 };
 
 class DatePicker extends React.PureComponent {
-  handleDateChangeRaw = event => {
+  handleDateChangeRaw = (event) => {
     event.preventDefault();
   };
 

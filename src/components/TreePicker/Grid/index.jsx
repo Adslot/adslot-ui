@@ -48,7 +48,7 @@ const TreePickerGridComponent = ({
                 <GridRow dts={`group-label-${_.kebabCase(label)}`}>{label}</GridRow>
               </div>
             ) : null}
-            {_.map(groupedNodes, node => (
+            {_.map(groupedNodes, (node) => (
               <TreePickerNode
                 key={node.id}
                 {...{

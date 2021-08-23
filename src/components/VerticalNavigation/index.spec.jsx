@@ -5,7 +5,7 @@ import VerticalNav from '.';
 afterEach(cleanup);
 
 describe('<VerticalNav />', () => {
-  const makeProps = override => ({
+  const makeProps = (override) => ({
     collapsable: true,
     isCollapsed: false,
     onClick: jest.fn(),
@@ -13,7 +13,7 @@ describe('<VerticalNav />', () => {
     className: 'custom-class',
     ...override,
   });
-  const makeMenuItemProps = override => ({
+  const makeMenuItemProps = (override) => ({
     isActive: false,
     dts: 'menu-item-dts',
     content: jest.fn(),
@@ -35,7 +35,7 @@ describe('<VerticalNav />', () => {
     expect(queryByTestId('vertical-nav-wrapper')).toBeInTheDocument();
     expect(getByTestId('vertical-nav-wrapper')).toHaveClass('aui--vertical-navigation-component custom-class');
     expect(queryAllByTestId('vertical-nav-menu-item')).toHaveLength(3); // 1 collapse, 2 menu items
-    queryAllByTestId('vertical-nav-menu-item').forEach(item =>
+    queryAllByTestId('vertical-nav-menu-item').forEach((item) =>
       expect(item).toHaveClass('aui--vertical-navigation-component__menu-item')
     );
 

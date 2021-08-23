@@ -8,7 +8,7 @@ import './styles.scss';
 const Nav = ({ stacked, className, onSelect, activeKey, barPosition, children, dts }) => {
   let navItems = [];
 
-  React.Children.forEach(children, child => {
+  React.Children.forEach(children, (child) => {
     navItems.push(React.cloneElement(child, { onSelect, activeKey: activeKey }));
   });
 

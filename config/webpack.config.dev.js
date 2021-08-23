@@ -34,7 +34,7 @@ module.exports = webpackMerge(commonConfig, {
     // This is the URL that app is served from. We use "/" in development.
     publicPath: '/',
     // Point sourcemap entries to original disk location (format as URL on Windows)
-    devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+    devtoolModuleFilenameTemplate: (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   cache: { type: 'filesystem' },
   module: {

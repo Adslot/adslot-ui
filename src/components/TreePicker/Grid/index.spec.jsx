@@ -51,7 +51,7 @@ describe('<TreePickerGrid />', () => {
         emptySvgSymbol: svgSymbol,
         emptyText: 'Empty!',
         expandNode: jest.fn(),
-        groupFormatter: node => node.id,
+        groupFormatter: (node) => node.id,
         includeNode: jest.fn(),
         itemType,
         nodes: [qldNode, saNode],
@@ -68,7 +68,7 @@ describe('<TreePickerGrid />', () => {
       expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
       expect(getByTestId('grid-wrapper').children).toHaveLength(3);
       expect(queryAllByTestId('treepicker-grid-node-wrapper')).toHaveLength(2);
-      queryAllByTestId('treepicker-grid-node-wrapper').forEach(group =>
+      queryAllByTestId('treepicker-grid-node-wrapper').forEach((group) =>
         expect(group).toHaveClass('treepickergrid-component-group')
       );
 
@@ -100,7 +100,7 @@ describe('<TreePickerGrid />', () => {
       emptySvgSymbol: svgSymbol,
       emptyText: 'Empty!',
       expandNode: jest.fn(),
-      groupFormatter: node => node.randomAttr,
+      groupFormatter: (node) => node.randomAttr,
       includeNode: jest.fn(),
       itemType,
       nodes: [qldNode],

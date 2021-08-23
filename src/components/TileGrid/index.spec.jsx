@@ -7,7 +7,10 @@ afterEach(cleanup);
 
 describe('<TileGrid />', () => {
   const props = {
-    items: [{ id: '0', classSuffix: 'alpha', title: 'Alpha' }, { id: '1', classSuffix: 'beta', title: 'Beta' }],
+    items: [
+      { id: '0', classSuffix: 'alpha', title: 'Alpha' },
+      { id: '1', classSuffix: 'beta', title: 'Beta' },
+    ],
     onItemClick: jest.fn(),
   };
 
@@ -66,7 +69,7 @@ describe('<TileGrid />', () => {
     props.distributed = true;
     const { queryAllByTestId } = render(<TileGrid {...props} />);
     expect(queryAllByTestId('tile-grid-list-item')).toHaveLength(2);
-    queryAllByTestId('tile-grid-list-item').forEach(item =>
+    queryAllByTestId('tile-grid-list-item').forEach((item) =>
       expect(item).toHaveClass('tile-grid-component-item-distributed')
     );
   });
@@ -79,7 +82,7 @@ describe('<TileGrid />', () => {
     props.items = itemsWithLink;
     const { queryAllByTestId } = render(<TileGrid {...props} />);
     expect(queryAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(2);
-    queryAllByTestId('tile-grid-list-item-img-wrapper').forEach(item =>
+    queryAllByTestId('tile-grid-list-item-img-wrapper').forEach((item) =>
       expect(item).toHaveClass('tile-grid-component-item-img-wrapper')
     );
   });

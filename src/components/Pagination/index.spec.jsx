@@ -63,7 +63,7 @@ describe('<PagedGrid />', () => {
     expect(queryAllByTestId('button-wrapper')).toHaveLength(4);
     const buttons = queryAllByTestId('button-wrapper');
 
-    _.forEach(buttons, button => expect(button).not.toHaveClass('aui--pagination-sides'));
+    _.forEach(buttons, (button) => expect(button).not.toHaveClass('aui--pagination-sides'));
   });
 
   it('should trigger selecting events of buttons when active page is 1', () => {

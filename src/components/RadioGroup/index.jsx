@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 
 class RadioGroup extends React.PureComponent {
-  onChangeDefault = event => {
+  onChangeDefault = (event) => {
     const newValue = event.currentTarget.value;
     this.props.onChange(newValue);
   };
 
   renderChildren = () =>
-    React.Children.map(this.props.children, child => {
+    React.Children.map(this.props.children, (child) => {
       const childProps = _.assign({}, child.props, {
         name: this.props.name,
         checked: this.props.value === child.props.value,

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
-const getNextState = checked => {
+const getNextState = (checked) => {
   if (checked === 'partial') return false;
   return !checked;
 };

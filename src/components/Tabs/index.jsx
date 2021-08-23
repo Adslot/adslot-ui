@@ -28,7 +28,7 @@ class Tabs extends React.PureComponent {
 
   switchTab(key) {
     const { onSelect, activeKey } = this.props;
-    return event => {
+    return (event) => {
       event.preventDefault();
 
       if (this.isControlled && key !== activeKey) {
@@ -43,7 +43,7 @@ class Tabs extends React.PureComponent {
     const { id, children } = this.props;
 
     const tabs = [];
-    const content = React.Children.map(children, child => {
+    const content = React.Children.map(children, (child) => {
       if (_.get(child, 'type.innerName') !== Tab.innerName) {
         console.error('<Tabs /> children must be instances of <Tab />');
         return false;
@@ -61,7 +61,7 @@ class Tabs extends React.PureComponent {
     return (
       <div data-testid="tablist-wrapper" id={id}>
         <ul role="tablist" className="nav nav-tabs">
-          {tabs.map(tab => (
+          {tabs.map((tab) => (
             <li
               data-testid="tablist-item"
               role="presentation"

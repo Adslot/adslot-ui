@@ -20,7 +20,7 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder 
 
   const [editorState, setEditorState] = React.useState(initialValue || EditorState.createEmpty());
 
-  const handleOnChange = newState => {
+  const handleOnChange = (newState) => {
     if (!value) {
       setEditorState(newState);
     }
@@ -29,7 +29,7 @@ const RichTextEditor = ({ className, value, initialValue, onChange, placeholder 
     }
   };
 
-  const handleKeyCommand = command => {
+  const handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       handleOnChange(newState);
@@ -74,7 +74,7 @@ RichTextEditor.defaultProps = {
 
 RichTextEditor.createEmpty = EditorState.createEmpty;
 RichTextEditor.createWithText = EditorState.createWithText;
-RichTextEditor.stateToHTML = input => stateToHTML(input.getCurrentContent());
-RichTextEditor.stateFromHTML = input => EditorState.createWithContent(stateFromHTML(input));
+RichTextEditor.stateToHTML = (input) => stateToHTML(input.getCurrentContent());
+RichTextEditor.stateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
 
 export default RichTextEditor;

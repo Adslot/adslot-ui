@@ -12,15 +12,15 @@ import './styles.scss';
 
 const componentBaseClass = 'select-component';
 
-const DropdownIndicator = props => (
+const DropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <div className="caret-icon" />
   </components.DropdownIndicator>
 );
 
-const ClearIndicator = props => <components.ClearIndicator {...props}>✕</components.ClearIndicator>;
+const ClearIndicator = (props) => <components.ClearIndicator {...props}>✕</components.ClearIndicator>;
 
-const selectContainerBuilder = extraProps => props => {
+const selectContainerBuilder = (extraProps) => (props) => {
   const containerProps = {
     ...props,
     innerProps: {
@@ -35,8 +35,8 @@ const selectContainerBuilder = extraProps => props => {
 /**
  * The propType for this component should be the same as 'React-Select` lib, plus any special props
  */
-const selectComponentBuilder = Component => {
-  const SelectComponent = props => {
+const selectComponentBuilder = (Component) => {
+  const SelectComponent = (props) => {
     const customComponents = { DropdownIndicator, ClearIndicator };
 
     if (!_.isEmpty(props.dts)) {
@@ -54,7 +54,7 @@ const selectComponentBuilder = Component => {
     if (props.isInModal) {
       selectProps.menuPortalTarget = document.body;
       selectProps.styles = {
-        menuPortal: base => ({ ...base, zIndex: 9999 }),
+        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
         ...selectProps.styles,
       };
     }

@@ -8,7 +8,11 @@ describe('<Breadcrumb />', () => {
   let nodes;
   const onClick = jest.fn();
   beforeEach(() => {
-    nodes = [{ id: 'a', label: 'Canada' }, { id: 'b', label: 'British Columbia' }, { id: 'c', label: 'Victoria' }];
+    nodes = [
+      { id: 'a', label: 'Canada' },
+      { id: 'b', label: 'British Columbia' },
+      { id: 'c', label: 'Victoria' },
+    ];
   });
 
   it('should render empty with the component className when no nodes', () => {
@@ -28,7 +32,7 @@ describe('<Breadcrumb />', () => {
     expect(queryAllByTestId('breadcrumb-node-wrapper')[0]).toHaveTextContent('All');
 
     expect(queryAllByTestId('breadcrumb-node-divider')).toHaveLength(nodes.length);
-    queryAllByTestId('breadcrumb-node-divider').forEach(node =>
+    queryAllByTestId('breadcrumb-node-divider').forEach((node) =>
       expect(node).toHaveTextContent('/', { normalizeSpaces: false })
     );
 
@@ -41,7 +45,7 @@ describe('<Breadcrumb />', () => {
 
   it('should error when clicking a node with no onClick handler', () => {
     const { queryAllByTestId } = render(<Breadcrumb nodes={nodes} />);
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     expect(() => fireEvent.click(queryAllByTestId('breadcrumb-node-wrapper')[0])).toThrow(

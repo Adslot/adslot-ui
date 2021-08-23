@@ -8,7 +8,7 @@ afterEach(cleanup);
 const getByClass = queryByAttribute.bind(null, 'class');
 const queryByClass = queryByAttribute.bind(null, 'class');
 
-const makeProps = override =>
+const makeProps = (override) =>
   _.merge(
     {
       id: '123',

@@ -7,7 +7,7 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 const Example = () => {
   const [showLoader, setShowLoader] = React.useState(false);
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.keyCode === 27) {
       toggleDisabledLoader();
     }

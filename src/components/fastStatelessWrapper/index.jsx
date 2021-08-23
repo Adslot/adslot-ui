@@ -14,8 +14,8 @@ import React from 'react';
 const fastStatelessWrapper = (ComposedComponent, propsToCheck) =>
   class FastStatelessWrapperComponent extends React.Component {
     shouldComponentUpdate(nextProps) {
-      const isEqualProps = toGet => {
-        const getFromProps = props => _.get(props, toGet);
+      const isEqualProps = (toGet) => {
+        const getFromProps = (props) => _.get(props, toGet);
 
         return getFromProps(nextProps) === getFromProps(this.props);
       };

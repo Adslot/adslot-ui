@@ -101,7 +101,7 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should filter value when provided', () => {
-    const valueFormatter = value => `€${value / 100}`;
+    const valueFormatter = (value) => `€${value / 100}`;
     const { queryAllByTestId } = render(
       <TreePickerNode itemType={itemType} node={cbrNode} valueFormatter={valueFormatter} />
     );
@@ -167,7 +167,7 @@ describe('<TreePickerNode />', () => {
 
   it('should fire includeNode when clicking on the `include` button', () => {
     const nodes = [];
-    const includeNode = node => nodes.push(node);
+    const includeNode = (node) => nodes.push(node);
     const { queryAllByTestId, getByText } = render(
       <TreePickerNode itemType={itemType} node={cbrNode} includeNode={includeNode} />
     );
@@ -178,7 +178,7 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should error on click of `include` button without includeNode handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
 
@@ -230,7 +230,7 @@ describe('<TreePickerNode />', () => {
 
   it('should fire removeNode when clicking on the `remove` button', () => {
     const nodes = [cbrNode];
-    const removeNode = node => _.remove(nodes, { id: node.id });
+    const removeNode = (node) => _.remove(nodes, { id: node.id });
     const props = { itemType, node: cbrNode, removeNode, selected: true };
     const { queryAllByTestId, getByText, queryByText } = render(<TreePickerNode {...props} />);
 
@@ -245,7 +245,7 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should error on click of `remove` button without removeNode handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
 
@@ -269,7 +269,7 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should throw error message when props does not contain `path` or `ancestors`', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const nodeWithoutPathAndAncestors = _.omit(cbrNode, ['path', 'ancestors']);

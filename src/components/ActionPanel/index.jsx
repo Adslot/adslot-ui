@@ -8,8 +8,8 @@ import './styles.scss';
 const ActionPanel = React.forwardRef((props, ref) => {
   const { title, className, size, onClose, children, actionButton, isModal, closeIcon } = props;
 
-  const addBodyClass = classname => document.body.classList.add(classname);
-  const removeBodyClass = classname => document.body.classList.remove(classname);
+  const addBodyClass = (classname) => document.body.classList.add(classname);
+  const removeBodyClass = (classname) => document.body.classList.remove(classname);
 
   useEffect(() => {
     if (isModal) addBodyClass('modal-open');

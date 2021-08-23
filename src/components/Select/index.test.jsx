@@ -14,11 +14,6 @@ describe('SelectComponent', () => {
   it('should render select options in body if props.isInModal is true', () => {
     const wrapper = mount(<SelectComponent options={defaultOptions} isInModal />);
     expect(wrapper.find(Select).prop('menuPortalTarget')).toEqual(document.body);
-    expect(
-      wrapper
-        .find(Select)
-        .prop('styles')
-        .menuPortal()
-    ).toEqual({ zIndex: 9999 });
+    expect(wrapper.find(Select).prop('styles').menuPortal()).toEqual({ zIndex: 9999 });
   });
 });

@@ -60,7 +60,7 @@ class FilePickerComponent extends React.PureComponent {
     fileName: '',
   };
 
-  onChange = changeEvent => {
+  onChange = (changeEvent) => {
     if (!this.state.isFileSelected) {
       this.setState({ isFileSelected: true, fileName: changeEvent.target.files[0].name });
       this.props.onSelect(changeEvent.target.files[0]);

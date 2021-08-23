@@ -11,7 +11,7 @@ export class SidePanel extends Component {
     searchText: '',
   };
 
-  onSearch = searchText => {
+  onSearch = (searchText) => {
     this.setState({ searchText });
   };
 
@@ -24,14 +24,16 @@ export class SidePanel extends Component {
         <SearchBar onSearch={this.onSearch} />
         <Accordion defaultActivePanelIds={activeGroup}>
           {_(groupedRoutes)
-            .pickBy(components => _.some(_.map(components, entry => new RegExp(searchText, 'gi').test(entry.title))))
+            .pickBy((components) =>
+              _.some(_.map(components, (entry) => new RegExp(searchText, 'gi').test(entry.title)))
+            )
             .map((components, key) => (
               // eslint-disable-next-line
               <Accordion.Panel id={key} title={key} key={key}>
                 {_(components)
                   .orderBy(key === 'Getting Started' ? null : 'title')
-                  .pickBy(entry => new RegExp(searchText, 'gi').test(entry.title))
-                  .map(component => (
+                  .pickBy((entry) => new RegExp(searchText, 'gi').test(entry.title))
+                  .map((component) => (
                     <div
                       className={`aui--docs-panel-list${
                         this.props.location.pathname === component.path ? ' is-active' : ''

@@ -30,7 +30,7 @@ describe('<Totals />', () => {
         { label: 'Custom Paint for Yo Whip', value: 200000 },
         { label: 'Selected', value: 50000 },
       ],
-      valueFormatter: value => `€${(value / 100).toFixed(2)}`,
+      valueFormatter: (value) => `€${(value / 100).toFixed(2)}`,
     };
     const { queryByTestId, queryAllByTestId } = render(<Totals {...props} />);
     expect(queryByTestId('grid-wrapper')).toBeInTheDocument();

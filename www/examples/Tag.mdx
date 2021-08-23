@@ -33,7 +33,7 @@ const Example = () => {
   }
 
   function deleteTag(tagIdToDelete) {
-    setTags(_.reject(tags, tag => tag.id === tagIdToDelete));
+    setTags(_.reject(tags, (tag) => tag.id === tagIdToDelete));
   }
 
   if (_.isEmpty(tags)) {
@@ -46,7 +46,7 @@ const Example = () => {
 
   return (
     <div>
-      {_.map(tags, tag => (
+      {_.map(tags, (tag) => (
         <Tag
           key={tag.id}
           id={tag.id}

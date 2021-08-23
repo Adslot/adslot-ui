@@ -73,9 +73,9 @@ const maleNode = {
   rootTypeId: 'b',
 };
 
-const valueFormatter = value => value;
+const valueFormatter = (value) => value;
 
-const nodeRenderer = value => `Test value: ${value.label}`;
+const nodeRenderer = (value) => `Test value: ${value.label}`;
 
 const initialSelection = [actNode, ntNode];
 

@@ -11,15 +11,8 @@ const queryAllByDts = queryAllByAttribute.bind(null, 'data-test-selector');
 afterEach(cleanup);
 
 describe('<ListPickerPure />', () => {
-  const {
-    getInitialSelection,
-    labelFormatter,
-    teamMember4,
-    userHeaders,
-    nodeUserHeaders,
-    users,
-    usersWithUuid,
-  } = ListPickerMocks;
+  const { getInitialSelection, labelFormatter, teamMember4, userHeaders, nodeUserHeaders, users, usersWithUuid } =
+    ListPickerMocks;
 
   const selectedItems = getInitialSelection();
 
@@ -62,7 +55,7 @@ describe('<ListPickerPure />', () => {
     expect(getByText('Team')).toHaveClass('grid-component-cell');
     expect(getByText('Member')).toHaveClass('grid-component-cell');
 
-    queryAllByTestId('grid-row-wrapper').forEach(each => expect(each).toHaveClass('grid-component-row'));
+    queryAllByTestId('grid-row-wrapper').forEach((each) => expect(each).toHaveClass('grid-component-row'));
     expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('John Smith'));
     expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Jane Doe'));
     expect(queryAllByTestId('grid-row-wrapper')[3]).toContainElement(getByText('Jack White'));
@@ -103,7 +96,7 @@ describe('<ListPickerPure />', () => {
     expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
     expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
 
-    queryAllByTestId('grid-row-wrapper').forEach(each => expect(each).toHaveClass('grid-component-row'));
+    queryAllByTestId('grid-row-wrapper').forEach((each) => expect(each).toHaveClass('grid-component-row'));
     expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('Jones Cheng'));
     expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Joe Huang'));
 
@@ -142,7 +135,7 @@ describe('<ListPickerPure />', () => {
     expect(getByText('Required')).toHaveClass('grid-component-cell grid-component-cell-header-addon');
 
     expect(queryAllByDts(container, 'addon')).toHaveLength(3);
-    queryAllByDts(container, 'addon').forEach(each => {
+    queryAllByDts(container, 'addon').forEach((each) => {
       expect(each).toHaveClass('grid-component-cell-addon');
       expect(each).toHaveTextContent('Nothing to show.');
     });
@@ -187,7 +180,7 @@ describe('<ListPickerPure />', () => {
   });
 
   it('should throw when we select without a `selectItem` handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const props = { items: users, selectedItems };
@@ -203,7 +196,7 @@ describe('<ListPickerPure />', () => {
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
-    console.error = err => {
+    console.error = (err) => {
       throw new Error(err);
     };
     const props = { items: users, selectedItems };

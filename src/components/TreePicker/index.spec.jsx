@@ -42,7 +42,7 @@ describe('<TreePicker />', () => {
 
     expect(queryAllByTestId('split-panel-wrapper')).toHaveLength(2);
 
-    getByTestId('treepicker-wrapper').children.forEach(child => expect(child).toHaveClass('splitpane-component'));
+    getByTestId('treepicker-wrapper').children.forEach((child) => expect(child).toHaveClass('splitpane-component'));
 
     expect(queryByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
 

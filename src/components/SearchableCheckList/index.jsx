@@ -11,7 +11,7 @@ const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, 
 
   const eligibleItems = searchText
     ? _(items)
-        .map(item => {
+        .map((item) => {
           return item.label.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ? item : null;
         })
         .compact()
@@ -45,7 +45,7 @@ const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, 
         </div>
         <div className="search-box">
           <Search
-            onSearch={value => {
+            onSearch={(value) => {
               setSearchText(value);
             }}
             placeholder={placeholder}
@@ -56,7 +56,7 @@ const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, 
             checked={mainCheckBoxState}
             value={`all-${pluralLabel}`}
             label={`All ${pluralLabel}`}
-            onChange={nextState => {
+            onChange={(nextState) => {
               onChange(nextState ? _.map(items, 'value') : []);
             }}
           />
@@ -65,7 +65,7 @@ const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, 
           <CheckboxGroup
             name={`${pluralLabel}-group`}
             value={selectedItemsKeys}
-            onChange={newSelectionList => {
+            onChange={(newSelectionList) => {
               onChange(newSelectionList);
             }}
           >

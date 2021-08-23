@@ -4,7 +4,7 @@ import { Search } from '../../../../src';
 import './styles.scss';
 
 const SearchBarComponent = ({ onSearch }) => (
-  <Search className="adslot-ui-searchbar" placeholder="Search" onSearch={value => onSearch(value.trim())} />
+  <Search className="adslot-ui-searchbar" placeholder="Search" onSearch={(value) => onSearch(value.trim())} />
 );
 
 SearchBarComponent.propTypes = {

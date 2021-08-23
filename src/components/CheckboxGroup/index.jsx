@@ -8,14 +8,14 @@ import { expandDts } from '../../lib/utils';
 const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onChange }) => {
   const handleCheckboxChange = (nextCheckboxState, checkboxName, checkboxValue) => {
     const newValues = _.includes(value, checkboxValue)
-      ? value.filter(item => item !== checkboxValue)
+      ? value.filter((item) => item !== checkboxValue)
       : [...value, checkboxValue];
 
     onChange(newValues, name);
   };
 
   const renderChildren = () =>
-    React.Children.map(children, child => {
+    React.Children.map(children, (child) => {
       if (!child) return null;
 
       if (child.type === Checkbox) {

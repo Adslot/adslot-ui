@@ -38,7 +38,7 @@ describe('<SearchableChecklist />', () => {
     expect(checkBoxesWrapper).toHaveLength(7);
 
     // All unselected checkBoxes
-    _.forEach(checkBoxesWrapper, checkBoxItem => {
+    _.forEach(checkBoxesWrapper, (checkBoxItem) => {
       expect(checkBoxItem).not.toBeChecked();
     });
 
@@ -95,12 +95,12 @@ describe('<SearchableChecklist />', () => {
     expect(checkBoxesWrapper).toHaveLength(7);
 
     // 2 checked elements
-    _.forEach([1, 2], index => {
+    _.forEach([1, 2], (index) => {
       expect(checkBoxesWrapper[index]).toBeChecked();
     });
 
     // Remaining 4 un-checked elements
-    _.forEach([3, 4, 5, 6], index => {
+    _.forEach([3, 4, 5, 6], (index) => {
       expect(checkBoxesWrapper[index]).not.toBeChecked();
     });
   });
@@ -121,7 +121,7 @@ describe('<SearchableChecklist />', () => {
     const checkBoxesWrapper = queryAllByTestId('checkbox-input');
     expect(checkBoxesWrapper).toHaveLength(7);
 
-    _.forEach(checkBoxesWrapper, checkBoxItem => {
+    _.forEach(checkBoxesWrapper, (checkBoxItem) => {
       expect(checkBoxItem).toBeChecked();
     });
   });

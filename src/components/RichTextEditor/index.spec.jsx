@@ -7,12 +7,12 @@ import RichTextEditor from '.';
 const getByClass = queryByAttribute.bind(null, 'class');
 const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
-const createPasteEvent = html => {
+const createPasteEvent = (html) => {
   const text = html.replace('<[^>]*>', '');
   return {
     clipboardData: {
       types: ['text/plain', 'text/html'],
-      getData: type => (type === 'text/plain' ? text : html),
+      getData: (type) => (type === 'text/plain' ? text : html),
     },
   };
 };

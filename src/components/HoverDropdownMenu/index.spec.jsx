@@ -68,7 +68,7 @@ describe('<HoverDropdownMenu />', () => {
 
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     expect(queryAllByTestId('popover-link-item-wrapper')).toHaveLength(2);
-    queryAllByTestId('popover-link-item-wrapper').forEach(item => expect(item).toHaveClass('popover-link-item'));
+    queryAllByTestId('popover-link-item-wrapper').forEach((item) => expect(item).toHaveClass('popover-link-item'));
     expect(queryAllByTestId('popover-link-item-wrapper')[0]).toHaveTextContent('Link 1');
     expect(queryAllByTestId('popover-link-item-wrapper')[1]).toHaveTextContent('Logout');
   });

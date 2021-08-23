@@ -9,19 +9,16 @@ const BLOCK_TYPES = [
   { label: <img src={numberIcon} alt="number" />, style: 'ordered-list-item' },
 ];
 
-const BlockStyleButtons = props => {
+const BlockStyleButtons = (props) => {
   const { editorState } = props;
   const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
+  const blockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
 
-  const onToggle = style => {
+  const onToggle = (style) => {
     props.onToggle(RichUtils.toggleBlockType(props.editorState, style));
   };
 
-  return BLOCK_TYPES.map(type => (
+  return BLOCK_TYPES.map((type) => (
     <ToolbarButton
       key={type.style}
       active={type.style === blockType}
