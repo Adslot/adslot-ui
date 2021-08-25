@@ -19,3 +19,9 @@ build/
 .idea/
 
 docs/
+
+dist
+
+lib
+
+es
