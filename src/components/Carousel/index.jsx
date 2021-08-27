@@ -36,4 +36,36 @@ CarouselComponent.defaultProps = {
   dots: true,
 };
 
+const SWIPE_DELTA = 3;
+
+const usePreventCarouselSwipeClicks = () => {
+  const [mousePos, setMousePos] = React.useState({});
+
+  const onMouseDownCapture = (e) => {
+    setMousePos({ clientX: e.clientX, clientY: e.clientY });
+  };
+
+  const onClickCapture = (e) => {
+    const deltaX = Math.abs(mousePos.clientX - e.clientX);
+    const deltaY = Math.abs(mousePos.clientY - e.clientY);
+
+    if (deltaX > SWIPE_DELTA || deltaY > SWIPE_DELTA) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  };
+
+  return {
+    onMouseDownCapture,
+    onClickCapture,
+  };
+};
+
+/**
+ * A hook to prevent child click handlers from firing immediately after swiping the Carousel
+ *
+ * @returns {object} - to be spread onto any carousel items with `onClick` handlers
+ */
+CarouselComponent.usePreventSwipeClicks = usePreventCarouselSwipeClicks;
+
 export default CarouselComponent;

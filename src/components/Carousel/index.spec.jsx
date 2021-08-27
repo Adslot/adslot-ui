@@ -9,6 +9,19 @@ const getByDataIndex = queryByAttribute.bind(null, 'data-index');
 const getById = queryByAttribute.bind(null, 'id');
 const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
+const CarouselHookTest = React.forwardRef(({ onClick }, ref) => {
+  const props = Carousel.usePreventSwipeClicks();
+  return (
+    <Carousel ref={ref} slidesToShow={1}>
+      {_.map(new Array(5), (value, index) => (
+        <button {...props} onClick={onClick} id={`btn-${index}`} key={index}>
+          <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} />
+        </button>
+      ))}
+    </Carousel>
+  );
+});
+
 describe('<Carousel />', () => {
   it('should render with defaults', () => {
     const { container } = render(<Carousel />);
@@ -88,5 +101,35 @@ describe('<Carousel />', () => {
     fireEvent.click(getByText('3'));
     expect(getByDataIndex(container, '2')).toHaveClass('slick-current');
     expect(getById(getByDataIndex(container, '3'), 'img-3')).toBeTruthy();
+  });
+
+  it('should not fire click events when swiping with usePreventSwipeClicks', () => {
+    const onClick = jest.fn();
+    const ref = { current: false };
+    const { container } = render(<CarouselHookTest ref={ref} onClick={onClick} />);
+
+    fireEvent.mouseDown(getById(getByDataIndex(container, '1'), 'btn-1'), {
+      clientX: 0,
+      clientY: 0,
+    });
+
+    fireEvent.click(getById(getByDataIndex(container, '1'), 'btn-1'), {
+      clientX: 100,
+      clientY: 0,
+    });
+
+    expect(onClick).toHaveBeenCalledTimes(0);
+
+    fireEvent.mouseDown(getById(getByDataIndex(container, '1'), 'btn-1'), {
+      clientX: 0,
+      clientY: 0,
+    });
+
+    fireEvent.click(getById(getByDataIndex(container, '1'), 'btn-1'), {
+      clientX: 3,
+      clientY: 0,
+    });
+
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

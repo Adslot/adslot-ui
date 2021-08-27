@@ -35,6 +35,37 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 </Carousel>
 ```
 
+<br />
+
+### `usePreventSwipeClicks` hook
+
+This hook should be used when carousel items have an `onClick` handler,
+to avoid the click being triggered when letting go of the mouse button after swiping.
+
+- The hook returns an object that has the required click capture handlers
+
+```jsx live=true
+const SwipeClickPreventionCarouselExample = () => {
+  const handlers = Carousel.usePreventSwipeClicks();
+  const onClick = () => alert('slide clicked');
+  return (
+    <Carousel>
+      {Array.from(Array(4).keys()).map((_, i) => (
+        <div key={i} {...handlers} onClick={onClick}>
+          <img
+            src={`./assets/carousel/carousel-${i + 1}.jpg`}
+            alt={`Slide ${i + 1}`}
+            style={{ paddingRight: 20, width: 420, height: 300 }}
+          />
+        </div>
+      ))}
+    </Carousel>
+  );
+};
+
+render(<SwipeClickPreventionCarouselExample />);
+```
+
 ### Design Notes
 
 <DesignNotes>
