@@ -82,6 +82,95 @@ const Example = () => {
 render(Example);
 ```
 
+### Mention
+
+```jsx live=true
+const Example = () => {
+  const contacts = [
+    {
+      name: 'Matthew Russell',
+      title: 'Senior Software Engineer',
+      avatar: '../assets/user-avatar.jpeg',
+    },
+    {
+      name: 'Julian Krispel-Samsel',
+      title: 'United Kingdom',
+      avatar: '../assets/adslot-avatar.png',
+    },
+    {
+      name: 'Jyoti Puri',
+      avatar: 'https://avatars0.githubusercontent.com/u/2182307?v=3&s=400',
+    },
+    {
+      name: 'Max Stoiber',
+      avatar: 'https://avatars0.githubusercontent.com/u/7525670?s=200&v=4',
+    },
+  ];
+
+  const [state, setState] = React.useState(RichTextEditor.stateFromHTML(' '));
+
+  return (
+    <>
+      <div style={{ width: '600px' }}>
+        <RichTextEditor value={state} onChange={setState} mentions={contacts} />
+      </div>
+
+      <div style={{ marginTop: 30, width: '600px' }}>
+        <p>Contacts List:</p>
+        <>
+          {_(RichTextEditor.stateToEntityList(state))
+            .filter({ type: 'mention' })
+            .map(
+              (
+                {
+                  data: {
+                    mention: { name, title },
+                  },
+                },
+                index
+              ) => (
+                <div key={index}>
+                  {index + 1}: {name} {title ? `, ${title}` : ''}
+                </div>
+              )
+            )
+            .value()}
+        </>
+      </div>
+    </>
+  );
+};
+
+render(Example);
+```
+
+### File Upload
+
+```jsx live=true
+const Example = () => {
+  const [state, setState] = React.useState(RichTextEditor.stateFromHTML(' '));
+
+  const onFileSelect = () => '../assets/tile/adslot-logo-1.png';
+
+  const onFileRemove = (file) => {};
+
+  return (
+    <>
+      <div style={{ width: '600px' }}>
+        <RichTextEditor value={state} onChange={setState} onFileSelect={onFileSelect} onFileRemove={onFileRemove} />
+      </div>
+
+      <div style={{ marginTop: 30, width: '600px' }}>
+        <p>PlainText Output:</p>
+        <code>{RichTextEditor.stateToPlainText(state)}</code>
+      </div>
+    </>
+  );
+};
+
+render(Example);
+```
+
 <DesignNotes>
   Adslot UI's rich text editor is based on the basic version of <a href="https://draftjs.org/">draft-js</a>. It allows
   basic formatting controls and output html from rich text.
