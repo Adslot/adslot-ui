@@ -112,14 +112,6 @@ describe('<Search />', () => {
     });
   });
 
-  it('should render given icons', () => {
-    const icons = {
-      search: <SvgSymbol href="svg_path" />,
-    };
-    const { getByTestId } = render(<Search icons={icons} onSearch={props.onSearch} />);
-    expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', 'svg_path');
-  });
-
   describe('Clear Button', () => {
     it('should render clear button when value is not empty and search button is not shown', () => {
       const { getByTestId, queryByTestId } = render(<Search {...props} />);
@@ -223,12 +215,6 @@ describe('<Search />', () => {
       expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
     });
 
-    it('should change its own value state if onChange is not provided', () => {
-      const { getByTestId } = render(<Search onSearch={props.onSearch} />);
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'new-value' } });
-      expect(getByTestId('search-input')).toHaveValue('new-value');
-    });
-
     it('should fire onSearch when searchOnEnter is true and search button is clicked', () => {
       const callbacks = {
         onSearch: jest.fn(),
@@ -259,6 +245,19 @@ describe('<Search />', () => {
       userEvent.type(getByTestId('search-input'), 'a');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
       expect(callbacks.onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not fire onSearch when pressed enter key if searchOnEnter is false ', () => {
+      const callbacks = {
+        onSearch: jest.fn(),
+      };
+      const { getByTestId } = render(<Search {...callbacks} searchOnEnter={false} />);
+      fireEvent.keyPress(getByTestId('search-input'), {
+        key: 'Enter',
+        keyCode: 13,
+        preventDefault: jest.fn(),
+      });
+      expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
     });
   });
 });
