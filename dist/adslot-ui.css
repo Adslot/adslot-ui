@@ -12857,9 +12857,25 @@ input:disabled + .aui--switch-slider::before {
       display: none; }
     .aui--editor-root .aui--editor-container .public-DraftEditorPlaceholder-inner {
       color: #ababab; }
+    .aui--editor-root .aui--editor-container .mention {
+      color: #006dcc;
+      text-decoration: none; }
+    .aui--editor-root .aui--editor-container .DraftEditor-root + div {
+      height: 150px;
+      padding: 5px 0;
+      overflow-y: auto;
+      z-index: 10; }
+  .aui--editor-root .file-download-input {
+    display: none; }
   .aui--editor-root .aui--editor-toolbar {
     padding: 10px 20px;
-    background-color: #f9f9f9; }
+    background-color: #f9f9f9;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: justify;
+        justify-content: space-between; }
     .aui--editor-root .aui--editor-toolbar .aui--toolbar-button {
       -webkit-box-shadow: none;
               box-shadow: none;
@@ -12869,13 +12885,111 @@ input:disabled + .aui--switch-slider::before {
       font-size: 12px;
       -ms-flex-align: center;
           align-items: center; }
+      .aui--editor-root .aui--editor-toolbar .aui--toolbar-button:last-of-type {
+        margin-right: 0; }
+      .aui--editor-root .aui--editor-toolbar .aui--toolbar-button .file-download-button {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40.2 40.2%27%3E%3Cpath d=%27M35.6,5.6c-1.1-1.1-2.6-1.8-4.2-1.8c-1.6,0-3,0.6-4.2,1.8l-15.7,16c-1.6,1.6-1.6,4.3,0,6c1.6,1.6,4.3,1.6,5.9,0L29,15.9c0.3-0.3,0.3-0.8,0-1c-0.3-0.3-0.8-0.3-1,0L16.4,26.6c-1,1-2.8,1-3.8,0c-1.1-1.1-1.1-2.8,0-3.9l15.7-16C30,5,32.9,5,34.6,6.7c1.7,1.8,1.7,4.6,0,6.4L14.9,33c-1.2,1.2-2.7,1.8-4.3,1.8S7.4,34.2,6.3,33c-2.4-2.4-2.4-6.4,0-8.8L21.7,8.5c0.3-0.3,0.3-0.8,0-1c-0.3-0.3-0.8-0.3-1,0L5.3,23.2c-2.9,3-2.9,7.9,0,10.9c1.4,1.5,3.3,2.3,5.4,2.3c2,0,3.9-0.8,5.4-2.3l19.6-20C37.9,11.7,37.9,7.9,35.6,5.6z%27%3E%3C/path%3E%3C/svg%3E");
+        width: 18px;
+        height: 18px;
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: center; }
       .aui--editor-root .aui--editor-toolbar .aui--toolbar-button:focus {
         outline: none; }
       .aui--editor-root .aui--editor-toolbar .aui--toolbar-button:hover, .aui--editor-root .aui--editor-toolbar .aui--toolbar-button.active {
         background-color: #e8e8e8;
         border-color: #e8e8e8; }
-      .aui--editor-root .aui--editor-toolbar .aui--toolbar-button img {
-        height: 20px; }
+      .aui--editor-root .aui--editor-toolbar .aui--toolbar-button img,
+      .aui--editor-root .aui--editor-toolbar .aui--toolbar-button div {
+        height: 20px;
+        width: 20px; }
+
+.aui--mention-entry {
+  background-color: #fff;
+  width: 350px; }
+  .aui--mention-entry__is-focused {
+    background: #e0f0ff;
+    cursor: pointer; }
+  .aui--mention-entry .mention-entry--container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center; }
+    .aui--mention-entry .mention-entry--container__left {
+      margin: 5px 20px; }
+    .aui--mention-entry .mention-entry--container .mention-entry--title,
+    .aui--mention-entry .mention-entry--container .mention-entry--name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .aui--mention-entry .mention-entry--container .mention-entry--title {
+      font-size: 10px;
+      color: #ababab; }
+    .aui--mention-entry .mention-entry--container .mention-entry--avatar {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; }
+
+.aui--file-preview-list {
+  margin-top: 10px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: end;
+      align-items: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .aui--file-preview-list .aui--file-sticker {
+    position: relative; }
+  .aui--file-preview-list .aui--file-sticker-image {
+    width: 60px;
+    margin: 0 0 10px 10px; }
+  .aui--file-preview-list .aui--file-sticker-file {
+    margin: 0 0 10px 10px;
+    width: 200px;
+    height: 60px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: justify;
+        justify-content: space-between; }
+    .aui--file-preview-list .aui--file-sticker-file-name {
+      width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 10px; }
+    .aui--file-preview-list .aui--file-sticker-file-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27 fill=%27%234794ae%27%3E%3Cpath d=%27M20 14.8c0-2.7 2.1-4.8 4.8-4.8H60l20 16.8v58.4c0 2.7-2.1 4.8-4.8 4.8H24.8c-2.7 0-4.8-2.1-4.8-4.8V14.8z%27%3E%3C/path%3E%3Cpath fill=%27%23FFF%27 d=%27M60 10.1v12c0 2.7 2.1 4.8 4.8 4.8H80L60%27%3E%3C/path%3E%3C/svg%3E");
+      width: 50px;
+      height: 50px;
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center; }
+  .aui--file-preview-list .aui--file-sticker-close-button {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    background-color: #5a5a5a;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3E%3Cpath d=%27M4 11.3L7.3 8 4.1 4.7l.8-.7L8 7.2 11.1 4l.7.7-3.1 3.2 3.3 3.3-.7.8L8 8.7 4.7 12l-.7-.7z%27/%3E%3C/svg%3E");
+    width: 22px;
+    height: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: #fff 2px solid;
+    z-index: 10; }
+  .aui--file-preview-list .aui--file-sticker-spinner {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    border: #fff 2px solid;
+    background-color: #fff; }
 
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js!./node_modules/react-toastify/dist/ReactToastify.css ***!
