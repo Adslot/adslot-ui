@@ -1,10 +1,3 @@
-// Export the consumable components.
-import Dropdown from 'react-bootstrap/lib/Dropdown';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
-import Modal from 'react-bootstrap/lib/Modal';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
-
 import './styles/_bootstrap-custom.scss';
 import './styles/_icheck-custom.scss';
 
@@ -95,7 +88,6 @@ export {
   CheckboxGroup,
   ConfirmModal,
   CountBadge,
-  Dropdown,
   DatePicker,
   Empty,
   fastStatelessWrapper,
@@ -108,18 +100,14 @@ export {
   HelpIconPopover,
   ListPicker,
   ListPickerPure,
-  MenuItem,
-  Modal,
   Nav,
   NavItem,
-  OverlayTrigger,
   PagedGrid,
   PageTitle,
   Pagination,
   Panel,
   Popover,
   PrettyDiff,
-  ProgressBar,
   Radio,
   RadioGroup,
   Search,

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Modal from 'react-bootstrap/lib/Modal';
+import ActionPanel from '../ActionPanel';
 import Button from '../Button';
 import ListPickerPure from '../ListPickerPure';
 import SplitPane from '../SplitPane';
@@ -105,11 +105,38 @@ class ListPickerComponent extends React.PureComponent {
     );
 
     return (
-      <Modal className={modalClassName} show={show} bsSize="large" keyboard={false} data-testid="listpicker-wrapper">
-        <Modal.Header>
-          <Modal.Title>{modalTitle}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      show && (
+        <ActionPanel
+          isModal
+          className={modalClassName}
+          title={modalTitle}
+          onClose={this.cancelAction}
+          actionButton={
+            <>
+              {_.isEmpty(linkButtons) ? null : (
+                <div className="pull-left">
+                  {_.map(linkButtons, (linkButton, key) =>
+                    _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
+                      <Button key={linkButton.label} inverse href={linkButton.href}>
+                        {linkButton.label}
+                      </Button>
+                    ) : (
+                      React.cloneElement(linkButton, { key })
+                    )
+                  )}
+                </div>
+              )}
+              <Button
+                theme="primary"
+                onClick={this.applyAction}
+                disabled={disableApplyButton}
+                data-test-selector="listpicker-apply-button"
+              >
+                Apply
+              </Button>
+            </>
+          }
+        >
           {modalDescription ? <p>{modalDescription}</p> : null}
           {_.isEmpty(itemInfo) ? (
             <div className="listpicker-component-body">{listPickerPureElement}</div>
@@ -138,34 +165,8 @@ class ListPickerComponent extends React.PureComponent {
             </div>
           )}
           {modalFootnote ? <div className="listpicker-component-footnote">{modalFootnote}</div> : null}
-        </Modal.Body>
-        <Modal.Footer>
-          {_.isEmpty(linkButtons) ? null : (
-            <div className="pull-left">
-              {_.map(linkButtons, (linkButton, key) =>
-                _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                  <Button key={linkButton.label} inverse href={linkButton.href}>
-                    {linkButton.label}
-                  </Button>
-                ) : (
-                  React.cloneElement(linkButton, { key })
-                )
-              )}
-            </div>
-          )}
-          <Button inverse onClick={this.cancelAction} data-test-selector="listpicker-cancel-button">
-            Cancel
-          </Button>
-          <Button
-            theme="primary"
-            onClick={this.applyAction}
-            disabled={disableApplyButton}
-            data-test-selector="listpicker-apply-button"
-          >
-            Apply
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        </ActionPanel>
+      )
     );
   }
 }

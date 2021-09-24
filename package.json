@@ -114,7 +114,6 @@
     "prettier": "^2.3.2",
     "prism-react-renderer": "^1.2.1",
     "prop-types": "^15.7.2",
-    "react-bootstrap": "^0.31.5",
     "react-datepicker": "github:Adslot/react-datepicker#2a1ebb8618e1996c321331ef01d290424272d126",
     "react-dev-utils": "^12.0.0-next.31",
     "react-docgen": "^5.4.0",
