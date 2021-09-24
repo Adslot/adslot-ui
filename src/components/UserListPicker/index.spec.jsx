@@ -11,12 +11,12 @@ describe('<UserListPicker />', () => {
   it('should render with defaults', () => {
     const { getByTestId, queryByTestId, getByText } = render(<UserListPicker show />);
 
-    expect(queryByTestId('listpicker-wrapper')).toBeInTheDocument();
-    expect(getByTestId('listpicker-wrapper')).toHaveClass('userlistpicker-component');
+    expect(queryByTestId('action-panel-wrapper')).toBeInTheDocument();
+    expect(getByTestId('action-panel-wrapper')).toHaveClass('userlistpicker-component');
 
-    expect(getByText('Select Users')).toHaveClass('modal-title');
+    expect(getByText('Select Users')).toHaveClass('title');
     expect(getByText('Select users.').tagName).toEqual('P');
-    expect(getByText('Select users.').parentElement).toHaveClass('modal-body');
+    expect(getByText('Select users.').parentElement).toHaveClass('aui--action-panel-body');
 
     expect(queryByTestId('grid-row-wrapper')).toBeInTheDocument();
     expect(getByTestId('grid-row-wrapper')).toHaveClass('grid-component-row-header');
@@ -41,12 +41,12 @@ describe('<UserListPicker />', () => {
     };
     const { getByTestId, queryByTestId, queryAllByTestId, getByText } = render(<UserListPicker {...props} show />);
 
-    expect(queryByTestId('listpicker-wrapper')).toBeInTheDocument();
-    expect(getByTestId('listpicker-wrapper')).toHaveClass('userlistpicker-component');
+    expect(queryByTestId('action-panel-wrapper')).toBeInTheDocument();
+    expect(getByTestId('action-panel-wrapper')).toHaveClass('userlistpicker-component');
 
-    expect(getByText('Select Team Members')).toHaveClass('modal-title');
+    expect(getByText('Select Team Members')).toHaveClass('title');
     expect(getByText('Select team members that you want.').tagName).toEqual('P');
-    expect(getByText('Select team members that you want.').parentElement).toHaveClass('modal-body');
+    expect(getByText('Select team members that you want.').parentElement).toHaveClass('aui--action-panel-body');
 
     expect(queryAllByTestId('grid-row-wrapper')).toHaveLength(4);
     expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');

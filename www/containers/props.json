@@ -1297,7 +1297,11 @@
             "name": "string"
           },
           "required": false,
-          "description": "title of the modal"
+          "description": "title of the modal",
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          }
         },
         "show": {
           "type": {

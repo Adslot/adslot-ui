@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'react-bootstrap/lib/Modal';
+import ActionPanel from '../ActionPanel';
 import Button from '../Button';
 
 const ConfirmModalComponent = ({
@@ -22,42 +22,29 @@ const ConfirmModalComponent = ({
   };
 
   return (
-    <Modal
-      data-testid="confirm-modal-wrapper"
-      className="confirm-modal-component"
-      show={show}
-      bsSize="small"
-      keyboard={false}
-    >
-      {modalTitle ? (
-        <Modal.Header data-testid="confirm-modal-header">
-          <Modal.Title data-testid="confirm-modal-title">{modalTitle}</Modal.Title>
-        </Modal.Header>
-      ) : null}
-      <Modal.Body data-testid="confirm-modal-body">
-        <p>{modalDescription}</p>
-      </Modal.Body>
-      <Modal.Footer data-testid="confirm-modal-footer">
-        {modalClose ? (
+    show && (
+      <ActionPanel
+        isModal
+        data-testid="confirm-modal-wrapper"
+        className="confirm-modal-component"
+        size="small"
+        title={modalTitle}
+        onClose={cancelAction}
+        closeIcon={buttonCancelLabel}
+        actionButton={
           <Button
-            data-testid="confirm-modal-cancel"
-            inverse
-            onClick={cancelAction}
-            data-test-selector="confirm-modal-cancel"
+            data-testid="confirm-modal-confirm"
+            theme="primary"
+            onClick={applyAction}
+            data-test-selector="confirm-modal-confirm"
           >
-            {buttonCancelLabel}
+            {buttonConfirmLabel}
           </Button>
-        ) : null}
-        <Button
-          data-testid="confirm-modal-confirm"
-          theme="primary"
-          onClick={applyAction}
-          data-test-selector="confirm-modal-confirm"
-        >
-          {buttonConfirmLabel}
-        </Button>
-      </Modal.Footer>
-    </Modal>
+        }
+      >
+        <p>{modalDescription}</p>
+      </ActionPanel>
+    )
   );
 };
 
@@ -98,6 +85,7 @@ ConfirmModalComponent.defaultProps = {
   modalApply: () => {
     throw new Error('AdslotUi ConfirmModal needs a modalApply handler');
   },
+  modalTitle: '',
   modalDescription: 'Are you sure?',
   show: false,
 };
