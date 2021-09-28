@@ -30,7 +30,8 @@
     "start": "npm run generate-docs && node scripts/start.js",
     "test": "jest -c jest.config.js --colors --coverage --passWithNoTests",
     "test:watch": "jest -c jest.config.js --watch --colors --coverage --passWithNoTests",
-    "version": "echo '…generating dist…' && npm run dist && git add dist/"
+    "version": "echo '…generating dist…' && npm run dist && git add dist/",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -55,12 +56,6 @@
     "UI Library",
     "components"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -105,7 +100,7 @@
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^4.3.8",
+    "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
     "lint-staged": "^11.1.2",
