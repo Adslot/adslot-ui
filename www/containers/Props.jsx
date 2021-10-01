@@ -59,6 +59,75 @@ const Props = ({ componentName, customMapper }) => {
             </tbody>
           </table>
         </div>
+        {componentProps.methods && componentProps.methods.length > 0 && (
+          <>
+            <h3>Methods</h3>
+            {_.map(componentProps.methods, (method) => {
+              return (
+                <div key={method.name} className="aui--docs-method-block">
+                  <section className="aui--docs-method-details">
+                    <h4>
+                      <code>
+                        <strong>{HtmlParser(_.get(method, 'name'), '')}</strong> (
+                        {method.params.map((param, i) => (
+                          <span key={param.name}>
+                            {param.name}
+                            {param.optional && '?'}
+                            {param.type?.name && `: ${HtmlParser(_.get(param, 'type.name'), '')}}`}
+                            {i !== method.params.length - 1 && ', '}
+                          </span>
+                        ))}
+                        ){method.returns?.type && ` => ${HtmlParser(_.get(method, 'returns.type.name'), '')}`}
+                      </code>
+                    </h4>
+                    {method.description && (
+                      <p>
+                        <strong>Description </strong>
+                        {HtmlParser(method.description)}
+                      </p>
+                    )}
+                    {method.returns && (
+                      <p>
+                        <strong>Returns </strong>
+                        <code>{HtmlParser(_.get(method, 'returns.type.name'), '')}</code>
+                        {_.get(method, 'returns.description') &&
+                          ` - ${HtmlParser(_.get(method, 'returns.description'), '')}`}
+                      </p>
+                    )}
+                  </section>
+                  {method.params && method.params.length > 0 && (
+                    <>
+                      <table className="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Param</th>
+                            <th>Required</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {_.map(method.params, (param) => (
+                            <tr key={param.name}>
+                              <td>
+                                <code>{HtmlParser(_.get(param, 'name'), '')}</code>
+                              </td>
+                              <td>
+                                <code>{!param.optional && 'true'}</code>
+                              </td>
+                              <td>{param.type && <code>{HtmlParser(_.get(param, 'type.name'), '')}</code>}</td>
+                              <td>{param.description && HtmlParser(_.get(param, 'description'), '')}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </>
+        )}
       </React.Fragment>
     );
   }
