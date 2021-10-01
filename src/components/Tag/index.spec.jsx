@@ -73,8 +73,8 @@ describe('<Tag />', () => {
     expect(queryAllByTestId('tag-child')).toHaveLength(2);
   });
 
-  it('should render a tag with base class', () => {
-    const { getByTestId } = render(<Tag baseClass="foo">You are it!</Tag>);
+  it('should render a tag with custom className', () => {
+    const { getByTestId } = render(<Tag className="foo">You are it!</Tag>);
     expect(getByTestId('tag-wrapper')).toHaveClass('tag-component foo');
   });
 

@@ -21,15 +21,15 @@ ActionButton.propTypes = {
   actionIcon: PropTypes.node,
 };
 
-const Tag = ({ children, inverse, id, onAction, accent, baseClass, actionIcon, dts: customDts }) => {
+const Tag = ({ children, inverse, id, onAction, accent, className, actionIcon, dts: customDts }) => {
   const classes = classnames([
     defaultComponentClass,
     {
-      [`${baseClass}-inverse`]: inverse,
-      [`${baseClass}-accent accent-${accent}`]: accent,
+      [`${defaultComponentClass}-inverse`]: inverse,
+      [`${defaultComponentClass}-accent accent-${accent}`]: accent,
       [`${defaultComponentClass}-actionable`]: onAction,
-      [`${baseClass}`]: baseClass !== defaultComponentClass,
     },
+    className,
   ]);
   const dts = customDts || `tag-${id}`;
 
@@ -45,7 +45,7 @@ Tag.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string,
   accent: PropTypes.string,
-  baseClass: PropTypes.string,
+  className: PropTypes.string,
   inverse: PropTypes.bool,
   onAction: PropTypes.func,
   actionIcon: PropTypes.node,
@@ -54,7 +54,6 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   id: 'default',
-  baseClass: 'tag-component',
 };
 
 export default Tag;

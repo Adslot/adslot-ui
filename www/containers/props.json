@@ -4978,16 +4978,12 @@
           "required": false,
           "description": ""
         },
-        "baseClass": {
+        "className": {
           "type": {
             "name": "string"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'tag-component'",
-            "computed": false
-          }
+          "description": ""
         },
         "inverse": {
           "type": {
