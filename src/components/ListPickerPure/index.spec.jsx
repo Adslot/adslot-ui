@@ -179,10 +179,11 @@ describe('<ListPickerPure />', () => {
     });
   });
 
-  it('should throw when we select without a `selectItem` handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+  it('should throw error when we select without a `selectItem` handler', () => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const props = { items: users, selectedItems };
     const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
@@ -193,12 +194,14 @@ describe('<ListPickerPure />', () => {
     expect(() => fireEvent.click(queryAllByTestId('checkbox-input')[0])).toThrow(
       'AdslotUi ListPickerPure needs a selectItem handler'
     );
+    console.error.mockRestore();
   });
 
   it('should throw when we deselect without a `deselectItem` handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const props = { items: users, selectedItems };
     const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
 
@@ -209,6 +212,7 @@ describe('<ListPickerPure />', () => {
     expect(() => fireEvent.click(queryAllByTestId('checkbox-input')[1])).toThrow(
       'AdslotUi ListPickerPure needs a deselectItem handler'
     );
+    console.error.mockRestore();
   });
 
   it('should call `selectItem` handler when we select', () => {

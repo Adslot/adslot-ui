@@ -2,13 +2,6 @@ import React from 'react';
 import { render, cleanup, act } from '@testing-library/react';
 import TextEllipsis from '.';
 
-beforeEach(() => {
-  jest.useFakeTimers();
-});
-
-afterEach(() => {
-  jest.useRealTimers();
-});
 afterEach(cleanup);
 
 describe('<TextEllipsis />', () => {
@@ -44,13 +37,10 @@ describe('<TextEllipsis />', () => {
       },
     });
 
-    console.error = jest.fn();
-
     act(() => {
       const { queryByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
         container: divContainer,
       });
-      jest.runAllTimers();
 
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
@@ -74,7 +64,6 @@ describe('<TextEllipsis />', () => {
       const { queryByTestId } = render(<TextEllipsis>this is a test</TextEllipsis>, {
         container: divContainer,
       });
-      jest.runAllTimers();
 
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
@@ -107,7 +96,7 @@ describe('<TextEllipsis />', () => {
     expect(queryByTestId('text-ellipsis')).toBeInTheDocument();
   });
 
-  it('should remove popover if text changes from long to short', () => {
+  it('should remove popover if text changes from long to short', async () => {
     Object.defineProperties(window.HTMLElement.prototype, {
       clientWidth: {
         get: () => 50,
@@ -131,6 +120,11 @@ describe('<TextEllipsis />', () => {
     Object.defineProperty(divContainer, 'scrollWidth', { configurable: true, get: () => 20 });
     rerender(<TextEllipsis>x</TextEllipsis>, {
       container: divContainer,
+    });
+    await act(async () => {
+      await rerender(<TextEllipsis>x</TextEllipsis>, {
+        container: divContainer,
+      });
     });
     expect(queryByTestId('popover-element')).toBeInTheDocument();
     expect(queryByTestId('text-ellipsis')).toBeInTheDocument();

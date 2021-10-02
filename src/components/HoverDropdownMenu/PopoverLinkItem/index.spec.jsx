@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import PopoverLinkItem from './';
@@ -25,7 +24,6 @@ describe('<PopoverLinkItem />', () => {
   });
 
   it('should trigger `props.onClick` when clicking on the component', () => {
-    jest.spyOn(console, 'error').mockImplementation(_.noop);
     const { getByText } = render(<PopoverLinkItem {...props} />);
     fireEvent.click(getByText('Link 1'));
     expect(props.onClick).toHaveBeenCalledTimes(1);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, act } from '@testing-library/react';
 import Popover from '.';
 import { renderArrowStyles } from './Popper';
 
@@ -58,41 +58,64 @@ describe('<Popover />', () => {
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.focus(getByTestId('popover-element'));
+      fireEvent.focusIn(getByTestId('popover-element'));
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
-      fireEvent.blur(getByTestId('popover-element'));
+      fireEvent.focusOut(getByTestId('popover-element'));
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
     });
   });
 
-  it('should render without error', () => {
-    const { getByTestId, queryByTestId } = render(
+  it('should render without error', async () => {
+    const { getByTestId, queryByTestId, rerender } = render(
       <div>
-        <Popover className="test-class" popoverContent={<div />} title="Some title" isOpen>
+        <Popover className="test-class" popoverContent={<div />} title="Some title">
           <label className="message">Test message</label>
         </Popover>
       </div>
     );
 
+    await act(async () => {
+      await rerender(
+        <div>
+          <Popover className="test-class" popoverContent={<div />} title="Some title" isOpen>
+            <label className="message">Test message</label>
+          </Popover>
+        </div>
+      );
+    });
+
     expect(queryByTestId('popover-element')).toBeInTheDocument(); //Manager
     expect(getByTestId('popover-element')).toHaveTextContent('Test message');
     expect(getByTestId('popover-wrapper')).toHaveTextContent('Some title'); //Popper
 
-    console.error = jest.fn();
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     expect(console.error).toHaveBeenCalledTimes(0);
+    console.error.mockRestore();
   });
 
-  it('should be able to set theme', () => {
+  it('should be able to set theme', async () => {
     const { getByTestId, rerender } = render(
       <div>
-        <Popover popoverContent={<div />} isOpen>
-          Test message
-        </Popover>
+        <Popover popoverContent={<div />}>Test message</Popover>
       </div>
     );
+
+    await act(async () => {
+      await rerender(
+        <div>
+          <Popover popoverContent={<div />} isOpen>
+            Test message
+          </Popover>
+        </div>
+      );
+    });
+
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-light');
 
     rerender(
@@ -146,36 +169,64 @@ describe('<Popover />', () => {
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-success');
   });
 
-  it('should default to light theme on invalid theme prop', () => {
-    const { getByTestId } = render(
+  it('should default to light theme on invalid theme prop', async () => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => error); //Prop type warning for the prop theme, should be one of ['light', 'dark', 'warn', 'error', 'info', 'success']
+    const { getByTestId, rerender } = render(
       <div>
-        <Popover id="popover-example" theme="some-random-theme" popoverContent={<div />} isOpen>
+        <Popover id="popover-example" theme="some-random-theme" popoverContent={<div />}>
           Test message
         </Popover>
       </div>
     );
+
+    await act(async () => {
+      await rerender(
+        <div>
+          <Popover id="popover-example" theme="some-random-theme" popoverContent={<div />} isOpen>
+            Test message
+          </Popover>
+        </div>
+      );
+    });
+
     expect(getByTestId('popover-wrapper')).not.toHaveClass('popover-some-random-theme');
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-light');
+    console.error.mockRestore();
   });
 
-  it('should render popover when content is function', () => {
-    const { getByTestId } = render(
+  it('should render popover when content is function', async () => {
+    const { getByTestId, rerender } = render(
       <div>
         <Popover
           id="popover-example"
           popoverContent={() => <div data-testid="popover-test-content">test</div>}
           placement="bottom-end"
-          isOpen
         >
           Test message
         </Popover>
       </div>
     );
+
+    await act(async () => {
+      await rerender(
+        <div>
+          <Popover
+            id="popover-example"
+            popoverContent={() => <div data-testid="popover-test-content">test</div>}
+            placement="bottom-end"
+            isOpen
+          >
+            Test message
+          </Popover>
+        </div>
+      );
+    });
     expect(getByTestId('popover-test-content')).toHaveTextContent('test');
   });
 
-  it('should set up modifiers for a popover', () => {
-    const { getByTestId } = render(
+  it('should set up modifiers for a popover', async () => {
+    const { getByTestId, rerender } = render(
       <div>
         <Popover
           id="popover-example"
@@ -195,17 +246,46 @@ describe('<Popover />', () => {
               },
             },
           ]}
-          isOpen
         >
           Test message
         </Popover>
       </div>
     );
+
+    await act(async () => {
+      await rerender(
+        <div>
+          <Popover
+            id="popover-example"
+            popoverContent={() => <div data-testid="popover-test-content">test</div>}
+            placement="bottom"
+            modifiers={[
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 8],
+                },
+              },
+              {
+                name: 'flip',
+                options: {
+                  altBoundary: false,
+                },
+              },
+            ]}
+            isOpen
+          >
+            Test message
+          </Popover>
+        </div>
+      );
+    });
+
     expect(getByTestId('popover-test-content')).toHaveTextContent('test');
   });
 
   describe('triggers', () => {
-    it('should register event handlers for multiple triggers', () => {
+    it('should register event handlers for multiple triggers', async () => {
       const { getByTestId, queryByTestId } = render(
         <Popover
           id="popover-example"
@@ -216,62 +296,46 @@ describe('<Popover />', () => {
           Test message
         </Popover>
       );
+
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.click(getByTestId('popover-element'));
+      await act(async () => {
+        await fireEvent.click(getByTestId('popover-element'));
+      });
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
-      fireEvent.blur(getByTestId('popover-element'));
+      await act(async () => {
+        fireEvent.focusOut(getByTestId('popover-element'));
+      });
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.focus(getByTestId('popover-element'));
+      await act(async () => {
+        fireEvent.focusIn(getByTestId('popover-element'));
+      });
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     });
 
-    it('should not include any event handler if trigger is disabled', () => {
-      const { getByTestId, queryByTestId } = render(
-        <Popover id="popover-example" popoverContent={() => <div>test</div>} placement="bottom-end" triggers="disabled">
+    it('should call getContainer to get boundary element if it is provided', async () => {
+      const getContainer = jest.fn(() => document.body);
+      const { rerender } = render(
+        <Popover popoverContent={<div />} getContainer={getContainer}>
           Test message
         </Popover>
       );
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      await act(async () => {
+        await rerender(
+          <Popover popoverContent={<div />} getContainer={getContainer} isOpen>
+            Test message
+          </Popover>
+        );
+      });
 
-      fireEvent.click(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
-
-      fireEvent.blur(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
-
-      fireEvent.focus(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
-
-      fireEvent.mouseOver(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
-
-      fireEvent.mouseOut(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      expect(getContainer).toHaveBeenCalled();
     });
-  });
-
-  it('should call getContainer to get boundary element if it is provided', () => {
-    const getContainer = jest.fn(() => document.body);
-    render(
-      <Popover popoverContent={<div />} getContainer={getContainer} isOpen>
-        Test message
-      </Popover>
-    );
-
-    expect(getContainer).toHaveBeenCalled();
   });
 });
 
@@ -289,10 +353,15 @@ describe('<Popover.WithRef />', () => {
     document.body.removeChild(virtualReferenceElement);
   });
 
-  it('should render without error', () => {
-    const { queryByTestId } = render(
-      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />
+  it('should render without error', async () => {
+    const { queryByTestId, rerender } = render(
+      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} />
     );
+
+    await act(async () => {
+      await rerender(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />);
+    });
+
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
   });
 
@@ -302,23 +371,26 @@ describe('<Popover.WithRef />', () => {
     expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
   });
 
-  it('should render with default props', () => {
-    const { getByTestId } = render(
-      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />
+  it('should render with default props', async () => {
+    const { getByTestId, rerender } = render(
+      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} />
     );
+
+    await act(async () => {
+      await rerender(<Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} isOpen />);
+    });
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-light');
     expect(getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: 0px; left: 0px;');
   });
 
-  it('should render with given props', () => {
+  it('should render with given props', async () => {
     const arrowStyles = {
       color: 'red',
     };
     const wrapperStyles = {
       color: 'red',
     };
-
-    const { getByTestId } = render(
+    const { getByTestId, rerender } = render(
       <Popover.WithRef
         dts="popover-example"
         title="Big Bang"
@@ -329,9 +401,25 @@ describe('<Popover.WithRef />', () => {
         arrowStyles={arrowStyles}
         wrapperStyles={wrapperStyles}
         placement="bottom-end"
-        isOpen
       />
     );
+
+    await act(async () => {
+      rerender(
+        <Popover.WithRef
+          dts="popover-example"
+          title="Big Bang"
+          theme="dark"
+          popoverClassNames="extra-class"
+          popoverContent={<div />}
+          refElement={virtualReferenceElement}
+          arrowStyles={arrowStyles}
+          wrapperStyles={wrapperStyles}
+          placement="bottom-end"
+          isOpen
+        />
+      );
+    });
 
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-dark');
     expect(getByTestId('popover-wrapper')).toHaveClass('extra-class');
@@ -341,32 +429,47 @@ describe('<Popover.WithRef />', () => {
     expect(getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: 0px; left: 0px; color: red;');
   });
 
-  it('should default to light theme on invalid theme prop', () => {
-    const { getByTestId } = render(
-      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} theme="some-theme" isOpen />
+  it('should default to light theme on invalid theme prop', async () => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => error); //Prop type warning for the prop theme, should be one of ['light', 'dark', 'warn', 'error', 'info', 'success']
+
+    const { getByTestId, rerender } = render(
+      <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} theme="some-theme" />
     );
+    await act(async () => {
+      rerender(
+        <Popover.WithRef popoverContent={<div />} refElement={virtualReferenceElement} theme="some-theme" isOpen />
+      );
+    });
 
     expect(getByTestId('popover-wrapper')).not.toHaveClass('popover-some-random-theme');
     expect(getByTestId('popover-wrapper')).toHaveClass('popover-light');
+
+    console.error.mockRestore();
   });
 
-  it('should render popover when content is function', () => {
-    const { getByTestId } = render(
-      <Popover.WithRef popoverContent={() => <div>test</div>} refElement={virtualReferenceElement} isOpen />
+  it('should render popover when content is function', async () => {
+    const { getByTestId, rerender } = render(
+      <Popover.WithRef popoverContent={() => <div>test</div>} refElement={virtualReferenceElement} />
     );
+    await act(async () => {
+      rerender(<Popover.WithRef popoverContent={() => <div>test</div>} refElement={virtualReferenceElement} isOpen />);
+    });
     expect(getByTestId('popover-content')).toHaveTextContent('test');
   });
 
-  it('should call getContainer to get boundary element if it is provided', () => {
+  it('should call getContainer to get boundary element if it is provided', async () => {
     const getContainer = jest.fn(() => document.body);
-    render(
-      <Popover.WithRef
-        popoverContent={<div />}
-        getContainer={getContainer}
-        refElement={virtualReferenceElement}
-        isOpen
-      />
-    );
+    await act(async () => {
+      render(
+        <Popover.WithRef
+          popoverContent={<div />}
+          getContainer={getContainer}
+          refElement={virtualReferenceElement}
+          isOpen
+        />
+      );
+    });
 
     expect(getContainer).toHaveBeenCalledTimes(1);
   });

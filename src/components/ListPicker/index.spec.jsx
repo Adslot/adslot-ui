@@ -251,12 +251,14 @@ describe('<ListPicker />', () => {
   });
 
   it('should throw when we click Apply without a handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const { getByText } = render(<ListPickerComponent show />);
 
     expect(() => fireEvent.click(getByText('Apply'))).toThrow('AdslotUi ListPicker needs a modalApply handler');
+    console.error.mockRestore();
   });
 
   it('should call `modalClose` when we click Cancel', () => {
@@ -268,13 +270,15 @@ describe('<ListPicker />', () => {
   });
 
   it('should throw when we click Close without a handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const { getByText } = render(<ListPickerComponent show />);
     expect(() => fireEvent.click(getByText('Cancel').parentElement)).toThrow(
       'AdslotUi ListPicker needs a modalClose handler'
     );
+    console.error.mockRestore();
   });
 
   describe('linkButtons', () => {

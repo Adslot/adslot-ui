@@ -38,10 +38,13 @@ describe('<Skeleton />', () => {
   });
 
   it('should render default skeleton if variant is given an unexpected string', () => {
-    console.error = jest.fn();
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => error); //Prop type warning for the prop variant, should be one of ['rect','circle','text']
     const { getByTestId, queryByTestId } = render(<Skeleton variant="square" />);
 
     expect(queryByTestId('skeleton-wrapper')).toBeInTheDocument();
     expect(getByTestId('skeleton-wrapper')).not.toHaveClass('aui--skeleton-square');
+
+    console.error.mockRestore();
   });
 });

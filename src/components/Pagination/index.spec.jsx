@@ -5,7 +5,7 @@ import Pagination from '.';
 
 afterEach(cleanup);
 
-describe('<PagedGrid />', () => {
+describe('<Pagination />', () => {
   it('should render with default props', () => {
     const props = {
       pageCount: 10,

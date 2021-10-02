@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, act } from '@testing-library/react';
 import Switch from '.';
 
 afterEach(cleanup);
@@ -63,5 +63,16 @@ describe('<Switch />', () => {
 
     expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
     expect(getByTestId('switch-checkbox')).toHaveClass('some-class');
+  });
+
+  it('should correctly change switch checked for uncontrolled Switch', async () => {
+    const { queryByTestId, getByTestId } = render(<Switch defaultChecked={false} />);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
+
+    await act(async () => {
+      await fireEvent.click(getByTestId('switch-checkbox'));
+    });
+
+    expect(getByTestId('switch-checkbox')).toBeChecked();
   });
 });

@@ -52,7 +52,6 @@ describe('<HoverDropdownMenu />', () => {
   });
 
   it('should render popover with list of links when `links` is not empty', async () => {
-    console.error = jest.fn();
     const { getByTestId, queryByTestId, queryAllByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
@@ -61,9 +60,8 @@ describe('<HoverDropdownMenu />', () => {
       </HoverDropdownMenu>
     );
 
-    act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
-      jest.runAllTimers();
+    await act(async () => {
+      await fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
     });
 
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
@@ -73,8 +71,7 @@ describe('<HoverDropdownMenu />', () => {
     expect(queryAllByTestId('popover-link-item-wrapper')[1]).toHaveTextContent('Logout');
   });
 
-  it('should trigger popover open or close when mouse enter or leave HoverDropdownMenu ref element', () => {
-    console.error = jest.fn();
+  it('should trigger popover open or close when mouse enter or leave HoverDropdownMenu ref element', async () => {
     const { getByTestId, queryByTestId } = render(
       <HoverDropdownMenu {...props}>
         {_.map(links, (link, idx) => (
@@ -82,20 +79,20 @@ describe('<HoverDropdownMenu />', () => {
         ))}
       </HoverDropdownMenu>
     );
-    act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+    await act(async () => {
+      await fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
-    act(() => {
-      fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
+    await act(async () => {
+      await fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-    act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+    await act(async () => {
+      await fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();

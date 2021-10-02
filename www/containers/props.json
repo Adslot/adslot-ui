@@ -1208,7 +1208,7 @@
               }
             ]
           },
-          "required": true,
+          "required": false,
           "description": "checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]"
         },
         "onChange": {

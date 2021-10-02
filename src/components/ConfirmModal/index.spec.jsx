@@ -66,12 +66,14 @@ describe('<ConfirmModal />', () => {
 
   it('should throw when we click Apply without a handler', () => {
     const { getByTestId } = render(<ConfirmModal show />);
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     expect(() => fireEvent.click(getByTestId('confirm-modal-confirm'))).toThrow(
       'AdslotUi ConfirmModal needs a modalApply handler'
     );
+    console.error.mockRestore();
   });
 
   it('should call `modalClose` when we click Cancel', () => {

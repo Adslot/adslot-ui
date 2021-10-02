@@ -91,9 +91,10 @@ describe('<UserListPicker />', () => {
   });
 
   it('should throw when we do not supply apply handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const { queryAllByTestId, getByText } = render(<UserListPicker users={users} show />);
 
     expect(getByText('Apply').closest('button')).toBeDisabled();
@@ -102,13 +103,16 @@ describe('<UserListPicker />', () => {
 
     expect(getByText('Apply').closest('button')).toBeEnabled();
     expect(() => fireEvent.click(getByText('Apply'))).toThrow('AdslotUi UserListPicker needs a modalApply handler');
+    console.error.mockRestore();
   });
 
   it('should throw when we do not supply close handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const { getByText } = render(<UserListPicker show />);
     expect(() => fireEvent.click(getByText('Cancel'))).toThrow('AdslotUi UserListPicker needs a modalClose handler');
+    console.error.mockRestore();
   });
 });

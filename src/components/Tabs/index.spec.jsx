@@ -1,13 +1,9 @@
+import _ from 'lodash';
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import Tabs from '.';
 import Tab from '../Tab';
 
-beforeEach(() => {
-  jest.spyOn(console, 'error').mockImplementation(() => {});
-});
-
-afterEach(() => console.error.mockRestore());
 afterEach(cleanup);
 
 describe('<Tabs />', () => {
@@ -47,7 +43,6 @@ describe('<Tabs />', () => {
         <Tab eventKey="last" title="Second">
           Tab2
         </Tab>
-        <div>other</div>
       </Tabs>
     );
     expect(queryAllByTestId('tablist-a-tag')).toHaveLength(2);
@@ -59,14 +54,13 @@ describe('<Tabs />', () => {
 
   it('should switch tabs given a `defaultActiveKey`', () => {
     const { queryAllByTestId } = render(
-      <Tabs defaultActiveKey="first" onSelect={true} id="test">
+      <Tabs defaultActiveKey="first" onSelect={() => true} id="test">
         <Tab eventKey="first" title="Fist">
           Tab1
         </Tab>
         <Tab eventKey="last" title="Second">
           Tab2
         </Tab>
-        <div>other</div>
       </Tabs>
     );
 
@@ -85,6 +79,9 @@ describe('<Tabs />', () => {
   });
 
   it('should not crash when child returns null', () => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation(_.noop); // warning: <Tabs /> children must be instances of <Tab />
+
     const { queryByTestId } = render(
       <Tabs defaultActiveKey="first" id="test">
         <Tab eventKey="first" title="Fist">
@@ -94,10 +91,12 @@ describe('<Tabs />', () => {
       </Tabs>
     );
     expect(queryByTestId('tablist-wrapper')).toBeInTheDocument();
+    console.error.mockRestore();
   });
 
   it('should throw error if child of <Tabs /> is not <Tab />', () => {
-    console.error = jest.fn();
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation(_.noop);
     render(
       <Tabs id="error">
         <div />
@@ -106,5 +105,6 @@ describe('<Tabs />', () => {
 
     expect(console.error).toHaveBeenCalledTimes(1);
     expect(console.error).toHaveBeenCalledWith('<Tabs /> children must be instances of <Tab />');
+    console.error.mockRestore();
   });
 });

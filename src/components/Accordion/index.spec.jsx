@@ -5,11 +5,6 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 import Accordion from '.';
 import PanelMocks from '../Panel/mocks';
 
-beforeEach(() => {
-  jest.spyOn(console, 'error').mockImplementation(_.noop);
-});
-
-afterEach(() => console.error.mockRestore());
 afterEach(cleanup);
 
 describe('<Accordion />', () => {
@@ -93,9 +88,9 @@ describe('<Accordion />', () => {
 
     const { queryAllByTestId } = render(
       <Accordion {...makeProps({ maxExpand: 1 })}>
-        <Accordion.Panel {...panel(1)}>{panel1.content}</Accordion.Panel>
-        <Accordion.Panel {...panel(2)}>{panel2.content}</Accordion.Panel>
-        <Accordion.Panel {...panel(3)}>{panel3.content}</Accordion.Panel>
+        <Accordion.Panel {...panel('1')}>{panel1.content}</Accordion.Panel>
+        <Accordion.Panel {...panel('2')}>{panel2.content}</Accordion.Panel>
+        <Accordion.Panel {...panel('3')}>{panel3.content}</Accordion.Panel>
       </Accordion>
     );
 
@@ -150,6 +145,9 @@ describe('<Accordion />', () => {
   });
 
   it('should throw error if props.maxExpand has invalid value', () => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation(_.noop);
+
     expect(() =>
       render(
         <Accordion {...makeProps({ maxExpand: -1 })}>
@@ -157,6 +155,8 @@ describe('<Accordion />', () => {
         </Accordion>
       )
     ).toThrowError(new Error("maxExpand must be a positive number or 'max'"));
+
+    console.error.mockRestore();
   });
 
   it('should ignore children that are not an instance of Accordion.Panel', () => {

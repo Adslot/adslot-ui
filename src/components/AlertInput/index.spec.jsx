@@ -56,17 +56,18 @@ describe('<AlertInput />', () => {
   });
 
   describe('handleInputFocus()', () => {
-    it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', () => {
+    it('should set `isFocused` to true, and `isPopoverVisible` if there is an alert message', async () => {
       const { container, getByTestId } = render(<AlertInput alertMessage="Hello" />);
       const onSelect = jest.fn();
-      console.error = jest.fn();
 
-      fireEvent(
-        getByClass(container, 'aui--alert-input__input'),
-        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
-          target: { select: onSelect },
-        })
-      );
+      await act(async () => {
+        await fireEvent(
+          getByClass(container, 'aui--alert-input__input'),
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
+            target: { select: onSelect },
+          })
+        );
+      });
 
       expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input--focused');
       expect(getByTestId('popover-wrapper')).toHaveClass('aui--popover-wrapper aui--alert-input__popover');
@@ -76,12 +77,10 @@ describe('<AlertInput />', () => {
     it('should set `isFocused` to true, but not `isPopoverVisible` if no alert message', () => {
       const { container, getByTestId, queryByTestId } = render(<AlertInput />);
       const onSelect = jest.fn();
-      console.error = jest.fn();
-
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
-          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
             target: { select: onSelect },
           })
         );
@@ -96,13 +95,12 @@ describe('<AlertInput />', () => {
     it('should call prop `onFocus` if exists', () => {
       const onFocus = jest.fn();
       const onSelect = jest.fn();
-      console.error = jest.fn();
       const { container, getByTestId, queryByTestId } = render(<AlertInput onFocus={onFocus} />);
 
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
-          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
             target: { select: onSelect },
           })
         );
@@ -119,12 +117,11 @@ describe('<AlertInput />', () => {
   describe('handleInputBlur ()', () => {
     it('should set `isFocused` and `isPopoverVisible` to false', () => {
       const onSelect = jest.fn();
-      console.error = jest.fn();
       const { container, getByTestId, queryByTestId } = render(<AlertInput />);
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
-          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
             target: { select: onSelect },
           })
         );
@@ -132,7 +129,7 @@ describe('<AlertInput />', () => {
       });
 
       act(() => {
-        fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+        fireEvent.focusOut(getByClass(container, 'aui--alert-input__input'));
         jest.runAllTimers();
       });
 
@@ -142,11 +139,10 @@ describe('<AlertInput />', () => {
 
     it('should call `onBlur` if exists', () => {
       const onBlur = jest.fn();
-      console.error = jest.fn();
       const { container } = render(<AlertInput onBlur={onBlur} />);
 
       act(() => {
-        fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+        fireEvent.focusOut(getByClass(container, 'aui--alert-input__input'));
         jest.runAllTimers();
       });
 
@@ -179,12 +175,10 @@ describe('<AlertInput />', () => {
       expect(getByPlaceholderText('Type a number')).toHaveValue(100);
     });
 
-    it('should also render with default props', () => {
+    it('should also render with default props', async () => {
       const { getByTestId, queryByTestId } = render(<AlertInput alertMessage="test" />);
-      console.error = jest.fn();
-      act(() => {
-        fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
-        jest.runAllTimers();
+      await act(async () => {
+        await fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
       });
 
       expect(queryByTestId('alert-input-wrapper')).toBeInTheDocument();
@@ -229,13 +223,16 @@ describe('<AlertInput />', () => {
       expect(getByTestId('alert-input-wrapper')).toHaveClass('aui--alert-input error');
     });
 
-    it('should set correct theme for popover', () => {
+    it('should set correct theme for popover', async () => {
       let props = {
         alertStatus: 'error',
         alertMessage: 'something is wrong',
       };
       const { getByTestId, rerender } = render(<AlertInput {...props} />);
-      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      await act(async () => {
+        await fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      });
+
       expect(getByTestId('popover-wrapper')).toHaveClass('popover-error');
 
       props.alertStatus = 'warning';
@@ -243,13 +240,15 @@ describe('<AlertInput />', () => {
       expect(getByTestId('popover-wrapper')).toHaveClass('popover-warn');
     });
 
-    it('should set correct popoverPlacement position for popover', () => {
+    it('should set correct popoverPlacement position for popover', async () => {
       const props = {
         popoverPlacement: 'left',
         alertMessage: 'something is wrong',
       };
       const { getByTestId } = render(<AlertInput {...props} />);
-      fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      await act(async () => {
+        fireEvent.mouseEnter(getByTestId('alert-input-wrapper'));
+      });
       expect(getByTestId('popover-wrapper')).toHaveAttribute('placement', 'left');
     });
   });

@@ -43,14 +43,18 @@ describe('<Breadcrumb />', () => {
     });
   });
 
-  it('should error when clicking a node with no onClick handler', () => {
+  it('should throw error when clicking a node with no onClick handler', () => {
     const { queryAllByTestId } = render(<Breadcrumb nodes={nodes} />);
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
+
     expect(() => fireEvent.click(queryAllByTestId('breadcrumb-node-wrapper')[0])).toThrow(
       'Breadcrumb needs an onClick handler to take all'
     );
+
+    console.error.mockRestore();
   });
 
   it('should call props.onClick when clicking a node with onClick handler', () => {

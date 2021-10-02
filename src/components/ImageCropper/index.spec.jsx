@@ -23,7 +23,6 @@ describe('<ImageCropper />', () => {
     const onCrop = jest.fn();
     const { queryAllByTestId } = render(<ImageCropper src="example.svg" onCrop={onCrop} onCancel={jest.fn()} />);
 
-    // console.error would be fixed after updating react/react-dom/react-test-renderer to ^16.9.0
     act(() => {
       fireEvent.click(queryAllByTestId('button-wrapper')[1]);
     });

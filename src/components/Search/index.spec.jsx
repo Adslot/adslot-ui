@@ -81,7 +81,7 @@ describe('<Search />', () => {
 
     expect(onBlur).toHaveBeenCalledTimes(0);
 
-    fireEvent.blur(getByTestId('search-input'));
+    fireEvent.focusOut(getByTestId('search-input'));
 
     expect(onBlur).toHaveBeenCalledTimes(1);
   });

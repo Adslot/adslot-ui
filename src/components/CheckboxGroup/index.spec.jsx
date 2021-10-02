@@ -50,13 +50,16 @@ describe('<CheckboxGroup />', () => {
   });
 
   it('should print warning if child is not a Checkbox component', () => {
-    console.error = jest.fn();
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => error);
+
     render(
       <CheckboxGroup name="movies" value={['test']} onChange={jest.fn()}>
         <div>Not a Checkbox</div>
       </CheckboxGroup>
     );
     expect(console.error).toHaveBeenCalledWith("ERROR: CheckboxGroup's children should be an array of Checkbox");
+    console.error.mockRestore();
   });
 
   it('should return null if there is no children', () => {
@@ -65,7 +68,9 @@ describe('<CheckboxGroup />', () => {
   });
 
   it('should return null if there is a boolean child', () => {
-    console.error = jest.fn();
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => error);
+
     const { queryByTestId } = render(
       <CheckboxGroup name="movies" value={['test']} onChange={jest.fn()}>
         {false && <Checkbox label="The Terminator" value="terminator" />}
@@ -75,5 +80,6 @@ describe('<CheckboxGroup />', () => {
 
     expect(queryByTestId('checkbox-group-wrapper')).toBeInTheDocument();
     expect(console.error).toHaveBeenCalledTimes(0);
+    console.error.mockRestore();
   });
 });

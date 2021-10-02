@@ -178,9 +178,10 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should error on click of `include` button without includeNode handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
 
     const { queryAllByTestId, getByText } = render(<TreePickerNode itemType={itemType} node={cbrNode} />);
     expect(queryAllByTestId('grid-cell-wrapper')).toHaveLength(3); // meta data cell, value cell and include button cell
@@ -188,6 +189,7 @@ describe('<TreePickerNode />', () => {
     expect(() => {
       fireEvent.click(getByText('+'));
     }).toThrow('AdslotUi TreePickerNode needs an includeNode handler');
+    console.error.mockRestore();
   });
 
   it('should render a provided node with an empty breadcrumb array', () => {
@@ -245,9 +247,10 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should error on click of `remove` button without removeNode handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
 
     const { queryAllByTestId, getByText } = render(<TreePickerNode itemType={itemType} node={cbrNode} selected />);
 
@@ -256,6 +259,7 @@ describe('<TreePickerNode />', () => {
     expect(() => {
       fireEvent.click(getByText('−'));
     }).toThrow('AdslotUi TreePickerNode needs a removeNode handler');
+    console.error.mockRestore();
   });
 
   it('should accept both strings and numbers as node ids', () => {
@@ -269,12 +273,14 @@ describe('<TreePickerNode />', () => {
   });
 
   it('should throw error message when props does not contain `path` or `ancestors`', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation((error) => {
+      throw new Error(error);
+    });
     const nodeWithoutPathAndAncestors = _.omit(cbrNode, ['path', 'ancestors']);
     expect(() => render(<TreePickerNode itemType={itemType} node={nodeWithoutPathAndAncestors} />)).toThrow(
       `AdslotUi TreePickerNode needs property 'path' or property 'ancestors'`
     );
+    console.error.mockRestore();
   });
 });

@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import Select from 'react-select';
 import SelectComponent from '.';
@@ -12,7 +12,7 @@ const defaultOptions = [
 
 describe('SelectComponent', () => {
   it('should render select options in body if props.isInModal is true', () => {
-    const wrapper = mount(<SelectComponent options={defaultOptions} isInModal />);
+    const wrapper = shallow(<SelectComponent options={defaultOptions} isInModal />);
     expect(wrapper.find(Select).prop('menuPortalTarget')).toEqual(document.body);
     expect(wrapper.find(Select).prop('styles').menuPortal()).toEqual({ zIndex: 9999 });
   });
