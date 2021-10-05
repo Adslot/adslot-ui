@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import Radio from 'react-bootstrap/lib/Radio';
+import Radio from '../Radio';
 import SvgSymbol from '../SvgSymbol';
 import ListPickerComponent from '.';
-
 import ListPickerMocks from '../ListPicker/mocks';
 
 afterEach(cleanup);
@@ -23,11 +22,8 @@ describe('<ListPicker />', () => {
     const { getByTestId, getByText } = render(
       <ListPickerComponent itemInfo={{ label: 'Label', properties: [] }} show />
     );
-    expect(getByTestId('listpicker-wrapper')).toHaveClass('listpicker-component');
-    expect(getByTestId('listpicker-wrapper').firstChild).toHaveClass('modal-lg modal-dialog');
-
-    expect(getByText('Select Items')).toHaveClass('modal-title');
-    expect(getByText('Select Items').parentElement).toHaveClass('modal-header');
+    expect(getByTestId('action-panel-wrapper')).toHaveClass('listpicker-component');
+    expect(getByText('Select Items')).toHaveClass('title');
 
     const listpickerPure = getByTestId('listpickerpure-wrapper');
     expect(listpickerPure).toContainElement(getByTestId('empty-wrapper'));
@@ -35,13 +31,9 @@ describe('<ListPicker />', () => {
     expect(getByTestId('empty-wrapper')).toContainElement(getByTestId('empty-text'));
     expect(getByTestId('empty-text')).toHaveTextContent('No items to select.');
 
-    expect(getByText('Cancel').parentElement).toHaveClass('btn-inverse');
-    expect(getByText('Cancel').parentElement.tagName).toEqual('BUTTON');
-    expect(getByText('Cancel').parentElement.parentElement).toHaveClass('modal-footer');
-    expect(getByText('Apply').parentElement).toHaveClass('aui--button btn-primary');
-    expect(getByText('Apply').parentElement.tagName).toEqual('BUTTON');
-    expect(getByText('Apply').parentElement.parentElement).toHaveClass('modal-footer');
-    expect(getByText('Apply').parentElement).not.toBeDisabled;
+    expect(getByTestId('action-panel-header')).toHaveClass('has-actions');
+    expect(getByTestId('action-panel-header')).toContainElement(getByText('Cancel'));
+    expect(getByTestId('action-panel-header')).toContainElement(getByText('Apply'));
   });
 
   it('should render with props', () => {
@@ -63,14 +55,8 @@ describe('<ListPicker />', () => {
       <ListPickerComponent {...props} items={items} show />
     );
 
-    expect(getByTestId('listpicker-wrapper')).toHaveClass('listpicker-component');
-    expect(getByTestId('listpicker-wrapper').firstChild).toHaveClass('modal-lg modal-dialog');
-
-    expect(getByText('Select Users')).toHaveClass('modal-title');
-    expect(getByText('Select Users').parentElement).toHaveClass('modal-header');
-
-    expect(getByText('Select users.').tagName).toEqual('P');
-    expect(getByText('Select users.').parentElement).toHaveClass('modal-body');
+    expect(getByTestId('action-panel-wrapper')).toHaveClass('listpicker-component');
+    expect(getByText('Select Users')).toHaveClass('title');
 
     expect(getByText('You can select multiple users.')).toHaveClass('listpicker-component-footnote');
 
@@ -84,11 +70,11 @@ describe('<ListPicker />', () => {
     expect(queryAllByTestId('checkbox-input')[1]).toBeChecked(); // selectedItems
     expect(queryAllByTestId('checkbox-input')[2]).not.toBeChecked();
 
+    expect(getByTestId('action-panel-header')).toHaveClass('has-actions');
+    expect(getByTestId('action-panel-header')).toContainElement(getByText('Cancel'));
+    expect(getByTestId('action-panel-header')).toContainElement(getByText('Create User'));
+
     expect(getByText('Create User')).toHaveAttribute('href', '#');
-    expect(getByText('Create User').parentElement.parentElement).toHaveClass('btn-inverse');
-    expect(getByText('Create User').parentElement.parentElement.parentElement.parentElement).toHaveClass(
-      'modal-footer'
-    );
 
     expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
@@ -130,13 +116,12 @@ describe('<ListPicker />', () => {
       modalTitle: 'Select Users',
     };
     const { getByTestId, queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
-    expect(getByTestId('listpicker-wrapper')).toHaveClass('listpicker-component');
+    expect(getByTestId('action-panel-wrapper')).toHaveClass('listpicker-component');
 
-    expect(getByText('Select Users')).toHaveClass('modal-title');
-    expect(getByText('Select Users').parentElement).toHaveClass('modal-header');
+    expect(getByText('Select Users')).toHaveClass('title');
 
     expect(getByText('Select users.').tagName).toEqual('P');
-    expect(getByText('Select users.').parentElement).toHaveClass('modal-body');
+    expect(getByText('Select users.').parentElement).toHaveClass('aui--action-panel-body');
 
     expect(getByText('You can select multiple users.')).toHaveClass('listpicker-component-footnote');
 
@@ -175,8 +160,8 @@ describe('<ListPicker />', () => {
 
   it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
     const props = { allowEmptySelection: false, items: users };
-    const { getByText } = render(<ListPickerComponent {...props} show />);
-    expect(getByText('Apply').parentElement.parentElement).toHaveClass('modal-footer');
+    const { getByText, getByTestId } = render(<ListPickerComponent {...props} show />);
+    expect(getByTestId('action-panel-header')).toContainElement(getByText('Apply'));
     expect(getByText('Apply').parentElement).toBeDisabled();
   });
 
@@ -241,12 +226,12 @@ describe('<ListPicker />', () => {
 
   it('should show modal when `show` is true', () => {
     const { queryByTestId } = render(<ListPickerComponent show />);
-    expect(queryByTestId('listpicker-wrapper')).toBeInTheDocument();
+    expect(queryByTestId('action-panel-wrapper')).toBeInTheDocument();
   });
 
   it('should hide modal when `show` is false', () => {
     const { queryByTestId } = render(<ListPickerComponent show={false} />);
-    expect(queryByTestId('listpicker-wrapper')).not.toBeInTheDocument();
+    expect(queryByTestId('action-panel-wrapper')).not.toBeInTheDocument();
   });
 
   it('should only call `modalApply` when we click Apply', () => {
@@ -313,20 +298,20 @@ describe('<ListPicker />', () => {
     });
 
     it('should render as node', () => {
-      props.linkButtons = [<Radio data-testid="testing-radio" />];
+      props.linkButtons = [<Radio />];
       const { getByTestId, queryByTestId } = render(<ListPickerComponent {...props} show />);
-      expect(queryByTestId('testing-radio')).toBeInTheDocument();
-      expect(getByTestId('testing-radio').tagName).toEqual('INPUT');
-      expect(getByTestId('testing-radio')).toHaveAttribute('type', 'radio');
+      expect(queryByTestId('radio-wrapper')).toBeInTheDocument();
+      expect(getByTestId('radio-input').tagName).toEqual('INPUT');
+      expect(getByTestId('radio-input')).toHaveAttribute('type', 'radio');
     });
 
     it('should render as mixed nodes and buttons', () => {
-      props.linkButtons = [{ label: 'Create User', href: '#' }, <Radio data-testid="testing-radio" />];
+      props.linkButtons = [{ label: 'Create User', href: '#' }, <Radio />];
       const { getByTestId, queryByTestId, getByText } = render(<ListPickerComponent {...props} show />);
 
-      expect(queryByTestId('testing-radio')).toBeInTheDocument();
-      expect(getByTestId('testing-radio').tagName).toEqual('INPUT');
-      expect(getByTestId('testing-radio')).toHaveAttribute('type', 'radio');
+      expect(queryByTestId('radio-wrapper')).toBeInTheDocument();
+      expect(getByTestId('radio-input').tagName).toEqual('INPUT');
+      expect(getByTestId('radio-input')).toHaveAttribute('type', 'radio');
 
       expect(getByText('Create User').parentElement.parentElement).toHaveClass('btn-inverse');
       expect(getByText('Create User')).toHaveAttribute('href', '#');

@@ -2,45 +2,53 @@
 
 exports[`<ConfirmModal /> should show modal when \`show\` is true 1`] = `
 <div
-  class="confirm-modal-component fade in modal"
-  data-testid="confirm-modal-wrapper"
-  role="dialog"
-  style="display: block; padding-right: 0px;"
-  tabindex="-1"
+  class="aui--action-panel is-small action-modal confirm-modal-component"
+  data-testid="action-panel-wrapper"
 >
   <div
-    class="modal-sm modal-dialog"
+    class="aui--action-panel-header has-actions"
+    data-testid="action-panel-header"
   >
     <div
-      class="modal-content"
-      role="document"
+      class="title"
+      data-testid="action-panel-title"
+    />
+    <span
+      class="actions"
     >
-      <div
-        class="modal-body"
-        data-testid="confirm-modal-body"
+      <button
+        class="aui--button btn-default close-button"
+        data-test-selector="header-close-button"
+        data-testid="button-wrapper"
+        type="button"
       >
-        <p>
-          Are you sure?
-        </p>
-      </div>
-      <div
-        class="modal-footer"
-        data-testid="confirm-modal-footer"
-      >
-        <button
-          class="aui--button btn-primary"
-          data-test-selector="confirm-modal-confirm"
-          data-testid="confirm-modal-confirm"
-          type="button"
+        <div
+          class="aui--button-children-container"
         >
-          <div
-            class="aui--button-children-container"
-          >
-            Confirm
-          </div>
-        </button>
-      </div>
-    </div>
+          Cancel
+        </div>
+      </button>
+      <button
+        class="aui--button btn-primary"
+        data-test-selector="confirm-modal-confirm"
+        data-testid="confirm-modal-confirm"
+        type="button"
+      >
+        <div
+          class="aui--button-children-container"
+        >
+          Confirm
+        </div>
+      </button>
+    </span>
+  </div>
+  <div
+    class="aui--action-panel-body"
+    data-testid="action-panel-body"
+  >
+    <p>
+      Are you sure?
+    </p>
   </div>
 </div>
 `;
