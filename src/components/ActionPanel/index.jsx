@@ -6,7 +6,7 @@ import Button from '../Button';
 import './styles.scss';
 
 const ActionPanel = React.forwardRef((props, ref) => {
-  const { title, className, size, onClose, children, actionButton, isModal, closeIcon } = props;
+  const { title, className, size, onClose, children, actionButton, isModal, closeIcon, cancelText } = props;
 
   const addBodyClass = (classname) => document.body.classList.add(classname);
   const removeBodyClass = (classname) => document.body.classList.remove(classname);
@@ -43,7 +43,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
                 className={classNames('close-button', { 'close-svg-icon': !actionButton })}
                 dts="header-close-button"
               >
-                {actionButton ? 'Cancel' : closeIcon}
+                {actionButton ? cancelText : closeIcon}
               </Button>
               {actionButton}
             </span>
@@ -69,6 +69,7 @@ ActionPanel.propTypes = {
   actionButton: PropTypes.node,
   closeIcon: PropTypes.node,
   isModal: PropTypes.bool,
+  cancelText: PropTypes.string,
 };
 
 ActionPanel.defaultProps = {
@@ -76,6 +77,7 @@ ActionPanel.defaultProps = {
   actionButton: null,
   isModal: false,
   closeIcon: <div className="close-icon" />,
+  cancelText: 'Cancel',
 };
 
 export default ActionPanel;

@@ -191,6 +191,13 @@
             "value": "false",
             "computed": false
           }
+        },
+        "cancelText": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -957,13 +964,13 @@
       "methods": [
         {
           "name": "usePreventSwipeClicks",
-          "docblock": "A hook to prevent child click handlers from firing immediately after swiping the Carousel\n\n@returns {object} - handlers to be spread onto any carousel items with `onClick` handlers",
+          "docblock": "A hook to prevent child click handlers from firing immediately after swiping the Carousel\n\n@returns {object} - to be spread onto any carousel items with `onClick` handlers",
           "modifiers": [
             "static"
           ],
           "params": [],
           "returns": {
-            "description": "handlers to be spread onto any carousel items with `onClick` handlers",
+            "description": "to be spread onto any carousel items with `onClick` handlers",
             "type": {
               "name": "object"
             }

@@ -42,6 +42,7 @@ describe('<ActionPanel />', () => {
     expect(document.body).toHaveClass('modal-open');
     expect(wrapper.queryByTestId('action-panel-modal-wrapper')).toBeInTheDocument();
     expect(wrapper.getByTestId('action-panel-wrapper')).toHaveClass('aui--action-panel is-large action-modal');
+    expect(wrapper.getAllByTestId('button-wrapper')[0]).toHaveTextContent('Cancel'); // default cancel text is 'Cancel'
     wrapper.unmount();
     expect(document.body).not.toHaveClass('modal-open');
   });
@@ -57,5 +58,22 @@ describe('<ActionPanel />', () => {
 
     wrapper.unmount();
     expect(document.body).not.toHaveClass('modal-open');
+  });
+
+  it('should render a user specified text on the cancel button', () => {
+    let wrapper;
+    act(() => {
+      wrapper = render(
+        <ActionPanel
+          {...makeProps({
+            isModal: true,
+            size: 'large',
+            actionButton: <Button>Action</Button>,
+            cancelText: 'This is a cancel text',
+          })}
+        />
+      );
+    });
+    expect(wrapper.getAllByTestId('button-wrapper')[0]).toHaveTextContent('This is a cancel text');
   });
 });
