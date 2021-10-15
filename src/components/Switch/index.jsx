@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
 import './styles.scss';
 
+const PARTIAL_STATE = 'partial';
 class Switch extends React.PureComponent {
   state = { checked: this.props.defaultChecked || false };
 
@@ -29,20 +31,33 @@ class Switch extends React.PureComponent {
       );
 
     const toggleInputChecked = !_.isNil(checked) ? checked : this.state.checked;
+
+    const componentClassName = classnames([
+      'aui--switch--input',
+      {
+        checked: toggleInputChecked === true,
+        'partial-checked': checked === PARTIAL_STATE,
+        disabled,
+      },
+      className,
+    ]);
+
     return (
-      <label className="aui--switch-label">
-        <input
-          data-testid="switch-checkbox"
-          type="checkbox"
-          checked={toggleInputChecked}
-          value={value}
-          disabled={disabled}
-          onChange={this.handleChange}
-          className={className}
-          data-test-selector={dts}
-        />
-        <span className="aui--switch-slider round" />
-      </label>
+      <div className="aui--switch--component">
+        <label className="aui--switch-label">
+          <input
+            data-testid="switch-checkbox"
+            type="checkbox"
+            checked={toggleInputChecked}
+            value={value}
+            disabled={disabled}
+            onChange={this.handleChange}
+            className={componentClassName}
+            data-test-selector={dts}
+          />
+          <span className="aui--switch-slider" />
+        </label>
+      </div>
     );
   }
 }
@@ -59,9 +74,9 @@ Switch.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * 	switch value, if the value is controlled
+   * 	switch value, if the value is controlled: oneOf([true, false, 'partial']
    */
-  checked: PropTypes.bool,
+  checked: PropTypes.oneOf([true, false, PARTIAL_STATE]),
   value: PropTypes.string,
   disabled: PropTypes.bool,
   /**

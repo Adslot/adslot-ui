@@ -19,6 +19,12 @@ describe('<Switch />', () => {
     expect(getByTestId('switch-checkbox')).toBeChecked();
   });
 
+  it('should correctly render partial state', () => {
+    const { getByTestId, queryByTestId } = render(<Switch checked={'partial'} onChange={jest.fn()} />);
+    expect(queryByTestId('switch-checkbox')).toBeInTheDocument();
+    expect(getByTestId('switch-checkbox')).toHaveClass('partial-checked');
+  });
+
   it('should throw warning if checked is provided without onChange', () => {
     console.warn = jest.fn();
     render(<Switch checked />);

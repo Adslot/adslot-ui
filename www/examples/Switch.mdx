@@ -4,7 +4,7 @@ import Props from '../containers/Props.jsx';
 
 ```jsx live=true
 const Example = () => {
-  const [isToggleOn, setIsToggleOn] = React.useState(true);
+  const [isToggleOn, setIsToggleOn] = React.useState('partial');
   const onChange = (newValue) => setIsToggleOn(newValue);
 
   return (
@@ -28,7 +28,7 @@ const Example = () => {
         </div>
       </div>
       <div>
-        <div style={{ paddingTop: 20 }}>Controlled Switch</div>
+        <div style={{ paddingTop: 20 }}>Controlled Switch (Partial Initial State)</div>
         <div style={{ paddingTop: 10 }}>
           <Switch checked={isToggleOn} onChange={onChange} />
         </div>

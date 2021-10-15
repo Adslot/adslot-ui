@@ -3,92 +3,21 @@
     {
       "description": "",
       "displayName": "Accordion",
-      "methods": [
-        {
-          "name": "onPanelClick",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "panelId",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "renderPanelFromChildren",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "child",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
-        "dts": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "render `data-test-selector` onto the component. It can be useful for testing."
-        },
-        "onPanelClick": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "onPanelClick(panelId) takes in a single parameter which is the id of the clicked panel."
-        },
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "<span>\n Accept an array of <a href=\"/panel-example\">Panel</a> or\n <a href=\"/accordion-panel-example\">Accordion.Panel</a>\n </span>"
-        },
-        "defaultActivePanelIds": {
-          "type": {
-            "name": "arrayOf",
-            "value": {
-              "name": "string"
-            }
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "[]",
-            "computed": false
-          }
-        },
         "maxExpand": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "number"
-              },
-              {
-                "name": "enum",
-                "value": [
-                  {
-                    "value": "'max'",
-                    "computed": false
-                  }
-                ]
-              }
-            ]
-          },
-          "required": false,
-          "description": "Determine how many Panels can be expanded, accepted value is a positive number, or <code>max</code> to have no restriction",
           "defaultValue": {
             "value": "'max'",
             "computed": false
-          }
+          },
+          "required": false
+        },
+        "defaultActivePanelIds": {
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          },
+          "required": false
         }
       }
     }
@@ -190,7 +119,11 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "",
+          "defaultValue": {
+            "value": "'Cancel'",
+            "computed": false
+          }
         }
       }
     }
@@ -1371,20 +1304,7 @@
     {
       "description": "",
       "displayName": "DatePicker",
-      "methods": [
-        {
-          "name": "handleDateChangeRaw",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "disableInlineEditing": {
           "type": {
@@ -1396,6 +1316,13 @@
             "value": "false",
             "computed": false
           }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -3555,27 +3482,7 @@
     {
       "description": "",
       "displayName": "RadioGroup",
-      "methods": [
-        {
-          "name": "onChangeDefault",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "renderChildren",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "id": {
           "type": {
@@ -4734,10 +4641,24 @@
         },
         "checked": {
           "type": {
-            "name": "bool"
+            "name": "enum",
+            "value": [
+              {
+                "value": "true",
+                "computed": false
+              },
+              {
+                "value": "false",
+                "computed": false
+              },
+              {
+                "value": "'partial'",
+                "computed": false
+              }
+            ]
           },
           "required": false,
-          "description": "switch value, if the value is controlled"
+          "description": "switch value, if the value is controlled: oneOf([true, false, 'partial']"
         },
         "value": {
           "type": {
@@ -4852,20 +4773,7 @@
     {
       "description": "",
       "displayName": "Tabs",
-      "methods": [
-        {
-          "name": "switchTab",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "key",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "id": {
           "type": {
@@ -5075,16 +4983,8 @@
   "src/components/TextEllipsis/index.jsx": [
     {
       "description": "",
-      "displayName": "TextEllipsisComponent",
-      "methods": [
-        {
-          "name": "setTruncate",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "displayName": "TextEllipsis",
+      "methods": [],
       "props": {
         "children": {
           "type": {
@@ -5100,7 +5000,7 @@
             "computed": true
           },
           "required": false,
-          "description": "Can use `placement` and `trigger` props from <a href=\"/popover\">Popover</a> to control popover.",
+          "description": "",
           "defaultValue": {
             "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
             "computed": false
