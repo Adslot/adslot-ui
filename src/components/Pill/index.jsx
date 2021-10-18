@@ -4,15 +4,21 @@ import React from 'react';
 import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
-const Pill = ({ className, children, onClick, dts }) => (
+const sizes = ['large', 'medium', 'small'];
+
+const Pill = ({ className, children, onClick, size, dts }) => (
   <div
-    className={classnames('aui--pill', { 'aui--pill-clickable': onClick }, className)}
+    className={classnames('aui--pill', `aui--pill-${size}`, { 'aui--pill-clickable': onClick }, className)}
     onClick={onClick}
     {...expandDts(dts)}
   >
     <div className="aui--pill-children">{children}</div>
   </div>
 );
+
+Pill.defaultProps = {
+  size: sizes[1],
+};
 
 Pill.propTypes = {
   /**
@@ -27,6 +33,10 @@ Pill.propTypes = {
    *  	Custome onClick event
    */
   onClick: PropTypes.func,
+  /**
+   * one of ["large",  "medium", "small"]
+   */
+  size: PropTypes.oneOf(sizes),
   /**
    * 	Generate "data-test-selector" on the pill
    */

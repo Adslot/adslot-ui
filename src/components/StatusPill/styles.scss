@@ -12,24 +12,16 @@ $color-light: $color-status-light;
 $color-inverse-border: $color-status-light;
 
 .aui--status-pill {
-  font-size: $font-size-base;
-  display: inline-block;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
-  padding: 5px 12px;
   border: 1px solid transparent;
-  border-radius: 12px;
   user-select: none;
   font-weight: $font-weight-bold;
   line-height: 1;
   color: $color-gray-darker;
 
-  .aui--pill-children {
-    line-height: normal;
-  }
-
-  &.aui--status-pill-primary {
+  &-primary {
     background-color: $color-primary-background;
 
     &.aui--status-pill-inverse {
@@ -39,7 +31,7 @@ $color-inverse-border: $color-status-light;
     }
   }
 
-  &.aui--status-pill-success {
+  &-success {
     background-color: $color-success-background;
 
     &.aui--status-pill-inverse {
@@ -49,7 +41,7 @@ $color-inverse-border: $color-status-light;
     }
   }
 
-  &.aui--status-pill-warning {
+  &-warning {
     background-color: $color-warning-background;
 
     &.aui--status-pill-inverse {
@@ -59,7 +51,7 @@ $color-inverse-border: $color-status-light;
     }
   }
 
-  &.aui--status-pill-error {
+  &-error {
     background-color: $color-error-background;
 
     &.aui--status-pill-inverse {
@@ -69,7 +61,7 @@ $color-inverse-border: $color-status-light;
     }
   }
 
-  &.aui--status-pill-light {
+  &-light {
     background-color: $color-light;
 
     &.aui--status-pill-inverse {

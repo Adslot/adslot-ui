@@ -38,6 +38,23 @@ body {
     flex-direction: row;
     padding: 72px 12px 0;
   }
+
+  .grid {
+    display: flex;
+    flex-direction: row;
+
+    &-small {
+      grid-gap: 6px;
+    }
+
+    &-medium {
+      grid-gap: 12px;
+    }
+
+    &-large {
+      grid-gap: 18px;
+    }
+  }
 }
 
 .adslot-ui-sidebar-area {

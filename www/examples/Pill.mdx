@@ -7,12 +7,35 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 const Example = () => {
   return (
     <React.Fragment>
-      <div style={{ display: 'flex' }}>
+      <label>Medium Pills (default)</label>
+      <div className="grid grid-small">
         <Pill className="example-1" onClick={() => {}}>
           <SvgSymbol href="./assets/svg-symbols.svg#calendar" />
           <div style={{ marginLeft: 5 }}>Calendar</div>
         </Pill>
         <Pill className="example-2">
+          <div>Site</div>
+        </Pill>
+      </div>
+      <br />
+      <label>Large Pills</label>
+      <div className="grid grid-small">
+        <Pill size="large" className="example-1" onClick={() => {}}>
+          <SvgSymbol href="./assets/svg-symbols.svg#calendar" />
+          <div style={{ marginLeft: 5 }}>Calendar</div>
+        </Pill>
+        <Pill size="large" className="example-2">
+          <div>Site</div>
+        </Pill>
+      </div>
+      <br />
+      <label>Small Pills</label>
+      <div className="grid grid-small">
+        <Pill size="small" className="example-1" onClick={() => {}}>
+          <SvgSymbol href="./assets/svg-symbols.svg#calendar" />
+          <div style={{ marginLeft: 5 }}>Calendar</div>
+        </Pill>
+        <Pill size="small" className="example-2">
           <div>Site</div>
         </Pill>
       </div>
