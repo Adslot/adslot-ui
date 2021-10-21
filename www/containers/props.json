@@ -4861,24 +4861,6 @@
       "displayName": "Tabs",
       "methods": [
         {
-          "name": "isControlled",
-          "docblock": null,
-          "modifiers": [
-            "get"
-          ],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "activeKey",
-          "docblock": null,
-          "modifiers": [
-            "get"
-          ],
-          "params": [],
-          "returns": null
-        },
-        {
           "name": "switchTab",
           "docblock": null,
           "modifiers": [],
