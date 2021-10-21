@@ -5,88 +5,68 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Tab from '../Tab';
 
-class Tabs extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const Tabs = ({ id, children, defaultActiveKey, activeKey, onSelect }) => {
+  const [currentActiveKey, setCurrentActiveKey] = React.useState(defaultActiveKey);
 
-    this.state = {
-      activeKey: this.props.defaultActiveKey,
-    };
+  const isControlled = !_.isNil(activeKey) && _.isFunction(onSelect);
+  const actualActiveKey = isControlled ? activeKey : currentActiveKey;
 
-    this.switchTab = this.switchTab.bind(this);
-  }
-
-  get isControlled() {
-    const { activeKey, onSelect } = this.props;
-
-    return !_.isNil(activeKey) && _.isFunction(onSelect);
-  }
-
-  get activeKey() {
-    return this.isControlled ? this.props.activeKey : this.state.activeKey;
-  }
-
-  switchTab(key) {
-    const { onSelect, activeKey } = this.props;
+  const switchTab = (key) => {
     return (event) => {
       event.preventDefault();
 
-      if (this.isControlled && key !== activeKey) {
+      if (isControlled && key !== activeKey) {
         onSelect(key);
-      } else if (key !== this.state.activeKey) {
-        this.setState({ activeKey: key });
+      } else if (key !== currentActiveKey) {
+        setCurrentActiveKey(key);
       }
     };
-  }
+  };
 
-  render() {
-    const { id, children } = this.props;
+  const tabs = [];
+  const content = React.Children.map(children, (child) => {
+    if (_.get(child, 'type.innerName') !== Tab.innerName) {
+      console.error('<Tabs /> children must be instances of <Tab />');
+      return null;
+    }
 
-    const tabs = [];
-    const content = React.Children.map(children, (child) => {
-      if (_.get(child, 'type.innerName') !== Tab.innerName) {
-        console.error('<Tabs /> children must be instances of <Tab />');
-        return false;
-      }
-
-      // child must be a Tab instance at this point
-      const tab = React.cloneElement(child, {
-        show: this.activeKey === child.props.eventKey,
-      });
-      tabs.push(tab);
-
-      return tab;
+    // child must be a Tab instance at this point
+    const tab = React.cloneElement(child, {
+      show: actualActiveKey === child.props.eventKey,
     });
+    tabs.push(tab);
 
-    return (
-      <div data-testid="tablist-wrapper" id={id}>
-        <ul role="tablist" className="nav nav-tabs">
-          {tabs.map((tab) => (
-            <li
-              data-testid="tablist-item"
-              role="presentation"
-              className={classnames({ active: tab.props.show, disabled: tab.props.disabled }, tab.props.tabClassName)}
-              key={tab.props.eventKey}
+    return tab;
+  });
+
+  return (
+    <div data-testid="tablist-wrapper" id={id}>
+      <ul role="tablist" className="nav nav-tabs">
+        {tabs.map((tab) => (
+          <li
+            data-testid="tablist-item"
+            role="presentation"
+            className={classnames({ active: tab.props.show, disabled: tab.props.disabled }, tab.props.tabClassName)}
+            key={tab.props.eventKey}
+          >
+            <a
+              data-testid="tablist-a-tag"
+              id={`${id}-tab-${tab.props.eventKey}`}
+              role="tab"
+              tabIndex={-1}
+              aria-selected={tab.props.show}
+              onClick={switchTab(tab.props.eventKey)}
+              style={tab.props.disabled ? { pointerEvents: 'none' } : {}}
             >
-              <a
-                data-testid="tablist-a-tag"
-                id={`${id}-tab-${tab.props.eventKey}`}
-                role="tab"
-                tabIndex={-1}
-                aria-selected={tab.props.show}
-                onClick={this.switchTab(tab.props.eventKey)}
-                style={tab.props.disabled ? { pointerEvents: 'none' } : {}}
-              >
-                {tab.props.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="tab-content">{content}</div>
-      </div>
-    );
-  }
-}
+              {tab.props.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div className="tab-content">{content}</div>
+    </div>
+  );
+};
 
 Tabs.propTypes = {
   id: PropTypes.string.isRequired,
