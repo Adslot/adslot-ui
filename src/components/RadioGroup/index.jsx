@@ -4,38 +4,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 
-class RadioGroup extends React.PureComponent {
-  onChangeDefault = (event) => {
+const RadioGroup = ({ className, onChange, children, name, value, inline, id, dts }) => {
+  const classNames = classnames(['radio-group-component', className]);
+
+  const onChangeDefault = (event) => {
     const newValue = event.currentTarget.value;
-    this.props.onChange(newValue);
+    onChange(newValue);
   };
 
-  renderChildren = () =>
-    React.Children.map(this.props.children, (child) => {
+  const renderChildren = () =>
+    React.Children.map(children, (child) => {
       const childProps = _.assign({}, child.props, {
-        name: this.props.name,
-        checked: this.props.value === child.props.value,
+        name: name,
+        checked: value === child.props.value,
         onChange: (...args) => {
           child.props.onChange(...args);
-          this.onChangeDefault(...args);
+          onChangeDefault(...args);
         },
-        inline: this.props.inline,
+        inline: inline,
       });
 
       return React.cloneElement(child, childProps);
     });
 
-  render() {
-    const { dts, className, id } = this.props;
-    const classNames = classnames(['radio-group-component', className]);
-
-    return (
-      <div data-testid="radio-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
-        {this.renderChildren()}
-      </div>
-    );
-  }
-}
+  return (
+    <div data-testid="radio-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
+      {renderChildren()}
+    </div>
+  );
+};
 
 RadioGroup.propTypes = {
   id: PropTypes.string,
