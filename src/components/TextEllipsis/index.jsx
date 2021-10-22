@@ -4,66 +4,42 @@ import React from 'react';
 import Popover from '../Popover';
 import './styles.scss';
 
-class TextEllipsisComponent extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    /**
-     * Can use `placement` and `trigger` props from <a href="/popover">Popover</a> to control popover.
-     */
-    popoverProps: PropTypes.shape(_.pick(Popover.propTypes, ['placement', 'trigger'])),
-  };
+const TextEllipsis = ({ popoverProps, children }) => {
+  const containerRef = React.useRef();
+  const [truncated, setTruncated] = React.useState(false);
 
-  static defaultProps = {
-    popoverProps: {
-      placement: 'top',
-      trigger: 'hover',
-    },
-  };
+  React.useLayoutEffect(() => {
+    const nextTruncateState = containerRef.current.scrollWidth > containerRef.current.clientWidth;
 
-  constructor(props) {
-    super(props);
-
-    this.container = React.createRef();
-  }
-
-  state = {
-    truncated: false,
-  };
-
-  componentDidMount() {
-    this.setTruncate();
-  }
-
-  componentDidUpdate() {
-    this.setTruncate();
-  }
-
-  setTruncate() {
-    const nextTruncateState = this.container.current.scrollWidth > this.container.current.clientWidth;
-    if (this.state.truncated !== nextTruncateState) {
-      this.setState({
-        truncated: nextTruncateState,
-      });
+    if (truncated !== nextTruncateState) {
+      setTruncated(nextTruncateState);
     }
-  }
+  }, [truncated]);
 
-  render() {
-    const { popoverProps } = this.props;
-    const { truncated } = this.state;
+  return (
+    <Popover
+      {...popoverProps}
+      {...(truncated === false ? { triggers: 'disabled' } : {})}
+      popoverContent={children}
+      className="aui--text-ellipsis-wrapper"
+    >
+      <div data-testid="text-ellipsis" className="text-ellipsis-component" ref={containerRef}>
+        {children}
+      </div>
+    </Popover>
+  );
+};
 
-    return (
-      <Popover
-        {...popoverProps}
-        {...(truncated === false ? { triggers: 'disabled' } : {})}
-        popoverContent={this.props.children}
-        className="aui--text-ellipsis-wrapper"
-      >
-        <div data-testid="text-ellipsis" className="text-ellipsis-component" ref={this.container}>
-          {this.props.children}
-        </div>
-      </Popover>
-    );
-  }
-}
+TextEllipsis.propTypes = {
+  children: PropTypes.node.isRequired,
+  popoverProps: PropTypes.shape(_.pick(Popover.propTypes, ['placement', 'trigger'])),
+};
 
-export default TextEllipsisComponent;
+TextEllipsis.defaultProps = {
+  popoverProps: {
+    placement: 'top',
+    trigger: 'hover',
+  },
+};
+
+export default TextEllipsis;
