@@ -43,7 +43,12 @@ To get started, take a look at our [Contributing](https://ui.adslot.com/contribu
 - After the build completes, VS Code will automatically connect to the container. You can now work with the repository source code in this independent environment as you would if you had cloned the code locally.
 
 Notes:
+
 - Due to bind mount performance issues on Windows and macOS, the steps above uses the [Clone Repository in Container Volume](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume) method. Other options can be found [here](https://code.visualstudio.com/docs/remote/containers).
+
+### Development build
+
+- Every branch has its own build of the documentation app ready at: https://<branch-name>--adslot-ui.netlify.app
 
 ## Commands
 
