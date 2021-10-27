@@ -17,13 +17,6 @@
           "returns": null
         },
         {
-          "name": "validateProps",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
           "name": "renderPanelFromChildren",
           "docblock": null,
           "modifiers": [],
