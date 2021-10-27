@@ -48,7 +48,7 @@ Notes:
 
 ### Development build
 
-- Every branch has its own build of the documentation app ready at: https://<branch-name>--adslot-ui.netlify.app
+- Every branch has its own build of the documentation app ready at: `https://<branch-name>--adslot-ui.netlify.app`
 
 ## Commands
 
