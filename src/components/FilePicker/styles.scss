@@ -10,8 +10,6 @@
   .remove-file {
     background-color: $color-disabled;
     border: 0;
-    box-shadow: none;
-    height: 28px;
     margin-right: 0;
   }
 
@@ -21,6 +19,7 @@
 
   .aui--button {
     box-shadow: none;
+    height: 28px;
 
     &:focus {
       background-color: inherit;
