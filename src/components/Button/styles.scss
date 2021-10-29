@@ -203,9 +203,8 @@
   }
 
   &.btn-large {
-    width: 264px;
-    height: 42px;
-    font-size: 15px;
+    padding: 5px 20px;
+    font-size: $font-size-subheader;
   }
 
   &.btn-inverse:not([disabled]).btn-primary {
