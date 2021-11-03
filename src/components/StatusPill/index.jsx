@@ -5,14 +5,17 @@ import Pill from '../Pill';
 import './styles.scss';
 
 const styles = ['primary', 'success', 'warning', 'error', 'light'];
+const sizes = ['large', 'medium', 'small'];
 
-const StatusPill = ({ displayStyle, status, inverse, dts }) => (
+const StatusPill = ({ displayStyle, status, inverse, size, className, dts }) => (
   <Pill
     className={classnames([
       'aui--status-pill',
       `aui--status-pill-${displayStyle}`,
       { 'aui--status-pill-inverse': inverse },
+      className,
     ])}
+    size={size}
     dts={dts}
   >
     {status}
@@ -21,6 +24,7 @@ const StatusPill = ({ displayStyle, status, inverse, dts }) => (
 
 StatusPill.defaultProps = {
   displayStyle: styles[0],
+  size: sizes[1],
   inverse: false,
 };
 
@@ -34,6 +38,10 @@ StatusPill.propTypes = {
    */
   displayStyle: PropTypes.oneOf(styles),
   /**
+   * one of ["large",  "medium", "small"]
+   */
+  size: PropTypes.oneOf(sizes),
+  /**
    * Status pill with inverse style
    */
   inverse: PropTypes.bool,
@@ -41,6 +49,7 @@ StatusPill.propTypes = {
    * 	Generate "data-test-selector" on the status pill
    */
   dts: PropTypes.string,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 };
 
 export default StatusPill;

@@ -190,7 +190,11 @@
             "name": "string"
           },
           "required": false,
-          "description": ""
+          "description": "",
+          "defaultValue": {
+            "value": "'Cancel'",
+            "computed": false
+          }
         }
       }
     }
@@ -3114,6 +3118,31 @@
           "required": false,
           "description": "Custome onClick event"
         },
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'large'",
+                "computed": false
+              },
+              {
+                "value": "'medium'",
+                "computed": false
+              },
+              {
+                "value": "'small'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "one of [\"large\",  \"medium\", \"small\"]",
+          "defaultValue": {
+            "value": "sizes[1]",
+            "computed": true
+          }
+        },
         "dts": {
           "type": {
             "name": "string"
@@ -4633,6 +4662,31 @@
             "computed": true
           }
         },
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'large'",
+                "computed": false
+              },
+              {
+                "value": "'medium'",
+                "computed": false
+              },
+              {
+                "value": "'small'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "one of [\"large\",  \"medium\", \"small\"]",
+          "defaultValue": {
+            "value": "sizes[1]",
+            "computed": true
+          }
+        },
         "inverse": {
           "type": {
             "name": "bool"
@@ -4650,6 +4704,24 @@
           },
           "required": false,
           "description": "Generate \"data-test-selector\" on the status pill"
+        },
+        "className": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "string"
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
