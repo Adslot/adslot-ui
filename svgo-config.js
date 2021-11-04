@@ -1,6 +1,18 @@
-const { extendDefaultPlugins } = require('svgo');
+// https://github.com/svg/svgo#configuration
 module.exports = {
-  plugins: extendDefaultPlugins([
+  plugins: [
+    {
+      name: 'preset-default',
+      params: {
+        overrides: {
+          inlineStyles: {
+            onlyMatchedOnce: false,
+          },
+
+          removeDoctype: false,
+        },
+      },
+    },
     {
       name: 'convertStyleToAttrs',
     },
@@ -10,11 +22,5 @@ module.exports = {
         attrs: ['id'],
       },
     },
-    {
-      name: 'inlineStyles',
-      params: {
-        onlyMatchedOnce: false,
-      },
-    },
-  ]),
+  ],
 };
