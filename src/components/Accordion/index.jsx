@@ -52,7 +52,7 @@ const Accordion = ({ dts, children, maxExpand, defaultActivePanelIds, onPanelCli
   );
 };
 
-Accordion.prototypes = {
+Accordion.propTypes = {
   /**
    * render `data-test-selector` onto the component. It can be useful for testing.
    */
