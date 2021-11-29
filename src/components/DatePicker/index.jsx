@@ -33,23 +33,21 @@ const withMoment = (DatePickerComponent) =>
     }
   );
 
-const DatePicker = withMoment(
-  React.forwardRef(({ disableInlineEditing, dts, ...rest }, ref) => {
-    const datePickerProps = disableInlineEditing
-      ? {
-          onChangeRaw: (event) => {
-            event.preventDefault();
-          },
-        }
-      : {};
+const DatePicker = withMoment(({ disableInlineEditing, dts, ...rest }) => {
+  const datePickerProps = disableInlineEditing
+    ? {
+        onChangeRaw: (event) => {
+          event.preventDefault();
+        },
+      }
+    : {};
 
-    return (
-      <div data-testid="date-picker-wrapper" className="aui--date-picker" data-test-selector={dts}>
-        <ReactDatePicker {...rest} {...datePickerProps} />
-      </div>
-    );
-  })
-);
+  return (
+    <div data-testid="date-picker-wrapper" className="aui--date-picker" data-test-selector={dts}>
+      <ReactDatePicker {...rest} {...datePickerProps} />
+    </div>
+  );
+});
 
 DatePicker.propTypes = {
   disableInlineEditing: PropTypes.bool,
