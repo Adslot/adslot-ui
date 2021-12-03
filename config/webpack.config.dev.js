@@ -40,12 +40,6 @@ module.exports = webpackMerge(commonConfig, {
   module: {
     rules: [
       {
-        enforce: 'pre', // Lint before babel transpiles; fail fast on syntax
-        test: /\.(js|jsx)$/,
-        include: paths.appSrc,
-        use: ['eslint-loader'],
-      },
-      {
         test: /\.(md|mdx)?$/,
         include: [paths.appSrc, paths.appDemo],
         use: [

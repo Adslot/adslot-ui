@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
 const postCssConfig = require('./postCssConfig');
@@ -117,6 +116,5 @@ module.exports = webpackMerge(commonConfig, {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new ESLintPlugin(),
   ],
 });
