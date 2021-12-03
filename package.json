@@ -109,7 +109,7 @@
     "moment": "^2.29.1",
     "null-loader": "^4.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-loader": "^6.2.0",
+    "postcss-loader": "^6.2.1",
     "postcss-safe-parser": "^6.0.0",
     "prettier": "^2.4.1",
     "prism-react-renderer": "^1.2.1",
