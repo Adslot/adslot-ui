@@ -142,7 +142,7 @@
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
-    "html-to-text": "^8.0.0",
+    "html-to-text": "^8.1.0",
     "react-popper": "^2.2.5",
     "react-slick": "^0.28.1",
     "react-toastify": "^6.0.5",
