@@ -109,7 +109,7 @@
     "prettier": "^2.4.1",
     "prism-react-renderer": "^1.2.1",
     "prop-types": "^15.7.2",
-    "react-datepicker": "^4.4.0",
+    "react-datepicker": "^4.5.0",
     "react-dev-utils": "^12.0.0-next.47",
     "react-docgen": "^5.4.0",
     "react-docgen-displayname-handler": "^3.0.2",
