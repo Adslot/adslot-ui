@@ -53,12 +53,6 @@ module.exports = webpackMerge(commonConfig, {
       commonjs: 'react-dom',
       amd: 'react-dom',
     },
-    'react-redux': {
-      root: 'reactRedux',
-      commonjs2: 'react-redux',
-      commonjs: 'react-redux',
-      amd: 'react-redux',
-    },
     moment: {
       root: 'moment',
       commonjs2: 'moment',

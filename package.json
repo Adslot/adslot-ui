@@ -102,7 +102,6 @@
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
     "mini-css-extract-plugin": "^2.4.3",
-    "moment": "^2.29.1",
     "null-loader": "^4.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.0",
@@ -116,9 +115,8 @@
     "react-docgen-displayname-handler": "^3.0.2",
     "react-html-parser": "^2.0.2",
     "react-live": "^2.3.0",
-    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.3.0",
     "react-select": "^3.0.8",
-    "redux": "^4.1.1",
     "remark-emoji": "^2.2.0",
     "rimraf": "^3.0.2",
     "sass": "^1.43.4",
@@ -136,7 +134,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
     "@draft-js-plugins/editor": "^4.1.0",
     "@draft-js-plugins/mention": "^4.6.1",
     "@popperjs/core": "^2.4.0",
@@ -146,11 +143,7 @@
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
     "html-to-text": "^8.0.0",
-    "lodash": "^4.17.21",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "react-popper": "^2.2.5",
-    "react-router-dom": "^5.2.0",
     "react-slick": "^0.28.1",
     "react-toastify": "^6.0.5",
     "slick-carousel": "^1.8.1"
