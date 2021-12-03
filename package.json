@@ -161,7 +161,7 @@
   },
   "peerDependencies": {
     "lodash": ">= 4.0",
-    "moment": ">= 1.0",
+    "moment": ">= 2.29.1",
     "react": ">= 16.0",
     "react-dom": ">= 16.0"
   },
