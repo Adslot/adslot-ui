@@ -431,4 +431,42 @@ describe('<RichTextEditor />', () => {
       await waitFor(() => expect(queryByTestId('file-sticker-image')).toBeInTheDocument());
     });
   });
+
+  describe('useTruncateState', () => {
+    const Component = ({ text, ...rest }) => {
+      const editorState = RichTextEditor.stateFromHTML(text);
+      const { truncatedState } = RichTextEditor.useTruncateState({
+        editorState,
+        briefCharCount: 20,
+        truncateString: '...',
+        ...rest,
+      });
+      const html = RichTextEditor.stateToHTML(truncatedState);
+      return <div data-testid="test" dangerouslySetInnerHTML={{ __html: html }} />;
+    };
+    it('should truncate editor state', () => {
+      const { getByTestId } = render(<Component text="<p>abcdefghijklmnop</p><p>12345678910</p><p>12345678910</p>" />);
+      expect(getByTestId('test')).toHaveTextContent('abcdefghijklmnop 1234...');
+    });
+    it('should customize truncate string', () => {
+      const { getByTestId } = render(
+        <Component truncateString="---" text="<p>abcdefghijklmnop</p><p>12345678910</p><p>12345678910</p>" />
+      );
+      expect(getByTestId('test')).toHaveTextContent('abcdefghijklmnop 1234---');
+    });
+    it('should allow no truncate string', () => {
+      const { getByTestId } = render(
+        <Component truncateString={null} briefCharCount={5} text="<p>abcdefghijklmnop</p>" />
+      );
+      expect(getByTestId('test')).toHaveTextContent('abcde');
+    });
+    it('should not truncate text shorter than briefCharCount', () => {
+      const { getByTestId } = render(<Component briefCharCount={200} text="<p>abcdefghijklmnop</p>" />);
+      expect(getByTestId('test')).toHaveTextContent('abcdefghijklmnop');
+    });
+    it('should work when a whole block needs to be removed', () => {
+      const { getByTestId } = render(<Component briefCharCount={16} text="<p>abcdefghijklmnop</p><p>q</p>" />);
+      expect(getByTestId('test').innerHTML).toEqual(`<p>abcdefghijklmnop...</p>`);
+    });
+  });
 });
