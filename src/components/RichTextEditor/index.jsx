@@ -16,10 +16,13 @@ import FilePreviewList from './FilePreviewList';
 import Popover from '../Popover';
 import './styles.css';
 
-const { EditorState, Modifier, convertToRaw, RichUtils } = draftJs;
+const { Modifier, EditorState, convertToRaw, RichUtils, SelectionState } = draftJs;
 
 const editorStateToHTML = (input) => stateToHTML(input.getCurrentContent());
-const editorStateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
+const editorStateFromHTML = (input, options = {}) => {
+  const { parser } = options;
+  return EditorState.createWithContent(stateFromHTML(input, { parser }));
+};
 const isEditorStateEmpty = (html) => html === '<p><br></p>';
 
 const getInitialEditorState = (value, initialValue) => {
@@ -233,9 +236,83 @@ RichTextEditor.defaultProps = {
 RichTextEditor.createEmpty = EditorState.createEmpty;
 RichTextEditor.createWithText = createEditorStateWithText;
 RichTextEditor.stateToHTML = editorStateToHTML;
+/**
+ * @example
+ * // parser exaple with dom-purify
+ * const DOMPurifyDefaultConfig = {
+ *   USE_PROFILES: { html: true },
+ *   FORBID_TAGS: ['style'],
+ *   FORBID_ATTR: ['style'],
+ * };
+ * const parser = (html) => DOMPurify.sanitize(html, { ...DOMPurifyConfig, RETURN_DOM: true });
+ *
+ * RichTextEditor.stateFromHTML(html, { parser });
+ **/
 RichTextEditor.stateFromHTML = editorStateFromHTML;
 RichTextEditor.stateToPlainText = (input) => input.getCurrentContent().getPlainText();
 RichTextEditor.stateToEntityList = (input) => convertToRaw(input.getCurrentContent()).entityMap;
 RichTextEditor.plainTextFromHTML = (input) => RichTextEditor.stateToPlainText(editorStateFromHTML(input));
+RichTextEditor.useTruncateState = ({ editorState, briefCharCount, truncateString }) => {
+  const totalCharCount = React.useMemo(() => {
+    const contentState = editorState.getCurrentContent();
+    const blocks = contentState.getBlocksAsArray();
+    return contentState.getPlainText().length - (blocks.length - 1);
+  }, [editorState]);
+
+  const truncatedState = React.useMemo(() => {
+    // text doesn't exceed limit
+    if (totalCharCount <= briefCharCount) {
+      return editorState;
+    }
+
+    const contentState = editorState.getCurrentContent();
+    const blocks = contentState.getBlocksAsArray();
+    const lastBlock = contentState.getLastBlock();
+
+    let anchor = lastBlock;
+    let anchorOffset = 0;
+    let acc = 0;
+
+    // get the anchor offset and start block of the text to be removed
+    for (let i = 0; i < blocks.length; i++) {
+      const curr = blocks[i];
+      if (curr.getLength() + acc >= briefCharCount) {
+        anchor = curr;
+        const offset = curr.getLength() + acc - briefCharCount;
+        anchorOffset = offset === 0 ? curr.getLength() : -offset;
+        break;
+      }
+      acc += curr.getLength();
+    }
+
+    // select from anchor offset to end of last block
+    const targetRange = new SelectionState({
+      anchorKey: anchor.getKey(),
+      anchorOffset,
+      focusKey: lastBlock.getKey(),
+      focusOffset: lastBlock.getLength(),
+    });
+
+    const replaced = Modifier.removeRange(contentState, targetRange, 'forward');
+
+    // insert truncateString at end
+    if (truncateString) {
+      const end = replaced.getLastBlock();
+      const newSelection = SelectionState.createEmpty(anchor.getKey())
+        .set('anchorOffset', end.getLength())
+        .set('focusOffset', end.getLength());
+
+      const withTruncateString = Modifier.insertText(replaced, newSelection, truncateString, null);
+
+      return EditorState.push(editorState, withTruncateString, 'remove-range');
+    }
+    return EditorState.push(editorState, replaced, 'remove-range');
+  }, [briefCharCount, editorState, totalCharCount, truncateString]);
+
+  return {
+    totalCharCount,
+    truncatedState,
+  };
+};
 
 export default RichTextEditor;

@@ -1,16 +1,33 @@
 import * as React from 'react';
 
+export type ParagraphChildren = string | React.ReactNode;
+
 export type ParagraphClassName = string | string[];
 
 export interface ParagraphProps {
   /**
-   * The maximum of word count for brief content
+   * The maximum character count for brief content
    */
-  briefWordCount: number;
+  briefCharCount?: number;
+  /**
+   * A fallback maximum height for the brief content.
+   * This height won't be exceeded, even if props.briefCharCount isn't reached
+   * (e.g due to new lines in HTML)
+   * @default 100
+   */
+  briefMaxHeight?: number;
+  /**
+   * Removes Read More button, only showing text in the current collapsed state
+   */
+  hideReadMore?: boolean;
+  /**
+   * Control collapsed state
+   */
+  collapsed?: boolean;
   /**
    * Content inside paragraph
    */
-  content?: string;
+  children: ParagraphChildren;
   /**
    * Custom classnames
    */
@@ -19,12 +36,40 @@ export interface ParagraphProps {
    * Generate "data-test-selector" on the paragraph
    */
   dts?: string;
-  /**
-   * Define if the content is HTML type or not
-   */
-  isHtml?: boolean;
 }
 
-declare const Paragraph: React.FC<ParagraphProps>;
+declare const Paragraph: React.FC<ParagraphProps> & {
+  ReadMore: typeof Paragraph;
+  HTML: typeof HTML;
+};
 
 export default Paragraph;
+
+export interface HTMLProps {
+  /**
+   * Control the html truncation state
+   */
+  truncated?: boolean;
+  /**
+   * the string to append to truncated text
+   * @default '...'
+   */
+  truncateString?: string;
+  /**
+   * HTML content
+   */
+  content?: string;
+  /**
+   * Optional parser to sanitize content with
+   */
+  parser?: (...args: any[]) => any;
+  /**
+   * limits the content to this length when truncated
+   */
+  briefCharCount?: number;
+  dts?: string;
+}
+
+declare const HTML: React.FC<HTMLProps>;
+
+declare const ReadMoreProdiver: React.FC;

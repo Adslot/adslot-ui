@@ -3198,15 +3198,7 @@
     {
       "description": "",
       "displayName": "Panel",
-      "methods": [
-        {
-          "name": "onHeaderClick",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "id": {
           "type": {
@@ -3263,6 +3255,17 @@
           },
           "required": false,
           "description": ""
+        },
+        "animate": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
         }
       }
     }
@@ -3271,24 +3274,86 @@
     {
       "description": "",
       "displayName": "Paragraph",
-      "methods": [],
+      "methods": [
+        {
+          "name": "ReadMore",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{\n  briefMaxHeight = 200,\n  hideReadMore,\n  collapsed: collapsedProp = true,\n  className,\n  children,\n  dts,\n}",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "HTML",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ dts, truncated, content, briefCharCount = 240, truncateString = '...', parser }",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
       "props": {
-        "briefWordCount": {
+        "briefCharCount": {
           "type": {
             "name": "number"
           },
           "required": false,
-          "description": "The maximum of word count for brief content",
+          "description": "The maximum character count for brief content"
+        },
+        "briefMaxHeight": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "A fallback maximum height for the brief content.\n This height won't be exceeded, even if props.briefCharCount isn't reached\n (e.g due to new lines in HTML)\n @default 100",
           "defaultValue": {
-            "value": "255",
+            "value": "200",
             "computed": false
           }
         },
-        "content": {
+        "hideReadMore": {
           "type": {
-            "name": "string"
+            "name": "bool"
           },
           "required": false,
+          "description": "Removes Read More button, only showing text in the current collapsed state"
+        },
+        "collapsed": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Control collapsed state",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "node"
+              }
+            ]
+          },
+          "required": true,
           "description": "Content inside paragraph"
         },
         "className": {
@@ -3315,17 +3380,68 @@
           },
           "required": false,
           "description": "Generate \"data-test-selector\" on the paragraph"
-        },
-        "isHtml": {
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "ReadMoreProdiver",
+      "methods": []
+    },
+    {
+      "description": "",
+      "displayName": "HTML",
+      "methods": [],
+      "props": {
+        "truncated": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "Define if the content is HTML type or not",
+          "description": "Control the html truncation state"
+        },
+        "truncateString": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "the string to append to truncated text\n@default '...'",
           "defaultValue": {
-            "value": "false",
+            "value": "'...'",
             "computed": false
           }
+        },
+        "content": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "HTML content"
+        },
+        "parser": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Optional parser to sanitize content with"
+        },
+        "briefCharCount": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "limits the content to this length when truncated",
+          "defaultValue": {
+            "value": "240",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -4069,18 +4185,21 @@
         },
         {
           "name": "stateFromHTML",
-          "docblock": null,
+          "docblock": "@example\n// parser exaple with dom-purify\nconst DOMPurifyDefaultConfig = {\n  USE_PROFILES: { html: true },\n  FORBID_TAGS: ['style'],\n  FORBID_ATTR: ['style'],\n};\nconst parser = (html) => DOMPurify.sanitize(html, { ...DOMPurifyConfig, RETURN_DOM: true });\n\nRichTextEditor.stateFromHTML(html, { parser });",
           "modifiers": [
             "static"
           ],
           "params": [
             {
               "name": "input",
-              "optional": false,
-              "type": null
+              "optional": false
+            },
+            {
+              "name": "options"
             }
           ],
-          "returns": null
+          "returns": null,
+          "description": null
         },
         {
           "name": "stateToPlainText",
@@ -4107,6 +4226,20 @@
             {
               "name": "input",
               "optional": false,
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "useTruncateState",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ editorState, briefCharCount, truncateString }",
               "type": null
             }
           ],
