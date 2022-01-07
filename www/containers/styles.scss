@@ -72,8 +72,11 @@ body {
     padding: 10px 0;
 
     .aui--docs-panel-list {
+      color: unset;
+      display: block;
       padding: 10px 20px;
       cursor: pointer;
+      text-decoration: none;
 
       &.is-active {
         background-color: $color-gray-lighter;

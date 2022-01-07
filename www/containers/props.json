@@ -3,32 +3,7 @@
     {
       "description": "",
       "displayName": "Accordion",
-      "methods": [
-        {
-          "name": "onPanelClick",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "panelId",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "renderPanelFromChildren",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "child",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "dts": {
           "type": {
@@ -1375,20 +1350,7 @@
     {
       "description": "",
       "displayName": "DatePicker",
-      "methods": [
-        {
-          "name": "handleDateChangeRaw",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "disableInlineEditing": {
           "type": {
@@ -1396,6 +1358,24 @@
           },
           "required": false,
           "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disableMomentFormat": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "\"dateFormat\" prop is using momentjs format tokens.\nset this prop to \"true\" to enable unicode tokens.\nread more https://git.io/fxCyr",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -3584,27 +3564,7 @@
     {
       "description": "",
       "displayName": "RadioGroup",
-      "methods": [
-        {
-          "name": "onChangeDefault",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "event",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "renderChildren",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "id": {
           "type": {
@@ -4924,20 +4884,7 @@
     {
       "description": "",
       "displayName": "Tabs",
-      "methods": [
-        {
-          "name": "switchTab",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "key",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "id": {
           "type": {
@@ -5147,16 +5094,8 @@
   "src/components/TextEllipsis/index.jsx": [
     {
       "description": "",
-      "displayName": "TextEllipsisComponent",
-      "methods": [
-        {
-          "name": "setTruncate",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "displayName": "TextEllipsis",
+      "methods": [],
       "props": {
         "children": {
           "type": {
@@ -5172,7 +5111,7 @@
             "computed": true
           },
           "required": false,
-          "description": "Can use `placement` and `trigger` props from <a href=\"/popover\">Popover</a> to control popover.",
+          "description": "",
           "defaultValue": {
             "value": "{\n  placement: 'top',\n  trigger: 'hover',\n}",
             "computed": false
