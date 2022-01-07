@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { MDXProvider } from '@mdx-js/react';
 import GoogleAnalytics from './GoogleAnalytics';
 import Scaffold from './Scaffold';
@@ -15,10 +15,10 @@ export class App extends Component {
   render() {
     return (
       <MDXProvider components={components}>
-        <Router>
+        <BrowserRouter>
           <Scaffold />
           {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
-        </Router>
+        </BrowserRouter>
       </MDXProvider>
     );
   }

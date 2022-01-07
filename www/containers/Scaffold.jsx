@@ -1,19 +1,16 @@
 import React from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import SidePanel from './SidePanel';
 import routes from './routes';
 import NotFound from './NotFound';
 
 export default function Scaffold() {
-  const history = useHistory();
+  const location = useLocation();
 
   React.useEffect(() => {
-    const unlisten = history.listen(() => {
-      window.scrollTo(0, 0);
-    });
-    return unlisten;
-  }, [history]);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="adslot-ui-layout">
@@ -23,12 +20,13 @@ export default function Scaffold() {
           <SidePanel />
         </div>
         <div className="adslot-ui-content-area">
-          <Switch>
-            {Object.keys(routes).map((key) => (
-              <Route key={key} path={routes[key].path} exact component={routes[key].component} />
-            ))}
-            <Route component={NotFound} />
-          </Switch>
+          <Routes>
+            {Object.keys(routes).map((key) => {
+              const Component = routes[key].component;
+              return <Route key={key} path={routes[key].path} element={<Component />} />;
+            })}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </div>
     </div>
