@@ -41,8 +41,11 @@ describe('<TreePicker />', () => {
     expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component');
 
     expect(queryAllByTestId('split-panel-wrapper')).toHaveLength(2);
+    const wrapper = getByTestId('treepicker-wrapper');
+    const splitPanes = queryAllByTestId('split-panel-wrapper');
 
-    getByTestId('treepicker-wrapper').children.forEach((child) => expect(child).toHaveClass('splitpane-component'));
+    expect(wrapper).toContainElement(splitPanes[0]);
+    expect(wrapper).toContainElement(splitPanes[1]);
 
     expect(queryByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
 

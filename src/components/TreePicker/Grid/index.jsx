@@ -6,10 +6,10 @@ import Empty from '../../Empty';
 import Grid from '../../Grid';
 import GridRow from '../../Grid/Row';
 import Spinner from '../../Spinner';
-import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
+import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes';
 import './styles.scss';
 
-const TreePickerGridComponent = ({
+const TreePickerGrid = ({
   disabled,
   emptySvgSymbol,
   expandNode,
@@ -72,7 +72,7 @@ const TreePickerGridComponent = ({
   );
 };
 
-TreePickerGridComponent.propTypes = {
+TreePickerGrid.propTypes = {
   disabled: PropTypes.bool,
   emptySvgSymbol: PropTypes.node,
   emptyText: PropTypes.node.isRequired,
@@ -82,7 +82,7 @@ TreePickerGridComponent.propTypes = {
   includeNode: PropTypes.func,
   itemType: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
-  nodes: PropTypes.arrayOf(TreePickerPropTypes.node),
+  nodes: PropTypes.arrayOf(TreePickerPropTypesNode),
   nodeRenderer: PropTypes.func,
   removeNode: PropTypes.func,
   selected: PropTypes.bool.isRequired,
@@ -90,7 +90,7 @@ TreePickerGridComponent.propTypes = {
   displayGroupHeader: PropTypes.bool,
 };
 
-TreePickerGridComponent.defaultProps = {
+TreePickerGrid.defaultProps = {
   disabled: false,
   displayGroupHeader: true,
   groupFormatter: () => 'Default Group',
@@ -98,4 +98,4 @@ TreePickerGridComponent.defaultProps = {
   isLoading: false,
 };
 
-export default TreePickerGridComponent;
+export default TreePickerGrid;

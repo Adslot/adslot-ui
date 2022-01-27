@@ -7,30 +7,6 @@ import './styles.scss';
 const MenuItem = ({ children }) => children;
 
 class VerticalNavigation extends React.Component {
-  static propTypes = {
-    /**
-     * 	control whether the MenuItem can be folded into a collapse icon (hamburger)
-     */
-    collapsable: PropTypes.bool,
-    isCollapsed: PropTypes.bool,
-    /**
-     * event handler for clicking on the collapse/expand button
-     * </br>
-     * const onClick = () => ...
-     */
-    onClick: PropTypes.func,
-    /**
-     * 	render `data-test-selector` onto the component. It can be useful for testing.
-     */
-    dts: PropTypes.string,
-    className: PropTypes.string,
-  };
-
-  static defaultProps = {
-    collapsable: true,
-    isCollapsed: false,
-  };
-
   constructor(props) {
     super(props);
     this.menuList = this.renderMenu(props);
@@ -150,5 +126,29 @@ class VerticalNavigation extends React.Component {
 }
 
 VerticalNavigation.MenuItem = MenuItem;
+
+VerticalNavigation.propTypes = {
+  /**
+   * 	control whether the MenuItem can be folded into a collapse icon (hamburger)
+   */
+  collapsable: PropTypes.bool,
+  isCollapsed: PropTypes.bool,
+  /**
+   * event handler for clicking on the collapse/expand button
+   * </br>
+   * const onClick = () => ...
+   */
+  onClick: PropTypes.func,
+  /**
+   * 	render `data-test-selector` onto the component. It can be useful for testing.
+   */
+  dts: PropTypes.string,
+  className: PropTypes.string,
+};
+
+VerticalNavigation.defaultProps = {
+  collapsable: true,
+  isCollapsed: false,
+};
 
 export default VerticalNavigation;

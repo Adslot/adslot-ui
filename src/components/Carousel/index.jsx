@@ -8,7 +8,7 @@ import './styles.scss';
 
 const baseClass = 'aui--carousel-component';
 
-const CarouselComponent = React.forwardRef((props, ref) => {
+const Carousel = React.forwardRef((props, ref) => {
   const { className, children } = props;
 
   return (
@@ -18,7 +18,7 @@ const CarouselComponent = React.forwardRef((props, ref) => {
   );
 });
 
-CarouselComponent.propTypes = {
+Carousel.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   autoplay: PropTypes.bool,
@@ -28,7 +28,7 @@ CarouselComponent.propTypes = {
   dots: PropTypes.bool,
 };
 
-CarouselComponent.defaultProps = {
+Carousel.defaultProps = {
   autoplay: true,
   variableWidth: true,
   autoplaySpeed: 10000,
@@ -66,6 +66,6 @@ const usePreventCarouselSwipeClicks = () => {
  *
  * @returns {object} - to be spread onto any carousel items with `onClick` handlers
  */
-CarouselComponent.usePreventSwipeClicks = usePreventCarouselSwipeClicks;
+Carousel.usePreventSwipeClicks = usePreventCarouselSwipeClicks;
 
-export default CarouselComponent;
+export default Carousel;

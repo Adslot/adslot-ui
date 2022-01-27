@@ -6,7 +6,7 @@ import SplitPane from '../SplitPane';
 import TreePickerGrid from './Grid';
 import TreePickerNav from './Nav';
 import FlexibleSpacer from '../FlexibleSpacer';
-import TreePickerPropTypes from '../../prop-types/TreePickerPropTypes';
+import { TreePickerPropTypesNode, TreePickerPropTypesBreadCrumbNode } from '../../prop-types/TreePickerPropTypes';
 import './styles.scss';
 
 export const removeSelected = ({ subtree, selectedNodes }) => {
@@ -15,7 +15,7 @@ export const removeSelected = ({ subtree, selectedNodes }) => {
   return _.reject(subtree, ({ id }) => _.some(selectedNodes, { id }));
 };
 
-const TreePickerSimplePureComponent = ({
+const TreePickerSimplePure = ({
   additionalClassNames,
   breadcrumbRootNode,
   breadcrumbNodes,
@@ -127,7 +127,7 @@ const TreePickerSimplePureComponent = ({
   );
 };
 
-TreePickerSimplePureComponent.propTypes = {
+TreePickerSimplePure.propTypes = {
   /**
    * 	Class Names for SplitPane component
    */
@@ -135,11 +135,11 @@ TreePickerSimplePureComponent.propTypes = {
   /**
    * 	Optional. This prop allows customization of the Breadcrumb root node. { id: PropTypes.sting | PropTypes.number, label: PropTypes.string}
    */
-  breadcrumbRootNode: TreePickerPropTypes.breadCrumbNode,
+  breadcrumbRootNode: TreePickerPropTypesBreadCrumbNode,
   /**
    * 	Returns node id. This prop is not required, but an empty array is not allowed. At least one element is required in the array.
    */
-  breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode.isRequired),
+  breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypesBreadCrumbNode.isRequired),
   /**
    * 	This propType creates a list of breadcrumb node
    */
@@ -224,7 +224,7 @@ TreePickerSimplePureComponent.propTypes = {
   searchOnEnter: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   searchValue: PropTypes.string,
-  selectedNodes: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired).isRequired,
+  selectedNodes: PropTypes.arrayOf(TreePickerPropTypesNode).isRequired,
   /**
    * 	Show or hide the search field on the selection pane
    */
@@ -232,7 +232,7 @@ TreePickerSimplePureComponent.propTypes = {
   /**
    *  A list of available unselected nodes. This prop is not required, but an empty array is not allowed. At least one element is required in the array.
    */
-  subtree: PropTypes.arrayOf(TreePickerPropTypes.node.isRequired),
+  subtree: PropTypes.arrayOf(TreePickerPropTypesNode.isRequired),
   svgSymbolCancel: PropTypes.node,
   svgSymbolSearch: PropTypes.node,
   /**
@@ -246,7 +246,7 @@ TreePickerSimplePureComponent.propTypes = {
   selectedTopSearch: PropTypes.node,
 };
 
-TreePickerSimplePureComponent.defaultProps = {
+TreePickerSimplePure.defaultProps = {
   itemType: 'node',
   debounceInterval: 0,
   disabled: false,
@@ -258,4 +258,4 @@ TreePickerSimplePureComponent.defaultProps = {
   hideSearchOnRoot: false,
 };
 
-export default TreePickerSimplePureComponent;
+export default TreePickerSimplePure;

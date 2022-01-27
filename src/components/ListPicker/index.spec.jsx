@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import Radio from '../Radio';
 import SvgSymbol from '../SvgSymbol';
-import ListPickerComponent from '.';
+import ListPicker from '.';
 import ListPickerMocks from '../ListPicker/mocks';
 
 afterEach(cleanup);
@@ -19,9 +19,7 @@ describe('<ListPicker />', () => {
   });
 
   it('should render with defaults', () => {
-    const { getByTestId, getByText } = render(
-      <ListPickerComponent itemInfo={{ label: 'Label', properties: [] }} show />
-    );
+    const { getByTestId, getByText } = render(<ListPicker itemInfo={{ label: 'Label', properties: [] }} show />);
     expect(getByTestId('action-panel-wrapper')).toHaveClass('listpicker-component');
     expect(getByText('Select Items')).toHaveClass('title');
 
@@ -52,7 +50,7 @@ describe('<ListPicker />', () => {
       modalTitle: 'Select Users',
     };
     const { getByTestId, queryByTestId, queryAllByTestId, getByText, rerender } = render(
-      <ListPickerComponent {...props} items={items} show />
+      <ListPicker {...props} items={items} show />
     );
 
     expect(getByTestId('action-panel-wrapper')).toHaveClass('listpicker-component');
@@ -86,7 +84,7 @@ describe('<ListPicker />', () => {
 
     expect(queryByTestId('svg-symbol-wrapper')).not.toBeInTheDocument();
 
-    rerender(<ListPickerComponent {...props} show />);
+    rerender(<ListPicker {...props} show />);
     expect(queryByTestId('svg-symbol-wrapper')).toBeInTheDocument();
     expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', '/some.svg#id'); // emptySvgSymbol
     expect(getByTestId('empty-text')).toHaveTextContent('No users.'); //emptyMessage
@@ -115,7 +113,7 @@ describe('<ListPicker />', () => {
       modalFootnote: 'You can select multiple users.',
       modalTitle: 'Select Users',
     };
-    const { getByTestId, queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+    const { getByTestId, queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
     expect(getByTestId('action-panel-wrapper')).toHaveClass('listpicker-component');
 
     expect(getByText('Select Users')).toHaveClass('title');
@@ -160,14 +158,14 @@ describe('<ListPicker />', () => {
 
   it('should disable apply button for empty selection if `allowEmptySelection` is false', () => {
     const props = { allowEmptySelection: false, items: users };
-    const { getByText, getByTestId } = render(<ListPickerComponent {...props} show />);
+    const { getByText, getByTestId } = render(<ListPicker {...props} show />);
     expect(getByTestId('action-panel-header')).toContainElement(getByText('Apply'));
     expect(getByText('Apply').parentElement).toBeDisabled();
   });
 
   it('should change `selectedItems` state after a `selectItem` action', () => {
     const props = { initialSelection: getInitialSelection(), labelFormatter, items: users };
-    const { queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+    const { queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
 
     expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
     expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
@@ -189,7 +187,7 @@ describe('<ListPicker />', () => {
       labelFormatter,
       items: users,
     };
-    const { queryByTestId, queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+    const { queryByTestId, queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
 
     expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
     expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
@@ -209,7 +207,7 @@ describe('<ListPicker />', () => {
 
   it('should change `selectedItems` state after a `deselectItem` action', () => {
     const props = { initialSelection: getInitialSelection(), labelFormatter, items: users };
-    const { queryAllByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+    const { queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
 
     expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
     expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
@@ -225,12 +223,12 @@ describe('<ListPicker />', () => {
   });
 
   it('should show modal when `show` is true', () => {
-    const { queryByTestId } = render(<ListPickerComponent show />);
+    const { queryByTestId } = render(<ListPicker show />);
     expect(queryByTestId('action-panel-wrapper')).toBeInTheDocument();
   });
 
   it('should hide modal when `show` is false', () => {
-    const { queryByTestId } = render(<ListPickerComponent show={false} />);
+    const { queryByTestId } = render(<ListPicker show={false} />);
     expect(queryByTestId('action-panel-wrapper')).not.toBeInTheDocument();
   });
 
@@ -243,7 +241,7 @@ describe('<ListPicker />', () => {
       modalApply: applyMock,
       modalClose: closeMock,
     };
-    const { getByText } = render(<ListPickerComponent {...props} show />);
+    const { getByText } = render(<ListPicker {...props} show />);
 
     fireEvent.click(getByText('Apply').parentElement);
     expect(applyMock).toHaveBeenCalledWith([teamMember2]);
@@ -254,7 +252,7 @@ describe('<ListPicker />', () => {
     console.error = (err) => {
       throw new Error(err);
     };
-    const { getByText } = render(<ListPickerComponent show />);
+    const { getByText } = render(<ListPicker show />);
 
     expect(() => fireEvent.click(getByText('Apply'))).toThrow('AdslotUi ListPicker needs a modalApply handler');
   });
@@ -262,7 +260,7 @@ describe('<ListPicker />', () => {
   it('should call `modalClose` when we click Cancel', () => {
     const closeMock = jest.fn();
 
-    const { getByText } = render(<ListPickerComponent modalClose={closeMock} show />);
+    const { getByText } = render(<ListPicker modalClose={closeMock} show />);
     fireEvent.click(getByText('Cancel').parentElement);
     expect(closeMock).toHaveBeenCalledTimes(1);
   });
@@ -271,7 +269,7 @@ describe('<ListPicker />', () => {
     console.error = (err) => {
       throw new Error(err);
     };
-    const { getByText } = render(<ListPickerComponent show />);
+    const { getByText } = render(<ListPicker show />);
     expect(() => fireEvent.click(getByText('Cancel').parentElement)).toThrow(
       'AdslotUi ListPicker needs a modalClose handler'
     );
@@ -299,7 +297,7 @@ describe('<ListPicker />', () => {
 
     it('should render as node', () => {
       props.linkButtons = [<Radio />];
-      const { getByTestId, queryByTestId } = render(<ListPickerComponent {...props} show />);
+      const { getByTestId, queryByTestId } = render(<ListPicker {...props} show />);
       expect(queryByTestId('radio-wrapper')).toBeInTheDocument();
       expect(getByTestId('radio-input').tagName).toEqual('INPUT');
       expect(getByTestId('radio-input')).toHaveAttribute('type', 'radio');
@@ -307,7 +305,7 @@ describe('<ListPicker />', () => {
 
     it('should render as mixed nodes and buttons', () => {
       props.linkButtons = [{ label: 'Create User', href: '#' }, <Radio />];
-      const { getByTestId, queryByTestId, getByText } = render(<ListPickerComponent {...props} show />);
+      const { getByTestId, queryByTestId, getByText } = render(<ListPicker {...props} show />);
 
       expect(queryByTestId('radio-wrapper')).toBeInTheDocument();
       expect(getByTestId('radio-input').tagName).toEqual('INPUT');

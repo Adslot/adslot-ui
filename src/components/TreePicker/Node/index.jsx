@@ -7,7 +7,7 @@ import GridCell from '../../Grid/Cell';
 import GridRow from '../../Grid/Row';
 import TextEllipsis from '../../TextEllipsis';
 import TreePickerNodeExpander from './Expander';
-import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
+import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes';
 import './styles.scss';
 
 const baseClass = 'treepickernode-component';
@@ -18,7 +18,7 @@ const printAncestorText = (node) => _(node.ancestors).map('label').join(', ');
 
 const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
 
-class TreePickerNodeComponent extends React.PureComponent {
+class TreePickerNode extends React.PureComponent {
   state = {
     isLoading: false,
   };
@@ -115,19 +115,19 @@ class TreePickerNodeComponent extends React.PureComponent {
   }
 }
 
-TreePickerNodeComponent.propTypes = {
+TreePickerNode.propTypes = {
   disabled: PropTypes.bool,
   expandNode: PropTypes.func,
   includeNode: PropTypes.func,
   itemType: PropTypes.string.isRequired,
-  node: TreePickerPropTypes.node.isRequired,
+  node: TreePickerPropTypesNode.isRequired,
   nodeRenderer: PropTypes.func,
   removeNode: PropTypes.func,
   selected: PropTypes.bool,
   valueFormatter: PropTypes.func,
 };
 
-TreePickerNodeComponent.defaultProps = {
+TreePickerNode.defaultProps = {
   disabled: false,
   includeNode: (node) => {
     throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);
@@ -140,4 +140,4 @@ TreePickerNodeComponent.defaultProps = {
   nodeRenderer: (node) => node.label,
 };
 
-export default TreePickerNodeComponent;
+export default TreePickerNode;

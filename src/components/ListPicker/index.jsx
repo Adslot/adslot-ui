@@ -13,7 +13,7 @@ import './styles.scss';
 
 const isSubset = (array, subArray) => _(subArray).difference(array).isEmpty();
 
-class ListPickerComponent extends React.PureComponent {
+class ListPicker extends React.PureComponent {
   constructor(props) {
     super(props);
     ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'defaultState', 'selectItem'].forEach(
@@ -185,7 +185,7 @@ const linkButtonsProps = PropTypes.arrayOf(
   ])
 );
 
-ListPickerComponent.propTypes = {
+ListPicker.propTypes = {
   allowEmptySelection: PropTypes.bool,
   allowMultiSelection: PropTypes.bool,
   emptyMessage: PropTypes.string,
@@ -219,7 +219,7 @@ ListPickerComponent.propTypes = {
   show: PropTypes.bool,
 };
 
-ListPickerComponent.defaultProps = {
+ListPicker.defaultProps = {
   allowEmptySelection: true,
   allowMultiSelection: true,
   initialSelection: [],
@@ -237,4 +237,4 @@ ListPickerComponent.defaultProps = {
   show: false,
 };
 
-export default ListPickerComponent;
+export default ListPicker;

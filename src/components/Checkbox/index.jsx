@@ -86,7 +86,7 @@ Checkbox.propTypes = {
   /**
    * checked status of the input checkBox: oneOf([true, false, 'partial']
    */
-  checked: PropTypes.oneOf([true, false, 'partial']),
+  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['partial'])]),
   size: PropTypes.number,
 };
 

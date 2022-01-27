@@ -4,7 +4,7 @@ import React from 'react';
 import Button from '../../Button';
 import './styles.scss';
 
-class PopoverLinkItemComponent extends React.PureComponent {
+class PopoverLinkItem extends React.PureComponent {
   render() {
     // eslint-disable-next-line react/prop-types
     const { target, title, url, isEnabled, onClick } = this.props;
@@ -38,12 +38,12 @@ export const LINK_PROPS = {
   isEnabled: PropTypes.bool,
 };
 
-PopoverLinkItemComponent.propTypes = _.assign({ onClick: PropTypes.func }, LINK_PROPS);
+PopoverLinkItem.propTypes = { onClick: PropTypes.func, ...LINK_PROPS };
 
-PopoverLinkItemComponent.defaultProps = {
+PopoverLinkItem.defaultProps = {
   target: '_self',
   isEnabled: true,
   onClick: _.noop,
 };
 
-export default PopoverLinkItemComponent;
+export default PopoverLinkItem;
