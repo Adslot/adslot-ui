@@ -11,6 +11,7 @@ const paths = require('../../config/paths');
 const parsePropTypesVariables = require('./babel-plugin-proptype-vars');
 const copyTypes = require('./copyTypes');
 const typesPostFixes = require('./typesPostFixes');
+const pkg = require('../../package.json');
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -122,7 +123,7 @@ async function generateTypeDefs() {
         console.log(chalk.green.bold(`Generated type defs for ${component.componentName}`));
 
         const output = typesPostFixes(component.componentName, result);
-        const prettifiedOutput = prettier.format(output, { parser: 'typescript' });
+        const prettifiedOutput = prettier.format(output, { parser: 'typescript', ...pkg.prettier });
 
         const fileName = `${component.relPath}${component.fileName.replace(/\.jsx$/, '.d.ts')}`;
         // put definition files in corresponding src/components/* folder
