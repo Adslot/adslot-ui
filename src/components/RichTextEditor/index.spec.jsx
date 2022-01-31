@@ -126,10 +126,10 @@ describe('<RichTextEditor />', () => {
   it('should toggle italics', () => {
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
-    const { queryAllByTestId, getByAltText } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    const { queryAllByTestId, getByTestId } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
     expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('button-wrapper')[1]).toContainElement(getByAltText('italics'));
+    expect(queryAllByTestId('button-wrapper')[1]).toContainElement(getByTestId('italics'));
 
     fireEvent.mouseDown(queryAllByTestId('button-wrapper')[1]);
 
@@ -140,10 +140,10 @@ describe('<RichTextEditor />', () => {
   it('should correctly generate unordered list', () => {
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
-    const { queryAllByTestId, getByAltText } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    const { queryAllByTestId, getByTestId } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
     expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('button-wrapper')[4]).toContainElement(getByAltText('number'));
+    expect(queryAllByTestId('button-wrapper')[4]).toContainElement(getByTestId('number'));
 
     fireEvent.mouseDown(queryAllByTestId('button-wrapper')[4]);
 

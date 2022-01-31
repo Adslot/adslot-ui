@@ -1,14 +1,14 @@
 import React from 'react';
 import { RichUtils } from 'draft-js';
 import ToolbarButton from './ToolbarButton';
-import boldIcon from '../../styles/icons/bold.svg';
-import italicIcon from '../../styles/icons/italic.svg';
-import underlineIcon from '../../styles/icons/underline.svg';
+import BoldIcon from '../../styles/icons/bold.svg';
+import ItalicIcon from '../../styles/icons/italic.svg';
+import UnderlineIcon from '../../styles/icons/underline.svg';
 
 const INLINE_STYLES = [
-  { label: <img src={boldIcon} alt="bold" />, style: 'BOLD' },
-  { label: <img src={italicIcon} alt="italics" />, style: 'ITALIC' },
-  { label: <img src={underlineIcon} alt="underline" />, style: 'UNDERLINE' },
+  { label: <BoldIcon data-testid="bold" />, style: 'BOLD' },
+  { label: <ItalicIcon data-testid="italics" />, style: 'ITALIC' },
+  { label: <UnderlineIcon data-testid="underline" />, style: 'UNDERLINE' },
 ];
 
 const InlineStyleButtons = (props) => {
