@@ -35,7 +35,7 @@
     "start": "npm run generate-docs && node scripts/start.js",
     "test": "jest -c jest.config.js --colors --coverage --passWithNoTests",
     "test:watch": "jest -c jest.config.js --watch --colors --coverage --passWithNoTests",
-    "version": "echo '…generating dist…' && npm run dist && git add dist/",
+    "version": "echo '…generating dist…' && npm run dist",
     "prepare": "husky install"
   },
   "repository": {
