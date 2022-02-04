@@ -109,7 +109,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.7",
     "lint-staged": "^12.3.3",
-    "mini-css-extract-plugin": "^2.4.6",
+    "mini-css-extract-plugin": "^2.5.3",
     "null-loader": "^4.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
