@@ -35,11 +35,21 @@ const env = {
   },
   esm: {
     presets: [['@babel/preset-env', { useBuiltIns: false, modules: false }]],
-    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin, ['transform-remove-imports', { test: '\\.(scss|css)$' }]],
+    plugins: [
+      ['@babel/plugin-transform-runtime', { regenerator: true }],
+      'jsx-remove-data-test-id',
+      inlineSvgPlugin,
+      ['transform-remove-imports', { test: '\\.(scss|css)$' }],
+    ],
   },
   cjs: {
     presets: [['@babel/preset-env', { useBuiltIns: false, modules: 'cjs' }]],
-    plugins: ['jsx-remove-data-test-id', inlineSvgPlugin, ['transform-remove-imports', { test: '\\.(scss|css)$' }]],
+    plugins: [
+      ['@babel/plugin-transform-runtime', { regenerator: true }],
+      'jsx-remove-data-test-id',
+      inlineSvgPlugin,
+      ['transform-remove-imports', { test: '\\.(scss|css)$' }],
+    ],
   },
 };
 
