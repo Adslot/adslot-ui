@@ -27,6 +27,33 @@ body {
 @include accent('negative', $color-negative);
 
 .adslot-ui-layout {
+  summary {
+    display: list-item;
+    cursor: pointer;
+  }
+  .aui--svg-symbol-component {
+    fill: currentColor;
+  }
+  .adslot-ui-code-example {
+    padding: 18px;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 36px;
+
+    > h4 {
+      margin-top: 0;
+      display: flex;
+      .aui--popover-element {
+        margin-left: auto;
+      }
+    }
+    .adslot-ui-code-block--code {
+      pre,
+      textarea {
+        font-size: 14px !important;
+      }
+    }
+  }
+
   .adslot-ui-header {
     position: fixed;
     width: 100%;
@@ -88,8 +115,44 @@ body {
 .adslot-ui-content-area {
   margin-left: $spacing-etalon * 9;
   padding-top: $spacing-etalon;
-  max-width: 1200px;
+  max-width: min(calc(100% - $spacing-etalon * 9), 1200px);
   padding-bottom: 100px;
+
+  > h1 {
+    font-weight: bold;
+    & + p {
+      font-size: 18px;
+    }
+  }
+
+  > h2 {
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+
+  > * + h2 {
+    margin-top: 42px;
+  }
+
+  > h4 {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  > p {
+    font-size: 12px;
+    margin: 0 0 12px;
+    color: $color-gray-dark;
+  }
+
+  > p,
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5 {
+    max-width: 700px;
+  }
 
   // button group example
   .svg-icon {
