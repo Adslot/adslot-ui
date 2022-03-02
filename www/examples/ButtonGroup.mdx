@@ -9,15 +9,17 @@ const Example = () => {
 
   return (
     <React.Fragment>
-      <ButtonGroup theme="success">
+      <ButtonGroup color="success">
         <Button>Approve</Button>
         <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
-          <Button className="svg-icon">
-            <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />
-          </Button>
+          <Button
+            className="svg-icon"
+            aria-label="Toggle menu"
+            icon={<SvgSymbol href="./assets/svg-symbols.svg#caret-down" />}
+          />
         </Popover>
       </ButtonGroup>
-      <ButtonGroup theme="danger" inverse={true}>
+      <ButtonGroup color="danger" variant="inverse">
         <Button>Reject</Button>
         <Popover
           triggers="disabled"
@@ -26,22 +28,30 @@ const Example = () => {
           popoverContent="I am a Overlay on click!"
           placement="bottom"
         >
-          <Button className="svg-icon" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />
-          </Button>
+          <Button
+            className="svg-icon"
+            aria-label="Toggle menu"
+            icon={<SvgSymbol href="./assets/svg-symbols.svg#caret-down" />}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          />
         </Popover>
       </ButtonGroup>
-      <ButtonGroup theme="primary">
+      <ButtonGroup color="primary">
         <Button>Sign off</Button>
-        <Button className="svg-icon" onClick={() => alert('>I am a Alert on click!')}>
-          <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />
-        </Button>
+        <Button
+          className="svg-icon"
+          aria-label="Toggle menu"
+          icon={<SvgSymbol href="./assets/svg-symbols.svg#caret-down" />}
+          onClick={() => alert('>I am a Alert on click!')}
+        />
       </ButtonGroup>
-      <ButtonGroup theme="warning" inverse={true} disabled={true}>
+      <ButtonGroup variant="inverse" disabled={true}>
         <Button>Disabled</Button>
-        <Button className="svg-icon">
-          <SvgSymbol href="./assets/svg-symbols.svg#caret-down" />
-        </Button>
+        <Button
+          className="svg-icon"
+          aria-label="Toggle menu"
+          icon={<SvgSymbol href="./assets/svg-symbols.svg#caret-down" />}
+        />
       </ButtonGroup>
     </React.Fragment>
   );

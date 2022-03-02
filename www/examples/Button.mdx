@@ -1,19 +1,83 @@
-import Props from '../containers/Props.jsx';
-import DesignNotes from '../containers/DesignNotes.jsx';
+# Button
 
-## Button
+Use buttons to trigger actions, drive direction, accomplish tasks or to link.
+
+#### Writing Labels
+
+Button labels use Title Case and clearly explain what happens when the button is activated. Keep labels as short as possible.
+
+#### Button order
+
+Order buttons primary action on a page or modal, the highest priority to the right.
+Buttons assist user to complete tasks confidently and to feel secure about the next action they are taking.
+
+## Button variants
+
+### Solid buttons
+
+**Solid buttons** are used to drive user action, there is only one primary action button per page. Solid buttons display filled with a colour and inverted white text eg. Blue, Green commonly used for:
+
+- Sign off,
+- Save,
+- Apply,
+- Approve etc.
+
+Modals and forms use the primary action header. Not every screen requires a primary button. _Never use a primary red action button_.
 
 ```jsx live=true
-<div>
-  <Button theme="success">Undo</Button>
-  <Button theme="primary">Apply</Button>
-  <Button className="btn-primary">Primary</Button>
-  <Button inverse className="btn-primary">
-    Inverse
+<div className="grid grid-small">
+  <Button color="primary">Primary</Button>
+  <Button color="default">Default</Button>
+  <Button color="success">Success</Button>
+  <Button color="danger">Danger</Button>
+</div>
+```
+
+### Inverse buttons
+
+**Inverse button** are used as second primary actions alongside a primary action. Use grey a bordered button and text eg. Blue, Green, Red most commonly use for:
+
+- Reject
+- Cancel Campaign
+- Save
+
+**Inverted red buttons** are used as second primary actions alongside a primary action these are used delete, reject, cancel campaign.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Button color="primary" variant="inverse">
+    Primary
   </Button>
-  <Button theme="info">Help</Button>
-  <Button theme="danger" inverse>
-    Error
+  <Button color="default" variant="inverse">
+    Default
+  </Button>
+  <Button color="success" variant="inverse">
+    Success
+  </Button>
+  <Button color="danger" variant="inverse">
+    Danger
+  </Button>
+</div>
+```
+
+### Borderless buttons
+
+**Borderless button** is used for lower priority actions and when visually more suited than an inverse button.
+borderless buttons have no border until hovered.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Button color="primary" variant="borderless">
+    Primary
+  </Button>
+  <Button color="default" variant="borderless">
+    Default
+  </Button>
+  <Button color="success" variant="borderless">
+    Success
+  </Button>
+  <Button color="danger" variant="borderless">
+    Danger
   </Button>
 </div>
 ```
@@ -136,43 +200,16 @@ When combined with a label, the icon renders before the label
   <Button color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
     Primary
   </Button>
-  <Button disabled>Disabled</Button>
-  <Button theme="warning" isLoading>
-    Loading
+  <Button color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Default
   </Button>
-  <Button className="btn-borderless">Borderless</Button>
-  <Button className="btn-link">Link</Button>
-  <br />
-  <h3>Large Button</h3>
-  <Button size="large" href="https://adslot.com">
-    Visit Adslot.com
+  <Button color="success" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Success
   </Button>
-  <Button size="large" href="https://ui.adslot.com" target="_blank">
-    New Tab
+  <Button color="danger" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Danger
   </Button>
 </div>
 ```
 
-### Design Notes
-
-<DesignNotes>
-  Primary buttons display filled with a color and inverted white text eg.{' '}
-  <span className="text-blue text-bold">Blue</span>, <span className="text-green text-bold">Green</span> and used
-  commonly for Sign off, Save, Apply, Approve etc.
-  <br />
-  <br />
-  <span className="text-bold">Inverted button</span> is used as a secondary action to the primary action on the page. Inverted
-  buttons are bordered with <span className="text-gray-light text-bold">Gray-Light</span> with text <span className="text-gray-dark text-bold">
-    Gray-Dark
-  </span> and used commonly for eg. Edit, Cancel, Add Product, Close etc.
-  <br />
-  <br />
-  <span className="text-bold">Inverted colored buttons</span> are used as second primary actions alongside a primary
-  action. Use the same color for the border and text eg. <span className="text-blue text-bold">Blue</span>,{' '}
-  <span className="text-green text-bold">Green</span>, <span className="text-red text-bold">Red</span> eg. Cancel
-  Campaign, Save, Reject etc.
-  <br />
-  <br />
-  <span className="text-bold">Large button</span> is designed to have a fixed 264px x 42px size.
-</DesignNotes>
 <Props componentName="Button" />
