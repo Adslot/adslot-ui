@@ -114,14 +114,14 @@ $color-shadow: $color-black;
 $color-shadow-light: $color-gray-light;
 
 // Modal
-$color-modal-shadow: rgba($color-shadow, .25);
+$color-modal-shadow: rgba($color-shadow, 0.25);
 
 // Panel
 $color-panel-expanded: $color-white;
 $color-panel-collapsed: $color-gray-white;
 
 // Carousel
-$color-carousel-button: rgba($color-gray-darkest, .5);
+$color-carousel-button: rgba($color-gray-darkest, 0.5);
 
 // Help
 $color-help: $color-gray;

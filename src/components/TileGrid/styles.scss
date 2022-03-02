@@ -51,7 +51,7 @@
     }
 
     &-link {
-      $text-shadow: rgba(0, 0, 0, .2);
+      $text-shadow: rgba(0, 0, 0, 0.2);
       width: 100%;
       height: 100%;
       box-sizing: border-box;
@@ -80,7 +80,7 @@
           content: '';
           display: block;
           left: 0;
-          opacity: .2;
+          opacity: 0.2;
           position: absolute;
           right: 0;
           top: 0;
