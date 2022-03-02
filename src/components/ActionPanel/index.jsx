@@ -38,13 +38,19 @@ const ActionPanel = React.forwardRef((props, ref) => {
               {title}
             </div>
             <span className="actions">
-              <Button
-                onClick={onClose}
-                className={classNames('close-button', { 'close-svg-icon': !actionButton })}
-                dts="header-close-button"
-              >
-                {actionButton ? cancelText : closeIcon}
-              </Button>
+              {actionButton ? (
+                <Button onClick={onClose} className="close-button" dts="header-close-button">
+                  {cancelText}
+                </Button>
+              ) : (
+                <Button
+                  onClick={onClose}
+                  className={classNames('close-button', 'close-svg-icon')}
+                  dts="header-close-button"
+                  icon={closeIcon}
+                  aria-label={'Close'}
+                />
+              )}
               {actionButton}
             </span>
           </div>

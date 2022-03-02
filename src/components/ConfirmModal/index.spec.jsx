@@ -16,7 +16,7 @@ describe('<ConfirmModal />', () => {
 
     expect(queryByTestId('action-panel-header')).toBeInTheDocument();
     expect(getByTestId('action-panel-header')).toContainElement(getByTestId('confirm-modal-confirm'));
-    expect(getByTestId('confirm-modal-confirm')).toHaveClass('btn-primary');
+    expect(getByTestId('confirm-modal-confirm')).toHaveClass('aui-primary');
     expect(getByTestId('confirm-modal-confirm')).toHaveAttribute('data-test-selector', 'confirm-modal-confirm');
     expect(getByTestId('confirm-modal-confirm')).toHaveTextContent('Confirm');
   });

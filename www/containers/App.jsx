@@ -4,11 +4,16 @@ import { MDXProvider } from '@mdx-js/react';
 import GoogleAnalytics from './GoogleAnalytics';
 import Scaffold from './Scaffold';
 import CodeBlock from './CodeBlock';
+import Props from './Props.jsx';
+import DesignNotes from './DesignNotes.jsx';
+
 import './styles.scss';
 
 const components = {
   pre: (props) => <div {...props} />,
   code: (props) => <CodeBlock {...props} />,
+  DesignNotes,
+  Props,
 };
 
 export class App extends Component {

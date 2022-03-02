@@ -1,264 +1,428 @@
 @import '~styles/variable';
 
-@mixin button-disabled {
-  background-color: $color-gray-lighter;
-  border-color: $color-gray-lighter;
-  color: $color-gray-dark;
-  opacity: 0.65;
-  box-shadow: none;
-  cursor: not-allowed;
-}
+$font-size-button-default: 12px;
+$font-size-button-large: 15px;
+$border-radius-button-default: 2px;
+$border-radius-button-large: 4px;
+$line-height-button: 1.5;
+$line-height-button-large: 1.467;
+$gap-button-default: 6px;
+$gap-button-large: 9px;
+$size-button-default: 30px;
+$size-button-large: 42px;
+$padding-y-button-default: #{($size-button-default - 2 - $font-size-button-default * $line-height-button) / 2};
+$padding-x-button-default: 12px;
+$padding-icon-button-default: 6px;
+$padding-icon-button-large: 10px;
+$padding-y-button-large: #{round(($size-button-large - 2 - $font-size-button-large * $line-height-button-large) / 2)};
+$padding-x-button-large: 24px;
 
-@mixin reset-shadow-and-transform {
-  box-shadow: none;
-  transform: translateY(0);
-}
+$focus-ring-color: $color-gray-darker;
 
-@mixin transform-active {
-  transform: translateY(1px);
-}
-
-@mixin button-default {
-  display: inline-block;
+.aui--button,
+.aui--anchor,
+.btn {
+  display: inline-flex;
+  grid-gap: $gap-button-default;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 0;
   font-weight: 700;
   text-align: center;
   white-space: nowrap;
+  text-decoration: none;
+  min-height: $size-button-default;
+  height: 0%;
+  position: relative;
   vertical-align: middle;
   background-image: none;
   border: 1px solid transparent;
-  padding: 4px 8px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 2px;
-  box-shadow: 0 1px $color-gray-light;
+  padding: $padding-y-button-default $padding-x-button-default;
+  font-size: $font-size-button-default;
+  line-height: $line-height-button;
+  border-radius: $border-radius-button-default;
+  transition-timing-function: ease;
+  transition-property: background-color, border-color, box-shadow, transform;
+  transition-duration: 0.1s;
   margin-right: 5px;
-}
+  color: $color-gray-darker;
+  background-color: $color-inverse;
+  border-color: $color-gray-light;
 
-.aui--button {
-  @include button-default;
-  position: relative;
-
-  &.has-anchor {
-    padding: 0;
-
-    .aui--button-children-container {
-      height: 100%;
-      width: 100%;
-    }
+  &:last-child {
+    margin-right: 0;
   }
 
-  &:active {
-    @include transform-active;
+  &:focus,
+  &:hover {
+    text-decoration: none;
   }
 
-  &:focus {
-    background-color: $color-white;
-    border-color: $color-gray-light;
-    color: $color-gray-darker;
+  &:focus-visible {
     outline: none;
+    border-color: $color-inverse;
+    box-shadow: 0 0 0 2px $focus-ring-color;
+  }
+
+  &[class*='aui-'] {
+    &:focus-visible {
+      border-color: $color-inverse;
+    }
   }
 
   &:hover {
-    background-color: $color-button-default-hover-background;
-    border-color: $color-button-default-hover-border;
+    color: $color-gray-darker;
+    background-color: $color-gray-lighter;
+    border-color: darken($color-gray-light, 10%);
   }
 
-  &.btn-default {
-    background-color: $color-white;
-    border-color: $color-gray-light;
-    color: $color-gray-darker;
+  &.aui-primary {
+    color: $color-inverse;
+    background-color: $color-primary;
+    border-color: $color-primary;
 
     &:hover {
-      color: $color-gray-dark;
-      background-color: $color-button-default-hover-background;
-      border-color: $color-button-default-hover-border;
+      color: $color-inverse;
+      background-color: darken($color-primary, 10%);
+      border-color: darken($color-primary, 10%);
     }
 
     &:active {
-      @include transform-active;
-      color: $color-gray-darker;
-      background-color: $color-button-default-hover-background;
-      border-color: $color-button-default-hover-border;
-    }
-
-    &:focus {
-      background-color: $color-white;
-      border-color: $color-gray-light;
-      color: $color-gray-darker;
-      outline: none;
+      color: $color-inverse;
+      background-color: darken($color-primary, 15%);
+      border-color: darken($color-primary, 15%);
     }
   }
 
-  &.btn-primary,
-  &.btn-default.btn-primary {
-    background-color: $color-button-primary-background;
-    border-color: $color-button-primary-border;
-    color: $color-white;
+  &.aui-secondary {
+    color: $color-inverse;
+    background-color: $color-secondary;
+    border-color: $color-secondary;
 
-    &.btn-inverse &:focus {
-      background-color: $color-button-primary-background;
-      border-color: $color-button-primary-border;
-      color: $color-white;
-      outline: none;
+    &:hover {
+      color: $color-inverse;
+      background-color: darken($color-secondary, 10%);
+      border-color: darken($color-secondary, 10%);
+    }
+
+    &:active {
+      color: $color-inverse;
+      background-color: darken($color-secondary, 15%);
+      border-color: darken($color-secondary, 15%);
     }
   }
 
-  &.btn-success,
-  &.btn-default.btn-success {
-    background-color: $color-button-success-background;
-    border-color: $color-button-success-border;
-    color: $color-white;
+  &.aui-success {
+    color: $color-inverse;
+    background-color: $color-positive;
+    border-color: $color-positive;
 
-    &.btn-inverse &:focus {
-      background-color: $color-button-success-background;
-      border-color: $color-button-success-border;
-      color: $color-white;
-      outline: none;
+    &:hover {
+      color: $color-inverse;
+      background-color: darken($color-positive, 10%);
+      border-color: darken($color-positive, 10%);
+    }
+
+    &:active {
+      color: $color-inverse;
+      background-color: darken($color-positive, 15%);
+      border-color: darken($color-positive, 15%);
     }
   }
 
-  &.btn-info,
-  &.btn-default.btn-info {
-    background-color: $color-button-info-background;
-    border-color: $color-button-info-border;
-    color: $color-white;
+  &.aui-info {
+    color: $color-inverse;
+    background-color: $color-info;
+    border-color: $color-info;
 
-    &.btn-inverse &:focus {
-      background-color: $color-button-info-background;
-      border-color: $color-button-info-border;
-      color: $color-white;
-      outline: none;
+    &:hover {
+      color: $color-inverse;
+      background-color: darken($color-info, 10%);
+      border-color: darken($color-info, 10%);
+    }
+
+    &:active {
+      color: $color-inverse;
+      background-color: darken($color-info, 15%);
+      border-color: darken($color-info, 15%);
     }
   }
 
-  &.btn-warning,
-  &.btn-default.btn-warning {
-    background-color: $color-button-warning-background;
-    border-color: $color-button-warning-border;
-    color: $color-white;
-    cursor: not-allowed;
+  &.aui-warning {
+    color: $color-inverse;
+    background-color: $color-warning;
+    border-color: $color-warning;
 
-    &.btn-inverse &:focus {
-      background-color: $color-button-warning-background;
-      border-color: $color-button-warning-border;
-      color: $color-white;
-      outline: none;
+    &:hover {
+      color: $color-inverse;
+      background-color: darken($color-warning, 10%);
+      border-color: darken($color-warning, 10%);
+    }
+
+    &:active {
+      color: $color-inverse;
+      background-color: darken($color-warning, 15%);
+      border-color: darken($color-warning, 15%);
     }
   }
 
-  &.btn-danger,
-  &.btn-default.btn-danger {
-    background-color: $color-button-danger-background;
-    border-color: $color-button-danger-border;
-    color: $color-white;
+  &.aui-danger {
+    color: $color-inverse;
+    background-color: $color-negative;
+    border-color: $color-negative;
 
-    &.btn-inverse &:focus {
-      background-color: $color-button-danger-background;
-      border-color: $color-button-danger-border;
-      color: $color-white;
-      outline: none;
+    &:hover {
+      color: $color-inverse;
+      background-color: darken($color-negative, 10%);
+      border-color: darken($color-negative, 10%);
+    }
+
+    &:active {
+      color: $color-inverse;
+      background-color: darken($color-negative, 15%);
+      border-color: darken($color-negative, 15%);
     }
   }
 
-  &.btn-link,
-  &.btn-default.btn-link {
+  &.aui-inverse {
+    background-color: $color-inverse;
+    border-color: $color-gray-light;
+
+    &:focus-visible {
+      border-color: $color-inverse;
+      box-shadow: 0 0 0 2px $focus-ring-color;
+    }
+
+    &:hover {
+      background-color: $color-gray-lighter;
+      border-color: darken($color-gray-light, 10%);
+    }
+
+    &:active {
+      color: $color-inverse;
+      background-color: darken($color-gray-lighter, 5%);
+      border-color: darken($color-gray-light, 10%);
+    }
+  }
+
+  &.aui-borderless {
     background-color: transparent;
     border-color: transparent;
-    color: $color-button-link-color;
-    box-shadow: none;
-    border-radius: 0;
-    font-weight: 400;
+
+    &:focus-visible {
+      border-color: $color-inverse;
+      box-shadow: 0 0 0 2px $focus-ring-color;
+    }
+
+    &:hover {
+      background-color: $color-inverse;
+      border-color: $color-gray-light;
+    }
 
     &:active {
-      @include reset-shadow-and-transform;
-    }
-
-    &:active,
-    &:hover,
-    &:hover:active,
-    &:focus {
-      background-color: transparent;
-      border-color: transparent;
-      color: $color-blue-dark;
-      box-shadow: none;
-      text-decoration: none;
-      outline: none;
-    }
-
-    &:hover:focus {
-      text-decoration: underline;
+      background-color: $color-gray-lighter;
+      border-color: darken($color-gray-light, 15%);
     }
   }
 
-  &-children-container {
-    &.is-loading {
-      visibility: hidden; // preserves width and height of button
-    }
-
-    > .aui--svg-symbol-component {
-      display: block;
-      margin: auto;
-    }
-  }
-
-  &.btn-large {
-    width: 264px;
-    height: 42px;
-    font-size: 15px;
-  }
-
-  &.btn-inverse:not([disabled]).btn-primary {
-    border-color: $color-border-light;
-  }
-
-  &.disabled,
-  &[disabled],
-  [disabled] & {
-    @include button-disabled;
-
-    &,
-    &:hover,
-    &:focus,
-    &:active {
-      @include button-disabled;
+  &.aui-borderless,
+  &.aui-inverse {
+    &.aui-primary {
+      color: $color-primary;
 
       &:hover {
-        @include button-disabled;
-        @include reset-shadow-and-transform;
+        color: $color-primary;
+      }
+    }
+
+    &.aui-default {
+      color: $color-gray-darker;
+
+      &:hover {
+        color: $color-gray-darker;
+      }
+    }
+
+    &.aui-secondary {
+      color: $color-secondary;
+
+      &:hover {
+        color: $color-secondary;
+      }
+    }
+
+    &.aui-success {
+      color: $color-positive;
+
+      &:hover {
+        color: $color-positive;
+      }
+    }
+
+    &.aui-info {
+      color: $color-info;
+
+      &:hover {
+        color: $color-info;
+      }
+    }
+
+    &.aui-warning {
+      color: $color-warning;
+
+      &:hover {
+        color: $color-warning;
+      }
+    }
+
+    &.aui-danger {
+      color: $color-negative;
+
+      &:hover {
+        color: $color-negative;
       }
     }
   }
 
-  .aui--button-anchor {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    padding: 4px 8px;
+  // Link
+  &.aui-link {
+    all: unset;
+    border-radius: $border-radius-button-default;
+    color: $color-primary;
     text-decoration: none;
-    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: darken($color-primary, 12%);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px $color-gray-darker;
+    }
   }
 
-  .spinner-container {
-    position: absolute;
-    right: 0;
-    left: 0;
-    margin-right: auto;
-    margin-left: auto;
+  // Large
+  &.aui-large {
+    line-height: $line-height-button-large;
+    min-height: $size-button-large;
+    padding: $padding-y-button-large $padding-x-button-large;
+    font-size: $font-size-button-large;
+    grid-gap: $gap-button-large;
 
-    // workaround for vertical centering
-    .spinner-component {
-      .spinner {
-        &-small {
-          margin-top: 1px;
-        }
+    &.aui-icon {
+      padding: $padding-icon-button-large;
+      height: $size-button-large;
+      width: $size-button-large;
+    }
+  }
 
-        &-medium {
-          margin-top: -3px;
+  // Round
+  &.aui-round {
+    border-radius: 999px;
+  }
+
+  // Full Width
+  &.aui-full-width {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  // Icon (no label/children)
+  &.aui-icon {
+    padding: $padding-icon-button-default;
+    height: $size-button-default;
+    width: $size-button-default;
+
+    &.aui-round {
+      & .spinner-component {
+        & .spinner {
+          &.spinner-small {
+            height: $size-button-default;
+            width: $size-button-default;
+          }
+
+          &.spinner-medium {
+            border-width: 3px;
+            height: $size-button-large;
+            width: $size-button-large;
+          }
         }
       }
+    }
+  }
+
+  // Icon container
+  .aui-icon-container {
+    display: inline-flex;
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  // Disabled
+  &[class*='aui-'].disabled,
+  // sass-lint:disable force-attribute-nesting
+  &[class*='aui-'][disabled] {
+    // sass-lint:enable force-attribute-nesting
+    background-color: $color-gray-lighter;
+    border-color: $color-gray-lighter;
+    color: $color-gray-dark;
+    opacity: 0.65;
+    box-shadow: none;
+    cursor: not-allowed;
+
+    &.aui-link {
+      background-color: transparent;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $color-gray-lighter;
+      border-color: $color-gray-lighter;
+      color: $color-gray-dark;
+      opacity: 0.65;
+      box-shadow: none;
+      cursor: not-allowed;
+
+      &.aui-link {
+        background-color: transparent;
+      }
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  // Loading
+  &:not(.aui-round) {
+    & .aui-children-container,
+    & .aui-icon-container {
+      &.is-loading {
+        visibility: hidden; // preserves width and height of button
+      }
+
+      & > .aui--svg-symbol-component {
+        display: block;
+        margin: auto;
+      }
+    }
+  }
+
+  & .spinner-container {
+    position: absolute;
+
+    & .spinner-component {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  & > .flexible-wrapper-inline {
+    & > .flexible-spacer-component {
+      min-width: $padding-base-horizontal;
     }
   }
 }

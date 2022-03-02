@@ -10,8 +10,8 @@ class ButtonGroup extends React.PureComponent {
     return React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         const buttonProps = {
-          ...(this.props.theme ? { theme: this.props.theme } : {}),
-          ...(!_.isNil(this.props.inverse) ? { inverse: this.props.inverse } : {}),
+          ...(this.props.color ? { color: this.props.color } : {}),
+          ...(!_.isNil(this.props.variant) ? { variant: this.props.variant } : {}),
           ...(!_.isNil(this.props.disabled) ? { disabled: this.props.disabled } : {}),
           ...(this.props.size ? { size: this.props.size } : {}),
         };
@@ -52,12 +52,12 @@ ButtonGroup.propTypes = {
   dts: PropTypes.string,
   children: PropTypes.node,
   /**
-   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+   * primary, success, danger
    */
-  theme: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
-  inverse: PropTypes.bool,
+  color: PropTypes.oneOf(['primary', 'success', 'danger']),
+  variant: PropTypes.oneOf(['inverse', 'borderless', 'solid']),
   disabled: PropTypes.bool,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['large']),
 };
 
 export default ButtonGroup;
