@@ -1,36 +1,38 @@
 import * as React from 'react';
 
-export type ButtonTheme = 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'link';
+export type ButtonColor = 'default' | 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
 
-export type ButtonTarget = '_blank' | '_self' | '_parent' | '_top';
+export type ButtonVariant = 'solid' | 'borderless' | 'inverse' | 'link';
 
-export type ButtonSize = 'small' | 'large';
-
-export type ButtonType = 'button' | 'reset' | 'submit';
+export type ButtonSize = 'medium' | 'large';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
-   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+   * default, primary, secondary, success, danger, warning, info
    */
-  theme?: ButtonTheme;
+  color?: ButtonColor;
+  /**
+   * solid, borderless, inverse, link
+   */
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  round?: boolean;
+  icon?: React.ReactNode;
+  fullWidth?: boolean;
   className?: string;
   dts?: string;
   href?: string;
-  /**
-   * The target attribute specifies where to open the linked document when there is a defined 'href',
-   * PropTypes.oneOf(['_blank', '_self', '_parent', '_top'])
-   */
-  target?: ButtonTarget;
-  inverse?: boolean;
   isLoading?: boolean;
   /**
-   * PropTypes.oneOf(['small', 'large'])
+   * @deprecated
+   * Please use the `color` prop instead.
    */
-  size?: ButtonSize;
+  theme?: string;
   /**
-   * PropTypes.oneOf(['button', 'reset', 'submit'])
+   * @deprecated
+   * Please use `variant="inverse"` instead.
    */
-  type?: ButtonType;
+  inverse?: boolean;
 }
 
 declare const Button: React.FC<ButtonProps>;

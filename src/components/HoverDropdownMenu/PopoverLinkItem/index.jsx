@@ -12,7 +12,7 @@ class PopoverLinkItem extends React.PureComponent {
     const buttonProps = {
       disabled: !isEnabled,
       onClick,
-      theme: 'link',
+      variant: 'link',
     };
 
     if (target !== '_modal') {

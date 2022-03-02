@@ -117,7 +117,7 @@ class ListPicker extends React.PureComponent {
                 <div className="pull-left">
                   {_.map(linkButtons, (linkButton, key) =>
                     _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                      <Button key={linkButton.label} inverse href={linkButton.href}>
+                      <Button key={linkButton.label} variant="inverse" href={linkButton.href}>
                         {linkButton.label}
                       </Button>
                     ) : (
@@ -127,7 +127,7 @@ class ListPicker extends React.PureComponent {
                 </div>
               )}
               <Button
-                theme="primary"
+                color="primary"
                 onClick={this.applyAction}
                 disabled={disableApplyButton}
                 data-test-selector="listpicker-apply-button"

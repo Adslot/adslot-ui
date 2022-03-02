@@ -113,11 +113,11 @@ const Search = React.forwardRef(
             )}
             <Button
               data-testid="search-button"
-              className="aui--button aui--search-component-button"
+              className="aui--search-component-button"
+              aria-label="Search"
+              icon={isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
               onClick={onSearchButtonClick}
-            >
-              {isLoading ? <span>{loaderIcon}</span> : <span>{searchIcon}</span>}
-            </Button>
+            />
           </>
         ) : (
           <span

@@ -15,9 +15,126 @@ import DesignNotes from '../containers/DesignNotes.jsx';
   <Button theme="danger" inverse>
     Error
   </Button>
-  <Button theme="default">Default</Button>
-  <Button theme="default" className="some class">
-    Default with Class
+</div>
+```
+
+### Link buttons
+
+**Link button** is a special case button used for inline actions that should retain the text flow, similar to anchor link.
+
+```jsx live=true
+<>
+  <h4>
+    This is an <Button variant="link">inline link button</Button> in an h4 tag.
+  </h4>
+  <p>
+    This is an <Button variant="link">inline link button</Button> in a p tag.
+  </p>
+</>
+```
+
+## Button sizes
+
+### Large buttons
+
+**Large button** is designed to have larger text and padding.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Button color="primary" size="large">
+    Primary
+  </Button>
+  <Button color="default" size="large">
+    Default
+  </Button>
+  <Button color="success" size="large">
+    Success
+  </Button>
+  <Button color="danger" size="large">
+    Danger
+  </Button>
+</div>
+```
+
+## Full width buttons
+
+**Full width** creates a 100% width button, sizing multiple buttons evenly when in a flex parent container.
+
+```jsx live=true
+<>
+  <div className="grid grid-small">
+    <Button size="large" fullWidth color="primary">
+      Primary
+    </Button>
+    <Button size="large" fullWidth>
+      Default
+    </Button>
+  </div>
+</>
+```
+
+## Button states
+
+**Loading** and **disabled** states can be applied to buttons.
+
+```jsx live=true
+<>
+  <div className="grid grid-small">
+    <Button isLoading color="primary">
+      Loading
+    </Button>
+    <Button disabled>Disabled</Button>
+  </div>
+</>
+```
+
+## Icon buttons
+
+default buttons support an icon size no larger than `16px`.
+large buttons support an icon size no larger than `20px`.
+
+### Icon
+
+Create an icon-only button
+
+```jsx live=true
+<div className="grid grid-small">
+  <Button aria-label="search" color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button aria-label="search" color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button aria-label="search" color="success" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button aria-label="search" color="danger" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+</div>
+```
+
+### Round
+
+When using an icon only, the button can be round.
+Round icon Buttons have a special loading state, where the spinner aligns to the button outline, and the icon remains visible.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Button aria-label="search" round color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button aria-label="search" round color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button aria-label="search" round color="success" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button aria-label="search" round color="danger" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Button
+    aria-label="search"
+    isLoading
+    round
+    color="danger"
+    icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+  />
+</div>
+```
+
+### Icon with label
+
+When combined with a label, the icon renders before the label
+
+```jsx live=true
+<div className="grid grid-small">
+  <Button color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Primary
   </Button>
   <Button disabled>Disabled</Button>
   <Button theme="warning" isLoading>

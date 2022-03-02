@@ -5,22 +5,56 @@ import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
-import { expandDts } from '../../lib/utils';
+import { expandDts, invariant } from '../../lib/utils';
 import './styles.scss';
 
 const Button = (props) => {
-  const { theme, children, className, disabled, dts, href, inverse, isLoading, size, target, type } = props;
+  const {
+    color,
+    size,
+    variant,
+    round,
+    fullWidth,
+    icon,
+    href,
+    children,
+    className,
+    disabled,
+    dts,
+    isLoading,
+    inverse, // deprecated
+    theme, // deprecated
+    ...rest
+  } = props;
+  const isLink = variant === 'link';
+  const themeColor = theme || color;
+
+  invariant(!theme, 'Button: The theme prop has been deprecated. Please use color instead.');
+  invariant(!inverse, 'Button: The inverse prop has been deprecated. Please use variant="inverse" instead.');
+  (!icon || !_.isEmpty(children)) && invariant(!round, 'Button: round can only be used with an icon and no children.');
+  icon && invariant(!_.isEmpty(children) || rest['aria-label'], 'Button: an aria-label is required on icon buttons.');
+  isLink &&
+    invariant(
+      color === 'default' && size !== 'large',
+      'Button: buttons with the "link" variant do not inherit size and color properties.'
+    );
+
   const baseClass = 'aui--button';
-  const classes = classNames(
+
+  const classes = classNames([
     baseClass,
+    className,
     {
-      'btn-inverse': inverse,
-      'btn-large': size === 'large',
-      [`btn-${theme}`]: !_.isEmpty(theme),
-      'has-anchor': href,
+      [`btn-${size}`]: sizes.includes(size) && !isLink,
+      [`btn-${themeColor}`]: colors.includes(themeColor) && !isLink,
+      'btn-inverse': inverse || (themeColor === 'default' && _.isEmpty(variant)),
+      [`btn-${variant}`]: variants.includes(variant),
+      'btn-full-width': fullWidth,
+      'btn-round': round && icon && _.isEmpty(children),
+      'btn-icon': !_.isEmpty(icon) && _.isEmpty(children),
+      'aui--button-anchor': href,
     },
-    className
-  );
+  ]);
 
   const renderSpinner = () =>
     isLoading ? (
@@ -29,78 +63,81 @@ const Button = (props) => {
       </div>
     ) : null;
 
-  const renderChildren = () =>
-    href ? (
-      !disabled ? (
-        <a
-          data-testid="button-anchor"
-          className="aui--button-anchor"
-          href={href}
-          target={target}
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      ) : (
-        <div className="aui--button-anchor" data-testid="button-anchor">
-          {children}
-        </div>
-      )
-    ) : (
-      children
-    );
+  const anchorProps = href
+    ? {
+        href: href,
+        rel: 'noopener noreferrer',
+        target: '_self',
+      }
+    : { type: 'button' };
+
+  const Component = href && !disabled ? 'a' : 'button';
 
   return (
-    <button
+    <Component
       data-testid="button-wrapper"
       disabled={isLoading || disabled}
       className={classes}
-      type={type}
       {...expandDts(dts)}
-      {..._.omit(props, _.keys(adslotButtonPropTypes))}
+      {...anchorProps}
+      {...rest}
     >
       {renderSpinner()}
-      <div className={classNames('aui--button-children-container', { 'is-loading': isLoading })}>
-        {renderChildren()}
-      </div>
-    </button>
+      {
+        <>
+          {icon && (
+            <span className={classNames('aui--button-icon-container', { 'is-loading': isLoading && !round })}>
+              {icon}
+            </span>
+          )}
+          {children && (
+            <span className={classNames('aui--button-children-container', { 'is-loading': isLoading })}>
+              {children}
+            </span>
+          )}
+        </>
+      }
+    </Component>
   );
 };
 
+const colors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+const variants = ['solid', 'borderless', 'inverse', 'link'];
+const sizes = ['medium', 'large'];
+
 const adslotButtonPropTypes = {
   /**
-   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+   * default, primary, secondary, success, danger, warning, info
+   **/
+  color: PropTypes.oneOf(colors),
+  /**
+   * solid, borderless, inverse, link
    */
-  theme: PropTypes.oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger', 'link']),
+  variant: PropTypes.oneOf(variants),
+  size: PropTypes.oneOf(sizes),
+  round: PropTypes.bool,
+  icon: PropTypes.node,
+  fullWidth: PropTypes.bool,
   className: PropTypes.string,
   dts: PropTypes.string,
   href: PropTypes.string,
-  /**
-   * The target attribute specifies where to open the linked document when there is a defined 'href',
-   * PropTypes.oneOf(['_blank', '_self', '_parent', '_top'])
-   */
-  target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),
-  inverse: PropTypes.bool,
   isLoading: PropTypes.bool,
   /**
-   * PropTypes.oneOf(['small', 'large'])
+   * @deprecated
+   * Please use the `color` prop instead.
    */
-  size: PropTypes.oneOf(['small', 'large']),
+  theme: PropTypes.string,
   /**
-   * PropTypes.oneOf(['button', 'reset', 'submit'])
+   * @deprecated
+   * Please use `variant="inverse"` instead.
    */
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  inverse: PropTypes.bool,
 };
 
 Button.propTypes = { ...adslotButtonPropTypes };
 
 Button.defaultProps = {
-  inverse: false,
-  isLoading: false,
-  size: 'small',
-  theme: 'default',
-  target: '_self',
-  type: 'button',
+  color: 'default',
 };
 
 export default Button;

@@ -42,8 +42,10 @@ const ActionPanel = React.forwardRef((props, ref) => {
                 onClick={onClose}
                 className={classNames('close-button', { 'close-svg-icon': !actionButton })}
                 dts="header-close-button"
+                icon={!actionButton ? closeIcon : undefined}
+                aria-label={!actionButton ? 'Close' : undefined}
               >
-                {actionButton ? cancelText : closeIcon}
+                {actionButton && cancelText}
               </Button>
               {actionButton}
             </span>

@@ -21,19 +21,81 @@ describe('<Button />', () => {
     expect(getByTestId('button-wrapper')).toHaveAttribute('id', 'button-id');
   });
 
-  it('should not render inverse button with btn-inverse class (have to use inverse props instead)', () => {
-    const { getByTestId } = render(<Button className="btn-inverse">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-default');
-  });
-
-  it('should render inverse button with inverse props', () => {
-    const { getByTestId } = render(<Button inverse>Test</Button>);
+  it('should render inverse button with inverse variant', () => {
+    const { getByTestId } = render(<Button variant="inverse">Test</Button>);
     expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
   });
 
-  it('should render large button with btn-large class', () => {
+  it('should render large button with size="large" prop', () => {
     const { getByTestId } = render(<Button size="large">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-large btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-large btn-default btn-inverse');
+  });
+
+  it('should throw if using color on link variant', () => {
+    console.error = (err) => {
+      throw new Error(err);
+    };
+    expect(() =>
+      render(
+        <Button variant="link" color="success" size="large">
+          Test
+        </Button>
+      )
+    ).toThrow('AdslotUI Button: buttons with the "link" variant do not inherit size and color properties.');
+  });
+
+  it('should use anchor when href is present', () => {
+    const { getByTestId, getByRole } = render(<Button href="#">Test</Button>);
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button-anchor');
+    expect(getByRole('link')).toBe(getByTestId('button-wrapper'));
+  });
+
+  it('should throw when round with child or no icon', () => {
+    console.error = (err) => {
+      throw new Error(err);
+    };
+    expect(() => render(<Button round>Test</Button>)).toThrow(
+      'AdslotUI Button: round can only be used with an icon and no children.'
+    );
+  });
+
+  it('should apply round button when icon exists and no child', () => {
+    const { getByTestId } = render(<Button color="primary" aria-label="icon" round icon={<div>icon</div>} />);
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-primary btn-round');
+  });
+
+  it('should throw when an aria-label is required', () => {
+    console.error = (err) => {
+      throw new Error(err);
+    };
+    expect(() => render(<Button icon={<div />} />)).toThrow(
+      'AdslotUI Button: an aria-label is required on icon buttons.'
+    );
+  });
+
+  it('should throw for deprecated props', () => {
+    console.error = (err) => {
+      throw new Error(err);
+    };
+    expect(() => render(<Button theme="primary">Test</Button>)).toThrow(
+      'AdslotUI Button: The theme prop has been deprecated. Please use color instead.'
+    );
+    expect(() => render(<Button inverse>Test</Button>)).toThrow(
+      'AdslotUI Button: The inverse prop has been deprecated. Please use variant="inverse" instead.'
+    );
+  });
+
+  it('should apply icon', () => {
+    const { getByTestId } = render(<Button icon={<div data-testid="icon-content">icon</div>}>Test</Button>);
+    expect(getByTestId('icon-content').parentElement).toHaveClass('aui--button-icon-container');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-default btn-inverse');
+  });
+
+  it('should apply loading class to non-round icon container', () => {
+    const { getByTestId } = render(
+      <Button isLoading aria-label="icon" icon={<div data-testid="icon-content">icon</div>} />
+    );
+    expect(getByTestId('icon-content').parentElement).toHaveClass('aui--button-icon-container is-loading');
   });
 
   it('should support data-test-selectors', () => {
@@ -57,12 +119,12 @@ describe('<Button />', () => {
   });
 
   it('should render button with href', () => {
-    const { getByText } = render(
+    const { getByTestId } = render(
       <Button href="www.some-url.com" target="_blank">
         Test
       </Button>
     );
-    expect(getByText('Test')).toHaveAttribute('href', 'www.some-url.com');
+    expect(getByTestId('button-wrapper')).toHaveAttribute('href', 'www.some-url.com');
   });
 
   it('should render disabled href button', () => {

@@ -1,4 +1,27 @@
 @import '~styles/variable';
+@import '~styles/mixin';
+
+$font-size-button-default: 12px;
+$font-size-button-large: 15px;
+$border-radius-button-default: 2px;
+$border-radius-button-large: 4px;
+$line-height-button: 1.5;
+$line-height-button-large: 1.467;
+$gap-button-default: 6px;
+$gap-button-large: 9px;
+$size-button-default: 30px;
+$size-button-large: 42px;
+$padding-y-button-default: #{($size-button-default - 2 - $font-size-button-default * $line-height-button) / 2};
+$padding-x-button-default: 12px;
+$padding-icon-button-default: 6px;
+$padding-icon-button-large: 10px;
+$padding-y-button-large: #{round(($size-button-large - 2 - $font-size-button-large * $line-height-button-large) / 2)};
+$padding-x-button-large: 24px;
+
+@mixin reset-shadow-and-transform {
+  box-shadow: none;
+  transform: translateY(0);
+}
 
 @mixin button-disabled {
   background-color: $color-gray-lighter;
@@ -7,258 +30,222 @@
   opacity: 0.65;
   box-shadow: none;
   cursor: not-allowed;
-}
 
-@mixin reset-shadow-and-transform {
-  box-shadow: none;
-  transform: translateY(0);
-}
-
-@mixin transform-active {
-  transform: translateY(1px);
+  &.btn-link {
+    background-color: transparent;
+  }
 }
 
 @mixin button-default {
-  display: inline-block;
+  display: inline-flex;
+  grid-gap: $gap-button-default;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 0;
   font-weight: 700;
   text-align: center;
   white-space: nowrap;
+  min-height: $size-button-default;
+  height: 0%;
   vertical-align: middle;
   background-image: none;
   border: 1px solid transparent;
-  padding: 4px 8px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 2px;
-  box-shadow: 0 1px $color-gray-light;
+  padding: $padding-y-button-default $padding-x-button-default;
+  font-size: $font-size-button-default;
+  line-height: $line-height-button;
+  border-radius: $border-radius-button-default;
+  transition-timing-function: ease;
+  transition-property: background-color, border-color, box-shadow, transform;
+  transition-duration: 0.1s;
   margin-right: 5px;
-}
 
-.aui--button {
-  @include button-default;
-  position: relative;
-
-  &.has-anchor {
-    padding: 0;
-
-    .aui--button-children-container {
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  &:active {
-    @include transform-active;
-  }
-
-  &:focus {
-    background-color: $color-white;
-    border-color: $color-gray-light;
-    color: $color-gray-darker;
+  &:focus-visible {
     outline: none;
   }
+}
 
+@mixin button-borderless($color) {
+  @include aui--button-variant($color, transparent, transparent);
+
+  &:active,
   &:hover {
-    background-color: $color-button-default-hover-background;
-    border-color: $color-button-default-hover-border;
+    background-color: $color-inverse;
+    border-color: $color-gray-light;
+  }
+}
+
+@mixin button-inverse($color) {
+  @include aui--button-variant($color, $color-inverse, $color-gray-light);
+
+  &:active,
+  &:hover {
+    background-color: $color-gray-lighter;
+  }
+}
+
+.aui--button,
+.btn {
+  @include button-default;
+  @include button-inverse(map-get($colors, 'default'));
+  position: relative;
+
+  // Solid (default)
+  @each $color-name, $color-value in $colors {
+    &.btn-#{$color-name} {
+      @include aui--button-variant($color-inverse, $color-value, $color-value);
+    }
   }
 
-  &.btn-default {
-    background-color: $color-white;
-    border-color: $color-gray-light;
-    color: $color-gray-darker;
+  // Inverse
+  &.btn-inverse {
+    @each $color-name, $color-value in $colors {
+      &.btn-#{$color-name} {
+        @include button-inverse($color-value);
+      }
+    }
+  }
+
+  // Borderless
+  &.btn-borderless {
+    @each $color-name, $color-value in $colors {
+      &.btn-#{$color-name} {
+        @include button-borderless($color-value);
+      }
+    }
+  }
+
+  // Link
+  &.btn-link {
+    all: unset;
+    border-radius: $border-radius-button-default;
+    color: $color-primary;
+    text-decoration: none;
+    cursor: pointer;
 
     &:hover {
-      color: $color-gray-dark;
-      background-color: $color-button-default-hover-background;
-      border-color: $color-button-default-hover-border;
+      color: darken($color-primary, 12%);
     }
-
-    &:active {
-      @include transform-active;
-      color: $color-gray-darker;
-      background-color: $color-button-default-hover-background;
-      border-color: $color-button-default-hover-border;
-    }
-
-    &:focus {
-      background-color: $color-white;
-      border-color: $color-gray-light;
-      color: $color-gray-darker;
-      outline: none;
-    }
-  }
-
-  &.btn-primary,
-  &.btn-default.btn-primary {
-    background-color: $color-button-primary-background;
-    border-color: $color-button-primary-border;
-    color: $color-white;
-
-    &.btn-inverse &:focus {
-      background-color: $color-button-primary-background;
-      border-color: $color-button-primary-border;
-      color: $color-white;
-      outline: none;
-    }
-  }
-
-  &.btn-success,
-  &.btn-default.btn-success {
-    background-color: $color-button-success-background;
-    border-color: $color-button-success-border;
-    color: $color-white;
-
-    &.btn-inverse &:focus {
-      background-color: $color-button-success-background;
-      border-color: $color-button-success-border;
-      color: $color-white;
-      outline: none;
-    }
-  }
-
-  &.btn-info,
-  &.btn-default.btn-info {
-    background-color: $color-button-info-background;
-    border-color: $color-button-info-border;
-    color: $color-white;
-
-    &.btn-inverse &:focus {
-      background-color: $color-button-info-background;
-      border-color: $color-button-info-border;
-      color: $color-white;
-      outline: none;
-    }
-  }
-
-  &.btn-warning,
-  &.btn-default.btn-warning {
-    background-color: $color-button-warning-background;
-    border-color: $color-button-warning-border;
-    color: $color-white;
-    cursor: not-allowed;
-
-    &.btn-inverse &:focus {
-      background-color: $color-button-warning-background;
-      border-color: $color-button-warning-border;
-      color: $color-white;
-      outline: none;
-    }
-  }
-
-  &.btn-danger,
-  &.btn-default.btn-danger {
-    background-color: $color-button-danger-background;
-    border-color: $color-button-danger-border;
-    color: $color-white;
-
-    &.btn-inverse &:focus {
-      background-color: $color-button-danger-background;
-      border-color: $color-button-danger-border;
-      color: $color-white;
-      outline: none;
-    }
-  }
-
-  &.btn-link,
-  &.btn-default.btn-link {
-    background-color: transparent;
-    border-color: transparent;
-    color: $color-button-link-color;
-    box-shadow: none;
-    border-radius: 0;
-    font-weight: 400;
 
     &:active {
       @include reset-shadow-and-transform;
+      background-color: unset;
     }
 
-    &:active,
-    &:hover,
-    &:hover:active,
-    &:focus {
-      background-color: transparent;
-      border-color: transparent;
-      color: $color-blue-dark;
-      box-shadow: none;
-      text-decoration: none;
-      outline: none;
-    }
-
-    &:hover:focus {
-      text-decoration: underline;
+    &:focus-visible {
+      box-shadow: 0 0 0 2px map-get($colors, 'default');
     }
   }
 
-  &-children-container {
-    &.is-loading {
-      visibility: hidden; // preserves width and height of button
-    }
+  // anchor
+  &.aui--button-anchor {
+    text-decoration: none;
 
-    > .aui--svg-symbol-component {
-      display: block;
-      margin: auto;
+    &[disabled],
+    &.disabled {
+      pointer-events: none;
     }
   }
 
+  // Large
   &.btn-large {
-    width: 264px;
-    height: 42px;
-    font-size: 15px;
+    line-height: $line-height-button-large;
+    min-height: $size-button-large;
+    padding: $padding-y-button-large $padding-x-button-large;
+    font-size: $font-size-button-large;
+    grid-gap: $gap-button-large;
+
+    &.btn-icon {
+      padding: $padding-icon-button-large;
+      height: $size-button-large;
+      width: $size-button-large;
+    }
   }
 
-  &.btn-inverse:not([disabled]).btn-primary {
-    border-color: $color-border-light;
+  // Round
+  &.btn-round {
+    border-radius: 999px;
   }
 
-  &.disabled,
-  &[disabled],
-  [disabled] & {
+  // Full Width
+  &.btn-full-width {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  // Icon (no label/children)
+  &.btn-icon {
+    padding: $padding-icon-button-default;
+    height: $size-button-default;
+    width: $size-button-default;
+
+    &.btn-round {
+      .spinner-component {
+        .spinner {
+          &-small {
+            height: $size-button-default;
+            width: $size-button-default;
+          }
+
+          &-medium {
+            border-width: 3px;
+            height: $size-button-large;
+            width: $size-button-large;
+          }
+        }
+      }
+    }
+  }
+
+  // Icon container
+  &-icon-container {
+    display: inline-flex;
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  // Disabled
+  &[class*='btn-'].disabled,
+  // sass-lint:disable force-attribute-nesting
+  &[class*='btn-'][disabled] {
+    // sass-lint:enable force-attribute-nesting
     @include button-disabled;
 
-    &,
     &:hover,
     &:focus,
     &:active {
       @include button-disabled;
+    }
 
-      &:hover {
-        @include button-disabled;
-        @include reset-shadow-and-transform;
+    &:focus,
+    &:active {
+      @include reset-shadow-and-transform;
+    }
+  }
+
+  // Loading
+  &:not(.btn-round) {
+    .aui--button-children-container,
+    .aui--button-icon-container {
+      &.is-loading {
+        visibility: hidden; // preserves width and height of button
+      }
+
+      > .aui--svg-symbol-component {
+        display: block;
+        margin: auto;
       }
     }
   }
 
-  .aui--button-anchor {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    padding: 4px 8px;
-    text-decoration: none;
-    color: inherit;
-  }
-
   .spinner-container {
     position: absolute;
-    right: 0;
-    left: 0;
-    margin-right: auto;
-    margin-left: auto;
 
-    // workaround for vertical centering
     .spinner-component {
-      .spinner {
-        &-small {
-          margin-top: 1px;
-        }
-
-        &-medium {
-          margin-top: -3px;
-        }
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

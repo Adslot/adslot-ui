@@ -18,20 +18,20 @@ describe('<ButtonGroup />', () => {
 
   it('should override child Button style', () => {
     const { queryAllByTestId } = render(
-      <ButtonGroup theme="link" inverse>
-        <Button theme="primary">Test1</Button>
-        <Button inverse={false}>Test2</Button>
+      <ButtonGroup color="success" variant="borderless">
+        <Button color="primary">Test1</Button>
+        <Button variant="inverse">Test2</Button>
       </ButtonGroup>
     );
-    expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('btn-link');
-    expect(queryAllByTestId('button-wrapper')[1]).toHaveClass('btn-inverse');
+    expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('btn-borderless btn-success');
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveClass('btn-borderless btn-success');
   });
 
   it('should disable child buttons', () => {
     const { queryAllByTestId } = render(
       <ButtonGroup disabled>
-        <Button theme="primary">Test1</Button>
-        <Button inverse={false}>Test2</Button>
+        <Button color="primary">Test1</Button>
+        <Button variant="inverse">Test2</Button>
       </ButtonGroup>
     );
     expect(queryAllByTestId('button-wrapper')[0]).toBeDisabled();
@@ -43,11 +43,12 @@ describe('<ButtonGroup />', () => {
       <ButtonGroup disabled size="large">
         <div>
           <div>foo</div>
-          <Button theme="primary">Test1</Button>
+          <Button color="primary">Test1</Button>
         </div>
       </ButtonGroup>
     );
     expect(getByTestId('button-wrapper')).toBeDisabled();
+    expect(getByTestId('button-wrapper')).toHaveClass('btn-large');
   });
 
   it('should not crash when child is null', () => {

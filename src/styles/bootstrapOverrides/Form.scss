@@ -63,6 +63,10 @@ label {
   color: $color-text-form;
 }
 
+.input-group {
+  display: flex;
+}
+
 .input-group-addon {
   font-weight: $font-weight-normal;
   padding: 4px 5px;

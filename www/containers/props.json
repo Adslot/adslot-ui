@@ -598,7 +598,7 @@
       "displayName": "Button",
       "methods": [],
       "props": {
-        "theme": {
+        "color": {
           "type": {
             "name": "enum",
             "value": [
@@ -611,11 +611,15 @@
                 "computed": false
               },
               {
+                "value": "'secondary'",
+                "computed": false
+              },
+              {
                 "value": "'success'",
                 "computed": false
               },
               {
-                "value": "'info'",
+                "value": "'danger'",
                 "computed": false
               },
               {
@@ -623,7 +627,32 @@
                 "computed": false
               },
               {
-                "value": "'danger'",
+                "value": "'info'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "default, primary, secondary, success, danger, warning, info",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
+        },
+        "variant": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'solid'",
+                "computed": false
+              },
+              {
+                "value": "'borderless'",
+                "computed": false
+              },
+              {
+                "value": "'inverse'",
                 "computed": false
               },
               {
@@ -633,11 +662,45 @@
             ]
           },
           "required": false,
-          "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])",
-          "defaultValue": {
-            "value": "'default'",
-            "computed": false
-          }
+          "description": "solid, borderless, inverse, link"
+        },
+        "size": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'medium'",
+                "computed": false
+              },
+              {
+                "value": "'large'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
+        "round": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fullWidth": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
         },
         "className": {
           "type": {
@@ -660,102 +723,26 @@
           "required": false,
           "description": ""
         },
-        "target": {
+        "isLoading": {
           "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'_blank'",
-                "computed": false
-              },
-              {
-                "value": "'_self'",
-                "computed": false
-              },
-              {
-                "value": "'_parent'",
-                "computed": false
-              },
-              {
-                "value": "'_top'",
-                "computed": false
-              }
-            ]
+            "name": "bool"
           },
           "required": false,
-          "description": "The target attribute specifies where to open the linked document when there is a defined 'href',\nPropTypes.oneOf(['_blank', '_self', '_parent', '_top'])",
-          "defaultValue": {
-            "value": "'_self'",
-            "computed": false
-          }
+          "description": ""
+        },
+        "theme": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "@deprecated\nPlease use the `color` prop instead."
         },
         "inverse": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "isLoading": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "size": {
-          "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'small'",
-                "computed": false
-              },
-              {
-                "value": "'large'",
-                "computed": false
-              }
-            ]
-          },
-          "required": false,
-          "description": "PropTypes.oneOf(['small', 'large'])",
-          "defaultValue": {
-            "value": "'small'",
-            "computed": false
-          }
-        },
-        "type": {
-          "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'button'",
-                "computed": false
-              },
-              {
-                "value": "'reset'",
-                "computed": false
-              },
-              {
-                "value": "'submit'",
-                "computed": false
-              }
-            ]
-          },
-          "required": false,
-          "description": "PropTypes.oneOf(['button', 'reset', 'submit'])",
-          "defaultValue": {
-            "value": "'button'",
-            "computed": false
-          }
+          "description": "@deprecated\nPlease use `variant=\"inverse\"` instead."
         }
       }
     }
@@ -793,7 +780,7 @@
           "required": false,
           "description": ""
         },
-        "theme": {
+        "color": {
           "type": {
             "name": "enum",
             "value": [
@@ -806,29 +793,31 @@
                 "computed": false
               },
               {
-                "value": "'info'",
-                "computed": false
-              },
-              {
-                "value": "'warning'",
-                "computed": false
-              },
-              {
                 "value": "'danger'",
-                "computed": false
-              },
-              {
-                "value": "'link'",
                 "computed": false
               }
             ]
           },
           "required": false,
-          "description": "PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])"
+          "description": "primary, success, danger"
         },
-        "inverse": {
+        "variant": {
           "type": {
-            "name": "bool"
+            "name": "enum",
+            "value": [
+              {
+                "value": "'inverse'",
+                "computed": false
+              },
+              {
+                "value": "'borderless'",
+                "computed": false
+              },
+              {
+                "value": "'solid'",
+                "computed": false
+              }
+            ]
           },
           "required": false,
           "description": ""
@@ -842,7 +831,13 @@
         },
         "size": {
           "type": {
-            "name": "string"
+            "name": "enum",
+            "value": [
+              {
+                "value": "'large'",
+                "computed": false
+              }
+            ]
           },
           "required": false,
           "description": ""
