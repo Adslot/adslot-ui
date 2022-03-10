@@ -46,7 +46,7 @@
 
 .aui--svg-symbol-component-circle {
   @mixin svg-size($diameter) {
-    $inner-diameter: ceil(sqrt(.5) * $diameter);
+    $inner-diameter: ceil(sqrt(0.5) * $diameter);
     height: $inner-diameter;
     margin: (($diameter - $inner-diameter) / 2);
     width: $inner-diameter;

@@ -2,7 +2,7 @@
 @import '~styles/variable';
 
 .modal {
-  $modal-shadow: 0 3px 0 rgba($color-shadow, .25);
+  $modal-shadow: 0 3px 0 rgba($color-shadow, 0.25);
   $modal-header-footer-height: 40px;
   $modal-header-footer-left-padding: 15px;
   $modal-footer-padding: 6px;

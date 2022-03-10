@@ -1,7 +1,7 @@
 @import '~styles/variable';
 @import './popover-theme';
 
-$popover-shadow: 0 1px 0 rgba($color-shadow, .25);
+$popover-shadow: 0 1px 0 rgba($color-shadow, 0.25);
 $popover-border-radius: $border-radius * 2;
 $popover-border-width: $border-width;
 

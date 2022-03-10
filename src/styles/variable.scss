@@ -76,11 +76,11 @@ $modal-header-border-color: $color-border-lighter;
 $modal-content-border-color: $modal-header-border-color;
 
 $modal-backdrop-bg: $color-gray-darker;
-$modal-backdrop-opacity: .8;
+$modal-backdrop-opacity: 0.8;
 $modal-content-border-color: transparent;
 
 // == ActionPanel
-$action-panel-backdrop-opacity: .8;
+$action-panel-backdrop-opacity: 0.8;
 $action-panel-header-height: 48px;
 $action-panel-margin: 30px;
 
@@ -124,7 +124,7 @@ $zindex-popover: 1060;
 
 // == TreePicker
 $treepicker-height: 500px;
-$treepicker-disabled-opacity: .65;
+$treepicker-disabled-opacity: 0.65;
 
 // == Form states and alerts
 $state-success-text: $color-positive;

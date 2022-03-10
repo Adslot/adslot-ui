@@ -46,8 +46,7 @@ rules:
   # Name Formats
   class-name-format:
     - 2
-    -
-      allow-leading-underscore: false
+    - allow-leading-underscore: false
       convention: hyphenatedbem
   function-name-format: 2
   mixin-name-format: 2
@@ -62,7 +61,7 @@ rules:
   hex-length: 2
   hex-notation: 2
   indentation: 2
-  leading-zero: 2
+  leading-zero: 0
   nesting-depth: [2, max-depth: 4]
   property-sort-order: 0
   property-units: [2, global: ['px', 's', 'vw', 'vh']]

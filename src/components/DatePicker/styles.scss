@@ -62,11 +62,11 @@
   &__day-name {
     width: 1.9 * $datepicker-font-size;
     line-height: 1.9 * $datepicker-font-size;
-    margin: .166 * $datepicker-font-size;
+    margin: 0.166 * $datepicker-font-size;
   }
 
   &__month {
-    margin: .7 * $datepicker-font-size;
+    margin: 0.7 * $datepicker-font-size;
   }
 
   &__current-month {
@@ -77,7 +77,7 @@
   &__navigation {
     width: $datepicker-icon-size;
     height: $datepicker-icon-size;
-    top: .4 * $datepicker-font-size;
+    top: 0.4 * $datepicker-font-size;
   }
 
   &__navigation--next {

@@ -150,7 +150,7 @@
   background-color: $color-gray-dark;
   width: 100%;
   opacity: $action-panel-backdrop-opacity;
-  animation: fadein .2s;
+  animation: fadein 0.2s;
 }
 
 .aui--action-panel-modal-wrapper {
@@ -161,5 +161,5 @@
   align-content: center;
   top: 0;
   left: 0;
-  animation: fadein .2s;
+  animation: fadein 0.2s;
 }
