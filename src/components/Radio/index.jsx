@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
-const RadioButton = ({ id, value, name, className, label, disabled, checked, onChange, inline, dts }) => {
-  const componentClassName = classnames(['radio-component', { 'radio-component-inline': inline }]);
+const RadioButton = ({ id, value, name, className, wrapperClass, label, disabled, checked, onChange, inline, dts }) => {
+  const componentClassName = classnames(['radio-component', wrapperClass, { 'radio-component-inline': inline }]);
   const iconClassName = classnames(['selection-component-icon', 'iradio', { checked }, { disabled }]);
 
   return (
@@ -35,6 +35,7 @@ const RadioButton = ({ id, value, name, className, label, disabled, checked, onC
 RadioButton.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
+  wrapperClass: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.node,
   value: PropTypes.string,

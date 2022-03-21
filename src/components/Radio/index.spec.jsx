@@ -51,4 +51,9 @@ describe('<Radio />', () => {
     rerender(<Radio {...props} />);
     expect(getByTestId('radio-wrapper')).toHaveClass('radio-component-inline');
   });
+
+  it('should add wrapperClass from props', () => {
+    const { getByTestId } = render(<Radio {...props} wrapperClass="radio-wrapper-class" />);
+    expect(getByTestId('radio-wrapper')).toHaveClass('radio-wrapper-class');
+  });
 });
