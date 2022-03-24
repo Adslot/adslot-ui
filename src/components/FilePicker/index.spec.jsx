@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import FilePickerComponent from '.';
+import FilePicker from '.';
 
 afterEach(cleanup);
 
 describe('<FilePicker />', () => {
   it('should render with defaults', () => {
-    const { getByTestId } = render(<FilePickerComponent onSelect={jest.fn()} />);
+    const { getByTestId } = render(<FilePicker onSelect={jest.fn()} />);
     expect(getByTestId('file-picker-wrapper')).toHaveClass('filepicker-component input-group');
 
     expect(getByTestId('file-picker-form-control')).toHaveClass('form-control');
@@ -20,9 +20,7 @@ describe('<FilePicker />', () => {
 
   it('should show remove button and call `onSelect` when file selected', () => {
     const onSelect = jest.fn();
-    const { getByTestId, queryByTestId } = render(
-      <FilePickerComponent onSelect={onSelect} dts="test-file-picker-input" />
-    );
+    const { getByTestId, queryByTestId } = render(<FilePicker onSelect={onSelect} dts="test-file-picker-input" />);
 
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('placeholder', 'No file selected');
@@ -52,7 +50,7 @@ describe('<FilePicker />', () => {
   it('should upload a file when input-button is clicked', () => {
     const onSelect = jest.fn();
     const file = new File(['test'], 'test.png', { type: 'image/png' });
-    const { getByTestId } = render(<FilePickerComponent onSelect={onSelect} />);
+    const { getByTestId } = render(<FilePicker onSelect={onSelect} />);
 
     userEvent.upload(getByTestId('file-picker-input-button-input'), file);
     expect(onSelect).toHaveBeenCalledTimes(1);
@@ -68,7 +66,7 @@ describe('<FilePicker />', () => {
   it('should remove file selected when remove file button is clicked', () => {
     const onSelect = jest.fn();
     const file = new File(['test'], 'test.png', { type: 'image/png' });
-    const { getByTestId } = render(<FilePickerComponent onSelect={onSelect} />);
+    const { getByTestId } = render(<FilePicker onSelect={onSelect} />);
 
     userEvent.upload(getByTestId('file-picker-input-button-input'), file);
     expect(onSelect).toHaveBeenCalledTimes(1);
@@ -84,7 +82,7 @@ describe('<FilePicker />', () => {
     const onSelect = jest.fn();
     const onRemove = jest.fn();
     const file = new File(['test'], 'test.png', { type: 'image/png' });
-    const { getByTestId } = render(<FilePickerComponent onSelect={onSelect} onRemove={onRemove} />);
+    const { getByTestId } = render(<FilePicker onSelect={onSelect} onRemove={onRemove} />);
 
     userEvent.upload(getByTestId('file-picker-input-button-input'), file);
     expect(getByTestId('file-picker-form-control')).toHaveAttribute('title', 'test.png');

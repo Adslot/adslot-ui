@@ -1432,7 +1432,7 @@
   "src/components/FilePicker/index.jsx": [
     {
       "description": "",
-      "displayName": "FilePickerComponent",
+      "displayName": "FilePicker",
       "methods": [
         {
           "name": "onChange",
@@ -1440,7 +1440,7 @@
           "modifiers": [],
           "params": [
             {
-              "name": "changeEvent",
+              "name": "event",
               "type": null
             }
           ],
