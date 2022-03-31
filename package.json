@@ -84,7 +84,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "autoprefixer": "^10.4.2",
+    "autoprefixer": "^10.4.4",
     "axios": "^0.26.1",
     "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
