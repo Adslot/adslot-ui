@@ -103,7 +103,7 @@
     "date-fns": "^2.28.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "eslint": "^8.8.0",
+    "eslint": "^8.12.0",
     "eslint-config-adslot": "^1.2.1",
     "eslint-plugin-jest-dom": "^4.0.1",
     "fs-extra": "^10.0.0",
