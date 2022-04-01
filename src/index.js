@@ -117,7 +117,6 @@ export {
   Spinner,
   SplitPane,
   Statistic,
-  StatusPill,
   SvgSymbol,
   Switch,
   Tab,
@@ -141,6 +140,8 @@ export {
   Toast,
   Tile,
   Pill,
+  // StatusPill must be after Pill due to css ordering
+  StatusPill,
   Skeleton,
   Paragraph,
 };
