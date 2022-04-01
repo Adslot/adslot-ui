@@ -129,7 +129,7 @@
     "react-router-dom": "^6.2.1",
     "remark-emoji": "^2.2.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.49.7",
+    "sass": "^1.49.11",
     "sass-lint": "^1.13.1",
     "sass-loader": "^12.4.0",
     "seamless-immutable": "^7.1.4",
