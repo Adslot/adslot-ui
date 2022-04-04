@@ -10,10 +10,6 @@
     "lib",
     "es"
   ],
-  "sideEffects": [
-    "./src/**/*.scss",
-    "./dist/*.css"
-  ],
   "license": "MIT",
   "scripts": {
     "generate-docs": "node ./scripts/generateDocs.js",

@@ -89,7 +89,6 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: /\.((c|sc)ss)$/i,
-        sideEffects: true,
         use: [
           MiniCssExtractPlugin.loader,
           {
