@@ -1,13 +1,14 @@
 {
   "root": true,
   "plugins": ["jest-dom"],
-  "extends": ["adslot", "plugin:jest-dom/recommended"],
+  "extends": ["adslot", "plugin:jest-dom/recommended", "plugin:import/typescript"],
   "settings": {
     "lodash": {
       "version": 4
     }
   },
   "rules": {
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
-const SplitPaneComponent = ({ children, dts, additionalClassNames }) => {
+const SplitPane = ({ children, dts, additionalClassNames }) => {
   const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);
 
   return (
@@ -14,7 +14,7 @@ const SplitPaneComponent = ({ children, dts, additionalClassNames }) => {
   );
 };
 
-SplitPaneComponent.propTypes = {
+SplitPane.propTypes = {
   additionalClassNames: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,
   /**
@@ -23,8 +23,8 @@ SplitPaneComponent.propTypes = {
   dts: PropTypes.string,
 };
 
-SplitPaneComponent.defaultProps = {
+SplitPane.defaultProps = {
   additionalClassNames: [],
 };
 
-export default SplitPaneComponent;
+export default SplitPane;

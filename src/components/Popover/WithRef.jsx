@@ -7,7 +7,7 @@ import Popper from './Popper';
 import { themes, popoverPlacements, popoverStrategies } from './constants';
 import './styles.scss';
 
-const WithRef = ({
+const WithRefM = ({
   theme,
   title,
   dts,
@@ -48,8 +48,10 @@ const WithRef = ({
   );
 };
 
+const WithRef = React.memo(WithRefM);
+
 WithRef.propTypes = {
-  refElement: PropTypes.instanceOf(Element),
+  refElement: PropTypes.instanceOf(HTMLElement),
   title: PropTypes.string,
   theme: PropTypes.oneOf(themes),
   popoverClassNames: PropTypes.string,
@@ -70,4 +72,4 @@ WithRef.defaultProps = {
   placement: 'auto',
 };
 
-export default React.memo(WithRef);
+export default WithRef;

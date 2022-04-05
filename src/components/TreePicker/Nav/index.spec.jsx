@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
-import TreePickerNavComponent from '.';
+import TreePickerNav from '.';
 
 const getByClass = queryByAttribute.bind(null, 'class');
 const queryAllByClass = queryAllByAttribute.bind(null, 'class');
@@ -26,7 +26,7 @@ const mockProps = (overrides) => ({
 
 describe('<TreePickerNav />', () => {
   it('should render with defaults', () => {
-    const { getByTestId, queryByTestId, container } = render(<TreePickerNavComponent />);
+    const { getByTestId, queryByTestId, container } = render(<TreePickerNav />);
 
     expect(queryAllByClass(container, 'treepickernav-component')).toHaveLength(1);
     expect(getByClass(container, 'treepickernav-component')).not.toHaveClass('disabled');
@@ -39,9 +39,7 @@ describe('<TreePickerNav />', () => {
   });
 
   it('should render with props', () => {
-    const { getByTestId, queryByTestId, queryAllByTestId, container } = render(
-      <TreePickerNavComponent {...mockProps()} />
-    );
+    const { getByTestId, queryByTestId, queryAllByTestId, container } = render(<TreePickerNav {...mockProps()} />);
 
     expect(queryAllByClass(container, 'treepickernav-component')).toHaveLength(1);
     expect(getByClass(container, 'treepickernav-component')).not.toHaveClass('disabled');
@@ -57,7 +55,7 @@ describe('<TreePickerNav />', () => {
 
   it('should render icons with given svgSymbol and pass them to Search', () => {
     const { getByTestId } = render(
-      <TreePickerNavComponent
+      <TreePickerNav
         {...mockProps({ searchOnEnter: true })}
         svgSymbolSearch={<div className="testing-search-icon" />}
         svgSymbolCancel={<div className="testing-cancel-icon" />}
@@ -71,14 +69,14 @@ describe('<TreePickerNav />', () => {
   it('should call breadcrumbOnClick when clicked on breadcrumbs node', () => {
     const props = mockProps();
     jest.spyOn(props, 'breadcrumbOnClick');
-    const { queryAllByTestId } = render(<TreePickerNavComponent {...props} />);
+    const { queryAllByTestId } = render(<TreePickerNav {...props} />);
 
     fireEvent.click(queryAllByTestId('breadcrumb-node-wrapper')[0]);
     expect(props.breadcrumbOnClick).toHaveBeenCalledTimes(1);
   });
 
   it('should hide the search when showSearch is false', () => {
-    const { queryByTestId } = render(<TreePickerNavComponent {...mockProps({ showSearch: false })} />);
+    const { queryByTestId } = render(<TreePickerNav {...mockProps({ showSearch: false })} />);
     expect(queryByTestId('search-wrapper')).not.toBeInTheDocument();
   });
 
@@ -91,7 +89,7 @@ describe('<TreePickerNav />', () => {
     beforeEach(() => {
       props = mockProps({ disabled: true });
       jest.spyOn(props, 'breadcrumbOnClick');
-      component = render(<TreePickerNavComponent {...props} />);
+      component = render(<TreePickerNav {...props} />);
       breadcrumbElement = component.getByTestId('breadcrumb-wrapper');
       breadcrumbNodeElement = component.queryAllByTestId('breadcrumb-node-wrapper');
     });

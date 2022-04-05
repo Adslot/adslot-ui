@@ -1,8 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { act, render, cleanup, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
-import Toast from '.';
-import { ToastMessage } from './ToastNotification';
+import Toast, { ToastMessage } from '.';
 
 const getByClass = queryByAttribute.bind(null, 'class');
 const queryAllByClass = queryAllByAttribute.bind(null, 'class');

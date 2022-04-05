@@ -6,18 +6,6 @@ import { expandDts } from '../../lib/utils';
 import './styles.scss';
 
 class ButtonGroup extends React.PureComponent {
-  static propTypes = {
-    dts: PropTypes.string,
-    children: PropTypes.node,
-    /**
-     * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
-     */
-    theme: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
-    inverse: PropTypes.bool,
-    disabled: PropTypes.bool,
-    size: PropTypes.string,
-  };
-
   injectProps(children) {
     return React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
@@ -59,5 +47,17 @@ class ButtonGroup extends React.PureComponent {
     );
   }
 }
+
+ButtonGroup.propTypes = {
+  dts: PropTypes.string,
+  children: PropTypes.node,
+  /**
+   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+   */
+  theme: PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link']),
+  inverse: PropTypes.bool,
+  disabled: PropTypes.bool,
+  size: PropTypes.string,
+};
 
 export default ButtonGroup;

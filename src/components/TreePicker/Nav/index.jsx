@@ -4,10 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Search from '../../Search';
 import Breadcrumb from '../../Breadcrumb';
-import TreePickerPropTypes from '../../../prop-types/TreePickerPropTypes';
+import { TreePickerPropTypesBreadCrumbNode } from '../../../prop-types/TreePickerPropTypes';
 import './styles.scss';
 
-const TreePickerNavComponent = ({
+const TreePickerNav = ({
   breadcrumbRootNode,
   breadcrumbNodes,
   breadcrumbOnClick,
@@ -57,9 +57,9 @@ const TreePickerNavComponent = ({
   );
 };
 
-TreePickerNavComponent.propTypes = {
-  breadcrumbRootNode: TreePickerPropTypes.breadCrumbNode,
-  breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypes.breadCrumbNode),
+TreePickerNav.propTypes = {
+  breadcrumbRootNode: TreePickerPropTypesBreadCrumbNode,
+  breadcrumbNodes: PropTypes.arrayOf(TreePickerPropTypesBreadCrumbNode),
   breadcrumbOnClick: PropTypes.func,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
@@ -75,7 +75,7 @@ TreePickerNavComponent.propTypes = {
   svgSymbolSearch: PropTypes.node,
 };
 
-TreePickerNavComponent.defaultProps = {
+TreePickerNav.defaultProps = {
   debounceInterval: 0,
   disabled: false,
   isLoading: false,
@@ -85,4 +85,4 @@ TreePickerNavComponent.defaultProps = {
   onSearch: _.noop,
 };
 
-export default TreePickerNavComponent;
+export default TreePickerNav;

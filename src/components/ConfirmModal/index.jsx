@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ActionPanel from '../ActionPanel';
 import Button from '../Button';
 
-const ConfirmModalComponent = ({
+const ConfirmModal = ({
   buttonCancelLabel,
   buttonConfirmLabel,
   modalApply,
@@ -48,7 +48,7 @@ const ConfirmModalComponent = ({
   );
 };
 
-ConfirmModalComponent.propTypes = {
+ConfirmModal.propTypes = {
   /**
    * determines the label of cancel button
    */
@@ -79,7 +79,7 @@ ConfirmModalComponent.propTypes = {
   show: PropTypes.bool,
 };
 
-ConfirmModalComponent.defaultProps = {
+ConfirmModal.defaultProps = {
   buttonCancelLabel: 'Cancel',
   buttonConfirmLabel: 'Confirm',
   modalApply: () => {
@@ -90,4 +90,4 @@ ConfirmModalComponent.defaultProps = {
   show: false,
 };
 
-export default ConfirmModalComponent;
+export default ConfirmModal;

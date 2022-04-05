@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
-import Select from 'react-select';
+import ReactSelect from 'react-select';
 import SelectComponent from '.';
 
 const defaultOptions = [
@@ -10,10 +10,10 @@ const defaultOptions = [
   { value: 'uk', label: 'United Kingdom' },
 ];
 
-describe('SelectComponent', () => {
+describe('Select', () => {
   it('should render select options in body if props.isInModal is true', () => {
     const wrapper = mount(<SelectComponent options={defaultOptions} isInModal />);
-    expect(wrapper.find(Select).prop('menuPortalTarget')).toEqual(document.body);
-    expect(wrapper.find(Select).prop('styles').menuPortal()).toEqual({ zIndex: 9999 });
+    expect(wrapper.find(ReactSelect).prop('menuPortalTarget')).toEqual(document.body);
+    expect(wrapper.find(ReactSelect).prop('styles').menuPortal()).toEqual({ zIndex: 9999 });
   });
 });

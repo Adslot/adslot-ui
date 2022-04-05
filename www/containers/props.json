@@ -473,8 +473,17 @@
       "props": {
         "rootNode": {
           "type": {
-            "name": "custom",
-            "raw": "BreadcrumbNode.propTypes.node"
+            "name": "shape",
+            "value": {
+              "id": {
+                "name": "string",
+                "required": true
+              },
+              "label": {
+                "name": "string",
+                "required": true
+              }
+            }
           },
           "required": false,
           "description": "",
@@ -498,7 +507,17 @@
           "type": {
             "name": "arrayOf",
             "value": {
-              "name": "node"
+              "name": "shape",
+              "value": {
+                "id": {
+                  "name": "string",
+                  "required": true
+                },
+                "label": {
+                  "name": "string",
+                  "required": true
+                }
+              }
             }
           },
           "required": false,
@@ -932,7 +951,7 @@
   "src/components/Carousel/index.jsx": [
     {
       "description": "",
-      "displayName": "CarouselComponent",
+      "displayName": "Carousel",
       "methods": [
         {
           "name": "usePreventSwipeClicks",
@@ -1106,19 +1125,19 @@
         },
         "checked": {
           "type": {
-            "name": "enum",
+            "name": "union",
             "value": [
               {
-                "value": "true",
-                "computed": false
+                "name": "bool"
               },
               {
-                "value": "false",
-                "computed": false
-              },
-              {
-                "value": "'partial'",
-                "computed": false
+                "name": "enum",
+                "value": [
+                  {
+                    "value": "'partial'",
+                    "computed": false
+                  }
+                ]
               }
             ]
           },
@@ -1233,7 +1252,7 @@
   "src/components/ConfirmModal/index.jsx": [
     {
       "description": "",
-      "displayName": "ConfirmModalComponent",
+      "displayName": "ConfirmModal",
       "methods": [],
       "props": {
         "buttonCancelLabel": {
@@ -1432,7 +1451,7 @@
   "src/components/FilePicker/index.jsx": [
     {
       "description": "",
-      "displayName": "FilePickerComponent",
+      "displayName": "FilePicker",
       "methods": [
         {
           "name": "onChange",
@@ -1547,7 +1566,7 @@
   "src/components/FormGroup/index.jsx": [
     {
       "description": "",
-      "displayName": "FormGroupComponent",
+      "displayName": "FormGroup",
       "methods": [],
       "props": {
         "addon": {
@@ -1897,34 +1916,71 @@
   "src/components/HoverDropdownMenu/PopoverLinkItem/index.jsx": [
     {
       "description": "",
-      "displayName": "PopoverLinkItemComponent",
+      "displayName": "PopoverLinkItem",
       "methods": [],
       "props": {
-        "target": {
-          "defaultValue": {
-            "value": "'_self'",
-            "computed": false
-          },
-          "required": false
-        },
-        "isEnabled": {
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          },
-          "required": false
-        },
         "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "_.noop",
             "computed": true
+          }
+        },
+        "target": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'_blank'",
+                "computed": false
+              },
+              {
+                "value": "'_self'",
+                "computed": false
+              },
+              {
+                "value": "'_modal'",
+                "computed": false
+              }
+            ]
           },
-          "required": false
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'_self'",
+            "computed": false
+          }
+        },
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "url": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "isEnabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
         }
-      },
-      "composes": [
-        "lodash"
-      ]
+      }
     }
   ],
   "src/components/ImageCropper/index.jsx": [
@@ -2087,7 +2143,7 @@
   "src/components/ListPicker/index.jsx": [
     {
       "description": "",
-      "displayName": "ListPickerComponent",
+      "displayName": "ListPicker",
       "methods": [
         {
           "name": "getApplyButtonState",
@@ -2377,7 +2433,7 @@
   "src/components/ListPickerPure/index.jsx": [
     {
       "description": "",
-      "displayName": "ListPickerPureComponent",
+      "displayName": "ListPickerPure",
       "methods": [
         {
           "name": "isItemSelected",
@@ -2771,7 +2827,7 @@
   "src/components/PagedGrid/index.jsx": [
     {
       "description": "",
-      "displayName": "PagedGridComponent",
+      "displayName": "PagedGrid",
       "methods": [],
       "props": {
         "columns": {
@@ -2927,7 +2983,7 @@
   "src/components/Panel/index.jsx": [
     {
       "description": "",
-      "displayName": "PanelComponent",
+      "displayName": "Panel",
       "methods": [
         {
           "name": "onHeaderClick",
@@ -4508,7 +4564,7 @@
   "src/components/SplitPane/index.jsx": [
     {
       "description": "",
-      "displayName": "SplitPaneComponent",
+      "displayName": "SplitPane",
       "methods": [],
       "props": {
         "additionalClassNames": {
@@ -5260,10 +5316,10 @@
       }
     }
   ],
-  "src/components/Toast/ToastContainer.jsx": [
+  "src/components/Toast/index.jsx": [
     {
       "description": "",
-      "displayName": "ToastContainerComponent",
+      "displayName": "ToastContainer",
       "methods": [],
       "props": {
         "position": {
@@ -5365,9 +5421,7 @@
           }
         }
       }
-    }
-  ],
-  "src/components/Toast/ToastNotification.jsx": [
+    },
     {
       "description": "",
       "displayName": "ToastMessage",
@@ -5425,7 +5479,7 @@
   "src/components/TreePicker/Grid/index.jsx": [
     {
       "description": "",
-      "displayName": "TreePickerGridComponent",
+      "displayName": "TreePickerGrid",
       "methods": [],
       "props": {
         "disabled": {
@@ -5511,7 +5565,8 @@
           "type": {
             "name": "arrayOf",
             "value": {
-              "name": "node"
+              "name": "custom",
+              "raw": "TreePickerPropTypesNode"
             }
           },
           "required": false,
@@ -5562,7 +5617,7 @@
   "src/components/TreePicker/index.jsx": [
     {
       "description": "",
-      "displayName": "TreePickerSimplePureComponent",
+      "displayName": "TreePickerSimplePure",
       "methods": [],
       "props": {
         "additionalClassNames": {
@@ -5578,7 +5633,7 @@
         "breadcrumbRootNode": {
           "type": {
             "name": "custom",
-            "raw": "TreePickerPropTypes.breadCrumbNode"
+            "raw": "TreePickerPropTypesBreadCrumbNode"
           },
           "required": false,
           "description": "Optional. This prop allows customization of the Breadcrumb root node. { id: PropTypes.sting | PropTypes.number, label: PropTypes.string}"
@@ -5588,7 +5643,7 @@
             "name": "arrayOf",
             "value": {
               "name": "custom",
-              "raw": "TreePickerPropTypes.breadCrumbNode.isRequired"
+              "raw": "TreePickerPropTypesBreadCrumbNode.isRequired"
             }
           },
           "required": false,
@@ -5790,7 +5845,8 @@
           "type": {
             "name": "arrayOf",
             "value": {
-              "name": "node"
+              "name": "custom",
+              "raw": "TreePickerPropTypesNode"
             }
           },
           "required": true,
@@ -5811,7 +5867,8 @@
           "type": {
             "name": "arrayOf",
             "value": {
-              "name": "node"
+              "name": "custom",
+              "raw": "TreePickerPropTypesNode.isRequired"
             }
           },
           "required": false,
@@ -5866,13 +5923,13 @@
   "src/components/TreePicker/Nav/index.jsx": [
     {
       "description": "",
-      "displayName": "TreePickerNavComponent",
+      "displayName": "TreePickerNav",
       "methods": [],
       "props": {
         "breadcrumbRootNode": {
           "type": {
             "name": "custom",
-            "raw": "TreePickerPropTypes.breadCrumbNode"
+            "raw": "TreePickerPropTypesBreadCrumbNode"
           },
           "required": false,
           "description": ""
@@ -5882,7 +5939,7 @@
             "name": "arrayOf",
             "value": {
               "name": "custom",
-              "raw": "TreePickerPropTypes.breadCrumbNode"
+              "raw": "TreePickerPropTypesBreadCrumbNode"
             }
           },
           "required": false,
@@ -6040,7 +6097,7 @@
   "src/components/TreePicker/Node/index.jsx": [
     {
       "description": "",
-      "displayName": "TreePickerNodeComponent",
+      "displayName": "TreePickerNode",
       "methods": [
         {
           "name": "setLoadingAndExpandNode",
@@ -6104,7 +6161,7 @@
         "node": {
           "type": {
             "name": "custom",
-            "raw": "TreePickerPropTypes.node.isRequired"
+            "raw": "TreePickerPropTypesNode.isRequired"
           },
           "required": false,
           "description": ""
@@ -6159,7 +6216,7 @@
   "src/components/UserListPicker/index.jsx": [
     {
       "description": "",
-      "displayName": "UserListPickerComponent",
+      "displayName": "UserListPicker",
       "methods": [],
       "props": {
         "allowEmptySelection": {

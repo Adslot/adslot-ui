@@ -5,7 +5,7 @@ import ListPicker from '../ListPicker';
 import Avatar from '../Avatar';
 import './styles.scss';
 
-const UserListPickerComponent = ({
+const UserListPicker = ({
   allowEmptySelection,
   avatarColor,
   emptyIcon,
@@ -55,7 +55,7 @@ const userType = PropTypes.shape({
   surname: PropTypes.string,
 });
 
-UserListPickerComponent.propTypes = {
+UserListPicker.propTypes = {
   allowEmptySelection: PropTypes.bool,
   /**
    * avatarColor({ avatar, givenName, id, surname })
@@ -86,7 +86,7 @@ UserListPickerComponent.propTypes = {
   users: PropTypes.arrayOf(userType),
 };
 
-UserListPickerComponent.defaultProps = {
+UserListPicker.defaultProps = {
   allowEmptySelection: false,
   avatarColor: _.noop,
   emptyMessage: 'No users.',
@@ -106,4 +106,4 @@ UserListPickerComponent.defaultProps = {
   users: [],
 };
 
-export default UserListPickerComponent;
+export default UserListPicker;

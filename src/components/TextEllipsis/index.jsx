@@ -41,5 +41,4 @@ TextEllipsis.defaultProps = {
     trigger: 'hover',
   },
 };
-
 export default TextEllipsis;

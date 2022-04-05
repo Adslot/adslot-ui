@@ -8,36 +8,7 @@ import './styles.scss';
 
 export const baseClass = 'aui--alert-input';
 
-export default class AlertInput extends React.PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    dts: PropTypes.string,
-    disabled: PropTypes.bool,
-    prefixAddon: PropTypes.node,
-    suffixAddon: PropTypes.node,
-    /**
-     * <span>
-     *   As <code>success</code> is assumed, and help is always displayed independently, the accepted pattern is to
-     *  only use <code>warning</code> and <code>error</code> feedback states with this component. Otherwise leave
-     *  type undefined for <code>success</code>.
-     * </span>
-     */
-    alertStatus: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
-    /**
-     * 'left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'
-     */
-    popoverPlacement: PropTypes.oneOf(popoverPlacements),
-    alertMessage: PropTypes.string,
-    onValueChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
-  };
-
-  static defaultProps = {
-    alertStatus: 'success',
-    popoverPlacement: 'bottom',
-  };
-
+class AlertInput extends React.PureComponent {
   state = {
     isFocused: false,
     isPopoverVisible: false,
@@ -143,3 +114,34 @@ export default class AlertInput extends React.PureComponent {
     );
   }
 }
+
+AlertInput.propTypes = {
+  className: PropTypes.string,
+  dts: PropTypes.string,
+  disabled: PropTypes.bool,
+  prefixAddon: PropTypes.node,
+  suffixAddon: PropTypes.node,
+  /**
+   * <span>
+   *   As <code>success</code> is assumed, and help is always displayed independently, the accepted pattern is to
+   *  only use <code>warning</code> and <code>error</code> feedback states with this component. Otherwise leave
+   *  type undefined for <code>success</code>.
+   * </span>
+   */
+  alertStatus: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
+  /**
+   * 'left', 'top', 'top-start', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right'
+   */
+  popoverPlacement: PropTypes.oneOf(popoverPlacements),
+  alertMessage: PropTypes.string,
+  onValueChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+};
+
+AlertInput.defaultProps = {
+  alertStatus: 'success',
+  popoverPlacement: 'bottom',
+};
+
+export default AlertInput;

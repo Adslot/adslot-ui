@@ -30,9 +30,17 @@ const Breadcrumb = ({ rootNode, divider, nodes, onClick, disabled }) => {
 };
 
 Breadcrumb.propTypes = {
-  rootNode: BreadcrumbNode.propTypes.node,
+  rootNode: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  }),
   divider: PropTypes.node,
-  nodes: PropTypes.arrayOf(BreadcrumbNode.propTypes.node),
+  nodes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ),
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };

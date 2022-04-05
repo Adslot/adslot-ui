@@ -9,7 +9,7 @@ import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
 import './styles.scss';
 
-class ListPickerPureComponent extends React.PureComponent {
+class ListPickerPure extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -113,7 +113,7 @@ const itemProps = PropTypes.shape({
   id: PropTypes.any.isRequired, // id can be numeric or uuid string
 });
 
-ListPickerPureComponent.propTypes = {
+ListPickerPure.propTypes = {
   allowMultiSelection: PropTypes.bool,
   deselectItem: PropTypes.func,
   emptyMessage: PropTypes.string,
@@ -131,7 +131,7 @@ ListPickerPureComponent.propTypes = {
   selectedItems: PropTypes.arrayOf(itemProps),
 };
 
-ListPickerPureComponent.defaultProps = {
+ListPickerPure.defaultProps = {
   allowMultiSelection: true,
   deselectItem: () => {
     throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');
@@ -146,4 +146,4 @@ ListPickerPureComponent.defaultProps = {
   selectedItems: [],
 };
 
-export default ListPickerPureComponent;
+export default ListPickerPure;

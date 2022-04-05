@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './styles.scss';
 
-class PanelComponent extends React.PureComponent {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    dts: PropTypes.string,
-    icon: PropTypes.node,
-    title: PropTypes.node.isRequired,
-    isCollapsed: PropTypes.bool,
-    onClick: PropTypes.func,
-    children: PropTypes.node,
-  };
-
+class Panel extends React.PureComponent {
   onHeaderClick = () => this.props.onClick(this.props.id);
 
   render() {
@@ -35,4 +24,15 @@ class PanelComponent extends React.PureComponent {
   }
 }
 
-export default PanelComponent;
+Panel.propTypes = {
+  id: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  dts: PropTypes.string,
+  icon: PropTypes.node,
+  title: PropTypes.node.isRequired,
+  isCollapsed: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+};
+
+export default Panel;

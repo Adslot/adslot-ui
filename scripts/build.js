@@ -6,7 +6,8 @@ process.on('unhandledRejection', (err) => {
 });
 
 const chalk = require('chalk');
-const fs = require('fs-extra');
+const fs = require('fs');
+const path = require('path');
 const webpack = require('webpack');
 
 let config;
@@ -34,19 +35,23 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, buildPath, {
-    dereference: true,
-    filter: (file) => file !== paths.appHtml,
+async function copyDir(src, dest) {
+  const entries = await fs.promises.readdir(src, { withFileTypes: true });
+  await fs.promises.mkdir(dest, { recursive: true });
+  entries.forEach(async (entry) => {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      await copyDir(srcPath, destPath);
+    } else {
+      await fs.promises.copyFile(srcPath, destPath);
+    }
   });
 }
 
-function copyDemoAssets() {
-  fs.copySync(paths.assetsPath, `${buildPath}/assets`, {
-    dereference: true,
-    filter: (file) => file !== paths.appHtml,
-  });
-  fs.copyFileSync(paths.redirectPath, `${buildPath}/_redirects`);
+async function copyDemoAssets() {
+  await copyDir(paths.assetsPath, `${buildPath}/assets`);
+  await fs.promises.copyFile(paths.redirectPath, `${buildPath}/_redirects`);
 }
 
 // Create the production build and print the deployment instructions.
@@ -99,13 +104,22 @@ function build(previousFileSizes) {
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(buildPath)
-  .then((previousFileSizes) => {
+  .then(async (previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
-    if (process.env.NODE_ENV === 'dist') fs.emptyDirSync(buildPath);
+    if (process.env.NODE_ENV === 'dist') {
+      try {
+        await fs.promises.stat(buildPath);
+      } catch {
+        await fs.promises.mkdir(buildPath);
+      }
+      fs.readdirSync(buildPath).forEach((f) => {
+        fs.rmSync(`${buildPath}/${f}`, { recursive: true });
+      });
+    }
     // Merge with the public folder
-    if (process.env.NODE_ENV === 'production') {
-      process.env.DEMO_ASSETS ? copyDemoAssets() : copyPublicFolder();
+    if (process.env.NODE_ENV === 'production' && process.env.DEMO_ASSETS) {
+      await copyDemoAssets();
     }
     // Start the webpack build
     return build(previousFileSizes);

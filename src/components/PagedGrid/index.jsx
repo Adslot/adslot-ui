@@ -8,7 +8,7 @@ import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
 import './styles.scss';
 
-class PagedGridComponent extends React.PureComponent {
+class PagedGrid extends React.PureComponent {
   state = { activePage: 1 };
 
   static getDerivedStateFromProps(props, state) {
@@ -79,7 +79,7 @@ const columnProps = PropTypes.shape({
   stretch: PropTypes.bool,
 });
 
-PagedGridComponent.propTypes = {
+PagedGrid.propTypes = {
   columns: PropTypes.arrayOf(columnProps).isRequired,
   emptyMessage: PropTypes.string,
   emptySvgSymbol: PropTypes.node,
@@ -88,4 +88,4 @@ PagedGridComponent.propTypes = {
   verticalCellBorder: PropTypes.bool,
 };
 
-export default PagedGridComponent;
+export default PagedGrid;

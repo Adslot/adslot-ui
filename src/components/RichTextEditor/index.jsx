@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modifier, EditorState, convertToRaw, RichUtils } from 'draft-js';
-import Editor from '@draft-js-plugins/editor';
+import draftJs from 'draft-js';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
 import createMentionPlugin, { defaultSuggestionsFilter } from '@draft-js-plugins/mention';
@@ -14,6 +14,8 @@ import FileUploadAction from './FileUploadAction';
 import MentionEntry from './MentionEntry';
 import FilePreviewList from './FilePreviewList';
 import './styles.scss';
+
+const { EditorState, Modifier, convertToRaw, RichUtils } = draftJs;
 
 const RichTextEditor = ({
   className,
@@ -198,7 +200,7 @@ RichTextEditor.defaultProps = {
 };
 
 RichTextEditor.createEmpty = EditorState.createEmpty;
-RichTextEditor.createWithText = EditorState.createWithText;
+RichTextEditor.createWithText = createEditorStateWithText;
 RichTextEditor.stateToHTML = (input) => stateToHTML(input.getCurrentContent());
 RichTextEditor.stateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
 RichTextEditor.stateToPlainText = (input) => input.getCurrentContent().getPlainText();

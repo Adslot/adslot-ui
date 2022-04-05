@@ -1,0 +1,8 @@
+{
+  "include": ["src/**/*.d.ts"],
+  "compilerOptions": {
+    "jsx": "react",
+    "noEmit": true,
+    "esModuleInterop": true
+  }
+}

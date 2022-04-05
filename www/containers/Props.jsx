@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import HtmlParser from 'react-html-parser';
 import props from './props.json';
 
-const componentNameMapper = {
-  Tag: 'TagComponent',
-  Slicey: 'SliceyComponent',
-};
-
 const Props = ({ componentName, customMapper }) => {
   const componentExports = customMapper
     ? customMapper(props)
@@ -17,10 +12,7 @@ const Props = ({ componentName, customMapper }) => {
   const componentProps =
     componentExports.length === 1
       ? componentExports[0]
-      : componentExports.find(
-          (component) =>
-            component.displayName === componentName || component.displayName === componentNameMapper[componentName]
-        );
+      : componentExports.find((component) => component.displayName === componentName);
 
   if (componentProps) {
     return (
