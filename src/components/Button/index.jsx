@@ -31,15 +31,21 @@ const Button = (props) => {
 
   const renderChildren = () =>
     href ? (
-      <a
-        data-testid="button-anchor"
-        className="aui--button-anchor"
-        href={href}
-        target={target}
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
+      !disabled ? (
+        <a
+          data-testid="button-anchor"
+          className="aui--button-anchor"
+          href={href}
+          target={target}
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ) : (
+        <div className="aui--button-anchor" data-testid="button-anchor">
+          {children}
+        </div>
+      )
     ) : (
       children
     );
