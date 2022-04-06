@@ -5425,7 +5425,16 @@
     {
       "description": "",
       "displayName": "ToastMessage",
-      "methods": []
+      "methods": [],
+      "props": {
+        "title": {
+          "defaultValue": {
+            "value": "''",
+            "computed": false
+          },
+          "required": false
+        }
+      }
     }
   ],
   "src/components/Totals/index.jsx": [

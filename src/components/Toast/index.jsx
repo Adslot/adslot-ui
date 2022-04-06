@@ -1,6 +1,5 @@
-import _ from 'lodash';
-import classnames from 'classnames';
 import React from 'react';
+import classnames from 'classnames';
 import { toast, ToastContainer as ReactToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { toastPlacements } from './constants';
@@ -43,7 +42,7 @@ ToastContainer.defaultProps = {
 
 const getToastClass = (theme) => classnames('aui--toast-title', { [`aui--toast-title-${theme}`]: theme });
 
-export const ToastMessage = ({ toastClass, title, message }) => (
+export const ToastMessage = ({ toastClass, title = '', message }) => (
   <React.Fragment>
     <span className="aui--toast-body-message">
       <span className={toastClass}>{title}</span>
@@ -52,24 +51,26 @@ export const ToastMessage = ({ toastClass, title, message }) => (
   </React.Fragment>
 );
 
-const options = (props) =>
-  _.omit({ className: 'aui--toast-notification-body', ...props }, ['title', 'theme', 'message']);
+const withDefaultOptions = (options) => ({
+  position: 'bottom-left',
+  autoClose: 5000,
+  className: 'aui--toast-notification-body',
+  icon: false,
+  ...options,
+});
 
-const ToastNotification = (props) => {
-  const { theme, title, message } = props;
-
+const ToastNotification = ({ theme = 'info', title = '', message, ...options }) => {
   const toastClass = getToastClass(theme);
   const toastMessage = <ToastMessage toastClass={toastClass} title={title} message={message} />;
-  const toastOptions = options(props);
 
-  toast.info(toastMessage, toastOptions);
+  toast.info(toastMessage, withDefaultOptions({ theme, ...options }));
   return null;
 };
 
-const notify = ({ theme, title, message, ...props }) => {
+const notify = ({ theme = 'info', title, message, ...options }) => {
   toast.info(
-    <ToastMessage toastClass={getToastClass(theme)} title={title} message={message} {...props} />,
-    options({ theme, title, message, ...props })
+    <ToastMessage toastClass={getToastClass(theme)} title={title} message={message} />,
+    withDefaultOptions({ theme, ...options })
   );
   return;
 };
@@ -91,13 +92,6 @@ ToastNotification.propTypes = {
   title: PropTypes.string,
   theme: PropTypes.oneOf(['success', 'info', 'alert', 'attention']),
   message: PropTypes.node.isRequired,
-};
-
-ToastNotification.defaultProps = {
-  position: 'bottom-left',
-  autoClose: 5000,
-  title: '',
-  theme: 'info',
 };
 
 const Toast = {
