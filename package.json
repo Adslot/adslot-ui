@@ -166,7 +166,7 @@
     "react-popper": "^2.2.5",
     "react-select": "~3.0",
     "react-slick": "^0.28.1",
-    "react-toastify": "^6.0.5",
+    "react-toastify": "^8.2.0",
     "slick-carousel": "^1.8.1"
   },
   "peerDependencies": {
