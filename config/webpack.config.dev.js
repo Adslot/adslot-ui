@@ -47,6 +47,7 @@ module.exports = webpackMerge(commonConfig, {
           {
             loader: '@mdx-js/loader',
             options: {
+              providerImportSource: '@mdx-js/react',
               remarkPlugins: [emoji],
             },
           },

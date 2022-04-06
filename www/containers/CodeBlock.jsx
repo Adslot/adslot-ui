@@ -1,20 +1,22 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import { mdx } from '@mdx-js/react';
+// import { mdx } from '@mdx-js/react';
 import moment from 'moment';
 import * as AdslotUI from '../../src';
 import theme from './theme';
 
 /* eslint-disable */
 export default ({ children, className, live }) => {
+  console.log('children ', children);
+  console.log('live ', live);
   if (live) {
     return (
       <LiveProvider
         code={children.trim()}
         language="jsx"
         noInline={children.includes('render(')}
-        scope={{ ...AdslotUI, mdx, moment }}
+        scope={{ ...AdslotUI, moment }}
         theme={theme}
         className="test"
       >
