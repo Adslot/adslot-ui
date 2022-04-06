@@ -55,4 +55,23 @@ describe('<Button />', () => {
     const { getByTestId } = render(<Button isLoading size="large" />);
     expect(getByTestId('spinner')).toHaveClass('spinner-medium');
   });
+
+  it('should render button with href', () => {
+    const { getByText } = render(
+      <Button href="www.some-url.com" target="_blank">
+        Test
+      </Button>
+    );
+    expect(getByText('Test')).toHaveAttribute('href', 'www.some-url.com');
+  });
+
+  it('should render disabled href button', () => {
+    const { getByTestId, getByText } = render(
+      <Button disabled href="www.some-url.com" target="_blank">
+        Test
+      </Button>
+    );
+    expect(getByTestId('button-wrapper')).toBeDisabled();
+    expect(getByText('Test')).not.toHaveAttribute('href');
+  });
 });
