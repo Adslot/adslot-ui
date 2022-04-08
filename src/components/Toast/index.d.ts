@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export const ToastMessage: React.FC;
+
 export type ToastContainerPosition =
   | 'top-right'
   | 'top-center'
