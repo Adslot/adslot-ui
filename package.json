@@ -162,7 +162,7 @@
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
     "html-to-text": "^8.1.0",
-    "react-datepicker": "^4.6.0",
+    "react-datepicker": "^4.7.0",
     "react-popper": "^2.2.5",
     "react-select": "~3.0",
     "react-slick": "^0.28.1",
