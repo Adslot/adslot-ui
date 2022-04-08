@@ -172,8 +172,8 @@
   "peerDependencies": {
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "overrides": {
     "react-to-typescript-definitions": {
