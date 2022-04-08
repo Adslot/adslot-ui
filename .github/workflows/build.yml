@@ -21,6 +21,10 @@ jobs:
           node-version: ${{matrix.node}}
       - run: npm -v
       - run: npm ci
+      - run: npm run type-check
+      - run: |
+          npm run generate-types
+          git diff --exit-code
       - run: npm run dist
       - name: Deploy docs to Netlify
         run: |
