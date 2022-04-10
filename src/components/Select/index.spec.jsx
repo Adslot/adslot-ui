@@ -61,7 +61,6 @@ describe('<Select />', () => {
     const { container, getByText, queryByText } = render(
       <Select options={defaultOptions} defaultValue={[defaultOptions[0], defaultOptions[1]]} isMulti />
     );
-
     expect(queryAllByClass(container, 'css-11547y4 select-component__multi-value__label')).toHaveLength(2);
     expect(queryByText('Australia')).toBeInTheDocument();
     expect(getByText('Australia')).toHaveClass('select-component__multi-value__label');
@@ -73,7 +72,7 @@ describe('<Select />', () => {
     const { container, rerender, getByText, queryByText } = render(<Select options={defaultOptions} dts="test-dts" />);
 
     expect(queryAllByDts(container, 'test-dts')).toHaveLength(1);
-    expect(queryAllByClass(container, 'select-component__value-container css-9evde0')).toHaveLength(1);
+    expect(queryAllByClass(container, 'select-component__value-container css-12htazg-ValueContainer')).toHaveLength(1);
     expect(
       queryAllByClass(
         container,
@@ -89,7 +88,19 @@ describe('<Select />', () => {
   });
 
   it('should render select options in body if props.isInModal is true', () => {
-    const { container } = render(<Select options={defaultOptions} isInModal />);
+    const { container, rerender } = render(
+      <div className="select-wrapper">
+        <Select options={defaultOptions} isInModal />
+      </div>
+    );
+
+    rerender(
+      <div className="select-wrapper">
+        <Select options={defaultOptions} menuIsOpen isInModal />
+      </div>
+    );
     expect(container).toMatchSnapshot();
+    expect(queryAllByClass(document.body, 'select-component__menu-portal css-bchx50')).toHaveLength(1);
+    expect();
   });
 });

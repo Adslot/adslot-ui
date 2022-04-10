@@ -111,7 +111,7 @@ module.exports = function typesPostFixes(componentName, result) {
     case 'Select':
       return `
       import * as React from 'react';
-      import { Props, OptionTypeBase, components, createFilter } from 'react-select';
+      import { Props,  components, createFilter } from 'react-select';
       import CreatableSelect from 'react-select/creatable';
       import AsyncSelect from 'react-select/async';
       import AsyncCreatableSelect from 'react-select/async-creatable';
@@ -121,7 +121,7 @@ module.exports = function typesPostFixes(componentName, result) {
         isInModal?: boolean;
       }
 
-      declare const Select: (<OptionType extends OptionTypeBase = { label: string; value: string }, IsMulti extends boolean = false>(
+      declare const Select: (<OptionType extends unknown = { label: string; value: string }, IsMulti extends boolean = false>(
         props: SelectProps & Props<OptionType, IsMulti>
       ) => React.ReactElement<any, any> | null) & {
         components: typeof components;
