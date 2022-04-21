@@ -1,0 +1,15 @@
+{
+  "name": "adslot-system",
+  "version": "0.0.1",
+  "description": "Adslot design tokens",
+  "types": "./output/types",
+  "exports": {
+    ".": "./output/index.js",
+    "./output/styles/*": "./output/styles/*",
+    "./tokens": "./output/tokens/index.js"
+  },
+  "files": [
+    "output"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+{
+  "color": {
+    "text": {
+      "base": { "value": "{color.gray.darkest.value}" },
+      "light": { "value": "{color.gray.dark.value}" },
+      "label": { "value": "{color.gray.dark.value}" },
+      "form": { "value": "{color.gray.dark.value}" },
+      "sub": { "value": "{color.gray.base.value}" },
+      "disabled": { "value": "{color.gray.base.value}" },
+      "placeholder": { "value": "{color.gray.base.value}" }
+    }
+  }
+}

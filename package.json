@@ -9,7 +9,8 @@
     "dist",
     "src/styles",
     "lib",
-    "es"
+    "es",
+    "system"
   ],
   "license": "MIT",
   "scripts": {
@@ -24,6 +25,7 @@
     "dist:es": "cross-env NODE_ENV=esm node ./scripts/babel-build.js",
     "dist:demo": "cross-env NODE_ENV=production DEMO_ASSETS=true node ./scripts/build.js",
     "dist": "npm run clean && npm run copy-types && npm run dist:lib && npm run dist:es && npm run dist:prod && npm run generate-docs && npm run dist:demo",
+    "dist:system": "rimraf system/output/* && cd ./system && style-dictionary build",
     "lint:sass": "sass-lint -v",
     "lint:eslint": "eslint --ext .jsx,.js,.ts ./src && eslint --ext .jsx,.js ./www",
     "lint:prettier": "prettier '{src,www,config}/**/*.{js,json,jsx,mdx,scss}' --check",
@@ -116,6 +118,7 @@
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "json-to-ts": "^1.7.0",
     "lint-staged": "^12.3.7",
     "mini-css-extract-plugin": "^2.6.0",
     "null-loader": "^4.0.1",
@@ -138,6 +141,7 @@
     "sass-lint": "^1.13.1",
     "sass-loader": "^12.6.0",
     "seamless-immutable": "^7.1.4",
+    "style-dictionary": "^3.7.0",
     "style-loader": "^3.3.1",
     "svg4everybody": "^2.1.9",
     "svgo": "^2.8.0",
