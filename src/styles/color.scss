@@ -1,4 +1,5 @@
 // Hues (Primary Palette)
+@import '../../system/output/styles/color';
 
 $color-blue-light: #e0f0ff;
 $color-blue: #006dcc;
@@ -19,16 +20,16 @@ $color-cyan-dark: #0492ba;
 // Tones (Secondary Palette)
 
 $color-white: #fff;
+$color-gray: $color-gray-base;
+// $color-gray-white: #f9f9f9;
+// $color-gray-lightest: #f3f3f3;
+// $color-gray-lighter: #e8e8e8;
+// $color-gray-light: #d3d3d3;
 
-$color-gray-white: #f9f9f9;
-$color-gray-lightest: #f3f3f3;
-$color-gray-lighter: #e8e8e8;
-$color-gray-light: #d3d3d3;
-
-$color-gray: #ababab;
-$color-gray-dark: #838383;
-$color-gray-darker: #5a5a5a;
-$color-gray-darkest: #333;
+// $color-gray: #ababab;
+// $color-gray-dark: #838383;
+// $color-gray-darker: #5a5a5a;
+// $color-gray-darkest: #333;
 
 $color-black: #000;
 $color-black-blockout: #202124;
@@ -92,15 +93,15 @@ $color-background-highlighted: $color-gray-lightest;
 // Typography
 $color-link-hover: $color-cyan-dark;
 $color-link: $color-cyan;
-$color-text-dark: $color-black;
-$color-text-disabled: $color-gray;
-$color-text-form: $color-gray-darker;
+// $color-text-dark: $color-black;
+// $color-text-disabled: $color-gray;
+// $color-text-form: $color-gray-darker;
 $color-text-inverse: $color-white;
-$color-text-label: $color-gray-dark;
-$color-text-light: $color-gray-dark;
-$color-text-placeholder: $color-gray;
-$color-text-sub: $color-gray;
-$color-text: $color-gray-darkest;
+// $color-text-label: $color-gray-dark;
+// $color-text-light: $color-gray-dark;
+// $color-text-placeholder: $color-gray;
+// $color-text-sub: $color-gray;
+$color-text: $color-text-base;
 $color-text-addon: $color-gray-light;
 
 // Borders
@@ -151,9 +152,9 @@ $color-button-warning-border: #eea236;
 $color-button-danger-background: #d9534f;
 $color-button-danger-border: #d43f3a;
 $color-button-link-color: #337ab7;
-$color-button-default-hover-background: #e6e6e6;
-$color-button-default-hover-border: #b4b4b4;
+$color-button-default-hover-background: $color-gray-light;
+$color-button-default-hover-border: $color-gray-lighter;
 
 // Loading Skeleton
-$color-skeleton-base: #eee;
-$color-skeleton-highlight: #f5f5f5;
+$color-skeleton-base: $color-gray-light;
+$color-skeleton-highlight: $color-gray-lightest;

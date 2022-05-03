@@ -1,15 +1,16 @@
-const borderColor = '#ababab';
+import * as tokens from '../../../system/output';
+const { color } = tokens;
+const borderColor = color.gray.base;
 
 const defaultStyle = {
-  option: (styles, { isFocused, isSelected, isDisabled }) => {
+  option: (styles, { isFocused, isSelected, isDisabled, isActive }) => {
     let backgroundColor;
-
     switch (true) {
       case isSelected:
-        backgroundColor = '#f5faff';
+        backgroundColor = color.gray.lightest;
         break;
       case isFocused:
-        backgroundColor = '#f9f9f9';
+        backgroundColor = color.gray.lightest;
         break;
       case isDisabled:
         return styles;
@@ -20,6 +21,7 @@ const defaultStyle = {
     return {
       ...styles,
       color: 'inherit',
+      ':active': { backgroundColor: color.gray.lighter },
       backgroundColor,
     };
   },
@@ -54,7 +56,7 @@ const defaultStyle = {
   multiValue: (styles) => ({
     ...styles,
     color: '#fff',
-    backgroundColor: '#838383',
+    backgroundColor: color.gray.dark,
   }),
   multiValueLabel: (styles) => ({
     ...styles,
