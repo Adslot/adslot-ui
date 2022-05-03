@@ -3,11 +3,11 @@ const { fileHeader } = require('style-dictionary/lib/common/formatHelpers');
 const JsonToTS = require('json-to-ts');
 const fs = require('fs');
 const path = require('path');
-const tokens = require('./_tokens');
+const tokens = require('./src');
 const distFolderName = 'output';
 
 module.exports = {
-  source: ['_tokens/**/*.json'],
+  source: ['src/**/*.json'],
   platforms: {
     // // just exports the above category modules
     'js/index': {
@@ -29,7 +29,7 @@ module.exports = {
       ],
     },
     // the main exports come from these json transforms.
-    // each folder within _tokens represents an export
+    // each folder within src represents an export
     // e.g import { color } from 'adslot-ui/system';
     // this json contain nested 'direct' values e.g color.blue.base is the hex string
     json: {

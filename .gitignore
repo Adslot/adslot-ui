@@ -26,4 +26,4 @@ lib
 
 es
 
-system/later
+!system/dist
