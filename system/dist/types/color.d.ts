@@ -39,4 +39,6 @@ interface Border {
   light: string;
   base: string;
   dark: string;
+  darker: string;
+  darkest: string;
 }

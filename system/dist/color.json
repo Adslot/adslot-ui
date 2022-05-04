@@ -5,7 +5,9 @@
       "lighter": "#E6EDF2",
       "light": "#DAE2E6",
       "base": "#AAAFB3",
-      "dark": "#1C1D1F"
+      "dark": "#757982",
+      "darker": "#505359",
+      "darkest": "#1C1D1F"
     },
     "gray": {
       "white": "#FAFBFC",

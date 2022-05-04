@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 May 2022 01:10:53 GMT
+ * Generated on Wed, 04 May 2022 02:26:37 GMT
  */
 
 declare module 'adslot-ui/system/tokens' {
@@ -27,7 +27,9 @@ declare module 'adslot-ui/system/tokens' {
       "lighter": DesignToken,
       "light": DesignToken,
       "base": DesignToken,
-      "dark": DesignToken
+      "dark": DesignToken,
+      "darker": DesignToken,
+      "darkest": DesignToken
     },
     "gray": {
       "white": DesignToken,

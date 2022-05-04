@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 May 2022 01:10:53 GMT
+ * Generated on Wed, 04 May 2022 02:26:37 GMT
  */
 
 export default {
@@ -83,11 +83,11 @@ export default {
         ]
       },
       "dark": {
-        "value": "#1c1d1f",
+        "value": "#757982",
         "filePath": "src/color/border.json",
         "isSource": true,
         "original": {
-          "value": "{color.gray.darkest.value}"
+          "value": "{color.gray.dark.value}"
         },
         "name": "ColorBorderDark",
         "attributes": {
@@ -99,6 +99,44 @@ export default {
           "color",
           "border",
           "dark"
+        ]
+      },
+      "darker": {
+        "value": "#505359",
+        "filePath": "src/color/border.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.darker.value}"
+        },
+        "name": "ColorBorderDarker",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "darker"
+        },
+        "path": [
+          "color",
+          "border",
+          "darker"
+        ]
+      },
+      "darkest": {
+        "value": "#1c1d1f",
+        "filePath": "src/color/border.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.darkest.value}"
+        },
+        "name": "ColorBorderDarkest",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "darkest"
+        },
+        "path": [
+          "color",
+          "border",
+          "darkest"
         ]
       }
     },
