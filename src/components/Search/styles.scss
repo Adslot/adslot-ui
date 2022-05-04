@@ -21,11 +21,11 @@
 
     &:active,
     &:focus {
-      border-color: $color-border;
+      border-color: $color-border-base;
       outline: 0;
 
       & ~ .aui--search-component-button {
-        border-color: $color-border;
+        border-color: $color-border-base;
       }
     }
   }

@@ -1,4 +1,4 @@
-import * as tokens from '../../../system/output';
+import * as tokens from '../../../system/dist';
 const { color } = tokens;
 const borderColor = color.gray.base;
 

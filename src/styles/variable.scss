@@ -24,7 +24,7 @@ $brand-warning: $color-warning;
 $brand-danger: $color-negative;
 
 // == Scaffolding
-$text-color: $color-text;
+$text-color: $color-text-base;
 $link-color: $color-blue;
 $link-hover-color: $color-blue-dark;
 
@@ -91,7 +91,7 @@ $table-border-color: $color-gray-light; // table and cell border;
 
 // == Forms
 $input-bg: $color-white;
-$input-bg-disabled: $color-gray-lighter;
+$input-bg-disabled: $color-gray-lightest;
 $input-color: $color-text-form;
 $input-border: $color-border-lighter;
 $input-border-focus: $color-border-light;
@@ -102,7 +102,7 @@ $input-group-addon-border-color: $color-well;
 
 // == Dropdowns
 $dropdown-border: $color-border-light;
-$dropdown-link-color: $color-text;
+$dropdown-link-color: $color-text-base;
 $dropdown-link-hover-color: $color-text-inverse;
 $dropdown-link-active-color: $dropdown-link-color;
 $dropdown-link-active-bg: $color-gray-white;

@@ -10,7 +10,7 @@
   position: relative;
 
   &.aui--alert-input--focused {
-    border-color: $color-border;
+    border-color: $color-border-base;
   }
 
   .aui--alert-input__input {
@@ -63,7 +63,7 @@
     }
 
     .aui--alert-input__addon {
-      color: $color-gray;
+      color: $color-gray-base;
     }
   }
 }

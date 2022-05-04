@@ -26,7 +26,7 @@
   // Colors. Classes look like `.aui--svg-symbol-component-gray-light`.
   @include fill('color-disabled', $color-gray-light);
   @include fill('cyan-dark', $color-cyan-dark);
-  @include fill('gray', $color-gray);
+  @include fill('gray', $color-gray-base);
   @include fill('gray-darker', $color-gray-darker);
   @include fill('gray-light', $color-gray-light);
   @include fill('green-dark', $color-green-dark);

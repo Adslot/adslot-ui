@@ -27,8 +27,8 @@ describe('Select custom styles', () => {
         minHeight: 26,
         borderRadius: 0,
         boxShadow: 0,
-        ':hover': { borderColor: '#ababab' },
-        borderColor: '#ababab',
+        ':hover': { borderColor: '#AAAFB3' },
+        borderColor: '#AAAFB3',
       });
     });
   });
