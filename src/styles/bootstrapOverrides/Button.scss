@@ -87,7 +87,8 @@
   }
 
   &.btn-default {
-    @include aui--button-variant($color-gray-darker, $btn-default-bg, $color-gray-light);
+    @include aui--button-variant($color-gray-darker, lighten($color-gray-white, 100%), $color-gray-light);
+    background-color: $btn-default-bg;
   }
 
   &.btn-primary {
