@@ -39,7 +39,7 @@
 
   &-header {
     height: $action-panel-header-height;
-    color: $color-gray-darkest;
+    color: $color-text-base;
     padding: 12px;
     padding-left: 18px;
     border-bottom: $border-lighter;
@@ -52,7 +52,7 @@
       @include ellipse;
       font-size: $font-size-header;
       font-weight: $font-weight-bold;
-      color: $color-gray-darker;
+      color: $color-text-base;
     }
 
     svg {
