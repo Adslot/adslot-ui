@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 02 May 2022 23:02:09 GMT
+ * Generated on Wed, 04 May 2022 01:10:53 GMT
  */
 
 declare module 'adslot-ui/system/tokens' {
@@ -22,6 +22,13 @@ declare module 'adslot-ui/system/tokens' {
 }
   const tokens: {
   "color": {
+    "border": {
+      "lightest": DesignToken,
+      "lighter": DesignToken,
+      "light": DesignToken,
+      "base": DesignToken,
+      "dark": DesignToken
+    },
     "gray": {
       "white": DesignToken,
       "lightest": DesignToken,
@@ -31,6 +38,10 @@ declare module 'adslot-ui/system/tokens' {
       "dark": DesignToken,
       "darker": DesignToken,
       "darkest": DesignToken
+    },
+    "shadow": {
+      "light": DesignToken,
+      "base": DesignToken
     },
     "text": {
       "base": DesignToken,

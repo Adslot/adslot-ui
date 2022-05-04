@@ -5,7 +5,9 @@ interface Root {
   color: Color;
 }
 interface Color {
+  border: Border;
   gray: Gray;
+  shadow: Shadow;
   text: Text;
 }
 interface Text {
@@ -17,6 +19,10 @@ interface Text {
   disabled: string;
   placeholder: string;
 }
+interface Shadow {
+  light: string;
+  base: string;
+}
 interface Gray {
   white: string;
   lightest: string;
@@ -26,4 +32,11 @@ interface Gray {
   dark: string;
   darker: string;
   darkest: string;
+}
+interface Border {
+  lightest: string;
+  lighter: string;
+  light: string;
+  base: string;
+  dark: string;
 }

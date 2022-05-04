@@ -4,7 +4,7 @@ const JsonToTS = require('json-to-ts');
 const fs = require('fs');
 const path = require('path');
 const tokens = require('./src');
-const distFolderName = 'output';
+const distFolderName = 'dist';
 
 module.exports = {
   source: ['src/**/*.json'],

@@ -1,14 +1,14 @@
 {
   "color": {
     "gray": {
-      "white": { "value": "#f9f9f9" },
-      "lightest": { "value": "#f3f3f3" },
-      "lighter": { "value": "#e8e8e8" },
-      "light": { "value": "#d3d3d3" },
-      "base": { "value": "#ababab" },
-      "dark": { "value": "#838383" },
-      "darker": { "value": "#5a5a5a" },
-      "darkest": { "value": "#333" }
+      "white": { "value": "#FAFBFC" },
+      "lightest": { "value": "#F4F5F7" },
+      "lighter": { "value": "#E6EDF2" },
+      "light": { "value": "#DAE2E6" },
+      "base": { "value": "#AAAFB3" },
+      "dark": { "value": "#757982" },
+      "darker": { "value": "#505359" },
+      "darkest": { "value": "#1C1D1F" }
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "color": {
+    "border": {
+      "lightest": { "value": "{color.gray.lightest.value}" },
+      "lighter": { "value": "{color.gray.lighter.value}" },
+      "light": { "value": "{color.gray.light.value}" },
+      "base": { "value": "{color.gray.base.value}" },
+      "dark": { "value": "{color.gray.darkest.value}" }
+    }
+  }
+}

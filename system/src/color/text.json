@@ -7,7 +7,7 @@
       "form": { "value": "{color.gray.dark.value}" },
       "sub": { "value": "{color.gray.base.value}" },
       "disabled": { "value": "{color.gray.base.value}" },
-      "placeholder": { "value": "{color.gray.base.value}" }
+      "placeholder": { "value": "{color.gray.dark.value}" }
     }
   }
 }

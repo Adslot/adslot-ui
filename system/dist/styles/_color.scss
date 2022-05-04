@@ -1,19 +1,26 @@
 
 // Do not edit directly
-// Generated on Mon, 02 May 2022 23:02:09 GMT
+// Generated on Wed, 04 May 2022 01:10:53 GMT
 
-$color-gray-darkest: #333333;
-$color-gray-darker: #5a5a5a;
-$color-gray-dark: #838383;
-$color-gray-base: #ababab;
-$color-gray-light: #d3d3d3;
-$color-gray-lighter: #e8e8e8;
-$color-gray-lightest: #f3f3f3;
-$color-gray-white: #f9f9f9;
-$color-text-placeholder: $color-gray-base;
+$color-shadow-base: rgba(0, 0, 0, 0.25);
+$color-gray-darkest: #1c1d1f;
+$color-gray-darker: #505359;
+$color-gray-dark: #757982;
+$color-gray-base: #aaafb3;
+$color-gray-light: #dae2e6;
+$color-gray-lighter: #e6edf2;
+$color-gray-lightest: #f4f5f7;
+$color-gray-white: #fafbfc;
+$color-text-placeholder: $color-gray-dark;
 $color-text-disabled: $color-gray-base;
 $color-text-sub: $color-gray-base;
 $color-text-form: $color-gray-dark;
 $color-text-label: $color-gray-dark;
 $color-text-light: $color-gray-dark;
 $color-text-base: $color-gray-darkest;
+$color-shadow-light: $color-gray-light;
+$color-border-dark: $color-gray-darkest;
+$color-border-base: $color-gray-base;
+$color-border-light: $color-gray-light;
+$color-border-lighter: $color-gray-lighter;
+$color-border-lightest: $color-gray-lightest;

@@ -1,17 +1,114 @@
 /**
  * Do not edit directly
- * Generated on Mon, 02 May 2022 23:02:09 GMT
+ * Generated on Wed, 04 May 2022 01:10:53 GMT
  */
 
 export default {
   "color": {
-    "gray": {
-      "white": {
-        "value": "#f9f9f9",
-        "filePath": "_tokens/color/gray.json",
+    "border": {
+      "lightest": {
+        "value": "#f4f5f7",
+        "filePath": "src/color/border.json",
         "isSource": true,
         "original": {
-          "value": "#f9f9f9"
+          "value": "{color.gray.lightest.value}"
+        },
+        "name": "ColorBorderLightest",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "lightest"
+        },
+        "path": [
+          "color",
+          "border",
+          "lightest"
+        ]
+      },
+      "lighter": {
+        "value": "#e6edf2",
+        "filePath": "src/color/border.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.lighter.value}"
+        },
+        "name": "ColorBorderLighter",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "lighter"
+        },
+        "path": [
+          "color",
+          "border",
+          "lighter"
+        ]
+      },
+      "light": {
+        "value": "#dae2e6",
+        "filePath": "src/color/border.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.light.value}"
+        },
+        "name": "ColorBorderLight",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "light"
+        },
+        "path": [
+          "color",
+          "border",
+          "light"
+        ]
+      },
+      "base": {
+        "value": "#aaafb3",
+        "filePath": "src/color/border.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.base.value}"
+        },
+        "name": "ColorBorderBase",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "base"
+        },
+        "path": [
+          "color",
+          "border",
+          "base"
+        ]
+      },
+      "dark": {
+        "value": "#1c1d1f",
+        "filePath": "src/color/border.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.darkest.value}"
+        },
+        "name": "ColorBorderDark",
+        "attributes": {
+          "category": "color",
+          "type": "border",
+          "item": "dark"
+        },
+        "path": [
+          "color",
+          "border",
+          "dark"
+        ]
+      }
+    },
+    "gray": {
+      "white": {
+        "value": "#fafbfc",
+        "filePath": "src/color/gray.json",
+        "isSource": true,
+        "original": {
+          "value": "#FAFBFC"
         },
         "name": "ColorGrayWhite",
         "attributes": {
@@ -26,11 +123,11 @@ export default {
         ]
       },
       "lightest": {
-        "value": "#f3f3f3",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#f4f5f7",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#f3f3f3"
+          "value": "#F4F5F7"
         },
         "name": "ColorGrayLightest",
         "attributes": {
@@ -45,11 +142,11 @@ export default {
         ]
       },
       "lighter": {
-        "value": "#e8e8e8",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#e6edf2",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#e8e8e8"
+          "value": "#E6EDF2"
         },
         "name": "ColorGrayLighter",
         "attributes": {
@@ -64,11 +161,11 @@ export default {
         ]
       },
       "light": {
-        "value": "#d3d3d3",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#dae2e6",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#d3d3d3"
+          "value": "#DAE2E6"
         },
         "name": "ColorGrayLight",
         "attributes": {
@@ -83,11 +180,11 @@ export default {
         ]
       },
       "base": {
-        "value": "#ababab",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#aaafb3",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#ababab"
+          "value": "#AAAFB3"
         },
         "name": "ColorGrayBase",
         "attributes": {
@@ -102,11 +199,11 @@ export default {
         ]
       },
       "dark": {
-        "value": "#838383",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#757982",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#838383"
+          "value": "#757982"
         },
         "name": "ColorGrayDark",
         "attributes": {
@@ -121,11 +218,11 @@ export default {
         ]
       },
       "darker": {
-        "value": "#5a5a5a",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#505359",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#5a5a5a"
+          "value": "#505359"
         },
         "name": "ColorGrayDarker",
         "attributes": {
@@ -140,11 +237,11 @@ export default {
         ]
       },
       "darkest": {
-        "value": "#333333",
-        "filePath": "_tokens/color/gray.json",
+        "value": "#1c1d1f",
+        "filePath": "src/color/gray.json",
         "isSource": true,
         "original": {
-          "value": "#333"
+          "value": "#1C1D1F"
         },
         "name": "ColorGrayDarkest",
         "attributes": {
@@ -159,10 +256,50 @@ export default {
         ]
       }
     },
+    "shadow": {
+      "light": {
+        "value": "#dae2e6",
+        "filePath": "src/color/shadow.json",
+        "isSource": true,
+        "original": {
+          "value": "{color.gray.light.value}"
+        },
+        "name": "ColorShadowLight",
+        "attributes": {
+          "category": "color",
+          "type": "shadow",
+          "item": "light"
+        },
+        "path": [
+          "color",
+          "shadow",
+          "light"
+        ]
+      },
+      "base": {
+        "value": "#000000",
+        "filePath": "src/color/shadow.json",
+        "isSource": true,
+        "original": {
+          "value": "rgba(0,0,0,0.25)"
+        },
+        "name": "ColorShadowBase",
+        "attributes": {
+          "category": "color",
+          "type": "shadow",
+          "item": "base"
+        },
+        "path": [
+          "color",
+          "shadow",
+          "base"
+        ]
+      }
+    },
     "text": {
       "base": {
-        "value": "#333333",
-        "filePath": "_tokens/color/text.json",
+        "value": "#1c1d1f",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
           "value": "{color.gray.darkest.value}"
@@ -180,8 +317,8 @@ export default {
         ]
       },
       "light": {
-        "value": "#838383",
-        "filePath": "_tokens/color/text.json",
+        "value": "#757982",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
           "value": "{color.gray.dark.value}"
@@ -199,8 +336,8 @@ export default {
         ]
       },
       "label": {
-        "value": "#838383",
-        "filePath": "_tokens/color/text.json",
+        "value": "#757982",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
           "value": "{color.gray.dark.value}"
@@ -218,8 +355,8 @@ export default {
         ]
       },
       "form": {
-        "value": "#838383",
-        "filePath": "_tokens/color/text.json",
+        "value": "#757982",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
           "value": "{color.gray.dark.value}"
@@ -237,8 +374,8 @@ export default {
         ]
       },
       "sub": {
-        "value": "#ababab",
-        "filePath": "_tokens/color/text.json",
+        "value": "#aaafb3",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
           "value": "{color.gray.base.value}"
@@ -256,8 +393,8 @@ export default {
         ]
       },
       "disabled": {
-        "value": "#ababab",
-        "filePath": "_tokens/color/text.json",
+        "value": "#aaafb3",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
           "value": "{color.gray.base.value}"
@@ -275,11 +412,11 @@ export default {
         ]
       },
       "placeholder": {
-        "value": "#ababab",
-        "filePath": "_tokens/color/text.json",
+        "value": "#757982",
+        "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
-          "value": "{color.gray.base.value}"
+          "value": "{color.gray.dark.value}"
         },
         "name": "ColorTextPlaceholder",
         "attributes": {
