@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 May 2022 02:26:37 GMT
+ * Generated on Wed, 04 May 2022 03:20:13 GMT
  */
 
 :root {
@@ -16,7 +16,7 @@
   --color-text-placeholder: var(--color-gray-dark);
   --color-text-disabled: var(--color-gray-base);
   --color-text-sub: var(--color-gray-base);
-  --color-text-form: var(--color-gray-dark);
+  --color-text-form: var(--color-gray-darker);
   --color-text-label: var(--color-gray-dark);
   --color-text-light: var(--color-gray-dark);
   --color-text-base: var(--color-gray-darkest);

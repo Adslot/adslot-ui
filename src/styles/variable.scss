@@ -10,7 +10,7 @@ $svg-icon-size: 16px;
 // Bootstrap 3 variables
 
 // == Colors
-$gray-base: $color-black;
+$gray-base: $color-gray-darkest;
 $gray-darker: $color-gray-darkest;
 $gray-dark: $color-gray-darkest;
 $gray: $color-gray-darker;
@@ -22,6 +22,9 @@ $brand-success: $color-positive;
 $brand-info: $color-info;
 $brand-warning: $color-warning;
 $brand-danger: $color-negative;
+
+$well-bg: $color-gray-lightest !default;
+$well-border: darken($color-gray-lightest, 7%) !default;
 
 // == Scaffolding
 $text-color: $color-text-base;

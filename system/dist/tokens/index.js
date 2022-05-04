@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 May 2022 02:26:37 GMT
+ * Generated on Wed, 04 May 2022 03:20:13 GMT
  */
 
 export default {
@@ -393,11 +393,11 @@ export default {
         ]
       },
       "form": {
-        "value": "#757982",
+        "value": "#505359",
         "filePath": "src/color/text.json",
         "isSource": true,
         "original": {
-          "value": "{color.gray.dark.value}"
+          "value": "{color.gray.darker.value}"
         },
         "name": "ColorTextForm",
         "attributes": {
