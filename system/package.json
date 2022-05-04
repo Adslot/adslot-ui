@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Adslot design tokens",
   "types": "./dist/types",
+  "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
     "./dist/styles/*": "./dist/styles/*",
