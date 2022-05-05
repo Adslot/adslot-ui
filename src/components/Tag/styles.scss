@@ -15,7 +15,7 @@
   background-color: var(--color-text-light);
   border-radius: $border-radius;
   box-sizing: border-box;
-  color: var(--color-text-inverse);
+  color: $color-text-inverse;
   display: inline-flex;
   font-size: $font-size-body;
   margin-right: $tag-spacing-etalon;

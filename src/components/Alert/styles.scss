@@ -2,7 +2,7 @@
 @import '~styles/font-size';
 
 .alert-component {
-  color: var(--color-text-inverse);
+  color: $color-text-inverse;
   font-size: $font-size-body;
   line-height: 20px;
   padding: 10px;

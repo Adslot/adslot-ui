@@ -8,7 +8,7 @@ $diameter: 35px;
 .avatar-component {
   background-color: var(--color-gray-base);
   border-radius: $border-radius-circle;
-  color: var(--color-text-inverse);
+  color: $color-text-inverse;
   cursor: default;
   display: inline-block;
   font-size: $font-size-subheader;

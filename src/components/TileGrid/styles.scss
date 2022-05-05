@@ -55,7 +55,7 @@
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      color: var(--color-text-inverse);
+      color: $color-text-inverse;
       cursor: pointer;
       display: block;
       font-size: $font-size-header;
@@ -70,7 +70,7 @@
 
       &:hover,
       &:focus {
-        color: var(--color-text-inverse);
+        color: $color-text-inverse;
         text-decoration: none;
 
         &::after {
