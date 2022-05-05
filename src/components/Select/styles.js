@@ -1,5 +1,4 @@
-import * as tokens from '../../../system/dist';
-const { color } = tokens;
+import { color } from '../../../system';
 const borderColor = color.gray.base;
 
 const defaultStyle = {
@@ -7,7 +6,7 @@ const defaultStyle = {
     let backgroundColor;
     switch (true) {
       case isSelected:
-        backgroundColor = color.gray.lightest;
+        backgroundColor = color.gray.lighter;
         break;
       case isFocused:
         backgroundColor = color.gray.lightest;
