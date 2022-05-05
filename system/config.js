@@ -17,6 +17,10 @@ module.exports = {
           destination: `index.js`,
           format: 'javascript/categories-index-json',
         },
+        {
+          destination: `index.cjs.js`,
+          format: 'javascript-cjs/categories-index-json',
+        },
       ],
     },
     'ts/index': {
@@ -152,6 +156,20 @@ const ${tokenCategory} = ${tokenCategory}Json.${tokenCategory};`;
       .join(`\n`)}
 
 export { ${tokens.map((tokenCategory) => tokenCategory).join(', ')} };
+      `;
+  },
+});
+StyleDictionary.registerFormat({
+  name: 'javascript-cjs/categories-index-json',
+  formatter: function ({ dictionary }) {
+    return `${tokens
+      .map((tokenCategory) => {
+        return `const ${tokenCategory}Json = require('./${tokenCategory}.json');
+const ${tokenCategory} = ${tokenCategory}Json.${tokenCategory};`;
+      })
+      .join(`\n`)}
+
+module.exports = { ${tokens.map((tokenCategory) => tokenCategory).join(', ')} };
       `;
   },
 });

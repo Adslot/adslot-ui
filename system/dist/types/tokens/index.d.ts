@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 May 2022 04:42:04 GMT
+ * Generated on Thu, 05 May 2022 00:13:54 GMT
  */
 
 declare module 'adslot-ui/system/tokens' {
