@@ -56,7 +56,7 @@
     padding: $card-padding-etalon $card-padding-etalon 0;
 
     &.append {
-      color: $color-text-placeholder;
+      color: var(--color-text-placeholder);
       padding: 5px 1px 0;
     }
 

@@ -11,11 +11,11 @@
   $datepicker-font-family: $font-family-sans-serif;
   $datepicker-font-size: $font-size-base;
   $datepicker-icon-size: 24px;
-  $datepicker-border-color: $color-border-light;
+  $datepicker-border-color: var(--color-border-light);
   $datepicker-border-radius: $border-radius-base;
-  $datepicker-header-bg-color: $color-gray-white;
+  $datepicker-header-bg-color: var(--color-gray-white);
   $datepicker-selected-bg-color: $color-primary;
-  $datepicker-hover-bg-color: $color-gray-lighter;
+  $datepicker-hover-bg-color: var(--color-gray-lighter);
   $datepicker-color-disabled: $color-disabled;
 
   border-color: $datepicker-border-color;
@@ -31,7 +31,7 @@
   &,
   &__day,
   &__day-name {
-    color: $color-text-form;
+    color: var(--color-text-form);
 
     &:hover {
       border-radius: $datepicker-border-radius;
@@ -70,7 +70,7 @@
   }
 
   &__current-month {
-    color: $color-text-form;
+    color: var(--color-text-form);
     font-size: $datepicker-font-size;
   }
 
@@ -165,7 +165,7 @@
   &__close-icon {
     &::after {
       box-shadow: 0 0 0 3px $input-bg;
-      background-color: $color-gray-darker;
+      background-color: var(--color-gray-darker);
       right: 15px;
     }
   }
@@ -178,11 +178,11 @@
     .react-datepicker__triangle {
       &,
       &::before {
-        border-bottom-color: $color-border-light;
+        border-bottom-color: var(--color-border-light);
       }
 
       &::after {
-        border-bottom-color: $color-gray-white;
+        border-bottom-color: var(--color-gray-white);
       }
     }
   }

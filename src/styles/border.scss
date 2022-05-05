@@ -1,8 +1,8 @@
 @import 'color';
 
 $border-width: 1px;
-$border-lighter: $border-width solid $color-border-lighter;
-$border-dashed: $border-width dashed $color-border-lighter;
+$border-lighter: $border-width solid var(--color-border-lighter);
+$border-dashed: $border-width dashed var(--color-border-lighter);
 $border-radius: 2px;
 $border-radius-tile: 3px;
 $border-radius-heavy: 5px;

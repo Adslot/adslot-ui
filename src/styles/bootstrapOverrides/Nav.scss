@@ -1,13 +1,13 @@
 @import '~styles/variable';
 
 .nav-tabs {
-  $border: 1px solid $color-border-lighter;
+  $border: 1px solid var(--color-border-lighter);
 
   margin-bottom: 0;
   min-height: 35px; // Prevents collapse in Safari in flex container.
 
   > li {
-    background-color: $color-gray-white;
+    background-color: var(--color-gray-white);
     border-left: $border;
     border-top: $border;
     display: inline-block;
@@ -18,7 +18,7 @@
     text-align: center;
 
     > a {
-      color: $color-text-light;
+      color: var(--color-text-light);
       cursor: pointer;
       display: inline-block;
       font-weight: $font-weight-normal;

@@ -4,8 +4,8 @@
 @import '~styles/variable';
 
 .spinner-component {
-  $color-spinner-light: $color-gray-light;
-  $color-spinner: $color-gray-dark;
+  $color-spinner-light: var(--color-gray-light);
+  $color-spinner: var(--color-gray-dark);
 
   .spinner {
     animation: rotation 1.1s infinite linear;

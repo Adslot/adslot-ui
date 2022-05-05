@@ -2,7 +2,7 @@
 @import '~styles/icon';
 
 .aui--editor-root {
-  border: 1px solid $color-gray-lighter;
+  border: 1px solid var(--color-gray-lighter);
   min-height: 245px;
   border-radius: 5px;
   display: flex;
@@ -20,7 +20,7 @@
     }
 
     .public-DraftEditorPlaceholder-inner {
-      color: $color-text-placeholder;
+      color: var(--color-text-placeholder);
     }
 
     .mention {
@@ -42,7 +42,7 @@
 
   .aui--editor-toolbar {
     padding: 10px 20px;
-    background-color: $color-gray-white;
+    background-color: var(--color-gray-white);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -75,8 +75,8 @@
 
       &:hover,
       &.active {
-        background-color: $color-gray-lighter;
-        border-color: $color-gray-lighter;
+        background-color: var(--color-gray-lighter);
+        border-color: var(--color-gray-lighter);
       }
 
       img,
@@ -115,7 +115,7 @@
 
     .mention-entry--title {
       font-size: 10px;
-      color: $color-gray-base;
+      color: var(--color-gray-base);
     }
 
     .mention-entry--avatar {
@@ -146,7 +146,7 @@
     margin: 0 0 10px 10px;
     width: 200px;
     height: 60px;
-    border: 1px solid $color-gray-light;
+    border: 1px solid var(--color-gray-light);
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -174,7 +174,7 @@
     top: -8px;
     right: -8px;
     border-radius: 50%;
-    background-color: $color-gray-darker;
+    background-color: var(--color-gray-darker);
     background-image: $icon-cross-inverse;
     width: 22px;
     height: 22px;

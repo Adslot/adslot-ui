@@ -23,8 +23,8 @@ $brand-info: $color-info;
 $brand-warning: $color-warning;
 $brand-danger: $color-negative;
 
-$well-bg: $color-gray-lightest !default;
-$well-border: darken($color-gray-lightest, 7%) !default;
+$well-bg: $color-gray-lightest;
+$well-border: $color-gray-light;
 
 // == Scaffolding
 $text-color: $color-text-base;

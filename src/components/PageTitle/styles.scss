@@ -13,7 +13,7 @@
   &-is-footer {
     border-top: $border-lighter;
     border-bottom: 0;
-    color: $color-text-label;
+    color: var(--color-text-label);
     font-size: $font-size-base;
   }
 

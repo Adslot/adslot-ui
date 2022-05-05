@@ -4,7 +4,7 @@
 .treepickergrid-component {
   &-group-label {
     .grid-component-row {
-      background-color: $color-gray-white;
+      background-color: var(--color-gray-white);
       font-weight: $font-weight-bold;
       padding: 7px 10px;
     }

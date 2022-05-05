@@ -16,16 +16,16 @@
     width: inherit;
 
     &::placeholder {
-      color: $color-text-placeholder;
+      color: var(--color-text-placeholder);
     }
 
     &:active,
     &:focus {
-      border-color: $color-border-base;
+      border-color: var(--color-border-base);
       outline: 0;
 
       & ~ .aui--search-component-button {
-        border-color: $color-border-base;
+        border-color: var(--color-border-base);
       }
     }
   }
@@ -74,7 +74,7 @@
     box-shadow: none;
 
     &:hover {
-      background-color: $color-gray-white;
+      background-color: var(--color-gray-white);
     }
 
     &:focus {

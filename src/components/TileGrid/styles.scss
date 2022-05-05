@@ -5,7 +5,7 @@
 
 .tile-grid-component {
   &-title {
-    color: $color-text-base;
+    color: var(--color-text-base);
     display: block;
     font-size: $font-size-header;
     font-weight: $font-weight-bold;
@@ -55,7 +55,7 @@
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      color: $color-text-inverse;
+      color: var(--color-text-inverse);
       cursor: pointer;
       display: block;
       font-size: $font-size-header;
@@ -70,7 +70,7 @@
 
       &:hover,
       &:focus {
-        color: $color-text-inverse;
+        color: var(--color-text-inverse);
         text-decoration: none;
 
         &::after {

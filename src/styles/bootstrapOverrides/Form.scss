@@ -50,7 +50,7 @@
 }
 
 fieldset {
-  border-bottom: 1px solid $color-border-lightest;
+  border-bottom: 1px solid var(--color-border-lightest);
   margin-bottom: $spacing-etalon;
 
   &.borderless {
@@ -60,7 +60,7 @@ fieldset {
 }
 
 label {
-  color: $color-text-form;
+  color: var(--color-text-form);
 }
 
 .input-group-addon {
@@ -77,7 +77,7 @@ label {
 }
 
 .help-block {
-  color: $color-text-placeholder;
+  color: var(--color-text-placeholder);
   font-weight: $font-weight-normal;
   margin-top: 8px;
 }

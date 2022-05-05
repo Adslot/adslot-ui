@@ -64,7 +64,7 @@
 @import './bootstrapOverrides/Nav';
 
 body {
-  color: $color-gray-darkest;
+  color: var(--color-gray-darkest);
 }
 
 b,

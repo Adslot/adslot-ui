@@ -3,7 +3,7 @@
 
 .aui--information-box {
   padding: $spacing-etalon;
-  color: $color-text-base;
+  color: var(--color-text-base);
   display: inline-flex;
   align-items: center;
   width: 100%;
@@ -36,7 +36,7 @@
   &-title {
     font-size: $font-size-subheader;
     font-weight: $font-weight-bold;
-    color: $color-text-base;
+    color: var(--color-text-base);
   }
 
   &-icon {

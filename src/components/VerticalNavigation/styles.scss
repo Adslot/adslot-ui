@@ -43,7 +43,7 @@ $menu-max-width: 260px;
 
         &:hover {
           border-radius: 50%;
-          background-color: $color-gray-lighter;
+          background-color: var(--color-gray-lighter);
         }
       }
 

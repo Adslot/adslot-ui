@@ -19,7 +19,7 @@ $color-inverse-border: $color-status-light;
   user-select: none;
   font-weight: $font-weight-bold;
   line-height: 1;
-  color: $color-gray-darker;
+  color: var(--color-gray-darker);
 
   &-primary {
     background-color: $color-primary-background;

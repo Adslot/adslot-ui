@@ -28,7 +28,7 @@ $color-status-blue: #00adee;
 $color-status-green: #95c83d;
 $color-status-red: $color-red;
 $color-status-orange: #f93;
-$color-status-light: $color-gray-lighter;
+$color-status-light: var(--color-gray-lighter);
 
 $color-status-light-orange: #fec985;
 $color-status-light-red: #f9b7b0;
@@ -59,31 +59,31 @@ $color-info: $color-cyan;
 $color-info-light: #e0f0ff;
 $color-info-selected: $color-cyan-dark;
 
-$color-disabled: $color-gray-lighter;
-$color-disabled-selected: $color-gray-light;
+$color-disabled: var(--color-gray-lighter);
+$color-disabled-selected: var(--color-gray-light);
 
-$color-completed: $color-gray-dark;
-$color-remaining: $color-gray-lighter;
+$color-completed: var(--color-gray-dark);
+$color-remaining: var(--color-gray-lighter);
 
-$color-ended: $color-gray-darkest;
+$color-ended: var(--color-gray-darkest);
 $color-ended-selected: $color-black;
 $color-rejected: $color-black;
 
-$color-placeholder: $color-gray-lighter;
+$color-placeholder: var(--color-gray-lighter);
 $color-inverse: $color-white;
 $color-background: $color-white;
-$color-overlay: $color-gray-dark;
+$color-overlay: var(--color-gray-dark);
 
 // Layout
 $color-well: $color-white;
 $color-background: $color-white;
-$color-background-highlighted: $color-gray-lightest;
+$color-background-highlighted: var(--color-gray-lightest);
 
 // Typography
 $color-link-hover: $color-cyan-dark;
 $color-link: $color-cyan;
 $color-text-inverse: $color-white;
-$color-text-addon: $color-gray-base;
+$color-text-addon: var(--color-gray-base);
 
 // Borders
 $color-border-error: $color-red-dark;
@@ -93,13 +93,13 @@ $color-modal-shadow: $color-shadow-base;
 
 // Panel
 $color-panel-expanded: $color-white;
-$color-panel-collapsed: $color-gray-white;
+$color-panel-collapsed: var(--color-gray-white);
 
 // Carousel
-$color-carousel-button: rgba($color-gray-darkest, 0.5);
+$color-carousel-button: rgba(var(--color-gray-darkest), 0.5);
 
 // Help
-$color-help: $color-gray-base;
+$color-help: var(--color-gray-base);
 
 // Switch
 $color-light-green: #def1de;
@@ -112,7 +112,7 @@ $color-infobox-primary: $color-info-light;
 $color-infobox-success: $color-positive-light;
 $color-infobox-warning: $color-warning-light;
 $color-infobox-error: $color-negative-light;
-$color-infobox-light: $color-gray-lightest;
+$color-infobox-light: var(--color-gray-lightest);
 
 // Button
 $color-button-primary-background: $color-blue;
@@ -126,9 +126,9 @@ $color-button-warning-border: #eea236;
 $color-button-danger-background: #d9534f;
 $color-button-danger-border: #d43f3a;
 $color-button-link-color: #337ab7;
-$color-button-default-hover-background: $color-gray-light;
-$color-button-default-hover-border: $color-gray-lighter;
+$color-button-default-hover-background: var(--color-gray-light);
+$color-button-default-hover-border: var(--color-gray-lighter);
 
 // Loading Skeleton
-$color-skeleton-base: $color-gray-lighter;
-$color-skeleton-highlight: $color-gray-lightest;
+$color-skeleton-base: var(--color-gray-lighter);
+$color-skeleton-highlight: var(--color-gray-lightest);

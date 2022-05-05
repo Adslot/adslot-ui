@@ -1,9 +1,9 @@
 @import '~styles/variable';
 
 @mixin button-disabled {
-  background-color: $color-gray-lighter;
-  border-color: $color-gray-lighter;
-  color: $color-gray-dark;
+  background-color: var(--color-gray-lighter);
+  border-color: var(--color-gray-lighter);
+  color: var(--color-gray-dark);
   opacity: 0.65;
   box-shadow: none;
   cursor: not-allowed;
@@ -31,7 +31,7 @@
   font-size: 12px;
   line-height: 1.5;
   border-radius: 2px;
-  box-shadow: 0 1px $color-gray-light;
+  box-shadow: 0 1px var(--color-gray-light);
   margin-right: 5px;
 }
 
@@ -54,8 +54,8 @@
 
   &:focus {
     background-color: $color-white;
-    border-color: $color-gray-light;
-    color: $color-gray-darker;
+    border-color: var(--color-gray-light);
+    color: var(--color-gray-darker);
     outline: none;
   }
 
@@ -66,26 +66,26 @@
 
   &.btn-default {
     background-color: $color-white;
-    border-color: $color-gray-light;
-    color: $color-gray-darker;
+    border-color: var(--color-gray-light);
+    color: var(--color-gray-darker);
 
     &:hover {
-      color: $color-gray-dark;
+      color: var(--color-gray-dark);
       background-color: $color-button-default-hover-background;
       border-color: $color-button-default-hover-border;
     }
 
     &:active {
       @include transform-active;
-      color: $color-gray-darker;
+      color: var(--color-gray-darker);
       background-color: $color-button-default-hover-background;
       border-color: $color-button-default-hover-border;
     }
 
     &:focus {
       background-color: $color-white;
-      border-color: $color-gray-light;
-      color: $color-gray-darker;
+      border-color: var(--color-gray-light);
+      color: var(--color-gray-darker);
       outline: none;
     }
   }
@@ -209,7 +209,7 @@
   }
 
   &.btn-inverse:not([disabled]).btn-primary {
-    border-color: $color-border-light;
+    border-color: var(--color-border-light);
   }
 
   &.disabled,

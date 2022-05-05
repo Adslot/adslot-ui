@@ -4,7 +4,7 @@
 
 .treepickernode-component {
   &:hover {
-    background-color: $color-gray-white;
+    background-color: var(--color-gray-white);
 
     .treepickernode-component-expander {
       background-image: $icon-folder-open;
@@ -34,7 +34,7 @@
   }
 
   &-metadata {
-    color: $color-text-light;
+    color: var(--color-text-light);
 
     &::before {
       content: ' ';

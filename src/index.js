@@ -1,5 +1,6 @@
 import './styles/_bootstrap-custom.scss';
 import './styles/_icheck-custom.scss';
+import '../system/dist/styles/tokens.css';
 
 import Accordion from './components/Accordion';
 import ActionPanel from './components/ActionPanel';

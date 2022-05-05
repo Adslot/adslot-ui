@@ -133,7 +133,7 @@
       .auto-flip-container {
         width: 500px;
         height: 250px;
-        border: 1px solid $color-border-light;
+        border: 1px solid var(--color-border-light);
         overflow: hidden;
         overflow-x: scroll;
 
@@ -227,7 +227,7 @@
       &.aui--vertical-navigation-component__menu-item-is-active {
         .menu-icon {
           border-radius: 50%;
-          background-color: $color-gray-lighter;
+          background-color: var(--color-gray-lighter);
         }
       }
     }
@@ -239,7 +239,7 @@
       &:hover {
         .menu-icon {
           border-radius: 50%;
-          background-color: $color-gray-lighter;
+          background-color: var(--color-gray-lighter);
         }
       }
 

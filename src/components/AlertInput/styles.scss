@@ -10,7 +10,7 @@
   position: relative;
 
   &.aui--alert-input--focused {
-    border-color: $color-border-base;
+    border-color: var(--color-border-base);
   }
 
   .aui--alert-input__input {
@@ -42,7 +42,7 @@
   }
 
   .aui--alert-input__addon {
-    color: $color-text-addon;
+    color: var(--color-text-addon);
 
     &:first-child {
       margin-right: 2px;
@@ -54,16 +54,16 @@
   }
 
   &.aui--alert-input--disabled {
-    background-color: $color-gray-lighter;
+    background-color: var(--color-gray-lighter);
 
     .aui--alert-input__input {
       &:disabled {
-        background-color: $color-gray-lighter;
+        background-color: var(--color-gray-lighter);
       }
     }
 
     .aui--alert-input__addon {
-      color: $color-gray-base;
+      color: var(--color-gray-base);
     }
   }
 }

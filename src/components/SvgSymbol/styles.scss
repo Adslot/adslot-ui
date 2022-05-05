@@ -24,11 +24,11 @@
   @include size(250);
 
   // Colors. Classes look like `.aui--svg-symbol-component-gray-light`.
-  @include fill('color-disabled', $color-gray-light);
+  @include fill('color-disabled', var(--color-gray-light));
   @include fill('cyan-dark', $color-cyan-dark);
-  @include fill('gray', $color-gray-base);
-  @include fill('gray-darker', $color-gray-darker);
-  @include fill('gray-light', $color-gray-light);
+  @include fill('gray', var(--color-gray-base));
+  @include fill('gray-darker', var(--color-gray-darker));
+  @include fill('gray-light', var(--color-gray-light));
   @include fill('green-dark', $color-green-dark);
   @include fill('orange-dark', $color-orange-dark);
   @include fill('red', $color-red);
@@ -52,7 +52,7 @@
     width: $inner-diameter;
   }
 
-  background-color: $color-gray-lightest;
+  background-color: var(--color-gray-lightest);
   border-radius: $border-radius-circle;
   display: inline-block;
 

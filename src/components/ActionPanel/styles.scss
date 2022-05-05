@@ -39,7 +39,7 @@
 
   &-header {
     height: $action-panel-header-height;
-    color: $color-text-base;
+    color: var(--color-text-base);
     padding: 12px;
     padding-left: 18px;
     border-bottom: $border-lighter;
@@ -52,11 +52,11 @@
       @include ellipse;
       font-size: $font-size-header;
       font-weight: $font-weight-bold;
-      color: $color-text-base;
+      color: var(--color-text-base);
     }
 
     svg {
-      fill: $color-gray-darker;
+      fill: var(--color-gray-darker);
     }
 
     .close-svg-icon {
@@ -103,7 +103,7 @@
       .actions {
         .aui--button {
           &.close-button:hover {
-            color: $color-gray-dark;
+            color: var(--color-gray-dark);
             background-color: $color-white;
           }
 
@@ -114,7 +114,7 @@
 
           &:active,
           &:active:hover {
-            background-color: $color-gray-lighter;
+            background-color: var(--color-gray-lighter);
           }
 
           svg {
@@ -147,7 +147,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: $color-gray-dark;
+  background-color: var(--color-gray-dark);
   width: 100%;
   opacity: $action-panel-backdrop-opacity;
   animation: fadein 0.2s;

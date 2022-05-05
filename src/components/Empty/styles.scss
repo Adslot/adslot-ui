@@ -10,7 +10,7 @@
   user-select: none;
 
   &-text {
-    color: $color-text-placeholder;
+    color: var(--color-text-placeholder);
     font-size: $font-size-body;
     line-height: $line-height-base;
     margin-top: $spacing-etalon / 3;

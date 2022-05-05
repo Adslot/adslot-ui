@@ -6,12 +6,12 @@
   font-size: $font-size-subheader;
 
   &-value {
-    color: $color-text-base;
+    color: var(--color-text-base);
     font-weight: $font-weight-bold;
   }
 
   &-label {
-    color: $color-text-light;
+    color: var(--color-text-light);
     font-weight: $font-weight-normal;
   }
 

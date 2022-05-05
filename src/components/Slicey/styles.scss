@@ -6,10 +6,10 @@
   }
 
   &-background {
-    fill: $color-gray-darker;
+    fill: var(--color-gray-darker);
   }
 
   &-empty {
-    fill: $color-gray-white;
+    fill: var(--color-gray-white);
   }
 }

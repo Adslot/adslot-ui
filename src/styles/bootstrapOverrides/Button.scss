@@ -5,7 +5,7 @@
 @mixin button-disabled {
   background-color: $color-disabled;
   border-color: $color-disabled;
-  color: $color-text-light;
+  color: var(--color-text-light);
 }
 
 @mixin reset-shadow-and-transform {
@@ -20,7 +20,7 @@
   &:hover {
     &,
     &:active {
-      background-color: $color-gray-lighter;
+      background-color: var(--color-gray-lighter);
     }
   }
 }
@@ -40,18 +40,18 @@
 
     &.btn-default {
       @include button-inverse($color-gray-darker);
-      border-color: $color-gray-light;
+      border-color: var(--color-gray-light);
 
       &:hover,
       &:active,
       &:hover:active {
-        border-color: $color-gray-light;
+        border-color: var(--color-gray-light);
       }
     }
 
     &.btn-primary {
       @include button-inverse($color-primary);
-      border-color: $color-border-light;
+      border-color: var(--color-border-light);
     }
 
     &.btn-success {
@@ -74,7 +74,7 @@
 
 .aui--button,
 .btn {
-  box-shadow: 0 1px $color-border-light;
+  box-shadow: 0 1px var(--color-border-light);
   margin-right: 5px;
 
   &:last-child {
@@ -159,7 +159,7 @@
   }
 
   &:active:hover {
-    border-color: $color-gray-light;
+    border-color: var(--color-gray-light);
   }
 }
 
@@ -172,8 +172,8 @@
     &:hover,
     &:active {
       background-color: $color-white;
-      border-color: $color-border-light;
-      box-shadow: 0 1px $color-border-light;
+      border-color: var(--color-border-light);
+      box-shadow: 0 1px var(--color-border-light);
     }
   }
 }

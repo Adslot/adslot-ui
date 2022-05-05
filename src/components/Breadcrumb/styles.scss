@@ -17,7 +17,7 @@
   }
 
   &.aui--breadcrumb--disabled {
-    color: $color-text-disabled;
+    color: var(--color-text-disabled);
     pointer-events: none;
   }
 }

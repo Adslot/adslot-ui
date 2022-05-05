@@ -24,7 +24,7 @@
   background-color: $color-white;
   transition: 0.4s;
   border-style: solid;
-  border-color: $color-gray-base;
+  border-color: var(--color-gray-base);
   border-width: thin;
 }
 
@@ -49,11 +49,11 @@ input {
   }
 
   &:disabled + .aui--switch-slider {
-    background-color: $color-gray-light;
+    background-color: var(--color-gray-light);
   }
 
   &:disabled + .aui--switch-slider::before {
-    background-color: $color-gray-dark;
+    background-color: var(--color-gray-dark);
   }
 }
 

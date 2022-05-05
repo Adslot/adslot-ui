@@ -40,11 +40,11 @@
 
     &.disabled {
       cursor: not-allowed;
-      color: $color-text-disabled;
+      color: var(--color-text-disabled);
 
       a {
         cursor: not-allowed;
-        color: $color-text-disabled;
+        color: var(--color-text-disabled);
       }
     }
   }

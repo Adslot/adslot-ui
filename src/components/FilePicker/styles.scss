@@ -2,7 +2,7 @@
 
 .filepicker-component {
   &-highlight {
-    border: 1px solid $color-border-error;
+    border: 1px solid var(--color-border-error);
     border-radius: 2px;
     padding: 1px;
   }

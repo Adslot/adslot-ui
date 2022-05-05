@@ -57,7 +57,7 @@
 
     > label {
       font-weight: $font-weight-normal;
-      color: $color-text-label;
+      color: var(--color-text-label);
       margin-bottom: 0;
       line-height: $modal-header-footer-height - ($modal-footer-padding * 2);
 

@@ -8,7 +8,7 @@
   border-width: 1px;
   border-color: $color-white;
   border-style: solid;
-  background-color: $color-gray-dark;
+  background-color: var(--color-gray-dark);
   color: $color-white;
   text-align: center;
   font-size: $font-size-tiny;
@@ -29,7 +29,7 @@
   }
 
   &.status-light {
-    background-color: $color-gray-base;
+    background-color: var(--color-gray-base);
   }
 
   &.count-badge-font-size-small {

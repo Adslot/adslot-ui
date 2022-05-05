@@ -60,7 +60,7 @@ body {
 .adslot-ui-sidebar-area {
   margin-right: $spacing-etalon;
   flex: 0 1 1;
-  border-right: 1px solid $color-gray-lighter;
+  border-right: 1px solid var(--color-gray-lighter);
   width: 240px;
   padding: 12px;
   z-index: $zindex-popover - 40;
@@ -79,7 +79,7 @@ body {
       text-decoration: none;
 
       &.is-active {
-        background-color: $color-gray-lighter;
+        background-color: var(--color-gray-lighter);
       }
     }
   }
@@ -117,7 +117,7 @@ body {
   }
 
   .aui--docs-method-block {
-    border: 1px solid $color-gray-lighter;
+    border: 1px solid var(--color-gray-lighter);
     margin-bottom: 20px;
 
     .aui--docs-method-details {
@@ -144,11 +144,11 @@ body {
       }
 
       &-gray-light {
-        color: $color-gray-light;
+        color: var(--color-gray-light);
       }
 
       &-gray-dark {
-        color: $color-gray-dark;
+        color: var(--color-gray-dark);
       }
 
       &-red {

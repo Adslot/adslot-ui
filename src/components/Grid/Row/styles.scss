@@ -7,16 +7,16 @@
   display: flex;
 
   &-header {
-    color: $color-text-light;
+    color: var(--color-text-light);
   }
 
   &-subfooter {
-    background-color: $color-gray-white;
-    color: $color-text-light;
+    background-color: var(--color-gray-white);
+    color: var(--color-text-light);
 
     .grid-component-cell {
       &:last-child {
-        color: $color-text-base;
+        color: var(--color-text-base);
       }
     }
   }
@@ -34,6 +34,6 @@
 
   &-horizontal-border,
   &:last-child {
-    border-bottom-color: $color-border-lighter;
+    border-bottom-color: var(--color-border-lighter);
   }
 }

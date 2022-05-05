@@ -29,7 +29,7 @@
       height: $icon-size;
       transition: transform $transition-duration $transition-timing-function;
       width: $icon-size;
-      fill: $color-text-base;
+      fill: var(--color-text-base);
       margin-top: 3px;
     }
 
@@ -39,7 +39,7 @@
       margin-right: 10px;
       position: relative;
       width: $icon-size-large;
-      fill: $color-text-base;
+      fill: var(--color-text-base);
     }
   }
 

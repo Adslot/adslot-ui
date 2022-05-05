@@ -6,9 +6,9 @@
 $diameter: 35px;
 
 .avatar-component {
-  background-color: $color-gray-base;
+  background-color: var(--color-gray-base);
   border-radius: $border-radius-circle;
-  color: $color-text-inverse;
+  color: var(--color-text-inverse);
   cursor: default;
   display: inline-block;
   font-size: $font-size-subheader;
@@ -55,6 +55,6 @@ $diameter: 35px;
   }
 
   &-black {
-    background-color: $color-gray-darker;
+    background-color: var(--color-gray-darker);
   }
 }

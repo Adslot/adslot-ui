@@ -7,15 +7,15 @@
 .tag-component {
   $tag-height: 24px;
   $tag-spacing-etalon: 6px;
-  $color-tag-inverse: $color-gray-lightest;
-  $color-tag-action-inverse: $color-gray-base;
+  $color-tag-inverse: var(--color-gray-lightest);
+  $color-tag-action-inverse: var(--color-gray-base);
   $action-icon-padding: ($tag-height - $svg-icon-size) / 2;
 
   align-items: center;
-  background-color: $color-text-light;
+  background-color: var(--color-text-light);
   border-radius: $border-radius;
   box-sizing: border-box;
-  color: $color-text-inverse;
+  color: var(--color-text-inverse);
   display: inline-flex;
   font-size: $font-size-body;
   margin-right: $tag-spacing-etalon;
@@ -27,7 +27,7 @@
     // explicit .tag-component to force override of `.accent-n` inverse bg/fill colors
     background-color: $color-tag-inverse;
     border-left: 4px solid;
-    color: $color-text-light;
+    color: var(--color-text-light);
 
     .action-button {
       fill: $color-tag-action-inverse;

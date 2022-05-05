@@ -7,7 +7,7 @@
     margin-right: 0;
     border-radius: 0;
     box-shadow: none;
-    border: 1px solid $color-gray-light;
+    border: 1px solid var(--color-gray-light);
     border-right-width: 0;
 
     &-children-container {
@@ -19,14 +19,14 @@
     &:hover,
     &:active,
     &:focus {
-      border: 1px solid $color-gray-light;
+      border: 1px solid var(--color-gray-light);
       border-right-width: 0;
     }
 
     &.btn-inverse:hover,
     &.btn-inverse:active {
-      border: 1px solid $color-gray-light;
-      background-color: $color-gray-lighter;
+      border: 1px solid var(--color-gray-light);
+      background-color: var(--color-gray-lighter);
       border-right-width: 0;
     }
 

@@ -19,7 +19,7 @@ $border-radius-large: 999px;
   user-select: none;
   font-weight: $font-weight-bold;
   line-height: 1;
-  color: $color-gray-darker;
+  color: var(--color-gray-darker);
   background-color: $color-background;
 
   &-children {
