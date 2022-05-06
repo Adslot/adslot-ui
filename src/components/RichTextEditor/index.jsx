@@ -13,6 +13,7 @@ import MentionAction from './MentionAction';
 import FileUploadAction from './FileUploadAction';
 import MentionEntry from './MentionEntry';
 import FilePreviewList from './FilePreviewList';
+import Popover from '../Popover';
 import './styles.scss';
 
 const { EditorState, Modifier, convertToRaw, RichUtils } = draftJs;
@@ -52,9 +53,15 @@ const RichTextEditor = ({
         placement: 'bottom-start',
         strategy: 'fixed',
         modifiers: [
-          { name: 'flip', enabled: false },
+          { name: 'flip', enabled: true },
           { name: 'preventOverflow', enabled: false },
           { name: 'hide', enabled: false },
+          {
+            name: 'offset',
+            options: {
+              offset: [-12, 12],
+            },
+          },
         ],
       },
       theme: {
@@ -147,6 +154,18 @@ const RichTextEditor = ({
             suggestions={suggestions}
             onSearchChange={handleMentionSearchChange}
             entryComponent={MentionEntry}
+            popoverContainer={({ children, ...rest }) => {
+              const { popperOptions, store } = rest;
+              return (
+                <Popover.WithRef
+                  popoverClassNames="aui--mention"
+                  refElement={store.getReferenceElement()}
+                  {...popperOptions}
+                  popoverContent={children}
+                  isOpen={true}
+                />
+              );
+            }}
           />
         )}
       </div>

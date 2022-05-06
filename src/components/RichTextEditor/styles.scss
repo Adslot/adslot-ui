@@ -89,9 +89,18 @@
   }
 }
 
+.aui--mention {
+  .popover-content {
+    padding: 0;
+    overflow-y: auto;
+    max-height: 250px;
+  }
+}
+
 .aui--mention-entry {
   background-color: $color-white;
-  width: 350px;
+  width: auto;
+  min-width: 250px;
 
   &__is-focused {
     background: $color-blue-light;
@@ -103,7 +112,11 @@
     align-items: center;
 
     &__left {
-      margin: 5px 20px;
+      margin: 5px 10px 5px 20px;
+    }
+
+    &__right {
+      margin: 0 10px;
     }
 
     .mention-entry--title,
