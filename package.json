@@ -150,7 +150,7 @@
   },
   "dependencies": {
     "@draft-js-plugins/editor": "^4.1.0",
-    "@draft-js-plugins/mention": "^4.6.1",
+    "@draft-js-plugins/mention": "^5.2.1",
     "@popperjs/core": "^2.4.0",
     "@types/draft-js": "^0.11.8",
     "@types/react-datepicker": "^4.3.4",
