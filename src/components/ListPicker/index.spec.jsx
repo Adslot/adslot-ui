@@ -72,7 +72,8 @@ describe('<ListPicker />', () => {
     expect(getByTestId('action-panel-header')).toContainElement(getByText('Cancel'));
     expect(getByTestId('action-panel-header')).toContainElement(getByText('Create User'));
 
-    expect(getByText('Create User').parentElement).toHaveAttribute('href', '#');
+    expect(getByText('Create User')).toHaveAttribute('href', '#');
+    expect(getByText('Create User')).toHaveClass('aui--button aui--button-anchor btn-inverse');
 
     expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
@@ -311,8 +312,8 @@ describe('<ListPicker />', () => {
       expect(getByTestId('radio-input').tagName).toEqual('INPUT');
       expect(getByTestId('radio-input')).toHaveAttribute('type', 'radio');
 
-      expect(getByText('Create User').parentElement).toHaveClass('btn-inverse');
-      expect(getByText('Create User').parentElement).toHaveAttribute('href', '#');
+      expect(getByText('Create User')).toHaveClass('btn-inverse');
+      expect(getByText('Create User')).toHaveAttribute('href', '#');
     });
   });
 });

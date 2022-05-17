@@ -25,7 +25,13 @@ class PopoverLinkItem extends React.PureComponent {
 
     return (
       <li data-testid="popover-link-item-wrapper" className="popover-link-item">
-        <Button {...buttonProps}>{title}</Button>
+        {buttonProps.href ? (
+          <a className="aui--button aui--button-anchor btn-link" {...buttonProps}>
+            {title}
+          </a>
+        ) : (
+          <Button {...buttonProps}>{title}</Button>
+        )}
       </li>
     );
   }

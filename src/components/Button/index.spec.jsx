@@ -44,12 +44,6 @@ describe('<Button />', () => {
     ).toThrow('AdslotUI Button: buttons with the "link" variant do not inherit size and color properties.');
   });
 
-  it('should use anchor when href is present', () => {
-    const { getByTestId, getByRole } = render(<Button href="#">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button-anchor');
-    expect(getByRole('link')).toBe(getByTestId('button-wrapper'));
-  });
-
   it('should throw when round with child or no icon', () => {
     console.error = (err) => {
       throw new Error(err);
@@ -116,24 +110,5 @@ describe('<Button />', () => {
   it('should only allow size medium or small on Spinner', () => {
     const { getByTestId } = render(<Button isLoading size="large" />);
     expect(getByTestId('spinner')).toHaveClass('spinner-medium');
-  });
-
-  it('should render button with href', () => {
-    const { getByTestId } = render(
-      <Button href="www.some-url.com" target="_blank">
-        Test
-      </Button>
-    );
-    expect(getByTestId('button-wrapper')).toHaveAttribute('href', 'www.some-url.com');
-  });
-
-  it('should render disabled href button', () => {
-    const { getByTestId, getByText } = render(
-      <Button disabled href="www.some-url.com" target="_blank">
-        Test
-      </Button>
-    );
-    expect(getByTestId('button-wrapper')).toBeDisabled();
-    expect(getByText('Test')).not.toHaveAttribute('href');
   });
 });

@@ -117,9 +117,13 @@ class ListPicker extends React.PureComponent {
                 <div className="pull-left">
                   {_.map(linkButtons, (linkButton, key) =>
                     _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                      <Button key={linkButton.label} variant="inverse" href={linkButton.href}>
+                      <a
+                        key={linkButton.label}
+                        className="aui--button aui--button-anchor btn-inverse"
+                        href={linkButton.href}
+                      >
                         {linkButton.label}
-                      </Button>
+                      </a>
                     ) : (
                       React.cloneElement(linkButton, { key })
                     )

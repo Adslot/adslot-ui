@@ -29,6 +29,7 @@ const Button = (props) => {
   const isLink = variant === 'link';
   const themeColor = theme || color;
 
+  invariant(!href, 'Button: should not be used for href links. Use an <a/> tag instead.');
   invariant(!theme, 'Button: The theme prop has been deprecated. Please use color instead.');
   invariant(!inverse, 'Button: The inverse prop has been deprecated. Please use variant="inverse" instead.');
   (!icon || !_.isEmpty(children)) && invariant(!round, 'Button: round can only be used with an icon and no children.');
@@ -52,7 +53,6 @@ const Button = (props) => {
       'btn-full-width': fullWidth,
       'btn-round': round && icon && _.isEmpty(children),
       'btn-icon': !_.isEmpty(icon) && _.isEmpty(children),
-      'aui--button-anchor': href,
     },
   ]);
 
@@ -63,23 +63,13 @@ const Button = (props) => {
       </div>
     ) : null;
 
-  const anchorProps = href
-    ? {
-        href: href,
-        rel: 'noopener noreferrer',
-        target: '_self',
-      }
-    : { type: 'button' };
-
-  const Component = href && !disabled ? 'a' : 'button';
-
   return (
-    <Component
+    <button
       data-testid="button-wrapper"
       disabled={isLoading || disabled}
       className={classes}
+      type="button"
       {...expandDts(dts)}
-      {...anchorProps}
       {...rest}
     >
       {renderSpinner()}
@@ -97,7 +87,7 @@ const Button = (props) => {
           )}
         </>
       }
-    </Component>
+    </button>
   );
 };
 
@@ -120,7 +110,6 @@ const adslotButtonPropTypes = {
   fullWidth: PropTypes.bool,
   className: PropTypes.string,
   dts: PropTypes.string,
-  href: PropTypes.string,
   isLoading: PropTypes.bool,
   /**
    * @deprecated
