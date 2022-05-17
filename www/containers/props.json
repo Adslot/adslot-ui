@@ -716,13 +716,6 @@
           "required": false,
           "description": ""
         },
-        "href": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
         "isLoading": {
           "type": {
             "name": "bool"

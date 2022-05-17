@@ -21,7 +21,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   fullWidth?: boolean;
   className?: string;
   dts?: string;
-  href?: string;
   isLoading?: boolean;
   /**
    * @deprecated
