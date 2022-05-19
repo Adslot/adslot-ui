@@ -5,6 +5,7 @@ import Accordion from './components/Accordion';
 import ActionPanel from './components/ActionPanel';
 import Alert from './components/Alert';
 import AlertInput from './components/AlertInput';
+import Anchor from './components/Anchor';
 import Avatar from './components/Avatar';
 import BorderedWell from './components/BorderedWell';
 import Breadcrumb from './components/Breadcrumb';
@@ -78,6 +79,7 @@ export {
   ActionPanel,
   Alert,
   AlertInput,
+  Anchor,
   Avatar,
   BorderedWell,
   Breadcrumb,

@@ -17,25 +17,25 @@ exports[`<ConfirmModal /> should show modal when \`show\` is true 1`] = `
       class="actions"
     >
       <button
-        class="aui--button close-button btn-default btn-inverse"
+        class="aui--button close-button aui-default aui-inverse"
         data-test-selector="header-close-button"
         data-testid="button-wrapper"
         type="button"
       >
         <span
-          class="aui--button-children-container"
+          class="aui-children-container"
         >
           Cancel
         </span>
       </button>
       <button
-        class="aui--button btn-primary"
+        class="aui--button aui-primary"
         data-test-selector="confirm-modal-confirm"
         data-testid="confirm-modal-confirm"
         type="button"
       >
         <span
-          class="aui--button-children-container"
+          class="aui-children-container"
         >
           Confirm
         </span>

@@ -1,0 +1,258 @@
+# Anchor
+
+Use anchors to link.
+
+#### Writing Labels
+
+Anchor labels use Title Case and clearly explain what happens when the anchor is activated. Keep labels as short as possible.
+
+#### Anchor order
+
+Order anchors primary action on a page or modal, the highest priority to the right.
+Anchors assist user to complete tasks confidently and to feel secure about the next action they are taking.
+
+## Anchor variants
+
+### Solid anchors
+
+**Solid anchors** are used to drive user action, there is only one primary action anchor per page. Solid anchors display filled with a colour and inverted white text eg. Blue, Green commonly used for:
+
+- Sign off,
+- Save,
+- Apply,
+- Approve etc.
+
+Modals and forms use the primary action header. Not every screen requires a primary anchor. _Never use a primary red action anchor_.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor href="#" color="primary">
+    Primary
+  </Anchor>
+  <Anchor href="#" color="default">
+    Default
+  </Anchor>
+  <Anchor href="#" color="success">
+    Success
+  </Anchor>
+  <Anchor href="#" color="danger">
+    Danger
+  </Anchor>
+</div>
+```
+
+### Inverse anchors
+
+**Inverse anchor** are used as second primary actions alongside a primary action. Use grey a bordered anchor and text eg. Blue, Green, Red most commonly use for:
+
+- Reject
+- Cancel Campaign
+- Save
+
+**Inverted red anchors** are used as second primary actions alongside a primary action these are used delete, reject, cancel campaign.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor href="#" color="primary" variant="inverse">
+    Primary
+  </Anchor>
+  <Anchor href="#" color="default" variant="inverse">
+    Default
+  </Anchor>
+  <Anchor href="#" color="success" variant="inverse">
+    Success
+  </Anchor>
+  <Anchor href="#" color="danger" variant="inverse">
+    Danger
+  </Anchor>
+</div>
+```
+
+### Borderless anchors
+
+**Borderless anchor** is used for lower priority actions and when visually more suited than an inverse anchor.
+borderless anchors have no border until hovered.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor href="#" color="primary" variant="borderless">
+    Primary
+  </Anchor>
+  <Anchor href="#" color="default" variant="borderless">
+    Default
+  </Anchor>
+  <Anchor href="#" color="success" variant="borderless">
+    Success
+  </Anchor>
+  <Anchor href="#" color="danger" variant="borderless">
+    Danger
+  </Anchor>
+</div>
+```
+
+### Link anchors
+
+**Link anchor** is a special case anchor used for inline actions that should retain the text flow, similar to anchor link.
+
+```jsx live=true
+<>
+  <h4>
+    This is an{' '}
+    <Anchor href="#" variant="link">
+      inline link anchor
+    </Anchor>{' '}
+    in an h4 tag.
+  </h4>
+  <p>
+    This is an{' '}
+    <Anchor href="#" variant="link">
+      inline link anchor
+    </Anchor>{' '}
+    in a p tag.
+  </p>
+</>
+```
+
+## Anchor sizes
+
+### Large anchors
+
+**Large anchor** is designed to have larger text and padding.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor href="#" color="primary" size="large">
+    Primary
+  </Anchor>
+  <Anchor href="#" color="default" size="large">
+    Default
+  </Anchor>
+  <Anchor href="#" color="success" size="large">
+    Success
+  </Anchor>
+  <Anchor href="#" color="danger" size="large">
+    Danger
+  </Anchor>
+</div>
+```
+
+## Full width anchors
+
+**Full width** creates a 100% width anchor, sizing multiple anchors evenly when in a flex parent container.
+
+```jsx live=true
+<>
+  <div className="grid grid-small">
+    <Anchor href="#" size="large" fullWidth color="primary">
+      Primary
+    </Anchor>
+    <Anchor href="#" size="large" fullWidth>
+      Default
+    </Anchor>
+  </div>
+</>
+```
+
+## Anchor states
+
+**Loading** and **disabled** states can be applied to anchors.
+
+```jsx live=true
+<>
+  <div className="grid grid-small">
+    <Anchor href="#" isLoading color="primary">
+      Loading
+    </Anchor>
+    <Anchor href="#" disabled>
+      Disabled
+    </Anchor>
+  </div>
+</>
+```
+
+## Icon anchors
+
+default anchors support an icon size no larger than `16px`.
+large anchors support an icon size no larger than `20px`.
+
+### Icon
+
+Create an icon-only anchor
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor href="#" aria-label="search" color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Anchor href="#" aria-label="search" color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Anchor href="#" aria-label="search" color="success" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+  <Anchor href="#" aria-label="search" color="danger" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
+</div>
+```
+
+### Round
+
+When using an icon only, the anchor can be round.
+Round icon Anchors have a special loading state, where the spinner aligns to the anchor outline, and the icon remains visible.
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor
+    href="#"
+    aria-label="search"
+    round
+    color="primary"
+    icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+  />
+  <Anchor
+    href="#"
+    aria-label="search"
+    round
+    color="default"
+    icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+  />
+  <Anchor
+    href="#"
+    aria-label="search"
+    round
+    color="success"
+    icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+  />
+  <Anchor
+    href="#"
+    aria-label="search"
+    round
+    color="danger"
+    icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+  />
+  <Anchor
+    href="#"
+    aria-label="search"
+    isLoading
+    round
+    color="danger"
+    icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+  />
+</div>
+```
+
+### Icon with label
+
+When combined with a label, the icon renders before the label
+
+```jsx live=true
+<div className="grid grid-small">
+  <Anchor href="#" color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Primary
+  </Anchor>
+  <Anchor href="#" color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Default
+  </Anchor>
+  <Anchor href="#" color="success" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Success
+  </Anchor>
+  <Anchor href="#" color="danger" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
+    Danger
+  </Anchor>
+</div>
+```
+
+<Props componentName="Anchor" />

@@ -31,7 +31,7 @@ $padding-x-button-large: 24px;
   box-shadow: none;
   cursor: not-allowed;
 
-  &.btn-link {
+  &.aui-link {
     background-color: transparent;
   }
 }
@@ -45,6 +45,7 @@ $padding-x-button-large: 24px;
   font-weight: 700;
   text-align: center;
   white-space: nowrap;
+  text-decoration: none;
   min-height: $size-button-default;
   height: 0%;
   vertical-align: middle;
@@ -58,6 +59,11 @@ $padding-x-button-large: 24px;
   transition-property: background-color, border-color, box-shadow, transform;
   transition-duration: 0.1s;
   margin-right: 5px;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
 
   &:focus-visible {
     outline: none;
@@ -84,6 +90,7 @@ $padding-x-button-large: 24px;
 }
 
 .aui--button,
+.aui--anchor,
 .btn {
   @include button-default;
   @include button-inverse(map-get($colors, 'default'));
@@ -91,31 +98,31 @@ $padding-x-button-large: 24px;
 
   // Solid (default)
   @each $color-name, $color-value in $colors {
-    &.btn-#{$color-name} {
+    &.aui-#{$color-name} {
       @include aui--button-variant($color-inverse, $color-value, $color-value);
     }
   }
 
   // Inverse
-  &.btn-inverse {
+  &.aui-inverse {
     @each $color-name, $color-value in $colors {
-      &.btn-#{$color-name} {
+      &.aui-#{$color-name} {
         @include button-inverse($color-value);
       }
     }
   }
 
   // Borderless
-  &.btn-borderless {
+  &.aui-borderless {
     @each $color-name, $color-value in $colors {
-      &.btn-#{$color-name} {
+      &.aui-#{$color-name} {
         @include button-borderless($color-value);
       }
     }
   }
 
   // Link
-  &.btn-link {
+  &.aui-link {
     all: unset;
     border-radius: $border-radius-button-default;
     color: $color-primary;
@@ -136,25 +143,15 @@ $padding-x-button-large: 24px;
     }
   }
 
-  // anchor
-  &.aui--button-anchor {
-    text-decoration: none;
-
-    &[disabled],
-    &.disabled {
-      pointer-events: none;
-    }
-  }
-
   // Large
-  &.btn-large {
+  &.aui-large {
     line-height: $line-height-button-large;
     min-height: $size-button-large;
     padding: $padding-y-button-large $padding-x-button-large;
     font-size: $font-size-button-large;
     grid-gap: $gap-button-large;
 
-    &.btn-icon {
+    &.aui-icon {
       padding: $padding-icon-button-large;
       height: $size-button-large;
       width: $size-button-large;
@@ -162,23 +159,23 @@ $padding-x-button-large: 24px;
   }
 
   // Round
-  &.btn-round {
+  &.aui-round {
     border-radius: 999px;
   }
 
   // Full Width
-  &.btn-full-width {
+  &.aui-full-width {
     width: 100%;
     margin-right: 0;
   }
 
   // Icon (no label/children)
-  &.btn-icon {
+  &.aui-icon {
     padding: $padding-icon-button-default;
     height: $size-button-default;
     width: $size-button-default;
 
-    &.btn-round {
+    &.aui-round {
       .spinner-component {
         .spinner {
           &-small {
@@ -197,7 +194,7 @@ $padding-x-button-large: 24px;
   }
 
   // Icon container
-  &-icon-container {
+  .aui-icon-container {
     display: inline-flex;
 
     svg {
@@ -206,9 +203,9 @@ $padding-x-button-large: 24px;
   }
 
   // Disabled
-  &[class*='btn-'].disabled,
+  &[class*='aui-'].disabled,
   // sass-lint:disable force-attribute-nesting
-  &[class*='btn-'][disabled] {
+  &[class*='aui-'][disabled] {
     // sass-lint:enable force-attribute-nesting
     @include button-disabled;
 
@@ -225,9 +222,9 @@ $padding-x-button-large: 24px;
   }
 
   // Loading
-  &:not(.btn-round) {
-    .aui--button-children-container,
-    .aui--button-icon-container {
+  &:not(.aui-round) {
+    .aui-children-container,
+    .aui-icon-container {
       &.is-loading {
         visibility: hidden; // preserves width and height of button
       }

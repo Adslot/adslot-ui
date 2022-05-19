@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Anchor from '../../Anchor';
 import Button from '../../Button';
 import './styles.scss';
 
@@ -25,13 +26,7 @@ class PopoverLinkItem extends React.PureComponent {
 
     return (
       <li data-testid="popover-link-item-wrapper" className="popover-link-item">
-        {buttonProps.href ? (
-          <a className="aui--button aui--button-anchor btn-link" {...buttonProps}>
-            {title}
-          </a>
-        ) : (
-          <Button {...buttonProps}>{title}</Button>
-        )}
+        {buttonProps.href ? <Anchor {...buttonProps}>{title}</Anchor> : <Button {...buttonProps}>{title}</Button>}
       </li>
     );
   }

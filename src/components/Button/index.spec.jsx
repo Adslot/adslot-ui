@@ -23,12 +23,12 @@ describe('<Button />', () => {
 
   it('should render inverse button with inverse variant', () => {
     const { getByTestId } = render(<Button variant="inverse">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-inverse btn-default');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button aui-inverse aui-default');
   });
 
   it('should render large button with size="large" prop', () => {
     const { getByTestId } = render(<Button size="large">Test</Button>);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-large btn-default btn-inverse');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button aui-large aui-default aui-inverse');
   });
 
   it('should throw if using color on link variant', () => {
@@ -55,7 +55,7 @@ describe('<Button />', () => {
 
   it('should apply round button when icon exists and no child', () => {
     const { getByTestId } = render(<Button color="primary" aria-label="icon" round icon={<div>icon</div>} />);
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-primary btn-round');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button aui-primary aui-round');
   });
 
   it('should throw when an aria-label is required', () => {
@@ -81,15 +81,15 @@ describe('<Button />', () => {
 
   it('should apply icon', () => {
     const { getByTestId } = render(<Button icon={<div data-testid="icon-content">icon</div>}>Test</Button>);
-    expect(getByTestId('icon-content').parentElement).toHaveClass('aui--button-icon-container');
-    expect(getByTestId('button-wrapper')).toHaveClass('aui--button btn-default btn-inverse');
+    expect(getByTestId('icon-content').parentElement).toHaveClass('aui-icon-container');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui--button aui-default aui-inverse');
   });
 
   it('should apply loading class to non-round icon container', () => {
     const { getByTestId } = render(
       <Button isLoading aria-label="icon" icon={<div data-testid="icon-content">icon</div>} />
     );
-    expect(getByTestId('icon-content').parentElement).toHaveClass('aui--button-icon-container is-loading');
+    expect(getByTestId('icon-content').parentElement).toHaveClass('aui-icon-container is-loading');
   });
 
   it('should support data-test-selectors', () => {

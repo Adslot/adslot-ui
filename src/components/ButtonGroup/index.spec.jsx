@@ -23,8 +23,8 @@ describe('<ButtonGroup />', () => {
         <Button variant="inverse">Test2</Button>
       </ButtonGroup>
     );
-    expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('btn-borderless btn-success');
-    expect(queryAllByTestId('button-wrapper')[1]).toHaveClass('btn-borderless btn-success');
+    expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('aui-borderless aui-success');
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveClass('aui-borderless aui-success');
   });
 
   it('should disable child buttons', () => {
@@ -48,7 +48,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>
     );
     expect(getByTestId('button-wrapper')).toBeDisabled();
-    expect(getByTestId('button-wrapper')).toHaveClass('btn-large');
+    expect(getByTestId('button-wrapper')).toHaveClass('aui-large');
   });
 
   it('should not crash when child is null', () => {
