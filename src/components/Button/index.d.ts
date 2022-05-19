@@ -7,13 +7,8 @@ export type ButtonVariant = 'solid' | 'borderless' | 'inverse' | 'link';
 export type ButtonSize = 'medium' | 'large';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * default, primary, secondary, success, danger, warning, info
-   */
+  isLoading?: boolean;
   color?: ButtonColor;
-  /**
-   * solid, borderless, inverse, link
-   */
   variant?: ButtonVariant;
   size?: ButtonSize;
   round?: boolean;
@@ -21,7 +16,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   fullWidth?: boolean;
   className?: string;
   dts?: string;
-  isLoading?: boolean;
   /**
    * @deprecated
    * Please use the `color` prop instead.
