@@ -175,13 +175,7 @@
     "react-dom": "^16.14.0"
   },
   "overrides": {
-    "react-to-typescript-definitions": {
-      "astq": {
-        "pegjs-otf": {
-          "lodash": "4.17.21"
-        }
-      }
-    }
+    "lodash": "$lodash"
   },
   "engines": {
     "node": "^16"
