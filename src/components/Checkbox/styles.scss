@@ -1,4 +1,4 @@
-@import '~styles/variable';
+@import '../../styles/variable';
 
 .checkbox-component {
   $checkbox-size: 16px;
@@ -37,23 +37,23 @@
     display: inline-block;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url('~styles/icons/checkbox/empty.svg');
+    background-image: url('../../styles/icons/checkbox/empty.svg');
     flex-shrink: 0;
   }
 
   &:hover:not(.disabled):not(.checked):not(.partial-checked) .checkbox-component-icon {
-    background-image: url('~styles/icons/checkbox/hover.svg');
+    background-image: url('../../styles/icons/checkbox/hover.svg');
   }
 
   &.checked .checkbox-component-icon {
-    background-image: url('~styles/icons/checkbox/checked.svg');
+    background-image: url('../../styles/icons/checkbox/checked.svg');
   }
 
   &.partial-checked .checkbox-component-icon {
-    background-image: url('~styles/icons/checkbox/partial.svg');
+    background-image: url('../../styles/icons/checkbox/partial.svg');
 
     &:hover {
-      background-image: url('~styles/icons/checkbox/partial-hover.svg');
+      background-image: url('../../styles/icons/checkbox/partial-hover.svg');
     }
   }
 
@@ -66,15 +66,15 @@
     }
 
     .checkbox-component-icon {
-      background-image: url('~styles/icons/checkbox/empty-disabled.svg');
+      background-image: url('../../styles/icons/checkbox/empty-disabled.svg');
     }
 
     &.checked .checkbox-component-icon {
-      background-image: url('~styles/icons/checkbox/checked-disabled.svg');
+      background-image: url('../../styles/icons/checkbox/checked-disabled.svg');
     }
 
     &.partial-checked .checkbox-component-icon {
-      background-image: url('~styles/icons/checkbox/partial-disabled.svg');
+      background-image: url('../../styles/icons/checkbox/partial-disabled.svg');
     }
   }
 

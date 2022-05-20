@@ -1,5 +1,5 @@
-@import '~styles/color';
-@import '~styles/mixin';
+@import '../../styles/color';
+@import '../../styles/mixin';
 
 .aui--pagination {
   padding: 20px 0;
@@ -15,11 +15,11 @@
 
   &-sides {
     .previous-icon {
-      @include svg-icon('~styles/icons/point-left.svg');
+      @include svg-icon('../../styles/icons/point-left.svg');
     }
 
     .next-icon {
-      @include svg-icon('~styles/icons/point-right.svg');
+      @include svg-icon('../../styles/icons/point-right.svg');
     }
   }
 

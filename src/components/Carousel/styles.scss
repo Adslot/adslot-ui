@@ -1,6 +1,6 @@
-@import '~styles/color';
-@import '~styles/icon';
-@import '~styles/mixin';
+@import '../../styles/color';
+@import '../../styles/icon';
+@import '../../styles/mixin';
 
 .slick-dots {
   position: relative;
@@ -53,6 +53,6 @@
   }
 
   &::before {
-    content: url('~styles/icons/chevron-down.svg');
+    content: url('../../styles/icons/chevron-down.svg');
   }
 }

@@ -1,9 +1,9 @@
-@import '~styles/mixin';
-@import '~styles/variable';
+@import '../../styles/mixin';
+@import '../../styles/variable';
 
 .select-component {
   .caret-icon {
-    @include svg-icon('~styles/icons/caret.svg', 8px, 8px);
+    @include svg-icon('../../styles/icons/caret.svg', 8px, 8px);
   }
 
   .css-oeuhkd-control {

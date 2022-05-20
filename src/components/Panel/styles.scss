@@ -1,7 +1,7 @@
-@import '~styles/border';
-@import '~styles/color';
-@import '~styles/font-weight';
-@import '~styles/icon';
+@import '../../styles/border';
+@import '../../styles/color';
+@import '../../styles/font-weight';
+@import '../../styles/icon';
 
 .panel-component {
   $transition-duration: 250ms;
@@ -22,7 +22,7 @@
     line-height: 22px;
 
     &::before {
-      background: url('~styles/icons/chevron-down.svg');
+      background: url('../../styles/icons/chevron-down.svg');
       transform: rotate(180deg);
       content: ' ';
       float: right;

@@ -1,5 +1,5 @@
-@import '~styles/variable';
-@import '~styles/mixin';
+@import '../../styles/variable';
+@import '../../styles/mixin';
 
 $menu-min-width: 60px;
 $menu-max-width: 260px;
@@ -48,7 +48,7 @@ $menu-max-width: 260px;
       }
 
       .aui--vertical-navigation-component__menu-item-collapse-icon {
-        @include svg-icon('~styles/icons/burger.svg', 24px, 24px);
+        @include svg-icon('../../styles/icons/burger.svg', 24px, 24px);
       }
     }
   }

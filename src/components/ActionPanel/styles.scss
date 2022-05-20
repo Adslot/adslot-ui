@@ -1,10 +1,10 @@
-@import '~styles/border';
-@import '~styles/color';
-@import '~styles/font-size';
-@import '~styles/variable';
-@import '~styles/font-weight';
-@import '~styles/animation';
-@import '~styles/mixin';
+@import '../../styles/border';
+@import '../../styles/color';
+@import '../../styles/font-size';
+@import '../../styles/variable';
+@import '../../styles/font-weight';
+@import '../../styles/animation';
+@import '../../styles/mixin';
 
 .aui--action-panel {
   min-width: 300px;
@@ -69,7 +69,7 @@
     }
 
     .close-icon {
-      @include svg-icon('~styles/icons/close.svg');
+      @include svg-icon('../../styles/icons/close.svg');
     }
 
     .aui--button {
