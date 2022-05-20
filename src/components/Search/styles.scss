@@ -1,4 +1,4 @@
-@import '~styles/variable';
+@import '../../styles/variable';
 
 .aui--search-component {
   $search-height: 26px;
@@ -53,14 +53,14 @@
     }
 
     .search-icon {
-      background-image: url('~styles/icons/search/search-gray.svg');
+      background-image: url('../../styles/icons/search/search-gray.svg');
     }
 
     .cancel-icon {
-      background-image: url('~styles/icons/search/cancel-gray.svg');
+      background-image: url('../../styles/icons/search/cancel-gray.svg');
 
       &:hover {
-        background-image: url('~styles/icons/search/cancel.svg');
+        background-image: url('../../styles/icons/search/cancel.svg');
       }
     }
   }
@@ -91,7 +91,7 @@
       height: 16px;
       background-repeat: no-repeat;
       background-size: contain;
-      background-image: url('~styles/icons/search/search-primary.svg');
+      background-image: url('../../styles/icons/search/search-primary.svg');
       flex-shrink: 0;
     }
   }

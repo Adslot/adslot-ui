@@ -1,4 +1,4 @@
-@import '~styles/variable';
+@import '../../styles/variable';
 
 @mixin input-style($type) {
   .#{$type}-component {

@@ -1,5 +1,5 @@
-@import '~styles/variable';
-@import '~styles/mixin';
+@import '../../src/styles/variable';
+@import '../../src/styles/mixin';
 
 @mixin accent($id, $color-accent) {
   .tag-component-accent {
@@ -252,11 +252,11 @@
         padding: 8px;
 
         .product-details-icon {
-          @include svg-icon('~styles/icons/details.svg', 24px, 24px);
+          @include svg-icon('../../src/styles/variable.scssstyles/icons/details.svg', 24px, 24px);
         }
 
         .burger-icon {
-          @include svg-icon('~styles/icons/burger.svg', 24px, 24px);
+          @include svg-icon('../../src/styles/variable.scssstyles/icons/burger.svg', 24px, 24px);
         }
       }
 
