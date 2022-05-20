@@ -50,13 +50,22 @@
 .adslot-ui-example-container.button-example .adslot-ui-example .aui--popover-element {
   margin-right: 12px;
 }
-.adslot-ui-example-container.accordion-panel-example .adslot-ui-example, .adslot-ui-example-container.card-example .adslot-ui-example {
+.adslot-ui-example-container.accordion-panel-example .adslot-ui-example,
+.adslot-ui-example-container.card-example .adslot-ui-example {
   width: 240px;
 }
-.adslot-ui-example-container.file-picker-example .adslot-ui-example, .adslot-ui-example-container.text-ellipsis-example .adslot-ui-example, .adslot-ui-example-container.textarea-example .adslot-ui-example, .adslot-ui-example-container.select-example .adslot-ui-example, .adslot-ui-example-container.panel-example .adslot-ui-example {
+.adslot-ui-example-container.file-picker-example .adslot-ui-example,
+.adslot-ui-example-container.text-ellipsis-example .adslot-ui-example,
+.adslot-ui-example-container.textarea-example .adslot-ui-example,
+.adslot-ui-example-container.select-example .adslot-ui-example,
+.adslot-ui-example-container.panel-example .adslot-ui-example {
   width: 380px;
 }
-.adslot-ui-example-container.totals-example .adslot-ui-example, .adslot-ui-example-container.empty-example .adslot-ui-example, .adslot-ui-example-container.search-example .adslot-ui-example, .adslot-ui-example-container.search-bar-example .adslot-ui-example, .adslot-ui-example-container.pretty-diff-example .adslot-ui-example {
+.adslot-ui-example-container.totals-example .adslot-ui-example,
+.adslot-ui-example-container.empty-example .adslot-ui-example,
+.adslot-ui-example-container.search-example .adslot-ui-example,
+.adslot-ui-example-container.search-bar-example .adslot-ui-example,
+.adslot-ui-example-container.pretty-diff-example .adslot-ui-example {
   width: 560px;
 }
 .adslot-ui-example-container.switch-example .component-heading {
@@ -74,7 +83,11 @@
   height: 400px;
   justify-content: space-between;
 }
-.adslot-ui-example-container.popover-example .adslot-ui-example .button-example-container .checkbox-component + .checkbox-component {
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .button-example-container
+  .checkbox-component
+  + .checkbox-component {
   margin-top: 0;
   margin-left: 5px;
 }
@@ -82,10 +95,18 @@
   display: flex;
   height: 28px;
 }
-.adslot-ui-example-container.popover-example .adslot-ui-example .button-example-container .disabled-popover .checkbox-component {
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .button-example-container
+  .disabled-popover
+  .checkbox-component {
   margin-top: 1px;
 }
-.adslot-ui-example-container.popover-example .adslot-ui-example .button-example-container .disabled-popover .aui--button {
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .button-example-container
+  .disabled-popover
+  .aui--button {
   position: relative;
   left: 5px;
   top: -5px;
@@ -107,7 +128,11 @@
   top: 50px;
   left: 250px;
 }
-.adslot-ui-example-container.popover-example .adslot-ui-example .auto-flip-container .popover-example-container > .aui--popover-element {
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .auto-flip-container
+  .popover-example-container
+  > .aui--popover-element {
   top: 10px;
   left: 10px;
   position: relative;
@@ -139,7 +164,11 @@
   top: 3px;
   fill: #fff;
 }
-.adslot-ui-example-container.button-group-example .adslot-ui-example .aui--button-group .btn-inverse .aui--svg-symbol-component {
+.adslot-ui-example-container.button-group-example
+  .adslot-ui-example
+  .aui--button-group
+  .btn-inverse
+  .aui--svg-symbol-component {
   fill: #000;
 }
 .adslot-ui-example-container.overlay-loader-example .static-markup {
@@ -156,7 +185,9 @@
 .adslot-ui-example-container.overlay-loader-example .static-markup .aui--overlay-loader + .aui--overlay-loader {
   margin-right: 10px;
 }
-.adslot-ui-example-container.vertical-navigation-tabs-example .aui--vertical-navigation-component__menu-item.aui--vertical-navigation-component__menu-item-is-active .menu-icon {
+.adslot-ui-example-container.vertical-navigation-tabs-example
+  .aui--vertical-navigation-component__menu-item.aui--vertical-navigation-component__menu-item-is-active
+  .menu-icon {
   border-radius: 50%;
   background-color: #e8e8e8;
 }
@@ -181,14 +212,14 @@
   height: 24px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../../src/styles/variable.scssstyles/icons/details.svg");
+  background-image: url('../../src/styles/icons/details.svg');
 }
 .adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-icon .burger-icon {
   width: 24px;
   height: 24px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../../src/styles/variable.scssstyles/icons/burger.svg");
+  background-image: url('../../src/styles/icons/burger.svg');
 }
 .adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-label {
   display: flex;
