@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ROUND, QUARTER, getPointX, getPointY } from '../dataProcessor';
-import './styles.scss';
+import './styles.css';
 
 const Marker = ({ fraction }) => {
   const getMarkerPoints = (markerValue) => {

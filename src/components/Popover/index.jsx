@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { themes, popoverPlacements, popoverStrategies } from './constants';
 import WithRef from './WithRef';
-import './styles.scss';
+import './styles.css';
 
 const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
 

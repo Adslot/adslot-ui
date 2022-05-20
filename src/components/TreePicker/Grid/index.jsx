@@ -7,7 +7,7 @@ import Grid from '../../Grid';
 import GridRow from '../../Grid/Row';
 import Spinner from '../../Spinner';
 import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes';
-import './styles.scss';
+import './styles.css';
 
 const TreePickerGrid = ({
   disabled,

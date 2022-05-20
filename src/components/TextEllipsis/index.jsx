@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Popover from '../Popover';
-import './styles.scss';
+import './styles.css';
 
 const TextEllipsis = ({ popoverProps, children }) => {
   const containerRef = React.useRef();

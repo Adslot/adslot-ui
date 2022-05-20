@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts, classSuffixHelper } from '../../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNames }) => {
   const componentClass = 'grid-component-cell';

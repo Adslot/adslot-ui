@@ -5,7 +5,7 @@ import Arc from './Arc';
 import Donut from './Donut';
 import Marker from './Marker';
 import { ROUND, HALF, QUARTER, getPointX, getPointY } from './dataProcessor';
-import './styles.scss';
+import './styles.css';
 
 const filterDataset = (dataset) => _.filter(dataset, ({ value }) => value > 0);
 

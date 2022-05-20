@@ -1,6 +1,3 @@
-import './styles/_bootstrap-custom.scss';
-import './styles/_icheck-custom.scss';
-
 import Accordion from './components/Accordion';
 import ActionPanel from './components/ActionPanel';
 import Alert from './components/Alert';
@@ -71,8 +68,6 @@ import TreePickerNav from './components/TreePicker/Nav';
 import TreePickerNode from './components/TreePicker/Node';
 import UserListPicker from './components/UserListPicker';
 import VerticalNav from './components/VerticalNavigation';
-import './styles/_bootstrap-custom.scss';
-import './styles/_icheck-custom.scss';
 
 export {
   Accordion,

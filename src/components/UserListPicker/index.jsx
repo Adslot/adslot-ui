@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ListPicker from '../ListPicker';
 import Avatar from '../Avatar';
-import './styles.scss';
+import './styles.css';
 
 const UserListPicker = ({
   allowEmptySelection,

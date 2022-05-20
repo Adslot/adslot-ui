@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import './styles.css';
 
 const Spinner = ({ className, size }) => (
   <div data-testid="spinner-wrapper" className={classnames(['spinner-component', className])}>

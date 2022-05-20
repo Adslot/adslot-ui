@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Spinner from '../Spinner';
-import './styles.scss';
+import './styles.css';
 
 const OverlayLoader = ({ text, top, heading, disableBackground }) => (
   <div

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const CardContent = ({ children, className, stretch, fill, append, dts }) => {
   const contentClassNames = classnames('card-component-content', { stretch, fill, append }, className);

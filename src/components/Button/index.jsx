@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
 import { expandDts, invariant } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 export const buttonSharedClasses = ({ size, inverse, variant, fullWidth, round, icon, children, color }) => ({
   [`aui-${size}`]: sizes.includes(size) && variant !== 'link',

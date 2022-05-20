@@ -7,7 +7,7 @@ import CodeBlock from './CodeBlock';
 import Props from './Props.jsx';
 import DesignNotes from './DesignNotes.jsx';
 
-import './styles.scss';
+import './styles.css';
 
 const components = {
   pre: (props) => <div {...props} />,

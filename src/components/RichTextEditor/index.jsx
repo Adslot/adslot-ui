@@ -14,7 +14,7 @@ import FileUploadAction from './FileUploadAction';
 import MentionEntry from './MentionEntry';
 import FilePreviewList from './FilePreviewList';
 import Popover from '../Popover';
-import './styles.scss';
+import './styles.css';
 
 const { EditorState, Modifier, convertToRaw, RichUtils } = draftJs;
 

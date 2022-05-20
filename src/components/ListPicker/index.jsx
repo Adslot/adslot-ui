@@ -9,7 +9,7 @@ import FlexibleSpacer from '../FlexibleSpacer';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
-import './styles.scss';
+import './styles.css';
 import Anchor from '../Anchor';
 
 const isSubset = (array, subArray) => _(subArray).difference(array).isEmpty();

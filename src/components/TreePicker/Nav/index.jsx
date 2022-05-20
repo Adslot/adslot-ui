@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Search from '../../Search';
 import Breadcrumb from '../../Breadcrumb';
 import { TreePickerPropTypesBreadCrumbNode } from '../../../prop-types/TreePickerPropTypes';
-import './styles.scss';
+import './styles.css';
 
 const TreePickerNav = ({
   breadcrumbRootNode,

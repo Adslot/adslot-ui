@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const Skeleton = ({ animated, className, dts, height, variant, width }) => {
   const baseClass = 'aui--skeleton';

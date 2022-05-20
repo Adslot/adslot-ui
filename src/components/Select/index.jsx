@@ -8,7 +8,7 @@ import CreatableSelect from 'react-select/creatable';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import defaultStyle from './styles';
-import './styles.scss';
+import './styles.css';
 
 const componentBaseClass = 'select-component';
 

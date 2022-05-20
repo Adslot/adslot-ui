@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import FlexibleSpacer from '../FlexibleSpacer';
-import './styles.scss';
+import './styles.css';
 
 const baseClass = 'pagetitle-component';
 

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import BreadcrumbNode from './Node';
-import './styles.scss';
+import './styles.css';
 
 const Breadcrumb = ({ rootNode, divider, nodes, onClick, disabled }) => {
   const baseClass = 'aui--breadcrumb';

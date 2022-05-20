@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import './styles.css';
 
 const Empty = ({ collection, text, icon }) => {
   if (_.isEmpty(collection)) {
