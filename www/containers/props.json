@@ -379,6 +379,56 @@
       }
     }
   ],
+  "src/components/Anchor/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Anchor",
+      "methods": [],
+      "props": {
+        "color": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "colors"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
+        },
+        "variant": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "variants"
+          },
+          "required": false,
+          "description": ""
+        },
+        "size": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "sizes"
+          },
+          "required": false,
+          "description": ""
+        },
+        "href": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      },
+      "composes": [
+        "../Button"
+      ]
+    }
+  ],
   "src/components/Avatar/index.jsx": [
     {
       "description": "",
@@ -598,6 +648,13 @@
       "displayName": "Button",
       "methods": [],
       "props": {
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
         "color": {
           "type": {
             "name": "enum",
@@ -633,7 +690,7 @@
             ]
           },
           "required": false,
-          "description": "default, primary, secondary, success, danger, warning, info",
+          "description": "",
           "defaultValue": {
             "value": "'default'",
             "computed": false
@@ -662,7 +719,7 @@
             ]
           },
           "required": false,
-          "description": "solid, borderless, inverse, link"
+          "description": ""
         },
         "size": {
           "type": {
@@ -712,13 +769,6 @@
         "dts": {
           "type": {
             "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "isLoading": {
-          "type": {
-            "name": "bool"
           },
           "required": false,
           "description": ""
