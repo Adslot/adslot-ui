@@ -1,0 +1,17 @@
+.pagetitle-component {
+  border-bottom: 1px solid #e8e8e8;
+  box-sizing: content-box;
+  font-size: 18px;
+  height: 30px;
+  line-height: 30px;
+  padding: 20px 30px;
+}
+.pagetitle-component-is-footer {
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 0;
+  color: #838383;
+  font-size: 12px;
+}
+.pagetitle-component small {
+  font-size: 11px;
+}

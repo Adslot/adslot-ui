@@ -1,0 +1,18 @@
+.alert-component {
+  color: #fff;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 10px;
+}
+.alert-component-success {
+  background-color: #5bb75b;
+}
+.alert-component-info {
+  background-color: #49afcd;
+}
+.alert-component-warning {
+  background-color: #faa732;
+}
+.alert-component-danger {
+  background-color: #da4f49;
+}

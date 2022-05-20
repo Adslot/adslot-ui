@@ -1,0 +1,193 @@
+body {
+  font-family: Roboto, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.tag-component-accent.accent-positive {
+  border-color: #5bb75b;
+}
+.tag-component-accent.accent-positive:not(.tag-component-inverse) {
+  background-color: #5bb75b;
+}
+.tag-component-accent.accent-positive.tag-component-inverse {
+  color: #5bb75b;
+  fill: #5bb75b;
+}
+
+.tag-component-accent.accent-pending {
+  border-color: #faa732;
+}
+.tag-component-accent.accent-pending:not(.tag-component-inverse) {
+  background-color: #faa732;
+}
+.tag-component-accent.accent-pending.tag-component-inverse {
+  color: #faa732;
+  fill: #faa732;
+}
+
+.tag-component-accent.accent-negative {
+  border-color: #da4f49;
+}
+.tag-component-accent.accent-negative:not(.tag-component-inverse) {
+  background-color: #da4f49;
+}
+.tag-component-accent.accent-negative.tag-component-inverse {
+  color: #da4f49;
+  fill: #da4f49;
+}
+
+.adslot-ui-layout .adslot-ui-header {
+  position: fixed;
+  width: 100%;
+  z-index: 1020;
+}
+.adslot-ui-layout .adslot-ui-body {
+  display: flex;
+  flex-direction: row;
+  padding: 72px 12px 0;
+}
+.adslot-ui-layout .grid {
+  display: flex;
+  flex-direction: row;
+}
+.adslot-ui-layout .grid-small {
+  grid-gap: 6px;
+}
+.adslot-ui-layout .grid-medium {
+  grid-gap: 12px;
+}
+.adslot-ui-layout .grid-large {
+  grid-gap: 18px;
+}
+
+.adslot-ui-sidebar-area {
+  margin-right: 30px;
+  flex: 0 1 1;
+  border-right: 1px solid #e8e8e8;
+  width: 240px;
+  padding: 12px;
+  z-index: 1020;
+  height: calc(100% - 72px);
+  position: fixed;
+  overflow: scroll;
+}
+.adslot-ui-sidebar-area .panel-component-content {
+  padding: 10px 0;
+}
+.adslot-ui-sidebar-area .panel-component-content .aui--docs-panel-list {
+  color: unset;
+  display: block;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.adslot-ui-sidebar-area .panel-component-content .aui--docs-panel-list.is-active {
+  background-color: #e8e8e8;
+}
+
+.adslot-ui-content-area {
+  margin-left: 270px;
+  padding-top: 30px;
+  max-width: 1200px;
+  padding-bottom: 100px;
+}
+.adslot-ui-content-area .svg-icon .aui--popover-element.btn-popover-reason {
+  display: flex;
+}
+.adslot-ui-content-area .svg-icon .aui--popover-element.btn-popover-reason > div {
+  display: flex;
+}
+.adslot-ui-content-area .aui--docs-code-error {
+  border: 1px solid;
+  padding: 10px;
+  background: #f9b7b0;
+  color: #da4f49;
+}
+.adslot-ui-content-area .aui--docs-note-panel,
+.adslot-ui-content-area .aui--docs-ui-proptype-table {
+  margin-top: 10px;
+}
+.adslot-ui-content-area .aui--docs-method-block {
+  border: 1px solid #e8e8e8;
+  margin-bottom: 20px;
+}
+.adslot-ui-content-area .aui--docs-method-block .aui--docs-method-details {
+  padding: 10px;
+}
+.adslot-ui-content-area .aui--docs-method-block .table {
+  margin-bottom: 0;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-blue {
+  color: #006dcc;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-cyan {
+  color: #49afcd;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-green {
+  color: #5bb75b;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-gray-light {
+  color: #d3d3d3;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-gray-dark {
+  color: #838383;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-red {
+  color: #da4f49;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-orange {
+  color: #faa732;
+}
+.adslot-ui-content-area .aui--docs-note-panel .text-bold {
+  font-weight: 700;
+}
+.adslot-ui-content-area .aui--docs-static-markup {
+  display: flex;
+  margin-bottom: 50px;
+  width: 300px;
+}
+.adslot-ui-content-area .aui--docs-static-markup .aui--overlay-loader {
+  z-index: 1;
+  position: inherit;
+}
+.adslot-ui-content-area .aui--docs-static-markup .aui--overlay-loader .loader {
+  position: inherit;
+}
+.adslot-ui-content-area .aui--docs-static-markup .aui--overlay-loader + .aui--overlay-loader {
+  margin-right: 10px;
+}
+.adslot-ui-content-area .intro-page-box {
+  height: 150px;
+  border-radius: 5%;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.adslot-ui-content-area .intro-page-box .information-box-text {
+  padding-left: 0;
+}
+.adslot-ui-content-area .intro-page-box .aui--svg-symbol-component-box-icon {
+  height: 100px;
+  width: 100px;
+}
+.adslot-ui-content-area .intro-page-box-heading {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.adslot-ui-content-area .intro-page-box-description {
+  width: 350px;
+  margin-bottom: 15px;
+}
+.adslot-ui-content-area .page-not-found {
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.adslot-ui-content-area .page-not-found .aui--svg-symbol-component-not-found-icon {
+  height: 160px;
+  width: 160px;
+}

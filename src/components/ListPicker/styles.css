@@ -1,0 +1,31 @@
+.listpicker-component-body-split {
+  display: flex;
+  height: 400px;
+}
+.listpicker-component-body-split .listpickerpure-component .grid-component .grid-component-row-header {
+  border-bottom: 1px solid #e8e8e8;
+}
+.listpicker-component-body-split .listpickerpure-component-items {
+  max-height: 363px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.listpicker-component-body-split .listpickerpure-component-items .grid-component {
+  border-top: 0;
+}
+.listpicker-component-footnote {
+  margin-top: 10px;
+}
+.listpicker-component .grid-component-row:last-child {
+  border-bottom: 0;
+}
+.listpicker-component .grid-component-cell-label {
+  color: #ababab;
+  width: 120px;
+}
+.listpicker-component .flexible-spacer-component {
+  border-top: 0;
+}
+.listpicker-component .empty-component {
+  border-bottom: 0;
+}

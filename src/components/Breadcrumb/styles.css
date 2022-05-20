@@ -1,0 +1,16 @@
+.aui--breadcrumb {
+  color: #49afcd;
+  cursor: default;
+  font-size: 12px;
+  height: 10px;
+  line-height: 10px;
+  display: flex;
+}
+.aui--breadcrumb .aui--breadcrumb-node-divider {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.aui--breadcrumb.aui--breadcrumb--disabled {
+  color: #ababab;
+  pointer-events: none;
+}

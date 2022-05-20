@@ -1,0 +1,176 @@
+.aui--editor-root {
+  border: 1px solid #e8e8e8;
+  min-height: 245px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.aui--editor-root .aui--editor-container {
+  padding: 20px;
+  flex-grow: 1;
+}
+.aui--editor-root .aui--editor-container .public-DraftEditorPlaceholder-hasFocus {
+  display: none;
+}
+.aui--editor-root .aui--editor-container .public-DraftEditorPlaceholder-inner {
+  color: #ababab;
+}
+.aui--editor-root .aui--editor-container .mention {
+  color: #006dcc;
+  text-decoration: none;
+}
+.aui--editor-root .aui--editor-container .DraftEditor-root + div {
+  height: 150px;
+  padding: 5px 0;
+  overflow-y: auto;
+  z-index: 10;
+}
+.aui--editor-root .file-download-input {
+  display: none;
+}
+.aui--editor-root .aui--editor-toolbar {
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button {
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 6px;
+  font-size: 12px;
+  align-items: center;
+  line-height: 0;
+}
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button:last-of-type {
+  margin-right: 0;
+}
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button .file-download-button {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40.2 40.2'%3E%3Cpath d='M35.6,5.6c-1.1-1.1-2.6-1.8-4.2-1.8c-1.6,0-3,0.6-4.2,1.8l-15.7,16c-1.6,1.6-1.6,4.3,0,6c1.6,1.6,4.3,1.6,5.9,0L29,15.9c0.3-0.3,0.3-0.8,0-1c-0.3-0.3-0.8-0.3-1,0L16.4,26.6c-1,1-2.8,1-3.8,0c-1.1-1.1-1.1-2.8,0-3.9l15.7-16C30,5,32.9,5,34.6,6.7c1.7,1.8,1.7,4.6,0,6.4L14.9,33c-1.2,1.2-2.7,1.8-4.3,1.8S7.4,34.2,6.3,33c-2.4-2.4-2.4-6.4,0-8.8L21.7,8.5c0.3-0.3,0.3-0.8,0-1c-0.3-0.3-0.8-0.3-1,0L5.3,23.2c-2.9,3-2.9,7.9,0,10.9c1.4,1.5,3.3,2.3,5.4,2.3c2,0,3.9-0.8,5.4-2.3l19.6-20C37.9,11.7,37.9,7.9,35.6,5.6z'%3E%3C/path%3E%3C/svg%3E");
+  width: 18px;
+  height: 18px;
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button:focus {
+  outline: none;
+}
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button:hover, .aui--editor-root .aui--editor-toolbar .aui--toolbar-button.active {
+  background-color: #e8e8e8;
+  border-color: #e8e8e8;
+}
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button img,
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button div,
+.aui--editor-root .aui--editor-toolbar .aui--toolbar-button svg {
+  height: 20px;
+  width: 20px;
+}
+
+.aui--mention .popover-content {
+  padding: 0;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.aui--mention-entry {
+  background-color: #fff;
+  width: auto;
+  min-width: 250px;
+}
+.aui--mention-entry__is-focused {
+  background: #e0f0ff;
+  cursor: pointer;
+}
+.aui--mention-entry .mention-entry--container {
+  display: flex;
+  align-items: center;
+}
+.aui--mention-entry .mention-entry--container__left {
+  margin: 5px 10px 5px 20px;
+}
+.aui--mention-entry .mention-entry--container__right {
+  margin: 0 10px;
+}
+.aui--mention-entry .mention-entry--container .mention-entry--title,
+.aui--mention-entry .mention-entry--container .mention-entry--name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.aui--mention-entry .mention-entry--container .mention-entry--title {
+  font-size: 10px;
+  color: #ababab;
+}
+.aui--mention-entry .mention-entry--container .mention-entry--avatar {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.aui--file-preview-list {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.aui--file-preview-list .aui--file-sticker {
+  position: relative;
+}
+.aui--file-preview-list .aui--file-sticker-image {
+  width: 60px;
+  margin: 0 0 10px 10px;
+}
+.aui--file-preview-list .aui--file-sticker-file {
+  margin: 0 0 10px 10px;
+  width: 200px;
+  height: 60px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.aui--file-preview-list .aui--file-sticker-file-name {
+  width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+}
+.aui--file-preview-list .aui--file-sticker-file-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%234794ae'%3E%3Cpath d='M20 14.8c0-2.7 2.1-4.8 4.8-4.8H60l20 16.8v58.4c0 2.7-2.1 4.8-4.8 4.8H24.8c-2.7 0-4.8-2.1-4.8-4.8V14.8z'%3E%3C/path%3E%3Cpath fill='%23FFF' d='M60 10.1v12c0 2.7 2.1 4.8 4.8 4.8H80L60'%3E%3C/path%3E%3C/svg%3E");
+  width: 50px;
+  height: 50px;
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.aui--file-preview-list .aui--file-sticker-close-button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border-radius: 50%;
+  background-color: #5a5a5a;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='%23fff'%3E%3Cpath d='M4 11.3L7.3 8 4.1 4.7l.8-.7L8 7.2 11.1 4l.7.7-3.1 3.2 3.3 3.3-.7.8L8 8.7 4.7 12l-.7-.7z'/%3E%3C/svg%3E");
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: #fff 2px solid;
+  z-index: 10;
+}
+.aui--file-preview-list .aui--file-sticker-spinner {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  border: #fff 2px solid;
+  background-color: #fff;
+}

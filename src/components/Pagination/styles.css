@@ -1,0 +1,38 @@
+.aui--pagination {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aui--pagination-separator {
+  width: 12.5px;
+  height: 24px;
+  margin: 0 5px;
+}
+.aui--pagination-sides .previous-icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../../styles/icons/point-left.svg");
+}
+.aui--pagination-sides .next-icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../../styles/icons/point-right.svg");
+}
+.aui--pagination-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+}
+.aui--pagination-item.btn-borderless:not([disabled]):hover, .aui--pagination-item.btn-borderless:not([disabled]):active {
+  box-shadow: none;
+}
+.aui--pagination-item.btn-inverse:not([disabled]):focus {
+  background-color: #fff;
+}

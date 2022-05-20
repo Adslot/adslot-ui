@@ -1,0 +1,12 @@
+.arc-component.positive {
+  fill: #5bb75b;
+}
+.arc-component.negative {
+  fill: #da4f49;
+}
+.arc-component.info {
+  fill: #49afcd;
+}
+.arc-component.warning, .arc-component.pending {
+  fill: #faa732;
+}

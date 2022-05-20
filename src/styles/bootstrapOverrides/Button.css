@@ -1,0 +1,39 @@
+.aui--button,
+.btn {
+  margin-right: 5px;
+}
+.aui--button:last-child,
+.btn:last-child {
+  margin-right: 0;
+}
+.aui--button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+.aui--button > .flexible-wrapper-inline > .flexible-spacer-component,
+.btn > .flexible-wrapper-inline > .flexible-spacer-component {
+  min-width: 8px;
+}
+
+.btn-xs,
+.btn-group-xs > .aui--button {
+  font-size: 9px;
+}
+.btn-xs:active,
+.btn-group-xs > .aui--button:active {
+  transform: translateY(0);
+}
+.btn-xs > .flexible-wrapper-inline > .flexible-spacer-component,
+.btn-group-xs > .aui--button > .flexible-wrapper-inline > .flexible-spacer-component {
+  min-width: 4px;
+}
+
+.input-group-btn {
+  display: inline-flex;
+  width: auto;
+}
+.input-group-btn > .aui--button {
+  min-height: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}

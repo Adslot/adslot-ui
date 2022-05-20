@@ -1,0 +1,13 @@
+.pretty-diff-component {
+  border: 1px solid #e8e8e8;
+  font-size: 12px;
+  padding: 10px;
+  white-space: pre-wrap;
+}
+.pretty-diff-component-delete {
+  color: #da4f49;
+  text-decoration: line-through;
+}
+.pretty-diff-component-insert {
+  color: #5bb75b;
+}

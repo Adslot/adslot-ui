@@ -1,0 +1,60 @@
+.panel-component {
+  background-color: #fff;
+  transition: background-color 250ms ease-out;
+}
+.panel-component ~ .panel-component {
+  border-top: 1px solid #e8e8e8;
+}
+.panel-component-header {
+  cursor: pointer;
+  font-weight: 700;
+  border-bottom: 1px solid #e8e8e8;
+  line-height: 22px;
+}
+.panel-component-header::before {
+  background: url("../../styles/icons/chevron-down.svg");
+  transform: rotate(180deg);
+  content: " ";
+  float: right;
+  height: 16px;
+  transition: transform 250ms ease-out;
+  width: 16px;
+  fill: #333;
+  margin-top: 3px;
+}
+.panel-component-header .aui--svg-symbol-component {
+  float: left;
+  height: 22px;
+  margin-right: 10px;
+  position: relative;
+  width: 22px;
+  fill: #333;
+}
+.panel-component-header, .panel-component-content {
+  padding: 20px;
+}
+.panel-component.collapsed {
+  background-color: #f9f9f9;
+}
+.panel-component.collapsed .panel-component-header {
+  border-bottom: 0;
+}
+.panel-component.collapsed .panel-component-header::before {
+  transform: rotate(0);
+}
+.panel-component.collapsed .panel-component-content {
+  display: none;
+}
+.panel-component hr {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.card-component-content .panel-component:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.card-component-content .panel-component:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
