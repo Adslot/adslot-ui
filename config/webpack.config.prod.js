@@ -8,7 +8,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
-const postCssConfig = require('./postCssConfig');
 
 // Assert this just to be safe.
 if (process.env.NODE_ENV !== 'production') {
@@ -94,13 +93,12 @@ module.exports = webpackMerge(commonConfig, {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
+              importLoaders: 1,
               sourceMap: false,
             },
           },
           {
             loader: 'postcss-loader',
-            options: postCssConfig,
           },
           'sass-loader',
         ],

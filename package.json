@@ -26,9 +26,10 @@
     "dist": "npm run clean && npm run copy-types && npm run dist:lib && npm run dist:es && npm run dist:prod && npm run generate-docs && npm run dist:demo",
     "lint:sass": "sass-lint -v",
     "lint:eslint": "eslint --ext .jsx,.js,.ts ./src && eslint --ext .jsx,.js ./www",
-    "lint:prettier": "prettier '{src,www,config}/**/*.{js,json,jsx,mdx,scss}' --check",
+    "lint:prettier": "prettier '{src,www,config}/**/*.{js,json,jsx,mdx,css}' --check",
+    "format": "prettier '{src,www,config}/**/*.{js,json,jsx,mdx,css}' --write",
     "lint": "npm run lint:eslint && npm run lint:sass && npm run lint:prettier",
-    "prettier": "prettier \"{src,www,config}/**/*.{js,json,jsx,mdx,scss}\" --write",
+    "prettier": "prettier \"{src,www,config}/**/*.{js,json,jsx,mdx,css}\" --write",
     "svgo": "svgo --recursive --multipass --folder=src --config=svgo-config.js",
     "postversion": "git push -u origin $(git rev-parse --abbrev-ref HEAD) --follow-tags && npm publish && echo '…released.'",
     "preversion": "echo 'Releasing…' && ADBLOCK=true DISABLE_OPENCOLLECTIVE=true npm ci",
@@ -55,9 +56,8 @@
     "arrowParens": "always"
   },
   "lint-staged": {
-    "{src,www,config}/**/*.{js,json,jsx,mdx}": [
-      "prettier --write",
-      "git update-index --again"
+    "{src,www,config}/**/*.{js,json,jsx,mdx,css}": [
+      "prettier --write"
     ],
     "**/*.ts": [
       "npm run type-check"
@@ -119,9 +119,13 @@
     "lint-staged": "^13.0.0",
     "mini-css-extract-plugin": "^2.6.0",
     "null-loader": "^4.0.1",
+    "postcss": "^8.4.14",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-loader": "^6.2.1",
+    "postcss-import": "^14.1.0",
+    "postcss-loader": "^7.0.0",
+    "postcss-preset-env": "^7.7.1",
     "postcss-safe-parser": "^6.0.0",
+    "postcss-simple-vars": "^6.0.3",
     "prettier": "^2.6.2",
     "prism-react-renderer": "^1.3.1",
     "prop-types": "^15.8.1",
@@ -180,9 +184,13 @@
   "browserslist": [
     "last 2 versions",
     "> 5%",
-    "ie >= 11",
+    "not dead",
+    "not kaios > 0",
     "not and_chr > 0",
+    "not and_ff > 0",
+    "not and_qq > 0",
     "not and_uc > 0",
+    "not op_mob > 0",
     "not android > 0",
     "not ie_mob > 0",
     "not ios_saf > 0",
