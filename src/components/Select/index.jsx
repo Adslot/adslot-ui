@@ -20,16 +20,16 @@ const DropdownIndicator = (props) => (
 
 const ClearIndicator = (props) => <components.ClearIndicator {...props}>✕</components.ClearIndicator>;
 
-const selectContainerBuilder = (extraProps) => (props) => {
-  const containerProps = {
-    ...props,
-    innerProps: {
-      ...props.innerProps,
-      ...extraProps,
-    },
-  };
-
-  return <components.SelectContainer {...containerProps} />;
+const SelectContainer = (props) => {
+  return (
+    <components.SelectContainer
+      {...props}
+      innerProps={{
+        ...props.innerProps,
+        ...(props.selectProps.dts ? { 'data-test-selector': props.selectProps.dts } : {}),
+      }}
+    />
+  );
 };
 
 /**
@@ -37,14 +37,10 @@ const selectContainerBuilder = (extraProps) => (props) => {
  */
 const selectComponentBuilder = (Component) => {
   const SelectComponent = (props) => {
-    const customComponents = { DropdownIndicator, ClearIndicator };
-
-    if (!_.isEmpty(props.dts)) {
-      customComponents.SelectContainer = selectContainerBuilder({ 'data-test-selector': props.dts });
-    }
+    const customComponents = { SelectContainer, DropdownIndicator, ClearIndicator };
 
     const selectProps = {
-      ..._.omit(props, ['components', 'className', 'styles', 'dts', 'isInModal']),
+      ..._.omit(props, ['components', 'className', 'styles', 'isInModal']),
       components: { ...customComponents, ...props.components },
       className: classnames(componentBaseClass, props.className),
       classNamePrefix: props.classNamePrefix || componentBaseClass,
