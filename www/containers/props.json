@@ -4302,6 +4302,11 @@
       "description": "",
       "displayName": "ClearIndicator",
       "methods": []
+    },
+    {
+      "description": "",
+      "displayName": "SelectContainer",
+      "methods": []
     }
   ],
   "src/components/Skeleton/index.jsx": [
