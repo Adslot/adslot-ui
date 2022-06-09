@@ -1,6 +1,8 @@
 import './styles/_bootstrap-custom.scss';
 import './styles/_icheck-custom.scss';
 
+import { registerLocale } from 'react-datepicker';
+
 import Accordion from './components/Accordion';
 import ActionPanel from './components/ActionPanel';
 import Alert from './components/Alert';
@@ -90,6 +92,7 @@ export {
   ConfirmModal,
   CountBadge,
   DatePicker,
+  registerLocale,
   Empty,
   fastStatelessWrapper,
   FilePicker,
