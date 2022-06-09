@@ -23,26 +23,23 @@ const Tabs = ({ id, children, defaultActiveKey, activeKey, onSelect }) => {
     };
   };
 
-  const tabs = [];
-  const content = React.Children.map(children, (child) => {
-    if (_.get(child, 'type.innerName') !== Tab.innerName) {
+  const tabs = React.Children.map(children, (child) => {
+    if (!child) return;
+    if (child.type !== Tab) {
       console.error('<Tabs /> children must be instances of <Tab />');
-      return null;
+      return;
     }
 
     // child must be a Tab instance at this point
-    const tab = React.cloneElement(child, {
+    return React.cloneElement(child, {
       show: actualActiveKey === child.props.eventKey,
     });
-    tabs.push(tab);
-
-    return tab;
   });
 
   return (
     <div data-testid="tablist-wrapper" id={id}>
       <ul role="tablist" className="nav nav-tabs">
-        {tabs.map((tab) => (
+        {React.Children.map(tabs, (tab) => (
           <li
             data-testid="tablist-item"
             role="presentation"
@@ -63,7 +60,7 @@ const Tabs = ({ id, children, defaultActiveKey, activeKey, onSelect }) => {
           </li>
         ))}
       </ul>
-      <div className="tab-content">{content}</div>
+      <div className="tab-content">{tabs}</div>
     </div>
   );
 };

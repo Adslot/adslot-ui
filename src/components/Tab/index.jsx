@@ -14,8 +14,6 @@ const Tab = ({ children, show }) => (
   </div>
 );
 
-Tab.innerName = 'au_tab';
-
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
   /**
