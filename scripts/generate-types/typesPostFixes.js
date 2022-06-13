@@ -25,6 +25,12 @@ module.exports = function typesPostFixes(componentName, result) {
         'export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {'
       );
 
+    case 'Anchor':
+      return result.replace(
+        'export interface AnchorProps {',
+        'export interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {'
+      );
+
     case 'TextEllipsis':
       return result
         .replace(

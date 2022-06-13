@@ -23,6 +23,17 @@ $brand-info: $color-info;
 $brand-warning: $color-warning;
 $brand-danger: $color-negative;
 
+// color themes
+$colors: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+  default: $color-gray-darker,
+  success: $color-positive,
+  info: $color-info,
+  warning: $color-warning,
+  danger: $color-negative,
+);
+
 // == Scaffolding
 $text-color: $color-text;
 $link-color: $color-blue;

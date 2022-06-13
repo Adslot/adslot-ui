@@ -1,4 +1,5 @@
 import ButtonExample from '../examples/Button.mdx';
+import AnchorExample from '../examples/Anchor.mdx';
 import AccordionExample from '../examples/Accordion.mdx';
 import PanelExample from '../examples/Panel.mdx';
 import ActionPanelExample from '../examples/ActionPanel.mdx';
@@ -92,6 +93,12 @@ const routes = [
     path: '/button',
     component: ButtonExample,
     title: 'Button',
+    group: 'Components',
+  },
+  {
+    path: '/anchor',
+    component: AnchorExample,
+    title: 'Anchor',
     group: 'Components',
   },
   {

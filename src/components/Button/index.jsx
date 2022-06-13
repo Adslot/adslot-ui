@@ -1,26 +1,65 @@
-/* eslint-disable react/prop-types */
-// disable proptypes check because it doesn't take into consideration extended types
 import _ from 'lodash';
 import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
-import { expandDts } from '../../lib/utils';
+import { expandDts, invariant } from '../../lib/utils';
 import './styles.scss';
 
+export const buttonSharedClasses = ({ size, inverse, variant, fullWidth, round, icon, children, disabled, color }) => ({
+  [`aui-${size}`]: sizes.includes(size) && variant !== 'link',
+  [`aui-${color}`]: colors.includes(color) && variant !== 'link',
+  'aui-inverse': inverse || (color === 'default' && _.isEmpty(variant)),
+  [`aui-${variant}`]: variants.includes(variant),
+  'aui-full-width': fullWidth,
+  'aui-round': round && icon && _.isEmpty(children),
+  'aui-icon': !_.isEmpty(icon) && _.isEmpty(children),
+  disabled: disabled,
+});
+
 const Button = (props) => {
-  const { theme, children, className, disabled, dts, href, inverse, isLoading, size, target, type } = props;
-  const baseClass = 'aui--button';
-  const classes = classNames(
-    baseClass,
-    {
-      'btn-inverse': inverse,
-      'btn-large': size === 'large',
-      [`btn-${theme}`]: !_.isEmpty(theme),
-      'has-anchor': href,
-    },
-    className
+  const {
+    color = 'default',
+    size,
+    variant,
+    round,
+    fullWidth,
+    icon,
+    children,
+    className,
+    disabled,
+    dts,
+    isLoading,
+    inverse, // deprecated
+    theme, // deprecated
+    ...rest
+  } = props;
+  const isLink = variant === 'link' || className?.match(/\b(aui-link)\b/)?.[0];
+
+  invariant(!props.href, 'Button: should not be used for href links. Use an <Anchor/> instead.');
+  invariant(!theme, 'Button: The theme prop has been deprecated. Please use color instead.');
+  invariant(!inverse, 'Button: The inverse prop has been deprecated. Please use variant="inverse" instead.');
+  invariant(
+    !(round && (!icon || !_.isEmpty(children))),
+    'Button: round can only be used with an icon and no children.'
   );
+  invariant(
+    !(icon && _.isEmpty(children) && !rest['aria-label'] && !rest['aria-labelledby']),
+    'Button: an aria-label or aria-labelledby is required on icon buttons.'
+  );
+
+  invariant(
+    !(isLink && (color !== 'default' || size === 'large')),
+    `Button: buttons with the "link" variant do not inherit size and color properties.${isLink} ${color} ${size}`
+  );
+
+  const baseClass = 'aui--button';
+
+  const classes = classNames([
+    baseClass,
+    className,
+    buttonSharedClasses({ size, inverse, variant, fullWidth, round, icon, children, disabled, color }),
+  ]);
 
   const renderSpinner = () =>
     isLoading ? (
@@ -29,78 +68,59 @@ const Button = (props) => {
       </div>
     ) : null;
 
-  const renderChildren = () =>
-    href ? (
-      !disabled ? (
-        <a
-          data-testid="button-anchor"
-          className="aui--button-anchor"
-          href={href}
-          target={target}
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      ) : (
-        <div className="aui--button-anchor" data-testid="button-anchor">
-          {children}
-        </div>
-      )
-    ) : (
-      children
-    );
-
   return (
     <button
       data-testid="button-wrapper"
+      type="button"
+      {...expandDts(dts)}
+      {...rest}
       disabled={isLoading || disabled}
       className={classes}
-      type={type}
-      {...expandDts(dts)}
-      {..._.omit(props, _.keys(adslotButtonPropTypes))}
     >
       {renderSpinner()}
-      <div className={classNames('aui--button-children-container', { 'is-loading': isLoading })}>
-        {renderChildren()}
-      </div>
+      {
+        <>
+          {icon && (
+            <span className={classNames('aui-icon-container', { 'is-loading': isLoading && !round })}>{icon}</span>
+          )}
+          {children && (
+            <span className={classNames('aui-children-container', { 'is-loading': isLoading })}>{children}</span>
+          )}
+        </>
+      }
     </button>
   );
 };
 
-const adslotButtonPropTypes = {
-  /**
-   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
-   */
-  theme: PropTypes.oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger', 'link']),
+export const colors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+export const variants = ['solid', 'borderless', 'inverse', 'link'];
+export const sizes = ['medium', 'large'];
+
+export const buttonSharedPropTypes = {
+  round: PropTypes.bool,
+  icon: PropTypes.node,
+  fullWidth: PropTypes.bool,
   className: PropTypes.string,
   dts: PropTypes.string,
-  href: PropTypes.string,
-  /**
-   * The target attribute specifies where to open the linked document when there is a defined 'href',
-   * PropTypes.oneOf(['_blank', '_self', '_parent', '_top'])
-   */
-  target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),
-  inverse: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  /**
-   * PropTypes.oneOf(['small', 'large'])
-   */
-  size: PropTypes.oneOf(['small', 'large']),
-  /**
-   * PropTypes.oneOf(['button', 'reset', 'submit'])
-   */
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  disabled: PropTypes.bool,
 };
 
-Button.propTypes = { ...adslotButtonPropTypes };
-
-Button.defaultProps = {
-  inverse: false,
-  isLoading: false,
-  size: 'small',
-  theme: 'default',
-  target: '_self',
-  type: 'button',
+Button.propTypes = {
+  isLoading: PropTypes.bool,
+  color: PropTypes.oneOf(colors),
+  variant: PropTypes.oneOf(variants),
+  size: PropTypes.oneOf(sizes),
+  /**
+   * @deprecated
+   * Please use the `color` prop instead.
+   */
+  theme: PropTypes.string,
+  /**
+   * @deprecated
+   * Please use `variant="inverse"` instead.
+   */
+  inverse: PropTypes.bool,
+  ...buttonSharedPropTypes,
 };
 
 export default Button;

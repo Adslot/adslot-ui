@@ -24,7 +24,16 @@ export const classSuffixHelper = ({ classSuffixes, suffixOptions, componentClass
 // expandDts converts a string to an object for ES6 expansion as <img {...expandDts(dtsString)} />
 export const expandDts = (dtsString) => (dtsString ? { 'data-test-selector': dtsString } : {});
 
+const isProduction = process.env.NODE_ENV === 'production';
+const prefix = 'AdslotUI';
+export const invariant = (condition, message) => {
+  if (!isProduction && !condition) {
+    throw new Error(`${prefix} ${message}`);
+  }
+};
+
 export default {
   classSuffixHelper,
   expandDts,
+  invariant,
 };

@@ -71,9 +71,12 @@ const Example = () => {
           searchOnEnter
         />
       ) : (
-        <Button className="btn-borderless" onClick={() => showSearchInput(true)}>
-          <SvgSymbol href="./assets/svg-symbols.svg#search" />
-        </Button>
+        <Button
+          aria-label="Search"
+          variant="borderless"
+          onClick={() => showSearchInput(true)}
+          icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}
+        />
       )}
     </div>
   );

@@ -59,13 +59,7 @@
       fill: $color-gray-darker;
     }
 
-    .close-svg-icon {
-      padding: 0;
-      width: 26px;
-      height: 26px;
-    }
-
-    .close-button.aui--button {
+    .close-button:not(.close-svg-icon).aui--button {
       background-color: transparent;
       color: $color-inverse;
 

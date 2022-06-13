@@ -34,7 +34,7 @@ const ConfirmModal = ({
         actionButton={
           <Button
             data-testid="confirm-modal-confirm"
-            theme="primary"
+            color="primary"
             onClick={applyAction}
             data-test-selector="confirm-modal-confirm"
           >

@@ -1,17 +1,21 @@
 import * as React from 'react';
 
-export type ButtonGroupTheme = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'link';
+export type ButtonGroupColor = 'primary' | 'success' | 'danger';
+
+export type ButtonGroupVariant = 'inverse' | 'borderless' | 'solid';
+
+export type ButtonGroupSize = 'large';
 
 export interface ButtonGroupProps {
   dts?: string;
   children?: React.ReactNode;
   /**
-   * PropTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'link'])
+   * primary, success, danger
    */
-  theme?: ButtonGroupTheme;
-  inverse?: boolean;
+  color?: ButtonGroupColor;
+  variant?: ButtonGroupVariant;
   disabled?: boolean;
-  size?: string;
+  size?: ButtonGroupSize;
 }
 
 export default class ButtonGroup extends React.Component<ButtonGroupProps, any> {

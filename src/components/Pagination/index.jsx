@@ -8,16 +8,18 @@ const Pagination = ({ className, activePage, pageCount, onSelect, prev, next }) 
   <div data-testid="pagination-wrapper" className={classnames('aui--pagination', className)}>
     {activePage !== 1 && prev && (
       <Button
+        variant="borderless"
         onClick={() => onSelect(activePage - 1)}
-        className={classnames('btn-borderless', 'aui--pagination-item', 'aui--pagination-sides')}
+        className={classnames('aui--pagination-item', 'aui--pagination-sides')}
       >
         <div className="previous-icon" />
       </Button>
     )}
 
     <Button
+      variant="borderless"
       onClick={() => onSelect(1)}
-      className={classnames('btn-borderless', 'aui--pagination-item', {
+      className={classnames('aui--pagination-item', {
         active: activePage === 1,
       })}
     >
@@ -31,46 +33,71 @@ const Pagination = ({ className, activePage, pageCount, onSelect, prev, next }) 
     )}
 
     {activePage === 5 && pageCount === 5 && (
-      <Button className={classnames('btn-borderless', 'aui--pagination-item')} onClick={() => onSelect(activePage - 3)}>
+      <Button
+        variant="borderless"
+        className={classnames('aui--pagination-item')}
+        onClick={() => onSelect(activePage - 3)}
+      >
         {activePage - 3}
       </Button>
     )}
 
     {((activePage === pageCount && pageCount > 3) || (activePage === 4 && pageCount === 5)) && (
-      <Button onClick={() => onSelect(activePage - 2)} className={classnames('btn-borderless', 'aui--pagination-item')}>
+      <Button
+        variant="borderless"
+        onClick={() => onSelect(activePage - 2)}
+        className={classnames('aui--pagination-item')}
+      >
         {activePage - 2}
       </Button>
     )}
 
     {activePage > 2 && (
-      <Button className={classnames('btn-borderless', 'aui--pagination-item')} onClick={() => onSelect(activePage - 1)}>
+      <Button
+        variant="borderless"
+        className={classnames('aui--pagination-item')}
+        onClick={() => onSelect(activePage - 1)}
+      >
         {activePage - 1}
       </Button>
     )}
 
     {activePage !== 1 && activePage !== pageCount && (
       <Button
+        variant="borderless"
         onClick={() => onSelect(activePage)}
-        className={classnames('btn-borderless', 'aui--pagination-item', 'active')}
+        className={classnames('aui--pagination-item', 'active')}
       >
         {activePage}
       </Button>
     )}
 
     {activePage < pageCount - 1 && (
-      <Button className={classnames('btn-borderless', 'aui--pagination-item')} onClick={() => onSelect(activePage + 1)}>
+      <Button
+        variant="borderless"
+        className={classnames('aui--pagination-item')}
+        onClick={() => onSelect(activePage + 1)}
+      >
         {activePage + 1}
       </Button>
     )}
 
     {((activePage === 1 && pageCount > 3) || (activePage === 2 && pageCount === 5)) && (
-      <Button className={classnames('btn-borderless', 'aui--pagination-item')} onClick={() => onSelect(activePage + 2)}>
+      <Button
+        variant="borderless"
+        className={classnames('aui--pagination-item')}
+        onClick={() => onSelect(activePage + 2)}
+      >
         {activePage + 2}
       </Button>
     )}
 
     {activePage === 1 && pageCount === 5 && (
-      <Button className={classnames('btn-borderless', 'aui--pagination-item')} onClick={() => onSelect(activePage + 3)}>
+      <Button
+        variant="borderless"
+        className={classnames('aui--pagination-item')}
+        onClick={() => onSelect(activePage + 3)}
+      >
         {activePage + 3}
       </Button>
     )}
@@ -83,8 +110,9 @@ const Pagination = ({ className, activePage, pageCount, onSelect, prev, next }) 
 
     {pageCount !== 1 && (
       <Button
+        variant="borderless"
         onClick={() => onSelect(pageCount)}
-        className={classnames('btn-borderless', 'aui--pagination-item', {
+        className={classnames('aui--pagination-item', {
           active: activePage === pageCount,
         })}
       >
@@ -94,8 +122,9 @@ const Pagination = ({ className, activePage, pageCount, onSelect, prev, next }) 
 
     {activePage !== pageCount && next && (
       <Button
+        variant="borderless"
         onClick={() => onSelect(activePage + 1)}
-        className={classnames('btn-borderless', 'aui--pagination-item', 'aui--pagination-sides')}
+        className={classnames('aui--pagination-item', 'aui--pagination-sides')}
       >
         <div className="next-icon" />
       </Button>

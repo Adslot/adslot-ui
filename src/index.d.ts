@@ -2,6 +2,7 @@ export { default as Accordion } from './components/Accordion';
 export { default as ActionPanel } from './components/ActionPanel';
 export { default as Alert } from './components/Alert';
 export { default as AlertInput } from './components/AlertInput';
+export { default as Anchor } from './components/Anchor';
 export { default as Avatar } from './components/Avatar';
 export { default as BorderedWell } from './components/BorderedWell';
 export { default as Breadcrumb } from './components/Breadcrumb';

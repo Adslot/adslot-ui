@@ -10,6 +10,7 @@ import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
 import './styles.scss';
+import Anchor from '../Anchor';
 
 const isSubset = (array, subArray) => _(subArray).difference(array).isEmpty();
 
@@ -117,9 +118,9 @@ class ListPicker extends React.PureComponent {
                 <div className="pull-left">
                   {_.map(linkButtons, (linkButton, key) =>
                     _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                      <Button key={linkButton.label} inverse href={linkButton.href}>
+                      <Anchor key={linkButton.label} variant="inverse" href={linkButton.href}>
                         {linkButton.label}
-                      </Button>
+                      </Anchor>
                     ) : (
                       React.cloneElement(linkButton, { key })
                     )
@@ -127,7 +128,7 @@ class ListPicker extends React.PureComponent {
                 </div>
               )}
               <Button
-                theme="primary"
+                color="primary"
                 onClick={this.applyAction}
                 disabled={disableApplyButton}
                 data-test-selector="listpicker-apply-button"

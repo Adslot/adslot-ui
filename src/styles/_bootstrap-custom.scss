@@ -22,7 +22,7 @@
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tables';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms';
-@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons';
+// @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons';
 
 // Components
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/component-animations';
@@ -57,7 +57,6 @@
 // @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities';
 
 // AdslotUI overrides
-@import './bootstrapOverrides/Button';
 @import './bootstrapOverrides/Checkbox';
 @import './bootstrapOverrides/Form';
 @import './bootstrapOverrides/Modal';
