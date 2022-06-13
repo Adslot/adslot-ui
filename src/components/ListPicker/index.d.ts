@@ -51,6 +51,6 @@ export interface ListPickerProps {
   linkButtons?: ListPickerLinkButtons[];
 }
 
-export default class ListPicker extends React.Component<ListPickerProps, any> {
-  render(): JSX.Element;
-}
+declare const ListPicker: React.FC<ListPickerProps>;
+
+export default ListPicker;

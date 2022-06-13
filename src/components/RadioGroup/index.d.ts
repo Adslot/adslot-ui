@@ -1,15 +1,22 @@
 import * as React from 'react';
 
-export type RadioGroupChildren = React.ReactNode[] | React.ReactNode;
+export type RadioGroupOrientation = 'vertical' | 'horizontal';
+
+export type RadioGroupVariant = 'default' | 'box';
 
 export interface RadioGroupProps {
-  id?: string;
-  className?: string;
-  name: string;
   value: string;
-  children: RadioGroupChildren;
+  name: string;
   onChange: (...args: any[]) => any;
+  orientation?: RadioGroupOrientation;
+  children: React.ReactNode;
+  className?: string;
   dts?: string;
+  variant?: RadioGroupVariant;
+  id?: string;
+  /**
+   * @deprecated use orientation="horizontal" instead
+   */
   inline?: boolean;
 }
 

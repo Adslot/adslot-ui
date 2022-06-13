@@ -1,0 +1,137 @@
+@import '../../styles/variable';
+
+$border-radius: 6px;
+$border-width: 1px;
+$gap: 12px;
+$focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-gray-darker;
+
+.aui--radio-group,
+.aui--checkbox-group {
+  display: flex;
+  flex-flow: row wrap;
+  gap: $gap;
+
+  &.is-default {
+    align-items: flex-start;
+  }
+
+  &.is-vertical {
+    flex-direction: column;
+  }
+
+  & > .aui--radio-box,
+  & > .aui--checkbox-box {
+    &:focus-visible {
+      outline: none;
+      box-shadow: $focus-ring;
+
+      & .aui--radio-input-icon,
+      & .aui--checkbox-input-icon {
+        box-shadow: none;
+      }
+    }
+  }
+
+  & > .aui--radio-default,
+  & > .aui--checkbox-default {
+    &:focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  & .aui--radio-box,
+  & .aui--checkbox-box {
+    flex: 1;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    border-radius: $border-radius;
+
+    & label {
+      height: 100%;
+      padding: calc($grid-base-space * 1.5);
+      border-radius: $border-radius;
+      border-width: 1px;
+      border-style: solid;
+      border-color: $color-gray-lighter;
+      transition: 150ms ease;
+      background-color: $color-white;
+      gap: 10px;
+    }
+
+    &.is-disabled {
+      & label {
+        cursor: default;
+        border-color: $color-gray-lighter;
+      }
+    }
+
+    &.is-selected {
+      & label {
+        border-color: $color-gray-dark;
+      }
+    }
+
+    &:not(.has-text) {
+      & label {
+        align-items: center;
+      }
+
+      & .aui--radio-label-text,
+      & .aui--checkbox-label-text {
+        margin-bottom: 0;
+      }
+
+      & .aui--radio-label,
+      & .aui--checkbox-label {
+        align-items: center;
+      }
+    }
+
+    &.is-disabled:not(.is-selected) {
+      & label {
+        background-color: $color-gray-lightest;
+      }
+    }
+
+    &:hover:not(.is-disabled) {
+      & label {
+        background-color: $color-gray-lightest;
+      }
+    }
+
+    &:active:not(.is-disabled) {
+      & label {
+        border-color: $color-gray-light;
+      }
+    }
+
+    & .aui--radio,
+    & .aui--checkbox {
+      height: 100%;
+    }
+
+    & .aui--radio-label,
+    & .aui--checkbox-label {
+      margin-left: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: $grid-base-space;
+    }
+
+    & .aui--radio-icon,
+    & .aui--checkbox-icon {
+      display: flex;
+    }
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text {
+      margin-bottom: 9px;
+      margin-top: 0;
+      font-size: $font-size-subheader;
+      font-weight: bold;
+    }
+  }
+}

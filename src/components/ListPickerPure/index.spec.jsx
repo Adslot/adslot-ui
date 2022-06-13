@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Empty from '../Empty';
 import ListPickerPure from '.';
 import ListPickerMocks from '../ListPicker/mocks';
@@ -60,12 +61,12 @@ describe('<ListPickerPure />', () => {
     expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Jane Doe'));
     expect(queryAllByTestId('grid-row-wrapper')[3]).toContainElement(getByText('Jack White'));
 
-    expect(getByText('John Smith')).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('John Smith')).toHaveClass('grid-component-cell-stretch');
-    expect(getByText('Jane Doe')).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Jane Doe')).toHaveClass('grid-component-cell-stretch');
-    expect(getByText('Jack White')).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Jack White')).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('John Smith').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Jane Doe').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Jack White').parentElement).toHaveClass('grid-component-cell-stretch');
 
     expect(getByDts(container, 'user-1')).toHaveTextContent('John Smith');
     expect(getByDts(container, 'user-2')).toHaveTextContent('Jane Doe');
@@ -100,10 +101,10 @@ describe('<ListPickerPure />', () => {
     expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('Jones Cheng'));
     expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Joe Huang'));
 
-    expect(getByText('Jones Cheng')).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Jones Cheng')).toHaveClass('grid-component-cell-stretch');
-    expect(getByText('Joe Huang')).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Joe Huang')).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Jones Cheng').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Jones Cheng').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(getByText('Joe Huang').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(getByText('Joe Huang').parentElement).toHaveClass('grid-component-cell-stretch');
 
     expect(queryAllByDts(container, 'toggle')).toHaveLength(2);
     queryAllByDts(container, 'toggle').forEach((each, index) => {
@@ -252,5 +253,29 @@ describe('<ListPickerPure />', () => {
     fireEvent.click(queryAllByTestId('checkbox-input')[1]);
     expect(handlerCalled).toEqual(1);
     expect(isAllowMultiSelection).toEqual(true);
+  });
+
+  it('should be keyboard navigable', () => {
+    let handlerCalled = 0;
+    let isAllowMultiSelection;
+    const props = {
+      allowMultiSelection: false,
+      items: users,
+      selectedItems,
+      selectItem: (item, allowMultiSelection) => {
+        handlerCalled++;
+        isAllowMultiSelection = allowMultiSelection;
+      },
+    };
+    const { getAllByTestId, getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
+
+    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(queryAllByTestId('radio-input')[0]).not.toBeChecked();
+    userEvent.tab();
+    userEvent.keyboard(' ');
+    expect(handlerCalled).toEqual(1);
+    expect(isAllowMultiSelection).toEqual(false);
+    userEvent.keyboard('[ArrowDown][ArrowDown]');
+    expect(getAllByTestId('radio-wrapper')[2]).toHaveFocus();
   });
 });

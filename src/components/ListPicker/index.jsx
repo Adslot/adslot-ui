@@ -14,163 +14,142 @@ import Anchor from '../Anchor';
 
 const isSubset = (array, subArray) => _(subArray).difference(array).isEmpty();
 
-class ListPicker extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    ['applyAction', 'cancelAction', 'deselectItem', 'getApplyButtonState', 'defaultState', 'selectItem'].forEach(
-      (methodName) => {
-        this[methodName] = this[methodName].bind(this);
-      }
-    );
-
-    this.state = this.defaultState();
-  }
-
-  getApplyButtonState(selectedItems) {
-    if (this.props.allowEmptySelection) return false;
+const ListPicker = ({
+  allowMultiSelection,
+  allowEmptySelection,
+  emptyMessage,
+  emptySvgSymbol,
+  labelFormatter,
+  addonFormatter,
+  itemHeaders,
+  items,
+  itemType,
+  itemInfo,
+  initialSelection,
+  show,
+  modalClassName,
+  modalTitle,
+  modalDescription,
+  modalFootnote,
+  linkButtons,
+  modalApply,
+  modalClose,
+}) => {
+  const getApplyButtonState = (selectedItems) => {
+    if (allowEmptySelection) return false;
 
     return _.isEmpty(selectedItems);
-  }
+  };
 
-  defaultState() {
-    const selectedItems = _.clone(this.props.initialSelection);
-    return {
-      selectedItems,
-      disableApplyButton: this.getApplyButtonState(selectedItems),
-    };
-  }
+  const [selectedItems, setSelectedItems] = React.useState(initialSelection);
+  const [disableApplyButton, setDisableApplyButton] = React.useState(getApplyButtonState(initialSelection));
 
-  selectItem(item) {
-    const { selectedItems } = this.state;
-    if (!this.props.allowMultiSelection) selectedItems.length = 0;
+  const selectItem = (item) => {
+    if (!allowMultiSelection) selectedItems.length = 0;
 
     selectedItems.push(item);
-    this.setState({
-      selectedItems,
-      disableApplyButton: this.getApplyButtonState(selectedItems),
-    });
-  }
+    setSelectedItems(selectedItems);
+    setDisableApplyButton(getApplyButtonState(selectedItems));
+  };
 
-  deselectItem(item) {
-    const { selectedItems } = this.state;
+  const deselectItem = (item) => {
     _.remove(selectedItems, { id: item.id });
-    this.setState({
-      selectedItems,
-      disableApplyButton: this.getApplyButtonState(selectedItems),
-    });
-  }
+    setSelectedItems(selectedItems);
 
-  cancelAction() {
-    this.props.modalClose();
-    this.setState(this.defaultState());
-  }
+    setDisableApplyButton(getApplyButtonState(selectedItems));
+  };
 
-  applyAction() {
-    this.props.modalApply(this.state.selectedItems);
-  }
+  const cancelAction = () => {
+    modalClose();
+    setSelectedItems(_.clone(initialSelection));
+    setDisableApplyButton(getApplyButtonState(initialSelection));
+  };
 
-  render() {
-    const { selectedItems, disableApplyButton } = this.state;
-    const {
-      allowMultiSelection,
-      emptyMessage,
-      emptySvgSymbol,
-      labelFormatter,
-      addonFormatter,
-      itemHeaders,
-      items,
-      itemType,
-      itemInfo,
-      show,
-      modalClassName,
-      modalTitle,
-      modalDescription,
-      modalFootnote,
-      linkButtons,
-    } = this.props;
+  const applyAction = () => {
+    modalApply(selectedItems);
+  };
 
-    const listPickerPureElement = (
-      <ListPickerPure
-        allowMultiSelection={allowMultiSelection}
-        emptyMessage={emptyMessage}
-        emptySvgSymbol={emptySvgSymbol}
-        deselectItem={this.deselectItem}
-        labelFormatter={labelFormatter}
-        addonFormatter={addonFormatter}
-        itemHeaders={itemHeaders}
-        items={items}
-        itemType={itemType}
-        selectItem={this.selectItem}
-        selectedItems={selectedItems}
-      />
-    );
+  const listPickerPureElement = (
+    <ListPickerPure
+      allowMultiSelection={allowMultiSelection}
+      emptyMessage={emptyMessage}
+      emptySvgSymbol={emptySvgSymbol}
+      deselectItem={deselectItem}
+      labelFormatter={labelFormatter}
+      addonFormatter={addonFormatter}
+      itemHeaders={itemHeaders}
+      items={items}
+      itemType={itemType}
+      selectItem={selectItem}
+      selectedItems={selectedItems}
+    />
+  );
 
-    return (
-      show && (
-        <ActionPanel
-          isModal
-          className={modalClassName}
-          title={modalTitle}
-          onClose={this.cancelAction}
-          actionButton={
-            <>
-              {_.isEmpty(linkButtons) ? null : (
-                <div className="pull-left">
-                  {_.map(linkButtons, (linkButton, key) =>
-                    _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
-                      <Anchor key={linkButton.label} variant="inverse" href={linkButton.href}>
-                        {linkButton.label}
-                      </Anchor>
-                    ) : (
-                      React.cloneElement(linkButton, { key })
-                    )
-                  )}
-                </div>
-              )}
-              <Button
-                color="primary"
-                onClick={this.applyAction}
-                disabled={disableApplyButton}
-                data-test-selector="listpicker-apply-button"
-              >
-                Apply
-              </Button>
-            </>
-          }
-        >
-          {modalDescription ? <p>{modalDescription}</p> : null}
-          {_.isEmpty(itemInfo) ? (
-            <div className="listpicker-component-body">{listPickerPureElement}</div>
-          ) : (
-            <div className="listpicker-component-body-split">
-              <SplitPane dts={_.kebabCase(itemInfo.label)}>
-                <Grid>
-                  <GridRow type="header">
-                    <GridCell>{itemInfo.label}</GridCell>
+  return (
+    show && (
+      <ActionPanel
+        isModal
+        className={modalClassName}
+        title={modalTitle}
+        onClose={cancelAction}
+        actionButton={
+          <>
+            {_.isEmpty(linkButtons) ? null : (
+              <div className="pull-left">
+                {_.map(linkButtons, (linkButton, key) =>
+                  _.isObject(linkButton) && isSubset(_.keys(linkButton), ['label', 'href']) ? (
+                    <Anchor key={linkButton.label} variant="inverse" href={linkButton.href}>
+                      {linkButton.label}
+                    </Anchor>
+                  ) : (
+                    React.cloneElement(linkButton, { key })
+                  )
+                )}
+              </div>
+            )}
+            <Button
+              color="primary"
+              onClick={applyAction}
+              disabled={disableApplyButton}
+              data-test-selector="listpicker-apply-button"
+            >
+              Apply
+            </Button>
+          </>
+        }
+      >
+        {modalDescription ? <p>{modalDescription}</p> : null}
+        {_.isEmpty(itemInfo) ? (
+          <div className="listpicker-component-body">{listPickerPureElement}</div>
+        ) : (
+          <div className="listpicker-component-body-split">
+            <SplitPane dts={_.kebabCase(itemInfo.label)}>
+              <Grid>
+                <GridRow type="header">
+                  <GridCell>{itemInfo.label}</GridCell>
+                </GridRow>
+                {_.map(itemInfo.properties, (property) => (
+                  <GridRow key={property.label} horizontalBorder={false}>
+                    <GridCell classSuffixes={['label']}>{property.label}</GridCell>
+                    <GridCell classSuffixes={['value']} dts={_.kebabCase(property.label)} stretch>
+                      {property.value}
+                    </GridCell>
                   </GridRow>
-                  {_.map(itemInfo.properties, (property) => (
-                    <GridRow key={property.label} horizontalBorder={false}>
-                      <GridCell classSuffixes={['label']}>{property.label}</GridCell>
-                      <GridCell classSuffixes={['value']} dts={_.kebabCase(property.label)} stretch>
-                        {property.value}
-                      </GridCell>
-                    </GridRow>
-                  ))}
-                </Grid>
-                <FlexibleSpacer />
-              </SplitPane>
-              <SplitPane>
-                {listPickerPureElement}
-                <FlexibleSpacer />
-              </SplitPane>
-            </div>
-          )}
-          {modalFootnote ? <div className="listpicker-component-footnote">{modalFootnote}</div> : null}
-        </ActionPanel>
-      )
-    );
-  }
-}
+                ))}
+              </Grid>
+              <FlexibleSpacer />
+            </SplitPane>
+            <SplitPane>
+              {listPickerPureElement}
+              <FlexibleSpacer />
+            </SplitPane>
+          </div>
+        )}
+        {modalFootnote ? <div className="listpicker-component-footnote">{modalFootnote}</div> : null}
+      </ActionPanel>
+    )
+  );
+};
 
 const itemProps = PropTypes.shape({
   id: PropTypes.number.isRequired,

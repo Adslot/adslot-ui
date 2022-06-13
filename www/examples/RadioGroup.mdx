@@ -15,12 +15,79 @@ const Example = () => {
         <Radio value="badminton" label="Badminton" />
       </RadioGroup>
       <br />
-      <h4>Inline RadioGroup</h4>
-      <RadioGroup name="hobbies" value={hobbies} onChange={handleGroupChange} dts="radio-group-dts" inline>
+      <h4>Horizontal RadioGroup</h4>
+      <RadioGroup
+        orientation="horizontal"
+        name="hobbies"
+        value={hobbies}
+        onChange={handleGroupChange}
+        dts="radio-group-dts"
+      >
+        <Radio id="r1" value="swimming" label="Swimming" dts="radio-dts" />
+        <Radio id="r2" value="soccer" label="Soccer" />
+        <Radio id="r3" value="badminton" label="Badminton" />
+      </RadioGroup>
+    </>
+  );
+};
+
+render(Example);
+```
+
+## button variant
+
+```jsx live=true
+const Example = () => {
+  const [hobbies, setHobbies] = React.useState('');
+  const handleGroupChange = (value) => setHobbies(value);
+
+  return (
+    <>
+      <RadioGroup
+        variant="box"
+        name="hobbies"
+        value={hobbies}
+        onChange={handleGroupChange}
+        dts="radio-group-dts"
+        style={{ width: 300 }}
+      >
+        <Radio
+          icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
+          value="swimming"
+          label="Swimming"
+          dts="radio-dts"
+          text="this is a text description"
+        />
+        <Radio
+          icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
+          value="soccer"
+          label="Soccer"
+          text="this is a text description"
+        />
+        <Radio
+          icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
+          value="badminton"
+          label="Badminton"
+          text="this is a text description"
+        />
+      </RadioGroup>
+
+      <br />
+      <h4>Horizontal orientation</h4>
+      <RadioGroup
+        variant="box"
+        name="hobbies"
+        orientation="horizontal"
+        value={hobbies}
+        onChange={handleGroupChange}
+        dts="radio-group-dts"
+        style={{ width: 600 }}
+      >
         <Radio value="swimming" label="Swimming" dts="radio-dts" />
         <Radio value="soccer" label="Soccer" />
         <Radio value="badminton" label="Badminton" />
       </RadioGroup>
+      <pre>hobbies: {JSON.stringify(hobbies)}</pre>
     </>
   );
 };

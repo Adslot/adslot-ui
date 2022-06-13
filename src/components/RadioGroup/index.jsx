@@ -1,48 +1,91 @@
-import _ from 'lodash';
-import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { expandDts } from '../../lib/utils';
+import classnames from 'classnames';
+import { useArrowFocus } from '../../hooks';
+import { expandDts, invariant } from '../../lib/utils';
+import '../RadioGroup/style.css';
 
-const RadioGroup = ({ className, onChange, children, name, value, inline, id, dts }) => {
-  const classNames = classnames(['radio-group-component', className]);
+const itemClass = 'aui--radio';
 
-  const onChangeDefault = (event) => {
-    const newValue = event.currentTarget.value;
-    onChange(newValue);
-  };
+const RadioGroupContext = React.createContext({});
 
-  const renderChildren = () =>
-    React.Children.map(children, (child) => {
-      const childProps = _.assign({}, child.props, {
-        name: name,
-        checked: value === child.props.value,
-        onChange: (...args) => {
-          child.props.onChange(...args);
-          onChangeDefault(...args);
-        },
-        inline: inline,
-      });
+const RadioGroupProvider = ({ children, value, onChange, variant, name }) => {
+  const context = React.useMemo(
+    () => ({
+      value,
+      onChange,
+      variant,
+      name,
+    }),
+    [value, onChange, variant, name]
+  );
+  return <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>;
+};
 
-      return React.cloneElement(child, childProps);
-    });
+export const useRadioGroup = () => React.useContext(RadioGroupContext);
+
+const RadioGroup = ({
+  name,
+  value,
+  onChange,
+  orientation = 'vertical',
+  className,
+  dts,
+  children,
+  variant = 'default',
+  inline,
+  ...rest
+}) => {
+  invariant(!inline, 'RadioGroup: the inline prop has been replaced by orientation="vertical"');
+
+  const ref = React.useRef();
+
+  useArrowFocus({
+    ref,
+    onFocus: (el) => onChange(el.dataset.auiValue),
+    selector: `.${itemClass}[role=radio]`,
+    loop: true,
+    orientation,
+  });
 
   return (
-    <div data-testid="radio-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
-      {renderChildren()}
-    </div>
+    <RadioGroupProvider value={value} onChange={onChange} variant={variant} name={name}>
+      <div
+        {...rest}
+        data-testid="radio-group-wrapper"
+        role={'radiogroup'}
+        aria-orientation={orientation}
+        className={classnames('aui--radio-group', className, {
+          'is-vertical': orientation === 'vertical',
+          'is-default': variant === 'default',
+        })}
+        {...expandDts(dts)}
+        ref={ref}
+      >
+        {children}
+      </div>
+    </RadioGroupProvider>
   );
 };
 
-RadioGroup.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
+export const radioGroupSharedPropTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   onChange: PropTypes.func.isRequired,
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   dts: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'box']),
+  id: PropTypes.string,
+  /**
+   *  @deprecated use orientation="horizontal" instead
+   **/
   inline: PropTypes.bool,
+};
+
+RadioGroup.propTypes = {
+  value: PropTypes.string.isRequired,
+  ...radioGroupSharedPropTypes,
 };
 
 export default RadioGroup;

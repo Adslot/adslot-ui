@@ -104,8 +104,8 @@
 .adslot-ui-example-container.popover-example
   .adslot-ui-example
   .button-example-container
-  .checkbox-component
-  + .checkbox-component {
+  .aui--checkbox
+  + .aui--checkbox {
   margin-top: 0;
   margin-left: 5px;
 }
@@ -119,7 +119,7 @@
   .adslot-ui-example
   .button-example-container
   .disabled-popover
-  .checkbox-component {
+  .aui--checkbox {
   margin-top: 1px;
 }
 

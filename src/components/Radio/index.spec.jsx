@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Radio from '.';
 
 afterEach(cleanup);
@@ -18,7 +19,6 @@ describe('<Radio />', () => {
       disabled: false,
       checked: false,
       onChange: jest.fn(),
-      inline: false,
     };
   });
 
@@ -43,12 +43,11 @@ describe('<Radio />', () => {
     expect(props.onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('should add inline class when inline prop in true', () => {
-    const { getByTestId, rerender } = render(<Radio {...props} />);
-    expect(getByTestId('radio-wrapper')).not.toHaveClass('radio-component-inline');
-    props.inline = true;
-
-    rerender(<Radio {...props} />);
-    expect(getByTestId('radio-wrapper')).toHaveClass('radio-component-inline');
+  it('should be able to activate via keyboard when no radio is selected', () => {
+    const { getByTestId } = render(<Radio {...props} value="" />);
+    fireEvent.click(getByTestId('radio-input'));
+    userEvent.tab();
+    userEvent.keyboard('[Enter]');
+    expect(props.onChange).toHaveBeenCalledTimes(2);
   });
 });

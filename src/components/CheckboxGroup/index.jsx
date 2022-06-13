@@ -1,75 +1,80 @@
-import _ from 'lodash';
 import React from 'react';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import Checkbox from '../Checkbox';
-import { expandDts } from '../../lib/utils';
+import classnames from 'classnames';
+import { invariant } from '../../lib/utils';
+import { radioGroupSharedPropTypes } from '../RadioGroup';
+import '../RadioGroup/style.css';
 
-const CheckboxGroup = ({ id, className, dts, children, value, name, inline, onChange }) => {
-  const handleCheckboxChange = (nextCheckboxState, checkboxName, checkboxValue) => {
-    const newValues = _.includes(value, checkboxValue)
-      ? value.filter((item) => item !== checkboxValue)
-      : [...value, checkboxValue];
+const CheckboxGroupContext = React.createContext({});
 
-    onChange(newValues, name);
-  };
+const CheckboxGroupProvider = ({ children, name, value, onChange, getIsChecked, variant }) => {
+  const context = React.useMemo(() => {
+    const onCheckboxChange = (checkboxValue) => {
+      const newValues = value.includes(checkboxValue)
+        ? value.filter((item) => item !== checkboxValue)
+        : [...value, checkboxValue];
 
-  const renderChildren = () =>
-    React.Children.map(children, (child) => {
-      if (!child) return null;
+      onChange(newValues, name, checkboxValue);
+    };
 
-      if (child.type === Checkbox) {
-        const childProps = {
-          ...child.props,
-          name,
-          inline,
-          checked: _.includes(value, child.props.value),
-          onChange: (...args) => {
-            child.props.onChange(...args);
-            handleCheckboxChange(...args);
-          },
-        };
-        return <child.type {...childProps} />;
+    const isCheckedHandler = (itemValue) => {
+      if (getIsChecked) {
+        return getIsChecked(itemValue, value);
       }
-      console.error("ERROR: CheckboxGroup's children should be an array of Checkbox");
-      return null;
-    });
-  const classNames = classnames(['checkbox-group-component', className]);
+      return value.includes(itemValue);
+    };
 
-  return children ? (
-    <div data-testid="checkbox-group-wrapper" id={id} className={classNames} {...expandDts(dts)}>
-      {renderChildren()}
-    </div>
-  ) : null;
+    return {
+      variant,
+      value,
+      name,
+      isCheckedHandler,
+      onCheckboxChange,
+    };
+  }, [getIsChecked, value, name, onChange, variant]);
+
+  return <CheckboxGroupContext.Provider value={context}>{children}</CheckboxGroupContext.Provider>;
+};
+
+export const useCheckboxGroup = () => React.useContext(CheckboxGroupContext);
+
+const CheckboxGroup = ({
+  name,
+  value,
+  onChange,
+  orientation = 'vertical',
+  className,
+  getIsChecked,
+  dts,
+  children,
+  variant = 'default',
+  inline,
+  ...rest
+}) => {
+  invariant(Array.isArray(value), 'CheckboxGroup: must have an array as value');
+  invariant(!inline, 'CheckboxGroup: the inline prop has been replaced by orientation="vertical"');
+
+  return (
+    <CheckboxGroupProvider name={name} value={value} onChange={onChange} getIsChecked={getIsChecked} variant={variant}>
+      <div
+        {...rest}
+        role={'group'}
+        data-testid="checkbox-group-wrapper"
+        className={classnames('aui--checkbox-group', className, {
+          'is-vertical': orientation === 'vertical',
+          'is-default': variant === 'default',
+        })}
+        dts={dts}
+      >
+        {children}
+      </div>
+    </CheckboxGroupProvider>
+  );
 };
 
 CheckboxGroup.propTypes = {
-  /**
-   * id for the checkboxGroup input
-   */
-  id: PropTypes.string,
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  /**
-   * string array of checked values
-   */
-  value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
-  /**
-   * checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]
-   */
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  /**
-   * function called when checkBox onChange event is fired
-   */
-  onChange: PropTypes.func.isRequired,
-  /**
-   * data-test-selector for the checkboxGroup component
-   */
-  dts: PropTypes.string,
-  /**
-   * determines if checkbox-component-inline class is applied or not
-   */
-  inline: PropTypes.bool,
+  value: PropTypes.array.isRequired,
+  ...radioGroupSharedPropTypes,
 };
 
 export default CheckboxGroup;
