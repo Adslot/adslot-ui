@@ -1,5 +1,5 @@
-import './styles/_bootstrap-custom.scss';
-import './styles/_icheck-custom.scss';
+import './styles/bootstrap-custom.scss';
+import './styles/icheck-custom.scss';
 
 import { registerLocale } from 'react-datepicker';
 
@@ -73,8 +73,6 @@ import TreePickerNav from './components/TreePicker/Nav';
 import TreePickerNode from './components/TreePicker/Node';
 import UserListPicker from './components/UserListPicker';
 import VerticalNav from './components/VerticalNavigation';
-import './styles/_bootstrap-custom.scss';
-import './styles/_icheck-custom.scss';
 
 export {
   Accordion,
