@@ -67,7 +67,7 @@ module.exports = webpackMerge(commonConfig, {
         },
       },
       {
-        test: /\.((c|sc)ss)$/i,
+        test: /\.css$/i,
         sideEffects: true,
         use: [
           'style-loader',
@@ -80,7 +80,6 @@ module.exports = webpackMerge(commonConfig, {
           {
             loader: 'postcss-loader',
           },
-          { loader: 'sass-loader' },
         ],
       },
       {

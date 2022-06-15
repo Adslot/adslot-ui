@@ -87,7 +87,7 @@ module.exports = webpackMerge(commonConfig, {
         loader: 'babel-loader',
       },
       {
-        test: /\.((c|sc)ss)$/i,
+        test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -100,7 +100,6 @@ module.exports = webpackMerge(commonConfig, {
           {
             loader: 'postcss-loader',
           },
-          'sass-loader',
         ],
       },
       {

@@ -39,7 +39,7 @@ const env = {
       ['@babel/plugin-transform-runtime', { regenerator: true }],
       'jsx-remove-data-test-id',
       inlineSvgPlugin,
-      ['transform-remove-imports', { test: '\\.(scss|css)$' }],
+      ['transform-remove-imports', { test: '\\.css$' }],
     ],
   },
   cjs: {
@@ -48,7 +48,7 @@ const env = {
       ['@babel/plugin-transform-runtime', { regenerator: true }],
       'jsx-remove-data-test-id',
       inlineSvgPlugin,
-      ['transform-remove-imports', { test: '\\.(scss|css)$' }],
+      ['transform-remove-imports', { test: '\\.css$' }],
     ],
   },
 };
