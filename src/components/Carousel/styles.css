@@ -1,0 +1,52 @@
+.slick-dots {
+  position: relative;
+  top: -35px;
+}
+.slick-dots li {
+  margin: 0;
+}
+
+.slick-track {
+  display: flex;
+  align-items: center;
+}
+.slick-track div,
+.slick-track span {
+  outline: none;
+}
+
+.slick-next {
+  right: 2%;
+  transform: rotate(-90deg);
+}
+
+.slick-prev {
+  left: 2%;
+  transform: rotate(90deg);
+}
+
+.slick-prev,
+.slick-next {
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  top: 40%;
+  background: #fff;
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 15px 13px;
+  opacity: 0.6;
+}
+.slick-prev:hover,
+.slick-next:hover {
+  opacity: 1;
+  background: #fff;
+}
+.slick-prev:focus,
+.slick-next:focus {
+  background: #fff;
+}
+.slick-prev::before,
+.slick-next::before {
+  content: url('../../styles/icons/chevron-down.svg');
+}

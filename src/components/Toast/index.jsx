@@ -4,7 +4,7 @@ import { toast, ToastContainer as ReactToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { toastPlacements } from './constants';
 import 'react-toastify/dist/ReactToastify.css';
-import './styles.scss';
+import './styles.css';
 
 const ToastContainer = (props) => <ReactToastContainer className="aui--toast-container" {...props} />;
 

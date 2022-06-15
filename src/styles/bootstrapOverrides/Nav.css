@@ -1,0 +1,60 @@
+.nav-tabs {
+  margin-bottom: 0;
+  min-height: 35px;
+}
+.nav-tabs > li {
+  background-color: #f9f9f9;
+  border-left: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: -1px;
+  margin-right: 0;
+  padding: 0;
+  text-align: center;
+}
+.nav-tabs > li > a {
+  color: #838383;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  margin-right: 0;
+  padding: 8px 15px 7px;
+  text-shadow: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  border: 0;
+  outline: 0;
+}
+.nav-tabs > li > a .aui--svg-symbol-component {
+  vertical-align: top;
+}
+.nav-tabs > li > a .icon {
+  float: left;
+  height: 16px;
+  width: 16px;
+}
+.nav-tabs > li.active,
+.nav-tabs > li.active:hover,
+.nav-tabs > li.active:focus {
+  background-color: #fff;
+  border: 0;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border-right: 0;
+  cursor: default;
+}
+.nav-tabs > li:last-child,
+.nav-tabs > li:last-child:hover,
+.nav-tabs > li:last-child:focus {
+  border-right: 1px solid #e8e8e8;
+}
+.nav-tabs .flexible-wrapper-inline > .flexible-spacer-component {
+  min-width: 8px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const Alert = ({ type, children, dts }) => (
   <div data-testid="alert-wrapper" className={`alert-component alert-component-${type}`} {...expandDts(dts)}>

@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import './styles.scss';
+import './styles.css';
 
 class Panel extends React.PureComponent {
   onHeaderClick = () => this.props.onClick(this.props.id);

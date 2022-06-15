@@ -1,0 +1,39 @@
+.aui--toast-container {
+  min-width: 252px;
+  max-width: 504px;
+}
+.aui--toast-container .aui--toast-notification-body {
+  background-color: #202124;
+  border-radius: 4px;
+  margin: 0;
+  margin-top: 18px;
+  padding: 0;
+}
+.aui--toast-container .aui--toast-notification-body .aui--toast-body-message {
+  font-size: 14px;
+  color: #fff;
+  margin: 18px;
+}
+.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-right: 12px;
+}
+.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-info {
+  color: #49afcd;
+}
+.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-success {
+  color: #95c83d;
+}
+.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-alert {
+  color: #faa732;
+}
+.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-attention {
+  color: #da4f49;
+}
+.aui--toast-container .aui--toast-notification-body .Toastify__close-button {
+  color: #fff;
+  padding-top: 22.5px;
+  padding-right: 18px;
+  opacity: 1;
+}

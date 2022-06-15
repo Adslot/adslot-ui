@@ -1,0 +1,35 @@
+.adslot-ui-header > .pagetitle-component {
+  background: #fff;
+}
+.adslot-ui-header > .pagetitle-component .header-link {
+  color: #000;
+  font-size: 24px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.adslot-ui-header > .pagetitle-component .header-right-pane {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+}
+.adslot-ui-header > .pagetitle-component .adslot-icon {
+  height: 32px;
+  width: 32px;
+}
+.adslot-ui-header > .pagetitle-component .aui--svg-symbol-component-contributors {
+  width: 32px;
+  height: 32px;
+}
+
+.adslot-ui-contributors-panel .aui--action-panel-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.adslot-ui-contributors-panel .aui--action-panel-body .aui--popover-element {
+  margin: 10px;
+}

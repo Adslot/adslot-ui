@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Empty } from '../../../../src';
 
-import './styles.scss';
+import './styles.css';
 
 class PropTypeTable extends React.PureComponent {
   render() {

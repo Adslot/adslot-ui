@@ -1,0 +1,33 @@
+.spinner-component .spinner {
+  animation: rotation 1.1s infinite linear;
+  border-radius: 100%;
+  border-style: solid;
+  border-bottom-color: #838383;
+  border-left-color: #838383;
+  border-right-color: #838383;
+  border-top-color: #d3d3d3;
+  display: inline-block;
+}
+.spinner-component .spinner-small {
+  border-width: 2px;
+  height: 16px;
+  width: 16px;
+}
+.spinner-component .spinner-medium {
+  border-width: 3px;
+  height: 30px;
+  width: 30px;
+}
+.spinner-component .spinner-large {
+  border-width: 3px;
+  height: 40px;
+  width: 40px;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

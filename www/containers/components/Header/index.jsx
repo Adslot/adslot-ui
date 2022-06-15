@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageTitle, Popover } from '../../../../src';
-import './styles.scss';
+import './styles.css';
 
 import Contributors from './Contributors';
 

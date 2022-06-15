@@ -1,0 +1,84 @@
+.aui--svg-symbol-component {
+  display: inline-block;
+  height: 16px;
+  pointer-events: none;
+  width: 16px;
+}
+.aui--svg-symbol-component-16 {
+  height: 16px;
+  width: 16px;
+}
+.aui--svg-symbol-component-70 {
+  height: 70px;
+  width: 70px;
+}
+.aui--svg-symbol-component-200 {
+  height: 200px;
+  width: 200px;
+}
+.aui--svg-symbol-component-250 {
+  height: 250px;
+  width: 250px;
+}
+.aui--svg-symbol-component-color-disabled {
+  fill: #d3d3d3;
+}
+.aui--svg-symbol-component-cyan-dark {
+  fill: #0492ba;
+}
+.aui--svg-symbol-component-gray {
+  fill: #ababab;
+}
+.aui--svg-symbol-component-gray-darker {
+  fill: #5a5a5a;
+}
+.aui--svg-symbol-component-gray-light {
+  fill: #d3d3d3;
+}
+.aui--svg-symbol-component-green-dark {
+  fill: #31a549;
+}
+.aui--svg-symbol-component-orange-dark {
+  fill: #f8951d;
+}
+.aui--svg-symbol-component-red {
+  fill: #da4f49;
+}
+.aui--svg-symbol-component-clickable {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.aui--svg-symbol-component-circle {
+  background-color: #f3f3f3;
+  border-radius: 50%;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+.aui--svg-symbol-component-circle-inverse {
+  background-color: #fff;
+}
+.aui--svg-symbol-component-circle .aui--svg-symbol-component {
+  height: 12px;
+  margin: 2px;
+  width: 12px;
+}
+.aui--svg-symbol-component-circle-70 {
+  height: 70px;
+  width: 70px;
+}
+.aui--svg-symbol-component-circle .aui--svg-symbol-component-70 {
+  height: 50px;
+  margin: 10px;
+  width: 50px;
+}
+.aui--svg-symbol-component-circle-50 {
+  height: 50px;
+  width: 50px;
+}
+.aui--svg-symbol-component-circle .aui--svg-symbol-component-50 {
+  height: 36px;
+  margin: 7px;
+  width: 36px;
+}

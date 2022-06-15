@@ -252,11 +252,11 @@
         padding: 8px;
 
         .product-details-icon {
-          @include svg-icon('../../src/styles/variable.scssstyles/icons/details.svg', 24px, 24px);
+          @include svg-icon('../../src/styles/icons/details.svg', 24px, 24px);
         }
 
         .burger-icon {
-          @include svg-icon('../../src/styles/variable.scssstyles/icons/burger.svg', 24px, 24px);
+          @include svg-icon('../../src/styles/icons/burger.svg', 24px, 24px);
         }
       }
 

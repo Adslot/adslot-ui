@@ -1,0 +1,49 @@
+.aui--status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  user-select: none;
+  font-weight: 700;
+  line-height: 1;
+  color: #5a5a5a;
+}
+.aui--status-pill-primary {
+  background-color: #c1e1ec;
+}
+.aui--status-pill-primary.aui--status-pill-inverse {
+  background-color: #fff;
+  border-color: #e8e8e8;
+  color: #00adee;
+}
+.aui--status-pill-success {
+  background-color: #c5e6dc;
+}
+.aui--status-pill-success.aui--status-pill-inverse {
+  background-color: #fff;
+  border-color: #e8e8e8;
+  color: #95c83d;
+}
+.aui--status-pill-warning {
+  background-color: #fec985;
+}
+.aui--status-pill-warning.aui--status-pill-inverse {
+  background-color: #fff;
+  border-color: #e8e8e8;
+  color: #f93;
+}
+.aui--status-pill-error {
+  background-color: #f9b7b0;
+}
+.aui--status-pill-error.aui--status-pill-inverse {
+  background-color: #fff;
+  border-color: #e8e8e8;
+  color: #da4f49;
+}
+.aui--status-pill-light {
+  background-color: #e8e8e8;
+}
+.aui--status-pill-light.aui--status-pill-inverse {
+  background-color: #fff;
+  border-color: #e8e8e8;
+}

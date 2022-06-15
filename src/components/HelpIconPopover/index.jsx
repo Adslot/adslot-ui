@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { expandDts } from '../../lib/utils';
 import Popover from '../Popover';
-import './styles.scss';
+import './styles.css';
 
 const HelpIconPopover = ({ children, id, placement }) => (
   <div {...expandDts(id)} data-testid="help-icon-popover-wrapper" className="help-icon-popover-component">

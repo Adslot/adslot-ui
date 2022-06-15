@@ -1,0 +1,16 @@
+.flexible-spacer-component {
+  border: 1px solid #e8e8e8;
+  flex-grow: 1;
+}
+
+.flexible-wrapper-inline {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+.flexible-wrapper-inline .flexible-spacer-component {
+  border: 0;
+}
+.flexible-wrapper-inline > .aui--svg-symbol-component {
+  margin: auto;
+}

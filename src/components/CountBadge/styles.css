@@ -1,0 +1,31 @@
+.count-badge {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: #fff;
+  border-style: solid;
+  background-color: #838383;
+  color: #fff;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  box-sizing: content-box;
+  line-height: 17px;
+}
+.count-badge.status-info {
+  background-color: #006dcc;
+}
+.count-badge.status-warning {
+  background-color: #faa732;
+}
+.count-badge.status-danger {
+  background-color: #da4f49;
+}
+.count-badge.status-light {
+  background-color: #ababab;
+}
+.count-badge.count-badge-font-size-small {
+  font-size: 8px;
+}

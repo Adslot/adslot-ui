@@ -8,7 +8,7 @@ import GridRow from '../../Grid/Row';
 import TextEllipsis from '../../TextEllipsis';
 import TreePickerNodeExpander from './Expander';
 import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes';
-import './styles.scss';
+import './styles.css';
 
 const baseClass = 'treepickernode-component';
 

@@ -1,5 +1,5 @@
-import './styles/bootstrap-custom.scss';
-import './styles/icheck-custom.scss';
+import './styles/bootstrap-custom.css';
+import './styles/icheck-custom.css';
 
 import { registerLocale } from 'react-datepicker';
 

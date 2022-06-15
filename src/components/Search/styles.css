@@ -1,0 +1,94 @@
+.aui--search-component {
+  height: 26px;
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+.aui--search-component .aui--search-component-input {
+  flex: 1;
+  padding: 0 10px;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  width: inherit;
+}
+.aui--search-component .aui--search-component-input::placeholder {
+  color: #ababab;
+}
+.aui--search-component .aui--search-component-input:active,
+.aui--search-component .aui--search-component-input:focus {
+  border-color: #ababab;
+  outline: 0;
+}
+.aui--search-component .aui--search-component-input:active ~ .aui--search-component-button,
+.aui--search-component .aui--search-component-input:focus ~ .aui--search-component-button {
+  border-color: #ababab;
+}
+.aui--search-component .aui--search-component-icon {
+  height: 100%;
+  padding: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aui--search-component .aui--search-component-icon.with-button {
+  right: 40px;
+}
+.aui--search-component .aui--search-component-icon .search-icon,
+.aui--search-component .aui--search-component-icon .cancel-icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.aui--search-component .aui--search-component-icon .search-icon {
+  background-image: url('../../styles/icons/search/search-gray.svg');
+}
+.aui--search-component .aui--search-component-icon .cancel-icon {
+  background-image: url('../../styles/icons/search/cancel-gray.svg');
+}
+.aui--search-component .aui--search-component-icon .cancel-icon:hover {
+  background-image: url('../../styles/icons/search/cancel.svg');
+}
+.aui--search-component .aui--button.aui--search-component-button {
+  height: 100%;
+  min-height: 100%;
+  margin-left: -2px;
+  margin-right: 0;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 7px;
+  border-radius: 0 2px 2px 0;
+}
+.aui--search-component .aui--button.aui--search-component-button:hover {
+  background-color: #f9f9f9;
+}
+.aui--search-component .aui--button.aui--search-component-button span {
+  width: 16px;
+  height: 16px;
+}
+.aui--search-component .aui--button.aui--search-component-button .search-icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../styles/icons/search/search-primary.svg');
+  flex-shrink: 0;
+}
+.aui--search-component .aui--search-component-spinner {
+  height: 100%;
+  padding: 5px;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  display: flex;
+}
+.aui--search-component .aui--search-component-spinner .spinner-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

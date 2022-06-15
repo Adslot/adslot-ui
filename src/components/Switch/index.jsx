@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import './styles.scss';
+import './styles.css';
 
 class Switch extends React.PureComponent {
   state = { checked: this.props.defaultChecked || false };

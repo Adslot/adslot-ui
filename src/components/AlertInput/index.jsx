@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
 import { popoverPlacements } from '../Popover/constants';
-import './styles.scss';
+import './styles.css';
 
 export const baseClass = 'aui--alert-input';
 

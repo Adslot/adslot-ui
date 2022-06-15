@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Search from '../Search';
 import Checkbox from '../Checkbox';
 import CheckboxGroup from '../CheckboxGroup';
-import './styles.scss';
+import './styles.css';
 
 const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, placeholder, onChange }) => {
   const [searchText, setSearchText] = React.useState('');

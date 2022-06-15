@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import './styles.css';
 
 const BorderedWell = ({ children }) => (
   <div data-testid="borderedwell-wrapper" className="borderedwell-component">

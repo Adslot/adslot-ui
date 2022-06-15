@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Button from '../Button';
-import './styles.scss';
+import './styles.css';
 
 const Pagination = ({ className, activePage, pageCount, onSelect, prev, next }) => (
   <div data-testid="pagination-wrapper" className={classnames('aui--pagination', className)}>

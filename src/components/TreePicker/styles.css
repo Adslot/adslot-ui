@@ -1,0 +1,27 @@
+.treepickersimplepure-component {
+  display: flex;
+  height: 500px;
+}
+.treepickersimplepure-component .loading-nodes-container {
+  text-align: center;
+  padding: 60px;
+}
+.treepickersimplepure-component .flexible-spacer-component {
+  border-top: 0;
+}
+.treepickersimplepure-component .treepickernav-component {
+  background-color: #fff;
+  border-top: 1px solid #e8e8e8;
+}
+.treepickersimplepure-component .splitpane-component + .splitpane-component .empty-component {
+  margin-top: 71px;
+}
+.treepickersimplepure-component.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.65;
+}
+
+.background-highlighted {
+  background-color: #f3f3f3;
+}

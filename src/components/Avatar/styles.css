@@ -1,0 +1,45 @@
+.avatar-component {
+  background-color: #ababab;
+  border-radius: 50%;
+  color: #fff;
+  cursor: default;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  height: 35px;
+  line-height: 36px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 35px;
+}
+.avatar-component-image-placeholder {
+  background-color: transparent;
+}
+.avatar-component-image {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.avatar-component-blue {
+  background-color: #006dcc;
+}
+.avatar-component-green {
+  background-color: #5bb75b;
+}
+.avatar-component-red {
+  background-color: #da4f49;
+}
+.avatar-component-orange {
+  background-color: #faa732;
+}
+.avatar-component-cyan {
+  background-color: #49afcd;
+}
+.avatar-component-black {
+  background-color: #5a5a5a;
+}

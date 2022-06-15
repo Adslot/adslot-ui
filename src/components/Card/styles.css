@@ -1,0 +1,48 @@
+.card-component {
+  font-size: 12px;
+  margin-bottom: 28px;
+  min-height: 40px;
+  min-width: 205px;
+}
+.card-component-grid-container {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  margin-right: -28px;
+}
+.card-component-grid-container .card-component {
+  margin-right: 28px;
+}
+.card-component .flexible-spacer-component {
+  border: 0;
+}
+.card-component-content-container {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 #d3d3d3;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  height: 100%;
+}
+.card-component-content-container .card-component-content:not(.fill):last-child {
+  padding-bottom: 20px;
+}
+.card-component.accent .card-component-content-container {
+  border-bottom-width: 5px;
+}
+.card-component-content {
+  padding: 20px 20px 0;
+}
+.card-component-content.append {
+  color: #ababab;
+  padding: 5px 1px 0;
+}
+.card-component-content.stretch {
+  padding-left: 0;
+  padding-right: 0;
+}
+.card-component-content.fill {
+  padding: 0;
+}

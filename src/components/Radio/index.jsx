@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const RadioButton = ({ id, value, name, className, label, disabled, checked, onChange, inline, dts }) => {
   const componentClassName = classnames(['radio-component', { 'radio-component-inline': inline }]);
