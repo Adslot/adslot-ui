@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../Button';
-import './styles.scss';
+import './styles.css';
 
 const baseClass = 'filepicker-component';
 

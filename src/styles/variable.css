@@ -1,0 +1,286 @@
+$color-blue-light: #e0f0ff;
+$color-blue: #006dcc;
+$color-blue-dark: #1950a3;
+
+$color-green: #5bb75b;
+$color-green-dark: #31a549;
+
+$color-red: #da4f49;
+$color-red-dark: #d5382e;
+
+$color-orange: #faa732;
+$color-orange-dark: #f8951d;
+
+$color-cyan: #49afcd;
+$color-cyan-dark: #0492ba;
+
+$color-secondary: #00b8a5;
+$color-white: #fff;
+
+$color-gray-white: #f9f9f9;
+$color-gray-lightest: #f3f3f3;
+$color-gray-lighter: #e8e8e8;
+$color-gray-light: #d3d3d3;
+
+$color-gray: #ababab;
+$color-gray-dark: #838383;
+$color-gray-darker: #5a5a5a;
+$color-gray-darkest: #333;
+
+$color-black: #000;
+$color-black-blockout: #202124;
+
+$color-status-blue: #00adee;
+$color-status-green: #95c83d;
+$color-status-red: $color-red;
+$color-status-orange: #f93;
+$color-status-light: $color-gray-lighter;
+
+$color-status-light-orange: #fec985;
+$color-status-light-red: #f9b7b0;
+$color-status-light-blue: #c1e1ec;
+$color-status-light-green: #c5e6dc;
+
+$color-primary: $color-blue;
+$color-primary-selected: $color-blue-dark;
+
+$color-positive: $color-green;
+$color-positive-light: #eaf8ea;
+$color-positive-selected: $color-green-dark;
+
+$color-negative: $color-red;
+$color-negative-light: #fbedec;
+$color-negative-selected: $color-red-dark;
+
+$color-pending: $color-orange;
+$color-pending-selected: $color-orange-dark;
+$color-warning: $color-orange;
+$color-warning-light: #fef6ea;
+$color-warning-selected: $color-orange-dark;
+
+$color-info: $color-cyan;
+$color-info-light: #e0f0ff;
+$color-info-selected: $color-cyan-dark;
+
+$color-disabled: $color-gray-lighter;
+$color-disabled-selected: $color-gray-light;
+
+$color-completed: $color-gray-dark;
+$color-remaining: $color-gray-lighter;
+
+$color-ended: $color-gray-darkest;
+$color-ended-selected: $color-black;
+$color-rejected: $color-black;
+
+$color-placeholder: $color-gray-lighter;
+$color-inverse: $color-white;
+$color-background: $color-white;
+$color-overlay: $color-gray-dark;
+
+$color-well: $color-white;
+$color-background: $color-white;
+$color-background-highlighted: $color-gray-lightest;
+
+$color-link-hover: $color-cyan-dark;
+$color-link: $color-cyan;
+$color-text-dark: $color-black;
+$color-text-disabled: $color-gray;
+$color-text-form: $color-gray-darker;
+$color-text-inverse: $color-white;
+$color-text-label: $color-gray-dark;
+$color-text-light: $color-gray-dark;
+$color-text-placeholder: $color-gray;
+$color-text-sub: $color-gray;
+$color-text: $color-gray-darkest;
+$color-text-addon: $color-gray-light;
+
+$color-border-lightest: $color-gray-lightest;
+$color-border-lighter: $color-gray-lighter;
+$color-border-light: $color-gray-light;
+$color-border: $color-gray;
+$color-border-darker: $color-gray-darker;
+$color-border-error: $color-red-dark;
+$color-shadow: $color-black;
+$color-shadow-light: $color-gray-light;
+
+$color-modal-shadow: rgba(0, 0, 0, 0.25);
+
+$color-panel-expanded: $color-white;
+$color-panel-collapsed: $color-gray-white;
+
+$color-carousel-button: rgba(51, 51, 51, 0.5);
+
+$color-help: $color-gray;
+
+$color-light-green: #def1de;
+$color-dark-green: #5bb75b;
+$color-light-red: #f8dcdb;
+$color-dark-red: #da4f49;
+
+$color-infobox-primary: $color-info-light;
+$color-infobox-success: $color-positive-light;
+$color-infobox-warning: $color-warning-light;
+$color-infobox-error: $color-negative-light;
+$color-infobox-light: $color-gray-lightest;
+
+$color-button-primary-background: $color-blue;
+$color-button-primary-border: #005fb3;
+$color-button-success-background: #5cb85c;
+$color-button-success-border: #4cae4c;
+$color-button-info-background: #49afcd;
+$color-button-info-border: #36a5c6;
+$color-button-warning-background: #f0ad4e;
+$color-button-warning-border: #eea236;
+$color-button-danger-background: #d9534f;
+$color-button-danger-border: #d43f3a;
+$color-button-link-color: #337ab7;
+$color-button-default-hover-background: #e6e6e6;
+$color-button-default-hover-border: #b4b4b4;
+
+$color-skeleton-base: #eee;
+$color-skeleton-highlight: #f5f5f5;
+
+$font-size-jumbo: 24px;
+$font-size-header: 18px;
+$font-size-subheader: 15px;
+$font-size-body-serif: 13px;
+$font-size-body: 12px;
+$font-size-small: 11px;
+$font-size-tiny: 9px;
+$font-size-super-tiny: 8px;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$border-width: 1px;
+$border-lighter: $border-width solid $color-border-lighter;
+$border-dashed: $border-width dashed $color-border-lighter;
+$border-radius: 2px;
+$border-radius-tile: 3px;
+$border-radius-heavy: 5px;
+$border-radius-circle: 50%;
+
+$spacing-etalon: 30px;
+$svg-icon-size: 16px;
+
+$gray-base: $color-black;
+$gray-darker: $color-gray-darkest;
+$gray-dark: $color-gray-darkest;
+$gray: $color-gray-darker;
+$gray-light: $color-gray-dark;
+$gray-lighter: $color-gray-lighter;
+
+$brand-primary: $color-primary;
+$brand-success: $color-positive;
+$brand-info: $color-info;
+$brand-warning: $color-warning;
+$brand-danger: $color-negative;
+
+$text-color: $color-text;
+$link-color: $color-blue;
+$link-hover-color: $color-blue-dark;
+
+$font-family-sans-serif: Roboto, Helvetica, sans-serif;
+$font-family-serif: Georgia, serif;
+$font-family-monospace: Monaco, Consolas, 'Courier New', monospace;
+
+$font-size-base: $font-size-body;
+
+$line-height-base: 1.5;
+
+$padding-large-vertical: 6px;
+$padding-large-horizontal: 29px;
+
+$padding-base-vertical: 4px;
+$padding-base-horizontal: 8px;
+
+$padding-small-vertical: 4px;
+$padding-small-horizontal: 15px;
+
+$padding-xs-vertical: 2px;
+$padding-xs-horizontal: 4px;
+
+$border-radius-base: 2px;
+$border-radius-large: 2px;
+$border-radius-small: 2px;
+
+$btn-primary-bg: $color-primary;
+$btn-success-bg: $color-positive;
+$btn-info-bg: $color-info;
+$btn-warning-bg: $color-warning;
+$btn-danger-bg: $color-negative;
+
+$btn-font-weight: $font-weight-bold;
+
+$modal-sm: 525px;
+$modal-md: 700px;
+$modal-lg: 940px;
+
+$modal-inner-padding: $spacing-etalon;
+
+$modal-header-border-color: $color-border-lighter;
+$modal-content-border-color: $modal-header-border-color;
+
+$modal-backdrop-bg: $color-gray-darker;
+$modal-backdrop-opacity: 0.8;
+$modal-content-border-color: transparent;
+
+$action-panel-backdrop-opacity: 0.8;
+$action-panel-header-height: 48px;
+$action-panel-margin: 30px;
+
+$table-bg-accent: $color-gray-white;
+$table-bg-hover: $color-gray-white;
+$table-border-color: $color-gray-light;
+
+$input-bg: $color-white;
+$input-bg-disabled: $color-gray-lighter;
+$input-color: $color-text-form;
+$input-border: $color-border-lighter;
+$input-border-focus: $color-border-light;
+$input-color-placeholder: $color-text-placeholder;
+$form-group-margin-bottom: $spacing-etalon;
+$input-group-addon-bg: $color-well;
+$input-group-addon-border-color: $color-well;
+
+$dropdown-border: $color-border-light;
+$dropdown-link-color: $color-text;
+$dropdown-link-hover-color: $color-text-inverse;
+$dropdown-link-active-color: $dropdown-link-color;
+$dropdown-link-active-bg: $color-gray-white;
+
+$grid-gutter-width: 20px;
+
+$navbar-height: 35px;
+$navbar-item-hover-color: $color-gray-white;
+$navbar-text-color: $color-gray-darker;
+
+$popover-border-color: $color-border-lighter;
+$popover-arrow-width: 5px;
+$popover-arrow-outer-color: $popover-border-color;
+$popover-title-bg: $color-background;
+$zindex-popover: 1060;
+
+$treepicker-height: 500px;
+$treepicker-disabled-opacity: 0.65;
+
+$state-success-text: $color-positive;
+$state-success-bg: $color-positive;
+$state-success-border: $color-positive-selected;
+
+$state-info-text: $color-info;
+$state-info-bg: $color-info;
+$state-info-border: $color-info-selected;
+
+$state-warning-text: $color-warning;
+$state-warning-bg: $color-warning;
+$state-warning-border: $color-warning-selected;
+
+$state-danger-text: $color-negative;
+$state-danger-bg: $color-negative;
+$state-danger-border: $color-negative-selected;
+
+$grid-float-breakpoint: 0;
+
+$popover-vertical-padding: calc($spacing-etalon / 6);
+$popover-horizontal-padding: calc($spacing-etalon / 3);

@@ -1,0 +1,17 @@
+@import '../../styles/variable';
+
+.empty-component {
+  cursor: default;
+  margin: 0 auto;
+  padding: 60px;
+  text-align: center;
+  user-select: none;
+
+  & .empty-component-text {
+    color: $color-text-placeholder;
+    font-size: $font-size-body;
+    line-height: $line-height-base;
+    margin-top: calc($spacing-etalon / 3);
+    white-space: pre-wrap;
+  }
+}

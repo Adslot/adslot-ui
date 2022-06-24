@@ -1,0 +1,22 @@
+.grid-component-cell {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 8px 0 8px 10px;
+}
+.grid-component-cell:last-child {
+  padding-right: 10px;
+}
+.grid-component-cell-stretch {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-basis: 100%;
+  flex-shrink: 1;
+}
+.grid-component-cell-clickable {
+  cursor: pointer;
+}
+
+.grid-component-row-vertical-cell-border .grid-component-cell {
+  padding-right: 10px;
+}

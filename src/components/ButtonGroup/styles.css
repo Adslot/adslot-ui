@@ -1,0 +1,47 @@
+@import '../../styles/variable';
+
+.aui--button-group {
+  display: flex;
+
+  & > .aui--button {
+    margin-right: 0;
+
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child,
+    &:last-child:hover,
+    &:last-child:active,
+    & * .aui--button,
+    & * .aui--button:hover,
+    & * .aui--button:active {
+      border-left-width: 0;
+      border-right-width: 1px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  & * .aui--button,
+  & * .aui--button:hover,
+  & * .aui--button:active {
+    border-left-width: 0;
+    border-right-width: 1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  & + .aui--button-group {
+    margin-left: 20px;
+  }
+
+  & + button {
+    margin-right: 20px;
+  }
+}
+
+button + .aui--button-group {
+  margin-left: 20px;
+}

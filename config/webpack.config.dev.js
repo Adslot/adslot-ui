@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
-const postCssConfig = require('./postCssConfig');
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -68,21 +67,19 @@ module.exports = webpackMerge(commonConfig, {
         },
       },
       {
-        test: /\.((c|sc)ss)$/i,
+        test: /\.css$/i,
         sideEffects: true,
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
+              importLoaders: 1,
             },
           },
           {
             loader: 'postcss-loader',
-            options: postCssConfig,
           },
-          { loader: 'sass-loader' },
         ],
       },
       {

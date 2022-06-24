@@ -1,0 +1,29 @@
+.aui--paragraph {
+  margin: 0;
+  font-size: 14px;
+  white-space: pre-line;
+}
+.aui--paragraph .expandable-content {
+  overflow: hidden;
+}
+.aui--paragraph .expandable-content.expanded {
+  max-height: 800px;
+  opacity: 1;
+  transition: 1s ease;
+}
+.aui--paragraph .expandable-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  transition: 0.4s ease;
+}
+.aui--paragraph-read-more {
+  padding: 4px 0;
+}
+.aui--paragraph-read-more.aui--button.aui-link:focus {
+  color: #337ab7;
+  text-decoration: none;
+}
+.aui--paragraph-read-more.aui--button.aui-link:hover,
+.aui--paragraph-read-more.aui--button.aui-link :hover:focus {
+  text-decoration: underline;
+}

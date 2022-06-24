@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Pill from '../Pill';
-import './styles.scss';
+import './styles.css';
 
 const styles = ['primary', 'success', 'warning', 'error', 'light'];
 const sizes = ['large', 'medium', 'small'];

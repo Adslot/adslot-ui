@@ -1,0 +1,11 @@
+.treepickernav-component {
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  padding: 10px;
+}
+.treepickernav-component > div + div {
+  margin-top: 10px;
+}
+.treepickernav-component > .aui--breadcrumb {
+  padding-left: 2px;
+}

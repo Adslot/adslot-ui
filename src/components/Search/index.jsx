@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import Spinner from '../Spinner';
-import './styles.scss';
+import './styles.css';
 
 const Search = React.forwardRef(
   (

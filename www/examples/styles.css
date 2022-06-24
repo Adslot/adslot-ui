@@ -1,0 +1,246 @@
+.tag-component-accent.accent-positive {
+  border-color: #5bb75b;
+}
+.tag-component-accent.accent-positive:not(.tag-component-inverse) {
+  background-color: #5bb75b;
+}
+.tag-component-accent.accent-positive.tag-component-inverse {
+  color: #5bb75b;
+  fill: #5bb75b;
+}
+
+.tag-component-accent.accent-pending {
+  border-color: #faa732;
+}
+.tag-component-accent.accent-pending:not(.tag-component-inverse) {
+  background-color: #faa732;
+}
+.tag-component-accent.accent-pending.tag-component-inverse {
+  color: #faa732;
+  fill: #faa732;
+}
+
+.tag-component-accent.accent-negative {
+  border-color: #da4f49;
+}
+.tag-component-accent.accent-negative:not(.tag-component-inverse) {
+  background-color: #da4f49;
+}
+.tag-component-accent.accent-negative.tag-component-inverse {
+  color: #da4f49;
+  fill: #da4f49;
+}
+
+.adslot-ui-example-container.alert-input-example .adslot-ui-example {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+}
+.adslot-ui-example-container.alert-input-example .adslot-ui-example .flexible-spacer-component {
+  height: 12px;
+  border: 0;
+}
+.adslot-ui-example-container.alert-input-example .adslot-ui-example .adslot-ui-example__options {
+  display: flex;
+  margin-bottom: 6px;
+}
+.adslot-ui-example-container.button-example .adslot-ui-example {
+  display: flex;
+}
+.adslot-ui-example-container.button-example .adslot-ui-example .aui--popover-element {
+  margin-right: 12px;
+}
+.adslot-ui-example-container.accordion-panel-example .adslot-ui-example,
+.adslot-ui-example-container.card-example .adslot-ui-example {
+  width: 240px;
+}
+.adslot-ui-example-container.file-picker-example .adslot-ui-example,
+.adslot-ui-example-container.text-ellipsis-example .adslot-ui-example,
+.adslot-ui-example-container.textarea-example .adslot-ui-example,
+.adslot-ui-example-container.select-example .adslot-ui-example,
+.adslot-ui-example-container.panel-example .adslot-ui-example {
+  width: 380px;
+}
+.adslot-ui-example-container.totals-example .adslot-ui-example,
+.adslot-ui-example-container.empty-example .adslot-ui-example,
+.adslot-ui-example-container.search-example .adslot-ui-example,
+.adslot-ui-example-container.search-bar-example .adslot-ui-example,
+.adslot-ui-example-container.pretty-diff-example .adslot-ui-example {
+  width: 560px;
+}
+.adslot-ui-example-container.switch-example .component-heading {
+  padding-top: 20px;
+}
+.adslot-ui-example-container.switch-example .component-container {
+  padding-top: 10px;
+}
+.adslot-ui-example-container.navigation-tabs-example .adslot-ui-example .dashboard-tab {
+  border-color: #d5382e;
+}
+.adslot-ui-example-container.popover-example .adslot-ui-example .button-example-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
+}
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .button-example-container
+  .checkbox-component
+  + .checkbox-component {
+  margin-top: 0;
+  margin-left: 5px;
+}
+.adslot-ui-example-container.popover-example .adslot-ui-example .button-example-container .disabled-popover {
+  display: flex;
+  height: 28px;
+}
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .button-example-container
+  .disabled-popover
+  .checkbox-component {
+  margin-top: 1px;
+}
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .button-example-container
+  .disabled-popover
+  .aui--button {
+  position: relative;
+  left: 5px;
+  top: -5px;
+}
+.adslot-ui-example-container.popover-example .adslot-ui-example .popover {
+  position: relative;
+  margin: 20px;
+}
+.adslot-ui-example-container.popover-example .adslot-ui-example .auto-flip-container {
+  width: 500px;
+  height: 250px;
+  border: 1px solid #d3d3d3;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.adslot-ui-example-container.popover-example .adslot-ui-example .auto-flip-container .popover-example-container {
+  width: 600px;
+  position: relative;
+  top: 50px;
+  left: 250px;
+}
+.adslot-ui-example-container.popover-example
+  .adslot-ui-example
+  .auto-flip-container
+  .popover-example-container
+  > .aui--popover-element {
+  top: 10px;
+  left: 10px;
+  position: relative;
+}
+.adslot-ui-example-container.popover-with-ref-example .external-anchor {
+  margin-top: 100px;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.adslot-ui-example-container.checkbox-example h4 {
+  margin-top: 20px;
+  font-weight: bold;
+}
+.adslot-ui-example-container.checkbox-example .fix-size {
+  width: 200px;
+}
+.adslot-ui-example-container.status-pill-example .aui--status-pill + .aui--status-pill {
+  margin-left: 20px;
+}
+.adslot-ui-example-container.button-group-example .adslot-ui-example {
+  display: flex;
+}
+.adslot-ui-example-container.button-group-example .adslot-ui-example .aui--button-group .aui--svg-symbol-component {
+  position: relative;
+  top: 3px;
+  fill: #fff;
+}
+.adslot-ui-example-container.button-group-example
+  .adslot-ui-example
+  .aui--button-group
+  .btn-inverse
+  .aui--svg-symbol-component {
+  fill: #000;
+}
+.adslot-ui-example-container.overlay-loader-example .static-markup {
+  display: flex;
+  margin-bottom: 50px;
+  width: 300px;
+}
+.adslot-ui-example-container.overlay-loader-example .static-markup .aui--overlay-loader {
+  position: inherit;
+}
+.adslot-ui-example-container.overlay-loader-example .static-markup .aui--overlay-loader .loader {
+  position: inherit;
+}
+.adslot-ui-example-container.overlay-loader-example .static-markup .aui--overlay-loader + .aui--overlay-loader {
+  margin-right: 10px;
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example
+  .aui--vertical-navigation-component__menu-item.aui--vertical-navigation-component__menu-item-is-active
+  .menu-icon {
+  border-radius: 50%;
+  background-color: #e8e8e8;
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example .menu-content {
+  display: flex;
+  flex-direction: row;
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example .menu-content:hover .menu-icon {
+  border-radius: 50%;
+  background-color: #e8e8e8;
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-icon .product-details-icon {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../src/styles/icons/details.svg');
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-icon .burger-icon {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../src/styles/icons/burger.svg');
+}
+.adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
+}
+.adslot-ui-example-container.tree-picker-example .selected-search {
+  padding: 10px 10px 30px;
+  border: 1px solid #e8e8e8;
+  border-bottom: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.horizontal-separator {
+  width: 12px;
+}
+
+.vertical-separator {
+  height: 12px;
+}

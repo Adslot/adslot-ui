@@ -3,7 +3,7 @@ import _ from 'lodash';
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import './styles.css';
 
 const defaultWidth = 204; // 204px
 const defaultMaxWidth = 295; // 295px

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const SplitPane = ({ children, dts, additionalClassNames }) => {
   const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);

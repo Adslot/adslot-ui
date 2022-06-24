@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
 import PopoverLinkItem from './PopoverLinkItem';
-import './styles.scss';
+import './styles.css';
 
 const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children }) => {
   const [popperNode, setPopperNode] = React.useState(null);

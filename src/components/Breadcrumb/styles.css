@@ -1,0 +1,22 @@
+@import '../../styles/variable';
+
+$breadcrumb-height: 10px;
+
+.aui--breadcrumb {
+  color: $color-link;
+  cursor: default;
+  font-size: $font-size-body;
+  height: $breadcrumb-height;
+  line-height: $breadcrumb-height;
+  display: flex;
+
+  & .aui--breadcrumb-node-divider {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+  &.aui--breadcrumb--disabled {
+    color: $color-text-disabled;
+    pointer-events: none;
+  }
+}

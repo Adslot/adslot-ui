@@ -1,0 +1,72 @@
+.form-horizontal .control-label {
+  text-align: left;
+}
+.form-horizontal .checkbox {
+  padding-top: 3px;
+  min-height: 16px;
+}
+.form-group .help-block {
+  margin-bottom: 0;
+}
+.form-group label {
+  font-weight: 700;
+}
+.form-group .checkbox label {
+  font-weight: 400;
+}
+.form-control,
+.form-control:focus {
+  box-shadow: none;
+}
+.form-control:focus {
+  outline: 0;
+}
+.form-control,
+.form-control-static {
+  font-weight: 400;
+}
+.form-btn-footer {
+  text-align: right;
+}
+
+fieldset {
+  border-bottom: 1px solid #f3f3f3;
+  margin-bottom: 30px;
+}
+fieldset.borderless {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+label {
+  color: #5a5a5a;
+}
+
+.input-group {
+  display: flex;
+}
+
+.input-group-addon {
+  font-weight: 400;
+  padding: 4px 5px;
+}
+.input-group-addon:first-child {
+  padding-left: 0;
+}
+.input-group-addon:last-child {
+  padding-right: 0;
+}
+
+.help-block {
+  color: #ababab;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.form-horizontal .control-label .help-block {
+  margin-top: 1px;
+}
+
+.borderedwell-component .form-horizontal {
+  padding: 30px 30px 0;
+}

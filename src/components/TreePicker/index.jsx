@@ -7,7 +7,7 @@ import TreePickerGrid from './Grid';
 import TreePickerNav from './Nav';
 import FlexibleSpacer from '../FlexibleSpacer';
 import { TreePickerPropTypesNode, TreePickerPropTypesBreadCrumbNode } from '../../prop-types/TreePickerPropTypes';
-import './styles.scss';
+import './styles.css';
 
 export const removeSelected = ({ subtree, selectedNodes }) => {
   if (!subtree) return subtree;

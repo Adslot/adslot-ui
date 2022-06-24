@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import './styles.css';
 
 const BreadcrumbNode = ({ isLast, node, onClick }) => {
   const className = classnames('aui--breadcrumb-node', { 'aui--breadcrumb-node-link': !isLast });

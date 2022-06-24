@@ -4,7 +4,7 @@ import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import Button from '../Button';
 import ActionPanel from '../ActionPanel';
-import './styles.scss';
+import './styles.css';
 
 // https://github.com/fengyuanchen/cropperjs/blob/v2/README.md
 const defaultOptions = {

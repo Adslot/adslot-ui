@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const Nav = ({ stacked, className, onSelect, activeKey, barPosition, children, dts }) => {
   let navItems = [];

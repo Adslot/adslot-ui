@@ -6,7 +6,7 @@ import Empty from '../Empty';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
-import './styles.scss';
+import './styles.css';
 
 class PagedGrid extends React.PureComponent {
   state = { activePage: 1 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button';
-import './styles.scss';
+import './styles.css';
 
 const ActionPanel = React.forwardRef((props, ref) => {
   const { title, className, size, onClose, children, actionButton, isModal, closeIcon, cancelText } = props;

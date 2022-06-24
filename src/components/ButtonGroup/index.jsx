@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 class ButtonGroup extends React.PureComponent {
   injectProps(children) {

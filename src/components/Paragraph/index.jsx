@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 import Button from '../Button';
-import './styles.scss';
+import './styles.css';
 
 const Paragraph = ({ briefWordCount, content, className, dts, isHtml }) => {
   const [readMore, setReadMore] = React.useState(false);

@@ -1,0 +1,24 @@
+@import '../../styles/variable';
+
+.alert-component {
+  color: $color-text-inverse;
+  font-size: $font-size-body;
+  line-height: 20px;
+  padding: 10px;
+
+  &.alert-component-success {
+    background-color: $color-positive;
+  }
+
+  &.alert-component-info {
+    background-color: $color-info;
+  }
+
+  &.alert-component-warning {
+    background-color: $color-warning;
+  }
+
+  &.alert-component-danger {
+    background-color: $color-negative;
+  }
+}

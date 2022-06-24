@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PropTypeTable from './components/PropTypeTable';
 import { InformationBox } from '../../src';
-import './styles.scss';
+import './styles.css';
 import CodeBlock from './CodeBlock';
 
 class Documentation extends React.PureComponent {

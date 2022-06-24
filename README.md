@@ -18,7 +18,6 @@ Technology:
 - [React](http://facebook.github.io/react/)
 - ES201x (using [Babel](http://babeljs.io)\)
 - [Webpack](https://github.com/webpack/webpack)
-- [SCSS](http://sass-lang.com)
 - [ESLint](http://eslint.org)
 - [Autoprefixer](https://github.com/postcss/autoprefixer)
 

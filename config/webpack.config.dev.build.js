@@ -3,7 +3,6 @@ const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const commonConfig = require('./webpack.config');
 const paths = require('./paths');
-const postCssConfig = require('./postCssConfig');
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -65,21 +64,19 @@ module.exports = webpackMerge(commonConfig, {
         },
       },
       {
-        test: /\.((c|sc)ss)$/i,
+        test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
+              importLoaders: 1,
               sourceMap: false,
             },
           },
           {
             loader: 'postcss-loader',
-            options: postCssConfig,
           },
-          'sass-loader',
         ],
       },
       {

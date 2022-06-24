@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Popper from './Popper';
 import { themes, popoverPlacements, popoverStrategies } from './constants';
-import './styles.scss';
+import './styles.css';
 
 const WithRefM = ({
   theme,

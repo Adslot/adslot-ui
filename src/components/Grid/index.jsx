@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const Grid = ({ children, dts }) => (
   <div data-testid="grid-wrapper" className="grid-component" {...expandDts(dts)}>

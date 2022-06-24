@@ -2,7 +2,7 @@ import _ from 'lodash';
 import DiffMatchPatch from 'diff-match-patch';
 import PropTypes from 'prop-types';
 import React from 'react';
-import './styles.scss';
+import './styles.css';
 
 const PrettyDiff = ({ newText, oldText }) => {
   const dmp = new DiffMatchPatch();

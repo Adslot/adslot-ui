@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
-import './styles.scss';
+import './styles.css';
 
 const CountBadge = ({ value, status, dts }) => {
   const fontSize = value > 99 ? 'small' : 'normal';
