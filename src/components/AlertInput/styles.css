@@ -1,64 +1,82 @@
+@import '../../styles/variable';
+
 .aui--alert-input {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 2px;
+  background-color: $color-well;
+  border: $border-lighter;
+  border-radius: $border-radius;
   padding: 4px 5px;
   position: relative;
-}
-.aui--alert-input.aui--alert-input--focused {
-  border-color: #ababab;
-}
-.aui--alert-input .aui--alert-input__input {
-  flex-grow: 1;
-  background-color: #fff;
-  border: 0;
-  width: 100%;
-  padding: 0;
-}
-.aui--alert-input .aui--alert-input__input:focus {
-  outline: none;
-}
-.aui--alert-input.success {
-  border-color: #5bb75b;
-}
-.aui--alert-input.info {
-  border-color: #49afcd;
-}
-.aui--alert-input.warning {
-  border-color: #faa732;
-}
-.aui--alert-input.error {
-  border-color: #da4f49;
-}
-.aui--alert-input .aui--alert-input__addon {
-  color: #d3d3d3;
-}
-.aui--alert-input .aui--alert-input__addon:first-child {
-  margin-right: 2px;
-}
-.aui--alert-input .aui--alert-input__addon:last-child {
-  margin-left: 2px;
-}
-.aui--alert-input.aui--alert-input--disabled {
-  background-color: #e8e8e8;
-}
-.aui--alert-input.aui--alert-input--disabled .aui--alert-input__input:disabled {
-  background-color: #e8e8e8;
-}
-.aui--alert-input.aui--alert-input--disabled .aui--alert-input__addon {
-  color: #ababab;
+
+  &.aui--alert-input--focused {
+    border-color: $color-border;
+  }
+
+  & .aui--alert-input__input {
+    flex-grow: 1;
+    background-color: $color-well;
+    border: 0;
+    width: 100%;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.success {
+    border-color: $color-positive;
+  }
+
+  &.info {
+    border-color: $color-info;
+  }
+
+  &.warning {
+    border-color: $color-warning;
+  }
+
+  &.error {
+    border-color: $color-negative;
+  }
+
+  & .aui--alert-input__addon {
+    color: $color-text-addon;
+
+    &:first-child {
+      margin-right: 2px;
+    }
+
+    &:last-child {
+      margin-left: 2px;
+    }
+  }
+
+  &.aui--alert-input--disabled {
+    background-color: $color-gray-lighter;
+
+    & .aui--alert-input__input {
+      &:disabled {
+        background-color: $color-gray-lighter;
+      }
+    }
+
+    & .aui--alert-input__addon {
+      color: $color-gray;
+    }
+  }
 }
 
 .aui--alert-input__popover {
   border-radius: 4px;
   box-shadow: none;
-  font-size: 11px;
-}
-.aui--alert-input__popover .popover-content {
-  color: inherit;
-  padding: 5px 10px;
-  width: auto;
-  font-weight: 700;
+  font-size: $font-size-small;
+
+  & .popover-content {
+    color: inherit;
+    padding: 5px 10px;
+    width: auto;
+    font-weight: $font-weight-bold;
+  }
 }

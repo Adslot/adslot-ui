@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
-import './styles.css';
 import { transform } from './transformFormat';
+import 'react-datepicker/dist/react-datepicker.css';
+import './styles.css';
 
 const momentToDate = (date) => (!date || date instanceof Date ? date : date.toDate());
 

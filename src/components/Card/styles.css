@@ -1,48 +1,69 @@
+@import '../../styles/variable';
+
+$card-padding-etalon: 20px;
+$card-spacing-etalon: 28px;
+
 .card-component {
-  font-size: 12px;
-  margin-bottom: 28px;
+  font-size: $font-size-body;
+  margin-bottom: $card-spacing-etalon;
   min-height: 40px;
   min-width: 205px;
+
+  & .flexible-spacer-component {
+    border: 0;
+  }
+
+  &.accent {
+    & .card-component-content-container {
+      border-bottom-width: 5px;
+    }
+  }
 }
+
 .card-component-grid-container {
   align-items: stretch;
   display: flex;
   flex-flow: row wrap;
-  margin-right: -28px;
+  margin-right: calc($card-spacing-etalon * -1);
+
+  & .card-component {
+    margin-right: $card-spacing-etalon;
+  }
 }
-.card-component-grid-container .card-component {
-  margin-right: 28px;
-}
-.card-component .flexible-spacer-component {
-  border: 0;
-}
+
 .card-component-content-container {
-  background-color: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
-  box-shadow: 0 2px 0 #d3d3d3;
+  background-color: $color-background;
+  border: $border-lighter;
+  border-radius: $border-radius-heavy;
+  box-shadow: 0 2px 0 $color-shadow-light;
   display: flex;
   flex-basis: 100%;
   flex-direction: column;
   height: 100%;
+
+  & .card-component-content {
+    &:not(.fill) {
+      &:last-child {
+        padding-bottom: $card-padding-etalon;
+      }
+    }
+  }
 }
-.card-component-content-container .card-component-content:not(.fill):last-child {
-  padding-bottom: 20px;
-}
-.card-component.accent .card-component-content-container {
-  border-bottom-width: 5px;
-}
+
 .card-component-content {
-  padding: 20px 20px 0;
-}
-.card-component-content.append {
-  color: #ababab;
-  padding: 5px 1px 0;
-}
-.card-component-content.stretch {
-  padding-left: 0;
-  padding-right: 0;
-}
-.card-component-content.fill {
-  padding: 0;
+  padding: $card-padding-etalon $card-padding-etalon 0;
+
+  &.append {
+    color: $color-text-placeholder;
+    padding: 5px 1px 0;
+  }
+
+  &.stretch {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &.fill {
+    padding: 0;
+  }
 }

@@ -1,4 +1,6 @@
+@import '../../styles/variable';
+
 .borderedwell-component {
-  background-color: #fff;
-  border: 1px solid #e8e8e8;
+  background-color: $color-white;
+  border: $border-lighter;
 }

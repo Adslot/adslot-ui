@@ -1,8 +1,13 @@
-.aui--breadcrumb-node-link {
-  cursor: pointer;
-}
-.aui--breadcrumb-node-link:hover,
-.aui--breadcrumb-node-link:active {
-  color: #0492ba;
-  text-decoration: underline;
+@import '../../../styles/variable';
+
+.aui--breadcrumb-node {
+  &.aui--breadcrumb-node-link {
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: $color-link-hover;
+      text-decoration: underline;
+    }
+  }
 }

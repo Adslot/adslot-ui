@@ -1,45 +1,57 @@
+@import '../../styles/variable';
+
+$diameter: 35px;
+
 .avatar-component {
-  background-color: #ababab;
-  border-radius: 50%;
-  color: #fff;
+  background-color: $color-gray;
+  border-radius: $border-radius-circle;
+  color: $color-text-inverse;
   cursor: default;
   display: inline-block;
-  font-size: 15px;
-  font-weight: 700;
-  height: 35px;
-  line-height: 36px;
+  font-size: $font-size-subheader;
+  font-weight: $font-weight-bold;
+  height: $diameter;
+  line-height: calc($diameter + 1px);
   position: relative;
   text-align: center;
   text-transform: uppercase;
   vertical-align: middle;
-  width: 35px;
-}
-.avatar-component-image-placeholder {
-  background-color: transparent;
-}
-.avatar-component-image {
-  border-radius: 50%;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-}
-.avatar-component-blue {
-  background-color: #006dcc;
-}
-.avatar-component-green {
-  background-color: #5bb75b;
-}
-.avatar-component-red {
-  background-color: #da4f49;
-}
-.avatar-component-orange {
-  background-color: #faa732;
-}
-.avatar-component-cyan {
-  background-color: #49afcd;
-}
-.avatar-component-black {
-  background-color: #5a5a5a;
+  width: $diameter;
+
+  &.avatar-component-image-placeholder {
+    background-color: transparent;
+  }
+
+  & .avatar-component-image {
+    border-radius: $border-radius-circle;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  &.avatar-component-blue {
+    background-color: $color-blue;
+  }
+
+  &.avatar-component-green {
+    background-color: $color-green;
+  }
+
+  &.avatar-component-red {
+    background-color: $color-red;
+  }
+
+  &.avatar-component-orange {
+    background-color: $color-orange;
+  }
+
+  &.avatar-component-cyan {
+    background-color: $color-cyan;
+  }
+
+  &.avatar-component-black {
+    background-color: $color-gray-darker;
+  }
 }
