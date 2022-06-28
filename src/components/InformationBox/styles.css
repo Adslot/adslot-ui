@@ -5,30 +5,38 @@
   align-items: center;
   width: 100%;
 }
+
 .aui--information-box.aui--information-box-primary {
   background-color: #e0f0ff;
 }
+
 .aui--information-box.aui--information-box-success {
   background-color: #eaf8ea;
 }
+
 .aui--information-box.aui--information-box-warning {
   background-color: #fef6ea;
 }
+
 .aui--information-box.aui--information-box-error {
   background-color: #fbedec;
 }
+
 .aui--information-box.aui--information-box-light {
   background-color: #f3f3f3;
 }
+
 .aui--information-box-text {
   padding-left: 20px;
   flex-grow: 1;
 }
+
 .aui--information-box-title {
   font-size: 15px;
   font-weight: 700;
   color: #5a5a5a;
 }
+
 .aui--information-box-icon {
   background-color: transparent;
   width: 70px;

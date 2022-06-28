@@ -39,12 +39,15 @@
 input:checked + .aui--switch-slider {
   background-color: #e0f0ff;
 }
+
 input:checked + .aui--switch-slider::before {
   transform: translateX(20px);
 }
+
 input:disabled + .aui--switch-slider {
   background-color: #d3d3d3;
 }
+
 input:disabled + .aui--switch-slider::before {
   background-color: #838383;
 }

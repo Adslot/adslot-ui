@@ -10,12 +10,15 @@
   vertical-align: top;
   width: 100%;
 }
+
 .grid-component-row-vertical-cell-border .grid-component-cell {
   border-right: 1px solid #e8e8e8;
 }
+
 .grid-component-row-vertical-cell-border .grid-component-cell:last-child {
   border-right: 0;
 }
+
 .grid-component + .grid-component {
   border-top: 0;
 }

@@ -1,9 +1,11 @@
 .slicey-component {
   vertical-align: top;
 }
+
 .slicey-background {
   fill: #5a5a5a;
 }
+
 .slicey-empty {
   fill: #f9f9f9;
 }

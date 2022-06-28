@@ -1,24 +1,30 @@
 .modal {
   font-weight: 400;
 }
+
 .modal-title {
   font-weight: 700;
 }
+
 .modal-content {
   border-radius: 0;
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
 }
+
 .modal-body {
   overflow: auto;
 }
+
 .modal-header,
 .modal-footer {
   height: 40px;
 }
+
 .modal-header {
   background-color: #f3f3f3;
   padding: 10px 15px;
 }
+
 .modal-header > .close {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M4 11.3L7.3 8 4.1 4.7l.8-.7L8 7.2 11.1 4l.7.7-3.1 3.2 3.3 3.3-.7.8L8 8.7 4.7 12l-.7-.7z'/%3E%3C/svg%3E");
   background-position: center;
@@ -28,30 +34,38 @@
   margin-top: 0;
   width: 20px;
 }
+
 .modal-header > .close > span {
   display: none;
 }
+
 .modal-footer {
   padding: 6px;
 }
+
 .modal-footer > .pull-left {
   float: left;
 }
+
 .modal-footer > label {
   font-weight: 400;
   color: #838383;
   margin-bottom: 0;
   line-height: 28px;
 }
+
 .modal-footer > label.pull-left {
   padding: 0 9px;
 }
+
 .modal-footer > label.pull-left > input {
   margin-right: 6px;
 }
+
 .modal-instruction > p {
   margin-bottom: 25px;
 }
+
 .modal-instruction > strong {
   display: block;
   margin-bottom: 5px;

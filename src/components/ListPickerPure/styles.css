@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .listpickerpure-component .grid-component-cell-toggle,
 .listpickerpure-component .grid-component-cell-addon,
 .listpickerpure-component .grid-component-cell-header-toggle,
@@ -9,18 +10,22 @@
   flex-basis: 10%;
   justify-content: center;
 }
+
 .listpickerpure-component .grid-component-cell-toggle,
 .listpickerpure-component .grid-component-cell-addon {
   align-items: center;
   display: flex;
 }
+
 .listpickerpure-component .grid-component-cell-header-toggle,
 .listpickerpure-component .grid-component-cell-header-addon {
   text-align: center;
 }
+
 .listpickerpure-component .empty-component {
   border-bottom: 1px solid #e8e8e8;
 }
+
 .listpickerpure-component .grid-component-row:last-child {
   border-bottom: 0;
 }

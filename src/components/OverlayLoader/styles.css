@@ -5,9 +5,11 @@
   top: 10px;
   z-index: 1060;
 }
+
 .aui--overlay-loader-disabled {
   position: fixed;
 }
+
 .aui--overlay-loader .loader {
   position: fixed;
   left: 50%;
@@ -24,9 +26,11 @@
   opacity: 0.9;
   line-height: 14px;
 }
+
 .aui--overlay-loader .loader .loader-heading {
   color: #5a5a5a;
 }
+
 .aui--overlay-loader .loader .loader-text {
   margin-top: 5px;
   color: #ababab;
@@ -36,6 +40,7 @@
   text-overflow: ellipsis;
   word-break: break-word;
 }
+
 .aui--overlay-loader .loader .spinner-medium {
   height: 40px;
   width: 40px;

@@ -2,10 +2,12 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 0.8;
   }
 }
+
 .aui--action-panel {
   min-width: 300px;
   min-height: 100px;
@@ -13,25 +15,26 @@
   border-radius: 2px;
   background-color: #fff;
 }
+
 .aui--action-panel.action-modal {
   top: 30px;
   background-color: #fff;
   margin: 30px auto;
   border: 0;
 }
-.aui--action-panel.action-modal .aui--action-panel-body {
-  max-height: calc(100vh - 60px - 48px);
-  overflow: auto;
-}
+
 .aui--action-panel.is-small {
   width: 500px;
 }
+
 .aui--action-panel.is-medium {
   width: 700px;
 }
+
 .aui--action-panel.is-large {
   width: 1000px;
 }
+
 .aui--action-panel-header {
   height: 48px;
   color: #333;
@@ -43,6 +46,7 @@
   align-items: center;
   border: 1px solid #e8e8e8;
 }
+
 .aui--action-panel-header .title {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -51,16 +55,20 @@
   font-weight: 700;
   color: #5a5a5a;
 }
+
 .aui--action-panel-header svg {
   fill: #5a5a5a;
 }
+
 .aui--action-panel-header .close-button:not(.close-svg-icon).aui--button {
   background-color: transparent;
   color: #fff;
 }
+
 .aui--action-panel-header .close-button:not(.close-svg-icon).aui--button > div {
   display: inline-flex;
 }
+
 .aui--action-panel-header .close-icon {
   width: 16px;
   height: 16px;
@@ -68,6 +76,7 @@
   background-size: contain;
   background-image: url('../../styles/icons/close.svg');
 }
+
 .aui--action-panel-header .aui--button {
   border: 0;
   outline: 0;
@@ -80,39 +89,53 @@
   justify-content: center;
   color: #006dcc;
 }
+
 .aui--action-panel-header.has-actions {
   background-color: #006dcc;
   color: #fff;
   border: 0;
 }
+
 .aui--action-panel-header.has-actions .title {
   color: #fff;
 }
+
 .aui--action-panel-header.has-actions .actions .aui--button.close-button:hover {
   color: #838383;
   background-color: #fff;
 }
+
 .aui--action-panel-header.has-actions .actions .aui--button:not(.close-button) {
   color: #006dcc;
   background-color: #fff;
 }
+
 .aui--action-panel-header.has-actions .actions .aui--button:active,
 .aui--action-panel-header.has-actions .actions .aui--button:active:hover {
   background-color: #e8e8e8;
 }
+
 .aui--action-panel-header.has-actions .actions .aui--button svg {
   fill: #fff;
 }
+
 .aui--action-panel-header.has-actions .actions .aui--button:hover {
   background-color: #fff;
 }
+
 .aui--action-panel-header.has-actions .actions .aui--button:hover svg {
   fill: #006dcc;
 }
+
 .aui--action-panel-body {
   padding: 30px;
   border: 1px solid #e8e8e8;
   border-top: 0;
+}
+
+.aui--action-panel.action-modal .aui--action-panel-body {
+  max-height: calc(100vh - 60px - 48px);
+  overflow: auto;
 }
 
 .aui--action-panel-backdrop {

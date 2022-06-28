@@ -1,6 +1,7 @@
 .aui--text-ellipsis-wrapper {
   display: flex;
 }
+
 .aui--text-ellipsis-wrapper .text-ellipsis-component {
   text-overflow: ellipsis;
   overflow: hidden;

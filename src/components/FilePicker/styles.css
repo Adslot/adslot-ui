@@ -3,21 +3,26 @@
   border-radius: 2px;
   padding: 1px;
 }
+
 .filepicker-component .aui--button.remove-file {
   background-color: #e8e8e8;
   border: 0;
   margin-right: 0;
 }
+
 .filepicker-component .file-input {
   display: none;
 }
+
 .filepicker-component .aui--button:focus {
   background-color: inherit;
 }
+
 .filepicker-component .input-group-btn {
   display: inline-flex;
   width: auto;
 }
+
 .filepicker-component .input-group-btn > .aui--button {
   min-height: 100%;
   padding-top: 0;

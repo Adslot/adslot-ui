@@ -1,20 +1,25 @@
 .statistic-component {
   font-size: 15px;
 }
+
 .statistic-component-value {
   font-weight: 700;
 }
+
 .statistic-component-label {
   color: #838383;
   font-weight: 400;
 }
+
 .statistic-component + .statistic-component {
   margin-top: 5px;
 }
+
 .statistic-component.inline .statistic-component-label,
 .statistic-component.inline .statistic-component-value {
   display: inline-block;
 }
+
 .statistic-component.inline .statistic-component-label {
   margin-left: 5px;
 }

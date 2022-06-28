@@ -1,18 +1,22 @@
 .hover-dropdown {
   display: inline-block;
 }
+
 .hover-dropdown-popover .popover-title {
   font-weight: 700;
   padding: 8px 2px 8px 6px;
   background-color: #fff;
 }
+
 .hover-dropdown-popover .popover-content {
   width: 160px;
   padding: 4px 0;
 }
+
 .hover-dropdown-popover .popover-content ul {
   margin: 0;
 }
+
 .hover-dropdown-popover .popover-content .aui--button {
   padding: 0;
 }
