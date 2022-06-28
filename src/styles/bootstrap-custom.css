@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* bootstrap-sass/assets/stylesheets/bootstrap/normalize */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -219,6 +220,7 @@ th {
   padding: 0;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/scaffolding */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -335,6 +337,7 @@ hr {
   cursor: pointer;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/type */
 h1,
 h2,
 h3,
@@ -757,6 +760,7 @@ address {
   line-height: 1.5;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/grid */
 .container {
   padding-right: 10px;
   padding-left: 10px;
@@ -1757,6 +1761,7 @@ address {
     margin-left: 100%;
   }
 }
+/* bootstrap-sass/assets/stylesheets/bootstrap/tables */
 table {
   background-color: transparent;
 }
@@ -2016,6 +2021,7 @@ th {
   }
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/forms */
 fieldset {
   min-width: 0;
   padding: 0;
@@ -2616,6 +2622,7 @@ select[multiple].input-lg,
   }
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/component-animations */
 .fade {
   opacity: 0;
   -webkit-transition: opacity 0.15s linear;
@@ -2653,6 +2660,7 @@ tbody.collapse.in {
   transition-timing-function: ease;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/dropdowns */
 .caret {
   display: inline-block;
   width: 0;
@@ -2808,6 +2816,7 @@ tbody.collapse.in {
     right: auto;
   }
 }
+/* bootstrap-sass/assets/stylesheets/bootstrap/button-groups */
 .btn-group,
 .btn-group-vertical {
   position: relative;
@@ -3022,6 +3031,7 @@ tbody.collapse.in {
   pointer-events: none;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/input-groups */
 .input-group {
   position: relative;
   display: table;
@@ -3147,6 +3157,7 @@ tbody.collapse.in {
   margin-left: -1px;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/navs */
 .nav {
   padding-left: 0;
   margin-bottom: 0;
@@ -3320,6 +3331,7 @@ tbody.collapse.in {
   border-top-right-radius: 0;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/navbar */
 .navbar {
   position: relative;
   min-height: 35px;
@@ -3889,6 +3901,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #444;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/labels */
 .label {
   display: inline;
   padding: 0.2em 0.6em 0.3em;
@@ -3964,6 +3977,7 @@ a.label:focus {
   background-color: #c72f29;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/badges */
 .badge {
   display: inline-block;
   min-width: 10px;
@@ -4012,6 +4026,7 @@ a.badge:focus {
   cursor: pointer;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/alerts */
 .alert {
   padding: 15px;
   margin-bottom: 18px;
@@ -4093,6 +4108,7 @@ a.badge:focus {
   color: #c72f29;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/progress-bars */
 @-webkit-keyframes progress-bar-stripes {
   from {
     background-position: 40px 0;
@@ -4321,6 +4337,7 @@ a.badge:focus {
   );
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/wells */
 .well {
   min-height: 20px;
   padding: 19px;
@@ -4346,6 +4363,7 @@ a.badge:focus {
   border-radius: 2px;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/close */
 .close {
   float: right;
   font-size: 18px;
@@ -4374,6 +4392,7 @@ button.close {
   appearance: none;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/modals */
 .modal-open {
   overflow: hidden;
 }
@@ -4527,6 +4546,7 @@ button.close {
     width: 940px;
   }
 }
+/* bootstrap-sass/assets/stylesheets/bootstrap/tooltip */
 .tooltip {
   position: absolute;
   z-index: 1070;
@@ -4644,6 +4664,7 @@ button.close {
   border-style: solid;
 }
 
+/* bootstrap-sass/assets/stylesheets/bootstrap/carousel */
 .carousel {
   position: relative;
 }
@@ -4878,6 +4899,7 @@ button.close {
     bottom: 20px;
   }
 }
+/* bootstrap-sass/assets/stylesheets/bootstrap/utilities */
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -4929,6 +4951,7 @@ button.close {
   position: fixed;
 }
 
+/* bootstrapOverrides/Checkbox */
 .checkbox label,
 .radio label,
 .radiogroup-stacked label {
@@ -4978,6 +5001,7 @@ input[type='radio'] {
   cursor: pointer;
 }
 
+/* bootstrapOverrides/Form */
 .form-horizontal .control-label {
   text-align: left;
 }
@@ -5051,6 +5075,7 @@ label {
   padding: 30px 30px 0;
 }
 
+/* bootstrapOverrides/Modal */
 .modal {
   font-weight: 400;
 }
@@ -5110,6 +5135,7 @@ label {
   margin-bottom: 5px;
 }
 
+/* bootstrapOverrides/Nav */
 .nav-tabs {
   margin-bottom: 0;
   min-height: 35px;
