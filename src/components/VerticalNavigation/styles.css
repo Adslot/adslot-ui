@@ -2,20 +2,24 @@
   display: flex;
   flex-direction: row;
 }
+
 .aui--vertical-navigation-component .aui--vertical-navigation-component__menu {
   width: 260px;
   font-size: 15px;
   font-family: Roboto, Helvetica, sans-serif;
   font-weight: 700;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__menu.aui--vertical-navigation-component__menu-is-collapsed {
   width: 60px;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__menu.aui--vertical-navigation-component__menu-is-animated {
   transition: width 1s ease-in-out;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__menu
   .aui--vertical-navigation-component__menu-item {
@@ -29,6 +33,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__menu
   .aui--vertical-navigation-component__menu-item
@@ -40,6 +45,7 @@
   justify-content: center;
   padding: 8px;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__menu
   .aui--vertical-navigation-component__menu-item
@@ -47,6 +53,7 @@
   border-radius: 50%;
   background-color: #e8e8e8;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__menu
   .aui--vertical-navigation-component__menu-item
@@ -57,14 +64,17 @@
   background-size: contain;
   background-image: url('../../styles/icons/burger.svg');
 }
+
 .aui--vertical-navigation-component .aui--vertical-navigation-component__content {
   flex-grow: 1;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__content
   .aui--vertical-navigation-component__content-item {
   display: none;
 }
+
 .aui--vertical-navigation-component
   .aui--vertical-navigation-component__content
   .aui--vertical-navigation-component__content-item.aui--vertical-navigation-component__content-item-is-active {

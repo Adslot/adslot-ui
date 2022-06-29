@@ -1,28 +1,37 @@
 @charset "UTF-8";
+
 .adslot-ui-proptype-table {
   max-width: 1100px;
 }
+
 .adslot-ui-proptype-table + .adslot-ui-proptype-table {
   margin-top: 30px;
 }
+
 .adslot-ui-proptype-table table + .empty-component {
   padding: 0;
 }
+
 .adslot-ui-proptype-table table tr th.col-prop-type {
   width: 10%;
 }
+
 .adslot-ui-proptype-table table tr th.col-type {
   width: 15%;
 }
+
 .adslot-ui-proptype-table table tr th.col-default-value {
   width: 25%;
 }
+
 .adslot-ui-proptype-table table tr th.col-notes {
   width: 50%;
 }
+
 .adslot-ui-proptype-table table tr td:empty::before {
   content: '—';
 }
+
 .adslot-ui-proptype-table table tr td pre {
   white-space: pre-wrap;
 }

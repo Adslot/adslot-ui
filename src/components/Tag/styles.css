@@ -11,20 +11,15 @@
   padding: 0 6px;
   line-height: 0;
 }
-.tag-component.tag-component-inverse {
-  background-color: #f3f3f3;
-  border-left: 4px solid;
-  color: #838383;
-}
-.tag-component.tag-component-inverse .action-button {
-  fill: #ababab;
-}
+
 .tag-component-actionable {
   padding-right: 0;
 }
+
 .tag-component-accent label {
   font-weight: 700;
 }
+
 .tag-component .action-button {
   box-sizing: border-box;
   cursor: pointer;
@@ -37,13 +32,25 @@
   display: flex;
   justify-content: center;
 }
+
 .tag-component .action-button:hover {
   fill-opacity: 1;
 }
+
 .tag-component label {
   margin-bottom: 0;
   max-width: 105px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.tag-component.tag-component-inverse {
+  background-color: #f3f3f3;
+  border-left: 4px solid;
+  color: #838383;
+}
+
+.tag-component.tag-component-inverse .action-button {
+  fill: #ababab;
 }

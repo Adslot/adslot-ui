@@ -180,9 +180,9 @@ $text-color: $color-text;
 $link-color: $color-blue;
 $link-hover-color: $color-blue-dark;
 
-$font-family-sans-serif: Roboto, Helvetica, sans-serif;
-$font-family-serif: Georgia, serif;
-$font-family-monospace: Monaco, Consolas, 'Courier New', monospace;
+$font-family-sans-serif: roboto, helvetica, sans-serif;
+$font-family-serif: georgia, serif;
+$font-family-monospace: monaco, consolas, 'Courier New', monospace;
 
 $font-size-base: $font-size-body;
 

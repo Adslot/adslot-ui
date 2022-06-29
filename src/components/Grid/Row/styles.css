@@ -2,23 +2,29 @@
   border-bottom: 1px solid transparent;
   display: flex;
 }
+
 .grid-component-row-header {
   color: #838383;
 }
-.grid-component-row-subfooter {
-  background-color: #f9f9f9;
-  color: #838383;
-}
-.grid-component-row-subfooter .grid-component-cell:last-child {
-  color: #333;
-}
-.grid-component-row-footer {
-  font-weight: 700;
-}
+
 .grid-component-row-short .grid-component-cell {
   padding-bottom: 3px;
   padding-top: 3px;
 }
+
+.grid-component-row-subfooter {
+  background-color: #f9f9f9;
+  color: #838383;
+}
+
+.grid-component-row-subfooter .grid-component-cell:last-child {
+  color: #333;
+}
+
+.grid-component-row-footer {
+  font-weight: 700;
+}
+
 .grid-component-row-horizontal-border,
 .grid-component-row:last-child {
   border-bottom-color: #e8e8e8;

@@ -4,16 +4,19 @@
   font-weight: 400;
   padding-top: 1px;
 }
+
 .checkbox .icheckbox,
 .radio .icheckbox,
 .radiogroup-stacked .icheckbox {
   margin-left: -20px;
 }
+
 .checkbox .icheckbox > input,
 .radio .icheckbox > input,
 .radiogroup-stacked .icheckbox > input {
   margin-left: 0;
 }
+
 .checkbox > .icheckbox,
 .checkbox > .iradio,
 .radio > .icheckbox,
@@ -22,6 +25,7 @@
 .radiogroup-stacked > .iradio {
   margin-left: 0;
 }
+
 .checkbox > input[type='checkbox'],
 .checkbox > input[type='radio'],
 .radio > input[type='checkbox'],
@@ -42,6 +46,7 @@ input[type='radio'] {
 .iradio + span {
   font-weight: 400;
 }
+
 .icheckbox:not(.disabled) + span,
 .iradio:not(.disabled) + span {
   cursor: pointer;

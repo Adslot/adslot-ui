@@ -25,9 +25,10 @@
     "dist:demo": "cross-env NODE_ENV=production DEMO_ASSETS=true node ./scripts/build.js",
     "dist": "npm run clean && npm run copy-types && npm run dist:lib && npm run dist:es && npm run dist:prod && npm run generate-docs && npm run dist:demo",
     "lint:eslint": "eslint --ext .jsx,.js,.ts ./src && eslint --ext .jsx,.js ./www",
+    "lint:stylelint": "stylelint '{src,www}/**/*.css'",
     "lint:prettier": "prettier '{src,www,config}/**/*.{js,json,jsx,mdx,css}' --check",
     "format": "prettier '{src,www,config}/**/*.{js,json,jsx,mdx,css}' --write",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
     "prettier": "prettier \"{src,www,config}/**/*.{js,json,jsx,mdx,css}\" --write",
     "svgo": "svgo --recursive --multipass --folder=src --config=svgo-config.js",
     "postversion": "git push -u origin $(git rev-parse --abbrev-ref HEAD) --follow-tags && npm publish && echo '…released.'",
@@ -55,6 +56,9 @@
     "arrowParens": "always"
   },
   "lint-staged": {
+    "{src,www}/**/*.css": [
+      "stylelint --fix"
+    ],
     "{src,www,config}/**/*.{js,json,jsx,mdx,css}": [
       "prettier --write"
     ],
@@ -138,6 +142,9 @@
     "rimraf": "^3.0.2",
     "seamless-immutable": "^7.1.4",
     "style-loader": "^3.3.1",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^26.0.0",
     "svg4everybody": "^2.1.9",
     "svgo": "^2.8.0",
     "terser-webpack-plugin": "^5.3.1",

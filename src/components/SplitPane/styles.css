@@ -4,9 +4,11 @@
   flex-flow: column nowrap;
   overflow: hidden;
 }
+
 .splitpane-component + .splitpane-component {
   margin-left: 30px;
 }
+
 .splitpane-component > .grid-component {
   flex-grow: 0;
   flex-shrink: 1;

@@ -10,6 +10,7 @@ $gap-button-default: 6px;
 $gap-button-large: 9px;
 $size-button-default: 30px;
 $size-button-large: 42px;
+
 /* calc(($size-button-default - 2px - $font-size-button-default * $line-height-button) / 2) */
 $padding-y-button-default: 5px;
 $padding-x-button-default: 12px;
@@ -329,6 +330,16 @@ $focus-ring-color: $color-gray-darker;
     margin-right: 0;
   }
 
+  & .spinner-container {
+    position: absolute;
+
+    & .spinner-component {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
   /* Icon (no label/children) */
   &.aui-icon {
     padding: $padding-icon-button-default;
@@ -358,7 +369,7 @@ $focus-ring-color: $color-gray-darker;
     display: inline-flex;
 
     & svg {
-      fill: currentColor;
+      fill: currentcolor;
     }
   }
 
@@ -408,16 +419,6 @@ $focus-ring-color: $color-gray-darker;
         display: block;
         margin: auto;
       }
-    }
-  }
-
-  & .spinner-container {
-    position: absolute;
-
-    & .spinner-component {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 

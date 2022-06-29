@@ -41,7 +41,3 @@
     margin-right: 20px;
   }
 }
-
-button + .aui--button-group {
-  margin-left: 20px;
-}
