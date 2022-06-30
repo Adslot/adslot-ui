@@ -3,17 +3,13 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json'],
   transform: {
     '^.+\\.(js|jsx)?$': 'babel-jest',
+    '^.+\\.css$': '<rootDir>/config/cssTransform.js',
   },
-  moduleDirectories: ['node_modules', __dirname],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
   clearMocks: true,
   coverageDirectory: 'coverage',
-  moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mocks__/fileMock.js',
-    '\\.css$': 'identity-obj-proxy',
-  },
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/config/testSetup.js'],
   coverageThreshold: {
     global: {
       statements: 100,
