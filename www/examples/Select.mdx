@@ -56,6 +56,68 @@ const Example = () => {
 render(Example);
 ```
 
+```jsx live=true
+const countryOptions = [
+  { value: 'au', label: 'Australia' },
+  { value: 'ca', label: 'Canada' },
+  { value: 'jp', label: 'Japan', disabled: true },
+  { value: 'uk', label: 'United Kingdom' },
+];
+
+const ExampleInModal = () => {
+  const [selected, setSelected] = React.useState('');
+  const [showModal, setShowModal] = React.useState(false);
+
+  const onChangeHandler = (value) => {
+    setSelected(value);
+  };
+
+  return (
+    <>
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      {showModal ? (
+        <ActionPanel isModal title="Select example" onClose={() => setShowModal(false)}>
+          <h4>Single Select</h4>
+          <Select
+            isInModal
+            isClearable={false}
+            name="countriesSelect"
+            noOptionsMessage={() => "Sorry, couldn't find that country."}
+            options={countryOptions}
+            placeholder="Countries"
+            value={selected}
+            onChange={onChangeHandler}
+            dts="test-dts"
+          />
+          <h4>Multiple Select</h4>
+          <Select
+            isInModal
+            isMulti
+            name="countriesMultiSelect"
+            noOptionsMessage={() => "Sorry, couldn't find that country."}
+            options={countryOptions}
+            placeholder="Countries"
+            value={selected}
+            onChange={onChangeHandler}
+          />
+          <h4>Creatable option</h4>
+          <Select.Creatable
+            isInModal
+            isMulti
+            name="countriesCreatableSelect"
+            options={countryOptions}
+            onChange={onChangeHandler}
+            value={selected}
+          />
+        </ActionPanel>
+      ) : null}
+    </>
+  );
+};
+
+render(ExampleInModal);
+```
+
 <DesignNotes>
   <span className="text-bold">Select</span> When a single selection from more than 3 options is required the select drop
   down should be used.
