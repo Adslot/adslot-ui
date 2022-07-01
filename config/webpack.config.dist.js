@@ -142,7 +142,14 @@ module.exports = webpackMerge(commonConfig, {
             parser: safe,
           };
 
-          return cssnano()
+          return cssnano({
+            preset: [
+              'default',
+              {
+                convertValues: false,
+              },
+            ],
+          })
             .process(input, postcssOptions)
             .then((result) => {
               return {
