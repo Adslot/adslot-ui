@@ -6,7 +6,18 @@ import Checkbox from '../Checkbox';
 import CheckboxGroup from '../CheckboxGroup';
 import './styles.css';
 
-const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, placeholder, onChange }) => {
+const SearchableCheckList = ({
+  context,
+  items,
+  selectedItemsKeys,
+  displayCount,
+  hideTitle,
+  placeholder,
+  onChange,
+  onSearch,
+  searchOnEnter,
+  onClear,
+}) => {
   const [searchText, setSearchText] = React.useState('');
 
   const eligibleItems = searchText
@@ -40,13 +51,21 @@ const SearchableCheckList = ({ context, items, selectedItemsKeys, displayCount, 
   return (
     <div className="aui--searchable-checklist">
       <div className="aui--searchable-list-container">
-        <div className="title" data-testid="searchable-list-title">
-          {pluralLabel}
-        </div>
+        {!hideTitle && (
+          <div className="title" data-testid="searchable-list-title">
+            {pluralLabel}
+          </div>
+        )}
         <div className="search-box">
           <Search
+            searchOnEnter={searchOnEnter}
+            onClear={onClear}
             onSearch={(value) => {
-              setSearchText(value);
+              if (_.isNil(onSearch)) {
+                setSearchText(value);
+              } else {
+                onSearch(value);
+              }
             }}
             placeholder={placeholder}
           />
@@ -116,13 +135,26 @@ SearchableCheckList.propTypes = {
    * 	Number of checkbox items to render
    */
   displayCount: PropTypes.number,
+  /**
+   * 	Hides the title
+   */
+  hideTitle: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+  /**
+   * 	Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)
+   */
+  searchOnEnter: PropTypes.bool,
+  onSearch: PropTypes.func,
+  onClear: PropTypes.func,
 };
 
 SearchableCheckList.defaultProps = {
   selectedItemsKeys: [],
   displayCount: 6,
+  hideTitle: false,
   placeholder: 'Search',
+  searchOnEnter: false,
+  onClear: _.noOp,
 };
 
 export default SearchableCheckList;
