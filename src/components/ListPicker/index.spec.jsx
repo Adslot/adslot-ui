@@ -59,9 +59,9 @@ describe('<ListPicker />', () => {
     expect(getByText('You can select multiple users.')).toHaveClass('listpicker-component-footnote');
 
     // items
-    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'user-1');
-    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'user-2');
-    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'user-3');
+    expect(getByText('John Smith').parentElement.parentElement).toHaveAttribute('data-test-selector', 'user-1');
+    expect(getByText('Jane Doe').parentElement.parentElement).toHaveAttribute('data-test-selector', 'user-2');
+    expect(getByText('Jack White').parentElement.parentElement).toHaveAttribute('data-test-selector', 'user-3');
 
     expect(queryAllByTestId('checkbox-input')).toHaveLength(3);
     expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();
@@ -139,9 +139,9 @@ describe('<ListPicker />', () => {
     expect(queryAllByTestId('split-panel-wrapper')[1]).toContainElement(getByTestId('listpickerpure-wrapper'));
 
     // items
-    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'user-1');
-    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'user-2');
-    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'user-3');
+    expect(getByText('John Smith').parentElement.parentElement).toHaveAttribute('data-test-selector', 'user-1');
+    expect(getByText('Jane Doe').parentElement.parentElement).toHaveAttribute('data-test-selector', 'user-2');
+    expect(getByText('Jack White').parentElement.parentElement).toHaveAttribute('data-test-selector', 'user-3');
 
     expect(queryAllByTestId('checkbox-input')).toHaveLength(3);
     expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();
@@ -168,9 +168,9 @@ describe('<ListPicker />', () => {
     const props = { initialSelection: getInitialSelection(), labelFormatter, items: users };
     const { queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
 
-    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
-    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
-    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'item-3');
+    expect(getByText('John Smith').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-1');
+    expect(getByText('Jane Doe').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-2');
+    expect(getByText('Jack White').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-3');
 
     expect(queryAllByTestId('checkbox-input')).toHaveLength(3);
     expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();
@@ -190,9 +190,9 @@ describe('<ListPicker />', () => {
     };
     const { queryByTestId, queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
 
-    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
-    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
-    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'item-3');
+    expect(getByText('John Smith').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-1');
+    expect(getByText('Jane Doe').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-2');
+    expect(getByText('Jack White').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-3');
 
     expect(queryByTestId('checkbox-input')).not.toBeInTheDocument();
     expect(queryAllByTestId('radio-input')).toHaveLength(3);
@@ -210,9 +210,9 @@ describe('<ListPicker />', () => {
     const props = { initialSelection: getInitialSelection(), labelFormatter, items: users };
     const { queryAllByTestId, getByText } = render(<ListPicker {...props} show />);
 
-    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'item-1');
-    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'item-2');
-    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'item-3');
+    expect(getByText('John Smith').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-1');
+    expect(getByText('Jane Doe').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-2');
+    expect(getByText('Jack White').parentElement.parentElement).toHaveAttribute('data-test-selector', 'item-3');
 
     expect(queryAllByTestId('checkbox-input')).toHaveLength(3);
     expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();

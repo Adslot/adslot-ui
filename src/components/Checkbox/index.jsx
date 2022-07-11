@@ -1,49 +1,104 @@
-import _ from 'lodash';
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { expandDts } from '../../lib/utils';
+import { expandDts, invariant } from '../../lib/utils';
+import { useCheckboxGroup } from '../CheckboxGroup';
 import './styles.css';
+
+const SELECTION_KEYS = ['Enter', ' '];
 
 const getNextState = (checked) => {
   if (checked === 'partial') return false;
   return !checked;
 };
 
-const Checkbox = ({ name, value, label, dts, disabled, checked, id, className, inline, onChange, size }) => {
-  const componentClassName = classnames([
-    'checkbox-component',
-    {
-      'checkbox-component-inline': inline,
-      checked: checked === true,
-      'partial-checked': checked === 'partial',
-      disabled,
-    },
-    className,
-  ]);
+const Checkbox = ({
+  name,
+  value,
+  label,
+  dts,
+  disabled,
+  checked: checkedProp,
+  id,
+  className,
+  text,
+  icon,
+  onChange,
+  size,
+  inline,
+  ...rest
+}) => {
+  invariant(!size, 'Checkbox size prop has been deprecated.');
+  invariant(!inline, 'Checkbox inline prop has been deprecated.');
 
-  const handleChange = () => onChange(getNextState(checked), name, value);
+  const { onCheckboxChange, isCheckedHandler, name: checkboxName = name, variant = 'default' } = useCheckboxGroup();
+  invariant(!((icon || text) && variant !== 'box'), 'Checkbox with icon or text must use box variant.');
+  invariant(!(onChange && onCheckboxChange), 'Checkbox should not have onChange when used in a CheckboxGroup');
+  invariant(!(isCheckedHandler && checkedProp), 'Checkbox checked state is handled by CheckboxGroup.');
+
+  const onCheckboxKeyDown = (event) => {
+    if (SELECTION_KEYS.includes(event.key)) {
+      event.preventDefault();
+      handleChange();
+    }
+  };
+
+  const handleChange = () => {
+    onCheckboxChange ? onCheckboxChange(value) : onChange(getNextState(checked), name, value);
+  };
+
+  const checked = isCheckedHandler ? isCheckedHandler(value) : checkedProp;
 
   return (
-    <div data-testid="checkbox-wrapper" className={componentClassName} {...expandDts(dts)}>
-      <label>
+    <div
+      {...rest}
+      data-testid="checkbox-wrapper"
+      role={'checkbox'}
+      aria-disabled={disabled ? 'true' : undefined}
+      aria-checked={checked === 'partial' ? 'mixed' : checked ? 'true' : 'false'}
+      className={classnames(
+        'aui--checkbox',
+        {
+          checked: checked === true,
+          'partial-checked': checked === 'partial',
+          'aui--checkbox-box': variant === 'box',
+          'aui--checkbox-default': variant === 'default',
+          'is-reverse': icon,
+          'is-selected': checked,
+          'is-disabled': disabled,
+          'has-text': text != null,
+          disabled,
+        },
+        className
+      )}
+      data-aui-value={value}
+      tabIndex={!disabled ? 0 : -1}
+      onKeyDown={onCheckboxKeyDown}
+      {...expandDts(dts)}
+    >
+      <label htmlFor={id}>
         <input
           data-testid="checkbox-input"
           type="checkbox"
-          name={name}
+          name={checkboxName}
           checked={checked}
           disabled={disabled}
           onChange={handleChange}
           value={value}
           id={id}
-          className={className}
         />
-        <div className="checkbox-component-icon" style={{ width: size, height: size }} />
-        {label ? (
-          <div data-testid="checkbox-label" className="checkbox-component-label" style={{ lineHeight: `${size}px` }}>
-            {label}
+        <div className="aui--checkbox-input-icon" />
+        {label && (
+          <div className="aui--checkbox-label">
+            {icon && <div className="aui--checkbox-icon">{icon}</div>}
+            <div>
+              <div data-testid="checkbox-label" className="aui--checkbox-label-text">
+                {label}
+              </div>
+              {text && <div className="aui--checkbox-text">{text}</div>}
+            </div>
           </div>
-        ) : null}
+        )}
       </label>
     </div>
   );
@@ -63,10 +118,12 @@ Checkbox.propTypes = {
    * checkBox label for the checkbox input
    */
   label: PropTypes.node,
+  text: PropTypes.node,
+  icon: PropTypes.node,
   /**
    * checkBox input value
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * data-test-selector for the checkbox component
    */
@@ -76,26 +133,30 @@ Checkbox.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * function called when checkBox onChange event is fired
+   * @function onChange called when checkBox onChange event is fired
+   * @param {string|boolean} nextState - the checked state
+   * @param {string} name - the checkbox name
+   * @param {string|number} value - the checkbox value
    */
   onChange: PropTypes.func,
-  /**
-   * determines if checkbox-component-inline class is applied or not
-   */
-  inline: PropTypes.bool,
   /**
    * checked status of the input checkBox: oneOf([true, false, 'partial']
    */
   checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['partial'])]),
+  /**
+   * @deprecated
+   */
   size: PropTypes.number,
+  /**
+   * @deprecated
+   */
+  inline: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
   dts: '',
   disabled: false,
   checked: false,
-  onChange: _.noop,
-  size: 16,
 };
 
 export default Checkbox;

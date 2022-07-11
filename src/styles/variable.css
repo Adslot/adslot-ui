@@ -284,3 +284,5 @@ $grid-float-breakpoint: 0;
 
 $popover-vertical-padding: calc($spacing-etalon / 6);
 $popover-horizontal-padding: calc($spacing-etalon / 3);
+
+$grid-base-space: 12px;

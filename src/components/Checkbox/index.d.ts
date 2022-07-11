@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type CheckboxValue = string | number;
+
 export type CheckboxChecked = boolean | 'partial';
 
 export interface CheckboxProps {
@@ -16,10 +18,12 @@ export interface CheckboxProps {
    * checkBox label for the checkbox input
    */
   label?: React.ReactNode;
+  text?: React.ReactNode;
+  icon?: React.ReactNode;
   /**
    * checkBox input value
    */
-  value?: string;
+  value?: CheckboxValue;
   /**
    * data-test-selector for the checkbox component
    */
@@ -29,18 +33,24 @@ export interface CheckboxProps {
    */
   disabled?: boolean;
   /**
-   * function called when checkBox onChange event is fired
+   * @function onChange called when checkBox onChange event is fired
+   * @param {string|boolean} nextState - the checked state
+   * @param {string} name - the checkbox name
+   * @param {string|number} value - the checkbox value
    */
   onChange?: (...args: any[]) => any;
-  /**
-   * determines if checkbox-component-inline class is applied or not
-   */
-  inline?: boolean;
   /**
    * checked status of the input checkBox: oneOf([true, false, 'partial']
    */
   checked?: CheckboxChecked;
+  /**
+   * @deprecated
+   */
   size?: number;
+  /**
+   * @deprecated
+   */
+  inline?: boolean;
 }
 
 declare const Checkbox: React.FC<CheckboxProps>;

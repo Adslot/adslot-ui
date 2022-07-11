@@ -88,7 +88,9 @@ describe('<SearchableChecklist />', () => {
     );
 
     // main checkbox should be partially checked
-    expect(queryAllByClass(container, 'checkbox-component partial-checked')).toHaveLength(1);
+    expect(queryAllByClass(container, 'aui--checkbox partial-checked aui--checkbox-default is-selected')).toHaveLength(
+      1
+    );
 
     // 1 main checkBox and 6 item checkboxes
     const checkBoxesWrapper = queryAllByTestId('checkbox-input');
@@ -115,7 +117,7 @@ describe('<SearchableChecklist />', () => {
       />
     );
 
-    expect(queryAllByClass(container, 'checkbox-component partial-checked')).toHaveLength(0);
+    expect(queryAllByClass(container, 'aui--checkbox partial-checked')).toHaveLength(0);
 
     // 1 main checkBox and 6 item checkboxes
     const checkBoxesWrapper = queryAllByTestId('checkbox-input');

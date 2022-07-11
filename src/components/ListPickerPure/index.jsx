@@ -7,39 +7,53 @@ import Empty from '../Empty';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
+import { useArrowFocus } from '../../hooks';
 import './styles.css';
 
-class ListPickerPure extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedItems: this.props.selectedItems,
-    };
-    this.isItemSelected = this.isItemSelected.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.updateSelectedItems = this.updateSelectedItems.bind(this);
-  }
+const ListPickerPure = ({
+  allowMultiSelection,
+  emptyMessage,
+  emptySvgSymbol,
+  items,
+  labelFormatter,
+  addonFormatter,
+  itemHeaders,
+  itemType,
+  deselectItem,
+  selectItem,
+  selectedItems: selectedItemsProp,
+}) => {
+  const ref = React.useRef();
 
-  isItemSelected(item) {
-    return _.some(this.state.selectedItems, { id: item.id });
-  }
+  useArrowFocus({
+    ref,
+    onFocus: (el) =>
+      !allowMultiSelection && handleChange(_.find(items, ({ id }) => _.toString(id) === el.dataset.auiValue))(),
+    selector: `.grid-component-cell-toggle .listpickerpure-component-toggle`,
+    loop: true,
+    orientation: 'vertical',
+  });
 
-  handleChange(item) {
-    const { deselectItem, selectItem, allowMultiSelection } = this.props;
+  const [selectedItems, setSelectedItems] = React.useState(selectedItemsProp);
 
+  const isItemSelected = (item) => {
+    return _.some(selectedItems, { id: item.id });
+  };
+
+  const handleChange = (item) => {
     return () => {
-      const isSelected = this.isItemSelected(item);
-      this.updateSelectedItems(item, allowMultiSelection, isSelected);
+      const isSelected = isItemSelected(item);
+      updateSelectedItems(item, isSelected);
       if (isSelected) {
         deselectItem(item, allowMultiSelection);
       } else {
         selectItem(item, allowMultiSelection);
       }
     };
-  }
+  };
 
-  updateSelectedItems(item, allowMultiSelection, isSelected) {
-    const newSelectedItemsArray = _.clone(this.state.selectedItems);
+  const updateSelectedItems = (item, isSelected) => {
+    const newSelectedItemsArray = _.clone(selectedItems);
 
     if (allowMultiSelection) {
       if (isSelected) {
@@ -48,66 +62,64 @@ class ListPickerPure extends React.PureComponent {
         newSelectedItemsArray.push(item);
       }
 
-      this.setState({ selectedItems: newSelectedItemsArray });
+      setSelectedItems(newSelectedItemsArray);
     } else {
-      this.setState({
-        selectedItems: [item],
-      });
+      setSelectedItems([item]);
     }
-  }
+  };
 
-  render() {
-    const {
-      allowMultiSelection,
-      emptyMessage,
-      emptySvgSymbol,
-      items,
-      labelFormatter,
-      addonFormatter,
-      itemHeaders,
-      itemType,
-    } = this.props;
-    const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
+  const ToggleComponent = allowMultiSelection ? Checkbox : Radio;
 
-    return (
-      <div
-        data-testid="listpickerpure-wrapper"
-        className="listpickerpure-component"
-        data-test-selector={`listpickerpure-component-${_.kebabCase(itemType)}`}
-      >
-        {itemHeaders ? (
-          <Grid>
-            <GridRow type="header">
-              <GridCell stretch>{itemHeaders.label}</GridCell>
-              <GridCell classSuffixes={['header-toggle']}>{itemHeaders.toggle}</GridCell>
-              {addonFormatter ? <GridCell classSuffixes={['header-addon']}>{itemHeaders.addon}</GridCell> : null}
-            </GridRow>
-          </Grid>
-        ) : null}
-        <div className="listpickerpure-component-items">
-          <Grid>
-            {_.map(items, (item) => (
-              <GridRow key={item.id} dts={`${_.kebabCase(itemType)}-${item.id}`}>
-                <GridCell stretch dts="label">
-                  {labelFormatter(item)}
+  return (
+    <div
+      data-testid="listpickerpure-wrapper"
+      className="listpickerpure-component"
+      data-test-selector={`listpickerpure-component-${_.kebabCase(itemType)}`}
+    >
+      {itemHeaders ? (
+        <Grid>
+          <GridRow type="header">
+            <GridCell stretch>{itemHeaders.label}</GridCell>
+            <GridCell classSuffixes={['header-toggle']}>{itemHeaders.toggle}</GridCell>
+            {addonFormatter ? <GridCell classSuffixes={['header-addon']}>{itemHeaders.addon}</GridCell> : null}
+          </GridRow>
+        </Grid>
+      ) : null}
+      <div className="listpickerpure-component-items" ref={ref}>
+        <Grid>
+          {_.map(items, (item) => {
+            const idString = `${_.kebabCase(itemType)}-${item.id}`;
+            return (
+              <GridRow key={item.id} dts={idString}>
+                <GridCell classSuffixes={['label', isItemSelected(item) ? 'selected' : '']} dts="label" stretch>
+                  <label id={`${idString}-label`} className="listpickerpure-component-label" htmlFor={idString}>
+                    {labelFormatter(item)}
+                  </label>
                 </GridCell>
-                <GridCell classSuffixes={['toggle']} dts="toggle">
-                  <ToggleComponent checked={this.isItemSelected(item)} onChange={this.handleChange(item)} />
+                <GridCell classSuffixes={['toggle', isItemSelected(item) ? 'selected' : '']} dts="toggle">
+                  <ToggleComponent
+                    id={idString}
+                    checked={isItemSelected(item)}
+                    onChange={handleChange(item)}
+                    className="listpickerpure-component-toggle"
+                    value={item.id}
+                    aria-labelledby={`${idString}-label`}
+                  />
                 </GridCell>
                 {addonFormatter ? (
-                  <GridCell classSuffixes={['addon']} dts="addon">
+                  <GridCell classSuffixes={['addon', isItemSelected(item) ? 'selected' : '']} dts="addon">
                     {addonFormatter(item)}
                   </GridCell>
                 ) : null}
               </GridRow>
-            ))}
-            <Empty collection={items} icon={emptySvgSymbol} text={emptyMessage} />
-          </Grid>
-        </div>
+            );
+          })}
+          <Empty collection={items} icon={emptySvgSymbol} text={emptyMessage} />
+        </Grid>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const itemProps = PropTypes.shape({
   id: PropTypes.any.isRequired, // id can be numeric or uuid string

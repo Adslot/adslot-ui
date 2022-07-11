@@ -9,59 +9,64 @@ const handleChange = (...arg) => console.log('Checkbox changed with arguments', 
 const Example = () => (
   <>
     <h4>Not selected</h4>
-    <Checkbox label="Checked: false" checked={false} inline className="fix-size" onChange={handleChange} />
-    <Checkbox
-      label={
-        <p>
-          Checked: false <br /> <b>Disabled</b>
-        </p>
-      }
-      checked={false}
-      disabled
-      inline
-      className="fix-size"
-      onChange={handleChange}
-    />
+    <div className="grid grid-small">
+      <Checkbox label="Checked: false" checked={false} className="fix-size" onChange={handleChange} />
+      <Checkbox
+        label={
+          <p>
+            Checked: false <br /> <b>Disabled</b>
+          </p>
+        }
+        checked={false}
+        disabled
+        className="fix-size"
+        onChange={handleChange}
+      />
+    </div>
     <h4>Selected</h4>
-    <Checkbox label="Checked: true" checked inline className="fix-size" onChange={handleChange} />
-    <Checkbox
-      label={
-        <p>
-          Checked: true <br /> <b>Disabled</b>
-        </p>
-      }
-      checked
-      disabled
-      inline
-      className="fix-size"
-      onChange={handleChange}
-    />
+    <div className="grid grid-small">
+      <Checkbox label="Checked: true" checked className="fix-size" onChange={handleChange} />
+      <Checkbox
+        label={
+          <p>
+            Checked: true <br /> <b>Disabled</b>
+          </p>
+        }
+        checked
+        disabled
+        className="fix-size"
+        onChange={handleChange}
+      />
+    </div>
     <h4>Partial Selected</h4>
-    <Checkbox label={"Checked: 'partial'"} checked="partial" inline className="fix-size" onChange={handleChange} />
-    <Checkbox
-      label={
-        <p>
-          Checked: 'partial' <br /> <b>Disabled</b>
-        </p>
-      }
-      checked="partial"
-      disabled
-      inline
-      className="fix-size"
-      onChange={handleChange}
-    />
+    <div className="grid grid-small">
+      <Checkbox label={"Checked: 'partial'"} checked="partial" className="fix-size" onChange={handleChange} />
+      <Checkbox
+        label={
+          <p>
+            Checked: 'partial' <br /> <b>Disabled</b>
+          </p>
+        }
+        checked="partial"
+        disabled
+        className="fix-size"
+        onChange={handleChange}
+      />
+    </div>
     <h4>Checkboxes without labels</h4>
-    <Checkbox checked={false} inline onChange={handleChange} />
-    <Checkbox checked={false} disabled inline onChange={handleChange} />
-    <Checkbox checked inline onChange={handleChange} />
-    <Checkbox checked disabled inline onChange={handleChange} />
-    <Checkbox checked="partial" inline onChange={handleChange} />
-    <Checkbox checked="partial" disabled inline onChange={handleChange} />
+    <div className="grid grid-small">
+      <Checkbox checked={false} onChange={handleChange} />
+      <Checkbox checked={false} disabled onChange={handleChange} />
+      <Checkbox checked onChange={handleChange} />
+      <Checkbox checked disabled onChange={handleChange} />
+      <Checkbox checked="partial" onChange={handleChange} />
+      <Checkbox checked="partial" disabled onChange={handleChange} />
+    </div>
   </>
 );
 
 render(
-  <div style={{ width: 400 }}>
+  <div style={{ width: 400, display: 'flex', flexDirection: 'column', gap: 0 }}>
     <Example />
   </div>
 );

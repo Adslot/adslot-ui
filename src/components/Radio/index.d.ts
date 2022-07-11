@@ -1,18 +1,29 @@
 import * as React from 'react';
 
-export interface RadioButtonProps {
+export type RadioValue = string | number;
+
+export interface RadioProps {
   id?: string;
   className?: string;
   name?: string;
   label?: React.ReactNode;
-  value?: string;
+  text?: React.ReactNode;
+  icon?: React.ReactNode;
+  value?: RadioValue;
   dts?: string;
   disabled?: boolean;
+  /**
+   * @function onChange called when radio onChange event is fired
+   * @param {string|number} value - the radio value
+   */
   onChange?: (...args: any[]) => any;
-  inline?: boolean;
   checked?: boolean;
+  /**
+   * @deprecated
+   */
+  inline?: boolean;
 }
 
-declare const RadioButton: React.FC<RadioButtonProps>;
+declare const Radio: React.FC<RadioProps>;
 
-export default RadioButton;
+export default Radio;

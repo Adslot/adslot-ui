@@ -1113,9 +1113,31 @@
           "required": false,
           "description": "checkBox label for the checkbox input"
         },
+        "text": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
         "value": {
           "type": {
-            "name": "string"
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
           },
           "required": false,
           "description": "checkBox input value"
@@ -1147,18 +1169,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "function called when checkBox onChange event is fired",
-          "defaultValue": {
-            "value": "_.noop",
-            "computed": true
-          }
-        },
-        "inline": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "determines if checkbox-component-inline class is applied or not"
+          "description": "@function onChange called when checkBox onChange event is fired\n@param {string|boolean} nextState - the checked state\n@param {string} name - the checkbox name\n@param {string|number} value - the checkbox value"
         },
         "checked": {
           "type": {
@@ -1190,11 +1201,14 @@
             "name": "number"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "16",
-            "computed": false
-          }
+          "description": "@deprecated"
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "@deprecated"
         }
       }
     }
@@ -1202,88 +1216,39 @@
   "src/components/CheckboxGroup/index.jsx": [
     {
       "description": "",
+      "displayName": "CheckboxGroupProvider",
+      "methods": []
+    },
+    {
+      "description": "",
       "displayName": "CheckboxGroup",
       "methods": [],
       "props": {
-        "id": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "id for the checkboxGroup input"
-        },
-        "className": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "name": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
-        },
         "value": {
           "type": {
-            "name": "arrayOf",
-            "value": {
-              "name": "union",
-              "value": [
-                {
-                  "name": "string"
-                },
-                {
-                  "name": "number"
-                }
-              ]
-            }
+            "name": "array"
           },
           "required": true,
-          "description": "string array of checked values"
+          "description": ""
         },
-        "children": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "arrayOf",
-                "value": {
-                  "name": "node"
-                }
-              },
-              {
-                "name": "node"
-              }
-            ]
+        "orientation": {
+          "defaultValue": {
+            "value": "'vertical'",
+            "computed": false
           },
-          "required": true,
-          "description": "checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]"
+          "required": false
         },
-        "onChange": {
-          "type": {
-            "name": "func"
+        "variant": {
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
           },
-          "required": true,
-          "description": "function called when checkBox onChange event is fired"
-        },
-        "dts": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "data-test-selector for the checkboxGroup component"
-        },
-        "inline": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "determines if checkbox-component-inline class is applied or not"
+          "required": false
         }
-      }
+      },
+      "composes": [
+        "../RadioGroup"
+      ]
     }
   ],
   "src/components/ConfirmModal/index.jsx": [
@@ -2181,65 +2146,7 @@
     {
       "description": "",
       "displayName": "ListPicker",
-      "methods": [
-        {
-          "name": "getApplyButtonState",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "selectedItems",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "defaultState",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "selectItem",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "item",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "deselectItem",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "item",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "cancelAction",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "applyAction",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "allowEmptySelection": {
           "type": {
@@ -2471,52 +2378,7 @@
     {
       "description": "",
       "displayName": "ListPickerPure",
-      "methods": [
-        {
-          "name": "isItemSelected",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "item",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "handleChange",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "item",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "updateSelectedItems",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "item",
-              "type": null
-            },
-            {
-              "name": "allowMultiSelection",
-              "type": null
-            },
-            {
-              "name": "isSelected",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "methods": [],
       "props": {
         "allowMultiSelection": {
           "type": {
@@ -3561,7 +3423,7 @@
   "src/components/Radio/index.jsx": [
     {
       "description": "",
-      "displayName": "RadioButton",
+      "displayName": "Radio",
       "methods": [],
       "props": {
         "id": {
@@ -3592,9 +3454,31 @@
           "required": false,
           "description": ""
         },
+        "text": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
         "value": {
           "type": {
-            "name": "string"
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
           },
           "required": false,
           "description": ""
@@ -3626,18 +3510,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "_.noop",
-            "computed": true
-          }
-        },
-        "inline": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": ""
+          "description": "@function onChange called when radio onChange event is fired\n@param {string|number} value - the radio value"
         },
         "checked": {
           "type": {
@@ -3649,6 +3522,13 @@
             "value": "false",
             "computed": false
           }
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "@deprecated"
         }
       }
     }
@@ -3656,30 +3536,14 @@
   "src/components/RadioGroup/index.jsx": [
     {
       "description": "",
+      "displayName": "RadioGroupProvider",
+      "methods": []
+    },
+    {
+      "description": "",
       "displayName": "RadioGroup",
       "methods": [],
       "props": {
-        "id": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "className": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "name": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
-        },
         "value": {
           "type": {
             "name": "string"
@@ -3687,20 +3551,9 @@
           "required": true,
           "description": ""
         },
-        "children": {
+        "name": {
           "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "arrayOf",
-                "value": {
-                  "name": "node"
-                }
-              },
-              {
-                "name": "node"
-              }
-            ]
+            "name": "string"
           },
           "required": true,
           "description": ""
@@ -3712,7 +3565,70 @@
           "required": true,
           "description": ""
         },
+        "orientation": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'vertical'",
+                "computed": false
+              },
+              {
+                "value": "'horizontal'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'vertical'",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
         "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "variant": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'default'",
+                "computed": false
+              },
+              {
+                "value": "'box'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'default'",
+            "computed": false
+          }
+        },
+        "id": {
           "type": {
             "name": "string"
           },
@@ -3724,7 +3640,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": ""
+          "description": "@deprecated use orientation=\"horizontal\" instead"
         }
       }
     }

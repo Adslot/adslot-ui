@@ -28,6 +28,6 @@ export interface ListPickerPureProps {
   selectedItems?: ListPickerPureSelectedItems[];
 }
 
-export default class ListPickerPure extends React.Component<ListPickerPureProps, any> {
-  render(): JSX.Element;
-}
+declare const ListPickerPure: React.FC<ListPickerPureProps>;
+
+export default ListPickerPure;

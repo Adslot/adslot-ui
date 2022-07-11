@@ -1,31 +1,91 @@
+@import '../../styles/variable';
+
+$cell-padding: 8px 0 8px 10px;
+
 .listpickerpure-component {
   display: flex;
   flex-direction: column;
-}
 
-.listpickerpure-component .grid-component-cell-toggle,
-.listpickerpure-component .grid-component-cell-addon,
-.listpickerpure-component .grid-component-cell-header-toggle,
-.listpickerpure-component .grid-component-cell-header-addon {
-  flex-basis: 10%;
-  justify-content: center;
-}
+  & .listpickerpure-component-label {
+    width: 100%;
+    margin: 0;
+    font-weight: unset;
+    cursor: pointer;
+    padding: $cell-padding;
+  }
 
-.listpickerpure-component .grid-component-cell-toggle,
-.listpickerpure-component .grid-component-cell-addon {
-  align-items: center;
-  display: flex;
-}
+  & .grid-component-row-body {
+    transition: background-color 150ms ease;
 
-.listpickerpure-component .grid-component-cell-header-toggle,
-.listpickerpure-component .grid-component-cell-header-addon {
-  text-align: center;
-}
+    &:hover {
+      background-color: $color-gray-lightest;
+    }
+  }
 
-.listpickerpure-component .empty-component {
-  border-bottom: 1px solid #e8e8e8;
-}
+  & .listpickerpure-component-toggle {
+    width: 100%;
+    height: 100%;
 
-.listpickerpure-component .grid-component-row:last-child {
-  border-bottom: 0;
+    & label {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      padding: $cell-padding;
+    }
+  }
+
+  & .grid-component-cell {
+    &.grid-component-cell-toggle,
+    &.grid-component-cell-addon,
+    &.grid-component-cell-header-toggle,
+    &.grid-component-cell-header-addon {
+      flex-basis: max(10%, 75px);
+      justify-content: center;
+    }
+
+    transition: background-color 150ms ease;
+
+    &.grid-component-cell-selected {
+      background-color: $color-gray-lightest;
+    }
+
+    &.grid-component-cell-label {
+      padding: 0;
+    }
+
+    &.grid-component-cell-toggle {
+      padding: 0;
+    }
+
+    &.grid-component-cell-toggle,
+    &.grid-component-cell-addon {
+      align-items: center;
+      display: flex;
+    }
+
+    &.grid-component-cell-header-toggle,
+    &.grid-component-cell-header-addon {
+      text-align: center;
+    }
+
+    &:last-child {
+      & .listpickerpure-component-toggle {
+        & label {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+
+  & .empty-component {
+    border-bottom: $border-lighter;
+  }
+
+  & .grid-component-row {
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 }

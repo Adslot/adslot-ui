@@ -64,12 +64,11 @@ const Example = () => {
         modalTitle="Select User"
         show={showModal}
       />
-      <div style={{ display: 'flex', width: '300px', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', width: '320px', alignItems: 'center', justifyContent: 'space-between' }}>
         <Button color="primary" variant="inverse" onClick={toggleListPickerModal}>
           Open List Picker
         </Button>
-        <Checkbox checked={showInfoPane} onChange={toggleShowInfoPane} />
-        <div>Show Info Panel in List Picker</div>
+        <Checkbox checked={showInfoPane} onChange={toggleShowInfoPane} label="Show Info Panel in List Picker" />
       </div>
     </React.Fragment>
   );

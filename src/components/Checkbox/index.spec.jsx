@@ -26,20 +26,13 @@ describe('<Checkbox />', () => {
 
   it('should render with id, className', () => {
     const { getByTestId } = render(<Checkbox id="checkboxId" className="checkboxClass" />);
-    expect(getByTestId('checkbox-input')).toHaveClass('checkboxClass');
+    expect(getByTestId('checkbox-wrapper')).toHaveClass('checkboxClass');
     expect(getByTestId('checkbox-input')).toHaveAttribute('id', 'checkboxId');
   });
 
   it('should render without a label', () => {
     const { queryByTestId } = render(<Checkbox name="movies" value="terminator" />);
     expect(queryByTestId('checkbox-label')).not.toBeInTheDocument();
-  });
-
-  it('should add inline class when inline prop in true', () => {
-    const { getByTestId, rerender } = render(<Checkbox name="movies" value="terminator" />);
-    expect(getByTestId('checkbox-wrapper')).not.toHaveClass('checkbox-component-inline');
-    rerender(<Checkbox name="movies" value="terminator" inline />);
-    expect(getByTestId('checkbox-wrapper')).toHaveClass('checkbox-component-inline');
   });
 
   it('should be disabled when "disable" prop is true', () => {
@@ -49,7 +42,7 @@ describe('<Checkbox />', () => {
     expect(getByTestId('checkbox-wrapper')).toHaveClass('disabled');
   });
 
-  it('should pass next state valut to the onChange function', () => {
+  it('should pass next state value to the onChange function', () => {
     const handleChange = jest.fn();
     const { getByTestId, rerender } = render(<Checkbox name="name" value="value" onChange={handleChange} />);
     fireEvent.click(getByTestId('checkbox-input'));

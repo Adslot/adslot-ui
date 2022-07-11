@@ -1,34 +1,21 @@
 import * as React from 'react';
 
-export type CheckboxGroupValue = string | number;
+export type CheckboxGroupOrientation = 'vertical' | 'horizontal';
 
-export type CheckboxGroupChildren = React.ReactNode[] | React.ReactNode;
+export type CheckboxGroupVariant = 'default' | 'box';
 
 export interface CheckboxGroupProps {
-  /**
-   * id for the checkboxGroup input
-   */
-  id?: string;
-  className?: string;
+  value: any[];
   name: string;
-  /**
-   * string array of checked values
-   */
-  value: CheckboxGroupValue[];
-  /**
-   * checkBoxGroup children: oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]
-   */
-  children: CheckboxGroupChildren;
-  /**
-   * function called when checkBox onChange event is fired
-   */
   onChange: (...args: any[]) => any;
-  /**
-   * data-test-selector for the checkboxGroup component
-   */
+  orientation?: CheckboxGroupOrientation;
+  children: React.ReactNode;
+  className?: string;
   dts?: string;
+  variant?: CheckboxGroupVariant;
+  id?: string;
   /**
-   * determines if checkbox-component-inline class is applied or not
+   * @deprecated use orientation="horizontal" instead
    */
   inline?: boolean;
 }
