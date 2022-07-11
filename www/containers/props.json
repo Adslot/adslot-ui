@@ -418,11 +418,57 @@
           },
           "required": true,
           "description": ""
+        },
+        "round": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fullWidth": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
         }
-      },
-      "composes": [
-        "../Button"
-      ]
+      }
     }
   ],
   "src/components/Avatar/index.jsx": [
@@ -785,6 +831,13 @@
           },
           "required": false,
           "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -1118,14 +1171,14 @@
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "additional text description to display below the label"
         },
         "icon": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "icon to display beside the label when  parent group's `variant=\"box\"`"
         },
         "value": {
           "type": {
@@ -1231,24 +1284,105 @@
           "required": true,
           "description": ""
         },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "@function onChange\n@param {array} newValue - the new checkboxGroup value\n@param {string} name - the checkbox name\n@param {string|number} value - the changed checkbox's value"
+        },
+        "getIsChecked": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "@function getIsChecked overrides the default checked state behaviour\n@param {string|number} itemValue - the checkbox's value\n@param {array} value - the checkbox group's value"
+        },
         "orientation": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'vertical'",
+                "computed": false
+              },
+              {
+                "value": "'horizontal'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "'vertical'",
             "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
           },
-          "required": false
+          "required": true,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
         },
         "variant": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'default'",
+                "computed": false
+              },
+              {
+                "value": "'box'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "'default'",
             "computed": false
+          }
+        },
+        "id": {
+          "type": {
+            "name": "string"
           },
-          "required": false
+          "required": false,
+          "description": ""
+        },
+        "inline": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "@deprecated use orientation=\"horizontal\" instead"
         }
-      },
-      "composes": [
-        "../RadioGroup"
-      ]
+      }
     }
   ],
   "src/components/ConfirmModal/index.jsx": [
@@ -3459,14 +3593,14 @@
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "additional text description to display below the label"
         },
         "icon": {
           "type": {
             "name": "node"
           },
           "required": false,
-          "description": ""
+          "description": "icon to display beside the label when parent group's `variant=\"box\"`"
         },
         "value": {
           "type": {
@@ -3517,7 +3651,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "checked status of the radio input",
           "defaultValue": {
             "value": "false",
             "computed": false

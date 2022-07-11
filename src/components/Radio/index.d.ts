@@ -7,7 +7,13 @@ export interface RadioProps {
   className?: string;
   name?: string;
   label?: React.ReactNode;
+  /**
+   * additional text description to display below the label
+   */
   text?: React.ReactNode;
+  /**
+   * icon to display beside the label when parent group's `variant="box"`
+   */
   icon?: React.ReactNode;
   value?: RadioValue;
   dts?: string;
@@ -17,6 +23,9 @@ export interface RadioProps {
    * @param {string|number} value - the radio value
    */
   onChange?: (...args: any[]) => any;
+  /**
+   * checked status of the radio input
+   */
   checked?: boolean;
   /**
    * @deprecated

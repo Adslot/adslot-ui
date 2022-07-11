@@ -45,7 +45,11 @@ const Props = ({ componentName, customMapper }) => {
                   <td>
                     <code>{_.get(prop, 'defaultValue.value', '')}</code>
                   </td>
-                  <td>{HtmlParser(prop.description)}</td>
+                  <td>
+                    {prop.description?.split('\n').map((line, i) => (
+                      <div key={i}>{HtmlParser(line)}</div>
+                    ))}
+                  </td>
                 </tr>
               ))}
             </tbody>

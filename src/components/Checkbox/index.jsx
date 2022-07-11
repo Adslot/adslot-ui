@@ -118,7 +118,13 @@ Checkbox.propTypes = {
    * checkBox label for the checkbox input
    */
   label: PropTypes.node,
+  /**
+   * additional text description to display below the label
+   */
   text: PropTypes.node,
+  /**
+   * icon to display beside the label when  parent group's `variant="box"`
+   */
   icon: PropTypes.node,
   /**
    * checkBox input value
