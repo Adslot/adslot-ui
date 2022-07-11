@@ -27,6 +27,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   className?: string;
   dts?: string;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 declare const Button: React.FC<ButtonProps>;

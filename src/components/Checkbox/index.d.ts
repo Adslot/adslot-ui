@@ -18,7 +18,13 @@ export interface CheckboxProps {
    * checkBox label for the checkbox input
    */
   label?: React.ReactNode;
+  /**
+   * additional text description to display below the label
+   */
   text?: React.ReactNode;
+  /**
+   * icon to display beside the label when  parent group's `variant="box"`
+   */
   icon?: React.ReactNode;
   /**
    * checkBox input value

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { expandDts, invariant } from '../../lib/utils';
-import { buttonSharedPropTypes, buttonSharedClasses, colors, variants, sizes } from '../Button';
+import { buttonSharedClasses, colors, variants, sizes } from '../Button';
 
 const Anchor = (props) => {
   const {
@@ -66,8 +66,14 @@ Anchor.propTypes = {
   color: PropTypes.oneOf(colors),
   variant: PropTypes.oneOf(variants),
   size: PropTypes.oneOf(sizes),
-  ...buttonSharedPropTypes,
   href: PropTypes.string.isRequired,
+  round: PropTypes.bool,
+  icon: PropTypes.node,
+  fullWidth: PropTypes.bool,
+  className: PropTypes.string,
+  dts: PropTypes.string,
+  disabled: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export default Anchor;

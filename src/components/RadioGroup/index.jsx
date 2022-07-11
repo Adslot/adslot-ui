@@ -68,7 +68,8 @@ const RadioGroup = ({
   );
 };
 
-export const radioGroupSharedPropTypes = {
+RadioGroup.propTypes = {
+  value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
@@ -81,11 +82,6 @@ export const radioGroupSharedPropTypes = {
    *  @deprecated use orientation="horizontal" instead
    **/
   inline: PropTypes.bool,
-};
-
-RadioGroup.propTypes = {
-  value: PropTypes.string.isRequired,
-  ...radioGroupSharedPropTypes,
 };
 
 export default RadioGroup;

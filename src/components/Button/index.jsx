@@ -36,6 +36,7 @@ const Button = (props) => {
   } = props;
   const isLink = variant === 'link' || className?.match(/\b(aui-link)\b/)?.[0];
 
+  // eslint-disable-next-line react/prop-types
   invariant(!props.href, 'Button: should not be used for href links. Use an <Anchor/> instead.');
   invariant(!theme, 'Button: The theme prop has been deprecated. Please use color instead.');
   invariant(!inverse, 'Button: The inverse prop has been deprecated. Please use variant="inverse" instead.');
@@ -96,15 +97,6 @@ export const colors = ['default', 'primary', 'secondary', 'success', 'danger', '
 export const variants = ['solid', 'borderless', 'inverse', 'link'];
 export const sizes = ['medium', 'large'];
 
-export const buttonSharedPropTypes = {
-  round: PropTypes.bool,
-  icon: PropTypes.node,
-  fullWidth: PropTypes.bool,
-  className: PropTypes.string,
-  dts: PropTypes.string,
-  disabled: PropTypes.bool,
-};
-
 Button.propTypes = {
   isLoading: PropTypes.bool,
   color: PropTypes.oneOf(colors),
@@ -120,7 +112,13 @@ Button.propTypes = {
    * Please use `variant="inverse"` instead.
    */
   inverse: PropTypes.bool,
-  ...buttonSharedPropTypes,
+  round: PropTypes.bool,
+  icon: PropTypes.node,
+  fullWidth: PropTypes.bool,
+  className: PropTypes.string,
+  dts: PropTypes.string,
+  disabled: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export default Button;

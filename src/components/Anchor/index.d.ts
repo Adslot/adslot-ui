@@ -17,6 +17,7 @@ export interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElemen
   className?: string;
   dts?: string;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 declare const Anchor: React.FC<AnchorProps>;

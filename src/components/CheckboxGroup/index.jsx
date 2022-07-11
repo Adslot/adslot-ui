@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { invariant } from '../../lib/utils';
-import { radioGroupSharedPropTypes } from '../RadioGroup';
 import '../RadioGroup/style.css';
 
 const CheckboxGroupContext = React.createContext({});
@@ -74,7 +73,30 @@ const CheckboxGroup = ({
 
 CheckboxGroup.propTypes = {
   value: PropTypes.array.isRequired,
-  ...radioGroupSharedPropTypes,
+  name: PropTypes.string.isRequired,
+  /**
+   * @function onChange
+   * @param {array} newValue - the new checkboxGroup value
+   * @param {string} name - the checkbox name
+   * @param {string|number} value - the changed checkbox's value
+   */
+  onChange: PropTypes.func.isRequired,
+  /**
+   * @function getIsChecked overrides the default checked state behaviour
+   * @param {string|number} itemValue - the checkbox's value
+   * @param {array} value - the checkbox group's value
+   */
+  getIsChecked: PropTypes.func,
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  dts: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'box']),
+  id: PropTypes.string,
+  /**
+   *  @deprecated use orientation="horizontal" instead
+   **/
+  inline: PropTypes.bool,
 };
 
 export default CheckboxGroup;

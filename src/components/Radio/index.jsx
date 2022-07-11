@@ -101,7 +101,13 @@ Radio.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.node,
+  /**
+   * additional text description to display below the label
+   */
   text: PropTypes.node,
+  /**
+   * icon to display beside the label when parent group's `variant="box"`
+   */
   icon: PropTypes.node,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   dts: PropTypes.string,
@@ -111,6 +117,9 @@ Radio.propTypes = {
    * @param {string|number} value - the radio value
    */
   onChange: PropTypes.func,
+  /**
+   * checked status of the radio input
+   */
   checked: PropTypes.bool,
   /**
    * @deprecated
