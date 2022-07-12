@@ -11,6 +11,7 @@ export interface ImageCropperProps {
   height?: number;
   aspectRatio?: number;
   isSaving?: boolean;
+  dts?: string;
 }
 
 declare const ImageCropper: React.ForwardRefExoticComponent<

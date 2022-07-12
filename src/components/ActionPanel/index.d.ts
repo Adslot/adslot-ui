@@ -12,6 +12,7 @@ export interface ActionPanelProps {
   closeIcon?: React.ReactNode;
   isModal?: boolean;
   cancelText?: string;
+  dts?: string;
 }
 
 declare const ActionPanel: React.FC<ActionPanelProps>;
