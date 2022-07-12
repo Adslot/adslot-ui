@@ -2,11 +2,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { expandDts } from '../../lib/utils';
 import Button from '../Button';
 import './styles.css';
 
 const ActionPanel = React.forwardRef((props, ref) => {
-  const { title, className, size, onClose, children, actionButton, isModal, closeIcon, cancelText } = props;
+  const { title, className, size, onClose, children, actionButton, isModal, closeIcon, cancelText, dts } = props;
 
   const addBodyClass = (classname) => document.body.classList.add(classname);
   const removeBodyClass = (classname) => document.body.classList.remove(classname);
@@ -29,6 +30,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
         <div
           data-testid="action-panel-wrapper"
           className={classNames('aui--action-panel', `is-${size}`, { 'action-modal': isModal }, className)}
+          {...expandDts(dts)}
         >
           <div
             data-testid="action-panel-header"
@@ -76,6 +78,7 @@ ActionPanel.propTypes = {
   closeIcon: PropTypes.node,
   isModal: PropTypes.bool,
   cancelText: PropTypes.string,
+  dts: PropTypes.string,
 };
 
 ActionPanel.defaultProps = {
