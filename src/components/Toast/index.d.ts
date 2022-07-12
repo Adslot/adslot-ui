@@ -63,10 +63,15 @@ export interface notifyProps {
 
 declare const notify: React.FC<notifyProps>;
 
+export interface dismissProps {}
+
+declare const dismiss: React.FC<dismissProps>;
+
 declare const Toast: {
   Container: typeof ToastContainer;
   Notification: typeof ToastNotification;
   notify: typeof notify;
+  dismiss: typeof dismiss;
 };
 
 export default Toast;

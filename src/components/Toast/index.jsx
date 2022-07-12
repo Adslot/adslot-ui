@@ -94,10 +94,14 @@ ToastNotification.propTypes = {
   message: PropTypes.node.isRequired,
 };
 
+const dismiss = toast.dismiss;
+dismiss.propTypes = {};
+
 const Toast = {
   Container: ToastContainer,
   Notification: ToastNotification,
   notify: notify,
+  dismiss,
 };
 
 export default Toast;
