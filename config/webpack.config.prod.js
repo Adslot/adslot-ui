@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 const emoji = require('remark-emoji');
 const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -167,7 +166,7 @@ module.exports = webpackMerge(commonConfig, {
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('index.html'),
+      template: paths.appHtml,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

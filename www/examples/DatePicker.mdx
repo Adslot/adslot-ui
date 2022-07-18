@@ -5,7 +5,7 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 
 ```jsx live=true
 const Example = () => {
-  const [startDate, setStartDate] = React.useState(moment());
+  const [startDate, setStartDate] = React.useState(new Date());
   const handleChange = (startDate) => setStartDate(startDate);
 
   return (
