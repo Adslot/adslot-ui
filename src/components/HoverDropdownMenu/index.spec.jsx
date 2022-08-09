@@ -27,7 +27,7 @@ describe('<HoverDropdownMenu />', () => {
       },
       {
         title: 'Logout',
-        url: 'http://www.google.com',
+        url: 'https://www.google.com',
         target: '_self',
         isEnabled: true,
       },
