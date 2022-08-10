@@ -2282,6 +2282,76 @@
       }
     }
   ],
+  "src/components/Icon/index.jsx": [
+    {
+      "description": "",
+      "displayName": "Icon",
+      "methods": [],
+      "props": {
+        "name": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "iconNames"
+          },
+          "required": true,
+          "description": ""
+        },
+        "color": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'default'",
+                "computed": false
+              },
+              {
+                "value": "'light'",
+                "computed": false
+              },
+              {
+                "value": "'primary'",
+                "computed": false
+              },
+              {
+                "value": "'success'",
+                "computed": false
+              },
+              {
+                "value": "'warning'",
+                "computed": false
+              },
+              {
+                "value": "'danger'",
+                "computed": false
+              },
+              {
+                "value": "'info'",
+                "computed": false
+              },
+              {
+                "value": "'inverse'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'currentColor'",
+            "computed": false
+          }
+        },
+        "size": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    }
+  ],
   "src/components/ImageCropper/index.jsx": [
     {
       "description": "",

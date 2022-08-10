@@ -3,6 +3,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { mdx } from '@mdx-js/react';
 import * as AdslotUI from '../../src';
+import * as Icons from '../../icons/src/react';
 import theme from './theme';
 
 /* eslint-disable */
@@ -13,7 +14,7 @@ export default ({ children, className, live }) => {
         code={children.trim()}
         language="jsx"
         noInline={children.includes('render(')}
-        scope={{ ...AdslotUI, mdx }}
+        scope={{ ...AdslotUI, Icons, mdx }}
         theme={theme}
         className="test"
       >

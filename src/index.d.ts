@@ -25,6 +25,7 @@ export { default as GridCell } from './components/Grid/Cell';
 export { default as GridRow } from './components/Grid/Row';
 export { default as HelpIconPopover } from './components/HelpIconPopover';
 export { default as HoverDropdownMenu } from './components/HoverDropdownMenu';
+export { default as Icon } from './components/Icon';
 export { default as ImageCropper } from './components/ImageCropper';
 export { default as InformationBox } from './components/InformationBox';
 export { default as ListPicker } from './components/ListPicker';
