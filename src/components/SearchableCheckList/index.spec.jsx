@@ -45,6 +45,13 @@ describe('<SearchableChecklist />', () => {
     expect(getByTestId('footer-section')).toHaveTextContent('3 more publishers');
   });
 
+  it('should not render title when hideTitle is false', () => {
+    const { queryByTestId } = render(
+      <SearchableCheckList context={context} items={items} onChange={_.noop} hideTitle={true} />
+    );
+    expect(queryByTestId('searchable-list-title')).not.toBeInTheDocument();
+  });
+
   it('should correctly render footer value with single hidden item', () => {
     const { getByTestId } = render(
       <SearchableCheckList context={context} items={items} displayCount={8} onChange={_.noop} />
@@ -184,20 +191,31 @@ describe('<SearchableChecklist />', () => {
     expect(onChange).toHaveBeenCalledWith(['01', '06', '03']);
   });
 
-  it('should correctly call onChange when main checkbox is checked', () => {
-    const onChange = jest.fn();
+  it('should correctly call onSearch and onClear when search input specified and then cleared', () => {
+    const callbacks = {
+      onClear: jest.fn(),
+      onSearch: jest.fn(),
+    };
 
-    const { queryAllByTestId } = render(<SearchableCheckList context={context} items={items} onChange={onChange} />);
+    const { getByTestId } = render(
+      <SearchableCheckList
+        context={context}
+        items={items}
+        onChange={_.noop}
+        onClear={callbacks.onClear}
+        onSearch={callbacks.onSearch}
+      />
+    );
 
-    const checkBoxesWrapper = queryAllByTestId('checkbox-input');
-    expect(checkBoxesWrapper).toHaveLength(7);
+    fireEvent.change(getByTestId('search-input'), { target: { value: 'new-value' } });
+    expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
+    expect(callbacks.onSearch).toHaveBeenCalledWith('new-value');
 
-    expect(onChange).toHaveBeenCalledTimes(0);
-    fireEvent.click(checkBoxesWrapper[0]);
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(getByTestId('search-icon-wrapper')).toHaveClass('aui--search-component-icon');
+    fireEvent.click(getByTestId('search-icon-wrapper'));
 
-    // All items checked
-    expect(onChange).toHaveBeenCalledWith(_.map(items, 'value'));
+    expect(callbacks.onClear).toHaveBeenCalledTimes(1);
+    expect(callbacks.onClear).toHaveBeenCalledWith('');
   });
 
   it('should correctly call onChange when main checkbox is checked', () => {

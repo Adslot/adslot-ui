@@ -31,7 +31,17 @@ export interface SearchableCheckListProps {
    * Number of checkbox items to render
    */
   displayCount?: number;
+  /**
+   * Hides the title
+   */
+  hideTitle?: boolean;
   onChange: (...args: any[]) => any;
+  /**
+   * Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)
+   */
+  searchOnEnter?: boolean;
+  onSearch?: (...args: any[]) => any;
+  onClear?: (...args: any[]) => any;
 }
 
 declare const SearchableCheckList: React.FC<SearchableCheckListProps>;
