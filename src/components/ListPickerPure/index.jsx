@@ -43,29 +43,16 @@ const ListPickerPure = ({
   const handleChange = (item) => {
     return () => {
       const isSelected = isItemSelected(item);
-      updateSelectedItems(item, isSelected);
       if (isSelected) {
+        setSelectedItems((_selectedItems) =>
+          allowMultiSelection ? _.reject(_selectedItems, { id: item.id }) : [item]
+        );
         deselectItem(item, allowMultiSelection);
       } else {
+        setSelectedItems((_selectedItems) => (allowMultiSelection ? [..._selectedItems, item] : [item]));
         selectItem(item, allowMultiSelection);
       }
     };
-  };
-
-  const updateSelectedItems = (item, isSelected) => {
-    const newSelectedItemsArray = _.clone(selectedItems);
-
-    if (allowMultiSelection) {
-      if (isSelected) {
-        _.remove(newSelectedItemsArray, { id: item.id });
-      } else {
-        newSelectedItemsArray.push(item);
-      }
-
-      setSelectedItems(newSelectedItemsArray);
-    } else {
-      setSelectedItems([item]);
-    }
   };
 
   const ToggleComponent = allowMultiSelection ? Checkbox : Radio;

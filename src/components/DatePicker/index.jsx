@@ -11,6 +11,11 @@ const momentToDate = (date) => (!date || date instanceof Date ? date : date.toDa
 const withMoment = (DatePickerComponent) =>
   React.forwardRef(
     ({ selected, onChange, startDate, endDate, minDate, maxDate, dateFormat, disableMomentFormat, ...props }, ref) => {
+      const _dateFormat = React.useMemo(
+        () => (disableMomentFormat ? dateFormat : transform(dateFormat)),
+        [dateFormat, disableMomentFormat]
+      );
+
       const isDate = selected instanceof Date;
       const handleChange = React.useCallback(
         (newDate) => {
@@ -27,7 +32,7 @@ const withMoment = (DatePickerComponent) =>
           endDate={momentToDate(endDate)}
           minDate={momentToDate(minDate)}
           maxDate={momentToDate(maxDate)}
-          dateFormat={disableMomentFormat ? dateFormat : transform(dateFormat)}
+          dateFormat={_dateFormat}
           onChange={handleChange}
         />
       );

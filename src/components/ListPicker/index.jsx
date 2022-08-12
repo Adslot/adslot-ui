@@ -45,11 +45,9 @@ const ListPicker = ({
   const [disableApplyButton, setDisableApplyButton] = React.useState(getApplyButtonState(initialSelection));
 
   const selectItem = (item) => {
-    if (!allowMultiSelection) selectedItems.length = 0;
-
-    selectedItems.push(item);
-    setSelectedItems(selectedItems);
-    setDisableApplyButton(getApplyButtonState(selectedItems));
+    const newSelectedItems = allowMultiSelection ? [...selectedItems, item] : [item];
+    setSelectedItems(newSelectedItems);
+    setDisableApplyButton(getApplyButtonState(newSelectedItems));
   };
 
   const deselectItem = (item) => {

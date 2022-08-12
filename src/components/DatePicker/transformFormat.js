@@ -11,8 +11,6 @@ const momentFormattingTokensRegExp = new RegExp(
 
 const dateFnsformattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
 
-const cache = new Map();
-
 const tokenMapping = {
   YY: 'yy',
   YYYY: 'yyyy',
@@ -135,8 +133,4 @@ export function transform(format) {
   if (substring) result += escapeDateFnsToken(substring);
 
   return result;
-}
-
-export function clearCache() {
-  cache.clear();
 }
