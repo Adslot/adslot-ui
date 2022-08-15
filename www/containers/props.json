@@ -4383,11 +4383,69 @@
             "computed": false
           }
         },
+        "hideTitle": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Hides the title",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
         "onChange": {
           "type": {
             "name": "func"
           },
           "required": true,
+          "description": ""
+        },
+        "searchOnEnter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Determines whether onSearch() will be fired on ENTER key press (Default behaviour is to fire onSearch() when the input changes)",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onSearch": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "_.noOp",
+            "computed": true
+          }
+        },
+        "showSearchButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "footerText": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
           "description": ""
         }
       }
