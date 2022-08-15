@@ -17,6 +17,8 @@ const SearchableCheckList = ({
   onSearch,
   searchOnEnter,
   onClear,
+  showSearchButton,
+  footerText,
 }) => {
   const [searchText, setSearchText] = React.useState('');
 
@@ -58,6 +60,7 @@ const SearchableCheckList = ({
         )}
         <div className="search-box">
           <Search
+            showSearchButton={showSearchButton}
             searchOnEnter={searchOnEnter}
             onClear={onClear}
             onSearch={(value) => {
@@ -93,13 +96,14 @@ const SearchableCheckList = ({
             ))}
           </CheckboxGroup>
         </div>
-        {remainingItemsCount > 0 && (
-          <div
-            className="footer"
-            data-testid="footer-section"
-          >{`${remainingItemsCount.toLocaleString()} more ${_.toLower(
-            remainingItemsCount > 1 ? pluralLabel : singularLabel
-          )}`}</div>
+        {(!_.isEmpty(footerText) || remainingItemsCount > 0) && (
+          <div className="footer" data-testid="footer-section">
+            {!_.isEmpty(footerText)
+              ? footerText
+              : `${remainingItemsCount.toLocaleString()} more ${_.toLower(
+                  remainingItemsCount > 1 ? pluralLabel : singularLabel
+                )}`}
+          </div>
         )}
       </div>
     </div>
@@ -146,6 +150,8 @@ SearchableCheckList.propTypes = {
   searchOnEnter: PropTypes.bool,
   onSearch: PropTypes.func,
   onClear: PropTypes.func,
+  showSearchButton: PropTypes.bool,
+  footerText: PropTypes.string,
 };
 
 SearchableCheckList.defaultProps = {
@@ -155,6 +161,7 @@ SearchableCheckList.defaultProps = {
   placeholder: 'Search',
   searchOnEnter: false,
   onClear: _.noOp,
+  showSearchButton: true,
 };
 
 export default SearchableCheckList;

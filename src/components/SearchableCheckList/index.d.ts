@@ -42,6 +42,8 @@ export interface SearchableCheckListProps {
   searchOnEnter?: boolean;
   onSearch?: (...args: any[]) => any;
   onClear?: (...args: any[]) => any;
+  showSearchButton?: boolean;
+  footerText?: string;
 }
 
 declare const SearchableCheckList: React.FC<SearchableCheckListProps>;

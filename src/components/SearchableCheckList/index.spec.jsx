@@ -52,12 +52,46 @@ describe('<SearchableChecklist />', () => {
     expect(queryByTestId('searchable-list-title')).not.toBeInTheDocument();
   });
 
+  it('should render search button by default when searchOnEnter is true', () => {
+    const { queryByTestId } = render(
+      <SearchableCheckList context={context} items={items} onChange={_.noop} searchOnEnter={true} />
+    );
+    expect(queryByTestId('search-button')).toBeInTheDocument();
+  });
+
+  it('should not render search button when showSearchButton is false', () => {
+    const { queryByTestId } = render(
+      <SearchableCheckList
+        context={context}
+        items={items}
+        onChange={_.noop}
+        searchOnEnter={true}
+        showSearchButton={false}
+      />
+    );
+    expect(queryByTestId('search-button')).not.toBeInTheDocument();
+  });
+
   it('should correctly render footer value with single hidden item', () => {
     const { getByTestId } = render(
       <SearchableCheckList context={context} items={items} displayCount={8} onChange={_.noop} />
     );
 
     expect(getByTestId('footer-section')).toHaveTextContent('1 more publisher');
+  });
+
+  it('should correctly render footer text when specified', () => {
+    const { getByTestId } = render(
+      <SearchableCheckList
+        context={context}
+        items={items}
+        displayCount={8}
+        onChange={_.noop}
+        footerText="custom text"
+      />
+    );
+
+    expect(getByTestId('footer-section')).toHaveTextContent('custom text');
   });
 
   it('should correctly render custom placeholder', () => {
