@@ -5950,6 +5950,20 @@
             "value": "true",
             "computed": false
           }
+        },
+        "addNodePopoverInfoProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "removeNodePopoverInfoProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -6256,6 +6270,20 @@
           },
           "required": false,
           "description": "A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component."
+        },
+        "addNodePopoverInfoProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "removeNodePopoverInfoProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }
@@ -6549,6 +6577,20 @@
             "value": "(value) => value",
             "computed": false
           }
+        },
+        "addNodePopoverInfoProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
+        },
+        "removeNodePopoverInfoProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }

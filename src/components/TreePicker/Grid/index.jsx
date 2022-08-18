@@ -25,6 +25,8 @@ const TreePickerGrid = ({
   valueFormatter,
   emptyText,
   displayGroupHeader,
+  addNodePopoverInfoProps,
+  removeNodePopoverInfoProps,
 }) => {
   const nodesByGroupLabel = _.groupBy(nodes, groupFormatter);
   const emptySvgIcon = hideIcon ? null : emptySvgSymbol;
@@ -61,6 +63,8 @@ const TreePickerGrid = ({
                   removeNode,
                   selected,
                   valueFormatter,
+                  addNodePopoverInfoProps,
+                  removeNodePopoverInfoProps,
                 }}
               />
             ))}
@@ -88,6 +92,8 @@ TreePickerGrid.propTypes = {
   selected: PropTypes.bool.isRequired,
   valueFormatter: PropTypes.func,
   displayGroupHeader: PropTypes.bool,
+  addNodePopoverInfoProps: PropTypes.object,
+  removeNodePopoverInfoProps: PropTypes.object,
 };
 
 TreePickerGrid.defaultProps = {
