@@ -1,13 +1,9 @@
 import moment from 'moment';
 import { format } from 'date-fns';
-import { transform, clearCache } from './transformFormat';
+import { transform } from './transformFormat';
 
 describe('<DatePicker />', () => {
   const date = new Date('2021-11-10T02:42:58.797Z');
-
-  beforeEach(() => {
-    clearCache();
-  });
 
   it('should format common format correctly', () => {
     const formats = [

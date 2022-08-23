@@ -4688,7 +4688,7 @@ button.close {
   height: auto;
   line-height: 1;
 }
-@media all and (transform-3d), (-webkit-transform-3d) {
+@media all and (-webkit-transform-3d) {
   .carousel-inner > .item {
     -webkit-transition: -webkit-transform 0.6s ease-in-out;
     -moz-transition: -moz-transform 0.6s ease-in-out;
@@ -4937,6 +4937,7 @@ button.close {
 
 .text-hide {
   font: 0/0 a;
+  font-family: inherit;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
