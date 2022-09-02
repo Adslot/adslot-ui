@@ -1,31 +1,49 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { expandDts } from '../../lib/utils';
 import Button from '../Button';
 import './styles.css';
 
 const ActionPanel = React.forwardRef((props, ref) => {
-  const { title, className, size, onClose, children, actionButton, isModal, closeIcon, cancelText, dts } = props;
+  const {
+    title,
+    className,
+    size,
+    onClose,
+    children,
+    visuallyHidden,
+    actionButton,
+    isModal,
+    closeIcon,
+    cancelText,
+    dts,
+  } = props;
 
   const addBodyClass = (classname) => document.body.classList.add(classname);
   const removeBodyClass = (classname) => document.body.classList.remove(classname);
 
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     if (isModal) addBodyClass('modal-open');
 
     return () => {
+      if (visuallyHidden) return;
       if (isModal) removeBodyClass('modal-open');
     };
-  }, [isModal]);
+  }, [isModal, visuallyHidden]);
 
   const actionPanel = (
     <div ref={ref}>
-      <div className={isModal ? 'aui--action-panel-backdrop' : 'hide'} />
+      <div
+        className={classNames(isModal ? 'aui--action-panel-backdrop' : 'hide', { 'visually-hidden': visuallyHidden })}
+      />
       <div
         data-testid="action-panel-modal-wrapper"
-        className={classNames('aui--action-panel-wrapper', { 'aui--action-panel-modal-wrapper': isModal })}
+        className={classNames('aui--action-panel-wrapper', {
+          'aui--action-panel-modal-wrapper': isModal,
+          'visually-hidden': visuallyHidden,
+        })}
       >
         <div
           data-testid="action-panel-wrapper"
@@ -78,6 +96,12 @@ ActionPanel.propTypes = {
   closeIcon: PropTypes.node,
   isModal: PropTypes.bool,
   cancelText: PropTypes.string,
+  /**
+   * Hides the modal with css, but keeps it mounted.
+   * This should only be used if you need to launch an ActionPanel
+   * from within another ActionPanel.
+   */
+  visuallyHidden: PropTypes.bool,
   dts: PropTypes.string,
 };
 

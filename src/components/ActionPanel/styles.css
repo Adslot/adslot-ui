@@ -148,7 +148,12 @@
   background-color: #838383;
   width: 100%;
   opacity: 0.8;
-  animation: fadein 0.2s;
+  animation: fadein 200ms ease-out;
+
+  &.visually-hidden {
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+  }
 }
 
 .aui--action-panel-modal-wrapper {
@@ -159,5 +164,9 @@
   align-content: center;
   top: 0;
   left: 0;
-  animation: fadein 0.2s;
+  animation: fadein 200ms;
+
+  &.visually-hidden {
+    visibility: hidden;
+  }
 }
