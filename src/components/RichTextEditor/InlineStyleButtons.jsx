@@ -6,9 +6,13 @@ import ItalicIcon from '../../styles/icons/italic.svg';
 import UnderlineIcon from '../../styles/icons/underline.svg';
 
 const INLINE_STYLES = [
-  { label: <BoldIcon data-testid="bold" />, style: 'BOLD' },
-  { label: <ItalicIcon data-testid="italics" />, style: 'ITALIC' },
-  { label: <UnderlineIcon data-testid="underline" />, style: 'UNDERLINE' },
+  { label: <BoldIcon data-testid="bold" />, style: 'BOLD', ariaLabel: 'Bold' },
+  { label: <ItalicIcon data-testid="italics" aria-label="italic" />, style: 'ITALIC', ariaLabel: 'Italic' },
+  {
+    label: <UnderlineIcon data-testid="underline" aria-label="Underline" />,
+    style: 'UNDERLINE',
+    ariaLabel: 'Underline',
+  },
 ];
 
 const InlineStyleButtons = (props) => {
@@ -24,7 +28,7 @@ const InlineStyleButtons = (props) => {
       active={currentStyle.has(type.style)}
       label={type.label}
       onToggle={() => onToggle(type.style)}
-      style={type.style}
+      aria-label={type.ariaLabel}
     />
   ));
 };

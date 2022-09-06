@@ -5,8 +5,8 @@ import BulletIcon from '../../styles/icons/bullet.svg';
 import NumberIcon from '../../styles/icons/number.svg';
 
 const BLOCK_TYPES = [
-  { label: <BulletIcon data-testid="bullet" />, style: 'unordered-list-item' },
-  { label: <NumberIcon data-testid="number" />, style: 'ordered-list-item' },
+  { label: <BulletIcon data-testid="bullet" />, style: 'unordered-list-item', ariaLabel: 'Unordered list' },
+  { label: <NumberIcon data-testid="number" />, style: 'ordered-list-item', ariaLabel: 'Ordered list' },
 ];
 
 const BlockStyleButtons = (props) => {
@@ -24,7 +24,7 @@ const BlockStyleButtons = (props) => {
       active={type.style === blockType}
       label={type.label}
       onToggle={() => onToggle(type.style)}
-      style={type.style}
+      aria-label={type.ariaLabel}
     />
   ));
 };
