@@ -17,6 +17,7 @@ const FileUploadAction = ({ onFileUpload, fileFilter }) => {
           fileInputRef.current.value = '';
           fileInputRef.current.click();
         }}
+        aria-label="Download file"
       />
       <input
         data-testid="file-download-input"
