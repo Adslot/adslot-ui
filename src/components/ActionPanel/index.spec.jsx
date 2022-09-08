@@ -60,6 +60,12 @@ describe('<ActionPanel />', () => {
     expect(document.body).not.toHaveClass('modal-open');
   });
 
+  it('should hide the modal with the visuallyHidden prop', () => {
+    const { getByTestId } = render(<ActionPanel {...makeProps({ isModal: true, visuallyHidden: true })} />);
+
+    expect(getByTestId('action-panel-modal-wrapper')).toHaveClass('visually-hidden');
+  });
+
   it('should render a user specified text on the cancel button', () => {
     let wrapper;
     act(() => {
