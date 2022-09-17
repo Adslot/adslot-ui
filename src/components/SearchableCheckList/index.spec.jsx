@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { render, cleanup, fireEvent, queryAllByAttribute } from '@testing-library/react';
+import { within } from '@testing-library/dom';
 import SearchableCheckList from '.';
 
 const items = [
@@ -13,6 +14,7 @@ const items = [
   { value: '07', label: 'Spy Hard' },
   { value: '08', label: 'Pacific Rim' },
   { value: '09', label: 'Paranormal Activity' },
+  { value: 'all-option', label: 'Custom All' }, // all-option is a reserved keyword (should not render this option)
 ];
 
 const context = { singularLabel: 'Publisher', pluralLabel: 'Publishers' };
@@ -33,7 +35,7 @@ describe('<SearchableChecklist />', () => {
     expect(searchInputWrapper).toHaveValue('');
     expect(searchInputWrapper).toHaveAttribute('placeholder', 'Search');
 
-    // 1 main checkBox and 6 item checkboxes
+    // 1 main checkBox and 6 item checkBoxes
     const checkBoxesWrapper = queryAllByTestId('checkbox-input');
     expect(checkBoxesWrapper).toHaveLength(7);
 
@@ -43,6 +45,29 @@ describe('<SearchableChecklist />', () => {
     });
 
     expect(getByTestId('footer-section')).toHaveTextContent('3 more publishers');
+  });
+
+  it('should correctly render with all option selected', () => {
+    const { container } = render(
+      <SearchableCheckList context={context} selectedItemsKeys={['all-option']} items={items} onChange={_.noop} />
+    );
+
+    const mainCheckboxWrapper = queryAllByClass(container, 'main-checkbox');
+    expect(mainCheckboxWrapper).toHaveLength(1);
+    const mainCheckBoxInputWrapper = within(mainCheckboxWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(mainCheckBoxInputWrapper[0]).toBeChecked(); // Main checkbox should be selected
+
+    const itemsContainerWrapper = queryAllByClass(container, 'items-container');
+    expect(itemsContainerWrapper).toHaveLength(1);
+
+    // 6 items checkboxes
+    const checkBoxesWrapper = within(itemsContainerWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(6);
+
+    // All other options should be un-selected
+    _.forEach(checkBoxesWrapper, (checkBoxItem) => {
+      expect(checkBoxItem).not.toBeChecked();
+    });
   });
 
   it('should not render title when hideTitle is false', () => {
@@ -115,7 +140,7 @@ describe('<SearchableChecklist />', () => {
       <SearchableCheckList context={context} items={items} displayCount={15} onChange={_.noop} />
     );
 
-    // 1 main checkBox and 9 item checkboxes
+    // 1 main checkBox and 9 item checkboxes (all-option value option is skipped since it is a reserved value)
     const checkBoxesWrapper = queryAllByTestId('checkbox-input');
     expect(checkBoxesWrapper).toHaveLength(10);
 
@@ -124,32 +149,65 @@ describe('<SearchableChecklist />', () => {
   });
 
   it('should correctly render with partial selection', () => {
-    const { container, queryAllByTestId } = render(
+    const { container } = render(
       <SearchableCheckList context={context} items={items} selectedItemsKeys={['01', '06']} onChange={_.noop} />
     );
 
-    // main checkbox should be partially checked
-    expect(queryAllByClass(container, 'aui--checkbox partial-checked aui--checkbox-default is-selected')).toHaveLength(
-      1
-    );
+    const mainCheckboxWrapper = queryAllByClass(container, 'main-checkbox');
+    expect(mainCheckboxWrapper).toHaveLength(1);
+    const mainCheckBoxInputWrapper = within(mainCheckboxWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(mainCheckBoxInputWrapper[0]).not.toBeChecked(); // Main checkbox should not be selected
 
-    // 1 main checkBox and 6 item checkboxes
-    const checkBoxesWrapper = queryAllByTestId('checkbox-input');
-    expect(checkBoxesWrapper).toHaveLength(7);
+    const itemsContainerWrapper = queryAllByClass(container, 'items-container');
+    expect(itemsContainerWrapper).toHaveLength(1);
 
-    // 2 checked elements
-    _.forEach([1, 2], (index) => {
+    // 6 items checkboxes
+    const checkBoxesWrapper = within(itemsContainerWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(6);
+
+    // 2 checked items
+    _.forEach([0, 1], (index) => {
       expect(checkBoxesWrapper[index]).toBeChecked();
     });
 
-    // Remaining 4 un-checked elements
-    _.forEach([3, 4, 5, 6], (index) => {
+    // Remaining 4 un-checked items
+    _.forEach([2, 3, 4, 5], (index) => {
       expect(checkBoxesWrapper[index]).not.toBeChecked();
     });
   });
 
-  it('should correctly render with full selection', () => {
-    const { container, queryAllByTestId } = render(
+  it('should correctly render with full option selection', () => {
+    const { container } = render(
+      <SearchableCheckList
+        context={context}
+        items={items}
+        selectedItemsKeys={_(items)
+          .reject((item) => _.isEqual(item.value, 'all-option'))
+          .map('value')
+          .value()}
+        onChange={_.noop}
+      />
+    );
+
+    const mainCheckboxWrapper = queryAllByClass(container, 'main-checkbox');
+    expect(mainCheckboxWrapper).toHaveLength(1);
+    const mainCheckBoxInputWrapper = within(mainCheckboxWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(mainCheckBoxInputWrapper[0]).not.toBeChecked(); // Main checkbox should not be selected, since `All` is an independent option
+
+    const itemsContainerWrapper = queryAllByClass(container, 'items-container');
+    expect(itemsContainerWrapper).toHaveLength(1);
+
+    // 6 items checkboxes
+    const checkBoxesWrapper = within(itemsContainerWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(6);
+
+    _.forEach(checkBoxesWrapper, (checkBoxItem) => {
+      expect(checkBoxItem).toBeChecked();
+    });
+  });
+
+  it('should correctly only render main checkbox if all option key is part of the selectedKeys list', () => {
+    const { container } = render(
       <SearchableCheckList
         context={context}
         items={items}
@@ -158,14 +216,20 @@ describe('<SearchableChecklist />', () => {
       />
     );
 
-    expect(queryAllByClass(container, 'aui--checkbox partial-checked')).toHaveLength(0);
+    const mainCheckboxWrapper = queryAllByClass(container, 'main-checkbox');
+    expect(mainCheckboxWrapper).toHaveLength(1);
+    const mainCheckBoxInputWrapper = within(mainCheckboxWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(mainCheckBoxInputWrapper[0]).toBeChecked(); // Main checkbox should not be selected, since `All` is an independent option
 
-    // 1 main checkBox and 6 item checkboxes
-    const checkBoxesWrapper = queryAllByTestId('checkbox-input');
-    expect(checkBoxesWrapper).toHaveLength(7);
+    const itemsContainerWrapper = queryAllByClass(container, 'items-container');
+    expect(itemsContainerWrapper).toHaveLength(1);
+
+    // 6 items checkboxes
+    const checkBoxesWrapper = within(itemsContainerWrapper[0]).queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(6);
 
     _.forEach(checkBoxesWrapper, (checkBoxItem) => {
-      expect(checkBoxItem).toBeChecked();
+      expect(checkBoxItem).not.toBeChecked();
     });
   });
 
@@ -225,6 +289,24 @@ describe('<SearchableChecklist />', () => {
     expect(onChange).toHaveBeenCalledWith(['01', '06', '03']);
   });
 
+  it('should correctly unselect All checkbox when other item is selected', () => {
+    const onChange = jest.fn();
+
+    const { queryAllByTestId } = render(
+      <SearchableCheckList context={context} items={items} selectedItemsKeys={['all-option']} onChange={onChange} />
+    );
+
+    let checkBoxesWrapper = queryAllByTestId('checkbox-input');
+    expect(checkBoxesWrapper).toHaveLength(7);
+
+    expect(onChange).toHaveBeenCalledTimes(0);
+    fireEvent.click(checkBoxesWrapper[1]);
+    expect(onChange).toHaveBeenCalledTimes(1);
+
+    // Remmove 'all-option' and select new selection
+    expect(onChange).toHaveBeenCalledWith(['01']);
+  });
+
   it('should correctly call onSearch and onClear when search input specified and then cleared', () => {
     const callbacks = {
       onClear: jest.fn(),
@@ -265,22 +347,6 @@ describe('<SearchableChecklist />', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
 
     // All items checked
-    expect(onChange).toHaveBeenCalledWith(_.map(items, 'value'));
-  });
-
-  it('should call onChange with `[]` when selected items are fixed', () => {
-    const onChange = jest.fn();
-
-    const { queryAllByTestId } = render(
-      <SearchableCheckList context={context} items={items} selectedItemsKeys={['01']} onChange={onChange} />
-    );
-
-    const checkBoxesWrapper = queryAllByTestId('checkbox-input');
-    expect(checkBoxesWrapper).toHaveLength(7);
-
-    expect(onChange).toHaveBeenCalledTimes(0);
-    fireEvent.click(checkBoxesWrapper[0]);
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith([]);
+    expect(onChange).toHaveBeenCalledWith(['all-option']);
   });
 });

@@ -16,11 +16,26 @@
 }
 
 .aui--searchable-checklist .aui--searchable-list-container .items-container {
-  max-height: 125px;
+  max-height: 250px;
   overflow-y: auto;
   margin-bottom: 10px;
 }
 
 .aui--searchable-checklist .aui--searchable-list-container .footer {
   color: #ababab;
+}
+
+.aui--searchable-checklist .aui--searchable-list-container .items-container .aui--checkbox-group .aui--checkbox {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.aui--searchable-checklist
+  .aui--searchable-list-container
+  .items-container
+  .aui--checkbox-group
+  .aui--checkbox
+  .aui--checkbox-label {
+  max-width: calc(100% - 20px);
 }

@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import Search from '../Search';
 import Checkbox from '../Checkbox';
 import CheckboxGroup from '../CheckboxGroup';
+import TextEllipsis from '../TextEllipsis';
 import './styles.css';
+
+const ALL_OPTION = {
+  value: 'all-option',
+  label: 'All',
+};
 
 const SearchableCheckList = ({
   context,
@@ -22,33 +28,33 @@ const SearchableCheckList = ({
 }) => {
   const [searchText, setSearchText] = React.useState('');
 
-  const eligibleItems = searchText
-    ? _(items)
+  const eligibleItems = _.reject(items, (item) => _.isEqual(item.value, ALL_OPTION.value)); // all-value is a reserved checkbox value;
+  const itemKeys = _.includes(selectedItemsKeys, ALL_OPTION.value) ? [ALL_OPTION.value] : selectedItemsKeys;
+
+  const filteredItems = searchText
+    ? _(eligibleItems)
         .map((item) => {
           return item.label.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ? item : null;
         })
         .compact()
         .value()
-    : items;
+    : eligibleItems;
 
   // Select the checked items first
-  let itemsToRender = _(eligibleItems)
-    .filter(({ value }) => _.includes(selectedItemsKeys, value))
+  let itemsToRender = _(filteredItems)
+    .filter(({ value }) => _.includes(itemKeys, value))
     .slice(0, displayCount)
     .value();
 
   // Fill the rest of the items to display with un-selected items
   if (itemsToRender.length < displayCount) {
-    const unSelectedItemsKeys = _.difference(_.map(eligibleItems, 'value'), selectedItemsKeys);
-    const unSelectedItems = _.filter(eligibleItems, ({ value }) => _.includes(unSelectedItemsKeys, value));
+    const unSelectedItemsKeys = _.difference(_.map(filteredItems, 'value'), itemKeys);
+    const unSelectedItems = _.filter(filteredItems, ({ value }) => _.includes(unSelectedItemsKeys, value));
     itemsToRender = _.union(itemsToRender, _.slice(unSelectedItems, 0, displayCount - itemsToRender.length));
   }
 
-  const mainCheckBoxState =
-    selectedItemsKeys.length === 0 ? false : selectedItemsKeys.length === items.length ? true : 'partial';
-
   const { singularLabel, pluralLabel } = context;
-  const remainingItemsCount = items.length - itemsToRender.length;
+  const remainingItemsCount = eligibleItems.length - itemsToRender.length;
 
   return (
     <div className="aui--searchable-checklist">
@@ -75,24 +81,29 @@ const SearchableCheckList = ({
         </div>
         <div className="main-checkbox">
           <Checkbox
-            checked={mainCheckBoxState}
-            value={`all-${pluralLabel}`}
-            label={`All ${pluralLabel}`}
+            checked={_.includes(itemKeys, ALL_OPTION.value)}
+            value={ALL_OPTION.value}
+            label={ALL_OPTION.label}
             onChange={(nextState) => {
-              onChange(nextState ? _.map(items, 'value') : []);
+              onChange(nextState ? [ALL_OPTION.value] : []);
             }}
           />
         </div>
         <div className="items-container">
           <CheckboxGroup
             name={`${pluralLabel}-group`}
-            value={selectedItemsKeys}
+            value={itemKeys}
             onChange={(newSelectionList) => {
-              onChange(newSelectionList);
+              onChange(_.reject(newSelectionList, (value) => value === ALL_OPTION.value));
             }}
           >
             {_.map(itemsToRender, ({ value, label }) => (
-              <Checkbox key={`${value}-key`} label={label} value={value} dts={`${value}-dts`} />
+              <Checkbox
+                key={`${value}-key`}
+                label={<TextEllipsis>{label}</TextEllipsis>}
+                value={value}
+                dts={`${value}-dts`}
+              />
             ))}
           </CheckboxGroup>
         </div>
