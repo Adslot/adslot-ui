@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { invariant } from '../../lib/utils';
+import { expandDts, invariant } from '../../lib/utils';
 import '../RadioGroup/style.css';
 
 const CheckboxGroupContext = React.createContext({});
@@ -57,13 +57,13 @@ const CheckboxGroup = ({
     <CheckboxGroupProvider name={name} value={value} onChange={onChange} getIsChecked={getIsChecked} variant={variant}>
       <div
         {...rest}
-        role={'group'}
-        data-testid="checkbox-group-wrapper"
+        role="group"
+        data-testid="checkbox-group"
         className={classnames('aui--checkbox-group', className, {
           'is-vertical': orientation === 'vertical',
           'is-default': variant === 'default',
         })}
-        dts={dts}
+        {...expandDts(dts)}
       >
         {children}
       </div>

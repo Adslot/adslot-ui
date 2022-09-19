@@ -74,7 +74,7 @@ describe('<ListPickerPure />', () => {
 
     expect(queryAllByDts(container, 'toggle')).toHaveLength(3);
     queryAllByDts(container, 'toggle').forEach((each, index) => {
-      expect(each).toContainElement(queryAllByTestId('checkbox-wrapper')[index]);
+      expect(each).toContainElement(queryAllByTestId('checkbox')[index]);
       if (_.some(selectedItems, { id: users[index].id }))
         expect(queryAllByTestId('checkbox-input')[index]).toBeChecked();
     });
@@ -108,7 +108,7 @@ describe('<ListPickerPure />', () => {
 
     expect(queryAllByDts(container, 'toggle')).toHaveLength(2);
     queryAllByDts(container, 'toggle').forEach((each, index) => {
-      expect(each).toContainElement(queryAllByTestId('checkbox-wrapper')[index]);
+      expect(each).toContainElement(queryAllByTestId('checkbox')[index]);
       if (_.some(selectedItemsWithUuid, { id: usersWithUuid[index].id }))
         expect(queryAllByTestId('checkbox-input')[index]).toBeChecked();
     });

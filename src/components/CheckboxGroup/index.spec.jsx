@@ -122,8 +122,8 @@ describe('<CheckboxGroup />', () => {
       </CheckboxGroup>
     );
 
-    expect(getByTestId('checkbox-group-wrapper')).toHaveClass('custom-class');
-    expect(queryAllByTestId('checkbox-wrapper')).toHaveLength(3);
+    expect(getByTestId('checkbox-group')).toHaveClass('custom-class');
+    expect(queryAllByTestId('checkbox')).toHaveLength(3);
   });
 
   it('should render checkbox with icons and text', () => {
@@ -141,6 +141,16 @@ describe('<CheckboxGroup />', () => {
     );
     expect(getByText('text description')).toBeInTheDocument();
     expect(getByText('Icon')).toBeInTheDocument();
+  });
+
+  it('should override checkbox items prop', () => {
+    const { getByTestId } = render(
+      <CheckboxGroup variant="box" name="movies" value={['terminator', 'predator']} onChange={jest.fn()}>
+        <Checkbox value="value" label="label" variant="default" />
+      </CheckboxGroup>
+    );
+    expect(getByTestId('checkbox')).toHaveClass('aui--checkbox-box');
+    expect(getByTestId('checkbox')).not.toHaveClass('aui--checkbox-default');
   });
 
   it('should handle checkbox change events when adding selection', () => {
@@ -182,7 +192,7 @@ describe('<CheckboxGroup />', () => {
       </CheckboxGroup>
     );
 
-    expect(queryByTestId('checkbox-group-wrapper')).toBeInTheDocument();
+    expect(queryByTestId('checkbox-group')).toBeInTheDocument();
     expect(console.error).toHaveBeenCalledTimes(0);
   });
 });

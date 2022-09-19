@@ -13,17 +13,19 @@ const getNextState = (checked) => {
 };
 
 const Checkbox = ({
-  name,
+  name: itemName,
   value,
   label,
   dts,
-  disabled,
-  checked: checkedProp,
+  disabled = false,
+  checked: itemChecked = false,
   id,
   className,
+  variant: itemVariant = 'default',
   text,
   icon,
   onChange,
+  onKeyDown,
   size,
   inline,
   ...rest
@@ -31,29 +33,34 @@ const Checkbox = ({
   invariant(!size, 'Checkbox size prop has been deprecated.');
   invariant(!inline, 'Checkbox inline prop has been deprecated.');
 
-  const { onCheckboxChange, isCheckedHandler, name: checkboxName = name, variant = 'default' } = useCheckboxGroup();
+  const { onCheckboxChange, isCheckedHandler, name: groupName, variant: groupVariant } = useCheckboxGroup();
+
+  const name = groupName || itemName;
+  const variant = groupVariant || itemVariant;
+  const checked = isCheckedHandler ? isCheckedHandler(value) : itemChecked;
+
   invariant(!((icon || text) && variant !== 'box'), 'Checkbox with icon or text must use box variant.');
   invariant(!(onChange && onCheckboxChange), 'Checkbox should not have onChange when used in a CheckboxGroup');
-  invariant(!(isCheckedHandler && checkedProp), 'Checkbox checked state is handled by CheckboxGroup.');
+  invariant(!(isCheckedHandler && itemChecked), 'Checkbox checked state is handled by CheckboxGroup.');
+
+  const handleChange = () => {
+    if (onCheckboxChange) return onCheckboxChange(value);
+    onChange(getNextState(checked), name, value);
+  };
 
   const onCheckboxKeyDown = (event) => {
     if (SELECTION_KEYS.includes(event.key)) {
       event.preventDefault();
       handleChange();
     }
+    onKeyDown?.(event);
   };
-
-  const handleChange = () => {
-    onCheckboxChange ? onCheckboxChange(value) : onChange(getNextState(checked), name, value);
-  };
-
-  const checked = isCheckedHandler ? isCheckedHandler(value) : checkedProp;
 
   return (
     <div
       {...rest}
-      data-testid="checkbox-wrapper"
-      role={'checkbox'}
+      data-testid="checkbox"
+      role="checkbox"
       aria-disabled={disabled ? 'true' : undefined}
       aria-checked={checked === 'partial' ? 'mixed' : checked ? 'true' : 'false'}
       className={classnames(
@@ -80,7 +87,7 @@ const Checkbox = ({
         <input
           data-testid="checkbox-input"
           type="checkbox"
-          name={checkboxName}
+          name={name}
           checked={checked}
           disabled={disabled}
           onChange={handleChange}
@@ -138,6 +145,7 @@ Checkbox.propTypes = {
    * determines if the checkbox is disabled
    */
   disabled: PropTypes.bool,
+  variant: PropTypes.oneOf(['default', 'box']),
   /**
    * @function onChange called when checkBox onChange event is fired
    * @param {string|boolean} nextState - the checked state
@@ -145,6 +153,7 @@ Checkbox.propTypes = {
    * @param {string|number} value - the checkbox value
    */
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   /**
    * checked status of the input checkBox: oneOf([true, false, 'partial']
    */
@@ -157,12 +166,6 @@ Checkbox.propTypes = {
    * @deprecated
    */
   inline: PropTypes.bool,
-};
-
-Checkbox.defaultProps = {
-  dts: '',
-  disabled: false,
-  checked: false,
 };
 
 export default Checkbox;
