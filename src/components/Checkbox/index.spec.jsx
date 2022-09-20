@@ -14,7 +14,7 @@ describe('<Checkbox />', () => {
     expect(queryByTestId('checkbox-input')).toBeInTheDocument();
     expect(getByTestId('checkbox-input')).toBeChecked();
     expect(getByTestId('checkbox-input')).toHaveAttribute('name', 'movies');
-    expect(getByTestId('checkbox-wrapper')).toHaveAttribute('data-test-selector', 'checkbox-terminator');
+    expect(getByTestId('checkbox')).toHaveAttribute('data-test-selector', 'checkbox-terminator');
     expect(getByTestId('checkbox-label')).toHaveTextContent('The Terminator');
   });
 
@@ -26,7 +26,7 @@ describe('<Checkbox />', () => {
 
   it('should render with id, className', () => {
     const { getByTestId } = render(<Checkbox id="checkboxId" className="checkboxClass" />);
-    expect(getByTestId('checkbox-wrapper')).toHaveClass('checkboxClass');
+    expect(getByTestId('checkbox')).toHaveClass('checkboxClass');
     expect(getByTestId('checkbox-input')).toHaveAttribute('id', 'checkboxId');
   });
 
@@ -37,9 +37,9 @@ describe('<Checkbox />', () => {
 
   it('should be disabled when "disable" prop is true', () => {
     const { getByTestId, rerender } = render(<Checkbox name="movies" value="terminator" />);
-    expect(getByTestId('checkbox-wrapper')).not.toHaveClass('disabled');
+    expect(getByTestId('checkbox')).not.toHaveClass('disabled');
     rerender(<Checkbox name="movies" value="terminator" disabled />);
-    expect(getByTestId('checkbox-wrapper')).toHaveClass('disabled');
+    expect(getByTestId('checkbox')).toHaveClass('disabled');
   });
 
   it('should pass next state value to the onChange function', () => {
