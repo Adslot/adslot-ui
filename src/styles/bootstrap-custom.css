@@ -4936,7 +4936,8 @@ button.close {
 }
 
 .text-hide {
-  font: 0/0 a;
+  font-size: 0;
+  line-height: 0;
   font-family: inherit;
   color: transparent;
   text-shadow: none;

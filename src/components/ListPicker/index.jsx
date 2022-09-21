@@ -51,8 +51,8 @@ const ListPicker = ({
   };
 
   const deselectItem = (item) => {
-    _.remove(selectedItems, { id: item.id });
-    setSelectedItems(selectedItems);
+    const updatedItems = _.reject(selectedItems, { id: item.id });
+    setSelectedItems(updatedItems);
 
     setDisableApplyButton(getApplyButtonState(selectedItems));
   };
