@@ -102,7 +102,7 @@
     "buffer": "^6.0.3",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "classnames": "^2.3.1",
-    "commander": "^9.3.0",
+    "commander": "^9.4.1",
     "core-js": "^3.21.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
