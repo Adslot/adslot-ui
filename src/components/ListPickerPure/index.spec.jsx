@@ -219,7 +219,7 @@ describe('<ListPickerPure />', () => {
       allowMultiSelection: false,
       items: users,
       selectedItems,
-      selectItem: (item, allowMultiSelection) => {
+      selectItem: (_item, allowMultiSelection) => {
         handlerCalled++;
         isAllowMultiSelection = allowMultiSelection;
       },
@@ -240,7 +240,7 @@ describe('<ListPickerPure />', () => {
     const props = {
       items: users,
       selectedItems,
-      deselectItem: (item, allowMultiSelection) => {
+      deselectItem: (_item, allowMultiSelection) => {
         handlerCalled++;
         isAllowMultiSelection = allowMultiSelection;
       },
@@ -262,7 +262,7 @@ describe('<ListPickerPure />', () => {
       allowMultiSelection: false,
       items: users,
       selectedItems,
-      selectItem: (item, allowMultiSelection) => {
+      selectItem: (_item, allowMultiSelection) => {
         handlerCalled++;
         isAllowMultiSelection = allowMultiSelection;
       },
