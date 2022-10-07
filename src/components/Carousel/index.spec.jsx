@@ -13,7 +13,7 @@ const CarouselHookTest = React.forwardRef(({ onClick }, ref) => {
   const props = Carousel.usePreventSwipeClicks();
   return (
     <Carousel ref={ref} slidesToShow={1}>
-      {_.map(new Array(5), (value, index) => (
+      {_.map(new Array(5), (_value, index) => (
         <button {...props} onClick={onClick} id={`btn-${index}`} key={index}>
           <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} />
         </button>
@@ -45,7 +45,7 @@ describe('<Carousel />', () => {
   it('should be able to navigate to the next image', () => {
     const { container, getByText } = render(
       <Carousel slidesToShow={1}>
-        {_.map(new Array(5), (value, index) => (
+        {_.map(new Array(5), (_value, index) => (
           <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
         ))}
       </Carousel>
@@ -63,7 +63,7 @@ describe('<Carousel />', () => {
   it('should be able to navigate to the previous image', () => {
     const { container, getByText } = render(
       <Carousel slidesToShow={1}>
-        {_.map(new Array(5), (value, index) => (
+        {_.map(new Array(5), (_value, index) => (
           <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
         ))}
       </Carousel>
@@ -81,7 +81,7 @@ describe('<Carousel />', () => {
   it('should display dots', () => {
     const { container } = render(
       <Carousel slidesToShow={1}>
-        {_.map(new Array(5), (value, index) => (
+        {_.map(new Array(5), (_value, index) => (
           <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
         ))}
       </Carousel>
@@ -92,7 +92,7 @@ describe('<Carousel />', () => {
   it('should change slide when dots are clicked', () => {
     const { container, getByText } = render(
       <Carousel slidesToShow={1}>
-        {_.map(new Array(5), (value, index) => (
+        {_.map(new Array(5), (_value, index) => (
           <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
         ))}
       </Carousel>

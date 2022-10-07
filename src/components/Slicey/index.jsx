@@ -16,7 +16,7 @@ const getArcs = (datasetForArcs) => {
   let endAngle = -QUARTER;
   let startAngle = 0;
 
-  return _.map(arcs, (undefinedArc, index) => {
+  return _.map(arcs, (_undefinedArc, index) => {
     const datum = datasetForArcs[index];
     const angle = (ROUND * datum.value) / total;
     startAngle = endAngle;
