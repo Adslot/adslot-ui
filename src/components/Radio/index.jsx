@@ -38,6 +38,8 @@ const Radio = ({
     onChange?.(value);
   };
 
+  const tabIndex = checked || groupValue?.length === 0 ? 0 : -1;
+
   return (
     <div
       {...rest}
@@ -58,7 +60,7 @@ const Radio = ({
         className
       )}
       data-aui-value={value}
-      tabIndex={!groupValue ? 0 : checked || groupValue.length === 0 ? 0 : -1}
+      tabIndex={!groupValue ? 0 : tabIndex}
       onKeyDown={(event) => {
         if (SELECTION_KEYS.includes(event.key) && !checked) {
           event.preventDefault();

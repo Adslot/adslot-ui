@@ -56,13 +56,15 @@ const Checkbox = ({
     onKeyDown?.(event);
   };
 
+  const ariaChecked = checked ? 'true' : 'false';
+
   return (
     <div
       {...rest}
       data-testid="checkbox"
       role="checkbox"
       aria-disabled={disabled ? 'true' : undefined}
-      aria-checked={checked === 'partial' ? 'mixed' : checked ? 'true' : 'false'}
+      aria-checked={checked === 'partial' ? 'mixed' : ariaChecked}
       className={classnames(
         'aui--checkbox',
         {

@@ -81,6 +81,7 @@ const Search = React.forwardRef(
     const closeIcon = icons.close ? icons.close : <div data-testid="close-icon" className="cancel-icon" />;
     const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
     const isValueEmpty = _.isEmpty(value) && _.isEmpty(inputValue);
+    const searchIconValue = isValueEmpty ? {} : { onClick: onInputClear };
 
     return (
       <div
@@ -120,11 +121,7 @@ const Search = React.forwardRef(
             />
           </>
         ) : (
-          <span
-            data-testid="search-icon-wrapper"
-            className="aui--search-component-icon"
-            {...(isValueEmpty ? {} : { onClick: onInputClear })}
-          >
+          <span data-testid="search-icon-wrapper" className="aui--search-component-icon" {...searchIconValue}>
             {isValueEmpty ? searchIcon : closeIcon}
           </span>
         )}

@@ -44,11 +44,12 @@ const SearchableCheckList = ({
     itemsToRender = _.union(itemsToRender, _.slice(unSelectedItems, 0, displayCount - itemsToRender.length));
   }
 
-  const mainCheckBoxState =
-    selectedItemsKeys.length === 0 ? false : selectedItemsKeys.length === items.length ? true : 'partial';
+  const selectedItemsKeysLength = selectedItemsKeys.length === items.length ? true : 'partial';
+  const mainCheckBoxState = selectedItemsKeys.length === 0 ? false : selectedItemsKeysLength;
 
   const { singularLabel, pluralLabel } = context;
   const remainingItemsCount = items.length - itemsToRender.length;
+  const footerLabel = remainingItemsCount > 1 ? pluralLabel : singularLabel;
 
   return (
     <div className="aui--searchable-checklist">
@@ -100,9 +101,7 @@ const SearchableCheckList = ({
           <div className="footer" data-testid="footer-section">
             {!_.isEmpty(footerText)
               ? footerText
-              : `${remainingItemsCount.toLocaleString()} more ${_.toLower(
-                  remainingItemsCount > 1 ? pluralLabel : singularLabel
-                )}`}
+              : `${remainingItemsCount.toLocaleString()} more ${_.toLower(footerLabel)}`}
           </div>
         )}
       </div>
