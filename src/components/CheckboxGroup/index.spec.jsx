@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, cleanup, fireEvent, queryByAttribute } from '@testing-library/react';
+import { render, cleanup, fireEvent, queryByAttribute, getByTestId as getByTestIdGlobal } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Checkbox from '../Checkbox';
 import CheckboxGroup from '.';
 
 afterEach(cleanup);
@@ -23,9 +22,9 @@ describe('<CheckboxGroup />', () => {
 
   it('should trigger `props.onChange` when the checkbox is clicked', () => {
     const { getAllByTestId } = render(
-      <CheckboxGroup {...props} type="checkbox" value={['checkbox-value-1']}>
-        <Checkbox value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
-        <Checkbox value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
+      <CheckboxGroup {...props} value={['checkbox-value-1']}>
+        <CheckboxGroup.Item value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
+        <CheckboxGroup.Item value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
       </CheckboxGroup>
     );
     fireEvent.click(getAllByTestId('checkbox-input')[1]);
@@ -35,10 +34,10 @@ describe('<CheckboxGroup />', () => {
   it('should use getIsChecked function', () => {
     const getIsCheckedMock = jest.fn();
     const { getAllByTestId } = render(
-      <CheckboxGroup {...props} type="checkbox" value={['checkbox-value-1']} getIsChecked={getIsCheckedMock}>
-        <Checkbox value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
-        <Checkbox value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
-        <Checkbox value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
+      <CheckboxGroup {...props} value={['checkbox-value-1']} getIsChecked={getIsCheckedMock}>
+        <CheckboxGroup.Item value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
+        <CheckboxGroup.Item value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
+        <CheckboxGroup.Item value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
       </CheckboxGroup>
     );
 
@@ -54,16 +53,10 @@ describe('<CheckboxGroup />', () => {
     };
 
     const { container } = render(
-      <CheckboxGroup
-        {...props}
-        type="checkbox"
-        value={['checkbox-value-1']}
-        getIsChecked={getIsChecked}
-        onChange={mockoOnChange}
-      >
-        <Checkbox value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
-        <Checkbox value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
-        <Checkbox value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
+      <CheckboxGroup {...props} value={['checkbox-value-1']} getIsChecked={getIsChecked} onChange={mockoOnChange}>
+        <CheckboxGroup.Item value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
+        <CheckboxGroup.Item value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
+        <CheckboxGroup.Item value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
       </CheckboxGroup>
     );
 
@@ -83,10 +76,10 @@ describe('<CheckboxGroup />', () => {
 
   it('should trigger onChange with checkbox type', () => {
     const { container } = render(
-      <CheckboxGroup {...props} type="checkbox" value={['checkbox-value-1']}>
-        <Checkbox value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
-        <Checkbox value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
-        <Checkbox value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
+      <CheckboxGroup {...props} value={['checkbox-value-1']}>
+        <CheckboxGroup.Item value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
+        <CheckboxGroup.Item value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
+        <CheckboxGroup.Item value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
       </CheckboxGroup>
     );
     const checkbox1 = getByDts(container, 'test-1');
@@ -101,8 +94,8 @@ describe('<CheckboxGroup />', () => {
   it('should render checkbox group with props', () => {
     const { container, getAllByTestId } = render(
       <CheckboxGroup {...props} value={['checkbox-value-1']}>
-        <Checkbox disabled value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
-        <Checkbox value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
+        <CheckboxGroup.Item disabled value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
+        <CheckboxGroup.Item value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
       </CheckboxGroup>
     );
     expect(getByDts(container, 'test-1')).toHaveTextContent('Checkbox 1');
@@ -116,9 +109,9 @@ describe('<CheckboxGroup />', () => {
   it('should render with props', () => {
     const { getByTestId, queryAllByTestId } = render(
       <CheckboxGroup name="movies" value={['terminator', 'predator']} className="custom-class" onChange={jest.fn()}>
-        <Checkbox label="The Terminator" value="terminator" />
-        <Checkbox label="Predator" value="predator" />
-        <Checkbox label="The Sound of Music" value="soundofmusic" />
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
       </CheckboxGroup>
     );
 
@@ -135,8 +128,8 @@ describe('<CheckboxGroup />', () => {
         className="custom-class"
         onChange={jest.fn()}
       >
-        <Checkbox value="value" label="label" icon="Icon" />
-        <Checkbox value="value-2" label="label" text="text description" />
+        <CheckboxGroup.Item value="value" label="label" icon="Icon" />
+        <CheckboxGroup.Item value="value-2" label="label" text="text description" />
       </CheckboxGroup>
     );
     expect(getByText('text description')).toBeInTheDocument();
@@ -144,22 +137,23 @@ describe('<CheckboxGroup />', () => {
   });
 
   it('should override checkbox items prop', () => {
-    const { getByTestId } = render(
-      <CheckboxGroup variant="box" name="movies" value={['terminator', 'predator']} onChange={jest.fn()}>
-        <Checkbox value="value" label="label" variant="default" />
-      </CheckboxGroup>
-    );
-    expect(getByTestId('checkbox')).toHaveClass('aui--checkbox-box');
-    expect(getByTestId('checkbox')).not.toHaveClass('aui--checkbox-default');
+    jest.spyOn(console, 'error').mockReturnValue();
+    expect(() =>
+      render(
+        <CheckboxGroup variant="box" name="movies" value={['terminator', 'predator']} onChange={jest.fn()}>
+          <CheckboxGroup.Item value="value" label="label" variant="default" />
+        </CheckboxGroup>
+      )
+    ).toThrow('AdslotUI CheckboxGroup.Item: variant will be overridden by CheckboxGroup variant');
   });
 
   it('should handle checkbox change events when adding selection', () => {
     const onChangeGroup = jest.fn();
     const { queryAllByTestId } = render(
       <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={onChangeGroup}>
-        <Checkbox label="The Terminator" value="terminator" />
-        <Checkbox label="Predator" value="predator" />
-        <Checkbox label="The Sound of Music" value="soundofmusic" />
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
       </CheckboxGroup>
     );
 
@@ -172,9 +166,9 @@ describe('<CheckboxGroup />', () => {
     const onChangeGroup = jest.fn();
     const { queryAllByTestId } = render(
       <CheckboxGroup name="movies" value={['terminator', 'predator']} onChange={onChangeGroup}>
-        <Checkbox label="The Terminator" value="terminator" />
-        <Checkbox label="Predator" value="predator" />
-        <Checkbox label="The Sound of Music" value="soundofmusic" />
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
       </CheckboxGroup>
     );
 
@@ -187,12 +181,106 @@ describe('<CheckboxGroup />', () => {
     console.error = jest.fn();
     const { queryByTestId } = render(
       <CheckboxGroup name="movies" value={['test']} onChange={jest.fn()}>
-        {false && <Checkbox label="The Terminator" value="terminator" />}
-        <Checkbox label="Predator" value="predator" />
+        {false && <CheckboxGroup.Item label="The Terminator" value="terminator" />}
+        <CheckboxGroup.Item label="Predator" value="predator" />
       </CheckboxGroup>
     );
 
     expect(queryByTestId('checkbox-group')).toBeInTheDocument();
     expect(console.error).toHaveBeenCalledTimes(0);
+  });
+
+  it('should be able to check all options when none is checked', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <CheckboxGroup name="movies" value={[]} onChange={onChange}>
+        <CheckboxGroup.All label="All" dts="target" />
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
+      </CheckboxGroup>
+    );
+
+    const checkbox = getByTestIdGlobal(getByDts(container, 'target'), 'checkbox-input');
+    fireEvent.click(checkbox);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(['terminator', 'predator', 'soundofmusic'], 'movies');
+  });
+
+  it('should be able to uncheck all options when all are checked', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <CheckboxGroup name="movies" value={['terminator', 'predator', 'soundofmusic']} onChange={onChange}>
+        <CheckboxGroup.All label="All" dts="target" />
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
+      </CheckboxGroup>
+    );
+
+    const checkbox = getByTestIdGlobal(getByDts(container, 'target'), 'checkbox-input');
+    fireEvent.click(checkbox);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith([], 'movies');
+  });
+
+  it('should be able to uncheck all options when some is checked', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <CheckboxGroup name="movies" value={['terminator']} onChange={onChange}>
+        <CheckboxGroup.All label="All" dts="target" />
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
+      </CheckboxGroup>
+    );
+
+    const checkbox = getByTestIdGlobal(getByDts(container, 'target'), 'checkbox-input');
+    fireEvent.click(checkbox);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(['terminator', 'predator', 'soundofmusic'], 'movies');
+  });
+
+  it('should work with nested checkbox group', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <CheckboxGroup name="movies" value={[]} onChange={onChange}>
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
+
+        <CheckboxGroup>
+          <CheckboxGroup.Item label="Lung Cancer Late" dts="target" value="Lung Cancer Late" />
+          <CheckboxGroup.Item label="Lung Cancer Early" value="Lung Cancer Early" />
+        </CheckboxGroup>
+      </CheckboxGroup>
+    );
+
+    const checkbox = getByTestIdGlobal(getByDts(container, 'target'), 'checkbox-input');
+    fireEvent.click(checkbox);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(['Lung Cancer Late'], 'movies', 'Lung Cancer Late');
+  });
+
+  it('should be able to select nested all', () => {
+    const onChange = jest.fn();
+    const { container } = render(
+      <CheckboxGroup name="movies" value={[]} onChange={onChange}>
+        <CheckboxGroup.Item label="The Terminator" value="terminator" />
+        <CheckboxGroup.Item label="Predator" value="predator" />
+        <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
+
+        <CheckboxGroup>
+          <CheckboxGroup.All label="All" dts="target" />
+          <CheckboxGroup.Item label="Lung Cancer Late" value="Lung Cancer Late" />
+          <CheckboxGroup.Item label="Lung Cancer Early" value="Lung Cancer Early" />
+        </CheckboxGroup>
+      </CheckboxGroup>
+    );
+
+    const checkbox = getByTestIdGlobal(getByDts(container, 'target'), 'checkbox-input');
+    fireEvent.click(checkbox);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(['Lung Cancer Late', 'Lung Cancer Early'], 'movies');
   });
 });

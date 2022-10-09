@@ -1,41 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import _ from 'lodash';
 import { expandDts, invariant } from '../../lib/utils';
+import Checkbox, { shareCheckboxPropTypes } from '../Checkbox';
+import CheckboxGroupProvider, { useCheckboxGroup } from './CheckboxGroupContext';
 import '../RadioGroup/style.css';
+import './styles.css';
 
-const CheckboxGroupContext = React.createContext({});
+const CheckboxGroupItem = ({ value, ...rest }) => {
+  const groupCtx = useCheckboxGroup();
+  invariant(!_.isEmpty(groupCtx), 'CheckboxGroup.Item: must be used as children of CheckboxGroup');
+  invariant(!rest.name, 'CheckboxGroup.Item: name will be overridden by CheckboxGroup name');
+  invariant(!rest.variant, 'CheckboxGroup.Item: variant will be overridden by CheckboxGroup variant');
+  invariant(!rest.onChange, 'CheckboxGroup.Item: onChange will be overridden by CheckboxGroup onChange');
 
-const CheckboxGroupProvider = ({ children, name, value, onChange, getIsChecked, variant }) => {
-  const context = React.useMemo(() => {
-    const onCheckboxChange = (checkboxValue) => {
-      const newValues = value.includes(checkboxValue)
-        ? value.filter((item) => item !== checkboxValue)
-        : [...value, checkboxValue];
+  const { onItemChange, getIsItemChecked, name, variant, recordValue } = groupCtx;
 
-      onChange(newValues, name, checkboxValue);
-    };
+  React.useLayoutEffect(() => {
+    recordValue(value);
+  });
 
-    const isCheckedHandler = (itemValue) => {
-      if (getIsChecked) {
-        return getIsChecked(itemValue, value);
-      }
-      return value.includes(itemValue);
-    };
-
-    return {
-      variant,
-      value,
-      name,
-      isCheckedHandler,
-      onCheckboxChange,
-    };
-  }, [getIsChecked, value, name, onChange, variant]);
-
-  return <CheckboxGroupContext.Provider value={context}>{children}</CheckboxGroupContext.Provider>;
+  return (
+    <Checkbox
+      {...rest}
+      name={name}
+      value={value}
+      variant={variant}
+      checked={getIsItemChecked(value)}
+      onChange={() => onItemChange(value)}
+    />
+  );
 };
 
-export const useCheckboxGroup = () => React.useContext(CheckboxGroupContext);
+CheckboxGroupItem.propTypes = { ...shareCheckboxPropTypes };
+
+const CheckboxGroupAll = ({ className, label = 'All', ...rest }) => {
+  const groupCtx = useCheckboxGroup();
+  invariant(!_.isEmpty(groupCtx), 'CheckboxGroup.All: must be used as children of CheckboxGroup');
+
+  const { onAllChange, getIsAllChecked, name, variant } = groupCtx;
+
+  return (
+    <Checkbox
+      {...rest}
+      className={classnames(className, 'is-all')}
+      name={name}
+      label={label}
+      checked={getIsAllChecked()}
+      onChange={onAllChange}
+      variant={variant}
+    />
+  );
+};
+
+CheckboxGroupAll.propTypes = {
+  label: PropTypes.node,
+  className: PropTypes.string,
+};
 
 const CheckboxGroup = ({
   name,
@@ -48,9 +70,13 @@ const CheckboxGroup = ({
   children,
   variant = 'default',
   inline,
+  indent = false,
   ...rest
 }) => {
-  invariant(Array.isArray(value), 'CheckboxGroup: must have an array as value');
+  const parentCtx = useCheckboxGroup();
+  const isNested = !_.isEmpty(parentCtx);
+
+  invariant(isNested || Array.isArray(value), 'CheckboxGroup: must have an array as value');
   invariant(!inline, 'CheckboxGroup: the inline prop has been replaced by orientation="vertical"');
 
   return (
@@ -62,6 +88,7 @@ const CheckboxGroup = ({
         className={classnames('aui--checkbox-group', className, {
           'is-vertical': orientation === 'vertical',
           'is-default': variant === 'default',
+          'is-indented': isNested && indent,
         })}
         {...expandDts(dts)}
       >
@@ -72,15 +99,15 @@ const CheckboxGroup = ({
 };
 
 CheckboxGroup.propTypes = {
-  value: PropTypes.array.isRequired,
-  name: PropTypes.string.isRequired,
+  value: PropTypes.array,
+  name: PropTypes.string,
   /**
    * @function onChange
    * @param {array} newValue - the new checkboxGroup value
    * @param {string} name - the checkbox name
    * @param {string|number} value - the changed checkbox's value
    */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   /**
    * @function getIsChecked overrides the default checked state behaviour
    * @param {string|number} itemValue - the checkbox's value
@@ -93,10 +120,16 @@ CheckboxGroup.propTypes = {
   dts: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'box']),
   id: PropTypes.string,
+  indent: PropTypes.bool,
   /**
    *  @deprecated use orientation="horizontal" instead
    **/
   inline: PropTypes.bool,
 };
+
+CheckboxGroup.Item = CheckboxGroupItem;
+CheckboxGroup.All = CheckboxGroupAll;
+
+export { useCheckboxGroup } from './CheckboxGroupContext';
 
 export default CheckboxGroup;

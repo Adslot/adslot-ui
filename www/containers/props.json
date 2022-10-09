@@ -1166,13 +1166,6 @@
           "required": false,
           "description": ""
         },
-        "name": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "name for the checkbox input"
-        },
         "label": {
           "type": {
             "name": "node"
@@ -1194,6 +1187,31 @@
           "required": false,
           "description": "icon to display beside the label when  parent group's `variant=\"box\"`"
         },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "data-test-selector for the checkbox component"
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "determines if the checkbox is disabled",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "name for the checkbox input"
+        },
         "value": {
           "type": {
             "name": "union",
@@ -1209,25 +1227,24 @@
           "required": false,
           "description": "checkBox input value"
         },
-        "dts": {
+        "variant": {
           "type": {
-            "name": "string"
+            "name": "enum",
+            "value": [
+              {
+                "value": "'default'",
+                "computed": false
+              },
+              {
+                "value": "'box'",
+                "computed": false
+              }
+            ]
           },
           "required": false,
-          "description": "data-test-selector for the checkbox component",
+          "description": "",
           "defaultValue": {
-            "value": "''",
-            "computed": false
-          }
-        },
-        "disabled": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "determines if the checkbox is disabled",
-          "defaultValue": {
-            "value": "false",
+            "value": "'default'",
             "computed": false
           }
         },
@@ -1237,6 +1254,13 @@
           },
           "required": false,
           "description": "@function onChange called when checkBox onChange event is fired\n@param {string|boolean} nextState - the checked state\n@param {string} name - the checkbox name\n@param {string|number} value - the checkbox value"
+        },
+        "onKeyDown": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
         },
         "checked": {
           "type": {
@@ -1280,36 +1304,154 @@
       }
     }
   ],
-  "src/components/CheckboxGroup/index.jsx": [
+  "src/components/CheckboxGroup/CheckboxGroupContext.jsx": [
     {
       "description": "",
       "displayName": "CheckboxGroupProvider",
-      "methods": []
-    },
-    {
-      "description": "",
-      "displayName": "CheckboxGroup",
       "methods": [],
       "props": {
         "value": {
           "type": {
             "name": "array"
           },
-          "required": true,
+          "required": false,
           "description": ""
         },
         "name": {
           "type": {
             "name": "string"
           },
-          "required": true,
+          "required": false,
           "description": ""
         },
         "onChange": {
           "type": {
             "name": "func"
           },
+          "required": false,
+          "description": "@function onChange\n@param {array} newValue - the new checkboxGroup value\n@param {string} name - the checkbox name\n@param {string|number} value - the changed checkbox's value"
+        },
+        "getIsChecked": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "@function getIsChecked overrides the default checked state behaviour\n@param {string|number} itemValue - the checkbox's value\n@param {array} value - the checkbox group's value"
+        },
+        "variant": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'default'",
+                "computed": false
+              },
+              {
+                "value": "'box'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
           "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/CheckboxGroup/index.jsx": [
+    {
+      "description": "",
+      "displayName": "CheckboxGroupItem",
+      "methods": [],
+      "composes": [
+        "../Checkbox"
+      ]
+    },
+    {
+      "description": "",
+      "displayName": "CheckboxGroupAll",
+      "methods": [],
+      "props": {
+        "label": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'All'",
+            "computed": false
+          }
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "CheckboxGroup",
+      "methods": [
+        {
+          "name": "Item",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ value, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "All",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ className, label = 'All', ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "value": {
+          "type": {
+            "name": "array"
+          },
+          "required": false,
+          "description": ""
+        },
+        "name": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
           "description": "@function onChange\n@param {array} newValue - the new checkboxGroup value\n@param {string} name - the checkbox name\n@param {string|number} value - the changed checkbox's value"
         },
         "getIsChecked": {
@@ -1388,6 +1530,17 @@
           },
           "required": false,
           "description": ""
+        },
+        "indent": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         },
         "inline": {
           "type": {

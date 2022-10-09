@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { expandDts, invariant } from '../../lib/utils';
-import { useCheckboxGroup } from '../CheckboxGroup';
 import './styles.css';
 
 const SELECTION_KEYS = ['Enter', ' '];
@@ -13,15 +12,15 @@ const getNextState = (checked) => {
 };
 
 const Checkbox = ({
-  name: itemName,
+  name,
   value,
   label,
   dts,
   disabled = false,
-  checked: itemChecked = false,
+  checked = false,
   id,
   className,
-  variant: itemVariant = 'default',
+  variant = 'default',
   text,
   icon,
   onChange,
@@ -32,19 +31,9 @@ const Checkbox = ({
 }) => {
   invariant(!size, 'Checkbox size prop has been deprecated.');
   invariant(!inline, 'Checkbox inline prop has been deprecated.');
-
-  const { onCheckboxChange, isCheckedHandler, name: groupName, variant: groupVariant } = useCheckboxGroup();
-
-  const name = groupName || itemName;
-  const variant = groupVariant || itemVariant;
-  const checked = isCheckedHandler ? isCheckedHandler(value) : itemChecked;
-
   invariant(!((icon || text) && variant !== 'box'), 'Checkbox with icon or text must use box variant.');
-  invariant(!(onChange && onCheckboxChange), 'Checkbox should not have onChange when used in a CheckboxGroup');
-  invariant(!(isCheckedHandler && itemChecked), 'Checkbox checked state is handled by CheckboxGroup.');
 
   const handleChange = () => {
-    if (onCheckboxChange) return onCheckboxChange(value);
     onChange(getNextState(checked), name, value);
   };
 
@@ -113,16 +102,12 @@ const Checkbox = ({
   );
 };
 
-Checkbox.propTypes = {
+export const shareCheckboxPropTypes = {
   /**
    * id for the checkbox input
    */
   id: PropTypes.string,
   className: PropTypes.string,
-  /**
-   * name for the checkbox input
-   */
-  name: PropTypes.string,
   /**
    * checkBox label for the checkbox input
    */
@@ -136,10 +121,6 @@ Checkbox.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * checkBox input value
-   */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
    * data-test-selector for the checkbox component
    */
   dts: PropTypes.string,
@@ -147,6 +128,18 @@ Checkbox.propTypes = {
    * determines if the checkbox is disabled
    */
   disabled: PropTypes.bool,
+};
+
+Checkbox.propTypes = {
+  ...shareCheckboxPropTypes,
+  /**
+   * name for the checkbox input
+   */
+  name: PropTypes.string,
+  /**
+   * checkBox input value
+   */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   variant: PropTypes.oneOf(['default', 'box']),
   /**
    * @function onChange called when checkBox onChange event is fired
