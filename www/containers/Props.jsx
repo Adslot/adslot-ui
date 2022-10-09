@@ -55,7 +55,7 @@ const Props = ({ componentName, customMapper }) => {
             </tbody>
           </table>
         </div>
-        {componentProps.methods && componentProps.methods.length > 0 && (
+        {componentName !== 'CheckboxGroup' && componentProps.methods && componentProps.methods.length > 0 && (
           <>
             <h3>Methods</h3>
             {_.map(componentProps.methods, (method) => {

@@ -1,0 +1,19 @@
+@import '../../styles/variable';
+
+$spacing: 24px;
+
+.aui--checkbox-group {
+  position: relative;
+
+  &.is-indented {
+    left: $spacing;
+
+    & .aui--checkbox {
+      left: $spacing;
+    }
+
+    & .aui--checkbox.is-all {
+      margin-left: calc($spacing * -1);
+    }
+  }
+}

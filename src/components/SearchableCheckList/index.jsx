@@ -93,7 +93,7 @@ const SearchableCheckList = ({
             }}
           >
             {_.map(itemsToRender, ({ value, label }) => (
-              <Checkbox key={`${value}-key`} label={label} value={value} dts={`${value}-dts`} />
+              <CheckboxGroup.Item key={`${value}-key`} label={label} value={value} dts={`${value}-dts`} />
             ))}
           </CheckboxGroup>
         </div>

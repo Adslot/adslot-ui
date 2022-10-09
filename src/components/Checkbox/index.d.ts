@@ -8,38 +8,13 @@ export type CheckboxChecked = boolean | 'partial';
 
 export interface CheckboxProps {
   /**
-   * id for the checkbox input
-   */
-  id?: string;
-  className?: string;
-  /**
    * name for the checkbox input
    */
   name?: string;
   /**
-   * checkBox label for the checkbox input
-   */
-  label?: React.ReactNode;
-  /**
-   * additional text description to display below the label
-   */
-  text?: React.ReactNode;
-  /**
-   * icon to display beside the label when  parent group's `variant="box"`
-   */
-  icon?: React.ReactNode;
-  /**
    * checkBox input value
    */
   value?: CheckboxValue;
-  /**
-   * data-test-selector for the checkbox component
-   */
-  dts?: string;
-  /**
-   * determines if the checkbox is disabled
-   */
-  disabled?: boolean;
   variant?: CheckboxVariant;
   /**
    * @function onChange called when checkBox onChange event is fired
@@ -61,6 +36,31 @@ export interface CheckboxProps {
    * @deprecated
    */
   inline?: boolean;
+  /**
+   * id for the checkbox input
+   */
+  id?: string;
+  className?: string;
+  /**
+   * checkBox label for the checkbox input
+   */
+  label?: React.ReactNode;
+  /**
+   * additional text description to display below the label
+   */
+  text?: React.ReactNode;
+  /**
+   * icon to display beside the label when  parent group's `variant="box"`
+   */
+  icon?: React.ReactNode;
+  /**
+   * data-test-selector for the checkbox component
+   */
+  dts?: string;
+  /**
+   * determines if the checkbox is disabled
+   */
+  disabled?: boolean;
 }
 
 declare const Checkbox: React.FC<CheckboxProps>;

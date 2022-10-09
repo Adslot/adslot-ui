@@ -28,9 +28,9 @@ class CheckboxGroupExample extends React.PureComponent {
         </h4>
         <br />
         <CheckboxGroup name="movies" value={this.state.movies} onChange={this.handleGroupChange.bind(this)}>
-          <Checkbox label="The Terminator" value="terminator" />
-          <Checkbox label="Predator" value="predator" />
-          <Checkbox label="The Sound of Music" value="soundofmusic" />
+          <CheckboxGroup.Item label="The Terminator" value="terminator" />
+          <CheckboxGroup.Item label="Predator" value="predator" />
+          <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
         </CheckboxGroup>
         <br />
         <h4>Horizontal orientation</h4>
@@ -40,9 +40,9 @@ class CheckboxGroupExample extends React.PureComponent {
           onChange={this.handleGroupChange.bind(this)}
           orientation="horizontal"
         >
-          <Checkbox label="The Terminator" value="terminator" />
-          <Checkbox label="Predator" value="predator" />
-          <Checkbox label="The Sound of Music" value="soundofmusic" />
+          <CheckboxGroup.Item label="The Terminator" value="terminator" />
+          <CheckboxGroup.Item label="Predator" value="predator" />
+          <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
         </CheckboxGroup>
       </>
     );
@@ -69,20 +69,20 @@ const Example = () => {
         dts="radio-group-dts"
         style={{ width: 300 }}
       >
-        <Checkbox
+        <CheckboxGroup.Item
           value="swimming"
           label="Swimming"
           dts="radio-dts"
           icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
           text="this is a text description"
         />
-        <Checkbox
+        <CheckboxGroup.Item
           value="soccer"
           label="Soccer"
           icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
           text="this is a text description"
         />
-        <Checkbox
+        <CheckboxGroup.Item
           value="badminton"
           label="Badminton"
           icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
@@ -101,9 +101,9 @@ const Example = () => {
         dts="radio-group-dts"
         style={{ width: 600 }}
       >
-        <Checkbox value="swimming" label="Swimming" dts="radio-dts" />
-        <Checkbox value="soccer" label="Soccer" />
-        <Checkbox value="badminton" label="Badminton" />
+        <CheckboxGroup.Item value="swimming" label="Swimming" dts="radio-dts" />
+        <CheckboxGroup.Item value="soccer" label="Soccer" />
+        <CheckboxGroup.Item value="badminton" label="Badminton" />
       </CheckboxGroup>
       <pre>hobbies: {JSON.stringify(hobbies)}</pre>
     </>
@@ -113,64 +113,38 @@ const Example = () => {
 render(Example);
 ```
 
-## Advanced checkbox logic
+## Nested checkboxes
 
-Checkbox button group with partial states, per-item onChange override
+Nested checkbox group with partial states, an default "All" option.
 
 ```jsx live=true
+const allHobbies = { sports: ['swimming', 'soccer', 'badminton'], other: ['stamps'] };
+
 const Example = () => {
-  const allHobbies = { sports: ['swimming', 'soccer', 'badminton'], other: ['stamps'] };
-
   const [hobbies, setHobbies] = React.useState([]);
-  const handleGroupChange = (newValues, name, checkboxValue) => {
-    const isHeader = Object.keys(allHobbies).includes(checkboxValue);
-    !isHeader ? setHobbies(newValues) : onHeaderChange(checkboxValue, newValues);
-  };
-
-  const onHeaderChange = (group, newValues) => {
-    const groupValues = allHobbies[group];
-    const selectedGroupValues = newValues.filter((v) => groupValues.includes(v));
-    const checked = getIsChecked(group, selectedGroupValues);
-    !checked ? setHobbies([...hobbies, ...groupValues]) : setHobbies(hobbies.filter((h) => !groupValues.includes(h)));
-  };
-
-  const getIsChecked = (value, selectedValues) => {
-    if (Object.keys(allHobbies).includes(value)) {
-      const current = allHobbies[value];
-      if (current.every((v) => selectedValues.includes(v))) {
-        return true;
-      }
-      if (current.some((v) => selectedValues.includes(v))) {
-        return 'partial';
-      }
-      if (hobbies.length === 0) return false;
-    }
-    return selectedValues.includes(value);
-  };
 
   return (
     <>
-      <style>
-        {`.checkbox-advanced .aui--checkbox:not(.header) label {
-      padding-left: 20px;
-    }`}
-      </style>
       <CheckboxGroup
         name="hobbies"
         variant="default"
         value={hobbies}
-        onChange={handleGroupChange}
+        onChange={setHobbies}
         dts="checkbox-group-dts"
-        getIsChecked={getIsChecked}
         className="checkbox-advanced"
       >
-        <Checkbox className="header" value="sports" label="Sports" dts="checkbox-dts" />
-        <Checkbox value="swimming" label="Swimming" />
-        <Checkbox value="soccer" label="Soccer" />
-        <Checkbox value="badminton" label="Badminton" />
-        <div />
-        <Checkbox className="header" value="other" label="Other" />
-        <Checkbox value="stamps" label="Collecting stamps" />
+        <CheckboxGroup indent>
+          <CheckboxGroup.All label="Sports" />
+          {allHobbies.sports.map((item) => (
+            <CheckboxGroup.Item value={item} label={_.capitalize(item)} />
+          ))}
+        </CheckboxGroup>
+        <CheckboxGroup indent>
+          <CheckboxGroup.All label="Other" />
+          {allHobbies.other.map((item) => (
+            <CheckboxGroup.Item value={item} label={_.capitalize(item)} />
+          ))}
+        </CheckboxGroup>
       </CheckboxGroup>
       <pre>hobbies: {JSON.stringify(hobbies)}</pre>
     </>
@@ -181,3 +155,12 @@ render(Example);
 ```
 
 <Props componentName="CheckboxGroup" />
+
+### CheckboxGroup.Item
+
+<Props customMapper={(props) => [props[`src/components/Card/index.jsx`][0]]} />
+<br />
+
+### CheckboxGroup.All
+
+<Props customMapper={(props) => [props[`src/components/Card/index.jsx`][1]]} />
