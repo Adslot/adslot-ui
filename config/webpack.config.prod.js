@@ -1,12 +1,14 @@
-const webpack = require('webpack');
-const emoji = require('remark-emoji');
-const { merge: webpackMerge } = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const commonConfig = require('./webpack.config');
-const paths = require('./paths');
+import webpack from 'webpack';
+import emoji from 'remark-emoji';
+import { merge as webpackMerge } from 'webpack-merge';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import * as commonConfig from './webpack.config.js';
+import { default as paths } from './paths.js';
+import cssnano from 'cssnano';
+import safe from 'postcss-safe-parser';
 
 // Assert this just to be safe.
 if (process.env.NODE_ENV !== 'production') {
@@ -15,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // This dist is used for creating the minified .css file.
 // The output .js file will be removed.
-module.exports = webpackMerge(commonConfig, {
+export default webpackMerge(commonConfig.default, {
   mode: 'production',
   // Don't attempt to continue if there are any errors.
   bail: true,
@@ -130,9 +132,6 @@ module.exports = webpackMerge(commonConfig, {
       }),
       new CssMinimizerPlugin({
         minify: (data, inputMap, minimizerOptions) => {
-          const cssnano = require('cssnano');
-          const safe = require('postcss-safe-parser');
-
           const [[filename, input]] = Object.entries(data);
 
           const postcssOptions = {

@@ -1,8 +1,8 @@
-const fs = require('fs');
-const nodePath = require('path');
-const chalk = require('chalk');
-const { parse, traverse } = require('@babel/core');
-const generate = require('@babel/generator').default;
+import fs from 'fs';
+import nodePath from 'path';
+import chalk from 'chalk';
+import { parse, traverse } from '@babel/core';
+import { default as generate } from '@babel/generator';
 
 const generateOpts = {
   // retainLines: true,

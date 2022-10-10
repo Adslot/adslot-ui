@@ -1,7 +1,7 @@
-const childProcess = require('child_process');
-const glob = require('glob');
-const path = require('path');
-const { promisify } = require('util');
+import childProcess from 'child_process';
+import glob from 'glob';
+import path from 'path';
+import { promisify } from 'util';
 
 const exec = promisify(childProcess.exec);
 

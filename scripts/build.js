@@ -5,21 +5,25 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-const chalk = require('chalk');
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack');
+import chalk from 'chalk';
+import fs from 'fs';
+import path from 'path';
+import webpack from 'webpack';
+
+import * as distConfig from '../config/webpack.config.dist.js';
+import * as prodConfig from '../config/webpack.config.prod.js';
+import * as devConfig from '../config/webpack.config.dev.build.js';
+
+import paths from '../config/paths.js';
+import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles.js';
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
+import FileSizeReporter from 'react-dev-utils/FileSizeReporter.js';
+import printBuildError from 'react-dev-utils/printBuildError.js';
 
 let config;
-if (process.env.NODE_ENV === 'dist') config = require('../config/webpack.config.dist');
-else if (process.env.NODE_ENV === 'production') config = require('../config/webpack.config.prod');
-else config = require('../config/webpack.config.dev.build');
-
-const paths = require('../config/paths');
-const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
-const printBuildError = require('react-dev-utils/printBuildError');
+if (process.env.NODE_ENV === 'dist') config = distConfig;
+else if (process.env.NODE_ENV === 'production') config = prodConfig;
+else config = devConfig;
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;

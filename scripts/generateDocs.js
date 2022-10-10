@@ -1,10 +1,16 @@
-const _ = require('lodash');
-const fs = require('fs');
-const path = require('path');
-const { promisify } = require('util');
-const reactDocgen = require('react-docgen');
-const displayNameHandler = require('react-docgen-displayname-handler').default;
-const glob = require('glob');
+import _ from 'lodash';
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import reactDocgen from 'react-docgen';
+import { default as displayNameHandler } from 'react-docgen-displayname-handler';
+import glob from 'glob';
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const handlers = reactDocgen.defaultHandlers.concat(displayNameHandler);
 

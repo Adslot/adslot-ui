@@ -1,7 +1,7 @@
-const fs = require('fs/promises');
-const { glob } = require('glob');
-const chalk = require('chalk');
-const paths = require('../../config/paths');
+import fs from 'fs/promises';
+import { glob } from 'glob';
+import chalk from 'chalk';
+import paths from '../../config/paths.js';
 
 process.on('unhandledRejection', (err) => {
   throw err;

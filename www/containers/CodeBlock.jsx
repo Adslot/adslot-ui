@@ -1,7 +1,7 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import { mdx } from '@mdx-js/react';
+import { MDXProvider } from '@mdx-js/react';
 import * as AdslotUI from '../../src';
 import theme from './theme';
 
@@ -13,7 +13,7 @@ export default ({ children, className, live }) => {
         code={children.trim()}
         language="jsx"
         noInline={children.includes('render(')}
-        scope={{ ...AdslotUI, mdx }}
+        scope={{ ...AdslotUI, MDXProvider }}
         theme={theme}
         className="test"
       >
@@ -27,6 +27,7 @@ export default ({ children, className, live }) => {
       </LiveProvider>
     );
   }
+  console.log('not live');
   return (
     <Highlight {...defaultProps} code={children} language="javascript" theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

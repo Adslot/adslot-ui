@@ -1,17 +1,17 @@
 #!/usr/bin/env node
-const prettier = require('prettier');
-const _ = require('lodash');
-const { transformSync } = require('@babel/core');
-const commander = require('commander');
-const { generateFromSource } = require('react-to-typescript-definitions');
-const { glob } = require('glob');
-const chalk = require('chalk');
-const fs = require('fs/promises');
-const paths = require('../../config/paths');
-const parsePropTypesVariables = require('./babel-plugin-proptype-vars');
-const copyTypes = require('./copyTypes');
-const typesPostFixes = require('./typesPostFixes');
-const pkg = require('../../package.json');
+import prettier from 'prettier';
+import _ from 'lodash';
+import { transformSync } from '@babel/core';
+import commander from 'commander';
+import { generateFromSource } from 'react-to-typescript-definitions';
+import { glob } from 'glob';
+import chalk from 'chalk';
+import fs from 'fs/promises';
+import paths from '../../config/paths.js';
+import parsePropTypesVariables from './babel-plugin-proptype-vars.js';
+import copyTypes from './copyTypes.js';
+import typesPostFixes from './typesPostFixes.js';
+import pkg from '../../package.json';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will

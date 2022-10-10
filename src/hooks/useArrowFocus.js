@@ -1,5 +1,5 @@
 import React from 'react';
-import { invariant } from '../lib/utils';
+import { invariant } from '../lib/utils.js';
 
 const VALID_KEYS = {
   horizontal: ['ArrowLeft', 'ArrowRight'],

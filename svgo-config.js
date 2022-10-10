@@ -1,5 +1,5 @@
 // https://github.com/svg/svgo#configuration
-module.exports = {
+export default {
   plugins: [
     {
       name: 'preset-default',

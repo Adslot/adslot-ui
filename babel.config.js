@@ -1,4 +1,4 @@
-const svgoConfig = require('./svgo-config');
+import { default as svgoConfig } from './svgo-config.js';
 
 const isDevelopment = process.env.TYPE === 'development';
 
@@ -53,7 +53,7 @@ const env = {
   },
 };
 
-module.exports = {
+export default {
   presets,
   env,
-};
+}

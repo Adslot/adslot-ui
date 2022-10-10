@@ -3,7 +3,7 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 
 ## Carousel
 
-```jsx live=true
+```jsx live={true}
 <Carousel>
   <div>
     <a href="/">
@@ -44,7 +44,7 @@ to avoid the click being triggered when letting go of the mouse button after swi
 
 - The hook returns an object that has the required click capture handlers
 
-```jsx live=true
+```jsx live={true}
 const SwipeClickPreventionCarouselExample = () => {
   const handlers = Carousel.usePreventSwipeClicks();
   const onClick = () => alert('slide clicked');

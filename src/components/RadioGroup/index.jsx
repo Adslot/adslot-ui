@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { useArrowFocus } from '../../hooks';
+import { default as useArrowFocus } from '../../hooks/useArrowFocus.js';
 import { expandDts, invariant } from '../../lib/utils';
 import '../RadioGroup/style.css';
 
