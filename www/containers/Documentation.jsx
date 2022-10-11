@@ -8,7 +8,6 @@ import CodeBlock from './CodeBlock';
 
 class Documentation extends React.PureComponent {
   render() {
-    console.log('documentation');
     const { componentName, notes, propTypeSectionArray, designNotes, children } = this.props;
 
     return (

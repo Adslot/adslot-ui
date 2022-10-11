@@ -27,7 +27,6 @@ export default ({ children, className, live }) => {
       </LiveProvider>
     );
   }
-  console.log('not live');
   return (
     <Highlight {...defaultProps} code={children} language="javascript" theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

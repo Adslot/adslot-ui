@@ -11,18 +11,12 @@ import './styles.css';
 
 const components = {
   pre: (props) => {
-    console.log('pre props', props);
     const codeProps = {
       ...props,
       ...props.children.props,
     };
     return <CodeBlock {...codeProps} />;
-    // return (<div {...props} />)
   },
-  // code: (props) => {
-  //   console.log('code props', props);
-  //   return (<CodeBlock {...props} />)
-  // },
   DesignNotes,
   Props,
 };

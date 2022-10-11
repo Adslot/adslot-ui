@@ -62,6 +62,12 @@ export default webpackMerge(commonConfig.default, {
         options: {
           cacheDirectory: true,
         },
+        resolve: {
+          // https://webpack.js.org/configuration/module/#resolvefullyspecified
+          // temp fix for migrating to esm
+          // needs to be reviewed and discussed later
+          fullySpecified: false,
+        },
       },
       {
         test: /\.css$/i,

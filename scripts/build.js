@@ -10,20 +10,20 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 
-import * as distConfig from '../config/webpack.config.dist.js';
-import * as prodConfig from '../config/webpack.config.prod.js';
-import * as devConfig from '../config/webpack.config.dev.build.js';
-
 import paths from '../config/paths.js';
 import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles.js';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter.js';
 import printBuildError from 'react-dev-utils/printBuildError.js';
 
-let config;
-if (process.env.NODE_ENV === 'dist') config = distConfig;
-else if (process.env.NODE_ENV === 'production') config = prodConfig;
-else config = devConfig;
+let configFile = '../config/webpack.config.dev.build.js';
+if (process.env.NODE_ENV === 'dist') {
+  configFile = '../config/webpack.config.dist.js';
+}
+if (process.env.NODE_ENV === 'production') {
+  configFile = '../config/webpack.config.prod.js';
+}
+const config = (await import(configFile)).default;
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
@@ -59,7 +59,7 @@ async function copyDemoAssets() {
 }
 
 // Create the production build and print the deployment instructions.
-function build(previousFileSizes) {
+function build() {
   console.log('Creating an optimized build...');
 
   let compiler = webpack(config);
@@ -98,7 +98,6 @@ function build(previousFileSizes) {
       }
       return resolve({
         stats,
-        previousFileSizes,
         warnings: messages.warnings,
       });
     });
@@ -107,56 +106,45 @@ function build(previousFileSizes) {
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
-measureFileSizesBeforeBuild(buildPath)
-  .then(async (previousFileSizes) => {
-    // Remove all content but keep the directory so that
-    // if you're in it, you don't end up in Trash
-    if (process.env.NODE_ENV === 'dist') {
-      try {
-        await fs.promises.stat(buildPath);
-      } catch {
-        await fs.promises.mkdir(buildPath);
-      }
-      fs.readdirSync(buildPath).forEach((f) => {
-        fs.rmSync(`${buildPath}/${f}`, { recursive: true });
-      });
+try {
+  const previousFileSizes = await measureFileSizesBeforeBuild(buildPath);
+  // Remove all content but keep the directory so that
+  // if you're in it, you don't end up in Trash
+  if (process.env.NODE_ENV === 'dist') {
+    try {
+      await fs.promises.stat(buildPath);
+    } catch {
+      await fs.promises.mkdir(buildPath);
     }
-    // Merge with the public folder
-    if (process.env.NODE_ENV === 'production' && process.env.DEMO_ASSETS) {
-      await copyDemoAssets();
-    }
-    // Start the webpack build
-    return build(previousFileSizes);
-  })
-  .then(
-    ({ stats, previousFileSizes, warnings }) => {
-      if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.'
-        );
-        console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
-      } else {
-        console.log(chalk.green('Compiled successfully.\n'));
-      }
+    fs.readdirSync(buildPath).forEach((f) => {
+      fs.rmSync(`${buildPath}/${f}`, { recursive: true });
+    });
+  }
+  // Merge with the public folder
+  if (process.env.NODE_ENV === 'production' && process.env.DEMO_ASSETS) {
+    await copyDemoAssets();
+  }
+  // Start the webpack build
+  const { stats, warnings } = await build();
+  if (warnings.length) {
+    console.log(chalk.yellow('Compiled with warnings.\n'));
+    console.log(warnings.join('\n\n'));
+    console.log('\nSearch for the ' + chalk.underline(chalk.yellow('keywords')) + ' to learn more about each warning.');
+    console.log('To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n');
+  } else {
+    console.log(chalk.green('Compiled successfully.\n'));
+  }
 
-      console.log('File sizes after gzip:\n');
-      printFileSizesAfterBuild(
-        stats,
-        previousFileSizes,
-        buildPath,
-        WARN_AFTER_BUNDLE_GZIP_SIZE,
-        WARN_AFTER_CHUNK_GZIP_SIZE
-      );
-
-      console.log();
-
-      if (process.env.NODE_ENV !== 'production' || process.env.NODE_ENV !== 'dist') return;
-    },
-    (err) => {
-      console.log(chalk.red('Failed to compile.\n'));
-      printBuildError(err);
-      process.exit(1);
-    }
+  console.log('File sizes after gzip:\n');
+  printFileSizesAfterBuild(
+    stats,
+    previousFileSizes,
+    buildPath,
+    WARN_AFTER_BUNDLE_GZIP_SIZE,
+    WARN_AFTER_CHUNK_GZIP_SIZE
   );
+} catch (err) {
+  console.log(chalk.red('Failed to compile.\n'));
+  printBuildError(err);
+  process.exit(1);
+}

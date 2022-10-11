@@ -1,4 +1,5 @@
 import emoji from 'remark-emoji';
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import webpack from 'webpack';
 import { merge as webpackMerge } from 'webpack-merge';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -6,8 +7,6 @@ import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import * as commonConfig from './webpack.config.js';
 import { default as paths } from './paths.js';
-import cssnano from 'cssnano';
-import safe from 'postcss-safe-parser';
 
 // Assert this just to be safe.
 if (process.env.NODE_ENV !== 'dist') {
@@ -64,7 +63,8 @@ export default webpackMerge(commonConfig.default, {
           {
             loader: '@mdx-js/loader',
             options: {
-              remarkPlugins: [emoji],
+              providerImportSource: '@mdx-js/react',
+              remarkPlugins: [emoji, remarkMdxCodeMeta],
             },
           },
         ],
@@ -82,6 +82,12 @@ export default webpackMerge(commonConfig.default, {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
+        },
+        resolve: {
+          // https://webpack.js.org/configuration/module/#resolvefullyspecified
+          // temp fix for migrating to esm
+          // needs to be reviewed and discussed later
+          fullySpecified: false,
         },
       },
       {
@@ -131,7 +137,10 @@ export default webpackMerge(commonConfig.default, {
         },
       }),
       new CssMinimizerPlugin({
-        minify: (data, inputMap, minimizerOptions) => {
+        minify: async (data, inputMap, minimizerOptions) => {
+          const { default: cssnano } = await import('cssnano');
+          const { default: safe } = await import('postcss-safe-parser');
+
           const [[filename, input]] = Object.entries(data);
 
           const postcssOptions = {
@@ -141,22 +150,20 @@ export default webpackMerge(commonConfig.default, {
             parser: safe,
           };
 
-          return cssnano({
+          const result = await cssnano({
             preset: [
               'default',
               {
                 convertValues: false,
               },
             ],
-          })
-            .process(input, postcssOptions)
-            .then((result) => {
-              return {
-                code: result.css,
-                map: result.map,
-                warnings: result.warnings(),
-              };
-            });
+          }).process(input, postcssOptions);
+
+          return {
+            code: result.css,
+            map: result.map,
+            warnings: result.warnings(),
+          };
         },
       }),
     ],

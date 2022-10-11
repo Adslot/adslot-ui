@@ -1,14 +1,19 @@
-import fs from 'fs';
-import nodePath from 'path';
+import fs from 'node:fs';
+import nodePath from 'node:path';
+import { fileURLToPath } from 'node:url';
 import chalk from 'chalk';
 import { parse, traverse } from '@babel/core';
-import { default as generate } from '@babel/generator';
+import generatorPkg from '@babel/generator';
+
+const generate = generatorPkg.default;
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 const generateOpts = {
   // retainLines: true,
 };
 
-module.exports = function parsePropTypesVariables(relativePath, config = { debug: true }) {
+export default function parsePropTypesVariables(relativePath, config = { debug: true }) {
   // this will contain our whole transformation
   let str = '';
   let replaceArgs = [];
@@ -274,7 +279,7 @@ module.exports = function parsePropTypesVariables(relativePath, config = { debug
     },
   };
   return babelParse;
-};
+}
 
 function getJsOrJsxFileString(sourcePath) {
   try {

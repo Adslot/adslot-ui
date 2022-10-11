@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import emoji from 'remark-emoji';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import webpack from 'webpack';
@@ -52,6 +52,12 @@ export default webpackMerge(commonConfig.default, {
             },
           },
         ],
+        resolve: {
+          // https://webpack.js.org/configuration/module/#resolvefullyspecified
+          // temp fix for migrating to esm
+          // needs to be reviewed and discussed later
+          fullySpecified: false,
+        },
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
