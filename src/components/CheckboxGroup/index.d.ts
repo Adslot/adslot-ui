@@ -1,6 +1,12 @@
 import * as React from 'react';
 
+export type CheckboxGroupItemValue = string | number;
+
 export interface CheckboxGroupItemProps {
+  /**
+   * checkBox input value
+   */
+  value?: CheckboxGroupItemValue;
   /**
    * id for the checkbox input
    */

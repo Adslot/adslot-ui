@@ -1152,6 +1152,21 @@
       "displayName": "Checkbox",
       "methods": [],
       "props": {
+        "value": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "checkBox input value"
+        },
         "id": {
           "type": {
             "name": "string"
@@ -1211,21 +1226,6 @@
           },
           "required": false,
           "description": "name for the checkbox input"
-        },
-        "value": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "string"
-              },
-              {
-                "name": "number"
-              }
-            ]
-          },
-          "required": false,
-          "description": "checkBox input value"
         },
         "variant": {
           "type": {
