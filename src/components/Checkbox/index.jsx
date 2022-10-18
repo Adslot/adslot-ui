@@ -104,6 +104,10 @@ const Checkbox = ({
 
 export const shareCheckboxPropTypes = {
   /**
+   * checkBox input value
+   */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
    * id for the checkbox input
    */
   id: PropTypes.string,
@@ -136,10 +140,6 @@ Checkbox.propTypes = {
    * name for the checkbox input
    */
   name: PropTypes.string,
-  /**
-   * checkBox input value
-   */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   variant: PropTypes.oneOf(['default', 'box']),
   /**
    * @function onChange called when checkBox onChange event is fired

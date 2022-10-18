@@ -1,20 +1,16 @@
 import * as React from 'react';
 
-export type CheckboxValue = string | number;
-
 export type CheckboxVariant = 'default' | 'box';
 
 export type CheckboxChecked = boolean | 'partial';
+
+export type CheckboxValue = string | number;
 
 export interface CheckboxProps {
   /**
    * name for the checkbox input
    */
   name?: string;
-  /**
-   * checkBox input value
-   */
-  value?: CheckboxValue;
   variant?: CheckboxVariant;
   /**
    * @function onChange called when checkBox onChange event is fired
@@ -36,6 +32,10 @@ export interface CheckboxProps {
    * @deprecated
    */
   inline?: boolean;
+  /**
+   * checkBox input value
+   */
+  value?: CheckboxValue;
   /**
    * id for the checkbox input
    */

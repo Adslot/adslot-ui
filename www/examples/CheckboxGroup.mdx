@@ -1,5 +1,6 @@
 import Props from '../containers/Props.jsx';
 import DesignNotes from '../containers/DesignNotes.jsx';
+import { shareCheckboxPropTypes } from '../../src/components/Checkbox/index.jsx';
 
 ## CheckboxGroup
 
@@ -158,9 +159,18 @@ render(Example);
 
 ### CheckboxGroup.Item
 
-<Props customMapper={(props) => [props[`src/components/Card/index.jsx`][0]]} />
+<Props
+  customMapper={(props) => [
+    {
+      ...props[`src/components/Checkbox/index.jsx`][0],
+      props: _.pickBy(props[`src/components/Checkbox/index.jsx`][0].props, (v, k) =>
+        _.keys(shareCheckboxPropTypes).includes(k)
+      ),
+    },
+  ]}
+/>
 <br />
 
 ### CheckboxGroup.All
 
-<Props customMapper={(props) => [props[`src/components/Card/index.jsx`][1]]} />
+<Props customMapper={(props) => [props[`src/components/CheckboxGroup/index.jsx`][1]]} />
