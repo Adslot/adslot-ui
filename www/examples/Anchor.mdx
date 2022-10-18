@@ -24,7 +24,7 @@ Anchors assist user to complete tasks confidently and to feel secure about the n
 
 Modals and forms use the primary action header. Not every screen requires a primary anchor. _Never use a primary red action anchor_.
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor href="#" color="primary">
     Primary
@@ -51,7 +51,7 @@ Modals and forms use the primary action header. Not every screen requires a prim
 
 **Inverted red anchors** are used as second primary actions alongside a primary action these are used delete, reject, cancel campaign.
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor href="#" color="primary" variant="inverse">
     Primary
@@ -73,7 +73,7 @@ Modals and forms use the primary action header. Not every screen requires a prim
 **Borderless anchor** is used for lower priority actions and when visually more suited than an inverse anchor.
 borderless anchors have no border until hovered.
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor href="#" color="primary" variant="borderless">
     Primary
@@ -94,7 +94,7 @@ borderless anchors have no border until hovered.
 
 **Link anchor** is a special case anchor used for inline actions that should retain the text flow, similar to anchor link.
 
-```jsx live=true
+```jsx live={true}
 <>
   <h4>
     This is an{' '}
@@ -119,7 +119,7 @@ borderless anchors have no border until hovered.
 
 **Large anchor** is designed to have larger text and padding.
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor href="#" color="primary" size="large">
     Primary
@@ -140,7 +140,7 @@ borderless anchors have no border until hovered.
 
 **Full width** creates a 100% width anchor, sizing multiple anchors evenly when in a flex parent container.
 
-```jsx live=true
+```jsx live={true}
 <>
   <div className="grid grid-small">
     <Anchor href="#" size="large" fullWidth color="primary">
@@ -157,7 +157,7 @@ borderless anchors have no border until hovered.
 
 **disabled** state can be applied to anchors. When disabled, the href attribute is removed.
 
-```jsx live=true
+```jsx live={true}
 <Anchor href="#" disabled>
   Disabled
 </Anchor>
@@ -172,7 +172,7 @@ large anchors support an icon size no larger than `20px`.
 
 Create an icon-only anchor
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor href="#" aria-label="search" color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
   <Anchor href="#" aria-label="search" color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
@@ -186,7 +186,7 @@ Create an icon-only anchor
 When using an icon only, the anchor can be round.
 Round icon Anchors have a special loading state, where the spinner aligns to the anchor outline, and the icon remains visible.
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor
     href="#"
@@ -223,7 +223,7 @@ Round icon Anchors have a special loading state, where the spinner aligns to the
 
 When combined with a label, the icon renders before the label
 
-```jsx live=true
+```jsx live={true}
 <div className="grid grid-small">
   <Anchor href="#" color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
     Primary

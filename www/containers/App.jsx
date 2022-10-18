@@ -10,8 +10,13 @@ import DesignNotes from './DesignNotes.jsx';
 import './styles.css';
 
 const components = {
-  pre: (props) => <div {...props} />,
-  code: (props) => <CodeBlock {...props} />,
+  pre: (props) => {
+    const codeProps = {
+      ...props,
+      ...props.children.props,
+    };
+    return <CodeBlock {...codeProps} />;
+  },
   DesignNotes,
   Props,
 };

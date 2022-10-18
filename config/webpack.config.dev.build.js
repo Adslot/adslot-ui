@@ -1,13 +1,13 @@
-const webpack = require('webpack');
-const { merge: webpackMerge } = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const commonConfig = require('./webpack.config');
-const paths = require('./paths');
+import webpack from 'webpack';
+import { merge as webpackMerge } from 'webpack-merge';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import * as commonConfig from './webpack.config.js';
+import { default as paths } from './paths.js';
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
-module.exports = webpackMerge(commonConfig, {
+export default webpackMerge(commonConfig.default, {
   mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
@@ -61,6 +61,12 @@ module.exports = webpackMerge(commonConfig, {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
+        },
+        resolve: {
+          // https://webpack.js.org/configuration/module/#resolvefullyspecified
+          // temp fix for migrating to esm
+          // needs to be reviewed and discussed later
+          fullySpecified: false,
         },
       },
       {

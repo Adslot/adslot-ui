@@ -7,7 +7,7 @@ import Empty from '../Empty';
 import Grid from '../Grid';
 import GridRow from '../Grid/Row';
 import GridCell from '../Grid/Cell';
-import { useArrowFocus } from '../../hooks';
+import { default as useArrowFocus } from '../../hooks/useArrowFocus.js';
 import './styles.css';
 
 const ListPickerPure = ({

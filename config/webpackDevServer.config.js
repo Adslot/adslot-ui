@@ -1,11 +1,11 @@
-const config = require('./webpack.config.dev');
-const paths = require('./paths');
+import { default as config } from './webpack.config.dev.js';
+import { default as paths } from './paths.js';
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
 // eslint-disable-next-line
-module.exports = function (proxy, allowedHost) {
+export default function (proxy, allowedHost) {
   return {
     // Enable gzip compression of generated files.
     compress: true,
@@ -51,4 +51,4 @@ module.exports = function (proxy, allowedHost) {
       publicPath: config.output.publicPath,
     },
   };
-};
+}

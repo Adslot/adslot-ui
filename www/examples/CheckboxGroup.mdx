@@ -4,7 +4,7 @@ import { shareCheckboxPropTypes } from '../../src/components/Checkbox/index.jsx'
 
 ## CheckboxGroup
 
-```jsx live=true
+```jsx live={true}
 class CheckboxGroupExample extends React.PureComponent {
   constructor() {
     super();
@@ -55,7 +55,7 @@ render(<CheckboxGroupExample />);
 
 ## button variant
 
-```jsx live=true
+```jsx live={true}
 const Example = () => {
   const [hobbies, setHobbies] = React.useState([]);
   const handleGroupChange = (value) => setHobbies(value);
@@ -118,7 +118,7 @@ render(Example);
 
 Nested checkbox group with partial states, an default "All" option.
 
-```jsx live=true
+```jsx live={true}
 const allHobbies = { sports: ['swimming', 'soccer', 'badminton'], other: ['stamps'] };
 
 const Example = () => {
