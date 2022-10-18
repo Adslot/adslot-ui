@@ -40,6 +40,7 @@ const env = {
       'jsx-remove-data-test-id',
       inlineSvgPlugin,
       ['transform-remove-imports', { test: '\\.css$' }],
+      ['replace-import-extension',{ "extMapping": { ".jsx": ".js" }}]
     ],
   },
   cjs: {
@@ -49,6 +50,7 @@ const env = {
       'jsx-remove-data-test-id',
       inlineSvgPlugin,
       ['transform-remove-imports', { test: '\\.css$' }],
+      ['replace-import-extension',{ "extMapping": { ".jsx": ".js" }}]
     ],
   },
 };
