@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import globPkg from 'glob';
 import chalk from 'chalk';
-import paths from '../../config/paths.js';
+import paths from '../../config/paths.mjs';
 
 const { glob } = globPkg;
 

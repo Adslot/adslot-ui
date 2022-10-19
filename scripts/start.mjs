@@ -6,9 +6,9 @@ import clearConsole from 'react-dev-utils/clearConsole.js';
 import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles.js';
 import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils.js';
 import openBrowser from 'react-dev-utils/openBrowser.js';
-import paths from '../config/paths.js';
-import config from '../config/webpack.config.dev.js';
-import createDevServerConfig from '../config/webpackDevServer.config.js';
+import paths from '../config/paths.mjs';
+import config from '../config/webpack.config.dev.mjs';
+import createDevServerConfig from '../config/webpackDevServer.config.mjs';
 
 process.env.NODE_ENV = 'development';
 
