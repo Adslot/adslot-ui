@@ -3,7 +3,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json'],
   transform: {
     '^.+\\.(js|jsx)?$': 'babel-jest',
-    '^.+\\.css$': '<rootDir>/config/cssTransform.js',
+    '^.+\\.css$': '<rootDir>/config/cssTransform.mjs',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
   clearMocks: true,

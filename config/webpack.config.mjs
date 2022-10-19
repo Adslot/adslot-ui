@@ -1,5 +1,5 @@
 import path from 'path';
-import { default as paths } from './paths.js';
+import { default as paths } from './paths.mjs';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const buffer = require.resolve('buffer/');

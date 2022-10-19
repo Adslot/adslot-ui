@@ -5,8 +5,8 @@ import webpack from 'webpack';
 import { merge as webpackMerge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-import * as commonConfig from './webpack.config.js';
-import { default as paths } from './paths.js';
+import * as commonConfig from './webpack.config.mjs';
+import { default as paths } from './paths.mjs';
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -52,12 +52,6 @@ export default webpackMerge(commonConfig.default, {
             },
           },
         ],
-        resolve: {
-          // https://webpack.js.org/configuration/module/#resolvefullyspecified
-          // temp fix for migrating to esm
-          // needs to be reviewed and discussed later
-          fullySpecified: false,
-        },
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,

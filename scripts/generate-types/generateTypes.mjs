@@ -9,10 +9,10 @@ import chalk from 'chalk';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import paths from '../../config/paths.js';
-import parsePropTypesVariables from './babel-plugin-proptype-vars.js';
-import copyTypes from './copyTypes.js';
-import typesPostFixes from './typesPostFixes.js';
+import paths from '../../config/paths.mjs';
+import parsePropTypesVariables from './babel-plugin-proptype-vars.mjs';
+import copyTypes from './copyTypes.mjs';
+import typesPostFixes from './typesPostFixes.mjs';
 
 const { glob } = globPkg;
 
@@ -128,7 +128,6 @@ async function generateTypeDefs() {
         console.log(chalk.green.bold(`Generated type defs for ${component.componentName}`));
 
         const output = typesPostFixes(component.componentName, result);
-        // const pkg = await import('../../package.json', { assert: { type: 'json' } });
         const pkg = JSON.parse(await fs.readFile(path.resolve(__dirname, '../../package.json')));
         const prettifiedOutput = prettier.format(output, { parser: 'typescript', ...pkg.prettier });
 

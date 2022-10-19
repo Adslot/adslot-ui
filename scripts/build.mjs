@@ -10,18 +10,18 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 
-import paths from '../config/paths.js';
+import paths from '../config/paths.mjs';
 import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles.js';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
 import FileSizeReporter from 'react-dev-utils/FileSizeReporter.js';
 import printBuildError from 'react-dev-utils/printBuildError.js';
 
-let configFile = '../config/webpack.config.dev.build.js';
+let configFile = '../config/webpack.config.dev.build.mjs';
 if (process.env.NODE_ENV === 'dist') {
-  configFile = '../config/webpack.config.dist.js';
+  configFile = '../config/webpack.config.dist.mjs';
 }
 if (process.env.NODE_ENV === 'production') {
-  configFile = '../config/webpack.config.prod.js';
+  configFile = '../config/webpack.config.prod.mjs';
 }
 const config = (await import(configFile)).default;
 
