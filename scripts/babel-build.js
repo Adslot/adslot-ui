@@ -1,10 +1,7 @@
-import childProcess from 'child_process';
-import glob from 'glob';
-import path from 'node:path';
-import { promisify } from 'node:util';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const childProcess = require('child_process');
+const glob = require('glob');
+const path = require('path');
+const { promisify } = require('util');
 
 const exec = promisify(childProcess.exec);
 

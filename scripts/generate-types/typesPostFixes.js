@@ -2,7 +2,7 @@
 // have unparseable prop types, or 3rd party typing requirements beyond PropTypes
 // Note: `result` is pre-prettier formatting
 
-export default function typesPostFixes(componentName, result) {
+module.exports = function typesPostFixes(componentName, result) {
   switch (componentName) {
     case 'ImageCropper':
       return `import type Cropper from 'cropperjs';
@@ -129,7 +129,7 @@ export default function typesPostFixes(componentName, result) {
         Async: typeof AsyncSelect;
         AsyncCreatable: typeof AsyncCreatableSelect;
         createFilter: typeof createFilter;
-      };
+      };      
 
       export default Select;
       `;
@@ -160,7 +160,7 @@ export default function typesPostFixes(componentName, result) {
     default:
       return result;
   }
-}
+};
 
 // adding the ref types via PropTypes works for type generation but will cause a
 // `ref` is not a prop error due to ref being a 'special' prop

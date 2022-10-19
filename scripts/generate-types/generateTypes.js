@@ -1,22 +1,17 @@
 #!/usr/bin/env node
-import prettier from 'prettier';
-import _ from 'lodash';
-import { transformSync } from '@babel/core';
-import { Command } from 'commander';
-import { generateFromSource } from 'react-to-typescript-definitions';
-import globPkg from 'glob';
-import chalk from 'chalk';
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import paths from '../../config/paths.js';
-import parsePropTypesVariables from './babel-plugin-proptype-vars.js';
-import copyTypes from './copyTypes.js';
-import typesPostFixes from './typesPostFixes.js';
-
-const { glob } = globPkg;
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const prettier = require('prettier');
+const _ = require('lodash');
+const { transformSync } = require('@babel/core');
+const commander = require('commander');
+const { generateFromSource } = require('react-to-typescript-definitions');
+const { glob } = require('glob');
+const chalk = require('chalk');
+const fs = require('fs/promises');
+const paths = require('../../config/paths');
+const parsePropTypesVariables = require('./babel-plugin-proptype-vars');
+const copyTypes = require('./copyTypes');
+const typesPostFixes = require('./typesPostFixes');
+const pkg = require('../../package.json');
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -25,7 +20,7 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-const program = new Command();
+const program = new commander.Command();
 
 program
   .option('-d, --debug', 'output propType conversion debugging')
@@ -128,8 +123,6 @@ async function generateTypeDefs() {
         console.log(chalk.green.bold(`Generated type defs for ${component.componentName}`));
 
         const output = typesPostFixes(component.componentName, result);
-        // const pkg = await import('../../package.json', { assert: { type: 'json' } });
-        const pkg = JSON.parse(await fs.readFile(path.resolve(__dirname, '../../package.json')));
         const prettifiedOutput = prettier.format(output, { parser: 'typescript', ...pkg.prettier });
 
         const fileName = `${component.relPath}${component.fileName.replace(/\.jsx$/, '.d.ts')}`;

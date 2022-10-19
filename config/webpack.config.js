@@ -1,10 +1,7 @@
-import path from 'path';
-import { default as paths } from './paths.js';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const buffer = require.resolve('buffer/');
+const path = require('path');
+const paths = require('./paths');
 
-export default {
+module.exports = {
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
     // We placed these paths second because we want `node_modules` to "win"
@@ -24,7 +21,7 @@ export default {
     alias: {
       styles: `${paths.appSrc}/styles/`,
     },
-    fallback: { buffer: buffer },
+    fallback: { buffer: require.resolve('buffer/') },
   },
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
