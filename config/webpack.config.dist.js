@@ -1,12 +1,11 @@
-import emoji from 'remark-emoji';
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import webpack from 'webpack';
-import { merge as webpackMerge } from 'webpack-merge';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import * as commonConfig from './webpack.config.js';
-import { default as paths } from './paths.js';
+const emoji = require('remark-emoji');
+const webpack = require('webpack');
+const { merge: webpackMerge } = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const commonConfig = require('./webpack.config');
+const paths = require('./paths');
 
 // Assert this just to be safe.
 if (process.env.NODE_ENV !== 'dist') {
@@ -15,7 +14,7 @@ if (process.env.NODE_ENV !== 'dist') {
 
 // This dist is used for creating the minified .css file.
 // The output .js file will be removed.
-export default webpackMerge(commonConfig.default, {
+module.exports = webpackMerge(commonConfig, {
   mode: 'production',
   // Don't attempt to continue if there are any errors.
   bail: true,
@@ -63,8 +62,7 @@ export default webpackMerge(commonConfig.default, {
           {
             loader: '@mdx-js/loader',
             options: {
-              providerImportSource: '@mdx-js/react',
-              remarkPlugins: [emoji, remarkMdxCodeMeta],
+              remarkPlugins: [emoji],
             },
           },
         ],
@@ -82,12 +80,6 @@ export default webpackMerge(commonConfig.default, {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-        },
-        resolve: {
-          // https://webpack.js.org/configuration/module/#resolvefullyspecified
-          // temp fix for migrating to esm
-          // needs to be reviewed and discussed later
-          fullySpecified: false,
         },
       },
       {
@@ -137,9 +129,9 @@ export default webpackMerge(commonConfig.default, {
         },
       }),
       new CssMinimizerPlugin({
-        minify: async (data, inputMap, minimizerOptions) => {
-          const { default: cssnano } = await import('cssnano');
-          const { default: safe } = await import('postcss-safe-parser');
+        minify: (data, inputMap, minimizerOptions) => {
+          const cssnano = require('cssnano');
+          const safe = require('postcss-safe-parser');
 
           const [[filename, input]] = Object.entries(data);
 
@@ -150,20 +142,22 @@ export default webpackMerge(commonConfig.default, {
             parser: safe,
           };
 
-          const result = await cssnano({
+          return cssnano({
             preset: [
               'default',
               {
                 convertValues: false,
               },
             ],
-          }).process(input, postcssOptions);
-
-          return {
-            code: result.css,
-            map: result.map,
-            warnings: result.warnings(),
-          };
+          })
+            .process(input, postcssOptions)
+            .then((result) => {
+              return {
+                code: result.css,
+                map: result.map,
+                warnings: result.warnings(),
+              };
+            });
         },
       }),
     ],

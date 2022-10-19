@@ -1,15 +1,13 @@
-import fs from 'node:fs/promises';
-import globPkg from 'glob';
-import chalk from 'chalk';
-import paths from '../../config/paths.js';
-
-const { glob } = globPkg;
+const fs = require('fs/promises');
+const { glob } = require('glob');
+const chalk = require('chalk');
+const paths = require('../../config/paths');
 
 process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-export default async function copyTypes() {
+module.exports = async function copyTypes() {
   try {
     const allDefs = glob.sync(`${paths.appSrc}/components/**/*.d.ts`);
     const indexDef = await fs.readFile(`${paths.appSrc}/index.d.ts`, 'utf8');
@@ -29,4 +27,4 @@ export default async function copyTypes() {
     console.log(err);
     console.log(chalk.red('Failed to copy type definitions.\n'));
   }
-}
+};

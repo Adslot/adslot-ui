@@ -4,7 +4,7 @@ import { popoverPlacements, themes } from '../../src/components/Popover/constant
 
 ## Popover
 
-```jsx live={true}
+```jsx live=true
 <div style={{ width: 150, display: 'flex', justifyContent: 'space-between' }}>
   <Popover placement="right" title="Popover Title" theme="dark" popoverContent="My initial positioning is right">
     <Button>Hover Me</Button>
@@ -30,7 +30,7 @@ import { popoverPlacements, themes } from '../../src/components/Popover/constant
   We support the implementation of dynamic popovers via <b>Popover.WithRef</b>
 </h4>
 
-```jsx live={true}
+```jsx live=true
 const myRef = React.createRef(null);
 
 const Example = () => {
@@ -77,7 +77,7 @@ render(
 <h4>Use Popover triggers as an alternative to Popover.WithRef.</h4>
 <h4>Code will be leaner with the following way.</h4>
 
-```jsx live={true}
+```jsx live=true
 const Example = () => {
   const [safeMode, setSafeMode] = React.useState(true);
   const toggleSafeMode = () => setSafeMode(!safeMode);
@@ -109,7 +109,7 @@ render(
 <br />
 <h4>Popover autoflips when overflowing container</h4>
 
-```jsx live={true}
+```jsx live=true
 <div
   style={{
     width: '500px',

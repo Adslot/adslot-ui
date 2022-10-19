@@ -1,17 +1,16 @@
-import path from 'node:path';
-import emoji from 'remark-emoji';
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import webpack from 'webpack';
-import { merge as webpackMerge } from 'webpack-merge';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-import * as commonConfig from './webpack.config.js';
-import { default as paths } from './paths.js';
+const path = require('path');
+const emoji = require('remark-emoji');
+const webpack = require('webpack');
+const { merge: webpackMerge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const commonConfig = require('./webpack.config');
+const paths = require('./paths');
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
-export default webpackMerge(commonConfig.default, {
+module.exports = webpackMerge(commonConfig, {
   mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
@@ -47,17 +46,10 @@ export default webpackMerge(commonConfig.default, {
           {
             loader: '@mdx-js/loader',
             options: {
-              providerImportSource: '@mdx-js/react',
-              remarkPlugins: [emoji, remarkMdxCodeMeta],
+              remarkPlugins: [emoji],
             },
           },
         ],
-        resolve: {
-          // https://webpack.js.org/configuration/module/#resolvefullyspecified
-          // temp fix for migrating to esm
-          // needs to be reviewed and discussed later
-          fullySpecified: false,
-        },
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,

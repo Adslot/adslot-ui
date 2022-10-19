@@ -24,7 +24,7 @@ Buttons assist user to complete tasks confidently and to feel secure about the n
 
 Modals and forms use the primary action header. Not every screen requires a primary button. _Never use a primary red action button_.
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button color="primary">Primary</Button>
   <Button color="default">Default</Button>
@@ -43,7 +43,7 @@ Modals and forms use the primary action header. Not every screen requires a prim
 
 **Inverted red buttons** are used as second primary actions alongside a primary action these are used delete, reject, cancel campaign.
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button color="primary" variant="inverse">
     Primary
@@ -65,7 +65,7 @@ Modals and forms use the primary action header. Not every screen requires a prim
 **Borderless button** is used for lower priority actions and when visually more suited than an inverse button.
 borderless buttons have no border until hovered.
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button color="primary" variant="borderless">
     Primary
@@ -86,7 +86,7 @@ borderless buttons have no border until hovered.
 
 **Link button** is a special case button used for inline actions that should retain the text flow, similar to anchor link.
 
-```jsx live={true}
+```jsx live=true
 <>
   <h4>
     This is an <Button variant="link">inline link button</Button> in an h4 tag.
@@ -103,7 +103,7 @@ borderless buttons have no border until hovered.
 
 **Large button** is designed to have larger text and padding.
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button color="primary" size="large">
     Primary
@@ -124,7 +124,7 @@ borderless buttons have no border until hovered.
 
 **Full width** creates a 100% width button, sizing multiple buttons evenly when in a flex parent container.
 
-```jsx live={true}
+```jsx live=true
 <>
   <div className="grid grid-small">
     <Button size="large" fullWidth color="primary">
@@ -141,7 +141,7 @@ borderless buttons have no border until hovered.
 
 **Loading** and **disabled** states can be applied to buttons.
 
-```jsx live={true}
+```jsx live=true
 <>
   <div className="grid grid-small">
     <Button isLoading color="primary">
@@ -161,7 +161,7 @@ large buttons support an icon size no larger than `20px`.
 
 Create an icon-only button
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button aria-label="search" color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
   <Button aria-label="search" color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
@@ -175,7 +175,7 @@ Create an icon-only button
 When using an icon only, the button can be round.
 Round icon Buttons have a special loading state, where the spinner aligns to the button outline, and the icon remains visible.
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button aria-label="search" round color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
   <Button aria-label="search" round color="default" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
@@ -195,7 +195,7 @@ Round icon Buttons have a special loading state, where the spinner aligns to the
 
 When combined with a label, the icon renders before the label
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Button color="primary" icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />}>
     Primary
@@ -216,7 +216,7 @@ When combined with a label, the icon renders before the label
 
 Wrap in a Popover to indicate the button's purpose
 
-```jsx live={true}
+```jsx live=true
 <div className="grid grid-small">
   <Popover popoverContent="Search recent posts" theme="dark" placement="top" id="search-popover">
     <Button aria-label="Search recent posts" round icon={<SvgSymbol href="./assets/svg-symbols.svg#search" />} />
