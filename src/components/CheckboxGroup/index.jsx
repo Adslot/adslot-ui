@@ -15,11 +15,7 @@ const CheckboxGroupItem = ({ value, ...rest }) => {
   invariant(!rest.variant, 'CheckboxGroup.Item: variant will be overridden by CheckboxGroup variant');
   invariant(!rest.onChange, 'CheckboxGroup.Item: onChange will be overridden by CheckboxGroup onChange');
 
-  const { onItemChange, getIsItemChecked, name, variant, recordValue } = groupCtx;
-
-  React.useLayoutEffect(() => {
-    recordValue(value);
-  });
+  const { onItemChange, getIsItemChecked, name, variant } = groupCtx;
 
   return (
     <Checkbox
@@ -35,7 +31,7 @@ const CheckboxGroupItem = ({ value, ...rest }) => {
 
 CheckboxGroupItem.propTypes = { ...shareCheckboxPropTypes };
 
-const CheckboxGroupAll = ({ className, label = 'All', ...rest }) => {
+const CheckboxGroupAll = ({ className, label = 'All', values, ...rest }) => {
   const groupCtx = useCheckboxGroup();
   invariant(!_.isEmpty(groupCtx), 'CheckboxGroup.All: must be used as children of CheckboxGroup');
 
@@ -47,8 +43,8 @@ const CheckboxGroupAll = ({ className, label = 'All', ...rest }) => {
       className={classnames(className, 'is-all')}
       name={name}
       label={label}
-      checked={getIsAllChecked()}
-      onChange={onAllChange}
+      checked={getIsAllChecked(values)}
+      onChange={onAllChange(values)}
       variant={variant}
     />
   );
@@ -57,6 +53,10 @@ const CheckboxGroupAll = ({ className, label = 'All', ...rest }) => {
 CheckboxGroupAll.propTypes = {
   label: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * a array of values that the All option represent
+   */
+  values: PropTypes.array.isRequired,
 };
 
 const CheckboxGroup = ({

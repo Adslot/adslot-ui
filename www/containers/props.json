@@ -1396,6 +1396,13 @@
           },
           "required": false,
           "description": ""
+        },
+        "values": {
+          "type": {
+            "name": "array"
+          },
+          "required": true,
+          "description": "a array of values that the All option represent"
         }
       }
     },
@@ -1425,7 +1432,7 @@
           ],
           "params": [
             {
-              "name": "{ className, label = 'All', ...rest }",
+              "name": "{ className, label = 'All', values, ...rest }",
               "type": null
             }
           ],

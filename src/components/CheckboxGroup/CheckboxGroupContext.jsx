@@ -16,13 +16,6 @@ const CheckboxGroupProvider = ({
 }) => {
   const parentCtx = useCheckboxGroup();
 
-  const valuesRef = React.useRef([]);
-  React.useLayoutEffect(() => {
-    return () => {
-      valuesRef.current = [];
-    };
-  });
-
   const onChange = parentCtx.onChange || onChangeProp;
   const name = parentCtx.name || nameProp;
   const value = parentCtx.value || valueProp;
@@ -34,9 +27,9 @@ const CheckboxGroupProvider = ({
       return value.includes(checkboxValue);
     };
 
-    const getIsAllChecked = () => {
-      const hasUnchecked = valuesRef.current.some((item) => !getIsItemChecked(item));
-      const hasChecked = valuesRef.current.some((item) => getIsItemChecked(item));
+    const getIsAllChecked = (values) => {
+      const hasUnchecked = values.some((item) => !getIsItemChecked(item));
+      const hasChecked = values.some((item) => getIsItemChecked(item));
 
       return hasUnchecked && hasChecked ? 'partial' : !hasUnchecked && hasChecked;
     };
@@ -49,19 +42,14 @@ const CheckboxGroupProvider = ({
       onChange(newValues, name, checkboxValue);
     };
 
-    const onAllChange = () => {
-      const isAllChecked = getIsAllChecked();
+    const onAllChange = (values) => () => {
+      const isAllChecked = getIsAllChecked(values);
       if (isAllChecked === true) {
-        const newValues = value.filter((item) => !valuesRef.current.includes(item));
+        const newValues = value.filter((item) => !values.includes(item));
         onChange(newValues, name);
       } else {
-        onChange(_(value).concat(valuesRef.current).uniq().value(), name);
+        onChange(_(value).concat(values).uniq().value(), name);
       }
-    };
-
-    const recordValue = (checkboxValue) => {
-      valuesRef.current.push(checkboxValue);
-      parentCtx.recordValue?.(checkboxValue);
     };
 
     return {
@@ -74,10 +62,8 @@ const CheckboxGroupProvider = ({
       getIsAllChecked,
       onItemChange,
       onAllChange,
-      valuesRef,
-      recordValue,
     };
-  }, [getIsChecked, value, name, onChange, variant, parentCtx]);
+  }, [getIsChecked, value, name, onChange, variant]);
 
   return <CheckboxGroupContext.Provider value={context}>{children}</CheckboxGroupContext.Provider>;
 };

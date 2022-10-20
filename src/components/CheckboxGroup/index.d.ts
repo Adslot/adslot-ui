@@ -39,6 +39,10 @@ declare const CheckboxGroupItem: React.FC<CheckboxGroupItemProps>;
 export interface CheckboxGroupAllProps {
   label?: React.ReactNode;
   className?: string;
+  /**
+   * a array of values that the All option represent
+   */
+  values: any[];
 }
 
 declare const CheckboxGroupAll: React.FC<CheckboxGroupAllProps>;
