@@ -1,5 +1,5 @@
 .aui--search-component {
-  height: 26px;
+  height: 30px;
   width: 100%;
   position: relative;
   display: flex;
@@ -90,7 +90,7 @@
   height: 16px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('../../styles/icons/search/search-primary.svg');
+  background-image: url('../../styles/icons/search/search-gray.svg');
   flex-shrink: 0;
 }
 

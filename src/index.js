@@ -15,7 +15,7 @@ import ButtonGroup from './components/ButtonGroup';
 import Card from './components/Card';
 import Carousel from './components/Carousel';
 import Checkbox from './components/Checkbox';
-import CheckboxGroup from './components/CheckboxGroup';
+import CheckboxGroup, { useCheckboxGroup } from './components/CheckboxGroup';
 import ConfirmModal from './components/ConfirmModal';
 import CountBadge from './components/CountBadge';
 import DatePicker from './components/DatePicker';
@@ -88,6 +88,7 @@ export {
   Carousel,
   Checkbox,
   CheckboxGroup,
+  useCheckboxGroup,
   ConfirmModal,
   CountBadge,
   DatePicker,
