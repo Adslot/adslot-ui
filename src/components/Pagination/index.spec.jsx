@@ -5,7 +5,7 @@ import Pagination from '.';
 
 afterEach(cleanup);
 
-describe('<PagedGrid />', () => {
+describe('<Pagination />', () => {
   it('should render with default props', () => {
     const props = {
       pageCount: 10,
@@ -15,16 +15,16 @@ describe('<PagedGrid />', () => {
 
     expect(getByTestId('pagination-wrapper')).toHaveClass('aui--pagination');
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('active');
-    expect(queryAllByTestId('button-wrapper')[0]).toHaveTextContent('1');
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(8);
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveClass('active');
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveTextContent('1');
 
-    expect(queryAllByTestId('button-wrapper')[1]).toHaveTextContent('2');
-    expect(queryAllByTestId('button-wrapper')[2]).toHaveTextContent('3');
-    expect(queryAllByTestId('button-wrapper')[3]).toHaveTextContent('10');
-    expect(queryAllByTestId('button-wrapper')[4]).toHaveClass('aui--pagination-sides');
+    expect(queryAllByTestId('button-wrapper')[2]).toHaveTextContent('2');
+    expect(queryAllByTestId('button-wrapper')[3]).toHaveTextContent('3');
+    expect(queryAllByTestId('button-wrapper')[6]).toHaveTextContent('10');
+    expect(queryAllByTestId('button-wrapper')[7]).toHaveClass('aui--pagination-sides');
 
-    expect(queryByTestId('pagination-right-ellipsis')).toBeInTheDocument();
+    expect(queryByTestId('pagination-ellipsis')).toBeInTheDocument();
   });
 
   it('should show active pagination button as specified', () => {
@@ -37,7 +37,7 @@ describe('<PagedGrid />', () => {
 
     expect(getByTestId('pagination-wrapper')).toHaveClass('aui--pagination');
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(6);
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(8);
     expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('aui--pagination-sides');
     expect(queryAllByTestId('button-wrapper')[1]).toHaveTextContent('1');
     expect(queryAllByTestId('button-wrapper')[1]).not.toHaveClass('active');
@@ -45,7 +45,7 @@ describe('<PagedGrid />', () => {
     expect(queryAllByTestId('button-wrapper')[2]).toHaveTextContent('2');
     expect(queryAllByTestId('button-wrapper')[2]).toHaveClass('active');
 
-    expect(queryAllByTestId('button-wrapper')[5]).toHaveClass('aui--pagination-sides');
+    expect(queryAllByTestId('button-wrapper')[7]).toHaveClass('aui--pagination-sides');
   });
 
   it('should not show prev/next button as specified', () => {
@@ -60,7 +60,7 @@ describe('<PagedGrid />', () => {
 
     expect(getByTestId('pagination-wrapper')).toHaveClass('aui--pagination');
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(4);
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(6);
     const buttons = queryAllByTestId('button-wrapper');
 
     _.forEach(buttons, (button) => expect(button).not.toHaveClass('aui--pagination-sides'));
@@ -75,27 +75,23 @@ describe('<PagedGrid />', () => {
     const { getByTestId, queryAllByTestId } = render(<Pagination {...props} />);
 
     expect(getByTestId('pagination-wrapper')).toHaveClass('aui--pagination');
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(8);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[0]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[1]);
     expect(props.onSelect).toHaveBeenCalledTimes(1);
     expect(props.onSelect).toHaveBeenCalledWith(1);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[1]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[2]);
     expect(props.onSelect).toHaveBeenCalledTimes(2);
     expect(props.onSelect).toHaveBeenLastCalledWith(2);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[2]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[3]);
     expect(props.onSelect).toHaveBeenCalledTimes(3);
     expect(props.onSelect).toHaveBeenLastCalledWith(3);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[3]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[6]);
     expect(props.onSelect).toHaveBeenCalledTimes(4);
     expect(props.onSelect).toHaveBeenLastCalledWith(10);
-
-    fireEvent.click(queryAllByTestId('button-wrapper')[4]);
-    expect(props.onSelect).toHaveBeenCalledTimes(5);
-    expect(props.onSelect).toHaveBeenLastCalledWith(2);
   });
 
   it('should trigger selecting events of buttons when active page is 4', () => {
@@ -104,42 +100,24 @@ describe('<PagedGrid />', () => {
       pageCount: 10,
       onSelect: jest.fn(),
     };
-    const { queryByTestId, queryAllByTestId } = render(<Pagination {...props} />);
+    const { queryAllByTestId } = render(<Pagination {...props} />);
 
     expect(queryAllByTestId('button-wrapper')).toHaveLength(7);
     expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('aui--pagination-sides');
     expect(queryAllByTestId('button-wrapper')[6]).toHaveClass('aui--pagination-sides');
 
-    expect(queryByTestId('pagination-left-ellipsis')).toBeInTheDocument();
-    expect(queryByTestId('pagination-right-ellipsis')).toBeInTheDocument();
+    expect(queryAllByTestId('pagination-ellipsis')).toHaveLength(2);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[0]);
-    expect(props.onSelect).toHaveBeenCalledTimes(1);
-    expect(props.onSelect).toHaveBeenCalledWith(3);
-
-    fireEvent.click(queryAllByTestId('button-wrapper')[1]);
-    expect(props.onSelect).toHaveBeenCalledTimes(2);
-    expect(props.onSelect).toHaveBeenLastCalledWith(1);
-
-    fireEvent.click(queryAllByTestId('button-wrapper')[2]);
-    expect(props.onSelect).toHaveBeenCalledTimes(3);
-    expect(props.onSelect).toHaveBeenLastCalledWith(3);
-
-    fireEvent.click(queryAllByTestId('button-wrapper')[3]);
-    expect(props.onSelect).toHaveBeenCalledTimes(4);
-    expect(props.onSelect).toHaveBeenLastCalledWith(4);
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveTextContent('1');
+    expect(queryAllByTestId('button-wrapper')[2]).toHaveTextContent('3');
+    expect(queryAllByTestId('button-wrapper')[3]).toHaveTextContent('4');
+    expect(queryAllByTestId('button-wrapper')[4]).toHaveTextContent('5');
+    expect(queryAllByTestId('button-wrapper')[5]).toHaveTextContent('10');
 
     fireEvent.click(queryAllByTestId('button-wrapper')[4]);
-    expect(props.onSelect).toHaveBeenCalledTimes(5);
+    expect(props.onSelect).toHaveBeenCalledTimes(1);
     expect(props.onSelect).toHaveBeenLastCalledWith(5);
-
-    fireEvent.click(queryAllByTestId('button-wrapper')[5]);
-    expect(props.onSelect).toHaveBeenCalledTimes(6);
-    expect(props.onSelect).toHaveBeenLastCalledWith(10);
-
-    fireEvent.click(queryAllByTestId('button-wrapper')[6]);
-    expect(props.onSelect).toHaveBeenCalledTimes(7);
-    expect(props.onSelect).toHaveBeenLastCalledWith(5);
+    expect(queryAllByTestId('button-wrapper')[3]).toHaveClass('active');
   });
 
   it('should trigger selecting events of buttons when active page is 4 and pageCount is 4', () => {
@@ -150,7 +128,7 @@ describe('<PagedGrid />', () => {
     };
     const { queryAllByTestId } = render(<Pagination {...props} />);
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(6);
     expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('aui--pagination-sides');
 
     fireEvent.click(queryAllByTestId('button-wrapper')[0]);
@@ -181,35 +159,35 @@ describe('<PagedGrid />', () => {
     };
     const { queryAllByTestId, rerender } = render(<Pagination {...props} activePage={1} />);
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(6);
-    expect(queryAllByTestId('button-wrapper')[5]).toHaveClass('aui--pagination-sides');
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(7);
+    expect(queryAllByTestId('button-wrapper')[6]).toHaveClass('aui--pagination-sides');
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[0]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[1]);
     expect(props.onSelect).toHaveBeenCalledTimes(1);
     expect(props.onSelect).toHaveBeenCalledWith(1);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[1]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[2]);
     expect(props.onSelect).toHaveBeenCalledTimes(2);
     expect(props.onSelect).toHaveBeenLastCalledWith(2);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[2]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[3]);
     expect(props.onSelect).toHaveBeenCalledTimes(3);
     expect(props.onSelect).toHaveBeenLastCalledWith(3);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[3]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[4]);
     expect(props.onSelect).toHaveBeenCalledTimes(4);
     expect(props.onSelect).toHaveBeenLastCalledWith(4);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[4]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[5]);
     expect(props.onSelect).toHaveBeenCalledTimes(5);
     expect(props.onSelect).toHaveBeenLastCalledWith(5);
 
-    fireEvent.click(queryAllByTestId('button-wrapper')[5]);
+    fireEvent.click(queryAllByTestId('button-wrapper')[6]);
     expect(props.onSelect).toHaveBeenCalledTimes(6);
     expect(props.onSelect).toHaveBeenLastCalledWith(2);
 
     rerender(<Pagination {...props} activePage={5} />);
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(6);
+    expect(queryAllByTestId('button-wrapper')).toHaveLength(7);
     expect(queryAllByTestId('button-wrapper')[0]).toHaveClass('aui--pagination-sides');
 
     fireEvent.click(queryAllByTestId('button-wrapper')[0]);
@@ -235,5 +213,22 @@ describe('<PagedGrid />', () => {
     fireEvent.click(queryAllByTestId('button-wrapper')[5]);
     expect(props.onSelect).toHaveBeenCalledTimes(12);
     expect(props.onSelect).toHaveBeenLastCalledWith(5);
+  });
+
+  it('should show right separator only when on the last page', () => {
+    const props = {
+      activePage: 10,
+      pageCount: 10,
+      onSelect: jest.fn(),
+    };
+    const { queryAllByTestId, queryByTestId } = render(<Pagination {...props} />);
+    expect(queryAllByTestId('button-wrapper')[1]).toHaveTextContent('1');
+    expect(queryAllByTestId('button-wrapper')[2]).toHaveTextContent('6');
+    expect(queryAllByTestId('button-wrapper')[3]).toHaveTextContent('7');
+    expect(queryAllByTestId('button-wrapper')[4]).toHaveTextContent('8');
+    expect(queryAllByTestId('button-wrapper')[5]).toHaveTextContent('9');
+    expect(queryAllByTestId('button-wrapper')[6]).toHaveTextContent('10');
+
+    expect(queryByTestId('pagination-ellipsis')).toBeInTheDocument();
   });
 });

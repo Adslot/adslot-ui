@@ -1,45 +1,59 @@
+@import url('../../styles/variable.css');
+
 .aui--pagination {
   padding: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2px;
 }
 
 .aui--pagination-separator {
-  width: 12.5px;
-  height: 24px;
-  margin: 0 5px;
+  color: $color-gray;
 }
 
-.aui--pagination-sides .previous-icon {
-  width: 16px;
-  height: 16px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('../../styles/icons/point-left.svg');
-}
+.aui--pagination-sides {
+  & .previous-icon,
+  & .next-icon {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 
-.aui--pagination-sides .next-icon {
-  width: 16px;
-  height: 16px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('../../styles/icons/point-right.svg');
+  & .previous-icon {
+    background-image: url('../../styles/icons/point-left.svg');
+  }
+
+  & .next-icon {
+    background-image: url('../../styles/icons/point-right.svg');
+  }
 }
 
 .aui--pagination-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
-  width: 24px;
+  user-select: none;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  font-weight: normal;
+  border-radius: 3px;
+  color: $color-text-sub;
+
+  &.active {
+    background-color: $color-gray-lightest;
+    color: $color-text;
+    font-weight: bold;
+  }
 }
 
-.aui--pagination-item.btn-borderless:not([disabled]):hover,
-.aui--pagination-item.btn-borderless:not([disabled]):active {
-  box-shadow: none;
+.aui--pagination-hidden {
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.aui--pagination-item.btn-inverse:not([disabled]):focus {
+.aui--pagination-item.aui-inverse:not([disabled]):focus {
   background-color: #fff;
 }
