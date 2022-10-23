@@ -1,7 +1,6 @@
+import * as React from 'react';
 import { ReactDatePickerProps } from 'react-datepicker';
 import { Moment } from 'moment';
-
-import * as React from 'react';
 
 export interface DatePickerProps {
   selected?: Moment | Date | null;

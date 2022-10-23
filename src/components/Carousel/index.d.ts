@@ -1,5 +1,5 @@
-import type { Settings } from 'react-slick';
 import * as React from 'react';
+import type { Settings } from 'react-slick';
 
 export interface CarouselProps {
   className?: string;
