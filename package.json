@@ -180,7 +180,7 @@
     "react-dom": "^16.14.0"
   },
   "engines": {
-    "node": "^16"
+    "node": "^18"
   },
   "browserslist": [
     "last 2 versions",
