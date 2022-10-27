@@ -1,5 +1,5 @@
-import type Cropper from 'cropperjs';
 import * as React from 'react';
+import type Cropper from 'cropperjs';
 
 export interface ImageCropperProps {
   title?: string;

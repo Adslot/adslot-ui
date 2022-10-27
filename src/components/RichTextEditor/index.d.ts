@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { EditorState, ContentState, RawDraftContentState } from 'draft-js';
 import { createEditorStateWithText } from '@draft-js-plugins/editor';
-import * as React from 'react';
 
 export interface RichTextEditorMentions {
   name: string;

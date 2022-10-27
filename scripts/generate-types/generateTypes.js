@@ -7,10 +7,12 @@ const { generateFromSource } = require('react-to-typescript-definitions');
 const { glob } = require('glob');
 const chalk = require('chalk');
 const fs = require('fs/promises');
+const path = require('path');
 const paths = require('../../config/paths');
 const parsePropTypesVariables = require('./babel-plugin-proptype-vars');
 const copyTypes = require('./copyTypes');
-const typesPostFixes = require('./typesPostFixes');
+const { typesPostFixes } = require('./typesPostFixes');
+const checkTypeChanges = require('./checkTypeChanges');
 const pkg = require('../../package.json');
 
 // Makes the script crash on unhandled rejections instead of silently
@@ -64,15 +66,20 @@ async function generateTypeDefs() {
     copyTypes();
     return;
   }
+  const globString = `${paths.appSrc}/components/${options.only ? options.only : '**'}${
+    options.only?.endsWith('.jsx') ? '' : '/*[!.spec|.test].jsx'
+  }`
+    .split(path.sep)
+    .join(path.posix.sep);
+
   // get all the jsx components using glob. Ignore spec & test files.
-  const allComponentFiles = glob.sync(
-    `${paths.appSrc}/components/${options.only ? options.only : '**'}${
-      options.only?.endsWith('.jsx') ? '' : '/*[!.spec|.test].jsx'
-    }`
-  );
+  const allComponentFiles = glob.sync(globString);
 
   if (!allComponentFiles || allComponentFiles.length === 0) {
-    console.log(chalk.red(`No component files were found for ${options.only}`));
+    console.log(
+      chalk.red(`No component files were found for ${options.only} 
+    ${globString}`)
+    );
     return;
   }
 
@@ -105,14 +112,29 @@ async function generateTypeDefs() {
   // generate definitions for each component
   // and add them to the allDefs string
   try {
+    console.log(
+      chalk.cyan(
+        `Parsing PropTypes for ${
+          allComponents.length > 5
+            ? `${allComponents.length} components`
+            : allComponents
+                .map(({ fileName, relPath }, i) => `${relPath.replace('src/components/', '')}${fileName}`)
+                .join(', ')
+        }`
+      )
+    );
+
     const parsed = allComponents.map(({ src, fileName, relPath }) => {
-      console.log(chalk.cyan(`Parsing PropTypes for ${relPath}${fileName}`));
+      options.debug && console.log(chalk.cyan(`Parsing ${chalk.bold(`${relPath}${fileName}`)}`));
 
       // run through babel plugin - attempts to make prop type declarations
       // literal i.e resolves variables, object spreads etc. directly into the .propTypes object
       // so react-to-typescript-definitions can turn them into type definitions
       return parsePropTypeVars(src, relPath);
     });
+
+    let filesToCheck = [];
+
     await Promise.all(
       parsed.map(async (code, i) => {
         const result = await generateFromSource(null, code, {
@@ -120,17 +142,31 @@ async function generateTypeDefs() {
         });
 
         const component = allComponents[i];
-        console.log(chalk.green.bold(`Generated type defs for ${component.componentName}`));
 
         const output = typesPostFixes(component.componentName, result);
         const prettifiedOutput = prettier.format(output, { parser: 'typescript', ...pkg.prettier });
 
         const fileName = `${component.relPath}${component.fileName.replace(/\.jsx$/, '.d.ts')}`;
+        const existingFile = await fs.readFile(fileName, 'utf-8');
+
+        // pass changed files to checkTypeChanges
+        if (existingFile !== prettifiedOutput) {
+          filesToCheck.push(fileName);
+        }
+
         // put definition files in corresponding src/components/* folder
         await fs.writeFile(`${paths.appDir}/${fileName}`, prettifiedOutput);
-
-        console.log(chalk.green(fileName));
       })
+    );
+    if (filesToCheck.length > 0) {
+      await checkTypeChanges(filesToCheck);
+    }
+    console.log(
+      chalk.cyan(
+        `Generated type defs for ${allComponents.map(({ componentName }) => chalk.bold(componentName)).join(', ')}
+        
+        `
+      )
     );
   } catch (error) {
     console.log(chalk.red('Failed to generate types.\n'));
@@ -138,7 +174,7 @@ async function generateTypeDefs() {
     process.exit(1);
   }
 
-  console.log(chalk.green(`Wrote types successfully.\n`));
+  console.log(chalk.green.bold(`Wrote types successfully.\n`));
 }
 
 generateTypeDefs();
