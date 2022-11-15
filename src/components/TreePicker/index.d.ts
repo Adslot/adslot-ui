@@ -157,6 +157,8 @@ export interface TreePickerSimplePureProps {
    * A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component.
    */
   selectedTopSearch?: React.ReactNode;
+  addNodePopoverInfoProps?: Object;
+  removeNodePopoverInfoProps?: Object;
   breadcrumbRootNode?: TreePickerSimplePureBreadcrumbRootNode;
 }
 

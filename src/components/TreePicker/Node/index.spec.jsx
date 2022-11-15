@@ -277,4 +277,28 @@ describe('<TreePickerNode />', () => {
       `AdslotUi TreePickerNode needs property 'path' or property 'ancestors'`
     );
   });
+
+  it('should have popover element if addNodePopoverInfoProps exists', () => {
+    const addInfoProps = {
+      popoverContent: 'add',
+    };
+
+    const { queryAllByTestId } = render(
+      <TreePickerNode itemType={itemType} node={cbrNode} addNodePopoverInfoProps={addInfoProps} />
+    );
+
+    expect(queryAllByTestId('popover-element')).toHaveLength(2); // text ellipsis and popover for add button
+  });
+
+  it('should have popover element if removeNodePopoverInfoProps exists', () => {
+    const removeInfoProps = {
+      popoverContent: 'remove',
+    };
+
+    const { queryAllByTestId } = render(
+      <TreePickerNode itemType={itemType} node={cbrNode} selected removeNodePopoverInfoProps={removeInfoProps} />
+    );
+
+    expect(queryAllByTestId('popover-element')).toHaveLength(2); // text ellipsis and popover for remove button
+  });
 });

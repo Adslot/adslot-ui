@@ -51,6 +51,8 @@ const TreePickerSimplePure = ({
   displayGroupHeader,
   hideSearchOnRoot,
   selectedTopSearch,
+  addNodePopoverInfoProps,
+  removeNodePopoverInfoProps,
 }) => {
   const selectableNodes = removeSelected({ subtree, selectedNodes });
   let searchTextNode = emptyText || 'No items to select.';
@@ -100,6 +102,7 @@ const TreePickerSimplePure = ({
             nodeRenderer,
             selected: false,
             displayGroupHeader,
+            addNodePopoverInfoProps,
           }}
         />
         <FlexibleSpacer />
@@ -119,6 +122,7 @@ const TreePickerSimplePure = ({
             removeNode,
             selected: true,
             displayGroupHeader,
+            removeNodePopoverInfoProps,
           }}
         />
         <FlexibleSpacer />
@@ -244,6 +248,8 @@ TreePickerSimplePure.propTypes = {
    * 	A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component.
    */
   selectedTopSearch: PropTypes.node,
+  addNodePopoverInfoProps: PropTypes.object,
+  removeNodePopoverInfoProps: PropTypes.object,
 };
 
 TreePickerSimplePure.defaultProps = {

@@ -7,6 +7,7 @@ import GridCell from '../../Grid/Cell';
 import GridRow from '../../Grid/Row';
 import TextEllipsis from '../../TextEllipsis';
 import TreePickerNodeExpander from './Expander';
+import Popover from '../../Popover';
 import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes';
 import './styles.css';
 
@@ -17,6 +18,8 @@ const printPathText = (node) => _(node.path).map('label').clone().reverse().join
 const printAncestorText = (node) => _(node.ancestors).map('label').join(', ');
 
 const pathPrefix = ({ type }) => (_.isEmpty(type) ? '' : `${type} in `);
+
+const ConditionalPopoverWrapper = ({ condition, wrapper, children }) => (condition ? wrapper(children) : children);
 
 class TreePickerNode extends React.PureComponent {
   state = {
@@ -38,7 +41,17 @@ class TreePickerNode extends React.PureComponent {
   handleInclude = () => this.props.includeNode(this.props.node);
 
   render() {
-    const { disabled, itemType, node, expandNode, nodeRenderer, selected, valueFormatter } = this.props;
+    const {
+      disabled,
+      itemType,
+      node,
+      expandNode,
+      nodeRenderer,
+      selected,
+      valueFormatter,
+      addNodePopoverInfoProps,
+      removeNodePopoverInfoProps,
+    } = this.props;
     const isChildNode = !(_.isEmpty(node.path) && _.isEmpty(node.ancestors));
     const isExpandable = expandNode && node.isExpandable;
 
@@ -60,14 +73,19 @@ class TreePickerNode extends React.PureComponent {
         <GridRow dts={`${_.kebabCase(itemType)}-${node.id}`}>
           {selected ? (
             <GridCell classSuffixes={['button']} dts="button-remove">
-              <Button
-                className="button-xs"
-                variant="inverse"
-                onClick={this.handleRemove}
-                disabled={disabled || node.isSelectable === false}
+              <ConditionalPopoverWrapper
+                condition={!_.isEmpty(removeNodePopoverInfoProps)}
+                wrapper={(children) => <Popover {...removeNodePopoverInfoProps}>{children}</Popover>}
               >
-                −
-              </Button>
+                <Button
+                  className="button-xs"
+                  variant="inverse"
+                  onClick={this.handleRemove}
+                  disabled={disabled || node.isSelectable === false}
+                >
+                  −
+                </Button>
+              </ConditionalPopoverWrapper>
             </GridCell>
           ) : null}
           <GridCell stretch {...labelCellProps} dts="label">
@@ -99,14 +117,19 @@ class TreePickerNode extends React.PureComponent {
           {_.isNumber(node.value) ? <GridCell dts="value">{valueFormatter(node.value)}</GridCell> : null}
           {!selected ? (
             <GridCell classSuffixes={['button']} dts="button-add">
-              <Button
-                className="button-xs"
-                variant="inverse"
-                onClick={this.handleInclude}
-                disabled={disabled || node.isSelectable === false || this.state.isLoading}
+              <ConditionalPopoverWrapper
+                condition={!_.isEmpty(addNodePopoverInfoProps)}
+                wrapper={(children) => <Popover {...addNodePopoverInfoProps}>{children}</Popover>}
               >
-                +
-              </Button>
+                <Button
+                  className="button-xs"
+                  variant="inverse"
+                  onClick={this.handleInclude}
+                  disabled={disabled || node.isSelectable === false || this.state.isLoading}
+                >
+                  +
+                </Button>
+              </ConditionalPopoverWrapper>
             </GridCell>
           ) : null}
         </GridRow>
@@ -125,6 +148,8 @@ TreePickerNode.propTypes = {
   removeNode: PropTypes.func,
   selected: PropTypes.bool,
   valueFormatter: PropTypes.func,
+  addNodePopoverInfoProps: PropTypes.object,
+  removeNodePopoverInfoProps: PropTypes.object,
 };
 
 TreePickerNode.defaultProps = {
