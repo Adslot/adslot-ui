@@ -38,6 +38,14 @@ describe('<Switch />', () => {
     );
   });
 
+  it('should update checked value', () => {
+    const { getByTestId } = render(<Switch defaultChecked={false} onChange={jest.fn()} />);
+
+    expect(getByTestId('switch-checkbox')).not.toBeChecked();
+    fireEvent.click(getByTestId('switch-checkbox'));
+    expect(getByTestId('switch-checkbox')).toBeChecked();
+  });
+
   it('should correctly call onChange for controlled Switch', () => {
     const onChange = jest.fn();
     const { getByTestId, queryByTestId } = render(<Switch checked onChange={onChange} />);
