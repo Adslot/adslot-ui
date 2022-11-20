@@ -63,7 +63,7 @@ describe('<AlertInput />', () => {
 
       fireEvent(
         getByClass(container, 'aui--alert-input__input'),
-        createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+        createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
           target: { select: onSelect },
         })
       );
@@ -81,7 +81,7 @@ describe('<AlertInput />', () => {
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
-          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
             target: { select: onSelect },
           })
         );
@@ -102,7 +102,7 @@ describe('<AlertInput />', () => {
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
-          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
             target: { select: onSelect },
           })
         );
@@ -124,7 +124,7 @@ describe('<AlertInput />', () => {
       act(() => {
         fireEvent(
           getByClass(container, 'aui--alert-input__input'),
-          createEvent.focus(getByClass(container, 'aui--alert-input__input'), {
+          createEvent.focusIn(getByClass(container, 'aui--alert-input__input'), {
             target: { select: onSelect },
           })
         );
@@ -132,7 +132,7 @@ describe('<AlertInput />', () => {
       });
 
       act(() => {
-        fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+        fireEvent.focusOut(getByClass(container, 'aui--alert-input__input'));
         jest.runAllTimers();
       });
 
@@ -146,7 +146,7 @@ describe('<AlertInput />', () => {
       const { container } = render(<AlertInput onBlur={onBlur} />);
 
       act(() => {
-        fireEvent.blur(getByClass(container, 'aui--alert-input__input'));
+        fireEvent.focusOut(getByClass(container, 'aui--alert-input__input'));
         jest.runAllTimers();
       });
 
