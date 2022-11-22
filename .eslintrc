@@ -5,10 +5,23 @@
   "settings": {
     "lodash": {
       "version": 4
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [["testing", "./config/testing"]]
+      }
     }
   },
   "rules": {
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "@typescript-eslint/no-explicit-any": "off"
-  }
+  },
+
+  "overrides": [
+    {
+      // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching testing files!
+      "files": ["**/__tests__/**/*.js?(x)", "**/?(*.)+(spec|test).js?(x)"],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }
