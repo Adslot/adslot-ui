@@ -1,76 +1,71 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import FormGroup from '.';
 
-afterEach(cleanup);
+const helpText = "Help me if you can I'm feeling down.";
+const label = 'Sweet Caroline';
 
-describe('<FormGroup />', () => {
-  const helpText = "Help me if you can I'm feeling down.";
-  const label = 'Sweet Caroline';
+it('should render with required props', () => {
+  render(<FormGroup helpText={helpText} label={label} placeholder="baz" onChange={jest.fn()} />);
 
-  it('should render with required props', () => {
-    const { getByTestId, queryByTestId } = render(
-      <FormGroup helpText={helpText} label={label} placeholder="baz" onChange={jest.fn()} />
-    );
+  expect(screen.getByTestId('form-group-wrapper')).toHaveClass('form-group');
 
-    expect(getByTestId('form-group-wrapper')).toHaveClass('form-group');
+  expect(screen.getByTestId('form-group-label')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-label')).toHaveAttribute('for', 'sweet-caroline');
+  expect(screen.getByTestId('form-group-label')).toHaveClass('control-label col-xs-3');
+  expect(screen.getByTestId('form-group-label')).toHaveTextContent('Sweet Caroline');
 
-    expect(queryByTestId('form-group-label')).toBeInTheDocument();
-    expect(getByTestId('form-group-label')).toHaveAttribute('for', 'sweet-caroline');
-    expect(getByTestId('form-group-label')).toHaveClass('control-label col-xs-3');
-    expect(getByTestId('form-group-label')).toHaveTextContent('Sweet Caroline');
+  expect(screen.getByTestId('form-group-input-group-wrapper')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-input-group-wrapper')).toHaveClass('col-xs-5');
 
-    expect(queryByTestId('form-group-input-group-wrapper')).toBeInTheDocument();
-    expect(getByTestId('form-group-input-group-wrapper')).toHaveClass('col-xs-5');
+  expect(screen.getByTestId('form-group-input-group')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-input-group')).toHaveClass('input-group col-xs-12');
 
-    expect(queryByTestId('form-group-input-group')).toBeInTheDocument();
-    expect(getByTestId('form-group-input-group')).toHaveClass('input-group col-xs-12');
+  expect(screen.getByTestId('form-group-input')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-input')).toHaveClass('form-control');
+  expect(screen.getByTestId('form-group-input')).toHaveAttribute('type', 'text');
+  expect(screen.getByTestId('form-group-input')).toHaveAttribute('id', 'sweet-caroline');
+  expect(screen.getByTestId('form-group-input')).toHaveAttribute('placeholder', 'baz');
+  expect(screen.getByTestId('form-group-input')).toHaveValue('');
 
-    expect(queryByTestId('form-group-input')).toBeInTheDocument();
-    expect(getByTestId('form-group-input')).toHaveClass('form-control');
-    expect(getByTestId('form-group-input')).toHaveAttribute('type', 'text');
-    expect(getByTestId('form-group-input')).toHaveAttribute('id', 'sweet-caroline');
-    expect(getByTestId('form-group-input')).toHaveAttribute('placeholder', 'baz');
-    expect(getByTestId('form-group-input')).toHaveValue('');
+  expect(screen.getByTestId('form-group-help')).toHaveClass('help-block');
+  expect(screen.getByTestId('form-group-help')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-help')).toHaveTextContent(helpText);
+});
 
-    expect(getByTestId('form-group-help')).toHaveClass('help-block');
-    expect(queryByTestId('form-group-help')).toBeInTheDocument();
-    expect(getByTestId('form-group-help')).toHaveTextContent(helpText);
-  });
+it('should render with an addon and a value', async () => {
+  const onChangeMock = jest.fn();
+  render(
+    <FormGroup addon="$" helpText={helpText} label={label} onChange={onChangeMock} placeholder="5.00" value="10.00" />
+  );
 
-  it('should render with an addon and a value', () => {
-    const onChangeMock = jest.fn();
-    const { getByTestId, queryByTestId } = render(
-      <FormGroup addon="$" helpText={helpText} label={label} onChange={onChangeMock} placeholder="5.00" value="10.00" />
-    );
+  expect(screen.getByTestId('form-group-wrapper')).toHaveClass('form-group');
+  expect(screen.getByTestId('form-group-input-group')).toContainElement(screen.getByTestId('form-group-input'));
+  expect(screen.getByTestId('form-group-input')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-input')).toHaveClass('form-control');
+  expect(screen.getByTestId('form-group-input')).toHaveAttribute('type', 'text');
+  expect(screen.getByTestId('form-group-input')).toHaveAttribute('id', 'sweet-caroline');
+  expect(screen.getByTestId('form-group-input')).toHaveAttribute('placeholder', '5.00');
+  expect(screen.getByTestId('form-group-input')).toHaveValue('10.00');
 
-    expect(getByTestId('form-group-wrapper')).toHaveClass('form-group');
-    expect(getByTestId('form-group-input-group')).toContainElement(getByTestId('form-group-input'));
-    expect(queryByTestId('form-group-input')).toBeInTheDocument();
-    expect(getByTestId('form-group-input')).toHaveClass('form-control');
-    expect(getByTestId('form-group-input')).toHaveAttribute('type', 'text');
-    expect(getByTestId('form-group-input')).toHaveAttribute('id', 'sweet-caroline');
-    expect(getByTestId('form-group-input')).toHaveAttribute('placeholder', '5.00');
-    expect(getByTestId('form-group-input')).toHaveValue('10.00');
+  await user.click(screen.getByTestId('form-group-input'));
+  await user.keyboard('a');
+  expect(onChangeMock).toHaveBeenCalledTimes(1);
+});
 
-    fireEvent.change(getByTestId('form-group-input'), { target: { value: 'a' } });
-    expect(onChangeMock).toHaveBeenCalledTimes(1);
-  });
+it('should render as disabled', () => {
+  const onChangeMock = jest.fn();
+  render(
+    <FormGroup
+      disabled
+      helpText={helpText}
+      label={label}
+      onChange={onChangeMock}
+      placeholder="I should be disabled"
+      value="10.00"
+    />
+  );
 
-  it('should render as disabled', () => {
-    const onChangeMock = jest.fn();
-    const { getByTestId, queryByTestId } = render(
-      <FormGroup
-        disabled
-        helpText={helpText}
-        label={label}
-        onChange={onChangeMock}
-        placeholder="I should be disabled"
-        value="10.00"
-      />
-    );
-
-    expect(queryByTestId('form-group-input')).toBeInTheDocument();
-    expect(getByTestId('form-group-input')).toBeDisabled();
-  });
+  expect(screen.getByTestId('form-group-input')).toBeInTheDocument();
+  expect(screen.getByTestId('form-group-input')).toBeDisabled();
 });

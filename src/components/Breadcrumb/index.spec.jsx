@@ -1,81 +1,63 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import Breadcrumb from '.';
 
-afterEach(cleanup);
+let nodes;
+beforeEach(() => {
+  nodes = [
+    { id: 'a', label: 'Canada' },
+    { id: 'b', label: 'British Columbia' },
+    { id: 'c', label: 'Victoria' },
+  ];
+});
 
-describe('<Breadcrumb />', () => {
-  let nodes;
+it('should render empty with the component className when no nodes', () => {
+  render(<Breadcrumb onClick={jest.fn()} />);
+
+  expect(screen.getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
+  expect(screen.getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
+  expect(screen.queryByTestId('breadcrumb-node-wrapper')).not.toBeInTheDocument();
+});
+
+it('should render nodes', () => {
+  render(<Breadcrumb onClick={jest.fn()} nodes={nodes} divider="/" />);
+
+  expect(screen.getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
+  expect(screen.getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
+  expect(screen.queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(4);
+  expect(screen.queryAllByTestId('breadcrumb-node-wrapper')[0]).toHaveTextContent('All');
+
+  expect(screen.queryAllByTestId('breadcrumb-node-divider')).toHaveLength(nodes.length);
+  screen
+    .queryAllByTestId('breadcrumb-node-divider')
+    .forEach((node) => expect(node).toHaveTextContent('/', { normalizeSpaces: false }));
+
+  const nodeLinks = screen.queryAllByTestId('breadcrumb-node-wrapper');
+  expect(nodeLinks).toHaveLength(4);
+  expect(nodeLinks[0]).toHaveClass('aui--breadcrumb-node-link');
+  expect(nodeLinks[1]).toHaveClass('aui--breadcrumb-node-link');
+  expect(nodeLinks[2]).toHaveClass('aui--breadcrumb-node-link');
+  expect(nodeLinks[3]).not.toHaveClass('aui--breadcrumb-node-link');
+});
+
+it('should call props.onClick when clicking a node with onClick handler', async () => {
   const onClick = jest.fn();
-  beforeEach(() => {
-    nodes = [
-      { id: 'a', label: 'Canada' },
-      { id: 'b', label: 'British Columbia' },
-      { id: 'c', label: 'Victoria' },
-    ];
+  render(<Breadcrumb onClick={onClick} nodes={nodes} />);
+
+  await user.click(screen.queryAllByTestId('breadcrumb-node-wrapper')[0]);
+  expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+describe('disabled', () => {
+  it('should have disabled class', () => {
+    render(<Breadcrumb onClick={jest.fn()} nodes={nodes} disabled />);
+    expect(screen.getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb--disabled');
   });
 
-  it('should render empty with the component className when no nodes', () => {
-    const { getByTestId, queryByTestId } = render(<Breadcrumb />);
-
-    expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
-    expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
-    expect(queryByTestId('breadcrumb-node-wrapper')).not.toBeInTheDocument();
-  });
-
-  it('should render nodes', () => {
-    const { getByTestId, queryAllByTestId } = render(<Breadcrumb nodes={nodes} divider="/" />);
-
-    expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb');
-    expect(getByTestId('breadcrumb-wrapper')).not.toHaveClass('aui--breadcrumb--disabled');
-    expect(queryAllByTestId('breadcrumb-node-wrapper')).toHaveLength(4);
-    expect(queryAllByTestId('breadcrumb-node-wrapper')[0]).toHaveTextContent('All');
-
-    expect(queryAllByTestId('breadcrumb-node-divider')).toHaveLength(nodes.length);
-    queryAllByTestId('breadcrumb-node-divider').forEach((node) =>
-      expect(node).toHaveTextContent('/', { normalizeSpaces: false })
-    );
-
-    queryAllByTestId('breadcrumb-node-wrapper').forEach((node, index) => {
-      expect(node).toHaveClass('aui--breadcrumb-node');
-      if (index === nodes.length) expect(node).not.toHaveClass('aui--breadcrumb-node-link');
-      if (index !== nodes.length) expect(node).toHaveClass('aui--breadcrumb-node-link');
-    });
-  });
-
-  it('should error when clicking a node with no onClick handler', () => {
-    const { queryAllByTestId } = render(<Breadcrumb nodes={nodes} />);
-    console.error = (err) => {
-      throw new Error(err);
-    };
-    expect(() => fireEvent.click(queryAllByTestId('breadcrumb-node-wrapper')[0])).toThrow(
-      'Breadcrumb needs an onClick handler to take all'
-    );
-  });
-
-  it('should call props.onClick when clicking a node with onClick handler', () => {
-    const props = { onClick, nodes };
-    const { queryAllByTestId } = render(<Breadcrumb {...props} />);
-
-    fireEvent.click(queryAllByTestId('breadcrumb-node-wrapper')[0]);
-    expect(onClick).toHaveBeenCalledTimes(1);
-  });
-  describe('disabled', () => {
-    const props = {
-      onClick,
-      nodes,
-      disabled: true,
-    };
-
-    it('should have disabled class', () => {
-      const { getByTestId } = render(<Breadcrumb {...props} />);
-      expect(getByTestId('breadcrumb-wrapper')).toHaveClass('aui--breadcrumb--disabled');
-    });
-
-    it('should not have any breadcrumb node', () => {
-      const { queryByTestId } = render(<Breadcrumb {...props} />);
-      expect(queryByTestId('breadcrumb-node-wrapper')).not.toBeInTheDocument();
-      expect(queryByTestId('breadcrumb-node')).not.toBeInTheDocument();
-    });
+  it('should not trigger onclick', async () => {
+    const onClick = jest.fn();
+    render(<Breadcrumb onClick={jest.fn()} nodes={nodes} disabled />);
+    await user.click(screen.queryAllByTestId('breadcrumb-node-wrapper')[0]);
+    expect(onClick).toHaveBeenCalledTimes(0);
   });
 });

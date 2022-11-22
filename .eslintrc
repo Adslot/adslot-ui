@@ -1,14 +1,29 @@
 {
   "root": true,
-  "plugins": ["jest-dom"],
-  "extends": ["adslot", "plugin:jest-dom/recommended", "plugin:import/typescript"],
+  "extends": ["adslot", "plugin:import/typescript"],
   "settings": {
     "lodash": {
       "version": 4
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [["testing", "./config/testing"]]
+      }
     }
   },
   "rules": {
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "@typescript-eslint/no-explicit-any": "off"
-  }
+  },
+
+  "overrides": [
+    {
+      "files": ["**/?(*.)spec.js?(x)"],
+      "extends": ["plugin:jest/recommended", "plugin:jest-dom/recommended", "plugin:testing-library/react"],
+      "rules": {
+        "jest/expect-expect": "error",
+        "jest/no-commented-out-tests": "off"
+      }
+    }
+  ]
 }

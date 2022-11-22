@@ -41,7 +41,7 @@ Breadcrumb.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
 };
@@ -50,9 +50,6 @@ Breadcrumb.defaultProps = {
   rootNode: { id: 'all', label: 'All' },
   divider: '>',
   nodes: [],
-  onClick: (newActiveId) => {
-    throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);
-  },
   disabled: false,
 };
 

@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../Card';
 import Panel from '../Panel';
+import invariant from '../../invariant';
 
 const Accordion = ({ dts, children, maxExpand, defaultActivePanelIds, onPanelClick }) => {
   const [activePanelIds, setActivePanelIds] = React.useState(() => {
@@ -42,8 +43,10 @@ const Accordion = ({ dts, children, maxExpand, defaultActivePanelIds, onPanelCli
     });
   };
 
-  if ((_.isNumber(maxExpand) && maxExpand <= 0) || (_.isString(maxExpand) && maxExpand !== 'max'))
-    throw new Error("maxExpand must be a positive number or 'max'");
+  invariant(
+    (_.isNumber(maxExpand) && maxExpand > 0) || (_.isString(maxExpand) && maxExpand === 'max'),
+    "maxExpand must be a positive number or 'max'"
+  );
 
   return (
     <Card.Container dts={dts}>

@@ -1,7 +1,8 @@
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { expandDts, invariant } from '../../utils';
+import { expandDts } from '../../utils';
+import invariant from '../../invariant';
 import { useRadioGroup } from '../RadioGroup';
 import './styles.css';
 

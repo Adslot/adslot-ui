@@ -1,12 +1,10 @@
 import React from 'react';
-import { render, cleanup, fireEvent, act } from '@testing-library/react';
+import { screen, render, fireEvent, act } from 'testing';
 import { useCollapse } from './useCollapse';
 
 beforeEach(() => {
   jest.useFakeTimers();
 });
-
-afterEach(cleanup);
 
 describe('useCollapse()', () => {
   const Component = ({ collapsedHeight, collapsed: collapsedProp, transitionMs, noRef, children }) => {
@@ -39,19 +37,17 @@ describe('useCollapse()', () => {
         observeMockFn = this.observe;
       }
     };
-    Element.prototype.getBoundingClientRect = jest.fn(() => {
-      return {
-        height: 50,
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-      };
+    jest.spyOn(Element.prototype, 'getBoundingClientRect').mockReturnValue({
+      height: 50,
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
     });
   });
 
-  it('should set height and transition state', () => {
-    const { getByTestId, getByRole } = render(
+  it('should set height and transition state', async () => {
+    render(
       <Component transitionMs={250}>
         <div style={{ height: 1000 }} />
       </Component>
@@ -67,37 +63,37 @@ describe('useCollapse()', () => {
       ]);
       jest.runAllTimers();
     });
-    expect(getByTestId('wrapper')).toHaveStyle({ height: '1000px' });
+    expect(screen.getByTestId('wrapper')).toHaveStyle({ height: '1000px' });
 
-    expect(getByRole('button')).toHaveAccessibleName('collapse');
-    fireEvent.click(getByRole('button'));
-    expect(getByTestId('wrapper')).toHaveClass('is-collapsing');
+    expect(screen.getByRole('button')).toHaveAccessibleName('collapse');
+    fireEvent.click(screen.getByRole('button'));
+    expect(screen.getByTestId('wrapper')).toHaveClass('is-collapsing');
 
     act(() => {
       jest.runAllTimers();
     });
 
-    expect(getByTestId('wrapper')).not.toHaveClass('is-collapsing');
+    expect(screen.getByTestId('wrapper')).not.toHaveClass('is-collapsing');
 
-    expect(getByRole('button')).toHaveAccessibleName('expand');
-    expect(getByTestId('wrapper')).toHaveStyle({ height: 0 });
-    expect(observeMockFn).toBeCalledTimes(1);
+    expect(screen.getByRole('button')).toHaveAccessibleName('expand');
+    expect(screen.getByTestId('wrapper')).toHaveStyle({ height: 0 });
+    expect(observeMockFn).toHaveBeenCalledTimes(1);
   });
 
   it('should do nothing without container ref', () => {
-    const { getByTestId, getByRole } = render(
+    render(
       <Component collapsedHeight={25} noRef>
         <div style={{ height: 1000 }} />
       </Component>
     );
 
-    expect(getByTestId('wrapper')).toHaveStyle({ height: undefined });
-    fireEvent.click(getByRole('button'));
-    expect(getByTestId('wrapper')).toHaveStyle({ height: undefined });
+    expect(screen.getByTestId('wrapper')).toHaveStyle({ height: undefined });
+    fireEvent.click(screen.getByRole('button'));
+    expect(screen.getByTestId('wrapper')).toHaveStyle({ height: undefined });
   });
 
   it('should collapse to collapsedHeight', () => {
-    const { getByTestId, getByRole } = render(
+    render(
       <Component collapsedHeight={25}>
         <div style={{ height: 1000 }} />
       </Component>
@@ -114,11 +110,11 @@ describe('useCollapse()', () => {
       jest.runAllTimers();
     });
 
-    expect(getByTestId('wrapper')).toHaveStyle({ height: '1000px' });
+    expect(screen.getByTestId('wrapper')).toHaveStyle({ height: '1000px' });
 
-    expect(getByRole('button')).toHaveAccessibleName('collapse');
-    fireEvent.click(getByRole('button'));
-    expect(getByRole('button')).toHaveAccessibleName('expand');
-    expect(getByTestId('wrapper')).toHaveStyle({ height: '25px' });
+    expect(screen.getByRole('button')).toHaveAccessibleName('collapse');
+    fireEvent.click(screen.getByRole('button'));
+    expect(screen.getByRole('button')).toHaveAccessibleName('expand');
+    expect(screen.getByTestId('wrapper')).toHaveStyle({ height: '25px' });
   });
 });

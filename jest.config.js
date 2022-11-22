@@ -1,22 +1,26 @@
+/** @type {import('jest').Config} */
 module.exports = {
-  verbose: true,
-  moduleFileExtensions: ['js', 'jsx', 'json'],
   transform: {
-    '^.+\\.(js|jsx)?$': 'babel-jest',
-    '^.+\\.css$': '<rootDir>/config/cssTransform.js',
+    '\\.jsx?$': 'babel-jest',
+    '\\.css$': '<rootDir>/config/cssTransform.js',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
-  clearMocks: true,
-  coverageDirectory: 'coverage',
+  resetMocks: true, // for global mocks in testSetup or __mocks__
+  restoreMocks: true,
+  resetModules: true,
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/config/testSetup.js'],
-  collectCoverageFrom: ['src/**/*.{js,jsx}'],
+  coverageDirectory: 'coverage',
+  collectCoverageFrom: ['src/**/*.{js,jsx}', '!src/**/*.d.ts', '!src/invariant.js'],
   coverageThreshold: {
     global: {
-      statements: 100,
+      statements: 95,
       branches: 95,
-      functions: 100,
-      lines: 100,
+      functions: 95,
+      lines: 95,
     },
+  },
+  moduleNameMapper: {
+    testing$: '<rootDir>/config/testing.js',
   },
 };

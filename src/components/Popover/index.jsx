@@ -17,11 +17,11 @@ const Popover = (props) => {
     setIsPopoverOpen(isOpen);
   }, [setIsPopoverOpen, isOpen]);
 
-  const closePopover = React.useCallback(() => setIsPopoverOpen(false), [setIsPopoverOpen]);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  const openPopover = React.useCallback(() => setIsPopoverOpen(true), [setIsPopoverOpen]);
+  const openPopover = () => setIsPopoverOpen(true);
 
-  const togglePopover = React.useCallback(() => setIsPopoverOpen(!isPopoverOpen), [setIsPopoverOpen, isPopoverOpen]);
+  const togglePopover = () => setIsPopoverOpen(!isPopoverOpen);
 
   const onClick = () => togglePopover();
 
@@ -50,7 +50,7 @@ const Popover = (props) => {
           : {
               ...(triggers.includes('click') ? { onClick } : {}),
               ...(triggers.includes('hover') ? { onMouseOver, onMouseOut } : {}),
-              ...(triggers.includes('focus') ? { onFocus, onBlur } : {}),
+              ...(triggers.includes('focus') ? { onFocus, onBlur, tabIndex: -1 } : {}),
             })}
       >
         {children}
