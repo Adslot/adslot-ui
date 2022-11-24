@@ -637,12 +637,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "(newActiveId) => {\n  throw new Error(`Breadcrumb needs an onClick handler to take ${newActiveId}`);\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "disabled": {
           "type": {
@@ -1591,12 +1587,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "function called when modalApply event is fired",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi ConfirmModal needs a modalApply handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": "function called when modalApply event is fired"
         },
         "modalClose": {
           "type": {
@@ -2162,131 +2154,6 @@
           "description": "",
           "defaultValue": {
             "value": "'right'",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
-  "src/components/HoverDropdownMenu/index.jsx": [
-    {
-      "description": "",
-      "displayName": "HoverDropdownMenu",
-      "methods": [],
-      "props": {
-        "arrowPosition": {
-          "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'left'",
-                "computed": false
-              },
-              {
-                "value": "'right'",
-                "computed": false
-              }
-            ]
-          },
-          "required": false,
-          "description": "Determine the placement of the popover",
-          "defaultValue": {
-            "value": "'left'",
-            "computed": false
-          }
-        },
-        "headerText": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "If set to empty string, header will not be rendered.",
-          "defaultValue": {
-            "value": "''",
-            "computed": false
-          }
-        },
-        "hoverComponent": {
-          "type": {
-            "name": "element"
-          },
-          "required": true,
-          "description": ""
-        },
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "src/components/HoverDropdownMenu/PopoverLinkItem/index.jsx": [
-    {
-      "description": "",
-      "displayName": "PopoverLinkItem",
-      "methods": [],
-      "props": {
-        "onClick": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "_.noop",
-            "computed": true
-          }
-        },
-        "target": {
-          "type": {
-            "name": "enum",
-            "value": [
-              {
-                "value": "'_blank'",
-                "computed": false
-              },
-              {
-                "value": "'_self'",
-                "computed": false
-              },
-              {
-                "value": "'_modal'",
-                "computed": false
-              }
-            ]
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'_self'",
-            "computed": false
-          }
-        },
-        "title": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
-        },
-        "url": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": ""
-        },
-        "isEnabled": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "true",
             "computed": false
           }
         }

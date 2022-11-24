@@ -23,7 +23,6 @@ import FlexibleSpacer from '../examples/FlexibleSpacer.mdx';
 import GridExample from '../examples/Grid.mdx';
 import HelpIconPopoverExample from '../examples/HelpIconPopover.mdx';
 import PrettyDiffExample from '../examples/PrettyDiff.mdx';
-import HoverDropdownMenuExample from '../examples/HoverDropdownMenu.mdx';
 import InformationBoxExample from '../examples/InformationBox.mdx';
 import ImageCropperExample from '../examples/ImageCropper.mdx';
 import ListPickerExample from '../examples/ListPicker.mdx';
@@ -243,12 +242,6 @@ const routes = [
     path: '/pretty-diff',
     component: PrettyDiffExample,
     title: 'Pretty Diff',
-    group: 'Components',
-  },
-  {
-    path: '/hover-dropdown-menu',
-    component: HoverDropdownMenuExample,
-    title: 'Hover Dropdown Menu',
     group: 'Components',
   },
   {

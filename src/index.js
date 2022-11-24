@@ -27,7 +27,6 @@ import Grid from './components/Grid';
 import GridCell from './components/Grid/Cell';
 import GridRow from './components/Grid/Row';
 import HelpIconPopover from './components/HelpIconPopover';
-import HoverDropdownMenu from './components/HoverDropdownMenu';
 import ImageCropper from './components/ImageCropper';
 import InformationBox from './components/InformationBox';
 import ListPicker from './components/ListPicker';
@@ -136,7 +135,6 @@ export {
   UserListPicker,
   InformationBox,
   ImageCropper,
-  HoverDropdownMenu,
   OverlayLoader,
   VerticalNav,
   RichTextEditor,
