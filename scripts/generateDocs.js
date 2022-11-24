@@ -9,16 +9,16 @@ const glob = require('glob');
 const handlers = reactDocgen.defaultHandlers.concat(displayNameHandler);
 
 const sourcePath = path.join(__dirname, '..');
-const filesToIgnore = ['fastStatelessWrapper', 'mocks.jsx', 'spec.jsx', 'test.jsx', 'BlockStyleButtons', 'InlineStyleButtons'];
+const filesToIgnore = ['mocks.jsx', 'spec.jsx', 'test.jsx', 'BlockStyleButtons', 'InlineStyleButtons'];
 const outputFilePath = path.join(__dirname, '../www/containers/props.json');
 
 (async () => {
-  const files = _.reject(await promisify(glob)('src/components/**/*.jsx', { cwd: sourcePath }), filePath =>
-    _.some(filesToIgnore, ignoreFile => _.includes(filePath, ignoreFile))
+  const files = _.reject(await promisify(glob)('src/components/**/*.jsx', { cwd: sourcePath }), (filePath) =>
+    _.some(filesToIgnore, (ignoreFile) => _.includes(filePath, ignoreFile))
   );
 
   const result = {};
-  files.forEach(filePath => {
+  files.forEach((filePath) => {
     const absolutePath = path.join(sourcePath, filePath);
     try {
       result[filePath] = reactDocgen.parse(

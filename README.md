@@ -126,5 +126,4 @@ window.Perf = Perf;
 - Interact the component in the way that feels slow.
 - Run `Perf.stop()` to stop recording.
 - Run `Perf.printWasted()` to see the nodes that are re–rendering but do not change the DOM.
-- Use fastStatelessWrapper to wrap this component, passing in the properties to check.
 - Re-test to make sure you're improving performance.

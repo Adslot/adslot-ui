@@ -16,7 +16,6 @@ export { default as ConfirmModal } from './components/ConfirmModal';
 export { default as CountBadge } from './components/CountBadge';
 export { default as DatePicker } from './components/DatePicker';
 export { default as Empty } from './components/Empty';
-export { default as fastStatelessWrapper } from './components/fastStatelessWrapper';
 export { default as FilePicker } from './components/FilePicker';
 export { default as FlexibleSpacer } from './components/FlexibleSpacer';
 export { default as FormGroup } from './components/FormGroup';

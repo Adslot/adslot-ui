@@ -20,7 +20,6 @@ import ConfirmModal from './components/ConfirmModal';
 import CountBadge from './components/CountBadge';
 import DatePicker from './components/DatePicker';
 import Empty from './components/Empty';
-import fastStatelessWrapper from './components/fastStatelessWrapper';
 import FilePicker from './components/FilePicker';
 import FlexibleSpacer from './components/FlexibleSpacer';
 import FormGroup from './components/FormGroup';
@@ -94,7 +93,6 @@ export {
   DatePicker,
   registerLocale,
   Empty,
-  fastStatelessWrapper,
   FilePicker,
   FlexibleSpacer,
   FormGroup,
