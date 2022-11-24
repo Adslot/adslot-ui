@@ -20,7 +20,6 @@ import ConfirmModal from './components/ConfirmModal';
 import CountBadge from './components/CountBadge';
 import DatePicker from './components/DatePicker';
 import Empty from './components/Empty';
-import fastStatelessWrapper from './components/fastStatelessWrapper';
 import FilePicker from './components/FilePicker';
 import FlexibleSpacer from './components/FlexibleSpacer';
 import FormGroup from './components/FormGroup';
@@ -28,7 +27,6 @@ import Grid from './components/Grid';
 import GridCell from './components/Grid/Cell';
 import GridRow from './components/Grid/Row';
 import HelpIconPopover from './components/HelpIconPopover';
-import HoverDropdownMenu from './components/HoverDropdownMenu';
 import ImageCropper from './components/ImageCropper';
 import InformationBox from './components/InformationBox';
 import ListPicker from './components/ListPicker';
@@ -94,7 +92,6 @@ export {
   DatePicker,
   registerLocale,
   Empty,
-  fastStatelessWrapper,
   FilePicker,
   FlexibleSpacer,
   FormGroup,
@@ -138,7 +135,6 @@ export {
   UserListPicker,
   InformationBox,
   ImageCropper,
-  HoverDropdownMenu,
   OverlayLoader,
   VerticalNav,
   RichTextEditor,
