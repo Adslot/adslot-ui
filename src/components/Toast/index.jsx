@@ -59,14 +59,6 @@ const withDefaultOptions = (options) => ({
   ...options,
 });
 
-const ToastNotification = ({ theme = 'info', title = '', message, ...options }) => {
-  const toastClass = getToastClass(theme);
-  const toastMessage = <ToastMessage toastClass={toastClass} title={title} message={message} />;
-
-  toast.info(toastMessage, withDefaultOptions({ theme, ...options }));
-  return null;
-};
-
 const notify = ({ theme = 'info', title, message, ...options }) => {
   toast.info(
     <ToastMessage toastClass={getToastClass(theme)} title={title} message={message} />,
@@ -82,24 +74,11 @@ notify.propTypes = {
   message: PropTypes.node.isRequired,
 };
 
-ToastNotification.propTypes = {
-  /**
-   * PropTypes.oneOf(['top-right', 'top-center', 'top-left', 'bottom-right', 'bottom-center', 'bottom-left'])
-   */
-  position: PropTypes.oneOf(toastPlacements),
-  // Delay in ms to close the toast. If set to false, the notification needs to be closed manually
-  autoClose: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  title: PropTypes.string,
-  theme: PropTypes.oneOf(['success', 'info', 'alert', 'attention']),
-  message: PropTypes.node.isRequired,
-};
-
 const dismiss = toast.dismiss;
 dismiss.propTypes = {};
 
 const Toast = {
   Container: ToastContainer,
-  Notification: ToastNotification,
   notify: notify,
   dismiss,
 };
