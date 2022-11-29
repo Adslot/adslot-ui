@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../lib/utils';
 import './styles.css';
 
+const baseClass = 'aui--tile';
+
 const Tile = ({ className, title, imgLink, onClick, dts }) => {
-  const baseClass = 'aui--tile';
   const tileClassNames = classNames(baseClass, className);
 
   return (

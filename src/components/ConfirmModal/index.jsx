@@ -60,7 +60,7 @@ ConfirmModal.propTypes = {
   /**
    * function called when modalApply event is fired
    */
-  modalApply: PropTypes.func,
+  modalApply: PropTypes.func.isRequired,
   /**
    * function called when modalClose event is fired
    */
@@ -82,9 +82,6 @@ ConfirmModal.propTypes = {
 ConfirmModal.defaultProps = {
   buttonCancelLabel: 'Cancel',
   buttonConfirmLabel: 'Confirm',
-  modalApply: () => {
-    throw new Error('AdslotUi ConfirmModal needs a modalApply handler');
-  },
   modalTitle: '',
   modalDescription: 'Are you sure?',
   show: false,

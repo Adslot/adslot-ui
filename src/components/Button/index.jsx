@@ -51,7 +51,7 @@ const Button = (props) => {
 
   invariant(
     !(isLink && (color !== 'default' || size === 'large')),
-    `Button: buttons with the "link" variant do not inherit size and color properties.${isLink} ${color} ${size}`
+    `Button: buttons with the "link" variant do not inherit size and color properties.`
   );
 
   const baseClass = 'aui--button';

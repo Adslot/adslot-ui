@@ -188,10 +188,10 @@ ListPicker.propTypes = {
   labelFormatter: PropTypes.func,
   addonFormatter: PropTypes.func,
   linkButtons: linkButtonsProps,
-  modalApply: PropTypes.func,
+  modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string,
   modalClassName: PropTypes.string,
-  modalClose: PropTypes.func,
+  modalClose: PropTypes.func.isRequired,
   modalFootnote: PropTypes.string,
   modalTitle: PropTypes.string,
   show: PropTypes.bool,
@@ -204,13 +204,7 @@ ListPicker.defaultProps = {
   items: [],
   itemType: 'item',
   linkButtons: [],
-  modalApply: () => {
-    throw new Error('AdslotUi ListPicker needs a modalApply handler');
-  },
   modalClassName: 'listpicker-component',
-  modalClose: () => {
-    throw new Error('AdslotUi ListPicker needs a modalClose handler');
-  },
   modalTitle: 'Select Items',
   show: false,
 };

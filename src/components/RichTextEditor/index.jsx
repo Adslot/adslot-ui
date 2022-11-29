@@ -14,6 +14,7 @@ import FileUploadAction from './FileUploadAction';
 import MentionEntry from './MentionEntry';
 import FilePreviewList from './FilePreviewList';
 import Popover from '../Popover';
+import { invariant } from '../../lib/utils';
 import './styles.css';
 
 const { EditorState, Modifier, convertToRaw, RichUtils } = draftJs;
@@ -31,10 +32,11 @@ const RichTextEditor = ({
 }) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
-  if (value && !onChange)
-    console.warn(
-      'Failed prop type: You have provided a `value` prop to RichTextEditor component without an `onChange` handler. This will render a read-only field.'
-    );
+
+  invariant(
+    !(value && !onChange),
+    'Failed prop type: You have provided a `value` prop to RichTextEditor component without an `onChange` handler. This will render a read-only field.'
+  );
 
   const classNames = cc('aui--editor-root', className);
 
