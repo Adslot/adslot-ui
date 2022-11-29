@@ -1,9 +1,6 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, user } from 'testing';
 import useArrowFocus from './useArrowFocus';
-
-afterEach(cleanup);
 
 describe('useArrowFocus()', () => {
   let props;
@@ -23,60 +20,60 @@ describe('useArrowFocus()', () => {
     };
   });
 
-  it('should focus items with arrow keys, loop, and trigger onFocus', () => {
-    const { getByText } = render(
+  it('should focus items with arrow keys, loop, and trigger onFocus', async () => {
+    render(
       <Component {...props}>
         <li tabIndex={0}>1</li>
         <li tabIndex={0}>2</li>
       </Component>
     );
 
-    userEvent.tab();
+    await user.tab();
 
-    expect(getByText('1')).toHaveFocus();
+    expect(screen.getByText('1')).toHaveFocus();
 
     expect(props.onFocus).toHaveBeenCalledTimes(0);
-    userEvent.keyboard('[ArrowDown]');
-    expect(getByText('2')).toHaveFocus();
+    await user.keyboard('[ArrowDown]');
+    expect(screen.getByText('2')).toHaveFocus();
     expect(props.onFocus).toHaveBeenCalledTimes(1);
 
-    userEvent.keyboard('[ArrowUp][ArrowUp][ArrowUp]');
+    await user.keyboard('[ArrowUp][ArrowUp][ArrowUp]');
     expect(props.onFocus).toHaveBeenCalledTimes(4);
-    expect(getByText('1')).toHaveFocus();
-    userEvent.keyboard('[ArrowDown][ArrowDown][ArrowDown]');
+    expect(screen.getByText('1')).toHaveFocus();
+    await user.keyboard('[ArrowDown][ArrowDown][ArrowDown]');
     expect(props.onFocus).toHaveBeenCalledTimes(7);
-    expect(getByText('2')).toHaveFocus();
+    expect(screen.getByText('2')).toHaveFocus();
   });
 
-  it('should handle no valid children, and ignore other elements', () => {
+  it('should handle no valid children, and ignore other elements', async () => {
     const refMock = { current: null };
-    const { getByText } = render(
+    render(
       <Component refMock={refMock} {...props}>
         <div tabIndex={0}>test</div>
       </Component>
     );
-    expect(getByText('test')).toBeInTheDocument();
-    userEvent.tab();
-    userEvent.keyboard('[ArrowDown]');
+    expect(screen.getByText('test')).toBeInTheDocument();
+    await user.tab();
+    await user.keyboard('[ArrowDown]');
     expect(props.onFocus).toHaveBeenCalledTimes(0);
   });
 
-  it('should handle no children', () => {
+  it('should handle no children', async () => {
     const refMock = { current: { contains: () => true, querySelectorAll: () => null } };
-    const { getByText } = render(
+    render(
       <Component refMock={refMock} {...props}>
         <li tabIndex={0}>test</li>
       </Component>
     );
-    expect(getByText('test')).toBeInTheDocument();
-    userEvent.tab();
-    expect(getByText('test')).toHaveFocus();
+    expect(screen.getByText('test')).toBeInTheDocument();
+    await user.tab();
+    expect(screen.getByText('test')).toHaveFocus();
 
-    userEvent.keyboard('[ArrowDown][ArrowDown]');
+    await user.keyboard('[ArrowDown][ArrowDown]');
     expect(props.onFocus).toHaveBeenCalledTimes(0);
   });
 
-  it('should handle disabled edge case', () => {
+  it('should handle disabled edge case', async () => {
     const focusMock = jest.fn();
     const refMock = {
       current: {
@@ -90,21 +87,21 @@ describe('useArrowFocus()', () => {
       </Component>
     );
 
-    const { getByText } = render(<Test />);
-    getByText('test-container').innerHTML = `<div>
+    render(<Test />);
+    screen.getByText('test-container').innerHTML = `<div>
         <button disabled tabIndex="0">test</button>
         <button disabled>test 2</button>
     </div>`;
 
-    expect(getByText('test 2')).toBeInTheDocument();
-    getByText('test').focus();
-    expect(getByText('test')).toHaveFocus();
+    expect(screen.getByText('test 2')).toBeInTheDocument();
+    screen.getByText('test').focus();
+    expect(screen.getByText('test')).toHaveFocus();
 
-    userEvent.keyboard('[ArrowDown][ArrowDown][ArrowUp][ArrowUp]');
+    await user.keyboard('[ArrowDown][ArrowDown][ArrowUp][ArrowUp]');
     expect(focusMock).toHaveBeenCalledTimes(0);
   });
 
-  it('should focus with focusEl function', () => {
+  it('should focus with focusEl function', async () => {
     const onFocus = jest.fn();
     const TestComponent = () => {
       const ref = React.useRef();
@@ -123,22 +120,22 @@ describe('useArrowFocus()', () => {
       );
     };
 
-    const { getByText, getAllByRole } = render(<TestComponent />);
+    render(<TestComponent />);
 
-    getByText('test-container').innerHTML = `
+    screen.getByText('test-container').innerHTML = `
     <button>test</button>
     <button disabled>
       test 2
     </button>`;
-    expect(getByText('test 2')).toBeInTheDocument();
-    expect(getByText('test 2')).toBeDisabled();
+    expect(screen.getByText('test 2')).toBeInTheDocument();
+    expect(screen.getByText('test 2')).toBeDisabled();
 
-    fireEvent.click(getAllByRole('button')[0]);
+    await user.click(screen.getAllByRole('button')[0]);
 
-    expect(getByText('test')).toHaveFocus();
-    fireEvent.click(getAllByRole('button')[1]);
+    expect(screen.getByText('test')).toHaveFocus();
+    await user.click(screen.getAllByRole('button')[1]);
 
-    fireEvent.click(getAllByRole('button')[2]);
+    await user.click(screen.getAllByRole('button')[2]);
     expect(onFocus).toHaveBeenCalledTimes(1);
   });
 });

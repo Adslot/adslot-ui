@@ -1,8 +1,6 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import Paragraph from '.';
-
-afterEach(cleanup);
 
 describe('<Paragraph />', () => {
   const plainText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -25,36 +23,35 @@ describe('<Paragraph />', () => {
   `;
 
   it('should render with plain content', () => {
-    const { getByTestId, queryByTestId } = render(<Paragraph content={plainText} briefWordCount={15} />);
-    expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
-    expect(getByTestId('paragraph-brief')).toHaveTextContent('Lorem ipsum...');
+    render(<Paragraph content={plainText} briefWordCount={15} />);
+    expect(screen.getByTestId('paragraph-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-brief')).toHaveTextContent('Lorem ipsum...');
 
-    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
-    expect(queryByTestId('paragraph-read-more-button')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-expandable-content')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-read-more-button')).toBeInTheDocument();
   });
 
   it('should render with isHtml', () => {
-    const { getByTestId, queryByTestId } = render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
-    expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
-    expect(getByTestId('paragraph-brief')).toHaveTextContent('Lorem ipsum...');
+    render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
+    expect(screen.getByTestId('paragraph-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-brief')).toHaveTextContent('Lorem ipsum...');
 
-    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
-    expect(queryByTestId('paragraph-read-more-button')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-expandable-content')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-read-more-button')).toBeInTheDocument();
   });
 
-  it('should be able to click read more button to expand paragraph', () => {
-    const { getByTestId, queryByTestId } = render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
-    expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
+  it('should be able to click read more button to expand paragraph', async () => {
+    render(<Paragraph content={htmlText} briefWordCount={15} isHtml />);
 
-    expect(queryByTestId('paragraph-brief')).toBeInTheDocument();
-    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
-    expect(getByTestId('paragraph-expandable-content')).toHaveClass('expandable-content collapsed');
+    expect(screen.getByTestId('paragraph-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-brief')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-expandable-content')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-expandable-content')).toHaveClass('expandable-content collapsed');
+    expect(screen.getByTestId('paragraph-read-more-button')).toBeInTheDocument();
 
-    expect(queryByTestId('paragraph-read-more-button')).toBeInTheDocument();
-    fireEvent.click(getByTestId('paragraph-read-more-button'));
-
-    expect(queryByTestId('paragraph-brief')).not.toBeInTheDocument();
-    expect(queryByTestId('paragraph-expandable-content')).toBeInTheDocument();
-    expect(getByTestId('paragraph-expandable-content')).toHaveClass('expandable-content expanded');
+    await user.click(screen.getByTestId('paragraph-read-more-button'));
+    expect(screen.queryByTestId('paragraph-brief')).not.toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-expandable-content')).toBeInTheDocument();
+    expect(screen.getByTestId('paragraph-expandable-content')).toHaveClass('expandable-content expanded');
   });
 });

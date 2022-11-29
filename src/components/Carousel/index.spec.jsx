@@ -1,21 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
-import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
+import { render, screen, within, user } from 'testing';
 import Carousel from '.';
-
-afterEach(cleanup);
-
-const getByDataIndex = queryByAttribute.bind(null, 'data-index');
-const getById = queryByAttribute.bind(null, 'id');
-const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
 const CarouselHookTest = React.forwardRef(({ onClick }, ref) => {
   const props = Carousel.usePreventSwipeClicks();
   return (
     <Carousel ref={ref} slidesToShow={1}>
       {_.map(new Array(5), (_value, index) => (
-        <button {...props} onClick={onClick} id={`btn-${index}`} key={index}>
-          <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} />
+        <button {...props} onClick={onClick} data-testid={`btn-${index}`} key={index}>
+          <img src={`path/to/image-${index}.jpg`} alt={index} data-testid={`img-${index}`} />
         </button>
       ))}
     </Carousel>
@@ -24,111 +18,105 @@ const CarouselHookTest = React.forwardRef(({ onClick }, ref) => {
 
 describe('<Carousel />', () => {
   it('should render with defaults', () => {
-    const { container } = render(<Carousel />);
-    expect(container.firstChild).toHaveClass('aui--carousel-component');
-    expect(container).toHaveTextContent('');
+    render(<Carousel />);
+    expect(screen.getByClass('aui--carousel-component')).toBeInTheDocument();
   });
 
   it('should render with slides', () => {
-    const { getAllByTestId, container } = render(
+    render(
       <Carousel>
         <img data-testid="carousel-image-wrapper" src="path/to/image-1.jpg" alt="1" />
         <img data-testid="carousel-image-wrapper" src="path/to/image-2.jpg" alt="2" />
       </Carousel>
     );
-    getAllByTestId('carousel-image-wrapper').forEach((each) => expect(container).toContainElement(each));
-    getAllByTestId('carousel-image-wrapper').forEach((each, index) =>
-      expect(each).toHaveAttribute('src', `path/to/image-${index + 1}.jpg`)
-    );
+    screen.getAllByTestId('carousel-image-wrapper').forEach((each) => {
+      expect(each).toBeInTheDocument();
+    });
+    screen.getAllByTestId('carousel-image-wrapper').forEach((each, index) => {
+      expect(each).toHaveAttribute('src', `path/to/image-${index + 1}.jpg`);
+    });
   });
 
-  it('should be able to navigate to the next image', () => {
-    const { container, getByText } = render(
+  it('should be able to navigate to the next image', async () => {
+    render(
       <Carousel slidesToShow={1}>
         {_.map(new Array(5), (_value, index) => (
-          <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
+          <img src={`path/to/image-${index}.jpg`} alt={index} data-testid={`img-${index}`} key={index} />
         ))}
       </Carousel>
     );
 
-    expect(getByText('Next')).toHaveClass('slick-next');
-    expect(getByDataIndex(container, '0')).toHaveClass('slick-active');
-    expect(getById(getByDataIndex(container, '0'), 'img-0')).toBeTruthy();
+    expect(screen.getByText('Next')).toHaveClass('slick-next');
+    expect(within(screen.getByClass('slick-slide slick-active')).getByTestId('img-0')).toBeInTheDocument();
 
-    fireEvent.click(getByText('Next'));
-    expect(getByDataIndex(container, '1')).toHaveClass('slick-active');
-    expect(getById(getByDataIndex(container, '1'), 'img-1')).toBeTruthy();
+    await user.click(screen.getByText('Next'));
+    expect(within(screen.getByClass('slick-slide slick-active')).getByTestId('img-1')).toBeInTheDocument();
   });
 
-  it('should be able to navigate to the previous image', () => {
-    const { container, getByText } = render(
+  it('should be able to navigate to the previous image', async () => {
+    render(
       <Carousel slidesToShow={1}>
         {_.map(new Array(5), (_value, index) => (
-          <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
+          <img src={`path/to/image-${index}.jpg`} alt={index} data-testid={`img-${index}`} key={index} />
         ))}
       </Carousel>
     );
 
-    expect(getByText('Previous')).toHaveClass('slick-prev');
-    expect(getByDataIndex(container, '0')).toHaveClass('slick-active');
-    expect(getById(getByDataIndex(container, '0'), 'img-0')).toBeTruthy();
+    expect(screen.getByText('Previous')).toHaveClass('slick-prev');
+    expect(within(screen.getByClass('slick-slide slick-active')).getByTestId('img-0')).toBeInTheDocument();
 
-    fireEvent.click(getByText('Previous'));
-    expect(getByDataIndex(container, '4')).toHaveClass('slick-active');
-    expect(getById(getByDataIndex(container, '-1'), 'img-4')).toBeTruthy();
+    await user.click(screen.getByText('Previous'));
+    expect(within(screen.getByClass('slick-slide slick-active')).getByTestId('img-4')).toBeInTheDocument();
   });
 
   it('should display dots', () => {
-    const { container } = render(
+    render(
       <Carousel slidesToShow={1}>
         {_.map(new Array(5), (_value, index) => (
           <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
         ))}
       </Carousel>
     );
-    expect(queryAllByClass(container, 'slick-dots')).toHaveLength(1);
+    expect(screen.queryAllByClass('slick-dots')).toHaveLength(1);
   });
 
-  it('should change slide when dots are clicked', () => {
-    const { container, getByText } = render(
+  it('should change slide when dots are clicked', async () => {
+    render(
       <Carousel slidesToShow={1}>
         {_.map(new Array(5), (_value, index) => (
-          <img src={`path/to/image-${index}.jpg`} alt={index} id={`img-${index}`} key={index} />
+          <img src={`path/to/image-${index}.jpg`} alt={index} data-testid={`img-${index}`} key={index} />
         ))}
       </Carousel>
     );
 
-    fireEvent.click(getByText('3'));
-    expect(getByDataIndex(container, '2')).toHaveClass('slick-current');
-    expect(getById(getByDataIndex(container, '3'), 'img-3')).toBeTruthy();
+    await user.click(screen.getByText('3'));
+    expect(within(screen.getByClass('slick-slide slick-active')).getByTestId('img-2')).toBeInTheDocument();
   });
 
-  it('should not fire click events when swiping with usePreventSwipeClicks', () => {
+  it('should not fire click events when swiping with usePreventSwipeClicks', async () => {
     const onClick = jest.fn();
     const ref = { current: false };
-    const { container } = render(<CarouselHookTest ref={ref} onClick={onClick} />);
+    render(<CarouselHookTest ref={ref} onClick={onClick} />);
 
-    fireEvent.mouseDown(getById(getByDataIndex(container, '1'), 'btn-1'), {
-      clientX: 0,
-      clientY: 0,
-    });
-
-    fireEvent.click(getById(getByDataIndex(container, '1'), 'btn-1'), {
-      clientX: 100,
-      clientY: 0,
-    });
+    await user.pointer([
+      {
+        keys: '[MouseLeft>]',
+        target: screen.getAllByTestId('btn-1')[0],
+        coords: { clientX: 10, clientY: 20 },
+      },
+      {
+        target: screen.getAllByTestId('btn-1')[0],
+        coords: { clientX: 17, clientY: 20 },
+      },
+      {
+        keys: '[/MouseLeft]',
+        coords: { clientX: 19, clientY: 20 },
+      },
+    ]);
 
     expect(onClick).toHaveBeenCalledTimes(0);
 
-    fireEvent.mouseDown(getById(getByDataIndex(container, '1'), 'btn-1'), {
-      clientX: 0,
-      clientY: 0,
-    });
-
-    fireEvent.click(getById(getByDataIndex(container, '1'), 'btn-1'), {
-      clientX: 3,
-      clientY: 0,
-    });
+    await user.pointer([{ keys: '[MouseLeft]', target: screen.getAllByTestId('btn-1')[0] }]);
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });

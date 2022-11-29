@@ -1,12 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-import { render, cleanup, queryByAttribute, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import Tile from '.';
-
-afterEach(cleanup);
-
-const getByClass = queryByAttribute.bind(null, 'class');
-const queryByClass = queryByAttribute.bind(null, 'class');
 
 const makeProps = (override) =>
   _.merge(
@@ -18,44 +13,44 @@ const makeProps = (override) =>
 
 describe('<Tile />', () => {
   it('should have default style', () => {
-    const { container } = render(<Tile {...makeProps()} />);
+    render(<Tile {...makeProps()} />);
 
-    expect(queryByClass(container, 'aui--tile')).toBeInTheDocument();
-    expect(queryByClass(container, 'aui--tile-title')).toBeInTheDocument();
-    expect(getByClass(container, 'aui--tile-title')).toHaveTextContent('');
-    expect(queryByClass(container, 'aui--tile-logo')).toBeInTheDocument();
-    expect(getByClass(container, 'aui--tile-logo')).toHaveTextContent('');
+    expect(screen.getByClass('aui--tile')).toBeInTheDocument();
+    expect(screen.getByClass('aui--tile-title')).toBeInTheDocument();
+    expect(screen.getByClass('aui--tile-title')).toHaveTextContent('');
+    expect(screen.getByClass('aui--tile-logo')).toBeInTheDocument();
+    expect(screen.getByClass('aui--tile-logo')).toHaveTextContent('');
   });
 
   it('should allow title prop', () => {
-    const { container } = render(<Tile {...makeProps({ title: 'test-title' })} />);
+    render(<Tile {...makeProps({ title: 'test-title' })} />);
 
-    expect(queryByClass(container, 'aui--tile-title')).toBeInTheDocument();
-    expect(getByClass(container, 'aui--tile-title')).toHaveTextContent('test-title');
+    expect(screen.getByClass('aui--tile-title')).toBeInTheDocument();
+    expect(screen.getByClass('aui--tile-title')).toHaveTextContent('test-title');
   });
 
   it('should allow imgLink prop', () => {
-    const { container, getByAltText, queryByAltText } = render(<Tile {...makeProps({ imgLink: 'fake-url' })} />);
+    render(<Tile {...makeProps({ imgLink: 'fake-url' })} />);
 
-    expect(queryByClass(container, 'aui--tile-logo')).toBeInTheDocument();
-    expect(queryByAltText('tile-logo', getByClass(container, 'aui--tile-logo'))).toBeInTheDocument();
-    expect(getByAltText('tile-logo')).toHaveAttribute('src', 'fake-url');
+    expect(screen.getByClass('aui--tile-logo')).toBeInTheDocument();
+    expect(screen.getByAltText('tile-logo', screen.getByClass('aui--tile-logo'))).toBeInTheDocument();
+    expect(screen.getByAltText('tile-logo')).toHaveAttribute('src', 'fake-url');
   });
 
   it('should allow className prop', () => {
-    const { container } = render(<Tile {...makeProps({ className: 'test' })} />);
-    expect(queryByClass(container, 'aui--tile test')).toBeInTheDocument();
+    render(<Tile {...makeProps({ className: 'test' })} />);
+    expect(screen.getByClass('aui--tile')).toHaveClass('test');
   });
 
-  it('should allow onClick prop', () => {
+  it('should allow onClick prop', async () => {
     const onClickMock = jest.fn();
-    const { container } = render(<Tile {...makeProps({ onClick: onClickMock })} />);
-    fireEvent.click(getByClass(container, 'aui--tile'));
+    render(<Tile {...makeProps({ onClick: onClickMock })} />);
+    await user.click(screen.getByClass('aui--tile'));
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
   it('should support custom dts', () => {
-    const { container } = render(<Tile {...makeProps({ dts: 'test-dts' })} />);
-    expect(getByClass(container, 'aui--tile')).toHaveAttribute('data-test-selector', 'test-dts');
+    render(<Tile {...makeProps({ dts: 'test-dts' })} />);
+    expect(screen.getByClass('aui--tile')).toHaveAttribute('data-test-selector', 'test-dts');
   });
 });

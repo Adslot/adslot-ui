@@ -1,14 +1,12 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from 'testing';
 import Grid from '.';
-
-afterEach(cleanup);
 
 describe('<Grid />', () => {
   it('should have its component name as default className', () => {
-    const { getByTestId } = render(<Grid />);
-    expect(getByTestId('grid-wrapper')).toHaveClass('grid-component');
-    expect(getByTestId('grid-wrapper')).toBeEmptyDOMElement();
+    render(<Grid />);
+    expect(screen.getByTestId('grid-wrapper')).toHaveClass('grid-component');
+    expect(screen.getByTestId('grid-wrapper')).toBeEmptyDOMElement();
   });
 
   it('should pass through children', () => {
@@ -17,9 +15,9 @@ describe('<Grid />', () => {
         Party town
       </div>
     );
-    const { getByTestId } = render(<Grid>{children}</Grid>);
-    expect(getByTestId('grid-wrapper')).toHaveClass('grid-component');
-    expect(getByTestId('grid-children')).toHaveClass('test-class');
-    expect(getByTestId('grid-children')).toHaveTextContent('Party town');
+    render(<Grid>{children}</Grid>);
+    expect(screen.getByTestId('grid-wrapper')).toHaveClass('grid-component');
+    expect(screen.getByTestId('grid-children')).toHaveClass('test-class');
+    expect(screen.getByTestId('grid-children')).toHaveTextContent('Party town');
   });
 });

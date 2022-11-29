@@ -1,9 +1,7 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import { classSuffixHelper } from '../../../lib/utils';
 import GridCell from '.';
-
-afterEach(cleanup);
 
 describe('<GridCell />', () => {
   const componentClass = 'grid-component-cell';
@@ -13,10 +11,10 @@ describe('<GridCell />', () => {
   };
 
   it('should have its component name as default className and no data-test-selector', () => {
-    const { getByTestId } = render(<GridCell />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass(componentClass);
-    expect(getByTestId('grid-cell-wrapper')).toBeEmpty;
-    expect(getByTestId('grid-cell-wrapper')).not.toHaveAttribute('data-test-selector');
+    render(<GridCell />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass(componentClass);
+    expect(screen.getByTestId('grid-cell-wrapper')).toBeEmpty;
+    expect(screen.getByTestId('grid-cell-wrapper')).not.toHaveAttribute('data-test-selector');
   });
 
   it('should pass through children', () => {
@@ -25,43 +23,45 @@ describe('<GridCell />', () => {
         Party town
       </div>
     );
-    const { getByTestId } = render(<GridCell>{children}</GridCell>);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass(componentClass);
-    expect(getByTestId('grid-cell-children')).toHaveClass('test-class');
-    expect(getByTestId('grid-cell-children')).toHaveTextContent('Party town');
+    render(<GridCell>{children}</GridCell>);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass(componentClass);
+    expect(screen.getByTestId('grid-cell-children')).toHaveClass('test-class');
+    expect(screen.getByTestId('grid-cell-children')).toHaveTextContent('Party town');
   });
 
   it('should apply stretch class when stretch is true', () => {
-    const { getByTestId } = render(<GridCell stretch />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['stretch']));
+    render(<GridCell stretch />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['stretch']));
   });
 
-  it('should handle onClick when passed', () => {
+  it('should handle onClick when passed', async () => {
     const onClick = jest.fn();
-
-    const { getByTestId } = render(<GridCell onClick={onClick} />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['clickable']));
-    fireEvent.click(getByTestId('grid-cell-wrapper'));
+    render(<GridCell onClick={onClick} />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['clickable']));
+    await user.click(screen.getByTestId('grid-cell-wrapper'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should apply extra classes when passed classSuffixes', () => {
-    const { getByTestId } = render(<GridCell classSuffixes={['foo', 'bar']} />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['foo', 'bar']));
+    render(<GridCell classSuffixes={['foo', 'bar']} />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['foo', 'bar']));
   });
 
   it('should apply extra classes and stretch when passed classSuffixes and stretch', () => {
-    const { getByTestId } = render(<GridCell stretch classSuffixes={['foo', 'bar']} />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['foo', 'bar', 'stretch']));
+    render(<GridCell stretch classSuffixes={['foo', 'bar']} />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass(getClassNames(['foo', 'bar', 'stretch']));
   });
 
   it('should apply data-test-selector', () => {
-    const { getByTestId } = render(<GridCell dts="this-has-data-test-selector" />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveAttribute('data-test-selector', 'this-has-data-test-selector');
+    render(<GridCell dts="this-has-data-test-selector" />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveAttribute(
+      'data-test-selector',
+      'this-has-data-test-selector'
+    );
   });
 
   it('should add custom classes when passed addonClassNames', () => {
-    const { getByTestId } = render(<GridCell addonClassNames={['addonClass1', 'addonClass2']} />);
-    expect(getByTestId('grid-cell-wrapper')).toHaveClass('grid-component-cell addonClass1 addonClass2');
+    render(<GridCell addonClassNames={['addonClass1', 'addonClass2']} />);
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveClass('grid-component-cell addonClass1 addonClass2');
   });
 });

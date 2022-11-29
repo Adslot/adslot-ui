@@ -1,47 +1,45 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from 'testing';
 import Skeleton from '.';
-
-afterEach(cleanup);
 
 describe('<Skeleton />', () => {
   it('should render with defaults', () => {
-    const { getByTestId, queryByTestId } = render(<Skeleton />);
+    render(<Skeleton />);
 
-    expect(queryByTestId('skeleton-wrapper')).toBeInTheDocument();
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton');
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-animated');
+    expect(screen.getByTestId('skeleton-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton');
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-animated');
   });
 
   it('should render with custom className', () => {
-    const { getByTestId, queryByTestId } = render(<Skeleton className="custom" />);
+    render(<Skeleton className="custom" />);
 
-    expect(queryByTestId('skeleton-wrapper')).toBeInTheDocument();
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton');
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-animated');
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('custom');
+    expect(screen.getByTestId('skeleton-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton');
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-animated');
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('custom');
   });
 
   it('should render circle skeleton', () => {
-    const { getByTestId, queryByTestId } = render(<Skeleton variant="circle" />);
+    render(<Skeleton variant="circle" />);
 
-    expect(queryByTestId('skeleton-wrapper')).toBeInTheDocument();
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-circle');
+    expect(screen.getByTestId('skeleton-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-circle');
   });
 
   it('should render rectangle skeleton', () => {
-    const { getByTestId, queryByTestId } = render(<Skeleton variant="rect" width="200px" height="300px" />);
+    render(<Skeleton variant="rect" width="200px" height="300px" />);
 
-    expect(queryByTestId('skeleton-wrapper')).toBeInTheDocument();
-    expect(getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-rect');
-    expect(getByTestId('skeleton-wrapper')).toHaveStyle('height: 300px; width: 200px;');
+    expect(screen.getByTestId('skeleton-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveClass('aui--skeleton-rect');
+    expect(screen.getByTestId('skeleton-wrapper')).toHaveStyle('height: 300px; width: 200px;');
   });
 
   it('should render default skeleton if variant is given an unexpected string', () => {
-    console.error = jest.fn();
-    const { getByTestId, queryByTestId } = render(<Skeleton variant="square" />);
+    jest.spyOn(console, 'error').mockImplementationOnce(() => {});
+    render(<Skeleton variant="square" />);
 
-    expect(queryByTestId('skeleton-wrapper')).toBeInTheDocument();
-    expect(getByTestId('skeleton-wrapper')).not.toHaveClass('aui--skeleton-square');
+    expect(screen.getByTestId('skeleton-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton-wrapper')).not.toHaveClass('aui--skeleton-square');
   });
 });

@@ -1,73 +1,70 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import Nav, { NavItem } from '.';
-
-afterEach(cleanup);
 
 describe('<NavItem />', () => {
   it('should render with default props', () => {
-    const { getByTestId, queryByTestId, rerender } = render(<NavItem activeKey={0} eventKey={0} />);
+    const view = render(<NavItem activeKey={0} eventKey={0} />);
 
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    expect(getByTestId('nav-item-component')).toHaveAttribute('role', 'presentation');
-    expect(getByTestId('nav-item-component')).toHaveClass('aui--nav-item');
-    expect(getByTestId('nav-item-component')).toHaveClass('active');
-    expect(queryByTestId('nav-item-anchor')).not.toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toHaveAttribute('role', 'presentation');
+    expect(screen.getByTestId('nav-item-component')).toHaveClass('aui--nav-item');
+    expect(screen.getByTestId('nav-item-component')).toHaveClass('active');
+    expect(screen.queryByTestId('nav-item-anchor')).not.toBeInTheDocument();
 
-    rerender(<NavItem activeKey={1} eventKey={0} />);
-    expect(getByTestId('nav-item-component')).not.toHaveClass('active');
+    view.rerender(<NavItem activeKey={1} eventKey={0} />);
+    expect(screen.getByTestId('nav-item-component')).not.toHaveClass('active');
   });
 
   it('should render the custom className', () => {
-    const { getByTestId, queryByTestId } = render(<NavItem activeKey={0} eventKey={0} className="sample-classname" />);
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    expect(getByTestId('nav-item-component')).toHaveClass('sample-classname');
+    render(<NavItem activeKey={0} eventKey={0} className="sample-classname" />);
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toHaveClass('sample-classname');
   });
 
   it('should render the custom className', () => {
-    const { getByTestId, queryByTestId } = render(<NavItem activeKey={0} eventKey={0} className="sample-classname" />);
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    expect(getByTestId('nav-item-component')).toHaveClass('sample-classname');
+    render(<NavItem activeKey={0} eventKey={0} className="sample-classname" />);
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toHaveClass('sample-classname');
   });
 
   it('should render an anchor element when given `href`', () => {
-    const { getByTestId, queryByTestId } = render(<NavItem activeKey={0} eventKey={0} href="#" />);
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    expect(queryByTestId('nav-item-anchor')).toBeInTheDocument();
-    expect(getByTestId('nav-item-component')).toContainElement(getByTestId('nav-item-anchor'));
-    expect(getByTestId('nav-item-anchor')).toHaveAttribute('href', '#');
-    expect(getByTestId('nav-item-anchor')).toHaveAttribute('role', 'button');
+    render(<NavItem activeKey={0} eventKey={0} href="#" />);
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-anchor')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toContainElement(screen.getByTestId('nav-item-anchor'));
+    expect(screen.getByTestId('nav-item-anchor')).toHaveAttribute('href', '#');
+    expect(screen.getByTestId('nav-item-anchor')).toHaveAttribute('role', 'button');
   });
 
-  it('should trigger `setActiveKey` and `onSelect` when clicking the nav item', () => {
+  it('should trigger `setActiveKey` and `onSelect` when clicking the nav item', async () => {
     const onSelect = jest.fn();
-    const { getByTestId, queryByTestId } = render(<NavItem activeKey={0} eventKey={'event-key'} onSelect={onSelect} />);
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    fireEvent.click(getByTestId('nav-item-component'));
-
+    render(<NavItem activeKey={0} eventKey={'event-key'} onSelect={onSelect} />);
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    await user.click(screen.getByTestId('nav-item-component'));
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onSelect).toHaveBeenCalledWith('event-key');
   });
 
-  it('should render disabled nav item', () => {
+  it('should render disabled nav item', async () => {
     const onSelect = jest.fn();
     const setActiveKey = jest.fn();
-    const { getByTestId, queryByTestId, rerender } = render(
+    const view = render(
       <NavItem activeKey={0} eventKey={0} disabled onSelect={onSelect} setActiveKey={setActiveKey} />
     );
 
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    expect(getByTestId('nav-item-component')).toHaveClass('disabled');
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toHaveClass('disabled');
 
-    fireEvent.click(getByTestId('nav-item-component'));
+    await user.click(screen.getByTestId('nav-item-component'));
     expect(setActiveKey).toHaveBeenCalledTimes(0);
     expect(onSelect).toHaveBeenCalledTimes(0);
 
-    rerender(<NavItem activeKey={0} eventKey={0} disabled href="#" />);
-    expect(queryByTestId('nav-item-component')).toBeInTheDocument();
-    expect(getByTestId('nav-item-component')).toHaveClass('disabled');
+    view.rerender(<NavItem activeKey={0} eventKey={0} disabled href="#" />);
+    expect(screen.getByTestId('nav-item-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-item-component')).toHaveClass('disabled');
 
-    fireEvent.click(getByTestId('nav-item-component'));
+    await user.click(screen.getByTestId('nav-item-component'));
     expect(setActiveKey).toHaveBeenCalledTimes(0);
     expect(onSelect).toHaveBeenCalledTimes(0);
   });
@@ -84,56 +81,56 @@ describe('<Nav />', () => {
   });
 
   it('should render with default props', () => {
-    const { getByTestId, queryByTestId } = render(<Nav {...props} />);
+    render(<Nav {...props} />);
 
-    expect(queryByTestId('nav-component-wrapper')).toBeInTheDocument();
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(getByTestId('nav-component')).toHaveClass('aui--nav');
-    expect(getByTestId('nav-component')).toHaveClass('nav-borderless');
-    expect(getByTestId('nav-component')).toHaveClass('bottom-bar');
-    expect(getByTestId('nav-component')).not.toHaveClass('stacked');
+    expect(screen.getByTestId('nav-component-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).toHaveClass('aui--nav');
+    expect(screen.getByTestId('nav-component')).toHaveClass('nav-borderless');
+    expect(screen.getByTestId('nav-component')).toHaveClass('bottom-bar');
+    expect(screen.getByTestId('nav-component')).not.toHaveClass('stacked');
   });
 
   it('should render the position of the bar as expected', () => {
-    const { getByTestId, queryByTestId, rerender } = render(<Nav {...props} barPosition="top" />);
+    const view = render(<Nav {...props} barPosition="top" />);
 
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(getByTestId('nav-component')).not.toHaveClass('bottom-bar');
-    expect(getByTestId('nav-component')).toHaveClass('top-bar');
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).not.toHaveClass('bottom-bar');
+    expect(screen.getByTestId('nav-component')).toHaveClass('top-bar');
 
-    rerender(<Nav {...props} barPosition="none" />);
-    expect(getByTestId('nav-component')).not.toHaveClass('bottom-bar');
-    expect(getByTestId('nav-component')).not.toHaveClass('top-bar');
-    expect(getByTestId('nav-component')).toHaveClass('none-bar');
+    view.rerender(<Nav {...props} barPosition="none" />);
+    expect(screen.getByTestId('nav-component')).not.toHaveClass('bottom-bar');
+    expect(screen.getByTestId('nav-component')).not.toHaveClass('top-bar');
+    expect(screen.getByTestId('nav-component')).toHaveClass('none-bar');
   });
 
   it('should render the vertical stacked nav', () => {
-    const { getByTestId, queryByTestId } = render(<Nav {...props} stacked />);
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(getByTestId('nav-component')).toHaveClass('stacked');
+    render(<Nav {...props} stacked />);
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).toHaveClass('stacked');
   });
 
   it('should render the custom className', () => {
-    const { getByTestId, queryByTestId } = render(<Nav {...props} className="sample-classname" />);
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(getByTestId('nav-component')).toHaveClass('sample-classname');
+    render(<Nav {...props} className="sample-classname" />);
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).toHaveClass('sample-classname');
   });
 
   it('should render the custom className', () => {
-    const { getByTestId, queryByTestId } = render(<Nav {...props} className="sample-classname" />);
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(getByTestId('nav-component')).toHaveClass('sample-classname');
+    render(<Nav {...props} className="sample-classname" />);
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).toHaveClass('sample-classname');
   });
 
   it('should add dts the Nav', () => {
-    const { getByTestId, queryByTestId } = render(<Nav {...props} dts="sample-dts" />);
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(getByTestId('nav-component-wrapper')).toHaveAttribute('data-test-selector', 'sample-dts');
+    render(<Nav {...props} dts="sample-dts" />);
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component-wrapper')).toHaveAttribute('data-test-selector', 'sample-dts');
   });
 
-  it('should render children as expected', () => {
+  it('should render children as expected', async () => {
     const onSelect = jest.fn();
-    const { getByText, queryByTestId, queryAllByTestId } = render(
+    render(
       <Nav activeKey={0} {...props} onSelect={onSelect}>
         <NavItem key={0} eventKey={0}>
           Dashboard
@@ -147,11 +144,11 @@ describe('<Nav />', () => {
       </Nav>
     );
 
-    expect(queryByTestId('nav-component-wrapper')).toBeInTheDocument();
-    expect(queryByTestId('nav-component')).toBeInTheDocument();
-    expect(queryAllByTestId('nav-item-component')).toHaveLength(3);
+    expect(screen.getByTestId('nav-component-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-component')).toBeInTheDocument();
+    expect(screen.getAllByTestId('nav-item-component')).toHaveLength(3);
 
-    fireEvent.click(getByText('Reports'));
+    await user.click(screen.getByText('Reports'));
 
     expect(onSelect).toHaveBeenCalledTimes(1);
     expect(onSelect).toHaveBeenCalledWith(1);

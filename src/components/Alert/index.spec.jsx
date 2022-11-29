@@ -1,43 +1,41 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from 'testing';
 import Alert from '.';
-
-afterEach(cleanup);
 
 describe('<Alert />', () => {
   it('should render default info type', () => {
-    const { getByTestId } = render(
+    render(
       <Alert>
         <div />
       </Alert>
     );
-    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-info');
-    expect(getByTestId('alert-wrapper').firstChild).toMatchInlineSnapshot(`<div />`);
+    expect(screen.getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-info');
+    expect(screen.getByTestId('alert-wrapper').firstChild).toMatchInlineSnapshot(`<div />`);
   });
   it('should render success type', () => {
-    const { getByTestId } = render(
+    render(
       <Alert type="success">
         <div />
       </Alert>
     );
-    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-success');
+    expect(screen.getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-success');
   });
 
   it('should render warning type', () => {
-    const { getByTestId } = render(
+    render(
       <Alert type="warning">
         <div />
       </Alert>
     );
-    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-warning');
+    expect(screen.getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-warning');
   });
 
   it('should render danger type', () => {
-    const { getByTestId } = render(
+    render(
       <Alert type="danger">
         <div />
       </Alert>
     );
-    expect(getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-danger');
+    expect(screen.getByTestId('alert-wrapper')).toHaveClass('alert-component alert-component-danger');
   });
 });

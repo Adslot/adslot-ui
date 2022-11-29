@@ -1,43 +1,39 @@
 import React from 'react';
 import moment from 'moment';
-import { render, cleanup, fireEvent, queryByAttribute } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import DatePicker from '.';
-
-afterEach(cleanup);
-
-const getByClass = queryByAttribute.bind(null, 'class');
 
 describe('<DatePicker />', () => {
   it('should render with defaults', () => {
-    const { getByTestId } = render(<DatePicker className="test" dts="test" />);
+    render(<DatePicker className="test" dts="test" />);
 
-    expect(getByTestId('date-picker-wrapper')).toHaveClass('aui--date-picker');
-    expect(getByTestId('date-picker-wrapper')).toHaveAttribute('data-test-selector', 'test');
-    expect(getByTestId('date-picker-wrapper')).not.toBeEmptyDOMElement();
+    expect(screen.getByTestId('date-picker-wrapper')).toHaveClass('aui--date-picker');
+    expect(screen.getByTestId('date-picker-wrapper')).toHaveAttribute('data-test-selector', 'test');
+    expect(screen.getByTestId('date-picker-wrapper')).not.toBeEmptyDOMElement();
   });
 
-  it('should handle input change', () => {
+  it('should handle input change', async () => {
     const onChange = jest.fn();
-    const { container } = render(
+    render(
       <DatePicker
         className="test"
         dateFormat="DD MMM YYYY"
         onChange={onChange}
-        selected={moment('11 Oct 2020', 'DD MMM YYYY')}
         dts="test"
         disableInlineEditing={false}
       />
     );
 
-    const datePickerInput = getByClass(container, 'test');
+    const datePickerInput = screen.getByClass('test');
 
-    fireEvent.change(datePickerInput, { target: { value: '11 Oct 2021' } });
+    await user.click(datePickerInput);
+    await user.keyboard('11 Oct 2021');
     expect(datePickerInput).toHaveValue('11 Oct 2021');
   });
 
-  it('should prevent inline editing when `disableInlineEditing`', () => {
+  it('should prevent inline editing when `disableInlineEditing`', async () => {
     const onChange = jest.fn();
-    const { container } = render(
+    render(
       <DatePicker
         className="test"
         dateFormat="DD MMM YYYY"
@@ -48,15 +44,16 @@ describe('<DatePicker />', () => {
       />
     );
 
-    const datePickerInput = getByClass(container, 'test');
+    const datePickerInput = screen.getByClass('test');
+    await user.click(datePickerInput);
+    await user.keyboard('11 Oct 2021');
 
-    fireEvent.change(datePickerInput, { target: { value: '11 Oct 2021' } });
     expect(datePickerInput).toHaveValue('11 Oct 2020');
   });
 
-  it('should support Date object value', () => {
+  it('should support Date object value', async () => {
     const onChange = jest.fn();
-    const { container } = render(
+    render(
       <DatePicker
         className="test"
         dateFormat="DD MMM YYYY"
@@ -65,29 +62,16 @@ describe('<DatePicker />', () => {
         dts="test"
       />
     );
-
-    const datePickerInput = getByClass(container, 'test');
-
-    fireEvent.change(datePickerInput, { target: { value: '12 Oct 2020' } });
-    expect(datePickerInput).toHaveValue('12 Oct 2020');
+    expect(screen.getByClass('test')).toHaveValue('11 Oct 2020');
   });
 
-  it('should disable momentjs format', () => {
+  it('should disable momentjs format', async () => {
     const onChange = jest.fn();
-    const { container } = render(
-      <DatePicker
-        className="test"
-        dateFormat="dd MMM yyyy"
-        onChange={onChange}
-        selected={moment('11 Oct 2020', 'DD MMM YYYY')}
-        dts="test"
-        disableMomentFormat
-      />
-    );
+    render(<DatePicker className="test" dateFormat="dd MMM yyyy" onChange={onChange} dts="test" disableMomentFormat />);
 
-    const datePickerInput = getByClass(container, 'test');
-
-    fireEvent.change(datePickerInput, { target: { value: '12 Oct 2020' } });
+    const datePickerInput = screen.getByClass('test');
+    await user.click(datePickerInput);
+    await user.keyboard('12 Oct 2020');
     expect(datePickerInput).toHaveValue('12 Oct 2020');
   });
 });

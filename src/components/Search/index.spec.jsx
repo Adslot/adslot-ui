@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, user } from 'testing';
 import Search from '.';
 import SvgSymbol from '../SvgSymbol';
 import Spinner from '../Spinner';
 
-afterEach(cleanup);
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe('<Search />', () => {
   const props = {
@@ -18,51 +17,50 @@ describe('<Search />', () => {
   };
 
   it('should render with defaults', () => {
-    const { getByTestId, queryByTestId } = render(<Search onSearch={props.onSearch} />);
+    render(<Search onSearch={props.onSearch} />);
 
-    expect(getByTestId('search-wrapper')).toHaveClass('aui--search-component');
-    expect(queryByTestId('spinner-wrapper')).not.toBeInTheDocument();
-    expect(queryByTestId('search-button')).not.toBeInTheDocument();
+    expect(screen.getByTestId('search-wrapper')).toHaveClass('aui--search-component');
+    expect(screen.queryByTestId('spinner-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('search-button')).not.toBeInTheDocument();
 
-    expect(getByTestId('search-input')).toHaveClass('aui--search-component-input');
-    expect(getByTestId('search-input')).toHaveAttribute('placeholder', '');
-    expect(getByTestId('search-input')).toHaveValue('');
-    expect(getByTestId('search-input')).toBeEnabled();
+    expect(screen.getByTestId('search-input')).toHaveClass('aui--search-component-input');
+    expect(screen.getByTestId('search-input')).toHaveAttribute('placeholder', '');
+    expect(screen.getByTestId('search-input')).toHaveValue('');
+    expect(screen.getByTestId('search-input')).toBeEnabled();
 
-    expect(queryByTestId('search-icon')).toBeInTheDocument();
-    expect(getByTestId('search-icon')).toHaveClass('search-icon');
+    expect(screen.getByTestId('search-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('search-icon')).toHaveClass('search-icon');
   });
 
   it('should render a search button if searchOnEnter and showSearchButton are true', () => {
-    const { queryByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter />);
-    expect(queryByTestId('search-button')).toBeInTheDocument();
-    expect(queryByTestId('search-icon')).toBeInTheDocument();
-    expect(getByTestId('search-button')).toContainElement(getByTestId('search-icon'));
-    expect(getByTestId('search-icon')).toHaveClass('search-icon');
+    render(<Search onSearch={props.onSearch} searchOnEnter />);
+    expect(screen.getByTestId('search-button')).toBeInTheDocument();
+    expect(screen.getByTestId('search-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('search-button')).toContainElement(screen.getByTestId('search-icon'));
+    expect(screen.getByTestId('search-icon')).toHaveClass('search-icon');
   });
 
   it('should render a spinner if searchOnEnter and isLoading are true', () => {
-    const { queryByTestId, getByTestId } = render(<Search onSearch={props.onSearch} searchOnEnter isLoading />);
-    expect(queryByTestId('search-button')).toBeInTheDocument();
-    expect(queryByTestId('search-icon')).not.toBeInTheDocument();
-    expect(queryByTestId('spinner')).toBeInTheDocument();
-    expect(getByTestId('search-button')).toContainElement(getByTestId('spinner'));
-    expect(getByTestId('spinner')).toHaveClass('spinner-small');
+    render(<Search onSearch={props.onSearch} searchOnEnter isLoading />);
+    expect(screen.getByTestId('search-button')).toBeInTheDocument();
+    expect(screen.queryByTestId('search-icon')).not.toBeInTheDocument();
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
+    expect(screen.getByTestId('search-button')).toContainElement(screen.getByTestId('spinner'));
+    expect(screen.getByTestId('spinner')).toHaveClass('spinner-small');
   });
 
   it('should render with given props', () => {
-    const { getByTestId } = render(<Search {...props} />);
+    render(<Search {...props} />);
 
-    expect(getByTestId('search-wrapper')).toHaveClass('aui--search-component additional-class');
-    expect(getByTestId('search-wrapper')).toHaveAttribute('data-test-selector', 'test-dts');
+    expect(screen.getByTestId('search-wrapper')).toHaveClass('aui--search-component additional-class');
+    expect(screen.getByTestId('search-wrapper')).toHaveAttribute('data-test-selector', 'test-dts');
 
-    expect(getByTestId('search-input')).toHaveAttribute('placeholder', 'search');
-    expect(getByTestId('search-input')).toHaveValue('abc');
+    expect(screen.getByTestId('search-input')).toHaveAttribute('placeholder', 'search');
+    expect(screen.getByTestId('search-input')).toHaveValue('abc');
   });
 
   it('should throw warning if value is provided without onChange', () => {
-    console.warn = jest.fn();
-
+    jest.spyOn(console, 'warn').mockImplementationOnce(() => {});
     render(<Search value="foo" onSearch={props.onSearch} />);
 
     expect(console.warn).toHaveBeenCalledWith(
@@ -71,18 +69,20 @@ describe('<Search />', () => {
   });
 
   it('should disable input when disabled is true', () => {
-    const { getByTestId } = render(<Search onSearch={props.onSearch} disabled />);
-    expect(getByTestId('search-input')).toBeDisabled();
+    render(<Search onSearch={props.onSearch} disabled />);
+    expect(screen.getByTestId('search-input')).toBeDisabled();
   });
 
-  it('should trigger `onBlur` when blur the search input', () => {
+  it('should trigger `onBlur` when blur the search input', async () => {
     const onBlur = jest.fn();
-    const { getByTestId } = render(<Search {...props} onBlur={onBlur} />);
+    render(<Search {...props} onBlur={onBlur} />);
 
+    await user.tab();
+    expect(screen.getByTestId('search-input')).toHaveFocus();
     expect(onBlur).toHaveBeenCalledTimes(0);
 
-    fireEvent.blur(getByTestId('search-input'));
-
+    await user.tab();
+    expect(screen.getByTestId('search-input')).not.toHaveFocus();
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
 
@@ -91,43 +91,43 @@ describe('<Search />', () => {
       const icons = {
         search: <SvgSymbol href="svg_path" />,
       };
-      const { getByTestId } = render(<Search icons={icons} onSearch={props.onSearch} />);
-      expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', 'svg_path');
+      render(<Search icons={icons} onSearch={props.onSearch} />);
+      expect(screen.getByTestId('svg-symbol-use')).toHaveAttribute('href', 'svg_path');
     });
 
     it('should render given cancel icons', () => {
       const icons = {
         close: <SvgSymbol href="svg_path" />,
       };
-      const { getByTestId } = render(<Search {...props} icons={icons} />);
-      expect(getByTestId('svg-symbol-use')).toHaveAttribute('href', 'svg_path');
+      render(<Search {...props} icons={icons} />);
+      expect(screen.getByTestId('svg-symbol-use')).toHaveAttribute('href', 'svg_path');
     });
 
     it('should render given loading spinner if isLoading is true', () => {
       const icons = {
         loader: <Spinner size="small" />,
       };
-      const { queryByTestId } = render(<Search icons={icons} onSearch={props.onSearch} isLoading />);
-      expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
+      render(<Search icons={icons} onSearch={props.onSearch} isLoading />);
+      expect(screen.getByTestId('spinner-wrapper')).toBeInTheDocument();
     });
   });
 
   describe('Clear Button', () => {
     it('should render clear button when value is not empty and search button is not shown', () => {
-      const { getByTestId, queryByTestId } = render(<Search {...props} />);
-      expect(queryByTestId('close-icon')).toBeInTheDocument();
-      expect(getByTestId('close-icon')).toHaveClass('cancel-icon');
+      render(<Search {...props} />);
+      expect(screen.getByTestId('close-icon')).toBeInTheDocument();
+      expect(screen.getByTestId('close-icon')).toHaveClass('cancel-icon');
     });
 
-    it('should fire onChange, onSearch and onClear when clear button is clicked', () => {
+    it('should fire onChange, onSearch and onClear when clear button is clicked', async () => {
       const callbacks = {
         onChange: jest.fn(),
         onSearch: jest.fn(),
         onClear: jest.fn(),
       };
-      const { getByTestId } = render(<Search {...props} {...callbacks} />);
-      expect(getByTestId('search-icon-wrapper')).toHaveClass('aui--search-component-icon');
-      fireEvent.click(getByTestId('search-icon-wrapper'));
+      render(<Search {...props} {...callbacks} />);
+      expect(screen.getByTestId('search-icon-wrapper')).toHaveClass('aui--search-component-icon');
+      await user.click(screen.getByTestId('search-icon-wrapper'));
 
       expect(callbacks.onChange).toHaveBeenCalledTimes(1);
       expect(callbacks.onChange).toHaveBeenCalledWith('');
@@ -137,126 +137,119 @@ describe('<Search />', () => {
       expect(callbacks.onClear).toHaveBeenCalledWith('');
     });
 
-    it('should not fire onSearch if searchOnEnter is true', () => {
+    it('should not fire onSearch if searchOnEnter is true', async () => {
       const callbacks = {
         onSearch: jest.fn(),
       };
 
-      const { getByTestId } = render(<Search {...callbacks} searchOnEnter />);
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'a' } });
+      render(<Search {...callbacks} searchOnEnter />);
+      await user.type(screen.getByTestId('search-input'), 'a');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
 
-      fireEvent.click(getByTestId('close-icon'));
+      await user.click(screen.getByTestId('close-icon'));
       expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
     });
 
-    it('should fire onSearch when clicking "X" icon if searchOnEnter is false', () => {
+    it('should fire onSearch when clicking "X" icon if searchOnEnter is false', async () => {
       const callbacks = {
         onSearch: jest.fn(),
       };
 
-      const { getByTestId } = render(<Search {...callbacks} />);
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'a' } });
+      render(<Search {...callbacks} />);
+      await user.type(screen.getByTestId('search-input'), 'a');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
 
-      fireEvent.click(getByTestId('close-icon'));
+      await user.click(screen.getByTestId('close-icon'));
       expect(callbacks.onSearch).toHaveBeenCalledTimes(2);
       expect(callbacks.onSearch).toHaveBeenNthCalledWith(2, '');
     });
 
-    it('should clear its own value state if onChange is not provided', () => {
-      const { getByTestId, queryByTestId } = render(<Search onSearch={props.onSearch} />);
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'foo' } });
-      expect(getByTestId('search-input')).toHaveValue('foo');
+    it('should clear its own value state if onChange is not provided', async () => {
+      render(<Search onSearch={props.onSearch} />);
+      await user.type(screen.getByTestId('search-input'), 'foo');
+      expect(screen.getByTestId('search-input')).toHaveValue('foo');
 
-      expect(queryByTestId('close-icon')).toBeInTheDocument();
-      expect(getByTestId('close-icon')).toHaveClass('cancel-icon');
-      fireEvent.click(getByTestId('close-icon'));
-      expect(getByTestId('search-input')).toHaveValue('');
+      expect(screen.getByTestId('close-icon')).toBeInTheDocument();
+      expect(screen.getByTestId('close-icon')).toHaveClass('cancel-icon');
+      await user.click(screen.getByTestId('close-icon'));
+      expect(screen.getByTestId('search-input')).toHaveValue('');
     });
   });
 
   describe('Value Changed', () => {
-    it('should fire onChange and onSearch with the latest value when value changed', () => {
+    it('should fire onChange and onSearch with the latest value when value changed', async () => {
       const callbacks = {
         onChange: jest.fn(),
         onSearch: jest.fn(),
       };
-      const { getByTestId } = render(<Search {...callbacks} />);
+      render(<Search {...callbacks} />);
 
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'new-value' } });
-
+      await user.type(screen.getByTestId('search-input'), 'v');
       expect(callbacks.onChange).toHaveBeenCalledTimes(1);
-      expect(callbacks.onChange).toHaveBeenCalledWith('new-value');
+      expect(callbacks.onChange).toHaveBeenCalledWith('v');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
+      expect(callbacks.onSearch).toHaveBeenCalledWith('v');
+    });
+
+    it('should fire onSearch after debounceInterval', async () => {
+      const callbacks = {
+        onSearch: jest.fn(),
+      };
+      render(<Search {...callbacks} debounceInterval={500} />);
+
+      await user.type(screen.getByTestId('search-input'), 'new-value');
+      expect(callbacks.onSearch).not.toHaveBeenCalledWith('new-value');
+
+      await sleep(500);
       expect(callbacks.onSearch).toHaveBeenCalledWith('new-value');
     });
 
-    it('should fire onSearch after debounceInterval', (done) => {
+    it('should not fire onSearch when value changed if searchOnEnter is true', async () => {
       const callbacks = {
         onSearch: jest.fn(),
       };
-      const { getByTestId } = render(<Search {...callbacks} debounceInterval={500} />);
-
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'new-value' } });
-      setTimeout(() => {
-        expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
-        expect(callbacks.onSearch).toHaveBeenCalledWith('new-value');
-        done();
-      }, 500);
-    });
-
-    it('should not fire onSearch when value changed if searchOnEnter is true', () => {
-      const callbacks = {
-        onSearch: jest.fn(),
-      };
-      const { getByTestId } = render(<Search {...callbacks} searchOnEnter />);
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'new-value' } });
+      render(<Search {...callbacks} searchOnEnter />);
+      await user.type(screen.getByTestId('search-input'), 'new-value');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
     });
 
-    it('should fire onSearch when searchOnEnter is true and search button is clicked', () => {
+    it('should fire onSearch when searchOnEnter is true and search button is clicked', async () => {
       const callbacks = {
         onSearch: jest.fn(),
       };
-      const { getByTestId } = render(<Search {...callbacks} searchOnEnter />);
+      render(<Search {...callbacks} searchOnEnter />);
 
-      fireEvent.change(getByTestId('search-input'), { target: { value: 'some-value' } });
-      fireEvent.click(getByTestId('search-button'), { preventDefault: jest.fn() });
+      await user.type(screen.getByTestId('search-input'), 'some-value');
+      await user.click(screen.getByTestId('search-button'), { preventDefault: jest.fn() });
 
       expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
       expect(callbacks.onSearch).toHaveBeenCalledWith('some-value');
     });
 
-    it('should fire onSearch when searchOnEnter is true and ENTER key is pressed', () => {
+    it('should fire onSearch when searchOnEnter is true and ENTER key is pressed', async () => {
       const callbacks = {
         onSearch: jest.fn(),
         onChange: jest.fn(),
       };
-      const { getByTestId } = render(<Search {...callbacks} searchOnEnter />);
-      fireEvent.keyPress(getByTestId('search-input'), {
-        key: 'Enter',
-        keyCode: 13,
-        preventDefault: jest.fn(),
-      });
+      render(<Search {...callbacks} searchOnEnter />);
+      await user.click(screen.getByTestId('search-input'));
+      await user.keyboard('[Enter]');
+
       expect(callbacks.onChange).toHaveBeenCalledTimes(0);
       expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
 
-      userEvent.type(getByTestId('search-input'), 'a');
+      await user.type(screen.getByTestId('search-input'), 'a');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(1);
       expect(callbacks.onChange).toHaveBeenCalledTimes(1);
     });
 
-    it('should not fire onSearch when pressed enter key if searchOnEnter is false ', () => {
+    it('should not fire onSearch when pressed enter key if searchOnEnter is false ', async () => {
       const callbacks = {
         onSearch: jest.fn(),
       };
-      const { getByTestId } = render(<Search {...callbacks} searchOnEnter={false} />);
-      fireEvent.keyPress(getByTestId('search-input'), {
-        key: 'Enter',
-        keyCode: 13,
-        preventDefault: jest.fn(),
-      });
+      render(<Search {...callbacks} searchOnEnter={false} />);
+      await user.click(screen.getByTestId('search-input'));
+      await user.keyboard('[Enter]');
       expect(callbacks.onSearch).toHaveBeenCalledTimes(0);
     });
   });

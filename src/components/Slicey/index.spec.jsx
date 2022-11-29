@@ -1,8 +1,6 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from 'testing';
 import Slicey from '.';
-
-afterEach(cleanup);
 
 describe('<Slicey />', () => {
   const dataset = [
@@ -11,53 +9,53 @@ describe('<Slicey />', () => {
   ];
 
   it('should render an empty state', () => {
-    const { getByTestId, queryByTestId } = render(<Slicey />);
-    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
+    render(<Slicey />);
+    expect(screen.getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(getByTestId('slicey-circle')).toHaveClass('slicey-empty');
-    expect(getByTestId('slicey-circle')).not.toHaveClass('slicey-background');
+    expect(screen.getByTestId('slicey-circle')).toHaveClass('slicey-empty');
+    expect(screen.getByTestId('slicey-circle')).not.toHaveClass('slicey-background');
 
-    expect(queryByTestId('slicey-arc-wrapper')).not.toBeInTheDocument();
-    expect(queryByTestId('slicey-marker-wrapper')).not.toBeInTheDocument();
-    expect(queryByTestId('slicey-donut-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-arc-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-marker-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-donut-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render a given dataset', () => {
     const props = { dataset };
-    const { getByTestId, queryByTestId, queryAllByTestId } = render(<Slicey {...props} />);
-    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
+    render(<Slicey {...props} />);
+    expect(screen.getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(queryByTestId('slicey-circle')).toBeInTheDocument();
-    expect(getByTestId('slicey-circle')).not.toHaveClass('slicey-empty');
-    expect(getByTestId('slicey-circle')).toHaveClass('slicey-background');
+    expect(screen.getByTestId('slicey-circle')).toBeInTheDocument();
+    expect(screen.getByTestId('slicey-circle')).not.toHaveClass('slicey-empty');
+    expect(screen.getByTestId('slicey-circle')).toHaveClass('slicey-background');
 
-    expect(queryAllByTestId('slicey-arc-wrapper')).toHaveLength(2);
-    expect(queryByTestId('slicey-marker-wrapper')).not.toBeInTheDocument();
-    expect(queryByTestId('slicey-donut-wrapper')).not.toBeInTheDocument();
+    expect(screen.getAllByTestId('slicey-arc-wrapper')).toHaveLength(2);
+    expect(screen.queryByTestId('slicey-marker-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-donut-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render a circle if there is only one arc to draw', () => {
     const props = { dataset: [{ label: 'positive', value: 5 }] };
-    const { getByTestId, queryByTestId, queryAllByTestId } = render(<Slicey {...props} />);
-    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
+    render(<Slicey {...props} />);
+    expect(screen.getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('height', '100');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('width', '100');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(queryAllByTestId('slicey-circle')).toHaveLength(2);
-    expect(queryAllByTestId('slicey-circle')[1]).toHaveClass('arc-component positive');
-    expect(queryAllByTestId('slicey-circle')[0]).not.toHaveClass('slicey-empty');
-    expect(queryAllByTestId('slicey-circle')[0]).toHaveClass('slicey-background');
+    expect(screen.getAllByTestId('slicey-circle')).toHaveLength(2);
+    expect(screen.getAllByTestId('slicey-circle')[1]).toHaveClass('arc-component positive');
+    expect(screen.getAllByTestId('slicey-circle')[0]).not.toHaveClass('slicey-empty');
+    expect(screen.getAllByTestId('slicey-circle')[0]).toHaveClass('slicey-background');
 
-    expect(queryByTestId('slicey-arc-wrapper')).not.toBeInTheDocument();
-    expect(queryByTestId('slicey-marker-wrapper')).not.toBeInTheDocument();
-    expect(queryByTestId('slicey-donut-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-arc-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-marker-wrapper')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('slicey-donut-wrapper')).not.toBeInTheDocument();
   });
 
   it('should render a marker on a donut with a custom diameter', () => {
@@ -67,22 +65,22 @@ describe('<Slicey />', () => {
       donut: true,
       diameter: 50,
     };
-    const { getByTestId, queryByTestId, queryAllByTestId } = render(<Slicey {...props} />);
+    render(<Slicey {...props} />);
 
-    expect(getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('height', '50');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('width', '50');
-    expect(getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveClass('slicey-component');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('height', '50');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('width', '50');
+    expect(screen.getByTestId('slicey-wrapper')).toHaveAttribute('viewBox', '-0.5 -0.5 1 1');
 
-    expect(queryByTestId('slicey-circle')).toBeInTheDocument();
-    expect(getByTestId('slicey-circle')).not.toHaveClass('slicey-empty');
-    expect(getByTestId('slicey-circle')).toHaveClass('slicey-background');
+    expect(screen.getByTestId('slicey-circle')).toBeInTheDocument();
+    expect(screen.getByTestId('slicey-circle')).not.toHaveClass('slicey-empty');
+    expect(screen.getByTestId('slicey-circle')).toHaveClass('slicey-background');
 
-    expect(queryAllByTestId('slicey-arc-wrapper')).toHaveLength(2);
+    expect(screen.getAllByTestId('slicey-arc-wrapper')).toHaveLength(2);
 
-    expect(queryByTestId('slicey-marker-wrapper')).toBeInTheDocument();
-    expect(getByTestId('slicey-marker-wrapper')).toHaveAttribute('points', '3.061616997868383e-17,0.5 0,0');
+    expect(screen.getByTestId('slicey-marker-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('slicey-marker-wrapper')).toHaveAttribute('points', '3.061616997868383e-17,0.5 0,0');
 
-    expect(queryByTestId('slicey-donut-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('slicey-donut-wrapper')).toBeInTheDocument();
   });
 });

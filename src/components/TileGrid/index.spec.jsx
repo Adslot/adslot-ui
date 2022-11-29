@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import TileGrid from '.';
-
-afterEach(cleanup);
 
 describe('<TileGrid />', () => {
   const props = {
@@ -15,63 +13,63 @@ describe('<TileGrid />', () => {
   };
 
   it('renders with basic props', () => {
-    const { getByTestId, queryByTestId } = render(<TileGrid {...props} items={[]} />);
+    render(<TileGrid {...props} items={[]} />);
 
-    expect(getByTestId('tile-grid-wrapper')).toHaveClass('tile-grid-component');
-    expect(queryByTestId('tile-grid-title')).not.toBeInTheDocument();
+    expect(screen.getByTestId('tile-grid-wrapper')).toHaveClass('tile-grid-component');
+    expect(screen.queryByTestId('tile-grid-title')).not.toBeInTheDocument();
 
-    expect(queryByTestId('tile-grid-list')).toBeInTheDocument();
-    expect(getByTestId('tile-grid-list')).toHaveClass('tile-grid-component-list');
-    expect(getByTestId('tile-grid-list')).toBeEmptyDOMElement();
+    expect(screen.getByTestId('tile-grid-list')).toBeInTheDocument();
+    expect(screen.getByTestId('tile-grid-list')).toHaveClass('tile-grid-component-list');
+    expect(screen.getByTestId('tile-grid-list')).toBeEmptyDOMElement();
   });
 
   it('renders title if props contain it', () => {
     const newProps = _.assign(props, { title: 'Lorem ipsum' });
-    const { getByTestId, queryByTestId } = render(<TileGrid {...newProps} items={[]} />);
+    render(<TileGrid {...newProps} items={[]} />);
 
-    expect(queryByTestId('tile-grid-title')).toBeInTheDocument();
-    expect(getByTestId('tile-grid-title')).toHaveClass('tile-grid-component-title');
-    expect(getByTestId('tile-grid-title')).toHaveTextContent('Lorem ipsum');
+    expect(screen.getByTestId('tile-grid-title')).toBeInTheDocument();
+    expect(screen.getByTestId('tile-grid-title')).toHaveClass('tile-grid-component-title');
+    expect(screen.getByTestId('tile-grid-title')).toHaveTextContent('Lorem ipsum');
   });
 
   it('renders with items', () => {
-    const { queryAllByTestId } = render(<TileGrid {...props} />);
-    expect(queryAllByTestId('tile-grid-list-item')).toHaveLength(2);
-    expect(queryAllByTestId('tile-grid-list-item')[0]).toHaveClass(
+    render(<TileGrid {...props} />);
+    expect(screen.getAllByTestId('tile-grid-list-item')).toHaveLength(2);
+    expect(screen.getAllByTestId('tile-grid-list-item')[0]).toHaveClass(
       'tile-grid-component-item tile-grid-component-item-alpha'
     );
-    expect(queryAllByTestId('tile-grid-list-item')[1]).toHaveClass(
+    expect(screen.getAllByTestId('tile-grid-list-item')[1]).toHaveClass(
       'tile-grid-component-item tile-grid-component-item-beta'
     );
 
-    expect(queryAllByTestId('tile-grid-list-item-link')).toHaveLength(2);
-    expect(queryAllByTestId('tile-grid-list-item-link')[0]).toHaveClass('tile-grid-component-item-link');
-    expect(queryAllByTestId('tile-grid-list-item-link')[0]).toHaveTextContent('Alpha');
+    expect(screen.getAllByTestId('tile-grid-list-item-link')).toHaveLength(2);
+    expect(screen.getAllByTestId('tile-grid-list-item-link')[0]).toHaveClass('tile-grid-component-item-link');
+    expect(screen.getAllByTestId('tile-grid-list-item-link')[0]).toHaveTextContent('Alpha');
 
-    expect(queryAllByTestId('tile-grid-list-item-link')[1]).toHaveClass('tile-grid-component-item-link');
-    expect(queryAllByTestId('tile-grid-list-item-link')[1]).toHaveTextContent('Beta');
+    expect(screen.getAllByTestId('tile-grid-list-item-link')[1]).toHaveClass('tile-grid-component-item-link');
+    expect(screen.getAllByTestId('tile-grid-list-item-link')[1]).toHaveTextContent('Beta');
   });
 
-  it('handles tile clicks', () => {
+  it('handles tile clicks', async () => {
     const onItemClick = jest.fn();
-    const { queryAllByTestId } = render(<TileGrid {...props} onItemClick={onItemClick} />);
+    render(<TileGrid {...props} onItemClick={onItemClick} />);
 
-    fireEvent.click(queryAllByTestId('tile-grid-list-item-link')[0]);
+    await user.click(screen.getAllByTestId('tile-grid-list-item-link')[0]);
     expect(onItemClick).toHaveBeenCalledTimes(1);
     expect(onItemClick).toHaveBeenCalledWith('0');
 
-    fireEvent.click(queryAllByTestId('tile-grid-list-item-link')[1]);
+    await user.click(screen.getAllByTestId('tile-grid-list-item-link')[1]);
     expect(onItemClick).toHaveBeenCalledTimes(2);
     expect(onItemClick).toHaveBeenLastCalledWith('1');
   });
 
   it('should handle evenly distributed', () => {
     props.distributed = true;
-    const { queryAllByTestId } = render(<TileGrid {...props} />);
-    expect(queryAllByTestId('tile-grid-list-item')).toHaveLength(2);
-    queryAllByTestId('tile-grid-list-item').forEach((item) =>
-      expect(item).toHaveClass('tile-grid-component-item-distributed')
-    );
+    render(<TileGrid {...props} />);
+    expect(screen.getAllByTestId('tile-grid-list-item')).toHaveLength(2);
+    screen
+      .getAllByTestId('tile-grid-list-item')
+      .forEach((item) => expect(item).toHaveClass('tile-grid-component-item-distributed'));
   });
 
   it('should add image for background if imgLink is provided', () => {
@@ -80,11 +78,11 @@ describe('<TileGrid />', () => {
       { id: '1', classSuffix: 'beta', title: 'Beta', imgLink: '/linkBeta.jpg' },
     ];
     props.items = itemsWithLink;
-    const { queryAllByTestId } = render(<TileGrid {...props} />);
-    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(2);
-    queryAllByTestId('tile-grid-list-item-img-wrapper').forEach((item) =>
-      expect(item).toHaveClass('tile-grid-component-item-img-wrapper')
-    );
+    render(<TileGrid {...props} />);
+    expect(screen.getAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(2);
+    screen
+      .getAllByTestId('tile-grid-list-item-img-wrapper')
+      .forEach((item) => expect(item).toHaveClass('tile-grid-component-item-img-wrapper'));
   });
 
   it('should handle image position', () => {
@@ -94,15 +92,15 @@ describe('<TileGrid />', () => {
       { id: '2', classSuffix: 'three', title: 'Three', imgLink: '/linkThree.jpg', imgAlign: 'right' },
     ];
     props.items = itemsWithLinkAndPosition;
-    const { queryAllByTestId } = render(<TileGrid {...props} />);
-    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(3);
-    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')[0]).toHaveClass(
+    render(<TileGrid {...props} />);
+    expect(screen.getAllByTestId('tile-grid-list-item-img-wrapper')).toHaveLength(3);
+    expect(screen.getAllByTestId('tile-grid-list-item-img-wrapper')[0]).toHaveClass(
       'tile-grid-component-item-img-wrapper-left'
     );
-    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')[1]).toHaveClass(
+    expect(screen.getAllByTestId('tile-grid-list-item-img-wrapper')[1]).toHaveClass(
       'tile-grid-component-item-img-wrapper-center'
     );
-    expect(queryAllByTestId('tile-grid-list-item-img-wrapper')[2]).toHaveClass(
+    expect(screen.getAllByTestId('tile-grid-list-item-img-wrapper')[2]).toHaveClass(
       'tile-grid-component-item-img-wrapper-right'
     );
   });

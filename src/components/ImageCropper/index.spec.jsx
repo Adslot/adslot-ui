@@ -1,33 +1,27 @@
 import _ from 'lodash';
 import React from 'react';
-import { act, render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import ImageCropper from '.';
-
-afterEach(cleanup);
 
 describe('<ImageCropper />', () => {
   it('should render with props', () => {
-    const { getByTestId, queryByTestId } = render(
-      <ImageCropper src="example.svg" alt="example" onCrop={jest.fn()} onCancel={jest.fn()} width={400} height={400} />
+    render(
+      <ImageCropper src="./test.png" alt="example" onCrop={jest.fn()} onCancel={jest.fn()} width={400} height={400} />
     );
-    expect(queryByTestId('action-panel-wrapper')).toBeInTheDocument();
-    expect(getByTestId('action-panel-title')).toHaveTextContent('Image Upload');
+    expect(screen.getByTestId('action-panel-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('action-panel-title')).toHaveTextContent('Image Upload');
 
-    expect(getByTestId('image-cropper')).toHaveStyle('width: 400px; height: 400px;');
+    expect(screen.getByTestId('image-cropper')).toHaveStyle('width: 400px; height: 400px;');
 
-    expect(getByTestId('image-cropper-img')).toHaveAttribute('src', 'example.svg');
-    expect(getByTestId('image-cropper-img')).toHaveAttribute('alt', 'example');
+    expect(screen.getByTestId('image-cropper-img')).toHaveAttribute('src', './test.png');
+    expect(screen.getByTestId('image-cropper-img')).toHaveAttribute('alt', 'example');
   });
 
-  it('should call onCrop when user upload button is clicked', () => {
+  it('should call onCrop when user upload button is clicked', async () => {
     const onCrop = jest.fn();
-    const { queryAllByTestId } = render(<ImageCropper src="example.svg" onCrop={onCrop} onCancel={jest.fn()} />);
+    render(<ImageCropper src="./test.png" onCrop={onCrop} onCancel={jest.fn()} />);
 
-    // console.error would be fixed after updating react/react-dom/react-test-renderer to ^16.9.0
-    act(() => {
-      fireEvent.click(queryAllByTestId('button-wrapper')[1]);
-    });
-
+    await user.click(screen.getAllByTestId('button-wrapper')[1]);
     expect(onCrop).toHaveBeenCalledTimes(1);
   });
 
@@ -40,20 +34,12 @@ describe('<ImageCropper />', () => {
         cropperRef.current.getCropper().current.setAspectRatio = setAspectRadio;
       }, []);
       return (
-        <ImageCropper
-          ref={cropperRef}
-          src="../../../www/assets/adslot-avatar.png"
-          onCrop={_.noop}
-          onCancel={_.noop}
-          aspectRatio={aspectRatio}
-        />
+        <ImageCropper ref={cropperRef} src="./test.png" onCrop={_.noop} onCancel={_.noop} aspectRatio={aspectRatio} />
       );
     };
 
-    const { rerender } = render(<TestComponent aspectRatio={2} />);
-    act(() => {
-      rerender(<TestComponent aspectRatio={3} />);
-    });
+    const view = render(<TestComponent aspectRatio={2} />);
+    view.rerender(<TestComponent aspectRatio={3} />);
     expect(setAspectRadio).toHaveBeenCalledTimes(1);
     expect(setAspectRadio).toHaveBeenCalledWith(3);
   });
@@ -66,22 +52,12 @@ describe('<ImageCropper />', () => {
         cropperRef.current.getCropper().current.destroy = cropperDestroy;
       }, []);
       return (
-        <ImageCropper
-          ref={cropperRef}
-          src="../../../www/assets/adslot-avatar.png"
-          onCrop={_.noop}
-          onCancel={_.noop}
-          aspectRatio={aspectRatio}
-        />
+        <ImageCropper ref={cropperRef} src="./test.png" onCrop={_.noop} onCancel={_.noop} aspectRatio={aspectRatio} />
       );
     };
 
-    const { unmount } = render(<TestComponent />);
-
-    act(() => {
-      unmount();
-    });
-
+    const view = render(<TestComponent />);
+    view.unmount();
     expect(cropperDestroy).toHaveBeenCalledTimes(1);
   });
 });

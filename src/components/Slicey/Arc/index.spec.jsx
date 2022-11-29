@@ -1,17 +1,15 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from 'testing';
 import Arc from '.';
-
-afterEach(cleanup);
 
 describe('<Arc />', () => {
   it('should have its component name as default className', () => {
-    const { getByTestId } = render(
+    render(
       <svg>
         <Arc />
       </svg>
     );
-    expect(getByTestId('slicey-arc-wrapper')).toHaveClass('arc-component');
+    expect(screen.getByTestId('slicey-arc-wrapper')).toHaveClass('arc-component');
   });
 
   it('should render an arc for given data', () => {
@@ -26,12 +24,12 @@ describe('<Arc />', () => {
         y2: 0.47,
       },
     };
-    const { getByTestId } = render(
+    render(
       <svg>
         <Arc {...props} />
       </svg>
     );
-    expect(getByTestId('slicey-arc-wrapper')).toHaveClass('arc-component something-great');
-    expect(getByTestId('slicey-arc-wrapper')).toHaveAttribute('d', 'M0,0 L3.06,-0.5 A0.5,0.5 0 0,1 0.14,0.47 z');
+    expect(screen.getByTestId('slicey-arc-wrapper')).toHaveClass('arc-component something-great');
+    expect(screen.getByTestId('slicey-arc-wrapper')).toHaveAttribute('d', 'M0,0 L3.06,-0.5 A0.5,0.5 0 0,1 0.14,0.47 z');
   });
 });

@@ -1,41 +1,36 @@
 import React from 'react';
-import { render, cleanup, queryByAttribute, queryAllByAttribute, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import Pill from '.';
-
-afterEach(cleanup);
-
-const getByClass = queryByAttribute.bind(null, 'class');
-const queryAllByClass = queryAllByAttribute.bind(null, 'class');
 
 describe('<Pill />', () => {
   it('should have default style', () => {
-    const { container } = render(<Pill>Test</Pill>);
-    expect(queryAllByClass(container, 'aui--pill aui--pill-medium')).toHaveLength(1);
-    expect(queryAllByClass(container, 'aui--pill-children')).toHaveLength(1);
-    expect(queryAllByClass(container, 'aui--pill-clickable')).toHaveLength(0);
-    expect(getByClass(container, 'aui--pill-children')).toHaveTextContent('Test');
+    render(<Pill>Test</Pill>);
+    expect(screen.queryAllByClass('aui--pill aui--pill-medium')).toHaveLength(1);
+    expect(screen.queryAllByClass('aui--pill-children')).toHaveLength(1);
+    expect(screen.queryAllByClass('aui--pill-clickable')).toHaveLength(0);
+    expect(screen.getByClass('aui--pill-children')).toHaveTextContent('Test');
   });
 
   it('should allow className prop', () => {
-    const { container } = render(<Pill className="test">Test</Pill>);
-    expect(queryAllByClass(container, 'aui--pill aui--pill-medium test')).toHaveLength(1);
+    render(<Pill className="test">Test</Pill>);
+    expect(screen.queryAllByClass('aui--pill aui--pill-medium test')).toHaveLength(1);
   });
 
   it('should allow size prop', () => {
-    const { container } = render(<Pill size="large">Test</Pill>);
-    expect(queryAllByClass(container, 'aui--pill aui--pill-large')).toHaveLength(1);
+    render(<Pill size="large">Test</Pill>);
+    expect(screen.queryAllByClass('aui--pill aui--pill-large')).toHaveLength(1);
   });
 
-  it('should allow onClick prop', () => {
+  it('should allow onClick prop', async () => {
     const onClickMock = jest.fn();
-    const { container } = render(<Pill onClick={onClickMock}>Test</Pill>);
-    expect(queryAllByClass(container, 'aui--pill aui--pill-medium aui--pill-clickable')).toHaveLength(1);
-    fireEvent.click(getByClass(container, 'aui--pill aui--pill-medium aui--pill-clickable'));
+    render(<Pill onClick={onClickMock}>Test</Pill>);
+    expect(screen.queryAllByClass('aui--pill aui--pill-medium aui--pill-clickable')).toHaveLength(1);
+    await user.click(screen.getByClass('aui--pill aui--pill-medium aui--pill-clickable'));
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
   it('should support custom dts', () => {
-    const { container } = render(<Pill dts="test-dts">Test</Pill>);
-    expect(getByClass(container, 'aui--pill aui--pill-medium')).toHaveAttribute('data-test-selector', 'test-dts');
+    render(<Pill dts="test-dts">Test</Pill>);
+    expect(screen.getByClass('aui--pill aui--pill-medium')).toHaveAttribute('data-test-selector', 'test-dts');
   });
 });

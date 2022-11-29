@@ -1,29 +1,27 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, user } from 'testing';
 import TreePickerNodeExpander from '.';
 
-afterEach(cleanup);
-
 describe('<TreePickerNodeExpander />', () => {
-  it('should render with default isLoading false', () => {
+  it('should render with default isLoading false', async () => {
     const onClickMock = jest.fn();
-    const { getByTestId, queryByTestId } = render(<TreePickerNodeExpander onClick={onClickMock} />);
+    render(<TreePickerNodeExpander onClick={onClickMock} />);
 
-    expect(queryByTestId('grid-cell-wrapper')).toBeInTheDocument();
-    expect(getByTestId('grid-cell-wrapper')).toHaveAttribute('data-test-selector', 'expander');
-    expect(queryByTestId('spinner-wrapper')).not.toBeInTheDocument();
+    expect(screen.getByTestId('grid-cell-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('grid-cell-wrapper')).toHaveAttribute('data-test-selector', 'expander');
+    expect(screen.queryByTestId('spinner-wrapper')).not.toBeInTheDocument();
 
-    fireEvent.click(getByTestId('grid-cell-wrapper'));
+    await user.click(screen.getByTestId('grid-cell-wrapper'));
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should render with isLoading true', () => {
+  it('should render with isLoading true', async () => {
     const onClickMock = jest.fn();
-    const { getByTestId, queryByTestId } = render(<TreePickerNodeExpander onClick={onClickMock} isLoading />);
+    render(<TreePickerNodeExpander onClick={onClickMock} isLoading />);
 
-    expect(getByTestId('grid-cell-wrapper')).not.toBeEmptyDOMElement();
-    expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
-    fireEvent.click(getByTestId('grid-cell-wrapper'));
+    expect(screen.getByTestId('grid-cell-wrapper')).not.toBeEmptyDOMElement();
+    expect(screen.getByTestId('spinner-wrapper')).toBeInTheDocument();
+    await user.click(screen.getByTestId('grid-cell-wrapper'));
     expect(onClickMock).toHaveBeenCalledTimes(0);
   });
 });

@@ -1,19 +1,8 @@
 import React from 'react';
-import {
-  render,
-  cleanup,
-  fireEvent,
-  queryByAttribute,
-  queryAllByAttribute,
-  act,
-  waitFor,
-} from '@testing-library/react';
-import { createEvent } from '@testing-library/dom';
+import { render, screen, fireEvent, createEvent, user } from 'testing';
 import { RichUtils } from 'draft-js';
 import RichTextEditor from '.';
-
-const getByClass = queryByAttribute.bind(null, 'class');
-const queryAllByClass = queryAllByAttribute.bind(null, 'class');
+import { invariant } from '../../lib/utils';
 
 const createPasteEvent = (html) => {
   const text = html.replace('<[^>]*>', '');
@@ -25,61 +14,51 @@ const createPasteEvent = (html) => {
   };
 };
 
-beforeEach(() => {
-  jest.useFakeTimers();
-});
-
-afterEach(() => {
-  jest.useRealTimers();
-});
-
-afterEach(cleanup);
-
 describe('<RichTextEditor />', () => {
   it('should render rich text editor', () => {
-    const { queryByTestId } = render(<RichTextEditor />);
-    expect(queryByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
+    render(<RichTextEditor />);
+    expect(screen.getByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
   });
 
-  it('should hide placeholder on focus editor on click', () => {
-    const { container } = render(<RichTextEditor />);
-    expect(queryAllByClass(container, 'public-DraftEditorPlaceholder-root')).toHaveLength(1);
+  it('should hide placeholder on focus editor on click', async () => {
+    render(<RichTextEditor />);
+    expect(screen.queryAllByClass('public-DraftEditorPlaceholder-root')).toHaveLength(1);
 
-    fireEvent.click(getByClass(container, 'aui--editor-container'));
+    await user.click(screen.getByClass('aui--editor-container'));
     expect(
-      queryAllByClass(container, 'public-DraftEditorPlaceholder-root public-DraftEditorPlaceholder-hasFocus')
+      screen.getAllByClass('public-DraftEditorPlaceholder-root public-DraftEditorPlaceholder-hasFocus')
     ).toHaveLength(1);
   });
 
   it('should warn when value is passed and onChange is not', () => {
-    console.warn = jest.fn();
     render(<RichTextEditor value={RichTextEditor.createEmpty()} />);
-    expect(console.warn).toHaveBeenCalledWith(
+    expect(invariant).toHaveBeenCalledWith(
+      false,
       'Failed prop type: You have provided a `value` prop to RichTextEditor component without an `onChange` handler. This will render a read-only field.'
     );
   });
 
   it('should set initial state correctly', () => {
-    const { container } = render(<RichTextEditor initialValue={RichTextEditor.stateFromHTML('<b>test</b>')} />);
-    expect(getByClass(container, 'DraftEditor-root')).toHaveTextContent('test');
+    render(<RichTextEditor initialValue={RichTextEditor.stateFromHTML('<b>test</b>')} />);
+    expect(screen.getByClass('DraftEditor-root')).toHaveTextContent('test');
   });
 
-  it('should fire onChange correctly', () => {
-    const { container } = render(<RichTextEditor />);
-    const editorNode = container.querySelector('.public-DraftEditor-content');
+  it('should fire onChange correctly', async () => {
+    render(<RichTextEditor />);
+    const editorNode = screen.getByClass('public-DraftEditor-content');
     const eventProperties = createPasteEvent('<b>123</b>');
     const pasteEvent = createEvent.paste(editorNode, eventProperties);
 
     fireEvent(editorNode, pasteEvent);
-    expect(getByClass(container, 'DraftEditor-root')).toHaveTextContent('123');
+    expect(screen.getByClass('DraftEditor-root')).toHaveTextContent('123');
   });
 
   it('should pass state if onChange is supplied', () => {
     const onChange = jest.fn();
-    const { container } = render(<RichTextEditor value={RichTextEditor.createEmpty()} onChange={onChange} />);
+    render(<RichTextEditor value={RichTextEditor.createEmpty()} onChange={onChange} />);
     expect(onChange).toHaveBeenCalledTimes(1);
-    const editorNode = container.querySelector('.public-DraftEditor-content');
-    const eventProperties = createPasteEvent('<strong>123</strong>');
+    const editorNode = screen.getByClass('public-DraftEditor-content');
+    const eventProperties = createPasteEvent('<b>123</b>');
     const pasteEvent = createEvent.paste(editorNode, eventProperties);
 
     fireEvent(editorNode, pasteEvent);
@@ -93,10 +72,10 @@ describe('<RichTextEditor />', () => {
     jest.spyOn(RichUtils, 'handleKeyCommand');
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
-    const { container } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    render(<RichTextEditor initialValue={newState} onChange={onChange} />);
     expect(onChange).toHaveBeenCalledTimes(1);
 
-    const editorNode = container.querySelector('.public-DraftEditor-content');
+    const editorNode = screen.getByClass('public-DraftEditor-content');
     fireEvent.focus(editorNode);
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(RichTextEditor.stateToHTML(onChange.mock.calls[1][0])).toEqual('<p>123</p>');
@@ -112,9 +91,9 @@ describe('<RichTextEditor />', () => {
     jest.spyOn(RichUtils, 'handleKeyCommand');
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
-    const { container } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
-    const editorNode = container.querySelector('.public-DraftEditor-content');
+    const editorNode = screen.getByClass('public-DraftEditor-content');
     fireEvent.focus(editorNode);
 
     fireEvent.keyDown(editorNode, { key: 'b', keyCode: 66, which: 66, ctrlKey: true });
@@ -126,12 +105,12 @@ describe('<RichTextEditor />', () => {
   it('should toggle italics', () => {
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
-    const { queryAllByTestId, getByTestId } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('button-wrapper')[1]).toContainElement(getByTestId('italics'));
+    expect(screen.getAllByTestId('button-wrapper')).toHaveLength(5);
+    expect(screen.getAllByTestId('button-wrapper')[1]).toContainElement(screen.getByTestId('italics'));
 
-    fireEvent.mouseDown(queryAllByTestId('button-wrapper')[1]);
+    fireEvent.mouseDown(screen.getAllByTestId('button-wrapper')[1]);
 
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(RichTextEditor.stateToHTML(onChange.mock.calls[1][0])).toEqual('<p>123</p>');
@@ -140,12 +119,12 @@ describe('<RichTextEditor />', () => {
   it('should correctly generate unordered list', () => {
     const onChange = jest.fn();
     const newState = RichTextEditor.stateFromHTML('123');
-    const { queryAllByTestId, getByTestId } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
-    expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
-    expect(queryAllByTestId('button-wrapper')[4]).toContainElement(getByTestId('number'));
+    expect(screen.getAllByTestId('button-wrapper')).toHaveLength(5);
+    expect(screen.getAllByTestId('button-wrapper')[4]).toContainElement(screen.getByTestId('number'));
 
-    fireEvent.mouseDown(queryAllByTestId('button-wrapper')[4]);
+    fireEvent.mouseDown(screen.getAllByTestId('button-wrapper')[4]);
 
     expect(onChange).toHaveBeenCalledTimes(2);
   });
@@ -165,15 +144,13 @@ describe('<RichTextEditor />', () => {
         },
       ];
       const onChange = jest.fn();
-      const { queryByTestId, queryByText } = render(<RichTextEditor mentions={contacts} onChange={onChange} />);
+      render(<RichTextEditor mentions={contacts} onChange={onChange} />);
 
-      expect(queryByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
-      expect(queryByText('@')).toBeInTheDocument();
+      expect(screen.getByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
+      expect(screen.getByText('@')).toBeInTheDocument();
     });
 
-    it('should pop up the mention list when user input a @ to the editor', () => {
-      console.error = jest.fn(); // Todo: fix popover warning with react v17 upgrade
-
+    it('should pop up the mention list when user input a @ to the editor', async () => {
       const contacts = [
         {
           name: 'Matthew Russell',
@@ -188,27 +165,15 @@ describe('<RichTextEditor />', () => {
       ];
       const onChange = jest.fn();
       const newState = RichTextEditor.stateFromHTML('@');
-      const { queryByTestId, queryAllByTestId, container } = render(
-        <RichTextEditor initialValue={newState} mentions={contacts} onChange={onChange} />
-      );
+      render(<RichTextEditor initialValue={newState} mentions={contacts} onChange={onChange} />);
+      expect(screen.queryByTestId('rich-text-editor-mention-entry')).not.toBeInTheDocument();
 
-      expect(queryByTestId('rich-text-editor-mention-entry')).not.toBeInTheDocument();
-
-      const editorNode = container.querySelector('.public-DraftEditor-content');
-
-      act(() => {
-        fireEvent.focus(editorNode);
-      });
-
-      expect(queryAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
-      expect(queryAllByTestId('rich-text-editor-mention-entry')[0]).toHaveClass('aui--mention-entry__is-focused');
-
-      console.error.mockRestore();
+      await user.tab();
+      expect(screen.getAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
+      expect(screen.getAllByTestId('rich-text-editor-mention-entry')[0]).toHaveClass('aui--mention-entry__is-focused');
     });
 
-    it('should click @ button to trigger mention list', () => {
-      console.error = jest.fn(); // Todo: fix popover warning with react v17 upgrade
-
+    it('should click @ button to trigger mention list', async () => {
       const contacts = [
         {
           name: 'Matthew Russell',
@@ -222,26 +187,18 @@ describe('<RichTextEditor />', () => {
         },
       ];
       const onChange = jest.fn();
-      const { queryAllByTestId, getByTestId } = render(<RichTextEditor mentions={contacts} onChange={onChange} />);
+      render(<RichTextEditor mentions={contacts} onChange={onChange} />);
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('rich-text-editor-advanced-buttons').children[0]);
-      });
+      await user.click(screen.getByTestId('rich-text-editor-advanced-buttons').children[0]);
 
-      expect(queryAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
-      expect(queryAllByTestId('rich-text-editor-mention-entry')[0]).toHaveClass('aui--mention-entry__is-focused');
+      expect(screen.getAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
+      expect(screen.getAllByTestId('rich-text-editor-mention-entry')[0]).toHaveClass('aui--mention-entry__is-focused');
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('rich-text-editor-advanced-buttons').children[0]);
-      });
-      expect(queryAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
-
-      console.error.mockRestore();
+      await user.click(screen.getByTestId('rich-text-editor-advanced-buttons').children[0]);
+      expect(screen.getAllByTestId('rich-text-editor-mention-entry')).toHaveLength(2);
     });
 
-    it("should render the avatar with user's initials", () => {
-      console.error = jest.fn(); // Todo: fix popover warning with react v17 upgrade
-
+    it("should render the avatar with user's initials", async () => {
       const contacts = [
         {
           name: 'Matthew',
@@ -255,14 +212,12 @@ describe('<RichTextEditor />', () => {
         },
       ];
       const onChange = jest.fn();
-      const { getByTestId, getByText } = render(<RichTextEditor mentions={contacts} onChange={onChange} />);
+      render(<RichTextEditor mentions={contacts} onChange={onChange} />);
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('rich-text-editor-advanced-buttons').children[0]);
-      });
+      await user.click(screen.getByTestId('rich-text-editor-advanced-buttons').children[0]);
 
-      expect(getByText('M')).toHaveClass('avatar-component-initials');
-      expect(getByText('JK')).toHaveClass('avatar-component-initials');
+      expect(screen.getByText('M')).toHaveClass('avatar-component-initials');
+      expect(screen.getByText('JK')).toHaveClass('avatar-component-initials');
     });
   });
 
@@ -271,40 +226,23 @@ describe('<RichTextEditor />', () => {
       const onFileSelect = jest.fn(() => 'fake-path');
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
-      const { queryByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
+      render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      expect(queryByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
-      expect(queryByTestId('file-download-button')).toBeInTheDocument();
+      expect(screen.getByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
+      expect(screen.getByTestId('file-download-button')).toBeInTheDocument();
     });
 
-    it('should be able to select a pdf file when clicking file upload button', () => {
-      console.error = jest.fn(); // Todo: fix popover warning with react v17 upgrade
+    it('should be able to select a pdf file when clicking file upload button', async () => {
       const onFileSelect = jest.fn(() => 'fake-path');
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
-
-      const { getByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
-
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'));
-      });
+      render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
       expect(onFileSelect).toHaveBeenCalledTimes(0);
-
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'), {
-          target: { files: [{ name: 'selected file' }] },
-        });
-      });
-
+      await user.click(screen.getByLabelText('Download file'));
+      const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+      await user.upload(screen.getByTestId('file-download-input'), file);
       expect(onFileSelect).toHaveBeenCalledTimes(1);
-      console.error.mockRestore();
     });
 
     it('should render file preview list and file sticker close button after file uploaded', async () => {
@@ -312,47 +250,17 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
+      render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'), {
-          target: { files: [{ name: 'selected file' }] },
-        });
-      });
+      const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+      await user.upload(screen.getByTestId('file-download-input'), file);
+      expect(screen.getByTestId('file-preview-list')).toBeInTheDocument();
 
-      await waitFor(() => expect(queryByTestId('file-preview-list')).toBeInTheDocument());
+      await user.hover(screen.getByTestId('file-sticker'));
+      expect(screen.getByTestId('file-sticker-close-button')).toBeInTheDocument();
 
-      act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
-      expect(queryByTestId('file-sticker-close-button')).toBeInTheDocument();
-      act(() => fireEvent.mouseLeave(getByTestId('file-sticker')));
-      expect(queryByTestId('file-sticker-close-button')).not.toBeInTheDocument();
-    });
-
-    it('should render file preview list and file sticker close button after file uploaded', async () => {
-      const onFileSelect = jest.fn(() => 'fake-path');
-      const onFileRemove = jest.fn();
-      const onChange = jest.fn();
-
-      const { getByTestId, queryByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
-
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'), {
-          target: { files: [{ name: 'selected file' }] },
-        });
-      });
-
-      await waitFor(() => expect(queryByTestId('file-preview-list')).toBeInTheDocument());
-
-      act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
-      expect(queryByTestId('file-sticker-close-button')).toBeInTheDocument();
-      act(() => fireEvent.mouseLeave(getByTestId('file-sticker')));
-      expect(queryByTestId('file-sticker-close-button')).not.toBeInTheDocument();
+      await user.unhover(screen.getByTestId('file-sticker'));
+      expect(screen.queryByTestId('file-sticker-close-button')).not.toBeInTheDocument();
     });
 
     it('should remove file sticker when clicking close button on it', async () => {
@@ -360,43 +268,30 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
+      render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'), {
-          target: { files: [{ name: 'selected file' }] },
-        });
-      });
+      const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+      await user.upload(screen.getByTestId('file-download-input'), file);
+      expect(screen.getByTestId('file-preview-list')).toBeInTheDocument();
 
-      await waitFor(() => expect(queryByTestId('file-preview-list')).toBeInTheDocument());
+      await user.pointer({ target: screen.getByTestId('file-sticker') });
+      await user.pointer(screen.getByTestId('file-sticker-close-button'));
+      expect(screen.getByTestId('file-sticker-close-button')).toBeInTheDocument();
 
-      act(() => fireEvent.mouseEnter(getByTestId('file-sticker')));
-      expect(queryByTestId('file-sticker-close-button')).toBeInTheDocument();
-
-      act(() => fireEvent.click(getByTestId('file-sticker-close-button')));
-      await waitFor(() => expect(queryByTestId('file-preview-list')).not.toBeInTheDocument());
+      await user.pointer({ keys: '[MouseLeft]', target: screen.getByTestId('file-sticker-close-button') });
+      expect(screen.queryByTestId('file-preview-list')).not.toBeInTheDocument();
     });
 
-    it('should show a spinner on the file sticker if no path is returned', () => {
-      const onFileSelect = jest.fn(() => false);
+    it('should show a spinner on the file sticker if no path is returned', async () => {
+      const onFileSelect = jest.fn().mockReturnValue(Promise.resolve());
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
+      render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'), {
-          target: { files: [{ name: 'image.png' }] },
-        });
-      });
-
-      expect(queryByTestId('spinner-wrapper')).toBeInTheDocument();
+      const file = new File(['test'], 'test.png', { type: 'image/png' });
+      await user.upload(screen.getByTestId('file-download-input'), file);
+      expect(screen.getByTestId('spinner-wrapper')).toBeInTheDocument();
     });
 
     it('should render an image for image file using it path', async () => {
@@ -404,18 +299,11 @@ describe('<RichTextEditor />', () => {
       const onFileRemove = jest.fn();
       const onChange = jest.fn();
 
-      const { getByTestId, queryByTestId } = render(
-        <RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />
-      );
+      render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      act(() => {
-        fireEvent.mouseDown(getByTestId('file-download-button'));
-        fireEvent.change(getByTestId('file-download-input'), {
-          target: { files: [{ name: 'image.png' }] },
-        });
-      });
-
-      await waitFor(() => expect(queryByTestId('file-sticker-image')).toBeInTheDocument());
+      const file = new File(['test'], 'test.png', { type: 'image/png' });
+      await user.upload(screen.getByTestId('file-download-input'), file);
+      expect(screen.getByTestId('file-sticker-image')).toBeInTheDocument();
     });
   });
 });

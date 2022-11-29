@@ -1,15 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
-import { render, cleanup, fireEvent, queryByAttribute, queryAllByAttribute } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, user } from 'testing';
 import Empty from '../Empty';
 import ListPickerPure from '.';
 import ListPickerMocks from '../ListPicker/mocks';
-
-const getByDts = queryByAttribute.bind(null, 'data-test-selector');
-const queryAllByDts = queryAllByAttribute.bind(null, 'data-test-selector');
-
-afterEach(cleanup);
 
 describe('<ListPickerPure />', () => {
   const { getInitialSelection, labelFormatter, teamMember4, userHeaders, nodeUserHeaders, users, usersWithUuid } =
@@ -20,18 +14,18 @@ describe('<ListPickerPure />', () => {
   Object.freeze(selectedItems);
 
   it('should render with defaults', () => {
-    const { getByTestId, queryByTestId } = render(<ListPickerPure />);
+    render(<ListPickerPure deselectItem={jest.fn()} selectItem={jest.fn()} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-    expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
       'listpickerpure-component-item'
     );
-    expect(queryByTestId('grid-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('grid-wrapper')).toBeInTheDocument();
 
-    expect(queryByTestId('empty-wrapper')).toBeInTheDocument();
-    expect(getByTestId('empty-wrapper')).not.toBeEmptyDOMElement();
-    expect(getByTestId('empty-wrapper')).toHaveTextContent('No items to select.');
+    expect(screen.getByTestId('empty-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('empty-wrapper')).not.toBeEmptyDOMElement();
+    expect(screen.getByTestId('empty-wrapper')).toHaveTextContent('No items to select.');
   });
 
   it('should render with props', () => {
@@ -42,41 +36,41 @@ describe('<ListPickerPure />', () => {
       labelFormatter,
       selectedItems,
     };
-    const { container, getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} deselectItem={jest.fn()} selectItem={jest.fn()} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-    expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
       'listpickerpure-component-user'
     );
 
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
-    expect(getByText('Team')).toHaveClass('grid-component-cell');
-    expect(getByText('Member')).toHaveClass('grid-component-cell');
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Team'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Member'));
+    expect(screen.getByText('Team')).toHaveClass('grid-component-cell');
+    expect(screen.getByText('Member')).toHaveClass('grid-component-cell');
 
-    queryAllByTestId('grid-row-wrapper').forEach((each) => expect(each).toHaveClass('grid-component-row'));
-    expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('John Smith'));
-    expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Jane Doe'));
-    expect(queryAllByTestId('grid-row-wrapper')[3]).toContainElement(getByText('Jack White'));
+    screen.queryAllByTestId('grid-row-wrapper').forEach((each) => expect(each).toHaveClass('grid-component-row'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[1]).toContainElement(screen.getByText('John Smith'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[2]).toContainElement(screen.getByText('Jane Doe'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[3]).toContainElement(screen.getByText('Jack White'));
 
-    expect(getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('John Smith').parentElement).toHaveClass('grid-component-cell-stretch');
-    expect(getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Jane Doe').parentElement).toHaveClass('grid-component-cell-stretch');
-    expect(getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Jack White').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(screen.getByText('John Smith').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(screen.getByText('John Smith').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(screen.getByText('Jane Doe').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(screen.getByText('Jane Doe').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(screen.getByText('Jack White').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(screen.getByText('Jack White').parentElement).toHaveClass('grid-component-cell-stretch');
 
-    expect(getByDts(container, 'user-1')).toHaveTextContent('John Smith');
-    expect(getByDts(container, 'user-2')).toHaveTextContent('Jane Doe');
-    expect(getByDts(container, 'user-3')).toHaveTextContent('Jack White');
+    expect(screen.getByDts('user-1')).toHaveTextContent('John Smith');
+    expect(screen.getByDts('user-2')).toHaveTextContent('Jane Doe');
+    expect(screen.getByDts('user-3')).toHaveTextContent('Jack White');
 
-    expect(queryAllByDts(container, 'toggle')).toHaveLength(3);
-    queryAllByDts(container, 'toggle').forEach((each, index) => {
-      expect(each).toContainElement(queryAllByTestId('checkbox')[index]);
+    expect(screen.queryAllByDts('toggle')).toHaveLength(3);
+    screen.queryAllByDts('toggle').forEach((each, index) => {
+      expect(each).toContainElement(screen.queryAllByTestId('checkbox')[index]);
       if (_.some(selectedItems, { id: users[index].id }))
-        expect(queryAllByTestId('checkbox-input')[index]).toBeChecked();
+        expect(screen.queryAllByTestId('checkbox-input')[index]).toBeChecked();
     });
   });
 
@@ -89,28 +83,28 @@ describe('<ListPickerPure />', () => {
       selectedItems: selectedItemsWithUuid,
     };
 
-    const { container, getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} deselectItem={jest.fn()} selectItem={jest.fn()} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Team'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Member'));
 
-    queryAllByTestId('grid-row-wrapper').forEach((each) => expect(each).toHaveClass('grid-component-row'));
-    expect(queryAllByTestId('grid-row-wrapper')[1]).toContainElement(getByText('Jones Cheng'));
-    expect(queryAllByTestId('grid-row-wrapper')[2]).toContainElement(getByText('Joe Huang'));
+    screen.queryAllByTestId('grid-row-wrapper').forEach((each) => expect(each).toHaveClass('grid-component-row'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[1]).toContainElement(screen.getByText('Jones Cheng'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[2]).toContainElement(screen.getByText('Joe Huang'));
 
-    expect(getByText('Jones Cheng').parentElement).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Jones Cheng').parentElement).toHaveClass('grid-component-cell-stretch');
-    expect(getByText('Joe Huang').parentElement).toHaveAttribute('data-test-selector', 'label');
-    expect(getByText('Joe Huang').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(screen.getByText('Jones Cheng').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(screen.getByText('Jones Cheng').parentElement).toHaveClass('grid-component-cell-stretch');
+    expect(screen.getByText('Joe Huang').parentElement).toHaveAttribute('data-test-selector', 'label');
+    expect(screen.getByText('Joe Huang').parentElement).toHaveClass('grid-component-cell-stretch');
 
-    expect(queryAllByDts(container, 'toggle')).toHaveLength(2);
-    queryAllByDts(container, 'toggle').forEach((each, index) => {
-      expect(each).toContainElement(queryAllByTestId('checkbox')[index]);
+    expect(screen.queryAllByDts('toggle')).toHaveLength(2);
+    screen.queryAllByDts('toggle').forEach((each, index) => {
+      expect(each).toContainElement(screen.queryAllByTestId('checkbox')[index]);
       if (_.some(selectedItemsWithUuid, { id: usersWithUuid[index].id }))
-        expect(queryAllByTestId('checkbox-input')[index]).toBeChecked();
+        expect(screen.queryAllByTestId('checkbox-input')[index]).toBeChecked();
     });
   });
 
@@ -126,17 +120,17 @@ describe('<ListPickerPure />', () => {
       selectedItems,
       addonFormatter,
     };
-    const { container, getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    render(<ListPickerPure {...props} deselectItem={jest.fn()} selectItem={jest.fn()} />);
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Required'));
-    expect(getByText('Required')).toHaveClass('grid-component-cell grid-component-cell-header-addon');
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Team'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Member'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Required'));
+    expect(screen.getByText('Required')).toHaveClass('grid-component-cell grid-component-cell-header-addon');
 
-    expect(queryAllByDts(container, 'addon')).toHaveLength(3);
-    queryAllByDts(container, 'addon').forEach((each) => {
+    expect(screen.queryAllByDts('addon')).toHaveLength(3);
+    screen.queryAllByDts('addon').forEach((each) => {
       expect(each).toHaveClass('grid-component-cell-addon');
       expect(each).toHaveTextContent('Nothing to show.');
     });
@@ -150,69 +144,38 @@ describe('<ListPickerPure />', () => {
       labelFormatter,
       selectedItems,
     };
-    const { getByTestId, queryAllByTestId, getByText } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} deselectItem={jest.fn()} selectItem={jest.fn()} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-    expect(getByTestId('listpickerpure-wrapper')).toHaveAttribute(
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveAttribute(
       'data-test-selector',
       'listpickerpure-component-group-user'
     );
 
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Group'));
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Team'));
-    expect(queryAllByTestId('grid-row-wrapper')[0]).toContainElement(getByText('Member'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toHaveClass('grid-component-row-header');
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Group'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Team'));
+    expect(screen.queryAllByTestId('grid-row-wrapper')[0]).toContainElement(screen.getByText('Member'));
   });
 
   it('should render radio buttons with `allowMultiSelection` as false', () => {
     const props = { allowMultiSelection: false, items: users, selectedItems };
-    const { container, getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} deselectItem={jest.fn()} selectItem={jest.fn()} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
 
-    expect(getByDts(container, 'item-1')).toContainElement(queryAllByDts(container, 'toggle')[0]);
-    expect(getByDts(container, 'item-2')).toContainElement(queryAllByDts(container, 'toggle')[1]);
-    expect(getByDts(container, 'item-3')).toContainElement(queryAllByDts(container, 'toggle')[2]);
+    expect(screen.getByDts('item-1')).toContainElement(screen.queryAllByDts('toggle')[0]);
+    expect(screen.getByDts('item-2')).toContainElement(screen.queryAllByDts('toggle')[1]);
+    expect(screen.getByDts('item-3')).toContainElement(screen.queryAllByDts('toggle')[2]);
 
-    queryAllByDts(container, 'toggle').forEach((each, index) => {
-      expect(each).toContainElement(queryAllByTestId('radio-wrapper')[index]);
-      if (_.some(selectedItems, { id: users[index].id })) expect(queryAllByTestId('radio-input')[index]).toBeChecked();
+    screen.queryAllByDts('toggle').forEach((each, index) => {
+      expect(each).toContainElement(screen.queryAllByTestId('radio-wrapper')[index]);
+      if (_.some(selectedItems, { id: users[index].id }))
+        expect(screen.queryAllByTestId('radio-input')[index]).toBeChecked();
     });
   });
 
-  it('should throw when we select without a `selectItem` handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
-    const props = { items: users, selectedItems };
-    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
-
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-
-    expect(queryAllByTestId('checkbox-input')[0]).not.toBeChecked();
-
-    expect(() => fireEvent.click(queryAllByTestId('checkbox-input')[0])).toThrow(
-      'AdslotUi ListPickerPure needs a selectItem handler'
-    );
-  });
-
-  it('should throw when we deselect without a `deselectItem` handler', () => {
-    console.error = (err) => {
-      throw new Error(err);
-    };
-    const props = { items: users, selectedItems };
-    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
-
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-
-    expect(queryAllByTestId('checkbox-input')[1]).toBeChecked();
-
-    expect(() => fireEvent.click(queryAllByTestId('checkbox-input')[1])).toThrow(
-      'AdslotUi ListPickerPure needs a deselectItem handler'
-    );
-  });
-
-  it('should call `selectItem` handler when we select', () => {
+  it('should call `selectItem` handler when we select', async () => {
     let handlerCalled = 0;
     let isAllowMultiSelection;
     const props = {
@@ -223,18 +186,19 @@ describe('<ListPickerPure />', () => {
         handlerCalled++;
         isAllowMultiSelection = allowMultiSelection;
       },
+      deselectItem: jest.fn(),
     };
-    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-    expect(queryAllByTestId('radio-input')[0]).not.toBeChecked();
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.queryAllByTestId('radio-input')[0]).not.toBeChecked();
 
-    fireEvent.click(queryAllByTestId('radio-input')[0]);
+    await user.click(screen.queryAllByTestId('radio-input')[0]);
     expect(handlerCalled).toEqual(1);
     expect(isAllowMultiSelection).toEqual(false);
   });
 
-  it('should call `deselectItem` handler when we deselect', () => {
+  it('should call `deselectItem` handler when we deselect', async () => {
     let handlerCalled = 0;
     let isAllowMultiSelection;
     const props = {
@@ -244,18 +208,19 @@ describe('<ListPickerPure />', () => {
         handlerCalled++;
         isAllowMultiSelection = allowMultiSelection;
       },
+      selectItem: jest.fn(),
     };
-    const { getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-    expect(queryAllByTestId('checkbox-input')[1]).toBeChecked();
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.queryAllByTestId('checkbox-input')[1]).toBeChecked();
 
-    fireEvent.click(queryAllByTestId('checkbox-input')[1]);
+    await user.click(screen.queryAllByTestId('checkbox-input')[1]);
     expect(handlerCalled).toEqual(1);
     expect(isAllowMultiSelection).toEqual(true);
   });
 
-  it('should be keyboard navigable', () => {
+  it('should be keyboard navigable', async () => {
     let handlerCalled = 0;
     let isAllowMultiSelection;
     const props = {
@@ -266,16 +231,17 @@ describe('<ListPickerPure />', () => {
         handlerCalled++;
         isAllowMultiSelection = allowMultiSelection;
       },
+      deselectItem: jest.fn(),
     };
-    const { getAllByTestId, getByTestId, queryAllByTestId } = render(<ListPickerPure {...props} />);
+    render(<ListPickerPure {...props} />);
 
-    expect(getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
-    expect(queryAllByTestId('radio-input')[0]).not.toBeChecked();
-    userEvent.tab();
-    userEvent.keyboard(' ');
+    expect(screen.getByTestId('listpickerpure-wrapper')).toHaveClass('listpickerpure-component');
+    expect(screen.queryAllByTestId('radio-input')[0]).not.toBeChecked();
+    await user.tab();
+    await user.keyboard(' ');
     expect(handlerCalled).toEqual(1);
     expect(isAllowMultiSelection).toEqual(false);
-    userEvent.keyboard('[ArrowDown][ArrowDown]');
-    expect(getAllByTestId('radio-wrapper')[2]).toHaveFocus();
+    await user.keyboard('[ArrowDown][ArrowDown]');
+    expect(screen.getAllByTestId('radio-wrapper')[2]).toHaveFocus();
   });
 });
