@@ -4,16 +4,17 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 ## User List Picker
 
 ```jsx live=true
-const avatarColor = (user) => (user.avatar ? '' : 'cyan');
+const avatarColor = (user) => (user.status === 'active' ? 'blue' : 'orange');
 const emptySvgSymbol = <SvgSymbol href="./assets/svg-symbols.svg#checklist-incomplete" />;
 const teamMember1 = {
   avatar: '../assets/user-avatar.jpeg',
   givenName: 'John',
   id: 1,
   surname: 'Smith',
+  status: 'active',
 };
-const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe' };
-const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White' };
+const teamMember2 = { givenName: 'Jane', id: 2, surname: 'Doe', status: 'active' };
+const teamMember3 = { givenName: 'Jack', id: 3, surname: 'White', status: 'pending' };
 const listPickerItems = [teamMember1, teamMember2, teamMember3];
 const listPickerInitialSelection = [teamMember2];
 const listPickerItemHeaders = {
