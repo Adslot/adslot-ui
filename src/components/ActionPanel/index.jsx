@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { expandDts } from '../../lib/utils';
 import Button from '../Button';
+import Portal from './Portal';
 import './styles.css';
 
 const ActionPanel = React.forwardRef((props, ref) => {
@@ -82,7 +82,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
     </div>
   );
 
-  return isModal ? ReactDOM.createPortal(actionPanel, document.body) : actionPanel;
+  return isModal ? <Portal>{actionPanel}</Portal> : actionPanel;
 });
 
 ActionPanel.propTypes = {

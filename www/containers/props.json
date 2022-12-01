@@ -2488,12 +2488,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi ListPicker needs a modalApply handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "modalDescription": {
           "type": {
@@ -2517,12 +2513,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi ListPicker needs a modalClose handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "modalFootnote": {
           "type": {
@@ -2577,12 +2569,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi ListPickerPure needs a deselectItem handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "emptyMessage": {
           "type": {
@@ -2671,12 +2659,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi ListPickerPure needs a selectItem handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "selectedItems": {
           "type": {
@@ -6382,7 +6366,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "(node) => {\n  throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);\n}",
+            "value": "(node) => {\n  console.error(`AdslotUi TreePickerNode needs an includeNode handler for ${node.id}`);\n}",
             "computed": false
           }
         },
@@ -6419,7 +6403,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "(node) => {\n  throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);\n}",
+            "value": "(node) => {\n  console.error(`AdslotUi TreePickerNode needs a removeNode handler for ${node.id}`);\n}",
             "computed": false
           }
         },
@@ -6534,12 +6518,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi UserListPicker needs a modalApply handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "modalDescription": {
           "type": {
@@ -6556,12 +6536,8 @@
           "type": {
             "name": "func"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "() => {\n  throw new Error('AdslotUi UserListPicker needs a modalClose handler');\n}",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "modalTitle": {
           "type": {
