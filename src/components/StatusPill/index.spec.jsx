@@ -11,10 +11,10 @@ describe('<StatusPill />', () => {
   it('should have default style', () => {
     const { container, getByText } = render(<StatusPill status="test" />);
     expect(
-      queryAllByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-primary')
+      queryAllByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-info')
     ).toHaveLength(1);
     expect(
-      getByText('test', getByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-primary'))
+      getByText('test', getByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-info'))
     ).toHaveClass('aui--pill-children');
   });
 
@@ -38,14 +38,15 @@ describe('<StatusPill />', () => {
   it('should support className prop', () => {
     const { container } = render(<StatusPill status="test" className="test" />);
     expect(
-      queryAllByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-primary test')
+      queryAllByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-info test')
     ).toHaveLength(1);
   });
 
   it('should support custom dts', () => {
     const { container } = render(<StatusPill status="test" dts="test-dts" />);
-    expect(
-      getByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-primary')
-    ).toHaveAttribute('data-test-selector', 'test-dts');
+    expect(getByClass(container, 'aui--pill aui--pill-medium aui--status-pill aui--status-pill-info')).toHaveAttribute(
+      'data-test-selector',
+      'test-dts'
+    );
   });
 });

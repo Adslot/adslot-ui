@@ -10,6 +10,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/config/testSetup.js'],
+  collectCoverageFrom: ['src/**/*.{js,jsx}'],
   coverageThreshold: {
     global: {
       statements: 100,

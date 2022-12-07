@@ -7,7 +7,7 @@ $card-spacing-etalon: 28px;
   padding: $card-padding-etalon $card-padding-etalon 0;
 
   &.append {
-    color: $color-text-placeholder;
+    color: $color-text-soft;
     padding: 5px 1px 0;
   }
 
@@ -23,9 +23,9 @@ $card-spacing-etalon: 28px;
 
 .card-component-content-container {
   background-color: $color-background;
-  border: $border-lighter;
-  border-radius: $border-radius-heavy;
-  box-shadow: 0 2px 0 $color-shadow-light;
+  border: 1px solid $color-border-base;
+  border-radius: $border-radius-large;
+  box-shadow: 0 2px 0 $color-border-base;
   display: flex;
   flex-basis: 100%;
   flex-direction: column;
@@ -41,7 +41,7 @@ $card-spacing-etalon: 28px;
 }
 
 .card-component {
-  font-size: $font-size-body;
+  font-size: $font-size-base;
   margin-bottom: $card-spacing-etalon;
   min-height: 40px;
   min-width: 205px;

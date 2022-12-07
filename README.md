@@ -128,3 +128,7 @@ window.Perf = Perf;
 - Run `Perf.printWasted()` to see the nodes that are re–rendering but do not change the DOM.
 - Use fastStatelessWrapper to wrap this component, passing in the properties to check.
 - Re-test to make sure you're improving performance.
+
+## Design tokens
+
+See [adslot-ui/system](system/README.md)

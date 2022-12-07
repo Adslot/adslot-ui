@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .aui--vertical-navigation-component {
   display: flex;
   flex-direction: row;
@@ -5,9 +7,9 @@
 
 .aui--vertical-navigation-component .aui--vertical-navigation-component__menu {
   width: 260px;
-  font-size: 15px;
+  font-size: $font-size-medium;
   font-family: Roboto, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 .aui--vertical-navigation-component
@@ -51,7 +53,7 @@
   .aui--vertical-navigation-component__menu-item
   .aui--vertical-navigation-component__menu-item-collapse:hover {
   border-radius: 50%;
-  background-color: #e8e8e8;
+  background-color: $color-grey-300;
 }
 
 .aui--vertical-navigation-component

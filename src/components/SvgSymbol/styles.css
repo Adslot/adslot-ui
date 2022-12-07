@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .aui--svg-symbol-component {
   display: inline-block;
   height: 16px;
@@ -26,35 +28,35 @@
 }
 
 .aui--svg-symbol-component-color-disabled {
-  fill: #d3d3d3;
+  fill: $color-grey-400;
 }
 
 .aui--svg-symbol-component-cyan-dark {
-  fill: #0492ba;
+  fill: $color-cyan-600;
 }
 
 .aui--svg-symbol-component-gray {
-  fill: #ababab;
+  fill: $color-grey-500;
 }
 
 .aui--svg-symbol-component-gray-darker {
-  fill: #5a5a5a;
+  fill: $color-grey-700;
 }
 
 .aui--svg-symbol-component-gray-light {
-  fill: #d3d3d3;
+  fill: $color-grey-400;
 }
 
 .aui--svg-symbol-component-green-dark {
-  fill: #31a549;
+  fill: $color-green-600;
 }
 
 .aui--svg-symbol-component-orange-dark {
-  fill: #f8951d;
+  fill: $color-cyan-600;
 }
 
 .aui--svg-symbol-component-red {
-  fill: #da4f49;
+  fill: $color-red-500;
 }
 
 .aui--svg-symbol-component-clickable {
@@ -63,7 +65,7 @@
 }
 
 .aui--svg-symbol-component-circle {
-  background-color: #f3f3f3;
+  background-color: $color-grey-200;
   border-radius: 50%;
   display: inline-block;
   height: 16px;
@@ -71,7 +73,7 @@
 }
 
 .aui--svg-symbol-component-circle-inverse {
-  background-color: #fff;
+  background-color: $color-white;
 }
 
 .aui--svg-symbol-component-circle .aui--svg-symbol-component {

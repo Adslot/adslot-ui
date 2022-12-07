@@ -1,29 +1,35 @@
+@import url('../../styles/variable.css');
+
 .aui--information-box {
   padding: 30px;
-  color: #838383;
+  color: $color-text-base;
   display: inline-flex;
   align-items: center;
   width: 100%;
 }
 
 .aui--information-box.aui--information-box-primary {
-  background-color: #e0f0ff;
+  background-color: $color-primary-soft;
 }
 
 .aui--information-box.aui--information-box-success {
-  background-color: #eaf8ea;
+  background-color: $color-success-soft;
 }
 
 .aui--information-box.aui--information-box-warning {
-  background-color: #fef6ea;
+  background-color: $color-warning-soft;
 }
 
 .aui--information-box.aui--information-box-error {
-  background-color: #fbedec;
+  background-color: $color-danger-soft;
 }
 
 .aui--information-box.aui--information-box-light {
-  background-color: #f3f3f3;
+  background-color: $color-grey-100;
+}
+
+.aui--information-box.aui--information-box-white {
+  background-color: $color-white;
 }
 
 .aui--information-box-text {
@@ -32,9 +38,9 @@
 }
 
 .aui--information-box-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #5a5a5a;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+  color: $color-text-base;
 }
 
 .aui--information-box-icon {

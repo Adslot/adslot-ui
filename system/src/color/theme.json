@@ -1,0 +1,76 @@
+{
+  "color": {
+    "default": {
+      "soft": {
+        "value": "{color.grey.200}",
+        "description": "Use for eg. large background areas, dashboard, review & send background"
+      },
+      "accent": { "value": "{color.grey.300}", "description": "Use for eg. secondary pill statuses" },
+      "base": { "value": "{color.grey.500}" },
+      "strong": { "value": "{color.grey.800}" }
+    },
+    "primary": {
+      "soft": {
+        "value": "{color.blue.200}",
+        "description": "Use for eg. grid cell background feedback, information containers"
+      },
+      "accent": { "value": "{color.blue.300}", "description": "Use for eg. secondary pill statuses" },
+      "base": { "value": "{color.blue.500}", "description": "Use for eg. primary actions buttons, text links," },
+      "strong": { "value": "{color.blue.600}", "description": "Use for eg. as a hover for buttons" }
+    },
+    "success": {
+      "soft": {
+        "value": "{color.green.200}",
+        "description": "Use for eg. grid cell background feedback, information containers"
+      },
+      "accent": { "value": "{color.green.300}", "description": "Use for eg. secondary pill statuses" },
+      "base": {
+        "value": "{color.green.500}",
+        "description": "Use for eg. primary status (live), approve button, indicate success"
+      },
+      "strong": { "value": "{color.green.600}", "description": "Use for eg. as a hover for buttons" }
+    },
+    "danger": {
+      "soft": {
+        "value": "{color.red.200}",
+        "description": "Use for eg. grid cell background feedback, information containers"
+      },
+      "accent": { "value": "{color.red.300}", "description": "Use for eg. for secondary pill statuses" },
+      "base": {
+        "value": "{color.red.500}",
+        "description": "Use for eg. primary status (attention), reject button, feedback in forms/grid"
+      },
+      "strong": { "value": "{color.red.600}", "description": "Use for eg. as a hover for buttons" }
+    },
+    "warning": {
+      "soft": {
+        "value": "{color.orange.200}",
+        "description": "Use for eg. grid cell background feedback, information containers"
+      },
+      "accent": { "value": "{color.orange.300}", "description": "Use for eg. for secondary pill statuses" },
+      "base": {
+        "value": "{color.orange.500}",
+        "description": "Use for eg. primary status (pending), feedback in forms/grid"
+      },
+      "strong": { "value": "{color.orange.600}", "description": "Use for eg. as a hover for buttons" }
+    },
+    "info": {
+      "soft": {
+        "value": "{color.cyan.200}",
+        "description": "Use for eg. grid cell background feedback, information containers"
+      },
+      "accent": { "value": "{color.cyan.300}", "description": "Use for eg. for secondary pill statuses" },
+      "base": { "value": "{color.cyan.500}", "description": "Use for eg. primary status (scheduled), info text" },
+      "strong": { "value": "{color.cyan.600}", "description": "Use for eg. as a hover for buttons" }
+    },
+    "secondary": {
+      "soft": { "value": "{color.teal.200}", "description": "Use for eg. grid cell background information containers" },
+      "accent": { "value": "{color.teal.300}", "description": "Use for eg. for secondary pill statuses" },
+      "base": {
+        "value": "{color.teal.500}",
+        "description": "Use for eg. primary buttons for onboarding, illustrations"
+      },
+      "strong": { "value": "{color.teal.600}", "description": "Use for eg. as a hover for buttons" }
+    }
+  }
+}

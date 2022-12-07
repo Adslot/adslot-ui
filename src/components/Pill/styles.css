@@ -1,12 +1,14 @@
+@import url('../../styles/variable.css');
+
 .aui--pill {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   user-select: none;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   line-height: 1;
-  color: #5a5a5a;
-  background-color: #fff;
+  color: $color-text-base;
+  background-color: $color-white;
 }
 
 .aui--pill-children {
@@ -17,14 +19,14 @@
 
 .aui--pill-clickable:hover,
 .aui--pill-clickable:focus {
-  background-color: #f3f3f3;
+  background-color: $color-grey-200;
   cursor: pointer;
 }
 
 .aui--pill-small {
   padding: 2px 5px;
-  font-size: 11px;
-  border-radius: 4px;
+  font-size: $font-size-small;
+  border-radius: $border-radius-base;
   line-height: 1;
 }
 
@@ -35,12 +37,12 @@
 
 .aui--pill-medium {
   padding: 5px 12px;
-  font-size: 12px;
-  border-radius: 12px;
+  font-size: $font-size-base;
+  border-radius: $border-radius-round;
 }
 
 .aui--pill-large {
   padding: 6px 20px;
-  font-size: 15px;
-  border-radius: 999px;
+  font-size: $font-size-medium;
+  border-radius: $border-radius-round;
 }

@@ -2,5 +2,5 @@
 
 .borderedwell-component {
   background-color: $color-white;
-  border: $border-lighter;
+  border: 1px solid $color-border-base;
 }

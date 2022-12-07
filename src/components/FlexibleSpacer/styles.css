@@ -1,5 +1,7 @@
+@import url('../../styles/variable.css');
+
 .flexible-spacer-component {
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   flex-grow: 1;
 }
 

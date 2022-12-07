@@ -4981,7 +4981,7 @@
             "name": "enum",
             "value": [
               {
-                "value": "'primary'",
+                "value": "'info'",
                 "computed": false
               },
               {
@@ -5003,7 +5003,7 @@
             ]
           },
           "required": false,
-          "description": "one of [\"primary\", \"success\", \"warning\", \"error\", \"light\"]",
+          "description": "one of [\"info\", \"success\", \"warning\", \"error\", \"light\"]",
           "defaultValue": {
             "value": "styles[0]",
             "computed": true

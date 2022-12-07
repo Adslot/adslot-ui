@@ -1,0 +1,7 @@
+{
+  "borderRadius": {
+    "base": 2,
+    "large": 5,
+    "round": 999
+  }
+}

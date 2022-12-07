@@ -1,0 +1,24 @@
+{
+  "font": {
+    "size": {
+      "xlarge": {
+        "value": 24
+      },
+      "large": {
+        "value": 18
+      },
+      "medium": {
+        "value": 15
+      },
+      "base": {
+        "value": 12
+      },
+      "small": {
+        "value": 11
+      },
+      "xsmall": {
+        "value": 9
+      }
+    }
+  }
+}

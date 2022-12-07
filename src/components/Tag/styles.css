@@ -1,11 +1,13 @@
+@import url('../../styles/variable.css');
+
 .tag-component {
   align-items: center;
-  background-color: #838383;
-  border-radius: 2px;
+  background-color: $color-grey-600;
+  border-radius: $border-radius-base;
   box-sizing: border-box;
-  color: #fff;
+  color: $color-white;
   display: inline-flex;
-  font-size: 12px;
+  font-size: $font-size-base;
   margin-right: 6px;
   min-height: 24px;
   padding: 0 6px;
@@ -17,13 +19,13 @@
 }
 
 .tag-component-accent label {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 .tag-component .action-button {
   box-sizing: border-box;
   cursor: pointer;
-  fill: #fff;
+  fill: $color-white;
   fill-opacity: 0.6;
   height: 24px;
   text-align: center;
@@ -46,11 +48,11 @@
 }
 
 .tag-component.tag-component-inverse {
-  background-color: #f3f3f3;
+  background-color: $color-grey-200;
   border-left: 4px solid;
-  color: #838383;
+  color: $color-grey-600;
 }
 
 .tag-component.tag-component-inverse .action-button {
-  fill: #ababab;
+  fill: $color-grey-500;
 }

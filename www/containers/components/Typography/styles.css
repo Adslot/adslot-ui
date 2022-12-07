@@ -1,0 +1,3 @@
+.token-container__typography .token-group .token {
+  grid-template-columns: 330px 1fr 1fr 1fr 1fr;
+}

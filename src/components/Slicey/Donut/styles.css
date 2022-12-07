@@ -1,3 +1,5 @@
+@import url('../../../styles/variable.css');
+
 .donut-component {
-  fill: #fff;
+  fill: $color-white;
 }

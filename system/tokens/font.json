@@ -1,0 +1,16 @@
+{
+  "font": {
+    "size": {
+      "xlarge": 24,
+      "large": 18,
+      "medium": 15,
+      "base": 12,
+      "small": 11,
+      "xsmall": 9
+    },
+    "weight": {
+      "normal": 400,
+      "bold": 700
+    }
+  }
+}

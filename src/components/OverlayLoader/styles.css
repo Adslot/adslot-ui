@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .aui--overlay-loader {
   width: 100%;
   height: 100%;
@@ -15,25 +17,25 @@
   left: 50%;
   width: 96px;
   min-height: 132px;
-  background-color: #f9f9f9;
+  background-color: $color-grey-100;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
-  font-weight: 700;
+  border-radius: $border-radius-large;
+  border: 1px solid $color-border-base;
+  font-weight: $font-weight-bold;
   opacity: 0.9;
   line-height: 14px;
 }
 
 .aui--overlay-loader .loader .loader-heading {
-  color: #5a5a5a;
+  color: $color-grey-700;
 }
 
 .aui--overlay-loader .loader .loader-text {
   margin-top: 5px;
-  color: #ababab;
+  color: $color-grey-500;
   width: 65px;
   text-align: center;
   overflow: hidden;
@@ -45,8 +47,8 @@
   height: 40px;
   width: 40px;
   margin-bottom: 20px;
-  border-bottom-color: #5a5a5a;
-  border-left-color: #5a5a5a;
-  border-right-color: #5a5a5a;
+  border-bottom-color: $color-grey-700;
+  border-left-color: $color-grey-700;
+  border-right-color: $color-grey-700;
   border-width: 5px;
 }

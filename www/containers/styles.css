@@ -1,45 +1,47 @@
+@import url('../../src/styles/variable.css');
+
 body {
   font-family: Roboto, Helvetica, sans-serif;
   margin: 0;
 }
 
 .tag-component-accent.accent-positive {
-  border-color: #5bb75b;
+  border-color: $color-green-500;
 }
 
 .tag-component-accent.accent-positive:not(.tag-component-inverse) {
-  background-color: #5bb75b;
+  background-color: $color-green-500;
 }
 
 .tag-component-accent.accent-positive.tag-component-inverse {
-  color: #5bb75b;
-  fill: #5bb75b;
+  color: $color-green-500;
+  fill: $color-green-500;
 }
 
 .tag-component-accent.accent-pending {
-  border-color: #faa732;
+  border-color: $color-orange-500;
 }
 
 .tag-component-accent.accent-pending:not(.tag-component-inverse) {
-  background-color: #faa732;
+  background-color: $color-orange-500;
 }
 
 .tag-component-accent.accent-pending.tag-component-inverse {
-  color: #faa732;
-  fill: #faa732;
+  color: $color-orange-500;
+  fill: $color-orange-500;
 }
 
 .tag-component-accent.accent-negative {
-  border-color: #da4f49;
+  border-color: $color-red-500;
 }
 
 .tag-component-accent.accent-negative:not(.tag-component-inverse) {
-  background-color: #da4f49;
+  background-color: $color-red-500;
 }
 
 .tag-component-accent.accent-negative.tag-component-inverse {
-  color: #da4f49;
-  fill: #da4f49;
+  color: $color-red-500;
+  fill: $color-red-500;
 }
 
 .adslot-ui-layout .adslot-ui-header {
@@ -74,7 +76,7 @@ body {
 .adslot-ui-sidebar-area {
   margin-right: 30px;
   flex: 0 1 1;
-  border-right: 1px solid #e8e8e8;
+  border-right: 1px solid $color-border-base;
   width: 240px;
   padding: 12px;
   z-index: 1020;
@@ -96,7 +98,7 @@ body {
 }
 
 .adslot-ui-sidebar-area .panel-component-content .aui--docs-panel-list.is-active {
-  background-color: #e8e8e8;
+  background-color: $color-grey-300;
 }
 
 .adslot-ui-content-area {
@@ -118,7 +120,7 @@ body {
   border: 1px solid;
   padding: 10px;
   background: #f9b7b0;
-  color: #da4f49;
+  color: $color-red-500;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel,
@@ -127,7 +129,7 @@ body {
 }
 
 .adslot-ui-content-area .aui--docs-method-block {
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   margin-bottom: 20px;
 }
 
@@ -140,35 +142,35 @@ body {
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-blue {
-  color: #006dcc;
+  color: $color-blue-500;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-cyan {
-  color: #49afcd;
+  color: $color-cyan-500;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-green {
-  color: #5bb75b;
+  color: $color-green-500;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-gray-light {
-  color: #d3d3d3;
+  color: $color-grey-400;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-gray-dark {
-  color: #838383;
+  color: $color-grey-600;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-red {
-  color: #da4f49;
+  color: $color-red-500;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-orange {
-  color: #faa732;
+  color: $color-orange-500;
 }
 
 .adslot-ui-content-area .aui--docs-note-panel .text-bold {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 .adslot-ui-content-area .aui--docs-static-markup {
@@ -211,8 +213,8 @@ body {
 .adslot-ui-content-area .intro-page-box-heading {
   padding-top: 15px;
   padding-bottom: 15px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
 }
 
 .adslot-ui-content-area .intro-page-box-description {

@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -12,13 +14,13 @@
   min-width: 300px;
   min-height: 100px;
   z-index: 1060;
-  border-radius: 2px;
-  background-color: #fff;
+  border-radius: $border-radius-base;
+  background-color: $color-white;
 }
 
 .aui--action-panel.action-modal {
   top: 30px;
-  background-color: #fff;
+  background-color: $color-white;
   margin: 30px auto;
   border: 0;
 }
@@ -37,32 +39,32 @@
 
 .aui--action-panel-header {
   height: 48px;
-  color: #333;
+  color: $color-text-base;
   padding: 12px;
   padding-left: 18px;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $color-border-base;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
 }
 
 .aui--action-panel-header .title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 18px;
-  font-weight: 700;
-  color: #5a5a5a;
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+  color: $color-text-base;
 }
 
 .aui--action-panel-header svg {
-  fill: #5a5a5a;
+  fill: $color-grey-700;
 }
 
 .aui--action-panel-header .close-button:not(.close-svg-icon).aui--button {
   background-color: transparent;
-  color: #fff;
+  color: $color-white;
 }
 
 .aui--action-panel-header .close-button:not(.close-svg-icon).aui--button > div {
@@ -82,54 +84,54 @@
   outline: 0;
   margin: 0 0 0 6px;
   box-shadow: none;
-  border-radius: 2px;
-  background-color: #fff;
+  border-radius: $border-radius-base;
+  background-color: $color-white;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #006dcc;
+  color: $color-primary-base;
 }
 
 .aui--action-panel-header.has-actions {
-  background-color: #006dcc;
-  color: #fff;
+  background-color: $color-primary-base;
+  color: $color-white;
   border: 0;
 }
 
 .aui--action-panel-header.has-actions .title {
-  color: #fff;
+  color: $color-white;
 }
 
 .aui--action-panel-header.has-actions .actions .aui--button.close-button:hover {
-  color: #838383;
-  background-color: #fff;
+  color: $color-grey-600;
+  background-color: $color-white;
 }
 
 .aui--action-panel-header.has-actions .actions .aui--button:not(.close-button) {
-  color: #006dcc;
-  background-color: #fff;
+  color: $color-primary-base;
+  background-color: $color-white;
 }
 
 .aui--action-panel-header.has-actions .actions .aui--button:active,
 .aui--action-panel-header.has-actions .actions .aui--button:active:hover {
-  background-color: #e8e8e8;
+  background-color: $color-grey-300;
 }
 
 .aui--action-panel-header.has-actions .actions .aui--button svg {
-  fill: #fff;
+  fill: $color-white;
 }
 
 .aui--action-panel-header.has-actions .actions .aui--button:hover {
-  background-color: #fff;
+  background-color: $color-white;
 }
 
 .aui--action-panel-header.has-actions .actions .aui--button:hover svg {
-  fill: #006dcc;
+  fill: $color-primary-base;
 }
 
 .aui--action-panel-body {
   padding: 30px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   border-top: 0;
 }
 
@@ -145,7 +147,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: #838383;
+  background-color: $color-grey-600;
   width: 100%;
   opacity: 0.8;
   animation: fadein 200ms ease-out;

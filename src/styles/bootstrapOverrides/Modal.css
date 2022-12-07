@@ -1,9 +1,9 @@
 .modal {
-  font-weight: 400;
+  font-weight: $font-weight-normal;
 }
 
 .modal-title {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 .modal-content {
@@ -21,7 +21,7 @@
 }
 
 .modal-header {
-  background-color: #f3f3f3;
+  background-color: $color-grey-200;
   padding: 10px 15px;
 }
 
@@ -48,8 +48,8 @@
 }
 
 .modal-footer > label {
-  font-weight: 400;
-  color: #838383;
+  font-weight: $font-weight-normal;
+  color: $color-grey-600;
   margin-bottom: 0;
   line-height: 28px;
 }
