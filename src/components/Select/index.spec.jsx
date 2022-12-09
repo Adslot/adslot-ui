@@ -61,7 +61,9 @@ describe('<Select />', () => {
     const { container, getByText, queryByText } = render(
       <Select options={defaultOptions} defaultValue={[defaultOptions[0], defaultOptions[1]]} isMulti />
     );
-    expect(queryAllByClass(container, 'css-11547y4 select-component__multi-value__label')).toHaveLength(2);
+    expect(
+      queryAllByClass(container, 'select-component__multi-value__label css-9x9xlz-MultiValueGeneric')
+    ).toHaveLength(2);
     expect(queryByText('Australia')).toBeInTheDocument();
     expect(getByText('Australia')).toHaveClass('select-component__multi-value__label');
     expect(queryByText('Canada')).toBeInTheDocument();
@@ -72,11 +74,11 @@ describe('<Select />', () => {
     const { container, rerender, getByText, queryByText } = render(<Select options={defaultOptions} dts="test-dts" />);
 
     expect(queryAllByDts(container, 'test-dts')).toHaveLength(1);
-    expect(queryAllByClass(container, 'select-component__value-container css-12htazg-ValueContainer')).toHaveLength(1);
+    expect(queryAllByClass(container, 'select-component__value-container css-1ookgdl-ValueContainer')).toHaveLength(1);
     expect(
       queryAllByClass(
         container,
-        'select-component__indicator select-component__dropdown-indicator css-171ess4-indicatorContainer'
+        'select-component__indicator select-component__dropdown-indicator css-4m2bza-indicatorContainer'
       )
     ).toHaveLength(1);
 
@@ -99,8 +101,9 @@ describe('<Select />', () => {
         <Select options={defaultOptions} menuIsOpen isInModal />
       </div>
     );
+
     expect(container).toMatchSnapshot();
-    expect(queryAllByClass(document.body, 'select-component__menu-portal css-bchx50')).toHaveLength(1);
+    expect(queryAllByClass(document.body, 'select-component__menu-portal css-hec97l-MenuPortal')).toHaveLength(1);
     expect();
   });
 });
