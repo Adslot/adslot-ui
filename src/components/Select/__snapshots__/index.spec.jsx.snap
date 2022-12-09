@@ -19,19 +19,19 @@ exports[`<Select /> should render select options in body if props.isInModal is t
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="select-component__control select-component__control--menu-is-open css-1gljybl-control"
+        class="select-component__control select-component__control--menu-is-open css-v19xu1-control"
       >
         <div
-          class="select-component__value-container css-12htazg-ValueContainer"
+          class="select-component__value-container css-1ookgdl-ValueContainer"
         >
           <div
-            class="select-component__placeholder css-14el2xx-placeholder"
+            class="select-component__placeholder css-1jqq78o-placeholder"
             id="react-select-7-placeholder"
           >
             Select...
           </div>
           <div
-            class="select-component__input-container css-6j8wv5-Input"
+            class="select-component__input-container css-qbdosj-Input"
             data-value=""
           >
             <input
@@ -59,11 +59,11 @@ exports[`<Select /> should render select options in body if props.isInModal is t
           class="select-component__indicators css-1hb7zxy-IndicatorsContainer"
         >
           <span
-            class="select-component__indicator-separator css-43ykx9-indicatorSeparator"
+            class="select-component__indicator-separator css-1uei4ir-indicatorSeparator"
           />
           <div
             aria-hidden="true"
-            class="select-component__indicator select-component__dropdown-indicator css-171ess4-indicatorContainer"
+            class="select-component__indicator select-component__dropdown-indicator css-4m2bza-indicatorContainer"
           >
             <div
               class="caret-icon"
