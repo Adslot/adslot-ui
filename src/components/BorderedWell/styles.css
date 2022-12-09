@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 .borderedwell-component {
   background-color: $color-white;

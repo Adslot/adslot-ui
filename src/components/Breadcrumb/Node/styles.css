@@ -1,4 +1,4 @@
-@import '../../../styles/variable';
+@import url('../../../styles/variable');
 
 .aui--breadcrumb-node {
   &.aui--breadcrumb-node-link {

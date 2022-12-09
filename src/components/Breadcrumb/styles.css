@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 $breadcrumb-height: 10px;
 

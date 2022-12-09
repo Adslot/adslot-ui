@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 $label-gap: 8px;
 
 .aui--radio {

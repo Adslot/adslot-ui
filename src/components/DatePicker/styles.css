@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 $datepicker-font-family: $font-family-sans-serif;
 $datepicker-font-size: $font-size-base;

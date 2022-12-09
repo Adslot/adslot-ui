@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 .slick-dots {
   position: relative;
