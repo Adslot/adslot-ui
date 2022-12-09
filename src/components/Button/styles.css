@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 $font-size-button-default: 12px;
 $font-size-button-large: 15px;

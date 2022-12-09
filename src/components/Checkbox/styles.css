@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 $checkbox-size: 16px;
 $label-gap: 8px;

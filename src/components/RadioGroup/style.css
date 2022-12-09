@@ -1,4 +1,4 @@
-@import '../../styles/variable';
+@import url('../../styles/variable');
 
 $border-radius: 6px;
 $border-width: 1px;
