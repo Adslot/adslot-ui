@@ -70,82 +70,60 @@ In rare cases, a component in a modal triggers its own modal.
 Use `visuallyHidden` to hide the parent modal when opening the child.
 
 ```jsx live=true
-class Example extends React.PureComponent {
-  constructor() {
-    super();
-    this.state = {
-      showActionPanel: false,
-      showActionPanel2: false,
-    };
-    this.toggleActionPanel = this.toggleActionPanel.bind(this);
-    this.toggleActionPanel2 = this.toggleActionPanel2.bind(this);
-  }
+const Example = () => {
+  const [showActionPanel1, setShowActionPanel1] = React.useState();
+  const [showActionPanel2, setShowActionPanel2] = React.useState();
 
-  toggleActionPanel() {
-    this.setState({ showActionPanel: !this.state.showActionPanel });
-  }
-  toggleActionPanel2() {
-    this.setState({ showActionPanel2: !this.state.showActionPanel2 });
-  }
+  return (
+    <React.Fragment>
+      <Button onClick={() => setShowActionPanel1(true)}>Action Panel as a modal</Button>
 
-  render() {
-    return (
-      <React.Fragment>
-        <Button onClick={this.toggleActionPanel}>Action Panel as a modal</Button>
-        {this.state.showActionPanel && (
-          <ActionPanel
-            title="Action Panel"
-            size="small"
-            onClose={this.toggleActionPanel}
-            visuallyHidden={this.state.showActionPanel2}
-            actionButton={<Button onClick={this.toggleActionPanel}>Save</Button>}
-            isModal
-            children={
+      {showActionPanel1 && (
+        <ActionPanel
+          title="Action Panel"
+          size="small"
+          onClose={() => setShowActionPanel1(false)}
+          visuallyHidden={showActionPanel2}
+          actionButton={<Button onClick={() => setShowActionPanel1(false)}>Save</Button>}
+          isModal
+          children={
+            <div>
+              Native mammals include the dingoes or wild dogs, numbats, quolls, and Tasmanian devils. Dingoes are the
+              largest carnivorous mammals that populate the wilds of mainland Australia. But the smaller numbats and
+              Tasmanian devils, which are house cat-like size can be seen only in wildlife parks. You can also spot them
+              in the wilds of Tasmania.
+              <br />
+              <br />
               <div>
-                Native mammals include the dingoes or wild dogs, numbats, quolls, and Tasmanian devils. Dingoes are the
-                largest carnivorous mammals that populate the wilds of mainland Australia. But the smaller numbats and
-                Tasmanian devils, which are house cat-like size can be seen only in wildlife parks. You can also spot
-                them in the wilds of Tasmania.
-                <br />
-                <br />
-                <div>
-                  <Button onClick={this.toggleActionPanel2}>Action Panel 2 as a modal</Button>
-                </div>
-                {this.state.showActionPanel2 && (
-                  <ActionPanel
-                    title="Action Panel 2"
-                    size="medium"
-                    onClose={this.toggleActionPanel2}
-                    cancelText="Back"
-                    actionButton={
-                      <Button
-                        onClick={() => {
-                          this.toggleActionPanel2();
-                          this.toggleActionPanel();
-                        }}
-                      >
-                        Done
-                      </Button>
-                    }
-                    isModal
-                    children={
-                      <div>
-                        Native mammals include the dingoes or wild dogs, numbats, quolls, and Tasmanian devils. Dingoes
-                        are the largest carnivorous mammals that populate the wilds of mainland Australia. But the
-                        smaller numbats and Tasmanian devils, which are house cat-like size can be seen only in wildlife
-                        parks. You can also spot them in the wilds of Tasmania.
-                      </div>
-                    }
-                  />
-                )}
+                <Button onClick={() => setShowActionPanel2(true)}>Action Panel 2 as a modal</Button>
               </div>
-            }
-          />
-        )}
-      </React.Fragment>
-    );
-  }
-}
+              {showActionPanel2 && (
+                <ActionPanel
+                  title="Action Panel 2"
+                  size="medium"
+                  onClose={() => setShowActionPanel2(false)}
+                  cancelText="Back"
+                  actionButton={
+                    <Button
+                      onClick={() => {
+                        setShowActionPanel1(false);
+                        setShowActionPanel2(false);
+                      }}
+                    >
+                      Done
+                    </Button>
+                  }
+                  isModal
+                  children={<div>aaa</div>}
+                />
+              )}
+            </div>
+          }
+        />
+      )}
+    </React.Fragment>
+  );
+};
 
 render(Example);
 ```

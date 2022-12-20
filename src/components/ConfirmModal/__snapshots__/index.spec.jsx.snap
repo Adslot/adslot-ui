@@ -2,53 +2,60 @@
 
 exports[`<ConfirmModal /> should show modal when \`show\` is true 1`] = `
 <div
+  aria-label=""
+  aria-modal="true"
   class="aui--action-panel is-small action-modal confirm-modal-component"
   data-testid="action-panel-wrapper"
+  role="dialog"
 >
   <div
-    class="aui--action-panel-header has-actions"
-    data-testid="action-panel-header"
+    data-testid="focus-trap"
   >
     <div
-      class="title"
-      data-testid="action-panel-title"
-    />
-    <span
-      class="actions"
+      class="aui--action-panel-header has-actions"
+      data-testid="action-panel-header"
     >
-      <button
-        class="aui--button close-button aui-default aui-inverse"
-        data-test-selector="header-close-button"
-        data-testid="button-wrapper"
-        type="button"
+      <div
+        class="title"
+        data-testid="action-panel-title"
+      />
+      <span
+        class="actions"
       >
-        <span
-          class="aui-children-container"
+        <button
+          class="aui--button close-button aui-default aui-inverse"
+          data-test-selector="header-close-button"
+          data-testid="button-wrapper"
+          type="button"
         >
-          Cancel
-        </span>
-      </button>
-      <button
-        class="aui--button aui-primary"
-        data-test-selector="confirm-modal-confirm"
-        data-testid="confirm-modal-confirm"
-        type="button"
-      >
-        <span
-          class="aui-children-container"
+          <span
+            class="aui-children-container"
+          >
+            Cancel
+          </span>
+        </button>
+        <button
+          class="aui--button aui-primary"
+          data-test-selector="confirm-modal-confirm"
+          data-testid="confirm-modal-confirm"
+          type="button"
         >
-          Confirm
-        </span>
-      </button>
-    </span>
-  </div>
-  <div
-    class="aui--action-panel-body"
-    data-testid="action-panel-body"
-  >
-    <p>
-      Are you sure?
-    </p>
+          <span
+            class="aui-children-container"
+          >
+            Confirm
+          </span>
+        </button>
+      </span>
+    </div>
+    <div
+      class="aui--action-panel-body"
+      data-testid="action-panel-body"
+    >
+      <p>
+        Are you sure?
+      </p>
+    </div>
   </div>
 </div>
 `;

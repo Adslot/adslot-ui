@@ -120,6 +120,13 @@
           "required": true,
           "description": ""
         },
+        "onEscapeClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "@param event\ncalled before `onClose` is called, when pressing escape.\n\ncan be prevented with `event.preventDefault()`"
+        },
         "children": {
           "type": {
             "name": "node"
@@ -159,6 +166,13 @@
             "value": "false",
             "computed": false
           }
+        },
+        "disableFocusTrap": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
         },
         "visuallyHidden": {
           "type": {
@@ -1698,6 +1712,79 @@
             "value": "false",
             "computed": false
           }
+        }
+      }
+    }
+  ],
+  "src/components/DismissibleFocusTrap/index.jsx": [
+    {
+      "description": "",
+      "displayName": "DismissibleFocusTrap",
+      "methods": [],
+      "props": {
+        "loop": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "loops the tab sequence",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "focusOnMount": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "focus the first focussable element on mount",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "disable all behaviour"
+        },
+        "onEscape": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClickOutside": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onTabExit": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onShiftTabExit": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
         }
       }
     }

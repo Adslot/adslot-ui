@@ -7,10 +7,17 @@ export interface ActionPanelProps {
   className?: string;
   size?: ActionPanelSize;
   onClose: (...args: any[]) => any;
+  /**
+   * @param event
+   * called before `onClose` is called, when pressing escape.
+   * can be prevented with `event.preventDefault()`
+   */
+  onEscapeClose?: (...args: any[]) => any;
   children: React.ReactNode;
   actionButton?: React.ReactNode;
   cancelButton?: React.ReactNode;
   isModal?: boolean;
+  disableFocusTrap?: boolean;
   /**
    * Hides the modal with css, but keeps it mounted.
    * This should only be used if you need to launch an ActionPanel

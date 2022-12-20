@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, createEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import useArrowFocus from './useArrowFocus';
 
@@ -7,12 +7,13 @@ afterEach(cleanup);
 
 describe('useArrowFocus()', () => {
   let props;
-  const Component = ({ onFocus, refMock, selector = 'li', children }) => {
+  const Component = ({ onFocus, refMock, disabled, selector = 'li', children }) => {
     const ref = React.useRef();
     useArrowFocus({
       ref: refMock ? refMock : ref,
       onFocus,
       selector,
+      disabled,
     });
     return <ul ref={ref}>{children}</ul>;
   };
@@ -46,6 +47,39 @@ describe('useArrowFocus()', () => {
     userEvent.keyboard('[ArrowDown][ArrowDown][ArrowDown]');
     expect(props.onFocus).toHaveBeenCalledTimes(7);
     expect(getByText('2')).toHaveFocus();
+  });
+
+  it('should handle prevent default', () => {
+    const { getByRole } = render(
+      <Component {...props}>
+        <li tabIndex={0}>1</li>
+        <li tabIndex={0}>2</li>
+      </Component>
+    );
+
+    const ev = createEvent.keyDown(getByRole('list'), { key: 'ArrowUp' });
+
+    act(() => {
+      userEvent.tab();
+      ev.preventDefault();
+      fireEvent(getByRole('list'), ev);
+    });
+    expect(props.onFocus).toHaveBeenCalledTimes(0);
+  });
+
+  it('should be disabled', () => {
+    render(
+      <Component {...props} disabled>
+        <li tabIndex={0}>1</li>
+        <li tabIndex={0}>2</li>
+      </Component>
+    );
+
+    act(() => {
+      userEvent.tab();
+      userEvent.keyboard('[ArrowDown]');
+    });
+    expect(props.onFocus).toHaveBeenCalledTimes(0);
   });
 
   it('should handle no valid children, and ignore other elements', () => {
