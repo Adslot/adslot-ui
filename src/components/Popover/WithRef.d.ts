@@ -38,6 +38,7 @@ export interface WithRefProps<M = ''> extends PopperModifiers<M> {
   popoverContent: WithRefPopoverContent;
   isOpen?: boolean;
   popperRef?: (...args: any[]) => any;
+  hasHoverRegion?: boolean;
   dts?: string;
 }
 

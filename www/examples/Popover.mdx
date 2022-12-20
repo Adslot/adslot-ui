@@ -6,7 +6,13 @@ import { popoverPlacements, themes } from '../../src/components/Popover/constant
 
 ```jsx live=true
 <div style={{ width: 150, display: 'flex', justifyContent: 'space-between' }}>
-  <Popover placement="right" title="Popover Title" theme="dark" popoverContent="My initial positioning is right">
+  <Popover
+    delayHide={200}
+    placement="right"
+    title="Popover Title"
+    theme="dark"
+    popoverContent="My initial positioning is right"
+  >
     <Button>Hover Me</Button>
   </Popover>
   <Popover
@@ -21,14 +27,59 @@ import { popoverPlacements, themes } from '../../src/components/Popover/constant
 </div>
 ```
 
+## hoverable Popover
+
+Setting `contentHoverable` keeps the popover open when hovering over its content.  
+A small `delayHide` can help prevent unintended closes.  
+Use `isMenu` if the content is interactable.
+
+```jsx live=true
+const Input = () => {
+  const [value, setValue] = React.useState('');
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+  return <input className="form-control" type="text" onChange={onChange} value={value} />;
+};
+
+const Example = () => {
+  const [open, setIsOpen] = React.useState();
+  const onOpen = (open, event, eventType) => {
+    setIsOpen(open);
+  };
+  return (
+    <div style={{ width: 150, display: 'flex', justifyContent: 'space-between' }}>
+      <Popover
+        delayHide={200}
+        isMenu
+        isOpen={open}
+        onOpenChange={onOpen}
+        contentHoverable
+        placement="bottom-start"
+        theme="light"
+        popoverContent={
+          <div>
+            <h4>Hoverable popover</h4>
+            <p>You can keep this popover open</p>
+            <p>by hovering over it.</p>
+            <div style={{ display: 'flex' }}>
+              <Input />
+              <Button onClick={() => onOpen(false)}>Save</Button>
+            </div>
+          </div>
+        }
+      >
+        <Button variant="link">Hover me</Button>
+      </Popover>
+    </div>
+  );
+};
+render(<Example />);
+```
+
 <br />
 
-## Popover.WithRef
-
-<h4>There might be use cases where the element which will display the popover will be decided on the fly.</h4>
-<h4>
-  We support the implementation of dynamic popovers via <b>Popover.WithRef</b>
-</h4>
+This example shows how to use an external trigger with `triggerRef` and an external anchor with `anchorRef`.
 
 ```jsx live=true
 const myRef = React.createRef(null);
@@ -36,10 +87,10 @@ const myRef = React.createRef(null);
 const Example = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const togglePopover = () => setIsOpen(!isOpen);
-
+  const triggerRef = React.useRef();
   return (
     <React.Fragment>
-      <Button onClick={togglePopover}>Toggle Popover</Button>
+      <button ref={triggerRef}>Toggle Popover</button>
       <div
         style={{
           width: 100,
@@ -52,16 +103,17 @@ const Example = () => {
       >
         External Anchor
       </div>
-      {isOpen && (
-        <Popover.WithRef
-          refElement={myRef.current}
-          placement="right"
-          title="Popover title"
-          theme="dark"
-          popoverContent="My initial positioning is right"
-          isOpen={isOpen}
-        />
-      )}
+
+      <Popover
+        triggers="hover"
+        contentHoverable
+        anchorRef={myRef}
+        triggerRef={triggerRef}
+        placement="right"
+        title="Popover title"
+        theme="dark"
+        popoverContent="My initial positioning is right"
+      />
     </React.Fragment>
   );
 };

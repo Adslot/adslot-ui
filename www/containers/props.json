@@ -3635,6 +3635,60 @@
           "required": false,
           "description": ""
         },
+        "delayShow": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "hover show delay in ms",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        },
+        "delayHide": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "hover hide delay in ms",
+          "defaultValue": {
+            "value": "0",
+            "computed": false
+          }
+        },
+        "contentHoverable": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "when used with the hover trigger, hovering the popover content\nwill keep the popover open.\n\nPopover will close when mousing out of the popover content.\n\nFor the best UX, use with `delayHide` of at least 200",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "isMenu": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "when true:\n- the popover content will be focused after opening\n- the popover content will trap focus\n- the popover trigger will re-focus on close"
+        },
+        "onOpenChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "callback fired when Popover open state changes\n@param {boolean} openState\n@param {object} event - event object\n@param {string} eventType - the type of event that triggered this change.\nEither a dom event (`keydown`, `pointerover`, `pointerleave`, `click`),\nor `clickOutside`, when closed via clicking outside, `disabed` when disabled trigger is applied."
+        },
+        "onClickOutside": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "[`isMenu`] callback called when closing on outside click"
+        },
         "arrowStyles": {
           "type": {
             "name": "object"
@@ -3712,8 +3766,8 @@
           "type": {
             "name": "node"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "children is optional when using `triggerRef`"
         },
         "triggers": {
           "type": {
@@ -3735,7 +3789,7 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "'hover'",
+            "value": "['hover', 'focus']",
             "computed": false
           }
         },
@@ -3744,11 +3798,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
+          "description": ""
         },
         "getContainer": {
           "type": {
@@ -3757,9 +3807,28 @@
           "required": false,
           "description": ""
         },
-        "popperRef": {
+        "anchorRef": {
           "type": {
-            "name": "func"
+            "name": "shape",
+            "value": {
+              "current": {
+                "name": "any",
+                "required": false
+              }
+            }
+          },
+          "required": false,
+          "description": ""
+        },
+        "triggerRef": {
+          "type": {
+            "name": "shape",
+            "value": {
+              "current": {
+                "name": "any",
+                "required": false
+              }
+            }
           },
           "required": false,
           "description": ""
@@ -3864,14 +3933,6 @@
           "required": false,
           "description": ""
         },
-        "boundariesElement": {
-          "type": {
-            "name": "instanceOf",
-            "value": "Element"
-          },
-          "required": false,
-          "description": ""
-        },
         "title": {
           "type": {
             "name": "string"
@@ -3889,6 +3950,13 @@
         "popperRef": {
           "type": {
             "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "hasHoverRegion": {
+          "type": {
+            "name": "bool"
           },
           "required": false,
           "description": ""

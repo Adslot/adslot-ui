@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
@@ -6,48 +5,16 @@ import PopoverLinkItem from './PopoverLinkItem';
 import './styles.css';
 
 const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children }) => {
-  const [popperNode, setPopperNode] = React.useState(null);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [mouseInPopover, setMouseInPopover] = React.useState(false);
-
-  const closeMenu = _.debounce(() => {
-    setIsOpen(false);
-  }, 100);
-
-  const popoverEnterHandler = React.useCallback(() => setMouseInPopover(true), [setMouseInPopover]);
-  const popoverLeaveHandler = React.useCallback(() => {
-    setMouseInPopover(false);
-    closeMenu();
-  }, [setMouseInPopover, closeMenu]);
-
-  React.useEffect(() => {
-    if (popperNode) {
-      popperNode.addEventListener('mouseenter', popoverEnterHandler);
-      popperNode.addEventListener('mouseleave', popoverLeaveHandler);
-    }
-  }, [popperNode, popoverEnterHandler, popoverLeaveHandler]);
-
-  const openMenu = () => {
-    setIsOpen(true);
-    setMouseInPopover(false);
-  };
-
-  const element = (
-    <div data-testid="hover-dropdown-element" onMouseEnter={openMenu} onMouseLeave={closeMenu}>
-      {hoverComponent}
-    </div>
-  );
+  const element = <div data-testid="hover-dropdown-element">{hoverComponent}</div>;
 
   return (
     <div data-testid="hover-dropdown-wrapper" className="hover-dropdown">
       {children && children.length > 0 ? (
         <Popover
           placement={`bottom-${arrowPosition === 'left' ? 'start' : 'end'}`}
-          triggers={['disabled']}
-          isOpen={isOpen || mouseInPopover}
+          contentHoverable
           title={headerText}
           popoverContent={<ul className="list-unstyled">{children}</ul>}
-          popperRef={setPopperNode}
         >
           {element}
         </Popover>

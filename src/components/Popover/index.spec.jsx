@@ -1,7 +1,16 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, act, createEvent } from '@testing-library/react';
 import Popover from '.';
 import { renderArrowStyles } from './Popper';
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.runAllTimers();
+  jest.useRealTimers();
+});
 
 afterEach(cleanup);
 
@@ -16,17 +25,23 @@ describe('<Popover />', () => {
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.click(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      act(() => {
+        fireEvent.click(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      });
 
-      fireEvent.click(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      act(() => {
+        fireEvent.click(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      });
     });
   });
 
-  describe('onMouseOver() and onMouseOut()', () => {
+  describe('onPointerOver() and onPointerLeave()', () => {
     it('should trigger popover open or close', () => {
       const { getByTestId, queryByTestId } = render(
         <Popover id="popover-example" theme="dark" popoverContent={<div />} triggers="hover">
@@ -36,14 +51,20 @@ describe('<Popover />', () => {
 
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
-
-      fireEvent.mouseOver(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
-
-      fireEvent.mouseOut(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      act(() => {
+        fireEvent.pointerOver(getByTestId('popover-element'));
+        jest.runAllTimers();
+        fireEvent.pointerOver(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      });
+      act(() => {
+        fireEvent.pointerLeave(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      });
     });
   });
 
@@ -58,17 +79,221 @@ describe('<Popover />', () => {
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.focus(getByTestId('popover-element'));
+      act(() => {
+        fireEvent.focus(getByTestId('popover-element'));
+        jest.runAllTimers();
+
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      });
+
+      act(() => {
+        fireEvent.blur(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      });
+    });
+  });
+
+  it('should work with contentHoverable, keeping content open when hovered, and re-hovered within the delay hide time', () => {
+    const { getByTestId, queryByTestId } = render(
+      <div>
+        <Popover
+          contentHoverable
+          delayHide={500}
+          delayShow={100}
+          className="test-class"
+          popoverContent={<div data-testid="content"></div>}
+          title="Some title"
+          isOpen
+        >
+          <label className="message">Test message</label>
+        </Popover>
+      </div>
+    );
+    act(() => {
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      fireEvent.pointerOver(getByTestId('popover-element'));
+      jest.runAllTimers();
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      fireEvent.pointerLeave(getByTestId('popover-element'));
 
-      fireEvent.blur(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      fireEvent.pointerEnter(getByTestId('popover-wrapper'));
+      jest.runAllTimers();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      fireEvent.pointerLeave(getByTestId('popover-wrapper'));
+      jest.advanceTimersByTime(250);
+      fireEvent.pointerEnter(getByTestId('popover-wrapper'));
+      fireEvent.pointerLeave(getByTestId('popover-wrapper'));
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      jest.advanceTimersByTime(501);
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+    });
+
+    act(() => {
+      fireEvent.pointerOver(getByTestId('popover-element'));
+      jest.runAllTimers();
+      fireEvent.pointerOver(getByTestId('content'));
+
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      fireEvent.pointerEnter(getByTestId('popover-wrapper'));
+      jest.runAllTimers();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+    });
+  });
+  describe('isMenu', () => {
+    it('should be able to work as a menu', () => {
+      const onClickOutside = jest.fn();
+      const { getByTestId, queryByTestId } = render(
+        <div data-testid="outisde">
+          <Popover
+            isMenu
+            triggers="click"
+            className="test-class"
+            popoverContent={<div data-testid="content"></div>}
+            onClickOutside={onClickOutside}
+            title="Some title"
+          >
+            <label className="message">Test message</label>
+          </Popover>
+        </div>
+      );
+      act(() => {
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        fireEvent.click(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+        fireEvent.mouseDown(queryByTestId('outisde'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+        expect(onClickOutside).toBeCalledTimes(1);
+      });
+    });
+
+    it('click outside should be preventable', () => {
+      const onClickOutside = jest.fn();
+
+      const { getByTestId } = render(
+        <div data-testid="outisde">
+          <Popover
+            isMenu
+            triggers="click"
+            className="test-class"
+            popoverContent={<div data-testid="content"></div>}
+            onClickOutside={(e) => e.preventDefault()}
+            title="Some title"
+          >
+            <label className="message">Test message</label>
+          </Popover>
+        </div>
+      );
+      act(() => {
+        expect(getByTestId('popover-element')).toBeInTheDocument();
+        fireEvent.click(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(getByTestId('popover-wrapper')).toBeInTheDocument();
+        fireEvent.mouseDown(getByTestId('outisde'));
+        jest.runAllTimers();
+        expect(getByTestId('popover-wrapper')).toBeInTheDocument();
+        expect(onClickOutside).toBeCalledTimes(0);
+      });
+    });
+
+    it('should be able to work as a menu with render function content', () => {
+      const { getByTestId, queryByTestId } = render(
+        <div data-testid="outisde">
+          <Popover
+            isMenu
+            triggers="click"
+            className="test-class"
+            popoverContent={() => <div data-testid="content"></div>}
+            title="Some title"
+          >
+            <label className="message">Test message</label>
+          </Popover>
+        </div>
+      );
+      act(() => {
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        fireEvent.click(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+        fireEvent.keyDown(queryByTestId('focus-trap'), { key: 'Escape' });
+        jest.runAllTimers();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      });
+    });
+  });
+
+  it('should call onOpenChange', () => {
+    const onOpenChange = jest.fn();
+    const { getByTestId, queryByTestId, rerender } = render(
+      <div>
+        <Popover
+          onOpenChange={onOpenChange}
+          className="test-class"
+          popoverContent={<div data-testid="content"></div>}
+          title="Some title"
+        >
+          <label className="message">Test message</label>
+        </Popover>
+      </div>
+    );
+    act(() => {
+      expect(queryByTestId('popover-element')).toBeInTheDocument();
+      fireEvent.pointerOver(getByTestId('popover-element'), {});
+      jest.runAllTimers();
+      const evt = createEvent.pointerOver(getByTestId('popover-element'));
+
+      expect(onOpenChange).toBeCalledWith(true, evt, 'pointerover');
+    });
+
+    act(() => {
+      rerender(
+        <div>
+          <Popover
+            onOpenChange={onOpenChange}
+            isOpen={false}
+            className="test-class"
+            popoverContent={<div data-testid="content"></div>}
+            title="Some title"
+          >
+            <label className="message">Test message</label>
+          </Popover>
+        </div>
+      );
+
+      jest.runAllTimers();
+
+      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+    });
+
+    act(() => {
+      rerender(
+        <div>
+          <Popover
+            onOpenChange={onOpenChange}
+            isOpen={true}
+            className="test-class"
+            popoverContent={<div data-testid="content"></div>}
+            title="Some title"
+          >
+            <label className="message">Test message</label>
+          </Popover>
+        </div>
+      );
+
+      jest.runAllTimers();
+
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     });
   });
 
   it('should render without error', () => {
+    console.error = jest.fn();
     const { getByTestId, queryByTestId } = render(
       <div>
         <Popover className="test-class" popoverContent={<div />} title="Some title" isOpen>
@@ -76,13 +301,13 @@ describe('<Popover />', () => {
         </Popover>
       </div>
     );
+    act(() => {
+      expect(queryByTestId('popover-element')).toBeInTheDocument(); //Manager
+      expect(getByTestId('popover-element')).toHaveTextContent('Test message');
+      expect(getByTestId('popover-wrapper')).toHaveTextContent('Some title'); //Popper
 
-    expect(queryByTestId('popover-element')).toBeInTheDocument(); //Manager
-    expect(getByTestId('popover-element')).toHaveTextContent('Test message');
-    expect(getByTestId('popover-wrapper')).toHaveTextContent('Some title'); //Popper
-
-    console.error = jest.fn();
-    expect(console.error).toHaveBeenCalledTimes(0);
+      expect(console.error).toHaveBeenCalledTimes(0);
+    });
   });
 
   it('should be able to set theme', () => {
@@ -211,25 +436,29 @@ describe('<Popover />', () => {
           id="popover-example"
           popoverContent={() => <div>test</div>}
           placement="bottom-end"
-          triggers={['focus', 'click']}
+          triggers={['focus', 'hover']}
         >
           Test message
         </Popover>
       );
+
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.click(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      act(() => {
+        jest.runAllTimers();
+        fireEvent.focus(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      });
 
-      fireEvent.blur(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
-
-      fireEvent.focus(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
+      act(() => {
+        fireEvent.pointerLeave(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      });
     });
 
     it('should not include any event handler if trigger is disabled', () => {
@@ -240,26 +469,59 @@ describe('<Popover />', () => {
       );
       expect(queryByTestId('popover-element')).toBeInTheDocument();
       expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      act(() => {
+        fireEvent.click(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.click(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+        fireEvent.blur(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.blur(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+        fireEvent.focus(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.focus(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+        fireEvent.pointerOver(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
-      fireEvent.mouseOver(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+        fireEvent.pointerLeave(getByTestId('popover-element'));
+        jest.runAllTimers();
+        expect(queryByTestId('popover-element')).toBeInTheDocument();
+        expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+      });
+    });
+  });
 
-      fireEvent.mouseOut(getByTestId('popover-element'));
-      expect(queryByTestId('popover-element')).toBeInTheDocument();
-      expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
+  it('should work with an external trigger via triggerRef', () => {
+    const TestRef = ({ children }) => {
+      const ref = React.useRef();
+      return children(ref);
+    };
+
+    const { getByTestId, queryByTestId } = render(
+      <TestRef>
+        {(ref) => (
+          <>
+            <button ref={ref} data-testid="trigger" />
+            <Popover triggerRef={ref} popoverContent={<div />}>
+              Test message
+            </Popover>
+          </>
+        )}
+      </TestRef>
+    );
+
+    act(() => {
+      expect(queryByTestId('popover-element')).not.toBeInTheDocument();
+      fireEvent.pointerOver(getByTestId('trigger'));
+      jest.runAllTimers();
+      expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
     });
   });
 
