@@ -49,6 +49,7 @@ export interface ToastNotificationProps {
   title?: string;
   theme?: ToastNotificationTheme;
   message: React.ReactNode;
+  dts?: string;
 }
 
 declare const ToastNotification: React.FC<ToastNotificationProps>;
@@ -59,6 +60,7 @@ export interface notifyProps {
   title?: string;
   theme?: notifyTheme;
   message: React.ReactNode;
+  dts?: string;
 }
 
 declare const notify: React.FC<notifyProps>;

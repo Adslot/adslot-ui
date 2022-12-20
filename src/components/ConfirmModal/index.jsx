@@ -11,6 +11,7 @@ const ConfirmModal = ({
   modalDescription,
   modalTitle,
   show,
+  dts,
 }) => {
   const cancelAction = () => {
     modalClose();
@@ -26,6 +27,7 @@ const ConfirmModal = ({
       <ActionPanel
         isModal
         data-testid="confirm-modal-wrapper"
+        dts={dts}
         className="confirm-modal-component"
         size="small"
         title={modalTitle}
@@ -81,6 +83,7 @@ ConfirmModal.propTypes = {
    * determines if the modal needs to be shown or not
    */
   show: PropTypes.bool,
+  dts: PropTypes.string,
 };
 
 ConfirmModal.defaultProps = {

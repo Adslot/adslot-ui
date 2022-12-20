@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { toast, ToastContainer as ReactToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { toastPlacements } from './constants';
+import { expandDts } from '../../utils';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
@@ -42,9 +43,9 @@ ToastContainer.defaultProps = {
 
 const getToastClass = (theme) => classnames('aui--toast-title', { [`aui--toast-title-${theme}`]: theme });
 
-export const ToastMessage = ({ toastClass, title = '', message }) => (
+export const ToastMessage = ({ toastClass, title = '', message, dts }) => (
   <React.Fragment>
-    <span className="aui--toast-body-message">
+    <span className="aui--toast-body-message" {...expandDts(dts)}>
       <span className={toastClass}>{title}</span>
       <span>{message}</span>
     </span>
@@ -59,17 +60,17 @@ const withDefaultOptions = (options) => ({
   ...options,
 });
 
-const ToastNotification = ({ theme = 'info', title = '', message, ...options }) => {
+const ToastNotification = ({ theme = 'info', title = '', message, dts, ...options }) => {
   const toastClass = getToastClass(theme);
-  const toastMessage = <ToastMessage toastClass={toastClass} title={title} message={message} />;
+  const toastMessage = <ToastMessage toastClass={toastClass} title={title} message={message} dts={dts} />;
 
   toast.info(toastMessage, withDefaultOptions({ theme, ...options }));
   return null;
 };
 
-const notify = ({ theme = 'info', title, message, ...options }) => {
+const notify = ({ theme = 'info', title, message, dts, ...options }) => {
   toast.info(
-    <ToastMessage toastClass={getToastClass(theme)} title={title} message={message} />,
+    <ToastMessage toastClass={getToastClass(theme)} title={title} message={message} dts={dts} />,
     withDefaultOptions({ theme, ...options })
   );
   return;
@@ -80,6 +81,7 @@ notify.propTypes = {
   title: PropTypes.string,
   theme: PropTypes.oneOf(['success', 'info', 'alert', 'attention']),
   message: PropTypes.node.isRequired,
+  dts: PropTypes.string,
 };
 
 ToastNotification.propTypes = {
@@ -92,6 +94,7 @@ ToastNotification.propTypes = {
   title: PropTypes.string,
   theme: PropTypes.oneOf(['success', 'info', 'alert', 'attention']),
   message: PropTypes.node.isRequired,
+  dts: PropTypes.string,
 };
 
 const dismiss = toast.dismiss;
