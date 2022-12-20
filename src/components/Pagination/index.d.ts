@@ -11,6 +11,14 @@ export interface PaginationProps {
    */
   pageCount: number;
   /**
+   * The number of pages to show on either side of the current page
+   */
+  siblingCount?: number;
+  /**
+   * separator for truncated pages
+   */
+  separator?: React.ReactNode;
+  /**
    * A callback function for when clicking on previous, next and pagination items
    */
   onSelect: (...args: any[]) => any;

@@ -3162,6 +3162,28 @@
           "required": true,
           "description": "The max page count"
         },
+        "siblingCount": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "The number of pages to show on either side of the current page",
+          "defaultValue": {
+            "value": "1",
+            "computed": false
+          }
+        },
+        "separator": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "separator for truncated pages",
+          "defaultValue": {
+            "value": "'...'",
+            "computed": false
+          }
+        },
         "onSelect": {
           "type": {
             "name": "func"
