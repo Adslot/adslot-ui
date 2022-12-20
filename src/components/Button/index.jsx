@@ -17,7 +17,7 @@ export const buttonSharedClasses = ({ size, inverse, variant, fullWidth, round, 
   disabled: disabled,
 });
 
-const Button = (props) => {
+const Button = React.forwardRef((props, ref) => {
   const {
     color = 'default',
     size,
@@ -30,6 +30,7 @@ const Button = (props) => {
     disabled,
     dts,
     isLoading,
+    iconPosition = 'left',
     inverse, // deprecated
     theme, // deprecated
     ...rest
@@ -68,9 +69,12 @@ const Button = (props) => {
         <Spinner size={size === 'large' ? 'medium' : 'small'} />
       </div>
     ) : null;
-
+  const renderIcon = () => (
+    <span className={classNames('aui-icon-container', { 'is-loading': isLoading && !round })}>{icon}</span>
+  );
   return (
     <button
+      ref={ref}
       data-testid="button-wrapper"
       type="button"
       {...expandDts(dts)}
@@ -81,27 +85,28 @@ const Button = (props) => {
       {renderSpinner()}
       {
         <>
-          {icon && (
-            <span className={classNames('aui-icon-container', { 'is-loading': isLoading && !round })}>{icon}</span>
-          )}
+          {icon && iconPosition === 'left' && renderIcon()}
           {children && (
             <span className={classNames('aui-children-container', { 'is-loading': isLoading })}>{children}</span>
           )}
+          {icon && iconPosition === 'right' && renderIcon()}
         </>
       }
     </button>
   );
-};
+});
 
 export const colors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info'];
 export const variants = ['solid', 'borderless', 'inverse', 'link'];
 export const sizes = ['medium', 'large'];
+export const positions = ['left', 'right'];
 
 Button.propTypes = {
   isLoading: PropTypes.bool,
   color: PropTypes.oneOf(colors),
   variant: PropTypes.oneOf(variants),
   size: PropTypes.oneOf(sizes),
+  iconPosition: PropTypes.oneOf(positions),
   /**
    * @deprecated
    * Please use the `color` prop instead.
@@ -120,5 +125,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.node,
 };
+
+Button.displayName = 'Button';
 
 export default Button;

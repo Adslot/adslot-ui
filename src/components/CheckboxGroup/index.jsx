@@ -49,14 +49,17 @@ const CheckboxGroupAll = ({ className, label = 'All', values, ...rest }) => {
     />
   );
 };
-
-CheckboxGroupAll.propTypes = {
+export const checkboxGroupAllPropTypes = {
   label: PropTypes.node,
   className: PropTypes.string,
   /**
    * a array of values that the All option represent
    */
   values: PropTypes.array.isRequired,
+};
+
+CheckboxGroupAll.propTypes = {
+  ...checkboxGroupAllPropTypes,
 };
 
 const CheckboxGroup = ({
@@ -98,9 +101,9 @@ const CheckboxGroup = ({
   );
 };
 
-CheckboxGroup.propTypes = {
-  value: PropTypes.array,
-  name: PropTypes.string,
+export const checkboxGroupPropTypes = {
+  value: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
   /**
    * @function onChange
    * @param {array} newValue - the new checkboxGroup value
@@ -131,5 +134,8 @@ CheckboxGroup.Item = CheckboxGroupItem;
 CheckboxGroup.All = CheckboxGroupAll;
 
 export { useCheckboxGroup } from './CheckboxGroupContext';
+CheckboxGroup.propTypes = {
+  ...checkboxGroupPropTypes,
+};
 
 export default CheckboxGroup;

@@ -49,9 +49,9 @@ const Checkbox = ({
 
   return (
     <div
+      role="checkbox"
       {...rest}
       data-testid="checkbox"
-      role="checkbox"
       aria-disabled={disabled ? 'true' : undefined}
       aria-checked={checked === 'partial' ? 'mixed' : ariaChecked}
       className={classnames(
@@ -135,8 +135,7 @@ export const shareCheckboxPropTypes = {
   disabled: PropTypes.bool,
 };
 
-Checkbox.propTypes = {
-  ...shareCheckboxPropTypes,
+export const checkboxPropTypes = {
   /**
    * name for the checkbox input
    */
@@ -162,6 +161,11 @@ Checkbox.propTypes = {
    * @deprecated
    */
   inline: PropTypes.bool,
+};
+
+Checkbox.propTypes = {
+  ...shareCheckboxPropTypes,
+  ...checkboxPropTypes,
 };
 
 export default Checkbox;

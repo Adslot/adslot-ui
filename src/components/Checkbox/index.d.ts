@@ -1,37 +1,12 @@
 import * as React from 'react';
 
+export type CheckboxValue = string | number;
+
 export type CheckboxVariant = 'default' | 'box';
 
 export type CheckboxChecked = boolean | 'partial';
 
-export type CheckboxValue = string | number;
-
 export interface CheckboxProps {
-  /**
-   * name for the checkbox input
-   */
-  name?: string;
-  variant?: CheckboxVariant;
-  /**
-   * @function onChange called when checkBox onChange event is fired
-   * @param {string|boolean} nextState - the checked state
-   * @param {string} name - the checkbox name
-   * @param {string|number} value - the checkbox value
-   */
-  onChange?: (...args: any[]) => any;
-  onKeyDown?: (...args: any[]) => any;
-  /**
-   * checked status of the input checkBox: oneOf([true, false, 'partial']
-   */
-  checked?: CheckboxChecked;
-  /**
-   * @deprecated
-   */
-  size?: number;
-  /**
-   * @deprecated
-   */
-  inline?: boolean;
   /**
    * checkBox input value
    */
@@ -61,6 +36,31 @@ export interface CheckboxProps {
    * determines if the checkbox is disabled
    */
   disabled?: boolean;
+  /**
+   * name for the checkbox input
+   */
+  name?: string;
+  variant?: CheckboxVariant;
+  /**
+   * @function onChange called when checkBox onChange event is fired
+   * @param {string|boolean} nextState - the checked state
+   * @param {string} name - the checkbox name
+   * @param {string|number} value - the checkbox value
+   */
+  onChange?: (...args: any[]) => any;
+  onKeyDown?: (...args: any[]) => any;
+  /**
+   * checked status of the input checkBox: oneOf([true, false, 'partial']
+   */
+  checked?: CheckboxChecked;
+  /**
+   * @deprecated
+   */
+  size?: number;
+  /**
+   * @deprecated
+   */
+  inline?: boolean;
 }
 
 declare const Checkbox: React.FC<CheckboxProps>;

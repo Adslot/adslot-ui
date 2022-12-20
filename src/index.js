@@ -23,12 +23,14 @@ import Empty from './components/Empty';
 import fastStatelessWrapper from './components/fastStatelessWrapper';
 import FilePicker from './components/FilePicker';
 import FlexibleSpacer from './components/FlexibleSpacer';
+import DismissibleFocusTrap from './components/DismissibleFocusTrap';
 import FormGroup from './components/FormGroup';
 import Grid from './components/Grid';
 import GridCell from './components/Grid/Cell';
 import GridRow from './components/Grid/Row';
 import HelpIconPopover from './components/HelpIconPopover';
 import HoverDropdownMenu from './components/HoverDropdownMenu';
+import DropdownMenu from './components/DropdownMenu';
 import ImageCropper from './components/ImageCropper';
 import InformationBox from './components/InformationBox';
 import ListPicker from './components/ListPicker';
@@ -41,7 +43,7 @@ import Pagination from './components/Pagination';
 import Panel from './components/Panel';
 import Paragraph from './components/Paragraph';
 import Pill from './components/Pill';
-import Popover from './components/Popover';
+import Popover, { usePopover } from './components/Popover';
 import PrettyDiff from './components/PrettyDiff';
 import Radio from './components/Radio';
 import RadioGroup from './components/RadioGroup';
@@ -97,6 +99,7 @@ export {
   fastStatelessWrapper,
   FilePicker,
   FlexibleSpacer,
+  DismissibleFocusTrap,
   FormGroup,
   Grid,
   GridCell,
@@ -111,6 +114,7 @@ export {
   Pagination,
   Panel,
   Popover,
+  usePopover,
   PrettyDiff,
   Radio,
   RadioGroup,
@@ -139,6 +143,7 @@ export {
   InformationBox,
   ImageCropper,
   HoverDropdownMenu,
+  DropdownMenu,
   OverlayLoader,
   VerticalNav,
   RichTextEditor,

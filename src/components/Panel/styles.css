@@ -18,7 +18,19 @@
   cursor: pointer;
   font-weight: $font-weight-bold;
   border-bottom: 1px solid $color-border-base;
+  border: unset;
+  outline: none;
+  background-color: unset;
+  width: 100%;
+  text-align: left;
+  border-radius: inherit;
   line-height: 22px;
+
+  &:focus-visible {
+    outline: none;
+    border-color: $color-white;
+    box-shadow: 0 0 0 2px $color-grey-700;
+  }
 }
 
 .panel-component-header::before {

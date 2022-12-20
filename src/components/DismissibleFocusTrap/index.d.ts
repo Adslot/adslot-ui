@@ -15,6 +15,9 @@ export interface DismissibleFocusTrapProps {
   disabled?: boolean;
   onEscape?: (...args: any[]) => any;
   onClickOutside?: (...args: any[]) => any;
+  /**
+   * useful if a menu/popover should be closed after tabbing through it
+   */
   onTabExit?: (...args: any[]) => any;
   onShiftTabExit?: (...args: any[]) => any;
   children?: React.ReactNode;

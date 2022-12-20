@@ -200,7 +200,7 @@ describe('<CheckboxGroup />', () => {
     const onChange = jest.fn();
     const { container } = render(
       <CheckboxGroup name="movies" value={[]} onChange={onChange}>
-        <CheckboxGroup.All label="All" dts="target" values={['terminator', 'predator', 'soundofmusic']} />
+        <CheckboxGroup.All dts="target" values={['terminator', 'predator', 'soundofmusic']} />
         <CheckboxGroup.Item label="The Terminator" value="terminator" />
         <CheckboxGroup.Item label="Predator" value="predator" />
         <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
