@@ -30,7 +30,11 @@ const ConfirmModal = ({
         size="small"
         title={modalTitle}
         onClose={cancelAction}
-        closeIcon={buttonCancelLabel}
+        cancelButton={
+          <Button onClick={cancelAction} className="close-button" dts="header-close-button">
+            {buttonCancelLabel}
+          </Button>
+        }
         actionButton={
           <Button
             data-testid="confirm-modal-confirm"

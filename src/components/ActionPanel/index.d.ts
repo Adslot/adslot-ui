@@ -9,9 +9,8 @@ export interface ActionPanelProps {
   onClose: (...args: any[]) => any;
   children: React.ReactNode;
   actionButton?: React.ReactNode;
-  closeIcon?: React.ReactNode;
+  cancelButton?: React.ReactNode;
   isModal?: boolean;
-  cancelText?: string;
   /**
    * Hides the modal with css, but keeps it mounted.
    * This should only be used if you need to launch an ActionPanel
