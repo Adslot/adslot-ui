@@ -54,6 +54,7 @@ import UserListPickerExample from '../examples/UserListPicker.mdx';
 import VerticalNavigationExample from '../examples/VerticalNavigation.mdx';
 import Introduction from '../examples/Introduction.mdx';
 import DesignGuide from '../examples/DesignGuide.mdx';
+import DesignTokens from '../examples/DesignTokens.mdx';
 import Installation from './components/GettingStarted/Installation.md';
 import Contributing from './components/GettingStarted/Contributing.md';
 import RichTextEditorExample from '../examples/RichTextEditor.mdx';
@@ -81,6 +82,12 @@ const routes = [
     path: '/design-guide',
     component: DesignGuide,
     title: 'Design Guide',
+    group: 'Getting Started',
+  },
+  {
+    path: '/design-tokens',
+    component: DesignTokens,
+    title: 'Design Tokens',
     group: 'Getting Started',
   },
   {

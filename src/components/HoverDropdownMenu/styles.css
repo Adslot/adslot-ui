@@ -1,11 +1,13 @@
+@import url('../../styles/variable.css');
+
 .hover-dropdown {
   display: inline-block;
 }
 
 .hover-dropdown-popover .popover-title {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   padding: 8px 2px 8px 6px;
-  background-color: #fff;
+  background-color: $color-white;
 }
 
 .hover-dropdown-popover .popover-content {

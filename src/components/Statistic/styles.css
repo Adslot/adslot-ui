@@ -1,14 +1,17 @@
+@import url('../../styles/variable.css');
+
 .statistic-component {
-  font-size: 15px;
+  font-size: $font-size-medium;
 }
 
 .statistic-component-value {
-  font-weight: 700;
+  color: $color-text-base;
+  font-weight: $font-weight-bold;
 }
 
 .statistic-component-label {
-  color: #838383;
-  font-weight: 400;
+  color: $color-text-soft;
+  font-weight: $font-weight-normal;
 }
 
 .statistic-component + .statistic-component {

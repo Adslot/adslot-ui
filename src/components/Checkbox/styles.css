@@ -42,7 +42,7 @@ $label-gap: 8px;
       border-width: 2px;
       transition: border 85ms ease-in-out;
       border-style: solid;
-      border-color: $color-gray;
+      border-color: $color-grey-500;
       display: block;
     }
 
@@ -56,14 +56,14 @@ $label-gap: 8px;
 
     & .aui--checkbox-input-icon {
       border-radius: 3px;
-      box-shadow: 0 0 0 2px $color-gray-darker;
+      box-shadow: 0 0 0 2px $color-grey-700;
     }
   }
 
   /* checked */
   &.checked .aui--checkbox-input-icon {
     &::before {
-      border-color: $color-info;
+      border-color: $color-info-base;
       border-width: 8px;
     }
 
@@ -88,7 +88,7 @@ $label-gap: 8px;
       content: '';
       width: 8px;
       height: 2px;
-      background-color: $color-gray;
+      background-color: $color-grey-500;
       top: 50%;
       left: 50%;
       position: absolute;
@@ -105,14 +105,14 @@ $label-gap: 8px;
 
     & .aui--checkbox-input-icon {
       &::before {
-        border-color: $color-disabled;
+        border-color: $color-grey-300;
         border-width: 8px;
       }
     }
 
     &.partial-checked .aui--checkbox-input-icon {
       &::before {
-        border-color: $color-disabled;
+        border-color: $color-grey-300;
       }
     }
 
@@ -126,40 +126,41 @@ $label-gap: 8px;
   /* unchecked hover */
   &:hover:not(.disabled, .checked, .partial-checked) .aui--checkbox-input-icon {
     &::before {
-      border-color: $color-info;
+      border-color: $color-info-base;
     }
   }
 
   /* unchecked pressed */
   &:active:not(.disabled, .checked, .partial-checked) .aui--checkbox-input-icon {
     &::before {
-      border-color: $color-info-selected;
+      border-color: $color-info-strong;
     }
   }
 
   /* partial hover */
   &.partial-checked:not(.disabled):hover .aui--checkbox-input-icon {
     &::before {
-      border-color: $color-info;
+      border-color: $color-info-base;
     }
   }
 
   /* checked hover */
   &.checked:not(.disabled):hover .aui--checkbox-input-icon {
     &::before {
-      border-color: $color-info-selected;
+      border-color: $color-info-strong;
     }
   }
 
   /* checked pressed */
   &.checked:not(.disabled):active .aui--checkbox-input-icon {
     &::before {
-      border-color: $color-info;
+      border-color: $color-info-base;
     }
   }
 
   & .aui--checkbox-label {
     margin-left: $label-gap;
     line-height: $checkbox-size;
+    color: $color-text-base;
   }
 }

@@ -1,16 +1,18 @@
+@import url('../../styles/variable.css');
+
 .panel-component {
-  background-color: #fff;
+  background-color: $color-white;
   transition: background-color 250ms ease-out;
 }
 
 .panel-component ~ .panel-component {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid $color-border-base;
 }
 
 .panel-component-header {
   cursor: pointer;
-  font-weight: 700;
-  border-bottom: 1px solid #e8e8e8;
+  font-weight: $font-weight-bold;
+  border-bottom: 1px solid $color-border-base;
   line-height: 22px;
 }
 
@@ -22,7 +24,7 @@
   height: 16px;
   transition: transform 250ms ease-out;
   width: 16px;
-  fill: #333;
+  fill: $color-grey-800;
   margin-top: 3px;
 }
 
@@ -32,7 +34,7 @@
   margin-right: 10px;
   position: relative;
   width: 22px;
-  fill: #333;
+  fill: $color-grey-800;
 }
 
 .panel-component-header,
@@ -41,7 +43,7 @@
 }
 
 .panel-component.collapsed {
-  background-color: #f9f9f9;
+  background-color: $color-grey-100;
 }
 
 .panel-component.collapsed .panel-component-header {

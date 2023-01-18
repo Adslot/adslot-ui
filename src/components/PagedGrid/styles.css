@@ -1,9 +1,11 @@
+@import url('../../styles/variable.css');
+
 .pagedgrid-component .grid-component-cell:not(.grid-component-cell-stretch) {
   flex-basis: 100px;
 }
 
 .pagedgrid-component .empty-component {
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $color-border-base;
 }
 
 .pagedgrid-component-pagination {

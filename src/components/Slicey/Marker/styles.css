@@ -1,4 +1,6 @@
+@import url('../../../styles/variable.css');
+
 .marker-component {
-  stroke: #da4f49;
+  stroke: $color-red-500;
   stroke-width: 0.02;
 }

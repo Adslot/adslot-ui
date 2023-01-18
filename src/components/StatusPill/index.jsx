@@ -4,7 +4,7 @@ import React from 'react';
 import Pill from '../Pill';
 import './styles.css';
 
-const styles = ['primary', 'success', 'warning', 'error', 'light'];
+const styles = ['info', 'success', 'warning', 'error', 'light'];
 const sizes = ['large', 'medium', 'small'];
 
 const StatusPill = ({ displayStyle, status, inverse, size, className, dts }) => (
@@ -34,7 +34,7 @@ StatusPill.propTypes = {
    */
   status: PropTypes.node.isRequired,
   /**
-   * one of ["primary", "success", "warning", "error", "light"]
+   * one of ["info", "success", "warning", "error", "light"]
    */
   displayStyle: PropTypes.oneOf(styles),
   /**

@@ -1,16 +1,18 @@
+@import url('../../../styles/variable.css');
+
 .arc-component.positive {
-  fill: #5bb75b;
+  fill: $color-green-500;
 }
 
 .arc-component.negative {
-  fill: #da4f49;
+  fill: $color-red-500;
 }
 
 .arc-component.info {
-  fill: #49afcd;
+  fill: $color-cyan-500;
 }
 
 .arc-component.warning,
 .arc-component.pending {
-  fill: #faa732;
+  fill: $color-cyan-500;
 }

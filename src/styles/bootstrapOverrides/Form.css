@@ -8,8 +8,8 @@
 }
 
 .help-block {
-  color: #ababab;
-  font-weight: 400;
+  color: $color-grey-500;
+  font-weight: $font-weight-normal;
   margin-top: 8px;
 }
 
@@ -18,15 +18,15 @@
 }
 
 label {
-  color: #5a5a5a;
+  color: $color-grey-700;
 }
 
 .form-group label {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 .form-group .checkbox label {
-  font-weight: 400;
+  font-weight: $font-weight-normal;
 }
 
 .form-control,
@@ -40,7 +40,7 @@ label {
 
 .form-control,
 .form-control-static {
-  font-weight: 400;
+  font-weight: $font-weight-normal;
 }
 
 .form-btn-footer {
@@ -48,7 +48,7 @@ label {
 }
 
 fieldset {
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 1px solid $color-grey-200;
   margin-bottom: 30px;
 }
 
@@ -62,7 +62,7 @@ fieldset.borderless {
 }
 
 .input-group-addon {
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   padding: 4px 5px;
 }
 

@@ -8,8 +8,8 @@
   user-select: none;
 
   & .empty-component-text {
-    color: $color-text-placeholder;
-    font-size: $font-size-body;
+    color: $color-text-soft;
+    font-size: $font-size-base;
     line-height: $line-height-base;
     margin-top: calc($spacing-etalon / 3);
     white-space: pre-wrap;

@@ -1,59 +1,71 @@
+@import url('../../styles/variable.css');
+
 .aui--status-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
   user-select: none;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   line-height: 1;
-  color: #5a5a5a;
+  color: $color-default-strong;
 }
 
 .aui--status-pill-primary {
-  background-color: #c1e1ec;
+  background-color: $color-primary-accent;
 }
 
 .aui--status-pill-primary.aui--status-pill-inverse {
-  background-color: #fff;
-  border-color: #e8e8e8;
-  color: #00adee;
+  background-color: $color-white;
+  border-color: $color-border-base;
+  color: $color-primary-base;
+}
+
+.aui--status-pill-info {
+  background-color: $color-info-accent;
+}
+
+.aui--status-pill-info.aui--status-pill-inverse {
+  background-color: $color-white;
+  border-color: $color-border-base;
+  color: $color-info-strong;
 }
 
 .aui--status-pill-success {
-  background-color: #c5e6dc;
+  background-color: $color-success-accent;
 }
 
 .aui--status-pill-success.aui--status-pill-inverse {
-  background-color: #fff;
-  border-color: #e8e8e8;
-  color: #95c83d;
+  background-color: $color-white;
+  border-color: $color-border-base;
+  color: $color-success-strong;
 }
 
 .aui--status-pill-warning {
-  background-color: #fec985;
+  background-color: $color-warning-accent;
 }
 
 .aui--status-pill-warning.aui--status-pill-inverse {
-  background-color: #fff;
-  border-color: #e8e8e8;
-  color: #f93;
+  background-color: $color-white;
+  border-color: $color-border-base;
+  color: $color-warning-strong;
 }
 
 .aui--status-pill-error {
-  background-color: #f9b7b0;
+  background-color: $color-danger-accent;
 }
 
 .aui--status-pill-error.aui--status-pill-inverse {
-  background-color: #fff;
-  border-color: #e8e8e8;
-  color: #da4f49;
+  background-color: $color-white;
+  border-color: $color-border-base;
+  color: $color-danger-strong;
 }
 
 .aui--status-pill-light {
-  background-color: #e8e8e8;
+  background-color: $color-default-accent;
 }
 
 .aui--status-pill-light.aui--status-pill-inverse {
-  background-color: #fff;
-  border-color: #e8e8e8;
+  background-color: $color-white;
+  border-color: $color-border-base;
 }

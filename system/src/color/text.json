@@ -1,0 +1,19 @@
+{
+  "color": {
+    "text": {
+      "base": { "value": "{color.grey.800}", "description": "Use for eg. main text, icons" },
+      "soft": { "value": "{color.grey.700}", "description": "Use for eg. text, areas with lesser importance" },
+      "label": { "value": "{color.grey.700}", "description": "Use for eg. column header header in the grid" },
+      "disabled": {
+        "value": "{color.grey.600}",
+        "description": "Use for eg. disabled text, in disabled buttons contrast with #D5D8DA"
+      },
+      "placeholder": { "value": "{color.grey.600}", "description": "Use for eg. text in inputs, search" },
+      "description": { "value": "{color.grey.600}" },
+      "inverse": {
+        "value": "{color.white}",
+        "description": "Use for eg. text for full coloured buttons, modal action bar"
+      }
+    }
+  }
+}

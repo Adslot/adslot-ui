@@ -1,10 +1,12 @@
+@import url('../../../../src/styles/variable.css');
+
 .adslot-ui-header > .pagetitle-component {
-  background: #fff;
+  background: $color-white;
 }
 
 .adslot-ui-header > .pagetitle-component .header-link {
   color: #000;
-  font-size: 24px;
+  font-size: $font-size-xlarge;
   font-weight: 900;
   text-decoration: none;
   cursor: pointer;

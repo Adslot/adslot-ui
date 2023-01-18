@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .aui--pagination {
   padding: 20px 0;
   display: flex;
@@ -41,5 +43,5 @@
 }
 
 .aui--pagination-item.btn-inverse:not([disabled]):focus {
-  background-color: #fff;
+  background-color: $color-white;
 }

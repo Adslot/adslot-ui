@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .select-component .caret-icon {
   width: 8px;
   height: 8px;
@@ -7,6 +9,6 @@
 }
 
 .select-component .css-oeuhkd-control {
-  border-color: #e8e8e8;
-  border-radius: 2px;
+  border-color: $color-grey-300;
+  border-radius: $border-radius-base;
 }

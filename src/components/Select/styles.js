@@ -1,15 +1,19 @@
-const borderColor = '#ababab';
+import c from '../../../system/tokens/color.json';
+
+const { grey, border, white } = c.color;
+const borderColor = border.base;
 
 const defaultStyle = {
   option: (styles, { isFocused, isSelected, isDisabled }) => {
     let backgroundColor;
-
     switch (true) {
+      // selected item
       case isSelected:
-        backgroundColor = '#f5faff';
+        backgroundColor = grey[300];
         break;
+      // hovered/focused item
       case isFocused:
-        backgroundColor = '#f9f9f9';
+        backgroundColor = grey[200];
         break;
       case isDisabled:
         return styles;
@@ -20,6 +24,7 @@ const defaultStyle = {
     return {
       ...styles,
       color: 'inherit',
+      ':active': { backgroundColor: grey[300] },
       backgroundColor,
     };
   },
@@ -53,12 +58,12 @@ const defaultStyle = {
   }),
   multiValue: (styles) => ({
     ...styles,
-    color: '#fff',
-    backgroundColor: '#838383',
+    color: white,
+    backgroundColor: grey[600],
   }),
   multiValueLabel: (styles) => ({
     ...styles,
-    color: '#fff',
+    color: white,
   }),
   multiValueRemove: (styles) => ({
     ...styles,

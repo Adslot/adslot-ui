@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .aui--search-component {
   height: 30px;
   width: 100%;
@@ -8,24 +10,24 @@
 .aui--search-component .aui--search-component-input {
   flex: 1;
   padding: 0 10px;
-  border: 1px solid #e8e8e8;
-  border-radius: 2px;
+  border: 1px solid $color-border-base;
+  border-radius: $border-radius-base;
   width: inherit;
 }
 
 .aui--search-component .aui--search-component-input::placeholder {
-  color: #ababab;
+  color: $color-grey-500;
 }
 
 .aui--search-component .aui--search-component-input:active,
 .aui--search-component .aui--search-component-input:focus {
-  border-color: #ababab;
+  border-color: $color-grey-500;
   outline: 0;
 }
 
 .aui--search-component .aui--search-component-input:active ~ .aui--search-component-button,
 .aui--search-component .aui--search-component-input:focus ~ .aui--search-component-button {
-  border-color: #ababab;
+  border-color: $color-grey-500;
 }
 
 .aui--search-component .aui--search-component-icon {
@@ -68,7 +70,7 @@
   min-height: 100%;
   margin-left: -2px;
   margin-right: 0;
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +79,7 @@
 }
 
 .aui--search-component .aui--button.aui--search-component-button:hover {
-  background-color: #f9f9f9;
+  background-color: $color-grey-100;
 }
 
 .aui--search-component .aui--button.aui--search-component-button span {

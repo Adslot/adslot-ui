@@ -8,31 +8,31 @@
   border-width: 1px;
   border-color: $color-white;
   border-style: solid;
-  background-color: $color-gray-dark;
+  background-color: $color-grey-600;
   color: $color-white;
   text-align: center;
-  font-size: $font-size-tiny;
+  font-size: $font-size-xsmall;
   font-weight: $font-weight-bold;
   box-sizing: content-box;
   line-height: 17px;
 
   &.status-info {
-    background-color: $color-primary;
+    background-color: $color-primary-base;
   }
 
   &.status-warning {
-    background-color: $color-warning;
+    background-color: $color-warning-base;
   }
 
   &.status-danger {
-    background-color: $color-negative;
+    background-color: $color-danger-base;
   }
 
   &.status-light {
-    background-color: $color-gray;
+    background-color: $color-default-base;
   }
 
   &.count-badge-font-size-small {
-    font-size: $font-size-super-tiny;
+    font-size: 8px;
   }
 }

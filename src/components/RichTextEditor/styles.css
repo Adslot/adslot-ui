@@ -1,7 +1,9 @@
+@import url('../../styles/variable.css');
+
 .aui--editor-root {
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   min-height: 245px;
-  border-radius: 5px;
+  border-radius: $border-radius-large;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,11 +20,11 @@
 }
 
 .aui--editor-root .aui--editor-container .public-DraftEditorPlaceholder-inner {
-  color: #ababab;
+  color: $color-default-base;
 }
 
 .aui--editor-root .aui--editor-container .mention {
-  color: #006dcc;
+  color: $color-primary-base;
   text-decoration: none;
 }
 
@@ -39,7 +41,7 @@
 
 .aui--editor-root .aui--editor-toolbar {
   padding: 10px 20px;
-  background-color: #f9f9f9;
+  background-color: $color-grey-100;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +52,7 @@
   background-color: transparent;
   border: 1px solid transparent;
   padding: 6px;
-  font-size: 12px;
+  font-size: $font-size-base;
   align-items: center;
   line-height: 0;
 }
@@ -74,8 +76,8 @@
 
 .aui--editor-root .aui--editor-toolbar .aui--toolbar-button:hover,
 .aui--editor-root .aui--editor-toolbar .aui--toolbar-button.active {
-  background-color: #e8e8e8;
-  border-color: #e8e8e8;
+  background-color: $color-grey-300;
+  border-color: $color-grey-300;
 }
 
 .aui--editor-root .aui--editor-toolbar .aui--toolbar-button img,
@@ -92,13 +94,13 @@
 }
 
 .aui--mention-entry {
-  background-color: #fff;
+  background-color: $color-white;
   width: auto;
   min-width: 250px;
 }
 
 .aui--mention-entry__is-focused {
-  background: #e0f0ff;
+  background: $color-primary-soft;
   cursor: pointer;
 }
 
@@ -124,7 +126,7 @@
 
 .aui--mention-entry .mention-entry--container .mention-entry--title {
   font-size: 10px;
-  color: #ababab;
+  color: $color-default-base;
 }
 
 .aui--mention-entry .mention-entry--container .mention-entry--avatar {
@@ -154,8 +156,8 @@
   margin: 0 0 10px 10px;
   width: 200px;
   height: 60px;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  border: 1px solid $color-border-base;
+  border-radius: $border-radius-large;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -182,13 +184,13 @@
   top: -8px;
   right: -8px;
   border-radius: 50%;
-  background-color: #5a5a5a;
+  background-color: $color-grey-700;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='%23fff'%3E%3Cpath d='M4 11.3L7.3 8 4.1 4.7l.8-.7L8 7.2 11.1 4l.7.7-3.1 3.2 3.3 3.3-.7.8L8 8.7 4.7 12l-.7-.7z'/%3E%3C/svg%3E");
   width: 22px;
   height: 22px;
   background-repeat: no-repeat;
   background-position: center;
-  border: #fff 2px solid;
+  border: $color-white 2px solid;
   z-index: 10;
 }
 
@@ -199,6 +201,6 @@
   border-radius: 50%;
   width: 22px;
   height: 22px;
-  border: #fff 2px solid;
-  background-color: #fff;
+  border: $color-white 2px solid;
+  background-color: $color-white;
 }

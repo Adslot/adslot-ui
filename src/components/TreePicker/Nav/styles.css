@@ -1,6 +1,8 @@
+@import url('../../../styles/variable.css');
+
 .treepickernav-component {
-  border-left: 1px solid #e8e8e8;
-  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid $color-border-base;
+  border-right: 1px solid $color-border-base;
   padding: 10px;
 }
 

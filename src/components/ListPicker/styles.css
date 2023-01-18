@@ -1,10 +1,12 @@
+@import url('../../styles/variable.css');
+
 .listpicker-component-body-split {
   display: flex;
   height: 400px;
 }
 
 .listpicker-component-body-split .listpickerpure-component .grid-component .grid-component-row-header {
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $color-border-base;
 }
 
 .listpicker-component-body-split .listpickerpure-component-items {
@@ -26,7 +28,7 @@
 }
 
 .listpicker-component .grid-component-cell-label {
-  color: #ababab;
+  color: $color-grey-500;
   width: 120px;
 }
 

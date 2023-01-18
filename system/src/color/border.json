@@ -1,0 +1,14 @@
+{
+  "color": {
+    "border": {
+      "base": {
+        "value": "{color.grey.300}",
+        "description": "Use for eg. vertical lines in the grid, tiles in the marketplace"
+      },
+      "strong": {
+        "value": "{color.grey.800}",
+        "description": "Use for eg. hover tiles, dark lines on the header of pages, navigation"
+      }
+    }
+  }
+}

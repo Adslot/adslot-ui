@@ -1,35 +1,37 @@
+@import url('../../../styles/variable.css');
+
 .treepickernode-component:hover {
-  background-color: #f9f9f9;
+  background-color: $color-grey-100;
 }
 
 .treepickernode-component-expander {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23ababab' d='M12.5 4c.3 0 .5.2.5.5V6h1.8c.4.1.5.5.4.8l-1.8 6.4c-.1.3-.3.4-.5.4H2.5c-.3 0-.5-.2-.5-.5V4.5c0-.3.2-.5.5-.5h10z'/%3E%3Cpath fill='%23fff' d='M3 5v5.6l1.4-4.2c.1-.1.2-.4.6-.4h7V5H3z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23AAAFB3' d='M12.5 4c.3 0 .5.2.5.5V6h1.8c.4.1.5.5.4.8l-1.8 6.4c-.1.3-.3.4-.5.4H2.5c-.3 0-.5-.2-.5-.5V4.5c0-.3.2-.5.5-.5h10z'/%3E%3Cpath fill='%23fff' d='M3 5v5.6l1.4-4.2c.1-.1.2-.4.6-.4h7V5H3z'/%3E%3C/svg%3E");
   height: 16px;
   width: 16px;
 }
 
 .treepickernode-component:hover .treepickernode-component-expander {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%235a5a5a' d='M12.5 4c.3 0 .5.2.5.5v4h2.3c.4 0 .6.4.4.7l-2.3 4.1c-.1.3-.3.4-.5.4H2.5c-.3 0-.5-.2-.5-.5V4.5c0-.3.2-.5.5-.5h10z'/%3E%3Cpath fill='%23fff' d='M3 5v6.3l1.4-2.6c.1-.2.3-.2.4-.2H12V5H3z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23505359' d='M12.5 4c.3 0 .5.2.5.5v4h2.3c.4 0 .6.4.4.7l-2.3 4.1c-.1.3-.3.4-.5.4H2.5c-.3 0-.5-.2-.5-.5V4.5c0-.3.2-.5.5-.5h10z'/%3E%3Cpath fill='%23fff' d='M3 5v6.3l1.4-2.6c.1-.2.3-.2.4-.2H12V5H3z'/%3E%3C/svg%3E");
 }
 
 .treepickernode-component.is-error {
-  background-color: #fbedec;
+  background-color: $color-danger-soft;
 }
 
 .treepickernode-component.is-warning {
-  background-color: #fef6ea;
+  background-color: $color-warning-soft;
 }
 
 .treepickernode-component.is-info {
-  background-color: #e0f0ff;
+  background-color: $color-primary-soft;
 }
 
 .treepickernode-component.is-success {
-  background-color: #eaf8ea;
+  background-color: $color-success-soft;
 }
 
 .treepickernode-component-metadata {
-  color: #838383;
+  color: $color-grey-600;
 }
 
 .treepickernode-component-metadata::before {
@@ -42,7 +44,7 @@
 }
 
 .treepickernode-component .grid-component-cell-button .button-xs {
-  font-size: 15px;
+  font-size: $font-size-medium;
   min-height: 20px;
   line-height: 14px;
   width: 20px;

@@ -3,7 +3,7 @@
 $border-radius: 6px;
 $border-width: 1px;
 $gap: 12px;
-$focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-gray-darker;
+$focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-grey-700;
 
 .aui--radio-group,
 .aui--checkbox-group {
@@ -55,7 +55,7 @@ $focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-gray-darker;
       border-radius: $border-radius;
       border-width: 1px;
       border-style: solid;
-      border-color: $color-gray-lighter;
+      border-color: $color-grey-300;
       transition: 150ms ease;
       background-color: $color-white;
       gap: 10px;
@@ -64,13 +64,13 @@ $focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-gray-darker;
     &.is-disabled {
       & label {
         cursor: default;
-        border-color: $color-gray-lighter;
+        border-color: $color-grey-300;
       }
     }
 
     &.is-selected {
       & label {
-        border-color: $color-gray-dark;
+        border-color: $color-grey-600;
       }
     }
 
@@ -92,19 +92,19 @@ $focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-gray-darker;
 
     &.is-disabled:not(.is-selected) {
       & label {
-        background-color: $color-gray-lightest;
+        background-color: $color-grey-200;
       }
     }
 
     &:hover:not(.is-disabled) {
       & label {
-        background-color: $color-gray-lightest;
+        background-color: $color-grey-200;
       }
     }
 
     &:active:not(.is-disabled) {
       & label {
-        border-color: $color-gray-light;
+        border-color: $color-grey-400;
       }
     }
 
@@ -130,7 +130,7 @@ $focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-gray-darker;
     & .aui--checkbox-label-text {
       margin-bottom: 9px;
       margin-top: 0;
-      font-size: $font-size-subheader;
+      font-size: $font-size-medium;
       font-weight: bold;
     }
   }

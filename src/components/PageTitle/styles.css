@@ -1,19 +1,21 @@
+@import url('../../styles/variable.css');
+
 .pagetitle-component {
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $color-border-base;
   box-sizing: content-box;
-  font-size: 18px;
+  font-size: $font-size-large;
   height: 30px;
   line-height: 30px;
   padding: 20px 30px;
 }
 
 .pagetitle-component-is-footer {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid $color-border-base;
   border-bottom: 0;
-  color: #838383;
-  font-size: 12px;
+  color: $color-grey-600;
+  font-size: $font-size-base;
 }
 
 .pagetitle-component small {
-  font-size: 11px;
+  font-size: $font-size-small;
 }

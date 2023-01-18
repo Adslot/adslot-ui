@@ -3,12 +3,12 @@
 $diameter: 35px;
 
 .avatar-component {
-  background-color: $color-gray;
-  border-radius: $border-radius-circle;
+  background-color: $color-grey-500;
+  border-radius: $border-radius-round;
   color: $color-text-inverse;
   cursor: default;
   display: inline-block;
-  font-size: $font-size-subheader;
+  font-size: $font-size-medium;
   font-weight: $font-weight-bold;
   height: $diameter;
   line-height: calc($diameter + 1px);
@@ -23,7 +23,7 @@ $diameter: 35px;
   }
 
   & .avatar-component-image {
-    border-radius: $border-radius-circle;
+    border-radius: $border-radius-round;
     height: 100%;
     width: 100%;
     left: 0;
@@ -32,26 +32,26 @@ $diameter: 35px;
   }
 
   &.avatar-component-blue {
-    background-color: $color-blue;
+    background-color: $color-primary-base;
   }
 
   &.avatar-component-green {
-    background-color: $color-green;
+    background-color: $color-success-base;
   }
 
   &.avatar-component-red {
-    background-color: $color-red;
+    background-color: $color-danger-base;
   }
 
   &.avatar-component-orange {
-    background-color: $color-orange;
+    background-color: $color-info-base;
   }
 
   &.avatar-component-cyan {
-    background-color: $color-cyan;
+    background-color: $color-info-base;
   }
 
   &.avatar-component-black {
-    background-color: $color-gray-darker;
+    background-color: $color-grey-800;
   }
 }

@@ -1,9 +1,8 @@
 @import url('../../styles/variable');
 
-$font-size-button-default: 12px;
-$font-size-button-large: 15px;
-$border-radius-button-default: 2px;
-$border-radius-button-large: 4px;
+$font-size-button-default: $font-size-base;
+$font-size-button-large: $font-size-medium;
+$border-radius-button-default: $border-radius-base;
 $line-height-button: 1.5;
 $line-height-button-large: 1.467;
 $gap-button-default: 6px;
@@ -20,7 +19,15 @@ $padding-icon-button-large: 10px;
 /* calc(($size-button-large - 2px - $font-size-button-large * $line-height-button-large) / 2) */
 $padding-y-button-large: 9px;
 $padding-x-button-large: 24px;
-$focus-ring-color: $color-gray-darker;
+$focus-ring-color: $color-grey-700;
+
+$color-default-active: $color-grey-200;
+$color-primary-active: $color-blue-700;
+$color-success-active: $color-green-700;
+$color-danger-active: $color-red-700;
+$color-warning-active: $color-orange-700;
+$color-info-active: $color-cyan-700;
+$color-secondary-active: $color-teal-700;
 
 .aui--button,
 .aui--anchor,
@@ -30,7 +37,7 @@ $focus-ring-color: $color-gray-darker;
   align-items: center;
   justify-content: center;
   margin-bottom: 0;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   text-align: center;
   white-space: nowrap;
   text-decoration: none;
@@ -48,9 +55,8 @@ $focus-ring-color: $color-gray-darker;
   transition-property: background-color, border-color, box-shadow, transform;
   transition-duration: 0.1s;
   margin-right: 5px;
-  color: $color-gray-darker;
-  background-color: $color-inverse;
-  border-color: $color-gray-light;
+  background-color: $color-white;
+  border-color: $color-grey-400;
 
   &:last-child {
     margin-right: 0;
@@ -63,148 +69,147 @@ $focus-ring-color: $color-gray-darker;
 
   &:focus-visible {
     outline: none;
-    border-color: $color-inverse;
+    border-color: $color-white;
     box-shadow: 0 0 0 2px $focus-ring-color;
   }
 
   &[class*='aui-'] {
     &:focus-visible {
-      border-color: $color-inverse;
+      border-color: $color-white;
     }
   }
 
   &:hover {
-    color: $color-gray-darker;
-    background-color: $color-gray-lighter;
-    border-color: #bababa;
+    background-color: $color-grey-200;
+    border-color: $color-grey-500;
   }
 
   &.aui-primary {
-    color: $color-inverse;
-    background-color: $color-primary;
-    border-color: $color-primary;
+    color: $color-text-inverse;
+    background-color: $color-primary-base;
+    border-color: $color-primary-base;
 
     &:hover {
-      color: $color-inverse;
-      background-color: #005299;
-      border-color: #005299;
+      color: $color-text-inverse;
+      background-color: $color-primary-strong;
+      border-color: $color-primary-strong;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #004480;
-      border-color: #004480;
+      color: $color-text-inverse;
+      background-color: $color-primary-active;
+      border-color: $color-primary-active;
     }
   }
 
   &.aui-secondary {
-    color: $color-inverse;
-    background-color: $color-secondary;
-    border-color: $color-secondary;
+    color: $color-text-inverse;
+    background-color: $color-secondary-base;
+    border-color: $color-secondary-base;
 
     &:hover {
-      color: $color-inverse;
-      background-color: #008577;
-      border-color: #008577;
+      color: $color-text-inverse;
+      background-color: $color-secondary-strong;
+      border-color: $color-secondary-strong;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #006c60;
-      border-color: #006c60;
+      color: $color-text-inverse;
+      background-color: $color-secondary-active;
+      border-color: $color-secondary-active;
     }
   }
 
   &.aui-success {
-    color: $color-inverse;
-    background-color: $color-positive;
-    border-color: $color-positive;
+    color: $color-text-inverse;
+    background-color: $color-success-base;
+    border-color: $color-success-base;
 
     &:hover {
-      color: $color-inverse;
-      background-color: #449b44;
-      border-color: #449b44;
+      color: $color-text-inverse;
+      background-color: $color-success-strong;
+      border-color: $color-success-strong;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #3c893c;
-      border-color: #3c893c;
+      color: $color-text-inverse;
+      background-color: $color-success-active;
+      border-color: $color-success-active;
     }
   }
 
   &.aui-info {
-    color: $color-inverse;
-    background-color: $color-info;
-    border-color: $color-info;
+    color: $color-text-inverse;
+    background-color: $color-info-base;
+    border-color: $color-info-base;
 
     &:hover {
-      color: $color-inverse;
-      background-color: #3195b2;
-      border-color: #3195b2;
+      color: $color-text-inverse;
+      background-color: $color-info-strong;
+      border-color: $color-info-strong;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #2b849e;
-      border-color: #2b849e;
+      color: $color-text-inverse;
+      background-color: $color-info-active;
+      border-color: $color-info-active;
     }
   }
 
   &.aui-warning {
-    color: $color-inverse;
-    background-color: $color-warning;
-    border-color: $color-warning;
+    color: $color-text-inverse;
+    background-color: $color-warning-base;
+    border-color: $color-warning-base;
 
     &:hover {
-      color: $color-inverse;
-      background-color: #f39106;
-      border-color: #f39106;
+      color: $color-text-inverse;
+      background-color: $color-warning-strong;
+      border-color: $color-warning-strong;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #da8205;
-      border-color: #da8205;
+      color: $color-text-inverse;
+      background-color: $color-warning-active;
+      border-color: $color-warning-active;
     }
   }
 
   &.aui-danger {
-    color: $color-inverse;
-    background-color: $color-negative;
-    border-color: $color-negative;
+    color: $color-text-inverse;
+    background-color: $color-danger-base;
+    border-color: $color-danger-base;
 
     &:hover {
-      color: $color-inverse;
-      background-color: #c72f29;
-      border-color: #c72f29;
+      color: $color-text-inverse;
+      background-color: $color-danger-strong;
+      border-color: $color-danger-strong;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #b22a24;
-      border-color: #b22a24;
+      color: $color-text-inverse;
+      background-color: $color-danger-active;
+      border-color: $color-danger-active;
     }
   }
 
   &.aui-inverse {
-    background-color: $color-inverse;
-    border-color: $color-gray-light;
+    background-color: $color-white;
+    border-color: $color-grey-400;
 
     &:focus-visible {
-      border-color: $color-inverse;
+      border-color: $color-white;
       box-shadow: 0 0 0 2px $focus-ring-color;
     }
 
     &:hover {
-      background-color: $color-gray-lighter;
-      border-color: #bababa;
+      background-color: $color-grey-200;
+      border-color: $color-grey-500;
     }
 
     &:active {
-      color: $color-inverse;
-      background-color: #dbdbdb;
-      border-color: #bababa;
+      color: $color-text-inverse;
+      background-color: $color-grey-400;
+      border-color: $color-grey-500;
     }
   }
 
@@ -213,76 +218,72 @@ $focus-ring-color: $color-gray-darker;
     border-color: transparent;
 
     &:focus-visible {
-      border-color: $color-inverse;
+      border-color: $color-white;
       box-shadow: 0 0 0 2px $focus-ring-color;
     }
 
     &:hover {
-      background-color: $color-inverse;
-      border-color: $color-gray-light;
+      background-color: $color-white;
+      border-color: $color-grey-500;
     }
 
     &:active {
-      background-color: $color-gray-lighter;
-      border-color: #adadad;
+      background-color: $color-default-active;
+      border-color: $color-grey-500;
     }
   }
 
   &.aui-borderless,
   &.aui-inverse {
     &.aui-primary {
-      color: $color-primary;
+      color: $color-primary-base;
 
       &:hover {
-        color: $color-primary;
+        color: $color-primary-base;
       }
     }
 
     &.aui-default {
-      color: $color-gray-darker;
-
-      &:hover {
-        color: $color-gray-darker;
-      }
+      color: $color-default-strong;
     }
 
     &.aui-secondary {
-      color: $color-secondary;
+      color: $color-secondary-strong;
 
       &:hover {
-        color: $color-secondary;
+        color: $color-secondary-strong;
       }
     }
 
     &.aui-success {
-      color: $color-positive;
+      color: $color-success-strong;
 
       &:hover {
-        color: $color-positive;
+        color: $color-success-strong;
       }
     }
 
     &.aui-info {
-      color: $color-info;
+      color: $color-info-strong;
 
       &:hover {
-        color: $color-info;
+        color: $color-info-strong;
       }
     }
 
     &.aui-warning {
-      color: $color-warning;
+      color: $color-warning-strong;
 
       &:hover {
-        color: $color-warning;
+        color: $color-warning-strong;
       }
     }
 
     &.aui-danger {
-      color: $color-negative;
+      color: $color-danger-strong;
 
       &:hover {
-        color: $color-negative;
+        color: $color-danger-strong;
       }
     }
   }
@@ -291,16 +292,16 @@ $focus-ring-color: $color-gray-darker;
   &.aui-link {
     all: unset;
     border-radius: $border-radius-button-default;
-    color: $color-primary;
+    color: $color-primary-base;
     text-decoration: none;
     cursor: pointer;
 
     &:hover {
-      color: #004c8f;
+      color: $color-primary-strong;
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px $color-gray-darker;
+      box-shadow: 0 0 0 2px $focus-ring-color;
     }
   }
 
@@ -321,7 +322,7 @@ $focus-ring-color: $color-gray-darker;
 
   /* Round */
   &.aui-round {
-    border-radius: 999px;
+    border-radius: $border-radius-round;
   }
 
   /* Full Width */
@@ -376,9 +377,9 @@ $focus-ring-color: $color-gray-darker;
   /* Disabled */
   &[class*='aui-'].disabled,
   &[class*='aui-'][disabled] {
-    background-color: $color-gray-lighter;
-    border-color: $color-gray-lighter;
-    color: $color-gray-dark;
+    background-color: $color-grey-300;
+    border-color: $color-grey-300;
+    color: $color-grey-600;
     opacity: 0.65;
     box-shadow: none;
     cursor: not-allowed;
@@ -389,9 +390,9 @@ $focus-ring-color: $color-gray-darker;
 
     &:hover,
     &:focus {
-      background-color: $color-gray-lighter;
-      border-color: $color-gray-lighter;
-      color: $color-gray-dark;
+      background-color: $color-grey-300;
+      border-color: $color-grey-300;
+      color: $color-grey-600;
       opacity: 0.65;
       box-shadow: none;
       cursor: not-allowed;

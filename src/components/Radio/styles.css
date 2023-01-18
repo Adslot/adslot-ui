@@ -25,6 +25,7 @@ $label-gap: 8px;
 
   & .aui--radio-label {
     margin-left: $label-gap;
+    color: $color-text-base;
   }
 
   & .aui--radio-input-container {
@@ -55,19 +56,19 @@ $label-gap: 8px;
       border-width: 2px;
       transition: border 75ms ease-in-out;
       border-style: solid;
-      border-color: $color-gray;
+      border-color: $color-grey-500;
       display: block;
     }
 
     &.hover {
       &::before {
-        border-color: $color-info;
+        border-color: $color-info-base;
       }
     }
 
     &.disabled {
       &::before {
-        border-color: $color-gray-light;
+        border-color: $color-grey-400;
         border-width: 8px;
       }
 
@@ -80,14 +81,14 @@ $label-gap: 8px;
 
       &.checked {
         &::before {
-          border-color: $color-gray-light;
+          border-color: $color-grey-400;
         }
       }
     }
 
     &.checked {
       &::before {
-        border-color: $color-info;
+        border-color: $color-info-base;
         border-width: 5px;
       }
     }
@@ -98,14 +99,14 @@ $label-gap: 8px;
 
     & .aui--radio-input-icon {
       border-radius: 50%;
-      box-shadow: 0 0 0 2px $color-gray-darker;
+      box-shadow: 0 0 0 2px $color-grey-700;
     }
   }
 
   &:hover {
     & .aui--radio-input-icon:not(.checked, .disabled) {
       &::before {
-        border-color: $color-info;
+        border-color: $color-info-base;
       }
     }
   }
@@ -113,7 +114,7 @@ $label-gap: 8px;
   &:active {
     & .aui--radio-input-icon:not(.checked, .disabled) {
       &::before {
-        border-color: $color-info-selected;
+        border-color: $color-info-strong;
       }
     }
   }

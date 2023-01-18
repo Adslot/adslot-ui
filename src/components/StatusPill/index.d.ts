@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type StatusPillDisplayStyle = 'primary' | 'success' | 'warning' | 'error' | 'light';
+export type StatusPillDisplayStyle = 'info' | 'success' | 'warning' | 'error' | 'light';
 
 export type StatusPillSize = 'large' | 'medium' | 'small';
 
@@ -12,7 +12,7 @@ export interface StatusPillProps {
    */
   status: React.ReactNode;
   /**
-   * one of ["primary", "success", "warning", "error", "light"]
+   * one of ["info", "success", "warning", "error", "light"]
    */
   displayStyle?: StatusPillDisplayStyle;
   /**

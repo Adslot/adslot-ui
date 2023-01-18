@@ -1,21 +1,23 @@
 @import url('../../styles/variable');
 
+$color-text-addon: $color-grey-500;
+
 .aui--alert-input {
   display: flex;
   align-items: center;
-  background-color: $color-well;
-  border: $border-lighter;
-  border-radius: $border-radius;
+  background-color: $color-white;
+  border: 1px solid $color-border-base;
+  border-radius: $border-radius-base;
   padding: 4px 5px;
   position: relative;
 
   &.aui--alert-input--focused {
-    border-color: $color-border;
+    border-color: $color-border-base;
   }
 
   & .aui--alert-input__input {
     flex-grow: 1;
-    background-color: $color-well;
+    background-color: $color-white;
     border: 0;
     width: 100%;
     padding: 0;
@@ -26,19 +28,19 @@
   }
 
   &.success {
-    border-color: $color-positive;
+    border-color: $color-success-base;
   }
 
   &.info {
-    border-color: $color-info;
+    border-color: $color-info-base;
   }
 
   &.warning {
-    border-color: $color-warning;
+    border-color: $color-warning-base;
   }
 
   &.error {
-    border-color: $color-negative;
+    border-color: $color-danger-base;
   }
 
   & .aui--alert-input__addon {
@@ -54,16 +56,16 @@
   }
 
   &.aui--alert-input--disabled {
-    background-color: $color-gray-lighter;
+    background-color: $color-grey-300;
 
     & .aui--alert-input__input {
       &:disabled {
-        background-color: $color-gray-lighter;
+        background-color: $color-grey-300;
       }
     }
 
     & .aui--alert-input__addon {
-      color: $color-gray;
+      color: $color-grey-500;
     }
   }
 }

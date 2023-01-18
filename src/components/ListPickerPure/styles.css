@@ -18,7 +18,7 @@ $cell-padding: 8px 0 8px 10px;
     transition: background-color 150ms ease;
 
     &:hover {
-      background-color: $color-gray-lightest;
+      background-color: $color-grey-200;
     }
   }
 
@@ -48,7 +48,7 @@ $cell-padding: 8px 0 8px 10px;
     transition: background-color 150ms ease;
 
     &.grid-component-cell-selected {
-      background-color: $color-gray-lightest;
+      background-color: $color-grey-200;
     }
 
     &.grid-component-cell-label {
@@ -80,7 +80,7 @@ $cell-padding: 8px 0 8px 10px;
   }
 
   & .empty-component {
-    border-bottom: $border-lighter;
+    border-bottom: 1px solid $color-border-base;
   }
 
   & .grid-component-row {

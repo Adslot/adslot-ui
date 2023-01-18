@@ -2,23 +2,23 @@
 
 .alert-component {
   color: $color-text-inverse;
-  font-size: $font-size-body;
+  font-size: $font-size-base;
   line-height: 20px;
   padding: 10px;
 
   &.alert-component-success {
-    background-color: $color-positive;
+    background-color: $color-success-base;
   }
 
   &.alert-component-info {
-    background-color: $color-info;
+    background-color: $color-info-base;
   }
 
   &.alert-component-warning {
-    background-color: $color-warning;
+    background-color: $color-warning-base;
   }
 
   &.alert-component-danger {
-    background-color: $color-negative;
+    background-color: $color-danger-base;
   }
 }

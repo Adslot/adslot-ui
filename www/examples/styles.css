@@ -1,40 +1,42 @@
+@import url('../../src/styles/variable.css');
+
 .tag-component-accent.accent-positive {
-  border-color: #5bb75b;
+  border-color: $color-green-500;
 }
 
 .tag-component-accent.accent-positive:not(.tag-component-inverse) {
-  background-color: #5bb75b;
+  background-color: $color-green-500;
 }
 
 .tag-component-accent.accent-positive.tag-component-inverse {
-  color: #5bb75b;
-  fill: #5bb75b;
+  color: $color-green-500;
+  fill: $color-green-500;
 }
 
 .tag-component-accent.accent-pending {
-  border-color: #faa732;
+  border-color: $color-orange-500;
 }
 
 .tag-component-accent.accent-pending:not(.tag-component-inverse) {
-  background-color: #faa732;
+  background-color: $color-orange-500;
 }
 
 .tag-component-accent.accent-pending.tag-component-inverse {
-  color: #faa732;
-  fill: #faa732;
+  color: $color-orange-500;
+  fill: $color-orange-500;
 }
 
 .tag-component-accent.accent-negative {
-  border-color: #da4f49;
+  border-color: $color-red-500;
 }
 
 .tag-component-accent.accent-negative:not(.tag-component-inverse) {
-  background-color: #da4f49;
+  background-color: $color-red-500;
 }
 
 .tag-component-accent.accent-negative.tag-component-inverse {
-  color: #da4f49;
-  fill: #da4f49;
+  color: $color-red-500;
+  fill: $color-red-500;
 }
 
 .adslot-ui-example-container.alert-input-example .adslot-ui-example {
@@ -91,7 +93,7 @@
 }
 
 .adslot-ui-example-container.navigation-tabs-example .adslot-ui-example .dashboard-tab {
-  border-color: #d5382e;
+  border-color: $color-red-700;
 }
 
 .adslot-ui-example-container.popover-example .adslot-ui-example .button-example-container {
@@ -141,7 +143,7 @@
 .adslot-ui-example-container.popover-example .adslot-ui-example .auto-flip-container {
   width: 500px;
   height: 250px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid $color-border-base;
   overflow: hidden;
   overflow-x: scroll;
 }
@@ -167,7 +169,7 @@
   margin-top: 100px;
   width: 100px;
   height: 100px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,7 +195,7 @@
 .adslot-ui-example-container.button-group-example .adslot-ui-example .aui--button-group .aui--svg-symbol-component {
   position: relative;
   top: 3px;
-  fill: #fff;
+  fill: $color-white;
 }
 
 .adslot-ui-example-container.button-group-example
@@ -235,7 +237,7 @@
   .aui--vertical-navigation-component__menu-item.aui--vertical-navigation-component__menu-item-is-active
   .menu-icon {
   border-radius: 50%;
-  background-color: #e8e8e8;
+  background-color: $color-grey-300;
 }
 
 .adslot-ui-example-container.vertical-navigation-tabs-example .menu-content {
@@ -245,7 +247,7 @@
 
 .adslot-ui-example-container.vertical-navigation-tabs-example .menu-content:hover .menu-icon {
   border-radius: 50%;
-  background-color: #e8e8e8;
+  background-color: $color-grey-300;
 }
 
 .adslot-ui-example-container.vertical-navigation-tabs-example .menu-content .menu-icon .product-details-icon {
@@ -273,7 +275,7 @@
 
 .adslot-ui-example-container.tree-picker-example .selected-search {
   padding: 10px 10px 30px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid $color-border-base;
   border-bottom: 0;
 }
 

@@ -1,3 +1,5 @@
+@import url('../../styles/variable.css');
+
 .aui--switch-label {
   position: relative;
   display: inline-block;
@@ -18,10 +20,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: $color-white;
   transition: 0.4s;
   border-style: solid;
-  border-color: #ababab;
+  border-color: $color-grey-500;
   border-width: thin;
 }
 
@@ -32,12 +34,12 @@
   width: 12px;
   margin-left: 3px;
   margin-top: 3px;
-  background-color: #006dcc;
+  background-color: $color-primary-base;
   transition: 0.4s;
 }
 
 input:checked + .aui--switch-slider {
-  background-color: #e0f0ff;
+  background-color: $color-primary-soft;
 }
 
 input:checked + .aui--switch-slider::before {
@@ -45,11 +47,11 @@ input:checked + .aui--switch-slider::before {
 }
 
 input:disabled + .aui--switch-slider {
-  background-color: #d3d3d3;
+  background-color: $color-grey-400;
 }
 
 input:disabled + .aui--switch-slider::before {
-  background-color: #838383;
+  background-color: $color-grey-600;
 }
 
 .aui--switch-slider.round {

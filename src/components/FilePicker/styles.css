@@ -1,11 +1,13 @@
+@import url('../../styles/variable.css');
+
 .filepicker-component-highlight {
-  border: 1px solid #d5382e;
-  border-radius: 2px;
+  border: 1px solid $color-red-600;
+  border-radius: $border-radius-base;
   padding: 1px;
 }
 
 .filepicker-component .aui--button.remove-file {
-  background-color: #e8e8e8;
+  background-color: $color-grey-300;
   border: 0;
   margin-right: 0;
 }

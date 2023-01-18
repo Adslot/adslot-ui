@@ -1,9 +1,11 @@
+@import url('../../styles/variable.css');
+
 .aui--searchable-checklist .aui--searchable-list-container {
   display: inline-block;
 }
 
 .aui--searchable-checklist .aui--searchable-list-container .title {
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   margin-bottom: 10px;
 }
 
@@ -22,5 +24,5 @@
 }
 
 .aui--searchable-checklist .aui--searchable-list-container .footer {
-  color: #ababab;
+  color: $color-grey-500;
 }
