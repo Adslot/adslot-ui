@@ -63,5 +63,29 @@ module.exports = {
         },
       ],
     },
+
+    /**
+     * can be used via postcss-simple-variables plugin, in order to not have to import the css itself
+     * ```
+     * const tokens = require('adslot-ui/system/internal/variables.json');
+     * 
+     * require('postcss-simple-vars')({
+        variables: tokens
+       })
+     * ```
+     */
+    postcssVariablesJSON: {
+      buildPath: `internal/`,
+      transformGroup: 'web',
+      files: [
+        {
+          destination: `variables.json`,
+          format: 'json/flat',
+          options: {
+            outputReferences: false,
+          },
+        },
+      ],
+    },
   },
 };
