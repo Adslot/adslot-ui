@@ -20,8 +20,8 @@ build/
 
 docs/
 
-dist
+# dist
 
-lib
+# lib
 
-es
+# es
