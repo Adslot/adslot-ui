@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "system:dist": "rimraf tokens/* internal/* && style-dictionary build && npm run system:format",
-    "system:format": "prettier \"internal/index.js\" \"tokens/**.json\" --write",
+    "system:format": "prettier \"internal/**.{js,json}\" \"tokens/**.json\" --write",
     "convert": "node ./scripts/convertXdCssVars.mjs"
   },
   "sideEffects": false
