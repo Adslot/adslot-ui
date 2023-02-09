@@ -54,11 +54,17 @@ describe('<CheckboxGroup />', () => {
 
     const { container } = render(
       <CheckboxGroup {...props} value={['checkbox-value-1']} getIsChecked={getIsChecked} onChange={mockoOnChange}>
+        <CheckboxGroup.All
+          values={['checkbox-value-1', 'checkbox-value-2', 'checkbox-value-3']}
+          label="Checkbox Parent"
+          dts="test-p"
+        />
         <CheckboxGroup.Item value="checkbox-value-1" label="Checkbox 1" dts="test-1" />
         <CheckboxGroup.Item value="checkbox-value-2" label="Checkbox 2" dts="test-2" />
         <CheckboxGroup.Item value="checkbox-value-3" label="Checkbox 3" dts="test-3" />
       </CheckboxGroup>
     );
+    expect(getByDts(container, 'test-p')).toBePartiallyChecked();
 
     const checkbox2 = getByDts(container, 'test-2');
 
