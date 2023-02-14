@@ -28,10 +28,12 @@ const CheckboxGroupProvider = ({
     };
 
     const getIsAllChecked = (values) => {
-      const hasUnchecked = values.some((item) => !getIsItemChecked(item));
-      const hasChecked = values.some((item) => getIsItemChecked(item));
+      const result = _(values)
+        .map((item) => getIsItemChecked(item))
+        .uniq()
+        .value();
 
-      return hasUnchecked && hasChecked ? 'partial' : !hasUnchecked && hasChecked;
+      return result.length === 1 ? result[0] : 'partial';
     };
 
     const onItemChange = (checkboxValue) => {

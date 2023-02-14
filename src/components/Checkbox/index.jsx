@@ -7,7 +7,7 @@ import './styles.css';
 const SELECTION_KEYS = ['Enter', ' '];
 
 const getNextState = (checked) => {
-  if (checked === 'partial') return false;
+  if (checked === 'partial') return true;
   return !checked;
 };
 

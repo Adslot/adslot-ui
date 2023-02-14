@@ -268,7 +268,7 @@ describe('<SearchableChecklist />', () => {
     expect(onChange).toHaveBeenCalledWith(_.map(items, 'value'));
   });
 
-  it('should call onChange with `[]` when selected items are fixed', () => {
+  it('should call onChange with all items when selected items are fixed', () => {
     const onChange = jest.fn();
 
     const { queryAllByTestId } = render(
@@ -281,6 +281,6 @@ describe('<SearchableChecklist />', () => {
     expect(onChange).toHaveBeenCalledTimes(0);
     fireEvent.click(checkBoxesWrapper[0]);
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith([]);
+    expect(onChange).toHaveBeenCalledWith(items.map((entry) => entry.value));
   });
 });
