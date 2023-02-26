@@ -11,14 +11,8 @@ export interface RichTextEditorMentions {
 export interface RichTextEditorProps {
   className?: string;
   placeholder?: string;
-  /**
-   * Editor State
-   */
-  initialValue?: EditorState;
-  /**
-   * Editor State: Instance of <a href="https://draftjs.org/docs/api-reference-editor-state">draft-js editor state</a>
-   */
-  value?: EditorState;
+  initialValue?: string;
+  value?: string;
   onChange?: (...args: any[]) => any;
   mentions?: RichTextEditorMentions[];
   onFileSelect?: (...args: any[]) => any;
@@ -33,6 +27,7 @@ declare const RichTextEditor: React.FC<RichTextEditorProps> & {
   stateFromHTML: (input: string) => EditorState;
   stateToPlainText: (input: ContentState) => string;
   stateToEntityList: (input: ContentState) => RawDraftContentState['entityMap'];
+  plainTextFromHTML: (input: string) => string;
 };
 
 export default RichTextEditor;

@@ -178,6 +178,7 @@ exports.replacements = (componentName) => ({
         stateFromHTML: (input: string) => EditorState;
         stateToPlainText: (input: ContentState) => string;
         stateToEntityList: (input: ContentState) => RawDraftContentState['entityMap'];
+        plainTextFromHTML: (input: string) => string;
       };`,
       ],
     ],

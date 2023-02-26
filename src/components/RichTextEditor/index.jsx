@@ -18,6 +18,20 @@ import './styles.css';
 
 const { EditorState, Modifier, convertToRaw, RichUtils } = draftJs;
 
+const editorStateToHTML = (input) => stateToHTML(input.getCurrentContent());
+const editorStateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
+const isEditorStateEmpty = (html) => html === '<p><br></p>';
+
+const getInitialEditorState = (value, initialValue) => {
+  if (value) {
+    return editorStateFromHTML(value);
+  }
+  if (initialValue) {
+    return editorStateFromHTML(initialValue);
+  }
+  return EditorState.createEmpty();
+};
+
 const RichTextEditor = ({
   className,
   value,
@@ -38,7 +52,7 @@ const RichTextEditor = ({
 
   const classNames = cc('aui--editor-root', className);
 
-  const [editorState, setEditorState] = React.useState(initialValue || EditorState.createEmpty());
+  const [editorState, setEditorState] = React.useState(getInitialEditorState(value, initialValue));
   const [isMentionListOpen, setIsMentionListOpen] = React.useState(false);
   const [suggestions, setSuggestions] = React.useState(mentions);
   const [files, setFiles] = React.useState({});
@@ -75,16 +89,16 @@ const RichTextEditor = ({
   }, []);
 
   const handleOnChange = (newState) => {
-    if (!value) {
-      setEditorState(newState);
+    const oldHTML = editorStateToHTML(editorState);
+    const newHTML = editorStateToHTML(newState);
+    if (oldHTML !== newHTML && onChange) {
+      onChange(isEditorStateEmpty(newHTML) ? '' : newHTML);
     }
-    if (onChange) {
-      onChange(newState);
-    }
+    setEditorState(newState);
   };
 
   const insertText = (text) => {
-    const state = value || editorState;
+    const state = editorState;
     const currentContent = state.getCurrentContent();
     const currentSelection = state.getSelection();
 
@@ -95,7 +109,7 @@ const RichTextEditor = ({
   };
 
   const handleKeyCommand = (command) => {
-    const newState = RichUtils.handleKeyCommand(value || editorState, command);
+    const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       handleOnChange(newState);
       return true;
@@ -139,7 +153,7 @@ const RichTextEditor = ({
       <div className="aui--editor-container" onClick={focusEditor}>
         <Editor
           editorKey="editor"
-          editorState={value || editorState}
+          editorState={editorState}
           handleKeyCommand={handleKeyCommand}
           onChange={handleOnChange}
           placeholder={placeholder}
@@ -172,8 +186,8 @@ const RichTextEditor = ({
       <FilePreviewList files={files} onFileRemove={handleFileRemove} />
       <div className="aui--editor-toolbar">
         <div className="aui--editor-style-buttons">
-          <InlineStyleButtons editorState={value || editorState} onToggle={handleOnChange} />
-          <BlockStyleButtons editorState={value || editorState} onToggle={handleOnChange} />
+          <InlineStyleButtons editorState={editorState} onToggle={handleOnChange} />
+          <BlockStyleButtons editorState={editorState} onToggle={handleOnChange} />
         </div>
         <div data-testid="rich-text-editor-advanced-buttons" className="aui--editor-advanced-buttons">
           {!_.isEmpty(mentions) && (
@@ -196,10 +210,8 @@ const RichTextEditor = ({
 RichTextEditor.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  /** Editor State */
-  initialValue: PropTypes.instanceOf(EditorState),
-  /** Editor State: Instance of <a href="https://draftjs.org/docs/api-reference-editor-state">draft-js editor state</a> */
-  value: PropTypes.instanceOf(EditorState),
+  initialValue: PropTypes.string,
+  value: PropTypes.string,
   onChange: PropTypes.func,
   mentions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -220,9 +232,10 @@ RichTextEditor.defaultProps = {
 
 RichTextEditor.createEmpty = EditorState.createEmpty;
 RichTextEditor.createWithText = createEditorStateWithText;
-RichTextEditor.stateToHTML = (input) => stateToHTML(input.getCurrentContent());
-RichTextEditor.stateFromHTML = (input) => EditorState.createWithContent(stateFromHTML(input));
+RichTextEditor.stateToHTML = editorStateToHTML;
+RichTextEditor.stateFromHTML = editorStateFromHTML;
 RichTextEditor.stateToPlainText = (input) => input.getCurrentContent().getPlainText();
 RichTextEditor.stateToEntityList = (input) => convertToRaw(input.getCurrentContent()).entityMap;
+RichTextEditor.plainTextFromHTML = (input) => RichTextEditor.stateToPlainText(editorStateFromHTML(input));
 
 export default RichTextEditor;
