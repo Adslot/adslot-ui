@@ -69,10 +69,11 @@ const Radio = ({
       }}
       {...expandDts(dts)}
     >
-      <label htmlFor={id}>
+      <label className="aui--radio-label-container" htmlFor={id}>
         <div className="aui--radio-input-container">
           <span className={iconClassName} />
           <input
+            className="aui--radio-input"
             data-testid="radio-input"
             type="radio"
             name={radioName}

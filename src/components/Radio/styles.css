@@ -2,7 +2,7 @@
 $label-gap: 8px;
 
 .aui--radio {
-  & label {
+  & .aui--radio-label-container {
     line-height: 16px;
     font-weight: $font-weight-normal;
     cursor: pointer;
@@ -11,14 +11,14 @@ $label-gap: 8px;
   }
 
   &.is-reverse {
-    & label {
+    & .aui--radio-label-container {
       flex-direction: row-reverse;
       justify-content: space-between;
     }
   }
 
   &.disabled {
-    & label {
+    & .aui--radio-label-container {
       cursor: not-allowed;
     }
   }
@@ -41,7 +41,7 @@ $label-gap: 8px;
       vertical-align: baseline;
     }
 
-    & input {
+    & .aui--radio-input {
       display: none;
     }
   }

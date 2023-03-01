@@ -1,9 +1,15 @@
 @import url('../../styles/variable');
 
 $spacing: 24px;
+$border-radius: 6px;
+$gap: 12px;
+$focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-grey-700;
 
 .aui--checkbox-group {
   position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  gap: $gap;
 
   &.is-indented {
     left: $spacing;
@@ -14,6 +20,121 @@ $spacing: 24px;
 
     & .aui--checkbox.is-all {
       margin-left: calc($spacing * -1);
+    }
+  }
+
+  &.is-default {
+    align-items: flex-start;
+  }
+
+  &.is-vertical {
+    flex-direction: column;
+  }
+
+  & > .aui--checkbox-box {
+    &:focus-visible {
+      outline: none;
+      box-shadow: $focus-ring;
+
+      & .aui--radio-input-icon,
+      & .aui--checkbox-input-icon {
+        box-shadow: none;
+      }
+    }
+  }
+
+  & > .aui--checkbox-default {
+    &:focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  & div.aui--checkbox-box {
+    flex: 1;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    border-radius: $border-radius;
+
+    & .aui--checkbox-label-container {
+      height: 100%;
+      padding: calc($grid-base-space * 1.5);
+      border-radius: $border-radius;
+      border-width: 1px;
+      border-style: solid;
+      border-color: $color-grey-300;
+      transition: 150ms ease;
+      background-color: $color-white;
+      gap: 10px;
+    }
+
+    &.is-disabled {
+      & .aui--checkbox-label-container {
+        cursor: default;
+        border-color: $color-grey-300;
+      }
+    }
+
+    &.is-selected {
+      & .aui--checkbox-label-container {
+        border-color: $color-grey-600;
+      }
+    }
+
+    & .aui--checkbox-label {
+      margin-left: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: $grid-base-space;
+    }
+
+    & .aui--checkbox-label-text {
+      margin-bottom: 9px;
+      margin-top: 0;
+      font-size: $font-size-medium;
+      font-weight: bold;
+    }
+
+    &:not(.has-text) {
+      & .aui--checkbox-label-container {
+        align-items: center;
+      }
+
+      & .aui--checkbox-label-text {
+        margin-bottom: 0;
+      }
+
+      & .aui--checkbox-label {
+        align-items: center;
+      }
+    }
+
+    &.is-disabled:not(.is-selected) {
+      & .aui--checkbox-label-container {
+        background-color: $color-grey-200;
+      }
+    }
+
+    &:hover:not(.is-disabled) {
+      & .aui--checkbox-label-container {
+        background-color: $color-grey-200;
+      }
+    }
+
+    &:active:not(.is-disabled) {
+      & .aui--checkbox-label-container {
+        border-color: $color-grey-400;
+      }
+    }
+
+    & .aui--checkbox {
+      height: 100%;
+    }
+
+    & .aui--checkbox-icon {
+      display: flex;
     }
   }
 }

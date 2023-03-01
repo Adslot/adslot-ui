@@ -74,8 +74,9 @@ const Checkbox = ({
       onKeyDown={onCheckboxKeyDown}
       {...expandDts(dts)}
     >
-      <label htmlFor={id}>
+      <label className="aui--checkbox-label-container" htmlFor={id}>
         <input
+          className="aui--checkbox-input"
           data-testid="checkbox-input"
           type="checkbox"
           name={name}
