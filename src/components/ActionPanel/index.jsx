@@ -7,19 +7,7 @@ import Button from '../Button';
 import './styles.css';
 
 const ActionPanel = React.forwardRef((props, ref) => {
-  const {
-    title,
-    className,
-    size,
-    onClose,
-    children,
-    visuallyHidden,
-    actionButton,
-    isModal,
-    closeIcon,
-    cancelText,
-    dts,
-  } = props;
+  const { title, className, size, onClose, children, visuallyHidden, actionButton, isModal, cancelButton, dts } = props;
 
   const addBodyClass = (classname) => document.body.classList.add(classname);
   const removeBodyClass = (classname) => document.body.classList.remove(classname);
@@ -32,6 +20,24 @@ const ActionPanel = React.forwardRef((props, ref) => {
       if (isModal) removeBodyClass('modal-open');
     };
   }, [isModal, visuallyHidden]);
+
+  const defaultCancelButton = (
+    <>
+      {actionButton ? (
+        <Button onClick={onClose} className="close-button" dts="header-close-button">
+          Cancel
+        </Button>
+      ) : (
+        <Button
+          onClick={onClose}
+          className={classNames('close-button', 'close-svg-icon')}
+          dts="header-close-button"
+          icon={<div className="close-icon" />}
+          aria-label={'Close'}
+        />
+      )}
+    </>
+  );
 
   const actionPanel = (
     <div ref={ref}>
@@ -58,19 +64,7 @@ const ActionPanel = React.forwardRef((props, ref) => {
               {title}
             </div>
             <span className="actions">
-              {actionButton ? (
-                <Button onClick={onClose} className="close-button" dts="header-close-button">
-                  {cancelText}
-                </Button>
-              ) : (
-                <Button
-                  onClick={onClose}
-                  className={classNames('close-button', 'close-svg-icon')}
-                  dts="header-close-button"
-                  icon={closeIcon}
-                  aria-label={'Close'}
-                />
-              )}
+              {cancelButton ? cancelButton : defaultCancelButton}
               {actionButton}
             </span>
           </div>
@@ -93,9 +87,8 @@ ActionPanel.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   actionButton: PropTypes.node,
-  closeIcon: PropTypes.node,
+  cancelButton: PropTypes.node,
   isModal: PropTypes.bool,
-  cancelText: PropTypes.string,
   /**
    * Hides the modal with css, but keeps it mounted.
    * This should only be used if you need to launch an ActionPanel
@@ -109,8 +102,7 @@ ActionPanel.defaultProps = {
   size: 'large',
   actionButton: null,
   isModal: false,
-  closeIcon: <div className="close-icon" />,
-  cancelText: 'Cancel',
+  cancelButton: null,
 };
 
 export default ActionPanel;

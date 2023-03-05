@@ -75,7 +75,7 @@ describe('<ActionPanel />', () => {
             isModal: true,
             size: 'large',
             actionButton: <Button>Action</Button>,
-            cancelText: 'This is a cancel text',
+            cancelButton: <Button>This is a cancel text</Button>,
           })}
         />
       );

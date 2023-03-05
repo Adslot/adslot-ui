@@ -138,17 +138,6 @@
             "computed": false
           }
         },
-        "closeIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "<div className=\"close-icon\" />",
-            "computed": false
-          }
-        },
         "isModal": {
           "type": {
             "name": "bool"
@@ -160,14 +149,14 @@
             "computed": false
           }
         },
-        "cancelText": {
+        "cancelButton": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "'Cancel'",
+            "value": "null",
             "computed": false
           }
         },
