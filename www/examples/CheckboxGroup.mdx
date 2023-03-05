@@ -67,13 +67,13 @@ const Example = () => {
         name="hobbies"
         value={hobbies}
         onChange={handleGroupChange}
-        dts="radio-group-dts"
+        dts="checkbox-group-dts"
         style={{ width: 300 }}
       >
         <CheckboxGroup.Item
           value="swimming"
           label="Swimming"
-          dts="radio-dts"
+          dts="checkbox-dts"
           icon={<SvgSymbol href="./assets/svg-symbols.svg#list" />}
           text="this is a text description"
         />
@@ -99,10 +99,10 @@ const Example = () => {
         orientation="horizontal"
         value={hobbies}
         onChange={handleGroupChange}
-        dts="radio-group-dts"
+        dts="checkbox-group-dts"
         style={{ width: 600 }}
       >
-        <CheckboxGroup.Item value="swimming" label="Swimming" dts="radio-dts" />
+        <CheckboxGroup.Item value="swimming" label="Swimming" dts="checkbox-dts" />
         <CheckboxGroup.Item value="soccer" label="Soccer" />
         <CheckboxGroup.Item value="badminton" label="Badminton" />
       </CheckboxGroup>

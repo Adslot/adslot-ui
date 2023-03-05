@@ -7,19 +7,19 @@ $label-gap: 8px;
   cursor: pointer;
   display: block;
 
-  & label {
+  & .aui--checkbox-label-container {
     cursor: pointer;
     font-weight: $font-weight-normal;
     margin-bottom: 0;
     display: flex;
   }
 
-  & input {
+  & .aui--checkbox-input {
     display: none;
   }
 
   &.is-reverse {
-    & label {
+    & .aui--checkbox-label-container {
       flex-direction: row-reverse;
       justify-content: space-between;
     }
@@ -99,7 +99,7 @@ $label-gap: 8px;
   &.disabled {
     cursor: not-allowed;
 
-    & label {
+    & .aui--checkbox-label-container {
       cursor: not-allowed;
     }
 
