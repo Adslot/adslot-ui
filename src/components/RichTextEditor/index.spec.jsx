@@ -53,14 +53,15 @@ describe('<RichTextEditor />', () => {
 
   it('should warn when value is passed and onChange is not', () => {
     console.warn = jest.fn();
-    render(<RichTextEditor value={RichTextEditor.createEmpty()} />);
+    const newState = '123';
+    render(<RichTextEditor value={newState} />);
     expect(console.warn).toHaveBeenCalledWith(
       'Failed prop type: You have provided a `value` prop to RichTextEditor component without an `onChange` handler. This will render a read-only field.'
     );
   });
 
   it('should set initial state correctly', () => {
-    const { container } = render(<RichTextEditor initialValue={RichTextEditor.stateFromHTML('<b>test</b>')} />);
+    const { container } = render(<RichTextEditor initialValue="<b>test</b>" />);
     expect(getByClass(container, 'DraftEditor-root')).toHaveTextContent('test');
   });
 
@@ -76,34 +77,35 @@ describe('<RichTextEditor />', () => {
 
   it('should pass state if onChange is supplied', () => {
     const onChange = jest.fn();
-    const { container } = render(<RichTextEditor value={RichTextEditor.createEmpty()} onChange={onChange} />);
-    expect(onChange).toHaveBeenCalledTimes(1);
+    const { container } = render(<RichTextEditor value={''} onChange={onChange} />);
+    expect(onChange).toHaveBeenCalledTimes(0);
     const editorNode = container.querySelector('.public-DraftEditor-content');
     const eventProperties = createPasteEvent('<strong>123</strong>');
     const pasteEvent = createEvent.paste(editorNode, eventProperties);
 
     fireEvent(editorNode, pasteEvent);
-    expect(onChange).toHaveBeenCalledTimes(2);
-    expect(RichTextEditor.stateToHTML(onChange.mock.calls[1][0])).toEqual('<p><strong>123</strong></p>');
-    expect(RichTextEditor.stateToPlainText(onChange.mock.calls[1][0])).toEqual('123');
-    expect(RichTextEditor.stateToEntityList(onChange.mock.calls[1][0])).toEqual({});
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange.mock.calls[0][0]).toEqual('<p><strong>123</strong></p>');
+    expect(RichTextEditor.stateToPlainText(RichTextEditor.stateFromHTML(onChange.mock.calls[0][0]))).toEqual('123');
+    expect(RichTextEditor.plainTextFromHTML(onChange.mock.calls[0][0])).toEqual('123');
+
+    expect(RichTextEditor.stateToEntityList(RichTextEditor.stateFromHTML(onChange.mock.calls[0][0]))).toEqual({});
   });
 
   it('should correctly handle key commands', () => {
     jest.spyOn(RichUtils, 'handleKeyCommand');
     const onChange = jest.fn();
-    const newState = RichTextEditor.stateFromHTML('123');
+    const newState = '123';
     const { container } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledTimes(0);
 
     const editorNode = container.querySelector('.public-DraftEditor-content');
     fireEvent.focus(editorNode);
-    expect(onChange).toHaveBeenCalledTimes(2);
-    expect(RichTextEditor.stateToHTML(onChange.mock.calls[1][0])).toEqual('<p>123</p>');
+    expect(onChange).toHaveBeenCalledTimes(0);
 
     fireEvent.keyDown(editorNode, { key: 'Backspace', keyCode: 8, which: 8 });
-    expect(onChange).toHaveBeenCalledTimes(3);
-    expect(RichTextEditor.stateToHTML(onChange.mock.calls[2][0])).toEqual('<p>12</p>');
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange.mock.calls[0][0]).toEqual('<p>12</p>');
     expect(RichUtils.handleKeyCommand).toHaveBeenCalledTimes(1);
     expect(RichUtils.handleKeyCommand.mock.calls[0][1]).toEqual('backspace');
   });
@@ -111,35 +113,41 @@ describe('<RichTextEditor />', () => {
   it('should correctly handle the new state of key commands', () => {
     jest.spyOn(RichUtils, 'handleKeyCommand');
     const onChange = jest.fn();
-    const newState = RichTextEditor.stateFromHTML('123');
+    const newState = '123';
     const { container } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
     const editorNode = container.querySelector('.public-DraftEditor-content');
     fireEvent.focus(editorNode);
-
     fireEvent.keyDown(editorNode, { key: 'b', keyCode: 66, which: 66, ctrlKey: true });
-    expect(onChange).toHaveBeenCalledTimes(3);
+
+    expect(onChange).toHaveBeenCalledTimes(0);
     expect(RichUtils.handleKeyCommand).toHaveBeenCalledTimes(1);
     expect(RichUtils.handleKeyCommand.mock.calls[0][1]).toEqual('bold');
   });
 
-  it('should toggle italics', () => {
+  it('should toggle italics', async () => {
     const onChange = jest.fn();
-    const newState = RichTextEditor.stateFromHTML('123');
-    const { queryAllByTestId, getByTestId } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
+    const newState = '123';
+    const { queryAllByTestId, getByTestId, container } = render(
+      <RichTextEditor initialValue={newState} onChange={onChange} />
+    );
 
     expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
     expect(queryAllByTestId('button-wrapper')[1]).toContainElement(getByTestId('italics'));
 
+    const editorNode = container.querySelector('.public-DraftEditor-content');
+    fireEvent.focus(editorNode);
     fireEvent.mouseDown(queryAllByTestId('button-wrapper')[1]);
 
-    expect(onChange).toHaveBeenCalledTimes(2);
-    expect(RichTextEditor.stateToHTML(onChange.mock.calls[1][0])).toEqual('<p>123</p>');
+    expect(onChange).toHaveBeenCalledTimes(0);
+    fireEvent.keyDown(editorNode, { key: 'i', keyCode: 73, which: 73, ctrlKey: true });
+    expect(RichUtils.handleKeyCommand).toHaveBeenCalledTimes(1);
+    expect(RichUtils.handleKeyCommand.mock.calls[0][1]).toEqual('italic');
   });
 
   it('should correctly generate unordered list', () => {
     const onChange = jest.fn();
-    const newState = RichTextEditor.stateFromHTML('123');
+    const newState = '123';
     const { queryAllByTestId, getByTestId } = render(<RichTextEditor initialValue={newState} onChange={onChange} />);
 
     expect(queryAllByTestId('button-wrapper')).toHaveLength(5);
@@ -147,7 +155,12 @@ describe('<RichTextEditor />', () => {
 
     fireEvent.mouseDown(queryAllByTestId('button-wrapper')[4]);
 
-    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange.mock.calls[0][0]).toEqual(
+      `<ol>
+  <li>123</li>
+</ol>`
+    );
   });
 
   describe('mention feature', () => {
@@ -187,7 +200,7 @@ describe('<RichTextEditor />', () => {
         },
       ];
       const onChange = jest.fn();
-      const newState = RichTextEditor.stateFromHTML('@');
+      const newState = '@';
       const { queryByTestId, queryAllByTestId, container } = render(
         <RichTextEditor initialValue={newState} mentions={contacts} onChange={onChange} />
       );
