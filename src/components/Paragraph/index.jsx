@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import RichTextEditor from '../RichTextEditor';
 import Button from '../Button';
 import { useCollapse } from '../../hooks/useCollapse';

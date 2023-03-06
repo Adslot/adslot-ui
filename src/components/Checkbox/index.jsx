@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { expandDts, invariant } from '../../lib/utils';
+import { expandDts, invariant } from '../../utils';
 import './styles.css';
 
 const SELECTION_KEYS = ['Enter', ' '];

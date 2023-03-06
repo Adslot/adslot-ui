@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import './styles.css';
 
 const Grid = ({ children, dts }) => (

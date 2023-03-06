@@ -2,7 +2,7 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { expandDts, invariant } from '../../lib/utils';
+import { expandDts, invariant } from '../../utils';
 import { buttonSharedClasses, colors, variants, sizes } from '../Button';
 
 const Anchor = (props) => {

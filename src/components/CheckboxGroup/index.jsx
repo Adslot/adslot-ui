@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import _ from 'lodash';
-import { expandDts, invariant } from '../../lib/utils';
+import { expandDts, invariant } from '../../utils';
 import Checkbox, { shareCheckboxPropTypes } from '../Checkbox';
 import CheckboxGroupProvider, { useCheckboxGroup } from './CheckboxGroupContext';
 import '../RadioGroup/style.css';

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import './styles.css';
 
 const Tile = ({ className, title, imgLink, onClick, dts }) => {

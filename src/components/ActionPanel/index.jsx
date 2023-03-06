@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import Button from '../Button';
 import './styles.css';
 

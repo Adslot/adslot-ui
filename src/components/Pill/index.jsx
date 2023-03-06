@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import './styles.css';
 
 const sizes = ['large', 'medium', 'small'];
