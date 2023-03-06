@@ -1,5 +1,5 @@
 import React from 'react';
-import { invariant } from '../lib/utils';
+import { invariant } from '../utils';
 
 const VALID_KEYS = {
   horizontal: ['ArrowLeft', 'ArrowRight'],
@@ -8,12 +8,12 @@ const VALID_KEYS = {
 
 /**
  * @description internal hook to help with keyboard navigation in lists/menus.
- * Handles focusing the next/previous element with arrow keys. 
- * 
+ * Handles focusing the next/previous element with arrow keys.
+ *
  * Child elements matching `selector` will be .
- * 
+ *
  * To disable (i.e skip) an item, use the `disabled` attribute (for elements that accept it), or the `aria-disabled` attribute.
- * 
+ *
  * @example
  * ```jsx
   const ref = React.useRef()

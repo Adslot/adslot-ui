@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import './styles.css';
 
 class ButtonGroup extends React.PureComponent {

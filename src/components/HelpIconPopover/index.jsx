@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { expandDts } from '../../lib/utils';
+import { expandDts } from '../../utils';
 import Popover from '../Popover';
 import './styles.css';
 

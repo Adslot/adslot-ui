@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { classSuffixHelper } from '../../../lib/utils';
+import { classSuffixHelper } from '../../../utils';
 import GridRow from '.';
 
 afterEach(cleanup);
