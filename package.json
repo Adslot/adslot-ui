@@ -1,6 +1,6 @@
 {
   "name": "adslot-ui",
-  "version": "32.6.4",
+  "version": "33.0.0",
   "description": "Core component library. By Adslot",
   "main": "lib/index.js",
   "module": "es/index.js",
