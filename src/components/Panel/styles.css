@@ -2,7 +2,7 @@
 
 .panel-component {
   background-color: $color-white;
-  transition: background-color 250ms ease-out;
+  transition: background-color 250ms 75ms ease-out;
 }
 
 .panel-component ~ .panel-component {
@@ -35,6 +35,14 @@
   position: relative;
   width: 22px;
   fill: $color-grey-800;
+}
+
+.panel-component-content-wrapper {
+  overflow: hidden;
+
+  &.animate {
+    transition: all 250ms ease;
+  }
 }
 
 .panel-component-header,

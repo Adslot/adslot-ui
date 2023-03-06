@@ -11,3 +11,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
+window.ResizeObserver = class ResizeObserver {
+  observe = jest.fn();
+  unobserve = jest.fn();
+  disconnect = jest.fn();
+};

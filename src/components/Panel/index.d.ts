@@ -9,8 +9,9 @@ export interface PanelProps {
   isCollapsed?: boolean;
   onClick?: (...args: any[]) => any;
   children?: React.ReactNode;
+  animate?: boolean;
 }
 
-export default class Panel extends React.Component<PanelProps, any> {
-  render(): JSX.Element;
-}
+declare const Panel: React.FC<PanelProps>;
+
+export default Panel;

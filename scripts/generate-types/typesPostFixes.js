@@ -166,20 +166,29 @@ exports.replacements = (componentName) => ({
       [
         `import * as React from 'react';`,
         `import * as React from 'react';
-        import { EditorState, ContentState, RawDraftContentState } from 'draft-js';
+        import { EditorState, RawDraftContentState } from 'draft-js';
         import { createEditorStateWithText } from '@draft-js-plugins/editor';`,
       ],
       [
         `declare const RichTextEditor: React.FC<RichTextEditorProps>`,
         `declare const RichTextEditor: React.FC<RichTextEditorProps> & {
-        createEmpty: typeof EditorState.createEmpty;
-        createWithText: typeof createEditorStateWithText;
-        stateToHTML: (input: ContentState) => string;
-        stateFromHTML: (input: string) => EditorState;
-        stateToPlainText: (input: ContentState) => string;
-        stateToEntityList: (input: ContentState) => RawDraftContentState['entityMap'];
-        plainTextFromHTML: (input: string) => string;
-      };`,
+          createEmpty: typeof EditorState.createEmpty;
+          createWithText: typeof createEditorStateWithText;
+          stateToHTML: (input: EditorState) => string;
+          stateFromHTML: (input: string, options?: { parser?: (html: string) => HTMLBodyElement }) => EditorState;
+          stateToPlainText: (input: EditorState) => string;
+          stateToEntityList: (input: EditorState) => RawDraftContentState['entityMap'];
+          plainTextFromHTML: (input: string) => string;
+          useTruncateState: ({
+            editorState,
+            briefCharCount,
+            truncateString,
+          }: {
+            editorState: EditorState;
+            briefCharCount: number;
+            truncateString: string;
+          }) => { totalCharCount: number; truncatedState: EditorState };
+        };`,
       ],
     ],
   },

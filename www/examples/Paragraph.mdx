@@ -5,30 +5,56 @@ import DesignNotes from '../containers/DesignNotes.jsx';
 
 ```jsx live=true
 const Example = () => {
-  const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+  const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
 
   const richText = `
-    <details>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.
-      </p>
-      <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-    </details>
+      <p><strong>Record numbers and consumer trust</strong><br>
+We are seeing some of our strongest traffic and highest trust scores from global audiences than ever before</p>
+<p>We're the no.1 trusted newsbrand in the UK87% of people trust what they see in The Guardian online. 79% feel it offers them something they can't get elsewhere.*</p>
   `;
+  const [content, setContent] = React.useState(RichTextEditor.stateFromHTML(richText));
 
   return (
     <React.Fragment>
-      <Paragraph briefWordCount={200} content={content} />
+      <h4>
+        <strong>Read More with plain text / max height</strong>
+      </h4>
       <br />
-      <Paragraph briefWordCount={200} content={richText} isHtml />
+      <Paragraph.ReadMore briefMaxHeight={45}>{text}</Paragraph.ReadMore>
+      <br />
+      <br />
+      <h4>
+        <strong>Read More with html text / character limit</strong>
+      </h4>
+      <br />
+      <Paragraph.ReadMore>
+        <Paragraph.HTML briefCharCount={100} content={text} />
+      </Paragraph.ReadMore>
+      <br />
+      <br />
+      <h4>
+        <strong>Example linked to RichText editor content</strong>
+      </h4>
+      <p>Input:</p>
+      <RichTextEditor value={content} onChange={setContent} />
+      <br />
+      <p>Output:</p>
+      <div style={{ maxWidth: 850 }}>
+        <InformationBox>
+          <Paragraph.ReadMore briefMaxHeight={200}>
+            <Paragraph.HTML content={RichTextEditor.stateToHTML(content)} />
+          </Paragraph.ReadMore>
+        </InformationBox>
+      </div>
+      <br />
+      <br />
+      <h4>
+        <strong>Just HTML</strong>
+      </h4>
+      <Paragraph.HTML content={RichTextEditor.stateToHTML(content)} />
     </React.Fragment>
   );
 };
