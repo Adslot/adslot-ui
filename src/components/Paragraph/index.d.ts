@@ -13,7 +13,7 @@ export interface ParagraphProps {
    * A fallback maximum height for the brief content.
    * This height won't be exceeded, even if props.briefCharCount isn't reached
    * (e.g due to new lines in HTML)
-   * @default 100
+   * @default 200
    */
   briefMaxHeight?: number;
   /**
@@ -21,9 +21,9 @@ export interface ParagraphProps {
    */
   hideReadMore?: boolean;
   /**
-   * Control collapsed state
+   * initial collapsed state
    */
-  collapsed?: boolean;
+  defaultCollapsed?: boolean;
   /**
    * Content inside paragraph
    */

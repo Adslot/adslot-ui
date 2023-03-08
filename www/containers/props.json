@@ -138,17 +138,6 @@
             "computed": false
           }
         },
-        "isModal": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
         "cancelButton": {
           "type": {
             "name": "node"
@@ -157,6 +146,17 @@
           "description": "",
           "defaultValue": {
             "value": "null",
+            "computed": false
+          }
+        },
+        "isModal": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
             "computed": false
           }
         },
@@ -3272,7 +3272,7 @@
           ],
           "params": [
             {
-              "name": "{\n  briefMaxHeight = 200,\n  hideReadMore,\n  collapsed: collapsedProp = true,\n  className,\n  children,\n  dts,\n}",
+              "name": "{ briefMaxHeight = 200, hideReadMore, defaultCollapsed = true, className, children, dts }",
               "type": null
             }
           ],
@@ -3306,7 +3306,7 @@
             "name": "number"
           },
           "required": false,
-          "description": "A fallback maximum height for the brief content.\n This height won't be exceeded, even if props.briefCharCount isn't reached\n (e.g due to new lines in HTML)\n @default 100",
+          "description": "A fallback maximum height for the brief content.\n This height won't be exceeded, even if props.briefCharCount isn't reached\n (e.g due to new lines in HTML)\n @default 200",
           "defaultValue": {
             "value": "200",
             "computed": false
@@ -3319,12 +3319,12 @@
           "required": false,
           "description": "Removes Read More button, only showing text in the current collapsed state"
         },
-        "collapsed": {
+        "defaultCollapsed": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "Control collapsed state",
+          "description": "initial collapsed state",
           "defaultValue": {
             "value": "true",
             "computed": false

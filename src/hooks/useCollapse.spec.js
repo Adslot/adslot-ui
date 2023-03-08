@@ -2,24 +2,32 @@ import React from 'react';
 import { render, cleanup, fireEvent, act } from '@testing-library/react';
 import { useCollapse } from './useCollapse';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
 afterEach(cleanup);
 
 describe('useCollapse()', () => {
-  const Component = ({ collapsedHeight, collapsed: collapsedProp, noRef, children }) => {
-    const { collapsed, toggleCollapsed, height, containerRef } = useCollapse({
+  const Component = ({ collapsedHeight, collapsed: collapsedProp, transitionMs, noRef, children }) => {
+    const [collapsed, setCollapsed] = React.useState(collapsedProp);
+
+    const { height, transitionState, containerRef } = useCollapse({
       collapsedHeight,
-      collapsed: collapsedProp,
+      collapsed,
+      transitionMs,
     });
 
     return (
-      <div data-testid="wrapper" style={{ height }}>
+      <div data-testid="wrapper" className={transitionState} style={{ height }}>
         <span ref={noRef ? null : containerRef}>{children}</span>
-        <button onClick={toggleCollapsed}>{collapsed ? 'expand' : 'collapse'}</button>
+        <button onClick={setCollapsed}>{collapsed ? 'expand' : 'collapse'}</button>
       </div>
     );
   };
 
   let resizeListener;
+  let observeMockFn;
 
   beforeEach(() => {
     global.ResizeObserver = class ResizeObserver {
@@ -28,13 +36,23 @@ describe('useCollapse()', () => {
       disconnect = jest.fn();
       constructor(ls) {
         resizeListener = ls;
+        observeMockFn = this.observe;
       }
     };
+    Element.prototype.getBoundingClientRect = jest.fn(() => {
+      return {
+        height: 50,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+      };
+    });
   });
 
-  it('should set height', () => {
+  it('should set height and transition state', () => {
     const { getByTestId, getByRole } = render(
-      <Component>
+      <Component transitionMs={250}>
         <div style={{ height: 1000 }} />
       </Component>
     );
@@ -47,34 +65,23 @@ describe('useCollapse()', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
     expect(getByTestId('wrapper')).toHaveStyle({ height: '1000px' });
 
     expect(getByRole('button')).toHaveAccessibleName('collapse');
     fireEvent.click(getByRole('button'));
-    expect(getByRole('button')).toHaveAccessibleName('expand');
-    expect(getByTestId('wrapper')).toHaveStyle({ height: 0 });
-  });
-
-  it('should be controllable', () => {
-    const { getByTestId, getByRole } = render(
-      <Component collapsedHeight={25} collapsed>
-        <div style={{ height: 1000 }} />
-      </Component>
-    );
+    expect(getByTestId('wrapper')).toHaveClass('is-collapsing');
 
     act(() => {
-      resizeListener([
-        {
-          contentRect: {
-            height: 1000,
-          },
-        },
-      ]);
+      jest.runAllTimers();
     });
 
-    expect(getByTestId('wrapper')).toHaveStyle({ height: '25px' });
+    expect(getByTestId('wrapper')).not.toHaveClass('is-collapsing');
+
     expect(getByRole('button')).toHaveAccessibleName('expand');
+    expect(getByTestId('wrapper')).toHaveStyle({ height: 0 });
+    expect(observeMockFn).toBeCalledTimes(1);
   });
 
   it('should do nothing without container ref', () => {
@@ -83,16 +90,6 @@ describe('useCollapse()', () => {
         <div style={{ height: 1000 }} />
       </Component>
     );
-
-    act(() => {
-      resizeListener([
-        {
-          contentRect: {
-            height: 1000,
-          },
-        },
-      ]);
-    });
 
     expect(getByTestId('wrapper')).toHaveStyle({ height: undefined });
     fireEvent.click(getByRole('button'));
@@ -114,6 +111,7 @@ describe('useCollapse()', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
 
     expect(getByTestId('wrapper')).toHaveStyle({ height: '1000px' });

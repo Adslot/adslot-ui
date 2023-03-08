@@ -3,6 +3,11 @@
 .panel-component {
   background-color: $color-white;
   transition: background-color 250ms 75ms ease-out;
+
+  &.is-expanding,
+  &.is-collapsing {
+    overflow: hidden;
+  }
 }
 
 .panel-component ~ .panel-component {
@@ -38,8 +43,6 @@
 }
 
 .panel-component-content-wrapper {
-  overflow: hidden;
-
   &.animate {
     transition: all 250ms ease;
   }
@@ -54,16 +57,18 @@
   background-color: $color-grey-100;
 }
 
-.panel-component.collapsed .panel-component-header {
-  border-bottom: 0;
-}
-
 .panel-component.collapsed .panel-component-header::before {
   transform: rotate(0);
 }
 
-.panel-component.collapsed .panel-component-content {
-  display: none;
+.panel-component.collapsed:not(.is-expanding, .is-collapsing) {
+  & .panel-component-header {
+    border-bottom: 0;
+  }
+
+  & .panel-component-content {
+    display: none;
+  }
 }
 
 .panel-component hr {
