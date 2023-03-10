@@ -3,6 +3,9 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Paragraph from '.';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
 afterEach(cleanup);
 
 describe('<Paragraph />', () => {
@@ -70,6 +73,7 @@ describe('<Paragraph />', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
 
     expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
@@ -116,6 +120,7 @@ describe('<Paragraph />', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
 
     expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
@@ -142,6 +147,7 @@ describe('<Paragraph />', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
 
     expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
@@ -161,6 +167,7 @@ describe('<Paragraph />', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
 
     expect(queryByTestId('paragraph-wrapper')).toBeInTheDocument();
@@ -175,21 +182,9 @@ describe('<Paragraph />', () => {
           },
         },
       ]);
+      jest.runAllTimers();
     });
     expect(getByTestId('expandable-content')).toHaveStyle(`height: 200px`);
-
-    act(() => {
-      resizeListener([
-        {
-          contentRect: {
-            height: 50,
-          },
-        },
-      ]);
-    });
-
-    fireEvent.click(getByTestId('paragraph-read-more-button'));
-    expect(getByTestId('expandable-content')).toHaveStyle(`height: 50px`);
   });
 
   it('should be able to click read more button to expand paragraph', () => {

@@ -9,11 +9,16 @@ const Panel = ({ onClick, className, children, dts, icon, id, isCollapsed, title
     onClick(id);
   };
 
-  const { collapsed, height, containerRef } = useCollapse({
+  const { height, containerRef, transitionState } = useCollapse({
     collapsed: isCollapsed,
+    transitionMs: animate ? 250 : null,
   });
 
-  const classesCombined = classnames(['panel-component', { collapsed }, className]);
+  const classesCombined = classnames([
+    'panel-component',
+    { collapsed: isCollapsed, [transitionState]: transitionState },
+    className,
+  ]);
 
   return (
     <div data-testid="panel-wrapper" className={classesCombined} data-test-selector={dts}>
@@ -21,7 +26,12 @@ const Panel = ({ onClick, className, children, dts, icon, id, isCollapsed, title
         {icon}
         {title}
       </div>
-      <div style={{ height }} className={classnames('panel-component-content-wrapper', { animate })}>
+      <div
+        style={{ height }}
+        className={classnames('panel-component-content-wrapper', {
+          animate,
+        })}
+      >
         <div ref={containerRef} data-testid="panel-content" className="panel-component-content">
           {children}
         </div>

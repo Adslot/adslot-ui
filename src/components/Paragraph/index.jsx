@@ -9,18 +9,13 @@ import './styles.css';
 
 const baseClass = 'aui--paragraph';
 
-const Paragraph = ({
-  briefMaxHeight = 200,
-  hideReadMore,
-  collapsed: collapsedProp = true,
-  className,
-  children,
-  dts,
-}) => {
+const Paragraph = ({ briefMaxHeight = 200, hideReadMore, defaultCollapsed = true, className, children, dts }) => {
   const hideReadMoreRef = React.useRef();
-  const { collapsed, toggleCollapsed, height, collapsedHeightExceeded, containerRef } = useCollapse({
+  const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
+
+  const { height, collapsedHeightExceeded, containerRef } = useCollapse({
     collapsedHeight: briefMaxHeight,
-    collapsed: collapsedProp,
+    collapsed,
   });
 
   return (
@@ -43,7 +38,7 @@ const Paragraph = ({
               data-testid="paragraph-read-more-button"
               variant="link"
               className={`${baseClass}-read-more`}
-              onClick={toggleCollapsed}
+              onClick={() => setCollapsed(!collapsed)}
             >
               {collapsed ? `Read More` : `Read Less`}
             </Button>
@@ -62,7 +57,7 @@ Paragraph.propTypes = {
    * 	A fallback maximum height for the brief content.
    *  This height won't be exceeded, even if props.briefCharCount isn't reached
    *  (e.g due to new lines in HTML)
-   *  @default 100
+   *  @default 200
    */
   briefMaxHeight: PropTypes.number,
   /**
@@ -70,9 +65,9 @@ Paragraph.propTypes = {
    */
   hideReadMore: PropTypes.bool,
   /**
-   * Control collapsed state
+   * initial collapsed state
    */
-  collapsed: PropTypes.bool,
+  defaultCollapsed: PropTypes.bool,
   /**
    * 	Content inside paragraph
    */
