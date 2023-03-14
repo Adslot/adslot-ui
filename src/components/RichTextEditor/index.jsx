@@ -16,7 +16,7 @@ import FilePreviewList from './FilePreviewList';
 import Popover from '../Popover';
 import './styles.css';
 
-const { Modifier, EditorState, convertToRaw, RichUtils, SelectionState } = draftJs;
+const { Modifier, EditorState, ContentState, convertToRaw, RichUtils, SelectionState } = draftJs;
 
 const editorStateToHTML = (input) => stateToHTML(input.getCurrentContent());
 const editorStateFromHTML = (input, options = {}) =>
@@ -265,46 +265,43 @@ RichTextEditor.useTruncateState = ({ editorState, briefCharCount, truncateString
 
     const contentState = editorState.getCurrentContent();
     const blocks = contentState.getBlocksAsArray();
-    const lastBlock = contentState.getLastBlock();
 
-    let anchor = lastBlock;
-    let anchorOffset = 0;
     let acc = 0;
+    let anchorOffset = 0;
+    let truncatedBlockIndex = 0;
 
-    // get the anchor offset and start block of the text to be removed
-    for (let i = 0; i < blocks.length; i++) {
-      const curr = blocks[i];
-      if (curr.getLength() + acc >= briefCharCount) {
-        anchor = curr;
-        const offset = curr.getLength() + acc - briefCharCount;
-        anchorOffset = offset === 0 ? curr.getLength() : -offset;
+    // get the block index and string offset of the text to be truncated
+    for (const [i, block] of blocks.entries()) {
+      if (block.getLength() + acc >= briefCharCount) {
+        truncatedBlockIndex = i;
+        const offset = block.getLength() + acc - briefCharCount;
+        anchorOffset = block.getLength() - offset;
         break;
       }
-      acc += curr.getLength();
+      acc += block.getLength();
     }
 
-    // select from anchor offset to end of last block
-    const targetRange = new SelectionState({
-      anchorKey: anchor.getKey(),
-      anchorOffset,
-      focusKey: lastBlock.getKey(),
-      focusOffset: lastBlock.getLength(),
-    });
+    let truncatedBlocks = [...blocks].slice(0, truncatedBlockIndex + 1);
 
-    const replaced = Modifier.removeRange(contentState, targetRange, 'forward');
+    // replace the block's text with the truncated text
+    truncatedBlocks[truncatedBlockIndex] = truncatedBlocks[truncatedBlockIndex].set(
+      'text',
+      truncatedBlocks[truncatedBlockIndex].getText().substring(0, anchorOffset)
+    );
 
-    // insert truncateString at end
+    let newState = ContentState.createFromBlockArray(truncatedBlocks);
+
     if (truncateString) {
-      const end = replaced.getLastBlock();
-      const newSelection = SelectionState.createEmpty(anchor.getKey())
-        .set('anchorOffset', end.getLength())
-        .set('focusOffset', end.getLength());
+      // selection at last character
+      const endSelection = SelectionState.createEmpty(truncatedBlocks[truncatedBlockIndex].getKey())
+        .set('anchorOffset', truncatedBlocks[truncatedBlockIndex].getLength())
+        .set('focusOffset', truncatedBlocks[truncatedBlockIndex].getLength());
 
-      const withTruncateString = Modifier.insertText(replaced, newSelection, truncateString, null);
-
-      return EditorState.push(editorState, withTruncateString, 'remove-range');
+      // insert truncate string after the last character
+      newState = Modifier.insertText(newState, endSelection, truncateString);
     }
-    return EditorState.push(editorState, replaced, 'remove-range');
+
+    return EditorState.createWithContent(newState);
   }, [briefCharCount, editorState, totalCharCount, truncateString]);
 
   return {
