@@ -468,5 +468,11 @@ describe('<RichTextEditor />', () => {
       const { getByTestId } = render(<Component briefCharCount={16} text="<p>abcdefghijklmnop</p><p>q</p>" />);
       expect(getByTestId('test').innerHTML).toEqual(`<p>abcdefghijklmnop...</p>`);
     });
+    it('should retain inline styles', () => {
+      const { getByTestId } = render(
+        <Component briefCharCount={16} text="<p>abcdefgh<strong>ijkl</strong>mnopq</p>" />
+      );
+      expect(getByTestId('test').innerHTML).toEqual(`<p>abcdefgh<strong>ijkl</strong>mnop...</p>`);
+    });
   });
 });
