@@ -793,6 +793,23 @@
           "required": false,
           "description": ""
         },
+        "iconPosition": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'left'",
+                "computed": false
+              },
+              {
+                "value": "'right'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
         "theme": {
           "type": {
             "name": "string"
@@ -1447,14 +1464,14 @@
           "type": {
             "name": "array"
           },
-          "required": false,
+          "required": true,
           "description": ""
         },
         "name": {
           "type": {
             "name": "string"
           },
-          "required": false,
+          "required": true,
           "description": ""
         },
         "onChange": {
@@ -1770,7 +1787,7 @@
             "name": "func"
           },
           "required": false,
-          "description": ""
+          "description": "useful if a menu/popover should be closed after tabbing through it"
         },
         "onShiftTabExit": {
           "type": {
@@ -1785,6 +1802,634 @@
           },
           "required": false,
           "description": ""
+        }
+      }
+    }
+  ],
+  "src/components/DropdownMenu/index.jsx": [
+    {
+      "description": "",
+      "displayName": "DropdownMenuProvider",
+      "methods": []
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenu",
+      "methods": [
+        {
+          "name": "Content",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, className, placement, modifiers, dts }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Trigger",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ disabled = false, className, children, icon, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Item",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, onClick, disabled, className, dts, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "CheckboxGroup",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, onChange, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Checkbox",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "CheckboxAll",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "RadioGroup",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, onChange, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Radio",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, onClick, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Label",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "ItemContainer",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, className, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Divider",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ className }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "Group",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ children, className, defaultCollapsed, collapsible, title, id, ...rest }",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "useDropdownMenu",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "defaultOpen": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Initial open state. Can be used to toggle the open state programatically."
+        },
+        "closeOnItemClick": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Closes the menu when an item with an onClick handler is clicked.\nAlso applies to checkboxes and radios."
+        },
+        "onOpen": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        },
+        "submenu": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "opt-in to submenu behaviour for nested menus"
+        },
+        "triggerRef": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Optional ref to mount the dropdown to\n\n*Only use when using Dropdown.Trigger is not feasible*"
+        },
+        "triggerId": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "A unique trigger id is required for accessiblilty purposes"
+        },
+        "contentId": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "A unique content id is required for accessiblilty purposes"
+        },
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "node"
+              },
+              {
+                "name": "func"
+              }
+            ]
+          },
+          "required": false,
+          "description": "A render function may be used, which receives the dropdown context.\nNotably: `open` state, `closeMenu()` function, `triggerRef`, `contentRef`."
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuTrigger",
+      "methods": [],
+      "props": {
+        "isLoading": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "color": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "colors"
+          },
+          "required": false,
+          "description": ""
+        },
+        "variant": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "variants"
+          },
+          "required": false,
+          "description": ""
+        },
+        "size": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "sizes"
+          },
+          "required": false,
+          "description": ""
+        },
+        "iconPosition": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "positions"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "fullWidth": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "ths is a separate component to cater for Popover `popoverContent`'s\nrender function and regular function component prop",
+      "displayName": "INNER_CONTENT",
+      "methods": []
+    },
+    {
+      "description": "Dropdown Menu Content container\nAny menu items should be children of this component",
+      "displayName": "DropdownMenuContent",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "node"
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "placement": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "popoverPlacements"
+          },
+          "required": false,
+          "description": ""
+        },
+        "modifiers": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "object"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "object"
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuItem",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "disabled": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "icon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "dts": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "onClick": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuCheckboxGroup",
+      "methods": [],
+      "composes": [
+        "../CheckboxGroup"
+      ]
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuCheckbox",
+      "methods": [],
+      "composes": [
+        "../Checkbox"
+      ]
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuCheckboxAll",
+      "methods": [],
+      "composes": [
+        "../CheckboxGroup"
+      ]
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuRadioGroup",
+      "methods": [],
+      "composes": [
+        "../RadioGroup"
+      ]
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuRadio",
+      "methods": [],
+      "composes": [
+        "../Radio"
+      ]
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuLabel",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuDivider",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "a div Styled like a `DropdownMenu.Item`",
+      "displayName": "DropdownMenuItemContainer",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        }
+      }
+    },
+    {
+      "description": "",
+      "displayName": "DropdownMenuGroup",
+      "methods": [],
+      "props": {
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": ""
+        },
+        "id": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": ""
+        },
+        "collapsible": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Renders the group as a collapsible panel component"
+        },
+        "defaultCollapsed": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": ""
+        },
+        "title": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "The group's heading.\nTitle must be used if collapsible is true"
         }
       }
     }

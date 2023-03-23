@@ -11,13 +11,16 @@ const Example = () => {
     <React.Fragment>
       <ButtonGroup color="success">
         <Button>Approve</Button>
-        <Popover triggers="click" placement="bottom" popoverContent="I am a popover on click!">
-          <Button
-            className="svg-icon"
+        <DropdownMenu>
+          <DropdownMenu.Trigger
             aria-label="Toggle menu"
             icon={<SvgSymbol href="./assets/svg-symbols.svg#caret-down" />}
           />
-        </Popover>
+          <DropdownMenu.Content placement="bottom">
+            <DropdownMenu.Item onClick={() => console.log('click')}>Option One</DropdownMenu.Item>
+            <DropdownMenu.Item>Option Two</DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu>
       </ButtonGroup>
       <ButtonGroup color="danger" variant="inverse">
         <Button>Reject</Button>

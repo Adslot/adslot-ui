@@ -22,16 +22,11 @@ const Panel = ({ onClick, className, children, dts, icon, id, isCollapsed, title
 
   return (
     <div data-testid="panel-wrapper" className={classesCombined} data-test-selector={dts}>
-      <div data-testid="panel-header" className="panel-component-header clearfix" onClick={onHeaderClick}>
+      <button data-testid="panel-header" className="panel-component-header clearfix" onClick={onHeaderClick}>
         {icon}
         {title}
-      </div>
-      <div
-        style={{ height }}
-        className={classnames('panel-component-content-wrapper', {
-          animate,
-        })}
-      >
+      </button>
+      <div style={{ height }} className={classnames('panel-component-content-wrapper', { animate })}>
         <div ref={containerRef} data-testid="panel-content" className="panel-component-content">
           {children}
         </div>

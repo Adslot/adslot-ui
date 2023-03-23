@@ -34,6 +34,11 @@ const RadioGroup = ({
   children,
   variant = 'default',
   inline,
+  // This prop is intentionally not exposed to consumers,
+  // it is used to allow the DropdownMenu RadioGroup
+  // to control its own arrow focus
+  // eslint-disable-next-line react/prop-types
+  disableArrowKeys,
   ...rest
 }) => {
   invariant(!inline, 'RadioGroup: the inline prop has been replaced by orientation="vertical"');
@@ -42,6 +47,7 @@ const RadioGroup = ({
 
   useArrowFocus({
     ref,
+    disabled: disableArrowKeys,
     onFocus: (el) => onChange(el.dataset.auiValue),
     selector: `.${itemClass}[role=radio]`,
     loop: true,
@@ -68,7 +74,7 @@ const RadioGroup = ({
   );
 };
 
-RadioGroup.propTypes = {
+export const radioGroupPropTypes = {
   value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -82,6 +88,10 @@ RadioGroup.propTypes = {
    *  @deprecated use orientation="horizontal" instead
    **/
   inline: PropTypes.bool,
+};
+
+RadioGroup.propTypes = {
+  ...radioGroupPropTypes,
 };
 
 export default RadioGroup;

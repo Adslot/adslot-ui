@@ -52,8 +52,8 @@ export type CheckboxGroupOrientation = 'vertical' | 'horizontal';
 export type CheckboxGroupVariant = 'default' | 'box';
 
 export interface CheckboxGroupProps {
-  value?: any[];
-  name?: string;
+  value: any[];
+  name: string;
   /**
    * @function onChange
    * @param {array} newValue - the new checkboxGroup value

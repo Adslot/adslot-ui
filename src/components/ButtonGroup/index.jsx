@@ -2,8 +2,11 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
+import DropdownMenu from '../DropdownMenu';
 import { expandDts } from '../../utils';
 import './styles.css';
+
+const buttonNames = [Button.displayName, DropdownMenu.Trigger.displayName];
 
 class ButtonGroup extends React.PureComponent {
   injectProps(children) {
@@ -16,18 +19,18 @@ class ButtonGroup extends React.PureComponent {
           ...(this.props.size ? { size: this.props.size } : {}),
         };
 
-        const childNodes = React.Children.map(child.props.children, (childNode) =>
-          React.isValidElement(childNode)
+        const childNodes = React.Children.map(child.props.children, (childNode) => {
+          return React.isValidElement(childNode)
             ? React.cloneElement(childNode, {
                 ...childNode.props,
-                ...(childNode.type.name === Button.name ? buttonProps : {}),
+                ...(buttonNames.includes(childNode.type.displayName) ? buttonProps : {}),
               })
-            : childNode
-        );
+            : childNode;
+        });
 
         return React.cloneElement(child, {
           ...child.props,
-          ...(child.type.name === Button.name ? buttonProps : {}),
+          ...(buttonNames.includes(child.type.displayName) ? buttonProps : {}),
           ...(!_.isEmpty(childNodes) ? { children: childNodes.length === 1 ? childNodes[0] : childNodes } : {}),
         });
       }

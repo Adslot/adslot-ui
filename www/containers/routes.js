@@ -24,6 +24,7 @@ import GridExample from '../examples/Grid.mdx';
 import HelpIconPopoverExample from '../examples/HelpIconPopover.mdx';
 import PrettyDiffExample from '../examples/PrettyDiff.mdx';
 import HoverDropdownMenuExample from '../examples/HoverDropdownMenu.mdx';
+import DropdownMenuExample from '../examples/DropdownMenu.mdx';
 import InformationBoxExample from '../examples/InformationBox.mdx';
 import ImageCropperExample from '../examples/ImageCropper.mdx';
 import ListPickerExample from '../examples/ListPicker.mdx';
@@ -256,6 +257,12 @@ const routes = [
     path: '/hover-dropdown-menu',
     component: HoverDropdownMenuExample,
     title: 'Hover Dropdown Menu',
+    group: 'Components',
+  },
+  {
+    path: '/dropdown-menu',
+    component: DropdownMenuExample,
+    title: 'Dropdown Menu',
     group: 'Components',
   },
   {

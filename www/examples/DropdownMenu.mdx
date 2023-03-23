@@ -1,0 +1,250 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Dropdown Menu
+
+```jsx live=true
+const UserMenuItem = (
+  <DropdownMenu.ItemContainer style={{ gap: 12 }}>
+    <Avatar givenName={'Jhon'} surname={'Smith'} color={'cyan'} /> John Smith
+    <div style={{ display: 'flex' }}>
+      <Popover popoverContent="Message" theme="dark" placement="top">
+        <Button
+          round
+          variant="borderless"
+          icon={
+            <svg
+              width="16"
+              height="16"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              data-src="/common/images/icons/comment.svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                d="M8.1 2c-3.9-.1-7 2.3-7.1 5.3 0 1 .3 2 1 2.9 1.1 1.4-.1 3.8-.1 3.8l3.5-1.5c.8.2 1.6.4 2.5.4 3.9.1 7-2.3 7.1-5.3.1-3-3-5.5-6.9-5.6M11"
+              ></path>
+            </svg>
+          }
+          aria-label="message"
+        />
+      </Popover>
+      <DropdownMenu contentId="submenu-a" triggerId="submenu-trigger-a">
+        <DropdownMenu.Trigger
+          round
+          variant="borderless"
+          icon={
+            <svg
+              width="16"
+              height="16"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              data-src="/common/images/icons/three-dots.svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+            >
+              <circle fill="#1c1d1f" cx="13.7" cy="8" r="1.8"></circle>
+              <circle fill="#1c1d1f" cx="8" cy="8" r="1.8"></circle>
+              <circle fill="#1c1d1f" cx="2.3" cy="8" r="1.8"></circle>
+            </svg>
+          }
+          aria-label="menu"
+        />
+        <DropdownMenu.Content placement="right-start">
+          <DropdownMenu.Group>
+            <DropdownMenu.Item>Action 1</DropdownMenu.Item>
+            <DropdownMenu.Item>Action 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Action 3</DropdownMenu.Item>
+          </DropdownMenu.Group>
+        </DropdownMenu.Content>
+      </DropdownMenu>
+    </div>
+  </DropdownMenu.ItemContainer>
+);
+const Example = () => {
+  const [state, setState] = React.useState();
+  return (
+    <>
+      <DropdownMenu contentId="menu" triggerId="trigger">
+        <DropdownMenu.Trigger variant="borderless">Manage Users</DropdownMenu.Trigger>
+        <DropdownMenu.Content>
+          <DropdownMenu.Group>
+            <DropdownMenu.Label>Admins</DropdownMenu.Label>
+            {UserMenuItem}
+            {UserMenuItem}
+          </DropdownMenu.Group>
+          <DropdownMenu.Group>
+            <DropdownMenu.Label>Users</DropdownMenu.Label>
+            {UserMenuItem}
+            {UserMenuItem}
+          </DropdownMenu.Group>
+        </DropdownMenu.Content>
+      </DropdownMenu>
+      <br /> <br />
+      <DropdownMenu contentId="menu" triggerId="trigger">
+        <DropdownMenu.Trigger>Menu</DropdownMenu.Trigger>
+        <DropdownMenu.Content>
+          <DropdownMenu.Group>
+            <DropdownMenu.Item onClick={() => setState('Item 1')}>Item 1</DropdownMenu.Item>
+            <DropdownMenu.Item onClick={() => setState('Item 2')}>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item onClick={() => setState('Item 3')}>Item 3</DropdownMenu.Item>
+          </DropdownMenu.Group>
+
+          <DropdownMenu submenu contentId="submenu-a" triggerId="submenu-trigger-a">
+            <DropdownMenu.Trigger>Sub Menu A</DropdownMenu.Trigger>
+            <DropdownMenu.Content>
+              <DropdownMenu.Item onClick={() => setState('Sub Item A1')}>Sub Item A1</DropdownMenu.Item>
+
+              <DropdownMenu submenu contentId="submenu-b" triggerId="submenu-trigger-b">
+                <DropdownMenu.Trigger>Sub Menu B</DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                  <DropdownMenu.Item onClick={() => setState('Sub Item B1')}>Sub Item B1</DropdownMenu.Item>
+
+                  <DropdownMenu submenu contentId="submenu-c" triggerId="submenu-trigger-c">
+                    <DropdownMenu.Trigger>Sub Menu C</DropdownMenu.Trigger>
+                    <DropdownMenu.Content>
+                      <DropdownMenu.Item onClick={() => setState('Sub Item C1')}>Sub Item C1</DropdownMenu.Item>
+                    </DropdownMenu.Content>
+                  </DropdownMenu>
+                </DropdownMenu.Content>
+              </DropdownMenu>
+            </DropdownMenu.Content>
+          </DropdownMenu>
+        </DropdownMenu.Content>
+      </DropdownMenu>
+      <p>You chose: {state}</p>
+    </>
+  );
+};
+
+render(Example);
+```
+
+## Dropdown Menu Checkbox and Radio groups
+
+This example shows how to use Checkbox and Radio groups within a menu
+
+```jsx live=true
+const Example = () => {
+  const [radio, setRadio] = React.useState('block');
+  const [checkbox, setCheckbox] = React.useState([]);
+  const [closeOnClick, setCloseOnClick] = React.useState(false);
+
+  return (
+    <>
+      <div>Close after selection</div>
+      <Switch id="switch" value={closeOnClick ? 'true' : 'false'} onChange={(v) => setCloseOnClick(v)} />
+      <br />
+      <p>
+        Radio: {radio}
+        <br />
+        Checkbox: {checkbox.map((v) => v).join(', ')}
+      </p>
+      <DropdownMenu closeOnItemClick={closeOnClick} contentId="menu" triggerId="trigger">
+        {({ closeMenu }) => (
+          <>
+            <DropdownMenu.Trigger variant="solid" color="primary">
+              Menu
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content>
+              <DropdownMenu.Label id="checkbox-group-label">Elements</DropdownMenu.Label>
+              <DropdownMenu.CheckboxGroup
+                aria-labelledby="checkbox-group-label"
+                value={checkbox}
+                onChange={setCheckbox}
+                name="test-1"
+              >
+                <DropdownMenu.Checkbox value="div" label="div" />
+                <DropdownMenu.Checkbox value="span" label="span" />
+                <DropdownMenu.Checkbox value="section" label="section" />
+                <DropdownMenu.Checkbox value="main" label="main" />
+                <DropdownMenu.Checkbox value="aside" label="aside" />
+              </DropdownMenu.CheckboxGroup>
+              <DropdownMenu.Label id="radio-group-label">Display</DropdownMenu.Label>
+              <DropdownMenu.RadioGroup
+                name="test-2"
+                aria-labelledby="radio-group-label"
+                value={radio}
+                onChange={setRadio}
+              >
+                <DropdownMenu.Radio value="block" label="block" />
+                <DropdownMenu.Radio value="flex" label="flex" />
+              </DropdownMenu.RadioGroup>
+              <DropdownMenu.Divider />
+              <DropdownMenu.ItemContainer>
+                <Button variant="borderless" onClick={closeMenu}>
+                  Cancel
+                </Button>
+                <Button onClick={closeMenu} color="primary">
+                  Done
+                </Button>
+              </DropdownMenu.ItemContainer>
+            </DropdownMenu.Content>
+          </>
+        )}
+      </DropdownMenu>
+    </>
+  );
+};
+
+render(Example);
+```
+
+## Dropdown Menu Collapsible Groups
+
+This example shows the menu with a lot of items causing scroll overflow, as well as the sticky group headers
+
+```jsx live=true
+const Example = () => {
+  return (
+    <>
+      <DropdownMenu contentId="menu" triggerId="trigger">
+        <DropdownMenu.Trigger>Menu</DropdownMenu.Trigger>
+        <DropdownMenu.Content>
+          <DropdownMenu.Group title="Group 1" collapsible>
+            <DropdownMenu.Item>Item 1</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 1</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+          </DropdownMenu.Group>
+          <DropdownMenu.Group title="Group 2" collapsible>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 2</DropdownMenu.Item>
+            <DropdownMenu.Item>Item 3</DropdownMenu.Item>
+          </DropdownMenu.Group>
+        </DropdownMenu.Content>
+      </DropdownMenu>
+    </>
+  );
+};
+
+render(Example);
+```
+
+### Design Notes
+
+<DesignNotes>
+  <div>
+    <p>Dropdown menu aids in helping the user discover selectable options.</p>
+    <label>Example: Profile menu</label>
+  </div>
+</DesignNotes>
+<Props componentName="DropdownMenu" />

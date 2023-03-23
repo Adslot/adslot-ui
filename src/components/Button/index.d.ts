@@ -6,11 +6,14 @@ export type ButtonVariant = 'solid' | 'borderless' | 'inverse' | 'link';
 
 export type ButtonSize = 'medium' | 'large';
 
+export type ButtonIconPosition = 'left' | 'right';
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  iconPosition?: ButtonIconPosition;
   /**
    * @deprecated
    * Please use the `color` prop instead.

@@ -152,6 +152,9 @@ DismissibleFocusTrap.propTypes = {
   disabled: PropTypes.bool,
   onEscape: PropTypes.func,
   onClickOutside: PropTypes.func,
+  /**
+   * useful if a menu/popover should be closed after tabbing through it
+   */
   onTabExit: PropTypes.func,
   onShiftTabExit: PropTypes.func,
   children: PropTypes.node,

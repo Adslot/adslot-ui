@@ -95,7 +95,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-primary-strong;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-primary-active;
       border-color: $color-primary-active;
@@ -113,7 +114,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-secondary-strong;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-secondary-active;
       border-color: $color-secondary-active;
@@ -131,7 +133,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-success-strong;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-success-active;
       border-color: $color-success-active;
@@ -149,7 +152,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-info-strong;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-info-active;
       border-color: $color-info-active;
@@ -167,7 +171,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-warning-strong;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-warning-active;
       border-color: $color-warning-active;
@@ -185,7 +190,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-danger-strong;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-danger-active;
       border-color: $color-danger-active;
@@ -206,7 +212,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-grey-500;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: $color-text-inverse;
       background-color: $color-grey-400;
       border-color: $color-grey-500;
@@ -227,7 +234,8 @@ $color-secondary-active: $color-teal-700;
       border-color: $color-grey-500;
     }
 
-    &:active {
+    &:active,
+    &.active {
       background-color: $color-default-active;
       border-color: $color-grey-500;
     }

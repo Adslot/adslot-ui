@@ -42,11 +42,12 @@ describe('<ButtonGroup />', () => {
     const { getByTestId } = render(
       <ButtonGroup disabled size="large">
         <div>
-          <div>foo</div>
+          <div data-testid="foo">foo</div>
           <Button color="primary">Test1</Button>
         </div>
       </ButtonGroup>
     );
+    expect(getByTestId('foo')).toBeEnabled();
     expect(getByTestId('button-wrapper')).toBeDisabled();
     expect(getByTestId('button-wrapper')).toHaveClass('aui-large');
   });

@@ -19,12 +19,12 @@ exports[`<Accordion /> should have default props 1`] = `
         data-test-selector="panel-1"
         data-testid="panel-wrapper"
       >
-        <div
+        <button
           class="panel-component-header clearfix"
           data-testid="panel-header"
         >
           Panel 1
-        </div>
+        </button>
         <div
           class="panel-component-content-wrapper animate"
           style="height: 0px;"

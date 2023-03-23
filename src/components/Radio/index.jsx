@@ -42,9 +42,9 @@ const Radio = ({
 
   return (
     <div
+      role="radio"
       {...rest}
       data-testid="radio-wrapper"
-      role="radio"
       aria-disabled={disabled ? 'true' : undefined}
       aria-checked={checked ? 'true' : 'false'}
       className={classnames(
@@ -99,7 +99,7 @@ const Radio = ({
   );
 };
 
-Radio.propTypes = {
+export const radioPropTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string,
@@ -128,6 +128,10 @@ Radio.propTypes = {
    * @deprecated
    */
   inline: PropTypes.bool,
+};
+
+Radio.propTypes = {
+  ...radioPropTypes,
 };
 
 Radio.defaultProps = {
