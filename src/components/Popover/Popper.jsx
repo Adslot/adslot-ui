@@ -55,6 +55,7 @@ const Popper = ({
   refElement,
   modifiers = [],
   popperRef,
+  hasHoverRegion,
 }) => {
   const [popperElement, setPopperElement] = React.useState(null);
   const [arrowElement, setArrowElement] = React.useState(null);
@@ -108,6 +109,12 @@ const Popper = ({
           {_.isFunction(popoverContent) ? popoverContent({ update }) : popoverContent}
         </div>
       </div>
+      {hasHoverRegion && (
+        <div
+          className="aui--popover-hover-region"
+          data-placement={_.get(attributes, 'popper.data-popper-placement', popperPlacement)}
+        />
+      )}
       <div
         data-testid="popover-arrow"
         className="aui--popover-arrow"
@@ -129,10 +136,10 @@ Popper.propTypes = {
   popoverClass: PropTypes.string,
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   refElement: PropTypes.instanceOf(Element),
-  boundariesElement: PropTypes.instanceOf(Element),
   title: PropTypes.string,
   wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   popperRef: PropTypes.func,
+  hasHoverRegion: PropTypes.bool,
 };
 
 export default Popper;

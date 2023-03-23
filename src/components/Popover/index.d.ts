@@ -27,11 +27,54 @@ export type PopoverPopoverContent = React.ReactNode | ((...args: any[]) => any);
 
 export type PopoverTriggers = 'click' | 'hover' | 'focus' | 'disabled' | ('click' | 'hover' | 'focus' | 'disabled')[];
 
+export interface PopoverAnchorRef {
+  current?: any;
+}
+
+export interface PopoverTriggerRef {
+  current?: any;
+}
+
 export interface PopoverProps<M = ''> extends PopperModifiers<M> {
   theme?: PopoverTheme;
   title?: React.ReactNode;
   className?: string;
   popoverClassNames?: string;
+  /**
+   * hover show delay in ms
+   */
+  delayShow?: number;
+  /**
+   * hover hide delay in ms
+   */
+  delayHide?: number;
+  /**
+   * when used with the hover trigger, hovering the popover content
+   * will keep the popover open.
+   * Popover will close when mousing out of the popover content.
+   * For the best UX, use with `delayHide` of at least 200
+   */
+  contentHoverable?: boolean;
+  /**
+   * when true:
+   * - the popover content will be focused after opening
+   * - the popover content will trap focus
+   * - the popover trigger will re-focus on close
+   */
+  isMenu?: boolean;
+  /**
+   * callback fired when Popover open state changes
+   * @param {boolean} openState
+   * @param {object} event - event object
+   * @param {string} eventType - the type of event that triggered this change.
+   * Either a dom event (`keydown`, `pointerover`, `pointerleave`, `click`),
+   * or `clickOutside`, when closed via clicking outside, `disabed` when disabled trigger is applied.
+   */
+  onOpenChange?: (...args: any[]) => any;
+  /**
+   * [`isMenu`] callback called when closing on outside click
+   */
+  onClickOutside?: (...args: any[]) => any;
   /**
    * arrow css styles, mainly for positioning the arrow
    */
@@ -41,11 +84,15 @@ export interface PopoverProps<M = ''> extends PopperModifiers<M> {
   placement?: PopoverPlacement;
   strategy?: PopoverStrategy;
   popoverContent: PopoverPopoverContent;
-  children: React.ReactNode;
+  /**
+   * children is optional when using `triggerRef`
+   */
+  children?: React.ReactNode;
   triggers?: PopoverTriggers;
   isOpen?: boolean;
   getContainer?: (...args: any[]) => any;
-  popperRef?: (...args: any[]) => any;
+  anchorRef?: PopoverAnchorRef;
+  triggerRef?: PopoverTriggerRef;
   dts?: string;
 }
 

@@ -62,7 +62,7 @@ describe('<HoverDropdownMenu />', () => {
     );
 
     act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+      fireEvent.pointerOver(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
 
@@ -83,19 +83,19 @@ describe('<HoverDropdownMenu />', () => {
       </HoverDropdownMenu>
     );
     act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+      fireEvent.pointerOver(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
-      fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
+      fireEvent.pointerLeave(getByTestId('popover-wrapper'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
     act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+      fireEvent.pointerOver(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
@@ -111,34 +111,27 @@ describe('<HoverDropdownMenu />', () => {
     );
 
     act(() => {
-      fireEvent.mouseEnter(getByTestId('hover-dropdown-element'));
+      fireEvent.pointerOver(getByTestId('hover-dropdown-element'));
       jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
-      fireEvent.mouseLeave(getByTestId('hover-dropdown-element'));
-      fireEvent.mouseEnter(getByTestId('popover-wrapper'));
-      jest.advanceTimersByTime(50);
+      fireEvent.pointerLeave(getByTestId('hover-dropdown-element'));
+      fireEvent.pointerOver(getByTestId('popover-wrapper'));
+      jest.runAllTimers();
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
-      fireEvent.mouseLeave(getByTestId('popover-wrapper'));
-      fireEvent.mouseEnter(getByTestId('popover-title'));
-      jest.advanceTimersByTime(50);
-    });
-    expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
-
-    act(() => {
-      fireEvent.mouseLeave(getByTestId('popover-title'));
-      fireEvent.mouseEnter(queryAllByTestId('popover-link-item-wrapper')[0]);
+      fireEvent.pointerLeave(getByTestId('popover-title'));
+      fireEvent.pointerOver(queryAllByTestId('popover-link-item-wrapper')[0]);
       jest.advanceTimersByTime(49);
     });
     expect(queryByTestId('popover-wrapper')).toBeInTheDocument();
 
     act(() => {
-      fireEvent.mouseLeave(getByTestId('popover-wrapper'));
+      fireEvent.pointerLeave(getByTestId('popover-wrapper'));
       jest.runAllTimers();
     });
 

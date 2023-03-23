@@ -20,7 +20,7 @@ describe('<HelpIconPopover />', () => {
     expect(queryByTestId('popover-wrapper')).not.toBeInTheDocument();
 
     act(() => {
-      fireEvent.mouseEnter(getByTestId('help-icon-popover-trigger'));
+      fireEvent.pointerOver(getByTestId('help-icon-popover-trigger'));
       jest.runAllTimers();
     });
 
@@ -37,7 +37,7 @@ describe('<HelpIconPopover />', () => {
     );
 
     act(() => {
-      fireEvent.mouseEnter(getByTestId('help-icon-popover-trigger'));
+      fireEvent.pointerOver(getByTestId('help-icon-popover-trigger'));
       jest.runAllTimers();
     });
 

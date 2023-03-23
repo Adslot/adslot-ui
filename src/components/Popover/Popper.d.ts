@@ -31,10 +31,10 @@ export interface PopperProps<M = ''> extends PopperModifiers<M> {
   popoverClass?: string;
   popoverContent: PopperPopoverContent;
   refElement?: Element;
-  boundariesElement?: Element;
   title?: string;
   wrapperStyles?: Object;
   popperRef?: (...args: any[]) => any;
+  hasHoverRegion?: boolean;
 }
 
 declare const Popper: <M>(props: PopperProps<M>) => React.ReactElement<any, any> | null;

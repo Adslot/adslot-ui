@@ -22,6 +22,7 @@ const WithRefM = ({
   arrowStyles,
   getContainer,
   popperRef,
+  hasHoverRegion,
 }) => {
   const themeClass = _.includes(themes, theme) ? `popover-${theme}` : 'popover-light';
   const popoverClass = classnames('aui--popover-wrapper', themeClass, popoverClassNames);
@@ -37,12 +38,12 @@ const WithRefM = ({
       dts={dts}
       title={title}
       popoverContent={popoverContent}
-      boundariesElement={boundariesElement}
       arrowStyles={arrowStyles}
       placement={placement}
       strategy={strategy}
       modifiers={modifiers}
       popperRef={popperRef}
+      hasHoverRegion={hasHoverRegion}
     />,
     boundariesElement
   );
@@ -64,6 +65,7 @@ WithRef.propTypes = {
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   isOpen: PropTypes.bool,
   popperRef: PropTypes.func,
+  hasHoverRegion: PropTypes.bool,
   dts: PropTypes.string,
 };
 
