@@ -12,7 +12,7 @@ export interface ConfirmModalProps {
   /**
    * function called when modalApply event is fired
    */
-  modalApply?: (...args: any[]) => any;
+  modalApply: (...args: any[]) => any;
   /**
    * function called when modalClose event is fired
    */

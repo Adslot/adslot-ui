@@ -32,9 +32,9 @@ export interface UserListPickerProps {
    * Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }
    */
   initialSelection?: UserListPickerInitialSelection[];
-  modalApply?: (...args: any[]) => any;
+  modalApply: (...args: any[]) => any;
   modalDescription?: string;
-  modalClose?: (...args: any[]) => any;
+  modalClose: (...args: any[]) => any;
   modalTitle?: string;
   show?: boolean;
   /**
