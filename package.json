@@ -139,7 +139,7 @@
     "react-router-dom": "^6.4.5",
     "react-to-typescript-definitions": "^3.1.1",
     "remark-emoji": "^2.2.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.4.1",
     "seamless-immutable": "^7.1.4",
     "style-dictionary": "^3.7.0",
     "style-loader": "^3.3.1",
