@@ -110,7 +110,7 @@
     "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "date-fns": "^2.29.3",
-    "eslint": "^8.29.0",
+    "eslint": "^8.38.0",
     "eslint-config-adslot": "^1.5.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "glob": "^8.0.3",
