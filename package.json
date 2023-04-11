@@ -141,7 +141,7 @@
     "remark-emoji": "^2.2.0",
     "rimraf": "^3.0.2",
     "seamless-immutable": "^7.1.4",
-    "style-dictionary": "^3.7.0",
+    "style-dictionary": "^3.7.2",
     "style-loader": "^3.3.2",
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.5",
