@@ -1,8 +1,8 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
 import PopoverLinkItem from './PopoverLinkItem';
+import { useDebounce } from '../../hooks/useDebounce';
 import './styles.css';
 
 const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children }) => {
@@ -10,9 +10,11 @@ const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children
   const [isOpen, setIsOpen] = React.useState(false);
   const [mouseInPopover, setMouseInPopover] = React.useState(false);
 
-  const closeMenu = _.debounce(() => {
-    setIsOpen(false);
-  }, 100);
+  const [setIsOpenDebouncily, , cancel] = useDebounce(setIsOpen, 100);
+
+  const closeMenu = React.useCallback(() => {
+    setIsOpenDebouncily(false);
+  }, [setIsOpenDebouncily]);
 
   const popoverEnterHandler = React.useCallback(() => setMouseInPopover(true), [setMouseInPopover]);
   const popoverLeaveHandler = React.useCallback(() => {
@@ -28,6 +30,7 @@ const HoverDropdownMenu = ({ arrowPosition, headerText, hoverComponent, children
   }, [popperNode, popoverEnterHandler, popoverLeaveHandler]);
 
   const openMenu = () => {
+    cancel();
     setIsOpen(true);
     setMouseInPopover(false);
   };

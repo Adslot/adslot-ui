@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import Spinner from '../Spinner';
+import { useDebounce } from '../../hooks/useDebounce';
 import './styles.css';
 
 const Search = React.forwardRef(
@@ -28,6 +29,8 @@ const Search = React.forwardRef(
   ) => {
     const [inputValue, setInputValue] = React.useState('');
 
+    const [handleSearchDebouncily, , cancel] = useDebounce(onSearch, debounceInterval);
+
     const onInputChange = (event) => {
       const eventValue = _.get(event, 'target.value');
       if (onChange) {
@@ -36,7 +39,12 @@ const Search = React.forwardRef(
         setInputValue(eventValue);
       }
       if (!searchOnEnter) {
-        onInputSearch(eventValue);
+        if (debounceInterval) {
+          handleSearchDebouncily(eventValue);
+        } else {
+          cancel();
+          onSearch(eventValue);
+        }
       }
     };
 
@@ -48,26 +56,26 @@ const Search = React.forwardRef(
       } else {
         setInputValue('');
       }
-      if (!searchOnEnter) onInputSearch(emptyValue);
+      if (!searchOnEnter) {
+        cancel();
+        onSearch(emptyValue);
+      }
       if (onClear) onClear(emptyValue);
     };
 
     const onKeyPress = (event) => {
       if (searchOnEnter && event.key === 'Enter') {
         event.preventDefault();
-        onInputSearch(_.get(event, 'target.value'));
+        cancel();
+        onSearch(_.get(event, 'target.value'));
       }
-    };
-
-    const onInputSearch = (searchValue) => {
-      const search = debounceInterval ? _.debounce(onSearch, debounceInterval) : onSearch;
-      search(searchValue);
     };
 
     const onSearchButtonClick = (event) => {
       event.preventDefault();
       const searchValue = value || inputValue;
-      onInputSearch(searchValue);
+      cancel();
+      onSearch(searchValue);
     };
 
     const currentInputValue = value || inputValue;
