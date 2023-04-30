@@ -1,4 +1,5 @@
 import React from 'react';
+import { isElementVisible } from '../utils/focus';
 import { invariant } from '../utils';
 
 const VALID_KEYS = {
@@ -37,7 +38,7 @@ const VALID_KEYS = {
  * @param {boolean} [options.loop] when true, navigating past the end of the list goes back to the beginning, and vice-versa
  * @param {'vertical'|'horizontal'} [options.orientation] determines the arrow keys used based on the direction of the list
  */
-const useArrowFocus = ({ ref, selector, onFocus, loop = true, orientation = 'vertical' }) => {
+const useArrowFocus = ({ ref, selector, onFocus, loop = true, disabled: isDisabled, orientation = 'vertical' }) => {
   invariant(selector, 'useArrowFocus requires a DOM selector to be passed to querySelectorAll');
 
   const onFocusRef = React.useRef(onFocus);
@@ -48,22 +49,23 @@ const useArrowFocus = ({ ref, selector, onFocus, loop = true, orientation = 'ver
 
   const getDOMList = React.useCallback(() => Array.from(ref.current?.querySelectorAll(selector) ?? 0), [ref, selector]);
 
-  const getIsDisabled = ({ disabled, ariaDisabled } = {}) => {
-    if (disabled || ariaDisabled === 'true') return true;
-    return false;
+  const getIsDisabledOrHidden = (el = {}) => {
+    const { disabled, ariaDisabled } = el;
+    return disabled || ariaDisabled === 'true' || !isElementVisible(el);
   };
 
   const focusEl = (n = 0) => {
     const DOMList = getDOMList();
     if (DOMList.length === 0 || !DOMList[n]) return;
     const nextEl = DOMList[n];
-    if (!nextEl || getIsDisabled(nextEl)) return;
+    if (!nextEl || getIsDisabledOrHidden(nextEl)) return;
 
     nextEl.focus();
     onFocusRef.current?.(nextEl);
   };
 
   React.useEffect(() => {
+    if (isDisabled) return;
     const focusNext = (isForward) => {
       const DOMList = getDOMList();
       if (DOMList.length === 0) return;
@@ -81,7 +83,7 @@ const useArrowFocus = ({ ref, selector, onFocus, loop = true, orientation = 'ver
           }
         }
 
-        if (!getIsDisabled(DOMList[i])) {
+        if (!getIsDisabledOrHidden(DOMList[i])) {
           break;
         }
 
@@ -91,24 +93,26 @@ const useArrowFocus = ({ ref, selector, onFocus, loop = true, orientation = 'ver
       }
       const nextEl = DOMList[i];
 
-      if (nextEl && !getIsDisabled(nextEl)) {
+      if (nextEl && !getIsDisabledOrHidden(nextEl)) {
         nextEl.focus();
         onFocusRef.current?.(nextEl);
       }
     };
 
     const handleKeyDown = (event) => {
-      if (!ref.current) return;
+      if (!ref?.current) return;
       if (!ref.current.contains(document.activeElement)) return;
       if (!VALID_KEYS[orientation].includes(event.key)) return;
-      event.preventDefault();
       const isForward = ['ArrowDown', 'ArrowRight'].includes(event.key);
+
+      if (event.defaultPrevented) return;
+      event.preventDefault();
       focusNext(isForward);
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [getDOMList, loop, orientation, ref]);
+  }, [isDisabled, getDOMList, loop, orientation, ref]);
 
   return { focusEl };
 };

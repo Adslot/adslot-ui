@@ -138,7 +138,7 @@ async function generateTypeDefs() {
     await Promise.all(
       parsed.map(async (code, i) => {
         const result = await generateFromSource(null, code, {
-          babylonPlugins: ['exportDefaultFrom', 'transformImports'],
+          babylonPlugins: ['exportDefaultFrom', 'transformImports', 'nullishCoalescingOperator'],
         });
 
         const component = allComponents[i];
