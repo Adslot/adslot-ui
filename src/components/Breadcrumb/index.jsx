@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 import BreadcrumbNode from './Node';
 import './styles.css';
 
-const Breadcrumb = ({ rootNode, divider, nodes, onClick, disabled }) => {
+const Breadcrumb = ({ rootNode, className, divider, nodes, onClick, disabled }) => {
   const baseClass = 'aui--breadcrumb';
-  const className = classnames(baseClass, { [`${baseClass}--disabled`]: disabled });
+  const classNames = classnames(baseClass, { [`${baseClass}--disabled`]: disabled }, className);
   const onClickFunc = (newActiveId) => !disabled && onClick(newActiveId);
 
   if (nodes.length === 0) {
-    return <div data-testid="breadcrumb-wrapper" className={className} />;
+    return <div data-testid="breadcrumb-wrapper" className={classNames} />;
   }
 
   return (
-    <div data-testid="breadcrumb-wrapper" className={className}>
+    <div data-testid="breadcrumb-wrapper" className={classNames}>
       <BreadcrumbNode isLast={false} node={rootNode} onClick={onClickFunc} />
       {_.map(nodes, (node, index) => (
         <React.Fragment key={node.id}>
@@ -31,18 +31,19 @@ const Breadcrumb = ({ rootNode, divider, nodes, onClick, disabled }) => {
 
 Breadcrumb.propTypes = {
   rootNode: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     label: PropTypes.string.isRequired,
   }),
   divider: PropTypes.node,
   nodes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       label: PropTypes.string.isRequired,
     })
   ),
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Breadcrumb.defaultProps = {

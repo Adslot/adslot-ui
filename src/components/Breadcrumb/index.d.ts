@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 export interface BreadcrumbRootNode {
-  id: string;
+  id: string | number;
   label: string;
 }
 
 export interface BreadcrumbNodes {
-  id: string;
+  id: string | number;
   label: string;
 }
 
@@ -16,6 +16,7 @@ export interface BreadcrumbProps {
   nodes?: BreadcrumbNodes[];
   onClick?: (...args: any[]) => any;
   disabled?: boolean;
+  className?: string;
 }
 
 declare const Breadcrumb: React.FC<BreadcrumbProps>;
