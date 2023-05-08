@@ -29,6 +29,7 @@ export interface ConfirmModalProps {
    * determines if the modal needs to be shown or not
    */
   show?: boolean;
+  dts?: string;
 }
 
 declare const ConfirmModal: React.FC<ConfirmModalProps>;
