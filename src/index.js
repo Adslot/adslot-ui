@@ -30,6 +30,7 @@ import GridRow from './components/Grid/Row';
 import HelpIconPopover from './components/HelpIconPopover';
 import HoverDropdownMenu from './components/HoverDropdownMenu';
 import ImageCropper from './components/ImageCropper';
+import Icon from './components/Icon';
 import InformationBox from './components/InformationBox';
 import ListPicker from './components/ListPicker';
 import ListPickerPure from './components/ListPickerPure';
@@ -136,6 +137,7 @@ export {
   TreePickerNode,
   TreePickerSimplePure,
   UserListPicker,
+  Icon,
   InformationBox,
   ImageCropper,
   HoverDropdownMenu,

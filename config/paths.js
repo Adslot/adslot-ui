@@ -18,6 +18,7 @@ module.exports = {
   appPackageJson: resolveApp('package.json'),
   appDemo: resolveApp('www'),
   appSrc: resolveApp('src'),
+  iconsSrc: resolveApp('icons/src'),
   appDir: resolveApp(''),
   appNodeModules: resolveApp('node_modules'),
   assetsPath: resolveApp('www/assets'),

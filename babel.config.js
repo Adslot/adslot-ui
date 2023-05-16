@@ -1,4 +1,4 @@
-const svgoConfig = require('./svgo-config');
+const svgoConfig = require('./svgo.config');
 
 const isDevelopment = process.env.TYPE === 'development';
 

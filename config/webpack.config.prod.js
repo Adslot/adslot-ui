@@ -82,7 +82,7 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: /\.(js|jsx)$/,
-        include: [paths.appSrc, paths.appDemo],
+        include: [paths.appSrc, paths.iconsSrc, paths.appDemo],
         loader: 'babel-loader',
       },
       {

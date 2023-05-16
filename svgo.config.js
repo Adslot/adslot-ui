@@ -8,7 +8,7 @@ module.exports = {
           inlineStyles: {
             onlyMatchedOnce: false,
           },
-
+          removeViewBox: false,
           removeDoctype: false,
         },
       },
@@ -16,10 +16,11 @@ module.exports = {
     {
       name: 'convertStyleToAttrs',
     },
+
     {
       name: 'removeAttrs',
       params: {
-        attrs: ['id'],
+        attrs: ['id', 'class'],
       },
     },
   ],

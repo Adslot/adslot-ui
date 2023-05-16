@@ -43,6 +43,7 @@ import SplitPaneExample from '../examples/SplitPane.mdx';
 import StatisticExample from '../examples/Statistic.mdx';
 import StatusPillExample from '../examples/StatusPill.mdx';
 import SvgSymbolExample from '../examples/SvgSymbol.mdx';
+import IconExample from '../examples/Icon.mdx';
 import SwitchExample from '../examples/Switch.mdx';
 import TabExample from '../examples/Tab.mdx';
 import TextEllipsisExample from '../examples/TextEllipsis.mdx';
@@ -256,6 +257,12 @@ const routes = [
     path: '/hover-dropdown-menu',
     component: HoverDropdownMenuExample,
     title: 'Hover Dropdown Menu',
+    group: 'Components',
+  },
+  {
+    path: '/icon',
+    component: IconExample,
+    title: 'Icon',
     group: 'Components',
   },
   {

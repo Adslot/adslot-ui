@@ -1,0 +1,81 @@
+import Props from '../containers/Props.jsx';
+import DesignNotes from '../containers/DesignNotes.jsx';
+
+## Icon
+
+```jsx live=true
+const Example = () => {
+  const [size, setSize] = React.useState(64);
+  const [showBorder, setShowBorder] = React.useState(true);
+  const [showList, setShowList] = React.useState(false);
+  const [search, setSearch] = React.useState('');
+  const C = showList ? 'div' : Popover;
+  return (
+    <div>
+      <div className="grid grid-small" style={{ marginBottom: 24 }}>
+        <Checkbox label="show border" checked={showBorder} onChange={setShowBorder} />
+        <Checkbox label="show as list" checked={showList} onChange={setShowList} />
+      </div>
+      <div className="grid grid-small" style={{ marginBottom: 24 }}>
+        <div>
+          <label>Size</label>
+
+          <Select
+            placeholder="size"
+            onChange={(v) => setSize(v.value)}
+            options={[
+              { value: 16, label: 16 },
+              { value: 24, label: 24 },
+              { value: 32, label: 32 },
+              { value: 64, label: 64 },
+              { value: 128, label: 128 },
+            ]}
+          />
+        </div>
+        <div>
+          <label>Search icons</label>
+          <br />
+          <input onChange={(e) => setSearch(e.target.value)} />
+        </div>
+      </div>
+      <div className={showList ? undefined : 'grid grid-medium'} style={{ flexWrap: 'wrap' }}>
+        {Object.values(Icons)
+          .filter((I) => I.displayName.toLowerCase().indexOf(search.toLowerCase().trim()) !== -1)
+          .map((I) => (
+            <div>
+              <C
+                className="grid grid-medium"
+                style={{ alignItems: 'center' }}
+                popoverContent={_.kebabCase(I.displayName)}
+                theme="dark"
+              >
+                <>
+                  <div style={{ border: showBorder ? '1px solid' : undefined, display: 'flex', maxWidth: size }}>
+                    <I size={size} />
+                  </div>
+                </>
+                {showList && <pre>{_.kebabCase(I.displayName)}</pre>}
+              </C>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+render(<Example />);
+```
+
+<DesignNotes>
+  <p>
+    SVGs are used to provide visual support for an action or information. Icons and graphics are used alongside text,
+    inside a button, tab and larger graphics are used to provide information around a state of a page, onboarding or
+    recommending an action that could be taken.
+  </p>
+  <label>Examples:</label>
+  <p>
+    <span className="text-bold">Larger graphics</span> - Get Started page, Information blocks.
+    <br />
+    <span className="text-bold">Smaller icons</span> - Import, export buttons, campaign tabs.
+  </p>
+</DesignNotes>
+<Props componentName="Icon" />
