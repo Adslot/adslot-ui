@@ -68,9 +68,9 @@ UserListPicker.propTypes = {
    *  Array of { avatar: PropTypes.string, givenName: PropTypes.string, surname: PropTypes.string, id: PropTypes.number }
    */
   initialSelection: PropTypes.arrayOf(userType),
-  modalApply: PropTypes.func,
+  modalApply: PropTypes.func.isRequired,
   modalDescription: PropTypes.string,
-  modalClose: PropTypes.func,
+  modalClose: PropTypes.func.isRequired,
   modalTitle: PropTypes.string,
   show: PropTypes.bool,
   /**
@@ -91,14 +91,6 @@ UserListPicker.defaultProps = {
   avatarColor: _.noop,
   emptyMessage: 'No users.',
   initialSelection: [],
-  modalApply: () => {
-    throw new Error('AdslotUi UserListPicker needs a modalApply handler');
-  },
-
-  modalClose: () => {
-    throw new Error('AdslotUi UserListPicker needs a modalClose handler');
-  },
-
   modalDescription: 'Select users.',
   modalTitle: 'Select Users',
   show: false,

@@ -1,117 +1,111 @@
 import _ from 'lodash';
 import React from 'react';
-import { render, cleanup, queryByAttribute } from '@testing-library/react';
+import { render, screen } from 'testing';
 import TreePickerSimplePure, { removeSelected } from '.';
 import TreePickerMocks from './mocks';
 
-afterEach(cleanup);
+const { actNode, initialSelection, itemType, ntNode, qldNode, saNode } = TreePickerMocks;
+const svgSymbol = <div className="testing-svg-symbol" />;
 
-const getByDts = queryByAttribute.bind(null, 'data-test-selector');
+const props = {
+  breadcrumbNodes: [saNode],
+  breadcrumbOnClick: _.noop,
+  emptySvgSymbol: svgSymbol,
+  initialStateNode: 'Begin searching.',
+  initialStateSymbol: svgSymbol,
+  expandNode: _.noop,
+  includeNode: _.noop,
+  itemType,
+  nodeRenderer: _.noop,
+  removeNode: _.noop,
+  onClear: _.noop,
+  onChange: _.noop,
+  onSearch: _.noop,
+  searchOnEnter: false,
+  searchPlaceholder: 'Search Geometry',
+  searchValue: '',
+  selectedNodes: initialSelection,
+  subtree: [qldNode, saNode, actNode, ntNode],
+  svgSymbolCancel: svgSymbol,
+  svgSymbolSearch: svgSymbol,
+  hideSearchOnRoot: false,
+};
 
-describe('<TreePicker />', () => {
-  const { actNode, initialSelection, itemType, ntNode, qldNode, saNode } = TreePickerMocks;
-  const svgSymbol = <div className="testing-svg-symbol" />;
+it('should render with props', () => {
+  render(<TreePickerSimplePure {...props} />);
+  expect(screen.getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component');
 
-  const props = {
-    breadcrumbNodes: [saNode],
-    breadcrumbOnClick: _.noop,
-    emptySvgSymbol: svgSymbol,
-    initialStateNode: 'Begin searching.',
-    initialStateSymbol: svgSymbol,
-    expandNode: _.noop,
-    includeNode: _.noop,
-    itemType,
-    nodeRenderer: _.noop,
-    removeNode: _.noop,
-    onClear: _.noop,
-    onChange: _.noop,
-    onSearch: _.noop,
-    searchOnEnter: false,
-    searchPlaceholder: 'Search Geometry',
-    searchValue: '',
-    selectedNodes: initialSelection,
-    subtree: [qldNode, saNode, actNode, ntNode],
-    svgSymbolCancel: svgSymbol,
-    svgSymbolSearch: svgSymbol,
-    hideSearchOnRoot: false,
-  };
+  expect(screen.getAllByTestId('split-panel-wrapper')).toHaveLength(2);
+  const wrapper = screen.getByTestId('treepicker-wrapper');
+  const splitPanes = screen.getAllByTestId('split-panel-wrapper');
 
-  it('should render with props', () => {
-    const { container, getByTestId, queryByTestId, queryAllByTestId } = render(<TreePickerSimplePure {...props} />);
-    expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component');
+  expect(wrapper).toContainElement(splitPanes[0]);
+  expect(wrapper).toContainElement(splitPanes[1]);
 
-    expect(queryAllByTestId('split-panel-wrapper')).toHaveLength(2);
-    const wrapper = getByTestId('treepicker-wrapper');
-    const splitPanes = queryAllByTestId('split-panel-wrapper');
+  expect(screen.getByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
 
-    expect(wrapper).toContainElement(splitPanes[0]);
-    expect(wrapper).toContainElement(splitPanes[1]);
+  expect(screen.getAllByTestId('flexible-spacer-wrapper')).toHaveLength(2);
+  const leftSplitPane = screen.getByDts(`treepicker-splitpane-available-${_.kebabCase(itemType)}`);
+  const rightSplitPane = screen.getByDts(`treepicker-splitpane-selected-${_.kebabCase(itemType)}`);
+  expect(leftSplitPane).toContainElement(screen.getAllByTestId('flexible-spacer-wrapper')[0]);
+  expect(rightSplitPane).toContainElement(screen.getAllByTestId('flexible-spacer-wrapper')[1]);
+});
 
-    expect(queryByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
+it('should render empty text as expected', () => {
+  const newProps = _.assign({}, props, { subtree: [] });
 
-    expect(queryAllByTestId('flexible-spacer-wrapper')).toHaveLength(2);
-    const leftSplitPane = getByDts(container, `treepicker-splitpane-available-${_.kebabCase(itemType)}`);
-    const rightSplitPane = getByDts(container, `treepicker-splitpane-selected-${_.kebabCase(itemType)}`);
-    expect(leftSplitPane).toContainElement(queryAllByTestId('flexible-spacer-wrapper')[0]);
-    expect(rightSplitPane).toContainElement(queryAllByTestId('flexible-spacer-wrapper')[1]);
+  const view = render(<TreePickerSimplePure {...newProps} />);
+
+  expect(screen.getByText('Begin searching.')).toBeInTheDocument();
+  expect(screen.getByText('Begin searching.')).toHaveClass('empty-component-text');
+
+  view.rerender(<TreePickerSimplePure {...newProps} searchValue="keyword" />);
+  expect(screen.queryByText('Begin searching.')).not.toBeInTheDocument();
+  expect(screen.getByText('No items to select.')).toBeInTheDocument();
+  expect(screen.getByText('No items to select.')).toHaveClass('empty-component-text');
+});
+
+it('should have disabled class included when disabled set to true', () => {
+  render(<TreePickerSimplePure disabled {...props} />);
+  expect(screen.getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component disabled');
+});
+
+it('should not render TreePickerNav when hideSearchOnRoot is true and on root level', () => {
+  const hideSearchOnRootProps = _.assign({}, props, {
+    hideSearchOnRoot: true,
+    breadcrumbNodes: [],
+  });
+  render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+  expect(screen.queryByTestId('treepicker-nav-wrapper')).not.toBeInTheDocument();
+});
+
+it('should render TreePickerNav when hideSearchOnRoot is true and not on root level', () => {
+  const hideSearchOnRootProps = _.assign({}, props, {
+    hideSearchOnRoot: true,
+  });
+  render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
+  expect(screen.getByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
+});
+
+describe('removeSelected', () => {
+  it('should remove selected nodes from a subtree', () => {
+    const subtree = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    const selectedNodes = [{ id: 1 }, { id: 3 }];
+
+    expect(removeSelected({ subtree, selectedNodes })).toEqual([{ id: 2 }]);
   });
 
-  it('should render empty text as expected', () => {
-    const newProps = _.assign({}, props, { subtree: [] });
+  it('should return an empty array when passed an empty subtree', () => {
+    const subtree = [];
+    const selectedNodes = [{ id: 1 }, { id: 3 }];
 
-    const { getByText, queryByText, rerender } = render(<TreePickerSimplePure {...newProps} />);
-
-    expect(queryByText('Begin searching.')).toBeInTheDocument();
-    expect(getByText('Begin searching.')).toHaveClass('empty-component-text');
-
-    rerender(<TreePickerSimplePure {...newProps} searchValue="keyword" />);
-    expect(queryByText('Begin searching.')).not.toBeInTheDocument();
-    expect(queryByText('No items to select.')).toBeInTheDocument();
-    expect(getByText('No items to select.')).toHaveClass('empty-component-text');
+    expect(removeSelected({ subtree, selectedNodes })).toEqual([]);
   });
 
-  it('should have disabled class included when disabled set to true', () => {
-    const { getByTestId } = render(<TreePickerSimplePure disabled {...props} />);
-    expect(getByTestId('treepicker-wrapper')).toHaveClass('treepickersimplepure-component disabled');
-  });
+  it('should return undefined when passed an undefined subtree', () => {
+    const subtree = undefined;
+    const selectedNodes = [{ id: 1 }, { id: 3 }];
 
-  it('should not render TreePickerNav when hideSearchOnRoot is true and on root level ', () => {
-    const hideSearchOnRootProps = _.assign({}, props, {
-      hideSearchOnRoot: true,
-      breadcrumbNodes: [],
-    });
-    const { queryByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
-    expect(queryByTestId('treepicker-nav-wrapper')).not.toBeInTheDocument();
-  });
-
-  it('should render TreePickerNav when hideSearchOnRoot is true and not on root level', () => {
-    const hideSearchOnRootProps = _.assign({}, props, {
-      hideSearchOnRoot: true,
-    });
-    const { queryByTestId } = render(<TreePickerSimplePure {...hideSearchOnRootProps} />);
-    expect(queryByTestId('treepicker-nav-wrapper')).toBeInTheDocument();
-  });
-
-  describe('removeSelected', () => {
-    it('should remove selected nodes from a subtree', () => {
-      const subtree = [{ id: 1 }, { id: 2 }, { id: 3 }];
-      const selectedNodes = [{ id: 1 }, { id: 3 }];
-
-      expect(removeSelected({ subtree, selectedNodes })).toEqual([{ id: 2 }]);
-    });
-
-    it('should return an empty array when passed an empty subtree', () => {
-      const subtree = [];
-      const selectedNodes = [{ id: 1 }, { id: 3 }];
-
-      expect(removeSelected({ subtree, selectedNodes })).toEqual([]);
-    });
-
-    it('should return undefined when passed an undefined subtree', () => {
-      const subtree = undefined;
-      const selectedNodes = [{ id: 1 }, { id: 3 }];
-
-      expect(removeSelected({ subtree, selectedNodes })).toEqual(undefined);
-    });
+    expect(removeSelected({ subtree, selectedNodes })).toEqual(undefined);
   });
 });

@@ -1,18 +1,43 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
-window.matchMedia = jest.fn().mockImplementation((query) => {
-  return {
+// for slick-carousel, date picker
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query) => ({
     matches: false,
     media: query,
     onchange: null,
     addListener: jest.fn(),
     removeListener: jest.fn(),
-  };
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  }),
 });
 
-Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
-window.ResizeObserver = class ResizeObserver {
-  observe = jest.fn();
-  unobserve = jest.fn();
-  disconnect = jest.fn();
-};
+// for RichTextEditor
+Object.defineProperty(window, 'scrollTo', {
+  writable: true,
+  value: jest.fn(),
+});
+
+Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+  writable: true,
+  value: jest.fn(),
+});
+
+// for Paragraph
+Object.defineProperty(window, 'ResizeObserver', {
+  writable: true,
+  value: class ResizeObserver {
+    observe = jest.fn();
+    unobserve = jest.fn();
+    disconnect = jest.fn();
+  },
+});
+
+// for cropperjs
+beforeEach(() => {
+  jest.spyOn(XMLHttpRequest.prototype, 'open').mockReturnValue();
+  jest.spyOn(XMLHttpRequest.prototype, 'send').mockReturnValue();
+});

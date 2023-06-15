@@ -9,6 +9,7 @@ import TextEllipsis from '../../TextEllipsis';
 import TreePickerNodeExpander from './Expander';
 import Popover from '../../Popover';
 import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes';
+import invariant from '../../../invariant';
 import './styles.css';
 
 const baseClass = 'treepickernode-component';
@@ -27,9 +28,10 @@ class TreePickerNode extends React.PureComponent {
   };
 
   componentDidMount() {
-    if (_.isUndefined(this.props.node.path) && _.isUndefined(this.props.node.ancestors)) {
-      throw new Error(`AdslotUi TreePickerNode needs property 'path' or property 'ancestors' for ${this.props.node}`);
-    }
+    invariant(
+      !(_.isUndefined(this.props.node.path) && _.isUndefined(this.props.node.ancestors)),
+      `TreePickerNode needs property 'path' or property 'ancestors' for ${this.props.node.id}`
+    );
   }
 
   setLoadingAndExpandNode = () => {
@@ -155,10 +157,10 @@ TreePickerNode.propTypes = {
 TreePickerNode.defaultProps = {
   disabled: false,
   includeNode: (node) => {
-    throw new Error(`AdslotUi TreePickerNode needs an includeNode handler for ${node}`);
+    console.error(`AdslotUi TreePickerNode needs an includeNode handler for ${node.id}`);
   },
   removeNode: (node) => {
-    throw new Error(`AdslotUi TreePickerNode needs a removeNode handler for ${node}`);
+    console.error(`AdslotUi TreePickerNode needs a removeNode handler for ${node.id}`);
   },
   selected: false,
   valueFormatter: (value) => value,

@@ -14,7 +14,7 @@ export interface BreadcrumbProps {
   rootNode?: BreadcrumbRootNode;
   divider?: React.ReactNode;
   nodes?: BreadcrumbNodes[];
-  onClick?: (...args: any[]) => any;
+  onClick: (...args: any[]) => any;
   disabled?: boolean;
   className?: string;
 }

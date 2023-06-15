@@ -1,9 +1,0 @@
-@import url('../../../styles/variable.css');
-
-.popover-link-item {
-  padding: 4px 2px 4px 6px;
-}
-
-.popover-link-item:hover {
-  background-color: $color-grey-100;
-}

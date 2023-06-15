@@ -16,7 +16,7 @@ export interface ListPickerPureSelectedItems {
 
 export interface ListPickerPureProps {
   allowMultiSelection?: boolean;
-  deselectItem?: (...args: any[]) => any;
+  deselectItem: (...args: any[]) => any;
   emptyMessage?: string;
   emptySvgSymbol?: React.ReactNode;
   labelFormatter?: (...args: any[]) => any;
@@ -24,7 +24,7 @@ export interface ListPickerPureProps {
   itemHeaders?: ListPickerPureItemHeaders;
   items?: ListPickerPureItems[];
   itemType?: string;
-  selectItem?: (...args: any[]) => any;
+  selectItem: (...args: any[]) => any;
   selectedItems?: ListPickerPureSelectedItems[];
 }
 

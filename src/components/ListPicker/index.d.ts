@@ -41,10 +41,10 @@ export interface ListPickerProps {
   itemType?: string;
   labelFormatter?: (...args: any[]) => any;
   addonFormatter?: (...args: any[]) => any;
-  modalApply?: (...args: any[]) => any;
+  modalApply: (...args: any[]) => any;
   modalDescription?: string;
   modalClassName?: string;
-  modalClose?: (...args: any[]) => any;
+  modalClose: (...args: any[]) => any;
   modalFootnote?: string;
   modalTitle?: string;
   show?: boolean;

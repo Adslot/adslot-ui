@@ -7,7 +7,7 @@ import Popper from './Popper';
 import { themes, popoverPlacements, popoverStrategies } from './constants';
 import './styles.css';
 
-const WithRefM = ({
+const WithRef = ({
   theme,
   title,
   dts,
@@ -47,8 +47,6 @@ const WithRefM = ({
     boundariesElement
   );
 };
-
-const WithRef = React.memo(WithRefM);
 
 WithRef.propTypes = {
   refElement: PropTypes.instanceOf(HTMLElement),

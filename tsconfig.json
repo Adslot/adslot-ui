@@ -1,8 +1,14 @@
 {
-  "include": ["src/**/*.d.ts"],
+  "include": ["src", "config"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "jsx": "react",
     "noEmit": true,
-    "esModuleInterop": true
+    "allowJs": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "testing": ["config/testing.d.ts"]
+    }
   }
 }

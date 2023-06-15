@@ -3,7 +3,8 @@ import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
-import { expandDts, invariant } from '../../utils';
+import { expandDts } from '../../utils';
+import invariant from '../../invariant';
 import './styles.css';
 
 export const buttonSharedClasses = ({ size, inverse, variant, fullWidth, round, icon, children, disabled, color }) => ({
@@ -51,7 +52,7 @@ const Button = (props) => {
 
   invariant(
     !(isLink && (color !== 'default' || size === 'large')),
-    `Button: buttons with the "link" variant do not inherit size and color properties.${isLink} ${color} ${size}`
+    `Button: buttons with the "link" variant do not inherit size and color properties.`
   );
 
   const baseClass = 'aui--button';

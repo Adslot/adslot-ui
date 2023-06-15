@@ -1,12 +1,8 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from 'testing';
 import FlexibleSpacer from '.';
 
-afterEach(cleanup);
-
-describe('<FlexibleSpacer />', () => {
-  it('should have its component name as className', () => {
-    const { getByTestId } = render(<FlexibleSpacer />);
-    expect(getByTestId('flexible-spacer-wrapper')).toHaveClass('flexible-spacer-component');
-  });
+it('should have its component name as className', () => {
+  render(<FlexibleSpacer />);
+  expect(screen.getByTestId('flexible-spacer-wrapper')).toHaveClass('flexible-spacer-component');
 });

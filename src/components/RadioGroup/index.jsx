@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useArrowFocus } from '../../hooks';
-import { expandDts, invariant } from '../../utils';
+import { expandDts } from '../../utils';
+import invariant from '../../invariant';
 import '../RadioGroup/style.css';
 
 const itemClass = 'aui--radio';

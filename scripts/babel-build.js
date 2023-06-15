@@ -1,5 +1,4 @@
 const childProcess = require('child_process');
-const glob = require('glob');
 const path = require('path');
 const { promisify } = require('util');
 
@@ -11,7 +10,6 @@ const outDirs = {
 };
 
 async function run() {
-  const relativeOutDir = '..';
   const env = {
     NODE_ENV: process.env.BABEL_ENV || process.env.NODE_ENV,
   };
@@ -22,12 +20,7 @@ async function run() {
 
   const srcDir = path.resolve(__dirname, '../src');
   const extensions = ['.js', '.jsx'];
-  const ignore = ['**/*.spec.js', '**/*.spec.jsx', '**/*.test.js', '**/*.test.jsx'];
-
-  const topLevelNonIndexFiles = glob.sync(`*{${extensions.join(',')}}`, { cwd: srcDir, ignore }).filter((file) => {
-    return path.basename(file, path.extname(file)) !== 'index';
-  });
-  const topLevelPathImportsCanBePackages = topLevelNonIndexFiles.length === 0;
+  const ignore = ['**/__mocks__/*', '**/*.spec.js', '**/*.spec.jsx', '**/*.test.js', '**/*.test.jsx'];
 
   const outDir = path.resolve(__dirname, '..', outDirs[env.NODE_ENV]);
 
@@ -43,7 +36,7 @@ async function run() {
 
   const command = ['npx babel', ...babelArgs].join(' ');
 
-  const { stderr, stdout } = await exec(command, { env: { ...process.env, ...env } });
+  const { stderr } = await exec(command, { env: { ...process.env, ...env } });
   if (stderr) {
     throw new Error(`'${command}' failed with \n${stderr}`);
   }
