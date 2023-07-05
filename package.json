@@ -188,7 +188,8 @@
   "overrides": {
     "@testing-library/dom": "^9.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "word-wrap": "npm:@aashutoshrathi/word-wrap@1.2.6"
   },
   "browserslist": [
     "last 2 versions",
