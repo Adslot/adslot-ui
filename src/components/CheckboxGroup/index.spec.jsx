@@ -298,7 +298,7 @@ it('should work when there is an initial value', async () => {
   );
 
   const checkbox = within(screen.getByDts('target')).getByTestId('checkbox-input');
-  expect(checkbox.checked).toBe(true);
+  expect(checkbox).toBeChecked();
 });
 
 it('should work when the values are updated', async () => {
@@ -327,14 +327,15 @@ it('should work when the values are updated', async () => {
   render(<Component />);
 
   const items = screen.queryAllByTestId('checkbox');
-  expect(items[0]).toHaveAttribute('aria-checked', 'false');
+  expect(items[0]).not.toBeChecked();
 
   await user.click(within(items[1]).getByTestId('checkbox-input'));
   await user.click(within(items[2]).getByTestId('checkbox-input'));
   await user.click(within(items[3]).getByTestId('checkbox-input'));
-  expect(items[0]).toHaveAttribute('aria-checked', 'true');
+  expect(items[0]).toBeChecked();
 
   await user.click(screen.getByTestId('button'));
 
+  // eslint-disable-next-line jest-dom/prefer-checked
   expect(items[0]).toHaveAttribute('aria-checked', 'mixed');
 });
