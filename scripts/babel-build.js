@@ -2,7 +2,7 @@ const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
 
-const execFile = promisify(childProcess.execFile);
+const exec = promisify(childProcess.exec);
 
 const outDirs = {
   esm: 'es',
@@ -34,10 +34,9 @@ async function run() {
     `"${ignore.join('","')}"`,
   ];
 
-  const command = 'npx';
-  const args = ['babel', ...babelArgs];
+  const command = ['npx babel', ...babelArgs].join(' ');
 
-  const { stderr } = await execFile(command, args, { env: { ...process.env, ...env } });
+  const { stderr } = await exec(command, { env: { ...process.env, ...env } });
   if (stderr) {
     throw new Error(`'${command}' failed with \n${stderr}`);
   }
