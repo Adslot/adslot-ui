@@ -113,7 +113,7 @@
     "eslint-config-adslot": "^1.6.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-jest": "^27.2.1",
-    "eslint-plugin-jest-dom": "^4.0.3",
+    "eslint-plugin-jest-dom": "^5.0.1",
     "eslint-plugin-testing-library": "^5.11.0",
     "glob": "^8.1.0",
     "html-webpack-plugin": "^5.5.3",
@@ -186,7 +186,6 @@
     "node": "^18"
   },
   "overrides": {
-    "@testing-library/dom": "^9.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "word-wrap": "npm:@aashutoshrathi/word-wrap@1.2.6"
