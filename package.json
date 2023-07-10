@@ -144,7 +144,7 @@
     "rimraf": "^5.0.1",
     "seamless-immutable": "^7.1.4",
     "style-dictionary": "^3.7.2",
-    "style-loader": "^3.3.2",
+    "style-loader": "^3.3.3",
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^33.0.0",
     "svg4everybody": "^2.1.9",
