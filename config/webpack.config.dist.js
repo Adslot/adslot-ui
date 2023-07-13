@@ -1,4 +1,3 @@
-const emoji = require('remark-emoji');
 const webpack = require('webpack');
 const { merge: webpackMerge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -55,19 +54,6 @@ module.exports = webpackMerge(commonConfig, {
   module: {
     rules: [
       {
-        test: /\.(md|mdx)?$/,
-        include: [paths.appSrc, paths.appDemo],
-        use: [
-          { loader: 'babel-loader' },
-          {
-            loader: '@mdx-js/loader',
-            options: {
-              remarkPlugins: [emoji],
-            },
-          },
-        ],
-      },
-      {
         test: /\.(eot|ttf|woff|woff2)$/,
         type: 'asset',
         parser: {
@@ -76,7 +62,7 @@ module.exports = webpackMerge(commonConfig, {
       },
       {
         test: /\.(js|jsx)$/,
-        include: [paths.appSrc, paths.appDemo],
+        include: paths.appSrc,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -129,7 +115,7 @@ module.exports = webpackMerge(commonConfig, {
         },
       }),
       new CssMinimizerPlugin({
-        minify: (data, inputMap, minimizerOptions) => {
+        minify: (data) => {
           const cssnano = require('cssnano');
           const safe = require('postcss-safe-parser');
 

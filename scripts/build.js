@@ -9,17 +9,12 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-
-let config;
-if (process.env.NODE_ENV === 'dist') config = require('../config/webpack.config.dist');
-else if (process.env.NODE_ENV === 'production') config = require('../config/webpack.config.prod');
-else config = require('../config/webpack.config.dev.build');
-
-const paths = require('../config/paths');
-const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+
+const config = require('../config/webpack.config.dist');
+const paths = require('../config/paths');
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
@@ -29,11 +24,6 @@ const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 const buildPath = !process.env.NODE_ENV || process.env.NODE_ENV === 'dist' ? paths.appDist : paths.appBuild;
-
-// Warn and crash if required files are missingclear
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-  process.exit(1);
-}
 
 async function copyDir(src, dest) {
   const entries = await fs.promises.readdir(src, { withFileTypes: true });

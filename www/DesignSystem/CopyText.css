@@ -1,0 +1,18 @@
+@import url('../../src/styles/variable.css');
+
+.copy-text {
+  width: max-content;
+  cursor: pointer;
+  padding-left: 2px;
+  padding-right: 2px;
+
+  &.copy-text-selected {
+    border-radius: $border-radius-base;
+    background-color: $color-primary-soft;
+    outline: none;
+
+    & span::selection {
+      background-color: transparent;
+    }
+  }
+}

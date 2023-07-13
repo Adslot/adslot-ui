@@ -65,4 +65,4 @@ export { default as TreePickerGrid } from './components/TreePicker/Grid';
 export { default as TreePickerNav } from './components/TreePicker/Nav';
 export { default as TreePickerNode } from './components/TreePicker/Node';
 export { default as UserListPicker } from './components/UserListPicker';
-export { default as VerticalNav } from './components/VerticalNavigation';
+export { default as VerticalNav } from './components/VerticalNav';
