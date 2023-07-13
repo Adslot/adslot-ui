@@ -4,7 +4,12 @@ import svgr from 'vite-plugin-svgr';
 
 const config: StorybookConfig = {
   stories: ['../www/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    '@storybook/addon-designs',
+  ],
   framework: {
     name: '@storybook/react-vite',
     options: {},

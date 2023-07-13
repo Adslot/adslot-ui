@@ -49,6 +49,12 @@ export const Solid: Story = {
     variant: 'solid',
     children: 'Solid',
   },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/ILhnLAeRObDeYARnBkHJeN/Solid-Buttons?type=design&node-id=0%3A1&mode=design&t=HMXgDOa3qkm4yVem-1',
+    },
+  },
   render: (args) => (
     <>
       <Button {...args} color="default" />
