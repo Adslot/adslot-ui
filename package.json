@@ -146,7 +146,7 @@
     "rimraf": "^5.0.1",
     "seamless-immutable": "^7.1.4",
     "storybook": "^7.0.27",
-    "style-dictionary": "^3.7.2",
+    "style-dictionary": "^3.8.0",
     "style-loader": "^3.3.3",
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^33.0.0",
