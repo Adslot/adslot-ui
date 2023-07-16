@@ -1,6 +1,6 @@
 {
   "include": ["src", "config"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "**/*.stories.tsx", ".storybook"],
   "compilerOptions": {
     "jsx": "react",
     "noEmit": true,

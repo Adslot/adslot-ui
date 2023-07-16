@@ -1,0 +1,41 @@
+@import url('../src/styles/variable.css');
+
+.adslot-ui-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 114px;
+  padding: 20px;
+
+  & .header-right-pane {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+
+    & .adslot-icon {
+      height: 32px;
+      width: 32px;
+    }
+
+    & .aui--svg-symbol-component-contributors {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  & .aui--action-panel-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

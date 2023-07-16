@@ -69,7 +69,7 @@ import TreePickerGrid from './components/TreePicker/Grid';
 import TreePickerNav from './components/TreePicker/Nav';
 import TreePickerNode from './components/TreePicker/Node';
 import UserListPicker from './components/UserListPicker';
-import VerticalNav from './components/VerticalNavigation';
+import VerticalNav from './components/VerticalNav';
 
 export {
   Accordion,

@@ -1,0 +1,12 @@
+.sidebar-subheading {
+  text-transform: unset !important;
+  letter-spacing: normal !important;
+  color: #333 !important;
+  font-size: 16px !important;
+}
+
+.sidebar-item {
+  font-size: 14px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}

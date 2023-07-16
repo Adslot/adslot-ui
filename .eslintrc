@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["adslot", "plugin:import/typescript"],
+  "extends": ["adslot", "plugin:import/typescript", "plugin:storybook/recommended"],
   "settings": {
     "lodash": {
       "version": 4
