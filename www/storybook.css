@@ -6,7 +6,6 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('../src/styles/variable.css');
 
 .sbdocs {
   & h1 {
@@ -17,71 +16,3 @@
     display: flex;
   }
 }
-
-/* .sbdocs {
-  & .sbdocs-p {
-    font-size: 16px;
-  }
-
-  & .aui-story-header {
-    border-bottom: 2px solid #333;
-    margin: 20px -18px 38px;
-
-    & h1 {
-      margin: 0;
-      padding-bottom: 6px;
-      padding-left: 18px;
-      padding-right: 18px;
-      display: inline-flex;
-      border-bottom: 5px solid;
-    }
-  }
-
-  & .aui-story-toc {
-    padding-left: 18px;
-    margin-bottom: 32px;
-
-    & li {
-      color: $color-primary-base;
-      font-size: 18px;
-    }
-  }
-
-  & .aui-story-subheader {
-    border-bottom: none;
-  }
-
-  & .sbdocs-preview,
-  & .docblock-argstable-body,
-  & .docblock-source {
-    box-shadow: none;
-    border: 1px solid $color-border-base;
-  }
-
-  & h2 {
-    font-size: 28px;
-    font-weight: bold;
-    border-bottom: 2px solid;
-    margin-bottom: 28px;
-  }
-
-  & h3 {
-    font-size: 24px;
-    border-bottom: none;
-  }
-
-  & h4 {
-    font-size: 18px;
-  }
-
-  & .docs-story > div {
-    padding: 0;
-  }
-
-  & .intro-cols {
-    display: grid;
-    grid-column-gap: 18px;
-    margin-top: 30px;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-} */
