@@ -192,8 +192,7 @@
   },
   "overrides": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "word-wrap": "npm:@aashutoshrathi/word-wrap@1.2.6"
+    "react-dom": "^18.2.0"
   },
   "browserslist": [
     "last 2 versions",
