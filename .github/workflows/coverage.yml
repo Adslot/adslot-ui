@@ -29,7 +29,7 @@ jobs:
           npm run coverage | tee /tmp/test-output.log
       - name: Check for missed warnings/errors
         run: |
-          if grep -E "console.error|Error:|ERROR:|ERROR: 'Warning|Warning:|WARN:|WARN \[web-server\]" /tmp/test-output.log; then
+          if grep -E "console.error|console.warn|Error:|ERROR:|ERROR: 'Warning|Warning:|WARN:|WARN \[web-server\]" /tmp/test-output.log; then
             echo "Test run output contains one or more warnings/errors. Please check and fix them."
             exit 1
           fi
