@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import failOnConsole from 'jest-fail-on-console'; // https://github.com/jestjs/jest/issues/14352
 
 // for slick-carousel, date picker
 Object.defineProperty(window, 'matchMedia', {
@@ -41,3 +42,5 @@ beforeEach(() => {
   jest.spyOn(XMLHttpRequest.prototype, 'open').mockReturnValue();
   jest.spyOn(XMLHttpRequest.prototype, 'send').mockReturnValue();
 });
+
+failOnConsole();
