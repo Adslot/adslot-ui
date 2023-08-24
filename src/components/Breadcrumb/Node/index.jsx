@@ -20,7 +20,7 @@ const BreadcrumbNode = ({ isLast, node, onClick }) => {
 BreadcrumbNode.propTypes = {
   isLast: PropTypes.bool.isRequired,
   node: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     label: PropTypes.string.isRequired,
   }),
   onClick: PropTypes.func.isRequired,
