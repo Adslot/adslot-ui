@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface BreadcrumbNodeNode {
-  id: string;
+  id: string | number;
   label: string;
 }
 
