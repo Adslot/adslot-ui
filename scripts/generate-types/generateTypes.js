@@ -73,11 +73,11 @@ async function generateTypeDefs() {
     .join(path.posix.sep);
 
   // get all the jsx components using glob. Ignore spec & test files.
-  const allComponentFiles = glob.sync(globString);
+  const allComponentFiles = glob.sync(globString).filter((entry) => !entry.includes('/TreePicker/'));
 
   if (!allComponentFiles || allComponentFiles.length === 0) {
     console.log(
-      chalk.red(`No component files were found for ${options.only} 
+      chalk.red(`No component files were found for ${options.only}
     ${globString}`)
     );
     return;
@@ -138,7 +138,7 @@ async function generateTypeDefs() {
     await Promise.all(
       parsed.map(async (code, i) => {
         const result = await generateFromSource(null, code, {
-          babylonPlugins: ['exportDefaultFrom', 'transformImports'],
+          babylonPlugins: ['exportDefaultFrom', 'transformImports', 'nullishCoalescingOperator'],
         });
 
         const component = allComponents[i];
@@ -164,7 +164,6 @@ async function generateTypeDefs() {
     console.log(
       chalk.cyan(
         `Generated type defs for ${allComponents.map(({ componentName }) => chalk.bold(componentName)).join(', ')}
-        
         `
       )
     );

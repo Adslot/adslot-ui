@@ -10,6 +10,8 @@ module.exports = {
           },
 
           removeDoctype: false,
+
+          removeViewBox: false,
         },
       },
     },
@@ -22,5 +24,6 @@ module.exports = {
         attrs: ['id'],
       },
     },
+    { name: 'removeDimensions' },
   ],
 };

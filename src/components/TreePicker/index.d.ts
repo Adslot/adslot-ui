@@ -1,167 +1,98 @@
 import * as React from 'react';
 
-export interface TreePickerSimplePureBreadcrumbNodes {
-  id?: any;
-  label: string;
+export interface TreePickerNodeContentProps {
+  className?: string;
+  children: React.ReactNode;
 }
 
-export interface TreePickerSimplePureSelectedNodes {
-  id?: any;
-  label: string;
-  isExpandable?: boolean;
-  path?: {
-    id?: any;
-    label: string;
-  }[];
-  ancestors?: {
-    id?: any;
-    label: string;
-  }[];
-  type: string;
-  value?: number;
-  accent?: 'warning' | 'success' | 'info' | 'error';
-}
+declare const TreePickerNodeContent: React.FC<TreePickerNodeContentProps>;
 
-export interface TreePickerSimplePureSubtree {
-  id?: any;
-  label: string;
-  isExpandable?: boolean;
-  path?: {
-    id?: any;
-    label: string;
-  }[];
-  ancestors?: {
-    id?: any;
-    label: string;
-  }[];
-  type: string;
-  value?: number;
-  accent?: 'warning' | 'success' | 'info' | 'error';
-}
-
-export interface TreePickerSimplePureBreadcrumbRootNode {
-  id?: any;
-  label: string;
-}
-
-export interface TreePickerSimplePureProps {
-  /**
-   * Class Names for SplitPane component
-   */
-  additionalClassNames?: string[];
-  /**
-   * Returns node id. This prop is not required, but an empty array is not allowed. At least one element is required in the array.
-   */
-  breadcrumbNodes?: TreePickerSimplePureBreadcrumbNodes[];
-  /**
-   * This propType creates a list of breadcrumb node
-   */
-  breadcrumbOnClick?: (...args: any[]) => any;
-  /**
-   * Interval time on search
-   */
-  debounceInterval?: number;
-  /**
-   * Disables treepicker including search bar
-   */
+export interface TreePickerNodeExpandProps {
+  className?: string;
+  inline?: boolean;
+  resolveNodes?: (...args: any[]) => any;
+  onClick?: (...args: any[]) => any;
   disabled?: boolean;
-  /**
-   * Disables treepicker's grid item
-   */
-  disableInclude?: boolean;
-  /**
-   * The svg symbol used when there will be no item on both left or right Grid
-   */
-  emptySvgSymbol?: React.ReactNode;
-  /**
-   * The svg symbol used when there will be no item on right Grid (Selected list)
-   */
-  emptySelectedListSvgSymbol?: React.ReactNode;
-  /**
-   * Displays this text when there will be no item on left Grid. Prefer type 'string', but rich text can be used here
-   */
-  emptyText?: React.ReactNode;
-  /**
-   * Displays this text when there will be no item on right Grid(Selected list). Prefer type 'string', but rich text can be used here.
-   */
-  emptySelectedListText?: React.ReactNode;
-  /**
-   * Triggers when clicking any item in the left Grid
-   */
-  expandNode?: (...args: any[]) => any;
-  /**
-   * This function use to transform keys of the list item in the left Grid
-   */
-  groupFormatter?: (...args: any[]) => any;
-  /**
-   * Hides the empty icon on right Grid (Selected list). Given emptySvgSymbol and hideIcon together, the empty symbol will be only displayed on the left grid.
-   */
-  hideIcon?: boolean;
-  /**
-   * Click event on '+' button of each list Item
-   */
-  includeNode?: (...args: any[]) => any;
-  /**
-   * Same as emptyText
-   */
-  initialStateNode?: React.ReactNode;
-  /**
-   * Same as emptySymbol
-   */
-  initialStateSymbol?: React.ReactNode;
-  /**
-   * Uses for specific className
-   */
-  itemType?: string;
-  isLoading?: boolean;
-  /**
-   * Uses for rendering custom node
-   */
-  nodeRenderer?: (...args: any[]) => any;
-  removeNode?: (...args: any[]) => any;
-  /**
-   * Triggers when search input changes
-   */
-  onChange?: (...args: any[]) => any;
-  /**
-   * Triggers when the user clicks the clear button on search input
-   */
-  onClear?: (...args: any[]) => any;
-  /**
-   * Please see <a href='/search'>Search</a>
-   */
-  onSearch?: (...args: any[]) => any;
-  /**
-   * Please see <a href='/search'>Search</a>
-   */
-  searchOnEnter?: boolean;
-  searchPlaceholder?: string;
-  searchValue?: string;
-  selectedNodes: TreePickerSimplePureSelectedNodes[];
-  /**
-   * Show or hide the search field on the selection pane
-   */
-  showSearch?: boolean;
-  /**
-   * A list of available unselected nodes. This prop is not required, but an empty array is not allowed. At least one element is required in the array.
-   */
-  subtree?: TreePickerSimplePureSubtree[];
-  svgSymbolCancel?: React.ReactNode;
-  svgSymbolSearch?: React.ReactNode;
-  /**
-   * e.g: Default Group
-   */
-  displayGroupHeader?: boolean;
-  hideSearchOnRoot?: boolean;
-  /**
-   * A react node to be rendered at the top of the right hand side pane. Generally we are expecting a search component.
-   */
-  selectedTopSearch?: React.ReactNode;
-  addNodePopoverInfoProps?: Object;
-  removeNodePopoverInfoProps?: Object;
-  breadcrumbRootNode?: TreePickerSimplePureBreadcrumbRootNode;
+  onMouseEnter?: (...args: any[]) => any;
+  onMouseLeave?: (...args: any[]) => any;
 }
 
-declare const TreePickerSimplePure: React.FC<TreePickerSimplePureProps>;
+declare const TreePickerNodeExpand: React.FC<TreePickerNodeExpandProps>;
 
-export default TreePickerSimplePure;
+export interface TreePickerNodeAddProps {
+  onAdd: (...args: any[]) => any;
+  onClick?: (...args: any[]) => any;
+  disabled?: boolean;
+  className?: string;
+}
+
+declare const TreePickerNodeAdd: React.FC<TreePickerNodeAddProps>;
+
+declare const TreePickerNodePlaceholder: React.FC;
+
+export interface TreePickerNodeNode {
+  id: string | number;
+  label: string;
+}
+
+export interface TreePickerNodeProps {
+  node: TreePickerNodeNode;
+  children: React.ReactNode;
+  className?: string;
+}
+
+declare const TreePickerNode: React.FC<TreePickerNodeProps> & {
+  Content: typeof TreePickerNodeContent;
+  Expand: typeof TreePickerNodeExpand;
+  Add: typeof TreePickerNodeAdd;
+  Placeholder: typeof TreePickerNodePlaceholder;
+};
+
+export interface TreePickerNavProps {
+  rootLabel?: string;
+  className?: string;
+  onNavTo?: (...args: any[]) => any;
+}
+
+declare const TreePickerNav: React.FC<TreePickerNavProps>;
+
+export interface TreePickerHeaderProps {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+declare const TreePickerHeader: React.FC<TreePickerHeaderProps>;
+
+export interface TreePickerSearchProps {
+  resolveNodes: (...args: any[]) => any;
+  className?: string;
+  disabled?: boolean;
+}
+
+declare const TreePickerSearch: React.FC<TreePickerSearchProps>;
+
+export interface TreePickerTreeProps {
+  resolveRootNodes: (...args: any[]) => any;
+  className?: string;
+  hiddenNodeIds?: string[];
+  placeholder?: React.ReactNode;
+  emptyState?: React.ReactNode;
+}
+
+declare const TreePickerTree: React.FC<TreePickerTreeProps>;
+
+export interface TreePickerProps {
+  children: React.ReactNode;
+  renderNode: (...args: any[]) => any;
+  className?: string;
+}
+
+declare const TreePicker: React.FC<TreePickerProps> & {
+  Node: typeof TreePickerNode;
+  Nav: typeof TreePickerNav;
+  Header: typeof TreePickerHeader;
+  Search: typeof TreePickerSearch;
+  Tree: typeof TreePickerTree;
+};
+
+export default TreePicker;
