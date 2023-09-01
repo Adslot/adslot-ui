@@ -58,6 +58,7 @@ declare const TreePickerNav: React.FC<TreePickerNavProps>;
 
 export interface TreePickerHeaderProps {
   children?: React.ReactNode;
+  onIncludeAll?: (...args: any[]) => any;
   className?: string;
 }
 

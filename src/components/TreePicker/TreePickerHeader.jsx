@@ -9,7 +9,7 @@ import './TreePickerHeader.css';
 
 const getNoAddable = (state) => _.isEmpty(state.addable);
 
-const HeaderIncludeAll = () => {
+const HeaderIncludeAll = ({ onIncludeAll }) => {
   const noAddable = useTreePickerSlice(getNoAddable);
   const getTreeState = useTreePickerGetState();
 
@@ -20,6 +20,8 @@ const HeaderIncludeAll = () => {
       variant="link"
       className="aui--tree-picker-header-include-all"
       onClick={() => {
+        if (onIncludeAll) return onIncludeAll();
+
         const addable = getTreeState().addable;
 
         _.forEach(addable, (addNodeRef) => {
@@ -37,7 +39,7 @@ const getCurrentNodeHeader = (state) => {
   return currentNode?.header;
 };
 
-const TreePickerHeader = ({ children, className }) => {
+const TreePickerHeader = ({ children, className, onIncludeAll }) => {
   const header = useTreePickerSlice(getCurrentNodeHeader);
 
   const content = header || children;
@@ -45,7 +47,7 @@ const TreePickerHeader = ({ children, className }) => {
   return !content ? null : (
     <div className={cc('aui--tree-picker-row', 'aui--tree-picker-header', className)}>
       <div className="aui--tree-picker-row-content">{content}</div>
-      <HeaderIncludeAll />
+      <HeaderIncludeAll onIncludeAll={onIncludeAll} />
     </div>
   );
 };
@@ -53,6 +55,7 @@ const TreePickerHeader = ({ children, className }) => {
 TreePickerHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  onIncludeAll: PropTypes.func,
 };
 
 export default TreePickerHeader;
