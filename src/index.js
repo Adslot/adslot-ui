@@ -64,10 +64,21 @@ import Tile from './components/Tile';
 import TileGrid from './components/TileGrid';
 import Toast from './components/Toast';
 import Totals from './components/Totals';
-import TreePickerSimplePure from './components/TreePicker';
-import TreePickerGrid from './components/TreePicker/Grid';
-import TreePickerNav from './components/TreePicker/Nav';
-import TreePickerNode from './components/TreePicker/Node';
+import TreePicker, {
+  useTreePickerActions,
+  useTreePickerPaths,
+  useTreePickerNodes,
+  useTreePickerSearch,
+  useTreePickerCurrentNode,
+  useTreePickerGetState,
+  useTreePickerSlice,
+  useTreePickerNode,
+} from './components/TreePicker';
+// legacy TreePickerSimplePure will be deprecated once all usage replaced with TreePicker
+import TreePickerSimplePure from './components/TreePickerSimplePure';
+import TreePickerGrid from './components/TreePickerSimplePure/Grid';
+import TreePickerNav from './components/TreePickerSimplePure/Nav';
+import TreePickerNode from './components/TreePickerSimplePure/Node';
 import UserListPicker from './components/UserListPicker';
 import VerticalNav from './components/VerticalNav';
 
@@ -128,6 +139,15 @@ export {
   TextEllipsis,
   TileGrid,
   Totals,
+  TreePicker,
+  useTreePickerActions,
+  useTreePickerPaths,
+  useTreePickerNodes,
+  useTreePickerSearch,
+  useTreePickerCurrentNode,
+  useTreePickerGetState,
+  useTreePickerSlice,
+  useTreePickerNode,
   TreePickerGrid,
   TreePickerNav,
   TreePickerNode,
