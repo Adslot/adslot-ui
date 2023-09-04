@@ -1,0 +1,32 @@
+@import url('../../styles/variable.css');
+
+.aui--tree-picker {
+  & .aui--tree-picker-row + .aui--tree-picker-tree {
+    border-top: 1px solid $color-border-base;
+  }
+}
+
+.aui--tree-picker-section {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.aui--tree-picker-row {
+  padding: 0 2px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 12px;
+  border-top: 1px solid $color-border-base;
+
+  & .aui--button.aui-icon {
+    width: 24px;
+    height: 24px;
+    min-height: 24px;
+  }
+}
+
+.aui--tree-picker-row-content {
+  flex: 1;
+}

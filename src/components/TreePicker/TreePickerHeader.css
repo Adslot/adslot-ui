@@ -1,0 +1,18 @@
+@import url('../../styles/variable.css');
+
+.aui--tree-picker-header {
+  color: $color-text-description;
+}
+
+.aui--tree-picker-header-action-holder {
+  /* 24 + 12 + 24 */
+  width: 60px;
+}
+
+.aui--tree-picker-header-add-all.aui--button.aui-link {
+  width: 60px;
+
+  & .aui-children-container {
+    font-weight: $font-weight-bold;
+  }
+}
