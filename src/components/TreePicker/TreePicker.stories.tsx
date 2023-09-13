@@ -6,7 +6,6 @@ import TreePicker from './index';
 const meta = {
   title: 'Components/TreePicker',
   component: TreePicker,
-  tags: ['autodocs'],
 } satisfies Meta<typeof TreePicker>;
 
 export default meta;
@@ -48,7 +47,7 @@ const NodeRender = ({ node }) => (
   </TreePicker.Node>
 );
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
     renderNode: (node) => <NodeRender node={node} />,
 
