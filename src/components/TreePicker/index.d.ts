@@ -40,6 +40,7 @@ export interface TreePickerNodeProps {
   node: TreePickerNodeNode;
   children: React.ReactNode;
   className?: string;
+  dts?: string;
 }
 
 declare const TreePickerNode: React.FC<TreePickerNodeProps> & {
@@ -61,6 +62,7 @@ export interface TreePickerHeaderProps {
   label?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
+  dts?: string;
 }
 
 declare const TreePickerHeader: React.FC<TreePickerHeaderProps>;
@@ -79,6 +81,7 @@ export interface TreePickerTreeProps {
   hiddenNodeIds?: string[];
   placeholder?: React.ReactNode;
   emptyState?: React.ReactNode;
+  dts?: string;
 }
 
 declare const TreePickerTree: React.FC<TreePickerTreeProps>;
