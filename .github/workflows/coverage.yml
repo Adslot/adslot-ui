@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: ${{matrix.node}}
       - run: npm -v
-      - run: npm ci
+      - run: npm ci --update-notifier=false
       - name: Run jest coverage
         run: |
           set -o pipefail
