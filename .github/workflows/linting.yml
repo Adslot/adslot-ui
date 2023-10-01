@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: ${{matrix.node}}
       - run: npm -v
-      - run: npm ci
+      - run: npm ci --update-notifier=false
       - name: Run commitlint on last commit
         if: github.ref != 'refs/heads/master'
         run: |

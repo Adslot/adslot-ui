@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: ${{matrix.node}}
       - run: npm -v
-      - run: npm ci
+      - run: npm ci --update-notifier=false
       - run: npm run type-check
       - run: |
           npm run generate-types
