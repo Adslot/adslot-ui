@@ -2,7 +2,9 @@
 
 $border-radius: 6px;
 $gap: 12px;
-$focus-ring: 0 0 0 2px #fff, 0 0 0 4px $color-grey-700;
+$focus-ring:
+  0 0 0 2px #fff,
+  0 0 0 4px $color-grey-700;
 
 .aui--radio-group {
   display: flex;

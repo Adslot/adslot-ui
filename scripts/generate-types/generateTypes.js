@@ -77,7 +77,7 @@ async function generateTypeDefs() {
 
   if (!allComponentFiles || allComponentFiles.length === 0) {
     console.log(
-      chalk.red(`No component files were found for ${options.only} 
+      chalk.red(`No component files were found for ${options.only}
     ${globString}`)
     );
     return;
@@ -144,7 +144,7 @@ async function generateTypeDefs() {
         const component = allComponents[i];
 
         const output = typesPostFixes(component.componentName, result);
-        const prettifiedOutput = prettier.format(output, { parser: 'typescript', ...pkg.prettier });
+        const prettifiedOutput = await prettier.format(output, { parser: 'typescript', ...pkg.prettier });
 
         const fileName = `${component.relPath}${component.fileName.replace(/\.jsx$/, '.d.ts')}`;
         const existingFile = await fs.readFile(fileName, 'utf-8');
@@ -164,7 +164,6 @@ async function generateTypeDefs() {
     console.log(
       chalk.cyan(
         `Generated type defs for ${allComponents.map(({ componentName }) => chalk.bold(componentName)).join(', ')}
-        
         `
       )
     );
