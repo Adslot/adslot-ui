@@ -157,7 +157,7 @@
     "terser-webpack-plugin": "^5.3.9",
     "typescript": "^5.2.2",
     "url-search-params-polyfill": "^8.2.4",
-    "vite-plugin-svgr": "^3.2.0",
+    "vite-plugin-svgr": "^4.1.0",
     "wcag-contrast": "^3.0.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
