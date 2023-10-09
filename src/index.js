@@ -45,7 +45,6 @@ import Radio from './components/Radio';
 import RadioGroup from './components/RadioGroup';
 import RichTextEditor from './components/RichTextEditor';
 import Search from './components/Search';
-import SearchableCheckList from './components/SearchableCheckList';
 import Select from './components/Select';
 import Skeleton from './components/Skeleton';
 import Slicey from './components/Slicey';
@@ -113,7 +112,6 @@ export {
   RadioGroup,
   Search,
   Select,
-  SearchableCheckList,
   Slicey,
   Spinner,
   SplitPane,
