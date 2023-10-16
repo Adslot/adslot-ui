@@ -204,3 +204,23 @@
   border: $color-white 2px solid;
   background-color: $color-white;
 }
+
+.bullet-icon {
+  background-image: url('../../styles/icons/bullet.svg');
+}
+
+.number-icon {
+  background-image: url('../../styles/icons/number.svg');
+}
+
+.bold-icon {
+  background-image: url('../../styles/icons/bold.svg');
+}
+
+.italic-icon {
+  background-image: url('../../styles/icons/italic.svg');
+}
+
+.underline-icon {
+  background-image: url('../../styles/icons/underline.svg');
+}
