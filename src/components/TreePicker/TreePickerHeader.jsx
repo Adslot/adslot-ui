@@ -4,6 +4,7 @@ import cc from 'classnames';
 import _ from 'lodash';
 import Button from '../Button';
 import { useTreePickerGetState, useTreePickerSlice } from './TreePickerContext';
+import { expandDts } from '../../utils';
 
 import './TreePickerHeader.css';
 
@@ -37,13 +38,13 @@ const getCurrentNodeHeader = (state) => {
   return currentNode?.header;
 };
 
-const TreePickerHeader = ({ children, className, label }) => {
+const TreePickerHeader = ({ children, className, label, dts }) => {
   const header = useTreePickerSlice(getCurrentNodeHeader);
 
   const finalLabel = !_.isUndefined(header) ? header : label;
 
   return !finalLabel ? null : (
-    <div className={cc('aui--tree-picker-row', 'aui--tree-picker-header', className)}>
+    <div className={cc('aui--tree-picker-row', 'aui--tree-picker-header', className)} {...expandDts(dts)}>
       <div className="aui--tree-picker-row-content">{finalLabel}</div>
       {children ?? <HeaderAddAll />}
     </div>
@@ -54,6 +55,7 @@ TreePickerHeader.propTypes = {
   label: PropTypes.node,
   children: PropTypes.node,
   className: PropTypes.string,
+  dts: PropTypes.string,
 };
 
 export default TreePickerHeader;

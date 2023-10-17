@@ -13,6 +13,7 @@ import {
   HiddenByIdCtx,
 } from './TreePickerContext';
 import TreePickerNode from './TreePickerNode';
+import { expandDts } from '../../utils';
 
 import './TreePickerTree.css';
 
@@ -71,6 +72,7 @@ const TreePickerTree = ({
   className,
   resolveRootNodes,
   hiddenNodeIds,
+  dts,
   placeholder = defaultPlaceholder,
   emptyState = defaultEmptyState,
 }) => {
@@ -114,7 +116,7 @@ const TreePickerTree = ({
 
   return (
     <HiddenByIdCtx.Provider value={byId}>
-      <div className={cx('aui--tree-picker-tree', className)}>
+      <div className={cx('aui--tree-picker-tree', className)} {...expandDts(dts)}>
         {isResolvingRoot ? placeholder : visibleNodes.length === 0 ? emptyState : visibleNodes.map(renderNode)}
       </div>
     </HiddenByIdCtx.Provider>
@@ -127,6 +129,7 @@ TreePickerTree.propTypes = {
   resolveRootNodes: PropTypes.func.isRequired,
   placeholder: PropTypes.node,
   emptyState: PropTypes.node,
+  dts: PropTypes.string,
 };
 
 TreePickerTree.Placeholder = TreePickerTreePlaceholder;

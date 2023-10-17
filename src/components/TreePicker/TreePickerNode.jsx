@@ -16,6 +16,7 @@ import {
   useHiddenById,
   useTreePickerSlice,
 } from './TreePickerContext';
+import { expandDts } from '../../utils';
 
 import './TreePickerNode.css';
 
@@ -23,7 +24,7 @@ const TreePickerNodeContext = React.createContext({ level: 0 });
 
 export const useTreePickerNode = () => React.useContext(TreePickerNodeContext);
 
-const TreePickerNode = ({ className, children, node }) => {
+const TreePickerNode = ({ className, children, node, dts }) => {
   const { goTo } = useInternalActions();
   const [state, setState] = React.useState(() => ({ expanded: false, subNodes: [] }));
 
@@ -61,7 +62,9 @@ const TreePickerNode = ({ className, children, node }) => {
 
   return (
     <TreePickerNodeContext.Provider value={value}>
-      <div className={cx('aui--tree-picker-row', className)}>{children}</div>
+      <div className={cx('aui--tree-picker-row', className)} {...expandDts(dts)}>
+        {children}
+      </div>
       {state.subNodes.length === 0 ? null : <TreePickerNodeBranch nodes={state.subNodes} />}
     </TreePickerNodeContext.Provider>
   );
@@ -73,6 +76,7 @@ TreePickerNode.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     label: PropTypes.string.isRequired,
   }).isRequired,
+  dts: PropTypes.string,
 };
 
 const TreePickerNodeBranch = ({ nodes }) => {
