@@ -6,7 +6,7 @@ import Radio from '../Radio';
 import SvgSymbol from '../SvgSymbol';
 
 const meta = {
-  title: 'Pending Review/RadioGroup',
+  title: 'Components/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
 } satisfies Meta<typeof RadioGroup>;
