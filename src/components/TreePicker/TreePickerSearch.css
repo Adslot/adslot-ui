@@ -1,0 +1,7 @@
+@import url('../../styles/variable.css');
+
+.aui--tree-picker-search {
+  & .aui--search-component-icon {
+    padding: 8px;
+  }
+}

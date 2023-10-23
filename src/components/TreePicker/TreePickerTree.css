@@ -1,0 +1,27 @@
+@import url('../../styles/variable.css');
+
+.aui--tree-picker-tree {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $color-border-base;
+  border-bottom: 1px solid $color-border-base;
+
+  & .aui--tree-picker-row:first-child {
+    border-top: 0;
+  }
+}
+
+.aui--tree-picker-empty {
+  background-color: $color-grey-100;
+  min-height: 182px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  & .empty-title {
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+  }
+}
