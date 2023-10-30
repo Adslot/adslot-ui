@@ -1,12 +1,19 @@
 import React from 'react';
 import { RichUtils } from 'draft-js';
 import ToolbarButton from './ToolbarButton';
-import BulletIcon from '../../styles/icons/bullet.svg';
-import NumberIcon from '../../styles/icons/number.svg';
+import './styles.css';
 
 const BLOCK_TYPES = [
-  { label: <BulletIcon data-testid="bullet" />, style: 'unordered-list-item', ariaLabel: 'Unordered list' },
-  { label: <NumberIcon data-testid="number" />, style: 'ordered-list-item', ariaLabel: 'Ordered list' },
+  {
+    label: <div className="bullet-icon" data-testid="bullet" />,
+    style: 'unordered-list-item',
+    ariaLabel: 'Unordered list',
+  },
+  {
+    label: <div className="number-icon" data-testid="number" />,
+    style: 'ordered-list-item',
+    ariaLabel: 'Ordered list',
+  },
 ];
 
 const BlockStyleButtons = (props) => {

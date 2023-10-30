@@ -1,15 +1,17 @@
 import React from 'react';
 import { RichUtils } from 'draft-js';
 import ToolbarButton from './ToolbarButton';
-import BoldIcon from '../../styles/icons/bold.svg';
-import ItalicIcon from '../../styles/icons/italic.svg';
-import UnderlineIcon from '../../styles/icons/underline.svg';
+import './styles.css';
 
 const INLINE_STYLES = [
-  { label: <BoldIcon data-testid="bold" />, style: 'BOLD', ariaLabel: 'Bold' },
-  { label: <ItalicIcon data-testid="italics" aria-label="italic" />, style: 'ITALIC', ariaLabel: 'Italic' },
+  { label: <div className="bold-icon" data-testid="bold" alt="icon" />, style: 'BOLD', ariaLabel: 'Bold' },
   {
-    label: <UnderlineIcon data-testid="underline" aria-label="Underline" />,
+    label: <div className="italic-icon" data-testid="italics" aria-label="italic" alt="icon" />,
+    style: 'ITALIC',
+    ariaLabel: 'Italic',
+  },
+  {
+    label: <div className="underline-icon" data-testid="underline" aria-label="Underline" alt="icon" />,
     style: 'UNDERLINE',
     ariaLabel: 'Underline',
   },
