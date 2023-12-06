@@ -104,7 +104,7 @@
     "babel-plugin-inline-react-svg": "^2.0.2",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-jsx-remove-data-test-id": "^3.0.0",
-    "babel-plugin-transform-remove-imports": "^1.7.0",
+    "babel-plugin-transform-remove-imports": "^1.7.1",
     "buffer": "^6.0.3",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "classnames": "^2.3.2",
