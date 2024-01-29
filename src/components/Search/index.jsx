@@ -59,10 +59,10 @@ const Search = React.forwardRef(
       }
     };
 
-    const onInputSearch = (searchValue) => {
-      const search = debounceInterval ? _.debounce(onSearch, debounceInterval) : onSearch;
-      search(searchValue);
-    };
+    const onInputSearch = React.useMemo(
+      () => _.debounce((searchValue) => onSearch(searchValue), debounceInterval),
+      [debounceInterval, onSearch]
+    );
 
     const onSearchButtonClick = (event) => {
       event.preventDefault();

@@ -190,17 +190,34 @@ describe('Value Changed', () => {
     expect(callbacks.onSearch).toHaveBeenCalledWith('v');
   });
 
-  it('should fire onSearch after debounceInterval', async () => {
+  it('should fire onSearch immediately when debounceInterval is not set', async () => {
     const callbacks = {
       onSearch: jest.fn(),
     };
-    render(<Search {...callbacks} debounceInterval={500} />);
+    render(<Search {...callbacks} />);
 
     await user.type(screen.getByTestId('search-input'), 'new-value');
-    expect(callbacks.onSearch).not.toHaveBeenCalledWith('new-value');
 
-    await sleep(500);
     expect(callbacks.onSearch).toHaveBeenCalledWith('new-value');
+  });
+
+  it('should debounce onSearch calls when debounceInterval is set', async () => {
+    const callbacks = {
+      onSearch: jest.fn(),
+    };
+    render(<Search {...callbacks} debounceInterval={200} />);
+
+    await user.type(screen.getByTestId('search-input'), 'n');
+    await user.type(screen.getByTestId('search-input'), 'e');
+    await user.type(screen.getByTestId('search-input'), 'w');
+    expect(callbacks.onSearch).not.toHaveBeenCalledWith('n');
+    expect(callbacks.onSearch).not.toHaveBeenCalledWith('ne');
+    expect(callbacks.onSearch).not.toHaveBeenCalledWith('new');
+
+    await sleep(200);
+    expect(callbacks.onSearch).not.toHaveBeenCalledWith('n');
+    expect(callbacks.onSearch).not.toHaveBeenCalledWith('ne');
+    expect(callbacks.onSearch).toHaveBeenCalledWith('new');
   });
 
   it('should not fire onSearch when value changed if searchOnEnter is true', async () => {
