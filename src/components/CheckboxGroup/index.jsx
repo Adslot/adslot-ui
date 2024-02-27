@@ -9,14 +9,23 @@ import CheckboxGroupProvider, { useCheckboxGroup } from './CheckboxGroupContext'
 import '../RadioGroup/style.css';
 import './styles.css';
 
-const CheckboxGroupItem = ({ value, ...rest }) => {
+const CheckboxGroupItem = ({ value, disabled, ...rest }) => {
   const groupCtx = useCheckboxGroup();
   invariant(!_.isEmpty(groupCtx), 'CheckboxGroup.Item: must be used as children of CheckboxGroup');
   invariant(!rest.name, 'CheckboxGroup.Item: name will be overridden by CheckboxGroup name');
   invariant(!rest.variant, 'CheckboxGroup.Item: variant will be overridden by CheckboxGroup variant');
   invariant(!rest.onChange, 'CheckboxGroup.Item: onChange will be overridden by CheckboxGroup onChange');
 
-  const { onItemChange, getIsItemChecked, name, variant } = groupCtx;
+  const { onItemChange, getIsItemChecked, name, variant, registerDisabledValue, unregisterDisabledValue } = groupCtx;
+
+  React.useEffect(() => {
+    if (disabled) {
+      registerDisabledValue(value);
+    }
+    return () => {
+      unregisterDisabledValue(value);
+    };
+  }, [disabled, registerDisabledValue, unregisterDisabledValue, value]);
 
   return (
     <Checkbox
@@ -26,6 +35,7 @@ const CheckboxGroupItem = ({ value, ...rest }) => {
       variant={variant}
       checked={getIsItemChecked(value)}
       onChange={() => onItemChange(value)}
+      disabled={disabled}
     />
   );
 };
@@ -36,7 +46,8 @@ const CheckboxGroupAll = ({ className, label = 'All', values, ...rest }) => {
   const groupCtx = useCheckboxGroup();
   invariant(!_.isEmpty(groupCtx), 'CheckboxGroup.All: must be used as children of CheckboxGroup');
 
-  const { onAllChange, getIsAllChecked, name, variant } = groupCtx;
+  const { onAllChange, getIsAllChecked, name, variant, disabledValues } = groupCtx;
+  const enabledValues = _.filter(values, (value) => !_.includes(disabledValues, value));
 
   return (
     <Checkbox
@@ -44,9 +55,10 @@ const CheckboxGroupAll = ({ className, label = 'All', values, ...rest }) => {
       className={classnames(className, 'is-all')}
       name={name}
       label={label}
-      checked={getIsAllChecked(values)}
-      onChange={onAllChange(values)}
+      checked={getIsAllChecked(enabledValues)}
+      onChange={onAllChange(enabledValues)}
       variant={variant}
+      disabled={_.isEqual(values, disabledValues)}
     />
   );
 };

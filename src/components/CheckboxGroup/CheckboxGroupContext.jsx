@@ -20,6 +20,8 @@ const CheckboxGroupProvider = ({
   const name = parentCtx.name || nameProp;
   const value = parentCtx.value || valueProp;
 
+  const [disabledValues, setDisabledValues] = React.useState([]);
+
   const context = React.useMemo(() => {
     const getIsItemChecked = (checkboxValue) => {
       if (getIsChecked) return getIsChecked(checkboxValue, value);
@@ -28,11 +30,11 @@ const CheckboxGroupProvider = ({
     };
 
     const getIsAllChecked = (values) => {
+      if (_.isEmpty(values)) return false;
       const result = _(values)
         .map((item) => getIsItemChecked(item))
         .uniq()
         .value();
-
       return result.length === 1 ? result[0] : 'partial';
     };
 
@@ -54,6 +56,18 @@ const CheckboxGroupProvider = ({
       }
     };
 
+    const registerDisabledValue = (disabledValue) => {
+      if (!_.includes(disabledValues, disabledValue)) {
+        setDisabledValues((prevValues) => [...prevValues, disabledValue]);
+      }
+    };
+
+    const unregisterDisabledValue = (disabledValue) => {
+      if (_.includes(disabledValues, disabledValue)) {
+        setDisabledValues((prevValues) => _.filter(prevValues, (v) => v !== disabledValue));
+      }
+    };
+
     return {
       variant,
       value,
@@ -64,8 +78,12 @@ const CheckboxGroupProvider = ({
       getIsAllChecked,
       onItemChange,
       onAllChange,
+
+      registerDisabledValue,
+      unregisterDisabledValue,
+      disabledValues,
     };
-  }, [getIsChecked, value, name, onChange, variant]);
+  }, [getIsChecked, value, name, onChange, variant, disabledValues]);
 
   return <CheckboxGroupContext.Provider value={context}>{children}</CheckboxGroupContext.Provider>;
 };
