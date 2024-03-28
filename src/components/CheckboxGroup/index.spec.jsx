@@ -339,3 +339,142 @@ it('should work when the values are updated', async () => {
   // eslint-disable-next-line jest-dom/prefer-checked
   expect(items[0]).toHaveAttribute('aria-checked', 'mixed');
 });
+
+it('should disable checkbox group all if all the items are disabled', () => {
+  const onChange = jest.fn();
+  render(
+    <CheckboxGroup name="movies" value={['terminator']} onChange={onChange}>
+      <CheckboxGroup.All label="All" dts="target" values={['terminator', 'predator', 'soundofmusic']} />
+      <CheckboxGroup.Item label="The Terminator" value="terminator" disabled />
+      <CheckboxGroup.Item label="Predator" value="predator" disabled />
+      <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" disabled />
+    </CheckboxGroup>
+  );
+  const checkbox = within(screen.getByDts('target')).getByTestId('checkbox-input');
+  expect(checkbox).toBeDisabled();
+});
+
+it('should not select disabled checkbox item', async () => {
+  const onChange = jest.fn();
+  render(
+    <CheckboxGroup name="movies" value={[]} onChange={onChange}>
+      <CheckboxGroup.All label="All" dts="target" values={['terminator', 'predator', 'soundofmusic']} />
+      <CheckboxGroup.Item label="The Terminator" value="terminator" disabled />
+      <CheckboxGroup.Item label="Predator" value="predator" />
+      <CheckboxGroup.Item label="The Sound of Music" value="soundofmusic" />
+    </CheckboxGroup>
+  );
+
+  const checkbox = within(screen.getByDts('target')).getByTestId('checkbox-input');
+  await user.click(checkbox);
+  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChange).toHaveBeenCalledWith(['predator', 'soundofmusic'], 'movies');
+});
+
+it('should work when re-render after disabled item is changed to non disabled', async () => {
+  const Component = () => {
+    const [value, setValue] = React.useState([]);
+    const allValues = ['terminator', 'predator', 'soundofmusic'];
+    const [checkboxDisabled, setCheckboxDisabled] = React.useState(true);
+
+    const handleButtonClick = () => {
+      setCheckboxDisabled(false);
+    };
+
+    return (
+      <div>
+        <button data-testid="button" onClick={handleButtonClick}>
+          enable terminator
+        </button>
+        <CheckboxGroup name="movies" value={value} onChange={setValue}>
+          <CheckboxGroup.All label="All" values={allValues} />
+          {allValues.map((item) => (
+            <CheckboxGroup.Item
+              key={item}
+              label={item}
+              value={item}
+              disabled={item === 'terminator' ? checkboxDisabled : false}
+            />
+          ))}
+        </CheckboxGroup>
+      </div>
+    );
+  };
+
+  render(<Component />);
+
+  await user.click(screen.getByTestId('button'));
+  const items = screen.queryAllByTestId('checkbox');
+  await user.click(within(items[0]).getByTestId('checkbox-input')); // click checkbox all
+  expect(items[1]).toBeChecked(); // terminator is no longer disabled, so it should be checked
+  expect(items[2]).toBeChecked(); // predator is checked
+  expect(items[3]).toBeChecked(); // soundofmusic is checked
+});
+
+it('should work when non disabled values are updated', async () => {
+  const Component = () => {
+    const [value, setValue] = React.useState([]);
+    const [allValues, setAllValues] = React.useState(['terminator', 'predator', 'soundofmusic']);
+
+    return (
+      <CheckboxGroup name="movies" value={value} onChange={setValue}>
+        <CheckboxGroup.All label="All" values={allValues} />
+        {allValues.map((item) => (
+          <CheckboxGroup.Item key={item} label={item} value={item} disabled={item === 'terminator' ? true : false} />
+        ))}
+        <button
+          data-testid="button"
+          onClick={() => {
+            setAllValues((prev) => [...prev, 'batman']);
+          }}
+        >
+          Change All
+        </button>
+      </CheckboxGroup>
+    );
+  };
+
+  render(<Component />);
+
+  await user.click(screen.getByTestId('button'));
+  const items = screen.queryAllByTestId('checkbox');
+  await user.click(within(items[0]).getByTestId('checkbox-input')); // click checkbox all
+  expect(items[1]).not.toBeChecked(); // terminator is disabled hence it should not be checked
+  expect(items[2]).toBeChecked(); // predator is checked
+  expect(items[3]).toBeChecked(); // soundofmusic is checked
+  expect(items[4]).toBeChecked(); // batman is checked
+});
+
+it('should work when disabled values are updated', async () => {
+  const Component = () => {
+    const [value, setValue] = React.useState([]);
+    const [allValues, setAllValues] = React.useState(['terminator', 'predator', 'soundofmusic']);
+
+    return (
+      <CheckboxGroup name="movies" value={value} onChange={setValue}>
+        <CheckboxGroup.All label="All" values={allValues} />
+        {allValues.map((item) => (
+          <CheckboxGroup.Item key={item} label={item} value={item} disabled={item === 'batman' ? true : false} />
+        ))}
+        <button
+          data-testid="button"
+          onClick={() => {
+            setAllValues((prev) => [...prev, 'batman']);
+          }}
+        >
+          Change All
+        </button>
+      </CheckboxGroup>
+    );
+  };
+
+  render(<Component />);
+
+  await user.click(screen.getByTestId('button'));
+  const items = screen.queryAllByTestId('checkbox');
+  await user.click(within(items[0]).getByTestId('checkbox-input')); // click checkbox all
+  expect(items[1]).toBeChecked(); // terminator is checked
+  expect(items[2]).toBeChecked(); // predator is checked
+  expect(items[3]).toBeChecked(); // soundofmusic is checked
+  expect(items[4]).not.toBeChecked(); // batman is disabled hence it should not be checked
+});
