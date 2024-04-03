@@ -41,7 +41,7 @@
     "test": "jest --watch",
     "coverage": "jest --colors --coverage",
     "version": "echo '…generating dist…' && npm run dist",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
