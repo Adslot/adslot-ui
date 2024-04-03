@@ -148,7 +148,7 @@
     "seamless-immutable": "^7.1.4",
     "storybook": "^7.4.5",
     "style-dictionary": "^3.9.0",
-    "style-loader": "^3.3.3",
+    "style-loader": "^3.3.4",
     "stylelint": "^16.3.1",
     "stylelint-config-standard": "^36.0.0",
     "svg4everybody": "^2.1.9",
