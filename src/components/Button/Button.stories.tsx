@@ -10,11 +10,20 @@ const meta = {
   argTypes: {
     theme: { control: false },
     inverse: { control: false },
-    children: { control: 'text' },
+    children: {
+      options: ['Text', 'null'],
+      control: { type: 'select' },
+      defaultValue: ' null',
+      mapping: {
+        null: null,
+        Text: 'Button',
+      },
+    },
     icon: {
-      options: ['Add Icon', 'Filter Icon'],
+      options: ['null', 'Add Icon', 'Filter Icon'],
       control: { type: 'select' },
       mapping: {
+        null: null,
         'Add Icon': (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="svg-icon" width="16" height="16">
             <path d="M8 2c-.3 0-.6.3-.6.6v4.8H2.6c-.3 0-.6.3-.6.6s.3.6.6.6h4.8v4.8c0 .3.3.6.6.6.2 0 .3-.1.4-.2.1-.1.2-.3.2-.4V8.6h4.8c.2 0 .3-.1.4-.2.1-.1.2-.2.2-.4 0-.3-.3-.6-.6-.6H8.6V2.6c0-.3-.3-.6-.6-.6z"></path>
