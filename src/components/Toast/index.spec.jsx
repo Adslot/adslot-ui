@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { render, screen, waitFor } from 'testing';
+import { render, screen, waitFor, act } from 'testing';
 import Toast, { ToastMessage } from '.';
 
 describe('Toast.notify', () => {
@@ -8,8 +8,8 @@ describe('Toast.notify', () => {
     const toastSpy = jest.spyOn(toast, 'info');
 
     render(<Toast.Container />);
-    Toast.notify({
-      message: 'Testing Toast',
+    act(() => {
+      Toast.notify({ message: 'Testing Toast' });
     });
 
     expect(toastSpy).toHaveBeenCalledTimes(1);
@@ -21,9 +21,8 @@ describe('Toast.notify', () => {
 
   it('should render default info type', async () => {
     render(<Toast.Container />);
-    Toast.notify({
-      title: 'test',
-      message: 'Default toast',
+    act(() => {
+      Toast.notify({ title: 'test', message: 'Default toast' });
     });
     await waitFor(() => {
       expect(screen.getByClass('aui--toast-body-message')).toBeInTheDocument();
@@ -36,10 +35,12 @@ describe('Toast.notify', () => {
   it('should render success type', async () => {
     render(<Toast.Container />);
 
-    Toast.notify({
-      title: 'SUCCESS',
-      theme: 'success',
-      message: 'Success toast',
+    act(() => {
+      Toast.notify({
+        title: 'SUCCESS',
+        theme: 'success',
+        message: 'Success toast',
+      });
     });
     await waitFor(() => {
       expect(screen.getByClass('aui--toast-body-message')).toBeInTheDocument();
@@ -54,10 +55,12 @@ describe('Toast.notify', () => {
   it('should render alert type', async () => {
     render(<Toast.Container />);
 
-    Toast.notify({
-      title: 'ALERT',
-      theme: 'alert',
-      message: 'Alert toast',
+    act(() => {
+      Toast.notify({
+        title: 'ALERT',
+        theme: 'alert',
+        message: 'Alert toast',
+      });
     });
     await waitFor(() => {
       expect(screen.getByClass('aui--toast-body-message')).toBeInTheDocument();
@@ -72,10 +75,12 @@ describe('Toast.notify', () => {
   it('should render attention type', async () => {
     render(<Toast.Container />);
 
-    Toast.notify({
-      title: 'ATTENTION',
-      theme: 'attention',
-      message: 'Attention toast',
+    act(() => {
+      Toast.notify({
+        title: 'ATTENTION',
+        theme: 'attention',
+        message: 'Attention toast',
+      });
     });
     await waitFor(() => {
       expect(screen.getByClass('aui--toast-body-message')).toBeInTheDocument();
@@ -89,11 +94,12 @@ describe('Toast.notify', () => {
 
   it('should render info type', async () => {
     render(<Toast.Container />);
-
-    Toast.notify({
-      title: 'INFO',
-      theme: 'info',
-      message: 'Info toast',
+    act(() => {
+      Toast.notify({
+        title: 'INFO',
+        theme: 'info',
+        message: 'Info toast',
+      });
     });
     await waitFor(() => {
       expect(screen.getByClass('aui--toast-body-message')).toBeInTheDocument();
@@ -120,10 +126,12 @@ describe('<ToastMessage />', () => {
 describe('<Toast.Container />', () => {
   it('should render Toast.Container without error', async () => {
     render(<Toast.Container />);
-    Toast.notify({
-      title: 'test',
-      theme: 'attention',
-      message: 'Testing Toast',
+    act(() => {
+      Toast.notify({
+        title: 'test',
+        theme: 'attention',
+        message: 'Testing Toast',
+      });
     });
     await waitFor(() => {
       expect(screen.getByClass('aui--toast-body-message')).toBeInTheDocument();
