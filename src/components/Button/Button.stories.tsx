@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Button from './index';
 
-const meta = {
+const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
@@ -30,7 +30,7 @@ const meta = {
     },
     round: { if: { arg: 'icon' } },
   },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
 

@@ -1,14 +1,13 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+// import type { Preview } from '@storybook/react';
 import { Title, Subtitle, Description, Primary, ArgTypes, Stories } from '@storybook/blocks';
 import theme from './theme';
 
 import '../src/styles/bootstrap-custom.css';
 import '../www/storybook.css';
 
-const preview: Preview = {
+const preview = {
   parameters: {
-    actions: { argTypesRegex: '^on.*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
