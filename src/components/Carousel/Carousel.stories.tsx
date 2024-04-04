@@ -34,7 +34,7 @@ export const Default: Story = {
     slidesToShow: 2,
     variableWidth: false,
   },
-  decorators: [(StoryIns) => <div style={{ display: 'block', width: '100%' }}>{StoryIns()}</div>],
+  decorators: [(StoryIns) => <div style={{ display: 'block', maxWidth: 680 }}>{StoryIns()}</div>],
 };
 
 export const usePreventSwipeClicks = {
@@ -61,5 +61,5 @@ export const usePreventSwipeClicks = {
     slidesToShow: 2,
     variableWidth: false,
   },
-  decorators: [(StoryIns) => <div style={{ display: 'block', width: '100%' }}>{StoryIns()}</div>],
+  decorators: [(StoryIns) => <div style={{ display: 'block', maxWidth: 680 }}>{StoryIns()}</div>],
 };
