@@ -24,16 +24,13 @@ it('should render with defaults', () => {
 it('should render with slides', () => {
   render(
     <Carousel>
-      <img data-testid="carousel-image-wrapper" src="path/to/image-1.jpg" alt="1" />
-      <img data-testid="carousel-image-wrapper" src="path/to/image-2.jpg" alt="2" />
+      <img data-testid="carousel-image" src="path/to/image-1.jpg" alt="1" />
+      <img data-testid="carousel-image" src="path/to/image-2.jpg" alt="2" />
     </Carousel>
   );
-  screen.getAllByTestId('carousel-image-wrapper').forEach((each) => {
-    expect(each).toBeInTheDocument();
-  });
-  screen.getAllByTestId('carousel-image-wrapper').forEach((each, index) => {
-    expect(each).toHaveAttribute('src', `path/to/image-${index + 1}.jpg`);
-  });
+  const [a, b] = screen.getAllByTestId('carousel-image');
+  expect(a).toHaveAttribute('src', 'path/to/image-1.jpg');
+  expect(b).toHaveAttribute('src', 'path/to/image-2.jpg');
 });
 
 it('should be able to navigate to the next image', async () => {
