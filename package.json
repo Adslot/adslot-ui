@@ -142,7 +142,7 @@
     "react": "^18.2.0",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
+    "react-router-dom": "^6.22.3",
     "react-to-typescript-definitions": "^3.1.1",
     "rimraf": "^5.0.5",
     "seamless-immutable": "^7.1.4",
