@@ -112,7 +112,7 @@
     "core-js": "^3.36.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.10.0",
-    "css-minimizer-webpack-plugin": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^6.0.0",
     "date-fns": "^2.30.0",
     "eslint": "^8.57.0",
     "eslint-config-adslot": "^1.8.3",
@@ -159,7 +159,7 @@
     "wcag-contrast": "^3.0.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.2",
+    "webpack-dev-server": "^5.0.4",
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
