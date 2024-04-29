@@ -2,7 +2,7 @@
 const prettier = require('prettier');
 const _ = require('lodash');
 const { transformSync } = require('@babel/core');
-const commander = require('commander');
+const { Command } = require('commander');
 const { generateFromSource } = require('react-to-typescript-definitions');
 const { glob } = require('glob');
 const chalk = require('chalk');
@@ -22,7 +22,7 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-const program = new commander.Command();
+const program = new Command();
 
 program
   .option('-d, --debug', 'output propType conversion debugging')
