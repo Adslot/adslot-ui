@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { expandDts } from '../../utils';
 import invariant from '../../invariant';
@@ -9,13 +10,12 @@ import './styles.css';
 const SELECTION_KEYS = ['Enter', ' '];
 
 const Radio = ({
-  id,
   value,
   name,
   className,
   label,
-  disabled,
-  checked: checkedProp,
+  disabled = false,
+  checked,
   onChange,
   text,
   icon,
@@ -25,21 +25,24 @@ const Radio = ({
 }) => {
   const { onChange: onGroupChange, value: groupValue, variant = 'default', name: radioName = name } = useRadioGroup();
 
+  const hasGroupValue = !_.isNil(groupValue);
+  const hasItemValue = !_.isNil(checked);
+
   invariant(!inline, 'Radio inline prop has been deprecated.');
   invariant(!(onChange && onGroupChange), 'Radio should not have onChange when used in a RadioGroup');
   invariant(!((icon || text) && variant !== 'box'), 'Radio with icon or text must use box variant.');
-  invariant(!(groupValue && checkedProp), 'Radio checked state is handled by RadioGroup.');
+  invariant(!(hasGroupValue && hasItemValue), 'Radio checked state is handled by RadioGroup.');
 
-  const checked = groupValue ? value === groupValue : checkedProp;
+  const isChecked = hasGroupValue ? value === groupValue : !!checked;
 
-  const iconClassName = classnames(['aui--radio-input-icon', { checked, disabled }]);
+  const iconClassName = classnames(['aui--radio-input-icon', { checked: isChecked, disabled }]);
 
   const handleChange = () => {
     onGroupChange?.(value);
     onChange?.(value);
   };
 
-  const tabIndex = checked || groupValue?.length === 0 ? 0 : -1;
+  const tabIndex = isChecked || groupValue?.length === 0 ? 0 : -1;
 
   return (
     <div
@@ -47,14 +50,14 @@ const Radio = ({
       data-testid="radio-wrapper"
       role="radio"
       aria-disabled={disabled ? 'true' : undefined}
-      aria-checked={checked ? 'true' : 'false'}
+      aria-checked={isChecked ? 'true' : 'false'}
       className={classnames(
         'aui--radio',
         {
           'aui--radio-box': variant === 'box',
           'aui--radio-default': variant === 'default',
           'is-reverse': icon,
-          'is-selected': checked,
+          'is-selected': isChecked,
           'is-disabled': disabled,
           'has-text': text != null,
         },
@@ -63,14 +66,14 @@ const Radio = ({
       data-aui-value={value}
       tabIndex={!groupValue ? 0 : tabIndex}
       onKeyDown={(event) => {
-        if (SELECTION_KEYS.includes(event.key) && !checked) {
+        if (SELECTION_KEYS.includes(event.key) && !isChecked) {
           event.preventDefault();
           handleChange();
         }
       }}
       {...expandDts(dts)}
     >
-      <label className="aui--radio-label-container" htmlFor={id}>
+      <label className="aui--radio-label-container">
         <div className="aui--radio-input-container">
           <span className={iconClassName} />
           <input
@@ -78,11 +81,10 @@ const Radio = ({
             data-testid="radio-input"
             type="radio"
             name={radioName}
-            checked={checked}
+            checked={isChecked}
             disabled={disabled}
             onChange={handleChange}
             value={value}
-            id={id}
           />
         </div>
 
@@ -101,7 +103,6 @@ const Radio = ({
 };
 
 Radio.propTypes = {
-  id: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.node,
@@ -129,12 +130,6 @@ Radio.propTypes = {
    * @deprecated
    */
   inline: PropTypes.bool,
-};
-
-Radio.defaultProps = {
-  dts: '',
-  disabled: false,
-  checked: false,
 };
 
 export default Radio;

@@ -3,7 +3,6 @@ import * as React from 'react';
 export type RadioValue = string | number;
 
 export interface RadioProps {
-  id?: string;
   className?: string;
   name?: string;
   label?: React.ReactNode;
