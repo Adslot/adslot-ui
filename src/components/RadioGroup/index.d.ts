@@ -1,11 +1,13 @@
 import * as React from 'react';
 
+export type RadioGroupValue = string | number;
+
 export type RadioGroupOrientation = 'vertical' | 'horizontal';
 
 export type RadioGroupVariant = 'default' | 'box';
 
 export interface RadioGroupProps {
-  value: string;
+  value: RadioGroupValue;
   name: string;
   onChange: (...args: any[]) => any;
   orientation?: RadioGroupOrientation;

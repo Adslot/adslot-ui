@@ -70,7 +70,7 @@ const RadioGroup = ({
 };
 
 RadioGroup.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
