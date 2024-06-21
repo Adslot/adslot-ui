@@ -14,13 +14,20 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const Demo = () => {
+  const [date, setDate] = React.useState(() => new Date());
+
+  return (
+    <DatePicker
+      className="form-control"
+      dateFormat="DD MMM YYYY"
+      onChange={setDate}
+      selected={date}
+      placeholderText="Date e.g. 03 Sep 2016"
+    />
+  );
+};
+
 export const Default: Story = {
-  args: {
-    className: 'form-control',
-    dateFormat: 'dd MMM yyyy',
-    selected: new Date(),
-    placeholderText: 'Date e.g. 03 Sep 2016',
-    disableInlineEditing: false,
-    disableMomentFormat: true,
-  },
+  render: () => <Demo />,
 };

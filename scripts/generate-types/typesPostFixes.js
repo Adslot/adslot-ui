@@ -63,26 +63,25 @@ exports.replacements = (componentName) => ({
       [
         `import * as React from 'react';`,
         `import * as React from 'react';
-       import { ReactDatePickerProps } from "react-datepicker";
+       import { DatePickerProps as LibProps } from "react-datepicker";
   import { Moment } from "moment";`,
       ],
       [
         `export interface DatePickerProps {`,
         `
-      export interface DatePickerProps {
-      selected?: Moment | Date | null;
-      onChange?(date: Moment | Date | null): void;
-      startDate?: Moment | Date | null;
-      endDate?: Moment | Date | null;
-      minDate?: Moment | Date | null;
-      maxDate?: Moment | Date | null;`,
+        export type DatePickerProps = Omit<LibProps, 'onSelect' | 'excludeScrollbar' | 'onChange' | 'selected' | 'startDate' | 'endDate' | 'minDate' | 'maxDate'> & {
+        onSelect?: LibProps['onSelect'];
+        excludeScrollbar?: LibProps['excludeScrollbar'];`,
       ],
       [
-        `declare const DatePicker: React.FC<DatePickerProps>;`,
-        `declare const DatePicker: ${withForwardRef(
-          'DatePickerProps & Omit<ReactDatePickerProps, keyof DatePickerProps>'
-        )};`,
+        `onChange: (...args: any[])=>any;`,
+        `onChange: (date: Moment | Date | null, event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => void`,
       ],
+      [`selected?: Object;`, `selected?: Moment | Date | null;`],
+      [`startDate?: Object;`, `startDate?: Moment | Date | null;`],
+      [`endDate?: Object;`, `endDate?: Moment | Date | null;`],
+      [`minDate?: Object;`, `minDate?: Moment | Date | null;`],
+      [`maxDate?: Object;`, `maxDate?: Moment | Date | null;`],
     ],
   },
   ImageCropper: {
@@ -154,7 +153,7 @@ exports.replacements = (componentName) => ({
       Async: typeof AsyncSelect;
       AsyncCreatable: typeof AsyncCreatableSelect;
       createFilter: typeof createFilter;
-    };      
+    };
 
     export default Select;
     `,
