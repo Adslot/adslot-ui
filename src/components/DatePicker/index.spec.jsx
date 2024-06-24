@@ -4,7 +4,7 @@ import { render, screen, user } from 'testing';
 import DatePicker from '.';
 
 it('should render with defaults', () => {
-  render(<DatePicker className="test" dts="test" />);
+  render(<DatePicker className="test" dts="test" onChange={jest.fn()} />);
 
   expect(screen.getByTestId('date-picker-wrapper')).toHaveClass('aui--date-picker');
   expect(screen.getByTestId('date-picker-wrapper')).toHaveAttribute('data-test-selector', 'test');
