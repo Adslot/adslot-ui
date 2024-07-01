@@ -108,7 +108,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "classnames": "^2.5.1",
     "commander": "^12.1.0",
-    "core-js": "^3.36.1",
+    "core-js": "^3.37.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.10.0",
     "css-minimizer-webpack-plugin": "^6.0.0",
