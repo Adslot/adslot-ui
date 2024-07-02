@@ -126,7 +126,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-fail-on-console": "^3.1.2",
     "lint-staged": "^15.2.7",
-    "mini-css-extract-plugin": "^2.8.1",
+    "mini-css-extract-plugin": "^2.9.0",
     "null-loader": "^4.0.1",
     "postcss": "^8.4.38",
     "postcss-flexbugs-fixes": "^5.0.2",
