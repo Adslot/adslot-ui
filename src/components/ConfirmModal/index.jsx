@@ -4,13 +4,13 @@ import ActionPanel from '../ActionPanel';
 import Button from '../Button';
 
 const ConfirmModal = ({
-  buttonCancelLabel,
-  buttonConfirmLabel,
+  buttonCancelLabel = 'Cancel',
+  buttonConfirmLabel = 'Confirm',
+  modalTitle = '',
+  modalDescription = 'Are you sure?',
+  show = false,
   modalApply,
   modalClose,
-  modalDescription,
-  modalTitle,
-  show,
   dts,
 }) => {
   const cancelAction = () => {
@@ -84,14 +84,6 @@ ConfirmModal.propTypes = {
    */
   show: PropTypes.bool,
   dts: PropTypes.string,
-};
-
-ConfirmModal.defaultProps = {
-  buttonCancelLabel: 'Cancel',
-  buttonConfirmLabel: 'Confirm',
-  modalTitle: '',
-  modalDescription: 'Are you sure?',
-  show: false,
 };
 
 export default ConfirmModal;

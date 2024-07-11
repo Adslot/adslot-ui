@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../utils';
 import './styles.css';
 
-const Nav = ({ stacked, className, onSelect, activeKey, barPosition, children, dts }) => {
+const Nav = ({ stacked = false, className, onSelect, activeKey, barPosition = 'bottom', children, dts }) => {
   let navItems = [];
 
   React.Children.forEach(children, (child) => {
@@ -91,11 +91,6 @@ NavItem.propTypes = {
    * Define the href of the <a />
    */
   href: PropTypes.string,
-};
-
-Nav.defaultProps = {
-  stacked: false,
-  barPosition: 'bottom',
 };
 
 Nav.displayName = 'Navigation';

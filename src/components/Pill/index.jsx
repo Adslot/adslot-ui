@@ -6,7 +6,7 @@ import './styles.css';
 
 const sizes = ['large', 'medium', 'small'];
 
-const Pill = ({ className, children, onClick, size, dts }) => (
+const Pill = ({ className, children, onClick, size = sizes[1], dts }) => (
   <div
     className={classnames('aui--pill', `aui--pill-${size}`, { 'aui--pill-clickable': onClick }, className)}
     onClick={onClick}
@@ -15,10 +15,6 @@ const Pill = ({ className, children, onClick, size, dts }) => (
     <div className="aui--pill-children">{children}</div>
   </div>
 );
-
-Pill.defaultProps = {
-  size: sizes[1],
-};
 
 Pill.propTypes = {
   /**

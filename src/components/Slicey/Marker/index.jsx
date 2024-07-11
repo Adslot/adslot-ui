@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ROUND, QUARTER, getPointX, getPointY } from '../dataProcessor';
 import './styles.css';
 
-const Marker = ({ fraction }) => {
+const Marker = ({ fraction = 0 }) => {
   const getMarkerPoints = (markerValue) => {
     const pointOnCircle = ROUND * markerValue - QUARTER;
     return `${getPointX(pointOnCircle)},${getPointY(pointOnCircle)} 0,0`;
@@ -16,9 +16,6 @@ const Marker = ({ fraction }) => {
 
 Marker.propTypes = {
   fraction: PropTypes.number,
-};
-Marker.defaultProps = {
-  fraction: 0,
 };
 
 export default Marker;
