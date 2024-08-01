@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const Statistic = ({ label, value, inline }) => {
+const Statistic = ({ label, value, inline = false }) => {
   const baseClass = 'statistic-component';
   const statisticClassNames = [baseClass];
   if (inline) statisticClassNames.push('inline');
@@ -33,9 +33,4 @@ Statistic.propTypes = {
    */
   value: PropTypes.string.isRequired,
 };
-
-Statistic.defaultProps = {
-  inline: false,
-};
-
 export default Statistic;

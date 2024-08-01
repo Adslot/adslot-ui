@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { expandDts, classSuffixHelper } from '../../../utils';
 import './styles.css';
 
-const GridCell = ({ children, classSuffixes, onClick, stretch, dts, addonClassNames }) => {
+const GridCell = ({ children, classSuffixes = [], onClick, stretch = false, dts, addonClassNames = [] }) => {
   const componentClass = 'grid-component-cell';
   const classesList = classSuffixHelper({
     classSuffixes,
@@ -46,12 +46,6 @@ GridCell.propTypes = {
    * determines if gridCell should be stretched
    */
   stretch: PropTypes.bool,
-};
-
-GridCell.defaultProps = {
-  addonClassNames: [],
-  classSuffixes: [],
-  stretch: false,
 };
 
 export default GridCell;

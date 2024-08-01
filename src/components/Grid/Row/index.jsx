@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import { classSuffixHelper, expandDts } from '../../../utils';
 import './styles.css';
 
-const GridRow = ({ horizontalBorder, short, type, verticalCellBorder, children, dts }) => {
+const GridRow = ({
+  horizontalBorder = true,
+  short = false,
+  type = 'body',
+  verticalCellBorder = false,
+  children,
+  dts,
+}) => {
   const componentClass = 'grid-component-row';
   const classesList = classSuffixHelper({
     classSuffixes: [type],
@@ -43,13 +50,6 @@ GridRow.propTypes = {
    * data-test-selector of the grid
    */
   dts: PropTypes.string,
-};
-
-GridRow.defaultProps = {
-  horizontalBorder: true,
-  short: false,
-  type: 'body',
-  verticalCellBorder: false,
 };
 
 export default GridRow;

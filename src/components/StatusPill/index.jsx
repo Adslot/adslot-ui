@@ -7,7 +7,7 @@ import './styles.css';
 const styles = ['info', 'success', 'warning', 'error', 'light'];
 const sizes = ['large', 'medium', 'small'];
 
-const StatusPill = ({ displayStyle, status, inverse, size, className, dts }) => (
+const StatusPill = ({ displayStyle = styles[0], status, inverse = false, size = sizes[1], className, dts }) => (
   <Pill
     className={classnames([
       'aui--status-pill',
@@ -21,12 +21,6 @@ const StatusPill = ({ displayStyle, status, inverse, size, className, dts }) => 
     {status}
   </Pill>
 );
-
-StatusPill.defaultProps = {
-  displayStyle: styles[0],
-  size: sizes[1],
-  inverse: false,
-};
 
 StatusPill.propTypes = {
   /**

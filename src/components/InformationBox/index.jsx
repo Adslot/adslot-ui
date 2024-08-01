@@ -5,7 +5,7 @@ import './styles.css';
 
 const styles = ['primary', 'success', 'warning', 'error', 'light'];
 
-const InformationBox = ({ children, icon, title, className, theme, dts }) => (
+const InformationBox = ({ children, icon, title, className, theme = 'light', dts }) => (
   <div
     data-testid="information-box-wrapper"
     className={classnames('aui--information-box', `aui--information-box-${theme}`, className)}
@@ -39,10 +39,6 @@ InformationBox.propTypes = {
   title: PropTypes.node,
   icon: PropTypes.node,
   dts: PropTypes.string,
-};
-
-InformationBox.defaultProps = {
-  theme: 'light',
 };
 
 export default InformationBox;
