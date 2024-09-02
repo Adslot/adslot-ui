@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../utils';
 import './styles.css';
 
-const CardContent = ({ children, className, stretch, fill, append, dts }) => {
+const CardContent = ({ children, className, stretch = false, fill = false, append = false, dts }) => {
   const contentClassNames = classnames('card-component-content', { stretch, fill, append }, className);
   return (
     <div data-testid="card-content-wrapper" className={contentClassNames} {...expandDts(dts)}>
@@ -21,12 +21,6 @@ CardContent.propTypes = {
   stretch: PropTypes.bool,
   append: PropTypes.bool,
   dts: PropTypes.string,
-};
-
-CardContent.defaultProps = {
-  fill: false,
-  stretch: false,
-  append: false,
 };
 
 const Card = ({ children, className, accent, dts }) => {

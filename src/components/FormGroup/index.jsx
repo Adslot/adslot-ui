@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FormGroup = ({ addon, disabled, helpText, label, onChange, placeholder, value }) => {
+const FormGroup = ({ addon, disabled = false, helpText, label, onChange, placeholder, value = '' }) => {
   const addonElement = addon ? <div className="input-group-addon">{addon}</div> : null;
   const inputId = _.kebabCase(label);
   return (
@@ -40,11 +40,6 @@ FormGroup.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string,
-};
-
-FormGroup.defaultProps = {
-  disabled: false,
-  value: '',
 };
 
 export default FormGroup;

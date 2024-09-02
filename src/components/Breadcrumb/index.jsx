@@ -5,7 +5,16 @@ import PropTypes from 'prop-types';
 import BreadcrumbNode from './Node';
 import './styles.css';
 
-const Breadcrumb = ({ rootNode, className, divider, nodes, onClick, disabled }) => {
+const defaultRootNode = { id: 'all', label: 'All' };
+
+const Breadcrumb = ({
+  rootNode = defaultRootNode,
+  className,
+  divider = '>',
+  nodes = [],
+  onClick,
+  disabled = false,
+}) => {
   const baseClass = 'aui--breadcrumb';
   const classNames = classnames(baseClass, { [`${baseClass}--disabled`]: disabled }, className);
   const onClickFunc = (newActiveId) => !disabled && onClick(newActiveId);
@@ -44,13 +53,6 @@ Breadcrumb.propTypes = {
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-};
-
-Breadcrumb.defaultProps = {
-  rootNode: { id: 'all', label: 'All' },
-  divider: '>',
-  nodes: [],
-  disabled: false,
 };
 
 export default Breadcrumb;
