@@ -3,46 +3,90 @@
 .aui--pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid $color-border-base;
   user-select: none;
   font-weight: $font-weight-bold;
   line-height: 1;
   color: $color-text-base;
-  background-color: $color-white;
-}
-
-.aui--pill-children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.aui--pill-clickable:hover,
-.aui--pill-clickable:focus {
-  background-color: $color-grey-200;
-  cursor: pointer;
-}
-
-.aui--pill-small {
-  padding: 2px 5px;
-  font-size: $font-size-small;
-  border-radius: $border-radius-base;
-  line-height: 1;
-}
-
-.aui--pill-small .aui--svg-symbol-component {
-  width: 12px;
-  height: 12px;
-}
-
-.aui--pill-medium {
+  background-color: $color-default-accent;
   padding: 5px 12px;
   font-size: $font-size-base;
   border-radius: $border-radius-round;
-}
 
-.aui--pill-large {
-  padding: 6px 20px;
-  font-size: $font-size-medium;
-  border-radius: $border-radius-round;
+  &.aui-small {
+    padding: 2px 5px;
+    font-size: $font-size-small;
+    border-radius: $border-radius-base;
+  }
+
+  &.aui-large {
+    padding: 6px 20px;
+    font-size: $font-size-medium;
+    border-radius: $border-radius-round;
+  }
+
+  &.aui-clickable:hover,
+  &.aui-clickable:focus {
+    cursor: pointer;
+  }
+
+  &.aui-primary {
+    background-color: $color-primary-accent;
+    border-color: $color-primary-accent;
+  }
+
+  &.aui-secondary {
+    background-color: $color-secondary-accent;
+    border-color: $color-secondary-accent;
+  }
+
+  &.aui-success {
+    background-color: $color-success-accent;
+    border-color: $color-success-accent;
+  }
+
+  &.aui-info {
+    background-color: $color-info-accent;
+    border-color: $color-info-accent;
+  }
+
+  &.aui-warning {
+    background-color: $color-warning-accent;
+    border-color: $color-warning-accent;
+  }
+
+  &.aui-danger {
+    background-color: $color-danger-accent;
+    border-color: $color-danger-accent;
+  }
+
+  &.aui-inverse {
+    border-color: $color-border-base;
+    background-color: $color-white;
+
+    &.aui-primary {
+      color: $color-primary-base;
+    }
+
+    &.aui-secondary {
+      color: $color-secondary-base;
+    }
+
+    &.aui-success {
+      color: $color-success-base;
+    }
+
+    &.aui-info {
+      color: $color-info-base;
+    }
+
+    &.aui-warning {
+      color: $color-warning-base;
+    }
+
+    &.aui-danger {
+      color: $color-danger-base;
+    }
+  }
 }

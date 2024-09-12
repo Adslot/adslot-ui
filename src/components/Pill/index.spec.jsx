@@ -2,33 +2,34 @@ import React from 'react';
 import { render, screen, user } from 'testing';
 import Pill from '.';
 
-it('should have default style', () => {
+it('is not clickable by default', () => {
   render(<Pill>Test</Pill>);
-  expect(screen.queryAllByClass('aui--pill aui--pill-medium')).toHaveLength(1);
-  expect(screen.queryAllByClass('aui--pill-children')).toHaveLength(1);
-  expect(screen.queryAllByClass('aui--pill-clickable')).toHaveLength(0);
-  expect(screen.getByClass('aui--pill-children')).toHaveTextContent('Test');
+  const pill = screen.getByClass('aui--pill');
+  expect(pill).not.toHaveClass('aui-clickable');
+  expect(pill).toHaveTextContent('Test');
 });
 
-it('should allow className prop', () => {
+it('supports custom className', () => {
   render(<Pill className="test">Test</Pill>);
-  expect(screen.queryAllByClass('aui--pill aui--pill-medium test')).toHaveLength(1);
+  expect(screen.getByClass('aui--pill')).toHaveClass('test');
 });
 
-it('should allow size prop', () => {
+it('supports size prop', () => {
   render(<Pill size="large">Test</Pill>);
-  expect(screen.queryAllByClass('aui--pill aui--pill-large')).toHaveLength(1);
+  expect(screen.getByClass('aui--pill')).toHaveClass('aui-large');
 });
 
-it('should allow onClick prop', async () => {
-  const onClickMock = jest.fn();
-  render(<Pill onClick={onClickMock}>Test</Pill>);
-  expect(screen.queryAllByClass('aui--pill aui--pill-medium aui--pill-clickable')).toHaveLength(1);
-  await user.click(screen.getByClass('aui--pill aui--pill-medium aui--pill-clickable'));
-  expect(onClickMock).toHaveBeenCalledTimes(1);
+it('is clickable if onClick is given', async () => {
+  const onClick = jest.fn();
+  render(<Pill onClick={onClick}>Test</Pill>);
+  const pill = screen.getByClass('aui--pill');
+  expect(pill).toHaveClass('aui-clickable');
+
+  await user.click(pill);
+  expect(onClick).toHaveBeenCalledTimes(1);
 });
 
-it('should support custom dts', () => {
+it('supports dts', () => {
   render(<Pill dts="test-dts">Test</Pill>);
-  expect(screen.getByClass('aui--pill aui--pill-medium')).toHaveAttribute('data-test-selector', 'test-dts');
+  expect(screen.getByClass('aui--pill')).toHaveAttribute('data-test-selector', 'test-dts');
 });
