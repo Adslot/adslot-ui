@@ -52,7 +52,6 @@ import Slicey from './components/Slicey';
 import Spinner from './components/Spinner';
 import SplitPane from './components/SplitPane';
 import Statistic from './components/Statistic';
-import StatusPill from './components/StatusPill';
 import SvgSymbol from './components/SvgSymbol';
 import Switch from './components/Switch';
 import Tab from './components/Tab';
@@ -129,7 +128,6 @@ export {
   Spinner,
   SplitPane,
   Statistic,
-  StatusPill,
   SvgSymbol,
   Switch,
   Tab,

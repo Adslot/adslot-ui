@@ -48,7 +48,6 @@ export { default as Slicey } from './components/Slicey';
 export { default as Spinner } from './components/Spinner';
 export { default as SplitPane } from './components/SplitPane';
 export { default as Statistic } from './components/Statistic';
-export { default as StatusPill } from './components/StatusPill';
 export { default as SvgSymbol } from './components/SvgSymbol';
 export { default as Switch } from './components/Switch';
 export { default as Tab } from './components/Tab';
