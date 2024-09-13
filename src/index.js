@@ -45,10 +45,8 @@ import Radio from './components/Radio';
 import RadioGroup from './components/RadioGroup';
 import RichTextEditor from './components/RichTextEditor';
 import Search from './components/Search';
-import SearchableCheckList from './components/SearchableCheckList';
 import Select from './components/Select';
 import Skeleton from './components/Skeleton';
-import Slicey from './components/Slicey';
 import Spinner from './components/Spinner';
 import SplitPane from './components/SplitPane';
 import Statistic from './components/Statistic';
@@ -78,7 +76,6 @@ import TreePickerSimplePure from './components/TreePickerSimplePure';
 import TreePickerGrid from './components/TreePickerSimplePure/Grid';
 import TreePickerNav from './components/TreePickerSimplePure/Nav';
 import TreePickerNode from './components/TreePickerSimplePure/Node';
-import UserListPicker from './components/UserListPicker';
 import VerticalNav from './components/VerticalNav';
 
 export {
@@ -123,8 +120,6 @@ export {
   RadioGroup,
   Search,
   Select,
-  SearchableCheckList,
-  Slicey,
   Spinner,
   SplitPane,
   Statistic,
@@ -150,7 +145,6 @@ export {
   TreePickerNav,
   TreePickerNode,
   TreePickerSimplePure,
-  UserListPicker,
   InformationBox,
   ImageCropper,
   OverlayLoader,

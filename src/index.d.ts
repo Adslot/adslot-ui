@@ -41,10 +41,8 @@ export { default as Radio } from './components/Radio';
 export { default as RadioGroup } from './components/RadioGroup';
 export { default as RichTextEditor } from './components/RichTextEditor';
 export { default as Search } from './components/Search';
-export { default as SearchableCheckList } from './components/SearchableCheckList';
 export { default as Select } from './components/Select';
 export { default as Skeleton } from './components/Skeleton';
-export { default as Slicey } from './components/Slicey';
 export { default as Spinner } from './components/Spinner';
 export { default as SplitPane } from './components/SplitPane';
 export { default as Statistic } from './components/Statistic';
@@ -64,5 +62,4 @@ export { default as TreePickerSimplePure } from './components/TreePickerSimplePu
 export { default as TreePickerGrid } from './components/TreePickerSimplePure/Grid';
 export { default as TreePickerNav } from './components/TreePickerSimplePure/Nav';
 export { default as TreePickerNode } from './components/TreePickerSimplePure/Node';
-export { default as UserListPicker } from './components/UserListPicker';
 export { default as VerticalNav } from './components/VerticalNav';
