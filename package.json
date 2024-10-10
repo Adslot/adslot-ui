@@ -141,7 +141,7 @@
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "react-to-typescript-definitions": "^3.1.1",
-    "rimraf": "^5.0.7",
+    "rimraf": "^6.0.1",
     "seamless-immutable": "^7.1.4",
     "storybook": "^7.6.20",
     "style-dictionary": "^3.9.2",
