@@ -240,7 +240,7 @@ describe('<RichTextEditor />', () => {
       render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
       expect(screen.getByTestId('rich-text-editor-wrapper')).toBeInTheDocument();
-      expect(screen.getByTestId('file-download-button')).toBeInTheDocument();
+      expect(screen.getByTestId('file-upload-button')).toBeInTheDocument();
     });
 
     it('should be able to select a pdf file when clicking file upload button', async () => {
@@ -251,9 +251,9 @@ describe('<RichTextEditor />', () => {
       render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
       expect(onFileSelect).toHaveBeenCalledTimes(0);
-      await user.click(screen.getByLabelText('Download file'));
+      await user.click(screen.getByLabelText('Upload file'));
       const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
-      await user.upload(screen.getByTestId('file-download-input'), file);
+      await user.upload(screen.getByTestId('file-upload-input'), file);
       expect(onFileSelect).toHaveBeenCalledTimes(1);
     });
 
@@ -264,7 +264,7 @@ describe('<RichTextEditor />', () => {
 
       render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      await user.upload(screen.getByTestId('file-download-input'), new File(['test'], 'file.pdf'));
+      await user.upload(screen.getByTestId('file-upload-input'), new File(['test'], 'file.pdf'));
 
       const preview = await screen.findByTestId('file-preview-list');
       await waitFor(() => {
@@ -285,7 +285,7 @@ describe('<RichTextEditor />', () => {
 
       render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      await user.upload(screen.getByTestId('file-download-input'), new File(['test'], 'file.pdf'));
+      await user.upload(screen.getByTestId('file-upload-input'), new File(['test'], 'file.pdf'));
 
       const preview = await screen.findByTestId('file-preview-list');
       await waitFor(() => {
@@ -304,7 +304,7 @@ describe('<RichTextEditor />', () => {
       const onChange = jest.fn();
       render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      await user.upload(screen.getByTestId('file-download-input'), new File(['test'], 'test.png'));
+      await user.upload(screen.getByTestId('file-upload-input'), new File(['test'], 'test.png'));
       expect(screen.getByTestId('spinner-wrapper')).toBeInTheDocument();
     });
 
@@ -314,7 +314,7 @@ describe('<RichTextEditor />', () => {
       const onChange = jest.fn();
       render(<RichTextEditor onFileSelect={onFileSelect} onFileRemove={onFileRemove} onChange={onChange} />);
 
-      await user.upload(screen.getByTestId('file-download-input'), new File(['test'], 'test.png'));
+      await user.upload(screen.getByTestId('file-upload-input'), new File(['test'], 'test.png'));
 
       const preview = await screen.findByTestId('file-preview-list');
       await waitFor(() => {

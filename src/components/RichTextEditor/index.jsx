@@ -44,6 +44,7 @@ const RichTextEditor = ({
   onFileSelect,
   onFileRemove,
   fileFilter,
+  disabled,
 }) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
@@ -163,6 +164,7 @@ const RichTextEditor = ({
           plugins={editorPlugins}
           ref={editor}
           spellCheck
+          readOnly={disabled}
         />
         {!_.isEmpty(mentions) && (
           <MentionList
@@ -186,11 +188,11 @@ const RichTextEditor = ({
           />
         )}
       </div>
-      <FilePreviewList files={files} onFileRemove={handleFileRemove} />
+      <FilePreviewList files={files} onFileRemove={handleFileRemove} disabled={disabled} />
       <div className="aui--editor-toolbar">
         <div className="aui--editor-style-buttons">
-          <InlineStyleButtons editorState={editorState} onToggle={handleOnChange} />
-          <BlockStyleButtons editorState={editorState} onToggle={handleOnChange} />
+          <InlineStyleButtons editorState={editorState} onToggle={handleOnChange} disabled={disabled} />
+          <BlockStyleButtons editorState={editorState} onToggle={handleOnChange} disabled={disabled} />
         </div>
         <div data-testid="rich-text-editor-advanced-buttons" className="aui--editor-advanced-buttons">
           {!_.isEmpty(mentions) && (
@@ -202,7 +204,7 @@ const RichTextEditor = ({
             />
           )}
           {_.isFunction(onFileSelect) && _.isFunction(onFileRemove) && (
-            <FileUploadAction fileFilter={fileFilter} onFileUpload={handleFileUpload} />
+            <FileUploadAction fileFilter={fileFilter} onFileUpload={handleFileUpload} disabled={disabled} />
           )}
         </div>
       </div>
@@ -226,11 +228,13 @@ RichTextEditor.propTypes = {
   onFileSelect: PropTypes.func,
   onFileRemove: PropTypes.func,
   fileFilter: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 RichTextEditor.defaultProps = {
   placeholder: 'Tell a story...',
   fileFilter: '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.psd,.csv,.zip,.7z',
+  disabled: false,
 };
 
 RichTextEditor.createEmpty = EditorState.createEmpty;
@@ -238,7 +242,7 @@ RichTextEditor.createWithText = createEditorStateWithText;
 RichTextEditor.stateToHTML = editorStateToHTML;
 /**
  * @example
- * // parser exaple with dom-purify
+ * // parser example with dom-purify
  * const DOMPurifyDefaultConfig = {
  *   USE_PROFILES: { html: true },
  *   FORBID_TAGS: ['style'],
