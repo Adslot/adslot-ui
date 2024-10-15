@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
 
-const FileSticker = ({ onFileRemove, file }) => {
+const FileSticker = ({ onFileRemove, file, disabled }) => {
   const [showClose, setShowClose] = React.useState(false);
   const { name, path, isUploading } = file;
   const isImage = /\.(jpe?g|png)$/i.test(name);
@@ -27,11 +27,12 @@ const FileSticker = ({ onFileRemove, file }) => {
         </div>
       )}
       {showClose && (
-        <span
+        <input
           className="aui--file-sticker-close-button"
           data-testid="file-sticker-close-button"
           onClick={onStickerRemove}
           role="button"
+          disabled={disabled}
         />
       )}
       {isUploading && <Spinner className="aui--file-sticker-spinner" size="small" />}
@@ -49,4 +50,5 @@ FileSticker.propTypes = {
     isUploading: PropTypes.bool,
   }),
   onFileRemove: PropTypes.func,
+  disabled: PropTypes.bool,
 };

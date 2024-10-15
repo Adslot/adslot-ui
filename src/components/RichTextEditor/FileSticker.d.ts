@@ -10,6 +10,7 @@ export interface FileStickerFile {
 export interface FileStickerProps {
   file?: FileStickerFile;
   onFileRemove?: (...args: any[]) => any;
+  disabled?: boolean;
 }
 
 declare const FileSticker: React.FC<FileStickerProps>;

@@ -18,6 +18,7 @@ export interface RichTextEditorProps {
   onFileSelect?: (...args: any[]) => any;
   onFileRemove?: (...args: any[]) => any;
   fileFilter?: string;
+  disabled?: boolean;
 }
 
 declare const RichTextEditor: React.FC<RichTextEditorProps> & {

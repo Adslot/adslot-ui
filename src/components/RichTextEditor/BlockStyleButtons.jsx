@@ -17,7 +17,7 @@ const BLOCK_TYPES = [
 ];
 
 const BlockStyleButtons = (props) => {
-  const { editorState } = props;
+  const { editorState, disabled } = props;
   const selection = editorState.getSelection();
   const blockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
 
@@ -32,6 +32,7 @@ const BlockStyleButtons = (props) => {
       label={type.label}
       onToggle={() => onToggle(type.style)}
       aria-label={type.ariaLabel}
+      disabled={disabled}
     />
   ));
 };

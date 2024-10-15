@@ -18,6 +18,7 @@ const INLINE_STYLES = [
 ];
 
 const InlineStyleButtons = (props) => {
+  const { disabled } = props;
   const currentStyle = props.editorState.getCurrentInlineStyle();
 
   const onToggle = (style) => {
@@ -31,6 +32,7 @@ const InlineStyleButtons = (props) => {
       label={type.label}
       onToggle={() => onToggle(type.style)}
       aria-label={type.ariaLabel}
+      disabled={disabled}
     />
   ));
 };
