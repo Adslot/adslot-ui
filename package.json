@@ -184,7 +184,7 @@
     "react-dom": "^18.2.0"
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
   },
   "browserslist": [
     "last 2 versions",
