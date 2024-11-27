@@ -112,7 +112,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "eslint": "^8.57.1",
-    "eslint-config-adslot": "^1.8.3",
+    "eslint-config-adslot": "^1.9.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-jest-dom": "^5.4.0",
@@ -184,7 +184,7 @@
     "react-dom": "^18.2.0"
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
   },
   "browserslist": [
     "last 2 versions",
