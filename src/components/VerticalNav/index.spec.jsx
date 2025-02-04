@@ -61,10 +61,8 @@ it('should dispaly warnings if child element does not have `content` prop', () =
 
   // only renders collapse item
   expect(screen.getByTestId('vertical-nav-menu-item')).toBeInTheDocument();
-  /* eslint-disable no-console */
   expect(console.warn).toHaveBeenCalledTimes(2);
   expect(console.warn).toHaveBeenLastCalledWith('Navigation does not render MenuItem that have no content prop.');
-  /* eslint-enable no-console */
 });
 
 it('should not render the collapse icon if props.collapsable is false', () => {
