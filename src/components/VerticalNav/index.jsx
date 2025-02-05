@@ -34,7 +34,6 @@ class VerticalNav extends React.Component {
     const activeTabIndex = this.getActiveTabIndex(children);
     const contentList = React.Children.map(children, (child, index) => {
       if (!child.props.content) {
-        // eslint-disable-next-line no-console
         console.warn('Navigation does not render MenuItem that have no content prop.');
         return null;
       }
@@ -60,7 +59,6 @@ class VerticalNav extends React.Component {
 
     React.Children.forEach(children, (child, index) => {
       if (!child.props.content) {
-        // eslint-disable-next-line no-console
         console.warn('Navigation does not render MenuItem that have no content prop.');
         return;
       }

@@ -121,9 +121,9 @@ const Popper = ({
 };
 
 Popper.propTypes = {
-  arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  arrowStyles: PropTypes.object,
   dts: PropTypes.string,
-  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
+  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
   placement: PropTypes.oneOf(popoverPlacements),
   strategy: PropTypes.oneOf(popoverStrategies),
   popoverClass: PropTypes.string,
@@ -131,7 +131,7 @@ Popper.propTypes = {
   refElement: PropTypes.instanceOf(Element),
   boundariesElement: PropTypes.instanceOf(Element),
   title: PropTypes.string,
-  wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  wrapperStyles: PropTypes.object,
   popperRef: PropTypes.func,
 };
 

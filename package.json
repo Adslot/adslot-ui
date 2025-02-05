@@ -115,7 +115,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "eslint": "^9.19.0",
-    "eslint-config-adslot": "^2.0.0",
+    "eslint-config-adslot": "github:Adslot/eslint-config-adslot#fix-v9",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-jest-dom": "^5.5.0",
