@@ -54,9 +54,9 @@ WithRef.propTypes = {
   theme: PropTypes.oneOf(themes),
   popoverClassNames: PropTypes.string,
   getContainer: PropTypes.func,
-  arrowStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  wrapperStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]), // eslint-disable-line react/forbid-prop-types
+  arrowStyles: PropTypes.object,
+  wrapperStyles: PropTypes.object,
+  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
   placement: PropTypes.oneOf(popoverPlacements),
   strategy: PropTypes.oneOf(popoverStrategies),
   popoverContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,

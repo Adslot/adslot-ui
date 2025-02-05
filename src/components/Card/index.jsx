@@ -33,18 +33,8 @@ const Card = ({ children, className, accent, dts }) => {
   const baseClass = 'card-component';
   const containerClassNames = classnames(baseClass, { [`accent accent-${accent}`]: accent }, className);
 
-  const nestedChildren = React.Children.map(
-    children,
-    (
-      child // eslint-disable-line lodash/prefer-lodash-method
-    ) => (!_.get(child, 'props.append') ? child : null)
-  );
-  const appendedChildren = React.Children.map(
-    children,
-    (
-      child // eslint-disable-line lodash/prefer-lodash-method
-    ) => (_.get(child, 'props.append') ? child : null)
-  );
+  const nestedChildren = React.Children.map(children, (child) => (!_.get(child, 'props.append') ? child : null));
+  const appendedChildren = React.Children.map(children, (child) => (_.get(child, 'props.append') ? child : null));
 
   return (
     <div data-testid="card-container-wrapper" className={containerClassNames} {...expandDts(dts)}>
