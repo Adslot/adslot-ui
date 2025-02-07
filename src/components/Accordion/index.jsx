@@ -5,7 +5,7 @@ import Card from '../Card';
 import Panel from '../Panel';
 import invariant from '../../invariant';
 
-const Accordion = ({ dts, children, maxExpand, defaultActivePanelIds, onPanelClick }) => {
+const Accordion = ({ dts, children, maxExpand = 'max', defaultActivePanelIds = [], onPanelClick }) => {
   const [activePanelIds, setActivePanelIds] = React.useState(() => {
     return maxExpand === 'max' ? defaultActivePanelIds : _.slice(defaultActivePanelIds, 0, maxExpand);
   });
@@ -76,11 +76,6 @@ Accordion.propTypes = {
    * Determine how many Panels can be expanded, accepted value is a positive number, or <code>max</code> to have no restriction
    */
   maxExpand: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['max'])]),
-};
-
-Accordion.defaultProps = {
-  maxExpand: 'max',
-  defaultActivePanelIds: [],
 };
 
 Accordion.Panel = Panel;

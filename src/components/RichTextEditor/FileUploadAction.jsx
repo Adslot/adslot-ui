@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ToolbarButton from './ToolbarButton';
 
-const FileUploadAction = ({ onFileUpload, fileFilter, disabled }) => {
+const FileUploadAction = ({ onFileUpload, fileFilter, disabled = false }) => {
   const fileInputRef = React.useRef();
 
   const onFileChange = (e) => {
@@ -31,10 +31,6 @@ const FileUploadAction = ({ onFileUpload, fileFilter, disabled }) => {
       />
     </>
   );
-};
-
-FileUploadAction.defaultProps = {
-  disabled: false,
 };
 
 FileUploadAction.propTypes = {

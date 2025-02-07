@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import Button from '../Button';
 import './styles.css';
 
-const Pagination = ({ className, activePage, pageCount, onSelect, prev, next }) => (
+const Pagination = ({ className, activePage = 1, pageCount, onSelect, prev = true, next = true }) => (
   <div data-testid="pagination-wrapper" className={classnames('aui--pagination', className)}>
     {activePage !== 1 && prev && (
       <Button
@@ -154,12 +154,6 @@ Pagination.propTypes = {
    * The Next buton is displayed or not
    */
   next: PropTypes.bool,
-};
-
-Pagination.defaultProps = {
-  activePage: 1,
-  prev: true,
-  next: true,
 };
 
 export default Pagination;

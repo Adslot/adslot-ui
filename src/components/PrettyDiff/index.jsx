@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './styles.css';
 
-const PrettyDiff = ({ newText, oldText }) => {
+const PrettyDiff = ({ newText = '', oldText = '' }) => {
   const dmp = new DiffMatchPatch();
   const diffs = dmp.diff_main(oldText, newText);
 
@@ -33,10 +33,6 @@ const PrettyDiff = ({ newText, oldText }) => {
 PrettyDiff.propTypes = {
   newText: PropTypes.string,
   oldText: PropTypes.string,
-};
-PrettyDiff.defaultProps = {
-  newText: '',
-  oldText: '',
 };
 
 export default PrettyDiff;

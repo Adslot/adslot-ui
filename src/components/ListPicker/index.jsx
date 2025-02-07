@@ -15,20 +15,20 @@ import Anchor from '../Anchor';
 const isSubset = (array, subArray) => _(subArray).difference(array).isEmpty();
 
 const ListPicker = ({
-  allowMultiSelection,
-  allowEmptySelection,
+  allowMultiSelection = true,
+  allowEmptySelection = true,
   emptyMessage,
   emptySvgSymbol,
   labelFormatter,
   addonFormatter,
   itemHeaders,
-  items,
-  itemType,
+  items = [],
+  itemType = 'item',
   itemInfo,
-  initialSelection,
-  show,
-  modalClassName,
-  modalTitle,
+  initialSelection = [],
+  show = false,
+  modalClassName = 'listpicker-component',
+  modalTitle = 'Select Items',
   modalDescription,
   modalFootnote,
   linkButtons,
@@ -195,18 +195,6 @@ ListPicker.propTypes = {
   modalFootnote: PropTypes.string,
   modalTitle: PropTypes.string,
   show: PropTypes.bool,
-};
-
-ListPicker.defaultProps = {
-  allowEmptySelection: true,
-  allowMultiSelection: true,
-  initialSelection: [],
-  items: [],
-  itemType: 'item',
-  linkButtons: [],
-  modalClassName: 'listpicker-component',
-  modalTitle: 'Select Items',
-  show: false,
 };
 
 export default ListPicker;

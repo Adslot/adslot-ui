@@ -8,7 +8,7 @@ import { themes, popoverPlacements, popoverStrategies } from './constants';
 import './styles.css';
 
 const WithRef = ({
-  theme,
+  theme = 'light',
   title,
   dts,
   popoverClassNames,
@@ -16,7 +16,7 @@ const WithRef = ({
   refElement,
   modifiers,
   wrapperStyles,
-  placement,
+  placement = 'auto',
   strategy,
   isOpen,
   arrowStyles,
@@ -63,11 +63,6 @@ WithRef.propTypes = {
   isOpen: PropTypes.bool,
   popperRef: PropTypes.func,
   dts: PropTypes.string,
-};
-
-WithRef.defaultProps = {
-  theme: 'light',
-  placement: 'auto',
 };
 
 export default WithRef;

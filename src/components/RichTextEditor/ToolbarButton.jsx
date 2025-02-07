@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Button from '../Button';
 
-const ToolbarButton = ({ onToggle, label, active, disabled, ...rest }) => {
+const ToolbarButton = ({ onToggle, label, active = false, disabled = false, ...rest }) => {
   const className = classnames('aui--toolbar-button', {
     active,
   });
@@ -22,11 +22,6 @@ const ToolbarButton = ({ onToggle, label, active, disabled, ...rest }) => {
       {label}
     </Button>
   );
-};
-
-ToolbarButton.defaultProps = {
-  active: false,
-  disabled: false,
 };
 
 ToolbarButton.propTypes = {

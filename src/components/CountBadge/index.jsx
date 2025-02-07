@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../utils';
 import './styles.css';
 
-const CountBadge = ({ value, status, dts }) => {
+const CountBadge = ({ value, status = 'default', dts }) => {
   const fontSize = value > 99 ? 'small' : 'normal';
   const classNames = `count-badge status-${status} count-badge-font-size-${fontSize}`;
   return (
@@ -26,10 +26,6 @@ CountBadge.propTypes = {
    * data-test-selector for the counter badge component
    */
   dts: PropTypes.string,
-};
-
-CountBadge.defaultProps = {
-  status: 'default',
 };
 
 export default CountBadge;

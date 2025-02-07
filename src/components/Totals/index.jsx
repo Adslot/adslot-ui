@@ -5,7 +5,7 @@ import Grid from '../Grid';
 import GridCell from '../Grid/Cell';
 import GridRow from '../Grid/Row';
 
-const Totals = ({ toSum, valueFormatter }) => (
+const Totals = ({ toSum = [], valueFormatter = (value) => `${value}` }) => (
   <Grid>
     {_(toSum)
       .reject({ isHidden: true })
@@ -35,11 +35,6 @@ Totals.propTypes = {
     })
   ),
   valueFormatter: PropTypes.func,
-};
-
-Totals.defaultProps = {
-  toSum: [],
-  valueFormatter: (value) => `${value}`,
 };
 
 export default Totals;

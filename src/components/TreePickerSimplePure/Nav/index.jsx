@@ -11,16 +11,16 @@ const TreePickerNav = ({
   breadcrumbRootNode,
   breadcrumbNodes,
   breadcrumbOnClick,
-  debounceInterval,
-  disabled,
-  isLoading,
+  debounceInterval = 0,
+  disabled = false,
+  isLoading = false,
   onClear,
   onChange,
-  onSearch,
-  searchOnEnter,
-  searchPlaceholder,
+  onSearch = _.noop,
+  searchOnEnter = false,
+  searchPlaceholder = '',
   searchValue,
-  showSearch,
+  showSearch = true,
   svgSymbolCancel,
   svgSymbolSearch,
 }) => {
@@ -73,16 +73,6 @@ TreePickerNav.propTypes = {
   showSearch: PropTypes.bool,
   svgSymbolCancel: PropTypes.node,
   svgSymbolSearch: PropTypes.node,
-};
-
-TreePickerNav.defaultProps = {
-  debounceInterval: 0,
-  disabled: false,
-  isLoading: false,
-  searchOnEnter: false,
-  searchPlaceholder: '',
-  showSearch: true,
-  onSearch: _.noop,
 };
 
 export default TreePickerNav;

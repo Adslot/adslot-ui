@@ -10,21 +10,21 @@ import { TreePickerPropTypesNode } from '../../../prop-types/TreePickerPropTypes
 import './styles.css';
 
 const TreePickerGrid = ({
-  disabled,
+  disabled = false,
   emptySvgSymbol,
   expandNode,
-  groupFormatter,
-  hideIcon,
+  groupFormatter = () => 'Default Group',
+  hideIcon = false,
   includeNode,
   itemType,
-  isLoading,
+  isLoading = false,
   nodes,
   nodeRenderer,
   removeNode,
   selected,
   valueFormatter,
   emptyText,
-  displayGroupHeader,
+  displayGroupHeader = true,
   addNodePopoverInfoProps,
   removeNodePopoverInfoProps,
 }) => {
@@ -94,14 +94,6 @@ TreePickerGrid.propTypes = {
   displayGroupHeader: PropTypes.bool,
   addNodePopoverInfoProps: PropTypes.object,
   removeNodePopoverInfoProps: PropTypes.object,
-};
-
-TreePickerGrid.defaultProps = {
-  disabled: false,
-  displayGroupHeader: true,
-  groupFormatter: () => 'Default Group',
-  hideIcon: false,
-  isLoading: false,
 };
 
 export default TreePickerGrid;

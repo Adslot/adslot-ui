@@ -7,7 +7,7 @@ import './styles.css';
 
 const baseClass = 'pagetitle-component';
 
-const PageTitle = ({ children, isFooter, title }) => {
+const PageTitle = ({ children, isFooter = false, title }) => {
   const className = classnames(baseClass, { [`${baseClass}-is-footer`]: isFooter });
   return (
     <div data-testid="page-title-wrapper" className={className} id={_.isString(title) ? _.kebabCase(title) : 'title'}>
@@ -28,9 +28,6 @@ PageTitle.propTypes = {
   children: PropTypes.node,
   isFooter: PropTypes.bool,
   title: PropTypes.node,
-};
-PageTitle.defaultProps = {
-  isFooter: false,
 };
 
 export default PageTitle;
