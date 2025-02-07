@@ -3,7 +3,7 @@ import React from 'react';
 import GridCell from '../../../Grid/Cell';
 import Spinner from '../../../Spinner';
 
-const TreePickerNodeExpander = ({ isLoading, onClick }) => {
+const TreePickerNodeExpander = ({ isLoading = false, onClick }) => {
   const props = {
     dts: 'expander',
     onClick: isLoading ? null : onClick,
@@ -19,10 +19,6 @@ const TreePickerNodeExpander = ({ isLoading, onClick }) => {
 TreePickerNodeExpander.propTypes = {
   isLoading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-};
-
-TreePickerNodeExpander.defaultProps = {
-  isLoading: false,
 };
 
 export default TreePickerNodeExpander;

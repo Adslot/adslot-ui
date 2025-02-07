@@ -39,12 +39,12 @@ const RichTextEditor = ({
   value,
   initialValue,
   onChange,
-  placeholder,
+  placeholder = 'Tell a story...',
   mentions,
   onFileSelect,
   onFileRemove,
-  fileFilter,
-  disabled,
+  fileFilter = '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.psd,.csv,.zip,.7z',
+  disabled = false,
 }) => {
   const editor = React.createRef(null);
   const focusEditor = () => editor.current.focus();
@@ -229,12 +229,6 @@ RichTextEditor.propTypes = {
   onFileRemove: PropTypes.func,
   fileFilter: PropTypes.string,
   disabled: PropTypes.bool,
-};
-
-RichTextEditor.defaultProps = {
-  placeholder: 'Tell a story...',
-  fileFilter: '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.psd,.csv,.zip,.7z',
-  disabled: false,
 };
 
 RichTextEditor.createEmpty = EditorState.createEmpty;

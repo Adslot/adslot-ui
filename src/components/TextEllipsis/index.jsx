@@ -4,7 +4,13 @@ import React from 'react';
 import Popover from '../Popover';
 import './styles.css';
 
-const TextEllipsis = ({ popoverProps, children }) => {
+const TextEllipsis = ({
+  popoverProps = {
+    placement: 'top',
+    trigger: 'hover',
+  },
+  children,
+}) => {
   const containerRef = React.useRef();
   const [truncated, setTruncated] = React.useState(false);
 
@@ -35,10 +41,4 @@ TextEllipsis.propTypes = {
   popoverProps: PropTypes.shape(_.pick(Popover.propTypes, ['placement', 'trigger'])),
 };
 
-TextEllipsis.defaultProps = {
-  popoverProps: {
-    placement: 'top',
-    trigger: 'hover',
-  },
-};
 export default TextEllipsis;

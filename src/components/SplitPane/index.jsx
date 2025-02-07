@@ -4,7 +4,7 @@ import React from 'react';
 import { expandDts } from '../../utils';
 import './styles.css';
 
-const SplitPane = ({ children, dts, additionalClassNames }) => {
+const SplitPane = ({ children, dts, additionalClassNames = [] }) => {
   const splitPaneClass = classNames('splitpane-component', ...additionalClassNames);
 
   return (
@@ -21,10 +21,6 @@ SplitPane.propTypes = {
    * 	render `data-test-selector` onto the component. It can be useful for testing.
    */
   dts: PropTypes.string,
-};
-
-SplitPane.defaultProps = {
-  additionalClassNames: [],
 };
 
 export default SplitPane;

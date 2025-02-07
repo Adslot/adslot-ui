@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const Statistic = ({ label, value, inline }) => {
+const Statistic = ({ label, value, inline = false }) => {
   const baseClass = 'statistic-component';
   const statisticClassNames = [baseClass];
   if (inline) statisticClassNames.push('inline');
@@ -32,10 +32,6 @@ Statistic.propTypes = {
    * Where value is a number consider human readable strings e.g 'Million' instead of 000,000.
    */
   value: PropTypes.string.isRequired,
-};
-
-Statistic.defaultProps = {
-  inline: false,
 };
 
 export default Statistic;

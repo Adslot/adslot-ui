@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { expandDts } from '../../utils';
 import './styles.css';
 
-const Skeleton = ({ animated, className, dts, height, variant, width }) => {
+const Skeleton = ({ animated = true, className, dts, height, variant = 'text', width }) => {
   const baseClass = 'aui--skeleton';
   const variantClass = () => (_.includes(['rect', 'circle', 'text'], variant) ? `${baseClass}-${variant}` : '');
 
@@ -38,11 +38,6 @@ Skeleton.propTypes = {
    */
   variant: PropTypes.oneOf(['rect', 'circle', 'text']),
   width: PropTypes.string,
-};
-
-Skeleton.defaultProps = {
-  animated: true,
-  variant: 'text',
 };
 
 export default Skeleton;

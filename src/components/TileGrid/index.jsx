@@ -9,7 +9,7 @@ const defaultWidth = 204; // 204px
 const defaultMaxWidth = 295; // 295px
 const baseClass = 'tile-grid-component';
 
-const TileGrid = ({ title, items, onItemClick, distributed }) => {
+const TileGrid = ({ title, items, onItemClick, distributed = false }) => {
   const cardList = _.map(items, (item) => {
     const itemClassNames = classnames(`${baseClass}-item`, `${baseClass}-item-${item.classSuffix}`, {
       [`${baseClass}-item-distributed`]: distributed,
@@ -65,10 +65,6 @@ const TileGrid = ({ title, items, onItemClick, distributed }) => {
       </ul>
     </div>
   );
-};
-
-TileGrid.defaultProps = {
-  distributed: false,
 };
 
 TileGrid.propTypes = {

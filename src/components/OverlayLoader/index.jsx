@@ -3,7 +3,7 @@ import React from 'react';
 import Spinner from '../Spinner';
 import './styles.css';
 
-const OverlayLoader = ({ text, top, heading, disableBackground }) => (
+const OverlayLoader = ({ text, top = 320, heading = 'Loading', disableBackground = false }) => (
   <div
     data-testid="overlay-loader-wrapper"
     className={`aui--overlay-loader ${disableBackground ? 'aui--overlay-loader-disabled' : ''}`}
@@ -18,12 +18,6 @@ const OverlayLoader = ({ text, top, heading, disableBackground }) => (
     </div>
   </div>
 );
-
-OverlayLoader.defaultProps = {
-  heading: 'Loading',
-  top: 320,
-  disableBackground: false,
-};
 
 OverlayLoader.propTypes = {
   heading: PropTypes.string,

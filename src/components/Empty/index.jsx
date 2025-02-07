@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const Empty = ({ collection, text, icon }) => {
+const Empty = ({ collection, text = 'Nothing to show.', icon }) => {
   if (_.isEmpty(collection)) {
     return (
       <div data-testid="empty-wrapper" className="empty-component">
@@ -22,10 +22,6 @@ Empty.propTypes = {
   collection: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.object]),
   text: PropTypes.node, // can be string or, if you want rich formatting, a node
   icon: PropTypes.node,
-};
-
-Empty.defaultProps = {
-  text: 'Nothing to show.',
 };
 
 export default Empty;
