@@ -7,7 +7,16 @@ import TreePickerMocks from '../mocks';
 
 jest.mock('../../../invariant');
 
-const { cbrNode, cbrNodeAlreadySelected, actNode, maleNode, itemType, nodeRenderer } = TreePickerMocks;
+const {
+  cbrNode,
+  cbrNodeAlreadySelected,
+  cbrNodeAlreadySelectedUnExpandable,
+  cbrNodeAlreadySelectedUnExpandableWithoutMessage,
+  actNode,
+  maleNode,
+  itemType,
+  nodeRenderer,
+} = TreePickerMocks;
 
 it('should render a node with defaults', () => {
   render(<TreePickerNode itemType={itemType} node={cbrNode} includeNode={jest.fn()} removeNode={jest.fn()} />);
@@ -44,6 +53,38 @@ it('should render metadata of nodes already selected containing ancestory data',
   expect(screen.getAllByClass('treepickernode-component-metadata')).toHaveLength(1);
   expect(screen.getByClass('treepickernode-component-metadata')).toHaveTextContent('(City in ACT, AU)');
   expect(screen.getByText('ACT, AU')).toHaveClass('treepickernode-component-path');
+});
+
+it('should render unExpandable message correctly', async () => {
+  render(
+    <TreePickerNode
+      itemType={itemType}
+      node={cbrNodeAlreadySelectedUnExpandable}
+      includeNode={jest.fn()}
+      removeNode={jest.fn()}
+    />
+  );
+
+  await user.hover(screen.getByText('Canberra'));
+
+  expect(screen.getAllByClass('treepickernode-component-metadata')).toHaveLength(1);
+  expect(screen.getByText('This node is unExpandable')).toBeInTheDocument();
+});
+
+it('should not fail when unExpandable message is not added for unExpandable node', async () => {
+  render(
+    <TreePickerNode
+      itemType={itemType}
+      node={cbrNodeAlreadySelectedUnExpandableWithoutMessage}
+      includeNode={jest.fn()}
+      removeNode={jest.fn()}
+    />
+  );
+
+  await user.hover(screen.getByText('Canberra'));
+
+  expect(screen.getAllByClass('treepickernode-component-metadata')).toHaveLength(1);
+  expect(screen.queryByText('This node is unExpandable')).not.toBeInTheDocument();
 });
 
 it('should render node via nodeRenderer', () => {

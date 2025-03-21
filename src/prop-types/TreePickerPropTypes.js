@@ -6,6 +6,7 @@ export const TreePickerPropTypesNode = PropTypes.shape({
   id: idPropType.isRequired,
   label: PropTypes.string.isRequired,
   isExpandable: PropTypes.bool,
+  unExpandableMessage: PropTypes.string,
   path: PropTypes.arrayOf(
     PropTypes.shape({ id: idPropType.isRequired, label: PropTypes.string.isRequired }).isRequired
   ),

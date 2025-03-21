@@ -90,26 +90,36 @@ class TreePickerNode extends React.PureComponent {
               </ConditionalPopoverWrapper>
             </GridCell>
           ) : null}
+
           <GridCell stretch {...labelCellProps} dts="label">
-            <TextEllipsis
-              popoverProps={{
-                strategy: 'fixed',
-                placement: 'bottom',
-                modifiers: [
-                  { name: 'flip', enabled: false },
-                  { name: 'preventOverflow', enabled: false },
-                  { name: 'hide', enabled: false },
-                ],
-              }}
+            <ConditionalPopoverWrapper
+              condition={!isExpandable && !_.isNil(node.unExpandableMessage)}
+              wrapper={(children) => (
+                <Popover theme="dark" placement="top" trigger="hover" popoverContent={node.unExpandableMessage}>
+                  {children}
+                </Popover>
+              )}
             >
-              <span>{nodeRenderer(node)}</span>
-              {!_.isEmpty(pathElement) ? (
-                <span className={`${baseClass}-metadata`}>
-                  ({pathPrefix(node)}
-                  {pathElement})
-                </span>
-              ) : null}
-            </TextEllipsis>
+              <TextEllipsis
+                popoverProps={{
+                  strategy: 'fixed',
+                  placement: 'bottom',
+                  modifiers: [
+                    { name: 'flip', enabled: false },
+                    { name: 'preventOverflow', enabled: false },
+                    { name: 'hide', enabled: false },
+                  ],
+                }}
+              >
+                <span>{nodeRenderer(node)}</span>
+                {!_.isEmpty(pathElement) ? (
+                  <span className={`${baseClass}-metadata`}>
+                    ({pathPrefix(node)}
+                    {pathElement})
+                  </span>
+                ) : null}
+              </TextEllipsis>
+            </ConditionalPopoverWrapper>
           </GridCell>
 
           {isExpandable ? (
