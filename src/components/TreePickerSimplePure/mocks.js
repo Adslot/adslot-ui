@@ -64,6 +64,29 @@ const cbrNodeAlreadySelected = {
   isExpandable: true,
 };
 
+const cbrNodeAlreadySelectedUnExpandable = {
+  id: 'au-act-cbr',
+  label: 'Canberra',
+  type: 'City',
+  ancestors: [actPath, auPath],
+  path: [],
+  value: 2000,
+  rootTypeId: 'a',
+  isExpandable: false,
+  unExpandableMessage: 'This node is unExpandable',
+};
+
+const cbrNodeAlreadySelectedUnExpandableWithoutMessage = {
+  id: 'au-act-cbr',
+  label: 'Canberra',
+  type: 'City',
+  ancestors: [actPath, auPath],
+  path: [],
+  value: 2000,
+  rootTypeId: 'a',
+  isExpandable: false,
+};
+
 const maleNode = {
   id: 4,
   label: 'Males',
@@ -87,6 +110,8 @@ const TreePickerMocks = immutable({
   baseItem,
   cbrNode,
   cbrNodeAlreadySelected,
+  cbrNodeAlreadySelectedUnExpandable,
+  cbrNodeAlreadySelectedUnExpandableWithoutMessage,
   initialSelection,
   itemType,
   maleNode,

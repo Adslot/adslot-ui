@@ -4,6 +4,7 @@ export interface TreePickerGridNodes {
   id?: any;
   label: string;
   isExpandable?: boolean;
+  unExpandableMessage?: string;
   path?: {
     id?: any;
     label: string;
