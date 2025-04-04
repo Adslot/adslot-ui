@@ -166,7 +166,7 @@
     "@types/draft-js": "^0.11.18",
     "@types/react": "^18.3.11",
     "@types/react-slick": "^0.23.13",
-    "cropperjs": "^1.6.2",
+    "cropperjs": "^2.0.0",
     "diff-match-patch": "^1.0.5",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
