@@ -138,9 +138,9 @@
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.5.3",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
+    "react": "^19.1.0",
     "react-dev-utils": "^12.0.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^19.1.0",
     "react-to-typescript-definitions": "^3.1.1",
     "rimraf": "^6.0.1",
     "seamless-immutable": "^7.1.4",
@@ -182,8 +182,8 @@
   "peerDependencies": {
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "engines": {
     "node": "^22"
