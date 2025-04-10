@@ -1,0 +1,29 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { expandDts } from '../../utils';
+const CountBadge = ({
+  value,
+  status = 'default',
+  dts
+}) => {
+  const fontSize = value > 99 ? 'small' : 'normal';
+  const classNames = `count-badge status-${status} count-badge-font-size-${fontSize}`;
+  return /*#__PURE__*/React.createElement("div", Object.assign({
+    className: classNames
+  }, expandDts(dts)), value);
+};
+CountBadge.propTypes = {
+  /**
+   * determines the number that is rendered inside the counter badge
+   */
+  value: PropTypes.number.isRequired,
+  /**
+   * determines the appearance of the counter badge: oneOf(['info', 'warning', 'danger', 'light'])
+   */
+  status: PropTypes.string,
+  /**
+   * data-test-selector for the counter badge component
+   */
+  dts: PropTypes.string
+};
+export default CountBadge;
