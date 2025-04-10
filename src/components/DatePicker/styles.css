@@ -19,7 +19,7 @@ $icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3
 
 .react-datepicker {
   border-color: $datepicker-border-color;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 0 rgb(0, 0, 0, 0.25);
   font-family: $datepicker-font-family;
   font-size: $datepicker-font-size;
   color: $color-text-base;

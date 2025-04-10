@@ -40,7 +40,7 @@
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .aui--overlay-loader .loader .spinner-medium {
