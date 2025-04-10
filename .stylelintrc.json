@@ -4,6 +4,7 @@
     "selector-class-pattern": null,
     "color-function-notation": null,
     "alpha-value-notation": "number",
-    "no-descending-specificity": [true, { "ignore": ["selectors-within-list"] }]
+    "no-descending-specificity": [true, { "ignore": ["selectors-within-list"] }],
+    "declaration-property-value-no-unknown": null
   }
 }

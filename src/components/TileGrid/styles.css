@@ -62,7 +62,7 @@
   top: 0;
   left: 0;
   text-transform: uppercase;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 2px rgb(0, 0, 0, 0.2);
 }
 
 .tile-grid-component-item-link:hover,
