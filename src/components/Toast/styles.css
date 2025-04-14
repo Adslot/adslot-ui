@@ -2,48 +2,47 @@
 
 .aui--toast-container {
   min-width: 252px;
-  max-width: 504px;
-}
-
-.aui--toast-container .aui--toast-notification-body {
-  background-color: $color-grey-800;
-  border-radius: 4px;
-  margin: 0;
-  margin-top: 18px;
+  max-width: 720px;
+  width: unset;
   padding: 0;
-}
 
-.aui--toast-container .aui--toast-notification-body .aui--toast-body-message {
-  font-size: 14px;
-  color: $color-white;
-  margin: 18px;
-}
+  & .aui--toast-notification-body {
+    background-color: $color-grey-800;
+    border-radius: 4px;
+    margin: 0;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-size: 14px;
+    color: $color-white;
 
-.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title {
-  font-weight: $font-weight-bold;
-  font-size: $font-size-medium;
-  margin-right: 12px;
-}
+    & .Toastify__close-button {
+      all: unset;
+      display: flex;
+    }
 
-.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-info {
-  color: $color-info-base;
-}
+    & .aui--toast-title {
+      font-weight: $font-weight-bold;
+      font-size: $font-size-medium;
+      margin-right: 12px;
+    }
 
-.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-success {
-  color: $color-success-base;
-}
+    & .aui--toast-title-info {
+      color: $color-info-base;
+    }
 
-.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-alert {
-  color: $color-warning-base;
-}
+    & .aui--toast-title-success {
+      color: $color-success-base;
+    }
 
-.aui--toast-container .aui--toast-notification-body .aui--toast-body-message .aui--toast-title-attention {
-  color: $color-danger-base;
-}
+    & .aui--toast-title-alert {
+      color: $color-warning-base;
+    }
 
-.aui--toast-container .aui--toast-notification-body .Toastify__close-button {
-  color: $color-white;
-  padding-top: 22.5px;
-  padding-right: 18px;
-  opacity: 1;
+    & .aui--toast-title-attention {
+      color: $color-danger-base;
+    }
+  }
 }

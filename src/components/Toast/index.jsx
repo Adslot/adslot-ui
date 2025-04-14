@@ -7,7 +7,30 @@ import { expandDts } from '../../utils';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
-const ToastContainer = (props) => <ReactToastContainer className="aui--toast-container" {...props} />;
+const ToastContainer = ({
+  position = 'bottom-left',
+  autoClose = 5000,
+  hideProgressBar = true,
+  newestOnTop = false,
+  closeOnClick = true,
+  rtl = false,
+  draggable = true,
+  pauseOnHover = true,
+  ...rest
+}) => (
+  <ReactToastContainer
+    className="aui--toast-container"
+    position={position}
+    autoClose={autoClose}
+    hideProgressBar={hideProgressBar}
+    newestOnTop={newestOnTop}
+    closeOnClick={closeOnClick}
+    rtl={rtl}
+    draggable={draggable}
+    pauseOnHover={pauseOnHover}
+    {...rest}
+  />
+);
 
 ToastContainer.propTypes = {
   /**
@@ -28,17 +51,6 @@ ToastContainer.propTypes = {
   draggable: PropTypes.bool,
   // Keep the timer running or not on hover
   pauseOnHover: PropTypes.bool,
-};
-
-ToastContainer.defaultProps = {
-  position: 'bottom-left',
-  autoClose: 5000,
-  hideProgressBar: true,
-  newestOnTop: false,
-  closeOnClick: true,
-  rtl: false,
-  draggable: true,
-  pauseOnHover: true,
 };
 
 const getToastClass = (theme) => classnames('aui--toast-title', { [`aui--toast-title-${theme}`]: theme });
