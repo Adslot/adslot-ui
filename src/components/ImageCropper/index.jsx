@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Cropper from 'cropperjs';
 import Button from '../Button';
 import ActionPanel from '../ActionPanel';
-import 'cropperjs/dist/cropper.css';
 import './styles.css';
 
 // https://github.com/fengyuanchen/cropperjs/blob/v2/README.md
