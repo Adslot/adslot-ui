@@ -127,6 +127,7 @@ describe('render()', () => {
   it('should render with disabled input', () => {
     const props = {
       value: 10000,
+      onValueChange: () => {},
       disabled: true,
       prefixAddon: '$',
       suffixAddon: '.00',
