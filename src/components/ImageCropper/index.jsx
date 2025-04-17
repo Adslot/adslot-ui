@@ -18,7 +18,7 @@ const defaultOptions = {
 };
 
 const ImageCropper = forwardRef(
-  ({ title, src, alt, onCancel, onCrop, width, height, aspectRatio, isSaving, dts }, ref) => {
+  ({ title = 'Image Upload', src, alt, onCancel, onCrop, width, height, aspectRatio, isSaving = false, dts }, ref) => {
     const cropperRef = React.useRef();
     const imageRef = React.useRef();
 
@@ -79,11 +79,6 @@ ImageCropper.propTypes = {
   aspectRatio: PropTypes.number,
   isSaving: PropTypes.bool,
   dts: PropTypes.string,
-};
-
-ImageCropper.defaultProps = {
-  title: 'Image Upload',
-  isSaving: false,
 };
 
 export default ImageCropper;

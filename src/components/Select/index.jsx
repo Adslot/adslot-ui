@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-import _ from 'lodash';
 import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactSelect, { components, createFilter } from 'react-select';
+import ReactSelect, { components as originalComponents, createFilter } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
@@ -13,16 +11,16 @@ import './styles.css';
 const componentBaseClass = 'select-component';
 
 const DropdownIndicator = (props) => (
-  <components.DropdownIndicator {...props}>
+  <originalComponents.DropdownIndicator {...props}>
     <div className="caret-icon" />
-  </components.DropdownIndicator>
+  </originalComponents.DropdownIndicator>
 );
 
-const ClearIndicator = (props) => <components.ClearIndicator {...props}>✕</components.ClearIndicator>;
+const ClearIndicator = (props) => <originalComponents.ClearIndicator {...props}>✕</originalComponents.ClearIndicator>;
 
 const SelectContainer = (props) => {
   return (
-    <components.SelectContainer
+    <originalComponents.SelectContainer
       {...props}
       innerProps={{
         ...props.innerProps,
@@ -36,18 +34,18 @@ const SelectContainer = (props) => {
  * The propType for this component should be the same as 'React-Select` lib, plus any special props
  */
 const selectComponentBuilder = (Component) => {
-  const SelectComponent = (props) => {
+  const SelectComponent = ({ isInModal = false, components, className, styles, ...rest }) => {
     const customComponents = { SelectContainer, DropdownIndicator, ClearIndicator };
 
     const selectProps = {
-      ..._.omit(props, ['components', 'className', 'styles', 'isInModal']),
-      components: { ...customComponents, ...props.components },
-      className: classnames(componentBaseClass, props.className),
-      classNamePrefix: props.classNamePrefix || componentBaseClass,
-      styles: { ...defaultStyle, ...props.styles },
+      ...rest,
+      components: { ...customComponents, ...components },
+      className: classnames(componentBaseClass, className),
+      classNamePrefix: rest.classNamePrefix || componentBaseClass,
+      styles: { ...defaultStyle, ...styles },
     };
 
-    if (props.isInModal) {
+    if (isInModal) {
       selectProps.menuPortalTarget = document.body;
       selectProps.styles = {
         menuPortal: (base) => ({ ...base, zIndex: 9999 }),
@@ -60,10 +58,10 @@ const selectComponentBuilder = (Component) => {
 
   SelectComponent.propTypes = {
     dts: PropTypes.string,
+    className: PropTypes.string,
+    components: PropTypes.object,
+    styles: PropTypes.object,
     isInModal: PropTypes.bool,
-  };
-  SelectComponent.defaultProps = {
-    isInModal: false,
   };
 
   return SelectComponent;
@@ -72,11 +70,10 @@ const selectComponentBuilder = (Component) => {
 const Select = selectComponentBuilder(ReactSelect);
 
 // re-export components so user can customize various components
-Select.components = components;
+Select.components = originalComponents;
 Select.Creatable = selectComponentBuilder(CreatableSelect);
 Select.Async = selectComponentBuilder(AsyncSelect);
 Select.AsyncCreatable = selectComponentBuilder(AsyncCreatableSelect);
 Select.createFilter = createFilter;
 
 export default Select;
-/* eslint-enable react/prop-types */
