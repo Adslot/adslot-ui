@@ -24,7 +24,6 @@ export default [
     },
     plugins: {
       '@typescript-eslint': typescriptEslint,
-      'jest-dom': jestDom,
     },
     settings: {
       lodash: {
@@ -45,6 +44,10 @@ export default [
       ],
       '@typescript-eslint/no-explicit-any': 'off',
     },
+  },
+  {
+    files: ['src/**/__mocks__/*'],
+    languageOptions: { globals: { jest: 'readonly' } },
   },
   {
     files: ['**/?(*.)spec.js?(x)'],

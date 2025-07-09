@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type EmptyCollection = React.ReactNode | any[] | Object;
+export type EmptyCollection = React.ReactNode | any[] | object;
 
 export interface EmptyProps {
   collection?: EmptyCollection;

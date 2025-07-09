@@ -11,15 +11,13 @@ export interface CarouselProps {
   dots?: boolean;
 }
 
-declare const usePreventCarouselSwipeClicks: () => {
-  onMouseDownCapture: (e: any) => void;
-  onClickCapture: (e: any) => void;
-};
-
 declare const Carousel: React.ForwardRefExoticComponent<
   React.PropsWithoutRef<CarouselProps & Settings> & React.RefAttributes<((...args: any[]) => any) | Element>
 > & {
-  usePreventSwipeClicks: typeof usePreventCarouselSwipeClicks;
+  usePreventSwipeClicks: () => {
+    onMouseDownCapture: (e: any) => void;
+    onClickCapture: (e: any) => void;
+  };
 };
 
 export default Carousel;

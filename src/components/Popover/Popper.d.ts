@@ -23,7 +23,7 @@ export type PopperStrategy = 'absolute' | 'fixed';
 export type PopperPopoverContent = React.ReactNode | ((...args: any[]) => any);
 
 export interface PopperProps<M = ''> extends PopperModifiers<M> {
-  arrowStyles?: Object;
+  arrowStyles?: object;
   dts?: string;
 
   placement?: PopperPlacement;
@@ -33,7 +33,7 @@ export interface PopperProps<M = ''> extends PopperModifiers<M> {
   refElement?: Element;
   boundariesElement?: Element;
   title?: string;
-  wrapperStyles?: Object;
+  wrapperStyles?: object;
   popperRef?: (...args: any[]) => any;
 }
 

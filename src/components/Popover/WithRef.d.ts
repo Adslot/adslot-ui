@@ -30,8 +30,8 @@ export interface WithRefProps<M = ''> extends PopperModifiers<M> {
   theme?: WithRefTheme;
   popoverClassNames?: string;
   getContainer?: (...args: any[]) => any;
-  arrowStyles?: Object;
-  wrapperStyles?: Object;
+  arrowStyles?: object;
+  wrapperStyles?: object;
 
   placement?: WithRefPlacement;
   strategy?: WithRefStrategy;

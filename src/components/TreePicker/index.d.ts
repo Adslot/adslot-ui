@@ -6,7 +6,7 @@ export interface TreePickerNodeContentProps {
   onIncludeAll?: (...args: any[]) => any;
 }
 
-declare const TreePickerNodeContent: React.FC<TreePickerNodeContentProps>;
+export declare const TreePickerNodeContent: React.FC<TreePickerNodeContentProps>;
 
 export interface TreePickerNodeExpandProps {
   className?: string;
@@ -18,7 +18,7 @@ export interface TreePickerNodeExpandProps {
   onMouseLeave?: (...args: any[]) => any;
 }
 
-declare const TreePickerNodeExpand: React.FC<TreePickerNodeExpandProps>;
+export declare const TreePickerNodeExpand: React.FC<TreePickerNodeExpandProps>;
 
 export interface TreePickerNodeAddProps {
   onAdd: (...args: any[]) => any;
@@ -27,9 +27,9 @@ export interface TreePickerNodeAddProps {
   className?: string;
 }
 
-declare const TreePickerNodeAdd: React.FC<TreePickerNodeAddProps>;
+export declare const TreePickerNodeAdd: React.FC<TreePickerNodeAddProps>;
 
-declare const TreePickerNodePlaceholder: React.FC;
+export declare const TreePickerNodePlaceholder: React.FC;
 
 export interface TreePickerNodeNode {
   id: string | number;
@@ -43,7 +43,7 @@ export interface TreePickerNodeProps {
   dts?: string;
 }
 
-declare const TreePickerNode: React.FC<TreePickerNodeProps> & {
+export declare const TreePickerNode: React.FC<TreePickerNodeProps> & {
   Content: typeof TreePickerNodeContent;
   Expand: typeof TreePickerNodeExpand;
   Add: typeof TreePickerNodeAdd;
@@ -56,7 +56,7 @@ export interface TreePickerNavProps {
   onNavTo?: (...args: any[]) => any;
 }
 
-declare const TreePickerNav: React.FC<TreePickerNavProps>;
+export declare const TreePickerNav: React.FC<TreePickerNavProps>;
 
 export interface TreePickerHeaderProps {
   label?: React.ReactNode;
@@ -65,7 +65,7 @@ export interface TreePickerHeaderProps {
   dts?: string;
 }
 
-declare const TreePickerHeader: React.FC<TreePickerHeaderProps>;
+export declare const TreePickerHeader: React.FC<TreePickerHeaderProps>;
 
 export interface TreePickerSearchProps {
   resolveNodes: (...args: any[]) => any;
@@ -73,7 +73,7 @@ export interface TreePickerSearchProps {
   disabled?: boolean;
 }
 
-declare const TreePickerSearch: React.FC<TreePickerSearchProps>;
+export declare const TreePickerSearch: React.FC<TreePickerSearchProps>;
 
 export interface TreePickerTreeProps {
   resolveRootNodes: (...args: any[]) => any;
@@ -84,7 +84,7 @@ export interface TreePickerTreeProps {
   dts?: string;
 }
 
-declare const TreePickerTree: React.FC<TreePickerTreeProps>;
+export declare const TreePickerTree: React.FC<TreePickerTreeProps>;
 
 export interface TreePickerProps {
   children: React.ReactNode;
@@ -92,7 +92,7 @@ export interface TreePickerProps {
   className?: string;
 }
 
-declare const TreePicker: React.FC<TreePickerProps> & {
+export declare const TreePicker: React.FC<TreePickerProps> & {
   Node: typeof TreePickerNode;
   Nav: typeof TreePickerNav;
   Header: typeof TreePickerHeader;
