@@ -34,8 +34,6 @@ export interface CheckboxGroupItemProps {
   disabled?: boolean;
 }
 
-declare const CheckboxGroupItem: React.FC<CheckboxGroupItemProps>;
-
 export interface CheckboxGroupAllProps {
   label?: React.ReactNode;
   className?: string;
@@ -44,8 +42,6 @@ export interface CheckboxGroupAllProps {
    */
   values: any[];
 }
-
-declare const CheckboxGroupAll: React.FC<CheckboxGroupAllProps>;
 
 export type CheckboxGroupOrientation = 'vertical' | 'horizontal';
 
@@ -81,8 +77,8 @@ export interface CheckboxGroupProps {
 }
 
 declare const CheckboxGroup: React.FC<CheckboxGroupProps> & {
-  Item: typeof CheckboxGroupItem;
-  All: typeof CheckboxGroupAll;
+  Item: React.FC<CheckboxGroupItemProps>;
+  All: React.FC<CheckboxGroupAllProps>;
 };
 
 export default CheckboxGroup;

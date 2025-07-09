@@ -35,8 +35,8 @@ export interface PopoverProps<M = ''> extends PopperModifiers<M> {
   /**
    * arrow css styles, mainly for positioning the arrow
    */
-  arrowStyles?: Object;
-  wrapperStyles?: Object;
+  arrowStyles?: object;
+  wrapperStyles?: object;
 
   placement?: PopoverPlacement;
   strategy?: PopoverStrategy;

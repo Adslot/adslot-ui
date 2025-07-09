@@ -34,8 +34,8 @@ export interface TreePickerGridProps {
   selected: boolean;
   valueFormatter?: (...args: any[]) => any;
   displayGroupHeader?: boolean;
-  addNodePopoverInfoProps?: Object;
-  removeNodePopoverInfoProps?: Object;
+  addNodePopoverInfoProps?: object;
+  removeNodePopoverInfoProps?: object;
 }
 
 declare const TreePickerGrid: React.FC<TreePickerGridProps>;

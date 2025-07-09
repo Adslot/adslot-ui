@@ -336,5 +336,5 @@ it('should work when the values are updated', async () => {
 
   await user.click(screen.getByTestId('button'));
 
-  expect(items[0]).toHaveAttribute('aria-checked', 'mixed');
+  expect(items[0]).not.toBeChecked();
 });

@@ -26,8 +26,6 @@ export interface ToastContainerProps {
   pauseOnHover?: boolean;
 }
 
-declare const ToastContainer: React.FC<ToastContainerProps>;
-
 export type notifyTheme = 'success' | 'info' | 'alert' | 'attention';
 
 export interface notifyProps {
@@ -37,16 +35,12 @@ export interface notifyProps {
   dts?: string;
 }
 
-declare const notify: React.FC<notifyProps>;
-
-export interface dismissProps {}
-
-declare const dismiss: React.FC<dismissProps>;
+type dismissProps = object;
 
 declare const Toast: {
-  Container: typeof ToastContainer;
-  notify: typeof notify;
-  dismiss: typeof dismiss;
+  Container: React.FC<ToastContainerProps>;
+  notify: React.FC<notifyProps>;
+  dismiss: React.FC<dismissProps>;
 };
 
 export default Toast;

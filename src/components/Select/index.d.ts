@@ -9,7 +9,7 @@ export interface SelectProps {
   isInModal?: boolean;
 }
 
-declare const Select: (<OptionType extends unknown = { label: string; value: string }, IsMulti extends boolean = false>(
+declare const Select: (<OptionType = { label: string; value: string }, IsMulti extends boolean = false>(
   props: SelectProps & Props<OptionType, IsMulti>
 ) => React.ReactElement<any, any> | null) & {
   components: typeof components;

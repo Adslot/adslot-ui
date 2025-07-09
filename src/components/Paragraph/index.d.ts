@@ -40,7 +40,7 @@ export interface ParagraphProps {
 
 declare const Paragraph: React.FC<ParagraphProps> & {
   ReadMore: typeof Paragraph;
-  HTML: typeof HTML;
+  HTML: React.FC<HTMLProps>;
 };
 
 export default Paragraph;
@@ -69,7 +69,3 @@ export interface HTMLProps {
   briefCharCount?: number;
   dts?: string;
 }
-
-declare const HTML: React.FC<HTMLProps>;
-
-declare const ReadMoreProdiver: React.FC;

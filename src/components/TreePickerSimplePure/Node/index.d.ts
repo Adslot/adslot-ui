@@ -10,8 +10,8 @@ export interface TreePickerNodeProps {
   removeNode?: (...args: any[]) => any;
   selected?: boolean;
   valueFormatter?: (...args: any[]) => any;
-  addNodePopoverInfoProps?: Object;
-  removeNodePopoverInfoProps?: Object;
+  addNodePopoverInfoProps?: object;
+  removeNodePopoverInfoProps?: object;
 }
 
 export default class TreePickerNode extends React.Component<TreePickerNodeProps, any> {

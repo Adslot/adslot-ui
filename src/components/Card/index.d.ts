@@ -10,8 +10,6 @@ export interface CardProps {
   dts?: string;
 }
 
-declare const Card: React.FC<CardProps>;
-
 export interface CardContentProps {
   children: React.ReactNode;
   className?: string;
@@ -21,11 +19,9 @@ export interface CardContentProps {
   dts?: string;
 }
 
-declare const CardContent: React.FC<CardContentProps>;
-
 declare const _default: {
-  Container: typeof Card;
-  Content: typeof CardContent;
+  Container: React.FC<CardProps>;
+  Content: React.FC<CardContentProps>;
 };
 
 export default _default;
