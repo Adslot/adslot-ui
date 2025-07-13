@@ -306,7 +306,7 @@ describe('<Popover />', () => {
         expect(wrapper).toBeInTheDocument();
       });
       expect(screen.getByTestId('popover-wrapper')).toHaveClass('popover-light');
-      expect(screen.getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: 0px; left: 0px;');
+      expect(screen.getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: auto; left: 0px;');
     });
 
     it('should render with given props', async () => {
@@ -340,8 +340,10 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('popover-wrapper')).toHaveClass('extra-class');
       expect(screen.getByTestId('popover-wrapper')).toHaveAttribute('data-test-selector', 'popover-example');
       expect(screen.getByTestId('popover-title')).toHaveTextContent('Big Bang');
-      expect(screen.getByTestId('popover-arrow')).toHaveStyle('color: red;');
-      expect(screen.getByTestId('popover-wrapper')).toHaveStyle('position: absolute; top: 0px; left: 0px; color: red;');
+      expect(screen.getByTestId('popover-arrow')).toHaveStyle('color: rgb(255, 0, 0);');
+      expect(screen.getByTestId('popover-wrapper')).toHaveStyle(
+        'position: absolute; top: 0px; left: auto; color: rgb(255, 0, 0);'
+      );
     });
 
     it('should default to light theme prop', async () => {
