@@ -336,5 +336,7 @@ it('should work when the values are updated', async () => {
 
   await user.click(screen.getByTestId('button'));
 
+  // plugin does not support mixed state yet
+  // eslint-disable-next-line jest-dom/prefer-checked
   expect(items[0]).toHaveAttribute('aria-checked', 'mixed');
 });
