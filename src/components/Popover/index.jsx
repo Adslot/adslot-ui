@@ -8,8 +8,24 @@ import './styles.css';
 
 const triggerPropTypes = PropTypes.oneOf(['click', 'hover', 'focus', 'disabled']);
 
-const Popover = (props) => {
-  const { isOpen } = props;
+const Popover = ({
+  theme = 'light',
+  placement = 'auto',
+  strategy = 'absolute',
+  triggers = 'hover',
+  isOpen = false,
+  title,
+  children,
+  className,
+  dts,
+  popoverContent,
+  popperRef,
+  popoverClassNames,
+  wrapperStyles,
+  getContainer,
+  arrowStyles,
+  modifiers,
+}) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(isOpen);
 
   React.useEffect(() => {
@@ -32,9 +48,8 @@ const Popover = (props) => {
 
   const onMouseOut = () => closePopover();
 
-  const { title, children, className, dts, popoverContent, popperRef } = props;
   const elementClass = classnames('aui--popover-element', className);
-  const triggers = _.flattenDeep([props.triggers]);
+  const triggersArray = _.flattenDeep([triggers]);
 
   const [elementRef, setReferenceElement] = useState(null);
 
@@ -44,29 +59,29 @@ const Popover = (props) => {
         data-testid="popover-element"
         className={elementClass}
         ref={setReferenceElement}
-        {...(triggers.includes('disabled')
+        {...(triggersArray.includes('disabled')
           ? {}
           : {
-              ...(triggers.includes('click') ? { onClick } : {}),
-              ...(triggers.includes('hover') ? { onMouseOver, onMouseOut } : {}),
-              ...(triggers.includes('focus') ? { onFocus, onBlur, tabIndex: -1 } : {}),
+              ...(triggersArray.includes('click') ? { onClick } : {}),
+              ...(triggersArray.includes('hover') ? { onMouseOver, onMouseOut } : {}),
+              ...(triggersArray.includes('focus') ? { onFocus, onBlur, tabIndex: -1 } : {}),
             })}
       >
         {children}
       </span>
       <WithRef
-        popoverClassNames={props.popoverClassNames}
-        wrapperStyles={props.wrapperStyles}
+        popoverClassNames={popoverClassNames}
+        wrapperStyles={wrapperStyles}
         dts={dts}
         title={title}
-        theme={props.theme}
+        theme={theme}
         popoverContent={popoverContent}
         refElement={elementRef}
-        getContainer={props.getContainer}
-        arrowStyles={props.arrowStyles}
-        placement={props.placement}
-        strategy={props.strategy}
-        modifiers={props.modifiers}
+        getContainer={getContainer}
+        arrowStyles={arrowStyles}
+        placement={placement}
+        strategy={strategy}
+        modifiers={modifiers}
         isOpen={isPopoverOpen}
         popperRef={popperRef}
       />
@@ -94,14 +109,6 @@ Popover.propTypes = {
   getContainer: PropTypes.func,
   popperRef: PropTypes.func,
   dts: PropTypes.string,
-};
-
-Popover.defaultProps = {
-  theme: 'light',
-  placement: 'auto',
-  strategy: 'absolute',
-  triggers: 'hover',
-  isOpen: false,
 };
 
 Popover.WithRef = WithRef;

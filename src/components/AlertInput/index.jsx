@@ -8,112 +8,94 @@ import './styles.css';
 
 export const baseClass = 'aui--alert-input';
 
-class AlertInput extends React.PureComponent {
-  state = {
-    isFocused: false,
-    isPopoverVisible: false,
+const AlertInput = ({
+  dts,
+  popoverPlacement = 'bottom',
+  disabled,
+  prefixAddon,
+  suffixAddon,
+  alertStatus = 'success',
+  alertMessage,
+  onValueChange,
+  className,
+  onFocus,
+  onBlur,
+  ...rest
+}) => {
+  const [isFocused, setIsFocused] = React.useState(false);
+  const [isPopoverVisible, setIsPopoverVisible] = React.useState(false);
+  const componentRef = React.useRef();
+
+  const theme = alertStatus === 'warning' ? 'warn' : alertStatus;
+  const shouldPopoverOpen = isPopoverVisible && !_.isEmpty(alertMessage);
+
+  const handleMouseEnter = () => {
+    if (alertMessage) setIsPopoverVisible(true);
   };
 
-  componentRef = React.createRef();
-
-  handleMouseEnter = () => {
-    if (this.props.alertMessage) {
-      this.setState({ isPopoverVisible: true });
-    }
+  const handleMouseLeave = () => {
+    setIsPopoverVisible(false);
   };
 
-  handleMouseLeave = () => {
-    this.setState({ isPopoverVisible: false });
-  };
-
-  handleInputFocus = (event) => {
+  const handleInputFocus = (event) => {
     event.target.select();
-    this.setState({
-      isFocused: true,
-      isPopoverVisible: Boolean(this.props.alertMessage),
-    });
-
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
+    setIsFocused(true);
+    setIsPopoverVisible(!!alertMessage);
+    onFocus?.(event);
   };
 
-  handleInputBlur = (event) => {
-    this.setState({
-      isFocused: false,
-      isPopoverVisible: false,
-    });
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
+  const handleInputBlur = (event) => {
+    setIsFocused(false);
+    setIsPopoverVisible(false);
+    onBlur?.(event);
   };
 
-  render() {
-    const { dts, popoverPlacement, disabled, prefixAddon, suffixAddon, alertStatus, alertMessage, onValueChange } =
-      this.props;
-
-    const className = classnames(
-      baseClass,
-      {
-        [alertStatus]: alertStatus,
-        [`${baseClass}--focused`]: this.state.isFocused,
-        [`${baseClass}--disabled`]: disabled,
-      },
-      this.props.className
-    );
-    const theme = alertStatus === 'warning' ? 'warn' : alertStatus;
-    const shouldPopoverOpen = this.state.isPopoverVisible && !_.isEmpty(alertMessage);
-
-    const inputProps = _.omit(this.props, [
-      'dts',
-      'prefixAddon',
-      'suffixAddon',
-      'alertStatus',
-      'alertMessage',
-      'onValueChange',
-      'popoverPlacement',
-    ]);
-
-    return (
-      <React.Fragment>
-        <div
-          data-testid="alert-input-wrapper"
-          ref={this.componentRef}
-          className={className}
-          data-test-selector={dts}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-        >
-          {prefixAddon ? <span className={`${baseClass}__addon`}>{prefixAddon}</span> : null}
-
-          <input
-            {...{
-              ...inputProps,
-              className: `${baseClass}__input`,
-              onChange: onValueChange,
-              onFocus: this.handleInputFocus,
-              onBlur: this.handleInputBlur,
-            }}
-          />
-
-          {suffixAddon ? <span className={`${baseClass}__addon`}>{suffixAddon}</span> : null}
-        </div>
-
-        {shouldPopoverOpen && (
-          <Popover.WithRef
-            isOpen
-            refElement={this.componentRef.current}
-            placement={popoverPlacement}
-            popoverClassNames={`${baseClass}__popover`}
-            theme={theme}
-            popoverContent={alertMessage}
-          />
+  return (
+    <React.Fragment>
+      <div
+        data-testid="alert-input-wrapper"
+        ref={componentRef}
+        className={classnames(
+          baseClass,
+          {
+            [alertStatus]: alertStatus,
+            [`${baseClass}--focused`]: isFocused,
+            [`${baseClass}--disabled`]: disabled,
+          },
+          className
         )}
-      </React.Fragment>
-    );
-  }
-}
+        data-test-selector={dts}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {prefixAddon ? <span className={`${baseClass}__addon`}>{prefixAddon}</span> : null}
+
+        <input
+          {...{
+            ...rest,
+            className: `${baseClass}__input`,
+            onChange: onValueChange,
+            onFocus: handleInputFocus,
+            onBlur: handleInputBlur,
+          }}
+        />
+
+        {suffixAddon ? <span className={`${baseClass}__addon`}>{suffixAddon}</span> : null}
+      </div>
+
+      {shouldPopoverOpen && (
+        <Popover.WithRef
+          isOpen
+          refElement={componentRef.current}
+          placement={popoverPlacement}
+          popoverClassNames={`${baseClass}__popover`}
+          theme={theme}
+          popoverContent={alertMessage}
+        />
+      )}
+    </React.Fragment>
+  );
+};
 
 AlertInput.propTypes = {
   className: PropTypes.string,
@@ -137,11 +119,6 @@ AlertInput.propTypes = {
   onValueChange: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-};
-
-AlertInput.defaultProps = {
-  alertStatus: 'success',
-  popoverPlacement: 'bottom',
 };
 
 export default AlertInput;
