@@ -1,0 +1,60 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import ReactDatePicker from 'react-datepicker';
+import moment from 'moment';
+import { transform } from './transformFormat';
+const momentToDate = date => !date || date instanceof Date ? date : date.toDate();
+const DatePicker = ({
+  disableInlineEditing = false,
+  disableMomentFormat = false,
+  dateFormat,
+  dts,
+  onChange,
+  selected,
+  startDate,
+  endDate,
+  minDate,
+  maxDate,
+  ...rest
+}) => {
+  const datePickerProps = disableInlineEditing ? {
+    onChangeRaw: event => {
+      event.preventDefault();
+    }
+  } : {};
+  const _dateFormat = React.useMemo(() => disableMomentFormat ? dateFormat : transform(dateFormat), [dateFormat, disableMomentFormat]);
+  const isDate = selected instanceof Date;
+  const handleChange = React.useCallback(newDate => {
+    onChange?.(isDate || !newDate ? newDate : moment(newDate));
+  }, [isDate, onChange]);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "aui--date-picker",
+    "data-test-selector": dts
+  }, /*#__PURE__*/React.createElement(ReactDatePicker, Object.assign({}, rest, datePickerProps, {
+    dateFormat: _dateFormat,
+    onChange: handleChange,
+    selected: momentToDate(selected),
+    startDate: momentToDate(startDate),
+    endDate: momentToDate(endDate),
+    minDate: momentToDate(minDate),
+    maxDate: momentToDate(maxDate)
+  })));
+};
+DatePicker.propTypes = {
+  disableInlineEditing: PropTypes.bool,
+  /**
+   * "dateFormat" prop is using momentjs format tokens.
+   * set this prop to "true" to enable unicode tokens.
+   * read more https://git.io/fxCyr
+   */
+  disableMomentFormat: PropTypes.bool,
+  dateFormat: PropTypes.string,
+  dts: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  selected: PropTypes.object,
+  startDate: PropTypes.object,
+  endDate: PropTypes.object,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object
+};
+export default DatePicker;
