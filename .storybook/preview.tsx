@@ -8,7 +8,6 @@ import '../www/storybook.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on.*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -43,6 +42,8 @@ const preview: Preview = {
       ),
     },
   },
+
+  tags: ['autodocs']
 };
 
 export default preview;
