@@ -38,7 +38,7 @@ jobs:
           fi
 
           NETLIFY_AUTH_TOKEN=${{secrets.NETLIFY_AUTH_TOKEN}} NETLIFY_SITE_ID=${{secrets.NETLIFY_SITE_ID}} \
-            npx netlify-cli deploy --dir=docs --message="${BRANCH_NAME}" --alias="${BRANCH_NAME}"
+            npx netlify-cli deploy --dir=docs --message="${BRANCH_NAME}" --alias="${BRANCH_NAME}" --no-build
       - name: Notify Slack channel
         if: always() && job.status != 'success' && github.ref == 'refs/heads/master'
         env:

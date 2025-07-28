@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import TreePicker from './index';
 
 const meta = {
