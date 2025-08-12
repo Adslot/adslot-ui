@@ -131,6 +131,4 @@ CheckboxGroup.propTypes = {
 CheckboxGroup.Item = CheckboxGroupItem;
 CheckboxGroup.All = CheckboxGroupAll;
 
-export { useCheckboxGroup } from './CheckboxGroupContext';
-
 export default CheckboxGroup;
