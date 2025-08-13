@@ -41,7 +41,7 @@
     "dev": "storybook dev -p 6006",
     "test": "jest --watch",
     "coverage": "jest --colors --coverage",
-    "version": "echo '…generating dist…' && npm run dist",
+    "version": "echo '…generating dist…' && npm run dist && npm run build",
     "prepare": "husky"
   },
   "repository": {
