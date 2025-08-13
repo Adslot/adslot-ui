@@ -78,32 +78,6 @@ npm run test:watch [-- <path>] [--coverage]
 
 # Optimize SVG before you commit
 npm run svgo
-
-# Generating types
-
-# Generate types for all components
-npm run generate-types
-
-# Generate types for a single component
-npm run generate-types -- --only=Button
-
-# Generate types for a single component (this will run for all jsx files in the folder matching Button)
-npm run generate-types -- --only=Button
-
-# Generate types for a specific file
-npm run generate-types -- --only=Button/index.jsx
-
-# globs are accepted:
-npm run generate-types -- --only="RichTe*"
-
-# Copy generated types to es/*
-npm run generate-types -- --copy
-
-#Generate types with debugging output
-npm run generate-types -- --debug
-
-#Check validity of generated types
-npm run type-check
 ```
 
 ## Build Profiling

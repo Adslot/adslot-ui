@@ -4,7 +4,7 @@ coverage:
   range: 95...100
   ignore:
     - 'src/**/*.spec.*'
-    - 'src/**/mocks.*'
+    - 'src/__mocks__/**/*'
   status:
     project:
       default:

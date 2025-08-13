@@ -1,8 +1,16 @@
 /** @type {import('jest').Config} */
-module.exports = {
+export default {
   transform: {
-    '\\.jsx?$': 'babel-jest',
-    '\\.css$': '<rootDir>/config/cssTransform.js',
+    '^.+\\.(js|jsx|ts|tsx)$': [
+      '@swc/jest',
+      {
+        jsc: {
+          parser: { syntax: 'ecmascript', jsx: true },
+          transform: { react: { runtime: 'automatic' } },
+        },
+      },
+    ],
+    '^.+\\.css$': '<rootDir>/config/cssTransform.cjs',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
   resetMocks: true, // for global mocks in testSetup or __mocks__
@@ -22,5 +30,6 @@ module.exports = {
   },
   moduleNameMapper: {
     testing$: '<rootDir>/config/testing.js',
+    '\\.svg': '<rootDir>/src/__mocks__/svg.js',
   },
 };
