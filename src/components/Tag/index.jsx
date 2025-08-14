@@ -21,7 +21,7 @@ ActionButton.propTypes = {
   actionIcon: PropTypes.node,
 };
 
-const Tag = ({ children, inverse, id, onAction, accent, className, actionIcon, dts: customDts }) => {
+const Tag = ({ children, inverse, id = 'default', onAction, accent, className, actionIcon, dts: customDts }) => {
   const classes = classnames([
     defaultComponentClass,
     {
@@ -50,10 +50,6 @@ Tag.propTypes = {
   onAction: PropTypes.func,
   actionIcon: PropTypes.node,
   dts: PropTypes.string,
-};
-
-Tag.defaultProps = {
-  id: 'default',
 };
 
 export default Tag;

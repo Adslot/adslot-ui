@@ -10,19 +10,19 @@ const Search = React.forwardRef(
   (
     {
       className,
-      debounceInterval,
-      disabled,
+      debounceInterval = 0,
+      disabled = false,
       dts,
       icons,
-      isLoading,
+      isLoading = false,
       onBlur,
       onChange,
       onClear,
       onSearch,
-      placeholder,
-      searchOnEnter,
-      value,
-      showSearchButton,
+      placeholder = '',
+      searchOnEnter = false,
+      value = '',
+      showSearchButton = true,
     },
     ref
   ) => {
@@ -77,9 +77,9 @@ const Search = React.forwardRef(
         'Failed prop type: You have provided a `value` prop to Search Component without an `onChange` handler. This will render a read-only field.'
       );
 
-    const searchIcon = icons.search ? icons.search : <div data-testid="search-icon" className="search-icon" />;
-    const closeIcon = icons.close ? icons.close : <div data-testid="close-icon" className="cancel-icon" />;
-    const loaderIcon = icons.loader ? icons.loader : <Spinner size="small" />;
+    const searchIcon = icons?.search ?? <div data-testid="search-icon" className="search-icon" />;
+    const closeIcon = icons?.close ?? <div data-testid="close-icon" className="cancel-icon" />;
+    const loaderIcon = icons?.loader ?? <Spinner size="small" />;
     const isValueEmpty = _.isEmpty(value) && _.isEmpty(inputValue);
     const searchIconValue = isValueEmpty ? {} : { onClick: onInputClear };
 
@@ -170,17 +170,6 @@ Search.propTypes = {
    * 	Determines whether displaying the search button or not
    */
   showSearchButton: PropTypes.bool,
-};
-
-Search.defaultProps = {
-  debounceInterval: 0,
-  disabled: false,
-  isLoading: false,
-  searchOnEnter: false,
-  placeholder: '',
-  value: '',
-  icons: {},
-  showSearchButton: true,
 };
 
 export default Search;
