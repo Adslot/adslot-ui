@@ -141,7 +141,7 @@
     "draft-js-import-html": "^1.4.1",
     "react-datepicker": "^8.4.0",
     "react-popper": "^2.3.0",
-    "react-select": "^5.10.1",
+    "react-select": "^5.10.2",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
     "ryze": "^0.1.5",
