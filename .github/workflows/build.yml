@@ -24,13 +24,15 @@ jobs:
       - run: npm run dist
       - run: npm run build
       - name: Deploy docs to Netlify
+        env:
+          GITHUB_HEAD_REF: ${{github.head_ref}}
         run: |
           BRANCH_NAME=""
           if [[ ${{github.ref}} == "refs/heads/master" ]]; then
             BRANCH_NAME="master"
           else
             # Truncate branch name at 37 characters per alias requirement: https://cli.netlify.com/commands/deploy/
-            BRANCH_NAME=${{github.head_ref}}
+            BRANCH_NAME="$GITHUB_HEAD_REF"
             BRANCH_NAME=${BRANCH_NAME:0:37}
           fi
 
