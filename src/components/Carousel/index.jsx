@@ -8,15 +8,36 @@ import './styles.css';
 
 const baseClass = 'aui--carousel-component';
 
-const Carousel = React.forwardRef((props, ref) => {
-  const { className, children } = props;
-
-  return (
-    <Slider {...props} ref={ref} className={classNames(baseClass, className)}>
-      {children}
-    </Slider>
-  );
-});
+const Carousel = React.forwardRef(
+  (
+    {
+      className,
+      children,
+      autoplay = true,
+      variableWidth = true,
+      autoplaySpeed = 10000,
+      slidesToShow = 2,
+      dots = true,
+      ...rest
+    },
+    ref
+  ) => {
+    return (
+      <Slider
+        {...rest}
+        ref={ref}
+        autoplay={autoplay}
+        variableWidth={variableWidth}
+        autoplaySpeed={autoplaySpeed}
+        slidesToShow={slidesToShow}
+        dots={dots}
+        className={classNames(baseClass, className)}
+      >
+        {children}
+      </Slider>
+    );
+  }
+);
 
 Carousel.propTypes = {
   className: PropTypes.string,
@@ -26,14 +47,6 @@ Carousel.propTypes = {
   autoplaySpeed: PropTypes.number,
   slidesToShow: PropTypes.number,
   dots: PropTypes.bool,
-};
-
-Carousel.defaultProps = {
-  autoplay: true,
-  variableWidth: true,
-  autoplaySpeed: 10000,
-  slidesToShow: 2,
-  dots: true,
 };
 
 const SWIPE_DELTA = 3;
