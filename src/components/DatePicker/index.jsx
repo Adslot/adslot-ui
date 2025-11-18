@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cc from 'classnames';
 import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
 import { transform } from './transformFormat';
@@ -19,6 +20,7 @@ const DatePicker = ({
   endDate,
   minDate,
   maxDate,
+  size = 'medium',
   ...rest
 }) => {
   const datePickerProps = disableInlineEditing
@@ -43,7 +45,11 @@ const DatePicker = ({
   );
 
   return (
-    <div data-testid="date-picker-wrapper" className="aui--date-picker" data-test-selector={dts}>
+    <div
+      data-testid="date-picker-wrapper"
+      className={cc('aui--date-picker', size && `aui-${size}`)}
+      data-test-selector={dts}
+    >
       <ReactDatePicker
         {...rest}
         {...datePickerProps}
@@ -75,6 +81,8 @@ DatePicker.propTypes = {
   endDate: PropTypes.object,
   minDate: PropTypes.object,
   maxDate: PropTypes.object,
+
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 export default DatePicker;

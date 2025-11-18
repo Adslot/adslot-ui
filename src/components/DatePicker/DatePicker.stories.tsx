@@ -7,14 +7,14 @@ const meta = {
   title: 'Pending Review/DatePicker',
   component: DatePicker,
   tags: ['autodocs'],
-  decorators: [(Story) => <div style={{ height: 260 }}>{Story()}</div>],
+  decorators: [(Story) => <div style={{ height: 320 }}>{Story()}</div>],
 } satisfies Meta<typeof DatePicker>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const Demo = () => {
+const Demo = (props) => {
   const [date, setDate] = React.useState(() => new Date());
 
   return (
@@ -24,10 +24,18 @@ const Demo = () => {
       onChange={setDate}
       selected={date}
       placeholderText="Date e.g. 03 Sep 2016"
+      {...props}
     />
   );
 };
 
 export const Default: Story = {
   render: () => <Demo />,
+};
+
+export const SmallDefault: Story = {
+  args: {
+    size: 'small',
+  },
+  render: (args) => <Demo {...args} />,
 };

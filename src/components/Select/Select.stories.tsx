@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Select from './index';
 
 const meta = {
-  title: 'Pending Review/Select',
+  title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
 } satisfies Meta<typeof Select>;
@@ -21,6 +21,31 @@ const countryOptions = [
 
 export const Default: Story = {
   args: {
+    options: countryOptions,
+    isInModal: true,
+  },
+};
+
+export const MultiSelect: Story = {
+  args: {
+    isMulti: true,
+    options: countryOptions,
+    isInModal: true,
+  },
+};
+
+export const SmallSelect: Story = {
+  args: {
+    size: 'small',
+    options: countryOptions,
+    isInModal: true,
+  },
+};
+
+export const SmallMultiSelect: Story = {
+  args: {
+    size: 'small',
+    isMulti: true,
     options: countryOptions,
     isInModal: true,
   },
