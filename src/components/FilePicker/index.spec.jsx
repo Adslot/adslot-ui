@@ -4,9 +4,9 @@ import FilePicker from '.';
 
 it('should render with defaults', () => {
   render(<FilePicker onSelect={jest.fn()} />);
-  expect(screen.getByTestId('file-picker-wrapper')).toHaveClass('filepicker-component input-group');
+  expect(screen.getByTestId('file-picker-wrapper')).toHaveClass('filepicker-component');
 
-  expect(screen.getByTestId('file-picker-form-control')).toHaveClass('form-control');
+  expect(screen.getByTestId('file-picker-form-control')).toHaveClass('aui-file-input');
   expect(screen.getByTestId('file-picker-form-control')).toHaveAttribute('placeholder', 'No file selected');
   expect(screen.getByTestId('file-picker-form-control')).toHaveAttribute('title', '');
 

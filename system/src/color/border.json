@@ -5,6 +5,10 @@
         "value": "{color.grey.300}",
         "description": "Use for eg. vertical lines in the grid, tiles in the marketplace"
       },
+      "accent": {
+        "value": "{color.grey.600}",
+        "description": "Use for hover state for small elements such as input, pills"
+      },
       "strong": {
         "value": "{color.grey.800}",
         "description": "Use for eg. hover tiles, dark lines on the header of pages, navigation"

@@ -1,15 +1,25 @@
-import styles from './styles';
+import getStyles from './styles';
 
 describe('Select custom styles', () => {
+  it('should have modal styles', () => {
+    expect(getStyles({ isInModal: true }).menuPortal({})).toEqual({ zIndex: 9999 });
+  });
+
   describe('control()', () => {
     it('should have default styles and update minHeight', () => {
       const base = { color: 'red' };
       const state = { isFocused: false };
 
-      expect(styles.control(base, state)).toEqual({
+      expect(getStyles({ isInModal: false }).control(base, state)).toEqual({
+        ':hover': {
+          borderColor: '#757982',
+        },
+        borderColor: '#dae2e6',
+        borderRadius: 2,
         color: 'red',
-        minHeight: 26,
-        borderRadius: 0,
+        minHeight: 42,
+        gap: 6,
+        padding: '0 0 0 12px',
       });
     });
 
@@ -22,13 +32,17 @@ describe('Select custom styles', () => {
       };
       const state = { isFocused: true };
 
-      expect(styles.control(base, state)).toEqual({
-        color: 'red',
-        minHeight: 26,
-        borderRadius: 0,
+      expect(getStyles({ isInModal: false }).control(base, state)).toEqual({
+        ':hover': {
+          borderColor: '#757982',
+        },
+        borderColor: '#757982',
+        borderRadius: 2,
         boxShadow: 0,
-        ':hover': { borderColor: '#dae2e6' },
-        borderColor: '#dae2e6',
+        color: 'red',
+        gap: 6,
+        minHeight: 42,
+        padding: '0 0 0 12px',
       });
     });
   });
@@ -41,7 +55,7 @@ describe('Select custom styles', () => {
         marginTop: 8,
       };
 
-      expect(styles.menu(base)).toEqual({
+      expect(getStyles({ isInModal: false }).menu(base)).toEqual({
         zIndex: 1060,
         borderRadius: 0,
         marginTop: 4,
@@ -53,7 +67,7 @@ describe('Select custom styles', () => {
     it('should override styles', () => {
       const base = { textAlign: 'center' };
 
-      expect(styles.noOptionsMessage(base)).toEqual({ textAlign: 'left' });
+      expect(getStyles({ isInModal: false }).noOptionsMessage(base)).toEqual({ textAlign: 'left' });
     });
   });
 });
