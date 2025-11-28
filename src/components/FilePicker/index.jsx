@@ -38,14 +38,16 @@ class FilePicker extends React.PureComponent {
   };
 
   render() {
-    const mainClass = classNames({ [`${baseClass}-highlight`]: this.props.isHighlighted }, baseClass, 'input-group');
     const { isFileSelected, fileName } = this.state;
 
     return (
-      <div data-testid="file-picker-wrapper" className={mainClass}>
+      <div
+        data-testid="file-picker-wrapper"
+        className={classNames(baseClass, this.props.isHighlighted && `${baseClass}-highlight`)}
+      >
         <input
           data-testid="file-picker-form-control"
-          className="form-control"
+          className="aui-file-input"
           type="text"
           disabled
           placeholder={this.props.placeholder}
@@ -68,7 +70,7 @@ class FilePicker extends React.PureComponent {
             <span data-testid="file-picker-input-button-label">{this.props.label}</span>
             <input
               data-testid="file-picker-input-button-input"
-              className="file-input"
+              className="hidden-input"
               ref={this.fileInput}
               type="file"
               onChange={this.onChange}

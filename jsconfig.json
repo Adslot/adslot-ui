@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "testing": ["./config/testing.d.ts"]
+      "testing": ["./config/testing.js"]
     },
 
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
@@ -15,7 +15,7 @@
 
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "types": ["@testing-library/jest-dom"]
+    "types": ["@types/jest", "@testing-library/jest-dom"]
   },
   "include": ["src/**/*", "config/**/*"],
   "exclude": ["node_modules", "**/*.stories.tsx"]

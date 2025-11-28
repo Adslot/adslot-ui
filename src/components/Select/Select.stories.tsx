@@ -23,5 +23,14 @@ export const Default: Story = {
   args: {
     options: countryOptions,
     isInModal: true,
+    isClearable: true,
+  },
+};
+
+export const MultiSelect: Story = {
+  args: {
+    isMulti: true,
+    options: countryOptions,
+    isInModal: true,
   },
 };

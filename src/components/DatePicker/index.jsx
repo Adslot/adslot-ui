@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDatePicker from 'react-datepicker';
+import cc from 'classnames';
 import moment from 'moment';
 import { transform } from './transformFormat';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,6 +20,7 @@ const DatePicker = ({
   endDate,
   minDate,
   maxDate,
+  className,
   ...rest
 }) => {
   const datePickerProps = disableInlineEditing
@@ -47,6 +49,7 @@ const DatePicker = ({
       <ReactDatePicker
         {...rest}
         {...datePickerProps}
+        className={cc('aui-input', className)}
         dateFormat={_dateFormat}
         onChange={handleChange}
         selected={momentToDate(selected)}
@@ -75,6 +78,7 @@ DatePicker.propTypes = {
   endDate: PropTypes.object,
   minDate: PropTypes.object,
   maxDate: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default DatePicker;
