@@ -6,31 +6,43 @@
   padding: 1px;
 }
 
-.filepicker-component .aui--button.remove-file {
-  background-color: $color-grey-300;
-  border: 0;
-  margin-right: 0;
-}
+.filepicker-component {
+  font-size: 14px;
+  line-height: 1;
+  height: 42px;
+  display: flex;
+  border: 1px solid $color-border-base;
+  border-radius: $border-radius-base;
 
-.filepicker-component .file-input {
-  display: none;
-}
+  & .aui-file-input {
+    background-color: $color-default-accent;
+    padding: 12px;
+    border: 0;
+    outline: 0;
+    width: 100%;
+  }
 
-.filepicker-component .aui--button:focus {
-  background-color: inherit;
-}
+  & .input-group-btn {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
 
-.filepicker-component .input-group-btn {
-  display: inline-flex;
-  width: auto;
-}
+    & .aui--button {
+      font-size: 14px;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      height: 100%;
+    }
 
-.filepicker-component .input-group-btn > .aui--button {
-  min-height: 100%;
-  padding-top: 0;
-  padding-bottom: 0;
-}
+    & .remove-file {
+      font-size: 18px;
+      font-weight: $font-weight-normal;
+      background-color: $color-default-accent;
+    }
+  }
 
-.has-error .filepicker-component .form-control {
-  border: 0;
+  & .hidden-input {
+    display: none;
+  }
 }

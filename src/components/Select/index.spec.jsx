@@ -63,11 +63,6 @@ it('should have custom SelectContainer if dts is passed in', async () => {
 
   expect(screen.getAllByDts('test-dts')).toHaveLength(1);
   expect(screen.getAllByClass('select-component__value-container')).toHaveLength(1);
-  expect(
-    screen.getAllByClass(
-      'select-component__indicator select-component__dropdown-indicator css-4m2bza-indicatorContainer'
-    )
-  ).toHaveLength(1);
 
   view.rerender(<Select options={defaultOptions} menuIsOpen isClearable dts="test-dts" />);
   await user.click(screen.getByText('Australia'));

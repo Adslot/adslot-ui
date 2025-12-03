@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 17 Jan 2023 23:20:14 GMT
+ * Generated on Fri, 28 Nov 2025 03:04:47 GMT
  */
 
 export default {
@@ -66,6 +66,23 @@ export default {
           item: 'base',
         },
         path: ['color', 'border', 'base'],
+      },
+      accent: {
+        value: '#757982',
+        description: 'Use for hover state for small elements such as input, pills',
+        filePath: 'src/color/border.json',
+        isSource: true,
+        original: {
+          value: '{color.grey.600}',
+          description: 'Use for hover state for small elements such as input, pills',
+        },
+        name: 'ColorBorderAccent',
+        attributes: {
+          category: 'color',
+          type: 'border',
+          item: 'accent',
+        },
+        path: ['color', 'border', 'accent'],
       },
       strong: {
         value: '#1c1d1f',

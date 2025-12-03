@@ -1,24 +1,19 @@
 /* eslint-disable react/prop-types */
-import _ from 'lodash';
-import classnames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import cc from 'classnames';
 import ReactSelect, { components, createFilter } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
-import defaultStyle from './styles';
+import getDefaultStyle from './styles';
 import './styles.css';
 
 const componentBaseClass = 'select-component';
 
-const DropdownIndicator = (props) => (
-  <components.DropdownIndicator {...props}>
-    <div className="caret-icon" />
-  </components.DropdownIndicator>
-);
-
 const ClearIndicator = (props) => <components.ClearIndicator {...props}>✕</components.ClearIndicator>;
+
+const IndicatorSeparator = () => null;
 
 const SelectContainer = (props) => {
   return (
@@ -36,34 +31,30 @@ const SelectContainer = (props) => {
  * The propType for this component should be the same as 'React-Select` lib, plus any special props
  */
 const selectComponentBuilder = (Component) => {
-  const SelectComponent = (props) => {
-    const customComponents = { SelectContainer, DropdownIndicator, ClearIndicator };
-
-    const selectProps = {
-      ..._.omit(props, ['components', 'className', 'styles', 'isInModal']),
-      components: { ...customComponents, ...props.components },
-      className: classnames(componentBaseClass, props.className),
-      classNamePrefix: props.classNamePrefix || componentBaseClass,
-      styles: { ...defaultStyle, ...props.styles },
-    };
-
-    if (props.isInModal) {
-      selectProps.menuPortalTarget = document.body;
-      selectProps.styles = {
-        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-        ...selectProps.styles,
-      };
-    }
-
-    return <Component {...selectProps} />;
+  const SelectComponent = ({ isInModal = false, ...rest }) => {
+    return (
+      <Component
+        {...rest}
+        components={{
+          SelectContainer,
+          ClearIndicator,
+          IndicatorSeparator,
+          ...rest.components,
+        }}
+        className={cc(componentBaseClass, rest.className)}
+        classNamePrefix={rest.classNamePrefix || componentBaseClass}
+        styles={{
+          ...getDefaultStyle({ isInModal }),
+          ...rest.styles,
+        }}
+        {...(isInModal ? { menuPortalTarget: document.body } : {})}
+      />
+    );
   };
 
   SelectComponent.propTypes = {
     dts: PropTypes.string,
     isInModal: PropTypes.bool,
-  };
-  SelectComponent.defaultProps = {
-    isInModal: false,
   };
 
   return SelectComponent;
