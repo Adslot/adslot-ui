@@ -1,7 +1,7 @@
 @import url('../../styles/variable');
 
 $datepicker-font-family: $font-family-sans-serif;
-$datepicker-font-size: $font-size-base;
+$datepicker-font-size: 14px;
 $datepicker-icon-size: 24px;
 $datepicker-border-color: $color-border-base;
 $datepicker-border-radius: $border-radius-base;
@@ -11,10 +11,30 @@ $datepicker-hover-bg-color: $color-grey-300;
 $datepicker-color-disabled: $color-text-disabled;
 
 $icon-arrow-bracket: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23006dcc' d='M11 3L8.1 8l2.9 5H8.4L5 8.1v-.2L8.4 3H11z'/%3E%3C/svg%3E");
-$icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 50 50'%3E%3Cpath d='M40.5 4h-3.7v3.3c0 1.3-1 2.3-2.3 2.3-1.3 0-2.3-1-2.3-2.3V4H17.8v3.3c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3V4H9.5C7 4 5 6 5 8.5v35.9c0 2.5 2 4.4 4.5 4.4h31c2.5 0 4.5-2 4.5-4.4V8.5C45 6 43 4 40.5 4zm1.6 40.3c0 .9-.7 1.6-1.6 1.6h-31c-.9 0-1.6-.7-1.6-1.6V15.1H42v29.2z' fill='%235a5a5a'/%3E%3Cpath d='M15.5 8.2c.5 0 .9-.4.9-.8V2c0-.5-.4-.8-.9-.8s-.9.4-.9.8v5.3c.1.5.4.9.9.9zm19 0c.5 0 .9-.4.9-.8V2c0-.5-.4-.8-.9-.8s-.9.4-.9.8v5.3c0 .5.4.9.9.9zM37 20h3v3h-3zm-4.5 0h3v3h-3zM28 20h3v3h-3zm-4.5 0h3v3h-3zM19 20h3v3h-3zm18 6h3v3h-3zm-4.5 0h3v3h-3zM28 26h3v3h-3zm-4.5 0h3v3h-3zM19 26h3v3h-3zm-4.5 0h3v3h-3zM10 26h3v3h-3zm27 6h3v3h-3zm-4.5 0h3v3h-3zM28 32h3v3h-3zm-4.5 0h3v3h-3zM19 32h3v3h-3zm-4.5 0h3v3h-3zM10 32h3v3h-3zm18 6h3v3h-3zm-4.5 0h3v3h-3zM19 38h3v3h-3zm-4.5 0h3v3h-3zM10 38h3v3h-3z' fill='%235a5a5a'/%3E%3C/svg%3E");
+$icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cpath d='M40.5 4h-3.7v3.3c0 1.3-1 2.3-2.3 2.3-1.3 0-2.3-1-2.3-2.3V4H17.8v3.3c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3V4H9.5C7 4 5 6 5 8.5v35.9c0 2.5 2 4.4 4.5 4.4h31c2.5 0 4.5-2 4.5-4.4V8.5C45 6 43 4 40.5 4zm1.6 40.3c0 .9-.7 1.6-1.6 1.6h-31c-.9 0-1.6-.7-1.6-1.6V15.1H42v29.2z' fill='%235a5a5a'/%3E%3Cpath d='M15.5 8.2c.5 0 .9-.4.9-.8V2c0-.5-.4-.8-.9-.8s-.9.4-.9.8v5.3c.1.5.4.9.9.9zm19 0c.5 0 .9-.4.9-.8V2c0-.5-.4-.8-.9-.8s-.9.4-.9.8v5.3c0 .5.4.9.9.9zM37 20h3v3h-3zm-4.5 0h3v3h-3zM28 20h3v3h-3zm-4.5 0h3v3h-3zM19 20h3v3h-3zm18 6h3v3h-3zm-4.5 0h3v3h-3zM28 26h3v3h-3zm-4.5 0h3v3h-3zM19 26h3v3h-3zm-4.5 0h3v3h-3zM10 26h3v3h-3zm27 6h3v3h-3zm-4.5 0h3v3h-3zM28 32h3v3h-3zm-4.5 0h3v3h-3zM19 32h3v3h-3zm-4.5 0h3v3h-3zM10 32h3v3h-3zm18 6h3v3h-3zm-4.5 0h3v3h-3zM19 38h3v3h-3zm-4.5 0h3v3h-3zM10 38h3v3h-3z' fill='%235a5a5a'/%3E%3C/svg%3E");
 
-.aui--date-picker {
-  display: inline-block;
+.react-datepicker__input-container {
+  display: block;
+  font-size: $datepicker-font-size;
+
+  & input {
+    outline: 0;
+    border: 0;
+    height: 42px;
+    padding: 6px 12px;
+    background-size: 20px;
+    font-size: $datepicker-font-size;
+    background-image: $icon-calendar;
+    background-origin: content-box;
+    background-position: center right;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 100%;
+
+    &:focus {
+      border-color: $color-border-accent;
+    }
+  }
 }
 
 .react-datepicker {
@@ -27,6 +47,7 @@ $icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3
   & .react-datepicker__header {
     background-color: $datepicker-header-bg-color;
     border-bottom: 0;
+    padding: 12px 0;
   }
 
   & .react-datepicker__day,
@@ -56,8 +77,12 @@ $icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3
     color: $datepicker-color-disabled;
   }
 
+  & .react-datepicker__day-names {
+    margin: 12px 12px 6px;
+  }
+
   & .react-datepicker__month {
-    margin: calc(0.7 * $datepicker-font-size);
+    margin: 0 12px 12px;
   }
 
   & .react-datepicker__current-month {
@@ -121,17 +146,8 @@ $icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3
   }
 }
 
-.react-datepicker__input-container {
-  display: block;
-
-  & input {
-    background-image: $icon-calendar;
-    background-origin: content-box;
-    background-position: center right;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    padding-right: 4px;
-  }
+.react-datepicker-wrapper {
+  width: 100%;
 }
 
 .react-datepicker-popper {
@@ -146,4 +162,9 @@ $icon-calendar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3
       }
     }
   }
+}
+
+.aui--date-picker {
+  display: inline-flex;
+  border: 1px solid $color-border-base;
 }

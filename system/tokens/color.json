@@ -2,6 +2,7 @@
   "color": {
     "border": {
       "base": "#dae2e6",
+      "accent": "#757982",
       "strong": "#1c1d1f"
     },
     "white": "#ffffff",

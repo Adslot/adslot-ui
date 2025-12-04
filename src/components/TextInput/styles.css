@@ -1,0 +1,60 @@
+@import url('../../styles/variable.css');
+
+$input-padding: 12px;
+
+.aui--text-input {
+  position: relative;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid $color-border-base;
+  border-radius: $border-radius-base;
+  padding: 0 $input-padding;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: $input-padding;
+
+  & .aui-count {
+    display: none;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    font-style: italic;
+    color: $color-text-description;
+    background-color: rgb(255, 255, 255, 0.9);
+    backdrop-filter: blur(2px);
+  }
+
+  & .aui-input {
+    min-width: 192px;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    flex: 1;
+  }
+
+  &:focus-within {
+    border-color: $color-border-accent;
+
+    & .aui-count {
+      display: block;
+      cursor: default;
+      user-select: none;
+    }
+  }
+
+  &.aui-line {
+    border: 0;
+    border-bottom: 1px solid $color-border-base;
+    padding: 0 2px 6px;
+    align-items: flex-end;
+  }
+
+  &.aui-disabled {
+    background-color: $color-default-soft;
+
+    & .aui-input {
+      background-color: $color-default-soft;
+    }
+  }
+}

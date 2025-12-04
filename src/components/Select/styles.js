@@ -1,9 +1,9 @@
 import c from '../../../system/tokens/color.json';
+import { borderRadius } from '../../../system/tokens/borderRadius.json';
 
 const { grey, border, white } = c.color;
-const borderColor = border.base;
 
-const defaultStyle = {
+const getDefaultStyle = ({ isInModal }) => ({
   option: (styles, { isFocused, isSelected, isDisabled }) => {
     let backgroundColor;
     switch (true) {
@@ -26,44 +26,66 @@ const defaultStyle = {
       color: 'inherit',
       ':active': { backgroundColor: grey[300] },
       backgroundColor,
+      fontSize: 14,
+      padding: 12,
     };
   },
-  indicatorSeparator: (styles) => ({
-    ...styles,
-    display: 'none',
-  }),
   control: (styles, state) => ({
     ...styles,
+    gap: 6,
+    padding: '0 0 0 12px',
+    borderColor: border.base,
+    ':hover': {
+      borderColor: border.accent,
+    },
     ...(state.isFocused
       ? {
           boxShadow: 0,
-          ':hover': { borderColor },
-          borderColor,
+          ':hover': { borderColor: border.accent },
+          borderColor: border.accent,
         }
       : {}),
-    minHeight: 26,
-    borderRadius: 0,
+    minHeight: 42,
+    borderRadius: borderRadius.base,
+  }),
+  indicatorsContainer: (styles) => ({
+    ...styles,
+    gap: 6,
+    padding: '0 10px',
   }),
   clearIndicator: (styles) => ({
     ...styles,
-    padding: '0 4px 0 8px',
+    padding: 0,
+    alignItems: 'center',
   }),
   dropdownIndicator: (styles) => ({
     ...styles,
-    padding: '0 8px 0 4px',
+    padding: 0,
+    color: grey[500],
   }),
   valueContainer: (styles) => ({
     ...styles,
-    padding: '0 8px',
+    padding: 0,
+  }),
+  input: (styles) => ({
+    ...styles,
+    margin: 0,
+    padding: 0,
+  }),
+  singleValue: (styles) => ({
+    ...styles,
+    margin: 0,
   }),
   multiValue: (styles) => ({
     ...styles,
     color: white,
     backgroundColor: grey[600],
+    margin: 0,
   }),
   multiValueLabel: (styles) => ({
     ...styles,
     color: white,
+    fontSize: 14,
   }),
   multiValueRemove: (styles) => ({
     ...styles,
@@ -79,6 +101,11 @@ const defaultStyle = {
     ...styles,
     textAlign: 'left',
   }),
-};
+  ...(isInModal
+    ? {
+        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+      }
+    : {}),
+});
 
-export default defaultStyle;
+export default getDefaultStyle;

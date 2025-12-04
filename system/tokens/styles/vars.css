@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 17 Jan 2023 23:20:14 GMT
+ * Generated on Fri, 28 Nov 2025 03:04:47 GMT
  */
 
 :root {
@@ -118,5 +118,6 @@
   --color-text-soft: var(--color-grey-700);
   --color-text-base: var(--color-grey-800);
   --color-border-strong: var(--color-grey-800);
+  --color-border-accent: var(--color-grey-600);
   --color-border-base: var(--color-grey-300);
 }

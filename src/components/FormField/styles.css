@@ -1,0 +1,222 @@
+@import url('../../styles/variable.css');
+
+$input-padding: 12px;
+$small-size: 32px;
+
+.aui--form-field {
+  font-size: 14px;
+  font-weight: $font-weight-normal;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  & .aui-form-label {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 6px;
+  }
+
+  & .aui-label-text {
+    font-weight: $font-weight-bold;
+  }
+
+  & .aui-sub-label {
+    font-style: italic;
+    color: $color-text-description;
+  }
+
+  & .aui-help-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'  viewBox='0 0 10 10'%3E%3Cpath fill='%23ababab' d='M5 .6c2.4 0 4.4 2 4.4 4.4 0 2.4-2 4.4-4.4 4.4C2.6 9.4.6 7.4.6 5 .6 2.6 2.6.6 5 .6M5 0C2.2 0 0 2.2 0 5c0 2.7 2.3 5 5 5s5-2.3 5-5-2.3-5-5-5z'/%3E%3Cpath fill='%23ababab' d='M4.5 6.2c0-1 .7-1.3 1.1-2 .3-.3.2-.7 0-1-.4-.2-.7-.2-1.1 0-.1.1-.1.3-.1.4h-.9c0-2.7 5.2-1.1 2.7 1.3l-.5.5c-.1.2-.3.5-.3.8h-.9zm0 1.2c0-.8 1.2-.7 1.1 0 0 .6-1.1.7-1.1 0z'/%3E%3C/svg%3E");
+    width: 10px;
+    height: 10px;
+    background-size: 10px;
+    margin-bottom: -1px;
+  }
+
+  & .aui-form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  & .aui-helper-text {
+    min-height: 14px;
+    line-height: 1;
+  }
+
+  &.aui-small {
+    & .select-component__control {
+      min-height: $small-size;
+    }
+
+    & .select-component__value-container--is-multi {
+      padding: 2px 0;
+      gap: 4px;
+    }
+
+    & .select-component__option {
+      padding: 6px 12px;
+    }
+
+    & .select-component__multi-value__label {
+      font-size: 12px;
+    }
+
+    & .aui--text-input {
+      height: $small-size;
+    }
+
+    & .aui--date-picker {
+      & .react-datepicker__input-container input {
+        height: $small-size;
+        background-size: 16px;
+      }
+
+      & .react-datepicker__header {
+        padding: 10px 0;
+      }
+
+      & .react-datepicker__day-names {
+        margin: 6px 6px 4px;
+      }
+
+      & .react-datepicker__month {
+        margin: 0 6px 6px;
+      }
+    }
+
+    & .filepicker-component {
+      height: $small-size;
+    }
+  }
+
+  &.aui-inline {
+    flex-direction: row;
+    justify-content: space-between;
+
+    & .aui-form-input {
+      width: 55%;
+    }
+  }
+
+  &.aui-primary {
+    color: $color-primary-base;
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text,
+    & .select-component__single-value,
+    & .aui-sub-label {
+      color: $color-primary-base;
+    }
+
+    & .aui--radio-input-icon::before,
+    & .aui--checkbox-input-icon::before,
+    & .aui--date-picker,
+    & .select-component__control,
+    & .filepicker-component,
+    & .aui--text-input {
+      border-color: $color-primary-base;
+    }
+  }
+
+  &.aui-secondary {
+    color: $color-secondary-base;
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text,
+    & .select-component__single-value,
+    & .aui-sub-label {
+      color: $color-secondary-base;
+    }
+
+    & .aui--radio-input-icon::before,
+    & .aui--checkbox-input-icon::before,
+    & .aui--date-picker,
+    & .select-component__control,
+    & .filepicker-component,
+    & .aui--text-input {
+      border-color: $color-secondary-base;
+    }
+  }
+
+  &.aui-danger {
+    color: $color-danger-base;
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text,
+    & .select-component__single-value,
+    & .aui-sub-label {
+      color: $color-danger-base;
+    }
+
+    & .aui--radio-input-icon::before,
+    & .aui--checkbox-input-icon::before,
+    & .aui--date-picker,
+    & .select-component__control,
+    & .filepicker-component,
+    & .aui--text-input {
+      border-color: $color-danger-base;
+    }
+  }
+
+  &.aui-success {
+    color: $color-success-base;
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text,
+    & .select-component__single-value,
+    & .aui-sub-label {
+      color: $color-success-base;
+    }
+
+    & .aui--radio-input-icon::before,
+    & .aui--checkbox-input-icon::before,
+    & .aui--date-picker,
+    & .select-component__control,
+    & .filepicker-component,
+    & .aui--text-input {
+      border-color: $color-success-base;
+    }
+  }
+
+  &.aui-warning {
+    color: $color-warning-base;
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text,
+    & .select-component__single-value,
+    & .aui-sub-label {
+      color: $color-warning-base;
+    }
+
+    & .aui--radio-input-icon::before,
+    & .aui--checkbox-input-icon::before,
+    & .aui--date-picker,
+    & .select-component__control,
+    & .filepicker-component,
+    & .aui--text-input {
+      border-color: $color-warning-base;
+    }
+  }
+
+  &.aui-info {
+    color: $color-info-base;
+
+    & .aui--radio-label-text,
+    & .aui--checkbox-label-text,
+    & .select-component__single-value,
+    & .aui-sub-label {
+      color: $color-info-base;
+    }
+
+    & .aui--radio-input-icon::before,
+    & .aui--checkbox-input-icon::before,
+    & .aui--date-picker,
+    & .select-component__control,
+    & .filepicker-component,
+    & .aui--text-input {
+      border-color: $color-info-base;
+    }
+  }
+}

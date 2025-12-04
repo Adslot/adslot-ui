@@ -23,6 +23,7 @@ import DatePicker from './components/DatePicker';
 import Empty from './components/Empty';
 import FilePicker from './components/FilePicker';
 import FlexibleSpacer from './components/FlexibleSpacer';
+import FormField from './components/FormField';
 import FormGroup from './components/FormGroup';
 import Grid from './components/Grid';
 import GridCell from './components/Grid/Cell';
@@ -58,6 +59,7 @@ import Tabs from './components/Tabs';
 import Tag from './components/Tag';
 import Textarea from './components/Textarea';
 import TextEllipsis from './components/TextEllipsis';
+import TextInput from './components/TextInput';
 import Tile from './components/Tile';
 import TileGrid from './components/TileGrid';
 import Toast from './components/Toast';
@@ -102,6 +104,7 @@ export {
   Empty,
   FilePicker,
   FlexibleSpacer,
+  FormField,
   FormGroup,
   Grid,
   GridCell,
@@ -131,6 +134,7 @@ export {
   Tag,
   Textarea,
   TextEllipsis,
+  TextInput,
   TileGrid,
   Totals,
   TreePicker,
