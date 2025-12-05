@@ -1,19 +1,13 @@
 @import url('../../styles/variable.css');
 
-.aui--select {
+.select-component {
   font-size: 14px;
-  min-width: 216px;
 
   & .caret-icon {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url('../../styles/icons/caret.svg');
-  }
-
-  & .aui--select__value-container--is-multi {
-    padding: 6px 0;
-    gap: 6px;
   }
 }

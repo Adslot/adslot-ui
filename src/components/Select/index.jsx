@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import cc from 'classnames';
@@ -12,6 +11,12 @@ import './styles.css';
 const componentBaseClass = 'select-component';
 
 const ClearIndicator = (props) => <components.ClearIndicator {...props}>✕</components.ClearIndicator>;
+
+const DropdownIndicator = (props) => (
+  <components.DropdownIndicator {...props}>
+    <div className="caret-icon" />
+  </components.DropdownIndicator>
+);
 
 const IndicatorSeparator = () => null;
 
@@ -39,6 +44,7 @@ const selectComponentBuilder = (Component) => {
           SelectContainer,
           ClearIndicator,
           IndicatorSeparator,
+          DropdownIndicator,
           ...rest.components,
         }}
         className={cc(componentBaseClass, rest.className)}
@@ -70,4 +76,3 @@ Select.AsyncCreatable = selectComponentBuilder(AsyncCreatableSelect);
 Select.createFilter = createFilter;
 
 export default Select;
-/* eslint-enable react/prop-types */
