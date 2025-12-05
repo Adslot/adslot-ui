@@ -91,7 +91,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@vitejs/plugin-react-swc": "^4.2.2",
-    "axios": "^1.12.2",
+    "axios": "^1.13.2",
     "eslint": "^9.36.0",
     "eslint-config-adslot": "^2.2.0",
     "eslint-import-resolver-alias": "^1.1.2",
