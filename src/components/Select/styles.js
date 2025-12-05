@@ -65,7 +65,8 @@ const getDefaultStyle = ({ isInModal }) => ({
   }),
   valueContainer: (styles) => ({
     ...styles,
-    padding: 0,
+    padding: '6px 0',
+    gap: 6,
   }),
   input: (styles) => ({
     ...styles,
