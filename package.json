@@ -123,7 +123,7 @@
     "stylelint": "^16.24.0",
     "stylelint-config-standard": "^38.0.0",
     "svgo": "^4.0.0",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.3",
     "vite": "^7.1.11",
     "vite-plugin-svgr": "^4.5.0",
     "wcag-contrast": "^3.0.0"
@@ -131,8 +131,8 @@
   "dependencies": {
     "@draft-js-plugins/editor": "^4.1.4",
     "@draft-js-plugins/mention": "^5.3.0",
-    "@types/draft-js": "^0.11.18",
-    "@types/react": "^18.3.23",
+    "@types/draft-js": "^0.11.20",
+    "@types/react": "^18.3.27",
     "@types/react-slick": "^0.23.13",
     "classnames": "^2.5.1",
     "cropperjs": "^1.6.2",
