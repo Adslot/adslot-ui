@@ -144,7 +144,7 @@
     "react-select": "^5.10.2",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
-    "ryze": "^0.1.5",
+    "ryze": "^0.3.0",
     "slick-carousel": "^1.8.1"
   },
   "peerDependencies": {
