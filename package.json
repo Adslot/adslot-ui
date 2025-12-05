@@ -86,7 +86,7 @@
     "@storybook/addon-links": "^9.1.8",
     "@storybook/react-vite": "^9.1.8",
     "@swc/jest": "^0.2.39",
-    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
