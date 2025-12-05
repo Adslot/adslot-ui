@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "testing": ["./config/testing.d.ts"]
+      "testing": ["./config/testing.js"]
     },
 
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
@@ -12,6 +12,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "jsx": "react-jsx",
+    "allowJs": true,
 
     "noEmit": true,
     "allowImportingTsExtensions": true,
