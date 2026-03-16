@@ -27,6 +27,7 @@ export const useTreePickerNode = () => React.useContext(TreePickerNodeContext);
 const TreePickerNode = ({ className, children, node, dts }) => {
   const { goTo } = useInternalActions();
   const [state, setState] = React.useState(() => ({ expanded: false, subNodes: [] }));
+  const expandRef = React.useRef();
 
   const { level } = useTreePickerNode();
 
@@ -56,6 +57,7 @@ const TreePickerNode = ({ className, children, node, dts }) => {
       expanded: state.expanded,
       inlineExpand,
       fullExpand,
+      expandRef,
     }),
     [level, node, state.expanded, inlineExpand, fullExpand]
   );
@@ -132,7 +134,7 @@ const TreePickerNodeExpand = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const { setExpandingNodeId } = useInternalActions();
   const expandableRef = useTreePickerSlice('expandableRef');
-  const { node, expanded, inlineExpand, fullExpand } = useTreePickerNode();
+  const { node, expanded, inlineExpand, fullExpand, expandRef } = useTreePickerNode();
   const isUnmounted = useIsUnmounted();
   const getTreeState = useTreePickerGetState();
   const hasSearch = useTreePickerSlice(getHasSearch);
@@ -165,6 +167,10 @@ const TreePickerNodeExpand = ({
       setExpandingNodeId(node.id, false);
     }
   };
+
+  React.useLayoutEffect(() => {
+    expandRef.current = handleExpand;
+  });
 
   // record the current expand node to ctx ref
   React.useLayoutEffect(() => {
