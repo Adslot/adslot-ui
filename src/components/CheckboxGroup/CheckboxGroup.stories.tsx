@@ -103,13 +103,13 @@ export const NestedCheckboxes: Story = {
       <CheckboxGroup indent>
         <CheckboxGroup.All label="Sports" values={allHobbies.sports} />
         {allHobbies.sports.map((item) => (
-          <CheckboxGroup.Item key={item} value={item} label={_.capitalize(item)} />
+          <CheckboxGroup.Item key={item} value={item} label={_.capitalize(item)} disabled={item === 'swimming' }/>
         ))}
       </CheckboxGroup>
       <CheckboxGroup indent>
         <CheckboxGroup.All label="Other" values={allHobbies.other} />
         {allHobbies.other.map((item) => (
-          <CheckboxGroup.Item key={item} value={item} label={_.capitalize(item)} />
+          <CheckboxGroup.Item key={item} value={item} label={_.capitalize(item)} disabled/>
         ))}
       </CheckboxGroup>
     </CheckboxGroup>
