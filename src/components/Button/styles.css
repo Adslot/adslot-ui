@@ -33,7 +33,7 @@ $color-secondary-active: $color-teal-700;
 .aui--anchor,
 .btn {
   display: inline-flex;
-  grid-gap: $gap-button-default;
+  gap: $gap-button-default;
   align-items: center;
   justify-content: center;
   margin-bottom: 0;
@@ -311,7 +311,7 @@ $color-secondary-active: $color-teal-700;
     min-height: $size-button-large;
     padding: $padding-y-button-large $padding-x-button-large;
     font-size: $font-size-button-large;
-    grid-gap: $gap-button-large;
+    gap: $gap-button-large;
 
     &.aui-icon {
       padding: $padding-icon-button-large;
