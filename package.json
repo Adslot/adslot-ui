@@ -148,7 +148,7 @@
     "slick-carousel": "^1.8.1"
   },
   "peerDependencies": {
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
