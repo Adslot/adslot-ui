@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import TreePicker from './index';
 
@@ -20,7 +19,9 @@ const NodeRender = ({ node }) => (
         disabled={node.type === 'test'}
         resolveNodes={async () => {
           if (node.type === 'user') {
-            const res = await axios.get(`https://dummyjson.com/users/${node.id}/posts?limit=5`);
+            const res = await fetch(`https://dummyjson.com/users/${node.id}/posts?limit=5`)
+	.then(async (res) => Object.assign(res, { data: await res.json() }))
+	.catch(() => null);
             return res.data.posts.map((entry) => ({
               ...entry,
               label: entry.title,
@@ -57,7 +58,9 @@ export const Basic: Story = {
         <TreePicker.Header>Name</TreePicker.Header>
         <TreePicker.Search
           resolveNodes={async (searchText) => {
-            const res = await axios.get(`https://dummyjson.com/posts/search?q=${searchText}`);
+            const res = await fetch(`https://dummyjson.com/posts/search?q=${searchText}`)
+	.then(async (res) => Object.assign(res, { data: await res.json() }))
+	.catch(() => null);
 
             return res.data.posts.map((post) => ({
               ...post,
