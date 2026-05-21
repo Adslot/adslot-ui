@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import TreePicker from './index';
 
@@ -20,16 +19,18 @@ const NodeRender = ({ node }) => (
         disabled={node.type === 'test'}
         resolveNodes={async () => {
           if (node.type === 'user') {
-            const res = await axios.get(`https://dummyjson.com/users/${node.id}/posts?limit=5`);
-            return res.data.posts.map((entry) => ({
+            const res = await fetch(`https://dummyjson.com/users/${node.id}/posts?limit=5`);
+            const data = await res.json();
+            return data.posts.map((entry) => ({
               ...entry,
               label: entry.title,
               type: 'post',
             }));
           }
-          const res = await axios.get(`https://dummyjson.com/posts/${node.id}/comments?limit=5`);
+          const res = await fetch(`https://dummyjson.com/posts/${node.id}/comments?limit=5`);
+          const data = await res.json();
 
-          return res.data.comments.map((entry) => ({
+          return data.comments.map((entry) => ({
             ...entry,
             label: entry.body,
             type: 'comment',
@@ -57,9 +58,10 @@ export const Basic: Story = {
         <TreePicker.Header>Name</TreePicker.Header>
         <TreePicker.Search
           resolveNodes={async (searchText) => {
-            const res = await axios.get(`https://dummyjson.com/posts/search?q=${searchText}`);
+            const res = await fetch(`https://dummyjson.com/posts/search?q=${searchText}`);
+            const data = await res.json();
 
-            return res.data.posts.map((post) => ({
+            return data.posts.map((post) => ({
               ...post,
               label: post.title,
               type: 'post',
@@ -68,8 +70,9 @@ export const Basic: Story = {
         />
         <TreePicker.Tree
           resolveRootNodes={async () => {
-            const res = await axios.get('https://dummyjson.com/users?limit=5');
-            return res.data.users.map((entry) => ({
+            const res = await fetch('https://dummyjson.com/users?limit=5');
+            const data = await res.json();
+            return data.users.map((entry) => ({
               ...entry,
               label: entry.firstName + ' ' + entry.lastName,
               type: 'user',
