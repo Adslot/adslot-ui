@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../Spinner';
 
 const FileSticker = ({ onFileRemove, file, disabled }) => {
-  const [showClose, setShowClose] = React.useState(false);
+  const [showClose, setShowClose] = useState(false);
   const { name, path, isUploading } = file;
   const isImage = /\.(jpe?g|png)$/i.test(name);
 

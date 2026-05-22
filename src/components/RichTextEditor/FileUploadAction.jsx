@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import ToolbarButton from './ToolbarButton';
 
 const FileUploadAction = ({ onFileUpload, fileFilter, disabled = false }) => {
-  const fileInputRef = React.useRef();
+  const fileInputRef = useRef();
 
   const onFileChange = (e) => {
     if (e.target.files[0]) onFileUpload(e.target.files[0]);

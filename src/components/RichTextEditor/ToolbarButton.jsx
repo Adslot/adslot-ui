@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Button from '../Button';
 
-const ToolbarButton = ({ onToggle, label, active = false, disabled = false, ...rest }) => {
+const ToolbarButton = ({ onToggle, label, active = false, disabled = false, title, ...rest }) => {
   const className = classnames('aui--toolbar-button', {
     active,
   });
 
-  const mouseDownHandler = React.useCallback(
+  const mouseDownHandler = useCallback(
     (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -17,8 +17,16 @@ const ToolbarButton = ({ onToggle, label, active = false, disabled = false, ...r
     [onToggle]
   );
 
+  // Fall back to aria-label so every toolbar button surfaces a tooltip
+  // without each call site having to repeat the label. `data-tooltip`
+  // drives the styled CSS popover on hover; we intentionally omit the
+  // native `title` attribute to avoid the browser layering its own
+  // (much slower, less-styled) tooltip on top. Screen readers use the
+  // `aria-label` that already flows through `...rest`.
+  const tooltip = title ?? rest['aria-label'];
+
   return (
-    <Button className={className} onMouseDown={mouseDownHandler} disabled={disabled} {...rest}>
+    <Button className={className} data-tooltip={tooltip} onMouseDown={mouseDownHandler} disabled={disabled} {...rest}>
       {label}
     </Button>
   );
@@ -29,6 +37,7 @@ ToolbarButton.propTypes = {
   label: PropTypes.node.isRequired,
   active: PropTypes.bool,
   disabled: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default ToolbarButton;

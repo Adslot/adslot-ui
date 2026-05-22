@@ -1,40 +1,47 @@
 import React from 'react';
-import { RichUtils } from 'draft-js';
+import PropTypes from 'prop-types';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { FORMAT_TEXT_COMMAND } from 'lexical';
 import ToolbarButton from './ToolbarButton';
 import './styles.css';
 
 const INLINE_STYLES = [
-  { label: <div className="bold-icon" data-testid="bold" alt="icon" />, style: 'BOLD', ariaLabel: 'Bold' },
+  { format: 'bold', label: <div className="bold-icon" data-testid="bold" alt="icon" />, ariaLabel: 'Bold' },
   {
+    format: 'italic',
     label: <div className="italic-icon" data-testid="italics" aria-label="italic" alt="icon" />,
-    style: 'ITALIC',
     ariaLabel: 'Italic',
   },
   {
+    format: 'underline',
     label: <div className="underline-icon" data-testid="underline" aria-label="Underline" alt="icon" />,
-    style: 'UNDERLINE',
     ariaLabel: 'Underline',
+  },
+  {
+    format: 'strikethrough',
+    label: <div className="strikethrough-icon" data-testid="strikethrough" aria-label="Strikethrough" alt="icon" />,
+    ariaLabel: 'Strikethrough',
   },
 ];
 
-const InlineStyleButtons = (props) => {
-  const { disabled } = props;
-  const currentStyle = props.editorState.getCurrentInlineStyle();
-
-  const onToggle = (style) => {
-    props.onToggle(RichUtils.toggleInlineStyle(props.editorState, style));
-  };
+const InlineStyleButtons = ({ formats, disabled }) => {
+  const [editor] = useLexicalComposerContext();
 
   return INLINE_STYLES.map((type) => (
     <ToolbarButton
-      key={type.style}
-      active={currentStyle.has(type.style)}
+      key={type.format}
+      active={Boolean(formats[type.format])}
       label={type.label}
-      onToggle={() => onToggle(type.style)}
+      onToggle={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, type.format)}
       aria-label={type.ariaLabel}
       disabled={disabled}
     />
   ));
+};
+
+InlineStyleButtons.propTypes = {
+  formats: PropTypes.object,
+  disabled: PropTypes.bool,
 };
 
 export default InlineStyleButtons;

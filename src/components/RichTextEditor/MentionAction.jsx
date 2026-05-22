@@ -1,13 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { $getSelection, $isRangeSelection } from 'lexical';
 import ToolbarButton from './ToolbarButton';
 
-const MentionAction = ({ onToggle }) => (
-  <ToolbarButton label={<div className="mention-button">@</div>} onToggle={onToggle} aria-label="Mention" />
-);
+/**
+ * Toolbar button that inserts an `@` at the cursor, which opens the mention
+ * typeahead the same way typing `@` does.
+ */
+const MentionAction = ({ disabled }) => {
+  const [editor] = useLexicalComposerContext();
 
-export default MentionAction;
+  const insertTrigger = () => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        selection.insertText('@');
+      }
+    });
+  };
+
+  return (
+    <ToolbarButton
+      label={<div className="mention-button">@</div>}
+      onToggle={insertTrigger}
+      aria-label="Mention"
+      disabled={disabled}
+    />
+  );
+};
 
 MentionAction.propTypes = {
-  onToggle: PropTypes.func,
+  disabled: PropTypes.bool,
 };
+
+export default MentionAction;
