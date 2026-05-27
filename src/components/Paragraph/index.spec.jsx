@@ -122,7 +122,7 @@ it('should not exceed briefMaxHeight', () => {
 
   expect(screen.getByTestId('paragraph-wrapper')).toBeInTheDocument();
   expect(screen.getByTestId('expandable-content')).toHaveStyle(`height: 50px`);
-  expect(screen.getByTestId('paragraph-content')).toHaveTextContent(`Lorum Lorum`);
+  expect(screen.getByTestId('paragraph-content')).toHaveTextContent('LorumLorumLorumLorum');
   expect(screen.getByTestId('expandable-content')).toHaveClass('paragraph-fade-bottom');
 });
 
@@ -150,7 +150,7 @@ it('should allow no briefMaxHeight', () => {
   expect(screen.getByTestId('paragraph-wrapper')).toBeInTheDocument();
 
   expect(screen.getByTestId('expandable-content')).toHaveStyle(`height: 100px`);
-  expect(screen.getByTestId('paragraph-content')).toHaveTextContent(`Lorum Lorum`);
+  expect(screen.getByTestId('paragraph-content')).toHaveTextContent('LorumLorumLorumLorum');
 });
 
 it('should render expected heights', async () => {
@@ -198,7 +198,7 @@ it('should be able to click read more button to expand paragraph', async () => {
   fireEvent.click(screen.getByTestId('paragraph-read-more-button'));
 
   expect(screen.getByTestId('paragraph-content')).toHaveTextContent(
-    `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+    `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
   );
   fireEvent.click(screen.getByTestId('paragraph-read-more-button'));
   expect(screen.getByTestId('paragraph-content')).toHaveTextContent(`Lorem ipsum...`);

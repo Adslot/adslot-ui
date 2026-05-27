@@ -1,4 +1,5 @@
 import './styles/bootstrap-custom.css';
+import './polyfills';
 
 import { registerLocale } from 'react-datepicker';
 
