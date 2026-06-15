@@ -152,6 +152,11 @@
     "ryze": "^0.3.0",
     "slick-carousel": "^1.8.1"
   },
+  "overrides": {
+    "storybook": {
+      "esbuild": "^0.28.1"
+    }
+  },
   "peerDependencies": {
     "lodash": "^4.18.1",
     "moment": "^2.30.1",
