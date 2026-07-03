@@ -138,7 +138,7 @@
     "@lexical/selection": "0.44.0",
     "@lexical/table": "0.44.0",
     "@lexical/utils": "0.44.0",
-    "@types/react": "^18.3.28",
+    "@types/react": "^18.3.31",
     "@types/react-slick": "^0.23.13",
     "classnames": "^2.5.1",
     "cropperjs": "^1.6.2",
