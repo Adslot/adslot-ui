@@ -90,7 +90,7 @@
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
     "@types/jest": "^30.0.0",
-    "@vitejs/plugin-react-swc": "^4.3.1",
+    "@vitejs/plugin-react-swc": "^4.3.3",
     "eslint": "^9.39.5",
     "eslint-config-adslot": "^2.2.1",
     "eslint-import-resolver-alias": "^1.1.2",
