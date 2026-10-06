@@ -141,7 +141,7 @@
     "@types/react": "^18.3.31",
     "@types/react-slick": "^0.23.13",
     "classnames": "^2.5.1",
-    "cropperjs": "^1.6.2",
+    "cropperjs": "^1.6.3",
     "diff-match-patch": "^1.0.5",
     "lexical": "0.44.0",
     "react-datepicker": "^8.10.0",
