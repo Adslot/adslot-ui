@@ -24,6 +24,8 @@ export default defineConfig([
           allow: ['warn', 'error'],
         },
       ],
+      // lexical subpaths are only resolvable via package.json "exports", which the node resolver doesn't support
+      'import/no-unresolved': ['error', { commonjs: true, ignore: ['^@lexical/react/'] }],
     },
   },
   {

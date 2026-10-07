@@ -12,7 +12,9 @@ export default {
     ],
     '^.+\\.css$': '<rootDir>/config/cssTransform.cjs',
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
+  transformIgnorePatterns: [
+    '[/\\\\]node_modules[/\\\\](?!(lexical|@lexical|@preact/signals-core)[/\\\\]).+\\.(js|jsx|mjs|cjs|ts|tsx)$',
+  ],
   resetMocks: true, // for global mocks in testSetup or __mocks__
   restoreMocks: true,
   resetModules: true,
